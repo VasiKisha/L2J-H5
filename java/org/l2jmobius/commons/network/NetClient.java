@@ -220,6 +220,15 @@ public class NetClient
 	}
 	
 	/**
+	 * Checks if the connection is established.
+	 * @return {@code true} if the socket is not {@code null} and therefore assumed to be connected, {@code false} otherwise.
+	 */
+	public boolean isConnected()
+	{
+		return _socket != null;
+	}
+	
+	/**
 	 * @return the Socket of this client.
 	 */
 	public Socket getSocket()

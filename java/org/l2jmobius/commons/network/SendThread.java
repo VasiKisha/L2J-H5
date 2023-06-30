@@ -1,7 +1,6 @@
 package org.l2jmobius.commons.network;
 
 import java.io.OutputStream;
-import java.net.Socket;
 import java.util.Queue;
 import java.util.Set;
 
@@ -36,8 +35,7 @@ public class SendThread<E extends NetClient> implements Runnable
 				// Iterate client pool.
 				ITERATE: for (E client : _pool)
 				{
-					final Socket socket = client.getSocket();
-					if (socket == null)
+					if (!client.isConnected())
 					{
 						_pool.remove(client);
 						continue ITERATE;

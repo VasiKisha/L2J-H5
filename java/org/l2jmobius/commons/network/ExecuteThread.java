@@ -37,7 +37,7 @@ public class ExecuteThread<E extends NetClient> implements Runnable
 				// Iterate client pool.
 				ITERATE: for (E client : _pool)
 				{
-					if (client.getSocket() == null)
+					if (!client.isConnected())
 					{
 						_pool.remove(client);
 						continue ITERATE;
