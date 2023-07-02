@@ -1487,7 +1487,7 @@ public class Config
 			
 			final PropertiesParser networkConfig = new PropertiesParser(NETWORK_CONFIG_FILE);
 			CLIENT_READ_POOL_SIZE = networkConfig.getInt("ClientReadPoolSize", 100);
-			CLIENT_SEND_POOL_SIZE = networkConfig.getInt("ClientSendPoolSize", 25);
+			CLIENT_SEND_POOL_SIZE = networkConfig.getInt("ClientSendPoolSize", 50);
 			CLIENT_EXECUTE_POOL_SIZE = networkConfig.getInt("ClientExecutePoolSize", 50);
 			PACKET_QUEUE_LIMIT = networkConfig.getInt("PacketQueueLimit", 80);
 			PACKET_FLOOD_DISCONNECT = networkConfig.getBoolean("PacketFloodDisconnect", false);

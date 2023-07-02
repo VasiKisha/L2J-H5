@@ -5,6 +5,7 @@ import java.io.OutputStream;
 import java.net.Socket;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Logger;
 
 /**
@@ -17,6 +18,7 @@ public class NetClient
 	
 	private final Queue<byte[]> _receivedData = new ConcurrentLinkedQueue<>();
 	private final Queue<WritablePacket> _sendPacketQueue = new ConcurrentLinkedQueue<>();
+	private final AtomicBoolean _isSending = new AtomicBoolean();
 	
 	private String _ip;
 	private Socket _socket;
@@ -250,6 +252,24 @@ public class NetClient
 	public OutputStream getOutputStream()
 	{
 		return _outputStream;
+	}
+	
+	/**
+	 * Checks if the client is currently in the process of sending data.
+	 * @return {@code true} if the client is sending data, {@code false} otherwise.
+	 */
+	public boolean isSending()
+	{
+		return _isSending.get();
+	}
+	
+	/**
+	 * Sets the sending state of the client.
+	 * @param value the sending state to set. {@code true} if the client is sending data, {@code false} otherwise.
+	 */
+	public void setSending(boolean value)
+	{
+		_isSending.set(value);
 	}
 	
 	/**
