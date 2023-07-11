@@ -135,12 +135,15 @@ public class LoginServer
 		
 		final NetServer<LoginClient> server = new NetServer<>(Config.LOGIN_BIND_ADDRESS, Config.PORT_LOGIN, new LoginPacketHandler(), LoginClient::new);
 		server.setName(getClass().getSimpleName());
-		server.getNetConfig().setReadPoolSize(2000);
-		server.getNetConfig().setSendPoolSize(2000);
-		server.getNetConfig().setExecutePoolSize(2000);
-		server.getNetConfig().setPacketQueueLimit(10);
-		server.getNetConfig().setPacketFloodDisconnect(true);
-		server.getNetConfig().setFailedDecryptionLogged(false);
+		server.getNetConfig().setReadPoolSize(Config.CLIENT_READ_POOL_SIZE);
+		server.getNetConfig().setSendPoolSize(Config.CLIENT_SEND_POOL_SIZE);
+		server.getNetConfig().setExecutePoolSize(Config.CLIENT_EXECUTE_POOL_SIZE);
+		server.getNetConfig().setPacketQueueLimit(Config.PACKET_QUEUE_LIMIT);
+		server.getNetConfig().setPacketFloodDisconnect(Config.PACKET_FLOOD_DISCONNECT);
+		server.getNetConfig().setPacketFloodDrop(Config.PACKET_FLOOD_DROP);
+		server.getNetConfig().setPacketFloodLogged(Config.PACKET_FLOOD_LOGGED);
+		server.getNetConfig().setFailedDecryptionLogged(Config.FAILED_DECRYPTION_LOGGED);
+		server.getNetConfig().setTcpNoDelay(Config.TCP_NO_DELAY);
 		server.start();
 	}
 	
