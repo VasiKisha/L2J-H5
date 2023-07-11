@@ -18,10 +18,8 @@ package org.l2jmobius.loginserver.network;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.PacketHandlerInterface;
 import org.l2jmobius.commons.network.ReadablePacket;
-import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.loginserver.network.clientpackets.LoginClientPacket;
 
@@ -75,54 +73,16 @@ public class LoginPacketHandler implements PacketHandlerInterface<LoginClient>
 			return;
 		}
 		
-		// Continue on another thread.
-		if (Config.THREADS_FOR_CLIENT_PACKETS)
+		// Packet read and run.
+		try
 		{
-			ThreadPool.execute(new ExecuteTask(client, packet, newPacket, packetId));
+			newPacket.read(packet);
+			newPacket.run(client);
 		}
-		else // Wait for execution.
+		catch (Exception e)
 		{
-			try
-			{
-				newPacket.read(packet);
-				newPacket.run(client);
-			}
-			catch (Exception e)
-			{
-				LOGGER.warning("LoginPacketHandler: Problem with " + client + " [Packet: 0x" + Integer.toHexString(packetId).toUpperCase() + "]");
-				LOGGER.warning(CommonUtil.getStackTrace(e));
-			}
-		}
-	}
-	
-	private class ExecuteTask implements Runnable
-	{
-		private final LoginClient _client;
-		private final ReadablePacket _packet;
-		private final LoginClientPacket _newPacket;
-		private final int _packetId;
-		
-		public ExecuteTask(LoginClient client, ReadablePacket packet, LoginClientPacket newPacket, int packetId)
-		{
-			_client = client;
-			_packet = packet;
-			_newPacket = newPacket;
-			_packetId = packetId;
-		}
-		
-		@Override
-		public void run()
-		{
-			try
-			{
-				_newPacket.read(_packet);
-				_newPacket.run(_client);
-			}
-			catch (Exception e)
-			{
-				LOGGER.warning("LoginPacketHandler->ExecuteTask: Problem with " + _client + " [Packet: 0x" + Integer.toHexString(_packetId).toUpperCase() + "]");
-				LOGGER.warning(CommonUtil.getStackTrace(e));
-			}
+			LOGGER.warning("LoginPacketHandler: Problem with " + client + " [Packet: 0x" + Integer.toHexString(packetId).toUpperCase() + "]");
+			LOGGER.warning(CommonUtil.getStackTrace(e));
 		}
 	}
 }

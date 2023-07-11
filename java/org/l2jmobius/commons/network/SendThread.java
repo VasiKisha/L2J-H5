@@ -7,6 +7,8 @@ import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 
+import org.l2jmobius.commons.threads.ThreadProvider;
+
 /**
  * @author Pantelis Andrianakis
  * @since June 22nd 2023
@@ -14,14 +16,11 @@ import java.util.concurrent.TimeUnit;
  */
 public class SendThread<E extends NetClient> implements Runnable
 {
-	// Throttle packets sent per cycle to limit flooding from waiting one client.
-	private static final int MAX_PACKETS_SENT_PER_CYCLE = 2000;
-	
 	// The core pool size for the ThreadPoolExecutor.
-	private static final int EXECUTOR_POOL_SIZE = 2;
+	private static final int EXECUTOR_POOL_SIZE = 5;
 	
 	// ThreadPoolExecutor used to execute tasks concurrently, avoiding delays caused by waiting for a single client.
-	private final ThreadPoolExecutor _executor = new ThreadPoolExecutor(EXECUTOR_POOL_SIZE, Integer.MAX_VALUE, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>());
+	private final ThreadPoolExecutor _executor = new ThreadPoolExecutor(EXECUTOR_POOL_SIZE, Integer.MAX_VALUE, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new ThreadProvider("SendThread Executor", Thread.MAX_PRIORITY));
 	
 	protected final Set<E> _pool;
 	private boolean _idle;
@@ -104,15 +103,10 @@ public class SendThread<E extends NetClient> implements Runnable
 		@Override
 		public void run()
 		{
+			WritablePacket writablePacket;
 			final OutputStream outputStream = _client.getOutputStream();
-			for (int count = 0; count < MAX_PACKETS_SENT_PER_CYCLE; count++)
+			while ((writablePacket = _packetQueue.poll()) != null)
 			{
-				final WritablePacket writablePacket = _packetQueue.poll();
-				if (writablePacket == null)
-				{
-					break;
-				}
-				
 				final byte[] sendableBytes = writablePacket.getSendableBytes(_client.getEncryption());
 				if (sendableBytes == null)
 				{

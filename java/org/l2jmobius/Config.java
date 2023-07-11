@@ -528,7 +528,6 @@ public class Config
 	public static Set<String> ALT_DEV_EXCLUDED_PACKETS;
 	public static int SCHEDULED_THREAD_POOL_SIZE;
 	public static int INSTANT_THREAD_POOL_SIZE;
-	public static boolean THREADS_FOR_CLIENT_PACKETS;
 	public static boolean THREADS_FOR_LOADING;
 	public static boolean DEADLOCK_DETECTOR;
 	public static int DEADLOCK_CHECK_INTERVAL;
@@ -1461,7 +1460,6 @@ public class Config
 			{
 				INSTANT_THREAD_POOL_SIZE = Runtime.getRuntime().availableProcessors() * 2;
 			}
-			THREADS_FOR_CLIENT_PACKETS = serverConfig.getBoolean("ThreadsForClientPackets", true);
 			THREADS_FOR_LOADING = serverConfig.getBoolean("ThreadsForLoading", false);
 			DEADLOCK_DETECTOR = serverConfig.getBoolean("DeadLockDetector", true);
 			DEADLOCK_CHECK_INTERVAL = serverConfig.getInt("DeadLockCheckInterval", 20);
@@ -1487,8 +1485,8 @@ public class Config
 			
 			final PropertiesParser networkConfig = new PropertiesParser(NETWORK_CONFIG_FILE);
 			CLIENT_READ_POOL_SIZE = networkConfig.getInt("ClientReadPoolSize", 100);
-			CLIENT_SEND_POOL_SIZE = networkConfig.getInt("ClientSendPoolSize", 50);
-			CLIENT_EXECUTE_POOL_SIZE = networkConfig.getInt("ClientExecutePoolSize", 50);
+			CLIENT_SEND_POOL_SIZE = networkConfig.getInt("ClientSendPoolSize", 100);
+			CLIENT_EXECUTE_POOL_SIZE = networkConfig.getInt("ClientExecutePoolSize", 100);
 			PACKET_QUEUE_LIMIT = networkConfig.getInt("PacketQueueLimit", 80);
 			PACKET_FLOOD_DISCONNECT = networkConfig.getBoolean("PacketFloodDisconnect", false);
 			PACKET_FLOOD_DROP = networkConfig.getBoolean("PacketFloodDrop", false);
@@ -3203,7 +3201,6 @@ public class Config
 			{
 				INSTANT_THREAD_POOL_SIZE = Math.max(2, Runtime.getRuntime().availableProcessors() / 2);
 			}
-			THREADS_FOR_CLIENT_PACKETS = loginConfig.getBoolean("ThreadsForClientPackets", true);
 			SHOW_LICENCE = loginConfig.getBoolean("ShowLicence", true);
 			AUTO_CREATE_ACCOUNTS = loginConfig.getBoolean("AutoCreateAccounts", true);
 			FLOOD_PROTECTION = loginConfig.getBoolean("EnableFloodProtection", true);

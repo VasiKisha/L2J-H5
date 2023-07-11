@@ -19,6 +19,7 @@ public class NetClient
 	private final Queue<byte[]> _receivedData = new ConcurrentLinkedQueue<>();
 	private final Queue<WritablePacket> _sendPacketQueue = new ConcurrentLinkedQueue<>();
 	private final AtomicBoolean _isSending = new AtomicBoolean();
+	private final AtomicBoolean _isRunning = new AtomicBoolean();
 	
 	private String _ip;
 	private Socket _socket;
@@ -65,6 +66,7 @@ public class NetClient
 	 */
 	public void onDisconnection()
 	{
+		disconnect();
 	}
 	
 	/**
@@ -270,6 +272,24 @@ public class NetClient
 	public void setSending(boolean value)
 	{
 		_isSending.set(value);
+	}
+	
+	/**
+	 * Checks if the client is currently in the process of running a client packet.
+	 * @return {@code true} if the client is running a client packet, {@code false} otherwise.
+	 */
+	public boolean isRunning()
+	{
+		return _isRunning.get();
+	}
+	
+	/**
+	 * Sets the running state of the client.
+	 * @param value the sending state to set. {@code true} if the client is running a client packet, {@code false} otherwise.
+	 */
+	public void setRunning(boolean value)
+	{
+		_isRunning.set(value);
 	}
 	
 	/**
