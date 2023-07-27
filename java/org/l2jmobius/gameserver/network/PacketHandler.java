@@ -43,7 +43,7 @@ public class PacketHandler implements PacketHandlerInterface<GameClient>
 		{
 			LOGGER.warning("PacketHandler: Problem receiving packet id from " + client);
 			LOGGER.warning(CommonUtil.getStackTrace(e));
-			client.disconnect();
+			client.closeNow();
 			return;
 		}
 		

@@ -88,11 +88,12 @@ public class GameClient extends NetClient
 			Disconnection.of(this).onDisconnection();
 		}
 		_connectionState = ConnectionState.DISCONNECTED;
+		super.onDisconnection();
 	}
 	
 	public void closeNow()
 	{
-		disconnect();
+		onDisconnection();
 	}
 	
 	public void close(ServerPacket packet)
