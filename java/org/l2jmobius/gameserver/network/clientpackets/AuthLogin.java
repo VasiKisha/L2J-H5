@@ -48,7 +48,7 @@ public class AuthLogin implements ClientPacket
 	{
 		if (_loginName.isEmpty() || !client.isProtocolOk())
 		{
-			client.closeNow();
+			client.disconnect();
 			return;
 		}
 		

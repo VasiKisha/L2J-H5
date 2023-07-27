@@ -88,19 +88,13 @@ public class GameClient extends NetClient
 			Disconnection.of(this).onDisconnection();
 		}
 		_connectionState = ConnectionState.DISCONNECTED;
-		super.onDisconnection();
-	}
-	
-	public void closeNow()
-	{
-		onDisconnection();
 	}
 	
 	public void close(ServerPacket packet)
 	{
 		if (packet == null)
 		{
-			closeNow();
+			disconnect();
 		}
 		else
 		{
@@ -108,7 +102,7 @@ public class GameClient extends NetClient
 			sendPacket(packet);
 			
 			// Wait for packet to be sent.
-			ThreadPool.schedule(this::closeNow, 1000);
+			ThreadPool.schedule(this::disconnect, 1000);
 		}
 	}
 	

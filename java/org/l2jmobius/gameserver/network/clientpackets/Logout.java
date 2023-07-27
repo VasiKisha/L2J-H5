@@ -44,7 +44,7 @@ public class Logout implements ClientPacket
 		final Player player = client.getPlayer();
 		if (player == null)
 		{
-			client.closeNow();
+			client.disconnect();
 			return;
 		}
 		

@@ -125,7 +125,7 @@ public class SendThread<E extends NetClient> implements Runnable
 				catch (Exception e)
 				{
 					_pool.remove(_client);
-					_client.onDisconnection();
+					_client.disconnect();
 					break;
 				}
 			}

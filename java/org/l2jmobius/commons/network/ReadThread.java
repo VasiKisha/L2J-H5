@@ -240,6 +240,6 @@ public class ReadThread<E extends NetClient> implements Runnable
 	private void onDisconnection(E client)
 	{
 		_pool.remove(client);
-		client.onDisconnection();
+		client.disconnect();
 	}
 }

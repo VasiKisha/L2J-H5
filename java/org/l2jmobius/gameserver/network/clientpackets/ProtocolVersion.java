@@ -45,7 +45,7 @@ public class ProtocolVersion implements ClientPacket
 		if (_version == -2)
 		{
 			// This is just a ping attempt from the new C2 client.
-			client.closeNow();
+			client.disconnect();
 		}
 		else if (!Config.PROTOCOL_LIST.contains(_version))
 		{
