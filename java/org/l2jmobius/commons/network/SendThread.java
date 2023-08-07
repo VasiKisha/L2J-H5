@@ -17,7 +17,7 @@ import org.l2jmobius.commons.threads.ThreadProvider;
 public class SendThread<E extends NetClient> implements Runnable
 {
 	// The core pool size for the ThreadPoolExecutor.
-	private static final int EXECUTOR_POOL_SIZE = 5;
+	private static final int EXECUTOR_POOL_SIZE = 2;
 	
 	// ThreadPoolExecutor used to execute tasks concurrently, avoiding delays caused by waiting for a single client.
 	private final ThreadPoolExecutor _executor = new ThreadPoolExecutor(EXECUTOR_POOL_SIZE, Integer.MAX_VALUE, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new ThreadProvider("SendThread Executor", Thread.MAX_PRIORITY));
