@@ -436,7 +436,12 @@ public class LoginServerThread extends Thread
 			return;
 		}
 		
-		_accountsInGameServer.remove(account);
+		final GameClient removed = _accountsInGameServer.remove(account);
+		if (removed != null)
+		{
+			removed.disconnect();
+		}
+		
 		sendPacket(new PlayerLogout(account));
 	}
 	

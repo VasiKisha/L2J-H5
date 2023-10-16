@@ -47,17 +47,17 @@ public class RandomAnimationTaskManager implements Runnable
 		}
 		_working = true;
 		
-		final long time = System.currentTimeMillis();
+		final long currentTime = System.currentTimeMillis();
 		for (Entry<Npc, Long> entry : PENDING_ANIMATIONS.entrySet())
 		{
-			if (time > entry.getValue().longValue())
+			if (currentTime > entry.getValue().longValue())
 			{
 				final Npc npc = entry.getKey();
 				if (npc.isInActiveRegion() && !npc.isDead() && !npc.isInCombat() && !npc.isMoving() && !npc.isStunned() && !npc.isSleeping() && !npc.isParalyzed())
 				{
 					npc.onRandomAnimation(Rnd.get(2, 3));
 				}
-				PENDING_ANIMATIONS.put(npc, time + (Rnd.get((npc.isAttackable() ? Config.MIN_MONSTER_ANIMATION : Config.MIN_NPC_ANIMATION), (npc.isAttackable() ? Config.MAX_MONSTER_ANIMATION : Config.MAX_NPC_ANIMATION)) * 1000));
+				PENDING_ANIMATIONS.put(npc, currentTime + (Rnd.get((npc.isAttackable() ? Config.MIN_MONSTER_ANIMATION : Config.MIN_NPC_ANIMATION), (npc.isAttackable() ? Config.MAX_MONSTER_ANIMATION : Config.MAX_NPC_ANIMATION)) * 1000));
 			}
 		}
 		

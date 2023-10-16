@@ -48,6 +48,7 @@ public class SiegeManager
 	private final Map<Integer, List<TowerSpawn>> _controlTowers = new HashMap<>();
 	private final Map<Integer, List<TowerSpawn>> _flameTowers = new HashMap<>();
 	
+	private int _siegeCycle = 2; // 2 weeks by default
 	private int _attackerMaxClans = 500; // Max number of clans
 	private int _attackerRespawnDelay = 0; // Time in ms. Changeable in siege.config
 	private int _defenderMaxClans = 500; // Max number of clans
@@ -121,6 +122,7 @@ public class SiegeManager
 		final PropertiesParser siegeSettings = new PropertiesParser(Config.SIEGE_CONFIG_FILE);
 		
 		// Siege setting
+		_siegeCycle = siegeSettings.getInt("SiegeCycle", 2);
 		_attackerMaxClans = siegeSettings.getInt("AttackerMaxClans", 500);
 		_attackerRespawnDelay = siegeSettings.getInt("AttackerRespawn", 0);
 		_defenderMaxClans = siegeSettings.getInt("DefenderMaxClans", 500);
@@ -205,6 +207,11 @@ public class SiegeManager
 	public List<TowerSpawn> getFlameTowers(int castleId)
 	{
 		return _flameTowers.get(castleId);
+	}
+	
+	public int getSiegeCycle()
+	{
+		return _siegeCycle;
 	}
 	
 	public int getAttackerMaxClans()

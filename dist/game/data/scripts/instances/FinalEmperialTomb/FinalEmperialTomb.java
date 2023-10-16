@@ -717,7 +717,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				}
 				return;
 			}
-			final List<Npc> demons = _world.getParameters().getList("demons", Npc.class, new ArrayList<>());
+			final List<Monster> demons = _world.getParameters().getList("demons", Monster.class, new ArrayList<>());
 			for (int i : portraits.values())
 			{
 				if (_world.getAliveNpcs(DEMONS).size() > MAX_DEMONS)
@@ -946,10 +946,10 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 					frintezza.setInvul(true);
 					frintezza.disableAllSkills();
 					_world.setParameter("frintezza", frintezza);
-					final List<Npc> demons = _world.getParameters().getList("demons", Npc.class, new ArrayList<>());
+					final List<Monster> demons = _world.getParameters().getList("demons", Monster.class, new ArrayList<>());
 					for (int[] element : PORTRAIT_SPAWNS)
 					{
-						final Npc demon = addSpawn(element[0] + 2, element[5], element[6], element[7], element[8], false, 0, false, _world.getInstanceId());
+						final Monster demon = (Monster) addSpawn(element[0] + 2, element[5], element[6], element[7], element[8], false, 0, false, _world.getInstanceId());
 						demon.setImmobilized(true);
 						demon.disableAllSkills();
 						demons.add(demon);
@@ -995,7 +995,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				}
 				case 9:
 				{
-					final List<Npc> demons = _world.getParameters().getList("demons", Npc.class);
+					final List<Monster> demons = _world.getParameters().getList("demons", Monster.class);
 					broadCastPacket(_world, new SocialAction(demons.get(1).getObjectId(), 1));
 					broadCastPacket(_world, new SocialAction(demons.get(2).getObjectId(), 1));
 					ThreadPool.schedule(new IntroTask(_world, 10), 400);
@@ -1003,7 +1003,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				}
 				case 10:
 				{
-					final List<Npc> demons = _world.getParameters().getList("demons", Npc.class);
+					final List<Monster> demons = _world.getParameters().getList("demons", Monster.class);
 					final Npc portraitDummy1 = _world.getParameters().getObject("portraitDummy1", Npc.class);
 					final Npc portraitDummy3 = _world.getParameters().getObject("portraitDummy3", Npc.class);
 					broadCastPacket(_world, new SocialAction(demons.get(0).getObjectId(), 1));
@@ -1516,7 +1516,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 			}
 			else if (CommonUtil.contains(DEMONS, npc.getId()))
 			{
-				final List<Npc> demons = world.getParameters().getList("demons", Npc.class);
+				final List<Monster> demons = world.getParameters().getList("demons", Monster.class);
 				demons.remove(npc);
 				world.setParameter("demons", demons);
 			}

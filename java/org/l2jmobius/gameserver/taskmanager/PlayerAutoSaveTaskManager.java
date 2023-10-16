@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.gameserver.taskmanager;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -46,17 +47,30 @@ public class PlayerAutoSaveTaskManager implements Runnable
 		}
 		_working = true;
 		
-		final long time = System.currentTimeMillis();
-		SEARCH: for (Entry<Player, Long> entry : PLAYER_TIMES.entrySet())
+		if (!PLAYER_TIMES.isEmpty())
 		{
-			if (time > entry.getValue().longValue())
+			final long currentTime = System.currentTimeMillis();
+			final Iterator<Entry<Player, Long>> iterator = PLAYER_TIMES.entrySet().iterator();
+			Entry<Player, Long> entry;
+			Player player;
+			Long time;
+			
+			while (iterator.hasNext())
 			{
-				final Player player = entry.getKey();
-				if ((player != null) && player.isOnline())
+				entry = iterator.next();
+				player = entry.getKey();
+				time = entry.getValue();
+				
+				if (currentTime > time)
 				{
-					player.autoSave();
-					PLAYER_TIMES.put(entry.getKey(), time + Config.CHAR_DATA_STORE_INTERVAL);
-					break SEARCH; // Prevent SQL flood.
+					if ((player != null) && player.isOnline())
+					{
+						player.autoSave();
+						PLAYER_TIMES.put(player, currentTime + Config.CHAR_DATA_STORE_INTERVAL);
+						break; // Prevent SQL flood.
+					}
+					
+					iterator.remove();
 				}
 			}
 		}

@@ -36,7 +36,7 @@ public class AccountVariables extends AbstractVariables
 	// SQL Queries.
 	private static final String SELECT_QUERY = "SELECT * FROM account_gsdata WHERE account_name = ?";
 	private static final String DELETE_QUERY = "DELETE FROM account_gsdata WHERE account_name = ?";
-	private static final String INSERT_QUERY = "INSERT INTO account_gsdata (account_name, var, value) VALUES (?, ?, ?)";
+	private static final String INSERT_QUERY = "REPLACE INTO account_gsdata (account_name, var, value) VALUES (?, ?, ?)";
 	
 	// Public variable names
 	public static final String HWID = "HWID";

@@ -38,14 +38,12 @@ import org.l2jmobius.gameserver.model.stats.MoveType;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExVitalityPointInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExVoteSystemInfo;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeShowMemberListUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.util.Util;
 
 public class PlayerStat extends PlayableStat
@@ -110,8 +108,7 @@ public class PlayerStat extends PlayableStat
 		}
 		
 		// EXP status update currently not used in retail
-		player.sendPacket(new UserInfo(player));
-		player.sendPacket(new ExBrExtraUserInfo(player));
+		player.updateUserInfo();
 		return true;
 	}
 	
@@ -127,13 +124,6 @@ public class PlayerStat extends PlayableStat
 		
 		double addToExp = addToExpValue;
 		double addToSp = addToSpValue;
-		
-		// Premium rates
-		if (player.hasPremiumStatus())
-		{
-			addToExp *= Config.PREMIUM_RATE_XP;
-			addToSp *= Config.PREMIUM_RATE_SP;
-		}
 		
 		final double baseExp = addToExp;
 		final double baseSp = addToSp;
@@ -193,19 +183,21 @@ public class PlayerStat extends PlayableStat
 		final long finalSp = Math.round(addToSp);
 		final boolean expAdded = addExp(finalExp);
 		final boolean spAdded = addSp(finalSp);
-		SystemMessage sm = null;
 		if (!expAdded && spAdded)
 		{
-			sm = new SystemMessage(SystemMessageId.YOU_HAVE_ACQUIRED_S1_SP);
+			final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_ACQUIRED_S1_SP);
 			sm.addLong(finalSp);
+			player.sendPacket(sm);
 		}
 		else if (expAdded && !spAdded)
 		{
-			sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1_EXPERIENCE);
+			final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1_EXPERIENCE);
 			sm.addLong(finalExp);
+			player.sendPacket(sm);
 		}
 		else if ((finalExp > 0) || (finalSp > 0))
 		{
+			final SystemMessage sm;
 			if ((addToExp - baseExp) > 0)
 			{
 				sm = new SystemMessage(SystemMessageId.YOU_HAVE_ACQUIRED_S1_EXP_BONUS_S2_AND_S3_SP_BONUS_S4);
@@ -220,8 +212,9 @@ public class PlayerStat extends PlayableStat
 				sm.addLong((long) addToExp);
 				sm.addLong((long) addToSp);
 			}
+			player.sendPacket(sm);
 		}
-		player.sendPacket(sm);
+		
 		return true;
 	}
 	
@@ -335,8 +328,7 @@ public class PlayerStat extends PlayableStat
 		// Update the expertise status of the Player
 		getActiveChar().refreshExpertisePenalty();
 		// Send a Server->Client packet UserInfo to the Player
-		getActiveChar().sendPacket(new UserInfo(getActiveChar()));
-		getActiveChar().sendPacket(new ExBrExtraUserInfo(getActiveChar()));
+		getActiveChar().updateUserInfo();
 		// Nevit System
 		if (Config.NEVIT_ENABLED)
 		{

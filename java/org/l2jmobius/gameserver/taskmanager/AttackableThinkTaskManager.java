@@ -48,6 +48,11 @@ public class AttackableThinkTaskManager
 		@Override
 		public void run()
 		{
+			if (_attackables.isEmpty())
+			{
+				return;
+			}
+			
 			CreatureAI ai;
 			for (Attackable attackable : _attackables)
 			{

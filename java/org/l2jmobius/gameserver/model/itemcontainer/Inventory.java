@@ -22,7 +22,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -1894,5 +1897,30 @@ public abstract class Inventory extends ItemContainer
 				listener.notifyEquiped(slot, item, this);
 			}
 		}
+	}
+	
+	/**
+	 * Gets the items in paperdoll slots filtered by filter.
+	 * @param filters multiple filters
+	 * @return the filtered items in inventory
+	 */
+	@SafeVarargs
+	public final Collection<Item> getPaperdollItems(Predicate<Item>... filters)
+	{
+		Predicate<Item> filter = Objects::nonNull;
+		for (Predicate<Item> additionalFilter : filters)
+		{
+			filter = filter.and(additionalFilter);
+		}
+		
+		final List<Item> items = new LinkedList<>();
+		for (Item item : _paperdoll)
+		{
+			if (filter.test(item))
+			{
+				items.add(item);
+			}
+		}
+		return items;
 	}
 }

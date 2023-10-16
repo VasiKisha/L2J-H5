@@ -533,11 +533,18 @@ public class Attackable extends Npc
 							// Distribute the Exp and SP between the Player and its Summon
 							if (!attacker.isDead())
 							{
-								final long addexp = Math.round(attacker.calcStat(Stat.EXPSP_RATE, exp, null, null));
-								final int addsp = (int) attacker.calcStat(Stat.EXPSP_RATE, sp, null, null);
+								long addExp = Math.round(attacker.calcStat(Stat.EXPSP_RATE, exp, null, null));
+								int addSp = (int) attacker.calcStat(Stat.EXPSP_RATE, sp, null, null);
 								
-								attacker.addExpAndSp(addexp, addsp, useVitalityRate());
-								if ((addexp > 0) && useVitalityRate())
+								// Premium rates
+								if (attacker.hasPremiumStatus())
+								{
+									addExp *= Config.PREMIUM_RATE_XP;
+									addSp *= Config.PREMIUM_RATE_SP;
+								}
+								
+								attacker.addExpAndSp(addExp, addSp, useVitalityRate());
+								if ((addExp > 0) && useVitalityRate())
 								{
 									attacker.updateVitalityPoints(getVitalityPoints(damage), true, false);
 									PcCafePointsManager.getInstance().givePcCafePoint(attacker, exp);
@@ -1344,7 +1351,7 @@ public class Attackable extends Npc
 		double xp = 0;
 		double sp = 0;
 		
-		if ((levelDiff < 11) && (levelDiff > -11))
+		if ((levelDiff < Config.MONSTER_EXP_MAX_LEVEL_DIFFERENCE) && (levelDiff > -Config.MONSTER_EXP_MAX_LEVEL_DIFFERENCE))
 		{
 			xp = Math.max(0, (getExpReward() * damage) / totalDamage);
 			sp = Math.max(0, (getSpReward() * damage) / totalDamage);

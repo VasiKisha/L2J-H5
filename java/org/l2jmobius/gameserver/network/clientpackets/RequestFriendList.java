@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -46,7 +46,7 @@ public class RequestFriendList implements ClientPacket
 		for (int id : player.getFriendList())
 		{
 			// int friendId = rset.getInt("friendId");
-			final String friendName = CharNameTable.getInstance().getNameById(id);
+			final String friendName = CharInfoTable.getInstance().getNameById(id);
 			if (friendName == null)
 			{
 				continue;

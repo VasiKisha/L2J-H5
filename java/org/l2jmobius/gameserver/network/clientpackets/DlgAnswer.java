@@ -28,6 +28,7 @@ import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.holders.DoorRequestHolder;
 import org.l2jmobius.gameserver.model.holders.SummonRequestHolder;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
+import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -72,7 +73,47 @@ public class DlgAnswer implements ClientPacket
 		
 		if (_messageId == SystemMessageId.S1_3.getId())
 		{
-			if (player.removeAction(PlayerAction.USER_ENGAGE))
+			// Custom .offlineplay voiced command dialog.
+			if (player.removeAction(PlayerAction.OFFLINE_PLAY))
+			{
+				if ((_answer == 0) || !Config.ENABLE_OFFLINE_PLAY_COMMAND)
+				{
+					return;
+				}
+				
+				if (Config.OFFLINE_PLAY_PREMIUM && !player.hasPremiumStatus())
+				{
+					player.sendMessage("This command is only available to premium players.");
+					return;
+				}
+				
+				if (!player.isAutoPlaying())
+				{
+					player.sendMessage("You need to enable auto play before exiting.");
+					return;
+				}
+				
+				if (player.isInVehicle() || player.isInsideZone(ZoneId.PEACE))
+				{
+					player.sendPacket(SystemMessageId.YOU_MAY_NOT_LOG_OUT_FROM_THIS_LOCATION);
+					return;
+				}
+				
+				if (player.isRegisteredOnEvent())
+				{
+					player.sendMessage("Cannot use this command while registered on an event.");
+					return;
+				}
+				
+				// Unregister from olympiad.
+				if (OlympiadManager.getInstance().isRegistered(player))
+				{
+					OlympiadManager.getInstance().unRegisterNoble(player);
+				}
+				
+				player.startOfflinePlay();
+			}
+			else if (player.removeAction(PlayerAction.USER_ENGAGE))
 			{
 				if (Config.ALLOW_WEDDING)
 				{

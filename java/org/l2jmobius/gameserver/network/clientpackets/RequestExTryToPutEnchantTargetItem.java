@@ -69,7 +69,7 @@ public class RequestExTryToPutEnchantTargetItem implements ClientPacket
 		}
 		
 		final EnchantScroll scrollTemplate = EnchantItemData.getInstance().getEnchantScroll(scroll);
-		if ((scrollTemplate == null) || !scrollTemplate.isValid(item, null))
+		if (!item.isEnchantable() || (scrollTemplate == null) || !scrollTemplate.isValid(item, null))
 		{
 			player.sendPacket(SystemMessageId.DOES_NOT_FIT_STRENGTHENING_CONDITIONS_OF_THE_SCROLL);
 			player.setActiveEnchantItemId(Player.ID_NONE);

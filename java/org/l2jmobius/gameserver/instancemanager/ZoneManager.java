@@ -21,7 +21,6 @@ import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.OptionalInt;
@@ -816,20 +815,18 @@ public class ZoneManager implements IXmlReader
 	/**
 	 * Remove all debug items from l2world.
 	 */
-	public void clearDebugItems()
+	public synchronized void clearDebugItems()
 	{
 		if (_debugItems != null)
 		{
-			final Iterator<Item> it = _debugItems.iterator();
-			while (it.hasNext())
+			for (Item item : _debugItems)
 			{
-				final Item item = it.next();
 				if (item != null)
 				{
 					item.decayMe();
 				}
-				it.remove();
 			}
+			_debugItems.clear();
 		}
 	}
 	

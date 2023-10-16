@@ -91,18 +91,15 @@ public class PlayerAction implements IActionHandler
 					}
 					else
 					{
-						if (GeoEngine.getInstance().canSeeTarget(player, target))
-						{
-							player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
-							player.onActionRequest();
-						}
+						player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+						player.onActionRequest();
 					}
 				}
 				else
 				{
 					// This Action Failed packet avoids player getting stuck when clicking three or more times
 					player.sendPacket(ActionFailed.STATIC_PACKET);
-					if (GeoEngine.getInstance().canSeeTarget(player, target))
+					if (GeoEngine.getInstance().canMoveToTarget(player, target))
 					{
 						player.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, target);
 					}

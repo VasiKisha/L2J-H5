@@ -27,10 +27,8 @@ import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExAttributeEnchantResult;
-import org.l2jmobius.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.util.Util;
 
 public class RequestExEnchantItemAttribute implements ClientPacket
@@ -255,8 +253,7 @@ public class RequestExEnchantItemAttribute implements ClientPacket
 		}
 		
 		player.sendPacket(new ExAttributeEnchantResult(powerToAdd));
-		player.sendPacket(new UserInfo(player));
-		player.sendPacket(new ExBrExtraUserInfo(player));
+		player.updateUserInfo();
 		player.setActiveEnchantAttrItemId(Player.ID_NONE);
 	}
 	

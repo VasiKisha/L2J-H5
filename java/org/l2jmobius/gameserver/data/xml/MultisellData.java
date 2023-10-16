@@ -31,19 +31,19 @@ import org.w3c.dom.Node;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.file.filter.NumericNameFilter;
+import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.multisell.Entry;
 import org.l2jmobius.gameserver.model.multisell.Ingredient;
 import org.l2jmobius.gameserver.model.multisell.ListContainer;
 import org.l2jmobius.gameserver.model.multisell.PreparedListContainer;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExPCCafePointInfo;
 import org.l2jmobius.gameserver.network.serverpackets.MultiSellList;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 
 public class MultisellData implements IXmlReader
 {
@@ -189,6 +189,30 @@ public class MultisellData implements IXmlReader
 				entry.addProduct(new Ingredient(set));
 			}
 		}
+		
+		// Check if buy price is lower than sell price.
+		// Only applies when there is only one ingredient and it is adena.
+		if (Config.CORRECT_PRICES && (entry.getIngredients().size() == 1) && (entry.getProducts().size() == 1))
+		{
+			final Ingredient ingredient = entry.getIngredients().get(0);
+			if (ingredient.getItemId() == 57)
+			{
+				long totalPrice = 0;
+				for (Ingredient product : entry.getProducts())
+				{
+					final ItemTemplate template = ItemTable.getInstance().getTemplate(product.getItemId());
+					totalPrice += (product.getItemCount() * (template.getReferencePrice() / 2));
+				}
+				
+				final long adenaCount = ingredient.getItemCount();
+				if (totalPrice > adenaCount)
+				{
+					ingredient.setItemCount(totalPrice);
+					LOGGER.warning("Buy price " + adenaCount + " is less than sell price " + totalPrice + " at entry " + entryId + " of multisell " + list.getListId() + ".");
+				}
+			}
+		}
+		
 		return entry;
 	}
 	
@@ -342,8 +366,7 @@ public class MultisellData implements IXmlReader
 			case FAME:
 			{
 				player.setFame(player.getFame() - (int) amount);
-				player.sendPacket(new UserInfo(player));
-				player.sendPacket(new ExBrExtraUserInfo(player));
+				player.updateUserInfo();
 				return true;
 			}
 		}
@@ -368,8 +391,7 @@ public class MultisellData implements IXmlReader
 			case FAME:
 			{
 				player.setFame((int) (player.getFame() + amount));
-				player.sendPacket(new UserInfo(player));
-				player.sendPacket(new ExBrExtraUserInfo(player));
+				player.updateUserInfo();
 				break;
 			}
 		}

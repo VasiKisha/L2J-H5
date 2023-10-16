@@ -36,6 +36,7 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.model.WorldRegion;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -434,6 +435,13 @@ public class AttackableAI extends CreatureAI
 	 */
 	protected void thinkActive()
 	{
+		// Check if region and its neighbors are active.
+		final WorldRegion region = _actor.getWorldRegion();
+		if ((region == null) || !region.areNeighborsActive())
+		{
+			return;
+		}
+		
 		final Attackable npc = getActiveChar();
 		
 		// Update every 1s the _globalAggro counter to come close to 0
@@ -732,7 +740,7 @@ public class AttackableAI extends CreatureAI
 		if (Config.AGGRO_DISTANCE_CHECK_ENABLED && npc.isMonster() && !npc.isWalker() && !(npc instanceof GrandBoss))
 		{
 			final Spawn spawn = npc.getSpawn();
-			if ((spawn != null) && (npc.calculateDistance2D(spawn.getLocation()) > (spawn.getChaseRange() > 0 ? Math.max(Config.MAX_DRIFT_RANGE, spawn.getChaseRange()) : (npc.isRaid() ? Config.AGGRO_DISTANCE_CHECK_RAID_RANGE : Config.AGGRO_DISTANCE_CHECK_RANGE))))
+			if ((spawn != null) && (npc.calculateDistance2D(spawn.getLocation()) > (spawn.getChaseRange() > 0 ? Math.max(Config.MAX_DRIFT_RANGE, spawn.getChaseRange()) : npc.isRaid() ? Config.AGGRO_DISTANCE_CHECK_RAID_RANGE : Config.AGGRO_DISTANCE_CHECK_RANGE)))
 			{
 				if ((Config.AGGRO_DISTANCE_CHECK_RAIDS || !npc.isRaid()) && (Config.AGGRO_DISTANCE_CHECK_INSTANCES || (npc.getInstanceId() == 0)))
 				{
@@ -2245,8 +2253,21 @@ public class AttackableAI extends CreatureAI
 	@Override
 	public void onEvtThink()
 	{
-		// Check if the actor can't use skills and if a thinking action isn't already in progress
-		if (_thinking || getActiveChar().isAllSkillsDisabled())
+		// Check if a thinking action is already in progress.
+		if (_thinking)
+		{
+			return;
+		}
+		
+		// Check if region and its neighbors are active.
+		final WorldRegion region = _actor.getWorldRegion();
+		if ((region == null) || !region.areNeighborsActive())
+		{
+			return;
+		}
+		
+		// Check if the actor is all skills disabled.
+		if (getActiveChar().isAllSkillsDisabled())
 		{
 			return;
 		}

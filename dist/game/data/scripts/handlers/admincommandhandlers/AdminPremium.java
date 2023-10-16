@@ -22,7 +22,9 @@ import java.util.concurrent.TimeUnit;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
+import org.l2jmobius.gameserver.instancemanager.PcCafePointsManager;
 import org.l2jmobius.gameserver.instancemanager.PremiumManager;
+import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.BuilderUtil;
@@ -122,6 +124,17 @@ public class AdminPremium implements IAdminCommandHandler
 		// TODO: Add check if account exists XD
 		PremiumManager.getInstance().addPremiumTime(accountName, months * 30, TimeUnit.DAYS);
 		admin.sendMessage("Account " + accountName + " will now have premium status until " + new SimpleDateFormat("dd.MM.yyyy HH:mm").format(PremiumManager.getInstance().getPremiumExpiration(accountName)) + ".");
+		if (Config.PC_CAFE_RETAIL_LIKE)
+		{
+			for (Player player : World.getInstance().getPlayers())
+			{
+				if (player.getAccountName().matches(accountName))
+				{
+					PcCafePointsManager.getInstance().run(player);
+					break;
+				}
+			}
+		}
 	}
 	
 	private void viewPremiumInfo(Player admin, String accountName)

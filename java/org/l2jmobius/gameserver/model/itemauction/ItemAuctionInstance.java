@@ -42,7 +42,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.instancemanager.ItemAuctionManager;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -231,7 +231,7 @@ public class ItemAuctionInstance
 		return null;
 	}
 	
-	private void checkAndSetCurrentAndNextAuction()
+	protected void checkAndSetCurrentAndNextAuction()
 	{
 		final ItemAuction[] auctions = _auctions.values().toArray(new ItemAuction[_auctions.size()]);
 		
@@ -469,7 +469,7 @@ public class ItemAuctionInstance
 		}
 	}
 	
-	private void onAuctionFinished(ItemAuction auction)
+	protected void onAuctionFinished(ItemAuction auction)
 	{
 		auction.broadcastToAllBiddersInternal(new SystemMessage(SystemMessageId.S1_S_AUCTION_HAS_ENDED).addInt(auction.getAuctionId()));
 		
@@ -492,7 +492,7 @@ public class ItemAuctionInstance
 				item.updateDatabase();
 				World.getInstance().removeObject(item);
 				
-				LOGGER.log(Level.INFO, getClass().getSimpleName() + ": Auction " + auction.getAuctionId() + " has finished. Highest bid by " + CharNameTable.getInstance().getNameById(bid.getPlayerObjId()) + " for instance " + _instanceId);
+				LOGGER.log(Level.INFO, getClass().getSimpleName() + ": Auction " + auction.getAuctionId() + " has finished. Highest bid by " + CharInfoTable.getInstance().getNameById(bid.getPlayerObjId()) + " for instance " + _instanceId);
 			}
 			
 			// Clean all canceled bids
@@ -504,7 +504,7 @@ public class ItemAuctionInstance
 		}
 	}
 	
-	private void setStateTask(ScheduledFuture<?> future)
+	protected void setStateTask(ScheduledFuture<?> future)
 	{
 		final ScheduledFuture<?> stateTask = _stateTask;
 		if (stateTask != null)

@@ -722,7 +722,7 @@ public class NpcData implements IXmlReader
 	}
 	
 	/**
-	 * Gets or creates a clan id if it doesnt exists.
+	 * Gets or creates a clan id if it does not exist.
 	 * @param clanName the clan name to get or create its id
 	 * @return the clan id for the given clan name
 	 */

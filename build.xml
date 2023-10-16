@@ -67,14 +67,13 @@
 
 	<target name="jar" depends="compile" description="Create the jar files.">
 		<tstamp>
-			<format property="time.stamp" pattern="yyyy-MM-dd HH:mm:ss" />
+			<format property="time.stamp" pattern="yyyy-MM-dd HH:mm:ss z" />
 		</tstamp>
 
 		<jar destfile="${build.dist.libs}/LoginServer.jar" level="9">
 			<fileset dir="${build.bin}">
 				<exclude name="**/dbinstaller/**" />
 				<exclude name="**/gameserver/**" />
-				<exclude name="**/geodataconverter/**" />
 			</fileset>
 			<manifest>
 				<attribute name="Build-By" value="${user.name}" />

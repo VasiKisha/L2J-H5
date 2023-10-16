@@ -47,73 +47,76 @@ public class AutoPotionTaskManager implements Runnable
 		}
 		_working = true;
 		
-		PLAYER: for (Player player : PLAYERS)
+		if (!PLAYERS.isEmpty())
 		{
-			if ((player == null) || player.isAlikeDead() || (player.isOnlineInt() != 1) || (!Config.AUTO_POTIONS_IN_OLYMPIAD && player.isInOlympiadMode()))
+			PLAYER: for (Player player : PLAYERS)
 			{
-				remove(player);
-				continue PLAYER;
-			}
-			
-			boolean success = false;
-			if (Config.AUTO_HP_ENABLED)
-			{
-				final boolean restoreHP = ((player.getStatus().getCurrentHp() / player.getMaxHp()) * 100) < Config.AUTO_HP_PERCENTAGE;
-				HP: for (int itemId : Config.AUTO_HP_ITEM_IDS)
+				if ((player == null) || player.isAlikeDead() || (player.isOnlineInt() != 1) || (!Config.AUTO_POTIONS_IN_OLYMPIAD && player.isInOlympiadMode()))
 				{
-					final Item hpPotion = player.getInventory().getItemByItemId(itemId);
-					if ((hpPotion != null) && (hpPotion.getCount() > 0))
+					remove(player);
+					continue PLAYER;
+				}
+				
+				boolean success = false;
+				if (Config.AUTO_HP_ENABLED)
+				{
+					final boolean restoreHP = ((player.getStatus().getCurrentHp() / player.getMaxHp()) * 100) < Config.AUTO_HP_PERCENTAGE;
+					HP: for (int itemId : Config.AUTO_HP_ITEM_IDS)
 					{
-						success = true;
-						if (restoreHP)
+						final Item hpPotion = player.getInventory().getItemByItemId(itemId);
+						if ((hpPotion != null) && (hpPotion.getCount() > 0))
 						{
-							ItemHandler.getInstance().getHandler(hpPotion.getEtcItem()).useItem(player, hpPotion, false);
-							player.sendMessage("Auto potion: Restored HP.");
-							break HP;
+							success = true;
+							if (restoreHP)
+							{
+								ItemHandler.getInstance().getHandler(hpPotion.getEtcItem()).useItem(player, hpPotion, false);
+								player.sendMessage("Auto potion: Restored HP.");
+								break HP;
+							}
 						}
 					}
 				}
-			}
-			if (Config.AUTO_CP_ENABLED)
-			{
-				final boolean restoreCP = ((player.getStatus().getCurrentCp() / player.getMaxCp()) * 100) < Config.AUTO_CP_PERCENTAGE;
-				CP: for (int itemId : Config.AUTO_CP_ITEM_IDS)
+				if (Config.AUTO_CP_ENABLED)
 				{
-					final Item cpPotion = player.getInventory().getItemByItemId(itemId);
-					if ((cpPotion != null) && (cpPotion.getCount() > 0))
+					final boolean restoreCP = ((player.getStatus().getCurrentCp() / player.getMaxCp()) * 100) < Config.AUTO_CP_PERCENTAGE;
+					CP: for (int itemId : Config.AUTO_CP_ITEM_IDS)
 					{
-						success = true;
-						if (restoreCP)
+						final Item cpPotion = player.getInventory().getItemByItemId(itemId);
+						if ((cpPotion != null) && (cpPotion.getCount() > 0))
 						{
-							ItemHandler.getInstance().getHandler(cpPotion.getEtcItem()).useItem(player, cpPotion, false);
-							player.sendMessage("Auto potion: Restored CP.");
-							break CP;
+							success = true;
+							if (restoreCP)
+							{
+								ItemHandler.getInstance().getHandler(cpPotion.getEtcItem()).useItem(player, cpPotion, false);
+								player.sendMessage("Auto potion: Restored CP.");
+								break CP;
+							}
 						}
 					}
 				}
-			}
-			if (Config.AUTO_MP_ENABLED)
-			{
-				final boolean restoreMP = ((player.getStatus().getCurrentMp() / player.getMaxMp()) * 100) < Config.AUTO_MP_PERCENTAGE;
-				MP: for (int itemId : Config.AUTO_MP_ITEM_IDS)
+				if (Config.AUTO_MP_ENABLED)
 				{
-					final Item mpPotion = player.getInventory().getItemByItemId(itemId);
-					if ((mpPotion != null) && (mpPotion.getCount() > 0))
+					final boolean restoreMP = ((player.getStatus().getCurrentMp() / player.getMaxMp()) * 100) < Config.AUTO_MP_PERCENTAGE;
+					MP: for (int itemId : Config.AUTO_MP_ITEM_IDS)
 					{
-						success = true;
-						if (restoreMP)
+						final Item mpPotion = player.getInventory().getItemByItemId(itemId);
+						if ((mpPotion != null) && (mpPotion.getCount() > 0))
 						{
-							ItemHandler.getInstance().getHandler(mpPotion.getEtcItem()).useItem(player, mpPotion, false);
-							player.sendMessage("Auto potion: Restored MP.");
-							break MP;
+							success = true;
+							if (restoreMP)
+							{
+								ItemHandler.getInstance().getHandler(mpPotion.getEtcItem()).useItem(player, mpPotion, false);
+								player.sendMessage("Auto potion: Restored MP.");
+								break MP;
+							}
 						}
 					}
 				}
-			}
-			
-			if (!success)
-			{
-				player.sendMessage("Auto potion: You are out of potions!");
+				
+				if (!success)
+				{
+					player.sendMessage("Auto potion: You are out of potions!");
+				}
 			}
 		}
 		

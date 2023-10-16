@@ -594,7 +594,7 @@
 		</for>
 	</skill>
 	<skill id="3846" levels="2" name="Ancient Sword of Haste">
-		<!-- Increases Atk. Spd. when equiped with an ancient sword.. -->
+		<!-- Increases Atk. Spd. when equiped with an ancient sword. -->
 		<table name="#magicLevel">61 80</table>
 		<set name="icon" val="icon.skill1086" />
 		<set name="magicLevel" val="#magicLevel" />
@@ -607,7 +607,7 @@
 		</for>
 	</skill>
 	<skill id="3847" levels="1" name="Ancient Sword of Guidance">
-		<!-- Increases Accuracy when equiped with an ancient sword.. -->
+		<!-- Increases Accuracy when equiped with an ancient sword. -->
 		<set name="icon" val="icon.skill1240" />
 		<set name="magicLevel" val="64" />
 		<set name="operateType" val="P" />
@@ -619,7 +619,7 @@
 		</for>
 	</skill>
 	<skill id="3848" levels="1" name="Ancient Sword of Vampiric Rage">
-		<!-- Recovers some HP using the damage to the enemy when equiped with an ancient sword.. -->
+		<!-- Recovers some HP using the damage to the enemy when equiped with an ancient sword. -->
 		<set name="icon" val="icon.skill1268" />
 		<set name="magicLevel" val="67" />
 		<set name="operateType" val="P" />

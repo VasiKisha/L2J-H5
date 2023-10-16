@@ -287,7 +287,8 @@ public class Fort extends AbstractResidence
 	 */
 	public boolean checkIfInZone(int x, int y, int z)
 	{
-		return getZone().isInsideZone(x, y, z);
+		final SiegeZone zone = getZone();
+		return (zone != null) && zone.isInsideZone(x, y, z);
 	}
 	
 	public SiegeZone getZone()

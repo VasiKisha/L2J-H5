@@ -21,7 +21,7 @@ import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.ReadablePacket;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.instancemanager.MailManager;
@@ -192,7 +192,7 @@ public class RequestSendPost implements ClientPacket
 			}
 		}
 		
-		final int receiverId = CharNameTable.getInstance().getIdByName(_receiver);
+		final int receiverId = CharInfoTable.getInstance().getIdByName(_receiver);
 		if (receiverId <= 0)
 		{
 			player.sendPacket(SystemMessageId.WHEN_THE_RECIPIENT_DOESN_T_EXIST_OR_THE_CHARACTER_HAS_BEEN_DELETED_SENDING_MAIL_IS_NOT_POSSIBLE);
@@ -205,7 +205,7 @@ public class RequestSendPost implements ClientPacket
 			return;
 		}
 		
-		final int level = CharNameTable.getInstance().getAccessLevelById(receiverId);
+		final int level = CharInfoTable.getInstance().getAccessLevelById(receiverId);
 		final AccessLevel accessLevel = AdminData.getInstance().getAccessLevel(level);
 		if (accessLevel.isGm() && !player.getAccessLevel().isGm())
 		{

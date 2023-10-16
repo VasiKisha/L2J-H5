@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.gameserver.taskmanager;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -27,7 +28,7 @@ import org.l2jmobius.gameserver.model.item.instance.Item;
 
 public class ItemsAutoDestroyTaskManager implements Runnable
 {
-	private final Set<Item> _items = ConcurrentHashMap.newKeySet();
+	private static final Set<Item> ITEMS = ConcurrentHashMap.newKeySet();
 	
 	protected ItemsAutoDestroyTaskManager()
 	{
@@ -37,26 +38,30 @@ public class ItemsAutoDestroyTaskManager implements Runnable
 	@Override
 	public void run()
 	{
-		if (_items.isEmpty())
+		if (ITEMS.isEmpty())
 		{
 			return;
 		}
 		
-		final long curtime = System.currentTimeMillis();
-		for (Item item : _items)
+		final long currentTime = System.currentTimeMillis();
+		final Iterator<Item> iterator = ITEMS.iterator();
+		Item itemInstance;
+		
+		while (iterator.hasNext())
 		{
-			if ((item.getDropTime() == 0) || (item.getItemLocation() != ItemLocation.VOID))
+			itemInstance = iterator.next();
+			if ((itemInstance.getDropTime() == 0) || (itemInstance.getItemLocation() != ItemLocation.VOID))
 			{
-				_items.remove(item);
+				iterator.remove();
 			}
 			else
 			{
 				final long autoDestroyTime;
-				if (item.getTemplate().getAutoDestroyTime() > 0)
+				if (itemInstance.getTemplate().getAutoDestroyTime() > 0)
 				{
-					autoDestroyTime = item.getTemplate().getAutoDestroyTime();
+					autoDestroyTime = itemInstance.getTemplate().getAutoDestroyTime();
 				}
-				else if (item.getTemplate().hasExImmediateEffect())
+				else if (itemInstance.getTemplate().hasExImmediateEffect())
 				{
 					autoDestroyTime = Config.HERB_AUTO_DESTROY_TIME;
 				}
@@ -65,14 +70,14 @@ public class ItemsAutoDestroyTaskManager implements Runnable
 					autoDestroyTime = ((Config.AUTODESTROY_ITEM_AFTER == 0) ? 3600000 : Config.AUTODESTROY_ITEM_AFTER * 1000);
 				}
 				
-				if ((curtime - item.getDropTime()) > autoDestroyTime)
+				if ((currentTime - itemInstance.getDropTime()) > autoDestroyTime)
 				{
-					item.decayMe();
-					_items.remove(item);
+					itemInstance.decayMe();
 					if (Config.SAVE_DROPPED_ITEM)
 					{
-						ItemsOnGroundManager.getInstance().removeObject(item);
+						ItemsOnGroundManager.getInstance().removeObject(itemInstance);
 					}
+					iterator.remove();
 				}
 			}
 		}
@@ -81,7 +86,7 @@ public class ItemsAutoDestroyTaskManager implements Runnable
 	public void addItem(Item item)
 	{
 		item.setDropTime(System.currentTimeMillis());
-		_items.add(item);
+		ITEMS.add(item);
 	}
 	
 	public static ItemsAutoDestroyTaskManager getInstance()

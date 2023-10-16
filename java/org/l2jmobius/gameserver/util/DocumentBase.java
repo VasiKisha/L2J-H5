@@ -735,7 +735,7 @@ public abstract class DocumentBase
 				case "class_id_restriction":
 				{
 					final StringTokenizer st = new StringTokenizer(a.getNodeValue(), ",");
-					final List<Integer> array = new ArrayList<>(st.countTokens());
+					final Set<Integer> array = new HashSet<>(st.countTokens());
 					while (st.hasMoreTokens())
 					{
 						final String item = st.nextToken().trim();

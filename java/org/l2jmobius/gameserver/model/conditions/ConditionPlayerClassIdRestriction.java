@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.conditions;
 
-import java.util.List;
+import java.util.Set;
 
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -27,13 +27,13 @@ import org.l2jmobius.gameserver.model.skill.Skill;
  */
 public class ConditionPlayerClassIdRestriction extends Condition
 {
-	private final List<Integer> _classIds;
+	private final Set<Integer> _classIds;
 	
 	/**
 	 * Instantiates a new condition player class id restriction.
 	 * @param classId the class id
 	 */
-	public ConditionPlayerClassIdRestriction(List<Integer> classId)
+	public ConditionPlayerClassIdRestriction(Set<Integer> classId)
 	{
 		_classIds = classId;
 	}

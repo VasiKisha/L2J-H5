@@ -30,7 +30,7 @@ public class PlayerAppearance
 	
 	private byte _hairStyle;
 	
-	private boolean _sex; // Female true(1)
+	private boolean _isFemale;
 	
 	/** The current visible name of this player, not necessarily the real one */
 	private String _visibleName;
@@ -44,12 +44,12 @@ public class PlayerAppearance
 	/** The default title color is 0xECF9A2. */
 	private int _titleColor = DEFAULT_TITLE_COLOR;
 	
-	public PlayerAppearance(byte face, byte hColor, byte hStyle, boolean sex)
+	public PlayerAppearance(byte face, byte hColor, byte hStyle, boolean isFemale)
 	{
 		_face = face;
 		_hairColor = hColor;
 		_hairStyle = hStyle;
-		_sex = sex;
+		_isFemale = isFemale;
 	}
 	
 	/**
@@ -128,17 +128,17 @@ public class PlayerAppearance
 	 */
 	public boolean isFemale()
 	{
-		return _sex;
+		return _isFemale;
 	}
 	
 	public void setFemale()
 	{
-		_sex = true;
+		_isFemale = true;
 	}
 	
 	public void setMale()
 	{
-		_sex = false;
+		_isFemale = false;
 	}
 	
 	public int getNameColor()

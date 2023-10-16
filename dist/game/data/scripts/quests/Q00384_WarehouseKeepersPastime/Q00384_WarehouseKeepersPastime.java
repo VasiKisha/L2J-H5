@@ -894,7 +894,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 		
 		if (player.isInParty())
 		{
-			player.getParty().getMembers().stream().forEach(pm ->
+			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = getQuestState(pm, false);
 				if ((qss != null) && qss.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))

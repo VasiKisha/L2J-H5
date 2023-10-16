@@ -38,6 +38,7 @@ import org.l2jmobius.gameserver.instancemanager.WalkingManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.model.WorldRegion;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -196,7 +197,15 @@ public class CreatureAI extends AbstractAI
 			return;
 		}
 		
+		// Set the AI Intention to AI_INTENTION_ACTIVE
 		changeIntention(AI_INTENTION_ACTIVE, null, null);
+		
+		// Check if region and its neighbors are active.
+		final WorldRegion region = _actor.getWorldRegion();
+		if ((region == null) || !region.areNeighborsActive())
+		{
+			return;
+		}
 		
 		// Init cast and attack target
 		setCastTarget(null);
@@ -1150,17 +1159,20 @@ public class CreatureAI extends AbstractAI
 	 */
 	protected boolean checkTargetLost(WorldObject target)
 	{
-		if ((target != null) && target.isPlayer() && ((Player) target).isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
+		// Check if player is fakedeath.
+		if ((target != null) && target.isPlayer() && target.getActingPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
 		{
-			((Player) target).stopFakeDeath(true);
+			target.getActingPlayer().stopFakeDeath(true);
 			return false;
 		}
-		if ((target != null) && ((_actor == null) || (_skill == null) || !_skill.isBad() || (_skill.getAffectRange() <= 0) || GeoEngine.getInstance().canSeeTarget(_actor, target)))
+		
+		if ((target == null) || ((_actor != null) && (_skill != null) && _skill.isBad() && (_skill.getAffectRange() > 0) && (_actor.isPlayer() && _actor.isMoving() ? !GeoEngine.getInstance().canMoveToTarget(_actor, target) : !GeoEngine.getInstance().canSeeTarget(_actor, target))))
 		{
-			return false;
+			setIntention(AI_INTENTION_ACTIVE);
+			return true;
 		}
-		setIntention(AI_INTENTION_ACTIVE);
-		return true;
+		
+		return false;
 	}
 	
 	protected class SelfAnalysis

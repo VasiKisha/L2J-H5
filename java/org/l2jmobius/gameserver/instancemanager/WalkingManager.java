@@ -437,7 +437,8 @@ public class WalkingManager implements IXmlReader
 			return;
 		}
 		
-		final NpcWalkerNode node = walk.getRoute().getNodeList().get(walk.getCurrentNodeId());
+		final List<NpcWalkerNode> nodelist = walk.getRoute().getNodeList();
+		final NpcWalkerNode node = nodelist.get(Math.min(walk.getCurrentNodeId(), nodelist.size() - 1));
 		if (!npc.isInsideRadius2D(node, 10))
 		{
 			return;

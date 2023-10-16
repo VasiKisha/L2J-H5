@@ -381,6 +381,11 @@ public class BuffInfo
 		}
 	}
 	
+	public boolean isAbnormalType(AbnormalType type)
+	{
+		return _skill.getAbnormalType() == type;
+	}
+	
 	/**
 	 * Applies all the abnormal visual effects to the effected.<br>
 	 * Prevents multiple updates.

@@ -43,7 +43,7 @@ import org.l2jmobius.gameserver.data.MerchantPriceConfigTable;
 import org.l2jmobius.gameserver.data.SchemeBufferTable;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.sql.AnnouncementsTable;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.CharSummonTable;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
@@ -269,7 +269,7 @@ public class GameServer
 		KarmaData.getInstance();
 		HitConditionBonusData.getInstance();
 		PlayerTemplateData.getInstance();
-		CharNameTable.getInstance();
+		CharInfoTable.getInstance();
 		AdminData.getInstance();
 		RaidBossPointsManager.getInstance();
 		PetDataTable.getInstance();

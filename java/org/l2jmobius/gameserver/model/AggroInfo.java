@@ -24,7 +24,6 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 public class AggroInfo
 {
 	private static final long MAX_VALUE = 1000000000000000L;
-	private static final long MIN_VALUE = -1000000000000000L;
 	
 	private final Creature _attacker;
 	private long _hate = 0;
@@ -56,19 +55,7 @@ public class AggroInfo
 	
 	public void addHate(long value)
 	{
-		final long sum = _hate + value;
-		if (sum > MAX_VALUE)
-		{
-			_hate = MAX_VALUE;
-		}
-		else if (sum < MIN_VALUE)
-		{
-			_hate = MIN_VALUE;
-		}
-		else
-		{
-			_hate = sum;
-		}
+		_hate = Math.min(_hate + value, MAX_VALUE);
 	}
 	
 	public void stopHate()
@@ -83,19 +70,7 @@ public class AggroInfo
 	
 	public void addDamage(long value)
 	{
-		final long sum = _damage + value;
-		if (sum > MAX_VALUE)
-		{
-			_damage = MAX_VALUE;
-		}
-		else if (sum < MIN_VALUE)
-		{
-			_damage = MIN_VALUE;
-		}
-		else
-		{
-			_damage = sum;
-		}
+		_damage = Math.min(_damage + value, MAX_VALUE);
 	}
 	
 	@Override

@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.gameserver.taskmanager;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -45,14 +46,20 @@ public class ItemLifeTimeTaskManager implements Runnable
 		}
 		_working = true;
 		
-		final long currentTime = System.currentTimeMillis();
-		for (Entry<Item, Long> entry : ITEMS.entrySet())
+		if (!ITEMS.isEmpty())
 		{
-			if (currentTime > entry.getValue().longValue())
+			final long currentTime = System.currentTimeMillis();
+			final Iterator<Entry<Item, Long>> iterator = ITEMS.entrySet().iterator();
+			Entry<Item, Long> entry;
+			
+			while (iterator.hasNext())
 			{
-				final Item item = entry.getKey();
-				ITEMS.remove(item);
-				item.endOfLife();
+				entry = iterator.next();
+				if (currentTime > entry.getValue())
+				{
+					entry.getKey().endOfLife();
+					iterator.remove();
+				}
 			}
 		}
 		

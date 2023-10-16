@@ -39,6 +39,7 @@ import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
 import org.l2jmobius.gameserver.handler.IParseBoardHandler;
+import org.l2jmobius.gameserver.instancemanager.PcCafePointsManager;
 import org.l2jmobius.gameserver.instancemanager.PremiumManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -280,7 +281,7 @@ public class HomeBoard implements IParseBoardHandler
 			final String fullBypass = command.replace("_bbspremium;", "");
 			final String[] buypassOptions = fullBypass.split(",");
 			final int premiumDays = Integer.parseInt(buypassOptions[0]);
-			if (player.getInventory().getInventoryItemCount(Config.COMMUNITY_PREMIUM_COIN_ID, -1) < (Config.COMMUNITY_PREMIUM_PRICE_PER_DAY * premiumDays))
+			if ((premiumDays < 1) || (premiumDays > 30) || (player.getInventory().getInventoryItemCount(Config.COMMUNITY_PREMIUM_COIN_ID, -1) < (Config.COMMUNITY_PREMIUM_PRICE_PER_DAY * premiumDays)))
 			{
 				player.sendMessage("Not enough currency!");
 			}
@@ -289,6 +290,10 @@ public class HomeBoard implements IParseBoardHandler
 				player.destroyItemByItemId("CB_Premium", Config.COMMUNITY_PREMIUM_COIN_ID, Config.COMMUNITY_PREMIUM_PRICE_PER_DAY * premiumDays, player, true);
 				PremiumManager.getInstance().addPremiumTime(player.getAccountName(), premiumDays, TimeUnit.DAYS);
 				player.sendMessage("Your account will now have premium status until " + new SimpleDateFormat("dd.MM.yyyy HH:mm").format(PremiumManager.getInstance().getPremiumExpiration(player.getAccountName())) + ".");
+				if (Config.PC_CAFE_RETAIL_LIKE)
+				{
+					PcCafePointsManager.getInstance().run(player);
+				}
 				returnHtml = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/Custom/premium/thankyou.html");
 			}
 		}

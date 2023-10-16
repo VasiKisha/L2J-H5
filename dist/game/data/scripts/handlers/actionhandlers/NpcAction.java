@@ -29,7 +29,6 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcFirstTalk;
-import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.MoveToPawn;
 
 public class NpcAction implements IActionHandler
@@ -60,6 +59,7 @@ public class NpcAction implements IActionHandler
 		{
 			return false;
 		}
+		
 		player.setLastFolkNPC((Npc) target);
 		// Check if the Player already target the Npc
 		if (target != player.getTarget())
@@ -77,24 +77,13 @@ public class NpcAction implements IActionHandler
 			// Check if the player is attackable (without a forced attack) and isn't dead
 			if (target.isAutoAttackable(player) && !((Creature) target).isAlikeDead())
 			{
-				// Check if target is in LoS
-				if (GeoEngine.getInstance().canSeeTarget(player, target))
-				{
-					// Set the Player Intention to AI_INTENTION_ATTACK
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
-				}
-				else
-				{
-					// Send a Server->Client ActionFailed to the Player in order to avoid that the client wait another packet
-					player.sendPacket(ActionFailed.STATIC_PACKET);
-				}
+				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
 			}
 			else if (!target.isAutoAttackable(player))
 			{
 				// Calculate the distance between the Player and the Npc
 				if (!((Npc) target).canInteract(player))
 				{
-					// Notify the Player AI with AI_INTENTION_INTERACT
 					player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
 				}
 				else

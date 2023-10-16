@@ -20,7 +20,6 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 
 /**
  * Vitality Point Up effect implementation.
@@ -49,7 +48,7 @@ public class VitalityPointUp extends AbstractEffect
 		if ((info.getEffected() != null) && info.getEffected().isPlayer())
 		{
 			info.getEffected().getActingPlayer().updateVitalityPoints(_value, false, false);
-			info.getEffected().getActingPlayer().sendPacket(new UserInfo(info.getEffected().getActingPlayer()));
+			info.getEffected().getActingPlayer().updateUserInfo();
 		}
 	}
 }

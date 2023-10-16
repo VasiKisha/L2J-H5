@@ -525,6 +525,9 @@ public class Beleth extends AbstractNpcAI
 							}
 						}
 					}
+					_minions.clear();
+					_killedCount = 0;
+					
 					cancelQuestTimer("CHECK_ATTACK", null, null);
 				}
 				else
@@ -731,6 +734,9 @@ public class Beleth extends AbstractNpcAI
 			_priest.decayMe();
 			
 			_stone = addSpawn(STONE_COFFIN, new Location(12470, 215607, -9381, 49152));
+			
+			_killedCount = 0;
+			
 			startQuestTimer("SPAWN26", 1000, null, null);
 		}
 		else if (npc.getObjectId() == _allowedObjId)
@@ -782,6 +788,7 @@ public class Beleth extends AbstractNpcAI
 				minion.deleteMe();
 			}
 		}
+		_minions.clear();
 		_allowedObjId = 0;
 	}
 	

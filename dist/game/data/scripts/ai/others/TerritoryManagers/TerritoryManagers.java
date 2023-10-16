@@ -28,9 +28,7 @@ import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
-import org.l2jmobius.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 
 import ai.AbstractNpcAI;
 
@@ -151,8 +149,7 @@ public class TerritoryManagers extends AbstractNpcAI
 					player.addItem(event, 7694, 1, npc, true);
 					// Set Noblesse status to the player.
 					player.setNoble(true);
-					player.sendPacket(new UserInfo(player));
-					player.sendPacket(new ExBrExtraUserInfo(player));
+					player.updateUserInfo();
 					// Complete the sub-class related quest.
 					// Complete quest Seeds of Chaos (236) for Kamael characters.
 					// Complete quest Mimir's Elixir (235) for other races characters.

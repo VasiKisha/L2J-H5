@@ -17,6 +17,7 @@
 package org.l2jmobius.gameserver.instancemanager;
 
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
@@ -24,6 +25,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.network.GameClient;
 
 public class AntiFeedManager
@@ -215,12 +217,44 @@ public class AntiFeedManager
 	 */
 	public void onDisconnect(GameClient client)
 	{
-		if ((client == null) || (client.getIp() == null) || (client.getPlayer() == null))
+		if (client == null)
 		{
 			return;
 		}
 		
-		_eventIPs.forEach((k, v) -> removeClient(k, client));
+		final Player player = client.getPlayer();
+		if (player == null)
+		{
+			return;
+		}
+		
+		if (player.isInOfflineMode())
+		{
+			return;
+		}
+		
+		final String clientIp = client.getIp();
+		if (clientIp == null)
+		{
+			return;
+		}
+		
+		for (Entry<Integer, Map<Integer, AtomicInteger>> entry : _eventIPs.entrySet())
+		{
+			final int eventId = entry.getKey();
+			if (eventId == OLYMPIAD_ID)
+			{
+				final AtomicInteger count = entry.getValue().get(clientIp.hashCode());
+				if ((count != null) && (OlympiadManager.getInstance().isRegistered(player) || (player.getOlympiadGameId() != -1)))
+				{
+					count.decrementAndGet();
+				}
+			}
+			else
+			{
+				removeClient(eventId, client);
+			}
+		}
 	}
 	
 	/**

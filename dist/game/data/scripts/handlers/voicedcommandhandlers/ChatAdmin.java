@@ -18,7 +18,7 @@ package handlers.voicedcommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.instancemanager.PunishmentManager;
@@ -72,7 +72,7 @@ public class ChatAdmin implements IVoicedCommandHandler
 						}
 					}
 					
-					final int objId = CharNameTable.getInstance().getIdByName(name);
+					final int objId = CharInfoTable.getInstance().getIdByName(name);
 					if (objId > 0)
 					{
 						final Player player = World.getInstance().getPlayer(objId);
@@ -133,7 +133,7 @@ public class ChatAdmin implements IVoicedCommandHandler
 				if (st.hasMoreTokens())
 				{
 					final String name = st.nextToken();
-					final int objId = CharNameTable.getInstance().getIdByName(name);
+					final int objId = CharInfoTable.getInstance().getIdByName(name);
 					if (objId > 0)
 					{
 						final Player player = World.getInstance().getPlayer(objId);

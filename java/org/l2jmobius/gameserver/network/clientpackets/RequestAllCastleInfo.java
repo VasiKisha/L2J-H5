@@ -19,6 +19,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowCastleInfo;
+import org.l2jmobius.gameserver.network.serverpackets.PartyMemberPosition;
 
 /**
  * @author KenM
@@ -35,5 +36,12 @@ public class RequestAllCastleInfo implements ClientPacket
 		}
 		
 		player.sendPacket(new ExShowCastleInfo());
+		
+		// Update PartyMemberPosition when player is in a party.
+		// TODO: Find proper location that this should be sent.
+		if (player.isInParty())
+		{
+			player.sendPacket(new PartyMemberPosition(player.getParty()));
+		}
 	}
 }

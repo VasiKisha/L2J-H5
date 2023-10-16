@@ -23,6 +23,7 @@ import org.l2jmobius.gameserver.enums.PlayerCondOverride;
 import org.l2jmobius.gameserver.instancemanager.TownManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.instance.Trap;
@@ -90,17 +91,6 @@ public abstract class AbstractNpcInfo extends ServerPacket
 		private int _allyId = 0;
 		private int _clanId = 0;
 		private int _displayEffect = 0;
-		private String[] _localisation;
-		
-		public void setLang(String lang)
-		{
-			_localisation = NpcNameLocalisationData.getInstance().getLocalisation(lang, _npc.getId());
-			if (_localisation != null)
-			{
-				_name = _localisation[0];
-				_title = _localisation[1];
-			}
-		}
 		
 		public NpcInfo(Npc cha, Creature attacker)
 		{
@@ -136,6 +126,26 @@ public abstract class AbstractNpcInfo extends ServerPacket
 		@Override
 		public void write()
 		{
+			// Localisation related.
+			String[] localisation = null;
+			if (Config.MULTILANG_ENABLE)
+			{
+				final Player player = getPlayer();
+				if (player != null)
+				{
+					final String lang = player.getLang();
+					if ((lang != null) && !lang.equals("en"))
+					{
+						localisation = NpcNameLocalisationData.getInstance().getLocalisation(lang, _npc.getId());
+						if (localisation != null)
+						{
+							_name = localisation[0];
+							_title = localisation[1];
+						}
+					}
+				}
+			}
+			
 			ServerPackets.NPC_INFO.writeId(this);
 			writeInt(_npc.getObjectId());
 			writeInt(_displayId + 1000000); // npctype id
@@ -168,7 +178,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 			writeByte(_npc.isAlikeDead());
 			writeByte(_isSummoned ? 2 : 0); // invisible ?? 0=false 1=true 2=summoned (only works if model has a summon animation)
 			writeInt(-1); // High Five NPCString ID
-			if ((_localisation == null) && _npc.getTemplate().isUsingServerSideName())
+			if ((localisation == null) && _npc.getTemplate().isUsingServerSideName())
 			{
 				_name = _npc.getName(); // On every subclass
 			}
@@ -178,7 +188,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 			{
 				_title = "Invisible";
 			}
-			else if (_localisation == null)
+			else if (localisation == null)
 			{
 				if (_npc.getTemplate().isUsingServerSideTitle())
 				{

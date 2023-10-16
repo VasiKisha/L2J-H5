@@ -303,8 +303,8 @@ public class UseItem implements ClientPacket
 					|| ((item.getTemplate().getType2() == ItemTemplate.TYPE2_ACCESSORY) && (item.getEnchantLevel() > EnchantItemGroupsData.getInstance().getMaxAccessoryEnchant())) //
 					|| (item.isArmor() && (item.getTemplate().getType2() != ItemTemplate.TYPE2_ACCESSORY) && (item.getEnchantLevel() > EnchantItemGroupsData.getInstance().getMaxArmorEnchant()))))
 			{
+				PacketLogger.info("Over-enchanted (+" + item.getEnchantLevel() + ") " + item + " has been removed from " + player);
 				player.getInventory().destroyItem("Over-enchant protection", item, player, null);
-				PacketLogger.info("Over-enchanted " + item + " has been removed from " + player);
 				if (Config.OVER_ENCHANT_PUNISHMENT != IllegalActionPunishmentType.NONE)
 				{
 					player.sendMessage("[Server]: You have over-enchanted items!");

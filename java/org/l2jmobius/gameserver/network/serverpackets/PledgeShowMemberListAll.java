@@ -55,8 +55,7 @@ public class PledgeShowMemberListAll extends ServerPacket
 			_player.sendPacket(new PledgeShowMemberListAdd(m));
 		}
 		// unless this is sent sometimes, the client doesn't recognise the player as the leader
-		_player.sendPacket(new UserInfo(_player));
-		_player.sendPacket(new ExBrExtraUserInfo(_player));
+		_player.updateUserInfo();
 	}
 	
 	private void writePledge(int mainOrSubpledge)

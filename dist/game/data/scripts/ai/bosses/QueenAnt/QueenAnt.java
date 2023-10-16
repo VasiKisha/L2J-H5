@@ -16,8 +16,8 @@
  */
 package ai.bosses.QueenAnt;
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
@@ -79,7 +79,7 @@ public class QueenAnt extends AbstractNpcAI
 	
 	Monster _queen = null;
 	private Monster _larva = null;
-	private final List<Monster> _nurses = new CopyOnWriteArrayList<>();
+	private final Set<Monster> _nurses = ConcurrentHashMap.newKeySet();
 	
 	private QueenAnt()
 	{
@@ -110,13 +110,13 @@ public class QueenAnt extends AbstractNpcAI
 		}
 		else
 		{
-			final int loc_x = QUEEN_X;
-			final int loc_y = QUEEN_Y;
-			final int loc_z = QUEEN_Z;
+			final int locX = QUEEN_X;
+			final int locY = QUEEN_Y;
+			final int locZ = QUEEN_Z;
 			final int heading = info.getInt("heading");
 			final double hp = info.getDouble("currentHP");
 			final double mp = info.getDouble("currentMP");
-			final GrandBoss queen = (GrandBoss) addSpawn(QUEEN, loc_x, loc_y, loc_z, heading, false, 0);
+			final GrandBoss queen = (GrandBoss) addSpawn(QUEEN, locX, locY, locZ, heading, false, 0);
 			queen.setCurrentHpMp(hp, mp);
 			spawnBoss(queen);
 		}
@@ -216,11 +216,11 @@ public class QueenAnt extends AbstractNpcAI
 				spawnBoss(queen);
 				break;
 			}
-			case "ANT_QUEEN_TASK":
+			case "DISTANCE_CHECK":
 			{
 				if ((_queen == null) || _queen.isDead())
 				{
-					cancelQuestTimers("ANT_QUEEN_TASK");
+					cancelQuestTimers("DISTANCE_CHECK");
 				}
 				else if (_queen.calculateDistance2D(QUEEN_X, QUEEN_Y, QUEEN_Z) > 2000)
 				{
@@ -261,8 +261,8 @@ public class QueenAnt extends AbstractNpcAI
 			}
 			case QUEEN:
 			{
-				cancelQuestTimer("ANT_QUEEN_TASK", npc, null);
-				startQuestTimer("ANT_QUEEN_TASK", 5000, npc, null, true);
+				cancelQuestTimer("DISTANCE_CHECK", npc, null);
+				startQuestTimer("DISTANCE_CHECK", 5000, npc, null, true);
 				break;
 			}
 		}
@@ -363,15 +363,16 @@ public class QueenAnt extends AbstractNpcAI
 			}
 			_larva = null;
 			_queen = null;
-			cancelQuestTimers("ANT_QUEEN_TASK");
+			cancelQuestTimers("DISTANCE_CHECK");
 		}
 		else if ((_queen != null) && !_queen.isAlikeDead())
 		{
 			if (npcId == ROYAL)
 			{
-				if (((Monster) npc).getLeader() != null)
+				final Monster mob = (Monster) npc;
+				if (mob.getLeader() != null)
 				{
-					((Monster) npc).getLeader().getMinionList().onMinionDie((Monster) npc, (280 + getRandom(40)) * 1000);
+					mob.getLeader().getMinionList().onMinionDie(mob, (280 + getRandom(40)) * 1000);
 				}
 			}
 			else if (npcId == NURSE)

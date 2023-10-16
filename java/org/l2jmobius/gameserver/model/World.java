@@ -27,11 +27,10 @@ import java.util.function.Predicate;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.ai.CreatureAI;
 import org.l2jmobius.gameserver.ai.CtrlEvent;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -141,10 +140,11 @@ public class World
 	 */
 	public void addObject(WorldObject object)
 	{
-		if (_allObjects.putIfAbsent(object.getObjectId(), object) != null)
-		{
-			LOGGER.warning(getClass().getSimpleName() + ": Object " + object + " already exists in the world. Stack Trace: " + CommonUtil.getTraceString(Thread.currentThread().getStackTrace()));
-		}
+		_allObjects.putIfAbsent(object.getObjectId(), object);
+		// if (_allObjects.putIfAbsent(object.getObjectId(), object) != null)
+		// {
+		// LOGGER.warning(getClass().getSimpleName() + ": Object " + object + " already exists in the world. Stack Trace: " + CommonUtil.getTraceString(Thread.currentThread().getStackTrace()));
+		// }
 		
 		if (object.isPlayer())
 		{
@@ -254,7 +254,7 @@ public class World
 	 */
 	public Player getPlayer(String name)
 	{
-		return getPlayer(CharNameTable.getInstance().getIdByName(name));
+		return getPlayer(CharInfoTable.getInstance().getIdByName(name));
 	}
 	
 	/**

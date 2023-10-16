@@ -1205,7 +1205,7 @@ public class Q00234_FatesWhisper extends Quest
 		}
 		if (player.isInParty())
 		{
-			player.getParty().getMembers().stream().forEach(pm ->
+			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qs2 = getQuestState(pm, false);
 				if ((qs2 != null) && qs2.isStarted() && (qs2.getMemoState() == memoState) && hasQuestItems(player, Q_WHITE_FABRIC_Q0234) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))

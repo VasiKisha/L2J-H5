@@ -18,7 +18,6 @@ package handlers.actionhandlers;
 
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -58,20 +57,13 @@ public class PetAction implements IActionHandler
 			// Check if the pet is attackable (without a forced attack) and isn't dead
 			if (target.isAutoAttackable(player) && !isOwner)
 			{
-				if (GeoEngine.getInstance().canSeeTarget(player, target))
-				{
-					// Set the Player Intention to AI_INTENTION_ATTACK
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
-					player.onActionRequest();
-				}
+				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+				player.onActionRequest();
 			}
 			else if (!((Creature) target).isInsideRadius2D(player, 150))
 			{
-				if (GeoEngine.getInstance().canSeeTarget(player, target))
-				{
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
-					player.onActionRequest();
-				}
+				player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
+				player.onActionRequest();
 			}
 			else
 			{

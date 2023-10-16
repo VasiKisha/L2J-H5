@@ -28,12 +28,10 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialCloseHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowQuestionMark;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 
 /**
  * @version $Revision: 1.4.2.1.2.7 $ $Date: 2005/03/27 15:29:32 $
@@ -96,8 +94,7 @@ public class ClassMaster extends Merchant
 			if (!player.isNoble())
 			{
 				player.setNoble(true);
-				player.sendPacket(new UserInfo(player));
-				player.sendPacket(new ExBrExtraUserInfo(player));
+				player.updateUserInfo();
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 				html.setFile(player, "data/html/classmaster/nobleok.htm");
 				player.sendPacket(html);

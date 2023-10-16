@@ -27,7 +27,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -170,7 +170,7 @@ public class BlockList
 			return;
 		}
 		
-		final String charName = CharNameTable.getInstance().getNameById(targetId);
+		final String charName = CharInfoTable.getInstance().getNameById(targetId);
 		if (listOwner.getFriendList().contains(targetId))
 		{
 			listOwner.sendPacket(SystemMessageId.THIS_PLAYER_IS_ALREADY_REGISTERED_ON_YOUR_FRIENDS_LIST);
@@ -207,7 +207,7 @@ public class BlockList
 		
 		SystemMessage sm;
 		
-		final String charName = CharNameTable.getInstance().getNameById(targetId);
+		final String charName = CharInfoTable.getInstance().getNameById(targetId);
 		if (!listOwner.getBlockList().getBlockList().contains(targetId))
 		{
 			sm = new SystemMessage(SystemMessageId.THAT_IS_AN_INCORRECT_TARGET);
@@ -243,7 +243,7 @@ public class BlockList
 		listOwner.sendPacket(SystemMessageId.IGNORE_LIST);
 		for (int playerId : listOwner.getBlockList().getBlockList())
 		{
-			listOwner.sendMessage((i++) + ". " + CharNameTable.getInstance().getNameById(playerId));
+			listOwner.sendMessage((i++) + ". " + CharInfoTable.getInstance().getNameById(playerId));
 		}
 		listOwner.sendPacket(SystemMessageId.EMPTY_3);
 	}

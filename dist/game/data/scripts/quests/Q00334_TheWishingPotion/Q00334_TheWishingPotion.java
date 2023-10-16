@@ -1036,7 +1036,7 @@ public class Q00334_TheWishingPotion extends Quest
 		
 		if (player.isInParty())
 		{
-			player.getParty().getMembers().stream().forEach(pm ->
+			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = pm.getQuestState(getName());
 				if ((qss != null) && qss.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))

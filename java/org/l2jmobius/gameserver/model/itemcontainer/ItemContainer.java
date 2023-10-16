@@ -623,7 +623,7 @@ public abstract class ItemContainer
 	 * If the item is stackable validates 1 slot, if the item isn't stackable validates the item count.
 	 * @param itemId the item Id to verify
 	 * @param count amount of item's weight to validate
-	 * @return {@code true} if the item doesn't exists or it validates its slot count
+	 * @return {@code true} if the item doesn't exist or it validates its slot count
 	 */
 	public boolean validateCapacityByItemId(int itemId, long count)
 	{
@@ -634,7 +634,7 @@ public abstract class ItemContainer
 	/**
 	 * @param itemId the item Id to verify
 	 * @param count amount of item's weight to validate
-	 * @return {@code true} if the item doesn't exists or it validates its weight
+	 * @return {@code true} if the item doesn't exist or it validates its weight
 	 */
 	public boolean validateWeightByItemId(int itemId, long count)
 	{

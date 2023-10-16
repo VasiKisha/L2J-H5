@@ -30,10 +30,10 @@ import org.l2jmobius.gameserver.model.buylist.Product;
  */
 public class BuyListTaskManager
 {
-	private static final Map<Product, Long> PRODUCTS = new ConcurrentHashMap<>();
-	private static final List<Product> PENDING_UPDATES = new ArrayList<>();
-	private static boolean _workingProducts = false;
-	private static boolean _workingSaves = false;
+	protected static final Map<Product, Long> PRODUCTS = new ConcurrentHashMap<>();
+	protected static final List<Product> PENDING_UPDATES = new ArrayList<>();
+	protected static boolean _workingProducts = false;
+	protected static boolean _workingSaves = false;
 	
 	protected BuyListTaskManager()
 	{

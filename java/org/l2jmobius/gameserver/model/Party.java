@@ -775,10 +775,21 @@ public class Party extends AbstractPlayerGroup
 		}
 	}
 	
-	private double calculateExpSpPartyCutoff(Player player, int topLvl, double addExp, double addSp, boolean vit)
+	private double calculateExpSpPartyCutoff(Player player, int topLvl, double addExpValue, double addSpValue, boolean vit)
 	{
+		double addExp = addExpValue;
+		double addSp = addSpValue;
+		
+		// Premium rates
+		if (player.hasPremiumStatus())
+		{
+			addExp *= Config.PREMIUM_RATE_XP;
+			addSp *= Config.PREMIUM_RATE_SP;
+		}
+		
 		double xp = addExp;
 		double sp = addSp;
+		
 		if (Config.PARTY_XP_CUTOFF_METHOD.equalsIgnoreCase("highfive"))
 		{
 			int i = 0;

@@ -122,7 +122,7 @@ public class ListenersContainer
 	}
 	
 	/**
-	 * Creates the listeners container map if doesn't exists.
+	 * Creates the listeners container map if doesn't exist.
 	 * @return the listeners container map.
 	 */
 	private Map<EventType, Queue<AbstractEventListener>> getListeners()

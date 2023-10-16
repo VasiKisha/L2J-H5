@@ -202,7 +202,7 @@ public class DoorData implements IXmlReader
 		for (Door doorInst : doors)
 		{
 			// check dead and open
-			if (doorInst.isDead() || doorInst.isOpen() || !doorInst.checkCollision() || (doorInst.getX(0) == 0))
+			if ((instanceId != doorInst.getInstanceId()) || doorInst.isDead() || doorInst.isOpen() || !doorInst.checkCollision() || (doorInst.getX(0) == 0))
 			{
 				continue;
 			}

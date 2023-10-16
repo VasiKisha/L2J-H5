@@ -38,7 +38,7 @@ public class AttackStanceTaskManager implements Runnable
 	
 	public static final long COMBAT_TIME = 15000;
 	
-	private static final Map<Creature, Long> _attackStanceTasks = new ConcurrentHashMap<>();
+	private static final Map<Creature, Long> CREATURE_ATTACK_STANCES = new ConcurrentHashMap<>();
 	private static boolean _working = false;
 	
 	protected AttackStanceTaskManager()
@@ -55,35 +55,39 @@ public class AttackStanceTaskManager implements Runnable
 		}
 		_working = true;
 		
-		final long current = System.currentTimeMillis();
-		try
+		if (!CREATURE_ATTACK_STANCES.isEmpty())
 		{
-			final Iterator<Entry<Creature, Long>> iterator = _attackStanceTasks.entrySet().iterator();
-			Entry<Creature, Long> entry;
-			Creature creature;
-			while (iterator.hasNext())
+			try
 			{
-				entry = iterator.next();
-				if ((current - entry.getValue().longValue()) > COMBAT_TIME)
+				final long currentTime = System.currentTimeMillis();
+				final Iterator<Entry<Creature, Long>> iterator = CREATURE_ATTACK_STANCES.entrySet().iterator();
+				Entry<Creature, Long> entry;
+				Creature creature;
+				
+				while (iterator.hasNext())
 				{
-					creature = entry.getKey();
-					if (creature != null)
+					entry = iterator.next();
+					if ((currentTime - entry.getValue()) > COMBAT_TIME)
 					{
-						creature.broadcastPacket(new AutoAttackStop(creature.getObjectId()));
-						creature.getAI().setAutoAttacking(false);
-						if (creature.isPlayer() && creature.hasSummon())
+						creature = entry.getKey();
+						if (creature != null)
 						{
-							creature.getSummon().broadcastPacket(new AutoAttackStop(creature.getSummon().getObjectId()));
+							creature.broadcastPacket(new AutoAttackStop(creature.getObjectId()));
+							creature.getAI().setAutoAttacking(false);
+							if (creature.isPlayer() && creature.hasSummon())
+							{
+								creature.getSummon().broadcastPacket(new AutoAttackStop(creature.getSummon().getObjectId()));
+							}
 						}
+						iterator.remove();
 					}
-					iterator.remove();
 				}
 			}
-		}
-		catch (Exception e)
-		{
-			// Unless caught here, players remain in attack positions.
-			LOGGER.log(Level.WARNING, "Error in AttackStanceTaskManager: " + e.getMessage(), e);
+			catch (Exception e)
+			{
+				// Unless caught here, players remain in attack positions.
+				LOGGER.log(Level.WARNING, "Error in AttackStanceTaskManager: " + e.getMessage(), e);
+			}
 		}
 		
 		_working = false;
@@ -110,7 +114,7 @@ public class AttackStanceTaskManager implements Runnable
 				}
 			}
 		}
-		_attackStanceTasks.put(creature, System.currentTimeMillis());
+		CREATURE_ATTACK_STANCES.put(creature, System.currentTimeMillis());
 	}
 	
 	/**
@@ -126,7 +130,7 @@ public class AttackStanceTaskManager implements Runnable
 			{
 				actor = actor.getActingPlayer();
 			}
-			_attackStanceTasks.remove(actor);
+			CREATURE_ATTACK_STANCES.remove(actor);
 		}
 	}
 	
@@ -144,8 +148,9 @@ public class AttackStanceTaskManager implements Runnable
 			{
 				actor = actor.getActingPlayer();
 			}
-			return _attackStanceTasks.containsKey(actor);
+			return CREATURE_ATTACK_STANCES.containsKey(actor);
 		}
+		
 		return false;
 	}
 	

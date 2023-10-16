@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.gameserver.taskmanager;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -46,18 +47,26 @@ public class RespawnTaskManager implements Runnable
 		}
 		_working = true;
 		
-		final long time = System.currentTimeMillis();
-		for (Entry<Npc, Long> entry : PENDING_RESPAWNS.entrySet())
+		if (!PENDING_RESPAWNS.isEmpty())
 		{
-			if (time > entry.getValue().longValue())
+			final long currentTime = System.currentTimeMillis();
+			final Iterator<Entry<Npc, Long>> iterator = PENDING_RESPAWNS.entrySet().iterator();
+			Entry<Npc, Long> entry;
+			
+			while (iterator.hasNext())
 			{
-				final Npc npc = entry.getKey();
-				PENDING_RESPAWNS.remove(npc);
-				final Spawn spawn = npc.getSpawn();
-				if (spawn != null)
+				entry = iterator.next();
+				if (currentTime > entry.getValue())
 				{
-					spawn.respawnNpc(npc);
-					spawn._scheduledCount--;
+					iterator.remove();
+					
+					final Npc npc = entry.getKey();
+					final Spawn spawn = npc.getSpawn();
+					if (spawn != null)
+					{
+						spawn.respawnNpc(npc);
+						spawn._scheduledCount--;
+					}
 				}
 			}
 		}

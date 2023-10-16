@@ -28,7 +28,7 @@ import org.l2jmobius.loginserver.network.clientpackets.LoginClientPacket;
  */
 public class LoginPacketHandler implements PacketHandlerInterface<LoginClient>
 {
-	private static final Logger LOGGER = Logger.getLogger(LoginPacketHandler.class.getName());
+	protected static final Logger LOGGER = Logger.getLogger(LoginPacketHandler.class.getName());
 	
 	@Override
 	public void handle(LoginClient client, ReadablePacket packet)

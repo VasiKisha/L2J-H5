@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.gameserver.taskmanager;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -24,6 +25,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 
 /**
@@ -48,14 +50,20 @@ public class DecayTaskManager implements Runnable
 		}
 		_working = true;
 		
-		final long time = System.currentTimeMillis();
-		for (Entry<Creature, Long> entry : DECAY_SCHEDULES.entrySet())
+		if (!DECAY_SCHEDULES.isEmpty())
 		{
-			if (time > entry.getValue().longValue())
+			final long currentTime = System.currentTimeMillis();
+			final Iterator<Entry<Creature, Long>> iterator = DECAY_SCHEDULES.entrySet().iterator();
+			Entry<Creature, Long> entry;
+			
+			while (iterator.hasNext())
 			{
-				final Creature creature = entry.getKey();
-				DECAY_SCHEDULES.remove(creature);
-				creature.onDecay();
+				entry = iterator.next();
+				if (currentTime > entry.getValue())
+				{
+					entry.getKey().onDecay();
+					iterator.remove();
+				}
 			}
 		}
 		
@@ -89,9 +97,17 @@ public class DecayTaskManager implements Runnable
 			delay += Config.SPOILED_CORPSE_EXTEND_TIME;
 		}
 		
-		if (Config.DISCONNECT_AFTER_DEATH && creature.isPlayer())
+		if (creature.isPlayer())
 		{
-			delay = 3600; // 1 hour
+			final Player player = creature.getActingPlayer();
+			if (player.isOfflinePlay() && Config.OFFLINE_PLAY_LOGOUT_ON_DEATH)
+			{
+				delay = 10; // 10 seconds
+			}
+			else if (Config.DISCONNECT_AFTER_DEATH)
+			{
+				delay = 3600; // 1 hour
+			}
 		}
 		
 		// Add to decay schedules.

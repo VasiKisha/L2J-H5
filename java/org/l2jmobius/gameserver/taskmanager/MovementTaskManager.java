@@ -16,12 +16,14 @@
  */
 package org.l2jmobius.gameserver.taskmanager;
 
+import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.gameserver.ai.CtrlEvent;
 import org.l2jmobius.gameserver.model.actor.Creature;
 
 /**
@@ -30,7 +32,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
  */
 public class MovementTaskManager
 {
-	private static final Logger LOGGER = Logger.getLogger(MovementTaskManager.class.getName());
+	protected static final Logger LOGGER = Logger.getLogger(MovementTaskManager.class.getName());
 	
 	private static final Set<Set<Creature>> POOLS = ConcurrentHashMap.newKeySet();
 	private static final int POOL_SIZE = 1000;
@@ -52,18 +54,27 @@ public class MovementTaskManager
 		@Override
 		public void run()
 		{
-			for (Creature creature : _creatures)
+			if (_creatures.isEmpty())
 			{
+				return;
+			}
+			
+			Creature creature;
+			final Iterator<Creature> iterator = _creatures.iterator();
+			while (iterator.hasNext())
+			{
+				creature = iterator.next();
 				try
 				{
 					if (creature.updatePosition())
 					{
-						_creatures.remove(creature);
+						iterator.remove();
+						creature.getAI().notifyEvent(CtrlEvent.EVT_ARRIVED);
 					}
 				}
 				catch (Exception e)
 				{
-					_creatures.remove(creature);
+					iterator.remove();
 					LOGGER.warning("MovementTaskManager: Problem updating position of " + creature);
 					LOGGER.warning(CommonUtil.getStackTrace(e));
 				}

@@ -25,7 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -69,7 +69,7 @@ public class ContactList
 				while (rset.next())
 				{
 					contactId = rset.getInt(1);
-					contactName = CharNameTable.getInstance().getNameById(contactId);
+					contactName = CharInfoTable.getInstance().getNameById(contactId);
 					if ((contactName == null) || contactName.equals(_player.getName()) || (contactId == _player.getObjectId()))
 					{
 						continue;
@@ -89,7 +89,7 @@ public class ContactList
 	{
 		SystemMessage sm;
 		
-		final int contactId = CharNameTable.getInstance().getIdByName(name);
+		final int contactId = CharInfoTable.getInstance().getIdByName(name);
 		if (_contacts.contains(name))
 		{
 			_player.sendPacket(SystemMessageId.THE_NAME_ALREADY_EXISTS_ON_THE_ADDED_LIST);
@@ -146,7 +146,7 @@ public class ContactList
 	
 	public void remove(String name)
 	{
-		final int contactId = CharNameTable.getInstance().getIdByName(name);
+		final int contactId = CharInfoTable.getInstance().getIdByName(name);
 		if (!_contacts.contains(name))
 		{
 			_player.sendPacket(SystemMessageId.THE_NAME_IS_NOT_CURRENTLY_REGISTERED);

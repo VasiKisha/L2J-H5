@@ -26,7 +26,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.instancemanager.PunishmentManager;
 import org.l2jmobius.gameserver.model.World;
@@ -411,7 +411,7 @@ public class AdminPunishment implements IAdminCommandHandler
 	
 	private static String findCharId(String key)
 	{
-		final int charId = CharNameTable.getInstance().getIdByName(key);
+		final int charId = CharInfoTable.getInstance().getIdByName(key);
 		if (charId > 0) // Yeah its a char name!
 		{
 			return Integer.toString(charId);

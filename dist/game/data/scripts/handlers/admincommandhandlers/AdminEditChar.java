@@ -31,7 +31,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.TransformData;
 import org.l2jmobius.gameserver.enums.ClassId;
@@ -47,14 +47,12 @@ import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExVoteSystemInfo;
 import org.l2jmobius.gameserver.network.serverpackets.GMViewItemList;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.PartySmallWindowAll;
 import org.l2jmobius.gameserver.network.serverpackets.PartySmallWindowDeleteAll;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.util.BuilderUtil;
 import org.l2jmobius.gameserver.util.HtmlUtil;
 import org.l2jmobius.gameserver.util.Util;
@@ -235,8 +233,6 @@ public class AdminEditChar implements IAdminCommandHandler
 					final Player player = (Player) target;
 					player.setPkKills(pk);
 					player.broadcastUserInfo();
-					player.sendPacket(new UserInfo(player));
-					player.sendPacket(new ExBrExtraUserInfo(player));
 					player.sendMessage("A GM changed your PK count to " + pk);
 					activeChar.sendMessage(player.getName() + "'s PK count changed to " + pk);
 				}
@@ -267,8 +263,6 @@ public class AdminEditChar implements IAdminCommandHandler
 					player.setPvpKills(pvp);
 					player.updatePvpTitleAndColor(false);
 					player.broadcastUserInfo();
-					player.sendPacket(new UserInfo(player));
-					player.sendPacket(new ExBrExtraUserInfo(player));
 					player.sendMessage("A GM changed your PVP count to " + pvp);
 					activeChar.sendMessage(player.getName() + "'s PVP count changed to " + pvp);
 				}
@@ -298,8 +292,6 @@ public class AdminEditChar implements IAdminCommandHandler
 					final Player player = (Player) target;
 					player.setFame(fame);
 					player.broadcastUserInfo();
-					player.sendPacket(new UserInfo(player));
-					player.sendPacket(new ExBrExtraUserInfo(player));
 					player.sendMessage("A GM changed your Reputation points to " + fame);
 					activeChar.sendMessage(player.getName() + "'s Fame changed to " + fame);
 				}
@@ -486,7 +478,7 @@ public class AdminEditChar implements IAdminCommandHandler
 				{
 					return false;
 				}
-				if (CharNameTable.getInstance().doesCharNameExist(val))
+				if (CharInfoTable.getInstance().doesCharNameExist(val))
 				{
 					BuilderUtil.sendSysMessage(activeChar, "Warning, player " + val + " already exists");
 					return false;

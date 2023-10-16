@@ -62,11 +62,8 @@ public class SummonAction implements IActionHandler
 		{
 			if (target.isAutoAttackable(player))
 			{
-				if (GeoEngine.getInstance().canSeeTarget(player, target))
-				{
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
-					player.onActionRequest();
-				}
+				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+				player.onActionRequest();
 			}
 			else
 			{
@@ -76,7 +73,7 @@ public class SummonAction implements IActionHandler
 				{
 					player.updateNotMoveUntil();
 				}
-				else if (GeoEngine.getInstance().canSeeTarget(player, target))
+				else if (GeoEngine.getInstance().canMoveToTarget(player, target))
 				{
 					player.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, target);
 				}

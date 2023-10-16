@@ -34,10 +34,10 @@ import org.l2jmobius.gameserver.model.actor.Summon;
  */
 public class CreatureFollowTaskManager
 {
-	private static final Map<Creature, Integer> NORMAL_FOLLOW_CREATURES = new ConcurrentHashMap<>();
-	private static final Map<Creature, Integer> ATTACK_FOLLOW_CREATURES = new ConcurrentHashMap<>();
-	private static boolean _workingNormal = false;
-	private static boolean _workingAttack = false;
+	protected static final Map<Creature, Integer> NORMAL_FOLLOW_CREATURES = new ConcurrentHashMap<>();
+	protected static final Map<Creature, Integer> ATTACK_FOLLOW_CREATURES = new ConcurrentHashMap<>();
+	protected static boolean _workingNormal = false;
+	protected static boolean _workingAttack = false;
 	
 	protected CreatureFollowTaskManager()
 	{
@@ -56,9 +56,12 @@ public class CreatureFollowTaskManager
 			}
 			_workingNormal = true;
 			
-			for (Entry<Creature, Integer> entry : NORMAL_FOLLOW_CREATURES.entrySet())
+			if (!NORMAL_FOLLOW_CREATURES.isEmpty())
 			{
-				follow(entry.getKey(), entry.getValue().intValue());
+				for (Entry<Creature, Integer> entry : NORMAL_FOLLOW_CREATURES.entrySet())
+				{
+					follow(entry.getKey(), entry.getValue());
+				}
 			}
 			
 			_workingNormal = false;
@@ -76,16 +79,19 @@ public class CreatureFollowTaskManager
 			}
 			_workingAttack = true;
 			
-			for (Entry<Creature, Integer> entry : ATTACK_FOLLOW_CREATURES.entrySet())
+			if (!ATTACK_FOLLOW_CREATURES.isEmpty())
 			{
-				follow(entry.getKey(), entry.getValue().intValue());
+				for (Entry<Creature, Integer> entry : ATTACK_FOLLOW_CREATURES.entrySet())
+				{
+					follow(entry.getKey(), entry.getValue());
+				}
 			}
 			
 			_workingAttack = false;
 		}
 	}
 	
-	private void follow(Creature creature, int range)
+	protected void follow(Creature creature, int range)
 	{
 		try
 		{

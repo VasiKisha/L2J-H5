@@ -118,7 +118,7 @@ public class SchemeBuffer extends Npc
 			{
 				player.sendMessage("You don't have a pet.");
 			}
-			else if ((cost == 0) || player.reduceAdena("NPC Buffer", cost, this, true))
+			else if ((cost == 0) || ((Config.BUFFER_ITEM_ID == 57) && player.reduceAdena("NPC Buffer", cost, this, true)) || ((Config.BUFFER_ITEM_ID != 57) && player.destroyItemByItemId("NPC Buffer", Config.BUFFER_ITEM_ID, cost, player, true)))
 			{
 				for (int skillId : SchemeBufferTable.getInstance().getScheme(player.getObjectId(), schemeName))
 				{

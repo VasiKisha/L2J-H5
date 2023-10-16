@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.gameserver.taskmanager;
 
+import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
@@ -50,45 +51,52 @@ public class MessageDeletionTaskManager implements Runnable
 		}
 		_working = true;
 		
-		Integer msgId;
-		Message msg;
-		final long time = System.currentTimeMillis();
-		for (Entry<Integer, Long> entry : PENDING_MESSAGES.entrySet())
+		if (!PENDING_MESSAGES.isEmpty())
 		{
-			if (time > entry.getValue().longValue())
+			final long currentTime = System.currentTimeMillis();
+			final Iterator<Entry<Integer, Long>> iterator = PENDING_MESSAGES.entrySet().iterator();
+			Entry<Integer, Long> entry;
+			Integer messageId;
+			Message message;
+			
+			while (iterator.hasNext())
 			{
-				msgId = entry.getKey();
-				msg = MailManager.getInstance().getMessage(msgId.intValue());
-				if (msg == null)
+				entry = iterator.next();
+				if (currentTime > entry.getValue())
 				{
-					PENDING_MESSAGES.remove(msgId);
-					return;
-				}
-				
-				if (msg.hasAttachments())
-				{
-					final Player sender = World.getInstance().getPlayer(msg.getSenderId());
-					if (sender != null)
+					messageId = entry.getKey();
+					message = MailManager.getInstance().getMessage(messageId);
+					if (message == null)
 					{
-						msg.getAttachments().returnToWh(sender.getWarehouse());
-						sender.sendPacket(SystemMessageId.THE_MAIL_WAS_RETURNED_DUE_TO_THE_EXCEEDED_WAITING_TIME);
+						iterator.remove();
+						continue;
 					}
-					else
-					{
-						msg.getAttachments().returnToWh(null);
-					}
-					msg.getAttachments().deleteMe();
-					msg.removeAttachments();
 					
-					final Player receiver = World.getInstance().getPlayer(msg.getReceiverId());
-					if (receiver != null)
+					if (message.hasAttachments())
 					{
-						receiver.sendPacket(new SystemMessage(SystemMessageId.THE_MAIL_WAS_RETURNED_DUE_TO_THE_EXCEEDED_WAITING_TIME));
+						final Player sender = World.getInstance().getPlayer(message.getSenderId());
+						if (sender != null)
+						{
+							message.getAttachments().returnToWh(sender.getWarehouse());
+							sender.sendPacket(SystemMessageId.THE_MAIL_WAS_RETURNED_DUE_TO_THE_EXCEEDED_WAITING_TIME);
+						}
+						else
+						{
+							message.getAttachments().returnToWh(null);
+						}
+						message.getAttachments().deleteMe();
+						message.removeAttachments();
+						
+						final Player receiver = World.getInstance().getPlayer(message.getReceiverId());
+						if (receiver != null)
+						{
+							receiver.sendPacket(new SystemMessage(SystemMessageId.THE_MAIL_WAS_RETURNED_DUE_TO_THE_EXCEEDED_WAITING_TIME));
+						}
 					}
+					
+					MailManager.getInstance().deleteMessageInDb(messageId);
+					iterator.remove();
 				}
-				
-				MailManager.getInstance().deleteMessageInDb(msgId.intValue());
-				PENDING_MESSAGES.remove(msgId);
 			}
 		}
 		

@@ -638,7 +638,10 @@ public class SpawnTable implements IXmlReader
 					{
 						if (currentLine.contains("</spawn>"))
 						{
-							writer.write("		<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnDelay=\"" + spawnDelay + "\" /> <!-- " + NpcData.getInstance().getTemplate(spawn.getId()).getName() + " -->" + Config.EOL);
+							final NpcTemplate template = NpcData.getInstance().getTemplate(spawn.getId());
+							final String title = template.getTitle();
+							final String name = title.isEmpty() ? template.getName() : template.getName() + " - " + title;
+							writer.write("		<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnDelay=\"" + spawnDelay + "\" /> <!-- " + name + " -->" + Config.EOL);
 							writer.write(currentLine + Config.EOL);
 							continue;
 						}
@@ -658,11 +661,14 @@ public class SpawnTable implements IXmlReader
 			{
 				try
 				{
+					final NpcTemplate template = NpcData.getInstance().getTemplate(spawn.getId());
+					final String title = template.getTitle();
+					final String name = title.isEmpty() ? template.getName() : template.getName() + " - " + title;
 					final BufferedWriter writer = new BufferedWriter(new FileWriter(spawnFile));
 					writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Config.EOL);
 					writer.write("<list enabled=\"true\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"../../xsd/spawns.xsd\">" + Config.EOL);
 					writer.write("	<spawn name=\"" + x + "_" + y + "\">" + Config.EOL);
-					writer.write("		<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnDelay=\"" + spawnDelay + "\" /> <!-- " + NpcData.getInstance().getTemplate(spawn.getId()).getName() + " -->" + Config.EOL);
+					writer.write("		<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnDelay=\"" + spawnDelay + "\" /> <!-- " + name + " -->" + Config.EOL);
 					writer.write("	</spawn>" + Config.EOL);
 					writer.write("</list>" + Config.EOL);
 					writer.close();

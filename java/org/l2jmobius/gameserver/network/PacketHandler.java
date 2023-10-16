@@ -28,7 +28,7 @@ import org.l2jmobius.gameserver.network.clientpackets.ClientPacket;
  */
 public class PacketHandler implements PacketHandlerInterface<GameClient>
 {
-	private static final Logger LOGGER = Logger.getLogger(PacketHandler.class.getName());
+	protected static final Logger LOGGER = Logger.getLogger(PacketHandler.class.getName());
 	
 	@Override
 	public void handle(GameClient client, ReadablePacket packet)

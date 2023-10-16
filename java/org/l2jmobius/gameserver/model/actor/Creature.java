@@ -276,6 +276,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	/** Movement data of this Creature */
 	protected MoveData _move;
 	private boolean _cursorKeyMovement = false;
+	private boolean _suspendedMovement = false;
 	
 	/** This creature's target. */
 	private WorldObject _target;
@@ -3898,11 +3899,11 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			{
 				if (broadcastFull)
 				{
-					getActingPlayer().updateAndBroadcastStatus(2);
+					getActingPlayer().broadcastUserInfo();
 				}
 				else
 				{
-					getActingPlayer().updateAndBroadcastStatus(1);
+					getActingPlayer().updateUserInfo();
 					if (su.hasAttributes())
 					{
 						broadcastPacket(su);
@@ -4170,6 +4171,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			return false;
 		}
 		
+		_suspendedMovement = false;
 		final int xPrev = getX();
 		final int yPrev = getY();
 		final int zPrev = getZ(); // the z coordinate may be modified by coordinate synchronizations
@@ -4213,41 +4215,70 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 					if (!GeoEngine.getInstance().canMoveToTarget(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId()))
 					{
 						_move.onGeodataPathIndex = -1;
-						if (hasAI() && getAI().isFollowing())
+						if (hasAI())
 						{
-							getAI().stopFollow();
+							if (getAI().isFollowing())
+							{
+								getAI().stopFollow();
+							}
+							getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
 						}
-						stopMove(getActingPlayer().getLastServerPosition());
 						return false;
 					}
 				}
-				else // Check for nearby doors or fences.
+				else
 				{
-					final WorldRegion region = getWorldRegion();
-					if (region != null)
+					// Support for player attack with direct movement. Tested at retail on May 11th 2023.
+					if (hasAI() && (getAI().getIntention() == CtrlIntention.AI_INTENTION_ATTACK))
 					{
-						final boolean hasDoors = !region.getDoors().isEmpty();
-						final boolean hasFences = !region.getFences().isEmpty();
-						if (hasDoors || hasFences)
+						final double angle = Util.convertHeadingToDegree(getHeading());
+						final double radian = Math.toRadians(angle);
+						final double course = Math.toRadians(180);
+						final double frontDistance = 10 * (_stat.getMoveSpeed() / 100);
+						final int x1 = (int) (Math.cos(Math.PI + radian + course) * frontDistance);
+						final int y1 = (int) (Math.sin(Math.PI + radian + course) * frontDistance);
+						final int x = xPrev + x1;
+						final int y = yPrev + y1;
+						if (!GeoEngine.getInstance().canMoveToTarget(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId()))
 						{
-							final double angle = Util.convertHeadingToDegree(getHeading());
-							final double radian = Math.toRadians(angle);
-							final double course = Math.toRadians(180);
-							final double frontDistance = 10 * (_stat.getMoveSpeed() / 100);
-							final int x1 = (int) (Math.cos(Math.PI + radian + course) * frontDistance);
-							final int y1 = (int) (Math.sin(Math.PI + radian + course) * frontDistance);
-							final int x = xPrev + x1;
-							final int y = yPrev + y1;
-							if ((hasDoors && DoorData.getInstance().checkIfDoorsBetween(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId(), false)) //
-								|| (hasFences && FenceData.getInstance().checkIfFenceBetween(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId())))
+							_suspendedMovement = true;
+							_move.onGeodataPathIndex = -1;
+							broadcastPacket(new StopMove(this));
+							return false;
+						}
+					}
+					else // Check for nearby doors or fences.
+					{
+						final WorldRegion region = getWorldRegion();
+						if (region != null)
+						{
+							final boolean hasDoors = !region.getDoors().isEmpty();
+							final boolean hasFences = !region.getFences().isEmpty();
+							if (hasDoors || hasFences)
 							{
-								_move.onGeodataPathIndex = -1;
-								if (hasAI() && getAI().isFollowing())
+								final double angle = Util.convertHeadingToDegree(getHeading());
+								final double radian = Math.toRadians(angle);
+								final double course = Math.toRadians(180);
+								final double frontDistance = 10 * (_stat.getMoveSpeed() / 100);
+								final int x1 = (int) (Math.cos(Math.PI + radian + course) * frontDistance);
+								final int y1 = (int) (Math.sin(Math.PI + radian + course) * frontDistance);
+								final int x = xPrev + x1;
+								final int y = yPrev + y1;
+								if ((hasDoors && DoorData.getInstance().checkIfDoorsBetween(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId(), false)) //
+									|| (hasFences && FenceData.getInstance().checkIfFenceBetween(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId())))
 								{
-									getAI().stopFollow();
+									_move.onGeodataPathIndex = -1;
+									if (hasAI())
+									{
+										if (getAI().isFollowing())
+										{
+											getAI().stopFollow();
+										}
+										getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+									}
+									stopMove(null);
+									return false;
 								}
-								stopMove(null);
-								return false;
 							}
 						}
 					}
@@ -4255,6 +4286,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			}
 		}
 		
+		// Distance from destination.
 		double delta = (dx * dx) + (dy * dy);
 		final boolean isFloating = _isFlying || (isInsideZone(ZoneId.WATER) && !isInsideZone(ZoneId.CASTLE));
 		if (!isFloating && (delta < 10000) && ((dz * dz) > 2500)) // Close enough, allows error between client and server geodata if it cannot be avoided.
@@ -4266,6 +4298,19 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			delta = Math.sqrt(delta + (dz * dz));
 		}
 		
+		// Target collision should be subtracted from current distance.
+		final double collision;
+		final WorldObject target = _target;
+		if ((target != null) && target.isCreature() && hasAI() && (getAI().getIntention() == CtrlIntention.AI_INTENTION_ATTACK))
+		{
+			collision = ((Creature) target).getTemplate().getCollisionRadius();
+		}
+		else
+		{
+			collision = getTemplate().getCollisionRadius();
+		}
+		delta = Math.max(0.00001, delta - collision);
+		
 		double distFraction = Double.MAX_VALUE;
 		if (delta > 1)
 		{
@@ -4273,9 +4318,9 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			distFraction = distPassed / delta;
 		}
 		
-		if (distFraction > 1)
+		if (distFraction > 1.79)
 		{
-			// Set the position of the Creature to the destination
+			// Set the position of the Creature to the destination.
 			super.setXYZ(m._xDestination, m._yDestination, m._zDestination);
 		}
 		else
@@ -4283,31 +4328,21 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			m._xAccurate += dx * distFraction;
 			m._yAccurate += dy * distFraction;
 			
-			// Set the position of the Creature to estimated after parcial move
-			super.setXYZ((int) m._xAccurate, (int) m._yAccurate, zPrev + (int) ((dz * distFraction) + 0.5));
+			// Set the position of the Creature to estimated after parcial move.
+			super.setXYZ((int) m._xAccurate, (int) m._yAccurate, zPrev + (int) ((dz * distFraction) + 0.895));
 		}
 		revalidateZone(false);
 		
-		// Set the timer of last position update to now
+		// Set the timer of last position update to now.
 		m._moveTimestamp = gameTicks;
 		
 		// Broadcast MoveToLocation when Playable tries to reach a Playable target (once per second).
-		if (isPlayable())
+		if (isPlayable() && (target != null) && target.isPlayable() && ((gameTicks % 10) == 0) && (calculateDistance3D(target) > 150))
 		{
-			final WorldObject target = _target;
-			if ((target != null) && target.isPlayable() && ((gameTicks % 10) == 0) && (calculateDistance3D(target) > 150))
-			{
-				broadcastPacket(new MoveToLocation(this));
-			}
+			broadcastPacket(new MoveToLocation(this));
 		}
 		
-		if (distFraction > 1)
-		{
-			ThreadPool.execute(() -> getAI().notifyEvent(CtrlEvent.EVT_ARRIVED));
-			return true;
-		}
-		
-		return false;
+		return distFraction > 1.79; // Arrived.
 	}
 	
 	public void revalidateZone(boolean force)
@@ -4551,9 +4586,10 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		final MoveData m = new MoveData();
 		
 		// GEODATA MOVEMENT CHECKS AND PATHFINDING
+		final WorldRegion region = getWorldRegion();
+		m.disregardingGeodata = (region == null) || !region.areNeighborsActive();
 		m.onGeodataPathIndex = -1; // Initialize not on geodata path
-		m.disregardingGeodata = false;
-		if (!_isFlying && !isInWater && !isVehicle() && !_cursorKeyMovement)
+		if (!m.disregardingGeodata && !_isFlying && !isInWater && !isVehicle() && !_cursorKeyMovement)
 		{
 			final boolean isInVehicle = isPlayer() && (getActingPlayer().getVehicle() != null);
 			if (isInVehicle)
@@ -4586,10 +4622,18 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 					}
 				}
 				
-				if (!isInVehicle // Not in vehicle.
-					&& !(isPlayer() && (distance > 3000)) // Should be able to click far away and move.
-					&& !(isMonster() && (Math.abs(dz) > 100)) // Monsters can move on ledges.
-					&& !(((curZ - z) > 300) && (distance < 300))) // Prohibit correcting destination if character wants to fall.
+				// Support for player attack with direct movement. Tested at retail on May 11th 2023.
+				boolean directMove = false;
+				if (isPlayer() && hasAI() && (getActingPlayer().getAI().getIntention() == CtrlIntention.AI_INTENTION_ATTACK))
+				{
+					directMove = true;
+				}
+				
+				if (directMove //
+					|| (!isInVehicle // Not in vehicle.
+						&& !(isPlayer() && (distance > 3000)) // Should be able to click far away and move.
+						&& !(isMonster() && (Math.abs(dz) > 100)) // Monsters can move on ledges.
+						&& !(((curZ - z) > 300) && (distance < 300)))) // Prohibit correcting destination if character wants to fall.
 				{
 					// location different if destination wasn't reached (or just z coord is different)
 					final Location destiny = GeoEngine.getInstance().getValidLocation(curX, curY, curZ, x, y, z, getInstanceId());
@@ -4603,7 +4647,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 				}
 				
 				// Pathfinding checks.
-				if (((originalDistance - distance) > 30) && !isAfraid() && !isInVehicle)
+				if (!directMove && ((originalDistance - distance) > 30) && !isAfraid() && !isInVehicle)
 				{
 					// Path calculation -- overrides previous movement check
 					m.geoPath = PathFinding.getInstance().findPath(curX, curY, curZ, originalX, originalY, originalZ, getInstanceId(), isPlayer());
@@ -4713,9 +4757,8 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			distance = Math.hypot(distance, dz);
 		}
 		
-		// Calculate the number of ticks between the current position and the destination
-		// One tick added for rounding reasons
-		final int ticksToMove = 1 + (int) ((GameTimeTaskManager.TICKS_PER_SECOND * distance) / speed);
+		// Calculate the number of ticks between the current position and the destination.
+		final int ticksToMove = (int) ((GameTimeTaskManager.TICKS_PER_SECOND * distance) / speed);
 		m._xDestination = x;
 		m._yDestination = y;
 		m._zDestination = z; // this is what was requested from client
@@ -4796,16 +4839,15 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			m._zDestination = md.geoPath.get(m.onGeodataPathIndex).getZ();
 		}
 		
+		// Calculate and set the heading of the Creature.
 		final double distance = Math.hypot(m._xDestination - curX, m._yDestination - curY);
-		// Calculate and set the heading of the Creature
 		if (distance != 0)
 		{
 			setHeading(Util.calculateHeadingFrom(curX, curY, m._xDestination, m._yDestination));
 		}
 		
-		// Calculate the number of ticks between the current position and the destination
-		// One tick added for rounding reasons
-		final int ticksToMove = 1 + (int) ((GameTimeTaskManager.TICKS_PER_SECOND * distance) / speed);
+		// Calculate the number of ticks between the current position and the destination.
+		final int ticksToMove = (int) ((GameTimeTaskManager.TICKS_PER_SECOND * distance) / speed);
 		m._heading = 0; // initial value for coordinate sync
 		m._moveStartTime = GameTimeTaskManager.getInstance().getGameTicks();
 		
@@ -5263,13 +5305,15 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
+		
 		// GeoData Los Check or dz > 1000
-		if (!GeoEngine.getInstance().canSeeTarget(player, this))
-		{
-			player.sendPacket(SystemMessageId.CANNOT_SEE_TARGET);
-			player.sendPacket(ActionFailed.STATIC_PACKET);
-			return;
-		}
+		// if (!GeoEngine.getInstance().canSeeTarget(player, this))
+		// {
+		// player.sendPacket(SystemMessageId.CANNOT_SEE_TARGET);
+		// player.sendPacket(ActionFailed.STATIC_PACKET);
+		// return;
+		// }
+		
 		if (player.getBlockCheckerArena() != -1)
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -6421,6 +6465,11 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 		return _status.getCurrentCp();
 	}
 	
+	public int getCurrentCpPercent()
+	{
+		return (int) ((_status.getCurrentCp() * 100) / _stat.getMaxCp());
+	}
+	
 	public void setCurrentCp(double newCp)
 	{
 		_status.setCurrentCp(newCp);
@@ -6429,6 +6478,11 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	public double getCurrentHp()
 	{
 		return _status.getCurrentHp();
+	}
+	
+	public int getCurrentHpPercent()
+	{
+		return (int) ((_status.getCurrentHp() * 100) / _stat.getMaxHp());
 	}
 	
 	public void setCurrentHp(double newHp)
@@ -6444,6 +6498,11 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	public double getCurrentMp()
 	{
 		return _status.getCurrentMp();
+	}
+	
+	public int getCurrentMpPercent()
+	{
+		return (int) ((_status.getCurrentMp() * 100) / _stat.getMaxMp());
 	}
 	
 	public void setCurrentMp(double newMp)
@@ -7074,15 +7133,18 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 			return;
 		}
 		
+		// Check if region and its neighbors are active.
+		final WorldRegion region = getWorldRegion();
+		if ((region == null) || !region.areNeighborsActive())
+		{
+			return;
+		}
+		
 		World.getInstance().forEachVisibleObjectInRange(this, Creature.class, _seenCreatureRange, creature ->
 		{
-			if (!creature.isInvisible())
+			if (!creature.isInvisible() && _seenCreatures.add(creature) && EventDispatcher.getInstance().hasListener(EventType.ON_CREATURE_SEE, this))
 			{
-				final WorldRegion worldRegion = getWorldRegion();
-				if ((worldRegion != null) && worldRegion.areNeighborsActive() && _seenCreatures.add(creature) && EventDispatcher.getInstance().hasListener(EventType.ON_CREATURE_SEE, this))
-				{
-					EventDispatcher.getInstance().notifyEventAsync(new OnCreatureSee(this, creature), this);
-				}
+				EventDispatcher.getInstance().notifyEventAsync(new OnCreatureSee(this, creature), this);
 			}
 		});
 	}
@@ -7115,6 +7177,11 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 	public void setCursorKeyMovement(boolean value)
 	{
 		_cursorKeyMovement = value;
+	}
+	
+	public boolean isMovementSuspended()
+	{
+		return _suspendedMovement;
 	}
 	
 	public List<Item> getFakePlayerDrops()

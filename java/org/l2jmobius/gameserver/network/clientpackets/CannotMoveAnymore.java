@@ -54,22 +54,5 @@ public class CannotMoveAnymore implements ClientPacket
 		{
 			player.getAI().notifyEvent(CtrlEvent.EVT_ARRIVED_BLOCKED, new Location(_x, _y, _z, _heading));
 		}
-		/*
-		 * if (player.getParty() != null) { player.getParty().broadcastToPartyMembers(player, new PartyMemberPosition(player)); }
-		 */
-		
-		// player.stopMove();
-		//
-		// if (Config.DEBUG)
-		// LOGGER.fine("client: x:"+_x+" y:"+_y+" z:"+_z+
-		// " server x:"+player.getX()+" y:"+player.getZ()+" z:"+player.getZ());
-		// StopMove smwl = new StopMove(player);
-		// getClient().getPlayer().sendPacket(smwl);
-		// getClient().getPlayer().broadcastPacket(smwl);
-		//
-		// StopRotation sr = new StopRotation(getClient().getPlayer(),
-		// _heading);
-		// getClient().getPlayer().sendPacket(sr);
-		// getClient().getPlayer().broadcastPacket(sr);
 	}
 }

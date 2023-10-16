@@ -19,7 +19,6 @@ package ai.others.FameManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 
 import ai.AbstractNpcAI;
 
@@ -73,7 +72,7 @@ public class FameManager extends AbstractNpcAI
 					{
 						player.setFame(player.getFame() - DECREASE_COST);
 						player.setPkKills(player.getPkKills() - 1);
-						player.sendPacket(new UserInfo(player));
+						player.updateUserInfo();
 						htmltext = npc.getId() + "-06.html";
 					}
 					else
@@ -95,7 +94,7 @@ public class FameManager extends AbstractNpcAI
 					{
 						player.setFame(player.getFame() - REPUTATION_COST);
 						player.getClan().addReputationScore(50);
-						player.sendPacket(new UserInfo(player));
+						player.updateUserInfo();
 						player.sendPacket(SystemMessageId.YOU_HAVE_ACQUIRED_50_CLAN_FAME_POINTS);
 						htmltext = npc.getId() + "-04.html";
 					}

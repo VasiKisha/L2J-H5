@@ -38,6 +38,14 @@ public class PlayerVariables extends AbstractVariables
 	private static final String DELETE_QUERY = "DELETE FROM character_variables WHERE charId = ?";
 	private static final String INSERT_QUERY = "INSERT INTO character_variables (charId, var, val) VALUES (?, ?, ?)";
 	
+	// Public variable names
+	public static final String AUTO_USE_SETTINGS = "AUTO_USE_SETTINGS";
+	public static final String AUTO_USE_ACTIONS = "AUTO_USE_ACTIONS";
+	public static final String AUTO_USE_BUFFS = "AUTO_USE_BUFFS";
+	public static final String AUTO_USE_SKILLS = "AUTO_USE_SKILLS";
+	public static final String AUTO_USE_ITEMS = "AUTO_USE_ITEMS";
+	public static final String AUTO_USE_POTION = "AUTO_USE_POTION";
+	
 	private final int _objectId;
 	
 	public PlayerVariables(int objectId)

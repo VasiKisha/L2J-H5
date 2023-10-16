@@ -35,7 +35,7 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.enums.ChatType;
@@ -1549,7 +1549,7 @@ public class SevenSignsFestival implements SpawnListener
 			// Record a string list of the party members involved.
 			for (Integer partyMember : prevParticipants)
 			{
-				partyMembers.add(CharNameTable.getInstance().getNameById(partyMember));
+				partyMembers.add(CharInfoTable.getInstance().getNameById(partyMember));
 			}
 			
 			// Update the highest scores and party list.

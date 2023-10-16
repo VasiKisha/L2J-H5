@@ -24,7 +24,7 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.enums.MessageSenderType;
 import org.l2jmobius.gameserver.instancemanager.IdManager;
 import org.l2jmobius.gameserver.instancemanager.MailManager;
@@ -188,7 +188,7 @@ public class Message
 				return "****";
 			}
 			
-			_senderName = CharNameTable.getInstance().getNameById(_senderId);
+			_senderName = CharInfoTable.getInstance().getNameById(_senderId);
 			if (_senderName == null)
 			{
 				_senderName = "";
@@ -201,7 +201,7 @@ public class Message
 	{
 		if (_receiverName == null)
 		{
-			_receiverName = CharNameTable.getInstance().getNameById(_receiverId);
+			_receiverName = CharInfoTable.getInstance().getNameById(_receiverId);
 			if (_receiverName == null)
 			{
 				_receiverName = "";

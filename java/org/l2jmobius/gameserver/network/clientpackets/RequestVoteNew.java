@@ -22,10 +22,8 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExVoteSystemInfo;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 
 public class RequestVoteNew implements ClientPacket
 {
@@ -95,8 +93,6 @@ public class RequestVoteNew implements ClientPacket
 		sm.addPcName(player);
 		target.sendPacket(sm);
 		
-		player.sendPacket(new UserInfo(player));
-		player.sendPacket(new ExBrExtraUserInfo(player));
 		target.broadcastUserInfo();
 		
 		if (Config.NEVIT_ENABLED)

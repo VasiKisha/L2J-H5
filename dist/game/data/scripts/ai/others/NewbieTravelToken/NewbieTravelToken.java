@@ -61,7 +61,7 @@ public class NewbieTravelToken extends AbstractNpcAI
 		if (Util.isDigit(event))
 		{
 			final int npcId = Integer.parseInt(event);
-			if (DATA.keySet().contains(npcId))
+			if (DATA.containsKey(npcId))
 			{
 				if (hasQuestItems(player, NEWBIE_TRAVEL_TOKEN))
 				{

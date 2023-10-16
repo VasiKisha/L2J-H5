@@ -2670,8 +2670,18 @@ public abstract class AbstractScript extends ManagedScript
 	 */
 	public static void addExpAndSp(Player player, long exp, int sp)
 	{
-		player.addExpAndSp((long) player.calcStat(Stat.EXPSP_RATE, exp * Config.RATE_QUEST_REWARD_XP, null, null), (int) player.calcStat(Stat.EXPSP_RATE, sp * Config.RATE_QUEST_REWARD_SP, null, null));
-		PcCafePointsManager.getInstance().givePcCafePoint(player, (long) (exp * Config.RATE_QUEST_REWARD_XP));
+		long addExp = exp;
+		int addSp = sp;
+		
+		// Premium rates
+		if (player.hasPremiumStatus())
+		{
+			addExp *= Config.PREMIUM_RATE_QUEST_XP;
+			addSp *= Config.PREMIUM_RATE_QUEST_SP;
+		}
+		
+		player.addExpAndSp((long) player.calcStat(Stat.EXPSP_RATE, addExp * Config.RATE_QUEST_REWARD_XP, null, null), (int) player.calcStat(Stat.EXPSP_RATE, addSp * Config.RATE_QUEST_REWARD_SP, null, null));
+		PcCafePointsManager.getInstance().givePcCafePoint(player, (long) (addExp * Config.RATE_QUEST_REWARD_XP));
 	}
 	
 	/**

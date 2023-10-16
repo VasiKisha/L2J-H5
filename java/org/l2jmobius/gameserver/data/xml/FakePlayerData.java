@@ -27,7 +27,7 @@ import org.w3c.dom.Document;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.holders.FakePlayerHolder;
@@ -76,7 +76,7 @@ public class FakePlayerData implements IXmlReader
 			final int npcId = set.getInt("npcId");
 			final NpcTemplate template = NpcData.getInstance().getTemplate(npcId);
 			final String name = template.getName();
-			if (CharNameTable.getInstance().getIdByName(name) > 0)
+			if (CharInfoTable.getInstance().getIdByName(name) > 0)
 			{
 				LOGGER.info(getClass().getSimpleName() + ": Could not create fake player template " + npcId + ", player name already exists.");
 			}

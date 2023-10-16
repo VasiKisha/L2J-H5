@@ -785,7 +785,7 @@ public class Npc extends Creature
 		final String temp = "data/html/default/" + pom + ".htm";
 		if (!Config.LAZY_CACHE)
 		{
-			// If not running lazy cache the file must be in the cache or it doesnt exist
+			// If not running lazy cache the file must be in the cache or it does not exist
 			if (HtmCache.getInstance().contains(temp))
 			{
 				return temp;

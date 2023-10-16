@@ -102,7 +102,7 @@ public class AdminInstance implements IAdminCommandHandler
 				final int val = Integer.parseInt(st.nextToken());
 				if (InstanceManager.getInstance().getInstance(val) == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Instance " + val + " doesnt exist.");
+					BuilderUtil.sendSysMessage(activeChar, "Instance " + val + " does not exist.");
 					return false;
 				}
 				

@@ -32,12 +32,10 @@ import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillInfoDetail;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillResult;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 
 /**
  * Format (ch) dd c: (id) 0xD0 h: (subid) 0x34 d: skill id d: skill level
@@ -168,8 +166,7 @@ public class RequestExEnchantSkillRouteChange implements ClientPacket
 				player.sendPacket(ExEnchantSkillResult.valueOf(true));
 			}
 			
-			player.sendPacket(new UserInfo(player));
-			player.sendPacket(new ExBrExtraUserInfo(player));
+			player.updateUserInfo();
 			if (levelPenalty == 0)
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.ENCHANT_SKILL_ROUTE_CHANGE_WAS_SUCCESSFUL_LV_OF_ENCHANT_SKILL_S1_WILL_REMAIN);

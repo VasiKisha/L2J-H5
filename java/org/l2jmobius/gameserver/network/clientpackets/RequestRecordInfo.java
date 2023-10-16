@@ -21,8 +21,6 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
-import org.l2jmobius.gameserver.network.serverpackets.ExBrExtraUserInfo;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 
 public class RequestRecordInfo implements ClientPacket
 {
@@ -35,8 +33,7 @@ public class RequestRecordInfo implements ClientPacket
 			return;
 		}
 		
-		player.sendPacket(new UserInfo(player));
-		player.sendPacket(new ExBrExtraUserInfo(player));
+		player.updateUserInfo();
 		World.getInstance().forEachVisibleObject(player, WorldObject.class, object ->
 		{
 			if (!object.isVisibleFor(player))

@@ -138,7 +138,6 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 		{
 			player.clearHtmlActions(getScope());
 		}
-		
 		if (_disabledValidation)
 		{
 			return;

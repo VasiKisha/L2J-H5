@@ -68,11 +68,11 @@ public class RaceManager extends Npc
 			int val = Integer.parseInt(command.substring(10));
 			if (val == 0)
 			{
-				player.setRace(0, 0);
-				player.setRace(1, 0);
+				player.setRaceTicket(0, 0);
+				player.setRaceTicket(1, 0);
 			}
 			
-			if (((val == 10) && (player.getRace(0) == 0)) || ((val == 20) && (player.getRace(0) == 0) && (player.getRace(1) == 0)))
+			if (((val == 10) && (player.getRaceTicket(0) == 0)) || ((val == 20) && (player.getRaceTicket(0) == 0) && (player.getRaceTicket(1) == 0)))
 			{
 				val = 0;
 			}
@@ -97,20 +97,20 @@ public class RaceManager extends Npc
 				else
 				{
 					html.replace(search, val);
-					player.setRace(0, val);
+					player.setRaceTicket(0, val);
 				}
 			}
 			else if (val < 20)
 			{
-				if (player.getRace(0) == 0)
+				if (player.getRaceTicket(0) == 0)
 				{
 					return;
 				}
 				
 				html.setFile(player, getHtmlPath(getId(), 3));
-				html.replace("0place", player.getRace(0));
+				html.replace("0place", player.getRaceTicket(0));
 				search = "Mob1";
-				replace = MonsterRace.getInstance().getMonsters()[player.getRace(0) - 1].getTemplate().getName();
+				replace = MonsterRace.getInstance().getMonsters()[player.getRaceTicket(0) - 1].getTemplate().getName();
 				html.replace(search, replace);
 				search = "0adena";
 				if (val == 10)
@@ -120,23 +120,23 @@ public class RaceManager extends Npc
 				else
 				{
 					html.replace(search, TICKET_PRICES[val - 11]);
-					player.setRace(1, val - 10);
+					player.setRaceTicket(1, val - 10);
 				}
 			}
 			else if (val == 20)
 			{
-				if ((player.getRace(0) == 0) || (player.getRace(1) == 0))
+				if ((player.getRaceTicket(0) == 0) || (player.getRaceTicket(1) == 0))
 				{
 					return;
 				}
 				
 				html.setFile(player, getHtmlPath(getId(), 4));
-				html.replace("0place", player.getRace(0));
+				html.replace("0place", player.getRaceTicket(0));
 				search = "Mob1";
-				replace = MonsterRace.getInstance().getMonsters()[player.getRace(0) - 1].getTemplate().getName();
+				replace = MonsterRace.getInstance().getMonsters()[player.getRaceTicket(0) - 1].getTemplate().getName();
 				html.replace(search, replace);
 				search = "0adena";
-				int price = TICKET_PRICES[player.getRace(1) - 1];
+				int price = TICKET_PRICES[player.getRaceTicket(1) - 1];
 				html.replace(search, price);
 				search = "0tax";
 				int tax = 0;
@@ -147,20 +147,20 @@ public class RaceManager extends Npc
 			}
 			else
 			{
-				if ((player.getRace(0) == 0) || (player.getRace(1) == 0))
+				if ((player.getRaceTicket(0) == 0) || (player.getRaceTicket(1) == 0))
 				{
 					return;
 				}
 				
-				int ticket = player.getRace(0);
-				int priceId = player.getRace(1);
+				int ticket = player.getRaceTicket(0);
+				int priceId = player.getRaceTicket(1);
 				if (!player.reduceAdena("Race", TICKET_PRICES[priceId - 1], this, true))
 				{
 					return;
 				}
 				
-				player.setRace(0, 0);
-				player.setRace(1, 0);
+				player.setRaceTicket(0, 0);
+				player.setRaceTicket(1, 0);
 				Item item = new Item(IdManager.getInstance().getNextId(), 4443);
 				item.setCount(1);
 				item.setEnchantLevel(MonsterRace.getInstance().getRaceNumber());

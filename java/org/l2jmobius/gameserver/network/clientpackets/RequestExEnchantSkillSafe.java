@@ -32,12 +32,10 @@ import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.ExBrExtraUserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillInfoDetail;
 import org.l2jmobius.gameserver.network.serverpackets.ExEnchantSkillResult;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 
 /**
  * Format (ch) dd c: (id) 0xD0 h: (subid) 0x32 d: skill id d: skill level
@@ -165,8 +163,7 @@ public class RequestExEnchantSkillSafe implements ClientPacket
 				player.sendPacket(ExEnchantSkillResult.valueOf(false));
 			}
 			
-			player.sendPacket(new UserInfo(player));
-			player.sendPacket(new ExBrExtraUserInfo(player));
+			player.updateUserInfo();
 			player.sendSkillList();
 			final int afterEnchantSkillLevel = player.getSkillLevel(_skillId);
 			player.sendPacket(new ExEnchantSkillInfo(_skillId, afterEnchantSkillLevel));

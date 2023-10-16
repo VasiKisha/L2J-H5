@@ -29,9 +29,10 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.network.EncryptionInterface;
 import org.l2jmobius.commons.network.NetClient;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.LoginServerThread;
 import org.l2jmobius.gameserver.LoginServerThread.SessionKey;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SecondaryAuthData;
 import org.l2jmobius.gameserver.model.CharSelectInfoPackage;
@@ -39,10 +40,7 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.holders.ClientHardwareInfoHolder;
-import org.l2jmobius.gameserver.network.serverpackets.AbstractNpcInfo.NpcInfo;
-import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
-import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.security.SecondaryPasswordAuth;
@@ -173,34 +171,17 @@ public class GameClient extends NetClient
 	
 	public void sendPacket(ServerPacket packet)
 	{
-		if (_isDetached || (packet == null))
+		if (_isDetached)
 		{
 			return;
 		}
 		
-		// TODO: Set as parameter to packets used?
-		if ((_player != null) && Config.MULTILANG_ENABLE)
+		// TODO: TO BE REMOVED!
+		if (packet == null)
 		{
-			final String lang = _player.getLang();
-			if ((lang != null) && !lang.equals("en"))
-			{
-				if (packet instanceof SystemMessage)
-				{
-					((SystemMessage) packet).setLang(lang);
-				}
-				else if (packet instanceof NpcSay)
-				{
-					((NpcSay) packet).setLang(lang);
-				}
-				else if (packet instanceof ExShowScreenMessage)
-				{
-					((ExShowScreenMessage) packet).setLang(lang);
-				}
-				else if (packet instanceof NpcInfo)
-				{
-					((NpcInfo) packet).setLang(lang);
-				}
-			}
+			LOGGER.warning("REPORT ON FORUM!");
+			LOGGER.warning(CommonUtil.getStackTrace(new Exception()));
+			return;
 		}
 		
 		// Used by packet run() implementation.
@@ -318,148 +299,148 @@ public class GameClient extends NetClient
 		LOGGER_ACCOUNTING.info("Restore, " + objectId + ", " + this);
 	}
 	
-	public static void deleteCharByObjId(int objid)
+	public static void deleteCharByObjId(int objectId)
 	{
-		if (objid < 0)
+		if (objectId < 0)
 		{
 			return;
 		}
 		
-		CharNameTable.getInstance().removeName(objid);
+		CharInfoTable.getInstance().removeName(objectId);
 		
 		try (Connection con = DatabaseFactory.getConnection())
 		{
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_contacts WHERE charId=? OR contactId=?"))
 			{
-				ps.setInt(1, objid);
-				ps.setInt(2, objid);
+				ps.setInt(1, objectId);
+				ps.setInt(2, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_friends WHERE charId=? OR friendId=?"))
 			{
-				ps.setInt(1, objid);
-				ps.setInt(2, objid);
+				ps.setInt(1, objectId);
+				ps.setInt(2, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_hennas WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_macroses WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_quests WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_recipebook WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_shortcuts WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_skills WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_skills_save WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_subclasses WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM heroes WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM olympiad_nobles WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM seven_signs WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM pets WHERE item_obj_id IN (SELECT object_id FROM items WHERE items.owner_id=?)"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM item_attributes WHERE itemId IN (SELECT object_id FROM items WHERE items.owner_id=?)"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM items WHERE owner_id=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM merchant_lease WHERE player_id=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_raid_points WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_reco_bonus WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_instance_time WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_variables WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
 			try (PreparedStatement ps = con.prepareStatement("DELETE FROM characters WHERE charId=?"))
 			{
-				ps.setInt(1, objid);
+				ps.setInt(1, objectId);
 				ps.execute();
 			}
 			
@@ -467,8 +448,8 @@ public class GameClient extends NetClient
 			{
 				try (PreparedStatement ps = con.prepareStatement("DELETE FROM mods_wedding WHERE player1Id = ? OR player2Id = ?"))
 				{
-					ps.setInt(1, objid);
-					ps.setInt(2, objid);
+					ps.setInt(1, objectId);
+					ps.setInt(2, objectId);
 					ps.execute();
 				}
 			}

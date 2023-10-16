@@ -60,7 +60,7 @@ public class SellListProcure extends ServerPacket
 			writeLong(entry.getValue()); // count
 			writeShort(item.getTemplate().getType2());
 			writeShort(0); // unknown
-			writeLong(0); // price, you shouldnt get any adena for crops, only raw materials
+			writeLong(0); // price, you should not get any adena for crops, only raw materials
 		}
 	}
 }

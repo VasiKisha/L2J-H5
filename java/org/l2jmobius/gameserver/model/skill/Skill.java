@@ -1131,6 +1131,16 @@ public class Skill implements IIdentifiable
 					return false;
 				}
 				
+				// Auto play target mode check.
+				if (player.isAutoPlaying() && ((targetPlayer.getPvpFlag() == 0) || (targetPlayer.getKarma() < 1)))
+				{
+					final int targetMode = player.getAutoPlaySettings().getNextTargetMode();
+					if ((targetMode != 0 /* Any Target */) && (targetMode != 2 /* Characters */))
+					{
+						return false;
+					}
+				}
+				
 				if (!sourceInArena && !(targetPlayer.isInsideZone(ZoneId.PVP) && !targetPlayer.isInsideZone(ZoneId.SIEGE)))
 				{
 					if ((player.getAllyId() != 0) && (player.getAllyId() == targetPlayer.getAllyId()))

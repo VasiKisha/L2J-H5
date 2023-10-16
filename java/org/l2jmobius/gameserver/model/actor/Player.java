@@ -56,7 +56,7 @@ import org.l2jmobius.gameserver.cache.RelationCache;
 import org.l2jmobius.gameserver.communitybbs.BB.Forum;
 import org.l2jmobius.gameserver.communitybbs.Manager.ForumsBBSManager;
 import org.l2jmobius.gameserver.data.ItemTable;
-import org.l2jmobius.gameserver.data.sql.CharNameTable;
+import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.CharSummonTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.sql.OfflineTraderTable;
@@ -206,6 +206,8 @@ import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.fishing.Fish;
 import org.l2jmobius.gameserver.model.fishing.Fishing;
 import org.l2jmobius.gameserver.model.holders.AdditionalSkillHolder;
+import org.l2jmobius.gameserver.model.holders.AutoPlaySettingsHolder;
+import org.l2jmobius.gameserver.model.holders.AutoUseSettingsHolder;
 import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.holders.MovieHolder;
 import org.l2jmobius.gameserver.model.holders.SellBuffHolder;
@@ -292,6 +294,7 @@ import org.l2jmobius.gameserver.network.serverpackets.GetOnVehicle;
 import org.l2jmobius.gameserver.network.serverpackets.HennaInfo;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.ItemList;
+import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.MyTargetSelected;
 import org.l2jmobius.gameserver.network.serverpackets.NicknameChanged;
@@ -330,6 +333,8 @@ import org.l2jmobius.gameserver.network.serverpackets.TradeStart;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanager.AutoPlayTaskManager;
+import org.l2jmobius.gameserver.taskmanager.AutoUseTaskManager;
 import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
 import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
 import org.l2jmobius.gameserver.taskmanager.ItemsAutoDestroyTaskManager;
@@ -435,6 +440,7 @@ public class Player extends Playable
 	private String _htmlPrefix = "";
 	
 	private volatile boolean _isOnline = false;
+	private boolean _offlinePlay = false;
 	private boolean _enteredWorld = false;
 	private long _onlineTime;
 	private long _onlineBeginTime;
@@ -442,6 +448,8 @@ public class Player extends Playable
 	private long _uptime;
 	
 	private ScheduledFuture<?> _skillListTask;
+	private ScheduledFuture<?> _updateAndBroadcastStatusTask;
+	private ScheduledFuture<?> _broadcastCharInfoTask;
 	
 	private boolean _subclassLock = false;
 	protected int _baseClass;
@@ -756,7 +764,7 @@ public class Player extends Playable
 	/** new loto ticket **/
 	private final int[] _loto = new int[5];
 	/** new race ticket **/
-	private final int[] _race = new int[2];
+	private final int[] _raceTickets = new int[2];
 	
 	private final BlockList _blockList = new BlockList(this);
 	
@@ -930,6 +938,10 @@ public class Player extends Playable
 	private String _lastPetitionGmName = null;
 	
 	private boolean _hasCharmOfCourage = false;
+	
+	private final AutoPlaySettingsHolder _autoPlaySettings = new AutoPlaySettingsHolder();
+	private final AutoUseSettingsHolder _autoUseSettings = new AutoUseSettingsHolder();
+	private final AtomicBoolean _autoPlaying = new AtomicBoolean();
 	
 	private final List<QuestTimer> _questTimers = new ArrayList<>();
 	
@@ -1715,8 +1727,7 @@ public class Player extends Playable
 		}
 		setPvpFlag(value);
 		
-		sendPacket(new UserInfo(this));
-		sendPacket(new ExBrExtraUserInfo(this));
+		updateUserInfo();
 		
 		// If this player has a pet update the pets pvp flag as well
 		if (hasSummon())
@@ -2356,7 +2367,7 @@ public class Player extends Playable
 				getSubClasses().get(_classIndex).setClassId(id);
 			}
 			setTarget(this);
-			broadcastPacket(new MagicSkillUse(this, 5103, 1, 1000, 0));
+			broadcastPacket(new MagicSkillUse(this, 5103, 1, 0, 0));
 			setClassTemplate(id);
 			if (getClassId().level() == 3)
 			{
@@ -4034,20 +4045,23 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * Send a Server->Client packet UserInfo to this Player and CharInfo to all Player in its _KnownPlayers. <b><u>Concept</u>:</b> Others Player in the detection area of the Player are identified in <b>_knownPlayers</b>. In order to inform other players of this Player state modifications, server
-	 * just need to go through _knownPlayers to send Server->Client Packet <b><u> Actions</u>:</b>
-	 * <li>Send a Server->Client packet UserInfo to this Player (Public and Private Data)</li>
-	 * <li>Send a Server->Client packet CharInfo to all Player in _KnownPlayers of the Player (Public data only)</li> <font color=#FF0000><b><u>Caution</u>: DON'T SEND UserInfo packet to other players instead of CharInfo packet. Indeed, UserInfo packet contains PRIVATE DATA as MaxHP, STR,
-	 * DEX...</b></font>
+	 * Send a Server->Client packet UserInfo to this Player and CharInfo to all known players.<br>
+	 * <font color=#FF0000><b><u>Caution</u>: DON'T SEND UserInfo packet to other players instead of CharInfo packet.<br>
+	 * UserInfo packet contains PRIVATE DATA as MaxHP, STR, DEX...</b></font>
 	 */
 	public void broadcastUserInfo()
 	{
-		// Send user info to the current player
-		sendPacket(new UserInfo(this));
-		broadcastPacket(new ExBrExtraUserInfo(this));
+		// Send user info to the current player.
+		updateUserInfo();
 		
-		// Broadcast char info to known players
+		// Broadcast char info to known players.
 		broadcastCharInfo();
+	}
+	
+	public void updateUserInfo()
+	{
+		sendPacket(new UserInfo(this));
+		sendPacket(new ExBrExtraUserInfo(this));
 	}
 	
 	public void broadcastCharInfo()
@@ -4058,44 +4072,51 @@ public class Player extends Playable
 			return;
 		}
 		
-		final CharInfo charInfo = new CharInfo(this, false);
-		World.getInstance().forEachVisibleObject(this, Player.class, player ->
+		if (_broadcastCharInfoTask == null)
 		{
-			if (isVisibleFor(player))
+			_broadcastCharInfoTask = ThreadPool.schedule(() ->
 			{
-				if (isInvisible() && player.canOverrideCond(PlayerCondOverride.SEE_ALL_PLAYERS))
+				final CharInfo charInfo = new CharInfo(this, false);
+				World.getInstance().forEachVisibleObject(this, Player.class, player ->
 				{
-					player.sendPacket(new CharInfo(this, true));
-				}
-				else
-				{
-					player.sendPacket(charInfo);
-				}
-				
-				// Update relation.
-				final int relation = getRelation(player);
-				final boolean isAutoAttackable = isAutoAttackable(player);
-				final RelationCache oldrelation = getKnownRelations().get(player.getObjectId());
-				if ((oldrelation == null) || (oldrelation.getRelation() != relation) || (oldrelation.isAutoAttackable() != isAutoAttackable))
-				{
-					player.sendPacket(new RelationChanged(this, relation, isAutoAttackable));
-					if (hasSummon())
+					if (isVisibleFor(player))
 					{
-						player.sendPacket(new RelationChanged(_summon, relation, isAutoAttackable));
+						if (isInvisible() && player.canOverrideCond(PlayerCondOverride.SEE_ALL_PLAYERS))
+						{
+							player.sendPacket(new CharInfo(this, true));
+						}
+						else
+						{
+							player.sendPacket(charInfo);
+						}
+						player.sendPacket(new ExBrExtraUserInfo(this));
+						
+						// Update relation.
+						final int relation = getRelation(player);
+						final boolean isAutoAttackable = isAutoAttackable(player);
+						final RelationCache oldrelation = getKnownRelations().get(player.getObjectId());
+						if ((oldrelation == null) || (oldrelation.getRelation() != relation) || (oldrelation.isAutoAttackable() != isAutoAttackable))
+						{
+							player.sendPacket(new RelationChanged(this, relation, isAutoAttackable));
+							if (hasSummon())
+							{
+								player.sendPacket(new RelationChanged(_summon, relation, isAutoAttackable));
+							}
+							getKnownRelations().put(player.getObjectId(), new RelationCache(relation, isAutoAttackable));
+						}
 					}
-					getKnownRelations().put(player.getObjectId(), new RelationCache(relation, isAutoAttackable));
-				}
-			}
-		});
+				});
+				_broadcastCharInfoTask = null;
+			}, 50);
+		}
 	}
 	
 	public void broadcastTitleInfo()
 	{
-		// Send a Server->Client packet UserInfo to this Player
-		sendPacket(new UserInfo(this));
-		sendPacket(new ExBrExtraUserInfo(this));
+		// Send a Server->Client packet UserInfo to this Player.
+		updateUserInfo();
 		
-		// Send a Server->Client packet TitleUpdate to all Player in _KnownPlayers of the Player
+		// Send a Server->Client packet TitleUpdate to all known players.
 		broadcastPacket(new NicknameChanged(this));
 	}
 	
@@ -5123,8 +5144,9 @@ public class Player extends Playable
 							}
 						}
 					}
-					// If player is Lucky shouldn't get penalized.
-					if (!isLucky() && (insideSiegeZone || !insidePvpZone) && !_nevitSystem.isAdventBlessingActive())
+					
+					// Should not penalize player when lucky, in a non siege PvP zone, has advent blessing or is in an event.
+					if (!isLucky() && (insideSiegeZone || !insidePvpZone) && !_nevitSystem.isAdventBlessingActive() && !isOnEvent())
 					{
 						calculateDeathExpPenalty(killer, isAtWarWith(pk));
 					}
@@ -5160,6 +5182,15 @@ public class Player extends Playable
 		
 		// calculate death penalty buff
 		calculateDeathPenaltyBuffLevel(killer);
+		
+		if (hasSummon())
+		{
+			if (_summon.isBetrayed())
+			{
+				sendPacket(SystemMessageId.YOUR_PET_SERVITOR_IS_UNRESPONSIVE_AND_WILL_NOT_OBEY_ANY_ORDERS);
+			}
+			_summon.cancelAction();
+		}
 		
 		stopRentPet();
 		stopWaterTask();
@@ -5309,10 +5340,10 @@ public class Player extends Playable
 			return;
 		}
 		
-		// If in Arena, do nothing
-		if (isInsideZone(ZoneId.PVP) || killedPlayer.isInsideZone(ZoneId.PVP))
+		// If both players are in SIEGE zone just increase siege kills/deaths.
+		if (target.isPlayer() && isInsideZone(ZoneId.SIEGE) && killedPlayer.isInsideZone(ZoneId.SIEGE))
 		{
-			if ((getSiegeState() > 0) && (killedPlayer.getSiegeState() > 0) && (getSiegeState() != killedPlayer.getSiegeState()))
+			if (!isSiegeFriend(killedPlayer))
 			{
 				final Clan targetClan = killedPlayer.getClan();
 				if ((_clan != null) && (targetClan != null))
@@ -5324,8 +5355,14 @@ public class Player extends Playable
 			return;
 		}
 		
+		// Do nothing when in PVP zone.
+		if (isInsideZone(ZoneId.PVP) || target.isInsideZone(ZoneId.PVP))
+		{
+			return;
+		}
+		
 		// Check if it's pvp
-		if ((checkIfPvP(target) && (killedPlayer.getPvpFlag() != 0)) || (isInsideZone(ZoneId.PVP) && killedPlayer.isInsideZone(ZoneId.PVP)))
+		if (checkIfPvP(target) && (killedPlayer.getPvpFlag() != 0))
 		{
 			increasePvpKills(target);
 		}
@@ -5378,8 +5415,7 @@ public class Player extends Playable
 			updatePvpTitleAndColor(true);
 			
 			// Send a Server->Client UserInfo packet to attacker with its Karma and PK Counter
-			sendPacket(new UserInfo(this));
-			sendPacket(new ExBrExtraUserInfo(this));
+			updateUserInfo();
 		}
 	}
 	
@@ -5405,8 +5441,7 @@ public class Player extends Playable
 		}
 		
 		// Update player's UI.
-		sendPacket(new UserInfo(this));
-		sendPacket(new ExBrExtraUserInfo(this));
+		updateUserInfo();
 	}
 	
 	public void updatePvpTitleAndColor(boolean broadcastInfo)
@@ -5452,6 +5487,7 @@ public class Player extends Playable
 		{
 			return;
 		}
+		
 		setPvpFlagLasts(System.currentTimeMillis() + Config.PVP_NORMAL_TIME);
 		if (_pvpFlag == 0)
 		{
@@ -5481,7 +5517,8 @@ public class Player extends Playable
 		{
 			return;
 		}
-		if ((!isInsideZone(ZoneId.PVP) || !targetPlayer.isInsideZone(ZoneId.PVP)) && (targetPlayer.getKarma() == 0))
+		
+		if ((!isInsideZone(ZoneId.PVP) || !target.isInsideZone(ZoneId.PVP)) && (targetPlayer.getKarma() == 0))
 		{
 			if (checkIfPvP(targetPlayer))
 			{
@@ -6527,7 +6564,7 @@ public class Player extends Playable
 		_appearance.setTitleColor(_accessLevel.getTitleColor());
 		broadcastUserInfo();
 		
-		CharNameTable.getInstance().addName(this);
+		CharInfoTable.getInstance().addName(this);
 		
 		if (!AdminData.getInstance().hasAccessLevel(level))
 		{
@@ -6562,22 +6599,22 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * Update Stats of the Player client side by sending Server->Client packet UserInfo/StatusUpdate to this Player and CharInfo/StatusUpdate to all Player in its _KnownPlayers (broadcast).
-	 * @param broadcastType
+	 * Update Stats of the Player client side by sending Server->Client packet UserInfo/StatusUpdate to this Player and CharInfo/StatusUpdate to all known players (broadcast).
 	 */
-	public void updateAndBroadcastStatus(int broadcastType)
+	public void updateAndBroadcastStatus()
 	{
-		refreshOverloaded();
-		refreshExpertisePenalty();
-		// Send a Server->Client packet UserInfo to this Player and CharInfo to all Player in its _KnownPlayers (broadcast)
-		if (broadcastType == 1)
+		if (_updateAndBroadcastStatusTask == null)
 		{
-			sendPacket(new UserInfo(this));
-			sendPacket(new ExBrExtraUserInfo(this));
-		}
-		if (broadcastType == 2)
-		{
-			broadcastUserInfo();
+			_updateAndBroadcastStatusTask = ThreadPool.schedule(() ->
+			{
+				refreshOverloaded();
+				refreshExpertisePenalty();
+				
+				// Send a Server->Client packet UserInfo to this Player and CharInfo to all known players (broadcast)
+				broadcastUserInfo();
+				
+				_updateAndBroadcastStatusTask = null;
+			}, 50);
 		}
 	}
 	
@@ -6586,8 +6623,7 @@ public class Player extends Playable
 	 */
 	public void setKarmaFlag()
 	{
-		sendPacket(new UserInfo(this));
-		sendPacket(new ExBrExtraUserInfo(this));
+		updateUserInfo();
 		World.getInstance().forEachVisibleObject(this, Player.class, player ->
 		{
 			player.sendPacket(new RelationChanged(this, getRelation(player), isAutoAttackable(player)));
@@ -7531,6 +7567,29 @@ public class Player extends Playable
 		return 0;
 	}
 	
+	public void startOfflinePlay()
+	{
+		sendPacket(LeaveWorld.STATIC_PACKET);
+		
+		if (Config.OFFLINE_PLAY_SET_NAME_COLOR)
+		{
+			getAppearance().setNameColor(Config.OFFLINE_NAME_COLOR);
+		}
+		if (!Config.OFFLINE_PLAY_ABNORMAL_EFFECTS.isEmpty())
+		{
+			startAbnormalVisualEffect(true, Config.OFFLINE_PLAY_ABNORMAL_EFFECTS.get(Rnd.get(Config.OFFLINE_PLAY_ABNORMAL_EFFECTS.size())));
+		}
+		broadcastUserInfo();
+		
+		_offlinePlay = true;
+		_client.setDetached(true);
+	}
+	
+	public boolean isOfflinePlay()
+	{
+		return _offlinePlay;
+	}
+	
 	public void setEnteredWorld()
 	{
 		_enteredWorld = true;
@@ -8006,8 +8065,7 @@ public class Player extends Playable
 		sendPacket(new HennaInfo(this));
 		
 		// Send Server->Client UserInfo packet to this Player
-		sendPacket(new UserInfo(this));
-		sendPacket(new ExBrExtraUserInfo(this));
+		updateUserInfo();
 		// Add the recovered dyes to the player's inventory and notify them.
 		_inventory.addItem("Henna", henna.getDyeItemId(), henna.getCancelCount(), this, null);
 		reduceAdena("Henna", henna.getCancelFee(), this, false);
@@ -8061,8 +8119,7 @@ public class Player extends Playable
 				sendPacket(new HennaInfo(this));
 				
 				// Send Server->Client UserInfo packet to this Player
-				sendPacket(new UserInfo(this));
-				sendPacket(new ExBrExtraUserInfo(this));
+				updateUserInfo();
 				
 				// Notify to scripts
 				if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_HENNA_REMOVE, this))
@@ -8273,7 +8330,7 @@ public class Player extends Playable
 			return false;
 		}
 		
-		// Friendly mobs doesnt attack players
+		// Friendly mobs do not attack players
 		if (attacker instanceof FriendlyMob)
 		{
 			return false;
@@ -9058,20 +9115,20 @@ public class Player extends Playable
 	public void stopAllEffects()
 	{
 		super.stopAllEffects();
-		updateAndBroadcastStatus(2);
+		updateAndBroadcastStatus();
 	}
 	
 	@Override
 	public void stopAllEffectsExceptThoseThatLastThroughDeath()
 	{
 		super.stopAllEffectsExceptThoseThatLastThroughDeath();
-		updateAndBroadcastStatus(2);
+		updateAndBroadcastStatus();
 	}
 	
 	public void stopAllEffectsNotStayOnSubclassChange()
 	{
 		getEffectList().stopAllEffectsNotStayOnSubclassChange();
-		updateAndBroadcastStatus(2);
+		updateAndBroadcastStatus();
 	}
 	
 	public void stopCubics()
@@ -9113,19 +9170,7 @@ public class Player extends Playable
 	}
 	
 	/**
-	 * Send a Server->Client packet UserInfo to this Player and CharInfo to all Player in its _KnownPlayers.<br>
-	 * <br>
-	 * <b><u>Concept</u>:</b><br>
-	 * <br>
-	 * Others Player in the detection area of the Player are identified in <b>_knownPlayers</b>.<br>
-	 * In order to inform other players of this Player state modifications, server just need to go through _knownPlayers to send Server->Client Packet<br>
-	 * <br>
-	 * <b><u>Actions</u>:</b>
-	 * <ul>
-	 * <li>Send a Server->Client packet UserInfo to this Player (Public and Private Data)</li>
-	 * <li>Send a Server->Client packet CharInfo to all Player in _KnownPlayers of the Player (Public data only)</li>
-	 * </ul>
-	 * <font color=#FF0000><b><u>Caution</u>: DON'T SEND UserInfo packet to other players instead of CharInfo packet. Indeed, UserInfo packet contains PRIVATE DATA as MaxHP, STR, DEX...</b></font>
+	 * Send a Server->Client packet UserInfo to this Player and CharInfo to all known players.
 	 */
 	@Override
 	public void updateAbnormalEffect()
@@ -9579,14 +9624,14 @@ public class Player extends Playable
 		return _loto[i];
 	}
 	
-	public void setRace(int i, int value)
+	public void setRaceTicket(int i, int value)
 	{
-		_race[i] = value;
+		_raceTickets[i] = value;
 	}
 	
-	public int getRace(int i)
+	public int getRaceTicket(int i)
 	{
-		return _race[i];
+		return _raceTickets[i];
 	}
 	
 	public boolean getMessageRefusal()
@@ -9874,7 +9919,7 @@ public class Player extends Playable
 		_fishing = fishing;
 	}
 	
-	public void sendSkillList()
+	public synchronized void sendSkillList()
 	{
 		if (_skillListTask == null)
 		{
@@ -10239,6 +10284,8 @@ public class Player extends Playable
 			// 7. Reset HP/MP/CP stats and send Server->Client character status packet to reflect changes.
 			// 8. Restore shortcut data related to this class.
 			// 9. Resend a class change animation effect to broadcast to all nearby players.
+			_autoUseSettings.getAutoSkills().clear();
+			_autoUseSettings.getAutoBuffs().clear();
 			for (Skill oldSkill : getAllSkills())
 			{
 				removeSkill(oldSkill, false, true);
@@ -10534,10 +10581,7 @@ public class Player extends Playable
 	public void setName(String value)
 	{
 		super.setName(value);
-		if (Config.CACHE_CHAR_NAMES)
-		{
-			CharNameTable.getInstance().addName(this);
-		}
+		CharInfoTable.getInstance().addName(this);
 	}
 	
 	@Override
@@ -10746,6 +10790,16 @@ public class Player extends Playable
 		{
 			sendPacket(new ExStartScenePlayer(_movieHolder.getMovie()));
 		}
+		
+		// Stop auto play.
+		if (Config.ENABLE_AUTO_PLAY)
+		{
+			AutoPlayTaskManager.getInstance().stopAutoPlay(this);
+			AutoUseTaskManager.getInstance().stopAutoUseTask(this);
+		}
+		
+		// Send info to nearby players.
+		broadcastInfo();
 	}
 	
 	@Override
@@ -11129,6 +11183,7 @@ public class Player extends Playable
 		try
 		{
 			_isOnline = false;
+			_offlinePlay = false;
 			abortAttack();
 			abortCast();
 			stopMove(null);
@@ -12395,19 +12450,19 @@ public class Player extends Playable
 			OlympiadGameManager.getInstance().notifyCompetitorDamage(this, damage);
 		}
 		
-		SystemMessage sm = null;
 		if (target.isInvul() && !target.isNpc())
 		{
-			sm = new SystemMessage(SystemMessageId.THE_ATTACK_HAS_BEEN_BLOCKED);
+			sendPacket(SystemMessageId.THE_ATTACK_HAS_BEEN_BLOCKED);
 		}
 		else if (target.isDoor() || (target instanceof ControlTower))
 		{
-			sm = new SystemMessage(SystemMessageId.YOU_HIT_FOR_S1_DAMAGE);
+			final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HIT_FOR_S1_DAMAGE);
 			sm.addInt(damage);
+			sendPacket(sm);
 		}
 		else if (this != target)
 		{
-			sm = new SystemMessage(SystemMessageId.C1_HAS_DONE_S3_POINTS_OF_DAMAGE_TO_C2);
+			final SystemMessage sm = new SystemMessage(SystemMessageId.C1_HAS_DONE_S3_POINTS_OF_DAMAGE_TO_C2);
 			sm.addPcName(this);
 			
 			// Localisation related.
@@ -12423,10 +12478,6 @@ public class Player extends Playable
 			
 			sm.addString(targetName);
 			sm.addInt(damage);
-		}
-		
-		if (sm != null)
-		{
 			sendPacket(sm);
 		}
 	}
@@ -14537,5 +14588,25 @@ public class Player extends Playable
 		}
 		
 		return val;
+	}
+	
+	public AutoPlaySettingsHolder getAutoPlaySettings()
+	{
+		return _autoPlaySettings;
+	}
+	
+	public AutoUseSettingsHolder getAutoUseSettings()
+	{
+		return _autoUseSettings;
+	}
+	
+	public void setAutoPlaying(boolean value)
+	{
+		_autoPlaying.set(value);
+	}
+	
+	public boolean isAutoPlaying()
+	{
+		return _autoPlaying.get();
 	}
 }

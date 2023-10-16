@@ -46,14 +46,14 @@ public class PvpFlagTaskManager implements Runnable
 		
 		if (!PLAYERS.isEmpty())
 		{
-			final long time = System.currentTimeMillis();
+			final long currentTime = System.currentTimeMillis();
 			for (Player player : PLAYERS)
 			{
-				if (time > player.getPvpFlagLasts())
+				if (currentTime > player.getPvpFlagLasts())
 				{
 					player.stopPvPFlag();
 				}
-				else if (time > (player.getPvpFlagLasts() - 20000))
+				else if (currentTime > (player.getPvpFlagLasts() - 20000))
 				{
 					player.updatePvPFlag(2);
 				}
