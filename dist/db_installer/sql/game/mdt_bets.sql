@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS `mdt_bets` (
   `lane_id` INT(1) DEFAULT 0,
   `bet` INT DEFAULT 0,
   PRIMARY KEY (`lane_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
 
 INSERT INTO `mdt_bets` VALUES
 ('1','0'),

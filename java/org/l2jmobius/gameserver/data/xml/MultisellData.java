@@ -424,7 +424,7 @@ public class MultisellData implements IXmlReader
 		}
 	}
 	
-	private final boolean verifyIngredient(Ingredient ing)
+	private boolean verifyIngredient(Ingredient ing)
 	{
 		switch (ing.getItemId())
 		{

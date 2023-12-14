@@ -4,4 +4,4 @@ CREATE TABLE IF NOT EXISTS `mdt_history` (
   `second` INT(1) DEFAULT 0,
   `odd_rate` DOUBLE(10,2) DEFAULT 0,
   PRIMARY KEY (`race_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;

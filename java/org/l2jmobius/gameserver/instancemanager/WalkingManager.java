@@ -364,7 +364,11 @@ public class WalkingManager implements IXmlReader
 		final WalkInfo walk = _activeRoutes.remove(npc.getObjectId());
 		if (walk != null)
 		{
-			walk.getWalkCheckTask().cancel(true);
+			final ScheduledFuture<?> task = walk.getWalkCheckTask();
+			if (task != null)
+			{
+				task.cancel(true);
+			}
 		}
 	}
 	

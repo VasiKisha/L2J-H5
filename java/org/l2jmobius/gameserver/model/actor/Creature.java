@@ -1171,7 +1171,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 				_attackEndTime = currentTime + TimeUnit.MILLISECONDS.toNanos(Integer.MAX_VALUE);
 			}
 			
-			if (isFakePlayer() && (target.isPlayable() || target.isFakePlayer()))
+			if (isFakePlayer() && !Config.FAKE_PLAYER_AUTO_ATTACKABLE && (target.isPlayable() || target.isFakePlayer()))
 			{
 				final Npc npc = ((Npc) this);
 				if (!npc.isScriptValue(1))
@@ -2019,7 +2019,10 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 				}
 			}
 			
-			sendPacket(sm);
+			if (sm != null)
+			{
+				sendPacket(sm);
+			}
 		}
 		
 		if (skill.hasEffects(EffectScope.START))
@@ -6094,7 +6097,7 @@ public abstract class Creature extends WorldObject implements ISkillsHolder, IDe
 							}
 						}
 					}
-					if (target.isFakePlayer())
+					if (target.isFakePlayer() && !Config.FAKE_PLAYER_AUTO_ATTACKABLE)
 					{
 						player.updatePvPStatus();
 					}

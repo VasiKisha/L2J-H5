@@ -1601,7 +1601,9 @@ public class Item extends WorldObject
 		setDropperObjectId(dropper != null ? dropper.getObjectId() : 0); // Set the dropper Id for the knownlist packets in sendInfo
 		
 		// Add the Item dropped in the world as a visible object
-		World.getInstance().addVisibleObject(this, getWorldRegion());
+		final WorldRegion region = getWorldRegion();
+		region.addVisibleObject(this);
+		World.getInstance().addVisibleObject(this, region);
 		if (Config.SAVE_DROPPED_ITEM)
 		{
 			ItemsOnGroundManager.getInstance().save(this);

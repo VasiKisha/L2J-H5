@@ -17,6 +17,7 @@
 package quests.Q00655_AGrandPlanForTamingWildBeasts;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.enums.QuestSound;
@@ -181,7 +182,15 @@ public class Q00655_AGrandPlanForTamingWildBeasts extends Quest
 	private static String getSiegeDate()
 	{
 		final SiegableHall hall = CHSiegeManager.getInstance().getSiegableHall(ClanHallSiegeEngine.BEAST_FARM);
-		return hall != null ? new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(hall.getSiegeDate()) : "Error in date.";
+		if (hall != null)
+		{
+			final Calendar calendar = hall.getSiegeDate();
+			if (calendar != null)
+			{
+				return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calendar.getTime());
+			}
+		}
+		return "Unknown date.";
 	}
 	
 	/**

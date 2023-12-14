@@ -62,7 +62,7 @@ public class Monster extends Attackable
 	{
 		if (isFakePlayer())
 		{
-			return isInCombat() || attacker.isMonster() || (getScriptValue() > 0);
+			return Config.FAKE_PLAYER_AUTO_ATTACKABLE || isInCombat() || attacker.isMonster() || (getScriptValue() > 0);
 		}
 		
 		// Check if the Monster target is aggressive

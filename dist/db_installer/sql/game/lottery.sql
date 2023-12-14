@@ -11,4 +11,4 @@ CREATE TABLE IF NOT EXISTS `lottery` (
   `enddate` bigint(13) unsigned NOT NULL DEFAULT '0',
   `finished` INT NOT NULL DEFAULT 0,
   PRIMARY KEY (`id`,`idnr`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;

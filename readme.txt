@@ -36,7 +36,6 @@ What is done
 -New script loader
 -New ThreadPool
 -New XML reader
--Replaced MMOCore with Netty
 -Dropped SQL spawnlist
 -Sell buffs command
 -Dropped knownlists

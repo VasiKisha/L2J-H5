@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS `character_ui_actions` (
   `tgKey2` int(8) DEFAULT NULL,
   `show` tinyint(4) NOT NULL,
   PRIMARY KEY (`charId`,`cat`,`cmd`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;

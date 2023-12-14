@@ -564,6 +564,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="100" />
+		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1048" type="EtcItem" name="Spellbook: Might">
 		<!-- Spellbook needed to learn Might. Used by Human Mystics, Elven Mystics and Dark Mystics. Required level: 7 -->
@@ -653,6 +654,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="500" />
+		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1058" type="EtcItem" name="Spellbook: Shield">
 		<!-- Spellbook needed to learn Shield. Used by Human Mystics, Elven Mystics and Dark Mystics. Required level: 7 -->
@@ -670,6 +672,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="500" />
+		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1060" type="EtcItem" name="Lesser Healing Potion">
 		<!-- A magical potion that slowly restores HP. Low endurance. -->

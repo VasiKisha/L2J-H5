@@ -1349,6 +1349,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
+		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1396" type="EtcItem" name="Spellbook: Surrender to Wind">
 		<!-- Spellbook needed to learn Surrender to Water -->
@@ -1357,6 +1358,7 @@
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
 		<set name="price" val="1250" />
+		<set name="is_stackable" val="true" />
 	</item>
 	<item id="1397" type="EtcItem" name="Spellbook: Peace">
 		<!-- Spellbook needed to learn Peace. Used by Clerics. Required level: 35 -->

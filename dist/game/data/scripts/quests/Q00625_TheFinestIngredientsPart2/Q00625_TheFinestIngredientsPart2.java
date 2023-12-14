@@ -17,9 +17,9 @@
 package quests.Q00625_TheFinestIngredientsPart2;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.holders.ItemHolder;
@@ -121,7 +121,7 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 						{
 							rewardItems(player, GREATER_DYE_OF_DEX_2);
 						}
-						qs.exitQuest(false, true);
+						qs.exitQuest(true, true);
 						htmltext = event;
 					}
 					else
@@ -137,12 +137,11 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 				{
 					if (hasItem(player, FOOD_FOR_BUMBALUMP))
 					{
+						qs.setCond(2, true);
 						if (!isBumbalumpSpawned())
 						{
-							qs.setCond(2, true);
 							takeItem(player, FOOD_FOR_BUMBALUMP);
-							final Npc umpaloopa = addSpawn(ICICLE_EMPEROR_BUMBALUMP, ICICLE_EMPEROR_BUMBALUMP_LOC);
-							umpaloopa.setSummoner(player);
+							addSpawn(ICICLE_EMPEROR_BUMBALUMP, ICICLE_EMPEROR_BUMBALUMP_LOC);
 							htmltext = event;
 						}
 						else
@@ -153,6 +152,18 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 					else
 					{
 						htmltext = "31542-04.html";
+					}
+				}
+				else if (qs.isCond(2))
+				{
+					if (!isBumbalumpSpawned())
+					{
+						addSpawn(ICICLE_EMPEROR_BUMBALUMP, ICICLE_EMPEROR_BUMBALUMP_LOC);
+						htmltext = event;
+					}
+					else
+					{
+						htmltext = "31542-03.html";
 					}
 				}
 				break;
@@ -182,7 +193,7 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 				{
 					if (talker.getLevel() >= MIN_LEVEL)
 					{
-						htmltext = (hasItem(talker, SOY_SOURCE_JAR)) ? "31521-01.htm" : "31521-02.htm";
+						htmltext = hasItem(talker, SOY_SOURCE_JAR) ? "31521-01.htm" : "31521-02.htm";
 					}
 					else
 					{
@@ -222,18 +233,14 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 				{
 					case 1:
 					{
-						if (hasItem(talker, FOOD_FOR_BUMBALUMP))
-						{
-							htmltext = "31542-01.html";
-						}
+						htmltext = "31542-01.html";
 						break;
 					}
 					case 2:
 					{
 						if (!isBumbalumpSpawned())
 						{
-							final Npc umpaloopa = addSpawn(ICICLE_EMPEROR_BUMBALUMP, ICICLE_EMPEROR_BUMBALUMP_LOC);
-							umpaloopa.setSummoner(talker);
+							addSpawn(ICICLE_EMPEROR_BUMBALUMP, ICICLE_EMPEROR_BUMBALUMP_LOC);
 							htmltext = "31542-02.html";
 						}
 						else
@@ -265,17 +272,23 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 	@Override
 	public String onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		final QuestState qs = getRandomPartyMemberState(killer, 1, 2, npc);
-		if ((qs != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true) && (npc.getSummoner() == killer))
+		executeForEachPlayer(killer, npc, isSummon, true, false);
+		return super.onKill(npc, killer, isSummon);
+	}
+	
+	@Override
+	public void actionForEachPlayer(Player player, Npc npc, boolean isSummon)
+	{
+		final QuestState qs = getQuestState(player, false);
+		if ((qs != null) && qs.isCond(2) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, true))
 		{
 			qs.setCond(3, true);
-			giveItems(qs.getPlayer(), SPECIAL_YETI_MEAT);
+			giveItems(player, SPECIAL_YETI_MEAT);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private static boolean isBumbalumpSpawned()
 	{
-		return SpawnTable.getInstance().getAnySpawn(ICICLE_EMPEROR_BUMBALUMP) != null;
+		return World.getInstance().getVisibleObjects().stream().anyMatch(object -> object.getId() == ICICLE_EMPEROR_BUMBALUMP);
 	}
 }

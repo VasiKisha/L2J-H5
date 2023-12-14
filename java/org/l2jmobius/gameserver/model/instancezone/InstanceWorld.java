@@ -356,6 +356,15 @@ public class InstanceWorld
 	}
 	
 	/**
+	 * Get all doors spawned inside instance world.
+	 * @return collection of spawned doors
+	 */
+	public Collection<Door> getDoors()
+	{
+		return _instance.getDoors();
+	}
+	
+	/**
 	 * Get spawned door by template ID.
 	 * @param doorId template ID of door
 	 * @return instance of door if found, otherwise {@code null}

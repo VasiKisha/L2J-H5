@@ -16,4 +16,12 @@ CREATE TABLE IF NOT EXISTS `items` (
   KEY `item_id` (`item_id`),
   KEY `loc` (`loc`),
   KEY `time_of_use` (`time_of_use`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE INDEX idx_item_id ON items (item_id);
+CREATE INDEX idx_object_id ON items (object_id);
+CREATE INDEX idx_owner_id ON items (owner_id);
+CREATE INDEX idx_owner_id_loc ON items (owner_id, loc);
+CREATE INDEX idx_owner_id_item_id ON items (owner_id, item_id);
+CREATE INDEX idx_owner_id_loc_locdata ON items (owner_id, loc, loc_data);
+CREATE INDEX idx_owner_id_loc_locdata_enchant ON items (owner_id, loc, loc_data, enchant_level, item_id, object_id);

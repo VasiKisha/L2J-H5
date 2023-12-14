@@ -7,4 +7,4 @@ CREATE TABLE IF NOT EXISTS `character_macroses` (
   `acronym` VARCHAR(4) ,
   `commands` VARCHAR(500) ,
   PRIMARY KEY (`charId`,`id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

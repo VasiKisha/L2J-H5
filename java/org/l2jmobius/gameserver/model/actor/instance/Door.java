@@ -657,12 +657,12 @@ public class Door extends Creature
 	{
 		if (isVisibleFor(player))
 		{
+			player.sendPacket(new StaticObjectInfo(this, player.isGM()));
+			player.sendPacket(new DoorStatusUpdate(this));
 			if (getEmitter() > 0)
 			{
 				player.sendPacket(new OnEventTrigger(this, _open));
 			}
-			
-			player.sendPacket(new StaticObjectInfo(this, player.isGM()));
 		}
 	}
 	
@@ -706,16 +706,25 @@ public class Door extends Creature
 	
 	private void startAutoCloseTask()
 	{
-		if ((getTemplate().getCloseTime() < 0) || isOpenableByTime())
+		final DoorTemplate template = getTemplate();
+		if ((template.getCloseTime() < 0) || isOpenableByTime())
 		{
 			return;
 		}
+		
+		// Clanhall doors should not auto close.
+		if (template.getClanHallId() > 0)
+		{
+			return;
+		}
+		
 		final Future<?> oldTask = _autoCloseTask;
 		if (oldTask != null)
 		{
 			_autoCloseTask = null;
 			oldTask.cancel(false);
 		}
+		
 		_autoCloseTask = ThreadPool.schedule(new AutoClose(), getTemplate().getCloseTime() * 1000);
 	}
 	

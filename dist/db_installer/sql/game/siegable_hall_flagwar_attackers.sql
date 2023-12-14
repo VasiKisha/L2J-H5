@@ -6,4 +6,4 @@ CREATE TABLE IF NOT EXISTS `siegable_hall_flagwar_attackers` (
   PRIMARY KEY (`flag`),
   KEY `hall_id` (`hall_id`),
   KEY `clan_id` (`clan_id`)
-) ENGINE=MyISAM DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;
+) DEFAULT CHARSET=latin1 COLLATE=latin1_general_ci;

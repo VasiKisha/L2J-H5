@@ -1904,6 +1904,17 @@ public abstract class AbstractScript extends ManagedScript
 				summoner.addSummonedNpc(npc);
 			}
 			
+			// Retain monster original position if ENABLE_RANDOM_MONSTER_SPAWNS is enabled.
+			if (Config.ENABLE_RANDOM_MONSTER_SPAWNS && !randomOffset && npc.isMonster())
+			{
+				spawn.setXYZ(x, y, zValue);
+				npc.setXYZ(x, y, zValue);
+				if (heading > -1)
+				{
+					npc.setHeading(heading);
+				}
+			}
+			
 			// Fixes invisible NPCs spawned by script.
 			npc.broadcastInfo();
 			

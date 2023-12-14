@@ -8,4 +8,4 @@ CREATE TABLE IF NOT EXISTS `character_tpbookmark` (
   `tag` varchar(50) DEFAULT NULL,
   `name` varchar(50) NOT NULL,
   PRIMARY KEY (`charId`,`Id`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

@@ -17,10 +17,10 @@
 package quests.Q00604_DaimonTheWhiteEyedPart2;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -265,6 +265,6 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 	
 	private static boolean isDaimonSpawned()
 	{
-		return SpawnTable.getInstance().getAnySpawn(DAIMON_THE_WHITE_EYED) != null;
+		return World.getInstance().getVisibleObjects().stream().anyMatch(object -> object.getId() == DAIMON_THE_WHITE_EYED);
 	}
 }
