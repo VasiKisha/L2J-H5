@@ -57,7 +57,7 @@ public class RequestChangePetName implements ClientPacket
 			return;
 		}
 		
-		if (pet.getName() != null)
+		if ((pet.getName() != null) && !pet.getName().equals(""))
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_SET_THE_NAME_OF_THE_PET);
 			return;
