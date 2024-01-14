@@ -3644,7 +3644,7 @@ public class Config
 			String externalIp = "127.0.0.1";
 			try
 			{
-				final URL autoIp = new URL("http://ip1.dynupdate.no-ip.com:8245/");
+				final URL autoIp = new URL("http://checkip.amazonaws.com");
 				try (BufferedReader in = new BufferedReader(new InputStreamReader(autoIp.openStream())))
 				{
 					externalIp = in.readLine();
@@ -3652,7 +3652,7 @@ public class Config
 			}
 			catch (IOException e)
 			{
-				LOGGER.log(Level.INFO, "Failed to connect to api.externalip.net please check your internet connection using 127.0.0.1!");
+				LOGGER.log(Level.INFO, "Failed to connect to checkip.amazonaws.com please check your internet connection using 127.0.0.1!");
 				externalIp = "127.0.0.1";
 			}
 			
