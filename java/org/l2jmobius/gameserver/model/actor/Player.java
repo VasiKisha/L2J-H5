@@ -3252,14 +3252,30 @@ public class Player extends Playable
 	 */
 	public Item addItem(String process, int itemId, long count, WorldObject reference, boolean sendMessage)
 	{
+		return addItem(process, itemId, count, -1, reference, sendMessage);
+	}
+	
+	/**
+	 * Adds item to Inventory and send a Server->Client InventoryUpdate packet to the Player.
+	 * @param process : String Identifier of process triggering this action
+	 * @param itemId : int Item Identifier of the item to be added
+	 * @param count : long Quantity of items to be added
+	 * @param enchantLevel : int EnchantLevel of the item to be added
+	 * @param reference : WorldObject Object referencing current action like NPC selling item or previous item in transformation
+	 * @param sendMessage : boolean Specifies whether to send message to Client about this action
+	 * @return
+	 */
+	public Item addItem(String process, int itemId, long count, int enchantLevel, WorldObject reference, boolean sendMessage)
+	{
 		if (count > 0)
 		{
 			final ItemTemplate item = ItemTable.getInstance().getTemplate(itemId);
 			if (item == null)
 			{
-				LOGGER.log(Level.SEVERE, "Item doesn't exist so cannot be added. Item ID: " + itemId);
+				LOGGER.severe("Item doesn't exist so cannot be added. Item ID: " + itemId);
 				return null;
 			}
+			
 			// Sends message to client if requested
 			if (sendMessage && ((!isCastingNow() && item.hasExImmediateEffect()) || !item.hasExImmediateEffect()))
 			{
@@ -3280,20 +3296,17 @@ public class Player extends Playable
 						sendPacket(sm);
 					}
 				}
+				else if (process.equalsIgnoreCase("Sweeper") || process.equalsIgnoreCase("Quest"))
+				{
+					final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
+					sm.addItemName(itemId);
+					sendPacket(sm);
+				}
 				else
 				{
-					if (process.equalsIgnoreCase("Sweeper") || process.equalsIgnoreCase("Quest"))
-					{
-						final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
-						sm.addItemName(itemId);
-						sendPacket(sm);
-					}
-					else
-					{
-						final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1);
-						sm.addItemName(itemId);
-						sendPacket(sm);
-					}
+					final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_OBTAINED_S1);
+					sm.addItemName(itemId);
+					sendPacket(sm);
 				}
 			}
 			
@@ -3310,6 +3323,10 @@ public class Player extends Playable
 			{
 				// Add the item to inventory
 				final Item createdItem = _inventory.addItem(process, itemId, count, this, reference);
+				if (enchantLevel > -1)
+				{
+					createdItem.setEnchantLevel(enchantLevel);
+				}
 				
 				// If over capacity, drop the item
 				if (!canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && !_inventory.validateCapacity(0, item.isQuestItem()) && createdItem.isDropable() && (!createdItem.isStackable() || (createdItem.getLastChange() != Item.MODIFIED)))
