@@ -16,12 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoom;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoomList;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchWaitingList;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPartyRoomMember;
 import org.l2jmobius.gameserver.network.serverpackets.PartyMatchDetail;
@@ -29,7 +27,7 @@ import org.l2jmobius.gameserver.network.serverpackets.PartyMatchDetail;
 /**
  * @author Gnacik
  */
-public class RequestPartyMatchList implements ClientPacket
+public class RequestPartyMatchList extends ClientPacket
 {
 	private int _roomid;
 	private int _membersmax;
@@ -39,20 +37,20 @@ public class RequestPartyMatchList implements ClientPacket
 	private String _roomtitle;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_roomid = packet.readInt();
-		_membersmax = packet.readInt();
-		_minLevel = packet.readInt();
-		_maxLevel = packet.readInt();
-		_loot = packet.readInt();
-		_roomtitle = packet.readString();
+		_roomid = readInt();
+		_membersmax = readInt();
+		_minLevel = readInt();
+		_maxLevel = readInt();
+		_loot = readInt();
+		_roomtitle = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

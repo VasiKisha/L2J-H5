@@ -18,7 +18,7 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -171,7 +171,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 				numval = 1;
 			}
 			int counter = 0;
-			final ItemTemplate template = ItemTable.getInstance().getTemplate(idval);
+			final ItemTemplate template = ItemData.getInstance().getTemplate(idval);
 			if (template == null)
 			{
 				BuilderUtil.sendSysMessage(activeChar, "This item doesn't exist.");
@@ -204,7 +204,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 	
 	private void createItem(Player activeChar, Player target, int id, long num)
 	{
-		final ItemTemplate template = ItemTable.getInstance().getTemplate(id);
+		final ItemTemplate template = ItemData.getInstance().getTemplate(id);
 		if (template == null)
 		{
 			BuilderUtil.sendSysMessage(activeChar, "This item doesn't exist.");

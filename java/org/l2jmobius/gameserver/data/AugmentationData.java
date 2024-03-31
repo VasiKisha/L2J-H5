@@ -94,9 +94,9 @@ public class AugmentationData
 	{
 		for (int i = 0; i < 10; i++)
 		{
-			_blueSkills.add(new ArrayList<Integer>());
-			_purpleSkills.add(new ArrayList<Integer>());
-			_redSkills.add(new ArrayList<Integer>());
+			_blueSkills.add(new ArrayList<>());
+			_purpleSkills.add(new ArrayList<>());
+			_redSkills.add(new ArrayList<>());
 		}
 		
 		load();

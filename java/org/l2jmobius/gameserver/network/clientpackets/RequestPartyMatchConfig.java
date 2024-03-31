@@ -16,12 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoom;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoomList;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchWaitingList;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExPartyRoomMember;
@@ -31,24 +29,24 @@ import org.l2jmobius.gameserver.network.serverpackets.PartyMatchDetail;
 /**
  * @version $Revision: 1.1.4.2 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestPartyMatchConfig implements ClientPacket
+public class RequestPartyMatchConfig extends ClientPacket
 {
 	private int _auto;
 	private int _loc;
 	private int _level;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_auto = packet.readInt(); //
-		_loc = packet.readInt(); // Location
-		_level = packet.readInt(); // my level
+		_auto = readInt(); //
+		_loc = readInt(); // Location
+		_level = readInt(); // my level
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

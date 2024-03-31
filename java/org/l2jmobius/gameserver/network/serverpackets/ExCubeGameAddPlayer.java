@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -39,13 +41,13 @@ public class ExCubeGameAddPlayer extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BLOCK_UP_SET_LIST.writeId(this);
-		writeInt(1);
-		writeInt(0xffffffff);
-		writeInt(_isRedTeam);
-		writeInt(_player.getObjectId());
-		writeString(_player.getName());
+		ServerPackets.EX_BLOCK_UP_SET_LIST.writeId(this, buffer);
+		buffer.writeInt(1);
+		buffer.writeInt(0xffffffff);
+		buffer.writeInt(_isRedTeam);
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeString(_player.getName());
 	}
 }

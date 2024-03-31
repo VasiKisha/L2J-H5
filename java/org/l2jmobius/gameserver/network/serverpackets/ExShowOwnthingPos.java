@@ -18,8 +18,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.TerritoryWard;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -34,39 +36,39 @@ public class ExShowOwnthingPos extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_OWNTHING_POS.writeId(this);
+		ServerPackets.EX_SHOW_OWNTHING_POS.writeId(this, buffer);
 		if (TerritoryWarManager.getInstance().isTWInProgress())
 		{
 			final Collection<TerritoryWard> territoryWardList = TerritoryWarManager.getInstance().getAllTerritoryWards();
-			writeInt(territoryWardList.size());
+			buffer.writeInt(territoryWardList.size());
 			for (TerritoryWard ward : territoryWardList)
 			{
-				writeInt(ward.getTerritoryId());
+				buffer.writeInt(ward.getTerritoryId());
 				if (ward.getNpc() != null)
 				{
-					writeInt(ward.getNpc().getX());
-					writeInt(ward.getNpc().getY());
-					writeInt(ward.getNpc().getZ());
+					buffer.writeInt(ward.getNpc().getX());
+					buffer.writeInt(ward.getNpc().getY());
+					buffer.writeInt(ward.getNpc().getZ());
 				}
 				else if (ward.getPlayer() != null)
 				{
-					writeInt(ward.getPlayer().getX());
-					writeInt(ward.getPlayer().getY());
-					writeInt(ward.getPlayer().getZ());
+					buffer.writeInt(ward.getPlayer().getX());
+					buffer.writeInt(ward.getPlayer().getY());
+					buffer.writeInt(ward.getPlayer().getZ());
 				}
 				else
 				{
-					writeInt(0);
-					writeInt(0);
-					writeInt(0);
+					buffer.writeInt(0);
+					buffer.writeInt(0);
+					buffer.writeInt(0);
 				}
 			}
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 }

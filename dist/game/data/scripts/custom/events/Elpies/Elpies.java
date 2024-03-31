@@ -16,12 +16,19 @@
  */
 package custom.events.Elpies;
 
+import java.io.File;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.atomic.AtomicInteger;
+
+import org.w3c.dom.Document;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.commons.time.SchedulingPattern;
+import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.EventMonster;
@@ -69,6 +76,50 @@ public class Elpies extends Event
 	{
 		addSpawnId(ELPY);
 		addKillId(ELPY);
+		
+		loadConfig();
+	}
+	
+	private void loadConfig()
+	{
+		new IXmlReader()
+		{
+			@Override
+			public void load()
+			{
+				parseDatapackFile("data/scripts/custom/events/Elpies/config.xml");
+			}
+			
+			@Override
+			public void parseDocument(Document doc, File f)
+			{
+				final AtomicInteger count = new AtomicInteger(0);
+				forEach(doc, "event", eventNode -> forEach(eventNode, "schedule", reward ->
+				{
+					final StatSet attributes = new StatSet(parseAttributes(reward));
+					final String pattern = attributes.getString("pattern");
+					final SchedulingPattern schedulingPattern = new SchedulingPattern(pattern);
+					final StatSet params = new StatSet();
+					final String name = "Elpies";
+					params.set("Name", name);
+					params.set("SchedulingPattern", schedulingPattern);
+					getTimers().addTimer("Schedule" + count.incrementAndGet(), params, schedulingPattern.getDelayToNextFromNow(), null, null);
+					LOGGER.info("Event " + name + " scheduled at " + schedulingPattern.getNextAsFormattedDateString());
+				}));
+			}
+		}.load();
+	}
+	
+	@Override
+	public void onTimerEvent(String event, StatSet params, Npc npc, Player player)
+	{
+		if (event.startsWith("Schedule"))
+		{
+			eventStart(null);
+			final SchedulingPattern schedulingPattern = params.getObject("SchedulingPattern", SchedulingPattern.class);
+			getTimers().addTimer(event, params, schedulingPattern.getDelayToNextFromNow() + 1000, null, null);
+			LOGGER.info("Event " + params.getString("Name") + " scheduled at " + schedulingPattern.getNextAsFormattedDateString());
+		}
 	}
 	
 	@Override

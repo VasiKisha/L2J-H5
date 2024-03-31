@@ -18,9 +18,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -36,30 +38,30 @@ public class GmViewQuestInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.GM_VIEW_QUEST_INFO.writeId(this);
-		writeString(_player.getName());
+		ServerPackets.GM_VIEW_QUEST_INFO.writeId(this, buffer);
+		buffer.writeString(_player.getName());
 		final List<Quest> questList = _player.getAllActiveQuests();
 		if (questList.isEmpty())
 		{
-			writeByte(0);
-			writeShort(0);
-			writeShort(0);
+			buffer.writeByte(0);
+			buffer.writeShort(0);
+			buffer.writeShort(0);
 			return;
 		}
 		
-		writeShort(questList.size()); // quest count
+		buffer.writeShort(questList.size()); // quest count
 		for (Quest q : questList)
 		{
-			writeInt(q.getId());
+			buffer.writeInt(q.getId());
 			final QuestState qs = _player.getQuestState(q.getName());
 			if (qs == null)
 			{
-				writeInt(0);
+				buffer.writeInt(0);
 				continue;
 			}
-			writeInt(qs.getCond()); // stage of quest progress
+			buffer.writeInt(qs.getCond()); // stage of quest progress
 		}
 	}
 }

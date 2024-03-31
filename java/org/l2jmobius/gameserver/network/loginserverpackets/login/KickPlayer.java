@@ -16,26 +16,20 @@
  */
 package org.l2jmobius.gameserver.network.loginserverpackets.login;
 
-import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.network.base.BaseReadablePacket;
 
-public class KickPlayer extends ReadablePacket
+public class KickPlayer extends BaseReadablePacket
 {
 	private final String _account;
 	
-	/**
-	 * @param decrypt
-	 */
 	public KickPlayer(byte[] decrypt)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		_account = readString();
 	}
 	
-	/**
-	 * @return Returns the account.
-	 */
 	public String getAccount()
 	{
 		return _account;

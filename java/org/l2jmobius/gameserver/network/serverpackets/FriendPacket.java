@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.model.World;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -45,13 +47,13 @@ public class FriendPacket extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.L2_FRIEND.writeId(this);
-		writeInt(_action ? 1 : 3); // 1-add 3-remove
-		writeInt(_objid);
-		writeString(_name);
-		writeInt(_online);
-		writeInt(_online ? _objid : 0);
+		ServerPackets.L2_FRIEND.writeId(this, buffer);
+		buffer.writeInt(_action ? 1 : 3); // 1-add 3-remove
+		buffer.writeInt(_objid);
+		buffer.writeString(_name);
+		buffer.writeInt(_online);
+		buffer.writeInt(_online ? _objid : 0);
 	}
 }

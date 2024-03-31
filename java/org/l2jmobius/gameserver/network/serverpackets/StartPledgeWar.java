@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class StartPledgeWar extends ServerPacket
@@ -30,10 +32,10 @@ public class StartPledgeWar extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.START_PLEDGE_WAR.writeId(this);
-		writeString(_playerName);
-		writeString(_pledgeName);
+		ServerPackets.START_PLEDGE_WAR.writeId(this, buffer);
+		buffer.writeString(_playerName);
+		buffer.writeString(_pledgeName);
 	}
 }

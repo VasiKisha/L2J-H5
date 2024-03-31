@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class CSShowComBoard extends ServerPacket
@@ -28,10 +30,10 @@ public class CSShowComBoard extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SHOW_BOARD.writeId(this);
-		writeByte(1); // c4 1 to show community 00 to hide
-		writeBytes(_html);
+		ServerPackets.SHOW_BOARD.writeId(this, buffer);
+		buffer.writeByte(1); // c4 1 to show community 00 to hide
+		buffer.writeBytes(_html);
 	}
 }

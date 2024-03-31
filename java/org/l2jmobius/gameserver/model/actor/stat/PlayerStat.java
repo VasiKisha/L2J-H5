@@ -944,4 +944,24 @@ public class PlayerStat extends PlayableStat
 		
 		return bonus;
 	}
+	
+	public double getBonusDropAdenaMultiplier()
+	{
+		return 1 + (calcStat(Stat.BONUS_DROP_ADENA, 0, null, null) / 100);
+	}
+	
+	public double getBonusDropAmountMultiplier()
+	{
+		return 1 + (calcStat(Stat.BONUS_DROP_AMOUNT, 0, null, null) / 100);
+	}
+	
+	public double getBonusDropRateMultiplier()
+	{
+		return 1 + (calcStat(Stat.BONUS_DROP_RATE, 0, null, null) / 100);
+	}
+	
+	public double getBonusSpoilRateMultiplier()
+	{
+		return 1 + (calcStat(Stat.BONUS_SPOIL_RATE, 0, null, null) / 100);
+	}
 }

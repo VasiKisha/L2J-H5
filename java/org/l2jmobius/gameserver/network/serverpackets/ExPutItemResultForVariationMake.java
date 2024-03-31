@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ExPutItemResultForVariationMake extends ServerPacket
@@ -30,11 +32,11 @@ public class ExPutItemResultForVariationMake extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PUT_ITEM_RESULT_FOR_VARIATION_MAKE.writeId(this);
-		writeInt(_itemObjId);
-		writeInt(_itemId);
-		writeInt(1);
+		ServerPackets.EX_PUT_ITEM_RESULT_FOR_VARIATION_MAKE.writeId(this, buffer);
+		buffer.writeInt(_itemObjId);
+		buffer.writeInt(_itemId);
+		buffer.writeInt(1);
 	}
 }

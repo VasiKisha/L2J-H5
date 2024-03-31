@@ -17,7 +17,9 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -42,11 +44,11 @@ public class ExBrGamePoint extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BR_GAME_POINT.writeId(this);
-		writeInt(_playerObj);
-		writeLong(_points);
-		writeInt(0);
+		ServerPackets.EX_BR_GAME_POINT.writeId(this, buffer);
+		buffer.writeInt(_playerObj);
+		buffer.writeLong(_points);
+		buffer.writeInt(0);
 	}
 }

@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.Shortcut;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ShortCutRegister extends ServerPacket
@@ -33,29 +35,29 @@ public class ShortCutRegister extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SHORT_CUT_REGISTER.writeId(this);
-		writeInt(_shortcut.getType().ordinal());
-		writeInt(_shortcut.getSlot() + (_shortcut.getPage() * 12)); // C4 Client
+		ServerPackets.SHORT_CUT_REGISTER.writeId(this, buffer);
+		buffer.writeInt(_shortcut.getType().ordinal());
+		buffer.writeInt(_shortcut.getSlot() + (_shortcut.getPage() * 12)); // C4 Client
 		switch (_shortcut.getType())
 		{
 			case ITEM:
 			{
-				writeInt(_shortcut.getId());
-				writeInt(_shortcut.getCharacterType());
-				writeInt(_shortcut.getSharedReuseGroup());
-				writeInt(0); // unknown
-				writeInt(0); // unknown
-				writeInt(0); // item augment id
+				buffer.writeInt(_shortcut.getId());
+				buffer.writeInt(_shortcut.getCharacterType());
+				buffer.writeInt(_shortcut.getSharedReuseGroup());
+				buffer.writeInt(0); // unknown
+				buffer.writeInt(0); // unknown
+				buffer.writeInt(0); // item augment id
 				break;
 			}
 			case SKILL:
 			{
-				writeInt(_shortcut.getId());
-				writeInt(_shortcut.getLevel());
-				writeByte(0); // C5
-				writeInt(_shortcut.getCharacterType());
+				buffer.writeInt(_shortcut.getId());
+				buffer.writeInt(_shortcut.getLevel());
+				buffer.writeByte(0); // C5
+				buffer.writeInt(_shortcut.getCharacterType());
 				break;
 			}
 			case ACTION:
@@ -63,8 +65,8 @@ public class ShortCutRegister extends ServerPacket
 			case RECIPE:
 			case BOOKMARK:
 			{
-				writeInt(_shortcut.getId());
-				writeInt(_shortcut.getCharacterType());
+				buffer.writeInt(_shortcut.getId());
+				buffer.writeInt(_shortcut.getCharacterType());
 			}
 		}
 	}

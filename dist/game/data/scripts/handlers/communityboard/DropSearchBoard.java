@@ -27,8 +27,8 @@ import java.util.StringJoiner;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.data.SpawnTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.enums.DropType;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
@@ -179,6 +179,10 @@ public class DropSearchBoard implements IParseBoardHandler
 				final int start = (page - 1) * 14;
 				final int end = Math.min(list.size() - 1, start + 14);
 				final StringBuilder builder = new StringBuilder();
+				final double dropAmountAdenaEffectBonus = player.getStat().getBonusDropAdenaMultiplier();
+				final double dropAmountEffectBonus = player.getStat().getBonusDropAmountMultiplier();
+				final double dropRateEffectBonus = player.getStat().getBonusDropRateMultiplier();
+				final double spoilRateEffectBonus = player.getStat().getBonusSpoilRateMultiplier();
 				for (int index = start; index <= end; index++)
 				{
 					final CBDropHolder cbDropHolder = list.get(index);
@@ -197,10 +201,13 @@ public class DropSearchBoard implements IParseBoardHandler
 							rateChance *= Config.PREMIUM_RATE_SPOIL_CHANCE;
 							rateAmount *= Config.PREMIUM_RATE_SPOIL_AMOUNT;
 						}
+						
+						// bonus spoil rate effect
+						rateChance *= spoilRateEffectBonus;
 					}
 					else
 					{
-						final ItemTemplate item = ItemTable.getInstance().getTemplate(cbDropHolder.itemId);
+						final ItemTemplate item = ItemData.getInstance().getTemplate(cbDropHolder.itemId);
 						if (Config.RATE_DROP_CHANCE_BY_ID.get(cbDropHolder.itemId) != null)
 						{
 							rateChance *= Config.RATE_DROP_CHANCE_BY_ID.get(cbDropHolder.itemId);
@@ -272,6 +279,15 @@ public class DropSearchBoard implements IParseBoardHandler
 								rateAmount *= Config.PREMIUM_RATE_DROP_AMOUNT;
 							}
 						}
+						
+						// bonus drop amount effect
+						rateAmount *= dropAmountEffectBonus;
+						if (item.getId() == Inventory.ADENA_ID)
+						{
+							rateAmount *= dropAmountAdenaEffectBonus;
+						}
+						// bonus drop rate effect
+						rateChance *= dropRateEffectBonus;
 					}
 					
 					builder.append("<tr>");
@@ -329,7 +345,7 @@ public class DropSearchBoard implements IParseBoardHandler
 		int limit = 0;
 		final Set<Integer> existInDropData = DROP_INDEX_CACHE.keySet();
 		final List<ItemTemplate> items = new ArrayList<>();
-		for (ItemTemplate item : ItemTable.getInstance().getAllItems())
+		for (ItemTemplate item : ItemData.getInstance().getAllItems())
 		{
 			if (item == null)
 			{

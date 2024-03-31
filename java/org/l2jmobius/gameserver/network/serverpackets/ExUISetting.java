@@ -18,9 +18,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.ActionKey;
 import org.l2jmobius.gameserver.model.UIKeysSettings;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -71,63 +73,63 @@ public class ExUISetting extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_UI_SETTING.writeId(this);
-		writeInt(buffsize);
-		writeInt(categories);
+		ServerPackets.EX_UI_SETTING.writeId(this, buffer);
+		buffer.writeInt(buffsize);
+		buffer.writeInt(categories);
 		int category = 0;
 		final int numKeyCt = _uiSettings.getKeys().size();
-		writeInt(numKeyCt);
+		buffer.writeInt(numKeyCt);
 		for (int i = 0; i < numKeyCt; i++)
 		{
 			if (_uiSettings.getCategories().containsKey(category))
 			{
 				final List<Integer> catElList1 = _uiSettings.getCategories().get(category);
-				writeByte(catElList1.size());
+				buffer.writeByte(catElList1.size());
 				for (int cmd : catElList1)
 				{
-					writeByte(cmd);
+					buffer.writeByte(cmd);
 				}
 			}
 			else
 			{
-				writeByte(0);
+				buffer.writeByte(0);
 			}
 			category++;
 			if (_uiSettings.getCategories().containsKey(category))
 			{
 				final List<Integer> catElList2 = _uiSettings.getCategories().get(category);
-				writeByte(catElList2.size());
+				buffer.writeByte(catElList2.size());
 				for (int cmd : catElList2)
 				{
-					writeByte(cmd);
+					buffer.writeByte(cmd);
 				}
 			}
 			else
 			{
-				writeByte(0);
+				buffer.writeByte(0);
 			}
 			category++;
 			if (_uiSettings.getKeys().containsKey(i))
 			{
 				final List<ActionKey> keyElList = _uiSettings.getKeys().get(i);
-				writeInt(keyElList.size());
+				buffer.writeInt(keyElList.size());
 				for (ActionKey akey : keyElList)
 				{
-					writeInt(akey.getCommandId());
-					writeInt(akey.getKeyId());
-					writeInt(akey.getToogleKey1());
-					writeInt(akey.getToogleKey2());
-					writeInt(akey.getShowStatus());
+					buffer.writeInt(akey.getCommandId());
+					buffer.writeInt(akey.getKeyId());
+					buffer.writeInt(akey.getToogleKey1());
+					buffer.writeInt(akey.getToogleKey2());
+					buffer.writeInt(akey.getShowStatus());
 				}
 			}
 			else
 			{
-				writeInt(0);
+				buffer.writeInt(0);
 			}
 		}
-		writeInt(0x11);
-		writeInt(16);
+		buffer.writeInt(0x11);
+		buffer.writeInt(16);
 	}
 }

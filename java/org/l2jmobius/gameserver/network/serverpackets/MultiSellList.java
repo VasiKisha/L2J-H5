@@ -18,9 +18,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import static org.l2jmobius.gameserver.data.xml.MultisellData.PAGE_SIZE;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.multisell.Entry;
 import org.l2jmobius.gameserver.model.multisell.Ingredient;
 import org.l2jmobius.gameserver.model.multisell.ListContainer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class MultiSellList extends ServerPacket
@@ -47,109 +49,109 @@ public class MultiSellList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.MULTI_SELL_LIST.writeId(this);
-		writeInt(_list.getListId()); // list id
-		writeInt(1 + (_index / PAGE_SIZE)); // page started from 1
-		writeInt(_finished); // finished
-		writeInt(PAGE_SIZE); // size of pages
-		writeInt(_size); // list length
+		ServerPackets.MULTI_SELL_LIST.writeId(this, buffer);
+		buffer.writeInt(_list.getListId()); // list id
+		buffer.writeInt(1 + (_index / PAGE_SIZE)); // page started from 1
+		buffer.writeInt(_finished); // finished
+		buffer.writeInt(PAGE_SIZE); // size of pages
+		buffer.writeInt(_size); // list length
 		Entry ent;
 		while (_size-- > 0)
 		{
 			ent = _list.getEntries().get(_index++);
-			writeInt(ent.getEntryId());
-			writeByte(ent.isStackable());
-			writeShort(0); // C6
-			writeInt(0); // C6
-			writeInt(0); // T1
-			writeShort(65534); // T1
-			writeShort(0); // T1
-			writeShort(0); // T1
-			writeShort(0); // T1
-			writeShort(0); // T1
-			writeShort(0); // T1
-			writeShort(0); // T1
-			writeShort(0); // T1
-			writeShort(ent.getProducts().size());
-			writeShort(ent.getIngredients().size());
+			buffer.writeInt(ent.getEntryId());
+			buffer.writeByte(ent.isStackable());
+			buffer.writeShort(0); // C6
+			buffer.writeInt(0); // C6
+			buffer.writeInt(0); // T1
+			buffer.writeShort(65534); // T1
+			buffer.writeShort(0); // T1
+			buffer.writeShort(0); // T1
+			buffer.writeShort(0); // T1
+			buffer.writeShort(0); // T1
+			buffer.writeShort(0); // T1
+			buffer.writeShort(0); // T1
+			buffer.writeShort(0); // T1
+			buffer.writeShort(ent.getProducts().size());
+			buffer.writeShort(ent.getIngredients().size());
 			for (Ingredient ing : ent.getProducts())
 			{
 				if (ing.getTemplate() != null)
 				{
-					writeInt(ing.getTemplate().getDisplayId());
-					writeInt(ing.getTemplate().getBodyPart());
-					writeShort(ing.getTemplate().getType2());
+					buffer.writeInt(ing.getTemplate().getDisplayId());
+					buffer.writeInt(ing.getTemplate().getBodyPart());
+					buffer.writeShort(ing.getTemplate().getType2());
 				}
 				else
 				{
-					writeInt(ing.getItemId());
-					writeInt(0);
-					writeShort(65535);
+					buffer.writeInt(ing.getItemId());
+					buffer.writeInt(0);
+					buffer.writeShort(65535);
 				}
-				writeLong(ing.getItemCount());
+				buffer.writeLong(ing.getItemCount());
 				if (ing.getItemInfo() != null)
 				{
-					writeShort(ing.getItemInfo().getEnchantLevel()); // enchant level
-					writeInt(ing.getItemInfo().getAugmentId()); // augment id
-					writeInt(0); // mana
-					writeShort(ing.getItemInfo().getElementId()); // attack element
-					writeShort(ing.getItemInfo().getElementPower()); // element power
-					writeShort(ing.getItemInfo().getElementals()[0]); // fire
-					writeShort(ing.getItemInfo().getElementals()[1]); // water
-					writeShort(ing.getItemInfo().getElementals()[2]); // wind
-					writeShort(ing.getItemInfo().getElementals()[3]); // earth
-					writeShort(ing.getItemInfo().getElementals()[4]); // holy
-					writeShort(ing.getItemInfo().getElementals()[5]); // dark
+					buffer.writeShort(ing.getItemInfo().getEnchantLevel()); // enchant level
+					buffer.writeInt(ing.getItemInfo().getAugmentId()); // augment id
+					buffer.writeInt(0); // mana
+					buffer.writeShort(ing.getItemInfo().getElementId()); // attack element
+					buffer.writeShort(ing.getItemInfo().getElementPower()); // element power
+					buffer.writeShort(ing.getItemInfo().getElementals()[0]); // fire
+					buffer.writeShort(ing.getItemInfo().getElementals()[1]); // water
+					buffer.writeShort(ing.getItemInfo().getElementals()[2]); // wind
+					buffer.writeShort(ing.getItemInfo().getElementals()[3]); // earth
+					buffer.writeShort(ing.getItemInfo().getElementals()[4]); // holy
+					buffer.writeShort(ing.getItemInfo().getElementals()[5]); // dark
 				}
 				else
 				{
-					writeShort(ing.getEnchantLevel()); // enchant level
-					writeInt(0); // augment id
-					writeInt(0); // mana
-					writeShort(0); // attack element
-					writeShort(0); // element power
-					writeShort(0); // fire
-					writeShort(0); // water
-					writeShort(0); // wind
-					writeShort(0); // earth
-					writeShort(0); // holy
-					writeShort(0); // dark
+					buffer.writeShort(ing.getEnchantLevel()); // enchant level
+					buffer.writeInt(0); // augment id
+					buffer.writeInt(0); // mana
+					buffer.writeShort(0); // attack element
+					buffer.writeShort(0); // element power
+					buffer.writeShort(0); // fire
+					buffer.writeShort(0); // water
+					buffer.writeShort(0); // wind
+					buffer.writeShort(0); // earth
+					buffer.writeShort(0); // holy
+					buffer.writeShort(0); // dark
 				}
 			}
 			for (Ingredient ing : ent.getIngredients())
 			{
-				writeInt(ing.getTemplate() != null ? ing.getTemplate().getDisplayId() : ing.getItemId());
-				writeShort(ing.getTemplate() != null ? ing.getTemplate().getType2() : 65535);
-				writeLong(ing.getItemCount());
+				buffer.writeInt(ing.getTemplate() != null ? ing.getTemplate().getDisplayId() : ing.getItemId());
+				buffer.writeShort(ing.getTemplate() != null ? ing.getTemplate().getType2() : 65535);
+				buffer.writeLong(ing.getItemCount());
 				if (ing.getItemInfo() != null)
 				{
-					writeShort(ing.getItemInfo().getEnchantLevel()); // enchant level
-					writeInt(ing.getItemInfo().getAugmentId()); // augment id
-					writeInt(0); // mana
-					writeShort(ing.getItemInfo().getElementId()); // attack element
-					writeShort(ing.getItemInfo().getElementPower()); // element power
-					writeShort(ing.getItemInfo().getElementals()[0]); // fire
-					writeShort(ing.getItemInfo().getElementals()[1]); // water
-					writeShort(ing.getItemInfo().getElementals()[2]); // wind
-					writeShort(ing.getItemInfo().getElementals()[3]); // earth
-					writeShort(ing.getItemInfo().getElementals()[4]); // holy
-					writeShort(ing.getItemInfo().getElementals()[5]); // dark
+					buffer.writeShort(ing.getItemInfo().getEnchantLevel()); // enchant level
+					buffer.writeInt(ing.getItemInfo().getAugmentId()); // augment id
+					buffer.writeInt(0); // mana
+					buffer.writeShort(ing.getItemInfo().getElementId()); // attack element
+					buffer.writeShort(ing.getItemInfo().getElementPower()); // element power
+					buffer.writeShort(ing.getItemInfo().getElementals()[0]); // fire
+					buffer.writeShort(ing.getItemInfo().getElementals()[1]); // water
+					buffer.writeShort(ing.getItemInfo().getElementals()[2]); // wind
+					buffer.writeShort(ing.getItemInfo().getElementals()[3]); // earth
+					buffer.writeShort(ing.getItemInfo().getElementals()[4]); // holy
+					buffer.writeShort(ing.getItemInfo().getElementals()[5]); // dark
 				}
 				else
 				{
-					writeShort(ing.getEnchantLevel()); // enchant level
-					writeInt(0); // augment id
-					writeInt(0); // mana
-					writeShort(0); // attack element
-					writeShort(0); // element power
-					writeShort(0); // fire
-					writeShort(0); // water
-					writeShort(0); // wind
-					writeShort(0); // earth
-					writeShort(0); // holy
-					writeShort(0); // dark
+					buffer.writeShort(ing.getEnchantLevel()); // enchant level
+					buffer.writeInt(0); // augment id
+					buffer.writeInt(0); // mana
+					buffer.writeShort(0); // attack element
+					buffer.writeShort(0); // element power
+					buffer.writeShort(0); // fire
+					buffer.writeShort(0); // water
+					buffer.writeShort(0); // wind
+					buffer.writeShort(0); // earth
+					buffer.writeShort(0); // holy
+					buffer.writeShort(0); // dark
 				}
 			}
 		}

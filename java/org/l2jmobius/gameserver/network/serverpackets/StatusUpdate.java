@@ -19,7 +19,9 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class StatusUpdate extends ServerPacket
@@ -100,15 +102,21 @@ public class StatusUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.STATUS_UPDATE.writeId(this);
-		writeInt(_objectId);
-		writeInt(_attributes.size());
+		ServerPackets.STATUS_UPDATE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_attributes.size());
 		for (Attribute temp : _attributes)
 		{
-			writeInt(temp.id);
-			writeInt(temp.value);
+			buffer.writeInt(temp.id);
+			buffer.writeInt(temp.value);
 		}
+	}
+	
+	@Override
+	public boolean canBeDropped(GameClient client)
+	{
+		return true;
 	}
 }

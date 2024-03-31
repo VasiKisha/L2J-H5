@@ -170,7 +170,7 @@
 	</item>
 	<item id="20711" type="Armor" name="Jack O'Lantern Mask (Event)">
 		<!-- For events. Jack O'Lantern Mask. Equip to use card skill needed to play Jack Game. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
-		<set name="icon" val="BranchSys.icon.br_jack0_mask_i00" />
+		<set name="icon" val="icon.ev_jack0_mask_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="hairall" />
 		<set name="immediate_effect" val="true" />
@@ -360,7 +360,7 @@
 	</item>
 	<item id="20723" type="Armor" name="Golden Jack O'Lantern Mask.">
 		<!-- Jack O'Lantern Mask made with gold. It glows gorgeously. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
-		<set name="icon" val="BranchSys.icon.br_golden_jack0_mask_i00" />
+		<set name="icon" val="icon.ev_golden_jack0_mask_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="hairall" />
 		<set name="immediate_effect" val="true" />
@@ -374,7 +374,7 @@
 	</item>
 	<item id="20724" type="Armor" name="Golden Jack O'Lantern Mask. - Authority of Golden Jack O'Lantern - 7-Day Limited Period">
 		<!-- Jack O'Lantern Mask made with gold. It glows gorgeously. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 1 hour. -->
-		<set name="icon" val="BranchSys.icon.br_golden_jack0_mask_i00" />
+		<set name="icon" val="icon.ev_golden_jack0_mask_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="hairall" />
 		<set name="immediate_effect" val="true" />

@@ -20,7 +20,7 @@ import java.util.Collections;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.handler.BypassHandler;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
@@ -412,7 +412,7 @@ public class SellBuff implements IVoicedCommandHandler, IBypassHandler
 						}
 						else
 						{
-							final ItemTemplate item = ItemTable.getInstance().getTemplate(Config.SELLBUFF_PAYMENT_ID);
+							final ItemTemplate item = ItemData.getInstance().getTemplate(Config.SELLBUFF_PAYMENT_ID);
 							if (item != null)
 							{
 								player.sendMessage("Not enough " + item.getName() + "!");

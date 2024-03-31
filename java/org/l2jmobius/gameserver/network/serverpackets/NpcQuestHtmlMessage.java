@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.enums.HtmlActionScope;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -34,12 +36,12 @@ public class NpcQuestHtmlMessage extends AbstractHtmlPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_NPC_QUEST_HTML_MESSAGE.writeId(this);
-		writeInt(getNpcObjId());
-		writeString(getHtml());
-		writeInt(_questId);
+		ServerPackets.EX_NPC_QUEST_HTML_MESSAGE.writeId(this, buffer);
+		buffer.writeInt(getNpcObjId());
+		buffer.writeString(getHtml());
+		buffer.writeInt(_questId);
 	}
 	
 	@Override

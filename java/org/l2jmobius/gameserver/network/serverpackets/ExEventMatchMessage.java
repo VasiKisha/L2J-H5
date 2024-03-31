@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -38,10 +40,10 @@ public class ExEventMatchMessage extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_EVENT_MATCH_MESSAGE.writeId(this);
-		writeByte(_type);
-		writeString(_message);
+		ServerPackets.EX_EVENT_MATCH_MESSAGE.writeId(this, buffer);
+		buffer.writeByte(_type);
+		buffer.writeString(_message);
 	}
 }

@@ -34,6 +34,10 @@ public interface IBlock
 	
 	boolean checkNearestNswe(int geoX, int geoY, int worldZ, int nswe);
 	
+	void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe);
+	
+	void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe);
+	
 	int getNearestZ(int geoX, int geoY, int worldZ);
 	
 	int getNextLowerZ(int geoX, int geoY, int worldZ);

@@ -19,7 +19,9 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.enums.AcquireSkillType;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -53,7 +55,6 @@ public class AcquireSkillList extends ServerPacket
 	
 	public AcquireSkillList(AcquireSkillType type)
 	{
-		super(512);
 		_skillType = type;
 		_skills = new ArrayList<>();
 	}
@@ -64,26 +65,26 @@ public class AcquireSkillList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_skills.isEmpty())
 		{
 			return;
 		}
 		
-		ServerPackets.ACQUIRE_SKILL_LIST.writeId(this);
-		writeInt(_skillType.ordinal());
-		writeInt(_skills.size());
+		ServerPackets.ACQUIRE_SKILL_LIST.writeId(this, buffer);
+		buffer.writeInt(_skillType.ordinal());
+		buffer.writeInt(_skills.size());
 		for (Skill temp : _skills)
 		{
-			writeInt(temp.id);
-			writeInt(temp.nextLevel);
-			writeInt(temp.maxLevel);
-			writeInt(temp.spCost);
-			writeInt(temp.requirements);
+			buffer.writeInt(temp.id);
+			buffer.writeInt(temp.nextLevel);
+			buffer.writeInt(temp.maxLevel);
+			buffer.writeInt(temp.spCost);
+			buffer.writeInt(temp.requirements);
 			if (_skillType == AcquireSkillType.SUBPLEDGE)
 			{
-				writeInt(0); // TODO: ?
+				buffer.writeInt(0); // TODO: ?
 			}
 		}
 	}

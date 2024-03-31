@@ -17,18 +17,22 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 
 /**
  * format ch c: (id) 0xD0 h: (subid) 0x12
  * @author -Wooden-
  */
-public class RequestOlympiadObserverEnd implements ClientPacket
+public class RequestOlympiadObserverEnd extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

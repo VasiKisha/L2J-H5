@@ -18,7 +18,9 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -39,16 +41,16 @@ public class PackageSendableList extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PACKAGE_SENDABLE_LIST.writeId(this);
-		writeInt(_playerObjId);
-		writeLong(_adena);
-		writeInt(_items.size());
+		ServerPackets.PACKAGE_SENDABLE_LIST.writeId(this, buffer);
+		buffer.writeInt(_playerObjId);
+		buffer.writeLong(_adena);
+		buffer.writeInt(_items.size());
 		for (Item item : _items)
 		{
-			writeItem(item);
-			writeInt(item.getObjectId());
+			writeItem(item, buffer);
+			buffer.writeInt(item.getObjectId());
 		}
 	}
 }

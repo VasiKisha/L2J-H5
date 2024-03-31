@@ -828,7 +828,7 @@
 		<!-- Hair accessory in the shape of raccoon ears -->
 		<set name="icon" val="icon.accessory_racoon_ear_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="bodypart" val="hair2" />
+		<set name="bodypart" val="hair" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
@@ -848,7 +848,7 @@
 		<!-- Pink hairpin. Hair accessory for women only -->
 		<set name="icon" val="icon.accessory_maidens_hairpin_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="bodypart" val="hair2" />
+		<set name="bodypart" val="hair" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
@@ -861,7 +861,7 @@
 		<!-- Hair accessory in the shape of Rabbit Ears. -->
 		<set name="icon" val="icon.accessory_rabbit_ear_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="bodypart" val="hair2" />
+		<set name="bodypart" val="hair" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
@@ -999,7 +999,7 @@
 		<!-- A hairpin with a forget-me-not flower pattern. Hair accessory exclusively for women. -->
 		<set name="icon" val="icon.accessory_forget_me_not_hairpin_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="bodypart" val="hair2" />
+		<set name="bodypart" val="hair" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
@@ -1012,7 +1012,7 @@
 		<!-- A hairpin with a daisy pattern. Hair accessory exclusively for women. -->
 		<set name="icon" val="icon.accessory_daisy_hairpin_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="bodypart" val="hair2" />
+		<set name="bodypart" val="hair" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />

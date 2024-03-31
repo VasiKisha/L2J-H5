@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.ItemInfo;
 import org.l2jmobius.gameserver.model.TradeItem;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -26,63 +27,63 @@ import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
  */
 public abstract class AbstractItemPacket extends ServerPacket
 {
-	protected void writeItem(TradeItem item)
+	protected void writeItem(TradeItem item, WritableBuffer buffer)
 	{
-		writeItem(new ItemInfo(item));
+		writeItem(new ItemInfo(item), buffer);
 	}
 	
-	protected void writeItem(Item item)
+	protected void writeItem(Item item, WritableBuffer buffer)
 	{
-		writeItem(new ItemInfo(item));
+		writeItem(new ItemInfo(item), buffer);
 	}
 	
-	protected void writeItem(ItemInfo item)
+	protected void writeItem(ItemInfo item, WritableBuffer buffer)
 	{
-		writeInt(item.getObjectId()); // ObjectId
-		writeInt(item.getItem().getDisplayId()); // ItemId
-		writeInt(item.getLocation()); // T1
-		writeLong(item.getCount()); // Quantity
-		writeShort(item.getItem().getType2()); // Item Type 2 : 00-weapon, 01-shield/armor, 02-ring/earring/necklace, 03-questitem, 04-adena, 05-item
-		writeShort(item.getCustomType1()); // Filler (always 0)
-		writeShort(item.getEquipped()); // Equipped : 00-No, 01-yes
-		writeInt(item.getItem().getBodyPart()); // Slot : 0006-lr.ear, 0008-neck, 0030-lr.finger, 0040-head, 0100-l.hand, 0200-gloves, 0400-chest, 0800-pants, 1000-feet, 4000-r.hand, 8000-r.hand
-		writeShort(item.getEnchant()); // Enchant level (pet level shown in control item)
-		writeShort(item.getCustomType2()); // Pet name exists or not shown in control item
-		writeInt(item.getAugmentationBonus());
-		writeInt(item.getMana());
-		writeInt(item.getTime());
-		writeItemElementalAndEnchant(item);
+		buffer.writeInt(item.getObjectId()); // ObjectId
+		buffer.writeInt(item.getItem().getDisplayId()); // ItemId
+		buffer.writeInt(item.getLocation()); // T1
+		buffer.writeLong(item.getCount()); // Quantity
+		buffer.writeShort(item.getItem().getType2()); // Item Type 2 : 00-weapon, 01-shield/armor, 02-ring/earring/necklace, 03-questitem, 04-adena, 05-item
+		buffer.writeShort(item.getCustomType1()); // Filler (always 0)
+		buffer.writeShort(item.getEquipped()); // Equipped : 00-No, 01-yes
+		buffer.writeInt(item.getItem().getBodyPart()); // Slot : 0006-lr.ear, 0008-neck, 0030-lr.finger, 0040-head, 0100-l.hand, 0200-gloves, 0400-chest, 0800-pants, 1000-feet, 4000-r.hand, 8000-r.hand
+		buffer.writeShort(item.getEnchant()); // Enchant level (pet level shown in control item)
+		buffer.writeShort(item.getCustomType2()); // Pet name exists or not shown in control item
+		buffer.writeInt(item.getAugmentationBonus());
+		buffer.writeInt(item.getMana());
+		buffer.writeInt(item.getTime());
+		writeItemElementalAndEnchant(item, buffer);
 	}
 	
-	protected void writeItemElementalAndEnchant(ItemInfo item)
+	protected void writeItemElementalAndEnchant(ItemInfo item, WritableBuffer buffer)
 	{
-		writeShort(item.getAttackElementType());
-		writeShort(item.getAttackElementPower());
+		buffer.writeShort(item.getAttackElementType());
+		buffer.writeShort(item.getAttackElementPower());
 		for (byte i = 0; i < 6; i++)
 		{
-			writeShort(item.getElementDefAttr(i));
+			buffer.writeShort(item.getElementDefAttr(i));
 		}
 		// Enchant Effects
 		for (int op : item.getEnchantOptions())
 		{
-			writeShort(op);
+			buffer.writeShort(op);
 		}
 	}
 	
-	protected void writeInventoryBlock(PlayerInventory inventory)
+	protected void writeInventoryBlock(PlayerInventory inventory, WritableBuffer buffer)
 	{
 		if (inventory.hasInventoryBlock())
 		{
-			writeShort(inventory.getBlockItems().length);
-			writeByte(inventory.getBlockMode());
+			buffer.writeShort(inventory.getBlockItems().length);
+			buffer.writeByte(inventory.getBlockMode());
 			for (int i : inventory.getBlockItems())
 			{
-				writeInt(i);
+				buffer.writeInt(i);
 			}
 		}
 		else
 		{
-			writeShort(0);
+			buffer.writeShort(0);
 		}
 	}
 }

@@ -34,7 +34,6 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.holders.SellBuffHolder;
 import org.l2jmobius.gameserver.network.Disconnection;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 
 public class OfflineTraderTable
@@ -214,13 +213,8 @@ public class OfflineTraderTable
 				
 				try
 				{
-					final GameClient client = new GameClient();
-					client.setDetached(true);
 					player = Player.load(rs.getInt("charId"));
-					client.setPlayer(player);
 					player.setOnlineStatus(true, false);
-					client.setAccountName(player.getAccountNamePlayer());
-					player.setClient(client);
 					player.setOfflineStartTime(time);
 					
 					if (isSellBuff)

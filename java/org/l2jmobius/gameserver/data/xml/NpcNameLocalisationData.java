@@ -58,7 +58,7 @@ public class NpcNameLocalisationData implements IXmlReader
 					continue;
 				}
 				
-				NPC_NAME_LOCALISATIONS.put(lang, new ConcurrentHashMap<Integer, String[]>());
+				NPC_NAME_LOCALISATIONS.put(lang, new ConcurrentHashMap<>());
 				_lang = lang;
 				parseDatapackFile("data/lang/" + lang + "/NpcNameLocalisation.xml");
 				final int count = NPC_NAME_LOCALISATIONS.get(lang).values().size();

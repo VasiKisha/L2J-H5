@@ -16,16 +16,14 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 
 /**
  * RequestBBSwrite client packet implementation.
  * @author -Wooden-, Zoey76
  */
-public class RequestBBSwrite implements ClientPacket
+public class RequestBBSwrite extends ClientPacket
 {
 	private String _url;
 	private String _arg1;
@@ -35,20 +33,20 @@ public class RequestBBSwrite implements ClientPacket
 	private String _arg5;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_url = packet.readString();
-		_arg1 = packet.readString();
-		_arg2 = packet.readString();
-		_arg3 = packet.readString();
-		_arg4 = packet.readString();
-		_arg5 = packet.readString();
+		_url = readString();
+		_arg1 = readString();
+		_arg2 = readString();
+		_arg3 = readString();
+		_arg4 = readString();
+		_arg5 = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

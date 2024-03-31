@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -31,9 +33,9 @@ public class ExRedSky extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RED_SKY.writeId(this);
-		writeInt(_duration);
+		ServerPackets.EX_RED_SKY.writeId(this, buffer);
+		buffer.writeInt(_duration);
 	}
 }

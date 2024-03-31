@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ChangeWaitType extends ServerPacket
@@ -42,13 +44,13 @@ public class ChangeWaitType extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.CHANGE_WAIT_TYPE.writeId(this);
-		writeInt(_objectId);
-		writeInt(_moveType);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
+		ServerPackets.CHANGE_WAIT_TYPE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_moveType);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
 	}
 }

@@ -413,9 +413,13 @@
 			<xs:enumeration value="waterPower" />
 			<xs:enumeration value="windPower" />
 			<xs:enumeration value="firePower" />
-			<xs:enumeration value="bonusSp" />
 			<xs:enumeration value="defCritRateAdd" />
 			<xs:enumeration value="bonusExp" />
+			<xs:enumeration value="bonusSp" />
+			<xs:enumeration value="bonusDropAdena" />
+			<xs:enumeration value="bonusDropAmount" />
+			<xs:enumeration value="bonusDropRate" />
+			<xs:enumeration value="bonusSpoilRate" />
 			<xs:enumeration value="pvePhysDmg" />
 			<xs:enumeration value="pvePhysSkillsDmg" />
 			<xs:enumeration value="pveBowDmg" />

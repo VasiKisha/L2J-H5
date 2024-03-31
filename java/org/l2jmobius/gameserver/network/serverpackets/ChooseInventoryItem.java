@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ChooseInventoryItem extends ServerPacket
@@ -28,9 +30,9 @@ public class ChooseInventoryItem extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.CHOOSE_INVENTORY_ITEM.writeId(this);
-		writeInt(_itemId);
+		ServerPackets.CHOOSE_INVENTORY_ITEM.writeId(this, buffer);
+		buffer.writeInt(_itemId);
 	}
 }

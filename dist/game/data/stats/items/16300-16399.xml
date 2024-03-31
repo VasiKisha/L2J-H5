@@ -196,7 +196,7 @@
 	</item>
 	<item id="16309" type="Armor" name="Vesper Breastplate">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, and Resistance to Hold. -->
-		<set name="icon" val="icon.armor_t94_u_i00" />
+		<set name="icon" val="icon.armor_t94_u_i02" />
 		<set name="default_action" val="EQUIP" />
 		<set name="armor_type" val="HEAVY" />
 		<set name="bodypart" val="chest" />
@@ -219,7 +219,7 @@
 	</item>
 	<item id="16310" type="Armor" name="Vesper Leather Breastplate">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
-		<set name="icon" val="icon.armor_t95_u_i00" />
+		<set name="icon" val="icon.armor_t95_u_i02" />
 		<set name="default_action" val="EQUIP" />
 		<set name="armor_type" val="LIGHT" />
 		<set name="bodypart" val="chest" />
@@ -239,7 +239,7 @@
 	</item>
 	<item id="16311" type="Armor" name="Vesper Tunic">
 		<!-- Masterwork Item that increases M. Atk., Casting Spd., MP Regeneration, and Resistance to Stun, and decreases Magic Cancel Rate. -->
-		<set name="icon" val="icon.armor_t96_u_i00" />
+		<set name="icon" val="icon.armor_t96_u_i02" />
 		<set name="default_action" val="EQUIP" />
 		<set name="armor_type" val="MAGIC" />
 		<set name="bodypart" val="chest" />

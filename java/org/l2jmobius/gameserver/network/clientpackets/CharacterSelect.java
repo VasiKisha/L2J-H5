@@ -19,7 +19,6 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.data.xml.SecondaryAuthData;
@@ -35,6 +34,7 @@ import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSelect
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
 import org.l2jmobius.gameserver.model.punishment.PunishmentType;
+import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.ConnectionState;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -47,7 +47,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ServerClose;
 /**
  * @version $Revision: 1.5.2.1.2.5 $ $Date: 2005/03/27 15:29:30 $
  */
-public class CharacterSelect implements ClientPacket
+public class CharacterSelect extends ClientPacket
 {
 	protected static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
 	
@@ -64,18 +64,19 @@ public class CharacterSelect implements ClientPacket
 	private int _unk4; // new in C4
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_charSlot = packet.readInt();
-		_unk1 = packet.readShort();
-		_unk2 = packet.readInt();
-		_unk3 = packet.readInt();
-		_unk4 = packet.readInt();
+		_charSlot = readInt();
+		_unk1 = readShort();
+		_unk2 = readInt();
+		_unk3 = readInt();
+		_unk4 = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
+		final GameClient client = getClient();
 		if (!client.getFloodProtectors().canSelectCharacter())
 		{
 			return;
@@ -170,6 +171,16 @@ public class CharacterSelect implements ClientPacket
 					if (cha.isGM() && Config.GM_STARTUP_INVISIBLE && AdminData.getInstance().hasAccess("admin_invisible", cha.getAccessLevel()))
 					{
 						cha.setInvisible(true);
+					}
+					
+					// Restore player location.
+					final PlayerVariables vars = cha.getVariables();
+					final String restore = vars.getString(PlayerVariables.RESTORE_LOCATION, "");
+					if (!restore.isEmpty())
+					{
+						final String[] split = restore.split(";");
+						cha.setXYZ(Integer.parseInt(split[0]), Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+						vars.remove(PlayerVariables.RESTORE_LOCATION);
 					}
 					
 					cha.setClient(client);

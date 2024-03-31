@@ -20,7 +20,6 @@ import java.util.List;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.FakePlayerData;
 import org.l2jmobius.gameserver.data.xml.InitialEquipmentData;
@@ -54,7 +53,7 @@ import org.l2jmobius.gameserver.network.serverpackets.CharCreateOk;
 import org.l2jmobius.gameserver.network.serverpackets.CharSelectionInfo;
 import org.l2jmobius.gameserver.util.Util;
 
-public class CharacterCreate implements ClientPacket
+public class CharacterCreate extends ClientPacket
 {
 	protected static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
 	
@@ -67,26 +66,28 @@ public class CharacterCreate implements ClientPacket
 	private byte _face;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
-		packet.readInt(); // race
-		_isFemale = packet.readInt() != 0;
-		_classId = packet.readInt();
-		packet.readInt(); // _int
-		packet.readInt(); // _str
-		packet.readInt(); // _con
-		packet.readInt(); // _men
-		packet.readInt(); // _dex
-		packet.readInt(); // _wit
-		_hairStyle = (byte) packet.readInt();
-		_hairColor = (byte) packet.readInt();
-		_face = (byte) packet.readInt();
+		_name = readString();
+		readInt(); // race
+		_isFemale = readInt() != 0;
+		_classId = readInt();
+		readInt(); // _int
+		readInt(); // _str
+		readInt(); // _con
+		readInt(); // _men
+		readInt(); // _dex
+		readInt(); // _wit
+		_hairStyle = (byte) readInt();
+		_hairColor = (byte) readInt();
+		_face = (byte) readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
+		final GameClient client = getClient();
+		
 		// Last Verified: May 30, 2009 - Gracia Final - Players are able to create characters with names consisting of as little as 1,2,3 letter/number combinations.
 		if ((_name.length() < 1) || (_name.length() > 16))
 		{

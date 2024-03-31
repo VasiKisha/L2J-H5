@@ -244,7 +244,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		}
 		
 		final StringBuilder html = new StringBuilder(500 + (effects.size() * 200));
-		html.append("<html><table width=\"100%\"><tr><td width=45><button value=\"Main\" action=\"bypass -h admin_admin\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td width=180><center><font color=\"LEVEL\">Effects of ");
+		html.append("<html><table width=\"100%\"><tr><td width=45><button value=\"Main\" action=\"bypass admin_admin\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td width=180><center><font color=\"LEVEL\">Effects of ");
 		html.append(target.getName());
 		html.append("</font></td><td width=45><button value=\"Back\" action=\"bypass -h admin_current_player\" width=45 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr></table><br><table width=\"100%\"><tr><td width=200>Skill</td><td width=30>Rem. Time</td><td width=70>Action</td></tr>");
 		
@@ -307,10 +307,19 @@ public class AdminBuffs implements IAdminCommandHandler
 		html.append("<br><center><button value=\"Refresh\" action=\"bypass -h admin_getbuffs");
 		html.append(passive ? "_ps " : " ");
 		html.append(target.getName());
-		html.append("\" width=80 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\">");
+		html.append("\" width=160 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"><br>");
+		
+		html.append("<button value=\"");
+		html.append(passive ? "Hide Passives" : "Show Passives");
+		html.append("\" action=\"bypass -h admin_getbuffs");
+		html.append(passive ? " " : "_ps ");
+		html.append(target.getName());
+		html.append("\" width=160 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"><br>");
+		
 		html.append("<button value=\"Remove All\" action=\"bypass -h admin_stopallbuffs ");
 		html.append(target.getObjectId());
-		html.append("\" width=80 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"><br>");
+		html.append("\" width=160 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"><br>");
+		
 		// Legend
 		if (!passive)
 		{
@@ -339,6 +348,7 @@ public class AdminBuffs implements IAdminCommandHandler
 			}
 		}
 		html.append("</html>");
+		
 		// Send the packet
 		activeChar.sendPacket(new NpcHtmlMessage(html.toString()));
 		if (Config.GMAUDIT)

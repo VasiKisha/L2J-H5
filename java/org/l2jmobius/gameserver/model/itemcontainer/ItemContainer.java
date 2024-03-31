@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -222,7 +222,7 @@ public abstract class ItemContainer
 			olditem.setLastChange(Item.MODIFIED);
 			
 			// And destroys the item
-			ItemTable.getInstance().destroyItem(process, newItem, actor, reference);
+			ItemData.getInstance().destroyItem(process, newItem, actor, reference);
 			newItem.updateDatabase();
 			newItem = olditem;
 		}
@@ -264,14 +264,14 @@ public abstract class ItemContainer
 			final InventoryUpdate iu = new InventoryUpdate();
 			for (int i = 0; i < count; i++)
 			{
-				final ItemTemplate template = ItemTable.getInstance().getTemplate(itemId);
+				final ItemTemplate template = ItemData.getInstance().getTemplate(itemId);
 				if (template == null)
 				{
 					LOGGER.warning("Invalid ItemId (" + itemId + ") requested by " + (actor != null ? actor : process));
 					return null;
 				}
 				
-				item = ItemTable.getInstance().createItem(process, itemId, template.isStackable() ? count : 1, actor, reference);
+				item = ItemData.getInstance().createItem(process, itemId, template.isStackable() ? count : 1, actor, reference);
 				item.setOwnerId(getOwnerId());
 				item.setItemLocation(getBaseLocation());
 				item.setLastChange(Item.ADDED);
@@ -359,7 +359,7 @@ public abstract class ItemContainer
 				else // Otherwise destroy old item
 				{
 					removeItem(sourceitem);
-					ItemTable.getInstance().destroyItem(process, sourceitem, actor, reference);
+					ItemData.getInstance().destroyItem(process, sourceitem, actor, reference);
 				}
 				
 				if (targetitem != null) // If possible, only update counts
@@ -434,7 +434,7 @@ public abstract class ItemContainer
 					return null;
 				}
 				
-				ItemTable.getInstance().destroyItem(process, item, actor, reference);
+				ItemData.getInstance().destroyItem(process, item, actor, reference);
 				item.updateDatabase();
 				refreshWeight();
 				
@@ -627,7 +627,7 @@ public abstract class ItemContainer
 	 */
 	public boolean validateCapacityByItemId(int itemId, long count)
 	{
-		final ItemTemplate template = ItemTable.getInstance().getTemplate(itemId);
+		final ItemTemplate template = ItemData.getInstance().getTemplate(itemId);
 		return (template == null) || (template.isStackable() ? validateCapacity(1) : validateCapacity(count));
 	}
 	
@@ -638,7 +638,7 @@ public abstract class ItemContainer
 	 */
 	public boolean validateWeightByItemId(int itemId, long count)
 	{
-		final ItemTemplate template = ItemTable.getInstance().getTemplate(itemId);
+		final ItemTemplate template = ItemData.getInstance().getTemplate(itemId);
 		return (template == null) || validateWeight(template.getWeight() * count);
 	}
 }

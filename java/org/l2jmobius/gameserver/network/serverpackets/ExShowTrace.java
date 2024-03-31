@@ -19,8 +19,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -42,17 +44,17 @@ public class ExShowTrace extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_TRACE.writeId(this);
-		writeShort(0); // type broken in H5
-		writeInt(0); // time broken in H5
-		writeShort(_locations.size());
+		ServerPackets.EX_SHOW_TRACE.writeId(this, buffer);
+		buffer.writeShort(0); // type broken in H5
+		buffer.writeInt(0); // time broken in H5
+		buffer.writeShort(_locations.size());
 		for (Location loc : _locations)
 		{
-			writeInt(loc.getX());
-			writeInt(loc.getY());
-			writeInt(loc.getZ());
+			buffer.writeInt(loc.getX());
+			buffer.writeInt(loc.getY());
+			buffer.writeInt(loc.getZ());
 		}
 	}
 }

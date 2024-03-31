@@ -16,12 +16,12 @@
  */
 package org.l2jmobius.gameserver.network.loginserverpackets.game;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
  * @author -Wooden-
  */
-public class PlayerLogout extends WritablePacket
+public class PlayerLogout extends BaseWritablePacket
 {
 	public PlayerLogout(String player)
 	{

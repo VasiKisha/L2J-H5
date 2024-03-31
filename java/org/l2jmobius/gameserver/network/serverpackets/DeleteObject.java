@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class DeleteObject extends ServerPacket
@@ -34,10 +36,10 @@ public class DeleteObject extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.DELETE_OBJECT.writeId(this);
-		writeInt(_objectId);
-		writeInt(0); // c2
+		ServerPackets.DELETE_OBJECT.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(0); // c2
 	}
 }

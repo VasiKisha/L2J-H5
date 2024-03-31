@@ -31,7 +31,6 @@ import org.w3c.dom.Node;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.file.filter.NumericNameFilter;
-import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -200,7 +199,7 @@ public class MultisellData implements IXmlReader
 				long totalPrice = 0;
 				for (Ingredient product : entry.getProducts())
 				{
-					final ItemTemplate template = ItemTable.getInstance().getTemplate(product.getItemId());
+					final ItemTemplate template = ItemData.getInstance().getTemplate(product.getItemId());
 					totalPrice += (product.getItemCount() * (template.getReferencePrice() / 2));
 				}
 				

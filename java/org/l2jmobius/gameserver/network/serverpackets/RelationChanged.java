@@ -19,7 +19,9 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Playable;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -88,30 +90,30 @@ public class RelationChanged extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.RELATION_CHANGED.writeId(this);
+		ServerPackets.RELATION_CHANGED.writeId(this, buffer);
 		if (_multi == null)
 		{
-			writeInt(1);
-			writeRelation(_singled);
+			buffer.writeInt(1);
+			writeRelation(_singled, buffer);
 		}
 		else
 		{
-			writeInt(_multi.size());
+			buffer.writeInt(_multi.size());
 			for (Relation relation : _multi)
 			{
-				writeRelation(relation);
+				writeRelation(relation, buffer);
 			}
 		}
 	}
 	
-	private void writeRelation(Relation relation)
+	private void writeRelation(Relation relation, WritableBuffer buffer)
 	{
-		writeInt(relation._objId);
-		writeInt(relation._relation);
-		writeInt(relation._autoAttackable);
-		writeInt(relation._karma);
-		writeInt(relation._pvpFlag);
+		buffer.writeInt(relation._objId);
+		buffer.writeInt(relation._relation);
+		buffer.writeInt(relation._autoAttackable);
+		buffer.writeInt(relation._karma);
+		buffer.writeInt(relation._pvpFlag);
 	}
 }

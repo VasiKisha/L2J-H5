@@ -30,7 +30,7 @@ import org.w3c.dom.NodeList;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
@@ -192,7 +192,7 @@ public class SellBuffsManager implements IXmlReader
 				continue;
 			}
 			
-			final ItemTemplate item = ItemTable.getInstance().getTemplate(Config.SELLBUFF_PAYMENT_ID);
+			final ItemTemplate item = ItemData.getInstance().getTemplate(Config.SELLBUFF_PAYMENT_ID);
 			
 			sb.append("<tr>");
 			sb.append("<td fixwidth=\"20\"></td>");

@@ -16,39 +16,30 @@
  */
 package org.l2jmobius.gameserver.network.loginserverpackets.login;
 
-import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.network.base.BaseReadablePacket;
 
 /**
  * @author -Wooden-
  */
-public class PlayerAuthResponse extends ReadablePacket
+public class PlayerAuthResponse extends BaseReadablePacket
 {
 	private final String _account;
 	private final boolean _authed;
 	
-	/**
-	 * @param decrypt
-	 */
 	public PlayerAuthResponse(byte[] decrypt)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		_account = readString();
 		_authed = readByte() != 0;
 	}
 	
-	/**
-	 * @return Returns the account.
-	 */
 	public String getAccount()
 	{
 		return _account;
 	}
 	
-	/**
-	 * @return Returns the authed state.
-	 */
 	public boolean isAuthed()
 	{
 		return _authed;

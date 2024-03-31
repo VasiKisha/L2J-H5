@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -40,11 +42,11 @@ public class ExSpawnEmitter extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SPAWN_EMITTER.writeId(this);
-		writeInt(_npcObjectId);
-		writeInt(_playerObjectId);
-		writeInt(0); // ?
+		ServerPackets.EX_SPAWN_EMITTER.writeId(this, buffer);
+		buffer.writeInt(_npcObjectId);
+		buffer.writeInt(_playerObjectId);
+		buffer.writeInt(0); // ?
 	}
 }

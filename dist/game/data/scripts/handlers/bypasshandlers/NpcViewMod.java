@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.enums.DropType;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.Elementals;
@@ -38,6 +38,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.holders.DropGroupHolder;
 import org.l2jmobius.gameserver.model.holders.DropHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.HtmlUtil;
 import org.l2jmobius.gameserver.util.Util;
@@ -300,6 +301,10 @@ public class NpcViewMod implements IBypassHandler
 		final DecimalFormat chanceFormat = new DecimalFormat("0.00##");
 		int leftHeight = 0;
 		int rightHeight = 0;
+		final double dropAmountAdenaEffectBonus = player.getStat().getBonusDropAdenaMultiplier();
+		final double dropAmountEffectBonus = player.getStat().getBonusDropAmountMultiplier();
+		final double dropRateEffectBonus = player.getStat().getBonusDropRateMultiplier();
+		final double spoilRateEffectBonus = player.getStat().getBonusSpoilRateMultiplier();
 		final StringBuilder leftSb = new StringBuilder();
 		final StringBuilder rightSb = new StringBuilder();
 		String limitReachedMsg = "";
@@ -308,7 +313,7 @@ public class NpcViewMod implements IBypassHandler
 			final StringBuilder sb = new StringBuilder();
 			final int height = 64;
 			final DropHolder dropItem = dropList.get(i);
-			final ItemTemplate item = ItemTable.getInstance().getTemplate(dropItem.getItemId());
+			final ItemTemplate item = ItemData.getInstance().getTemplate(dropItem.getItemId());
 			
 			// real time server rate calculations
 			double rateChance = 1;
@@ -324,6 +329,9 @@ public class NpcViewMod implements IBypassHandler
 					rateChance *= Config.PREMIUM_RATE_SPOIL_CHANCE;
 					rateAmount *= Config.PREMIUM_RATE_SPOIL_AMOUNT;
 				}
+				
+				// bonus spoil rate effect
+				rateChance *= spoilRateEffectBonus;
 			}
 			else
 			{
@@ -398,6 +406,15 @@ public class NpcViewMod implements IBypassHandler
 						rateAmount *= Config.PREMIUM_RATE_DROP_AMOUNT;
 					}
 				}
+				
+				// bonus drop amount effect
+				rateAmount *= dropAmountEffectBonus;
+				if (item.getId() == Inventory.ADENA_ID)
+				{
+					rateAmount *= dropAmountAdenaEffectBonus;
+				}
+				// bonus drop rate effect
+				rateChance *= dropRateEffectBonus;
 			}
 			
 			sb.append("<table width=332 cellpadding=2 cellspacing=0 background=\"L2UI_CT1.Windows.Windows_DF_TooltipBG\">");

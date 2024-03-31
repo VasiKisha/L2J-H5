@@ -16,13 +16,13 @@
  */
 package org.l2jmobius.loginserver.network.loginserverpackets;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 import org.l2jmobius.loginserver.GameServerTable;
 
 /**
  * @author -Wooden-
  */
-public class AuthResponse extends WritablePacket
+public class AuthResponse extends BaseWritablePacket
 {
 	public AuthResponse(int serverId)
 	{

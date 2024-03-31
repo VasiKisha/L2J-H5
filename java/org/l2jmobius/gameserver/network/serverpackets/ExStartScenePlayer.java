@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.enums.Movie;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -32,9 +34,9 @@ public class ExStartScenePlayer extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_START_SCENE_PLAYER.writeId(this);
-		writeInt(_movie.getClientId());
+		ServerPackets.EX_START_SCENE_PLAYER.writeId(this, buffer);
+		buffer.writeInt(_movie.getClientId());
 	}
 }

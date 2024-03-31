@@ -22,12 +22,14 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSignsFestival;
+import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.ConnectionState;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -42,14 +44,19 @@ import org.l2jmobius.gameserver.util.OfflineTradeUtil;
 /**
  * @version $Revision: 1.11.2.1.2.4 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestRestart implements ClientPacket
+public class RequestRestart extends ClientPacket
 {
 	protected static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
 	
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -129,24 +136,18 @@ public class RequestRestart implements ClientPacket
 				if (world != null)
 				{
 					player.setInstanceId(0);
-					final Location location = world.getExitLoc();
-					if (location != null)
+					Location location = world.getExitLoc();
+					if (location == null)
 					{
-						player.teleToLocation(location, true);
+						location = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.TOWN);
 					}
-					else
-					{
-						player.teleToLocation(TeleportWhereType.TOWN);
-					}
-					if (player.hasSummon())
-					{
-						player.getSummon().teleToLocation(player, true);
-					}
+					player.getVariables().set(PlayerVariables.RESTORE_LOCATION, location.getX() + ";" + location.getY() + ";" + location.getZ());
 					world.removePlayer(player.getObjectId());
 				}
 			}
 		}
 		
+		final GameClient client = getClient();
 		LOGGER_ACCOUNTING.info("Logged out, " + client);
 		
 		if (!OfflineTradeUtil.enteredOfflineMode(player))

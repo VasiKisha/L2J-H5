@@ -34,7 +34,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.enums.PlayerState;
@@ -1161,9 +1161,9 @@ public abstract class DocumentBase
 					{
 						final int old = mask;
 						final String item = st.nextToken().trim();
-						if (ItemTable.SLOTS.containsKey(item))
+						if (ItemData.SLOTS.containsKey(item))
 						{
-							mask |= ItemTable.SLOTS.get(item);
+							mask |= ItemData.SLOTS.get(item);
 						}
 						
 						if (old == mask)

@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class Snoop extends ServerPacket
@@ -37,14 +39,14 @@ public class Snoop extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SNOOP.writeId(this);
-		writeInt(_convoId);
-		writeString(_name);
-		writeInt(0); // ??
-		writeInt(_type.getClientId());
-		writeString(_speaker);
-		writeString(_msg);
+		ServerPackets.SNOOP.writeId(this, buffer);
+		buffer.writeInt(_convoId);
+		buffer.writeString(_name);
+		buffer.writeInt(0); // ??
+		buffer.writeInt(_type.getClientId());
+		buffer.writeString(_speaker);
+		buffer.writeString(_msg);
 	}
 }

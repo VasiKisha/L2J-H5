@@ -19,6 +19,15 @@ package org.l2jmobius.gameserver.network.clientpackets;
 /**
  * @author KenM
  */
-public class RequestPVPMatchRecord implements ClientPacket
+public class RequestPVPMatchRecord extends ClientPacket
 {
+	@Override
+	protected void readImpl()
+	{
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+	}
 }

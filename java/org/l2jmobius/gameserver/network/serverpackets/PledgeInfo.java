@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PledgeInfo extends ServerPacket
@@ -29,11 +31,11 @@ public class PledgeInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_INFO.writeId(this);
-		writeInt(_clan.getId());
-		writeString(_clan.getName());
-		writeString(_clan.getAllyName());
+		ServerPackets.PLEDGE_INFO.writeId(this, buffer);
+		buffer.writeInt(_clan.getId());
+		buffer.writeString(_clan.getName());
+		buffer.writeString(_clan.getAllyName());
 	}
 }

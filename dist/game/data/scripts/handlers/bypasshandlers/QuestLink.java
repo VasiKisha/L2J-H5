@@ -129,7 +129,7 @@ public class QuestLink implements IBypassHandler
 				state = quest.isCustomQuest() ? " (Done)" : "03";
 				// color = "787878";
 			}
-			sb.append("<a action=\"bypass -h npc_" + npc.getObjectId() + "_Quest " + quest.getName() + "\">");
+			sb.append("<a action=\"bypass npc_" + npc.getObjectId() + "_Quest " + quest.getName() + "\">");
 			// StringUtil.append(sb, "<font color=\"" + color + "\">[");
 			sb.append("[");
 			
@@ -161,7 +161,7 @@ public class QuestLink implements IBypassHandler
 			{
 				if (questId == TO_LEAD_AND_BE_LED)
 				{
-					String localisation = "<a action=\"bypass -h Quest Q00118_ToLeadAndBeLed sponsor\">[<fstring>" + questId + state + "</fstring> (Sponsor)]</a><br>";
+					String localisation = "<a action=\"bypass Quest Q00118_ToLeadAndBeLed sponsor\">[<fstring>" + questId + state + "</fstring> (Sponsor)]</a><br>";
 					if (Config.MULTILANG_ENABLE)
 					{
 						final NpcStringId ns = NpcStringId.getNpcStringId(Integer.parseInt(questId + state));
@@ -170,7 +170,7 @@ public class QuestLink implements IBypassHandler
 							final NSLocalisation nsl = ns.getLocalisation(player.getLang());
 							if (nsl != null)
 							{
-								localisation = "<a action=\"bypass -h Quest Q00118_ToLeadAndBeLed sponsor\">[" + nsl.getLocalisation(Collections.emptyList()) + " (Sponsor)]</a><br>";
+								localisation = "<a action=\"bypass Quest Q00118_ToLeadAndBeLed sponsor\">[" + nsl.getLocalisation(Collections.emptyList()) + " (Sponsor)]</a><br>";
 							}
 						}
 					}
@@ -179,7 +179,7 @@ public class QuestLink implements IBypassHandler
 				
 				if (questId == THE_LEADER_AND_THE_FOLLOWER)
 				{
-					String localisation = "<a action=\"bypass -h Quest Q00123_TheLeaderAndTheFollower sponsor\">[<fstring>" + questId + state + "</fstring> (Sponsor)]</a><br>";
+					String localisation = "<a action=\"bypass Quest Q00123_TheLeaderAndTheFollower sponsor\">[<fstring>" + questId + state + "</fstring> (Sponsor)]</a><br>";
 					if (Config.MULTILANG_ENABLE)
 					{
 						final NpcStringId ns = NpcStringId.getNpcStringId(Integer.parseInt(questId + state));
@@ -188,7 +188,7 @@ public class QuestLink implements IBypassHandler
 							final NSLocalisation nsl = ns.getLocalisation(player.getLang());
 							if (nsl != null)
 							{
-								localisation = "<a action=\"bypass -h Quest Q00123_TheLeaderAndTheFollower sponsor\">[" + nsl.getLocalisation(Collections.emptyList()) + " (Sponsor)]</a><br>";
+								localisation = "<a action=\"bypass Quest Q00123_TheLeaderAndTheFollower sponsor\">[" + nsl.getLocalisation(Collections.emptyList()) + " (Sponsor)]</a><br>";
 							}
 						}
 					}

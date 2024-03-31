@@ -1702,6 +1702,7 @@
 		<set name="magicLevel" val="40" />
 		<set name="mpConsume" val="200" />
 		<set name="operateType" val="T" />
+		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="SELF" />
 		<for>
 			<effect name="FakeDeath" ticks="5">

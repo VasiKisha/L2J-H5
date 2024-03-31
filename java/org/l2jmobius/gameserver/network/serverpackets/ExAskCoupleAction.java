@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -33,10 +35,10 @@ public class ExAskCoupleAction extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ASK_COUPLE_ACTION.writeId(this);
-		writeInt(_actionId);
-		writeInt(_objectId);
+		ServerPackets.EX_ASK_COUPLE_ACTION.writeId(this, buffer);
+		buffer.writeInt(_actionId);
+		buffer.writeInt(_objectId);
 	}
 }

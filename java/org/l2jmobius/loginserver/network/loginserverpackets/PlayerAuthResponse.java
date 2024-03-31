@@ -16,12 +16,12 @@
  */
 package org.l2jmobius.loginserver.network.loginserverpackets;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
  * @author -Wooden-
  */
-public class PlayerAuthResponse extends WritablePacket
+public class PlayerAuthResponse extends BaseWritablePacket
 {
 	public PlayerAuthResponse(String account, boolean response)
 	{

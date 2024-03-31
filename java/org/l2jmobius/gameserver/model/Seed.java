@@ -17,7 +17,7 @@
 package org.l2jmobius.gameserver.model;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 
 public class Seed
@@ -48,9 +48,9 @@ public class Seed
 		_limitCrops = set.getInt("limit_crops");
 		_limitSeeds = set.getInt("limit_seed");
 		// Set prices
-		ItemTemplate item = ItemTable.getInstance().getTemplate(_cropId);
+		ItemTemplate item = ItemData.getInstance().getTemplate(_cropId);
 		_cropReferencePrice = (item != null) ? item.getReferencePrice() : 1;
-		item = ItemTable.getInstance().getTemplate(_seedId);
+		item = ItemData.getInstance().getTemplate(_seedId);
 		_seedReferencePrice = (item != null) ? item.getReferencePrice() : 1;
 	}
 	

@@ -25,7 +25,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.options.EnchantOptions;
@@ -63,7 +62,7 @@ public class EnchantItemOptionsData implements IXmlReader
 					if ("item".equalsIgnoreCase(d.getNodeName()))
 					{
 						final int itemId = parseInteger(d.getAttributes(), "id");
-						final ItemTemplate template = ItemTable.getInstance().getTemplate(itemId);
+						final ItemTemplate template = ItemData.getInstance().getTemplate(itemId);
 						if (template == null)
 						{
 							LOGGER.warning(getClass().getSimpleName() + ": Could not find item template for id " + itemId);

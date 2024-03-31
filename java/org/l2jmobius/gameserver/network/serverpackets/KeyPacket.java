@@ -17,6 +17,8 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class KeyPacket extends ServerPacket
@@ -31,17 +33,17 @@ public class KeyPacket extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.VERSION_CHECK.writeId(this);
-		writeByte(_result); // 0 - wrong protocol, 1 - protocol ok
+		ServerPackets.VERSION_CHECK.writeId(this, buffer);
+		buffer.writeByte(_result); // 0 - wrong protocol, 1 - protocol ok
 		for (int i = 0; i < 8; i++)
 		{
-			writeByte(_key[i]); // key
+			buffer.writeByte(_key[i]); // key
 		}
-		writeInt(Config.PACKET_ENCRYPTION); // use blowfish encryption
-		writeInt(Config.SERVER_ID); // server id
-		writeByte(1);
-		writeInt(0); // obfuscation key
+		buffer.writeInt(Config.PACKET_ENCRYPTION); // use blowfish encryption
+		buffer.writeInt(Config.SERVER_ID); // server id
+		buffer.writeByte(1);
+		buffer.writeInt(0); // obfuscation key
 	}
 }

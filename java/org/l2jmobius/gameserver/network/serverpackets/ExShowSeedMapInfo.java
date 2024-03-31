@@ -16,9 +16,11 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.instancemanager.SoDManager;
 import org.l2jmobius.gameserver.instancemanager.SoIManager;
 import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ExShowSeedMapInfo extends ServerPacket
@@ -36,25 +38,25 @@ public class ExShowSeedMapInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_SEED_MAP_INFO.writeId(this);
-		writeInt(ENTRANCES.length);
+		ServerPackets.EX_SHOW_SEED_MAP_INFO.writeId(this, buffer);
+		buffer.writeInt(ENTRANCES.length);
 		for (Location loc : ENTRANCES)
 		{
-			writeInt(loc.getX());
-			writeInt(loc.getY());
-			writeInt(loc.getZ());
+			buffer.writeInt(loc.getX());
+			buffer.writeInt(loc.getY());
+			buffer.writeInt(loc.getZ());
 			switch (loc.getHeading())
 			{
 				case 1: // Seed of Destruction
 				{
-					writeInt(2770 + SoDManager.getInstance().getSoDState());
+					buffer.writeInt(2770 + SoDManager.getInstance().getSoDState());
 					break;
 				}
 				case 2: // Seed of Immortality
 				{
-					writeInt(SoIManager.getCurrentStage() + 2765);
+					buffer.writeInt(SoIManager.getCurrentStage() + 2765);
 					break;
 				}
 			}

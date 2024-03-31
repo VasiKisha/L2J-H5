@@ -18,6 +18,7 @@ package quests.Q00625_TheFinestIngredientsPart2;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -55,6 +56,7 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 	// Location
 	private static final Location ICICLE_EMPEROR_BUMBALUMP_LOC = new Location(158240, -121536, -2222);
 	// Misc
+	private static final String ICICLE_EMPEROR_BUMBALUMP_RESPAWN_TIME = "ICICLE_EMPEROR_BUMBALUMP_RESPAWN_TIME";
 	private static final int MIN_LEVEL = 73;
 	
 	public Q00625_TheFinestIngredientsPart2()
@@ -156,14 +158,18 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 				}
 				else if (qs.isCond(2))
 				{
-					if (!isBumbalumpSpawned())
+					if (hasItem(player, FOOD_FOR_BUMBALUMP))
 					{
-						addSpawn(ICICLE_EMPEROR_BUMBALUMP, ICICLE_EMPEROR_BUMBALUMP_LOC);
-						htmltext = event;
-					}
-					else
-					{
-						htmltext = "31542-03.html";
+						if (!isBumbalumpSpawned())
+						{
+							takeItem(player, FOOD_FOR_BUMBALUMP);
+							addSpawn(ICICLE_EMPEROR_BUMBALUMP, ICICLE_EMPEROR_BUMBALUMP_LOC);
+							htmltext = event;
+						}
+						else
+						{
+							htmltext = "31542-03.html";
+						}
 					}
 				}
 				break;
@@ -233,15 +239,30 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 				{
 					case 1:
 					{
-						htmltext = "31542-01.html";
+						if (!isBumbalumpSpawned())
+						{
+							htmltext = "31542-01.html";
+						}
+						else
+						{
+							htmltext = "31542-05.html";
+						}
 						break;
 					}
 					case 2:
 					{
 						if (!isBumbalumpSpawned())
 						{
-							addSpawn(ICICLE_EMPEROR_BUMBALUMP, ICICLE_EMPEROR_BUMBALUMP_LOC);
-							htmltext = "31542-02.html";
+							if (hasItem(talker, FOOD_FOR_BUMBALUMP))
+							{
+								takeItem(talker, FOOD_FOR_BUMBALUMP);
+								addSpawn(ICICLE_EMPEROR_BUMBALUMP, ICICLE_EMPEROR_BUMBALUMP_LOC);
+								htmltext = "31542-02.html";
+							}
+							else
+							{
+								htmltext = "31542-04.html";
+							}
 						}
 						else
 						{
@@ -273,6 +294,12 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 	public String onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		executeForEachPlayer(killer, npc, isSummon, true, false);
+		
+		final int respawnMinDelay = (int) (43200000 * Config.RAID_MIN_RESPAWN_MULTIPLIER);
+		final int respawnMaxDelay = (int) (129600000 * Config.RAID_MAX_RESPAWN_MULTIPLIER);
+		final int respawnDelay = getRandom(respawnMinDelay, respawnMaxDelay);
+		GlobalVariablesManager.getInstance().set(ICICLE_EMPEROR_BUMBALUMP_RESPAWN_TIME, System.currentTimeMillis() + respawnDelay);
+		
 		return super.onKill(npc, killer, isSummon);
 	}
 	
@@ -289,6 +316,11 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 	
 	private static boolean isBumbalumpSpawned()
 	{
-		return World.getInstance().getVisibleObjects().stream().anyMatch(object -> object.getId() == ICICLE_EMPEROR_BUMBALUMP);
+		if (System.currentTimeMillis() > GlobalVariablesManager.getInstance().getLong(ICICLE_EMPEROR_BUMBALUMP_RESPAWN_TIME, 0))
+		{
+			return World.getInstance().getVisibleObjects().stream().anyMatch(object -> object.getId() == ICICLE_EMPEROR_BUMBALUMP);
+		}
+		
+		return true;
 	}
 }

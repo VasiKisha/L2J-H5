@@ -24,11 +24,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.loginserver.GameServerTable;
 import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
 import org.l2jmobius.loginserver.network.LoginClient;
-import org.l2jmobius.loginserver.network.LoginServerPackets;
 import org.l2jmobius.loginserver.network.gameserverpackets.ServerStatus;
 
 /**
@@ -59,7 +58,7 @@ import org.l2jmobius.loginserver.network.gameserverpackets.ServerStatus;
  * is less than half the maximum. as Normal between half and 4/5<br>
  * and Full when there's more than 4/5 of the maximum number of players.
  */
-public class ServerList extends WritablePacket
+public class ServerList extends LoginServerPacket
 {
 	protected static final Logger LOGGER = Logger.getLogger(ServerList.class.getName());
 	
@@ -137,55 +136,55 @@ public class ServerList extends WritablePacket
 	}
 	
 	@Override
-	public void write()
+	protected void writeImpl(LoginClient client, WritableBuffer buffer)
 	{
-		LoginServerPackets.SERVER_LIST.writeId(this);
-		writeByte(_servers.size());
-		writeByte(_lastServer);
+		buffer.writeByte(0x04);
+		buffer.writeByte(_servers.size());
+		buffer.writeByte(_lastServer);
 		for (ServerData server : _servers)
 		{
-			writeByte(server._serverId); // server id
+			buffer.writeByte(server._serverId); // Server id.
 			
-			writeByte(server._ip[0] & 0xff);
-			writeByte(server._ip[1] & 0xff);
-			writeByte(server._ip[2] & 0xff);
-			writeByte(server._ip[3] & 0xff);
+			buffer.writeByte(server._ip[0] & 0xff);
+			buffer.writeByte(server._ip[1] & 0xff);
+			buffer.writeByte(server._ip[2] & 0xff);
+			buffer.writeByte(server._ip[3] & 0xff);
 			
-			writeInt(server._port);
-			writeByte(server._ageLimit); // Age Limit 0, 15, 18
-			writeByte(server._pvp ? 0x01 : 0x00);
-			writeShort(server._currentPlayers);
-			writeShort(server._maxPlayers);
-			writeByte(server._status == ServerStatus.STATUS_DOWN ? 0x00 : 0x01);
-			writeInt(server._serverType); // 1: Normal, 2: Relax, 4: Public Test, 8: No Label, 16: Character Creation Restricted, 32: Event, 64: Free
-			writeByte(server._brackets ? 0x01 : 0x00);
+			buffer.writeInt(server._port);
+			buffer.writeByte(server._ageLimit); // Age Limit 0, 15, 18.
+			buffer.writeByte(server._pvp ? 1 : 0);
+			buffer.writeShort(server._currentPlayers);
+			buffer.writeShort(server._maxPlayers);
+			buffer.writeByte(server._status == ServerStatus.STATUS_DOWN ? 0 : 1);
+			buffer.writeInt(server._serverType); // 1: Normal, 2: Relax, 4: Public Test, 8: No Label, 16: Character Creation Restricted, 32: Event, 64: Free.
+			buffer.writeByte(server._brackets ? 1 : 0);
 		}
-		writeShort(0x00); // unknown
+		buffer.writeShort(0x00); // Unknown.
 		if (_charsOnServers != null)
 		{
-			writeByte(_charsOnServers.size());
+			buffer.writeByte(_charsOnServers.size());
 			for (Entry<Integer, Integer> entry : _charsOnServers.entrySet())
 			{
 				final int servId = entry.getKey();
-				writeByte(servId);
-				writeByte(entry.getValue());
+				buffer.writeByte(servId);
+				buffer.writeByte(entry.getValue());
 				if ((_charsToDelete == null) || !_charsToDelete.containsKey(servId))
 				{
-					writeByte(0x00);
+					buffer.writeByte(0);
 				}
 				else
 				{
-					writeByte(_charsToDelete.get(servId).length);
+					buffer.writeByte(_charsToDelete.get(servId).length);
 					for (long deleteTime : _charsToDelete.get(servId))
 					{
-						writeInt((int) ((deleteTime - System.currentTimeMillis()) / 1000));
+						buffer.writeInt((int) ((deleteTime - System.currentTimeMillis()) / 1000));
 					}
 				}
 			}
 		}
 		else
 		{
-			writeByte(0x00);
+			buffer.writeByte(0);
 		}
 	}
 }

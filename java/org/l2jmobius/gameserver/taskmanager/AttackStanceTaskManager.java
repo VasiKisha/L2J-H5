@@ -43,7 +43,7 @@ public class AttackStanceTaskManager implements Runnable
 	
 	protected AttackStanceTaskManager()
 	{
-		ThreadPool.scheduleAtFixedRate(this, 0, 1000);
+		ThreadPool.schedulePriorityTaskAtFixedRate(this, 0, 1000);
 	}
 	
 	@Override

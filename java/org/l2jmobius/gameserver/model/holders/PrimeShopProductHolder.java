@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.holders;
 
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 
 /**
@@ -41,7 +41,7 @@ public class PrimeShopProductHolder
 		_item = item;
 		_count = count;
 		
-		final ItemTemplate itemTemplate = ItemTable.getInstance().getTemplate(item);
+		final ItemTemplate itemTemplate = ItemData.getInstance().getTemplate(item);
 		if (itemTemplate != null)
 		{
 			_weight = itemTemplate.getWeight();

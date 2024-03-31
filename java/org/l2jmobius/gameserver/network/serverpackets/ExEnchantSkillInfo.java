@@ -19,9 +19,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.model.EnchantSkillGroup.EnchantSkillHolder;
 import org.l2jmobius.gameserver.model.EnchantSkillLearn;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ExEnchantSkillInfo extends ServerPacket
@@ -75,17 +77,17 @@ public class ExEnchantSkillInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ENCHANT_SKILL_INFO.writeId(this);
-		writeInt(_id);
-		writeInt(_level);
-		writeInt(!_maxEnchanted);
-		writeInt(_level > 100); // enchanted?
-		writeInt(_routes.size());
+		ServerPackets.EX_ENCHANT_SKILL_INFO.writeId(this, buffer);
+		buffer.writeInt(_id);
+		buffer.writeInt(_level);
+		buffer.writeInt(!_maxEnchanted);
+		buffer.writeInt(_level > 100); // enchanted?
+		buffer.writeInt(_routes.size());
 		for (int level : _routes)
 		{
-			writeInt(level);
+			buffer.writeInt(level);
 		}
 	}
 }

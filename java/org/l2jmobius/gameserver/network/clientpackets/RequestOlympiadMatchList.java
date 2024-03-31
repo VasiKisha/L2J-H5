@@ -19,20 +19,24 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.handler.BypassHandler;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 
 /**
  * format ch c: (id) 0xD0 h: (subid) 0x13
  * @author -Wooden-
  */
-public class RequestOlympiadMatchList implements ClientPacket
+public class RequestOlympiadMatchList extends ClientPacket
 {
 	private static final String COMMAND = "arenalist";
 	
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if ((player == null) || !player.inObserverMode())
 		{
 			return;

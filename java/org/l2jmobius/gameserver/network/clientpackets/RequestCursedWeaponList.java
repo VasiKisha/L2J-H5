@@ -21,25 +21,28 @@ import java.util.List;
 
 import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.ExCursedWeaponList;
 
 /**
  * Format: (ch)
  * @author -Wooden-
  */
-public class RequestCursedWeaponList implements ClientPacket
+public class RequestCursedWeaponList extends ClientPacket
 {
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
-		final Player player = client.getPlayer();
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		// send a ExCursedWeaponList :p
 		final List<Integer> list = new ArrayList<>();
 		for (int id : CursedWeaponsManager.getInstance().getCursedWeaponsIds())
 		{

@@ -20,6 +20,9 @@ import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
+
 /**
  * This class is made to create packets with any format
  * @author Maktakien
@@ -41,49 +44,55 @@ public class AdminForgePacket extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		for (Part p : _parts)
 		{
-			generate(p.b, p.str);
+			generate(p.b, p.str, buffer);
 		}
 	}
 	
-	public boolean generate(byte b, String string)
+	/**
+	 * @param type
+	 * @param value
+	 * @param buffer
+	 * @return
+	 */
+	public boolean generate(byte type, String value, WritableBuffer buffer)
 	{
-		if ((b == 'C') || (b == 'c'))
+		if ((type == 'C') || (type == 'c'))
 		{
-			writeByte(Integer.decode(string));
+			buffer.writeByte(Integer.decode(value));
 			return true;
 		}
-		else if ((b == 'D') || (b == 'd'))
+		else if ((type == 'D') || (type == 'd'))
 		{
-			writeInt(Integer.decode(string));
+			buffer.writeInt(Integer.decode(value));
 			return true;
 		}
-		else if ((b == 'H') || (b == 'h'))
+		else if ((type == 'H') || (type == 'h'))
 		{
-			writeShort(Integer.decode(string));
+			buffer.writeShort(Integer.decode(value));
 			return true;
 		}
-		else if ((b == 'F') || (b == 'f'))
+		else if ((type == 'F') || (type == 'f'))
 		{
-			writeDouble(Double.parseDouble(string));
+			buffer.writeDouble(Double.parseDouble(value));
 			return true;
 		}
-		else if ((b == 'S') || (b == 's'))
+		else if ((type == 'S') || (type == 's'))
 		{
-			writeString(string);
+			buffer.writeString(value);
 			return true;
 		}
-		else if ((b == 'B') || (b == 'b') || (b == 'X') || (b == 'x'))
+		else if ((type == 'B') || (type == 'b') || (type == 'X') || (type == 'x'))
 		{
-			writeBytes(new BigInteger(string).toByteArray());
+			buffer.writeBytes(new BigInteger(value).toByteArray());
 			return true;
 		}
-		else if ((b == 'Q') || (b == 'q'))
+		else if ((type == 'Q') || (type == 'q'))
 		{
-			writeLong(Long.decode(string));
+			buffer.writeLong(Long.decode(value));
 			return true;
 		}
 		return false;

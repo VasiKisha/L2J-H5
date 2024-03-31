@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -41,13 +43,13 @@ public class GetOnVehicle extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.GET_ON_VEHICLE.writeId(this);
-		writeInt(_objectId);
-		writeInt(_boatObjId);
-		writeInt(_pos.getX());
-		writeInt(_pos.getY());
-		writeInt(_pos.getZ());
+		ServerPackets.GET_ON_VEHICLE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_boatObjId);
+		buffer.writeInt(_pos.getX());
+		buffer.writeInt(_pos.getY());
+		buffer.writeInt(_pos.getZ());
 	}
 }

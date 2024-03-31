@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class SpecialString extends ServerPacket
@@ -40,15 +42,15 @@ public class SpecialString extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SERVER_CLOSE_SOCKET.writeId(this);
-		writeByte(_strId); // string ID
-		writeByte(_isDraw); // 1 - draw / 0 - hide
-		writeByte(_fontSize); // -1 to 3 (font size)
-		writeInt(_x); // ClientRight - x
-		writeInt(_y); // ClientTop + y
-		writeInt(_color); // AARRGGBB
-		writeString(_text); // wide string max len = 63
+		ServerPackets.SERVER_CLOSE_SOCKET.writeId(this, buffer);
+		buffer.writeByte(_strId); // string ID
+		buffer.writeByte(_isDraw); // 1 - draw / 0 - hide
+		buffer.writeByte(_fontSize); // -1 to 3 (font size)
+		buffer.writeInt(_x); // ClientRight - x
+		buffer.writeInt(_y); // ClientTop + y
+		buffer.writeInt(_color); // AARRGGBB
+		buffer.writeString(_text); // wide string max len = 63
 	}
 }

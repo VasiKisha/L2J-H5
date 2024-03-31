@@ -16,7 +16,6 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -33,23 +32,24 @@ import org.l2jmobius.gameserver.network.serverpackets.GmViewQuestInfo;
 /**
  * @version $Revision: 1.1.2.2.2.2 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestGMCommand implements ClientPacket
+public class RequestGMCommand extends ClientPacket
 {
 	private String _targetName;
 	private int _command;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_targetName = packet.readString();
-		_command = packet.readInt();
-		// _unknown = packet.readInt();
+		_targetName = readString();
+		_command = readInt();
+		// _unknown = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		// prevent non GM or low level GMs from vieweing player stuff
+		final GameClient client = getClient();
 		if (!client.getPlayer().isGM() || !client.getPlayer().getAccessLevel().allowAltG())
 		{
 			return;

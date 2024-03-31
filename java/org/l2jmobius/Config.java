@@ -28,6 +28,7 @@ import java.net.InetAddress;
 import java.net.InterfaceAddress;
 import java.net.NetworkInterface;
 import java.net.SocketException;
+import java.net.URI;
 import java.net.URL;
 import java.net.UnknownHostException;
 import java.nio.charset.StandardCharsets;
@@ -87,7 +88,6 @@ public class Config
 	// Config File Definitions
 	// --------------------------------------------------
 	public static final String INTERFACE_CONFIG_FILE = "./config/Interface.ini";
-	public static final String NETWORK_CONFIG_FILE = "./config/Network.ini";
 	public static final String OLYMPIAD_CONFIG_FILE = "./config/Olympiad.ini";
 	
 	public static final String FORTSIEGE_CONFIG_FILE = "./config/FortSiege.ini";
@@ -528,6 +528,7 @@ public class Config
 	public static boolean DEBUG_UNKNOWN_PACKETS;
 	public static Set<String> ALT_DEV_EXCLUDED_PACKETS;
 	public static int SCHEDULED_THREAD_POOL_SIZE;
+	public static int HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE;
 	public static int INSTANT_THREAD_POOL_SIZE;
 	public static boolean THREADS_FOR_LOADING;
 	public static boolean DEADLOCK_DETECTOR;
@@ -550,8 +551,9 @@ public class Config
 	public static boolean CLEAR_DROPPED_ITEM_TABLE;
 	public static boolean AUTODELETE_INVALID_QUEST_DATA;
 	public static boolean MULTIPLE_ITEM_DROP;
-	public static boolean LAZY_CACHE;
+	public static boolean HTM_CACHE;
 	public static boolean CHECK_HTML_ENCODING;
+	public static boolean HIDE_BYPASS_REMOVAL;
 	public static int MIN_NPC_ANIMATION;
 	public static int MAX_NPC_ANIMATION;
 	public static int MIN_MONSTER_ANIMATION;
@@ -900,6 +902,7 @@ public class Config
 	public static String DATABASE_LOGIN;
 	public static String DATABASE_PASSWORD;
 	public static int DATABASE_MAX_CONNECTIONS;
+	public static boolean DATABASE_TEST_CONNECTIONS;
 	public static boolean BACKUP_DATABASE;
 	public static String MYSQL_BIN_PATH;
 	public static String BACKUP_PATH;
@@ -938,16 +941,7 @@ public class Config
 	// --------------------------------------------------
 	// Network Settings
 	// --------------------------------------------------
-	public static int CLIENT_READ_POOL_SIZE;
-	public static int CLIENT_SEND_POOL_SIZE;
-	public static int CLIENT_EXECUTE_POOL_SIZE;
-	public static int PACKET_QUEUE_LIMIT;
-	public static boolean PACKET_FLOOD_DISCONNECT;
-	public static boolean PACKET_FLOOD_DROP;
-	public static boolean PACKET_FLOOD_LOGGED;
 	public static boolean PACKET_ENCRYPTION;
-	public static boolean FAILED_DECRYPTION_LOGGED;
-	public static boolean TCP_NO_DELAY;
 	
 	// --------------------------------------------------
 	// Vitality Settings
@@ -1088,6 +1082,7 @@ public class Config
 	// --------------------------------------------------
 	public static Path GEODATA_PATH;
 	public static Path PATHNODE_PATH;
+	public static Path GEOEDIT_PATH;
 	public static int PATHFINDING;
 	public static String PATHFIND_BUFFERS;
 	public static float LOW_WEIGHT;
@@ -1358,6 +1353,7 @@ public class Config
 	public static boolean PC_CAFE_ENABLED;
 	public static boolean PC_CAFE_ONLY_PREMIUM;
 	public static boolean PC_CAFE_RETAIL_LIKE;
+	public static int PC_CAFE_REWARD_TIME;
 	public static int PC_CAFE_MAX_POINTS;
 	public static boolean PC_CAFE_ENABLE_DOUBLE_POINTS;
 	public static int PC_CAFE_DOUBLE_POINTS_CHANCE;
@@ -1407,13 +1403,15 @@ public class Config
 			PORT_GAME = serverConfig.getInt("GameserverPort", 7777);
 			GAME_SERVER_LOGIN_PORT = serverConfig.getInt("LoginPort", 9014);
 			GAME_SERVER_LOGIN_HOST = serverConfig.getString("LoginHost", "127.0.0.1");
+			PACKET_ENCRYPTION = serverConfig.getBoolean("PacketEncryption", false);
 			REQUEST_ID = serverConfig.getInt("RequestServerID", 0);
 			ACCEPT_ALTERNATE_ID = serverConfig.getBoolean("AcceptAlternateID", true);
 			DATABASE_DRIVER = serverConfig.getString("Driver", "org.mariadb.jdbc.Driver");
 			DATABASE_URL = serverConfig.getString("URL", "jdbc:mariadb://localhost/l2jmobiush5?useUnicode=true&characterEncoding=utf-8");
 			DATABASE_LOGIN = serverConfig.getString("Login", "root");
 			DATABASE_PASSWORD = serverConfig.getString("Password", "");
-			DATABASE_MAX_CONNECTIONS = serverConfig.getInt("MaximumDbConnections", 10);
+			DATABASE_MAX_CONNECTIONS = serverConfig.getInt("MaximumDatabaseConnections", 10);
+			DATABASE_TEST_CONNECTIONS = serverConfig.getBoolean("TestDatabaseConnections", false);
 			BACKUP_DATABASE = serverConfig.getBoolean("BackupDatabase", false);
 			MYSQL_BIN_PATH = serverConfig.getString("MySqlBinLocation", "C:/xampp/mysql/bin/");
 			BACKUP_PATH = serverConfig.getString("BackupPath", "../backup/");
@@ -1479,6 +1477,7 @@ public class Config
 			{
 				SCHEDULED_THREAD_POOL_SIZE = Runtime.getRuntime().availableProcessors() * 4;
 			}
+			HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE = Math.max(2, SCHEDULED_THREAD_POOL_SIZE / 4);
 			INSTANT_THREAD_POOL_SIZE = serverConfig.getInt("InstantThreadPoolSize", -1);
 			if (INSTANT_THREAD_POOL_SIZE == -1)
 			{
@@ -1506,18 +1505,6 @@ public class Config
 			PRECAUTIONARY_RESTART_CHECKS = serverConfig.getBoolean("PrecautionaryRestartChecks", true);
 			PRECAUTIONARY_RESTART_PERCENTAGE = serverConfig.getInt("PrecautionaryRestartPercentage", 95);
 			PRECAUTIONARY_RESTART_DELAY = serverConfig.getInt("PrecautionaryRestartDelay", 60) * 1000;
-			
-			final PropertiesParser networkConfig = new PropertiesParser(NETWORK_CONFIG_FILE);
-			CLIENT_READ_POOL_SIZE = networkConfig.getInt("ClientReadPoolSize", 100);
-			CLIENT_SEND_POOL_SIZE = networkConfig.getInt("ClientSendPoolSize", 100);
-			CLIENT_EXECUTE_POOL_SIZE = networkConfig.getInt("ClientExecutePoolSize", 100);
-			PACKET_QUEUE_LIMIT = networkConfig.getInt("PacketQueueLimit", 80);
-			PACKET_FLOOD_DISCONNECT = networkConfig.getBoolean("PacketFloodDisconnect", false);
-			PACKET_FLOOD_DROP = networkConfig.getBoolean("PacketFloodDrop", false);
-			PACKET_FLOOD_LOGGED = networkConfig.getBoolean("PacketFloodLogged", true);
-			PACKET_ENCRYPTION = networkConfig.getBoolean("PacketEncryption", false);
-			FAILED_DECRYPTION_LOGGED = networkConfig.getBoolean("FailedDecryptionLogged", true);
-			TCP_NO_DELAY = networkConfig.getBoolean("TcpNoDelay", true);
 			
 			// Hosts and Subnets
 			final IPConfigData ipcd = new IPConfigData();
@@ -2110,8 +2097,9 @@ public class Config
 			CLEAR_DROPPED_ITEM_TABLE = generalConfig.getBoolean("ClearDroppedItemTable", false);
 			AUTODELETE_INVALID_QUEST_DATA = generalConfig.getBoolean("AutoDeleteInvalidQuestData", false);
 			MULTIPLE_ITEM_DROP = generalConfig.getBoolean("MultipleItemDrop", true);
-			LAZY_CACHE = generalConfig.getBoolean("LazyCache", true);
+			HTM_CACHE = generalConfig.getBoolean("HtmCache", true);
 			CHECK_HTML_ENCODING = generalConfig.getBoolean("CheckHtmlEncoding", true);
+			HIDE_BYPASS_REMOVAL = generalConfig.getBoolean("HideBypassRemoval", true);
 			MIN_NPC_ANIMATION = generalConfig.getInt("MinNpcAnimation", 5);
 			MAX_NPC_ANIMATION = generalConfig.getInt("MaxNpcAnimation", 60);
 			MIN_MONSTER_ANIMATION = generalConfig.getInt("MinMonsterAnimation", 5);
@@ -2657,6 +2645,7 @@ public class Config
 			final PropertiesParser geoEngineConfig = new PropertiesParser(GEOENGINE_CONFIG_FILE);
 			GEODATA_PATH = Paths.get(Config.DATAPACK_ROOT.getPath() + "/" + geoEngineConfig.getString("GeoDataPath", "geodata"));
 			PATHNODE_PATH = Paths.get(Config.DATAPACK_ROOT.getPath() + "/" + geoEngineConfig.getString("PathnodePath", "pathnode"));
+			GEOEDIT_PATH = Paths.get(Config.DATAPACK_ROOT.getPath() + "/" + geoEngineConfig.getString("GeoEditPath", "saves"));
 			PATHFINDING = geoEngineConfig.getInt("PathFinding", 0);
 			PATHFIND_BUFFERS = geoEngineConfig.getString("PathFindBuffers", "100x6;128x6;192x6;256x4;320x4;384x4;500x2");
 			LOW_WEIGHT = geoEngineConfig.getFloat("LowWeight", 0.5f);
@@ -3032,6 +3021,7 @@ public class Config
 			PC_CAFE_ENABLED = premiumSystemConfig.getBoolean("PcCafeEnabled", false);
 			PC_CAFE_ONLY_PREMIUM = premiumSystemConfig.getBoolean("PcCafeOnlyPremium", false);
 			PC_CAFE_RETAIL_LIKE = premiumSystemConfig.getBoolean("PcCafeRetailLike", true);
+			PC_CAFE_REWARD_TIME = premiumSystemConfig.getInt("PcCafeRewardTime", 300000);
 			PC_CAFE_MAX_POINTS = premiumSystemConfig.getInt("MaxPcCafePoints", 200000);
 			if (PC_CAFE_MAX_POINTS < 0)
 			{
@@ -3260,7 +3250,8 @@ public class Config
 			DATABASE_URL = loginConfig.getString("URL", "jdbc:mariadb://localhost/l2jmobiush5?useUnicode=true&characterEncoding=utf-8");
 			DATABASE_LOGIN = loginConfig.getString("Login", "root");
 			DATABASE_PASSWORD = loginConfig.getString("Password", "");
-			DATABASE_MAX_CONNECTIONS = loginConfig.getInt("MaximumDbConnections", 10);
+			DATABASE_MAX_CONNECTIONS = loginConfig.getInt("MaximumDatabaseConnections", 10);
+			DATABASE_TEST_CONNECTIONS = loginConfig.getBoolean("TestDatabaseConnections", false);
 			BACKUP_DATABASE = loginConfig.getBoolean("BackupDatabase", false);
 			MYSQL_BIN_PATH = loginConfig.getString("MySqlBinLocation", "C:/xampp/mysql/bin/");
 			BACKUP_PATH = loginConfig.getString("BackupPath", "../backup/");
@@ -3270,6 +3261,7 @@ public class Config
 			{
 				SCHEDULED_THREAD_POOL_SIZE = Math.max(2, Runtime.getRuntime().availableProcessors() / 2);
 			}
+			HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE = 0;
 			INSTANT_THREAD_POOL_SIZE = loginConfig.getInt("InstantThreadPoolSize", 2);
 			if (INSTANT_THREAD_POOL_SIZE == -1)
 			{
@@ -3282,17 +3274,6 @@ public class Config
 			NORMAL_CONNECTION_TIME = loginConfig.getInt("NormalConnectionTime", 700);
 			FAST_CONNECTION_TIME = loginConfig.getInt("FastConnectionTime", 350);
 			MAX_CONNECTION_PER_IP = loginConfig.getInt("MaxConnectionPerIP", 50);
-			
-			final PropertiesParser networkConfig = new PropertiesParser(NETWORK_CONFIG_FILE);
-			CLIENT_READ_POOL_SIZE = networkConfig.getInt("ClientReadPoolSize", 100);
-			CLIENT_SEND_POOL_SIZE = networkConfig.getInt("ClientSendPoolSize", 100);
-			CLIENT_EXECUTE_POOL_SIZE = networkConfig.getInt("ClientExecutePoolSize", 100);
-			PACKET_QUEUE_LIMIT = networkConfig.getInt("PacketQueueLimit", 80);
-			PACKET_FLOOD_DISCONNECT = networkConfig.getBoolean("PacketFloodDisconnect", true);
-			PACKET_FLOOD_DROP = networkConfig.getBoolean("PacketFloodDrop", false);
-			PACKET_FLOOD_LOGGED = networkConfig.getBoolean("PacketFloodLogged", true);
-			FAILED_DECRYPTION_LOGGED = networkConfig.getBoolean("FailedDecryptionLogged", false);
-			TCP_NO_DELAY = networkConfig.getBoolean("TcpNoDelay", true);
 		}
 		else
 		{
@@ -3644,7 +3625,10 @@ public class Config
 			String externalIp = "127.0.0.1";
 			try
 			{
-				final URL autoIp = new URL("http://checkip.amazonaws.com");
+				// Java 19
+				// final URL autoIp = new URL("http://checkip.amazonaws.com");
+				// Java 20
+				final URL autoIp = URI.create("http://checkip.amazonaws.com").toURL();
 				try (BufferedReader in = new BufferedReader(new InputStreamReader(autoIp.openStream())))
 				{
 					externalIp = in.readLine();

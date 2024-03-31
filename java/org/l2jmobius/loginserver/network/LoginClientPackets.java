@@ -50,9 +50,9 @@ public enum LoginClientPackets
 		}
 	}
 	
-	private short _packetId;
-	private Supplier<LoginClientPacket> _packetSupplier;
-	private Set<ConnectionState> _connectionStates;
+	private final short _packetId;
+	private final Supplier<LoginClientPacket> _packetSupplier;
+	private final Set<ConnectionState> _connectionStates;
 	
 	LoginClientPackets(int packetId, Supplier<LoginClientPacket> packetSupplier, ConnectionState... connectionStates)
 	{

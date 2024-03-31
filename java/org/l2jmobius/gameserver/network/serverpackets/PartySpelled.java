@@ -19,8 +19,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PartySpelled extends ServerPacket
@@ -39,19 +41,19 @@ public class PartySpelled extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PARTY_SPELLED.writeId(this);
-		writeInt(_creature.isServitor() ? 2 : _creature.isPet() ? 1 : 0);
-		writeInt(_creature.getObjectId());
-		writeInt(_effects.size());
+		ServerPackets.PARTY_SPELLED.writeId(this, buffer);
+		buffer.writeInt(_creature.isServitor() ? 2 : _creature.isPet() ? 1 : 0);
+		buffer.writeInt(_creature.getObjectId());
+		buffer.writeInt(_effects.size());
 		for (BuffInfo info : _effects)
 		{
 			if ((info != null) && info.isInUse())
 			{
-				writeInt(info.getSkill().getDisplayId());
-				writeShort(info.getSkill().getDisplayLevel());
-				writeInt(info.getTime());
+				buffer.writeInt(info.getSkill().getDisplayId());
+				buffer.writeShort(info.getSkill().getDisplayLevel());
+				buffer.writeInt(info.getTime());
 			}
 		}
 	}

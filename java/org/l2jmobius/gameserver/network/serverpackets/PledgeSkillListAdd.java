@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -33,10 +35,10 @@ public class PledgeSkillListAdd extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_SKILL_LIST_ADD.writeId(this);
-		writeInt(_id);
-		writeInt(_level);
+		ServerPackets.PLEDGE_SKILL_LIST_ADD.writeId(this, buffer);
+		buffer.writeInt(_id);
+		buffer.writeInt(_level);
 	}
 }

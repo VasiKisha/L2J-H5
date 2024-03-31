@@ -25,8 +25,8 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.CreatureAI;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.ai.SummonAI;
-import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.enums.ShotType;
@@ -443,7 +443,7 @@ public abstract class Summon extends Playable
 			{
 				for (int itemId : owner.getAutoSoulShot())
 				{
-					final String handler = ((EtcItem) ItemTable.getInstance().getTemplate(itemId)).getHandlerName();
+					final String handler = ((EtcItem) ItemData.getInstance().getTemplate(itemId)).getHandlerName();
 					if ((handler != null) && handler.contains("Beast"))
 					{
 						owner.disableAutoShot(itemId);

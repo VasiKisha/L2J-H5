@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class DropItem extends ServerPacket
@@ -36,18 +38,18 @@ public class DropItem extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.DROP_ITEM.writeId(this);
-		writeInt(_objectId);
-		writeInt(_item.getObjectId());
-		writeInt(_item.getDisplayId());
-		writeInt(_item.getX());
-		writeInt(_item.getY());
-		writeInt(_item.getZ());
+		ServerPackets.DROP_ITEM.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_item.getObjectId());
+		buffer.writeInt(_item.getDisplayId());
+		buffer.writeInt(_item.getX());
+		buffer.writeInt(_item.getY());
+		buffer.writeInt(_item.getZ());
 		// only show item count if it is a stackable item
-		writeInt(_item.isStackable());
-		writeLong(_item.getCount());
-		writeInt(1); // unknown
+		buffer.writeInt(_item.isStackable());
+		buffer.writeLong(_item.getCount());
+		buffer.writeInt(1); // unknown
 	}
 }

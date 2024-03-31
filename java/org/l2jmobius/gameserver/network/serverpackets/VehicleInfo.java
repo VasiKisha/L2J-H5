@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.instance.Boat;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -40,13 +42,13 @@ public class VehicleInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.VEHICLE_INFO.writeId(this);
-		writeInt(_objId);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(_heading);
+		ServerPackets.VEHICLE_INFO.writeId(this, buffer);
+		buffer.writeInt(_objId);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(_heading);
 	}
 }

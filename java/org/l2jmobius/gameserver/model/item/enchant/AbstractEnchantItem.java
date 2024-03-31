@@ -20,7 +20,7 @@ import java.util.EnumSet;
 import java.util.Set;
 import java.util.logging.Logger;
 
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -89,7 +89,7 @@ public abstract class AbstractEnchantItem
 	 */
 	public ItemTemplate getItem()
 	{
-		return ItemTable.getInstance().getTemplate(_id);
+		return ItemData.getInstance().getTemplate(_id);
 	}
 	
 	/**

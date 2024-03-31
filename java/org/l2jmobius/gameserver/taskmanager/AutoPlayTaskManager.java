@@ -31,8 +31,10 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.util.Util;
 
@@ -91,19 +93,54 @@ public class AutoPlayTaskManager
 					final Creature creature = (Creature) target;
 					if (creature.isAlikeDead() || !isTargetModeValid(targetMode, player, creature))
 					{
+						// Logic for Spoil (254) skill.
+						if (creature.isMonster() && creature.isDead() && player.getAutoUseSettings().getAutoSkills().contains(254))
+						{
+							final Skill sweeper = player.getKnownSkill(42);
+							if (sweeper != null)
+							{
+								final Monster monster = ((Monster) target);
+								if (monster.checkSpoilOwner(player, false))
+								{
+									// Move to target.
+									if (player.calculateDistance2D(target) > 40)
+									{
+										if (!player.isMoving())
+										{
+											player.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, target);
+										}
+										continue PLAY;
+									}
+									
+									// Sweep target.
+									player.doCast(sweeper);
+									continue PLAY;
+								}
+							}
+						}
+						
+						// Clear target.
 						player.setTarget(null);
 					}
 					else if ((creature.getTarget() == player) || (creature.getTarget() == null))
 					{
+						// GeoEngine can see target check.
+						if (!GeoEngine.getInstance().canSeeTarget(player, creature))
+						{
+							player.setTarget(null);
+							continue PLAY;
+						}
+						
+						// Logic adjustment for summons not attacking.
+						final Summon summon = player.getSummon();
+						if ((summon != null) && summon.hasAI() && !summon.isMoving() && !summon.isDisabled() && (summon.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK) && (summon.getAI().getIntention() != CtrlIntention.AI_INTENTION_CAST) && creature.isAutoAttackable(player) && GeoEngine.getInstance().canSeeTarget(player, creature))
+						{
+							summon.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, creature);
+						}
+						
 						// We take granted that mage classes do not auto hit.
 						if (isMageCaster(player))
 						{
-							// Logic adjustment for summons not attacking.
-							final Summon summon = player.getSummon();
-							if ((summon != null) && summon.hasAI() && !summon.isMoving() && !summon.isDisabled() && (summon.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK) && (summon.getAI().getIntention() != CtrlIntention.AI_INTENTION_CAST) && creature.isAutoAttackable(player) && GeoEngine.getInstance().canSeeTarget(player, creature))
-							{
-								summon.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, creature);
-							}
 							continue PLAY;
 						}
 						
@@ -322,7 +359,7 @@ public class AutoPlayTaskManager
 		final Set<Player> pool = ConcurrentHashMap.newKeySet(POOL_SIZE);
 		player.onActionRequest();
 		pool.add(player);
-		ThreadPool.scheduleAtFixedRate(new AutoPlay(pool), TASK_DELAY, TASK_DELAY);
+		ThreadPool.schedulePriorityTaskAtFixedRate(new AutoPlay(pool), TASK_DELAY, TASK_DELAY);
 		POOLS.add(pool);
 	}
 	

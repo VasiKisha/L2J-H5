@@ -16,9 +16,11 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.instance.Servitor;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -48,24 +50,24 @@ public class PetStatusUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PET_STATUS_UPDATE.writeId(this);
-		writeInt(_summon.getSummonType());
-		writeInt(_summon.getObjectId());
-		writeInt(_summon.getX());
-		writeInt(_summon.getY());
-		writeInt(_summon.getZ());
-		writeString(_summon.getTitle());
-		writeInt(_curFed);
-		writeInt(_maxFed);
-		writeInt((int) _summon.getCurrentHp());
-		writeInt(_summon.getMaxHp());
-		writeInt((int) _summon.getCurrentMp());
-		writeInt(_summon.getMaxMp());
-		writeInt(_summon.getLevel());
-		writeLong(_summon.getStat().getExp());
-		writeLong(_summon.getExpForThisLevel()); // 0% absolute value
-		writeLong(_summon.getExpForNextLevel()); // 100% absolute value
+		ServerPackets.PET_STATUS_UPDATE.writeId(this, buffer);
+		buffer.writeInt(_summon.getSummonType());
+		buffer.writeInt(_summon.getObjectId());
+		buffer.writeInt(_summon.getX());
+		buffer.writeInt(_summon.getY());
+		buffer.writeInt(_summon.getZ());
+		buffer.writeString(_summon.getTitle());
+		buffer.writeInt(_curFed);
+		buffer.writeInt(_maxFed);
+		buffer.writeInt((int) _summon.getCurrentHp());
+		buffer.writeInt(_summon.getMaxHp());
+		buffer.writeInt((int) _summon.getCurrentMp());
+		buffer.writeInt(_summon.getMaxMp());
+		buffer.writeInt(_summon.getLevel());
+		buffer.writeLong(_summon.getStat().getExp());
+		buffer.writeLong(_summon.getExpForThisLevel()); // 0% absolute value
+		buffer.writeLong(_summon.getExpForNextLevel()); // 100% absolute value
 	}
 }

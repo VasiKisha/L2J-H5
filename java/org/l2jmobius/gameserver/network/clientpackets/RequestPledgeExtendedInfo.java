@@ -16,27 +16,20 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
-import org.l2jmobius.gameserver.network.GameClient;
-
 /**
  * Format: (c) S S: pledge name?
  * @author -Wooden-
  */
-public class RequestPledgeExtendedInfo implements ClientPacket
+public class RequestPledgeExtendedInfo extends ClientPacket
 {
-	@SuppressWarnings("unused")
-	private String _name;
-	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
+		readString(); // name?
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		// TODO: Implement
 	}
 }

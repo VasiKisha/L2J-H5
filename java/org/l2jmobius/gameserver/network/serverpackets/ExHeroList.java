@@ -18,9 +18,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Map;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -36,19 +38,19 @@ public class ExHeroList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_HERO_LIST.writeId(this);
-		writeInt(_heroList.size());
+		ServerPackets.EX_HERO_LIST.writeId(this, buffer);
+		buffer.writeInt(_heroList.size());
 		for (StatSet hero : _heroList.values())
 		{
-			writeString(hero.getString(Olympiad.CHAR_NAME));
-			writeInt(hero.getInt(Olympiad.CLASS_ID));
-			writeString(hero.getString(Hero.CLAN_NAME, ""));
-			writeInt(hero.getInt(Hero.CLAN_CREST, 0));
-			writeString(hero.getString(Hero.ALLY_NAME, ""));
-			writeInt(hero.getInt(Hero.ALLY_CREST, 0));
-			writeInt(hero.getInt(Hero.COUNT));
+			buffer.writeString(hero.getString(Olympiad.CHAR_NAME));
+			buffer.writeInt(hero.getInt(Olympiad.CLASS_ID));
+			buffer.writeString(hero.getString(Hero.CLAN_NAME, ""));
+			buffer.writeInt(hero.getInt(Hero.CLAN_CREST, 0));
+			buffer.writeString(hero.getString(Hero.ALLY_NAME, ""));
+			buffer.writeInt(hero.getInt(Hero.ALLY_CREST, 0));
+			buffer.writeInt(hero.getInt(Hero.COUNT));
 		}
 	}
 }

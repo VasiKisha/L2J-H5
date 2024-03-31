@@ -51,6 +51,7 @@ import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
 import org.l2jmobius.gameserver.model.actor.instance.RiftInvader;
 import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
+import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
@@ -163,9 +164,9 @@ public class AttackableAI extends CreatureAI
 	 * <li>The actor is Aggressive</li>
 	 * </ul>
 	 * @param target The targeted WorldObject
-	 * @return True if the target is autoattackable (depends on the actor type).
+	 * @return {@code true} if target can be auto attacked due aggression.
 	 */
-	private boolean autoAttackCondition(Creature target)
+	private boolean isAggressiveTowards(Creature target)
 	{
 		if ((target == null) || (getActiveChar() == null))
 		{
@@ -306,8 +307,8 @@ public class AttackableAI extends CreatureAI
 				return false;
 			}
 			
-			// Check if the actor is Aggressive
-			return (me.isAggressive() && GeoEngine.getInstance().canSeeTarget(me, target));
+			// Check if the actor is Aggressive.
+			return me.isAggressive() && GeoEngine.getInstance().canSeeTarget(me, target);
 		}
 	}
 	
@@ -549,7 +550,7 @@ public class AttackableAI extends CreatureAI
 				}
 				
 				// For each Creature check if the target is autoattackable
-				if (autoAttackCondition(target)) // check aggression
+				if (isAggressiveTowards(target)) // check aggression
 				{
 					if (target.isFakePlayer())
 					{
@@ -665,13 +666,11 @@ public class AttackableAI extends CreatureAI
 			{
 				int x1 = Rnd.get(minRadius * 2, offset * 2); // x
 				int y1 = Rnd.get(x1, offset * 2); // distance
-				int z1;
 				y1 = (int) Math.sqrt((y1 * y1) - (x1 * x1)); // y
 				x1 = x1 > (offset + minRadius) ? (leader.getX() + x1) - offset : (leader.getX() - x1) + minRadius;
 				y1 = y1 > (offset + minRadius) ? (leader.getY() + y1) - offset : (leader.getY() - y1) + minRadius;
-				z1 = leader.getZ();
 				// Move the actor to Location (x,y,z) server side AND client side by sending Server->Client packet MoveToLocation (broadcast)
-				moveTo(x1, y1, z1);
+				moveTo(x1, y1, leader.getZ());
 				return;
 			}
 			if (Rnd.get(RANDOM_WALK_RATE) == 0)
@@ -845,14 +844,15 @@ public class AttackableAI extends CreatureAI
 			return;
 		}
 		
-		final int collision = npc.getTemplate().getCollisionRadius();
+		final NpcTemplate template = npc.getTemplate();
+		final int collision = template.getCollisionRadius();
 		
 		// Handle all WorldObject of its Faction inside the Faction Range
 		
-		final Set<Integer> clans = getActiveChar().getTemplate().getClans();
+		final Set<Integer> clans = template.getClans();
 		if ((clans != null) && !clans.isEmpty())
 		{
-			final int factionRange = npc.getTemplate().getClanHelpRange() + collision;
+			final int factionRange = template.getClanHelpRange() + collision;
 			// Go through all WorldObject that belong to its faction
 			try
 			{
@@ -869,20 +869,21 @@ public class AttackableAI extends CreatureAI
 				}
 				if (targetExistsInAttackByList)
 				{
-					World.getInstance().forEachVisibleObjectInRange(npc, Attackable.class, factionRange, called ->
+					World.getInstance().forEachVisibleObjectInRange(npc, Attackable.class, factionRange, nearby ->
 					{
 						// Don't call dead npcs, npcs without ai or npcs which are too far away.
-						if (called.isDead() || !called.hasAI() || (Math.abs(finalTarget.getZ() - called.getZ()) > 600))
+						if (nearby.isDead() || !nearby.hasAI() || (Math.abs(finalTarget.getZ() - nearby.getZ()) > 600))
 						{
 							return;
 						}
 						// Don't call npcs who are already doing some action (e.g. attacking, casting).
-						if ((called.getAI()._intention != AI_INTENTION_IDLE) && (called.getAI()._intention != AI_INTENTION_ACTIVE))
+						if ((nearby.getAI()._intention != AI_INTENTION_IDLE) && (nearby.getAI()._intention != AI_INTENTION_ACTIVE))
 						{
 							return;
 						}
 						// Don't call npcs who aren't in the same clan.
-						if (!getActiveChar().getTemplate().isClan(called.getTemplate().getClans()))
+						final NpcTemplate nearbytemplate = nearby.getTemplate();
+						if (!template.isClan(nearbytemplate.getClans()) || (nearbytemplate.hasIgnoreClanNpcIds() && nearbytemplate.getIgnoreClanNpcIds().contains(npc.getId())))
 						{
 							return;
 						}
@@ -902,17 +903,17 @@ public class AttackableAI extends CreatureAI
 							
 							// By default, when a faction member calls for help, attack the caller's attacker.
 							// Notify the AI with EVT_AGGRESSION
-							called.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, finalTarget, 1);
+							nearby.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, finalTarget, 1);
 							
-							if (EventDispatcher.getInstance().hasListener(EventType.ON_ATTACKABLE_FACTION_CALL, called))
+							if (EventDispatcher.getInstance().hasListener(EventType.ON_ATTACKABLE_FACTION_CALL, nearby))
 							{
-								EventDispatcher.getInstance().notifyEventAsync(new OnAttackableFactionCall(called, getActiveChar(), finalTarget.getActingPlayer(), finalTarget.isSummon()), called);
+								EventDispatcher.getInstance().notifyEventAsync(new OnAttackableFactionCall(nearby, npc, finalTarget.getActingPlayer(), finalTarget.isSummon()), nearby);
 							}
 						}
-						else if (called.getAI()._intention != AI_INTENTION_ATTACK)
+						else if (nearby.getAI()._intention != AI_INTENTION_ATTACK)
 						{
-							called.addDamageHate(finalTarget, 0, npc.getHating(finalTarget));
-							called.getAI().setIntention(AI_INTENTION_ATTACK, finalTarget);
+							nearby.addDamageHate(finalTarget, 0, npc.getHating(finalTarget));
+							nearby.getAI().setIntention(AI_INTENTION_ATTACK, finalTarget);
 						}
 					});
 				}
@@ -924,21 +925,20 @@ public class AttackableAI extends CreatureAI
 		}
 		
 		// Initialize data
-		final List<Skill> aiSuicideSkills = npc.getTemplate().getAISkills(AISkillScope.SUICIDE);
+		final List<Skill> aiSuicideSkills = template.getAISkills(AISkillScope.SUICIDE);
 		if (!aiSuicideSkills.isEmpty() && ((int) ((npc.getCurrentHp() / npc.getMaxHp()) * 100) < 30))
 		{
 			final Skill skill = aiSuicideSkills.get(Rnd.get(aiSuicideSkills.size()));
-			if (Util.checkIfInRange(skill.getAffectRange(), getActiveChar(), mostHate, false) && npc.hasSkillChance() && cast(skill))
+			if (Util.checkIfInRange(skill.getAffectRange(), npc, mostHate, false) && npc.hasSkillChance() && cast(skill))
 			{
 				return;
 			}
 		}
 		
 		// ------------------------------------------------------
-		// In case many mobs are trying to hit from same place, move a bit, circling around the target
+		// In case many mobs are trying to hit from same place, move a bit, circling around the target.
 		// Note from Gnacik:
-		// On l2js because of that sometimes mobs don't attack player only running
-		// around player without any sense, so decrease chance for now
+		// On l2js because of that sometimes mobs don't attack player only running around player without any sense, so decrease chance for now.
 		final int combinedCollision = collision + mostHate.getTemplate().getCollisionRadius();
 		if (!npc.isMovementDisabled() && (Rnd.get(100) <= 3))
 		{
@@ -1046,53 +1046,75 @@ public class AttackableAI extends CreatureAI
 			}
 		}
 		
-		final List<Skill> generalSkills = npc.getTemplate().getAISkills(AISkillScope.GENERAL);
-		if (!generalSkills.isEmpty())
+		// Cast skills.
+		if (!npc.isMoving() || (npc.getAiType() == AIType.MAGE))
 		{
-			// Heal Condition
-			final List<Skill> aiHealSkills = npc.getTemplate().getAISkills(AISkillScope.HEAL);
-			if (!aiHealSkills.isEmpty())
+			final List<Skill> generalSkills = template.getAISkills(AISkillScope.GENERAL);
+			if (!generalSkills.isEmpty())
 			{
-				if (npc.isMinion())
+				// Heal Condition
+				final List<Skill> aiHealSkills = template.getAISkills(AISkillScope.HEAL);
+				if (!aiHealSkills.isEmpty())
 				{
-					final Creature leader = npc.getLeader();
-					if ((leader != null) && !leader.isDead() && (Rnd.get(100) > ((leader.getCurrentHp() / leader.getMaxHp()) * 100)))
+					if (npc.isMinion())
 					{
-						for (Skill healSkill : aiHealSkills)
+						final Creature leader = npc.getLeader();
+						if ((leader != null) && !leader.isDead() && (Rnd.get(100) > ((leader.getCurrentHp() / leader.getMaxHp()) * 100)))
 						{
-							if (healSkill.getTargetType() == TargetType.SELF)
+							for (Skill healSkill : aiHealSkills)
 							{
-								continue;
-							}
-							
-							if (!checkSkillCastConditions(npc, healSkill))
-							{
-								continue;
-							}
-							
-							if (!Util.checkIfInRange((healSkill.getCastRange() + collision + leader.getTemplate().getCollisionRadius()), npc, leader, false) && !isParty(healSkill) && !npc.isMovementDisabled())
-							{
-								moveToPawn(leader, healSkill.getCastRange() + collision + leader.getTemplate().getCollisionRadius());
-								return;
-							}
-							
-							if (GeoEngine.getInstance().canSeeTarget(npc, leader))
-							{
-								clientStopMoving(null);
-								final WorldObject target = npc.getTarget();
-								npc.setTarget(leader);
-								npc.doCast(healSkill);
-								npc.setTarget(target);
-								// LOGGER.debug(this + " used heal skill " + healSkill + " on leader " + leader);
-								return;
+								if (healSkill.getTargetType() == TargetType.SELF)
+								{
+									continue;
+								}
+								
+								if (!checkSkillCastConditions(npc, healSkill))
+								{
+									continue;
+								}
+								
+								if (!Util.checkIfInRange((healSkill.getCastRange() + collision + leader.getTemplate().getCollisionRadius()), npc, leader, false) && !isParty(healSkill) && !npc.isMovementDisabled())
+								{
+									moveToPawn(leader, healSkill.getCastRange() + collision + leader.getTemplate().getCollisionRadius());
+									return;
+								}
+								
+								if (GeoEngine.getInstance().canSeeTarget(npc, leader))
+								{
+									clientStopMoving(null);
+									
+									final WorldObject target = npc.getTarget();
+									npc.setTarget(leader);
+									npc.doCast(healSkill);
+									npc.setTarget(target);
+									// LOGGER.debug(this + " used heal skill " + healSkill + " on leader " + leader);
+									return;
+								}
 							}
 						}
 					}
-				}
-				
-				double percentage = (npc.getCurrentHp() / npc.getMaxHp()) * 100;
-				if (Rnd.get(100) < ((100 - percentage) / 3))
-				{
+					
+					double percentage = (npc.getCurrentHp() / npc.getMaxHp()) * 100;
+					if (Rnd.get(100) < ((100 - percentage) / 3))
+					{
+						for (Skill sk : aiHealSkills)
+						{
+							if (!checkSkillCastConditions(npc, sk))
+							{
+								continue;
+							}
+							
+							clientStopMoving(null);
+							
+							final WorldObject target = npc.getTarget();
+							npc.setTarget(npc);
+							npc.doCast(sk);
+							npc.setTarget(target);
+							// LOGGER.debug(this + " used heal skill " + sk + " on itself");
+							return;
+						}
+					}
+					
 					for (Skill sk : aiHealSkills)
 					{
 						if (!checkSkillCastConditions(npc, sk))
@@ -1100,169 +1122,167 @@ public class AttackableAI extends CreatureAI
 							continue;
 						}
 						
-						clientStopMoving(null);
-						final WorldObject target = npc.getTarget();
-						npc.setTarget(npc);
-						npc.doCast(sk);
-						npc.setTarget(target);
-						// LOGGER.debug(this + " used heal skill " + sk + " on itself");
-						return;
+						if (sk.getTargetType() == TargetType.ONE)
+						{
+							for (Attackable obj : World.getInstance().getVisibleObjectsInRange(npc, Attackable.class, sk.getCastRange() + collision))
+							{
+								if (!obj.isDead())
+								{
+									continue;
+								}
+								
+								if (!obj.isInMyClan(npc))
+								{
+									continue;
+								}
+								
+								percentage = (obj.getCurrentHp() / obj.getMaxHp()) * 100;
+								if ((Rnd.get(100) < ((100 - percentage) / 10)) && GeoEngine.getInstance().canSeeTarget(npc, obj))
+								{
+									clientStopMoving(null);
+									
+									final WorldObject target = npc.getTarget();
+									npc.setTarget(obj);
+									npc.doCast(sk);
+									npc.setTarget(target);
+									// LOGGER.debug(this + " used heal skill " + sk + " on " + obj);
+									return;
+								}
+							}
+						}
+						
+						if (isParty(sk))
+						{
+							clientStopMoving(null);
+							npc.doCast(sk);
+							return;
+						}
 					}
 				}
 				
-				for (Skill sk : aiHealSkills)
+				// Res Skill Condition
+				final List<Skill> aiResSkills = template.getAISkills(AISkillScope.RES);
+				if (!aiResSkills.isEmpty())
 				{
-					if (!checkSkillCastConditions(npc, sk))
+					if (npc.isMinion())
 					{
-						continue;
-					}
-					
-					if (sk.getTargetType() == TargetType.ONE)
-					{
-						for (Attackable obj : World.getInstance().getVisibleObjectsInRange(npc, Attackable.class, sk.getCastRange() + collision))
+						final Creature leader = npc.getLeader();
+						if ((leader != null) && leader.isDead())
 						{
-							if (!obj.isDead())
+							for (Skill sk : aiResSkills)
 							{
-								continue;
-							}
-							
-							if (!obj.isInMyClan(npc))
-							{
-								continue;
-							}
-							
-							percentage = (obj.getCurrentHp() / obj.getMaxHp()) * 100;
-							if ((Rnd.get(100) < ((100 - percentage) / 10)) && GeoEngine.getInstance().canSeeTarget(npc, obj))
-							{
-								clientStopMoving(null);
-								final WorldObject target = npc.getTarget();
-								npc.setTarget(obj);
-								npc.doCast(sk);
-								npc.setTarget(target);
-								// LOGGER.debug(this + " used heal skill " + sk + " on " + obj);
-								return;
+								if (sk.getTargetType() == TargetType.SELF)
+								{
+									continue;
+								}
+								
+								if (!checkSkillCastConditions(npc, sk))
+								{
+									continue;
+								}
+								
+								if (!Util.checkIfInRange((sk.getCastRange() + collision + leader.getTemplate().getCollisionRadius()), npc, leader, false) && !isParty(sk) && !npc.isMovementDisabled())
+								{
+									moveToPawn(leader, sk.getCastRange() + collision + leader.getTemplate().getCollisionRadius());
+									return;
+								}
+								
+								if (GeoEngine.getInstance().canSeeTarget(npc, leader))
+								{
+									clientStopMoving(null);
+									
+									final WorldObject target = npc.getTarget();
+									npc.setTarget(leader);
+									npc.doCast(sk);
+									npc.setTarget(target);
+									// LOGGER.debug(this + " used resurrection skill " + sk + " on leader " + leader);
+									return;
+								}
 							}
 						}
 					}
 					
-					if (isParty(sk))
+					for (Skill sk : aiResSkills)
 					{
-						clientStopMoving(null);
-						npc.doCast(sk);
-						return;
+						if (!checkSkillCastConditions(npc, sk))
+						{
+							continue;
+						}
+						
+						if (sk.getTargetType() == TargetType.ONE)
+						{
+							for (Attackable obj : World.getInstance().getVisibleObjectsInRange(npc, Attackable.class, sk.getCastRange() + collision))
+							{
+								if (!obj.isDead())
+								{
+									continue;
+								}
+								
+								if (!npc.isInMyClan(obj))
+								{
+									continue;
+								}
+								
+								if ((Rnd.get(100) < 10) && GeoEngine.getInstance().canSeeTarget(npc, obj))
+								{
+									clientStopMoving(null);
+									
+									final WorldObject target = npc.getTarget();
+									npc.setTarget(obj);
+									npc.doCast(sk);
+									npc.setTarget(target);
+									// LOGGER.debug(this + " used heal skill " + sk + " on clan member " + obj);
+									return;
+								}
+							}
+						}
+						
+						if (isParty(sk))
+						{
+							clientStopMoving(null);
+							
+							final WorldObject target = npc.getTarget();
+							npc.setTarget(npc);
+							npc.doCast(sk);
+							npc.setTarget(target);
+							// LOGGER.debug(this + " used heal skill " + sk + " on party");
+							return;
+						}
 					}
 				}
 			}
 			
-			// Res Skill Condition
-			final List<Skill> aiResSkills = npc.getTemplate().getAISkills(AISkillScope.RES);
-			if (!aiResSkills.isEmpty())
+			// Long/Short Range skill usage.
+			final WorldObject target = npc.getTarget();
+			if (target != null)
 			{
-				if (npc.isMinion())
+				final List<Skill> shortRangeSkills = npc.getShortRangeSkills();
+				if (!shortRangeSkills.isEmpty() && npc.hasSkillChance() && (npc.calculateDistance2D(target) <= 150))
 				{
-					final Creature leader = npc.getLeader();
-					if ((leader != null) && leader.isDead())
-					{
-						for (Skill sk : aiResSkills)
-						{
-							if (sk.getTargetType() == TargetType.SELF)
-							{
-								continue;
-							}
-							
-							if (!checkSkillCastConditions(npc, sk))
-							{
-								continue;
-							}
-							
-							if (!Util.checkIfInRange((sk.getCastRange() + collision + leader.getTemplate().getCollisionRadius()), npc, leader, false) && !isParty(sk) && !npc.isMovementDisabled())
-							{
-								moveToPawn(leader, sk.getCastRange() + collision + leader.getTemplate().getCollisionRadius());
-								return;
-							}
-							
-							if (GeoEngine.getInstance().canSeeTarget(npc, leader))
-							{
-								clientStopMoving(null);
-								final WorldObject target = npc.getTarget();
-								npc.setTarget(leader);
-								npc.doCast(sk);
-								npc.setTarget(target);
-								// LOGGER.debug(this + " used resurrection skill " + sk + " on leader " + leader);
-								return;
-							}
-						}
-					}
-				}
-				
-				for (Skill sk : aiResSkills)
-				{
-					if (!checkSkillCastConditions(npc, sk))
-					{
-						continue;
-					}
-					if (sk.getTargetType() == TargetType.ONE)
-					{
-						for (Attackable obj : World.getInstance().getVisibleObjectsInRange(npc, Attackable.class, sk.getCastRange() + collision))
-						{
-							if (!obj.isDead())
-							{
-								continue;
-							}
-							if (!npc.isInMyClan(obj))
-							{
-								continue;
-							}
-							
-							if ((Rnd.get(100) < 10) && GeoEngine.getInstance().canSeeTarget(npc, obj))
-							{
-								clientStopMoving(null);
-								final WorldObject target = npc.getTarget();
-								npc.setTarget(obj);
-								npc.doCast(sk);
-								npc.setTarget(target);
-								// LOGGER.debug(this + " used heal skill " + sk + " on clan member " + obj);
-								return;
-							}
-						}
-					}
-					
-					if (isParty(sk))
+					final Skill shortRangeSkill = shortRangeSkills.get(Rnd.get(shortRangeSkills.size()));
+					final int castRange = shortRangeSkill.getCastRange();
+					if (((castRange < 1) || (npc.calculateDistance3D(target) < castRange)) && checkSkillCastConditions(npc, shortRangeSkill))
 					{
 						clientStopMoving(null);
-						final WorldObject target = npc.getTarget();
-						npc.setTarget(npc);
-						npc.doCast(sk);
-						npc.setTarget(target);
-						// LOGGER.debug(this + " used heal skill " + sk + " on party");
+						npc.doCast(shortRangeSkill);
+						// LOGGER.debug(this + " used short range skill " + shortRangeSkill + " on " + npc.getTarget());
 						return;
 					}
 				}
-			}
-		}
-		
-		// Long/Short Range skill usage.
-		if (!npc.getShortRangeSkills().isEmpty() && npc.hasSkillChance())
-		{
-			final Skill shortRangeSkill = npc.getShortRangeSkills().get(Rnd.get(npc.getShortRangeSkills().size()));
-			if (checkSkillCastConditions(npc, shortRangeSkill))
-			{
-				clientStopMoving(null);
-				npc.doCast(shortRangeSkill);
-				// LOGGER.debug(this + " used short range skill " + shortRangeSkill + " on " + npc.getTarget());
-				return;
-			}
-		}
-		
-		if (!npc.getLongRangeSkills().isEmpty() && npc.hasSkillChance())
-		{
-			final Skill longRangeSkill = npc.getLongRangeSkills().get(Rnd.get(npc.getLongRangeSkills().size()));
-			if (checkSkillCastConditions(npc, longRangeSkill))
-			{
-				clientStopMoving(null);
-				npc.doCast(longRangeSkill);
-				// LOGGER.debug(this + " used long range skill " + longRangeSkill + " on " + npc.getTarget());
-				return;
+				
+				final List<Skill> longRangeSkills = npc.getLongRangeSkills();
+				if (!longRangeSkills.isEmpty() && npc.hasSkillChance())
+				{
+					final Skill longRangeSkill = longRangeSkills.get(Rnd.get(longRangeSkills.size()));
+					final int castRange = longRangeSkill.getCastRange();
+					if (((castRange < 1) || (npc.calculateDistance3D(target) < castRange)) && checkSkillCastConditions(npc, longRangeSkill))
+					{
+						clientStopMoving(null);
+						npc.doCast(longRangeSkill);
+						// LOGGER.debug(this + " used long range skill " + longRangeSkill + " on " + npc.getTarget());
+						return;
+					}
+				}
 			}
 		}
 		

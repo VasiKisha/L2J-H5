@@ -19,12 +19,12 @@ package org.l2jmobius.gameserver.network.loginserverpackets.game;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
  * @author -Wooden-
  */
-public class ServerStatus extends WritablePacket
+public class ServerStatus extends BaseWritablePacket
 {
 	private final List<Attribute> _attributes;
 	
@@ -38,6 +38,7 @@ public class ServerStatus extends WritablePacket
 		"Gm Only"
 	};
 	
+	// Ids
 	public static final int SERVER_LIST_STATUS = 0x01;
 	public static final int SERVER_TYPE = 0x02;
 	public static final int SERVER_LIST_SQUARE_BRACKET = 0x03;

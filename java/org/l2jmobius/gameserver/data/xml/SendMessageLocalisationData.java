@@ -61,7 +61,7 @@ public class SendMessageLocalisationData implements IXmlReader
 					continue;
 				}
 				
-				SEND_MESSAGE_LOCALISATIONS.put(lang, new ConcurrentHashMap<String[], String[]>());
+				SEND_MESSAGE_LOCALISATIONS.put(lang, new ConcurrentHashMap<>());
 				_lang = lang;
 				parseDatapackFile("data/lang/" + lang + "/SendMessageLocalisation.xml");
 				final int count = SEND_MESSAGE_LOCALISATIONS.get(lang).values().size();

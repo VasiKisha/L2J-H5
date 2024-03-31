@@ -16,10 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -27,21 +25,21 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
  * D0 0F 00 5A 00 77 00 65 00 72 00 67 00 00 00
  * @author -Wooden-
  */
-public class RequestExOustFromMPCC implements ClientPacket
+public class RequestExOustFromMPCC extends ClientPacket
 {
 	private String _name;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_name = packet.readString();
+		_name = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		final Player target = World.getInstance().getPlayer(_name);
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if ((target != null) && target.isInParty() && player.isInParty() && player.getParty().isInCommandChannel() && target.getParty().isInCommandChannel() && player.getParty().getCommandChannel().getLeader().equals(player) && player.getParty().getCommandChannel().equals(target.getParty().getCommandChannel()))
 		{
 			if (player.equals(target))

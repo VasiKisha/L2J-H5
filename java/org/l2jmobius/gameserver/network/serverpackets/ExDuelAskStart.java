@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -33,10 +35,10 @@ public class ExDuelAskStart extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_DUEL_ASK_START.writeId(this);
-		writeString(_requestorName);
-		writeInt(_partyDuel);
+		ServerPackets.EX_DUEL_ASK_START.writeId(this, buffer);
+		buffer.writeString(_requestorName);
+		buffer.writeInt(_partyDuel);
 	}
 }

@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class TargetSelected extends ServerPacket
@@ -43,14 +45,14 @@ public class TargetSelected extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.TARGET_SELECTED.writeId(this);
-		writeInt(_objectId);
-		writeInt(_targetObjId);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(0); // ?
+		ServerPackets.TARGET_SELECTED.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_targetObjId);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(0); // ?
 	}
 }

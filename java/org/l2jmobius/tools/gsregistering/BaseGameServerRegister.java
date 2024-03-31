@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.tools.gsregistering;
 
+import java.awt.HeadlessException;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,6 +49,118 @@ public abstract class BaseGameServerRegister
 	 * @param args the arguments
 	 */
 	public static void main(String[] args)
+	{
+		boolean interactive = true;
+		boolean force = false;
+		boolean fallback = false;
+		BaseTask task = null;
+		String arg;
+		for (int i = 0; i < args.length; i++)
+		{
+			arg = args[i];
+			
+			// --force : Forces GameServer register operations to overwrite a server if necessary
+			if (arg.equals("-f") || arg.equals("--force"))
+			{
+				force = true;
+			}
+			// --fallback : If an register operation fails due to ID already being in use it will then try to register first available ID
+			else if (arg.equals("-b") || arg.equals("--fallback"))
+			{
+				fallback = true;
+			}
+			// --register <id> <hexid_dest_dir> : Register GameServer with ID <id> and output hexid on <hexid_dest_dir>
+			// Fails if <id> already in use, unless -force is used (overwrites)
+			else if (arg.equals("-r") || arg.equals("--register"))
+			{
+				interactive = false;
+				final int id = Integer.parseInt(args[++i]);
+				final String dir = args[++i];
+				task = new RegisterTask(id, dir, force, fallback);
+			}
+			// --unregister <id> : Removes GameServer denoted by <id>
+			else if (arg.equals("-u") || arg.equals("--unregister"))
+			{
+				interactive = false;
+				final String gsId = args[++i];
+				if (gsId.equalsIgnoreCase("all"))
+				{
+					task = new UnregisterAllTask();
+				}
+				else
+				{
+					try
+					{
+						final int id = Integer.parseInt(gsId);
+						task = new UnregisterTask(id);
+					}
+					catch (NumberFormatException e)
+					{
+						System.out.printf("wrong argument for GameServer removal, specify a numeric ID or \"all\" without quotes to remove all." + Config.EOL, gsId);
+						System.exit(1);
+					}
+				}
+			}
+			// --help : Prints usage/arguments/credits
+			else if (arg.equals("-h") || arg.equals("--help"))
+			{
+				interactive = false;
+				printHelp();
+			}
+		}
+		
+		try
+		{
+			if (interactive)
+			{
+				startCMD();
+			}
+			else
+			{
+				// if there is a task, do it, else the app has already finished
+				if (task != null)
+				{
+					task.run();
+				}
+			}
+		}
+		catch (HeadlessException e)
+		{
+			startCMD();
+		}
+	}
+	
+	/**
+	 * Prints the help.
+	 */
+	private static void printHelp()
+	{
+		final String[] help =
+		{
+			"Allows to register/remove GameServers from LoginServer.",
+			"",
+			"Options:",
+			"-b, --fallback\t\t\t\tIf during the register operation the specified GameServer ID is in use, an attempt with the first available ID will be made.",
+			"-c, --cmd\t\t\t\tForces this application to run in console mode, even if GUI is supported.",
+			"-f, --force\t\t\t\tForces GameServer register operation to overwrite a previous registration on the specified ID, if necessary.",
+			"-h, --help\t\t\t\tShows this help message and exits.",
+			"-r, --register <id> <hexid_dest_dir>\tRegisters a GameServer on ID <id> and saves the hexid.txt file on <hexid_dest_dir>.",
+			"\t\t\t\t\tYou can provide a negative value for <id> to register under the first available ID.",
+			"\t\t\t\t\tNothing is done if <id> is already in use, unless --force or --fallback is used.",
+			"",
+			"-u, --unregister <id>|all\t\tRemoves the GameServer specified by <id>, use \"all\" to remove all currently registered GameServers."
+		};
+		
+		for (String str : help)
+		{
+			System.out.println(str);
+		}
+	}
+	
+	/**
+	 * Start the CMD.
+	 */
+	private static void startCMD()
 	{
 		final GameServerRegister cmdUi = new GameServerRegister();
 		try
@@ -205,6 +318,140 @@ public abstract class BaseGameServerRegister
 				msg += Config.EOL + "Cause: " + t.getLocalizedMessage();
 			}
 			System.out.println(title + ": " + msg);
+		}
+	}
+	
+	/**
+	 * The Class RegisterTask.
+	 */
+	private static class RegisterTask extends BaseTask
+	{
+		private final int _id;
+		private final String _outDir;
+		private boolean _force;
+		private boolean _fallback;
+		
+		/**
+		 * Instantiates a new register task.
+		 * @param id the id.
+		 * @param outDir the out dir.
+		 * @param force the force.
+		 * @param fallback the fallback.
+		 */
+		public RegisterTask(int id, String outDir, boolean force, boolean fallback)
+		{
+			_id = id;
+			_outDir = outDir;
+			_force = force;
+			_fallback = fallback;
+		}
+		
+		/**
+		 * Sets the actions.
+		 * @param force the force.
+		 * @param fallback the fallback.
+		 */
+		@SuppressWarnings("unused")
+		public void setActions(boolean force, boolean fallback)
+		{
+			_force = force;
+			_fallback = fallback;
+		}
+		
+		@Override
+		public void run()
+		{
+			try
+			{
+				if (_id < 0)
+				{
+					final int registeredId = registerFirstAvailable(_outDir);
+					if (registeredId < 0)
+					{
+						System.out.println(_bundle.getString("noFreeId"));
+					}
+					else
+					{
+						System.out.printf(_bundle.getString("registrationOk") + Config.EOL, registeredId);
+					}
+				}
+				else
+				{
+					System.out.printf(_bundle.getString("checkingIdInUse") + Config.EOL, _id);
+					if (GameServerTable.getInstance().hasRegisteredGameServerOnId(_id))
+					{
+						System.out.println(_bundle.getString("yes"));
+						if (_force)
+						{
+							System.out.printf(_bundle.getString("forcingRegistration") + Config.EOL, _id);
+							unregisterGameServer(_id);
+							registerGameServer(_id, _outDir);
+							System.out.printf(_bundle.getString("registrationOk") + Config.EOL, _id);
+						}
+						else if (_fallback)
+						{
+							System.out.println(_bundle.getString("fallingBack"));
+							final int registeredId = registerFirstAvailable(_outDir);
+							if (registeredId < 0)
+							{
+								System.out.println(_bundle.getString("noFreeId"));
+							}
+							else
+							{
+								System.out.printf(_bundle.getString("registrationOk") + Config.EOL, registeredId);
+							}
+						}
+						else
+						{
+							System.out.println(_bundle.getString("noAction"));
+						}
+					}
+					else
+					{
+						System.out.println(_bundle.getString("no"));
+						registerGameServer(_id, _outDir);
+					}
+				}
+			}
+			catch (SQLException e)
+			{
+				showError(_bundle.getString("sqlErrorRegister"), e);
+			}
+			catch (IOException e)
+			{
+				showError(_bundle.getString("ioErrorRegister"), e);
+			}
+		}
+	}
+	
+	/**
+	 * The Class UnregisterTask.
+	 */
+	private static class UnregisterTask extends BaseTask
+	{
+		private final int _id;
+		
+		/**
+		 * Instantiates a new unregister task.
+		 * @param id the task id.
+		 */
+		public UnregisterTask(int id)
+		{
+			_id = id;
+		}
+		
+		@Override
+		public void run()
+		{
+			System.out.printf(_bundle.getString("removingGsId") + Config.EOL, _id);
+			try
+			{
+				unregisterGameServer(_id);
+			}
+			catch (SQLException e)
+			{
+				showError(_bundle.getString("sqlErrorRegister"), e);
+			}
 		}
 	}
 	

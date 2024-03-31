@@ -18,10 +18,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.Map;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.instancemanager.RaidBossPointsManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.ExGetBossRecord;
 
@@ -29,20 +27,20 @@ import org.l2jmobius.gameserver.network.serverpackets.ExGetBossRecord;
  * Format: (ch) d
  * @author -Wooden-
  */
-public class RequestGetBossRecord implements ClientPacket
+public class RequestGetBossRecord extends ClientPacket
 {
 	private int _bossId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_bossId = packet.readInt();
+		_bossId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

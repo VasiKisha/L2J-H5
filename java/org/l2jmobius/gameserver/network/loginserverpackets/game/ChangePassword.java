@@ -16,12 +16,12 @@
  */
 package org.l2jmobius.gameserver.network.loginserverpackets.game;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
  * @author UnAfraid
  */
-public class ChangePassword extends WritablePacket
+public class ChangePassword extends BaseWritablePacket
 {
 	public ChangePassword(String accountName, String characterName, String oldPass, String newPass)
 	{

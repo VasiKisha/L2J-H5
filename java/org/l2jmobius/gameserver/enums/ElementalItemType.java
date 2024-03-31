@@ -27,7 +27,7 @@ public enum ElementalItemType
 	JEWEL(9),
 	ENERGY(12);
 	
-	private int _maxLevel;
+	private final int _maxLevel;
 	
 	ElementalItemType(int maxLevel)
 	{

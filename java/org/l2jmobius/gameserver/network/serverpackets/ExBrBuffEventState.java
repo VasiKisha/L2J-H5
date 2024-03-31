@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -40,12 +42,12 @@ public class ExBrBuffEventState extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BR_BUFF_EVENT_STATE.writeId(this);
-		writeInt(_type);
-		writeInt(_value);
-		writeInt(_state);
-		writeInt(_endtime);
+		ServerPackets.EX_BR_BUFF_EVENT_STATE.writeId(this, buffer);
+		buffer.writeInt(_type);
+		buffer.writeInt(_value);
+		buffer.writeInt(_state);
+		buffer.writeInt(_endtime);
 	}
 }

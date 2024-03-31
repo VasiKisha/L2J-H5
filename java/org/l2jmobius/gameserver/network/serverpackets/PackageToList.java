@@ -19,6 +19,8 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -35,14 +37,14 @@ public class PackageToList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PACKAGE_TO_LIST.writeId(this);
-		writeInt(_players.size());
+		ServerPackets.PACKAGE_TO_LIST.writeId(this, buffer);
+		buffer.writeInt(_players.size());
 		for (Entry<Integer, String> entry : _players.entrySet())
 		{
-			writeInt(entry.getKey());
-			writeString(entry.getValue());
+			buffer.writeInt(entry.getKey());
+			buffer.writeString(entry.getValue());
 		}
 	}
 }

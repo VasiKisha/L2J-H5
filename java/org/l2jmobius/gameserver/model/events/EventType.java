@@ -18,6 +18,7 @@ package org.l2jmobius.gameserver.model.events;
 
 import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.events.impl.IBaseEvent;
+import org.l2jmobius.gameserver.model.events.impl.OnDayNightChange;
 import org.l2jmobius.gameserver.model.events.impl.OnServerStart;
 import org.l2jmobius.gameserver.model.events.impl.clan.OnClanWarFinish;
 import org.l2jmobius.gameserver.model.events.impl.clan.OnClanWarStart;
@@ -221,12 +222,13 @@ public enum EventType
 	ON_TRAP_ACTION(OnTrapAction.class, void.class),
 	
 	// Server events
-	ON_SERVER_START(OnServerStart.class, void.class);
+	ON_SERVER_START(OnServerStart.class, void.class),
+	ON_DAY_NIGHT_CHANGE(OnDayNightChange.class, void.class);
 	
 	private final Class<? extends IBaseEvent> _eventClass;
 	private final Class<?>[] _returnClass;
 	
-	private EventType(Class<? extends IBaseEvent> eventClass, Class<?>... returnClasss)
+	EventType(Class<? extends IBaseEvent> eventClass, Class<?>... returnClasss)
 	{
 		_eventClass = eventClass;
 		_returnClass = returnClasss;

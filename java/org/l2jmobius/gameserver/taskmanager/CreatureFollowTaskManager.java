@@ -41,8 +41,8 @@ public class CreatureFollowTaskManager
 	
 	protected CreatureFollowTaskManager()
 	{
-		ThreadPool.scheduleAtFixedRate(new CreatureFollowNormalTask(), 1000, 1000);
-		ThreadPool.scheduleAtFixedRate(new CreatureFollowAttackTask(), 500, 500);
+		ThreadPool.schedulePriorityTaskAtFixedRate(new CreatureFollowNormalTask(), 1000, 1000);
+		ThreadPool.schedulePriorityTaskAtFixedRate(new CreatureFollowAttackTask(), 500, 500);
 	}
 	
 	protected class CreatureFollowNormalTask implements Runnable

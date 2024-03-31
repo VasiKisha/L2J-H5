@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.ItemInfo;
 import org.l2jmobius.gameserver.model.TradeItem;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -33,21 +35,21 @@ public class TradeOwnAdd extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.TRADE_OWN_ADD.writeId(this);
-		writeShort(1); // items added count
-		writeShort(0);
-		writeInt(_item.getObjectId());
-		writeInt(_item.getItem().getDisplayId());
-		writeLong(_item.getCount());
-		writeShort(_item.getItem().getType2()); // item type2
-		writeShort(_item.getCustomType1());
-		writeInt(_item.getItem().getBodyPart()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
-		writeShort(_item.getEnchant()); // enchant level
-		writeShort(0);
-		writeShort(_item.getCustomType2());
+		ServerPackets.TRADE_OWN_ADD.writeId(this, buffer);
+		buffer.writeShort(1); // items added count
+		buffer.writeShort(0);
+		buffer.writeInt(_item.getObjectId());
+		buffer.writeInt(_item.getItem().getDisplayId());
+		buffer.writeLong(_item.getCount());
+		buffer.writeShort(_item.getItem().getType2()); // item type2
+		buffer.writeShort(_item.getCustomType1());
+		buffer.writeInt(_item.getItem().getBodyPart()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+		buffer.writeShort(_item.getEnchant()); // enchant level
+		buffer.writeShort(0);
+		buffer.writeShort(_item.getCustomType2());
 		// T1
-		writeItemElementalAndEnchant(new ItemInfo(_item));
+		writeItemElementalAndEnchant(new ItemInfo(_item), buffer);
 	}
 }

@@ -120,7 +120,7 @@ public class FortLogistics extends Merchant
 				if (player.isClanLeader())
 				{
 					html.setFile(player, "data/html/fortress/logistics-supplylvl.htm");
-					html.replace("%supplylvl%", String.valueOf(getFort().getSupplyLvL()));
+					html.replace("%supplylvl%", String.valueOf(getFort().getSupplyLeveL()));
 				}
 				else
 				{
@@ -144,7 +144,7 @@ public class FortLogistics extends Merchant
 				}
 				else
 				{
-					final int level = getFort().getSupplyLvL();
+					final int level = getFort().getSupplyLeveL();
 					if (level > 0)
 					{
 						// spawn box
@@ -154,7 +154,7 @@ public class FortLogistics extends Merchant
 						box.setCurrentMp(box.getMaxMp());
 						box.setHeading(0);
 						box.spawnMe(getX() - 23, getY() + 41, getZ());
-						getFort().setSupplyLvL(0);
+						getFort().setSupplyLeveL(0);
 						getFort().saveFortVariables();
 						
 						html.setFile(player, "data/html/fortress/logistics-supply.htm");

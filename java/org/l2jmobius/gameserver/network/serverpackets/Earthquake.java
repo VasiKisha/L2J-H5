@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class Earthquake extends ServerPacket
@@ -43,14 +45,14 @@ public class Earthquake extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EARTHQUAKE.writeId(this);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(_intensity);
-		writeInt(_duration);
-		writeInt(0); // Unknown
+		ServerPackets.EARTHQUAKE.writeId(this, buffer);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(_intensity);
+		buffer.writeInt(_duration);
+		buffer.writeInt(0); // Unknown
 	}
 }

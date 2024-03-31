@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.data.xml.BuyListData;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -32,7 +31,6 @@ import org.l2jmobius.gameserver.model.actor.instance.Merchant;
 import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
 import org.l2jmobius.gameserver.model.holders.UniqueItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExBuySellList;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
@@ -41,7 +39,7 @@ import org.l2jmobius.gameserver.util.Util;
 /**
  * RequestSellItem client packet class.
  */
-public class RequestSellItem implements ClientPacket
+public class RequestSellItem extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 16;
 	private static final int CUSTOM_CB_SELL_LIST = 423;
@@ -50,20 +48,20 @@ public class RequestSellItem implements ClientPacket
 	private List<UniqueItemHolder> _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_listId = packet.readInt();
-		final int size = packet.readInt();
-		if ((size <= 0) || (size > Config.MAX_ITEM_IN_PACKET) || ((size * BATCH_LENGTH) != packet.getRemainingLength()))
+		_listId = readInt();
+		final int size = readInt();
+		if ((size <= 0) || (size > Config.MAX_ITEM_IN_PACKET) || ((size * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
 		_items = new ArrayList<>(size);
 		for (int i = 0; i < size; i++)
 		{
-			final int objectId = packet.readInt();
-			final int itemId = packet.readInt();
-			final long count = packet.readLong();
+			final int objectId = readInt();
+			final int itemId = readInt();
+			final long count = readLong();
 			if ((objectId < 1) || (itemId < 1) || (count < 1))
 			{
 				_items = null;
@@ -74,15 +72,15 @@ public class RequestSellItem implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You are buying too fast.");
 			return;

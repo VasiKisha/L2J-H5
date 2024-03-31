@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -68,19 +70,19 @@ public class StaticObjectInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.STATIC_OBJECT.writeId(this);
-		writeInt(_staticObjectId);
-		writeInt(_objectId);
-		writeInt(_type);
-		writeInt(_isTargetable);
-		writeInt(_meshIndex);
-		writeInt(_isClosed);
-		writeInt(_isEnemy);
-		writeInt(_currentHp);
-		writeInt(_maxHp);
-		writeInt(_showHp);
-		writeInt(_damageGrade);
+		ServerPackets.STATIC_OBJECT.writeId(this, buffer);
+		buffer.writeInt(_staticObjectId);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_type);
+		buffer.writeInt(_isTargetable);
+		buffer.writeInt(_meshIndex);
+		buffer.writeInt(_isClosed);
+		buffer.writeInt(_isEnemy);
+		buffer.writeInt(_currentHp);
+		buffer.writeInt(_maxHp);
+		buffer.writeInt(_showHp);
+		buffer.writeInt(_damageGrade);
 	}
 }

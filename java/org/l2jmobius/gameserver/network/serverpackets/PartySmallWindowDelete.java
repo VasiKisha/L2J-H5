@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PartySmallWindowDelete extends ServerPacket
@@ -29,10 +31,10 @@ public class PartySmallWindowDelete extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PARTY_SMALL_WINDOW_DELETE.writeId(this);
-		writeInt(_member.getObjectId());
-		writeString(_member.getName());
+		ServerPackets.PARTY_SMALL_WINDOW_DELETE.writeId(this, buffer);
+		buffer.writeInt(_member.getObjectId());
+		buffer.writeString(_member.getName());
 	}
 }

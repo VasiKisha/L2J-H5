@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.enums.HtmlActionScope;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -33,9 +35,8 @@ public class TutorialCloseHtml extends ServerPacket
 	}
 	
 	@Override
-	public void run()
+	public void runImpl(Player player)
 	{
-		final Player player = getPlayer();
 		if (player != null)
 		{
 			player.clearHtmlActions(HtmlActionScope.TUTORIAL_HTML);
@@ -43,8 +44,8 @@ public class TutorialCloseHtml extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.TUTORIAL_CLOSE_HTML.writeId(this);
+		ServerPackets.TUTORIAL_CLOSE_HTML.writeId(this, buffer);
 	}
 }

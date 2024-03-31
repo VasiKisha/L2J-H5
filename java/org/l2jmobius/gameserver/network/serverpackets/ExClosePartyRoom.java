@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -24,8 +26,8 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 public class ExClosePartyRoom extends ServerPacket
 {
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CLOSE_PARTY_ROOM.writeId(this);
+		ServerPackets.EX_CLOSE_PARTY_ROOM.writeId(this, buffer);
 	}
 }

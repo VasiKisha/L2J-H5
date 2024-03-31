@@ -21,10 +21,12 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
+import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -34,13 +36,19 @@ import org.l2jmobius.gameserver.util.OfflineTradeUtil;
 /**
  * @version $Revision: 1.9.4.3 $ $Date: 2005/03/27 15:29:30 $
  */
-public class Logout implements ClientPacket
+public class Logout extends ClientPacket
 {
 	protected static final Logger LOGGER_ACCOUNTING = Logger.getLogger("accounting");
 	
 	@Override
-	public void run(GameClient client)
+	protected void readImpl()
 	{
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+		final GameClient client = getClient();
 		final Player player = client.getPlayer();
 		if (player == null)
 		{
@@ -72,19 +80,12 @@ public class Logout implements ClientPacket
 				if (world != null)
 				{
 					player.setInstanceId(0);
-					final Location location = world.getExitLoc();
-					if (location != null)
+					Location location = world.getExitLoc();
+					if (location == null)
 					{
-						player.teleToLocation(location, true);
+						location = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.TOWN);
 					}
-					else
-					{
-						player.teleToLocation(TeleportWhereType.TOWN);
-					}
-					if (player.hasSummon())
-					{
-						player.getSummon().teleToLocation(player, true);
-					}
+					player.getVariables().set(PlayerVariables.RESTORE_LOCATION, location.getX() + ";" + location.getY() + ";" + location.getZ());
 					world.removePlayer(player.getObjectId());
 				}
 			}

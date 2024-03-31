@@ -19,12 +19,14 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.olympiad.AbstractOlympiadGame;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameClassed;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameManager;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameNonClassed;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameTask;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadGameTeams;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -52,37 +54,37 @@ public class ExOlympiadMatchList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RECEIVE_OLYMPIAD.writeId(this);
-		writeInt(0); // Type 0 = Match List, 1 = Match Result
-		writeInt(_games.size());
-		writeInt(0);
+		ServerPackets.EX_RECEIVE_OLYMPIAD.writeId(this, buffer);
+		buffer.writeInt(0); // Type 0 = Match List, 1 = Match Result
+		buffer.writeInt(_games.size());
+		buffer.writeInt(0);
 		for (OlympiadGameTask curGame : _games)
 		{
 			final AbstractOlympiadGame game = curGame.getGame();
 			if (game != null)
 			{
-				writeInt(game.getStadiumId()); // Stadium Id (Arena 1 = 0)
+				buffer.writeInt(game.getStadiumId()); // Stadium Id (Arena 1 = 0)
 				if (game instanceof OlympiadGameNonClassed)
 				{
-					writeInt(1);
+					buffer.writeInt(1);
 				}
 				else if (game instanceof OlympiadGameClassed)
 				{
-					writeInt(2);
+					buffer.writeInt(2);
 				}
 				else if (game instanceof OlympiadGameTeams)
 				{
-					writeInt(-1);
+					buffer.writeInt(-1);
 				}
 				else
 				{
-					writeInt(0);
+					buffer.writeInt(0);
 				}
-				writeInt(curGame.isRunning() ? 2 : 1); // (1 = Standby, 2 = Playing)
-				writeString(game.getPlayerNames()[0]); // Player 1 Name
-				writeString(game.getPlayerNames()[1]); // Player 2 Name
+				buffer.writeInt(curGame.isRunning() ? 2 : 1); // (1 = Standby, 2 = Playing)
+				buffer.writeString(game.getPlayerNames()[0]); // Player 1 Name
+				buffer.writeString(game.getPlayerNames()[1]); // Player 2 Name
 			}
 		}
 	}

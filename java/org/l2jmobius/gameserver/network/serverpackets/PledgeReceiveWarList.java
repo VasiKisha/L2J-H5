@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -35,12 +37,12 @@ public class PledgeReceiveWarList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_RECEIVE_WAR_LIST.writeId(this);
-		writeInt(_tab); // type : 0 = Declared, 1 = Under Attack
-		writeInt(0); // page
-		writeInt(_tab == 0 ? _clan.getWarList().size() : _clan.getAttackerList().size());
+		ServerPackets.PLEDGE_RECEIVE_WAR_LIST.writeId(this, buffer);
+		buffer.writeInt(_tab); // type : 0 = Declared, 1 = Under Attack
+		buffer.writeInt(0); // page
+		buffer.writeInt(_tab == 0 ? _clan.getWarList().size() : _clan.getAttackerList().size());
 		for (Integer i : _tab == 0 ? _clan.getWarList() : _clan.getAttackerList())
 		{
 			final Clan clan = ClanTable.getInstance().getClan(i);
@@ -48,9 +50,9 @@ public class PledgeReceiveWarList extends ServerPacket
 			{
 				continue;
 			}
-			writeString(clan.getName());
-			writeInt(_tab); // ??
-			writeInt(_tab); // ??
+			buffer.writeString(clan.getName());
+			buffer.writeInt(_tab); // ??
+			buffer.writeInt(_tab); // ??
 		}
 	}
 }

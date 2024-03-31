@@ -41,7 +41,7 @@ public class HtmCache
 	
 	private static final HTMLFilter HTML_FILTER = new HTMLFilter();
 	
-	private static final Map<String, String> HTML_CACHE = Config.LAZY_CACHE ? new ConcurrentHashMap<>() : new HashMap<>();
+	private static final Map<String, String> HTML_CACHE = Config.HTM_CACHE ? new HashMap<>() : new ConcurrentHashMap<>();
 	
 	private int _loadedFiles;
 	private long _bytesBuffLen;
@@ -58,7 +58,7 @@ public class HtmCache
 	
 	public void reload(File f)
 	{
-		if (!Config.LAZY_CACHE)
+		if (Config.HTM_CACHE)
 		{
 			LOGGER.info("Html cache start...");
 			parseDir(f);
@@ -125,7 +125,15 @@ public class HtmCache
 			
 			bis.read(raw);
 			content = new String(raw, StandardCharsets.UTF_8);
-			content = content.replaceAll("(?s)<!--.*?-->", ""); // Remove html comments
+			content = content.replaceAll("(?s)<!--.*?-->", ""); // Remove html comments.
+			content = content.replaceAll("[\\t\\n]", ""); // Remove tabs and new lines.
+			
+			// Automatic removal of -h parameter from specific bypasses.
+			if (Config.HIDE_BYPASS_REMOVAL)
+			{
+				content = content.replace("bypass -h npc_%objectId%_Chat ", "bypass npc_%objectId%_Chat ");
+				content = content.replace("bypass -h npc_%objectId%_Quest", "bypass npc_%objectId%_Quest");
+			}
 			
 			filePath = file.toURI().getPath().substring(Config.DATAPACK_ROOT.toURI().getPath().length());
 			if (Config.CHECK_HTML_ENCODING && !filePath.startsWith("data/lang") && !StandardCharsets.US_ASCII.newEncoder().canEncode(content))
@@ -156,7 +164,7 @@ public class HtmCache
 		final String prefix = player != null ? player.getHtmlPrefix() : "";
 		String newPath = prefix + path;
 		String content = HTML_CACHE.get(newPath);
-		if (Config.LAZY_CACHE && (content == null))
+		if (!Config.HTM_CACHE && (content == null))
 		{
 			content = loadFile(new File(Config.DATAPACK_ROOT, newPath));
 			if (content == null)

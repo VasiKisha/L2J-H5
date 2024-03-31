@@ -19,9 +19,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoom;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoomList;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -43,7 +45,7 @@ public class ListPartyWating extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		for (PartyMatchRoom room : PartyMatchRoomList.getInstance().getRooms())
 		{
@@ -63,37 +65,37 @@ public class ListPartyWating extends ServerPacket
 			_rooms.add(room);
 		}
 		final int size = _rooms.size();
-		ServerPackets.LIST_PARTY_WAITING.writeId(this);
+		ServerPackets.LIST_PARTY_WAITING.writeId(this, buffer);
 		if (size > 0)
 		{
-			writeInt(1);
+			buffer.writeInt(1);
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
-		writeInt(_rooms.size());
+		buffer.writeInt(_rooms.size());
 		for (PartyMatchRoom room : _rooms)
 		{
-			writeInt(room.getId());
-			writeString(room.getTitle());
-			writeInt(room.getLocation());
-			writeInt(room.getMinLevel());
-			writeInt(room.getMaxLevel());
-			writeInt(room.getMaxMembers());
-			writeString(room.getOwner().getName());
-			writeInt(room.getMembers());
+			buffer.writeInt(room.getId());
+			buffer.writeString(room.getTitle());
+			buffer.writeInt(room.getLocation());
+			buffer.writeInt(room.getMinLevel());
+			buffer.writeInt(room.getMaxLevel());
+			buffer.writeInt(room.getMaxMembers());
+			buffer.writeString(room.getOwner().getName());
+			buffer.writeInt(room.getMembers());
 			for (Player member : room.getPartyMembers())
 			{
 				if (member != null)
 				{
-					writeInt(member.getClassId().getId());
-					writeString(member.getName());
+					buffer.writeInt(member.getClassId().getId());
+					buffer.writeString(member.getName());
 				}
 				else
 				{
-					writeInt(0);
-					writeString("Not Found");
+					buffer.writeInt(0);
+					buffer.writeString("Not Found");
 				}
 			}
 		}

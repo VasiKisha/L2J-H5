@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ManagePledgePower extends ServerPacket
@@ -33,14 +35,14 @@ public class ManagePledgePower extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_action == 1)
 		{
-			ServerPackets.MANAGE_PLEDGE_POWER.writeId(this);
-			writeInt(0);
-			writeInt(0);
-			writeInt(_clan.getRankPrivs(_rank).getBitmask());
+			ServerPackets.MANAGE_PLEDGE_POWER.writeId(this, buffer);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(_clan.getRankPrivs(_rank).getBitmask());
 		}
 	}
 }

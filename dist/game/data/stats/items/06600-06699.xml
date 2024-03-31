@@ -726,7 +726,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="weight" val="10" />
-		<set name="price" val="500000" />
+		<set name="price" val="50000" />
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="6623" type="EtcItem" name="Dummy - Quest Item 1">

@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -51,14 +53,14 @@ public class ExPCCafePointInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PC_CAFE_POINT_INFO.writeId(this);
-		writeInt(_points); // num points
-		writeInt(_mAddPoint); // points inc display
-		writeByte(_mPeriodType); // period(0=don't show window,1=acquisition,2=use points)
-		writeInt(_remainTime); // period hours left
-		writeByte(_pointType); // points inc display color(0=yellow, 1=cyan-blue, 2=red, all other black)
-		writeInt(_time * 3); // value is in seconds * 3
+		ServerPackets.EX_PC_CAFE_POINT_INFO.writeId(this, buffer);
+		buffer.writeInt(_points); // num points
+		buffer.writeInt(_mAddPoint); // points inc display
+		buffer.writeByte(_mPeriodType); // period(0=don't show window,1=acquisition,2=use points)
+		buffer.writeInt(_remainTime); // period hours left
+		buffer.writeByte(_pointType); // points inc display color(0=yellow, 1=cyan-blue, 2=red, all other black)
+		buffer.writeInt(_time * 3); // value is in seconds * 3
 	}
 }

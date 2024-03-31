@@ -16,12 +16,12 @@
  */
 package org.l2jmobius.gameserver.network.loginserverpackets.game;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
  * @author mrTJO
  */
-public class TempBan extends WritablePacket
+public class TempBan extends BaseWritablePacket
 {
 	public TempBan(String accountName, String ip, long time)
 	{

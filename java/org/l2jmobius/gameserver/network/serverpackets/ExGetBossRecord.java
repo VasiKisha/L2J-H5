@@ -19,6 +19,8 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -38,26 +40,26 @@ public class ExGetBossRecord extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_GET_BOSS_RECORD.writeId(this);
-		writeInt(_ranking);
-		writeInt(_totalPoints);
+		ServerPackets.EX_GET_BOSS_RECORD.writeId(this, buffer);
+		buffer.writeInt(_ranking);
+		buffer.writeInt(_totalPoints);
 		if (_bossRecordInfo == null)
 		{
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 		}
 		else
 		{
-			writeInt(_bossRecordInfo.size()); // list size
+			buffer.writeInt(_bossRecordInfo.size()); // list size
 			for (Entry<Integer, Integer> entry : _bossRecordInfo.entrySet())
 			{
-				writeInt(entry.getKey());
-				writeInt(entry.getValue());
-				writeInt(0); // ??
+				buffer.writeInt(entry.getKey());
+				buffer.writeInt(entry.getValue());
+				buffer.writeInt(0); // ??
 			}
 		}
 	}

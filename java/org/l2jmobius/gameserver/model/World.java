@@ -125,7 +125,11 @@ public class World
 			}
 		}
 		
-		LOGGER.info(getClass().getSimpleName() + ": (" + REGIONS_X + " by " + REGIONS_Y + ") World Region Grid set up.");
+		// When GUI is enabled World is called early. So we need to skip this log.
+		if (!Config.ENABLE_GUI)
+		{
+			LOGGER.info(getClass().getSimpleName() + ": (" + REGIONS_X + " by " + REGIONS_Y + ") World Region Grid set up.");
+		}
 	}
 	
 	/**

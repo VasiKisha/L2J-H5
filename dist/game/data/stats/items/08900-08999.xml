@@ -115,7 +115,7 @@
 		<!-- Hair pin made in the shape of a flower. -->
 		<set name="icon" val="icon.accessory_hairpin_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="bodypart" val="hair2" />
+		<set name="bodypart" val="hair" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<set name="weight" val="10" />
@@ -128,7 +128,7 @@
 		<!-- Hairpin in the shape of a butterfly. This is a female-only hair accessory. -->
 		<set name="icon" val="icon.Accessary_butterfly_hearpin_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="bodypart" val="hair2" />
+		<set name="bodypart" val="hair" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<set name="weight" val="10" />
@@ -687,7 +687,7 @@
 		<!-- Hair accessory in the shape of Rabbit Ears. -->
 		<set name="icon" val="icon.accessory_rabbit_ear_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="bodypart" val="hair2" />
+		<set name="bodypart" val="hair" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
@@ -696,7 +696,7 @@
 		<!-- A wing-shaped hair accessory. -->
 		<set name="icon" val="icon.accessory_hair_ring_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="bodypart" val="hair2" />
+		<set name="bodypart" val="hair" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
@@ -705,7 +705,7 @@
 		<!-- Cute antennae hair accessory with stars. -->
 		<set name="icon" val="icon.accessory_hair_feeler_i00" />
 		<set name="default_action" val="EQUIP" />
-		<set name="bodypart" val="hair2" />
+		<set name="bodypart" val="hair" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />

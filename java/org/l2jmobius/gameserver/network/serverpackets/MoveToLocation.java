@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class MoveToLocation extends ServerPacket
@@ -41,15 +43,21 @@ public class MoveToLocation extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.MOVE_TO_LOCATION.writeId(this);
-		writeInt(_objectId);
-		writeInt(_xDst);
-		writeInt(_yDst);
-		writeInt(_zDst);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
+		ServerPackets.MOVE_TO_LOCATION.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_xDst);
+		buffer.writeInt(_yDst);
+		buffer.writeInt(_zDst);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+	}
+	
+	@Override
+	public boolean canBeDropped(GameClient client)
+	{
+		return true;
 	}
 }

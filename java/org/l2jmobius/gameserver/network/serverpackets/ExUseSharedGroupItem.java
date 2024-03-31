@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -37,12 +39,12 @@ public class ExUseSharedGroupItem extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_USE_SHARED_GROUP_ITEM.writeId(this);
-		writeInt(_itemId);
-		writeInt(_grpId);
-		writeInt(_remainingTime);
-		writeInt(_totalTime);
+		ServerPackets.EX_USE_SHARED_GROUP_ITEM.writeId(this, buffer);
+		buffer.writeInt(_itemId);
+		buffer.writeInt(_grpId);
+		buffer.writeInt(_remainingTime);
+		buffer.writeInt(_totalTime);
 	}
 }

@@ -18,7 +18,9 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -35,25 +37,25 @@ public class ExCursedWeaponLocation extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CURSED_WEAPON_LOCATION.writeId(this);
+		ServerPackets.EX_CURSED_WEAPON_LOCATION.writeId(this, buffer);
 		if (!_cursedWeaponInfo.isEmpty())
 		{
-			writeInt(_cursedWeaponInfo.size());
+			buffer.writeInt(_cursedWeaponInfo.size());
 			for (CursedWeaponInfo w : _cursedWeaponInfo)
 			{
-				writeInt(w.id);
-				writeInt(w.activated);
-				writeInt(w.pos.getX());
-				writeInt(w.pos.getY());
-				writeInt(w.pos.getZ());
+				buffer.writeInt(w.id);
+				buffer.writeInt(w.activated);
+				buffer.writeInt(w.pos.getX());
+				buffer.writeInt(w.pos.getY());
+				buffer.writeInt(w.pos.getZ());
 			}
 		}
 		else
 		{
-			writeInt(0);
-			writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 	

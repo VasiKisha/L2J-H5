@@ -20,10 +20,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -109,20 +111,20 @@ public class AcquireSkillInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.ACQUIRE_SKILL_INFO.writeId(this);
-		writeInt(_id);
-		writeInt(_level);
-		writeInt(_spCost);
-		writeInt(_type.ordinal());
-		writeInt(_reqs.size());
+		ServerPackets.ACQUIRE_SKILL_INFO.writeId(this, buffer);
+		buffer.writeInt(_id);
+		buffer.writeInt(_level);
+		buffer.writeInt(_spCost);
+		buffer.writeInt(_type.ordinal());
+		buffer.writeInt(_reqs.size());
 		for (Req temp : _reqs)
 		{
-			writeInt(temp.type);
-			writeInt(temp.itemId);
-			writeLong(temp.count);
-			writeInt(temp.unk);
+			buffer.writeInt(temp.type);
+			buffer.writeInt(temp.itemId);
+			buffer.writeLong(temp.count);
+			buffer.writeInt(temp.unk);
 		}
 	}
 }

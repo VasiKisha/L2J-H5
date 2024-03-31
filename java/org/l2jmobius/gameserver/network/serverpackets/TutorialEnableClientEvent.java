@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class TutorialEnableClientEvent extends ServerPacket
@@ -28,9 +30,9 @@ public class TutorialEnableClientEvent extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.TUTORIAL_ENABLE_CLIENT_EVENT.writeId(this);
-		writeInt(_eventId);
+		ServerPackets.TUTORIAL_ENABLE_CLIENT_EVENT.writeId(this, buffer);
+		buffer.writeInt(_eventId);
 	}
 }

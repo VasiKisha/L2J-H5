@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.enums.PartyDistributionType;
 import org.l2jmobius.gameserver.enums.PartyMessageType;
 import org.l2jmobius.gameserver.instancemanager.DuelManager;
@@ -605,7 +605,7 @@ public class Party extends AbstractPlayerGroup
 		if (item.getId() == Inventory.ADENA_ID)
 		{
 			distributeAdena(player, item.getCount(), player);
-			ItemTable.getInstance().destroyItem("Party", item, player, null);
+			ItemData.getInstance().destroyItem("Party", item, player, null);
 			return;
 		}
 		

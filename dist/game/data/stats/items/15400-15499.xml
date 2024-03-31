@@ -978,7 +978,7 @@
 	</item>
 	<item id="15462" type="EtcItem" name="Halloween King Pumpkin - Event">
 		<!-- Halloween King Pumpkin. Contains 6 Halloween nectar pumpkins and a Golden Jack O'Lantern Mask (7 day limited). Can be exchanged. Cannot be dropped, put in private store, or destroyed. -->
-		<set name="icon" val="icon.event_halloween_king_pumpkin_i00" />
+		<set name="icon" val="icon.event_halloween_king_pumpkini00" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="FISH" />
@@ -1067,7 +1067,7 @@
 	</item>
 	<item id="15468" type="EtcItem" name="Halloween King Pumpkin (Event) - Event">
 		<!-- Halloween King Pumpkin. Contains 6 Halloween nectar pumpkins and a Golden Jack O'Lantern Mask (7 day limited). Can be exchanged. Cannot be dropped, put in private store, or destroyed. -->
-		<set name="icon" val="icon.event_halloween_king_pumpkin_i00" />
+		<set name="icon" val="icon.event_halloween_king_pumpkini00" />
 		<set name="default_action" val="PEEL" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="FISH" />

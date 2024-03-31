@@ -19,7 +19,9 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Arrays;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -81,25 +83,25 @@ public class ExSendUIEvent extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SEND_UI_EVENT.writeId(this);
-		writeInt(_objectId);
-		writeInt(_type); // 0 = show, 1 = hide (there is 2 = pause and 3 = resume also but they don't work well you can only pause count down and you cannot resume it because resume hides the counter).
-		writeInt(0); // unknown
-		writeInt(0); // unknown
-		writeString(_countUp ? "1" : "0"); // 0 = count down, 1 = count up
+		ServerPackets.EX_SEND_UI_EVENT.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_type); // 0 = show, 1 = hide (there is 2 = pause and 3 = resume also but they don't work well you can only pause count down and you cannot resume it because resume hides the counter).
+		buffer.writeInt(0); // unknown
+		buffer.writeInt(0); // unknown
+		buffer.writeString(_countUp ? "1" : "0"); // 0 = count down, 1 = count up
 		// timer always disappears 10 seconds before end
-		writeString(String.valueOf(_startTime / 60));
-		writeString(String.valueOf(_startTime % 60));
-		writeString(String.valueOf(_endTime / 60));
-		writeString(String.valueOf(_endTime % 60));
-		writeInt(_npcstringId);
+		buffer.writeString(String.valueOf(_startTime / 60));
+		buffer.writeString(String.valueOf(_startTime % 60));
+		buffer.writeString(String.valueOf(_endTime / 60));
+		buffer.writeString(String.valueOf(_endTime % 60));
+		buffer.writeInt(_npcstringId);
 		if (_params != null)
 		{
 			for (String param : _params)
 			{
-				writeString(param);
+				buffer.writeString(param);
 			}
 		}
 	}

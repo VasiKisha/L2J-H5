@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoom;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -32,16 +34,16 @@ public class PartyMatchDetail extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PARTY_ROOM_INFO.writeId(this);
-		writeInt(_room.getId());
-		writeInt(_room.getMaxMembers());
-		writeInt(_room.getMinLevel());
-		writeInt(_room.getMaxLevel());
-		writeInt(_room.getLootType());
-		writeInt(_room.getLocation());
-		writeString(_room.getTitle());
-		writeShort(59064);
+		ServerPackets.PARTY_ROOM_INFO.writeId(this, buffer);
+		buffer.writeInt(_room.getId());
+		buffer.writeInt(_room.getMaxMembers());
+		buffer.writeInt(_room.getMinLevel());
+		buffer.writeInt(_room.getMaxLevel());
+		buffer.writeInt(_room.getLootType());
+		buffer.writeInt(_room.getLocation());
+		buffer.writeString(_room.getTitle());
+		buffer.writeShort(59064);
 	}
 }

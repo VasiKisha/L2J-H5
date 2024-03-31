@@ -16,12 +16,12 @@
  */
 package org.l2jmobius.loginserver.network.loginserverpackets;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
  * @author mrTJO
  */
-public class RequestCharacters extends WritablePacket
+public class RequestCharacters extends BaseWritablePacket
 {
 	public RequestCharacters(String account)
 	{

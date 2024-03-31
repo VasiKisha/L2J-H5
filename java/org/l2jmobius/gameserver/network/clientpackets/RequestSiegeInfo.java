@@ -20,6 +20,15 @@ package org.l2jmobius.gameserver.network.clientpackets;
  * Format: (c) (no data, trigger)
  * @author -Wooden-
  */
-public class RequestSiegeInfo implements ClientPacket
+public class RequestSiegeInfo extends ClientPacket
 {
+	@Override
+	protected void readImpl()
+	{
+	}
+	
+	@Override
+	protected void runImpl()
+	{
+	}
 }

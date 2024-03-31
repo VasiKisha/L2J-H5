@@ -55,7 +55,6 @@ import org.l2jmobius.gameserver.ai.SummonAI;
 import org.l2jmobius.gameserver.cache.RelationCache;
 import org.l2jmobius.gameserver.communitybbs.BB.Forum;
 import org.l2jmobius.gameserver.communitybbs.Manager.ForumsBBSManager;
-import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.CharSummonTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
@@ -67,6 +66,7 @@ import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.FishData;
 import org.l2jmobius.gameserver.data.xml.HennaData;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.NpcNameLocalisationData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
@@ -203,6 +203,7 @@ import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerPvPKil
 import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerTransform;
 import org.l2jmobius.gameserver.model.events.listeners.FunctionEventListener;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
+import org.l2jmobius.gameserver.model.events.timers.TimerHolder;
 import org.l2jmobius.gameserver.model.fishing.Fish;
 import org.l2jmobius.gameserver.model.fishing.Fishing;
 import org.l2jmobius.gameserver.model.holders.AdditionalSkillHolder;
@@ -615,7 +616,7 @@ public class Player extends Playable
 	private int _questNpcObject = 0;
 	
 	/** The table containing all Quests began by the Player */
-	private final Map<String, QuestState> _quests = new ConcurrentHashMap<>();
+	private final Map<String, QuestState> _quests = new ConcurrentSkipListMap<>(String.CASE_INSENSITIVE_ORDER);
 	
 	/** The list containing all shortCuts of this player. */
 	private final ShortCuts _shortCuts = new ShortCuts(this);
@@ -944,6 +945,7 @@ public class Player extends Playable
 	private final AtomicBoolean _autoPlaying = new AtomicBoolean();
 	
 	private final List<QuestTimer> _questTimers = new ArrayList<>();
+	private final List<TimerHolder<?>> _timerHolders = new ArrayList<>();
 	
 	// Selling buffs system
 	private boolean _isSellingBuffs = false;
@@ -1495,10 +1497,15 @@ public class Player extends Playable
 			return;
 		}
 		
-		if (_questNpcObject > 0)
+		final Npc target = _lastFolkNpc;
+		if ((target != null) && isInsideRadius2D(target, Npc.INTERACTION_DISTANCE))
+		{
+			quest.notifyEvent(event, target, this);
+		}
+		else if (_questNpcObject > 0)
 		{
 			final WorldObject object = World.getInstance().findObject(getLastQuestNpcObject());
-			if (object.isNpc() && isInsideRadius2D(object, Npc.INTERACTION_DISTANCE))
+			if ((object != null) && object.isNpc() && isInsideRadius2D(object, Npc.INTERACTION_DISTANCE))
 			{
 				final Npc npc = (Npc) object;
 				quest.notifyEvent(event, npc, this);
@@ -2531,47 +2538,47 @@ public class Player extends Playable
 		if ((classId >= 0x00) && (classId <= 0x09))
 		{
 			// human fighter fists
-			weaponItem = (Weapon) ItemTable.getInstance().getTemplate(246);
+			weaponItem = (Weapon) ItemData.getInstance().getTemplate(246);
 		}
 		else if ((classId >= 0x0a) && (classId <= 0x11))
 		{
 			// human mage fists
-			weaponItem = (Weapon) ItemTable.getInstance().getTemplate(251);
+			weaponItem = (Weapon) ItemData.getInstance().getTemplate(251);
 		}
 		else if ((classId >= 0x12) && (classId <= 0x18))
 		{
 			// elven fighter fists
-			weaponItem = (Weapon) ItemTable.getInstance().getTemplate(244);
+			weaponItem = (Weapon) ItemData.getInstance().getTemplate(244);
 		}
 		else if ((classId >= 0x19) && (classId <= 0x1e))
 		{
 			// elven mage fists
-			weaponItem = (Weapon) ItemTable.getInstance().getTemplate(249);
+			weaponItem = (Weapon) ItemData.getInstance().getTemplate(249);
 		}
 		else if ((classId >= 0x1f) && (classId <= 0x25))
 		{
 			// dark elven fighter fists
-			weaponItem = (Weapon) ItemTable.getInstance().getTemplate(245);
+			weaponItem = (Weapon) ItemData.getInstance().getTemplate(245);
 		}
 		else if ((classId >= 0x26) && (classId <= 0x2b))
 		{
 			// dark elven mage fists
-			weaponItem = (Weapon) ItemTable.getInstance().getTemplate(250);
+			weaponItem = (Weapon) ItemData.getInstance().getTemplate(250);
 		}
 		else if ((classId >= 0x2c) && (classId <= 0x30))
 		{
 			// orc fighter fists
-			weaponItem = (Weapon) ItemTable.getInstance().getTemplate(248);
+			weaponItem = (Weapon) ItemData.getInstance().getTemplate(248);
 		}
 		else if ((classId >= 0x31) && (classId <= 0x34))
 		{
 			// orc mage fists
-			weaponItem = (Weapon) ItemTable.getInstance().getTemplate(252);
+			weaponItem = (Weapon) ItemData.getInstance().getTemplate(252);
 		}
 		else if ((classId >= 0x35) && (classId <= 0x39))
 		{
 			// dwarven fists
-			weaponItem = (Weapon) ItemTable.getInstance().getTemplate(247);
+			weaponItem = (Weapon) ItemData.getInstance().getTemplate(247);
 		}
 		return weaponItem;
 	}
@@ -3269,7 +3276,7 @@ public class Player extends Playable
 	{
 		if (count > 0)
 		{
-			final ItemTemplate item = ItemTable.getInstance().getTemplate(itemId);
+			final ItemTemplate item = ItemData.getInstance().getTemplate(itemId);
 			if (item == null)
 			{
 				LOGGER.severe("Item doesn't exist so cannot be added. Item ID: " + itemId);
@@ -4295,7 +4302,7 @@ public class Player extends Playable
 	 */
 	public void doAutoLoot(Attackable target, int itemId, long itemCount)
 	{
-		if (isInParty() && !ItemTable.getInstance().getTemplate(itemId).hasExImmediateEffect())
+		if (isInParty() && !ItemData.getInstance().getTemplate(itemId).hasExImmediateEffect())
 		{
 			_party.distributeItem(this, itemId, itemCount, false, target);
 		}
@@ -4436,7 +4443,7 @@ public class Player extends Playable
 			{
 				LOGGER.warning("No item handler registered for item ID: " + target.getId() + ".");
 			}
-			ItemTable.getInstance().destroyItem("Consume", target, this, null);
+			ItemData.getInstance().destroyItem("Consume", target, this, null);
 		}
 		// Cursed Weapons are not distributed
 		else if (CursedWeaponsManager.getInstance().isCursed(target.getId()))
@@ -4475,7 +4482,7 @@ public class Player extends Playable
 			else if ((target.getId() == Inventory.ADENA_ID) && (_inventory.getAdenaInstance() != null))
 			{
 				addAdena("Pickup", target.getCount(), null, true);
-				ItemTable.getInstance().destroyItem("Pickup", target, this, null);
+				ItemData.getInstance().destroyItem("Pickup", target, this, null);
 			}
 			else
 			{
@@ -9349,7 +9356,7 @@ public class Player extends Playable
 	{
 		for (int itemId : _activeSoulShots)
 		{
-			if (ItemTable.getInstance().getTemplate(itemId).getCrystalType().getLevel() == crystalType)
+			if (ItemData.getInstance().getTemplate(itemId).getCrystalType().getLevel() == crystalType)
 			{
 				disableAutoShot(itemId);
 			}
@@ -10557,10 +10564,8 @@ public class Player extends Playable
 	{
 		super.doRevive();
 		
-		if (Config.DISCONNECT_AFTER_DEATH)
-		{
-			DecayTaskManager.getInstance().cancel(this);
-		}
+		// Stop decay task.
+		DecayTaskManager.getInstance().cancel(this);
 		
 		updateEffectIcons();
 		sendPacket(new EtcStatusUpdate(this));
@@ -14567,6 +14572,15 @@ public class Player extends Playable
 			}
 			_questTimers.clear();
 		}
+		
+		synchronized (_timerHolders)
+		{
+			for (TimerHolder<?> timer : _timerHolders)
+			{
+				timer.cancelTask();
+			}
+			_timerHolders.clear();
+		}
 	}
 	
 	public void addQuestTimer(QuestTimer questTimer)
@@ -14582,6 +14596,22 @@ public class Player extends Playable
 		synchronized (_questTimers)
 		{
 			_questTimers.remove(questTimer);
+		}
+	}
+	
+	public void addTimerHolder(TimerHolder<?> timer)
+	{
+		synchronized (_timerHolders)
+		{
+			_timerHolders.add(timer);
+		}
+	}
+	
+	public void removeTimerHolder(TimerHolder<?> timer)
+	{
+		synchronized (_timerHolders)
+		{
+			_timerHolders.remove(timer);
 		}
 	}
 	

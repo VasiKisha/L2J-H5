@@ -17,7 +17,6 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.enums.PlayerAction;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -30,7 +29,6 @@ import org.l2jmobius.gameserver.model.holders.SummonRequestHolder;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.Disconnection;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
@@ -39,24 +37,24 @@ import org.l2jmobius.gameserver.util.OfflineTradeUtil;
 /**
  * @author Dezmond_snz
  */
-public class DlgAnswer implements ClientPacket
+public class DlgAnswer extends ClientPacket
 {
 	private int _messageId;
 	private int _answer;
 	private int _requesterId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_messageId = packet.readInt();
-		_answer = packet.readInt();
-		_requesterId = packet.readInt();
+		_messageId = readInt();
+		_answer = readInt();
+		_requesterId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -164,7 +162,7 @@ public class DlgAnswer implements ClientPacket
 			
 			if (!OfflineTradeUtil.enteredOfflineMode(player))
 			{
-				Disconnection.of(client, player).defaultSequence(LeaveWorld.STATIC_PACKET);
+				Disconnection.of(getClient(), player).defaultSequence(LeaveWorld.STATIC_PACKET);
 			}
 		}
 		else if ((_messageId == SystemMessageId.C1_IS_MAKING_AN_ATTEMPT_TO_RESURRECT_YOU_IF_YOU_CHOOSE_THIS_PATH_S2_EXPERIENCE_POINTS_WILL_BE_RETURNED_TO_YOU_DO_YOU_WANT_TO_BE_RESURRECTED.getId()) || (_messageId == SystemMessageId.YOUR_CHARM_OF_COURAGE_IS_TRYING_TO_RESURRECT_YOU_WOULD_YOU_LIKE_TO_RESURRECT_NOW.getId()))

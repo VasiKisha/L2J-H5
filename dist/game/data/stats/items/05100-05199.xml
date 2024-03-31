@@ -936,7 +936,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="160" />
-		<set name="price" val="2032000" /> <!-- H5 Price -->
+		<set name="price" val="2784000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
 		<cond msgId="113" addName="1">
 			<player categoryType="STRIDER" />

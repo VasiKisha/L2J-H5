@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class JoinPledge extends ServerPacket
@@ -28,9 +30,9 @@ public class JoinPledge extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.JOIN_PLEDGE.writeId(this);
-		writeInt(_pledgeId);
+		ServerPackets.JOIN_PLEDGE.writeId(this, buffer);
+		buffer.writeInt(_pledgeId);
 	}
 }

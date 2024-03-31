@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -32,39 +34,39 @@ public class ExRpItemLink extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RP_ITEM_LINK.writeId(this);
-		writeInt(_item.getObjectId());
-		writeInt(_item.getDisplayId());
-		writeInt(_item.getLocationSlot());
-		writeLong(_item.getCount());
-		writeShort(_item.getTemplate().getType2());
-		writeShort(_item.getCustomType1());
-		writeShort(_item.isEquipped());
-		writeInt(_item.getTemplate().getBodyPart());
-		writeShort(_item.getEnchantLevel());
-		writeShort(_item.getCustomType2());
+		ServerPackets.EX_RP_ITEM_LINK.writeId(this, buffer);
+		buffer.writeInt(_item.getObjectId());
+		buffer.writeInt(_item.getDisplayId());
+		buffer.writeInt(_item.getLocationSlot());
+		buffer.writeLong(_item.getCount());
+		buffer.writeShort(_item.getTemplate().getType2());
+		buffer.writeShort(_item.getCustomType1());
+		buffer.writeShort(_item.isEquipped());
+		buffer.writeInt(_item.getTemplate().getBodyPart());
+		buffer.writeShort(_item.getEnchantLevel());
+		buffer.writeShort(_item.getCustomType2());
 		if (_item.isAugmented())
 		{
-			writeInt(_item.getAugmentation().getAugmentationId());
+			buffer.writeInt(_item.getAugmentation().getAugmentationId());
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
-		writeInt(_item.getMana());
-		writeInt(_item.isTimeLimitedItem() ? (int) (_item.getRemainingTime() / 1000) : -9999);
-		writeShort(_item.getAttackElementType());
-		writeShort(_item.getAttackElementPower());
+		buffer.writeInt(_item.getMana());
+		buffer.writeInt(_item.isTimeLimitedItem() ? (int) (_item.getRemainingTime() / 1000) : -9999);
+		buffer.writeShort(_item.getAttackElementType());
+		buffer.writeShort(_item.getAttackElementPower());
 		for (byte i = 0; i < 6; i++)
 		{
-			writeShort(_item.getElementDefAttr(i));
+			buffer.writeShort(_item.getElementDefAttr(i));
 		}
 		// Enchant Effects
 		for (int op : _item.getEnchantOptions())
 		{
-			writeShort(op);
+			buffer.writeShort(op);
 		}
 	}
 }

@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.commons.util.StringUtil;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -82,7 +82,7 @@ public class AdminSearch implements IAdminCommandHandler
 		html.setFile(player, "data/html/admin/search.htm");
 		
 		List<ItemTemplate> items = new ArrayList<>();
-		for (ItemTemplate itemName : ItemTable.getInstance().getAllItems())
+		for (ItemTemplate itemName : ItemData.getInstance().getAllItems())
 		{
 			if ((itemName != null) && itemName.getName().toLowerCase().contains(text.toLowerCase()))
 			{

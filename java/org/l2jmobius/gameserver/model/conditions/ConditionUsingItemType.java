@@ -52,45 +52,48 @@ public class ConditionUsingItemType extends Condition
 		
 		if (!effector.isPlayer())
 		{
-			return _armor ? false : (_mask & effector.getAttackType().mask()) != 0;
+			return !_armor && ((_mask & effector.getAttackType().mask()) != 0);
 		}
 		
+		// If ConditionUsingItemType is one between Light, Heavy or Magic.
 		final Inventory inv = effector.getInventory();
-		// If ConditionUsingItemType is one between Light, Heavy or Magic
 		if (_armor)
 		{
-			// Get the itemMask of the weared chest (if exists)
+			// Get the itemMask of the weared chest (if exists).
 			final Item chest = inv.getPaperdollItem(Inventory.PAPERDOLL_CHEST);
 			if (chest == null)
 			{
 				return false;
 			}
-			final int chestMask = chest.getTemplate().getItemMask();
 			
-			// If chest armor is different from the condition one return false
+			// If chest armor is different from the condition one return false.
+			final int chestMask = chest.getTemplate().getItemMask();
 			if ((_mask & chestMask) == 0)
 			{
 				return false;
 			}
 			
-			// So from here, chest armor matches conditions
+			// So from here, chest armor matches conditions.
 			
+			// Return true if chest armor is a Full Armor.
 			final int chestBodyPart = chest.getTemplate().getBodyPart();
-			// return True if chest armor is a Full Armor
 			if (chestBodyPart == ItemTemplate.SLOT_FULL_ARMOR)
 			{
 				return true;
 			}
-			// check legs armor
+			
+			// Check legs armor.
 			final Item legs = inv.getPaperdollItem(Inventory.PAPERDOLL_LEGS);
 			if (legs == null)
 			{
 				return false;
 			}
+			
+			// Return true if legs armor matches too.
 			final int legMask = legs.getTemplate().getItemMask();
-			// return true if legs armor matches too
 			return (_mask & legMask) != 0;
 		}
+		
 		return (_mask & inv.getWearedMask()) != 0;
 	}
 }

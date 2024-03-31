@@ -19,8 +19,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.Henna;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -45,21 +47,21 @@ public class HennaInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.HENNA_INFO.writeId(this);
-		writeByte(_player.getHennaStatINT()); // equip INT
-		writeByte(_player.getHennaStatSTR()); // equip STR
-		writeByte(_player.getHennaStatCON()); // equip CON
-		writeByte(_player.getHennaStatMEN()); // equip MEN
-		writeByte(_player.getHennaStatDEX()); // equip DEX
-		writeByte(_player.getHennaStatWIT()); // equip WIT
-		writeInt(3); // Slots
-		writeInt(_hennas.size()); // Size
+		ServerPackets.HENNA_INFO.writeId(this, buffer);
+		buffer.writeByte(_player.getHennaStatINT()); // equip INT
+		buffer.writeByte(_player.getHennaStatSTR()); // equip STR
+		buffer.writeByte(_player.getHennaStatCON()); // equip CON
+		buffer.writeByte(_player.getHennaStatMEN()); // equip MEN
+		buffer.writeByte(_player.getHennaStatDEX()); // equip DEX
+		buffer.writeByte(_player.getHennaStatWIT()); // equip WIT
+		buffer.writeInt(3); // Slots
+		buffer.writeInt(_hennas.size()); // Size
 		for (Henna henna : _hennas)
 		{
-			writeInt(henna.getDyeId());
-			writeInt(1);
+			buffer.writeInt(henna.getDyeId());
+			buffer.writeInt(1);
 		}
 	}
 }

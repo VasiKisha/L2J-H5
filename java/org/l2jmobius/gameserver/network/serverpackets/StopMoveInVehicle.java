@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -39,14 +41,14 @@ public class StopMoveInVehicle extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.STOP_MOVE_IN_VEHICLE.writeId(this);
-		writeInt(_objectId);
-		writeInt(_boatId);
-		writeInt(_pos.getX());
-		writeInt(_pos.getY());
-		writeInt(_pos.getZ());
-		writeInt(_heading);
+		ServerPackets.STOP_MOVE_IN_VEHICLE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_boatId);
+		buffer.writeInt(_pos.getX());
+		buffer.writeInt(_pos.getY());
+		buffer.writeInt(_pos.getZ());
+		buffer.writeInt(_heading);
 	}
 }

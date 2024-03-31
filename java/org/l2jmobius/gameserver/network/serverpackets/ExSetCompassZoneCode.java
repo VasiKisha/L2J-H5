@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -39,9 +41,9 @@ public class ExSetCompassZoneCode extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SET_COMPASS_ZONE_CODE.writeId(this);
-		writeInt(_zoneType);
+		ServerPackets.EX_SET_COMPASS_ZONE_CODE.writeId(this, buffer);
+		buffer.writeInt(_zoneType);
 	}
 }

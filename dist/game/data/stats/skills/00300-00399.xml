@@ -655,10 +655,8 @@
 				<add stat="accCombat" val="#accCombat">
 					<using kind="POLE" />
 				</add>
-				<set stat="atkCountMax" val="1">
-					<using kind="POLE" />
-				</set>
 			</effect>
+			<effect name="PolearmSingleTarget" />
 		</for>
 	</skill>
 	<skill id="318" levels="1" name="Aegis Stance" enchantGroup1="1">

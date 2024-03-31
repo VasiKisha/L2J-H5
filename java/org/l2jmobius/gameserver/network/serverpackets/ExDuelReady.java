@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -35,9 +37,9 @@ public class ExDuelReady extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_DUEL_READY.writeId(this);
-		writeInt(_partyDuel);
+		ServerPackets.EX_DUEL_READY.writeId(this, buffer);
+		buffer.writeInt(_partyDuel);
 	}
 }

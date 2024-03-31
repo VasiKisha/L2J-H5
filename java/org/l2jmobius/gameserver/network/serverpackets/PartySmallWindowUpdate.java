@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PartySmallWindowUpdate extends ServerPacket
@@ -29,18 +31,18 @@ public class PartySmallWindowUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PARTY_SMALL_WINDOW_UPDATE.writeId(this);
-		writeInt(_member.getObjectId());
-		writeString(_member.getName());
-		writeInt((int) _member.getCurrentCp()); // c4
-		writeInt(_member.getMaxCp()); // c4
-		writeInt((int) _member.getCurrentHp());
-		writeInt(_member.getMaxHp());
-		writeInt((int) _member.getCurrentMp());
-		writeInt(_member.getMaxMp());
-		writeInt(_member.getLevel());
-		writeInt(_member.getClassId().getId());
+		ServerPackets.PARTY_SMALL_WINDOW_UPDATE.writeId(this, buffer);
+		buffer.writeInt(_member.getObjectId());
+		buffer.writeString(_member.getName());
+		buffer.writeInt((int) _member.getCurrentCp()); // c4
+		buffer.writeInt(_member.getMaxCp()); // c4
+		buffer.writeInt((int) _member.getCurrentHp());
+		buffer.writeInt(_member.getMaxHp());
+		buffer.writeInt((int) _member.getCurrentMp());
+		buffer.writeInt(_member.getMaxMp());
+		buffer.writeInt(_member.getLevel());
+		buffer.writeInt(_member.getClassId().getId());
 	}
 }

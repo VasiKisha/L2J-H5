@@ -16,38 +16,36 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.instancemanager.HandysBlockCheckerManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 
 /**
  * Format: chdd d: Arena d: Team
  * @author mrTJO
  */
-public class RequestExCubeGameChangeTeam implements ClientPacket
+public class RequestExCubeGameChangeTeam extends ClientPacket
 {
 	private int _arena;
 	private int _team;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
 		// client sends -1,0,1,2 for arena parameter
-		_arena = packet.readInt() + 1;
-		_team = packet.readInt();
+		_arena = readInt() + 1;
+		_team = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		// do not remove players after start
 		if (HandysBlockCheckerManager.getInstance().arenaIsBeingUsed(_arena))
 		{
 			return;
 		}
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		
 		switch (_team)
 		{

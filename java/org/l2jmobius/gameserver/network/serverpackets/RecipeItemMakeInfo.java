@@ -16,9 +16,11 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.RecipeData;
 import org.l2jmobius.gameserver.model.RecipeList;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -43,7 +45,7 @@ public class RecipeItemMakeInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		final RecipeList recipe = RecipeData.getInstance().getRecipeList(_id);
 		if (recipe == null)
@@ -52,11 +54,11 @@ public class RecipeItemMakeInfo extends ServerPacket
 			return;
 		}
 		
-		ServerPackets.RECIPE_ITEM_MAKE_INFO.writeId(this);
-		writeInt(_id);
-		writeInt(!recipe.isDwarvenRecipe()); // 0 = Dwarven - 1 = Common
-		writeInt((int) _player.getCurrentMp());
-		writeInt(_player.getMaxMp());
-		writeInt(_success); // item creation success/failed
+		ServerPackets.RECIPE_ITEM_MAKE_INFO.writeId(this, buffer);
+		buffer.writeInt(_id);
+		buffer.writeInt(!recipe.isDwarvenRecipe()); // 0 = Dwarven - 1 = Common
+		buffer.writeInt((int) _player.getCurrentMp());
+		buffer.writeInt(_player.getMaxMp());
+		buffer.writeInt(_success); // item creation success/failed
 	}
 }

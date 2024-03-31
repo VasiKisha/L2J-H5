@@ -96,7 +96,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
-		<set name="price" val="30000" />
+		<set name="price" val="120000" />
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="10111" type="EtcItem" name="Forgotten Scroll - Star Fall">
@@ -105,7 +105,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
 		<set name="weight" val="120" />
-		<set name="price" val="30000" />
+		<set name="price" val="120000" />
 		<set name="is_stackable" val="true" />
 	</item>
 	<item id="10112" type="EtcItem" name="Dark Seed">

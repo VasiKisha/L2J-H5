@@ -17,7 +17,7 @@
 package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.instancemanager.games.BlockChecker;
 import org.l2jmobius.gameserver.model.ArenaParticipantsHolder;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -156,7 +156,7 @@ public class Block extends Monster
 	
 	private void dropItem(int id, BlockChecker eng, Player player)
 	{
-		final Item drop = ItemTable.getInstance().createItem("Loot", id, 1, player, this);
+		final Item drop = ItemData.getInstance().createItem("Loot", id, 1, player, this);
 		final int x = getX() + Rnd.get(50);
 		final int y = getY() + Rnd.get(50);
 		final int z = getZ();

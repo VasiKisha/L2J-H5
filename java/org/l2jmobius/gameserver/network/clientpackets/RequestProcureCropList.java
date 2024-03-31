@@ -20,8 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
 import org.l2jmobius.gameserver.model.CropProcure;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -30,7 +29,6 @@ import org.l2jmobius.gameserver.model.actor.instance.Merchant;
 import org.l2jmobius.gameserver.model.holders.UniqueItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -38,17 +36,17 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 /**
  * @author l3x
  */
-public class RequestProcureCropList implements ClientPacket
+public class RequestProcureCropList extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 20; // length of the one item
 	
 	private List<CropHolder> _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		final int count = packet.readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != packet.getRemainingLength()))
+		final int count = readInt();
+		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -56,10 +54,10 @@ public class RequestProcureCropList implements ClientPacket
 		_items = new ArrayList<>(count);
 		for (int i = 0; i < count; i++)
 		{
-			final int objId = packet.readInt();
-			final int itemId = packet.readInt();
-			final int manorId = packet.readInt();
-			final long cnt = packet.readLong();
+			final int objId = readInt();
+			final int itemId = readInt();
+			final int manorId = readInt();
+			final long cnt = readLong();
 			if ((objId < 1) || (itemId < 1) || (manorId < 0) || (cnt < 0))
 			{
 				_items = null;
@@ -70,14 +68,14 @@ public class RequestProcureCropList implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if (_items == null)
 		{
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -122,7 +120,7 @@ public class RequestProcureCropList implements ClientPacket
 				return;
 			}
 			
-			final ItemTemplate template = ItemTable.getInstance().getTemplate(i.getRewardId());
+			final ItemTemplate template = ItemData.getInstance().getTemplate(i.getRewardId());
 			weight += (i.getCount() * template.getWeight());
 			if (!template.isStackable())
 			{
@@ -152,7 +150,7 @@ public class RequestProcureCropList implements ClientPacket
 		// Proceed the purchase
 		for (CropHolder i : _items)
 		{
-			final long rewardPrice = ItemTable.getInstance().getTemplate(i.getRewardId()).getReferencePrice();
+			final long rewardPrice = ItemData.getInstance().getTemplate(i.getRewardId()).getReferencePrice();
 			if (rewardPrice == 0)
 			{
 				continue;

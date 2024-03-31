@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class SetupGauge extends ServerPacket
@@ -46,12 +48,12 @@ public class SetupGauge extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SETUP_GAUGE.writeId(this);
-		writeInt(_objectId);
-		writeInt(_dat1);
-		writeInt(_time);
-		writeInt(_time2);
+		ServerPackets.SETUP_GAUGE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_dat1);
+		buffer.writeInt(_time);
+		buffer.writeInt(_time2);
 	}
 }

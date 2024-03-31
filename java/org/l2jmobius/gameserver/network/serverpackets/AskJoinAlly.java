@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class AskJoinAlly extends ServerPacket
@@ -34,10 +36,10 @@ public class AskJoinAlly extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.ASK_JOIN_ALLIANCE.writeId(this);
-		writeInt(_requestorObjId);
-		writeString(_requestorName);
+		ServerPackets.ASK_JOIN_ALLIANCE.writeId(this, buffer);
+		buffer.writeInt(_requestorObjId);
+		buffer.writeString(_requestorName);
 	}
 }

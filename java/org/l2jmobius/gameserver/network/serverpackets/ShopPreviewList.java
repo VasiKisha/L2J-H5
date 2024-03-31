@@ -19,9 +19,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Collection;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
 import org.l2jmobius.gameserver.model.buylist.Product;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ShopPreviewList extends ServerPacket
@@ -47,15 +49,15 @@ public class ShopPreviewList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SHOP_PREVIEW_LIST.writeId(this);
-		writeByte(0xC0); // ?
-		writeByte(0x13); // ?
-		writeByte(0); // ?
-		writeByte(0); // ?
-		writeLong(_money); // current money
-		writeInt(_listId);
+		ServerPackets.SHOP_PREVIEW_LIST.writeId(this, buffer);
+		buffer.writeByte(0xC0); // ?
+		buffer.writeByte(0x13); // ?
+		buffer.writeByte(0); // ?
+		buffer.writeByte(0); // ?
+		buffer.writeLong(_money); // current money
+		buffer.writeInt(_listId);
 		int newlength = 0;
 		for (Product product : _list)
 		{
@@ -64,22 +66,22 @@ public class ShopPreviewList extends ServerPacket
 				newlength++;
 			}
 		}
-		writeShort(newlength);
+		buffer.writeShort(newlength);
 		for (Product product : _list)
 		{
 			if ((product.getItem().getCrystalType().getLevel() <= _expertise) && product.getItem().isEquipable())
 			{
-				writeInt(product.getItemId());
-				writeShort(product.getItem().getType2()); // item type2
+				buffer.writeInt(product.getItemId());
+				buffer.writeShort(product.getItem().getType2()); // item type2
 				if (product.getItem().getType1() != ItemTemplate.TYPE1_ITEM_QUESTITEM_ADENA)
 				{
-					writeShort(product.getItem().getBodyPart()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+					buffer.writeShort(product.getItem().getBodyPart()); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
 				}
 				else
 				{
-					writeShort(0); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
+					buffer.writeShort(0); // rev 415 slot 0006-lr.ear 0008-neck 0030-lr.finger 0040-head 0080-?? 0100-l.hand 0200-gloves 0400-chest 0800-pants 1000-feet 2000-?? 4000-r.hand 8000-r.hand
 				}
-				writeLong(Config.WEAR_PRICE);
+				buffer.writeLong(Config.WEAR_PRICE);
 			}
 		}
 	}

@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -37,10 +39,10 @@ public class Ex2ndPasswordVerify extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_2ND_PASSWORD_VERIFY.writeId(this);
-		writeInt(_mode);
-		writeInt(_wrongTentatives);
+		ServerPackets.EX_2ND_PASSWORD_VERIFY.writeId(this, buffer);
+		buffer.writeInt(_mode);
+		buffer.writeInt(_wrongTentatives);
 	}
 }

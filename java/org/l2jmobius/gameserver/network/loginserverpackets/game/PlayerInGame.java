@@ -18,12 +18,12 @@ package org.l2jmobius.gameserver.network.loginserverpackets.game;
 
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
  * @author -Wooden-
  */
-public class PlayerInGame extends WritablePacket
+public class PlayerInGame extends BaseWritablePacket
 {
 	public PlayerInGame(String player)
 	{

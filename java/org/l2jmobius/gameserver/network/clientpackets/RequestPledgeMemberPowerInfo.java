@@ -16,51 +16,49 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeReceivePowerInfo;
 
 /**
  * Format: (ch) dS
  * @author -Wooden-
  */
-public class RequestPledgeMemberPowerInfo implements ClientPacket
+public class RequestPledgeMemberPowerInfo extends ClientPacket
 {
 	@SuppressWarnings("unused")
 	private int _unk1;
 	private String _player;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_unk1 = packet.readInt();
-		_player = packet.readString();
+		_unk1 = readInt();
+		_player = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		// LOGGER.info("C5: RequestPledgeMemberPowerInfo d:"+_unk1);
-		// LOGGER.info("C5: RequestPledgeMemberPowerInfo S:"+_player);
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
-		// do we need powers to do that??
+		
 		final Clan clan = player.getClan();
 		if (clan == null)
 		{
 			return;
 		}
+		
 		final ClanMember member = clan.getClanMember(_player);
 		if (member == null)
 		{
 			return;
 		}
+		
 		player.sendPacket(new PledgeReceivePowerInfo(member));
 	}
 }

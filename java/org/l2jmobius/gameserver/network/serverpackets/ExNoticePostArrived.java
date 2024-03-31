@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -39,9 +41,9 @@ public class ExNoticePostArrived extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_NOTICE_POST_ARRIVED.writeId(this);
-		writeInt(_showAnim);
+		ServerPackets.EX_NOTICE_POST_ARRIVED.writeId(this, buffer);
+		buffer.writeInt(_showAnim);
 	}
 }

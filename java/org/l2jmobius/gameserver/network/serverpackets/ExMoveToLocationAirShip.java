@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ExMoveToLocationAirShip extends ServerPacket
@@ -41,15 +43,15 @@ public class ExMoveToLocationAirShip extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_MOVE_TO_LOCATION_AIRSHIP.writeId(this);
-		writeInt(_objId);
-		writeInt(_tx);
-		writeInt(_ty);
-		writeInt(_tz);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
+		ServerPackets.EX_MOVE_TO_LOCATION_AIRSHIP.writeId(this, buffer);
+		buffer.writeInt(_objId);
+		buffer.writeInt(_tx);
+		buffer.writeInt(_ty);
+		buffer.writeInt(_tz);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
 	}
 }

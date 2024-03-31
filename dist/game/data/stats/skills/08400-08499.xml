@@ -427,10 +427,16 @@
 	</skill>
 	<skill id="8415" levels="5" name="Ring Ability - Drop Rate Up">
 		<!-- Increases item drop rate. -->
+		<table name="#bonusDropRate">10 20 30 40 50</table>
 		<set name="icon" val="icon.skill3080" />
 		<set name="magicLevel" val="85" />
 		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<set name="targetType" val="SELF" />
+		<for>
+			<effect name="Buff">
+				<add stat="bonusDropRate" val="#bonusDropRate" />
+			</effect>
+		</for>
 	</skill>
 	<skill id="8416" levels="5" name="Earring Ability - Drop Rate Up">
 		<!-- Increases item drop rate. -->

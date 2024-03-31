@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.PrimeShopData;
 import org.l2jmobius.gameserver.model.holders.PrimeShopProductHolder;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -33,20 +35,20 @@ public class ExBrProductInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		if (_product == null)
 		{
 			return;
 		}
 		
-		ServerPackets.EX_BR_PRODUCT_INFO.writeId(this);
-		writeInt(_product.getProductId()); // product id
-		writeInt(_product.getPrice()); // points
-		writeInt(1); // components size
-		writeInt(_product.getItemId()); // item id
-		writeInt(_product.getItemCount()); // quality
-		writeInt(_product.getItemWeight()); // weight
-		writeInt(_product.isTradable()); // 0 - dont drop/trade
+		ServerPackets.EX_BR_PRODUCT_INFO.writeId(this, buffer);
+		buffer.writeInt(_product.getProductId()); // product id
+		buffer.writeInt(_product.getPrice()); // points
+		buffer.writeInt(1); // components size
+		buffer.writeInt(_product.getItemId()); // item id
+		buffer.writeInt(_product.getItemCount()); // quality
+		buffer.writeInt(_product.getItemWeight()); // weight
+		buffer.writeInt(_product.isTradable()); // 0 - dont drop/trade
 	}
 }

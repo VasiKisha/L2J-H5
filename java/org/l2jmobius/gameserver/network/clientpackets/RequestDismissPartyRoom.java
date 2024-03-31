@@ -16,32 +16,30 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoom;
 import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoomList;
-import org.l2jmobius.gameserver.network.GameClient;
 
 /**
  * @author Gnacik
  */
-public class RequestDismissPartyRoom implements ClientPacket
+public class RequestDismissPartyRoom extends ClientPacket
 {
 	private int _roomid;
 	@SuppressWarnings("unused")
 	private int _data2;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_roomid = packet.readInt();
-		_data2 = packet.readInt();
+		_roomid = readInt();
+		_data2 = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

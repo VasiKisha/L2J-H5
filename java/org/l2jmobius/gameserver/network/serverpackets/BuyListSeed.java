@@ -19,8 +19,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
 import org.l2jmobius.gameserver.model.SeedProduction;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -46,46 +48,46 @@ public class BuyListSeed extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.BUY_LIST_SEED.writeId(this);
-		writeLong(_money); // current money
-		writeInt(_manorId); // manor id
+		ServerPackets.BUY_LIST_SEED.writeId(this, buffer);
+		buffer.writeLong(_money); // current money
+		buffer.writeInt(_manorId); // manor id
 		if (!_list.isEmpty())
 		{
-			writeShort(_list.size()); // list length
+			buffer.writeShort(_list.size()); // list length
 			for (SeedProduction s : _list)
 			{
-				writeInt(s.getId());
-				writeInt(s.getId());
-				writeInt(0);
-				writeLong(s.getAmount()); // item count
-				writeShort(5); // Custom Type 2
-				writeShort(0); // Custom Type 1
-				writeShort(0); // Equipped
-				writeInt(0); // Body Part
-				writeShort(0); // Enchant
-				writeShort(0); // Custom Type
-				writeInt(0); // Augment
-				writeInt(-1); // Mana
-				writeInt(-9999); // Time
-				writeShort(0); // Element Type
-				writeShort(0); // Element Power
+				buffer.writeInt(s.getId());
+				buffer.writeInt(s.getId());
+				buffer.writeInt(0);
+				buffer.writeLong(s.getAmount()); // item count
+				buffer.writeShort(5); // Custom Type 2
+				buffer.writeShort(0); // Custom Type 1
+				buffer.writeShort(0); // Equipped
+				buffer.writeInt(0); // Body Part
+				buffer.writeShort(0); // Enchant
+				buffer.writeShort(0); // Custom Type
+				buffer.writeInt(0); // Augment
+				buffer.writeInt(-1); // Mana
+				buffer.writeInt(-9999); // Time
+				buffer.writeShort(0); // Element Type
+				buffer.writeShort(0); // Element Power
 				for (byte i = 0; i < 6; i++)
 				{
-					writeShort(0);
+					buffer.writeShort(0);
 				}
 				// Enchant Effects
-				writeShort(0);
-				writeShort(0);
-				writeShort(0);
-				writeLong(s.getPrice()); // price
+				buffer.writeShort(0);
+				buffer.writeShort(0);
+				buffer.writeShort(0);
+				buffer.writeLong(s.getPrice()); // price
 			}
 			_list.clear();
 		}
 		else
 		{
-			writeShort(0);
+			buffer.writeShort(0);
 		}
 	}
 }

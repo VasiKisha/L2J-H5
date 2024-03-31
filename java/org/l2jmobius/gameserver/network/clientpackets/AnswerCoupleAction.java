@@ -16,10 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExRotation;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
@@ -29,24 +27,24 @@ import org.l2jmobius.gameserver.util.Util;
 /**
  * @author JIV
  */
-public class AnswerCoupleAction implements ClientPacket
+public class AnswerCoupleAction extends ClientPacket
 {
 	private int _objectId;
 	private int _actionId;
 	private int _answer;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_actionId = packet.readInt();
-		_answer = packet.readInt();
-		_objectId = packet.readInt();
+		_actionId = readInt();
+		_answer = readInt();
+		_objectId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		final Player target = World.getInstance().getPlayer(_objectId);
 		if ((player == null) || (target == null))
 		{

@@ -19,6 +19,8 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -45,16 +47,16 @@ public class ExQuestNpcLogList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_QUEST_NPC_LOG_LIST.writeId(this);
-		writeInt(_questId);
-		writeByte(_npcs.size());
+		ServerPackets.EX_QUEST_NPC_LOG_LIST.writeId(this, buffer);
+		buffer.writeInt(_questId);
+		buffer.writeByte(_npcs.size());
 		for (NpcHolder holder : _npcs)
 		{
-			writeInt((holder.getNpcId() + 1000000));
-			writeByte(holder.getUnknown());
-			writeInt(holder.getCount());
+			buffer.writeInt((holder.getNpcId() + 1000000));
+			buffer.writeByte(holder.getUnknown());
+			buffer.writeInt(holder.getCount());
 		}
 	}
 	

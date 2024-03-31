@@ -20,7 +20,7 @@ import java.util.List;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.ExtractableProduct;
 import org.l2jmobius.gameserver.model.actor.Playable;
@@ -72,7 +72,7 @@ public class ExtractableItems implements IItemHandler
 					continue;
 				}
 				
-				if (ItemTable.getInstance().getTemplate(expi.getId()).isStackable() || (createItemAmount == 1))
+				if (ItemData.getInstance().getTemplate(expi.getId()).isStackable() || (createItemAmount == 1))
 				{
 					player.addItem("Extract", expi.getId(), createItemAmount, player, true);
 				}

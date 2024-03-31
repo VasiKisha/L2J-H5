@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -42,15 +44,15 @@ public class ExFishingStart extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_FISHING_START.writeId(this);
-		writeInt(_creature.getObjectId());
-		writeInt(_fishType); // fish type
-		writeInt(_x); // x position
-		writeInt(_y); // y position
-		writeInt(_z); // z position
-		writeByte(_isNightLure); // night lure
-		writeByte(0); // show fish rank result button
+		ServerPackets.EX_FISHING_START.writeId(this, buffer);
+		buffer.writeInt(_creature.getObjectId());
+		buffer.writeInt(_fishType); // fish type
+		buffer.writeInt(_x); // x position
+		buffer.writeInt(_y); // y position
+		buffer.writeInt(_z); // z position
+		buffer.writeByte(_isNightLure); // night lure
+		buffer.writeByte(0); // show fish rank result button
 	}
 }

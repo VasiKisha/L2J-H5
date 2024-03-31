@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.Henna;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -35,26 +37,26 @@ public class HennaItemRemoveInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.HENNA_UNEQUIP_INFO.writeId(this);
-		writeInt(_henna.getDyeId()); // symbol Id
-		writeInt(_henna.getDyeItemId()); // item id of dye
-		writeLong(_henna.getCancelCount()); // total amount of dye require
-		writeLong(_henna.getCancelFee()); // total amount of Adena require to remove symbol
-		writeInt(_henna.isAllowedClass(_player.getClassId())); // able to remove or not
-		writeLong(_player.getAdena());
-		writeInt(_player.getINT()); // current INT
-		writeByte(_player.getINT() - _henna.getStatINT()); // equip INT
-		writeInt(_player.getSTR()); // current STR
-		writeByte(_player.getSTR() - _henna.getStatSTR()); // equip STR
-		writeInt(_player.getCON()); // current CON
-		writeByte(_player.getCON() - _henna.getStatCON()); // equip CON
-		writeInt(_player.getMEN()); // current MEN
-		writeByte(_player.getMEN() - _henna.getStatMEN()); // equip MEN
-		writeInt(_player.getDEX()); // current DEX
-		writeByte(_player.getDEX() - _henna.getStatDEX()); // equip DEX
-		writeInt(_player.getWIT()); // current WIT
-		writeByte(_player.getWIT() - _henna.getStatWIT()); // equip WIT
+		ServerPackets.HENNA_UNEQUIP_INFO.writeId(this, buffer);
+		buffer.writeInt(_henna.getDyeId()); // symbol Id
+		buffer.writeInt(_henna.getDyeItemId()); // item id of dye
+		buffer.writeLong(_henna.getCancelCount()); // total amount of dye require
+		buffer.writeLong(_henna.getCancelFee()); // total amount of Adena require to remove symbol
+		buffer.writeInt(_henna.isAllowedClass(_player.getClassId())); // able to remove or not
+		buffer.writeLong(_player.getAdena());
+		buffer.writeInt(_player.getINT()); // current INT
+		buffer.writeByte(_player.getINT() - _henna.getStatINT()); // equip INT
+		buffer.writeInt(_player.getSTR()); // current STR
+		buffer.writeByte(_player.getSTR() - _henna.getStatSTR()); // equip STR
+		buffer.writeInt(_player.getCON()); // current CON
+		buffer.writeByte(_player.getCON() - _henna.getStatCON()); // equip CON
+		buffer.writeInt(_player.getMEN()); // current MEN
+		buffer.writeByte(_player.getMEN() - _henna.getStatMEN()); // equip MEN
+		buffer.writeInt(_player.getDEX()); // current DEX
+		buffer.writeByte(_player.getDEX() - _henna.getStatDEX()); // equip DEX
+		buffer.writeInt(_player.getWIT()); // current WIT
+		buffer.writeByte(_player.getWIT() - _henna.getStatWIT()); // equip WIT
 	}
 }

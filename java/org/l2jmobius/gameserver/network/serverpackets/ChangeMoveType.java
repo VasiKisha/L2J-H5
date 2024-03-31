@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ChangeMoveType extends ServerPacket
@@ -34,11 +36,11 @@ public class ChangeMoveType extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.CHANGE_MOVE_TYPE.writeId(this);
-		writeInt(_objectId);
-		writeInt(_running ? RUN : WALK);
-		writeInt(0); // c2
+		ServerPackets.CHANGE_MOVE_TYPE.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_running ? RUN : WALK);
+		buffer.writeInt(0); // c2
 	}
 }

@@ -18,8 +18,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.PrimeShopData;
 import org.l2jmobius.gameserver.model.holders.PrimeShopProductHolder;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -30,48 +32,48 @@ public class ExBrProductList extends ServerPacket
 	private final Collection<PrimeShopProductHolder> _itemList = PrimeShopData.getInstance().getAllItems();
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BR_PRODUCT_LIST.writeId(this);
-		writeInt(_itemList.size());
+		ServerPackets.EX_BR_PRODUCT_LIST.writeId(this, buffer);
+		buffer.writeInt(_itemList.size());
 		for (PrimeShopProductHolder product : _itemList)
 		{
 			final int category = product.getCategory();
-			writeInt(product.getProductId()); // product id
-			writeShort(category); // category id
-			writeInt(product.getPrice()); // points
+			buffer.writeInt(product.getProductId()); // product id
+			buffer.writeShort(category); // category id
+			buffer.writeInt(product.getPrice()); // points
 			switch (category)
 			{
 				case 6:
 				{
-					writeInt(1); // event
+					buffer.writeInt(1); // event
 					break;
 				}
 				case 7:
 				{
-					writeInt(2); // best
+					buffer.writeInt(2); // best
 					break;
 				}
 				case 8:
 				{
-					writeInt(3); // event & best
+					buffer.writeInt(3); // event & best
 					break;
 				}
 				default:
 				{
-					writeInt(0); // normal
+					buffer.writeInt(0); // normal
 					break;
 				}
 			}
-			writeInt(0); // start sale
-			writeInt(0); // end sale
-			writeByte(0); // day week
-			writeByte(0); // start hour
-			writeByte(0); // start min
-			writeByte(0); // end hour
-			writeByte(0); // end min
-			writeInt(0); // current stock
-			writeInt(0); // max stock
+			buffer.writeInt(0); // start sale
+			buffer.writeInt(0); // end sale
+			buffer.writeByte(0); // day week
+			buffer.writeByte(0); // start hour
+			buffer.writeByte(0); // start min
+			buffer.writeByte(0); // end hour
+			buffer.writeByte(0); // end min
+			buffer.writeInt(0); // current stock
+			buffer.writeInt(0); // max stock
 		}
 	}
 }

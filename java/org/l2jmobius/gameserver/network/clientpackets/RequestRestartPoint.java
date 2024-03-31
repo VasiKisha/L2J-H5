@@ -16,7 +16,6 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.enums.TeleportWhereType;
@@ -36,21 +35,20 @@ import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.siege.SiegeClan;
 import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 
 /**
  * @version $Revision: 1.7.2.3.2.6 $ $Date: 2005/03/27 15:29:30 $
  */
-public class RequestRestartPoint implements ClientPacket
+public class RequestRestartPoint extends ClientPacket
 {
 	protected int _requestedPointType;
 	protected boolean _continuation;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_requestedPointType = packet.readInt();
+		_requestedPointType = readInt();
 	}
 	
 	class DeathTask implements Runnable
@@ -70,9 +68,9 @@ public class RequestRestartPoint implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -199,7 +197,7 @@ public class RequestRestartPoint implements ClientPacket
 				loc = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.FORTRESS);
 				if ((FortManager.getInstance().getFortByOwner(player.getClan()) != null) && (FortManager.getInstance().getFortByOwner(player.getClan()).getFunction(Fort.FUNC_RESTORE_EXP) != null))
 				{
-					player.restoreExp(FortManager.getInstance().getFortByOwner(player.getClan()).getFunction(Fort.FUNC_RESTORE_EXP).getLvl());
+					player.restoreExp(FortManager.getInstance().getFortByOwner(player.getClan()).getFunction(Fort.FUNC_RESTORE_EXP).getLevel());
 				}
 				break;
 			}

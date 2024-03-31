@@ -3,7 +3,7 @@
 	<skill id="22300" levels="1" name="Fantasy Isle Magic">
 		<!-- Magic obtained from Fantasy Isle. Increases Speed by 30%, and decreases fall damage when falling from a high place. -->
 		<set name="abnormalTime" val="300" />
-		<set name="icon" val="icon.skill22300" />
+		<set name="icon" val="BranchSys2.icon.s_g_fantastic_magic" />
 		<set name="operateType" val="A2" />
 		<set name="targetType" val="ONE" />
 		<for>
@@ -32,7 +32,7 @@
 	</skill>
 	<skill id="22303" levels="1" name="Party Cake">
 		<!-- Party Cake's Vitality effect. Maintains Vitality for 20 minutes. -->
-		<set name="icon" val="br_birthday_cake_i00" />
+		<set name="icon" val="BranchSys.icon.br_birthday_cake_i00" />
 		<set name="targetType" val="PARTY" />
 		<set name="affectRange" val="500" />
 		<set name="castRange" val="500" />

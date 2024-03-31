@@ -16,14 +16,14 @@
  */
 package org.l2jmobius.loginserver.network.serverpackets;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.loginserver.enums.LoginFailReason;
-import org.l2jmobius.loginserver.network.LoginServerPackets;
+import org.l2jmobius.loginserver.network.LoginClient;
 
 /**
  * Format: d d: the failure reason
  */
-public class LoginFail extends WritablePacket
+public class LoginFail extends LoginServerPacket
 {
 	private final LoginFailReason _reason;
 	
@@ -33,9 +33,9 @@ public class LoginFail extends WritablePacket
 	}
 	
 	@Override
-	public void write()
+	protected void writeImpl(LoginClient client, WritableBuffer buffer)
 	{
-		LoginServerPackets.LOGIN_FAIL.writeId(this);
-		writeByte(_reason.getCode());
+		buffer.writeByte(0x01);
+		buffer.writeByte(_reason.getCode());
 	}
 }

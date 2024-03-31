@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.model.CharSelectInfoPackage;
@@ -73,13 +74,13 @@ public class CharSelectionInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.CHARACTER_SELECTION_INFO.writeId(this);
+		ServerPackets.CHARACTER_SELECTION_INFO.writeId(this, buffer);
 		final int size = _characterPackages.size();
-		writeInt(size); // Created character count
-		writeInt(Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT); // Can prevent players from creating new characters (if 0); (if 1, the client will ask if chars may be created (0x13) Response: (0x0D) )
-		writeByte(0);
+		buffer.writeInt(size); // Created character count
+		buffer.writeInt(Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT); // Can prevent players from creating new characters (if 0); (if 1, the client will ask if chars may be created (0x13) Response: (0x0D) )
+		buffer.writeByte(0);
 		long lastAccess = 0;
 		if (_activeId == -1)
 		{
@@ -95,59 +96,59 @@ public class CharSelectionInfo extends ServerPacket
 		for (int i = 0; i < size; i++)
 		{
 			final CharSelectInfoPackage charInfoPackage = _characterPackages.get(i);
-			writeString(charInfoPackage.getName()); // Character name
-			writeInt(charInfoPackage.getObjectId()); // Character ID
-			writeString(_loginName); // Account name
-			writeInt(_sessionId); // Account ID
-			writeInt(charInfoPackage.getClanId()); // Clan ID
-			writeInt(0); // Builder level
-			writeInt(charInfoPackage.getSex()); // Sex
-			writeInt(charInfoPackage.getRace()); // Race
-			writeInt(charInfoPackage.getBaseClassId());
-			writeInt(1); // GameServerName
-			writeInt(charInfoPackage.getX());
-			writeInt(charInfoPackage.getY());
-			writeInt(charInfoPackage.getZ());
-			writeDouble(charInfoPackage.getCurrentHp());
-			writeDouble(charInfoPackage.getCurrentMp());
-			writeInt((int) charInfoPackage.getSp());
-			writeLong(charInfoPackage.getExp());
-			writeDouble((float) (charInfoPackage.getExp() - ExperienceData.getInstance().getExpForLevel(charInfoPackage.getLevel())) / (ExperienceData.getInstance().getExpForLevel(charInfoPackage.getLevel() + 1) - ExperienceData.getInstance().getExpForLevel(charInfoPackage.getLevel()))); // High
-																																																																									// Five
-			writeInt(charInfoPackage.getLevel());
-			writeInt(charInfoPackage.getKarma());
-			writeInt(charInfoPackage.getPkKills());
-			writeInt(charInfoPackage.getPvPKills());
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
-			writeInt(0);
+			buffer.writeString(charInfoPackage.getName()); // Character name
+			buffer.writeInt(charInfoPackage.getObjectId()); // Character ID
+			buffer.writeString(_loginName); // Account name
+			buffer.writeInt(_sessionId); // Account ID
+			buffer.writeInt(charInfoPackage.getClanId()); // Clan ID
+			buffer.writeInt(0); // Builder level
+			buffer.writeInt(charInfoPackage.getSex()); // Sex
+			buffer.writeInt(charInfoPackage.getRace()); // Race
+			buffer.writeInt(charInfoPackage.getBaseClassId());
+			buffer.writeInt(1); // GameServerName
+			buffer.writeInt(charInfoPackage.getX());
+			buffer.writeInt(charInfoPackage.getY());
+			buffer.writeInt(charInfoPackage.getZ());
+			buffer.writeDouble(charInfoPackage.getCurrentHp());
+			buffer.writeDouble(charInfoPackage.getCurrentMp());
+			buffer.writeInt((int) charInfoPackage.getSp());
+			buffer.writeLong(charInfoPackage.getExp());
+			buffer.writeDouble((float) (charInfoPackage.getExp() - ExperienceData.getInstance().getExpForLevel(charInfoPackage.getLevel())) / (ExperienceData.getInstance().getExpForLevel(charInfoPackage.getLevel() + 1) - ExperienceData.getInstance().getExpForLevel(charInfoPackage.getLevel()))); // High
+			// Five
+			buffer.writeInt(charInfoPackage.getLevel());
+			buffer.writeInt(charInfoPackage.getKarma());
+			buffer.writeInt(charInfoPackage.getPkKills());
+			buffer.writeInt(charInfoPackage.getPvPKills());
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
+			buffer.writeInt(0);
 			for (int slot : getPaperdollOrder())
 			{
-				writeInt(charInfoPackage.getPaperdollItemId(slot));
+				buffer.writeInt(charInfoPackage.getPaperdollItemId(slot));
 			}
-			writeInt(charInfoPackage.getHairStyle());
-			writeInt(charInfoPackage.getHairColor());
-			writeInt(charInfoPackage.getFace());
-			writeDouble(charInfoPackage.getMaxHp()); // Maximum HP
-			writeDouble(charInfoPackage.getMaxMp()); // Maximum MP
-			writeInt(charInfoPackage.getDeleteTimer() > 0 ? (int) ((charInfoPackage.getDeleteTimer() - System.currentTimeMillis()) / 1000) : 0);
-			writeInt(charInfoPackage.getClassId());
-			writeInt(i == _activeId);
-			writeByte(Math.min(charInfoPackage.getEnchantEffect(), 127));
-			writeInt(charInfoPackage.getAugmentationId());
-			// writeInt(charInfoPackage.getTransformId()); // Used to display Transformations
-			writeInt(0); // Currently on retail when you are on character select you don't see your transformation.
-			writeInt(0); // Pet NpcId
-			writeInt(0); // Pet level
-			writeInt(0); // Pet Food
-			writeInt(0); // Pet Food Level
-			writeDouble(0); // Current pet HP
-			writeDouble(0); // Current pet MP
-			writeInt(charInfoPackage.getVitalityPoints()); // Vitality
+			buffer.writeInt(charInfoPackage.getHairStyle());
+			buffer.writeInt(charInfoPackage.getHairColor());
+			buffer.writeInt(charInfoPackage.getFace());
+			buffer.writeDouble(charInfoPackage.getMaxHp()); // Maximum HP
+			buffer.writeDouble(charInfoPackage.getMaxMp()); // Maximum MP
+			buffer.writeInt(charInfoPackage.getDeleteTimer() > 0 ? (int) ((charInfoPackage.getDeleteTimer() - System.currentTimeMillis()) / 1000) : 0);
+			buffer.writeInt(charInfoPackage.getClassId());
+			buffer.writeInt(i == _activeId);
+			buffer.writeByte(Math.min(charInfoPackage.getEnchantEffect(), 127));
+			buffer.writeInt(charInfoPackage.getAugmentationId());
+			// buffer.writeInt(charInfoPackage.getTransformId()); // Used to display Transformations
+			buffer.writeInt(0); // Currently on retail when you are on character select you don't see your transformation.
+			buffer.writeInt(0); // Pet NpcId
+			buffer.writeInt(0); // Pet level
+			buffer.writeInt(0); // Pet Food
+			buffer.writeInt(0); // Pet Food Level
+			buffer.writeDouble(0); // Current pet HP
+			buffer.writeDouble(0); // Current pet MP
+			buffer.writeInt(charInfoPackage.getVitalityPoints()); // Vitality
 		}
 	}
 	

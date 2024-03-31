@@ -19,7 +19,9 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -41,11 +43,11 @@ public class ExPVPMatchCCRecord extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PVP_MATCH_CC_RECORD.writeId(this);
-		writeInt(_state); // 0 - initialize, 1 - update, 2 - finish
-		writeInt(Math.min(_players.size(), 25));
+		ServerPackets.EX_PVP_MATCH_CC_RECORD.writeId(this, buffer);
+		buffer.writeInt(_state); // 0 - initialize, 1 - update, 2 - finish
+		buffer.writeInt(Math.min(_players.size(), 25));
 		int counter = 0;
 		for (Entry<Player, Integer> entry : _players.entrySet())
 		{
@@ -54,8 +56,8 @@ public class ExPVPMatchCCRecord extends ServerPacket
 			{
 				break;
 			}
-			writeString(entry.getKey().getName());
-			writeInt(entry.getValue());
+			buffer.writeString(entry.getKey().getName());
+			buffer.writeInt(entry.getValue());
 		}
 	}
 }

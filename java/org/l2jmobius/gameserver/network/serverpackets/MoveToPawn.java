@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class MoveToPawn extends ServerPacket
@@ -45,17 +47,23 @@ public class MoveToPawn extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.MOVE_TO_PAWN.writeId(this);
-		writeInt(_objectId);
-		writeInt(_targetId);
-		writeInt(_distance);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(_tx);
-		writeInt(_ty);
-		writeInt(_tz);
+		ServerPackets.MOVE_TO_PAWN.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_targetId);
+		buffer.writeInt(_distance);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(_tx);
+		buffer.writeInt(_ty);
+		buffer.writeInt(_tz);
+	}
+	
+	@Override
+	public boolean canBeDropped(GameClient client)
+	{
+		return true;
 	}
 }

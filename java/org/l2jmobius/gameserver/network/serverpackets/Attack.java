@@ -20,9 +20,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.Hit;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class Attack extends ServerPacket
@@ -81,31 +83,32 @@ public class Attack extends ServerPacket
 	/**
 	 * Writes current hit
 	 * @param hit
+	 * @param buffer
 	 */
-	private void writeHit(Hit hit)
+	private void writeHit(Hit hit, WritableBuffer buffer)
 	{
-		writeInt(hit.getTargetId());
-		writeInt(hit.getDamage());
-		writeByte(hit.getFlags());
+		buffer.writeInt(hit.getTargetId());
+		buffer.writeInt(hit.getDamage());
+		buffer.writeByte(hit.getFlags());
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		final Iterator<Hit> it = _hits.iterator();
-		ServerPackets.ATTACK.writeId(this);
-		writeInt(_attackerObjId);
-		writeHit(it.next());
-		writeInt(_attackerLoc.getX());
-		writeInt(_attackerLoc.getY());
-		writeInt(_attackerLoc.getZ());
-		writeShort(_hits.size() - 1);
+		ServerPackets.ATTACK.writeId(this, buffer);
+		buffer.writeInt(_attackerObjId);
+		writeHit(it.next(), buffer);
+		buffer.writeInt(_attackerLoc.getX());
+		buffer.writeInt(_attackerLoc.getY());
+		buffer.writeInt(_attackerLoc.getZ());
+		buffer.writeShort(_hits.size() - 1);
 		while (it.hasNext())
 		{
-			writeHit(it.next());
+			writeHit(it.next(), buffer);
 		}
-		writeInt(_targetLoc.getX());
-		writeInt(_targetLoc.getY());
-		writeInt(_targetLoc.getZ());
+		buffer.writeInt(_targetLoc.getX());
+		buffer.writeInt(_targetLoc.getY());
+		buffer.writeInt(_targetLoc.getZ());
 	}
 }

@@ -27,7 +27,6 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.enums.StatFunction;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -80,7 +79,7 @@ public class EnchantItemHPBonusData implements IXmlReader
 		
 		if (!_armorHPBonuses.isEmpty())
 		{
-			final ItemTable it = ItemTable.getInstance();
+			final ItemData it = ItemData.getInstance();
 			// Armors
 			final Collection<Integer> armorIds = it.getAllArmorsId();
 			for (Integer itemId : armorIds)

@@ -29,8 +29,8 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.data.NpcPersonalAIData;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.enums.AISkillScope;
 import org.l2jmobius.gameserver.enums.AIType;
@@ -71,6 +71,7 @@ import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSkillFinishe
 import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSpawn;
 import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcTeleport;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
+import org.l2jmobius.gameserver.model.events.timers.TimerHolder;
 import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
@@ -161,6 +162,7 @@ public class Npc extends Creature
 	private Map<Integer, Npc> _summonedNpcs = null;
 	
 	private final List<QuestTimer> _questTimers = new ArrayList<>();
+	private final List<TimerHolder<?>> _timerHolders = new ArrayList<>();
 	
 	/**
 	 * Creates a NPC.
@@ -707,7 +709,7 @@ public class Npc extends Creature
 		}
 		
 		// Get the weapon item equipped in the right hand of the Npc
-		final ItemTemplate item = ItemTable.getInstance().getTemplate(getTemplate().getRHandId());
+		final ItemTemplate item = ItemData.getInstance().getTemplate(getTemplate().getRHandId());
 		if (!(item instanceof Weapon))
 		{
 			return null;
@@ -739,7 +741,7 @@ public class Npc extends Creature
 		}
 		
 		// Get the weapon item equipped in the right hand of the Npc
-		final ItemTemplate item = ItemTable.getInstance().getTemplate(getTemplate().getLHandId());
+		final ItemTemplate item = ItemData.getInstance().getTemplate(getTemplate().getLHandId());
 		if (!(item instanceof Weapon))
 		{
 			return null;
@@ -783,7 +785,7 @@ public class Npc extends Creature
 		}
 		
 		final String temp = "data/html/default/" + pom + ".htm";
-		if (!Config.LAZY_CACHE)
+		if (Config.HTM_CACHE)
 		{
 			// If not running lazy cache the file must be in the cache or it does not exist
 			if (HtmCache.getInstance().contains(temp))
@@ -1087,7 +1089,7 @@ public class Npc extends Creature
 		{
 			if (Config.LIST_PET_RENT_NPC.contains(npcId))
 			{
-				html.replace("_Quest", "_RentPet\">Rent Pet</a><br><a action=\"bypass -h npc_%objectId%_Quest");
+				html.replace("_Quest", "_RentPet\">Rent Pet</a><br><a action=\"bypass npc_%objectId%_Quest");
 			}
 		}
 		
@@ -1328,6 +1330,7 @@ public class Npc extends Creature
 		
 		// Stop all timers
 		stopQuestTimers();
+		stopTimerHolders();
 		
 		// Clear script value
 		_scriptValue = 0;
@@ -1619,7 +1622,7 @@ public class Npc extends Creature
 			}
 			if (magic)
 			{
-				Broadcast.toSelfAndKnownPlayersInRadius(this, new MagicSkillUse(this, this, 2061, 1, 0, 0), 600);
+				Broadcast.toSelfAndKnownPlayersInRadius(this, new MagicSkillUse(this, this, 2159, 1, 0, 0), 600);
 				setChargedShot(ShotType.SPIRITSHOTS, true);
 			}
 		}
@@ -1644,7 +1647,7 @@ public class Npc extends Creature
 				}
 				
 				_spiritshotamount--;
-				Broadcast.toSelfAndKnownPlayersInRadius(this, new MagicSkillUse(this, this, 2061, 1, 0, 0), 600);
+				Broadcast.toSelfAndKnownPlayersInRadius(this, new MagicSkillUse(this, this, 2159, 1, 0, 0), 600);
 				setChargedShot(ShotType.SPIRITSHOTS, true);
 			}
 		}
@@ -1790,13 +1793,13 @@ public class Npc extends Creature
 		Item item = null;
 		for (int i = 0; i < itemCount; i++)
 		{
-			if (ItemTable.getInstance().getTemplate(itemId) == null)
+			if (ItemData.getInstance().getTemplate(itemId) == null)
 			{
 				LOGGER.log(Level.SEVERE, "Item doesn't exist so cannot be dropped. Item ID: " + itemId + " Quest: " + getName());
 				return null;
 			}
 			
-			item = ItemTable.getInstance().createItem("Loot", itemId, itemCount, creature, this);
+			item = ItemData.getInstance().createItem("Loot", itemId, itemCount, creature, this);
 			if (item == null)
 			{
 				return null;
@@ -2073,6 +2076,34 @@ public class Npc extends Creature
 				timer.cancelTask();
 			}
 			_questTimers.clear();
+		}
+	}
+	
+	public void addTimerHolder(TimerHolder<?> timer)
+	{
+		synchronized (_timerHolders)
+		{
+			_timerHolders.add(timer);
+		}
+	}
+	
+	public void removeTimerHolder(TimerHolder<?> timer)
+	{
+		synchronized (_timerHolders)
+		{
+			_timerHolders.remove(timer);
+		}
+	}
+	
+	public void stopTimerHolders()
+	{
+		synchronized (_timerHolders)
+		{
+			for (TimerHolder<?> timer : _timerHolders)
+			{
+				timer.cancelTask();
+			}
+			_timerHolders.clear();
 		}
 	}
 	

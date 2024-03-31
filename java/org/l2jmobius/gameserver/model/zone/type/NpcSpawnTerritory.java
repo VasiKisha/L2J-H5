@@ -16,6 +16,9 @@
  */
 package org.l2jmobius.gameserver.model.zone.type;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.zone.ZoneForm;
 
@@ -27,7 +30,7 @@ public class NpcSpawnTerritory
 {
 	private final String _name;
 	private final ZoneForm _territory;
-	private ZoneForm _banned;
+	private List<ZoneForm> _bannedTerritories;
 	
 	public NpcSpawnTerritory(String name, ZoneForm territory)
 	{
@@ -35,9 +38,13 @@ public class NpcSpawnTerritory
 		_territory = territory;
 	}
 	
-	public void setBannedTerritory(ZoneForm banned)
+	public void addBannedTerritory(ZoneForm territory)
 	{
-		_banned = banned;
+		if (_bannedTerritories == null)
+		{
+			_bannedTerritories = new ArrayList<>(1);
+		}
+		_bannedTerritories.add(territory);
 	}
 	
 	public String getName()
@@ -47,19 +54,25 @@ public class NpcSpawnTerritory
 	
 	public Location getRandomPoint()
 	{
-		if (_banned != null)
+		if (_bannedTerritories != null)
 		{
 			int count = 0; // Prevent infinite loop from wrongly written data.
 			Location location;
-			while (count++ < 1000)
+			SEARCH: while (count++ < 1000)
 			{
 				location = _territory.getRandomPoint();
-				if (!_banned.isInsideZone(location.getX(), location.getY(), location.getZ()))
+				for (ZoneForm territory : _bannedTerritories)
 				{
-					return location;
+					if (territory.isInsideZone(location.getX(), location.getY(), location.getZ()))
+					{
+						continue SEARCH;
+					}
 				}
+				
+				return location;
 			}
 		}
+		
 		return _territory.getRandomPoint();
 	}
 	

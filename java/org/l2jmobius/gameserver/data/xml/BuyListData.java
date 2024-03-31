@@ -34,7 +34,6 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.file.filter.NumericNameFilter;
-import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
 import org.l2jmobius.gameserver.model.buylist.Product;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -139,7 +138,7 @@ public class BuyListData implements IXmlReader
 							{
 								count = Long.parseLong(attr.getNodeValue());
 							}
-							final ItemTemplate item = ItemTable.getInstance().getTemplate(itemId);
+							final ItemTemplate item = ItemData.getInstance().getTemplate(itemId);
 							if (item != null)
 							{
 								final int sellPrice = item.getReferencePrice() / 2;

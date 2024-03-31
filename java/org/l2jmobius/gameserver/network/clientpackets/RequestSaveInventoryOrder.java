@@ -19,18 +19,16 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.network.GameClient;
 
 /**
  * Format:(ch) d[dd]
  * @author -Wooden-
  */
-public class RequestSaveInventoryOrder implements ClientPacket
+public class RequestSaveInventoryOrder extends ClientPacket
 {
 	private List<InventoryOrder> _order;
 	
@@ -38,23 +36,23 @@ public class RequestSaveInventoryOrder implements ClientPacket
 	private static final int LIMIT = 125;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		int sz = packet.readInt();
+		int sz = readInt();
 		sz = Math.min(sz, LIMIT);
 		_order = new ArrayList<>(sz);
 		for (int i = 0; i < sz; i++)
 		{
-			final int objectId = packet.readInt();
-			final int order = packet.readInt();
+			final int objectId = readInt();
+			final int order = readInt();
 			_order.add(new InventoryOrder(objectId, order));
 		}
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player != null)
 		{
 			final Inventory inventory = player.getInventory();

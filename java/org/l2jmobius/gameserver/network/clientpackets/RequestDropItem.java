@@ -17,7 +17,6 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.enums.PlayerCondOverride;
 import org.l2jmobius.gameserver.enums.PrivateStoreType;
@@ -29,7 +28,6 @@ import org.l2jmobius.gameserver.model.item.type.EtcItemType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -40,7 +38,7 @@ import org.l2jmobius.gameserver.util.Util;
 /**
  * @version $Revision: 1.11.2.1.2.7 $ $Date: 2005/04/02 21:25:21 $
  */
-public class RequestDropItem implements ClientPacket
+public class RequestDropItem extends ClientPacket
 {
 	private int _objectId;
 	private long _count;
@@ -49,26 +47,26 @@ public class RequestDropItem implements ClientPacket
 	private int _z;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_objectId = packet.readInt();
-		_count = packet.readLong();
-		_x = packet.readInt();
-		_y = packet.readInt();
-		_z = packet.readInt();
+		_objectId = readInt();
+		_count = readLong();
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if ((player == null) || player.isDead())
 		{
 			return;
 		}
 		
 		// Flood protect drop to avoid packet lag
-		if (!client.getFloodProtectors().canDropItem())
+		if (!getClient().getFloodProtectors().canDropItem())
 		{
 			return;
 		}

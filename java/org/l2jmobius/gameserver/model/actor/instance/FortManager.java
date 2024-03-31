@@ -305,7 +305,7 @@ public class FortManager extends Merchant
 					}
 					else
 					{
-						html.setFile(player, "data/html/fortress/" + getId() + "-t" + getFort().getFunction(Fort.FUNC_TELEPORT).getLvl() + ".htm");
+						html.setFile(player, "data/html/fortress/" + getId() + "-t" + getFort().getFunction(Fort.FUNC_TELEPORT).getLevel() + ".htm");
 					}
 					sendHtmlMessage(player, html);
 				}
@@ -318,7 +318,7 @@ public class FortManager extends Merchant
 					}
 					else
 					{
-						html.setFile(player, "data/html/fortress/support" + getFort().getFunction(Fort.FUNC_SUPPORT).getLvl() + ".htm");
+						html.setFile(player, "data/html/fortress/support" + getFort().getFunction(Fort.FUNC_SUPPORT).getLevel() + ".htm");
 						html.replace("%mp%", String.valueOf((int) getCurrentMp()));
 					}
 					sendHtmlMessage(player, html);
@@ -333,7 +333,7 @@ public class FortManager extends Merchant
 					html.setFile(player, "data/html/fortress/foreman-functions.htm");
 					if (getFort().getFunction(Fort.FUNC_RESTORE_EXP) != null)
 					{
-						html.replace("%xp_regen%", String.valueOf(getFort().getFunction(Fort.FUNC_RESTORE_EXP).getLvl()));
+						html.replace("%xp_regen%", String.valueOf(getFort().getFunction(Fort.FUNC_RESTORE_EXP).getLevel()));
 					}
 					else
 					{
@@ -341,7 +341,7 @@ public class FortManager extends Merchant
 					}
 					if (getFort().getFunction(Fort.FUNC_RESTORE_HP) != null)
 					{
-						html.replace("%hp_regen%", String.valueOf(getFort().getFunction(Fort.FUNC_RESTORE_HP).getLvl()));
+						html.replace("%hp_regen%", String.valueOf(getFort().getFunction(Fort.FUNC_RESTORE_HP).getLevel()));
 					}
 					else
 					{
@@ -349,7 +349,7 @@ public class FortManager extends Merchant
 					}
 					if (getFort().getFunction(Fort.FUNC_RESTORE_MP) != null)
 					{
-						html.replace("%mp_regen%", String.valueOf(getFort().getFunction(Fort.FUNC_RESTORE_MP).getLvl()));
+						html.replace("%mp_regen%", String.valueOf(getFort().getFunction(Fort.FUNC_RESTORE_MP).getLevel()));
 					}
 					else
 					{
@@ -487,7 +487,7 @@ public class FortManager extends Merchant
 									val = st.nextToken();
 									final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 									html.setFile(player, "data/html/fortress/functions-apply_confirmed.htm");
-									if ((getFort().getFunction(Fort.FUNC_RESTORE_HP) != null) && (getFort().getFunction(Fort.FUNC_RESTORE_HP).getLvl() == Integer.parseInt(val)))
+									if ((getFort().getFunction(Fort.FUNC_RESTORE_HP) != null) && (getFort().getFunction(Fort.FUNC_RESTORE_HP).getLevel() == Integer.parseInt(val)))
 									{
 										html.setFile(player, "data/html/fortress/functions-used.htm");
 										html.replace("%val%", val + "%");
@@ -531,7 +531,7 @@ public class FortManager extends Merchant
 									val = st.nextToken();
 									final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 									html.setFile(player, "data/html/fortress/functions-apply_confirmed.htm");
-									if ((getFort().getFunction(Fort.FUNC_RESTORE_MP) != null) && (getFort().getFunction(Fort.FUNC_RESTORE_MP).getLvl() == Integer.parseInt(val)))
+									if ((getFort().getFunction(Fort.FUNC_RESTORE_MP) != null) && (getFort().getFunction(Fort.FUNC_RESTORE_MP).getLevel() == Integer.parseInt(val)))
 									{
 										html.setFile(player, "data/html/fortress/functions-used.htm");
 										html.replace("%val%", val + "%");
@@ -575,7 +575,7 @@ public class FortManager extends Merchant
 									val = st.nextToken();
 									final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 									html.setFile(player, "data/html/fortress/functions-apply_confirmed.htm");
-									if ((getFort().getFunction(Fort.FUNC_RESTORE_EXP) != null) && (getFort().getFunction(Fort.FUNC_RESTORE_EXP).getLvl() == Integer.parseInt(val)))
+									if ((getFort().getFunction(Fort.FUNC_RESTORE_EXP) != null) && (getFort().getFunction(Fort.FUNC_RESTORE_EXP).getLevel() == Integer.parseInt(val)))
 									{
 										html.setFile(player, "data/html/fortress/functions-used.htm");
 										html.replace("%val%", val + "%");
@@ -619,7 +619,7 @@ public class FortManager extends Merchant
 						final String mp = "[<a action=\"bypass -h npc_%objectId%_manage recovery edit_mp 40\">40%</a>][<a action=\"bypass -h npc_%objectId%_manage recovery edit_mp 50\">50%</a>]";
 						if (getFort().getFunction(Fort.FUNC_RESTORE_HP) != null)
 						{
-							html.replace("%hp_recovery%", getFort().getFunction(Fort.FUNC_RESTORE_HP).getLvl() + "%</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_RESTORE_HP).getLease() + "</font>Adena /" + (Config.FS_HPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%hp_recovery%", getFort().getFunction(Fort.FUNC_RESTORE_HP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_RESTORE_HP).getLease() + "</font>Adena /" + (Config.FS_HPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%hp_period%", "Withdraw the fee for the next time at " + format.format(getFort().getFunction(Fort.FUNC_RESTORE_HP).getEndTime()));
 							html.replace("%change_hp%", "[<a action=\"bypass -h npc_%objectId%_manage recovery hp_cancel\">Deactivate</a>]" + hp);
 						}
@@ -631,7 +631,7 @@ public class FortManager extends Merchant
 						}
 						if (getFort().getFunction(Fort.FUNC_RESTORE_EXP) != null)
 						{
-							html.replace("%exp_recovery%", getFort().getFunction(Fort.FUNC_RESTORE_EXP).getLvl() + "%</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_RESTORE_EXP).getLease() + "</font>Adena /" + (Config.FS_EXPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%exp_recovery%", getFort().getFunction(Fort.FUNC_RESTORE_EXP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_RESTORE_EXP).getLease() + "</font>Adena /" + (Config.FS_EXPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%exp_period%", "Withdraw the fee for the next time at " + format.format(getFort().getFunction(Fort.FUNC_RESTORE_EXP).getEndTime()));
 							html.replace("%change_exp%", "[<a action=\"bypass -h npc_%objectId%_manage recovery exp_cancel\">Deactivate</a>]" + exp);
 						}
@@ -643,7 +643,7 @@ public class FortManager extends Merchant
 						}
 						if (getFort().getFunction(Fort.FUNC_RESTORE_MP) != null)
 						{
-							html.replace("%mp_recovery%", getFort().getFunction(Fort.FUNC_RESTORE_MP).getLvl() + "%</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_RESTORE_MP).getLease() + "</font>Adena /" + (Config.FS_MPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%mp_recovery%", getFort().getFunction(Fort.FUNC_RESTORE_MP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_RESTORE_MP).getLease() + "</font>Adena /" + (Config.FS_MPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%mp_period%", "Withdraw the fee for the next time at " + format.format(getFort().getFunction(Fort.FUNC_RESTORE_MP).getEndTime()));
 							html.replace("%change_mp%", "[<a action=\"bypass -h npc_%objectId%_manage recovery mp_cancel\">Deactivate</a>]" + mp);
 						}
@@ -743,7 +743,7 @@ public class FortManager extends Merchant
 									val = st.nextToken();
 									final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 									html.setFile(player, "data/html/fortress/functions-apply_confirmed.htm");
-									if ((getFort().getFunction(Fort.FUNC_TELEPORT) != null) && (getFort().getFunction(Fort.FUNC_TELEPORT).getLvl() == Integer.parseInt(val)))
+									if ((getFort().getFunction(Fort.FUNC_TELEPORT) != null) && (getFort().getFunction(Fort.FUNC_TELEPORT).getLevel() == Integer.parseInt(val)))
 									{
 										html.setFile(player, "data/html/fortress/functions-used.htm");
 										html.replace("%val%", "Stage " + val);
@@ -787,7 +787,7 @@ public class FortManager extends Merchant
 									val = st.nextToken();
 									final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 									html.setFile(player, "data/html/fortress/functions-apply_confirmed.htm");
-									if ((getFort().getFunction(Fort.FUNC_SUPPORT) != null) && (getFort().getFunction(Fort.FUNC_SUPPORT).getLvl() == Integer.parseInt(val)))
+									if ((getFort().getFunction(Fort.FUNC_SUPPORT) != null) && (getFort().getFunction(Fort.FUNC_SUPPORT).getLevel() == Integer.parseInt(val)))
 									{
 										html.setFile(player, "data/html/fortress/functions-used.htm");
 										html.replace("%val%", "Stage " + val);
@@ -833,7 +833,7 @@ public class FortManager extends Merchant
 						final String support = "[<a action=\"bypass -h npc_%objectId%_manage other edit_support 1\">Level 1</a>][<a action=\"bypass -h npc_%objectId%_manage other edit_support 2\">Level 2</a>]";
 						if (getFort().getFunction(Fort.FUNC_TELEPORT) != null)
 						{
-							html.replace("%tele%", "Stage " + getFort().getFunction(Fort.FUNC_TELEPORT).getLvl() + "</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_TELEPORT).getLease() + "</font>Adena /" + (Config.FS_TELE_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%tele%", "Stage " + getFort().getFunction(Fort.FUNC_TELEPORT).getLevel() + "</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_TELEPORT).getLease() + "</font>Adena /" + (Config.FS_TELE_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%tele_period%", "Withdraw the fee for the next time at " + format.format(getFort().getFunction(Fort.FUNC_TELEPORT).getEndTime()));
 							html.replace("%change_tele%", "[<a action=\"bypass -h npc_%objectId%_manage other tele_cancel\">Deactivate</a>]" + tele);
 						}
@@ -845,7 +845,7 @@ public class FortManager extends Merchant
 						}
 						if (getFort().getFunction(Fort.FUNC_SUPPORT) != null)
 						{
-							html.replace("%support%", "Stage " + getFort().getFunction(Fort.FUNC_SUPPORT).getLvl() + "</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_SUPPORT).getLease() + "</font>Adena /" + (Config.FS_SUPPORT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%support%", "Stage " + getFort().getFunction(Fort.FUNC_SUPPORT).getLevel() + "</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_SUPPORT).getLease() + "</font>Adena /" + (Config.FS_SUPPORT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%support_period%", "Withdraw the fee for the next time at " + format.format(getFort().getFunction(Fort.FUNC_SUPPORT).getEndTime()));
 							html.replace("%change_support%", "[<a action=\"bypass -h npc_%objectId%_manage other support_cancel\">Deactivate</a>]" + support);
 						}
@@ -894,7 +894,7 @@ public class FortManager extends Merchant
 						{
 							return;
 						}
-						if (getFort().getFunction(Fort.FUNC_SUPPORT).getLvl() == 0)
+						if (getFort().getFunction(Fort.FUNC_SUPPORT).getLevel() == 0)
 						{
 							return;
 						}
@@ -941,11 +941,11 @@ public class FortManager extends Merchant
 			else if (actualCommand.equalsIgnoreCase("support_back"))
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
-				if (getFort().getFunction(Fort.FUNC_SUPPORT).getLvl() == 0)
+				if (getFort().getFunction(Fort.FUNC_SUPPORT).getLevel() == 0)
 				{
 					return;
 				}
-				html.setFile(player, "data/html/fortress/support" + getFort().getFunction(Fort.FUNC_SUPPORT).getLvl() + ".htm");
+				html.setFile(player, "data/html/fortress/support" + getFort().getFunction(Fort.FUNC_SUPPORT).getLevel() + ".htm");
 				html.replace("%mp%", String.valueOf((int) getStatus().getCurrentMp()));
 				sendHtmlMessage(player, html);
 				return;

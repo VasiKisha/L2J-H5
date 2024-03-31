@@ -139,6 +139,7 @@ public class EffectMasterHandler
 		PhysicalAttackMute.class,
 		PhysicalMute.class,
 		PhysicalSoulAttack.class,
+		PolearmSingleTarget.class,
 		Pumping.class,
 		ProtectionBlessing.class,
 		RandomizeHate.class,

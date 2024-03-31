@@ -19,6 +19,8 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class SkillList extends ServerPacket
@@ -27,7 +29,6 @@ public class SkillList extends ServerPacket
 	
 	public SkillList()
 	{
-		super(1024);
 	}
 	
 	public void addSkill(int id, int level, boolean passive, boolean disabled, boolean enchanted)
@@ -36,17 +37,17 @@ public class SkillList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SKILL_LIST.writeId(this);
-		writeInt(_skills.size());
+		ServerPackets.SKILL_LIST.writeId(this, buffer);
+		buffer.writeInt(_skills.size());
 		for (Skill temp : _skills)
 		{
-			writeInt(temp.passive);
-			writeInt(temp.level);
-			writeInt(temp.id);
-			writeByte(temp.disabled);
-			writeByte(temp.enchanted);
+			buffer.writeInt(temp.passive);
+			buffer.writeInt(temp.level);
+			buffer.writeInt(temp.id);
+			buffer.writeByte(temp.disabled);
+			buffer.writeByte(temp.enchanted);
 		}
 	}
 	

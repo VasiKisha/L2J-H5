@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.enums.FenceState;
 import org.l2jmobius.gameserver.model.actor.instance.Fence;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -50,15 +52,15 @@ public class ExColosseumFenceInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_COLOSSEUM_FENCE_INFO.writeId(this);
-		writeInt(_objId);
-		writeInt(_clientState);
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(_width);
-		writeInt(_length);
+		ServerPackets.EX_COLOSSEUM_FENCE_INFO.writeId(this, buffer);
+		buffer.writeInt(_objId);
+		buffer.writeInt(_clientState);
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(_width);
+		buffer.writeInt(_length);
 	}
 }

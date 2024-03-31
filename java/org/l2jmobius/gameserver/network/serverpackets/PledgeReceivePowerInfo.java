@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -35,11 +37,11 @@ public class PledgeReceivePowerInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_RECEIVE_POWER_INFO.writeId(this);
-		writeInt(_member.getPowerGrade()); // power grade
-		writeString(_member.getName());
-		writeInt(_member.getClan().getRankPrivs(_member.getPowerGrade()).getBitmask()); // privileges
+		ServerPackets.PLEDGE_RECEIVE_POWER_INFO.writeId(this, buffer);
+		buffer.writeInt(_member.getPowerGrade()); // power grade
+		buffer.writeString(_member.getName());
+		buffer.writeInt(_member.getClan().getRankPrivs(_member.getPowerGrade()).getBitmask()); // privileges
 	}
 }

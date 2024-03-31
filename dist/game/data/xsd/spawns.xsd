@@ -38,7 +38,7 @@
 									<xs:attribute type="xs:int" name="rad" use="optional" />
 								</xs:complexType>
 							</xs:element>
-							<xs:element name="banned_territory" minOccurs="0">
+							<xs:element name="banned_territory" minOccurs="0" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:sequence>
 										<xs:element name="node" maxOccurs="unbounded" minOccurs="0">

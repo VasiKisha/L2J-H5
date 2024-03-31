@@ -17,8 +17,10 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.stats.Stat;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -50,17 +52,17 @@ public class ExStorageMaxCount extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_STORAGE_MAX_COUNT.writeId(this);
-		writeInt(_inventory);
-		writeInt(_warehouse);
-		writeInt(_clan);
-		writeInt(_privateSell);
-		writeInt(_privateBuy);
-		writeInt(_receipeD);
-		writeInt(_recipe);
-		writeInt(_inventoryExtraSlots); // Belt inventory slots increase count
-		writeInt(_inventoryQuestItems);
+		ServerPackets.EX_STORAGE_MAX_COUNT.writeId(this, buffer);
+		buffer.writeInt(_inventory);
+		buffer.writeInt(_warehouse);
+		buffer.writeInt(_clan);
+		buffer.writeInt(_privateSell);
+		buffer.writeInt(_privateBuy);
+		buffer.writeInt(_receipeD);
+		buffer.writeInt(_recipe);
+		buffer.writeInt(_inventoryExtraSlots); // Belt inventory slots increase count
+		buffer.writeInt(_inventoryQuestItems);
 	}
 }

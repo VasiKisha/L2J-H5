@@ -16,15 +16,13 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.network.GameClient;
 
 /**
  * @author KenM, Gnacik
  */
-public class RequestChangeNicknameColor implements ClientPacket
+public class RequestChangeNicknameColor extends ClientPacket
 {
 	private static final int[] COLORS =
 	{
@@ -45,17 +43,17 @@ public class RequestChangeNicknameColor implements ClientPacket
 	private String _title;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_colorNum = packet.readInt();
-		_title = packet.readString();
-		_itemObjectId = packet.readInt();
+		_colorNum = readInt();
+		_title = readString();
+		_itemObjectId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

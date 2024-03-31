@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -41,13 +43,13 @@ public class ExVoteSystemInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_VOTE_SYSTEM_INFO.writeId(this);
-		writeInt(_recomLeft);
-		writeInt(_recomHave);
-		writeInt(_bonusTime);
-		writeInt(_bonusVal);
-		writeInt(_bonusType);
+		ServerPackets.EX_VOTE_SYSTEM_INFO.writeId(this, buffer);
+		buffer.writeInt(_recomLeft);
+		buffer.writeInt(_recomHave);
+		buffer.writeInt(_bonusTime);
+		buffer.writeInt(_bonusVal);
+		buffer.writeInt(_bonusType);
 	}
 }

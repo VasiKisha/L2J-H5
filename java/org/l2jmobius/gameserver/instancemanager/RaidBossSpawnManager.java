@@ -123,16 +123,7 @@ public class RaidBossSpawnManager
 		@Override
 		public void run()
 		{
-			RaidBoss raidboss = null;
-			if (bossId == 25328)
-			{
-				raidboss = DayNightSpawnManager.getInstance().handleBoss(_spawns.get(bossId));
-			}
-			else
-			{
-				raidboss = (RaidBoss) _spawns.get(bossId).doSpawn();
-			}
-			
+			final RaidBoss raidboss = (RaidBoss) _spawns.get(bossId).doSpawn();
 			if (raidboss != null)
 			{
 				raidboss.setRaidStatus(RaidBossStatus.ALIVE);
@@ -215,7 +206,7 @@ public class RaidBossSpawnManager
 		SpawnTable.getInstance().addNewSpawn(spawnDat, false);
 		if ((respawnTime == 0) || (currentTime > respawnTime))
 		{
-			final RaidBoss raidboss = bossId == 25328 ? DayNightSpawnManager.getInstance().handleBoss(spawnDat) : (RaidBoss) spawnDat.doSpawn();
+			final RaidBoss raidboss = (RaidBoss) spawnDat.doSpawn();
 			if (raidboss != null)
 			{
 				raidboss.setCurrentHp(currentHP);

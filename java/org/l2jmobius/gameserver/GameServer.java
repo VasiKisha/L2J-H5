@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.lang.management.ManagementFactory;
+import java.net.InetSocketAddress;
 import java.time.Duration;
 import java.util.Calendar;
 import java.util.logging.Level;
@@ -31,14 +32,14 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.enums.ServerMode;
-import org.l2jmobius.commons.network.NetServer;
+import org.l2jmobius.commons.network.ConnectionBuilder;
+import org.l2jmobius.commons.network.ConnectionHandler;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.DeadLockDetector;
 import org.l2jmobius.commons.util.PropertiesParser;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.AugmentationData;
 import org.l2jmobius.gameserver.data.BotReportTable;
-import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.data.MerchantPriceConfigTable;
 import org.l2jmobius.gameserver.data.SchemeBufferTable;
 import org.l2jmobius.gameserver.data.SpawnTable;
@@ -72,6 +73,7 @@ import org.l2jmobius.gameserver.data.xml.HennaData;
 import org.l2jmobius.gameserver.data.xml.HitConditionBonusData;
 import org.l2jmobius.gameserver.data.xml.InitialEquipmentData;
 import org.l2jmobius.gameserver.data.xml.InitialShortcutData;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.KarmaData;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
@@ -151,8 +153,8 @@ import org.l2jmobius.gameserver.model.partymatching.PartyMatchWaitingList;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSignsFestival;
 import org.l2jmobius.gameserver.network.GameClient;
+import org.l2jmobius.gameserver.network.GamePacketHandler;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.network.PacketHandler;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.scripting.ScriptEngineManager;
 import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
@@ -241,7 +243,7 @@ public class GameServer
 		PetSkillData.getInstance();
 		
 		printSection("Items");
-		ItemTable.getInstance();
+		ItemData.getInstance();
 		EnchantItemGroupsData.getInstance();
 		EnchantItemData.getInstance();
 		EnchantItemOptionsData.getInstance();
@@ -369,47 +371,36 @@ public class GameServer
 		FortManager.getInstance().activateInstances();
 		FortSiegeManager.getInstance();
 		SiegeScheduleData.getInstance();
-		
 		MerchantPriceConfigTable.getInstance().updateReferences();
 		TerritoryWarManager.getInstance();
 		CastleManorManager.getInstance();
 		MercTicketManager.getInstance();
-		
 		QuestManager.getInstance().report();
-		
 		if (Config.SAVE_DROPPED_ITEM)
 		{
 			ItemsOnGroundManager.getInstance();
 		}
-		
 		if ((Config.AUTODESTROY_ITEM_AFTER > 0) || (Config.HERB_AUTO_DESTROY_TIME > 0))
 		{
 			ItemsAutoDestroyTaskManager.getInstance();
 		}
-		
 		MonsterRace.getInstance();
 		Lottery.getInstance();
-		
 		SevenSigns.getInstance().spawnSevenSignsNPC();
 		SevenSignsFestival.getInstance();
 		AutoSpawnHandler.getInstance();
-		
 		LOGGER.info("AutoSpawnHandler: Loaded " + AutoSpawnHandler.getInstance().size() + " handlers in total.");
-		
 		if (Config.ALLOW_WEDDING)
 		{
 			CoupleManager.getInstance();
 		}
-		
 		if (Config.ALT_FISH_CHAMPIONSHIP_ENABLED)
 		{
 			FishingChampionshipManager.getInstance();
 		}
-		
 		TaskManager.getInstance();
 		
 		AntiFeedManager.getInstance().registerEvent(AntiFeedManager.GAME_ID);
-		
 		if (Config.ALLOW_MAIL)
 		{
 			MailManager.getInstance();
@@ -418,28 +409,23 @@ public class GameServer
 		{
 			CustomMailManager.getInstance();
 		}
-		
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_SERVER_START))
 		{
 			EventDispatcher.getInstance().notifyEventAsync(new OnServerStart());
 		}
-		
 		PunishmentManager.getInstance();
 		
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
-		
 		LOGGER.info("IdManager: Free ObjectID's remaining: " + IdManager.getInstance().size());
 		
 		if ((Config.OFFLINE_TRADE_ENABLE || Config.OFFLINE_CRAFT_ENABLE) && Config.RESTORE_OFFLINERS)
 		{
 			OfflineTraderTable.getInstance().restoreOfflineTraders();
 		}
-		
 		if (Config.SERVER_RESTART_SCHEDULE_ENABLED)
 		{
 			ServerRestartManager.getInstance();
 		}
-		
 		if (Config.PRECAUTIONARY_RESTART_ENABLED)
 		{
 			PrecautionaryRestartManager.getInstance();
@@ -461,24 +447,15 @@ public class GameServer
 		{
 			_deadDetectThread = null;
 		}
+		
 		System.gc();
 		final long totalMem = Runtime.getRuntime().maxMemory() / 1048576;
 		LOGGER.info(getClass().getSimpleName() + ": Started, using " + getUsedMemoryMB() + " of " + totalMem + " MB total memory.");
 		LOGGER.info(getClass().getSimpleName() + ": Maximum number of connected players is " + Config.MAXIMUM_ONLINE_USERS + ".");
 		LOGGER.info(getClass().getSimpleName() + ": Server loaded in " + ((System.currentTimeMillis() - serverLoadStart) / 1000) + " seconds.");
 		
-		final NetServer<GameClient> server = new NetServer<>(Config.GAMESERVER_HOSTNAME, Config.PORT_GAME, new PacketHandler(), GameClient::new);
-		server.setName(getClass().getSimpleName());
-		server.getNetConfig().setReadPoolSize(Config.CLIENT_READ_POOL_SIZE);
-		server.getNetConfig().setSendPoolSize(Config.CLIENT_SEND_POOL_SIZE);
-		server.getNetConfig().setExecutePoolSize(Config.CLIENT_EXECUTE_POOL_SIZE);
-		server.getNetConfig().setPacketQueueLimit(Config.PACKET_QUEUE_LIMIT);
-		server.getNetConfig().setPacketFloodDisconnect(Config.PACKET_FLOOD_DISCONNECT);
-		server.getNetConfig().setPacketFloodDrop(Config.PACKET_FLOOD_DROP);
-		server.getNetConfig().setPacketFloodLogged(Config.PACKET_FLOOD_LOGGED);
-		server.getNetConfig().setFailedDecryptionLogged(Config.FAILED_DECRYPTION_LOGGED);
-		server.getNetConfig().setTcpNoDelay(Config.TCP_NO_DELAY);
-		server.start();
+		final ConnectionHandler<GameClient> connectionHandler = new ConnectionBuilder<>(new InetSocketAddress(Config.PORT_GAME), GameClient::new, new GamePacketHandler(), ThreadPool::execute).build();
+		connectionHandler.start();
 		
 		LoginServerThread.getInstance().start();
 		

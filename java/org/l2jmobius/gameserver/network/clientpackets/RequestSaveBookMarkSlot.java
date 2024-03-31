@@ -16,32 +16,30 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 
 /**
  * @author ShanSoft
  * @structure chdSdS
  */
-public class RequestSaveBookMarkSlot implements ClientPacket
+public class RequestSaveBookMarkSlot extends ClientPacket
 {
 	private int icon;
 	private String name;
 	private String tag;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		name = packet.readString();
-		icon = packet.readInt();
-		tag = packet.readString();
+		name = readString();
+		icon = readInt();
+		tag = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

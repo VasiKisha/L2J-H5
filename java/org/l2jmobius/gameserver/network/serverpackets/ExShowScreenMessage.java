@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.NpcStringId.NSLocalisation;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -229,14 +231,14 @@ public class ExShowScreenMessage extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_SCREEN_MESSAGE.writeId(this);
+		ServerPackets.EX_SHOW_SCREEN_MESSAGE.writeId(this, buffer);
 		
 		// Localisation related.
 		if (Config.MULTILANG_ENABLE)
 		{
-			final Player player = getPlayer();
+			final Player player = client.getPlayer();
 			if (player != null)
 			{
 				final String lang = player.getLang();
@@ -250,18 +252,18 @@ public class ExShowScreenMessage extends ServerPacket
 							final SMLocalisation sml = sm.getLocalisation(lang);
 							if (sml != null)
 							{
-								writeInt(_type);
-								writeInt(-1);
-								writeInt(_position);
-								writeInt(_unk1);
-								writeInt(_size);
-								writeInt(_unk2);
-								writeInt(_unk3);
-								writeInt(_effect);
-								writeInt(_time);
-								writeInt(_fade);
-								writeInt(-1);
-								writeString(sml.getLocalisation(_parameters != null ? _parameters : Collections.emptyList()));
+								buffer.writeInt(_type);
+								buffer.writeInt(-1);
+								buffer.writeInt(_position);
+								buffer.writeInt(_unk1);
+								buffer.writeInt(_size);
+								buffer.writeInt(_unk2);
+								buffer.writeInt(_unk3);
+								buffer.writeInt(_effect);
+								buffer.writeInt(_time);
+								buffer.writeInt(_fade);
+								buffer.writeInt(-1);
+								buffer.writeString(sml.getLocalisation(_parameters != null ? _parameters : Collections.emptyList()));
 								return;
 							}
 						}
@@ -274,18 +276,18 @@ public class ExShowScreenMessage extends ServerPacket
 							final NSLocalisation nsl = ns.getLocalisation(lang);
 							if (nsl != null)
 							{
-								writeInt(_type);
-								writeInt(-1);
-								writeInt(_position);
-								writeInt(_unk1);
-								writeInt(_size);
-								writeInt(_unk2);
-								writeInt(_unk3);
-								writeInt(_effect);
-								writeInt(_time);
-								writeInt(_fade);
-								writeInt(-1);
-								writeString(nsl.getLocalisation(_parameters != null ? _parameters : Collections.emptyList()));
+								buffer.writeInt(_type);
+								buffer.writeInt(-1);
+								buffer.writeInt(_position);
+								buffer.writeInt(_unk1);
+								buffer.writeInt(_size);
+								buffer.writeInt(_unk2);
+								buffer.writeInt(_unk3);
+								buffer.writeInt(_effect);
+								buffer.writeInt(_time);
+								buffer.writeInt(_fade);
+								buffer.writeInt(-1);
+								buffer.writeString(nsl.getLocalisation(_parameters != null ? _parameters : Collections.emptyList()));
 								return;
 							}
 						}
@@ -294,26 +296,26 @@ public class ExShowScreenMessage extends ServerPacket
 			}
 		}
 		
-		writeInt(_type);
-		writeInt(_sysMessageId);
-		writeInt(_position);
-		writeInt(_unk1);
-		writeInt(_size);
-		writeInt(_unk2);
-		writeInt(_unk3);
-		writeInt(_effect);
-		writeInt(_time);
-		writeInt(_fade);
-		writeInt(_npcString);
+		buffer.writeInt(_type);
+		buffer.writeInt(_sysMessageId);
+		buffer.writeInt(_position);
+		buffer.writeInt(_unk1);
+		buffer.writeInt(_size);
+		buffer.writeInt(_unk2);
+		buffer.writeInt(_unk3);
+		buffer.writeInt(_effect);
+		buffer.writeInt(_time);
+		buffer.writeInt(_fade);
+		buffer.writeInt(_npcString);
 		if (_npcString == -1)
 		{
-			writeString(_text);
+			buffer.writeString(_text);
 		}
 		else if (_parameters != null)
 		{
 			for (String s : _parameters)
 			{
-				writeString(s);
+				buffer.writeString(s);
 			}
 		}
 	}

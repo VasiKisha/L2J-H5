@@ -109,7 +109,7 @@ public enum ExClientPackets
 	REQUEST_EX_CANCEL_ENCHANT_ITEM(0x4E, RequestExCancelEnchantItem::new, ConnectionState.IN_GAME),
 	REQUEST_CHANGE_NICKNAME_COLOR(0x4F, RequestChangeNicknameColor::new, ConnectionState.IN_GAME),
 	REQUEST_RESET_NICKNAME(0x50, RequestResetNickname::new, ConnectionState.IN_GAME),
-	EX_BOOKMARK_PACKET(0x51, ExBookmarkPacket::new, ConnectionState.IN_GAME),
+	EX_BOOKMARK_PACKET(0x51, null, ConnectionState.IN_GAME),
 	REQUEST_WITHDRAW_PREMIUM_ITEM(0x52, RequestWithDrawPremiumItem::new, ConnectionState.IN_GAME),
 	REQUEST_EX_JUMP(0x53, null, ConnectionState.IN_GAME),
 	REQUEST_EX_START_SHOW_CRATAE_CUBE_RANK(0x54, null, ConnectionState.IN_GAME),
@@ -184,9 +184,9 @@ public enum ExClientPackets
 		}
 	}
 	
-	private int _packetId;
-	private Supplier<ClientPacket> _packetSupplier;
-	private Set<ConnectionState> _connectionStates;
+	private final int _packetId;
+	private final Supplier<ClientPacket> _packetSupplier;
+	private final Set<ConnectionState> _connectionStates;
 	
 	ExClientPackets(int packetId, Supplier<ClientPacket> packetSupplier, ConnectionState... connectionStates)
 	{

@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model;
 
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -139,7 +139,7 @@ public class TerritoryWard
 		// Equip with the weapon
 		if (item == null)
 		{
-			_item = ItemTable.getInstance().createItem("Combat", _itemId, 1, null, null);
+			_item = ItemData.getInstance().createItem("Combat", _itemId, 1, null, null);
 		}
 		else
 		{

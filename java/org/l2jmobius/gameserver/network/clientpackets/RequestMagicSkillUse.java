@@ -17,35 +17,33 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
-public class RequestMagicSkillUse implements ClientPacket
+public class RequestMagicSkillUse extends ClientPacket
 {
 	private int _magicId;
 	private boolean _ctrlPressed;
 	private boolean _shiftPressed;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_magicId = packet.readInt(); // Identifier of the used skill
-		_ctrlPressed = packet.readInt() != 0; // True if it's a ForceAttack : Ctrl pressed
-		_shiftPressed = packet.readByte() != 0; // True if Shift pressed
+		_magicId = readInt(); // Identifier of the used skill
+		_ctrlPressed = readInt() != 0; // True if it's a ForceAttack : Ctrl pressed
+		_shiftPressed = readByte() != 0; // True if Shift pressed
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		// Get the current Player of the player
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -59,9 +57,17 @@ public class RequestMagicSkillUse implements ClientPacket
 		
 		if (player.isFakeDeath())
 		{
-			player.sendPacket(SystemMessageId.YOU_CANNOT_MOVE_WHILE_SITTING);
-			player.sendPacket(ActionFailed.STATIC_PACKET);
-			return;
+			if (_magicId != CommonSkill.FAKE_DEATH.getId())
+			{
+				player.sendPacket(SystemMessageId.YOU_CANNOT_MOVE_WHILE_SITTING);
+				player.sendPacket(ActionFailed.STATIC_PACKET);
+				return;
+			}
+			else if (player.isSkillDisabled(CommonSkill.FAKE_DEATH.getSkill()))
+			{
+				player.sendPacket(ActionFailed.STATIC_PACKET);
+				return;
+			}
 		}
 		
 		// Get the level of the used skill

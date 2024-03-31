@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.holders;
 
+import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 
 /**
@@ -26,6 +27,7 @@ public class MinionHolder implements IIdentifiable
 {
 	private final int _id;
 	private final int _count;
+	private final int _max;
 	private final long _respawnTime;
 	private final int _weightPoint;
 	
@@ -33,13 +35,15 @@ public class MinionHolder implements IIdentifiable
 	 * Constructs a minion holder.
 	 * @param id the id
 	 * @param count the count
+	 * @param max the max count
 	 * @param respawnTime the respawn time
 	 * @param weightPoint the weight point
 	 */
-	public MinionHolder(int id, int count, long respawnTime, int weightPoint)
+	public MinionHolder(int id, int count, int max, long respawnTime, int weightPoint)
 	{
 		_id = id;
 		_count = count;
+		_max = max;
 		_respawnTime = respawnTime;
 		_weightPoint = weightPoint;
 	}
@@ -58,6 +62,10 @@ public class MinionHolder implements IIdentifiable
 	 */
 	public int getCount()
 	{
+		if (_max > _count)
+		{
+			return Rnd.get(_count, _max);
+		}
 		return _count;
 	}
 	

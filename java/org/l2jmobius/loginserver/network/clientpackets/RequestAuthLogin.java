@@ -23,7 +23,6 @@ import java.util.logging.Logger;
 import javax.crypto.Cipher;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
 import org.l2jmobius.loginserver.LoginController;
 import org.l2jmobius.loginserver.enums.AccountKickedReason;
@@ -38,7 +37,7 @@ import org.l2jmobius.loginserver.network.serverpackets.ServerList;
 /**
  * Format: x 0 (a leading null) x: the rsa encrypted block with the login an password.
  */
-public class RequestAuthLogin implements LoginClientPacket
+public class RequestAuthLogin extends LoginClientPacket
 {
 	private static final Logger LOGGER = Logger.getLogger(RequestAuthLogin.class.getName());
 	
@@ -47,28 +46,32 @@ public class RequestAuthLogin implements LoginClientPacket
 	private boolean _newAuthMethod = false;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected boolean readImpl()
 	{
-		if (packet.getRemainingLength() >= 256)
+		if (remaining() >= 256)
 		{
 			_newAuthMethod = true;
-			packet.readBytes(_raw1);
-			packet.readBytes(_raw2);
+			readBytes(_raw1);
+			readBytes(_raw2);
+			return true;
 		}
-		else if (packet.getRemainingLength() >= 128)
+		else if (remaining() >= 128)
 		{
-			packet.readBytes(_raw1);
+			readBytes(_raw1);
+			return true;
 		}
+		return false;
 	}
 	
 	@Override
-	public void run(LoginClient client)
+	public void run()
 	{
+		final LoginClient client = getClient();
 		final byte[] decrypted = new byte[_newAuthMethod ? 256 : 128];
 		try
 		{
 			final Cipher rsaCipher = Cipher.getInstance("RSA/ECB/nopadding");
-			rsaCipher.init(Cipher.DECRYPT_MODE, client.getScrambledKeyPair().getPrivateKey());
+			rsaCipher.init(Cipher.DECRYPT_MODE, client.getRSAPrivateKey());
 			rsaCipher.doFinal(_raw1, 0, 128, decrypted, 0);
 			if (_newAuthMethod)
 			{
@@ -107,7 +110,7 @@ public class RequestAuthLogin implements LoginClientPacket
 		final AccountInfo info = lc.retriveAccountInfo(clientAddr, user, password);
 		if (info == null)
 		{
-			// user or pass wrong
+			// Account or password was wrong.
 			client.close(LoginFailReason.REASON_USER_OR_PASS_WRONG);
 			return;
 		}
@@ -145,11 +148,12 @@ public class RequestAuthLogin implements LoginClientPacket
 				final LoginClient oldClient = lc.getAuthedClient(info.getLogin());
 				if (oldClient != null)
 				{
-					// kick the other client
+					// Kick the other client.
 					oldClient.close(LoginFailReason.REASON_ACCOUNT_IN_USE);
 					lc.removeAuthedLoginClient(info.getLogin());
 				}
-				// kick also current client
+				
+				// Also kick current client.
 				client.close(LoginFailReason.REASON_ACCOUNT_IN_USE);
 				break;
 			}
@@ -159,7 +163,6 @@ public class RequestAuthLogin implements LoginClientPacket
 				if (gsi != null)
 				{
 					client.close(LoginFailReason.REASON_ACCOUNT_IN_USE);
-					// kick from there
 					if (gsi.isAuthed())
 					{
 						gsi.getGameServerThread().kickPlayer(info.getLogin());

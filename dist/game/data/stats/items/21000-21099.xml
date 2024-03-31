@@ -1124,7 +1124,7 @@
 	</item>
 	<item id="21061" type="Armor" name="Agathion Seal Bracelet - Handy - 7-day limited period">
 		<!-- Bracelet that summons Handy from Fantasy Isle. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 2 hour. -->
-		<set name="icon" val="BranchSys2.icon.br_aga_threehead_i00" />
+		<set name="icon" val="BranchSys2.icon.br_aga_block_mother_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />
@@ -1142,7 +1142,7 @@
 	</item>
 	<item id="21062" type="Armor" name="Agathion Seal Bracelet - Handy">
 		<!-- Bracelet that summons Handy from Fantasy Isle. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
-		<set name="icon" val="BranchSys2.icon.br_aga_threehead_i00" />
+		<set name="icon" val="BranchSys2.icon.br_aga_block_mother_i00" />
 		<set name="default_action" val="EQUIP" />
 		<set name="bodypart" val="lbracelet" />
 		<set name="immediate_effect" val="true" />

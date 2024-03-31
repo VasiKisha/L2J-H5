@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -33,12 +35,12 @@ public class ExNevitAdventTimeChange extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_NAVIT_ADVENT_TIME_CHANGE.writeId(this);
+		ServerPackets.EX_NAVIT_ADVENT_TIME_CHANGE.writeId(this, buffer);
 		// state 0 - pause 1 - started
-		writeByte(!_paused);
+		buffer.writeByte(!_paused);
 		// left time in ms max is 16000 its 4m and state is automatically changed to quit
-		writeInt(_time);
+		buffer.writeInt(_time);
 	}
 }

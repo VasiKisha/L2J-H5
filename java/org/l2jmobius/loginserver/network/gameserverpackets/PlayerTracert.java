@@ -18,20 +18,20 @@ package org.l2jmobius.loginserver.network.gameserverpackets;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.network.base.BaseReadablePacket;
 import org.l2jmobius.loginserver.LoginController;
 
 /**
  * @author mrTJO
  */
-public class PlayerTracert extends ReadablePacket
+public class PlayerTracert extends BaseReadablePacket
 {
 	protected static final Logger LOGGER = Logger.getLogger(PlayerTracert.class.getName());
 	
 	public PlayerTracert(byte[] decrypt)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final String account = readString();
 		final String pcIp = readString();

@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -37,13 +39,13 @@ public class ExDominionWarStart extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_DOMINION_WAR_START.writeId(this);
-		writeInt(_objId);
-		writeInt(1); // ??
-		writeInt(_terId);
-		writeInt(_isDisguised);
-		writeInt(_isDisguised ? _terId : 0);
+		ServerPackets.EX_DOMINION_WAR_START.writeId(this, buffer);
+		buffer.writeInt(_objId);
+		buffer.writeInt(1); // ??
+		buffer.writeInt(_terId);
+		buffer.writeInt(_isDisguised);
+		buffer.writeInt(_isDisguised ? _terId : 0);
 	}
 }

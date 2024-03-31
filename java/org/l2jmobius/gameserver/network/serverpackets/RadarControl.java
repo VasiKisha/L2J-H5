@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class RadarControl extends ServerPacket
@@ -43,13 +45,13 @@ public class RadarControl extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.RADAR_CONTROL.writeId(this);
-		writeInt(_showRadar);
-		writeInt(_type); // maybe type
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
+		ServerPackets.RADAR_CONTROL.writeId(this, buffer);
+		buffer.writeInt(_showRadar);
+		buffer.writeInt(_type); // maybe type
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
 	}
 }

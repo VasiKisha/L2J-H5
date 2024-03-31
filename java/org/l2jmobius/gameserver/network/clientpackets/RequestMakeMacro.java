@@ -19,15 +19,13 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.enums.MacroType;
 import org.l2jmobius.gameserver.model.Macro;
 import org.l2jmobius.gameserver.model.MacroCmd;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
-public class RequestMakeMacro implements ClientPacket
+public class RequestMakeMacro extends ClientPacket
 {
 	private Macro _macro;
 	private int _commandsLength = 0;
@@ -35,14 +33,14 @@ public class RequestMakeMacro implements ClientPacket
 	private static final int MAX_MACRO_LENGTH = 12;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		final int id = packet.readInt();
-		final String name = packet.readString();
-		final String desc = packet.readString();
-		final String acronym = packet.readString();
-		final int icon = packet.readByte();
-		int count = packet.readByte();
+		final int id = readInt();
+		final String name = readString();
+		final String desc = readString();
+		final String acronym = readString();
+		final int icon = readByte();
+		int count = readByte();
 		if (count > MAX_MACRO_LENGTH)
 		{
 			count = MAX_MACRO_LENGTH;
@@ -51,11 +49,11 @@ public class RequestMakeMacro implements ClientPacket
 		final List<MacroCmd> commands = new ArrayList<>(count);
 		for (int i = 0; i < count; i++)
 		{
-			final int entry = packet.readByte();
-			final int type = packet.readByte(); // 1 = skill, 3 = action, 4 = shortcut
-			final int d1 = packet.readInt(); // skill or page number for shortcuts
-			final int d2 = packet.readByte();
-			final String command = packet.readString();
+			final int entry = readByte();
+			final int type = readByte(); // 1 = skill, 3 = action, 4 = shortcut
+			final int d1 = readInt(); // skill or page number for shortcuts
+			final int d2 = readByte();
+			final String command = readString();
 			_commandsLength += command.length();
 			commands.add(new MacroCmd(entry, MacroType.values()[(type < 1) || (type > 6) ? 0 : type], d1, d2, command));
 		}
@@ -63,9 +61,9 @@ public class RequestMakeMacro implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

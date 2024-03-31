@@ -19,12 +19,10 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.model.TradeList;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExPrivateStoreSetWholeMsg;
@@ -36,7 +34,7 @@ import org.l2jmobius.gameserver.util.Util;
 /**
  * @version $Revision: 1.2.2.1.2.5 $ $Date: 2005/03/27 15:29:30 $
  */
-public class SetPrivateStoreListSell implements ClientPacket
+public class SetPrivateStoreListSell extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 20; // length of the one item
 	
@@ -44,11 +42,11 @@ public class SetPrivateStoreListSell implements ClientPacket
 	private Item[] _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_packageSale = (packet.readInt() == 1);
-		final int count = packet.readInt();
-		if ((count < 1) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != packet.getRemainingLength()))
+		_packageSale = (readInt() == 1);
+		final int count = readInt();
+		if ((count < 1) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -56,9 +54,9 @@ public class SetPrivateStoreListSell implements ClientPacket
 		_items = new Item[count];
 		for (int i = 0; i < count; i++)
 		{
-			final int itemId = packet.readInt();
-			final long cnt = packet.readLong();
-			final long price = packet.readLong();
+			final int itemId = readInt();
+			final long cnt = readLong();
+			final long price = readLong();
 			if ((itemId < 1) || (cnt < 1) || (price < 0))
 			{
 				_items = null;
@@ -69,9 +67,9 @@ public class SetPrivateStoreListSell implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

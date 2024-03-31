@@ -24,8 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.instancemanager.CastleManager;
 import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
 import org.l2jmobius.gameserver.model.SeedProduction;
@@ -35,7 +34,6 @@ import org.l2jmobius.gameserver.model.actor.instance.Merchant;
 import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -44,18 +42,18 @@ import org.l2jmobius.gameserver.util.Util;
 /**
  * @author l3x
  */
-public class RequestBuySeed implements ClientPacket
+public class RequestBuySeed extends ClientPacket
 {
 	private static final int BATCH_LENGTH = 12; // length of the one item
 	private int _manorId;
 	private List<ItemHolder> _items = null;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_manorId = packet.readInt();
-		final int count = packet.readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != packet.getRemainingLength()))
+		_manorId = readInt();
+		final int count = readInt();
+		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -63,8 +61,8 @@ public class RequestBuySeed implements ClientPacket
 		_items = new ArrayList<>(count);
 		for (int i = 0; i < count; i++)
 		{
-			final int itemId = packet.readInt();
-			final long cnt = packet.readLong();
+			final int itemId = readInt();
+			final long cnt = readLong();
 			if ((cnt < 1) || (itemId < 1))
 			{
 				_items = null;
@@ -75,15 +73,15 @@ public class RequestBuySeed implements ClientPacket
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You are buying seeds too fast!");
 			return;
@@ -140,7 +138,7 @@ public class RequestBuySeed implements ClientPacket
 			}
 			
 			// Calculate weight
-			final ItemTemplate template = ItemTable.getInstance().getTemplate(ih.getId());
+			final ItemTemplate template = ItemData.getInstance().getTemplate(ih.getId());
 			totalWeight += ih.getCount() * template.getWeight();
 			
 			// Calculate slots

@@ -35,7 +35,7 @@ public class AutoPotionTaskManager implements Runnable
 	
 	protected AutoPotionTaskManager()
 	{
-		ThreadPool.scheduleAtFixedRate(this, 0, 1000);
+		ThreadPool.schedulePriorityTaskAtFixedRate(this, 0, 1000);
 	}
 	
 	@Override

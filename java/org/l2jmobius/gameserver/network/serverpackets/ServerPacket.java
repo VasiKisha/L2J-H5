@@ -16,16 +16,20 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.network.GameClient;
+import org.l2jmobius.gameserver.network.PacketLogger;
 
 /**
  * @author Mobius
  */
-public abstract class ServerPacket extends WritablePacket
+public abstract class ServerPacket extends WritablePacket<GameClient>
 {
-	protected static final int[] PAPERDOLL_ORDER =
+	private static final int[] PAPERDOLL_ORDER =
 	{
 		Inventory.PAPERDOLL_UNDER,
 		Inventory.PAPERDOLL_REAR,
@@ -60,38 +64,25 @@ public abstract class ServerPacket extends WritablePacket
 		return PAPERDOLL_ORDER;
 	}
 	
-	/**
-	 * Construct a ServerPacket with an initial data size of 32 bytes.
-	 */
-	protected ServerPacket()
+	@Override
+	protected boolean write(GameClient client, WritableBuffer buffer)
 	{
-		super(32);
+		try
+		{
+			writeImpl(client, buffer);
+			return true;
+		}
+		catch (Exception e)
+		{
+			PacketLogger.warning("Error writing packet " + this + " to client (" + e.getMessage() + ") " + client + "]]");
+			PacketLogger.warning(CommonUtil.getStackTrace(e));
+		}
+		return false;
 	}
 	
-	/**
-	 * Construct a ServerPacket with a given initial data size.
-	 * @param initialSize
-	 */
-	protected ServerPacket(int initialSize)
+	public void runImpl(Player player)
 	{
-		super(initialSize);
 	}
 	
-	private Player _player;
-	
-	/**
-	 * @return the Player
-	 */
-	public Player getPlayer()
-	{
-		return _player;
-	}
-	
-	/**
-	 * @param player the Player to set.
-	 */
-	public void setPlayer(Player player)
-	{
-		_player = player;
-	}
+	protected abstract void writeImpl(GameClient client, WritableBuffer buffer) throws Exception;
 }

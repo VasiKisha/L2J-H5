@@ -16,7 +16,6 @@
  */
 package org.l2jmobius.loginserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.loginserver.enums.LoginFailReason;
 import org.l2jmobius.loginserver.network.LoginClient;
 import org.l2jmobius.loginserver.network.serverpackets.ServerList;
@@ -29,7 +28,7 @@ import org.l2jmobius.loginserver.network.serverpackets.ServerList;
  * c: ?
  * </pre>
  */
-public class RequestServerList implements LoginClientPacket
+public class RequestServerList extends LoginClientPacket
 {
 	private int _skey1;
 	private int _skey2;
@@ -37,18 +36,21 @@ public class RequestServerList implements LoginClientPacket
 	private int _data3;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected boolean readImpl()
 	{
-		if (packet.getRemainingLength() >= 8)
+		if (remaining() >= 8)
 		{
-			_skey1 = packet.readInt(); // loginOk 1
-			_skey2 = packet.readInt(); // loginOk 2
+			_skey1 = readInt(); // loginOk 1
+			_skey2 = readInt(); // loginOk 2
+			return true;
 		}
+		return false;
 	}
 	
 	@Override
-	public void run(LoginClient client)
+	public void run()
 	{
+		final LoginClient client = getClient();
 		if (client.getSessionKey().checkLoginPair(_skey1, _skey2))
 		{
 			client.sendPacket(new ServerList(client));

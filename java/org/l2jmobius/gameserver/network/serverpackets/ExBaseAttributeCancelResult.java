@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -33,11 +35,11 @@ public class ExBaseAttributeCancelResult extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BASE_ATTRIBUTE_CANCEL_RESULT.writeId(this);
-		writeInt(1); // result
-		writeInt(_objId);
-		writeInt(_attribute);
+		ServerPackets.EX_BASE_ATTRIBUTE_CANCEL_RESULT.writeId(this, buffer);
+		buffer.writeInt(1); // result
+		buffer.writeInt(_objId);
+		buffer.writeInt(_attribute);
 	}
 }

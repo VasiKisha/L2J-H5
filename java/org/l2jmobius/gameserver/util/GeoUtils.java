@@ -173,6 +173,53 @@ public class GeoUtils
 		player.sendPacket(exsp);
 	}
 	
+	public static void hideDebugGrid(Player player)
+	{
+		final int geoRadius = 20;
+		final int blocksPerPacket = 40;
+		
+		int iBlock = blocksPerPacket;
+		int iPacket = 0;
+		
+		ExServerPrimitive exsp = null;
+		final GeoEngine ge = GeoEngine.getInstance();
+		final int playerGx = ge.getGeoX(player.getX());
+		final int playerGy = ge.getGeoY(player.getY());
+		for (int dx = -geoRadius; dx <= geoRadius; ++dx)
+		{
+			for (int dy = -geoRadius; dy <= geoRadius; ++dy)
+			{
+				if (iBlock >= blocksPerPacket)
+				{
+					iBlock = 0;
+					if (exsp != null)
+					{
+						++iPacket;
+						player.sendPacket(exsp);
+					}
+					exsp = new ExServerPrimitive("DebugGrid_" + iPacket, player.getX(), player.getY(), -16000);
+				}
+				
+				if (exsp == null)
+				{
+					throw new IllegalStateException();
+				}
+				
+				final int gx = playerGx + dx;
+				final int gy = playerGy + dy;
+				
+				final int x = ge.getWorldX(gx);
+				final int y = ge.getWorldY(gy);
+				
+				// Nothing.
+				exsp.addLine(Color.BLACK, x, y, -16000, x, y, -16000);
+				++iBlock;
+			}
+		}
+		
+		player.sendPacket(exsp);
+	}
+	
 	/**
 	 * difference between x values: never above 1<br>
 	 * difference between y values: never above 1

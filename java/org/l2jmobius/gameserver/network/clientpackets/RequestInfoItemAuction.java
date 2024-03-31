@@ -16,37 +16,35 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.instancemanager.ItemAuctionManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemauction.ItemAuction;
 import org.l2jmobius.gameserver.model.itemauction.ItemAuctionInstance;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.ExItemAuctionInfoPacket;
 
 /**
  * @author Forsaiken
  */
-public class RequestInfoItemAuction implements ClientPacket
+public class RequestInfoItemAuction extends ClientPacket
 {
 	private int _instanceId;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_instanceId = packet.readInt();
+		_instanceId = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canUseItemAuction())
+		if (!getClient().getFloodProtectors().canUseItemAuction())
 		{
 			return;
 		}

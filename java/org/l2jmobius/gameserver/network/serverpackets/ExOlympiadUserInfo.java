@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.olympiad.Participant;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -72,26 +74,26 @@ public class ExOlympiadUserInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_OLYMPIAD_USER_INFO.writeId(this);
+		ServerPackets.EX_OLYMPIAD_USER_INFO.writeId(this, buffer);
 		if (_player != null)
 		{
-			writeByte(_player.getOlympiadSide());
-			writeInt(_player.getObjectId());
-			writeString(_player.getName());
-			writeInt(_player.getClassId().getId());
+			buffer.writeByte(_player.getOlympiadSide());
+			buffer.writeInt(_player.getObjectId());
+			buffer.writeString(_player.getName());
+			buffer.writeInt(_player.getClassId().getId());
 		}
 		else
 		{
-			writeByte(_par.getSide());
-			writeInt(_par.getObjectId());
-			writeString(_par.getName());
-			writeInt(_par.getBaseClass());
+			buffer.writeByte(_par.getSide());
+			buffer.writeInt(_par.getObjectId());
+			buffer.writeString(_par.getName());
+			buffer.writeInt(_par.getBaseClass());
 		}
-		writeInt(_curHp);
-		writeInt(_maxHp);
-		writeInt(_curCp);
-		writeInt(_maxCp);
+		buffer.writeInt(_curHp);
+		buffer.writeInt(_maxHp);
+		buffer.writeInt(_curCp);
+		buffer.writeInt(_maxCp);
 	}
 }

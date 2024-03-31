@@ -40,9 +40,18 @@ public class ThreadPool
 	private static final long MAX_DELAY = 3155695200000L; // One hundred years.
 	private static final long MIN_DELAY = 0L;
 	
+	private static ScheduledThreadPoolExecutor HIGH_PRIORITY_SCHEDULED_POOL;
+	
 	public static void init()
 	{
 		LOGGER.info("ThreadPool: Initialized");
+		
+		// Configure High Priority ScheduledThreadPoolExecutor.
+		if (Config.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE > 0)
+		{
+			HIGH_PRIORITY_SCHEDULED_POOL = new ScheduledThreadPoolExecutor(Config.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE, new ThreadProvider("L2jMobius High Priority ScheduledThread", ThreadPriority.PRIORITY_8), new ThreadPoolExecutor.CallerRunsPolicy());
+			LOGGER.info("...scheduled pool executor with " + Config.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE + " high priority threads.");
+		}
 		
 		// Configure ScheduledThreadPoolExecutor.
 		SCHEDULED_POOL.setRejectedExecutionHandler(new RejectedExecutionHandlerImpl());
@@ -107,6 +116,26 @@ public class ThreadPool
 	}
 	
 	/**
+	 * Creates and executes a periodic action that becomes enabled first after the given initial delay, using a high priority scheduled thread pool. This method is similar to scheduleAtFixedRate but is designed for tasks requiring more immediate or high-priority execution.
+	 * @param runnable : the task to execute.
+	 * @param initialDelay : the time to delay first execution.
+	 * @param period : the period between successive executions.
+	 * @return a ScheduledFuture representing pending completion of the task and whose get() method will throw an exception upon cancellation.
+	 */
+	public static ScheduledFuture<?> schedulePriorityTaskAtFixedRate(Runnable runnable, long initialDelay, long period)
+	{
+		try
+		{
+			return HIGH_PRIORITY_SCHEDULED_POOL.scheduleAtFixedRate(new RunnableWrapper(runnable), validate(initialDelay), validate(period), TimeUnit.MILLISECONDS);
+		}
+		catch (Exception e)
+		{
+			LOGGER.warning(runnable.getClass().getSimpleName() + Config.EOL + e.getMessage() + Config.EOL + e.getStackTrace());
+			return null;
+		}
+	}
+	
+	/**
 	 * Executes the given task sometime in the future.
 	 * @param runnable : the task to execute.
 	 */
@@ -145,8 +174,18 @@ public class ThreadPool
 	
 	public static String[] getStats()
 	{
-		final String[] stats = new String[20];
+		final String[] stats = new String[30];
 		int pos = 0;
+		stats[pos++] = "High Priority pool:";
+		stats[pos++] = " |- ActiveCount: ...... " + HIGH_PRIORITY_SCHEDULED_POOL.getActiveCount();
+		stats[pos++] = " |- CorePoolSize: ..... " + HIGH_PRIORITY_SCHEDULED_POOL.getCorePoolSize();
+		stats[pos++] = " |- PoolSize: ......... " + HIGH_PRIORITY_SCHEDULED_POOL.getPoolSize();
+		stats[pos++] = " |- LargestPoolSize: .. " + HIGH_PRIORITY_SCHEDULED_POOL.getLargestPoolSize();
+		stats[pos++] = " |- MaximumPoolSize: .. " + HIGH_PRIORITY_SCHEDULED_POOL.getMaximumPoolSize();
+		stats[pos++] = " |- CompletedTaskCount: " + HIGH_PRIORITY_SCHEDULED_POOL.getCompletedTaskCount();
+		stats[pos++] = " |- QueuedTaskCount: .. " + HIGH_PRIORITY_SCHEDULED_POOL.getQueue().size();
+		stats[pos++] = " |- TaskCount: ........ " + HIGH_PRIORITY_SCHEDULED_POOL.getTaskCount();
+		stats[pos++] = " | -------";
 		stats[pos++] = "Scheduled pool:";
 		stats[pos++] = " |- ActiveCount: ...... " + SCHEDULED_POOL.getActiveCount();
 		stats[pos++] = " |- CorePoolSize: ..... " + SCHEDULED_POOL.getCorePoolSize();

@@ -38,7 +38,8 @@ public class PlayerVariables extends AbstractVariables
 	private static final String DELETE_QUERY = "DELETE FROM character_variables WHERE charId = ?";
 	private static final String INSERT_QUERY = "INSERT INTO character_variables (charId, var, val) VALUES (?, ?, ?)";
 	
-	// Public variable names
+	// Public variable names.
+	public static final String RESTORE_LOCATION = "RESTORE_LOCATION";
 	public static final String AUTO_USE_SETTINGS = "AUTO_USE_SETTINGS";
 	public static final String AUTO_USE_ACTIONS = "AUTO_USE_ACTIONS";
 	public static final String AUTO_USE_BUFFS = "AUTO_USE_BUFFS";

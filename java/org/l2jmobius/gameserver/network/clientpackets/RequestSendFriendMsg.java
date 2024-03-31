@@ -19,10 +19,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.L2FriendSay;
 
@@ -30,7 +28,7 @@ import org.l2jmobius.gameserver.network.serverpackets.L2FriendSay;
  * Recieve Private (Friend) Message - 0xCC Format: c SS S: Message S: Receiving Player
  * @author Tempy
  */
-public class RequestSendFriendMsg implements ClientPacket
+public class RequestSendFriendMsg extends ClientPacket
 {
 	private static Logger LOGGER_CHAT = Logger.getLogger("chat");
 	
@@ -38,16 +36,16 @@ public class RequestSendFriendMsg implements ClientPacket
 	private String _reciever;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_message = packet.readString();
-		_reciever = packet.readString();
+		_message = readString();
+		_reciever = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

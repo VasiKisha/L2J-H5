@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.model.Augmentation;
 import org.l2jmobius.gameserver.model.Elementals;
@@ -31,7 +30,6 @@ import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.model.multisell.Entry;
 import org.l2jmobius.gameserver.model.multisell.Ingredient;
 import org.l2jmobius.gameserver.model.multisell.PreparedListContainer;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ItemList;
@@ -41,7 +39,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 /**
  * The Class MultiSellChoose.
  */
-public class MultiSellChoose implements ClientPacket
+public class MultiSellChoose extends ClientPacket
 {
 	private int _listId;
 	private int _entryId;
@@ -70,34 +68,34 @@ public class MultiSellChoose implements ClientPacket
 	private int _unk11;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_listId = packet.readInt();
-		_entryId = packet.readInt();
-		_amount = packet.readLong();
-		_unk1 = packet.readShort();
-		_unk2 = packet.readInt();
-		_unk3 = packet.readInt();
-		_unk4 = packet.readShort(); // elemental attributes
-		_unk5 = packet.readShort(); // elemental attributes
-		_unk6 = packet.readShort(); // elemental attributes
-		_unk7 = packet.readShort(); // elemental attributes
-		_unk8 = packet.readShort(); // elemental attributes
-		_unk9 = packet.readShort(); // elemental attributes
-		_unk10 = packet.readShort(); // elemental attributes
-		_unk11 = packet.readShort(); // elemental attributes
+		_listId = readInt();
+		_entryId = readInt();
+		_amount = readLong();
+		_unk1 = readShort();
+		_unk2 = readInt();
+		_unk3 = readInt();
+		_unk4 = readShort(); // elemental attributes
+		_unk5 = readShort(); // elemental attributes
+		_unk6 = readShort(); // elemental attributes
+		_unk7 = readShort(); // elemental attributes
+		_unk8 = readShort(); // elemental attributes
+		_unk9 = readShort(); // elemental attributes
+		_unk10 = readShort(); // elemental attributes
+		_unk11 = readShort(); // elemental attributes
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canUseMultiSell())
+		if (!getClient().getFloodProtectors().canUseMultiSell())
 		{
 			player.setMultiSell(null);
 			return;

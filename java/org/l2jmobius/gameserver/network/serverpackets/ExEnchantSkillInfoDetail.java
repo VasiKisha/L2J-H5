@@ -17,11 +17,13 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.model.EnchantSkillGroup.EnchantSkillHolder;
 import org.l2jmobius.gameserver.model.EnchantSkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -120,18 +122,18 @@ public class ExEnchantSkillInfoDetail extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_ENCHANT_SKILL_INFO_DETAIL.writeId(this);
-		writeInt(_type);
-		writeInt(_skillId);
-		writeInt(_skillLevel);
-		writeInt(_sp * multi); // sp
-		writeInt(_chance); // exp
-		writeInt(2); // items count?
-		writeInt(Inventory.ADENA_ID); // Adena
-		writeInt(_adenacount); // Adena count
-		writeInt(bookId); // ItemId Required
-		writeInt(reqCount);
+		ServerPackets.EX_ENCHANT_SKILL_INFO_DETAIL.writeId(this, buffer);
+		buffer.writeInt(_type);
+		buffer.writeInt(_skillId);
+		buffer.writeInt(_skillLevel);
+		buffer.writeInt(_sp * multi); // sp
+		buffer.writeInt(_chance); // exp
+		buffer.writeInt(2); // items count?
+		buffer.writeInt(Inventory.ADENA_ID); // Adena
+		buffer.writeInt(_adenacount); // Adena count
+		buffer.writeInt(bookId); // ItemId Required
+		buffer.writeInt(reqCount);
 	}
 }

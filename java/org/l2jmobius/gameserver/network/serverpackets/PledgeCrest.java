@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.CrestTable;
 import org.l2jmobius.gameserver.model.Crest;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PledgeCrest extends ServerPacket
@@ -39,18 +41,18 @@ public class PledgeCrest extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_CREST.writeId(this);
-		writeInt(_crestId);
+		ServerPackets.PLEDGE_CREST.writeId(this, buffer);
+		buffer.writeInt(_crestId);
 		if (_data != null)
 		{
-			writeInt(_data.length);
-			writeBytes(_data);
+			buffer.writeInt(_data.length);
+			buffer.writeBytes(_data);
 		}
 		else
 		{
-			writeInt(0);
+			buffer.writeInt(0);
 		}
 	}
 }

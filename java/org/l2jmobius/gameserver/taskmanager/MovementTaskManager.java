@@ -107,7 +107,7 @@ public class MovementTaskManager
 		
 		final Set<Creature> pool = ConcurrentHashMap.newKeySet(POOL_SIZE);
 		pool.add(creature);
-		ThreadPool.scheduleAtFixedRate(new Movement(pool), TASK_DELAY, TASK_DELAY);
+		ThreadPool.schedulePriorityTaskAtFixedRate(new Movement(pool), TASK_DELAY, TASK_DELAY);
 		POOLS.add(pool);
 	}
 	

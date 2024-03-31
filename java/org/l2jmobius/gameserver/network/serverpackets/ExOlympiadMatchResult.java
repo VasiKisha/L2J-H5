@@ -18,7 +18,9 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadInfo;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -49,35 +51,35 @@ public class ExOlympiadMatchResult extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_RECEIVE_OLYMPIAD.writeId(this);
-		writeInt(1); // Type 0 = Match List, 1 = Match Result
-		writeInt(_tie); // 0 - win, 1 - tie
-		writeString(_winnerList.get(0).getName());
-		writeInt(_winTeam);
-		writeInt(_winnerList.size());
+		ServerPackets.EX_RECEIVE_OLYMPIAD.writeId(this, buffer);
+		buffer.writeInt(1); // Type 0 = Match List, 1 = Match Result
+		buffer.writeInt(_tie); // 0 - win, 1 - tie
+		buffer.writeString(_winnerList.get(0).getName());
+		buffer.writeInt(_winTeam);
+		buffer.writeInt(_winnerList.size());
 		for (OlympiadInfo info : _winnerList)
 		{
-			writeString(info.getName());
-			writeString(info.getClanName());
-			writeInt(info.getClanId());
-			writeInt(info.getClassId());
-			writeInt(info.getDamage());
-			writeInt(info.getCurrentPoints());
-			writeInt(info.getDiffPoints());
+			buffer.writeString(info.getName());
+			buffer.writeString(info.getClanName());
+			buffer.writeInt(info.getClanId());
+			buffer.writeInt(info.getClassId());
+			buffer.writeInt(info.getDamage());
+			buffer.writeInt(info.getCurrentPoints());
+			buffer.writeInt(info.getDiffPoints());
 		}
-		writeInt(_loseTeam);
-		writeInt(_loserList.size());
+		buffer.writeInt(_loseTeam);
+		buffer.writeInt(_loserList.size());
 		for (OlympiadInfo info : _loserList)
 		{
-			writeString(info.getName());
-			writeString(info.getClanName());
-			writeInt(info.getClanId());
-			writeInt(info.getClassId());
-			writeInt(info.getDamage());
-			writeInt(info.getCurrentPoints());
-			writeInt(info.getDiffPoints());
+			buffer.writeString(info.getName());
+			buffer.writeString(info.getClanName());
+			buffer.writeInt(info.getClanId());
+			buffer.writeInt(info.getClassId());
+			buffer.writeInt(info.getDamage());
+			buffer.writeInt(info.getCurrentPoints());
+			buffer.writeInt(info.getDiffPoints());
 		}
 	}
 }

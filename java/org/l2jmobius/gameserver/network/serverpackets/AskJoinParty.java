@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.enums.PartyDistributionType;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class AskJoinParty extends ServerPacket
@@ -35,10 +37,10 @@ public class AskJoinParty extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.ASK_JOIN_PARTY.writeId(this);
-		writeString(_requestorName);
-		writeInt(_partyDistributionType.getId());
+		ServerPackets.ASK_JOIN_PARTY.writeId(this, buffer);
+		buffer.writeString(_requestorName);
+		buffer.writeInt(_partyDistributionType.getId());
 	}
 }

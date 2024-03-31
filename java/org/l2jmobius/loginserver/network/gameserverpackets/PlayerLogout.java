@@ -18,20 +18,20 @@ package org.l2jmobius.loginserver.network.gameserverpackets;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.network.base.BaseReadablePacket;
 import org.l2jmobius.loginserver.GameServerThread;
 
 /**
  * @author -Wooden-
  */
-public class PlayerLogout extends ReadablePacket
+public class PlayerLogout extends BaseReadablePacket
 {
 	protected static final Logger LOGGER = Logger.getLogger(PlayerLogout.class.getName());
 	
 	public PlayerLogout(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final String account = readString();
 		server.removeAccountOnGameServer(account);

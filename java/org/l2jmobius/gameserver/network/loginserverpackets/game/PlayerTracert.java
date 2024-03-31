@@ -16,12 +16,12 @@
  */
 package org.l2jmobius.gameserver.network.loginserverpackets.game;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
  * @author mrTJO
  */
-public class PlayerTracert extends WritablePacket
+public class PlayerTracert extends BaseWritablePacket
 {
 	public PlayerTracert(String account, String pcIp, String hop1, String hop2, String hop3, String hop4)
 	{

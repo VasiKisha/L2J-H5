@@ -16,13 +16,13 @@
  */
 package org.l2jmobius.gameserver.network.loginserverpackets.game;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 import org.l2jmobius.gameserver.LoginServerThread.SessionKey;
 
 /**
  * @author -Wooden-
  */
-public class PlayerAuthRequest extends WritablePacket
+public class PlayerAuthRequest extends BaseWritablePacket
 {
 	public PlayerAuthRequest(String account, SessionKey key)
 	{

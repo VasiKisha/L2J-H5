@@ -35,7 +35,9 @@ public class TaskCleanUp extends Task
 	@Override
 	public void onTimeElapsed(ExecutedTask task)
 	{
-		System.runFinalization();
+		// Removed with Java 18.
+		// System.runFinalization();
+		
 		System.gc();
 	}
 }

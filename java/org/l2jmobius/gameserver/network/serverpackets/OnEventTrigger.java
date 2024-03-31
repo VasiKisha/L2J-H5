@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -40,10 +42,10 @@ public class OnEventTrigger extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EVENT_TRIGGER.writeId(this);
-		writeInt(_emitterId);
-		writeByte(_enabled);
+		ServerPackets.EVENT_TRIGGER.writeId(this, buffer);
+		buffer.writeInt(_emitterId);
+		buffer.writeByte(_enabled);
 	}
 }

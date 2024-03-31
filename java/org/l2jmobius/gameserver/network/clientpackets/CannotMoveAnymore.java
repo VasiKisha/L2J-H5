@@ -16,16 +16,14 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.ai.CtrlEvent;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 
 /**
  * @version $Revision: 1.1.2.1.2.4 $ $Date: 2005/03/27 15:29:30 $
  */
-public class CannotMoveAnymore implements ClientPacket
+public class CannotMoveAnymore extends ClientPacket
 {
 	private int _x;
 	private int _y;
@@ -33,18 +31,18 @@ public class CannotMoveAnymore implements ClientPacket
 	private int _heading;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_x = packet.readInt();
-		_y = packet.readInt();
-		_z = packet.readInt();
-		_heading = packet.readInt();
+		_x = readInt();
+		_y = readInt();
+		_z = readInt();
+		_heading = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

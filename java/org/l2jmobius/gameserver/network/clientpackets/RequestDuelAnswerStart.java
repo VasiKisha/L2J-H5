@@ -16,10 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.instancemanager.DuelManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -27,7 +25,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
  * Format:(ch) ddd
  * @author -Wooden-
  */
-public class RequestDuelAnswerStart implements ClientPacket
+public class RequestDuelAnswerStart extends ClientPacket
 {
 	private int _partyDuel;
 	@SuppressWarnings("unused")
@@ -35,17 +33,17 @@ public class RequestDuelAnswerStart implements ClientPacket
 	private int _response;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_partyDuel = packet.readInt();
-		_unk1 = packet.readInt();
-		_response = packet.readInt();
+		_partyDuel = readInt();
+		_unk1 = readInt();
+		_response = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

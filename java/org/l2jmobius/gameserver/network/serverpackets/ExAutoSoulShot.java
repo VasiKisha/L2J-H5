@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class ExAutoSoulShot extends ServerPacket
@@ -30,10 +32,10 @@ public class ExAutoSoulShot extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_AUTO_SOULSHOT.writeId(this);
-		writeInt(_itemId);
-		writeInt(_type);
+		ServerPackets.EX_AUTO_SOULSHOT.writeId(this, buffer);
+		buffer.writeInt(_itemId);
+		buffer.writeInt(_type);
 	}
 }

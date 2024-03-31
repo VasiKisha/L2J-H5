@@ -19,6 +19,7 @@ package quests.Q00604_DaimonTheWhiteEyedPart2;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -44,10 +45,6 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 	private static final int UNFINISHED_SUMMON_CRYSTAL = 7192;
 	private static final int SUMMON_CRYSTAL = 7193;
 	private static final int ESSENCE_OF_DAIMON = 7194;
-	// Misc
-	private static final int MIN_LEVEL = 73;
-	// Location
-	private static final Location DAIMON_THE_WHITE_EYED_LOC = new Location(186320, -43904, -3175);
 	// Rewards
 	private static final int DYE_I2M2_C = 4595; // Greater Dye of INT <Int+2 Men-2>
 	private static final int DYE_I2W2_C = 4596; // Greater Dye of INT <Int+2 Wit-2>
@@ -55,6 +52,11 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 	private static final int DYE_M2W2_C = 4598; // Greater Dye of MEN <Men+2 Wit-2>
 	private static final int DYE_W2I2_C = 4599; // Greater Dye of WIT <Wit+2 Int-2>
 	private static final int DYE_W2M2_C = 4600; // Greater Dye of WIT <Wit+2 Men-2>
+	// Location
+	private static final Location DAIMON_THE_WHITE_EYED_LOC = new Location(186320, -43904, -3175);
+	// Misc
+	private static final String DAIMON_THE_WHITE_EYED_RESPAWN_TIME = "DAIMON_THE_WHITE_EYED_RESPAWN_TIME";
+	private static final int MIN_LEVEL = 73;
 	
 	public Q00604_DaimonTheWhiteEyedPart2()
 	{
@@ -64,23 +66,6 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 		addSpawnId(DAIMON_THE_WHITE_EYED);
 		addKillId(DAIMON_THE_WHITE_EYED);
 		registerQuestItems(SUMMON_CRYSTAL, ESSENCE_OF_DAIMON);
-	}
-	
-	@Override
-	public void actionForEachPlayer(Player player, Npc npc, boolean isSummon)
-	{
-		final QuestState qs = getQuestState(player, false);
-		if ((qs != null) && (qs.getMemoState() >= 11) && (qs.getMemoState() <= 21) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
-		{
-			if (hasQuestItems(player, ESSENCE_OF_DAIMON))
-			{
-				qs.setCond(3, true);
-				qs.setMemoState(22);
-			}
-			
-			giveItems(player, ESSENCE_OF_DAIMON, 1);
-			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
-		}
 	}
 	
 	@Override
@@ -165,7 +150,6 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 						takeItems(player, SUMMON_CRYSTAL, 1);
 						htmltext = event;
 						addSpawn(DAIMON_THE_WHITE_EYED, DAIMON_THE_WHITE_EYED_LOC);
-						npc.deleteMe();
 						qs.setMemoState(21);
 						qs.setCond(2, true);
 					}
@@ -182,21 +166,6 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 			}
 		}
 		return htmltext;
-	}
-	
-	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
-	{
-		executeForEachPlayer(killer, npc, isSummon, true, false);
-		return super.onKill(npc, killer, isSummon);
-	}
-	
-	@Override
-	public String onSpawn(Npc npc)
-	{
-		startQuestTimer("DESPAWN", 1200000, npc, null);
-		npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.WHO_IS_CALLING_ME));
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -227,27 +196,46 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 				{
 					htmltext = "31683-05.html";
 				}
-				else if (qs.getMemoState() >= 22)
+				else if ((qs.getMemoState() >= 22) && hasQuestItems(player, ESSENCE_OF_DAIMON))
 				{
-					htmltext = (hasQuestItems(player, ESSENCE_OF_DAIMON)) ? "31683-06.html" : "31683-09.html";
+					htmltext = "31683-06.html";
+				}
+				else
+				{
+					htmltext = "31683-09.html";
 				}
 			}
-			else
+			else // DAIMONS_ALTAR
 			{
 				if (qs.isMemoState(11))
 				{
-					if (hasQuestItems(player, SUMMON_CRYSTAL))
+					if (isDaimonSpawned())
+					{
+						htmltext = "31541-05.html";
+					}
+					else if (hasQuestItems(player, SUMMON_CRYSTAL))
 					{
 						htmltext = "31541-01.html";
+					}
+					else
+					{
+						htmltext = "31541-04.html";
 					}
 				}
 				else if (qs.isMemoState(21))
 				{
 					if (!isDaimonSpawned())
 					{
-						addSpawn(DAIMON_THE_WHITE_EYED, DAIMON_THE_WHITE_EYED_LOC);
-						npc.deleteMe();
-						htmltext = "31541-02.html";
+						if (hasQuestItems(player, SUMMON_CRYSTAL))
+						{
+							takeItems(player, SUMMON_CRYSTAL, 1);
+							addSpawn(DAIMON_THE_WHITE_EYED, DAIMON_THE_WHITE_EYED_LOC);
+							htmltext = "31541-02.html";
+						}
+						else
+						{
+							htmltext = "31541-04.html";
+						}
 					}
 					else
 					{
@@ -263,8 +251,51 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 		return htmltext;
 	}
 	
+	@Override
+	public String onSpawn(Npc npc)
+	{
+		startQuestTimer("DESPAWN", 1200000, npc, null);
+		npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.WHO_IS_CALLING_ME));
+		return super.onSpawn(npc);
+	}
+	
+	@Override
+	public String onKill(Npc npc, Player killer, boolean isSummon)
+	{
+		executeForEachPlayer(killer, npc, isSummon, true, false);
+		
+		final int respawnMinDelay = (int) (43200000 * Config.RAID_MIN_RESPAWN_MULTIPLIER);
+		final int respawnMaxDelay = (int) (129600000 * Config.RAID_MAX_RESPAWN_MULTIPLIER);
+		final int respawnDelay = getRandom(respawnMinDelay, respawnMaxDelay);
+		GlobalVariablesManager.getInstance().set(DAIMON_THE_WHITE_EYED_RESPAWN_TIME, System.currentTimeMillis() + respawnDelay);
+		
+		return super.onKill(npc, killer, isSummon);
+	}
+	
+	@Override
+	public void actionForEachPlayer(Player player, Npc npc, boolean isSummon)
+	{
+		final QuestState qs = getQuestState(player, false);
+		if ((qs != null) && (qs.getMemoState() >= 11) && (qs.getMemoState() <= 21) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		{
+			// if (hasQuestItems(player, ESSENCE_OF_DAIMON))
+			// {
+			qs.setCond(3, true);
+			qs.setMemoState(22);
+			// }
+			
+			giveItems(player, ESSENCE_OF_DAIMON, 1);
+			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
+		}
+	}
+	
 	private static boolean isDaimonSpawned()
 	{
-		return World.getInstance().getVisibleObjects().stream().anyMatch(object -> object.getId() == DAIMON_THE_WHITE_EYED);
+		if (System.currentTimeMillis() > GlobalVariablesManager.getInstance().getLong(DAIMON_THE_WHITE_EYED_RESPAWN_TIME, 0))
+		{
+			return World.getInstance().getVisibleObjects().stream().anyMatch(object -> object.getId() == DAIMON_THE_WHITE_EYED);
+		}
+		
+		return true;
 	}
 }

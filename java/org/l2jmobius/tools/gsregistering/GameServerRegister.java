@@ -37,7 +37,6 @@ public class GameServerRegister extends BaseGameServerRegister
 	
 	public GameServerRegister()
 	{
-		super();
 		load();
 		
 		if (GameServerTable.getInstance().getServerNames().isEmpty())

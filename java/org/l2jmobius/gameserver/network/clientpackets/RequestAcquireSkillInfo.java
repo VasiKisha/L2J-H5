@@ -16,7 +16,6 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.enums.AcquireSkillType;
@@ -25,7 +24,6 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillInfo;
 
@@ -33,22 +31,22 @@ import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillInfo;
  * Request Acquire Skill Info client packet implementation.
  * @author Zoey76
  */
-public class RequestAcquireSkillInfo implements ClientPacket
+public class RequestAcquireSkillInfo extends ClientPacket
 {
 	private int _id;
 	private int _level;
 	private AcquireSkillType _skillType;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_id = packet.readInt();
-		_level = packet.readInt();
-		_skillType = AcquireSkillType.getAcquireSkillType(packet.readInt());
+		_id = readInt();
+		_level = readInt();
+		_skillType = AcquireSkillType.getAcquireSkillType(readInt());
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
 		if ((_id <= 0) || (_level <= 0))
 		{
@@ -56,7 +54,7 @@ public class RequestAcquireSkillInfo implements ClientPacket
 			return;
 		}
 		
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

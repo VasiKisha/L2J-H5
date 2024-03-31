@@ -16,10 +16,12 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.instance.Servitor;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PetInfo extends ServerPacket
@@ -80,93 +82,93 @@ public class PetInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PET_INFO.writeId(this);
-		writeInt(_summon.getSummonType());
-		writeInt(_summon.getObjectId());
-		writeInt(_summon.getTemplate().getDisplayId() + 1000000);
-		writeInt(0); // 1=attackable
-		writeInt(_x);
-		writeInt(_y);
-		writeInt(_z);
-		writeInt(_heading);
-		writeInt(0);
-		writeInt(_mAtkSpd);
-		writeInt(_pAtkSpd);
-		writeInt(_runSpd);
-		writeInt(_walkSpd);
-		writeInt(_swimRunSpd);
-		writeInt(_swimWalkSpd);
-		writeInt(_flyRunSpd);
-		writeInt(_flyWalkSpd);
-		writeInt(_flyRunSpd);
-		writeInt(_flyWalkSpd);
-		writeDouble(_moveMultiplier);
-		writeDouble(_summon.getAttackSpeedMultiplier()); // attack speed multiplier
-		writeDouble(_summon.getTemplate().getFCollisionRadius());
-		writeDouble(_summon.getTemplate().getFCollisionHeight());
-		writeInt(_summon.getWeapon()); // right hand weapon
-		writeInt(_summon.getArmor()); // body armor
-		writeInt(0); // left hand weapon
-		writeByte(_summon.getOwner() != null); // when pet is dead and player exit game, pet doesn't show master name
-		writeByte(_summon.isRunning()); // running=1 (it is always 1, walking mode is calculated from multiplier)
-		writeByte(_summon.isInCombat()); // attacking 1=true
-		writeByte(_summon.isAlikeDead()); // dead 1=true
-		writeByte(_isSummoned ? 2 : _value); // 0=teleported 1=default 2=summoned
-		writeInt(-1); // High Five NPCString ID
+		ServerPackets.PET_INFO.writeId(this, buffer);
+		buffer.writeInt(_summon.getSummonType());
+		buffer.writeInt(_summon.getObjectId());
+		buffer.writeInt(_summon.getTemplate().getDisplayId() + 1000000);
+		buffer.writeInt(0); // 1=attackable
+		buffer.writeInt(_x);
+		buffer.writeInt(_y);
+		buffer.writeInt(_z);
+		buffer.writeInt(_heading);
+		buffer.writeInt(0);
+		buffer.writeInt(_mAtkSpd);
+		buffer.writeInt(_pAtkSpd);
+		buffer.writeInt(_runSpd);
+		buffer.writeInt(_walkSpd);
+		buffer.writeInt(_swimRunSpd);
+		buffer.writeInt(_swimWalkSpd);
+		buffer.writeInt(_flyRunSpd);
+		buffer.writeInt(_flyWalkSpd);
+		buffer.writeInt(_flyRunSpd);
+		buffer.writeInt(_flyWalkSpd);
+		buffer.writeDouble(_moveMultiplier);
+		buffer.writeDouble(_summon.getAttackSpeedMultiplier()); // attack speed multiplier
+		buffer.writeDouble(_summon.getTemplate().getFCollisionRadius());
+		buffer.writeDouble(_summon.getTemplate().getFCollisionHeight());
+		buffer.writeInt(_summon.getWeapon()); // right hand weapon
+		buffer.writeInt(_summon.getArmor()); // body armor
+		buffer.writeInt(0); // left hand weapon
+		buffer.writeByte(_summon.getOwner() != null); // when pet is dead and player exit game, pet doesn't show master name
+		buffer.writeByte(_summon.isRunning()); // running=1 (it is always 1, walking mode is calculated from multiplier)
+		buffer.writeByte(_summon.isInCombat()); // attacking 1=true
+		buffer.writeByte(_summon.isAlikeDead()); // dead 1=true
+		buffer.writeByte(_isSummoned ? 2 : _value); // 0=teleported 1=default 2=summoned
+		buffer.writeInt(-1); // High Five NPCString ID
 		if (_summon.isPet())
 		{
-			writeString(_summon.getName()); // Pet name.
+			buffer.writeString(_summon.getName()); // Pet name.
 		}
 		else
 		{
-			writeString(_summon.getTemplate().isUsingServerSideName() ? _summon.getName() : ""); // Summon name.
+			buffer.writeString(_summon.getTemplate().isUsingServerSideName() ? _summon.getName() : ""); // Summon name.
 		}
-		writeInt(-1); // High Five NPCString ID
-		writeString(_summon.getTitle()); // owner name
-		writeInt(1);
-		writeInt(_summon.getPvpFlag()); // 0 = white,2= purpleblink, if its greater then karma = purple
-		writeInt(_summon.getKarma()); // karma
-		writeInt(_curFed); // how fed it is
-		writeInt(_maxFed); // max fed it can be
-		writeInt((int) _summon.getCurrentHp()); // current hp
-		writeInt(_maxHp); // max hp
-		writeInt((int) _summon.getCurrentMp()); // current mp
-		writeInt(_maxMp); // max mp
-		writeInt((int) _summon.getStat().getSp()); // sp
-		writeInt(_summon.getLevel()); // level
-		writeLong(_summon.getStat().getExp());
+		buffer.writeInt(-1); // High Five NPCString ID
+		buffer.writeString(_summon.getTitle()); // owner name
+		buffer.writeInt(1);
+		buffer.writeInt(_summon.getPvpFlag()); // 0 = white,2= purpleblink, if its greater then karma = purple
+		buffer.writeInt(_summon.getKarma()); // karma
+		buffer.writeInt(_curFed); // how fed it is
+		buffer.writeInt(_maxFed); // max fed it can be
+		buffer.writeInt((int) _summon.getCurrentHp()); // current hp
+		buffer.writeInt(_maxHp); // max hp
+		buffer.writeInt((int) _summon.getCurrentMp()); // current mp
+		buffer.writeInt(_maxMp); // max mp
+		buffer.writeInt((int) _summon.getStat().getSp()); // sp
+		buffer.writeInt(_summon.getLevel()); // level
+		buffer.writeLong(_summon.getStat().getExp());
 		if (_summon.getExpForThisLevel() > _summon.getStat().getExp())
 		{
-			writeLong(_summon.getStat().getExp()); // 0% absolute value
+			buffer.writeLong(_summon.getStat().getExp()); // 0% absolute value
 		}
 		else
 		{
-			writeLong(_summon.getExpForThisLevel()); // 0% absolute value
+			buffer.writeLong(_summon.getExpForThisLevel()); // 0% absolute value
 		}
-		writeLong(_summon.getExpForNextLevel()); // 100% absoulte value
-		writeInt(_summon.isPet() ? _summon.getInventory().getTotalWeight() : 0); // weight
-		writeInt(_summon.getMaxLoad()); // max weight it can carry
-		writeInt((int) _summon.getPAtk(null)); // patk
-		writeInt((int) _summon.getPDef(null)); // pdef
-		writeInt((int) _summon.getMAtk(null, null)); // matk
-		writeInt((int) _summon.getMDef(null, null)); // mdef
-		writeInt(_summon.getAccuracy()); // accuracy
-		writeInt(_summon.getEvasionRate(null)); // evasion
-		writeInt(_summon.getCriticalHit(null, null)); // critical
-		writeInt((int) _summon.getMoveSpeed()); // speed
-		writeInt((int) _summon.getPAtkSpd()); // atkspeed
-		writeInt(_summon.getMAtkSpd()); // casting speed
-		writeInt(_summon.getAbnormalVisualEffects()); // c2 abnormal visual effect... bleed=1; poison=2; poison & bleed=3; flame=4;
-		writeShort(_summon.isMountable()); // c2 ride button
-		writeByte(_summon.isInsideZone(ZoneId.WATER) ? 1 : _summon.isFlying() ? 2 : 0); // c2
+		buffer.writeLong(_summon.getExpForNextLevel()); // 100% absoulte value
+		buffer.writeInt(_summon.isPet() ? _summon.getInventory().getTotalWeight() : 0); // weight
+		buffer.writeInt(_summon.getMaxLoad()); // max weight it can carry
+		buffer.writeInt((int) _summon.getPAtk(null)); // patk
+		buffer.writeInt((int) _summon.getPDef(null)); // pdef
+		buffer.writeInt((int) _summon.getMAtk(null, null)); // matk
+		buffer.writeInt((int) _summon.getMDef(null, null)); // mdef
+		buffer.writeInt(_summon.getAccuracy()); // accuracy
+		buffer.writeInt(_summon.getEvasionRate(null)); // evasion
+		buffer.writeInt(_summon.getCriticalHit(null, null)); // critical
+		buffer.writeInt((int) _summon.getMoveSpeed()); // speed
+		buffer.writeInt((int) _summon.getPAtkSpd()); // atkspeed
+		buffer.writeInt(_summon.getMAtkSpd()); // casting speed
+		buffer.writeInt(_summon.getAbnormalVisualEffects()); // c2 abnormal visual effect... bleed=1; poison=2; poison & bleed=3; flame=4;
+		buffer.writeShort(_summon.isMountable()); // c2 ride button
+		buffer.writeByte(_summon.isInsideZone(ZoneId.WATER) ? 1 : _summon.isFlying() ? 2 : 0); // c2
 		// Following all added in C4.
-		writeShort(0); // ??
-		writeByte(_summon.getTeam().getId());
-		writeInt(_summon.getSoulShotsPerHit()); // How many soulshots this servitor uses per hit
-		writeInt(_summon.getSpiritShotsPerHit()); // How many spiritshots this servitor uses per hit
-		writeInt(_summon.getFormId()); // CT1.5 Pet form and skills
-		writeInt(_summon.getAbnormalVisualEffectSpecial());
+		buffer.writeShort(0); // ??
+		buffer.writeByte(_summon.getTeam().getId());
+		buffer.writeInt(_summon.getSoulShotsPerHit()); // How many soulshots this servitor uses per hit
+		buffer.writeInt(_summon.getSpiritShotsPerHit()); // How many spiritshots this servitor uses per hit
+		buffer.writeInt(_summon.getFormId()); // CT1.5 Pet form and skills
+		buffer.writeInt(_summon.getAbnormalVisualEffectSpecial());
 	}
 }

@@ -51,6 +51,8 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
  */
 public class Q00350_EnhanceYourWeapon extends Quest
 {
+	private static final int MIN_LEVEL = 40;
+	
 	private enum AbsorbCrystalType
 	{
 		LAST_HIT,
@@ -220,7 +222,14 @@ public class Q00350_EnhanceYourWeapon extends Quest
 		String htmltext = getNoQuestMsg(player);
 		if (qs.getState() == State.CREATED)
 		{
-			htmltext = npc.getId() + "-01.htm";
+			if (player.getLevel() < MIN_LEVEL)
+			{
+				htmltext = npc.getId() + "-lvl.htm";
+			}
+			else
+			{
+				htmltext = npc.getId() + "-01.htm";
+			}
 		}
 		else if (check(player))
 		{

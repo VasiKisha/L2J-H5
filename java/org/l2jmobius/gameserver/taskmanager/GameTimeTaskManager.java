@@ -20,6 +20,9 @@ import java.util.Calendar;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.instancemanager.DayNightSpawnManager;
+import org.l2jmobius.gameserver.model.events.EventDispatcher;
+import org.l2jmobius.gameserver.model.events.EventType;
+import org.l2jmobius.gameserver.model.events.impl.OnDayNightChange;
 
 /**
  * GameTime task manager class.
@@ -68,7 +71,13 @@ public class GameTimeTaskManager extends Thread
 			if ((_gameHour < 6) != _isNight)
 			{
 				_isNight = !_isNight;
+				
 				ThreadPool.execute(() -> DayNightSpawnManager.getInstance().notifyChangeMode());
+				
+				if (EventDispatcher.getInstance().hasListener(EventType.ON_DAY_NIGHT_CHANGE))
+				{
+					EventDispatcher.getInstance().notifyEventAsync(new OnDayNightChange(_isNight));
+				}
 			}
 			
 			try

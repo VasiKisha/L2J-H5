@@ -18,9 +18,9 @@ package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.data.ItemTable;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.enums.InstanceType;
@@ -482,7 +482,7 @@ public class ClassMaster extends Merchant
 		final StringBuilder sb = new StringBuilder();
 		for (ItemHolder holder : Config.CLASS_MASTER_SETTINGS.getRequireItems(level))
 		{
-			sb.append("<tr><td><font color=\"LEVEL\">" + holder.getCount() + "</font></td><td>" + ItemTable.getInstance().getTemplate(holder.getId()).getName() + "</td></tr>");
+			sb.append("<tr><td><font color=\"LEVEL\">" + holder.getCount() + "</font></td><td>" + ItemData.getInstance().getTemplate(holder.getId()).getName() + "</td></tr>");
 		}
 		return sb.toString();
 	}

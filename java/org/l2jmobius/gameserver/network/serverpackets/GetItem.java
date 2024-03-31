@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class GetItem extends ServerPacket
@@ -31,13 +33,13 @@ public class GetItem extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.GET_ITEM.writeId(this);
-		writeInt(_playerId);
-		writeInt(_item.getObjectId());
-		writeInt(_item.getX());
-		writeInt(_item.getY());
-		writeInt(_item.getZ());
+		ServerPackets.GET_ITEM.writeId(this, buffer);
+		buffer.writeInt(_playerId);
+		buffer.writeInt(_item.getObjectId());
+		buffer.writeInt(_item.getX());
+		buffer.writeInt(_item.getY());
+		buffer.writeInt(_item.getZ());
 	}
 }

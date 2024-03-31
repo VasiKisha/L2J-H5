@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class LoginFail extends ServerPacket
@@ -43,9 +45,9 @@ public class LoginFail extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.LOGIN_FAIL.writeId(this);
-		writeInt(_reason);
+		ServerPackets.LOGIN_FAIL.writeId(this, buffer);
+		buffer.writeInt(_reason);
 	}
 }

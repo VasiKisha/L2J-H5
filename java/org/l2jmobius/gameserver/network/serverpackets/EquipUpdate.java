@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class EquipUpdate extends ServerPacket
@@ -32,11 +34,11 @@ public class EquipUpdate extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EQUIP_UPDATE.writeId(this);
-		writeInt(_change);
-		writeInt(_item.getObjectId());
+		ServerPackets.EQUIP_UPDATE.writeId(this, buffer);
+		buffer.writeInt(_change);
+		buffer.writeInt(_item.getObjectId());
 		int bodypart = 0;
 		switch (_item.getTemplate().getBodyPart())
 		{
@@ -121,6 +123,6 @@ public class EquipUpdate extends ServerPacket
 				break;
 			}
 		}
-		writeInt(bodypart);
+		buffer.writeInt(bodypart);
 	}
 }

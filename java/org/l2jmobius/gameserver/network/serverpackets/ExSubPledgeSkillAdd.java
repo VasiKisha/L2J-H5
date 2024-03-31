@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -35,11 +37,11 @@ public class ExSubPledgeSkillAdd extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SUB_PLEDGE_SKILL_ADD.writeId(this);
-		writeInt(_type);
-		writeInt(_skillId);
-		writeInt(_skillLevel);
+		ServerPackets.EX_SUB_PLEDGE_SKILL_ADD.writeId(this, buffer);
+		buffer.writeInt(_type);
+		buffer.writeInt(_skillId);
+		buffer.writeInt(_skillLevel);
 	}
 }

@@ -18,21 +18,21 @@ package org.l2jmobius.loginserver.network.gameserverpackets;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.network.base.BaseReadablePacket;
 import org.l2jmobius.loginserver.GameServerThread;
 import org.l2jmobius.loginserver.LoginController;
 
 /**
  * @author -Wooden-
  */
-public class ChangeAccessLevel extends ReadablePacket
+public class ChangeAccessLevel extends BaseReadablePacket
 {
 	protected static final Logger LOGGER = Logger.getLogger(ChangeAccessLevel.class.getName());
 	
 	public ChangeAccessLevel(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final int level = readInt();
 		final String account = readString();

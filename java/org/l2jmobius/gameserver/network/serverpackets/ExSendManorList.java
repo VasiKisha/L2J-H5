@@ -19,8 +19,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Comparator;
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.instancemanager.CastleManager;
 import org.l2jmobius.gameserver.model.siege.Castle;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -29,16 +31,16 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 public class ExSendManorList extends ServerPacket
 {
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		final List<Castle> castles = CastleManager.getInstance().getCastles();
 		castles.sort(Comparator.comparing(Castle::getResidenceId));
-		ServerPackets.EX_SEND_MANOR_LIST.writeId(this);
-		writeInt(castles.size());
+		ServerPackets.EX_SEND_MANOR_LIST.writeId(this, buffer);
+		buffer.writeInt(castles.size());
 		for (Castle castle : castles)
 		{
-			writeInt(castle.getResidenceId());
-			writeString(castle.getName().toLowerCase());
+			buffer.writeInt(castle.getResidenceId());
+			buffer.writeString(castle.getName().toLowerCase());
 		}
 	}
 }

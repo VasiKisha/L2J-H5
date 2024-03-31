@@ -18,9 +18,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.instancemanager.CastleManager;
 import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
 import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager.Territory;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -35,22 +37,22 @@ public class ExReplyDominionInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_REPLY_DOMINION_INFO.writeId(this);
+		ServerPackets.EX_REPLY_DOMINION_INFO.writeId(this, buffer);
 		final List<Territory> territoryList = TerritoryWarManager.getInstance().getAllTerritories();
-		writeInt(territoryList.size()); // Territory Count
+		buffer.writeInt(territoryList.size()); // Territory Count
 		for (Territory t : territoryList)
 		{
-			writeInt(t.getTerritoryId()); // Territory Id
-			writeString(CastleManager.getInstance().getCastleById(t.getCastleId()).getName().toLowerCase() + "_dominion"); // territory name
-			writeString(t.getOwnerClan().getName());
-			writeInt(t.getOwnedWardIds().size()); // Emblem Count
+			buffer.writeInt(t.getTerritoryId()); // Territory Id
+			buffer.writeString(CastleManager.getInstance().getCastleById(t.getCastleId()).getName().toLowerCase() + "_dominion"); // territory name
+			buffer.writeString(t.getOwnerClan().getName());
+			buffer.writeInt(t.getOwnedWardIds().size()); // Emblem Count
 			for (int i : t.getOwnedWardIds())
 			{
-				writeInt(i); // Emblem ID - should be in for loop for emblem count
+				buffer.writeInt(i); // Emblem ID - should be in for loop for emblem count
 			}
-			writeInt((int) (TerritoryWarManager.getInstance().getTWStartTimeInMillis() / 1000));
+			buffer.writeInt((int) (TerritoryWarManager.getInstance().getTWStartTimeInMillis() / 1000));
 		}
 	}
 }

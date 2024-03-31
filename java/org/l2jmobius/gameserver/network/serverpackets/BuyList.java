@@ -19,8 +19,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Collection;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
 import org.l2jmobius.gameserver.model.buylist.Product;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class BuyList extends ServerPacket
@@ -39,47 +41,47 @@ public class BuyList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_BUY_SELL_LIST.writeId(this);
-		writeInt(0);
-		writeLong(_money); // current money
-		writeInt(_listId);
-		writeShort(_list.size());
+		ServerPackets.EX_BUY_SELL_LIST.writeId(this, buffer);
+		buffer.writeInt(0);
+		buffer.writeLong(_money); // current money
+		buffer.writeInt(_listId);
+		buffer.writeShort(_list.size());
 		for (Product product : _list)
 		{
 			if ((product.getCount() > 0) || !product.hasLimitedStock())
 			{
-				writeInt(product.getItemId());
-				writeInt(product.getItemId());
-				writeInt(0);
-				writeLong(product.getCount() < 0 ? 0 : product.getCount());
-				writeShort(product.getItem().getType2());
-				writeShort(product.getItem().getType1()); // Custom Type 1
-				writeShort(0); // isEquipped
-				writeInt(product.getItem().getBodyPart()); // Body Part
-				writeShort(product.getItem().getDefaultEnchantLevel()); // Enchant
-				writeShort(0); // Custom Type
-				writeInt(0); // Augment
-				writeInt(-1); // Mana
-				writeInt(-9999); // Time
-				writeShort(0); // Element Type
-				writeShort(0); // Element Power
+				buffer.writeInt(product.getItemId());
+				buffer.writeInt(product.getItemId());
+				buffer.writeInt(0);
+				buffer.writeLong(product.getCount() < 0 ? 0 : product.getCount());
+				buffer.writeShort(product.getItem().getType2());
+				buffer.writeShort(product.getItem().getType1()); // Custom Type 1
+				buffer.writeShort(0); // isEquipped
+				buffer.writeInt(product.getItem().getBodyPart()); // Body Part
+				buffer.writeShort(product.getItem().getDefaultEnchantLevel()); // Enchant
+				buffer.writeShort(0); // Custom Type
+				buffer.writeInt(0); // Augment
+				buffer.writeInt(-1); // Mana
+				buffer.writeInt(-9999); // Time
+				buffer.writeShort(0); // Element Type
+				buffer.writeShort(0); // Element Power
 				for (byte i = 0; i < 6; i++)
 				{
-					writeShort(0);
+					buffer.writeShort(0);
 				}
 				// Enchant Effects
-				writeShort(0);
-				writeShort(0);
-				writeShort(0);
+				buffer.writeShort(0);
+				buffer.writeShort(0);
+				buffer.writeShort(0);
 				if ((product.getItemId() >= 3960) && (product.getItemId() <= 4026))
 				{
-					writeLong((long) (product.getPrice() * Config.RATE_SIEGE_GUARDS_PRICE * (1 + _taxRate)));
+					buffer.writeLong((long) (product.getPrice() * Config.RATE_SIEGE_GUARDS_PRICE * (1 + _taxRate)));
 				}
 				else
 				{
-					writeLong((long) (product.getPrice() * (1 + _taxRate)));
+					buffer.writeLong((long) (product.getPrice() * (1 + _taxRate)));
 				}
 			}
 		}

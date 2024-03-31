@@ -26,7 +26,7 @@ public enum FenceState
 	CLOSED(2),
 	CLOSED_HIDDEN(0);
 	
-	final int _clientId;
+	private final int _clientId;
 	
 	private FenceState(int clientId)
 	{

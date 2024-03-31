@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PartySmallWindowAll extends ServerPacket
@@ -32,45 +34,45 @@ public class PartySmallWindowAll extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PARTY_SMALL_WINDOW_ALL.writeId(this);
-		writeInt(_party.getLeaderObjectId());
-		writeInt(_party.getDistributionType().getId());
-		writeInt(_party.getMemberCount() - 1);
+		ServerPackets.PARTY_SMALL_WINDOW_ALL.writeId(this, buffer);
+		buffer.writeInt(_party.getLeaderObjectId());
+		buffer.writeInt(_party.getDistributionType().getId());
+		buffer.writeInt(_party.getMemberCount() - 1);
 		for (Player member : _party.getMembers())
 		{
 			if ((member != null) && (member != _exclude))
 			{
-				writeInt(member.getObjectId());
-				writeString(member.getName());
-				writeInt((int) member.getCurrentCp()); // c4
-				writeInt(member.getMaxCp()); // c4
-				writeInt((int) member.getCurrentHp());
-				writeInt(member.getMaxHp());
-				writeInt((int) member.getCurrentMp());
-				writeInt(member.getMaxMp());
-				writeInt(member.getLevel());
-				writeInt(member.getClassId().getId());
-				writeInt(0); // writeInt(1); ??
-				writeInt(member.getRace().ordinal());
-				writeInt(0); // T2.3
-				writeInt(0); // T2.3
+				buffer.writeInt(member.getObjectId());
+				buffer.writeString(member.getName());
+				buffer.writeInt((int) member.getCurrentCp()); // c4
+				buffer.writeInt(member.getMaxCp()); // c4
+				buffer.writeInt((int) member.getCurrentHp());
+				buffer.writeInt(member.getMaxHp());
+				buffer.writeInt((int) member.getCurrentMp());
+				buffer.writeInt(member.getMaxMp());
+				buffer.writeInt(member.getLevel());
+				buffer.writeInt(member.getClassId().getId());
+				buffer.writeInt(0); // buffer.writeInt(1); ??
+				buffer.writeInt(member.getRace().ordinal());
+				buffer.writeInt(0); // T2.3
+				buffer.writeInt(0); // T2.3
 				if (member.hasSummon())
 				{
-					writeInt(member.getSummon().getObjectId());
-					writeInt(member.getSummon().getId() + 1000000);
-					writeInt(member.getSummon().getSummonType());
-					writeString(member.getSummon().getName());
-					writeInt((int) member.getSummon().getCurrentHp());
-					writeInt(member.getSummon().getMaxHp());
-					writeInt((int) member.getSummon().getCurrentMp());
-					writeInt(member.getSummon().getMaxMp());
-					writeInt(member.getSummon().getLevel());
+					buffer.writeInt(member.getSummon().getObjectId());
+					buffer.writeInt(member.getSummon().getId() + 1000000);
+					buffer.writeInt(member.getSummon().getSummonType());
+					buffer.writeString(member.getSummon().getName());
+					buffer.writeInt((int) member.getSummon().getCurrentHp());
+					buffer.writeInt(member.getSummon().getMaxHp());
+					buffer.writeInt((int) member.getSummon().getCurrentMp());
+					buffer.writeInt(member.getSummon().getMaxMp());
+					buffer.writeInt(member.getSummon().getLevel());
 				}
 				else
 				{
-					writeInt(0);
+					buffer.writeInt(0);
 				}
 			}
 		}

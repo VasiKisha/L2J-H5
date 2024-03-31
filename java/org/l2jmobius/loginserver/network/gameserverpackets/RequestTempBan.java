@@ -22,26 +22,24 @@ import java.sql.SQLException;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.network.base.BaseReadablePacket;
 import org.l2jmobius.loginserver.LoginController;
 
 /**
  * @author mrTJO
  */
-public class RequestTempBan extends ReadablePacket
+public class RequestTempBan extends BaseReadablePacket
 {
 	private static final Logger LOGGER = Logger.getLogger(RequestTempBan.class.getName());
 	
 	private final String _accountName;
-	@SuppressWarnings("unused")
-	private String _banReason;
 	private final String _ip;
 	long _banTime;
 	
 	public RequestTempBan(byte[] decrypt)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		_accountName = readString();
 		_ip = readString();
@@ -49,7 +47,7 @@ public class RequestTempBan extends ReadablePacket
 		final boolean haveReason = readByte() != 0;
 		if (haveReason)
 		{
-			_banReason = readString();
+			readString(); // _banReason
 		}
 		banUser();
 	}

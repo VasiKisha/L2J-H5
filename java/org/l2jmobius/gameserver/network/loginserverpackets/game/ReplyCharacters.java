@@ -18,12 +18,12 @@ package org.l2jmobius.gameserver.network.loginserverpackets.game;
 
 import java.util.List;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
  * @author mrTJO Thanks to mochitto
  */
-public class ReplyCharacters extends WritablePacket
+public class ReplyCharacters extends BaseWritablePacket
 {
 	public ReplyCharacters(String account, int chars, List<Long> timeToDel)
 	{

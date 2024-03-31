@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.loginserver.network.gameserverpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.network.base.BaseReadablePacket;
 import org.l2jmobius.loginserver.GameServerThread;
 import org.l2jmobius.loginserver.LoginController;
 
@@ -24,12 +24,12 @@ import org.l2jmobius.loginserver.LoginController;
  * Thanks to mochitto.
  * @author mrTJO
  */
-public class ReplyCharacters extends ReadablePacket
+public class ReplyCharacters extends BaseReadablePacket
 {
 	public ReplyCharacters(byte[] decrypt, GameServerThread server)
 	{
 		super(decrypt);
-		readByte(); // id (already processed)
+		readByte(); // Packet id, it is already processed.
 		
 		final String account = readString();
 		final int chars = readByte();

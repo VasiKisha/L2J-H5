@@ -19,7 +19,6 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.Arrays;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.CtrlEvent;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
@@ -46,7 +45,6 @@ import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -61,10 +59,10 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
 
 /**
- * This class manages the action use request packet.
+ * This class manages the action use request
  * @author Zoey76
  */
-public class RequestActionUse implements ClientPacket
+public class RequestActionUse extends ClientPacket
 {
 	private static final int SIN_EATER_ID = 12564;
 	private static final int SWITCH_STANCE_ID = 6054;
@@ -81,17 +79,17 @@ public class RequestActionUse implements ClientPacket
 	private boolean _shiftPressed;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_actionId = packet.readInt();
-		_ctrlPressed = (packet.readInt() == 1);
-		_shiftPressed = (packet.readByte() == 1);
+		_actionId = readInt();
+		_ctrlPressed = readInt() == 1;
+		_shiftPressed = readByte() == 1;
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -138,13 +136,13 @@ public class RequestActionUse implements ClientPacket
 			{
 				if (player.isSitting() || !player.isMoving() || player.isFakeDeath())
 				{
-					useSit(client, player, target);
+					useSit(player, target);
 				}
 				else
 				{
 					// Sit when arrive using next action.
 					// Creating next action class.
-					final NextAction nextAction = new NextAction(CtrlEvent.EVT_ARRIVED, CtrlIntention.AI_INTENTION_MOVE_TO, () -> useSit(client, player, target));
+					final NextAction nextAction = new NextAction(CtrlEvent.EVT_ARRIVED, CtrlIntention.AI_INTENTION_MOVE_TO, () -> useSit(player, target));
 					// Binding next action to AI.
 					player.getAI().setNextAction(nextAction);
 				}
@@ -169,7 +167,7 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 15: // Change Movement Mode (Pets)
 			{
-				if (validateSummon(client, summon, true))
+				if (validateSummon(player, summon, true))
 				{
 					((SummonAI) summon.getAI()).notifyFollowStatusChange();
 				}
@@ -177,7 +175,7 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 16: // Attack (Pets)
 			{
-				if (validateSummon(client, summon, true) && summon.canAttack(_ctrlPressed))
+				if (validateSummon(player, summon, true) && summon.canAttack(_ctrlPressed))
 				{
 					summon.doSummonAttack(target);
 				}
@@ -185,7 +183,7 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 17: // Stop (Pets)
 			{
-				if (validateSummon(client, summon, true))
+				if (validateSummon(player, summon, true))
 				{
 					summon.cancelAction();
 				}
@@ -193,7 +191,7 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 19: // Unsummon Pet
 			{
-				if (!validateSummon(client, summon, true))
+				if (!validateSummon(player, summon, true))
 				{
 					break;
 				}
@@ -224,7 +222,7 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 21: // Change Movement Mode (Servitors)
 			{
-				if (validateSummon(client, summon, false))
+				if (validateSummon(player, summon, false))
 				{
 					((SummonAI) summon.getAI()).notifyFollowStatusChange();
 				}
@@ -232,7 +230,7 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 22: // Attack (Servitors)
 			{
-				if (validateSummon(client, summon, false) && summon.canAttack(_ctrlPressed))
+				if (validateSummon(player, summon, false) && summon.canAttack(_ctrlPressed))
 				{
 					summon.doSummonAttack(target);
 				}
@@ -240,7 +238,7 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 23: // Stop (Servitors)
 			{
-				if (validateSummon(client, summon, false))
+				if (validateSummon(player, summon, false))
 				{
 					summon.cancelAction();
 				}
@@ -253,12 +251,12 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 32: // Wild Hog Cannon - Wild Cannon
 			{
-				useSkill(client, "DDMagic", false);
+				useSkill(player, "DDMagic", false);
 				break;
 			}
 			case 36: // Soulless - Toxic Smoke
 			{
-				useSkill(client, "RangeDebuff", false);
+				useSkill(player, "RangeDebuff", false);
 				break;
 			}
 			case 37: // Dwarven Manufacture
@@ -287,16 +285,16 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 39: // Soulless - Parasite Burst
 			{
-				useSkill(client, "RangeDD", false);
+				useSkill(player, "RangeDD", false);
 				break;
 			}
 			case 41: // Wild Hog Cannon - Attack
 			{
-				if (validateSummon(client, summon, false))
+				if (validateSummon(player, summon, false))
 				{
 					if ((target != null) && (target.isDoor() || (target instanceof SiegeFlag)))
 					{
-						useSkill(client, 4230, false);
+						useSkill(player, 4230, false);
 					}
 					else
 					{
@@ -307,37 +305,37 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 42: // Kai the Cat - Self Damage Shield
 			{
-				useSkill(client, "HealMagic", false);
+				useSkill(player, "HealMagic", false);
 				break;
 			}
 			case 43: // Merrow the Unicorn - Hydro Screw
 			{
-				useSkill(client, "DDMagic", false);
+				useSkill(player, "DDMagic", false);
 				break;
 			}
 			case 44: // Big Boom - Boom Attack
 			{
-				useSkill(client, "DDMagic", false);
+				useSkill(player, "DDMagic", false);
 				break;
 			}
 			case 45: // Boxer the Unicorn - Master Recharge
 			{
-				useSkill(client, "HealMagic", player, false);
+				useSkill(player, "HealMagic", player, false);
 				break;
 			}
 			case 46: // Mew the Cat - Mega Storm Strike
 			{
-				useSkill(client, "DDMagic", false);
+				useSkill(player, "DDMagic", false);
 				break;
 			}
 			case 47: // Silhouette - Steal Blood
 			{
-				useSkill(client, "DDMagic", false);
+				useSkill(player, "DDMagic", false);
 				break;
 			}
 			case 48: // Mechanic Golem - Mech. Cannon
 			{
-				useSkill(client, "DDMagic", false);
+				useSkill(player, "DDMagic", false);
 				break;
 			}
 			case 51: // General Manufacture
@@ -362,7 +360,7 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 52: // Unsummon Servitor
 			{
-				if (validateSummon(client, summon, false))
+				if (validateSummon(player, summon, false))
 				{
 					if (summon.isAttackingNow() || summon.isInCombat())
 					{
@@ -375,7 +373,7 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 53: // Move to target (Servitors)
 			{
-				if (validateSummon(client, summon, false) && (target != null) && (summon != target) && !summon.isMovementDisabled())
+				if (validateSummon(player, summon, false) && (target != null) && (summon != target) && !summon.isMovementDisabled())
 				{
 					summon.setFollowStatus(false);
 					summon.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, target.getLocation());
@@ -384,7 +382,7 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 54: // Move to target (Pets)
 			{
-				if (validateSummon(client, summon, true) && (target != null) && (summon != target) && !summon.isMovementDisabled())
+				if (validateSummon(player, summon, true) && (target != null) && (summon != target) && !summon.isMovementDisabled())
 				{
 					summon.setFollowStatus(false);
 					summon.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, target.getLocation());
@@ -451,20 +449,20 @@ public class RequestActionUse implements ClientPacket
 			case 72:
 			case 73:
 			{
-				useCoupleSocial(client, _actionId - 55);
+				useCoupleSocial(player, _actionId - 55);
 				break;
 			}
 			case 1000: // Siege Golem - Siege Hammer
 			{
 				if ((target != null) && target.isDoor())
 				{
-					useSkill(client, 4079, false);
+					useSkill(player, 4079, false);
 				}
 				break;
 			}
 			case 1001: // Sin Eater - Ultimate Bombastic Buster
 			{
-				if (validateSummon(client, summon, true) && (summon.getId() == SIN_EATER_ID))
+				if (validateSummon(player, summon, true) && (summon.getId() == SIN_EATER_ID))
 				{
 					summon.broadcastPacket(new NpcSay(summon.getObjectId(), ChatType.NPC_GENERAL, summon.getId(), NPC_STRINGS[Rnd.get(NPC_STRINGS.length)]));
 				}
@@ -472,566 +470,566 @@ public class RequestActionUse implements ClientPacket
 			}
 			case 1003: // Wind Hatchling/Strider - Wild Stun
 			{
-				useSkill(client, "PhysicalSpecial", true);
+				useSkill(player, "PhysicalSpecial", true);
 				break;
 			}
 			case 1004: // Wind Hatchling/Strider - Wild Defense
 			{
-				useSkill(client, "Buff", player, true);
+				useSkill(player, "Buff", player, true);
 				break;
 			}
 			case 1005: // Star Hatchling/Strider - Bright Burst
 			{
-				useSkill(client, "DDMagic", true);
+				useSkill(player, "DDMagic", true);
 				break;
 			}
 			case 1006: // Star Hatchling/Strider - Bright Heal
 			{
-				useSkill(client, "Heal", player, true);
+				useSkill(player, "Heal", player, true);
 				break;
 			}
 			case 1007: // Feline Queen - Blessing of Queen
 			{
-				useSkill(client, "Buff1", player, false);
+				useSkill(player, "Buff1", player, false);
 				break;
 			}
 			case 1008: // Feline Queen - Gift of Queen
 			{
-				useSkill(client, "Buff2", player, false);
+				useSkill(player, "Buff2", player, false);
 				break;
 			}
 			case 1009: // Feline Queen - Cure of Queen
 			{
-				useSkill(client, "DDMagic", false);
+				useSkill(player, "DDMagic", false);
 				break;
 			}
 			case 1010: // Unicorn Seraphim - Blessing of Seraphim
 			{
-				useSkill(client, "Buff1", player, false);
+				useSkill(player, "Buff1", player, false);
 				break;
 			}
 			case 1011: // Unicorn Seraphim - Gift of Seraphim
 			{
-				useSkill(client, "Buff2", player, false);
+				useSkill(player, "Buff2", player, false);
 				break;
 			}
 			case 1012: // Unicorn Seraphim - Cure of Seraphim
 			{
-				useSkill(client, "DDMagic", false);
+				useSkill(player, "DDMagic", false);
 				break;
 			}
 			case 1013: // Nightshade - Curse of Shade
 			{
-				useSkill(client, "DeBuff1", false);
+				useSkill(player, "DeBuff1", false);
 				break;
 			}
 			case 1014: // Nightshade - Mass Curse of Shade
 			{
-				useSkill(client, "DeBuff2", false);
+				useSkill(player, "DeBuff2", false);
 				break;
 			}
 			case 1015: // Nightshade - Shade Sacrifice
 			{
-				useSkill(client, "Heal", false);
+				useSkill(player, "Heal", false);
 				break;
 			}
 			case 1016: // Cursed Man - Cursed Blow
 			{
-				useSkill(client, "PhysicalSpecial1", false);
+				useSkill(player, "PhysicalSpecial1", false);
 				break;
 			}
 			case 1017: // Cursed Man - Cursed Strike
 			{
-				useSkill(client, "PhysicalSpecial2", false);
+				useSkill(player, "PhysicalSpecial2", false);
 				break;
 			}
 			case 1031: // Feline King - Slash
 			{
-				useSkill(client, "PhysicalSpecial1", false);
+				useSkill(player, "PhysicalSpecial1", false);
 				break;
 			}
 			case 1032: // Feline King - Spinning Slash
 			{
-				useSkill(client, "PhysicalSpecial2", false);
+				useSkill(player, "PhysicalSpecial2", false);
 				break;
 			}
 			case 1033: // Feline King - Hold of King
 			{
-				useSkill(client, "PhysicalSpecial3", false);
+				useSkill(player, "PhysicalSpecial3", false);
 				break;
 			}
 			case 1034: // Magnus the Unicorn - Whiplash
 			{
-				useSkill(client, "PhysicalSpecial1", false);
+				useSkill(player, "PhysicalSpecial1", false);
 				break;
 			}
 			case 1035: // Magnus the Unicorn - Tridal Wave
 			{
-				useSkill(client, "PhysicalSpecial2", false);
+				useSkill(player, "PhysicalSpecial2", false);
 				break;
 			}
 			case 1036: // Spectral Lord - Corpse Kaboom
 			{
-				useSkill(client, "PhysicalSpecial1", false);
+				useSkill(player, "PhysicalSpecial1", false);
 				break;
 			}
 			case 1037: // Spectral Lord - Dicing Death
 			{
-				useSkill(client, "PhysicalSpecial2", false);
+				useSkill(player, "PhysicalSpecial2", false);
 				break;
 			}
 			case 1038: // Spectral Lord - Dark Curse
 			{
-				useSkill(client, "PhysicalSpecial3", false);
+				useSkill(player, "PhysicalSpecial3", false);
 				break;
 			}
 			case 1039: // Swoop Cannon - Cannon Fodder
 			{
-				useSkill(client, 5110, false);
+				useSkill(player, 5110, false);
 				break;
 			}
 			case 1040: // Swoop Cannon - Big Bang
 			{
-				useSkill(client, 5111, false);
+				useSkill(player, 5111, false);
 				break;
 			}
 			case 1041: // Great Wolf - Bite Attack
 			{
-				useSkill(client, "Skill01", true);
+				useSkill(player, "Skill01", true);
 				break;
 			}
 			case 1042: // Great Wolf - Maul
 			{
-				useSkill(client, "Skill03", true);
+				useSkill(player, "Skill03", true);
 				break;
 			}
 			case 1043: // Great Wolf - Cry of the Wolf
 			{
-				useSkill(client, "Skill02", true);
+				useSkill(player, "Skill02", true);
 				break;
 			}
 			case 1044: // Great Wolf - Awakening
 			{
-				useSkill(client, "Skill04", true);
+				useSkill(player, "Skill04", true);
 				break;
 			}
 			case 1045: // Great Wolf - Howl
 			{
-				useSkill(client, 5584, true);
+				useSkill(player, 5584, true);
 				break;
 			}
 			case 1046: // Strider - Roar
 			{
-				useSkill(client, 5585, true);
+				useSkill(player, 5585, true);
 				break;
 			}
 			case 1047: // Divine Beast - Bite
 			{
-				useSkill(client, 5580, false);
+				useSkill(player, 5580, false);
 				break;
 			}
 			case 1048: // Divine Beast - Stun Attack
 			{
-				useSkill(client, 5581, false);
+				useSkill(player, 5581, false);
 				break;
 			}
 			case 1049: // Divine Beast - Fire Breath
 			{
-				useSkill(client, 5582, false);
+				useSkill(player, 5582, false);
 				break;
 			}
 			case 1050: // Divine Beast - Roar
 			{
-				useSkill(client, 5583, false);
+				useSkill(player, 5583, false);
 				break;
 			}
 			case 1051: // Feline Queen - Bless The Body
 			{
-				useSkill(client, "buff3", false);
+				useSkill(player, "buff3", false);
 				break;
 			}
 			case 1052: // Feline Queen - Bless The Soul
 			{
-				useSkill(client, "buff4", false);
+				useSkill(player, "buff4", false);
 				break;
 			}
 			case 1053: // Feline Queen - Haste
 			{
-				useSkill(client, "buff5", false);
+				useSkill(player, "buff5", false);
 				break;
 			}
 			case 1054: // Unicorn Seraphim - Acumen
 			{
-				useSkill(client, "buff3", false);
+				useSkill(player, "buff3", false);
 				break;
 			}
 			case 1055: // Unicorn Seraphim - Clarity
 			{
-				useSkill(client, "buff4", false);
+				useSkill(player, "buff4", false);
 				break;
 			}
 			case 1056: // Unicorn Seraphim - Empower
 			{
-				useSkill(client, "buff5", false);
+				useSkill(player, "buff5", false);
 				break;
 			}
 			case 1057: // Unicorn Seraphim - Wild Magic
 			{
-				useSkill(client, "buff6", false);
+				useSkill(player, "buff6", false);
 				break;
 			}
 			case 1058: // Nightshade - Death Whisper
 			{
-				useSkill(client, "buff3", false);
+				useSkill(player, "buff3", false);
 				break;
 			}
 			case 1059: // Nightshade - Focus
 			{
-				useSkill(client, "buff4", false);
+				useSkill(player, "buff4", false);
 				break;
 			}
 			case 1060: // Nightshade - Guidance
 			{
-				useSkill(client, "buff5", false);
+				useSkill(player, "buff5", false);
 				break;
 			}
 			case 1061: // Wild Beast Fighter, White Weasel - Death blow
 			{
-				useSkill(client, 5745, true);
+				useSkill(player, 5745, true);
 				break;
 			}
 			case 1062: // Wild Beast Fighter - Double attack
 			{
-				useSkill(client, 5746, true);
+				useSkill(player, 5746, true);
 				break;
 			}
 			case 1063: // Wild Beast Fighter - Spin attack
 			{
-				useSkill(client, 5747, true);
+				useSkill(player, 5747, true);
 				break;
 			}
 			case 1064: // Wild Beast Fighter - Meteor Shower
 			{
-				useSkill(client, 5748, true);
+				useSkill(player, 5748, true);
 				break;
 			}
 			case 1065: // Fox Shaman, Wild Beast Fighter, White Weasel, Fairy Princess - Awakening
 			{
-				useSkill(client, 5753, true);
+				useSkill(player, 5753, true);
 				break;
 			}
 			case 1066: // Fox Shaman, Spirit Shaman - Thunder Bolt
 			{
-				useSkill(client, 5749, true);
+				useSkill(player, 5749, true);
 				break;
 			}
 			case 1067: // Fox Shaman, Spirit Shaman - Flash
 			{
-				useSkill(client, 5750, true);
+				useSkill(player, 5750, true);
 				break;
 			}
 			case 1068: // Fox Shaman, Spirit Shaman - Lightning Wave
 			{
-				useSkill(client, 5751, true);
+				useSkill(player, 5751, true);
 				break;
 			}
 			case 1069: // Fox Shaman, Fairy Princess - Flare
 			{
-				useSkill(client, 5752, true);
+				useSkill(player, 5752, true);
 				break;
 			}
 			case 1070: // White Weasel, Fairy Princess, Improved Baby Buffalo, Improved Baby Kookaburra, Improved Baby Cougar, Spirit Shaman, Toy Knight, Turtle Ascetic - Buff control
 			{
-				useSkill(client, 5771, true);
+				useSkill(player, 5771, true);
 				break;
 			}
 			case 1071: // Tigress - Power Strike
 			{
-				useSkill(client, "DDMagic", true);
+				useSkill(player, "DDMagic", true);
 				break;
 			}
 			case 1072: // Toy Knight - Piercing attack
 			{
-				useSkill(client, 6046, true);
+				useSkill(player, 6046, true);
 				break;
 			}
 			case 1073: // Toy Knight - Whirlwind
 			{
-				useSkill(client, 6047, true);
+				useSkill(player, 6047, true);
 				break;
 			}
 			case 1074: // Toy Knight - Lance Smash
 			{
-				useSkill(client, 6048, true);
+				useSkill(player, 6048, true);
 				break;
 			}
 			case 1075: // Toy Knight - Battle Cry
 			{
-				useSkill(client, 6049, true);
+				useSkill(player, 6049, true);
 				break;
 			}
 			case 1076: // Turtle Ascetic - Power Smash
 			{
-				useSkill(client, 6050, true);
+				useSkill(player, 6050, true);
 				break;
 			}
 			case 1077: // Turtle Ascetic - Energy Burst
 			{
-				useSkill(client, 6051, true);
+				useSkill(player, 6051, true);
 				break;
 			}
 			case 1078: // Turtle Ascetic - Shockwave
 			{
-				useSkill(client, 6052, true);
+				useSkill(player, 6052, true);
 				break;
 			}
 			case 1079: // Turtle Ascetic - Howl
 			{
-				useSkill(client, 6053, true);
+				useSkill(player, 6053, true);
 				break;
 			}
 			case 1080: // Phoenix Rush
 			{
-				useSkill(client, 6041, false);
+				useSkill(player, 6041, false);
 				break;
 			}
 			case 1081: // Phoenix Cleanse
 			{
-				useSkill(client, 6042, false);
+				useSkill(player, 6042, false);
 				break;
 			}
 			case 1082: // Phoenix Flame Feather
 			{
-				useSkill(client, 6043, false);
+				useSkill(player, 6043, false);
 				break;
 			}
 			case 1083: // Phoenix Flame Beak
 			{
-				useSkill(client, 6044, false);
+				useSkill(player, 6044, false);
 				break;
 			}
 			case 1084: // Switch State
 			{
 				if (summon instanceof BabyPet)
 				{
-					useSkill(client, 6054, true);
+					useSkill(player, 6054, true);
 				}
 				break;
 			}
 			case 1086: // Panther Cancel
 			{
-				useSkill(client, 6094, false);
+				useSkill(player, 6094, false);
 				break;
 			}
 			case 1087: // Panther Dark Claw
 			{
-				useSkill(client, 6095, false);
+				useSkill(player, 6095, false);
 				break;
 			}
 			case 1088: // Panther Fatal Claw
 			{
-				useSkill(client, 6096, false);
+				useSkill(player, 6096, false);
 				break;
 			}
 			case 1089: // Deinonychus - Tail Strike
 			{
-				useSkill(client, 6199, true);
+				useSkill(player, 6199, true);
 				break;
 			}
 			case 1090: // Guardian's Strider - Strider Bite
 			{
-				useSkill(client, 6205, true);
+				useSkill(player, 6205, true);
 				break;
 			}
 			case 1091: // Guardian's Strider - Strider Fear
 			{
-				useSkill(client, 6206, true);
+				useSkill(player, 6206, true);
 				break;
 			}
 			case 1092: // Guardian's Strider - Strider Dash
 			{
-				useSkill(client, 6207, true);
+				useSkill(player, 6207, true);
 				break;
 			}
 			case 1093: // Maguen - Maguen Strike
 			{
-				useSkill(client, 6618, true);
+				useSkill(player, 6618, true);
 				break;
 			}
 			case 1094: // Maguen - Maguen Wind Walk
 			{
-				useSkill(client, 6681, true);
+				useSkill(player, 6681, true);
 				break;
 			}
 			case 1095: // Elite Maguen - Maguen Power Strike
 			{
-				useSkill(client, 6619, true);
+				useSkill(player, 6619, true);
 				break;
 			}
 			case 1096: // Elite Maguen - Elite Maguen Wind Walk
 			{
-				useSkill(client, 6682, true);
+				useSkill(player, 6682, true);
 				break;
 			}
 			case 1097: // Maguen - Maguen Return
 			{
-				useSkill(client, 6683, true);
+				useSkill(player, 6683, true);
 				break;
 			}
 			case 1098: // Elite Maguen - Maguen Party Return
 			{
-				useSkill(client, 6684, true);
+				useSkill(player, 6684, true);
 				break;
 			}
 			case 5000: // Baby Rudolph - Reindeer Scratch
 			{
-				useSkill(client, 23155, true);
+				useSkill(player, 23155, true);
 				break;
 			}
 			case 5001: // Deseloph, Hyum, Rekang, Lilias, Lapham, Mafum - Rosy Seduction
 			{
-				useSkill(client, 23167, true);
+				useSkill(player, 23167, true);
 				break;
 			}
 			case 5002: // Deseloph, Hyum, Rekang, Lilias, Lapham, Mafum - Critical Seduction
 			{
-				useSkill(client, 23168, true);
+				useSkill(player, 23168, true);
 				break;
 			}
 			case 5003: // Hyum, Lapham, Hyum, Lapham - Thunder Bolt
 			{
-				useSkill(client, 5749, true);
+				useSkill(player, 5749, true);
 				break;
 			}
 			case 5004: // Hyum, Lapham, Hyum, Lapham - Flash
 			{
-				useSkill(client, 5750, true);
+				useSkill(player, 5750, true);
 				break;
 			}
 			case 5005: // Hyum, Lapham, Hyum, Lapham - Lightning Wave
 			{
-				useSkill(client, 5751, true);
+				useSkill(player, 5751, true);
 				break;
 			}
 			case 5006: // Deseloph, Hyum, Rekang, Lilias, Lapham, Mafum, Deseloph, Hyum, Rekang, Lilias, Lapham, Mafum - Buff Control
 			{
-				useSkill(client, 5771, true);
+				useSkill(player, 5771, true);
 				break;
 			}
 			case 5007: // Deseloph, Lilias, Deseloph, Lilias - Piercing Attack
 			{
-				useSkill(client, 6046, true);
+				useSkill(player, 6046, true);
 				break;
 			}
 			case 5008: // Deseloph, Lilias, Deseloph, Lilias - Spin Attack
 			{
-				useSkill(client, 6047, true);
+				useSkill(player, 6047, true);
 				break;
 			}
 			case 5009: // Deseloph, Lilias, Deseloph, Lilias - Smash
 			{
-				useSkill(client, 6048, true);
+				useSkill(player, 6048, true);
 				break;
 			}
 			case 5010: // Deseloph, Lilias, Deseloph, Lilias - Ignite
 			{
-				useSkill(client, 6049, true);
+				useSkill(player, 6049, true);
 				break;
 			}
 			case 5011: // Rekang, Mafum, Rekang, Mafum - Power Smash
 			{
-				useSkill(client, 6050, true);
+				useSkill(player, 6050, true);
 				break;
 			}
 			case 5012: // Rekang, Mafum, Rekang, Mafum - Energy Burst
 			{
-				useSkill(client, 6051, true);
+				useSkill(player, 6051, true);
 				break;
 			}
 			case 5013: // Rekang, Mafum, Rekang, Mafum - Shockwave
 			{
-				useSkill(client, 6052, true);
+				useSkill(player, 6052, true);
 				break;
 			}
 			case 5014: // Rekang, Mafum, Rekang, Mafum - Ignite
 			{
-				useSkill(client, 6053, true);
+				useSkill(player, 6053, true);
 				break;
 			}
 			case 5015: // Deseloph, Hyum, Rekang, Lilias, Lapham, Mafum, Deseloph, Hyum, Rekang, Lilias, Lapham, Mafum - Switch Stance
 			{
-				useSkill(client, 6054, true);
+				useSkill(player, 6054, true);
 				break;
 			}
 			// Social Packets
 			case 12: // Greeting
 			{
-				tryBroadcastSocial(client, 2);
+				tryBroadcastSocial(player, 2);
 				break;
 			}
 			case 13: // Victory
 			{
-				tryBroadcastSocial(client, 3);
+				tryBroadcastSocial(player, 3);
 				break;
 			}
 			case 14: // Advance
 			{
-				tryBroadcastSocial(client, 4);
+				tryBroadcastSocial(player, 4);
 				break;
 			}
 			case 24: // Yes
 			{
-				tryBroadcastSocial(client, 6);
+				tryBroadcastSocial(player, 6);
 				break;
 			}
 			case 25: // No
 			{
-				tryBroadcastSocial(client, 5);
+				tryBroadcastSocial(player, 5);
 				break;
 			}
 			case 26: // Bow
 			{
-				tryBroadcastSocial(client, 7);
+				tryBroadcastSocial(player, 7);
 				break;
 			}
 			case 29: // Unaware
 			{
-				tryBroadcastSocial(client, 8);
+				tryBroadcastSocial(player, 8);
 				break;
 			}
 			case 30: // Social Waiting
 			{
-				tryBroadcastSocial(client, 9);
+				tryBroadcastSocial(player, 9);
 				break;
 			}
 			case 31: // Laugh
 			{
-				tryBroadcastSocial(client, 10);
+				tryBroadcastSocial(player, 10);
 				break;
 			}
 			case 33: // Applaud
 			{
-				tryBroadcastSocial(client, 11);
+				tryBroadcastSocial(player, 11);
 				break;
 			}
 			case 34: // Dance
 			{
-				tryBroadcastSocial(client, 12);
+				tryBroadcastSocial(player, 12);
 				break;
 			}
 			case 35: // Sorrow
 			{
-				tryBroadcastSocial(client, 13);
+				tryBroadcastSocial(player, 13);
 				break;
 			}
 			case 62: // Charm
 			{
-				tryBroadcastSocial(client, 14);
+				tryBroadcastSocial(player, 14);
 				break;
 			}
 			case 66: // Shyness
 			{
-				tryBroadcastSocial(client, 15);
+				tryBroadcastSocial(player, 15);
 				break;
 			}
 		}
@@ -1039,12 +1037,11 @@ public class RequestActionUse implements ClientPacket
 	
 	/**
 	 * Use the sit action.
-	 * @param client the game client
 	 * @param player the player trying to sit
 	 * @param target the target to sit, throne, bench or chair
 	 * @return {@code true} if the player can sit, {@code false} otherwise
 	 */
-	protected boolean useSit(GameClient client, Player player, WorldObject target)
+	protected boolean useSit(Player player, WorldObject target)
 	{
 		if (player.getMountType() != MountType.NONE)
 		{
@@ -1054,7 +1051,7 @@ public class RequestActionUse implements ClientPacket
 		if (!player.isSitting() && (target instanceof StaticObject) && (((StaticObject) target).getType() == 1) && player.isInsideRadius2D(target, StaticObject.INTERACTION_DISTANCE))
 		{
 			final ChairSit cs = new ChairSit(player, target.getId());
-			client.sendPacket(cs);
+			player.sendPacket(cs);
 			player.sitDown();
 			player.broadcastPacket(cs);
 			return true;
@@ -1078,26 +1075,20 @@ public class RequestActionUse implements ClientPacket
 	/**
 	 * Cast a skill for active summon.<br>
 	 * Target is specified as a parameter but can be overwrited or ignored depending on skill type.
-	 * @param client the game client
+	 * @param player the Player
 	 * @param skillId the skill Id to be casted by the summon
 	 * @param target the target to cast the skill on, overwritten or ignored depending on skill type
 	 * @param pet if {@code true} it'll validate a pet, if {@code false} it will validate a servitor
 	 */
-	private void useSkill(GameClient client, int skillId, WorldObject target, boolean pet)
+	private void useSkill(Player player, int skillId, WorldObject target, boolean pet)
 	{
-		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
 		final Summon summon = player.getSummon();
-		if (!validateSummon(client, summon, pet))
+		if (!validateSummon(player, summon, pet))
 		{
 			return;
 		}
 		
-		if (!canControl(client, summon))
+		if (!canControl(player, summon))
 		{
 			return;
 		}
@@ -1124,28 +1115,22 @@ public class RequestActionUse implements ClientPacket
 		}
 	}
 	
-	private void useSkill(GameClient client, String skillName, WorldObject target, boolean pet)
+	private void useSkill(Player player, String skillName, WorldObject target, boolean pet)
 	{
-		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
 		final Summon summon = player.getSummon();
-		if (!validateSummon(client, summon, pet))
+		if (!validateSummon(player, summon, pet))
 		{
 			return;
 		}
 		
-		if (!canControl(client, summon))
+		if (!canControl(player, summon))
 		{
 			return;
 		}
 		
 		if ((summon instanceof BabyPet) && !((BabyPet) summon).isInSupportMode())
 		{
-			client.sendPacket(SystemMessageId.A_PET_ON_AUXILIARY_MODE_CANNOT_USE_SKILLS);
+			player.sendPacket(SystemMessageId.A_PET_ON_AUXILIARY_MODE_CANNOT_USE_SKILLS);
 			return;
 		}
 		
@@ -1167,17 +1152,17 @@ public class RequestActionUse implements ClientPacket
 		}
 	}
 	
-	private boolean canControl(GameClient client, Summon summon)
+	private boolean canControl(Player player, Summon summon)
 	{
 		if ((summon instanceof BabyPet) && !((BabyPet) summon).isInSupportMode())
 		{
-			client.sendPacket(SystemMessageId.A_PET_ON_AUXILIARY_MODE_CANNOT_USE_SKILLS);
+			player.sendPacket(SystemMessageId.A_PET_ON_AUXILIARY_MODE_CANNOT_USE_SKILLS);
 			return false;
 		}
 		
-		if (summon.isPet() && ((summon.getLevel() - client.getPlayer().getLevel()) > 20))
+		if (summon.isPet() && ((summon.getLevel() - player.getLevel()) > 20))
 		{
-			client.sendPacket(SystemMessageId.YOUR_PET_IS_TOO_HIGH_LEVEL_TO_CONTROL);
+			player.sendPacket(SystemMessageId.YOUR_PET_IS_TOO_HIGH_LEVEL_TO_CONTROL);
 			return false;
 		}
 		
@@ -1187,58 +1172,46 @@ public class RequestActionUse implements ClientPacket
 	/**
 	 * Cast a skill for active summon.<br>
 	 * Target is retrieved from owner's target, then validated by overloaded method useSkill(int, Creature).
-	 * @param client the game client
+	 * @param player the Player
 	 * @param skillId the skill Id to use
 	 * @param pet if {@code true} it'll validate a pet, if {@code false} it will validate a servitor
 	 */
-	private void useSkill(GameClient client, int skillId, boolean pet)
+	private void useSkill(Player player, int skillId, boolean pet)
 	{
-		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		useSkill(client, skillId, player.getTarget(), pet);
+		useSkill(player, skillId, player.getTarget(), pet);
 	}
 	
 	/**
 	 * Cast a skill for active summon.<br>
 	 * Target is retrieved from owner's target, then validated by overloaded method useSkill(int, Creature).
-	 * @param client the game client
+	 * @param player the Player
 	 * @param skillName the skill name to use
 	 * @param pet if {@code true} it'll validate a pet, if {@code false} it will validate a servitor
 	 */
-	private void useSkill(GameClient client, String skillName, boolean pet)
+	private void useSkill(Player player, String skillName, boolean pet)
 	{
-		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
-		
-		useSkill(client, skillName, player.getTarget(), pet);
+		useSkill(player, skillName, player.getTarget(), pet);
 	}
 	
 	/**
 	 * Validates the given summon and sends a system message to the master.
-	 * @param client the game client
+	 * @param player the game client
 	 * @param summon the summon to validate
 	 * @param checkPet if {@code true} it'll validate a pet, if {@code false} it will validate a servitor
 	 * @return {@code true} if the summon is not null and whether is a pet or a servitor depending on {@code checkPet} value, {@code false} otherwise
 	 */
-	private boolean validateSummon(GameClient client, Summon summon, boolean checkPet)
+	private boolean validateSummon(Player player, Summon summon, boolean checkPet)
 	{
 		if ((summon != null) && ((checkPet && summon.isPet()) || summon.isServitor()))
 		{
 			if (summon.isPet() && ((Pet) summon).isUncontrollable())
 			{
-				client.sendPacket(SystemMessageId.ONLY_A_CLAN_LEADER_THAT_IS_A_NOBLESSE_CAN_VIEW_THE_SIEGE_WAR_STATUS_WINDOW_DURING_A_SIEGE_WAR);
+				player.sendPacket(SystemMessageId.ONLY_A_CLAN_LEADER_THAT_IS_A_NOBLESSE_CAN_VIEW_THE_SIEGE_WAR_STATUS_WINDOW_DURING_A_SIEGE_WAR);
 				return false;
 			}
 			if (summon.isBetrayed())
 			{
-				client.sendPacket(SystemMessageId.YOUR_PET_SERVITOR_IS_UNRESPONSIVE_AND_WILL_NOT_OBEY_ANY_ORDERS);
+				player.sendPacket(SystemMessageId.YOUR_PET_SERVITOR_IS_UNRESPONSIVE_AND_WILL_NOT_OBEY_ANY_ORDERS);
 				return false;
 			}
 			return true;
@@ -1246,30 +1219,25 @@ public class RequestActionUse implements ClientPacket
 		
 		if (checkPet)
 		{
-			client.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_A_PET);
+			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_A_PET);
 		}
 		else
 		{
-			client.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_A_SERVITOR);
+			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_A_SERVITOR);
 		}
 		return false;
 	}
 	
 	/**
-	 * Try to broadcast SocialAction packet.
-	 * @param client the game client
+	 * Try to broadcast SocialAction
+	 * @param player the Player
 	 * @param id the social action Id to broadcast
 	 */
-	private void tryBroadcastSocial(GameClient client, int id)
+	private void tryBroadcastSocial(Player player, int id)
 	{
-		final Player player = client.getPlayer();
-		if (player == null)
-		{
-			return;
-		}
 		if (player.isFishing())
 		{
-			client.sendPacket(SystemMessageId.YOU_CANNOT_DO_THAT_WHILE_FISHING_3);
+			player.sendPacket(SystemMessageId.YOU_CANNOT_DO_THAT_WHILE_FISHING_3);
 			return;
 		}
 		
@@ -1281,106 +1249,100 @@ public class RequestActionUse implements ClientPacket
 	
 	/**
 	 * Perform a couple social action.
-	 * @param client the game client
+	 * @param player the Player
 	 * @param id the couple social action Id
 	 */
-	private void useCoupleSocial(GameClient client, int id)
+	private void useCoupleSocial(Player player, int id)
 	{
-		final Player requester = client.getPlayer();
-		if (requester == null)
-		{
-			return;
-		}
-		
-		final WorldObject target = requester.getTarget();
+		final WorldObject target = player.getTarget();
 		if ((target == null) || !target.isPlayer())
 		{
-			client.sendPacket(SystemMessageId.INVALID_TARGET);
+			player.sendPacket(SystemMessageId.INVALID_TARGET);
 			return;
 		}
 		
-		final int distance = (int) requester.calculateDistance2D(target);
-		if ((distance > 125) || (distance < 15) || (requester.getObjectId() == target.getObjectId()))
+		final int distance = (int) player.calculateDistance2D(target);
+		if ((distance > 125) || (distance < 15) || (player.getObjectId() == target.getObjectId()))
 		{
-			client.sendPacket(SystemMessageId.THE_REQUEST_CANNOT_BE_COMPLETED_BECAUSE_THE_TARGET_DOES_NOT_MEET_LOCATION_REQUIREMENTS);
+			player.sendPacket(SystemMessageId.THE_REQUEST_CANNOT_BE_COMPLETED_BECAUSE_THE_TARGET_DOES_NOT_MEET_LOCATION_REQUIREMENTS);
 			return;
 		}
 		
 		SystemMessage sm;
-		if (requester.isInStoreMode() || requester.isCrafting())
+		if (player.isInStoreMode() || player.isCrafting())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_IN_PRIVATE_SHOP_MODE_OR_IN_A_BATTLE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
-			sm.addPcName(requester);
-			client.sendPacket(sm);
+			sm.addPcName(player);
+			player.sendPacket(sm);
 			return;
 		}
 		
-		if (requester.isInCombat() || requester.isInDuel() || AttackStanceTaskManager.getInstance().hasAttackStanceTask(requester))
+		if (player.isInCombat() || player.isInDuel() || AttackStanceTaskManager.getInstance().hasAttackStanceTask(player))
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_BATTLE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
-			sm.addPcName(requester);
-			client.sendPacket(sm);
+			sm.addPcName(player);
+			player.sendPacket(sm);
 			return;
 		}
 		
-		if (requester.isFishing())
+		if (player.isFishing())
 		{
-			client.sendPacket(SystemMessageId.YOU_CANNOT_DO_THAT_WHILE_FISHING_3);
+			player.sendPacket(SystemMessageId.YOU_CANNOT_DO_THAT_WHILE_FISHING_3);
 			return;
 		}
 		
-		if (requester.getKarma() > 0)
+		if (player.getKarma() > 0)
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_CHAOTIC_STATE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
-			sm.addPcName(requester);
-			client.sendPacket(sm);
+			sm.addPcName(player);
+			player.sendPacket(sm);
 			return;
 		}
 		
-		if (requester.isInOlympiadMode())
+		if (player.isInOlympiadMode())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_PARTICIPATING_IN_THE_OLYMPIAD_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
-			sm.addPcName(requester);
-			client.sendPacket(sm);
+			sm.addPcName(player);
+			player.sendPacket(sm);
 			return;
 		}
 		
-		if (requester.isInSiege())
+		if (player.isInSiege())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_CASTLE_SIEGE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
-			sm.addPcName(requester);
-			client.sendPacket(sm);
+			sm.addPcName(player);
+			player.sendPacket(sm);
 			return;
 		}
 		
-		if (requester.isInHideoutSiege())
+		if (player.isInHideoutSiege())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_PARTICIPATING_IN_A_HIDEOUT_SIEGE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
-			sm.addPcName(requester);
-			client.sendPacket(sm);
+			sm.addPcName(player);
+			player.sendPacket(sm);
 		}
 		
-		if (requester.isMounted() || requester.isFlyingMounted() || requester.isInBoat() || requester.isInAirShip())
+		if (player.isMounted() || player.isFlyingMounted() || player.isInBoat() || player.isInAirShip())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_RIDING_A_SHIP_STEED_OR_STRIDER_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
-			sm.addPcName(requester);
-			client.sendPacket(sm);
+			sm.addPcName(player);
+			player.sendPacket(sm);
 			return;
 		}
 		
-		if (requester.isTransformed())
+		if (player.isTransformed())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_CURRENTLY_TRANSFORMING_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
-			sm.addPcName(requester);
-			client.sendPacket(sm);
+			sm.addPcName(player);
+			player.sendPacket(sm);
 			return;
 		}
 		
-		if (requester.isAlikeDead())
+		if (player.isAlikeDead())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_CURRENTLY_DEAD_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
-			sm.addPcName(requester);
-			client.sendPacket(sm);
+			sm.addPcName(player);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1390,7 +1352,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_IN_PRIVATE_SHOP_MODE_OR_IN_A_BATTLE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1398,7 +1360,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_BATTLE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1406,7 +1368,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_ALREADY_PARTICIPATING_IN_A_COUPLE_ACTION_AND_CANNOT_BE_REQUESTED_FOR_ANOTHER_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1414,7 +1376,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_FISHING_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1422,7 +1384,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_CHAOTIC_STATE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1430,7 +1392,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_PARTICIPATING_IN_THE_OLYMPIAD_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1438,7 +1400,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_PARTICIPATING_IN_A_HIDEOUT_SIEGE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1446,7 +1408,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_CASTLE_SIEGE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1454,7 +1416,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_RIDING_A_SHIP_STEED_OR_STRIDER_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1462,7 +1424,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_CURRENTLY_TELEPORTING_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1470,7 +1432,7 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_CURRENTLY_TRANSFORMING_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
@@ -1478,33 +1440,33 @@ public class RequestActionUse implements ClientPacket
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_CURRENTLY_DEAD_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);
 			sm.addPcName(partner);
-			client.sendPacket(sm);
+			player.sendPacket(sm);
 			return;
 		}
 		
-		if (requester.isAllSkillsDisabled() || partner.isAllSkillsDisabled())
+		if (player.isAllSkillsDisabled() || partner.isAllSkillsDisabled())
 		{
-			client.sendPacket(SystemMessageId.THE_COUPLE_ACTION_WAS_CANCELLED);
+			player.sendPacket(SystemMessageId.THE_COUPLE_ACTION_WAS_CANCELLED);
 			return;
 		}
 		
-		requester.setMultiSocialAction(id, partner.getObjectId());
+		player.setMultiSocialAction(id, partner.getObjectId());
 		sm = new SystemMessage(SystemMessageId.YOU_HAVE_REQUESTED_A_COUPLE_ACTION_WITH_C1);
 		sm.addPcName(partner);
-		client.sendPacket(sm);
+		player.sendPacket(sm);
 		
-		if ((requester.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE) || (partner.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE))
+		if ((player.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE) || (partner.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE))
 		{
-			requester.getAI().setNextAction(new NextAction(CtrlEvent.EVT_ARRIVED, CtrlIntention.AI_INTENTION_MOVE_TO, () -> partner.sendPacket(new ExAskCoupleAction(requester.getObjectId(), id))));
+			player.getAI().setNextAction(new NextAction(CtrlEvent.EVT_ARRIVED, CtrlIntention.AI_INTENTION_MOVE_TO, () -> partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id))));
 			return;
 		}
 		
-		if (requester.isCastingNow() || requester.isCastingSimultaneouslyNow())
+		if (player.isCastingNow() || player.isCastingSimultaneouslyNow())
 		{
-			requester.getAI().setNextAction(new NextAction(CtrlEvent.EVT_FINISH_CASTING, CtrlIntention.AI_INTENTION_CAST, () -> partner.sendPacket(new ExAskCoupleAction(requester.getObjectId(), id))));
+			player.getAI().setNextAction(new NextAction(CtrlEvent.EVT_FINISH_CASTING, CtrlIntention.AI_INTENTION_CAST, () -> partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id))));
 			return;
 		}
 		
-		partner.sendPacket(new ExAskCoupleAction(requester.getObjectId(), id));
+		partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id));
 	}
 }

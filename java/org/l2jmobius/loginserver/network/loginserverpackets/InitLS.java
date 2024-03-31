@@ -16,20 +16,14 @@
  */
 package org.l2jmobius.loginserver.network.loginserverpackets;
 
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 import org.l2jmobius.loginserver.LoginServer;
 
 /**
  * @author -Wooden-
  */
-public class InitLS extends WritablePacket
+public class InitLS extends BaseWritablePacket
 {
-	// ID 0x00
-	// format
-	// d proto rev
-	// d key size
-	// b key
-	
 	public InitLS(byte[] publickey)
 	{
 		writeByte(0x00);

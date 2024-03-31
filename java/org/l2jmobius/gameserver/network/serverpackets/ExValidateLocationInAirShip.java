@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -43,14 +45,14 @@ public class ExValidateLocationInAirShip extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_VALIDATE_LOCATION_IN_AIRSHIP.writeId(this);
-		writeInt(_player.getObjectId());
-		writeInt(shipId);
-		writeInt(x);
-		writeInt(y);
-		writeInt(z);
-		writeInt(h);
+		ServerPackets.EX_VALIDATE_LOCATION_IN_AIRSHIP.writeId(this, buffer);
+		buffer.writeInt(_player.getObjectId());
+		buffer.writeInt(shipId);
+		buffer.writeInt(x);
+		buffer.writeInt(y);
+		buffer.writeInt(z);
+		buffer.writeInt(h);
 	}
 }

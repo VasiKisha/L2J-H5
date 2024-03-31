@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.multisell;
 
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.item.Armor;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -50,7 +50,7 @@ public class Ingredient
 		_maintainIngredient = maintainIngredient;
 		if (_itemId > 0)
 		{
-			_template = ItemTable.getInstance().getTemplate(_itemId);
+			_template = ItemData.getInstance().getTemplate(_itemId);
 		}
 	}
 	

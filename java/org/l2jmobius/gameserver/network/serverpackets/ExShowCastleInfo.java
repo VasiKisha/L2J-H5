@@ -18,9 +18,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.instancemanager.CastleManager;
 import org.l2jmobius.gameserver.model.siege.Castle;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -30,32 +32,32 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 public class ExShowCastleInfo extends ServerPacket
 {
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_CASTLE_INFO.writeId(this);
+		ServerPackets.EX_SHOW_CASTLE_INFO.writeId(this, buffer);
 		final List<Castle> castles = CastleManager.getInstance().getCastles();
-		writeInt(castles.size());
+		buffer.writeInt(castles.size());
 		for (Castle castle : castles)
 		{
-			writeInt(castle.getResidenceId());
+			buffer.writeInt(castle.getResidenceId());
 			if (castle.getOwnerId() > 0)
 			{
 				if (ClanTable.getInstance().getClan(castle.getOwnerId()) != null)
 				{
-					writeString(ClanTable.getInstance().getClan(castle.getOwnerId()).getName());
+					buffer.writeString(ClanTable.getInstance().getClan(castle.getOwnerId()).getName());
 				}
 				else
 				{
 					PacketLogger.warning("Castle owner with no name! Castle: " + castle.getName() + " has an OwnerId = " + castle.getOwnerId() + " who does not have a  name!");
-					writeString("");
+					buffer.writeString("");
 				}
 			}
 			else
 			{
-				writeString("");
+				buffer.writeString("");
 			}
-			writeInt(castle.getTaxPercent());
-			writeInt((int) (castle.getSiege().getSiegeDate().getTimeInMillis() / 1000));
+			buffer.writeInt(castle.getTaxPercent());
+			buffer.writeInt((int) (castle.getSiege().getSiegeDate().getTimeInMillis() / 1000));
 		}
 	}
 }

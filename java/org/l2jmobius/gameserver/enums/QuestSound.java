@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.enums;
 
-import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 
@@ -120,7 +120,7 @@ public enum QuestSound
 	
 	private final PlaySound _playSound;
 	
-	private static Map<String, PlaySound> soundPackets = new HashMap<>();
+	private static final Map<String, PlaySound> SOUND_PACKETS = new ConcurrentHashMap<>();
 	
 	private QuestSound(PlaySound playSound)
 	{
@@ -134,22 +134,22 @@ public enum QuestSound
 	 */
 	public static PlaySound getSound(String soundName)
 	{
-		if (soundPackets.containsKey(soundName))
+		if (SOUND_PACKETS.containsKey(soundName))
 		{
-			return soundPackets.get(soundName);
+			return SOUND_PACKETS.get(soundName);
 		}
 		
 		for (QuestSound qs : QuestSound.values())
 		{
 			if (qs._playSound.getSoundName().equals(soundName))
 			{
-				soundPackets.put(soundName, qs._playSound); // cache in map to avoid looping repeatedly
+				SOUND_PACKETS.put(soundName, qs._playSound); // cache in map to avoid looping repeatedly
 				return qs._playSound;
 			}
 		}
 		
-		soundPackets.put(soundName, new PlaySound(soundName));
-		return soundPackets.get(soundName);
+		SOUND_PACKETS.put(soundName, new PlaySound(soundName));
+		return SOUND_PACKETS.get(soundName);
 	}
 	
 	/**

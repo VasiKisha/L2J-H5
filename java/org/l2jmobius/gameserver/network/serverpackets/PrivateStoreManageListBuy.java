@@ -18,9 +18,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.TradeItem;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PrivateStoreManageListBuy extends AbstractItemPacket
@@ -39,27 +41,27 @@ public class PrivateStoreManageListBuy extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PRIVATE_STORE_BUY_MANAGE_LIST.writeId(this);
+		ServerPackets.PRIVATE_STORE_BUY_MANAGE_LIST.writeId(this, buffer);
 		// section 1
-		writeInt(_objId);
-		writeLong(_playerAdena);
+		buffer.writeInt(_objId);
+		buffer.writeLong(_playerAdena);
 		// section2
-		writeInt(_itemList.size()); // inventory items for potential buy
+		buffer.writeInt(_itemList.size()); // inventory items for potential buy
 		for (Item item : _itemList)
 		{
-			writeItem(item);
-			writeLong(item.getTemplate().getReferencePrice() * 2);
+			writeItem(item, buffer);
+			buffer.writeLong(item.getTemplate().getReferencePrice() * 2);
 		}
 		// section 3
-		writeInt(_buyList.size()); // count for all items already added for buy
+		buffer.writeInt(_buyList.size()); // count for all items already added for buy
 		for (TradeItem item : _buyList)
 		{
-			writeItem(item);
-			writeLong(item.getPrice());
-			writeLong(item.getItem().getReferencePrice() * 2);
-			writeLong(item.getCount());
+			writeItem(item, buffer);
+			buffer.writeLong(item.getPrice());
+			buffer.writeLong(item.getItem().getReferencePrice() * 2);
+			buffer.writeLong(item.getCount());
 		}
 	}
 }

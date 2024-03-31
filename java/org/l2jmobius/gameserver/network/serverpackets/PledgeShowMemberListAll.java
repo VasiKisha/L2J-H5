@@ -16,10 +16,12 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.Clan.SubPledge;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PledgeShowMemberListAll extends ServerPacket
@@ -37,11 +39,11 @@ public class PledgeShowMemberListAll extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		_pledgeType = 0;
 		// FIXME: That's wrong on retail sends this whole packet few times (depending how much sub pledges it has)
-		writePledge(0);
+		writePledge(0, buffer);
 		for (SubPledge subPledge : _clan.getAllSubPledges())
 		{
 			_player.sendPacket(new PledgeReceiveSubPledgeCreated(subPledge, _clan));
@@ -58,51 +60,51 @@ public class PledgeShowMemberListAll extends ServerPacket
 		_player.updateUserInfo();
 	}
 	
-	private void writePledge(int mainOrSubpledge)
+	private void writePledge(int mainOrSubpledge, WritableBuffer buffer)
 	{
-		ServerPackets.PLEDGE_SHOW_MEMBER_LIST_ALL.writeId(this);
-		writeInt(mainOrSubpledge);
-		writeInt(_clan.getId());
-		writeInt(_pledgeType);
-		writeString(_clan.getName());
-		writeString(_clan.getLeaderName());
-		writeInt(_clan.getCrestId()); // crest id .. is used again
-		writeInt(_clan.getLevel());
-		writeInt(_clan.getCastleId());
-		writeInt(_clan.getHideoutId());
-		writeInt(_clan.getFortId());
-		writeInt(_clan.getRank());
-		writeInt(_clan.getReputationScore());
-		writeInt(0); // 0
-		writeInt(0); // 0
-		writeInt(_clan.getAllyId());
-		writeString(_clan.getAllyName());
-		writeInt(_clan.getAllyCrestId());
-		writeInt(_clan.isAtWar()); // new c3
-		writeInt(0); // Territory castle ID
-		writeInt(_clan.getSubPledgeMembersCount(_pledgeType));
+		ServerPackets.PLEDGE_SHOW_MEMBER_LIST_ALL.writeId(this, buffer);
+		buffer.writeInt(mainOrSubpledge);
+		buffer.writeInt(_clan.getId());
+		buffer.writeInt(_pledgeType);
+		buffer.writeString(_clan.getName());
+		buffer.writeString(_clan.getLeaderName());
+		buffer.writeInt(_clan.getCrestId()); // crest id .. is used again
+		buffer.writeInt(_clan.getLevel());
+		buffer.writeInt(_clan.getCastleId());
+		buffer.writeInt(_clan.getHideoutId());
+		buffer.writeInt(_clan.getFortId());
+		buffer.writeInt(_clan.getRank());
+		buffer.writeInt(_clan.getReputationScore());
+		buffer.writeInt(0); // 0
+		buffer.writeInt(0); // 0
+		buffer.writeInt(_clan.getAllyId());
+		buffer.writeString(_clan.getAllyName());
+		buffer.writeInt(_clan.getAllyCrestId());
+		buffer.writeInt(_clan.isAtWar()); // new c3
+		buffer.writeInt(0); // Territory castle ID
+		buffer.writeInt(_clan.getSubPledgeMembersCount(_pledgeType));
 		for (ClanMember m : _members)
 		{
 			if (m.getPledgeType() != _pledgeType)
 			{
 				continue;
 			}
-			writeString(m.getName());
-			writeInt(m.getLevel());
-			writeInt(m.getClassId());
+			buffer.writeString(m.getName());
+			buffer.writeInt(m.getLevel());
+			buffer.writeInt(m.getClassId());
 			final Player player = m.getPlayer();
 			if (player != null)
 			{
-				writeInt(player.getAppearance().isFemale()); // no visible effect
-				writeInt(player.getRace().ordinal()); // writeInt(1);
+				buffer.writeInt(player.getAppearance().isFemale()); // no visible effect
+				buffer.writeInt(player.getRace().ordinal()); // buffer.writeInt(1);
 			}
 			else
 			{
-				writeInt(1); // no visible effect
-				writeInt(1); // writeInt(1);
+				buffer.writeInt(1); // no visible effect
+				buffer.writeInt(1); // buffer.writeInt(1);
 			}
-			writeInt(m.isOnline() ? m.getObjectId() : 0); // objectId = online 0 = offline
-			writeInt(m.getSponsor() != 0);
+			buffer.writeInt(m.isOnline() ? m.getObjectId() : 0); // objectId = online 0 = offline
+			buffer.writeInt(m.getSponsor() != 0);
 		}
 	}
 }

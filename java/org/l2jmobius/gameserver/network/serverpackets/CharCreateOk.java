@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class CharCreateOk extends ServerPacket
@@ -27,9 +29,9 @@ public class CharCreateOk extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.CHARACTER_CREATE_SUCCESS.writeId(this);
-		writeInt(1);
+		ServerPackets.CHARACTER_CREATE_SUCCESS.writeId(this, buffer);
+		buffer.writeInt(1);
 	}
 }

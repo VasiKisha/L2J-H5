@@ -19,7 +19,8 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Arrays;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
@@ -27,6 +28,7 @@ import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.ServerPackets;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -249,7 +251,7 @@ public class SystemMessage extends ServerPacket
 	
 	public SystemMessage addItemName(int id)
 	{
-		final ItemTemplate item = ItemTable.getInstance().getTemplate(id);
+		final ItemTemplate item = ItemData.getInstance().getTemplate(id);
 		if (item.getDisplayId() != id)
 		{
 			return addString(item.getName());
@@ -332,14 +334,14 @@ public class SystemMessage extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.SYSTEM_MESSAGE.writeId(this);
+		ServerPackets.SYSTEM_MESSAGE.writeId(this, buffer);
 		
 		// Localisation related.
 		if (Config.MULTILANG_ENABLE)
 		{
-			final Player player = getPlayer();
+			final Player player = client.getPlayer();
 			if (player != null)
 			{
 				final String lang = player.getLang();
@@ -353,18 +355,18 @@ public class SystemMessage extends ServerPacket
 						{
 							params[i] = _params[i].getValue();
 						}
-						writeInt(SystemMessageId.S1_2.getId());
-						writeInt(1);
-						writeInt(TYPE_TEXT);
-						writeString(sml.getLocalisation(params));
+						buffer.writeInt(SystemMessageId.S1_2.getId());
+						buffer.writeInt(1);
+						buffer.writeInt(TYPE_TEXT);
+						buffer.writeString(sml.getLocalisation(params));
 						return;
 					}
 				}
 			}
 		}
 		
-		writeInt(_smId.getId());
-		writeInt(_params.length);
+		buffer.writeInt(_smId.getId());
+		buffer.writeInt(_params.length);
 		for (SMParam param : _params)
 		{
 			if (param == null)
@@ -372,18 +374,18 @@ public class SystemMessage extends ServerPacket
 				PacketLogger.warning("Found null parameter for SystemMessageId " + _smId);
 				continue;
 			}
-			writeInt(param.getType());
+			buffer.writeInt(param.getType());
 			switch (param.getType())
 			{
 				case TYPE_TEXT:
 				case TYPE_PLAYER_NAME:
 				{
-					writeString(param.getStringValue());
+					buffer.writeString(param.getStringValue());
 					break;
 				}
 				case TYPE_LONG_NUMBER:
 				{
-					writeLong(param.getLongValue());
+					buffer.writeLong(param.getLongValue());
 					break;
 				}
 				case TYPE_ITEM_NAME:
@@ -395,22 +397,22 @@ public class SystemMessage extends ServerPacket
 				case TYPE_INSTANCE_NAME:
 				case TYPE_DOOR_NAME:
 				{
-					writeInt(param.getIntValue());
+					buffer.writeInt(param.getIntValue());
 					break;
 				}
 				case TYPE_SKILL_NAME:
 				{
 					final int[] array = param.getIntArrayValue();
-					writeInt(array[0]); // SkillId
-					writeInt(array[1]); // SkillLevel
+					buffer.writeInt(array[0]); // SkillId
+					buffer.writeInt(array[1]); // SkillLevel
 					break;
 				}
 				case TYPE_ZONE_NAME:
 				{
 					final int[] array = param.getIntArrayValue();
-					writeInt(array[0]); // x
-					writeInt(array[1]); // y
-					writeInt(array[2]); // z
+					buffer.writeInt(array[0]); // x
+					buffer.writeInt(array[1]); // y
+					buffer.writeInt(array[2]); // z
 					break;
 				}
 			}

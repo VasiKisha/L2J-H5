@@ -26,6 +26,8 @@ import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.FenceData;
 import org.l2jmobius.gameserver.geoengine.geodata.Cell;
 import org.l2jmobius.gameserver.geoengine.geodata.GeoData;
+import org.l2jmobius.gameserver.geoengine.geodata.IRegion;
+import org.l2jmobius.gameserver.geoengine.geodata.regions.Region;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -42,7 +44,8 @@ public class GeoEngine
 {
 	private static final Logger LOGGER = Logger.getLogger(GeoEngine.class.getName());
 	
-	private static final String FILE_NAME_FORMAT = "%d_%d.l2j";
+	public static final String FILE_NAME_FORMAT = "%d_%d.l2j";
+	
 	private static final int ELEVATED_SEE_OVER_DISTANCE = 2;
 	private static final int MAX_SEE_OVER_HEIGHT = 48;
 	private static final int SPAWN_Z_DELTA_LIMIT = 100;
@@ -124,6 +127,16 @@ public class GeoEngine
 		return can && checkNearestNswe(geoX, geoY, worldZ, nswe);
 	}
 	
+	public void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+		_geodata.setNearestNswe(geoX, geoY, worldZ, nswe);
+	}
+	
+	public void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
+	{
+		_geodata.unsetNearestNswe(geoX, geoY, worldZ, nswe);
+	}
+	
 	public int getNearestZ(int geoX, int geoY, int worldZ)
 	{
 		return _geodata.getNearestZ(geoX, geoY, worldZ);
@@ -157,6 +170,16 @@ public class GeoEngine
 	public int getWorldY(int geoY)
 	{
 		return _geodata.getWorldY(geoY);
+	}
+	
+	public IRegion getRegion(int geoX, int geoY)
+	{
+		return _geodata.getRegion(geoX, geoY);
+	}
+	
+	public void setRegion(int regionX, int regionY, Region region)
+	{
+		_geodata.setRegion(regionX, regionY, region);
 	}
 	
 	/**

@@ -18,8 +18,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Map.Entry;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.PremiumItem;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -35,19 +37,19 @@ public class ExGetPremiumItemList extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_GET_PREMIUM_ITEM_LIST.writeId(this);
-		writeInt(_player.getPremiumItemList().size());
+		ServerPackets.EX_GET_PREMIUM_ITEM_LIST.writeId(this, buffer);
+		buffer.writeInt(_player.getPremiumItemList().size());
 		for (Entry<Integer, PremiumItem> entry : _player.getPremiumItemList().entrySet())
 		{
 			final PremiumItem item = entry.getValue();
-			writeInt(entry.getKey());
-			writeInt(_player.getObjectId());
-			writeInt(item.getItemId());
-			writeLong(item.getCount());
-			writeInt(0); // ?
-			writeString(item.getSender());
+			buffer.writeInt(entry.getKey());
+			buffer.writeInt(_player.getObjectId());
+			buffer.writeInt(item.getItemId());
+			buffer.writeLong(item.getCount());
+			buffer.writeInt(0); // ?
+			buffer.writeString(item.getSender());
 		}
 	}
 }

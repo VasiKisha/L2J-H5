@@ -32,7 +32,7 @@ public class PvpFlagTaskManager implements Runnable
 	
 	protected PvpFlagTaskManager()
 	{
-		ThreadPool.scheduleAtFixedRate(this, 1000, 1000);
+		ThreadPool.schedulePriorityTaskAtFixedRate(this, 1000, 1000);
 	}
 	
 	@Override

@@ -21,68 +21,67 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.data.xml.UIData;
 import org.l2jmobius.gameserver.model.ActionKey;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.ConnectionState;
-import org.l2jmobius.gameserver.network.GameClient;
 
 /**
- * Request Save Key Mapping client packet.
+ * Request Save Key Mapping client
  * @author mrTJO, Zoey76
  */
-public class RequestSaveKeyMapping implements ClientPacket
+public class RequestSaveKeyMapping extends ClientPacket
 {
 	private final Map<Integer, List<ActionKey>> _keyMap = new HashMap<>();
 	private final Map<Integer, List<Integer>> _catMap = new HashMap<>();
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
 		int category = 0;
-		packet.readInt(); // Unknown
-		packet.readInt(); // Unknown
-		final int _tabNum = packet.readInt();
+		readInt(); // Unknown
+		readInt(); // Unknown
+		final int _tabNum = readInt();
 		for (int i = 0; i < _tabNum; i++)
 		{
-			final int cmd1Size = packet.readByte();
+			final int cmd1Size = readByte();
 			for (int j = 0; j < cmd1Size; j++)
 			{
-				UIData.addCategory(_catMap, category, packet.readByte());
+				UIData.addCategory(_catMap, category, readByte());
 			}
 			category++;
 			
-			final int cmd2Size = packet.readByte();
+			final int cmd2Size = readByte();
 			for (int j = 0; j < cmd2Size; j++)
 			{
-				UIData.addCategory(_catMap, category, packet.readByte());
+				UIData.addCategory(_catMap, category, readByte());
 			}
 			category++;
 			
-			final int cmdSize = packet.readInt();
+			final int cmdSize = readInt();
 			for (int j = 0; j < cmdSize; j++)
 			{
-				final int cmd = packet.readInt();
-				final int key = packet.readInt();
-				final int tgKey1 = packet.readInt();
-				final int tgKey2 = packet.readInt();
-				final int show = packet.readInt();
+				final int cmd = readInt();
+				final int key = readInt();
+				final int tgKey1 = readInt();
+				final int tgKey2 = readInt();
+				final int show = readInt();
 				UIData.addKey(_keyMap, i, new ActionKey(i, cmd, key, tgKey1, tgKey2, show));
 			}
 		}
-		packet.readInt();
-		packet.readInt();
+		readInt();
+		readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
-		if (!Config.STORE_UI_SETTINGS || (player == null) || (client.getConnectionState() != ConnectionState.IN_GAME))
+		final Player player = getPlayer();
+		if (!Config.STORE_UI_SETTINGS || (player == null) || (getClient().getConnectionState() != ConnectionState.IN_GAME))
 		{
 			return;
 		}
+		
 		player.getUISettings().storeAll(_catMap, _keyMap);
 	}
 }

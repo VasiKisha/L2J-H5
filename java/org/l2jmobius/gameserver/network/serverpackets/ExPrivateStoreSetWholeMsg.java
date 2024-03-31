@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -39,10 +41,10 @@ public class ExPrivateStoreSetWholeMsg extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_PRIVATE_STORE_PACKAGE_MSG.writeId(this);
-		writeInt(_objectId);
-		writeString(_msg);
+		ServerPackets.EX_PRIVATE_STORE_PACKAGE_MSG.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeString(_msg);
 	}
 }

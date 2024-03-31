@@ -19,6 +19,7 @@ package org.l2jmobius.gameserver.util;
 import java.io.File;
 import java.io.FilenameFilter;
 import java.net.MalformedURLException;
+import java.net.URI;
 import java.net.URL;
 import java.text.CharacterIterator;
 import java.text.StringCharacterIterator;
@@ -109,7 +110,10 @@ public class Locator
 		URL url = null;
 		try
 		{
-			url = new URL(uri);
+			// Java 19
+			// url = new URL(uri);
+			// Java 20
+			url = URI.create(uri).toURL();
 		}
 		catch (MalformedURLException emYouEarlEx)
 		{

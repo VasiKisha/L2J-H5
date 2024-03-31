@@ -35,13 +35,11 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 	
 	protected AbstractHtmlPacket()
 	{
-		super(1024);
 		_npcObjId = 0;
 	}
 	
 	protected AbstractHtmlPacket(int npcObjId)
 	{
-		super(1024);
 		if (npcObjId < 0)
 		{
 			throw new IllegalArgumentException();
@@ -51,14 +49,12 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 	
 	protected AbstractHtmlPacket(String html)
 	{
-		super(1024);
 		_npcObjId = 0;
 		setHtml(html);
 	}
 	
 	protected AbstractHtmlPacket(int npcObjId, String html)
 	{
-		super(1024);
 		if (npcObjId < 0)
 		{
 			throw new IllegalArgumentException();
@@ -131,9 +127,8 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 	}
 	
 	@Override
-	public void run()
+	public void runImpl(Player player)
 	{
-		final Player player = getPlayer();
 		if (player != null)
 		{
 			player.clearHtmlActions(getScope());

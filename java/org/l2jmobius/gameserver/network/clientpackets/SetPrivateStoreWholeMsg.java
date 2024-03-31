@@ -17,31 +17,29 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.ExPrivateStoreSetWholeMsg;
 import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author KenM
  */
-public class SetPrivateStoreWholeMsg implements ClientPacket
+public class SetPrivateStoreWholeMsg extends ClientPacket
 {
 	private static final int MAX_MSG_LENGTH = 29;
 	
 	private String _msg;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_msg = packet.readString();
+		_msg = readString();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if ((player == null) || (player.getSellList() == null))
 		{
 			return;

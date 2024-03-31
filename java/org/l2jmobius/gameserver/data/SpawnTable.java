@@ -371,7 +371,7 @@ public class SpawnTable implements IXmlReader
 									LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": SpawnTable: Failed to load banned_territory " + territoryName + " coordinates: " + e.getMessage(), e);
 								}
 								
-								ZoneManager.getInstance().getSpawnTerritory(territoryName).setBannedTerritory(zoneForm);
+								ZoneManager.getInstance().getSpawnTerritory(territoryName).addBannedTerritory(zoneForm);
 							}
 							// Check for NPC spawns
 							else if (npctag.getNodeName().equalsIgnoreCase("npc"))

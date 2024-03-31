@@ -18,8 +18,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.TradeItem;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PrivateStoreListBuy extends AbstractItemPacket
@@ -37,19 +39,19 @@ public class PrivateStoreListBuy extends AbstractItemPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.PRIVATE_STORE_BUY_LIST.writeId(this);
-		writeInt(_objId);
-		writeLong(_playerAdena);
-		writeInt(_items.size());
+		ServerPackets.PRIVATE_STORE_BUY_LIST.writeId(this, buffer);
+		buffer.writeInt(_objId);
+		buffer.writeLong(_playerAdena);
+		buffer.writeInt(_items.size());
 		for (TradeItem item : _items)
 		{
-			writeItem(item);
-			writeInt(item.getObjectId());
-			writeLong(item.getPrice());
-			writeLong(item.getItem().getReferencePrice() * 2);
-			writeLong(item.getStoreCount());
+			writeItem(item, buffer);
+			buffer.writeInt(item.getObjectId());
+			buffer.writeLong(item.getPrice());
+			buffer.writeLong(item.getItem().getReferencePrice() * 2);
+			buffer.writeLong(item.getStoreCount());
 		}
 	}
 }

@@ -17,18 +17,61 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.commons.network.ReadablePacket;
+import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
+import org.l2jmobius.gameserver.network.PacketLogger;
 
 /**
  * @author Mobius
  */
-public abstract interface ClientPacket
+public abstract class ClientPacket extends ReadablePacket<GameClient>
 {
-	default void read(ReadablePacket packet)
+	@Override
+	public boolean read()
 	{
+		try
+		{
+			readImpl();
+			return true;
+		}
+		catch (Exception e)
+		{
+			PacketLogger.warning("Client: " + getClient() + " - Failed reading: " + getClass().getSimpleName() + " ; " + e.getMessage());
+			PacketLogger.warning(CommonUtil.getStackTrace(e));
+		}
+		return false;
 	}
 	
-	default void run(GameClient client)
+	protected abstract void readImpl();
+	
+	@Override
+	public void run()
 	{
+		try
+		{
+			runImpl();
+		}
+		catch (Exception e)
+		{
+			PacketLogger.warning("Client: " + getClient() + " - Failed running: " + getClass().getSimpleName() + " ; " + e.getMessage());
+			PacketLogger.warning(CommonUtil.getStackTrace(e));
+			
+			// In case of EnterWorld error kick player from game.
+			if (this instanceof EnterWorld)
+			{
+				getClient().closeNow();
+			}
+		}
+	}
+	
+	protected abstract void runImpl();
+	
+	/**
+	 * @return the active player if exist, otherwise null.
+	 */
+	protected Player getPlayer()
+	{
+		return getClient().getPlayer();
 	}
 }

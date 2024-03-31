@@ -18,6 +18,7 @@ package org.l2jmobius.commons.util;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import java.util.Calendar;
 
 /**
  * @author UnAfraid
@@ -121,5 +122,27 @@ public class TimeUtil
 		{
 			throw new IllegalStateException("Incorrect time format given: " + datePattern + " val: " + datePattern.substring(0, index));
 		}
+	}
+	
+	public static Calendar getCloseNextDay(int dayOfWeek, int hour, int minute)
+	{
+		final Calendar calendar = Calendar.getInstance(); // Today, now
+		if (calendar.get(Calendar.DAY_OF_WEEK) != dayOfWeek)
+		{
+			calendar.add(Calendar.DAY_OF_MONTH, ((dayOfWeek + 7) - calendar.get(Calendar.DAY_OF_WEEK)) % 7);
+		}
+		else
+		{
+			final int minOfDay = (calendar.get(Calendar.HOUR_OF_DAY) * 60) + calendar.get(Calendar.MINUTE);
+			if (minOfDay >= ((hour * 60) + minute))
+			{
+				calendar.add(Calendar.DAY_OF_MONTH, 7); // Bump to next week
+			}
+		}
+		calendar.set(Calendar.HOUR_OF_DAY, hour);
+		calendar.set(Calendar.MINUTE, minute);
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		return calendar;
 	}
 }

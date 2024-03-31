@@ -24,12 +24,14 @@ import java.util.function.Consumer;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.OptionData;
+import org.l2jmobius.gameserver.data.xml.PetSkillData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.events.Containers;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
@@ -262,18 +264,18 @@ public class AutoPlay implements IVoicedCommandHandler
 				content = content.replace("%mode2%", player.getAutoPlaySettings().getNextTargetMode() == 2 ? "L2UI_CH3.radiobutton2" : "L2UI_CH3.radiobutton1");
 				content = content.replace("%mode3%", player.getAutoPlaySettings().getNextTargetMode() == 3 ? "L2UI_CH3.radiobutton2" : "L2UI_CH3.radiobutton1");
 				
-				content = content.replace("%skill_button%", Config.ENABLE_AUTO_SKILL ? "<br><table width=295><tr><td height=31><center><button action=\"bypass -h voice .playskills\" value=\"Select Skills\" width=200 height=31 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></center></td></tr></table>" : "");
-				content = content.replace("%item_button%", Config.ENABLE_AUTO_ITEM ? "<br><table width=295><tr><td height=31><center><button action=\"bypass -h voice .playitems\" value=\"Select Supply Items\" width=200 height=31 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></center></td></tr></table>" : "");
-				content = content.replace("%potion_button%", Config.ENABLE_AUTO_POTION ? "<br><table width=295><tr><td height=31><center><button action=\"bypass -h voice .playpotion\" value=\"Select Healing Potion\" width=200 height=31 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></center></td></tr><tr><td height=31><center><table width=150><tr><td width=120><font color=\"CDB67F\">HP Percent (%percent%)</font></td><td><edit var=\"percentbox\" width=30 height=15></td><td><button value=\"Apply\" action=\"bypass -h voice .play percent $percentbox\" width=45 height=21 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr></table></center></td></tr></table>" : "");
+				content = content.replace("%skill_button%", Config.ENABLE_AUTO_SKILL ? "<br><table width=295><tr><td height=31><center><button action=\"bypass voice .playskills\" value=\"Select Skills\" width=200 height=31 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></center></td></tr></table>" : "");
+				content = content.replace("%item_button%", Config.ENABLE_AUTO_ITEM ? "<br><table width=295><tr><td height=31><center><button action=\"bypass voice .playitems\" value=\"Select Supply Items\" width=200 height=31 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></center></td></tr></table>" : "");
+				content = content.replace("%potion_button%", Config.ENABLE_AUTO_POTION ? "<br><table width=295><tr><td height=31><center><button action=\"bypass voice .playpotion\" value=\"Select Healing Potion\" width=200 height=31 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></center></td></tr><tr><td height=31><center><table width=150><tr><td width=120><font color=\"CDB67F\">HP Percent (%percent%)</font></td><td><edit var=\"percentbox\" width=30 height=15></td><td><button value=\"Apply\" action=\"bypass voice .play percent $percentbox\" width=45 height=21 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr></table></center></td></tr></table>" : "");
 				content = content.replace("%percent%", String.valueOf(player.getAutoPlaySettings().getAutoPotionPercent()));
 				
 				if (player.isAutoPlaying())
 				{
-					content = content.replace("%status_button%", "<table width=295><tr><td height=31><center><table width=295><tr><td height=31><center><button action=\"bypass -h voice .play stop\" value=\"Stop\" width=200 height=31 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr></table></center></td></tr></table>");
+					content = content.replace("%status_button%", "<table width=295><tr><td height=31><center><table width=295><tr><td height=31><center><button action=\"bypass voice .play stop\" value=\"Stop\" width=200 height=31 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr></table></center></td></tr></table>");
 				}
 				else
 				{
-					content = content.replace("%status_button%", "<table width=295><tr><td height=31><center><table width=295><tr><td height=31><center><button action=\"bypass -h voice .play start\" value=\"Start\" width=200 height=31 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr></table></center></td></tr></table>");
+					content = content.replace("%status_button%", "<table width=295><tr><td height=31><center><table width=295><tr><td height=31><center><button action=\"bypass voice .play start\" value=\"Start\" width=200 height=31 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td></tr></table></center></td></tr></table>");
 				}
 				
 				html.setHtml(content);
@@ -308,7 +310,15 @@ public class AutoPlay implements IVoicedCommandHandler
 				}
 				if (player.hasServitor() || player.hasPet())
 				{
-					for (Skill skill : player.getSummon().getAllSkills())
+					final Summon summon = player.getSummon();
+					for (Skill skill : summon.getAllSkills())
+					{
+						if (!skill.isPassive() && !skill.isToggle() && !skills.contains(skill) && !Config.DISABLED_AUTO_SKILLS.contains(skill.getId()))
+						{
+							skills.add(skill);
+						}
+					}
+					for (Skill skill : PetSkillData.getInstance().getKnownSkills(summon))
 					{
 						if (!skill.isPassive() && !skill.isToggle() && !skills.contains(skill) && !Config.DISABLED_AUTO_SKILLS.contains(skill.getId()))
 						{
@@ -377,7 +387,12 @@ public class AutoPlay implements IVoicedCommandHandler
 					Skill knownSkill = player.getKnownSkill(skillId);
 					if ((knownSkill == null) && (player.hasServitor() || player.hasPet()))
 					{
-						knownSkill = player.getSummon().getKnownSkill(skillId);
+						final Summon summon = player.getSummon();
+						knownSkill = summon.getKnownSkill(skillId);
+						if (knownSkill == null)
+						{
+							knownSkill = PetSkillData.getInstance().getKnownSkill(summon, skillId);
+						}
 						if (knownSkill != null)
 						{
 							break;
@@ -434,11 +449,11 @@ public class AutoPlay implements IVoicedCommandHandler
 						sb.append(((row % 2) == 0 ? "<table width=\"295\" bgcolor=\"000000\"><tr>" : "<table width=\"295\"><tr>"));
 						if (player.getAutoUseSettings().getAutoBuffs().contains(skill.getId()) || player.getAutoUseSettings().getAutoSkills().contains(skill.getId()))
 						{
-							sb.append("<td height=40 width=40><img src=\"" + skill.getIcon() + "\" width=32 height=32></td><td width=190>" + skill.getName() + "</td><td><button value=\" \" action=\"bypass -h voice .playskills " + page + " " + skill.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomout2\" fore=\"L2UI_CH3.mapbutton_zoomout1\"></td>");
+							sb.append("<td height=40 width=40><img src=\"" + skill.getIcon() + "\" width=32 height=32></td><td width=190>" + skill.getName() + "</td><td><button value=\" \" action=\"bypass voice .playskills " + page + " " + skill.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomout2\" fore=\"L2UI_CH3.mapbutton_zoomout1\"></td>");
 						}
 						else
 						{
-							sb.append("<td height=40 width=40><img src=\"" + skill.getIcon() + "\" width=32 height=32></td><td width=190><font color=\"B09878\">" + skill.getName() + "</font></td><td><button value=\" \" action=\"bypass -h voice .playskills " + page + " " + skill.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
+							sb.append("<td height=40 width=40><img src=\"" + skill.getIcon() + "\" width=32 height=32></td><td width=190><font color=\"B09878\">" + skill.getName() + "</font></td><td><button value=\" \" action=\"bypass voice .playskills " + page + " " + skill.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
 						}
 						sb.append("</tr></table><img src=\"L2UI.SquareGray\" width=295 height=1>");
 					}
@@ -447,7 +462,7 @@ public class AutoPlay implements IVoicedCommandHandler
 					sb.append("<br><img src=\"L2UI.SquareGray\" width=295 height=1><table width=\"100%\" bgcolor=000000><tr>");
 					if (page > 1)
 					{
-						sb.append("<td align=left width=70><a action=\"bypass -h voice .playskills " + (page - 1) + "\"><font color=\"CDB67F\">Previous</font></a></td>");
+						sb.append("<td align=left width=70><a action=\"bypass voice .playskills " + (page - 1) + "\"><font color=\"CDB67F\">Previous</font></a></td>");
 					}
 					else
 					{
@@ -456,7 +471,7 @@ public class AutoPlay implements IVoicedCommandHandler
 					sb.append("<td align=center width=100>Page " + page + " of " + max + "</td>");
 					if (page < max)
 					{
-						sb.append("<td align=right width=70><a action=\"bypass -h voice .playskills " + (page + 1) + "\"><font color=\"CDB67F\">Next</font></a></td>");
+						sb.append("<td align=right width=70><a action=\"bypass voice .playskills " + (page + 1) + "\"><font color=\"CDB67F\">Next</font></a></td>");
 					}
 					else
 					{
@@ -499,7 +514,7 @@ public class AutoPlay implements IVoicedCommandHandler
 				if (paramArray.length > 1)
 				{
 					final int itemId = Integer.parseInt(paramArray[1]);
-					if (Config.ENABLE_AUTO_ITEM && items.contains(ItemTable.getInstance().getTemplate(itemId)))
+					if (Config.ENABLE_AUTO_ITEM && items.contains(ItemData.getInstance().getTemplate(itemId)))
 					{
 						if (player.getAutoUseSettings().getAutoSupplyItems().contains(itemId))
 						{
@@ -536,11 +551,11 @@ public class AutoPlay implements IVoicedCommandHandler
 						sb.append(((row % 2) == 0 ? "<table width=\"295\" bgcolor=\"000000\"><tr>" : "<table width=\"295\"><tr>"));
 						if (player.getAutoUseSettings().getAutoSupplyItems().contains(template.getId()))
 						{
-							sb.append("<td height=40 width=40><img src=\"" + template.getIcon() + "\" width=32 height=32></td><td width=190>" + template.getName() + "</td><td><button value=\" \" action=\"bypass -h voice .playitems " + page + " " + template.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomout2\" fore=\"L2UI_CH3.mapbutton_zoomout1\"></td>");
+							sb.append("<td height=40 width=40><img src=\"" + template.getIcon() + "\" width=32 height=32></td><td width=190>" + template.getName() + "</td><td><button value=\" \" action=\"bypass voice .playitems " + page + " " + template.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomout2\" fore=\"L2UI_CH3.mapbutton_zoomout1\"></td>");
 						}
 						else
 						{
-							sb.append("<td height=40 width=40><img src=\"" + template.getIcon() + "\" width=32 height=32></td><td width=190><font color=\"B09878\">" + template.getName() + "</font></td><td><button value=\" \" action=\"bypass -h voice .playitems " + page + " " + template.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
+							sb.append("<td height=40 width=40><img src=\"" + template.getIcon() + "\" width=32 height=32></td><td width=190><font color=\"B09878\">" + template.getName() + "</font></td><td><button value=\" \" action=\"bypass voice .playitems " + page + " " + template.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
 						}
 						sb.append("</tr></table><img src=\"L2UI.SquareGray\" width=295 height=1>");
 					}
@@ -549,7 +564,7 @@ public class AutoPlay implements IVoicedCommandHandler
 					sb.append("<br><img src=\"L2UI.SquareGray\" width=295 height=1><table width=\"100%\" bgcolor=000000><tr>");
 					if (page > 1)
 					{
-						sb.append("<td align=left width=70><a action=\"bypass -h voice .playitems " + (page - 1) + "\"><font color=\"CDB67F\">Previous</font></a></td>");
+						sb.append("<td align=left width=70><a action=\"bypass voice .playitems " + (page - 1) + "\"><font color=\"CDB67F\">Previous</font></a></td>");
 					}
 					else
 					{
@@ -558,7 +573,7 @@ public class AutoPlay implements IVoicedCommandHandler
 					sb.append("<td align=center width=100>Page " + page + " of " + max + "</td>");
 					if (page < max)
 					{
-						sb.append("<td align=right width=70><a action=\"bypass -h voice .playitems " + (page + 1) + "\"><font color=\"CDB67F\">Next</font></a></td>");
+						sb.append("<td align=right width=70><a action=\"bypass voice .playitems " + (page + 1) + "\"><font color=\"CDB67F\">Next</font></a></td>");
 					}
 					else
 					{
@@ -601,7 +616,7 @@ public class AutoPlay implements IVoicedCommandHandler
 				if (paramArray.length > 1)
 				{
 					final int itemId = Integer.parseInt(paramArray[1]);
-					if (Config.ENABLE_AUTO_POTION && items.contains(ItemTable.getInstance().getTemplate(itemId)))
+					if (Config.ENABLE_AUTO_POTION && items.contains(ItemData.getInstance().getTemplate(itemId)))
 					{
 						if (player.getAutoUseSettings().getAutoPotionItem() == itemId)
 						{
@@ -638,11 +653,11 @@ public class AutoPlay implements IVoicedCommandHandler
 						sb.append(((row % 2) == 0 ? "<table width=\"295\" bgcolor=\"000000\"><tr>" : "<table width=\"295\"><tr>"));
 						if (player.getAutoUseSettings().getAutoPotionItem() == template.getId())
 						{
-							sb.append("<td height=40 width=40><img src=\"" + template.getIcon() + "\" width=32 height=32></td><td width=190>" + template.getName() + "</td><td><button value=\" \" action=\"bypass -h voice .playpotion " + page + " " + template.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomout2\" fore=\"L2UI_CH3.mapbutton_zoomout1\"></td>");
+							sb.append("<td height=40 width=40><img src=\"" + template.getIcon() + "\" width=32 height=32></td><td width=190>" + template.getName() + "</td><td><button value=\" \" action=\"bypass voice .playpotion " + page + " " + template.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomout2\" fore=\"L2UI_CH3.mapbutton_zoomout1\"></td>");
 						}
 						else
 						{
-							sb.append("<td height=40 width=40><img src=\"" + template.getIcon() + "\" width=32 height=32></td><td width=190><font color=\"B09878\">" + template.getName() + "</font></td><td><button value=\" \" action=\"bypass -h voice .playpotion " + page + " " + template.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
+							sb.append("<td height=40 width=40><img src=\"" + template.getIcon() + "\" width=32 height=32></td><td width=190><font color=\"B09878\">" + template.getName() + "</font></td><td><button value=\" \" action=\"bypass voice .playpotion " + page + " " + template.getId() + "\" width=32 height=32 back=\"L2UI_CH3.mapbutton_zoomin2\" fore=\"L2UI_CH3.mapbutton_zoomin1\"></td>");
 						}
 						sb.append("</tr></table><img src=\"L2UI.SquareGray\" width=295 height=1>");
 					}
@@ -651,7 +666,7 @@ public class AutoPlay implements IVoicedCommandHandler
 					sb.append("<br><img src=\"L2UI.SquareGray\" width=295 height=1><table width=\"100%\" bgcolor=000000><tr>");
 					if (page > 1)
 					{
-						sb.append("<td align=left width=70><a action=\"bypass -h voice .playpotion " + (page - 1) + "\"><font color=\"CDB67F\">Previous</font></a></td>");
+						sb.append("<td align=left width=70><a action=\"bypass voice .playpotion " + (page - 1) + "\"><font color=\"CDB67F\">Previous</font></a></td>");
 					}
 					else
 					{
@@ -660,7 +675,7 @@ public class AutoPlay implements IVoicedCommandHandler
 					sb.append("<td align=center width=100>Page " + page + " of " + max + "</td>");
 					if (page < max)
 					{
-						sb.append("<td align=right width=70><a action=\"bypass -h voice .playpotion " + (page + 1) + "\"><font color=\"CDB67F\">Next</font></a></td>");
+						sb.append("<td align=right width=70><a action=\"bypass voice .playpotion " + (page + 1) + "\"><font color=\"CDB67F\">Next</font></a></td>");
 					}
 					else
 					{

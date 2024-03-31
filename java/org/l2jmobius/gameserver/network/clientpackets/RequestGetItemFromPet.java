@@ -17,18 +17,16 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @version $Revision: 1.3.4.4 $ $Date: 2005/03/29 23:15:33 $
  */
-public class RequestGetItemFromPet implements ClientPacket
+public class RequestGetItemFromPet extends ClientPacket
 {
 	private int _objectId;
 	private long _amount;
@@ -36,23 +34,23 @@ public class RequestGetItemFromPet implements ClientPacket
 	private int _unknown;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_objectId = packet.readInt();
-		_amount = packet.readLong();
-		_unknown = packet.readInt(); // = 0 for most trades
+		_objectId = readInt();
+		_amount = readLong();
+		_unknown = readInt(); // = 0 for most trades
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if ((_amount <= 0) || (player == null) || !player.hasPet())
 		{
 			return;
 		}
 		
-		if (!client.getFloodProtectors().canPerformTransaction())
+		if (!getClient().getFloodProtectors().canPerformTransaction())
 		{
 			player.sendMessage("You get items from pet too fast.");
 			return;

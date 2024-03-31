@@ -141,7 +141,7 @@ INSERT IGNORE INTO `raidboss_spawnlist` (`boss_id`,`loc_x`,`loc_y`,`loc_z`,`head
 (25319,184542,-106330,-6304,0,86400,43200,1100996,4304), -- Ember (80)
 (25322,93296,-75104,-1824,0,86400,43200,834231,2707), -- Demon's Agent Falston (66)
 (25325,91008,-85904,-2736,0,86400,43200,888658,2987), -- Flame Of Splendor Barakiel (70)
-(25328,59331,-42403,-3003,0,10800,3600,900867,3058), -- Eilhalder Von Hellmann (71) (Only Spawn at Night)
+-- (25328,59331,-42403,-3003,0,10800,3600,900867,3058), -- Eilhalder Von Hellmann (71) (Only Spawn at Night)
 -- (25333,0,0,0,0,0,0,0,0), -- Anakazel (28) (Spawn by Dimensional Rift)
 -- (25334,0,0,0,0,0,0,0,0), -- Anakazel (38) (Spawn by Dimensional Rift)
 -- (25335,0,0,0,0,0,0,0,0), -- Anakazel (48) (Spawn by Dimensional Rift)

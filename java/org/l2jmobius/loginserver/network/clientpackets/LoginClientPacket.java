@@ -16,19 +16,32 @@
  */
 package org.l2jmobius.loginserver.network.clientpackets;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.loginserver.network.LoginClient;
 
 /**
- * @author Mobius
+ * @author KenM
  */
-public abstract interface LoginClientPacket
+public abstract class LoginClientPacket extends ReadablePacket<LoginClient>
 {
-	default void read(ReadablePacket packet)
+	private static final Logger LOGGER = Logger.getLogger(LoginClientPacket.class.getName());
+	
+	@Override
+	protected boolean read()
 	{
+		try
+		{
+			return readImpl();
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.SEVERE, "ERROR READING: " + getClass().getSimpleName() + ": " + e.getMessage(), e);
+			return false;
+		}
 	}
 	
-	default void run(LoginClient client)
-	{
-	}
+	protected abstract boolean readImpl();
 }

@@ -18,9 +18,11 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.List;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.instancemanager.FortManager;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.siege.Fort;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -35,19 +37,19 @@ public class ExShowFortressInfo extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_SHOW_FORTRESS_INFO.writeId(this);
+		ServerPackets.EX_SHOW_FORTRESS_INFO.writeId(this, buffer);
 		final List<Fort> forts = FortManager.getInstance().getForts();
-		writeInt(forts.size());
+		buffer.writeInt(forts.size());
 		for (Fort fort : forts)
 		{
 			final Clan clan = fort.getOwnerClan();
-			writeInt(fort.getResidenceId());
-			writeString(clan != null ? clan.getName() : "");
-			writeInt(fort.getSiege().isInProgress());
+			buffer.writeInt(fort.getResidenceId());
+			buffer.writeString(clan != null ? clan.getName() : "");
+			buffer.writeInt(fort.getSiege().isInProgress());
 			// Time of possession
-			writeInt(fort.getOwnedTime());
+			buffer.writeInt(fort.getOwnedTime());
 		}
 	}
 }

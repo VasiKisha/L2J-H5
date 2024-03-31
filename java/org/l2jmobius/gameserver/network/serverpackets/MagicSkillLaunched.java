@@ -19,8 +19,10 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.Collection;
 import java.util.Collections;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -58,16 +60,16 @@ public class MagicSkillLaunched extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.MAGIC_SKILL_LAUNCHED.writeId(this);
-		writeInt(_objectId);
-		writeInt(_skillId);
-		writeInt(_skillLevel);
-		writeInt(_targets.size());
+		ServerPackets.MAGIC_SKILL_LAUNCHED.writeId(this, buffer);
+		buffer.writeInt(_objectId);
+		buffer.writeInt(_skillId);
+		buffer.writeInt(_skillLevel);
+		buffer.writeInt(_targets.size());
 		for (WorldObject target : _targets)
 		{
-			writeInt(target.getObjectId());
+			buffer.writeInt(target.getObjectId());
 		}
 	}
 }

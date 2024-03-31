@@ -16,10 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.commons.network.ReadablePacket;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPutCommissionResultForVariationMake;
 
@@ -35,18 +33,18 @@ public class RequestConfirmGemStone extends AbstractRefinePacket
 	private long _gemStoneCount;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_targetItemObjId = packet.readInt();
-		_refinerItemObjId = packet.readInt();
-		_gemstoneItemObjId = packet.readInt();
-		_gemStoneCount = packet.readLong();
+		_targetItemObjId = readInt();
+		_refinerItemObjId = readInt();
+		_gemstoneItemObjId = readInt();
+		_gemStoneCount = readLong();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;

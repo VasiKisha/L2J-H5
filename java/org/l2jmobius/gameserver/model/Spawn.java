@@ -362,6 +362,11 @@ public class Spawn extends Location implements IIdentifiable, INamable
 	 */
 	private Npc initializeNpc(Npc npc)
 	{
+		// Make it alive
+		npc.setDead(false);
+		// Reset decay info
+		npc.setDecayed(false);
+		
 		int newlocx = 0;
 		int newlocy = 0;
 		int newlocz = -10000;
@@ -425,9 +430,6 @@ public class Spawn extends Location implements IIdentifiable, INamable
 		
 		npc.stopAllEffects();
 		
-		npc.setDead(false);
-		// Reset decay info
-		npc.setDecayed(false);
 		// Set the HP and MP of the Npc to the max
 		npc.setCurrentHpMp(npc.getMaxHp(), npc.getMaxMp());
 		// Clear script variables

@@ -44,7 +44,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.crypt.NewCrypt;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.network.WritablePacket;
+import org.l2jmobius.commons.network.base.BaseWritablePacket;
 import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -87,17 +87,8 @@ public class LoginServerThread extends Thread
 	private final String _hostname;
 	private final int _port;
 	private final int _gamePort;
-	private Socket _loginSocket;
+	private Socket _socket;
 	private OutputStream _out;
-	
-	/**
-	 * The BlowFish engine used to encrypt packets<br>
-	 * It is first initialized with a unified key:<br>
-	 * "_;v.]05-31!|+-%xT!^[$\00"<br>
-	 * and then after handshake, with a new key sent by<br>
-	 * login server during the handshake. This new key is stored<br>
-	 * in blowfishKey
-	 */
 	private NewCrypt _blowfish;
 	private byte[] _hexID;
 	private final boolean _acceptAlternate;
@@ -111,9 +102,6 @@ public class LoginServerThread extends Thread
 	private final List<String> _subnets;
 	private final List<String> _hosts;
 	
-	/**
-	 * Instantiates a new login server thread.
-	 */
 	protected LoginServerThread()
 	{
 		super("LoginServerThread");
@@ -148,13 +136,13 @@ public class LoginServerThread extends Thread
 			boolean checksumOk = false;
 			try
 			{
-				// Connection
+				// Connection.
 				LOGGER.info(getClass().getSimpleName() + ": Connecting to login on " + _hostname + ":" + _port);
-				_loginSocket = new Socket(_hostname, _port);
-				final InputStream in = _loginSocket.getInputStream();
-				_out = new BufferedOutputStream(_loginSocket.getOutputStream());
+				_socket = new Socket(_hostname, _port);
+				final InputStream in = _socket.getInputStream();
+				_out = new BufferedOutputStream(_socket.getOutputStream());
 				
-				// init Blowfish
+				// Initialize Blowfish.
 				final byte[] blowfishKey = CommonUtil.generateHex(40);
 				_blowfish = new NewCrypt("_;v.]05-31!|+-%xT!^[$\00");
 				while (!isInterrupted())
@@ -185,7 +173,7 @@ public class LoginServerThread extends Thread
 						break;
 					}
 					
-					// decrypt if we have a key
+					// Decrypt if we have a key.
 					_blowfish.decrypt(incoming, 0, incoming.length);
 					checksumOk = NewCrypt.verifyChecksum(incoming);
 					if (!checksumOk)
@@ -202,13 +190,11 @@ public class LoginServerThread extends Thread
 							final InitLS init = new InitLS(incoming);
 							if (init.getRevision() != REVISION)
 							{
-								// TODO: revision mismatch
 								LOGGER.warning("/!\\ Revision mismatch between LS and GS /!\\");
 								break;
 							}
 							
 							RSAPublicKey publicKey;
-							
 							try
 							{
 								final KeyFactory kfac = KeyFactory.getInstance("RSA");
@@ -221,9 +207,10 @@ public class LoginServerThread extends Thread
 								LOGGER.warning(getClass().getSimpleName() + ": Trouble while init the public key send by login");
 								break;
 							}
-							// send the blowfish key through the rsa encryption
+							
+							// Send the blowfish key through the RSA encryption.
 							sendPacket(new BlowFishKey(blowfishKey, publicKey));
-							// now, only accept packet with the new encryption
+							// Now, only accept packet with the new encryption.
 							_blowfish = new NewCrypt(blowfishKey);
 							sendPacket(new AuthRequest(_requestID, _acceptAlternate, _hexID, _gamePort, _reserveHost, _maxPlayer, _subnets, _hosts));
 							break;
@@ -232,7 +219,7 @@ public class LoginServerThread extends Thread
 						{
 							final LoginServerFail lsf = new LoginServerFail(incoming);
 							LOGGER.info(getClass().getSimpleName() + ": Damn! Registeration Failed: " + lsf.getReasonString());
-							// login will close the connection here
+							// Login will close the connection here.
 							break;
 						}
 						case 0x02:
@@ -242,6 +229,7 @@ public class LoginServerThread extends Thread
 							_serverName = aresp.getServerName();
 							Config.saveHexid(serverID, hexToString(_hexID));
 							LOGGER.info(getClass().getSimpleName() + ": Registered on login as Server " + serverID + ": " + _serverName);
+							
 							final ServerStatus st = new ServerStatus();
 							if (Config.SERVER_LIST_BRACKET)
 							{
@@ -310,7 +298,7 @@ public class LoginServerThread extends Thread
 									final PlayerInGame pig = new PlayerInGame(par.getAccount());
 									sendPacket(pig);
 									wcToRemove.gameClient.setConnectionState(ConnectionState.AUTHENTICATED);
-									wcToRemove.gameClient.setSessionId(wcToRemove.session);
+									wcToRemove.gameClient.setSessionId(wcToRemove.sessionKey);
 									final CharSelectionInfo cl = new CharSelectionInfo(wcToRemove.account, wcToRemove.gameClient.getSessionId().playOkID1);
 									wcToRemove.gameClient.sendPacket(cl);
 									wcToRemove.gameClient.setCharSelection(cl.getCharInfo());
@@ -362,7 +350,7 @@ public class LoginServerThread extends Thread
 			{
 				try
 				{
-					_loginSocket.close();
+					_socket.close();
 					if (isInterrupted())
 					{
 						return;
@@ -571,19 +559,19 @@ public class LoginServerThread extends Thread
 	 * Send packet.
 	 * @param packet the sendable packet
 	 */
-	private void sendPacket(WritablePacket packet)
+	private void sendPacket(BaseWritablePacket packet)
 	{
-		if (_blowfish == null)
+		if ((_blowfish == null) || (_socket == null) || _socket.isClosed())
 		{
 			return;
 		}
 		
 		try
 		{
-			packet.write(); // write initial data
-			packet.writeInt(0); // reserved for checksum
-			int size = packet.getLength() - 2; // size without header
-			final int padding = size % 8; // padding of 8 bytes
+			packet.write(); // Write initial data.
+			packet.writeInt(0); // Reserved for checksum.
+			int size = packet.getLength() - 2; // Size without header.
+			final int padding = size % 8; // Padding of 8 bytes.
 			if (padding != 0)
 			{
 				for (int i = padding; i < 8; i++)
@@ -592,11 +580,11 @@ public class LoginServerThread extends Thread
 				}
 			}
 			
-			// size header + encrypted[data + checksum (int) + padding]
+			// Size header + encrypted[data + checksum (int) + padding].
 			final byte[] data = packet.getSendableBytes();
 			
-			// encrypt
-			size = data.length - 2; // data size without header
+			// Encrypt.
+			size = data.length - 2; // Data size without header.
 			
 			synchronized (_out)
 			{
@@ -760,13 +748,6 @@ public class LoginServerThread extends Thread
 		public int loginOkID1;
 		public int loginOkID2;
 		
-		/**
-		 * Instantiates a new session key.
-		 * @param loginOK1 the login o k1
-		 * @param loginOK2 the login o k2
-		 * @param playOK1 the play o k1
-		 * @param playOK2 the play o k2
-		 */
 		public SessionKey(int loginOK1, int loginOK2, int playOK1, int playOK2)
 		{
 			playOkID1 = playOK1;
@@ -786,26 +767,16 @@ public class LoginServerThread extends Thread
 	{
 		public String account;
 		public GameClient gameClient;
-		public SessionKey session;
+		public SessionKey sessionKey;
 		
-		/**
-		 * Instantiates a new waiting client.
-		 * @param acc the acc
-		 * @param client the client
-		 * @param key the key
-		 */
 		public WaitingClient(String acc, GameClient client, SessionKey key)
 		{
 			account = acc;
 			gameClient = client;
-			session = key;
+			sessionKey = key;
 		}
 	}
 	
-	/**
-	 * Gets the single instance of LoginServerThread.
-	 * @return single instance of LoginServerThread
-	 */
 	public static LoginServerThread getInstance()
 	{
 		return SingletonHolder.INSTANCE;

@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class MagicSkillCanceled extends ServerPacket
@@ -28,9 +30,9 @@ public class MagicSkillCanceled extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.MAGIC_SKILL_CANCELED.writeId(this);
-		writeInt(_objectId);
+		ServerPackets.MAGIC_SKILL_CANCELED.writeId(this, buffer);
+		buffer.writeInt(_objectId);
 	}
 }

@@ -16,8 +16,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -41,18 +43,18 @@ public class ExChooseInventoryAttributeItem extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_CHOOSE_INVENTORY_ATTRIBUTE_ITEM.writeId(this);
-		writeInt(_itemId);
+		ServerPackets.EX_CHOOSE_INVENTORY_ATTRIBUTE_ITEM.writeId(this, buffer);
+		buffer.writeInt(_itemId);
 		// Structure for now
 		// Must be 0x01 for stone/crystal attribute type
-		writeInt(_atribute == Elementals.FIRE); // Fire
-		writeInt(_atribute == Elementals.WATER); // Water
-		writeInt(_atribute == Elementals.WIND); // Wind
-		writeInt(_atribute == Elementals.EARTH); // Earth
-		writeInt(_atribute == Elementals.HOLY); // Holy
-		writeInt(_atribute == Elementals.DARK); // Unholy
-		writeInt(_level); // Item max attribute level
+		buffer.writeInt(_atribute == Elementals.FIRE); // Fire
+		buffer.writeInt(_atribute == Elementals.WATER); // Water
+		buffer.writeInt(_atribute == Elementals.WIND); // Wind
+		buffer.writeInt(_atribute == Elementals.EARTH); // Earth
+		buffer.writeInt(_atribute == Elementals.HOLY); // Holy
+		buffer.writeInt(_atribute == Elementals.DARK); // Unholy
+		buffer.writeInt(_level); // Item max attribute level
 	}
 }

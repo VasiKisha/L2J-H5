@@ -128,26 +128,27 @@ public class Q00370_AnElderSowsSeeds extends Quest
 	@Override
 	public String onKill(Npc npc, Player player, boolean isSummon)
 	{
-		final int npcId = npc.getId();
-		if (MOBS1.containsKey(npcId))
+		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
+		if (qs != null)
 		{
-			if (getRandom(100) < MOBS1.get(npcId))
+			final int npcId = npc.getId();
+			if (MOBS1.containsKey(npcId))
 			{
-				final Player luckyPlayer = getRandomPartyMember(player, npc);
-				if (luckyPlayer != null)
+				if (getRandom(100) < MOBS1.get(npcId))
 				{
-					giveItemRandomly(luckyPlayer, npc, SPELLBOOK_PAGE, 1, 0, 1, true);
+					final Player luckyPlayer = getRandomPartyMember(player, npc);
+					if (luckyPlayer != null)
+					{
+						giveItemRandomly(luckyPlayer, npc, SPELLBOOK_PAGE, 1, 0, 1, true);
+					}
 				}
 			}
-		}
-		else
-		{
-			final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
-			if (qs != null)
+			else
 			{
 				giveItemRandomly(qs.getPlayer(), npc, SPELLBOOK_PAGE, 1, 0, MOBS2.get(npcId), true);
 			}
 		}
+		
 		return super.onKill(npc, player, isSummon);
 	}
 	

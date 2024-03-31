@@ -16,7 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
@@ -42,14 +44,14 @@ public class ExFishingStartCombat extends ServerPacket
 	}
 	
 	@Override
-	public void write()
+	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
-		ServerPackets.EX_FISHING_START_COMBAT.writeId(this);
-		writeInt(_creature.getObjectId());
-		writeInt(_time);
-		writeInt(_hp);
-		writeByte(_mode); // mode: 0 = resting, 1 = fighting
-		writeByte(_lureType); // 0 = newbie lure, 1 = normal lure, 2 = night lure
-		writeByte(_deceptiveMode); // Fish Deceptive Mode: 0 = no, 1 = yes
+		ServerPackets.EX_FISHING_START_COMBAT.writeId(this, buffer);
+		buffer.writeInt(_creature.getObjectId());
+		buffer.writeInt(_time);
+		buffer.writeInt(_hp);
+		buffer.writeByte(_mode); // mode: 0 = resting, 1 = fighting
+		buffer.writeByte(_lureType); // 0 = newbie lure, 1 = normal lure, 2 = night lure
+		buffer.writeByte(_deceptiveMode); // Fish Deceptive Mode: 0 = no, 1 = yes
 	}
 }

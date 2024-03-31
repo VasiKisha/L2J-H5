@@ -21,13 +21,11 @@ import java.sql.PreparedStatement;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.network.ReadablePacket;
-import org.l2jmobius.gameserver.data.ItemTable;
+import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.PrimeShopData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.holders.PrimeShopProductHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.ExBrBuyProduct;
 import org.l2jmobius.gameserver.network.serverpackets.ExBrGamePoint;
@@ -36,22 +34,22 @@ import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 /**
  * @author Mobius
  */
-public class RequestBrBuyProduct implements ClientPacket
+public class RequestBrBuyProduct extends ClientPacket
 {
 	private int _productId;
 	private int _count;
 	
 	@Override
-	public void read(ReadablePacket packet)
+	protected void readImpl()
 	{
-		_productId = packet.readInt();
-		_count = packet.readInt();
+		_productId = readInt();
+		_count = readInt();
 	}
 	
 	@Override
-	public void run(GameClient client)
+	protected void runImpl()
 	{
-		final Player player = client.getPlayer();
+		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
@@ -83,7 +81,7 @@ public class RequestBrBuyProduct implements ClientPacket
 			return;
 		}
 		
-		final ItemTemplate item = ItemTable.getInstance().getTemplate(product.getItemId());
+		final ItemTemplate item = ItemData.getInstance().getTemplate(product.getItemId());
 		if (item == null)
 		{
 			player.sendPacket(new ExBrBuyProduct(ExBrBuyProduct.RESULT_WRONG_PRODUCT));
