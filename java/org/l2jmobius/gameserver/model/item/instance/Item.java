@@ -69,6 +69,7 @@ import org.l2jmobius.gameserver.model.item.type.ItemType;
 import org.l2jmobius.gameserver.model.options.EnchantOptions;
 import org.l2jmobius.gameserver.model.options.Options;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.functions.AbstractFunction;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.DropItem;
@@ -1996,21 +1997,23 @@ public class Item extends WorldObject
 	
 	public void giveSkillsToOwner()
 	{
-		if (!hasPassiveSkills())
+		if (!isEquipped() && !hasPassiveSkills())
 		{
 			return;
 		}
 		
 		final Player player = getActingPlayer();
-		
-		if (player != null)
+		if (player == null)
 		{
-			for (SkillHolder sh : _itemTemplate.getSkills())
+			return;
+		}
+		
+		for (SkillHolder holder : _itemTemplate.getSkills())
+		{
+			final Skill skill = holder.getSkill();
+			if (skill.isPassive())
 			{
-				if (sh.getSkill().isPassive())
-				{
-					player.addSkill(sh.getSkill(), false);
-				}
+				player.addSkill(skill, false);
 			}
 		}
 	}
@@ -2023,14 +2026,14 @@ public class Item extends WorldObject
 		}
 		
 		final Player player = getActingPlayer();
-		
 		if (player != null)
 		{
-			for (SkillHolder sh : _itemTemplate.getSkills())
+			for (SkillHolder holder : _itemTemplate.getSkills())
 			{
-				if (sh.getSkill().isPassive())
+				final Skill skill = holder.getSkill();
+				if (skill.isPassive())
 				{
-					player.removeSkill(sh.getSkill(), false, true);
+					player.removeSkill(skill, false, true);
 				}
 			}
 		}
