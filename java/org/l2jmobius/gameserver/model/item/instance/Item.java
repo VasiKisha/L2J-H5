@@ -1997,6 +1997,11 @@ public class Item extends WorldObject
 	
 	public void giveSkillsToOwner()
 	{
+		if (!_itemTemplate.hasSkills())
+		{
+			return;
+		}
+		
 		if (!isEquipped() && !hasPassiveSkills())
 		{
 			return;
