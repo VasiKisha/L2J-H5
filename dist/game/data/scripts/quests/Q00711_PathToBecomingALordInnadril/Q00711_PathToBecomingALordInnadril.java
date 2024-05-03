@@ -64,7 +64,7 @@ public class Q00711_PathToBecomingALordInnadril extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = event;
 		final QuestState qs = player.getQuestState(getName());

@@ -82,7 +82,7 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ("DESPAWN_5".equals(event))
 		{
@@ -90,7 +90,7 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 			{
 				npc.deleteMe();
 			}
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		else if ("DESPAWN_70".equals(event))
 		{
@@ -105,7 +105,7 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 				}
 			}
 			npc.deleteMe();
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		
 		final QuestState qs = getQuestState(player, false);

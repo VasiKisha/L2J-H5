@@ -137,7 +137,7 @@ public class DragonValley extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equals("SELF_DESTRUCTION") && (npc != null) && !npc.isDead())
 		{
@@ -152,7 +152,7 @@ public class DragonValley extends AbstractNpcAI
 				startQuestTimer("SELF_DESTRUCTION", 3000, npc, null);
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

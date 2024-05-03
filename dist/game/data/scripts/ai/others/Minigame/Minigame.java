@@ -68,7 +68,7 @@ public class Minigame extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final MinigameRoom room = getRoomByManager(npc);
 		switch (event)

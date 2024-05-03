@@ -118,7 +118,7 @@ public class Q00348_AnArrogantSearch extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		switch (npc.getId())
 		{
@@ -129,7 +129,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				if ("DESPAWN".equals(event))
 				{
 					npc.deleteMe();
-					return super.onAdvEvent(event, npc, player);
+					return super.onEvent(event, npc, player);
 				}
 			}
 		}

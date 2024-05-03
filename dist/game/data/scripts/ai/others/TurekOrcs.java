@@ -54,7 +54,7 @@ public class TurekOrcs extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("checkState") && !npc.isDead() && (npc.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK))
 		{
@@ -68,7 +68,7 @@ public class TurekOrcs extends AbstractNpcAI
 				npc.getVariables().remove("state");
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

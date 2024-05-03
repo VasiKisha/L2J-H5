@@ -68,7 +68,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = null;
 		// Manage Sponsor's quest events.

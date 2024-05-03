@@ -157,7 +157,7 @@ public abstract class FlagWar extends ClanHallSiegeEngine
 	}
 	
 	@Override
-	public synchronized String onAdvEvent(String event, Npc npc, Player player)
+	public synchronized String onEvent(String event, Npc npc, Player player)
 	{
 		String html = event;
 		final Clan clan = player.getClan();

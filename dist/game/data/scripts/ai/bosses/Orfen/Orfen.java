@@ -169,7 +169,7 @@ public class Orfen extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("orfen_unlock"))
 		{
@@ -232,7 +232,7 @@ public class Orfen extends AbstractNpcAI
 			mob.setIsRaidMinion(true);
 			MINIONS.add(mob);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

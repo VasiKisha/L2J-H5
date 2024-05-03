@@ -137,7 +137,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null))
@@ -332,7 +332,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 				}
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	private String takeHtml(Player player, QuestState qs, int num, int npcId)

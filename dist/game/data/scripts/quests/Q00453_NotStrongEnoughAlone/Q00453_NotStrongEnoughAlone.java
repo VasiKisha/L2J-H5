@@ -211,7 +211,7 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final String htmltext = event;
 		final QuestState qs = getQuestState(player, false);

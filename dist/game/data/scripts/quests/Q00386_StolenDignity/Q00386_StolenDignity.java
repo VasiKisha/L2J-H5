@@ -134,7 +134,7 @@ public class Q00386_StolenDignity extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && (npc.getId() == WAREHOUSE_KEEPER_ROMP))
@@ -269,7 +269,7 @@ public class Q00386_StolenDignity extends Quest
 				}
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	private String takeHtml(Player player, QuestState qs, int num)

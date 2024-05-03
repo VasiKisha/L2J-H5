@@ -221,7 +221,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	
 	/**
 	 * Add a timer to the quest (if it doesn't exist already) and start it.
-	 * @param name the name of the timer (also passed back as "event" in {@link #onAdvEvent(String, Npc, Player)})
+	 * @param name the name of the timer (also passed back as "event" in {@link #onEvent(String, Npc, Player)})
 	 * @param time time in ms for when to fire the timer
 	 * @param npc the NPC associated with this timer (can be null)
 	 * @param player the player associated with this timer (can be null)
@@ -243,7 +243,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	
 	/**
 	 * Add a timer to the quest (if it doesn't exist already) and start it.
-	 * @param name the name of the timer (also passed back as "event" in {@link #onAdvEvent(String, Npc, Player)})
+	 * @param name the name of the timer (also passed back as "event" in {@link #onEvent(String, Npc, Player)})
 	 * @param time time in ms for when to fire the timer
 	 * @param npc the NPC associated with this timer (can be null)
 	 * @param player the player associated with this timer (can be null)
@@ -529,7 +529,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 		String res = null;
 		try
 		{
-			res = onAdvEvent(event, npc, player);
+			res = onEvent(event, npc, player);
 		}
 		catch (Exception e)
 		{
@@ -985,12 +985,11 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 */
 	public String onDeath(Creature killer, Creature victim, QuestState qs)
 	{
-		return onAdvEvent("", (killer instanceof Npc) ? (Npc) killer : null, qs.getPlayer());
+		return onEvent("", (killer instanceof Npc) ? (Npc) killer : null, qs.getPlayer());
 	}
 	
 	/**
 	 * This function is called whenever a player clicks on a link in a quest dialog and whenever a timer fires.<br>
-	 * If is not overridden by a subclass, then default to the returned value of the simpler (and older) {@link #onEvent(String, QuestState)} override.<br>
 	 * If the player has a quest state, use it as parameter in the next call, otherwise return null.
 	 * @param event this parameter contains a string identifier for the event.<br>
 	 *            Generally, this string is passed directly via the link.<br>
@@ -1009,35 +1008,7 @@ public class Quest extends AbstractScript implements IIdentifiable
 	 *            This parameter may be {@code null} in certain circumstances.
 	 * @return the text returned by the event (may be {@code null}, a filename or just text)
 	 */
-	public String onAdvEvent(String event, Npc npc, Player player)
-	{
-		if (player != null)
-		{
-			final QuestState qs = player.getQuestState(getName());
-			if (qs != null)
-			{
-				return onEvent(event, qs);
-			}
-		}
-		return null;
-	}
-	
-	/**
-	 * This function is called in place of {@link #onAdvEvent(String, Npc, Player)} if the former is not implemented.<br>
-	 * If a script contains both {@link #onAdvEvent(String, Npc, Player)} and this implementation, then this method will never be called unless the script's {@link #onAdvEvent(String, Npc, Player)} explicitly calls this method.
-	 * @param event this parameter contains a string identifier for the event.<br>
-	 *            Generally, this string is passed directly via the link.<br>
-	 *            For example:<br>
-	 *            <code>
-	 *            &lt;a action="bypass -h Quest 626_ADarkTwilight 31517-01.htm"&gt;hello&lt;/a&gt;
-	 *            </code><br>
-	 *            The above link sets the event variable to "31517-01.htm" for the quest 626_ADarkTwilight.<br>
-	 *            In the case of timers, this will be the name of the timer.<br>
-	 *            This parameter serves as a sort of identifier.
-	 * @param qs this parameter contains a reference to the quest state of the player who used the link or started the timer.
-	 * @return the text returned by the event (may be {@code null}, a filename or just text)
-	 */
-	public String onEvent(String event, QuestState qs)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		return null;
 	}

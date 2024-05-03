@@ -42,7 +42,7 @@ public class Deltuva extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("teleport"))
 		{
@@ -53,6 +53,6 @@ public class Deltuva extends AbstractNpcAI
 			}
 			player.teleToLocation(TELEPORT);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 }

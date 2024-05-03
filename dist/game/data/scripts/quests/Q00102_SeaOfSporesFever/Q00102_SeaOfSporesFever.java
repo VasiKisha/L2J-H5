@@ -85,7 +85,7 @@ public class Q00102_SeaOfSporesFever extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && event.equals("30284-02.htm"))
@@ -94,7 +94,7 @@ public class Q00102_SeaOfSporesFever extends Quest
 			giveItems(player, ALBERIUS_LETTER, 1);
 			return event;
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

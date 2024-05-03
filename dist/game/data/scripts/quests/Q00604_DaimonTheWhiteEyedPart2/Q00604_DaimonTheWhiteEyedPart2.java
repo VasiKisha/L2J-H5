@@ -69,7 +69,7 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ("DESPAWN".equals(event))
 		{
@@ -78,7 +78,7 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.CAN_LIGHT_EXIST_WITHOUT_DARKNESS));
 				npc.deleteMe();
 			}
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		
 		final QuestState qs = getQuestState(player, false);

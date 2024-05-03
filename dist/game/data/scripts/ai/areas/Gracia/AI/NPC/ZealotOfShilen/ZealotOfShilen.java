@@ -47,7 +47,7 @@ public class ZealotOfShilen extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (npc == null)
 		{
@@ -75,7 +75,7 @@ public class ZealotOfShilen extends AbstractNpcAI
 			}
 		}
 		
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

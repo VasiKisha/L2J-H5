@@ -99,7 +99,7 @@ public class EmeraldHorn extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (DAMAGE_TIMER_15S.equals(event))
 		{
@@ -120,7 +120,7 @@ public class EmeraldHorn extends AbstractNpcAI
 			}
 			npc.getVariables().set(CAST_FLAG, false);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	public static void main(String[] args)

@@ -113,7 +113,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("altarSpawn"))
 		{

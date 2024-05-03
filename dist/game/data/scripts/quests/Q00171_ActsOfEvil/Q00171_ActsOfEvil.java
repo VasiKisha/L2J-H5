@@ -77,7 +77,7 @@ public class Q00171_ActsOfEvil extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ("DESPAWN".equals(event))
 		{
@@ -86,7 +86,7 @@ public class Q00171_ActsOfEvil extends Quest
 				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.YOU_SHOULD_CONSIDER_GOING_BACK));
 				npc.deleteMe();
 			}
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		
 		final QuestState qs = getQuestState(player, false);

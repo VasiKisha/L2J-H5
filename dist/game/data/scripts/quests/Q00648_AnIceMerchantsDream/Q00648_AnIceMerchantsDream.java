@@ -99,7 +99,7 @@ public class Q00648_AnIceMerchantsDream extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
 		final QuestState q115 = player.getQuestState(Q00115_TheOtherSideOfTruth.class.getSimpleName());

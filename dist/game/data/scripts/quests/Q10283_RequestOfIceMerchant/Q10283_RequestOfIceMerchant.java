@@ -48,14 +48,14 @@ public class Q10283_RequestOfIceMerchant extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ((npc.getId() == JINIA) && "DESPAWN".equals(event))
 		{
 			isBusy = false;
 			talker = 0;
 			npc.deleteMe();
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		
 		final QuestState qs = getQuestState(player, false);

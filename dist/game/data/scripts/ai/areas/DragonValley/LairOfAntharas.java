@@ -53,7 +53,7 @@ public class LairOfAntharas extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equals("CHECK_HOME") && (npc != null) && !npc.isDead())
 		{
@@ -67,7 +67,7 @@ public class LairOfAntharas extends AbstractNpcAI
 				npc.broadcastPacket(new ValidateLocation(npc));
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

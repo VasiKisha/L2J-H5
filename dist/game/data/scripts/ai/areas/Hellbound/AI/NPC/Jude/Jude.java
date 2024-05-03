@@ -41,7 +41,7 @@ public class Jude extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ("TreasureSacks".equalsIgnoreCase(event))
 		{
@@ -53,7 +53,7 @@ public class Jude extends AbstractNpcAI
 			}
 			return "32356-02a.htm";
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

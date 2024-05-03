@@ -83,7 +83,7 @@ public class Q00458_PerfectForm extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final String noQuest = getNoQuestMsg(player);
 		final QuestState qs = getQuestState(player, false);

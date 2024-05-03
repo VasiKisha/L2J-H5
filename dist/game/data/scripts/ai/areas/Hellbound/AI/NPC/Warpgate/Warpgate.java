@@ -63,7 +63,7 @@ public class Warpgate extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equals("enter"))
 		{
@@ -80,7 +80,7 @@ public class Warpgate extends AbstractNpcAI
 		{
 			player.teleToLocation(REMOVE_LOC, true);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

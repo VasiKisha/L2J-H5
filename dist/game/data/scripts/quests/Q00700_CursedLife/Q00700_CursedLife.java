@@ -72,7 +72,7 @@ public class Q00700_CursedLife extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		QuestState qs = getQuestState(player, false);
 		String htmltext = null;

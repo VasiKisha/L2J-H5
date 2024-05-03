@@ -68,7 +68,7 @@ public class HellboundEngine extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equals(UPDATE_EVENT))
 		{
@@ -88,7 +88,7 @@ public class HellboundEngine extends AbstractNpcAI
 			}
 			startQuestTimer(UPDATE_EVENT, UPDATE_INTERVAL, null, null);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	/**

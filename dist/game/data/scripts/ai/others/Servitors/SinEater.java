@@ -48,7 +48,7 @@ public class SinEater extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equals("TALK") && (player != null) && (player.getSummon() != null))
 		{
@@ -79,7 +79,7 @@ public class SinEater extends AbstractNpcAI
 			}
 			startQuestTimer("TALK", 60000, null, player);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@RegisterEvent(EventType.ON_CREATURE_DEATH)

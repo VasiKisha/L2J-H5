@@ -53,7 +53,7 @@ public class Q00033_MakeAPairOfDressShoes extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if (qs == null)

@@ -83,7 +83,7 @@ public class Q00236_SeedsOfChaos extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ("KATENAR_120".equals(event))
 		{
@@ -98,7 +98,7 @@ public class Q00236_SeedsOfChaos extends Quest
 				}
 			}
 			npc.deleteMe();
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		else if ("HARKILGAMED_120".equals(event))
 		{
@@ -109,7 +109,7 @@ public class Q00236_SeedsOfChaos extends Quest
 				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.GRAAAH_WE_RE_BEING_ATTACKED));
 			}
 			npc.deleteMe();
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		else if ("KATENAR_A_120".equals(event))
 		{
@@ -124,7 +124,7 @@ public class Q00236_SeedsOfChaos extends Quest
 				}
 			}
 			npc.deleteMe();
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		else if ("KATENAR_B_120".equals(event))
 		{
@@ -139,7 +139,7 @@ public class Q00236_SeedsOfChaos extends Quest
 				}
 			}
 			npc.deleteMe();
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		else if ("HARKILGAMED_A_120".equals(event))
 		{
@@ -150,7 +150,7 @@ public class Q00236_SeedsOfChaos extends Quest
 				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.GRAAAH_WE_RE_BEING_ATTACKED));
 			}
 			npc.deleteMe();
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		
 		final QuestState qs = getQuestState(player, false);

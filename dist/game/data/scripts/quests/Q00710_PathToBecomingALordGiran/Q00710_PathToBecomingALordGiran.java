@@ -73,7 +73,7 @@ public class Q00710_PathToBecomingALordGiran extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = player.getQuestState(getName());
 		final Castle castle = CastleManager.getInstance().getCastleById(GIRAN_CASTLE);

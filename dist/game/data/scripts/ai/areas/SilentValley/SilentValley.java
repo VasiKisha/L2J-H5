@@ -70,7 +70,7 @@ public class SilentValley extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ((npc != null) && !npc.isDead())
 		{

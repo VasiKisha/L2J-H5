@@ -111,7 +111,7 @@ public class Q00060_GoodWorksReward extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ("DESPAWN".equals(event))
 		{
@@ -122,7 +122,7 @@ public class Q00060_GoodWorksReward extends Quest
 				npc0.getVariables().set("SPAWNED", false);
 			}
 			npc.deleteMe();
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		
 		final QuestState qs = getQuestState(player, false);

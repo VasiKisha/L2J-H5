@@ -58,7 +58,7 @@ public class Q00275_DarkWingedSpies extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && event.equals("30567-03.htm"))

@@ -492,7 +492,7 @@ public class FeedableBeasts extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("polymorph Mad Cow") && (npc != null) && (player != null) && MAD_COW_POLYMORPH.containsKey(npc.getId()))
 		{
@@ -512,7 +512,7 @@ public class FeedableBeasts extends AbstractNpcAI
 			nextNpc.addDamageHate(player, 0, 99999);
 			nextNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

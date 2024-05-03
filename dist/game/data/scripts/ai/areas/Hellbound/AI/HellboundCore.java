@@ -43,7 +43,7 @@ public class HellboundCore extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("cast") && (HellboundEngine.getInstance().getLevel() <= 6))
 		{
@@ -57,7 +57,7 @@ public class HellboundCore extends AbstractNpcAI
 			});
 			startQuestTimer("cast", 10000, npc, null);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

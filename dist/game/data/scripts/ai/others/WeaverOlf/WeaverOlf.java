@@ -157,7 +157,7 @@ public class WeaverOlf extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.contains("_grade_"))
 		{
@@ -186,7 +186,7 @@ public class WeaverOlf extends AbstractNpcAI
 			}
 			else
 			{
-				return super.onAdvEvent(event, npc, player);
+				return super.onEvent(event, npc, player);
 			}
 			
 			if (hasQuestItems(player, itemIds[0]))
@@ -226,7 +226,7 @@ public class WeaverOlf extends AbstractNpcAI
 			{
 				return npc.getId() + "-no.htm";
 			}
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		return event;
 	}

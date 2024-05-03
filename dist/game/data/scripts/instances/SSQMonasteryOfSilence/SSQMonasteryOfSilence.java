@@ -197,7 +197,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if (world != null)
@@ -443,7 +443,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 				}
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

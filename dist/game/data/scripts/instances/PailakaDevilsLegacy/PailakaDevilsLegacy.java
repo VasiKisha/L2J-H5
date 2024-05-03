@@ -97,7 +97,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		String htmltext = null;

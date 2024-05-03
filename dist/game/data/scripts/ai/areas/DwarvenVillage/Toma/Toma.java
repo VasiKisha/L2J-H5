@@ -43,12 +43,12 @@ public class Toma extends AbstractNpcAI
 	private Toma()
 	{
 		addFirstTalkId(TOMA);
-		onAdvEvent("RESPAWN_TOMA", null, null);
+		onEvent("RESPAWN_TOMA", null, null);
 		startQuestTimer("RESPAWN_TOMA", TELEPORT_DELAY, null, null, true);
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equals("RESPAWN_TOMA"))
 		{

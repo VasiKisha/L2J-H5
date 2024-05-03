@@ -71,7 +71,7 @@ public class Q00264_KeenClaws extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && event.equals("30136-03.htm"))

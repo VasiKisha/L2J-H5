@@ -61,7 +61,7 @@ public class Selina extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final BuffHolder buff = BUFFS.get(event);
 		if (buff != null)
@@ -69,7 +69,7 @@ public class Selina extends AbstractNpcAI
 			if ((getQuestItemsCount(player, GOLDEN_RAM_COIN) >= buff.getCost()))
 			{
 				castSkill(npc, player, buff);
-				return super.onAdvEvent(event, npc, player);
+				return super.onEvent(event, npc, player);
 			}
 		}
 		else

@@ -83,7 +83,7 @@ public class AnomicFoundry extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("make_spawn_1"))
 		{
@@ -116,7 +116,7 @@ public class AnomicFoundry extends AbstractNpcAI
 		{
 			respawnTime = 60000;
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

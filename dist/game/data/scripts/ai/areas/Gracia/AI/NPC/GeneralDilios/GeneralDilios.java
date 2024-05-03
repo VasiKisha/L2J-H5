@@ -59,7 +59,7 @@ public class GeneralDilios extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.startsWith("command_"))
 		{
@@ -88,7 +88,7 @@ public class GeneralDilios extends AbstractNpcAI
 				startQuestTimer("guard_animation_" + (value + 1), 1500, null, null);
 			}
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

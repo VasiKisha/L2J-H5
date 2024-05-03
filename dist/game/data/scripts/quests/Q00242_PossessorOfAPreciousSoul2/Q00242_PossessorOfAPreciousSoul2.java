@@ -64,7 +64,7 @@ public class Q00242_PossessorOfAPreciousSoul2 extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState st = getQuestState(player, false);
 		if (st == null)

@@ -75,7 +75,7 @@ public class FreyaCelebration extends LongTimeEvent
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("give_potion"))
 		{

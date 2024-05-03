@@ -196,7 +196,7 @@ public class StakatoNest extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ((npc == null) || (player == null) || npc.isDead())
 		{
@@ -224,7 +224,7 @@ public class StakatoNest extends AbstractNpcAI
 			addAttackDesire(spawned, player);
 			npc.deleteMe();
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	private static Monster checkMinion(Npc npc)

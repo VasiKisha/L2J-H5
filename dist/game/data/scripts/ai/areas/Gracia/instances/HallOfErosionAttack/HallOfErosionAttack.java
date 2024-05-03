@@ -399,7 +399,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getPlayerWorld(player);
 		if (tmpworld instanceof HEAWorld)

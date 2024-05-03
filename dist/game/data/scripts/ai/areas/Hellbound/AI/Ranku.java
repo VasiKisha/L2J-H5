@@ -50,7 +50,7 @@ public class Ranku extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("checkup") && (npc.getId() == RANKU) && !npc.isDead())
 		{
@@ -64,7 +64,7 @@ public class Ranku extends AbstractNpcAI
 			}
 			startQuestTimer("checkup", 1000, npc, null);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

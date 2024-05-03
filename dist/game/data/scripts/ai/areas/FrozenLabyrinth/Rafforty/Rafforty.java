@@ -35,7 +35,7 @@ public class Rafforty extends AbstractNpcAI
 	private static final int BOTTLE = 16027;
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = event;
 		switch (event)

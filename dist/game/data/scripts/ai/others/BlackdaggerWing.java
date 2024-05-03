@@ -101,14 +101,14 @@ public class BlackdaggerWing extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (DAMAGE_TIMER.equals(event))
 		{
 			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK);
 			startQuestTimer(DAMAGE_TIMER, 30000, npc, player);
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	public static void main(String[] args)

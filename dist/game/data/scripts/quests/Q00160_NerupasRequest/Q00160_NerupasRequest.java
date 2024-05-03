@@ -53,7 +53,7 @@ public class Q00160_NerupasRequest extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && event.equals("30370-04.htm"))

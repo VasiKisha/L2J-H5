@@ -50,7 +50,7 @@ public class Q00173_ToTheIsleOfSouls extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState st = getQuestState(player, false);
 		if (st == null)

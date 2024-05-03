@@ -128,7 +128,7 @@ public class SupportUnitCaptain extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		final int fortOwner = npc.getFort().getOwnerClan() == null ? 0 : npc.getFort().getOwnerClan().getId();
 		if ((player.getClan() == null) || (player.getClanId() != fortOwner))

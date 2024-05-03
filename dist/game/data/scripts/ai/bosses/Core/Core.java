@@ -143,7 +143,7 @@ public class Core extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (event.equalsIgnoreCase("core_unlock"))
 		{
@@ -162,7 +162,7 @@ public class Core extends AbstractNpcAI
 			_minions.forEach(Attackable::decayMe);
 			_minions.clear();
 		}
-		return super.onAdvEvent(event, npc, player);
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override

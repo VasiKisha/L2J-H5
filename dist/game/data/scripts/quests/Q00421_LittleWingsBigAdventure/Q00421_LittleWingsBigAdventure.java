@@ -86,7 +86,7 @@ public class Q00421_LittleWingsBigAdventure extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if ("DESPAWN_GUARDIAN".equals(event))
 		{
@@ -94,7 +94,7 @@ public class Q00421_LittleWingsBigAdventure extends Quest
 			{
 				npc.deleteMe();
 			}
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		
 		final QuestState qs = getQuestState(player, false);

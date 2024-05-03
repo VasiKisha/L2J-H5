@@ -521,7 +521,7 @@ public class Q00234_FatesWhisper extends Quest
 	}
 	
 	@Override
-	public String onAdvEvent(String event, Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
 		if (player == null)
 		{
@@ -529,7 +529,7 @@ public class Q00234_FatesWhisper extends Quest
 			{
 				npc.decayMe();
 			}
-			return super.onAdvEvent(event, npc, player);
+			return super.onEvent(event, npc, player);
 		}
 		
 		final QuestState qs = getQuestState(player, false);
