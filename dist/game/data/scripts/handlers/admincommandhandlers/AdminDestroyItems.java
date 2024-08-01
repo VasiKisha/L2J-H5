@@ -49,7 +49,7 @@ public class AdminDestroyItems implements IAdminCommandHandler
 			iu.addRemovedItem(item);
 			inventory.destroyItem("Admin Destroy", item, activeChar, null);
 		}
-		activeChar.sendPacket(iu);
+		activeChar.sendInventoryUpdate(iu);
 		return true;
 	}
 	

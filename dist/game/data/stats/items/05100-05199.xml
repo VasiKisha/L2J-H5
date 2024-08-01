@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="5100" type="EtcItem" name="Mature Desert Coda">
 		<set name="icon" val="icon.etc_coda_i05" />
@@ -811,7 +811,7 @@
 		<set name="handler" val="PetFood" />
 		<set name="item_skill" val="2101-1" /> <!-- Feed: General Strider -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 	</item>
@@ -828,7 +828,7 @@
 		<set name="handler" val="PetFood" />
 		<set name="item_skill" val="2102-1" /> <!-- Feed: Clan Hall Strider -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 	</item>
@@ -843,7 +843,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="412500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -862,7 +862,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="598500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -881,7 +881,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="928500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -900,7 +900,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="1335500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -919,7 +919,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="2032000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -938,7 +938,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="2784000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -960,7 +960,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="800000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -984,7 +984,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="1150000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -1008,7 +1008,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="1700000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -1032,7 +1032,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="2450000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -1056,7 +1056,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="3650000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -1080,7 +1080,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="5000000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER" />
 		</cond>
 		<for>
@@ -1101,7 +1101,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="598500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
 		</cond>
 		<for>
@@ -1120,7 +1120,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="928500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
 		</cond>
 		<for>
@@ -1139,7 +1139,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="1335500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
 		</cond>
 		<for>
@@ -1158,7 +1158,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="2032000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
 		</cond>
 		<for>
@@ -1177,7 +1177,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="2784000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
 		</cond>
 		<for>
@@ -1199,7 +1199,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="1150000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
 		</cond>
 		<for>
@@ -1223,7 +1223,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="1700000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
 		</cond>
 		<for>
@@ -1247,7 +1247,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="2450000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
 		</cond>
 		<for>
@@ -1271,7 +1271,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="3650000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
 		</cond>
 		<for>
@@ -1295,7 +1295,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="5000000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
 		</cond>
 		<for>

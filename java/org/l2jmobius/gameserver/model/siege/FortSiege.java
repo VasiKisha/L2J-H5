@@ -710,14 +710,14 @@ public class FortSiege implements Siegable
 	{
 		if (player.getClan() == null)
 		{
-			return 0; // Player dont have clan
+			return 0; // Player does not have clan
 		}
 		
 		if (checkConditions)
 		{
 			if (_fort.getSiege().getAttackerClans().isEmpty() && (player.getInventory().getAdena() < 250000))
 			{
-				return 1; // Player dont havee enough adena to register
+				return 1; // Player does not havee enough adena to register
 			}
 			
 			else if ((System.currentTimeMillis() < TerritoryWarManager.getInstance().getTWStartTimeInMillis()) && TerritoryWarManager.getInstance().isRegistrationOver())

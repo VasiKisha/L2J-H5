@@ -21,6 +21,8 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.PacketLogger;
+import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.EnchantResult;
 import org.l2jmobius.gameserver.util.Util;
 
 /**
@@ -59,6 +61,9 @@ public class RequestGetItemFromPet extends ClientPacket
 		final Pet pet = (Pet) player.getSummon();
 		if (player.getActiveEnchantItemId() != Player.ID_NONE)
 		{
+			player.setActiveEnchantItemId(Player.ID_NONE);
+			player.sendPacket(SystemMessageId.YOU_HAVE_CANCELLED_THE_ENCHANTING_PROCESS);
+			player.sendPacket(new EnchantResult(2, 0, 0));
 			return;
 		}
 		

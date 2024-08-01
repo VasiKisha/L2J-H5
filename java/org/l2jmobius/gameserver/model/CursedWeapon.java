@@ -41,7 +41,6 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.ExRedSky;
-import org.l2jmobius.gameserver.network.serverpackets.ItemList;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
@@ -108,7 +107,7 @@ public class CursedWeapon implements INamable
 				
 				// Destroy
 				_player.getInventory().destroyItemByItemId("", _itemId, 1, _player, null);
-				_player.sendPacket(new ItemList(_player, true));
+				_player.sendItemList(true);
 				_player.broadcastUserInfo();
 			}
 			else
@@ -149,7 +148,7 @@ public class CursedWeapon implements INamable
 		{
 			// Destroy
 			_player.getInventory().destroyItemByItemId("", _itemId, 1, _player, null);
-			_player.sendPacket(new ItemList(_player, true));
+			_player.sendItemList(true);
 			_player.broadcastUserInfo();
 		}
 		// is dropped on the ground
@@ -404,7 +403,7 @@ public class CursedWeapon implements INamable
 		_player.setCurrentCp(_player.getMaxCp());
 		
 		// Refresh inventory
-		_player.sendPacket(new ItemList(_player, false));
+		_player.sendItemList(false);
 		
 		// Refresh player stats
 		_player.broadcastUserInfo();

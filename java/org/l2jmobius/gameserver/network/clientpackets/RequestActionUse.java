@@ -266,7 +266,7 @@ public class RequestActionUse extends ClientPacket
 					player.sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
-				if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+				if (player.isInStoreMode())
 				{
 					player.setPrivateStoreType(PrivateStoreType.NONE);
 					player.broadcastUserInfo();

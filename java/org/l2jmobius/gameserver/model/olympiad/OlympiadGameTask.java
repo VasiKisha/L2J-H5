@@ -31,7 +31,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 public class OlympiadGameTask implements Runnable
 {
 	protected static final Logger LOGGER = Logger.getLogger(OlympiadGameTask.class.getName());
-	protected static final long BATTLE_PERIOD = Config.ALT_OLY_BATTLE; // 6 mins
+	protected static final long BATTLE_PERIOD = Config.OLYMPIAD_BATTLE; // 6 mins
 	
 	private static final int[] TELEPORT_TO_ARENA_TIMES =
 	{
@@ -160,7 +160,7 @@ public class OlympiadGameTask implements Runnable
 				case BEGIN:
 				{
 					_state = OlympiadGameState.TELEPORT_TO_ARENA;
-					_countDown = Config.ALT_OLY_WAIT_TIME;
+					_countDown = Config.OLYMPIAD_WAIT_TIME;
 					break;
 				}
 				// Teleport to arena countdown
@@ -249,7 +249,7 @@ public class OlympiadGameTask implements Runnable
 				case BATTLE_IN_PROGRESS:
 				{
 					_countDown += 1000;
-					if (checkBattle() || (_countDown > Config.ALT_OLY_BATTLE))
+					if (checkBattle() || (_countDown > Config.OLYMPIAD_BATTLE))
 					{
 						_state = OlympiadGameState.GAME_STOPPED;
 					}

@@ -19,11 +19,12 @@ package handlers.effecthandlers;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Take Territory Flag effect implementation.
@@ -45,9 +46,9 @@ public class TakeTerritoryFlag extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Player player = info.getEffector().getActingPlayer();
+		final Player player = effector.getActingPlayer();
 		if (!player.isClanLeader())
 		{
 			return;
@@ -55,7 +56,7 @@ public class TakeTerritoryFlag extends AbstractEffect
 		
 		if (TerritoryWarManager.getInstance().isTWInProgress())
 		{
-			// Spawn a new flag
+			// Spawn a new flag.
 			final SiegeFlag flag = new SiegeFlag(player, NpcData.getInstance().getTemplate(FLAG_NPC_ID), false, false);
 			flag.setTitle(player.getClan().getName());
 			flag.setCurrentHpMp(flag.getMaxHp(), flag.getMaxMp());

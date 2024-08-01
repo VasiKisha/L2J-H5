@@ -72,6 +72,15 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
+		if (event.equals("NPC_TALK"))
+		{
+			if (isBumbalumpSpawned())
+			{
+				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.OOOH));
+			}
+			return null;
+		}
+		
 		final QuestState qs = getQuestState(player, false);
 		String htmltext = null;
 		if (qs == null)
@@ -171,14 +180,6 @@ public class Q00625_TheFinestIngredientsPart2 extends Quest
 							htmltext = "31542-03.html";
 						}
 					}
-				}
-				break;
-			}
-			case "NPC_TALK":
-			{
-				if (isBumbalumpSpawned())
-				{
-					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.OOOH));
 				}
 				break;
 			}

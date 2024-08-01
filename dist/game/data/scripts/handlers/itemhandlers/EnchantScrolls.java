@@ -48,6 +48,7 @@ public class EnchantScrolls implements IItemHandler
 		
 		player.setActiveEnchantItemId(item.getObjectId());
 		player.sendPacket(new ChooseInventoryItem(item.getId()));
+		player.sendPacket(SystemMessageId.SELECT_ITEM_TO_ENCHANT);
 		return true;
 	}
 }

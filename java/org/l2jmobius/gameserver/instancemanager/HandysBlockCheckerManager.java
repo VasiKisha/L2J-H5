@@ -172,7 +172,7 @@ public class HandysBlockCheckerManager
 			
 			if (player.isRegisteredOnEvent() || player.isInOlympiadMode())
 			{
-				player.sendMessage("Couldnt register you due other event participation.");
+				player.sendMessage("Could not register you due other event participation.");
 				return false;
 			}
 			

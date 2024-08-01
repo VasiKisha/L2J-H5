@@ -107,10 +107,16 @@ public class RequestPetUseItem extends ClientPacket
 			if (item.isEquipped())
 			{
 				pet.getInventory().unEquipItemInSlot(item.getLocationSlot());
+				final SystemMessage sm = new SystemMessage(SystemMessageId.YOUR_PET_TOOK_OFF_S1);
+				sm.addItemName(item);
+				player.sendPacket(sm);
 			}
 			else
 			{
 				pet.getInventory().equipItem(item);
+				final SystemMessage sm = new SystemMessage(SystemMessageId.YOUR_PET_PUT_ON_S1);
+				sm.addItemName(item);
+				player.sendPacket(sm);
 			}
 			
 			player.sendPacket(new PetItemList(pet.getInventory().getItems()));

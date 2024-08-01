@@ -584,7 +584,6 @@
 	<admin command="admin_territory_wards_list" accessLevel="100" />
 
 	<!-- ADMIN TEST -->
-	<admin command="admin_stats" accessLevel="100" />
 	<admin command="admin_skill_test" accessLevel="100" />
 
 	<!-- ADMIN VITALITY -->

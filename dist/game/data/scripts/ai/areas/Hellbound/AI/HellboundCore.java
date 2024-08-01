@@ -35,7 +35,7 @@ public class HellboundCore extends AbstractNpcAI
 	private static final int NAIA = 18484;
 	private static final int HELLBOUND_CORE = 32331;
 	// Skills
-	private static SkillHolder BEAM = new SkillHolder(5493, 1);
+	private static final SkillHolder BEAM = new SkillHolder(5493, 1);
 	
 	public HellboundCore()
 	{

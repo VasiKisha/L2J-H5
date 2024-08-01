@@ -197,7 +197,7 @@ public class RequestPackageSend extends ClientPacket
 		warehouse.deleteMe();
 		
 		// Send updated item list to the player
-		player.sendPacket(playerIU);
+		player.sendInventoryUpdate(playerIU);
 		
 		// Update current load status on player
 		final StatusUpdate su = new StatusUpdate(player);

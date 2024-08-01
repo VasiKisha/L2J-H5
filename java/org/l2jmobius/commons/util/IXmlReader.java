@@ -113,7 +113,7 @@ public interface IXmlReader
 	
 	/**
 	 * Checks if XML validation is enabled.
-	 * @return {@code true} if its enabled, {@code false} otherwise
+	 * @return {@code true} if it Is enabled, {@code false} otherwise
 	 */
 	default boolean isValidating()
 	{

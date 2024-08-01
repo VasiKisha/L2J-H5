@@ -971,30 +971,30 @@ public class Castle extends AbstractResidence
 	
 	public void updateClansReputation()
 	{
+		final Clan owner = ClanTable.getInstance().getClan(getOwnerId());
 		if (_formerOwner != null)
 		{
-			if (_formerOwner != ClanTable.getInstance().getClan(getOwnerId()))
+			if (_formerOwner != owner)
 			{
 				final int maxreward = Math.max(0, _formerOwner.getReputationScore());
 				_formerOwner.takeReputationScore(Config.LOOSE_CASTLE_POINTS);
-				final Clan owner = ClanTable.getInstance().getClan(getOwnerId());
 				if (owner != null)
 				{
 					owner.addReputationScore(Math.min(Config.TAKE_CASTLE_POINTS, maxreward));
+					owner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_EMERGED_VICTORIOUS_FROM_THE_SIEGE_S1_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE).addInt(Math.min(Config.TAKE_CASTLE_POINTS, maxreward)));
 				}
+				_formerOwner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_WAS_DEFEATED_IN_A_SIEGE_S1_POINTS_HAVE_BEEN_DEDUCTED_FROM_YOUR_CLAN_S_REPUTATION_SCORE_AND_GIVEN_TO_THE_OPPOSING_CLAN).addInt(Config.LOOSE_CASTLE_POINTS));
 			}
 			else
 			{
 				_formerOwner.addReputationScore(Config.CASTLE_DEFENDED_POINTS);
+				_formerOwner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_EMERGED_VICTORIOUS_FROM_THE_SIEGE_S1_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE).addInt(Config.CASTLE_DEFENDED_POINTS));
 			}
 		}
-		else
+		else if (owner != null)
 		{
-			final Clan owner = ClanTable.getInstance().getClan(getOwnerId());
-			if (owner != null)
-			{
-				owner.addReputationScore(Config.TAKE_CASTLE_POINTS);
-			}
+			owner.addReputationScore(Config.TAKE_CASTLE_POINTS);
+			owner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_EMERGED_VICTORIOUS_FROM_THE_SIEGE_S1_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE).addInt(Config.TAKE_CASTLE_POINTS));
 		}
 	}
 	

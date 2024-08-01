@@ -212,7 +212,7 @@ public class RecipeList
 	}
 	
 	/**
-	 * @return {@code true} if this a Dwarven recipe or {@code false} if its a Common recipe
+	 * @return {@code true} if this a Dwarven recipe or {@code false} if it is a Common recipe
 	 */
 	public boolean isDwarvenRecipe()
 	{

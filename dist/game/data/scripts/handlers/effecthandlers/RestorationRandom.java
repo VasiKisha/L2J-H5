@@ -25,12 +25,13 @@ import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.ExtractableProductItem;
 import org.l2jmobius.gameserver.model.ExtractableSkill;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -53,14 +54,14 @@ public class RestorationRandom extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((info.getEffector() == null) || (info.getEffected() == null) || !info.getEffector().isPlayer() || !info.getEffected().isPlayer())
+		if ((effector == null) || (effected == null) || !effector.isPlayer() || !effected.isPlayer())
 		{
 			return;
 		}
 		
-		final ExtractableSkill exSkill = info.getSkill().getExtractableSkill();
+		final ExtractableSkill exSkill = skill.getExtractableSkill();
 		if (exSkill == null)
 		{
 			return;
@@ -68,7 +69,7 @@ public class RestorationRandom extends AbstractEffect
 		
 		if (exSkill.getProductItems().isEmpty())
 		{
-			LOGGER.warning("Extractable Skill with no data, probably wrong/empty table in Skill Id: " + info.getSkill().getId());
+			LOGGER.warning("Extractable Skill with no data, probably wrong/empty table in Skill Id: " + skill.getId());
 			return;
 		}
 		
@@ -97,7 +98,7 @@ public class RestorationRandom extends AbstractEffect
 			chanceFrom += chance;
 		}
 		
-		final Player player = info.getEffected().getActingPlayer();
+		final Player player = effected.getActingPlayer();
 		if (creationList.isEmpty())
 		{
 			player.sendPacket(SystemMessageId.THERE_WAS_NOTHING_FOUND_INSIDE);
@@ -115,13 +116,13 @@ public class RestorationRandom extends AbstractEffect
 			final ItemTemplate template = ItemData.getInstance().getTemplate(item.getId());
 			if (template.isStackable())
 			{
-				player.addItem("Extract", item.getId(), itemCount, info.getEffector(), true);
+				player.addItem("Extract", item.getId(), itemCount, effector, true);
 			}
 			else
 			{
 				for (int i = 0; i < itemCount; i++)
 				{
-					player.addItem("Extract", item.getId(), 1, info.getEffector(), true);
+					player.addItem("Extract", item.getId(), 1, effector, true);
 				}
 			}
 		}

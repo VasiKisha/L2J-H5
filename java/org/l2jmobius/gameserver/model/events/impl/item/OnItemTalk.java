@@ -40,7 +40,7 @@ public class OnItemTalk implements IBaseEvent
 		return _item;
 	}
 	
-	public Player getActiveChar()
+	public Player getPlayer()
 	{
 		return _player;
 	}

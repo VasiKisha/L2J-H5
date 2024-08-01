@@ -18,7 +18,6 @@ package org.l2jmobius.commons.time;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 import java.util.Map;
@@ -28,7 +27,7 @@ import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.commons.util.TimeUtil;
 
 /**
  * <p>
@@ -864,7 +863,7 @@ public class SchedulingPattern
 	
 	public String getNextAsFormattedDateString()
 	{
-		return Util.formatDate(new Date(next(System.currentTimeMillis())), "dd.MM.yyyy HH:mm:ss");
+		return TimeUtil.getDateTimeString(next(System.currentTimeMillis()));
 	}
 	
 	/**

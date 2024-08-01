@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
 
 public class ChatLogFormatter extends Formatter
@@ -42,7 +41,7 @@ public class ChatLogFormatter extends Formatter
 			}
 		}
 		
-		StringUtil.append(output, record.getMessage(), Config.EOL);
+		StringUtil.append(output, record.getMessage(), System.lineSeparator());
 		
 		return output.toString();
 	}

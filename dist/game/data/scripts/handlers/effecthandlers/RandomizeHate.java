@@ -25,7 +25,7 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 
 /**
@@ -43,9 +43,9 @@ public class RandomizeHate extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		return Formulas.calcProbability(_chance, info.getEffector(), info.getEffected(), info.getSkill());
+		return Formulas.calcProbability(_chance, effector, effected, skill);
 	}
 	
 	@Override
@@ -55,18 +55,18 @@ public class RandomizeHate extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((info.getEffected() == null) || (info.getEffected() == info.getEffector()) || !info.getEffected().isAttackable())
+		if ((effected == null) || (effected == effector) || !effected.isAttackable())
 		{
 			return;
 		}
 		
-		final Attackable effectedMob = (Attackable) info.getEffected();
+		final Attackable effectedMob = (Attackable) effected;
 		final List<Creature> aggroList = new ArrayList<>();
 		for (Creature creature : effectedMob.getAggroList().keySet())
 		{
-			if (creature != info.getEffector())
+			if (creature != effector)
 			{
 				aggroList.add(creature);
 			}
@@ -76,10 +76,10 @@ public class RandomizeHate extends AbstractEffect
 			return;
 		}
 		
-		// Choosing randomly a new target
+		// Choosing randomly a new target.
 		final Creature target = aggroList.get(Rnd.get(aggroList.size()));
-		final long hate = effectedMob.getHating(info.getEffector());
-		effectedMob.stopHating(info.getEffector());
+		final long hate = effectedMob.getHating(effector);
+		effectedMob.stopHating(effector);
 		effectedMob.addDamageHate(target, 0, hate);
 	}
 }

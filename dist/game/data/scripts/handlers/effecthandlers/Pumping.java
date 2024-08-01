@@ -28,7 +28,7 @@ import org.l2jmobius.gameserver.model.fishing.Fishing;
 import org.l2jmobius.gameserver.model.fishing.FishingRod;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -65,15 +65,14 @@ public class Pumping extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature creature = info.getEffector();
-		if (!creature.isPlayer())
+		if (!effector.isPlayer())
 		{
 			return;
 		}
 		
-		final Player player = creature.getActingPlayer();
+		final Player player = effector.getActingPlayer();
 		final Fishing fish = player.getFishCombat();
 		if (fish == null)
 		{
@@ -83,14 +82,14 @@ public class Pumping extends AbstractEffect
 			return;
 		}
 		final Weapon weaponItem = player.getActiveWeaponItem();
-		final Item weaponInst = creature.getActiveWeaponInstance();
+		final Item weaponInst = effector.getActiveWeaponInstance();
 		if ((weaponInst == null) || (weaponItem == null))
 		{
 			return;
 		}
 		int ss = 1;
 		int pen = 0;
-		if (creature.isChargedShot(ShotType.FISH_SOULSHOTS))
+		if (effector.isChargedShot(ShotType.FISH_SOULSHOTS))
 		{
 			ss = 2;
 		}
@@ -98,7 +97,7 @@ public class Pumping extends AbstractEffect
 		final double gradeBonus = fishingRod.getFishingRodLevel() * 0.1; // TODO: Check this formula (is guessed)
 		int dmg = (int) ((fishingRod.getFishingRodDamage() + player.calcStat(Stat.FISHING_EXPERTISE, 1, null, null) + _power) * gradeBonus * ss);
 		// Penalty 5% less damage dealt
-		if (player.getSkillLevel(1315) <= (info.getSkill().getLevel() - 2)) // 1315 - Fish Expertise
+		if (player.getSkillLevel(1315) <= (skill.getLevel() - 2)) // 1315 - Fish Expertise
 		{
 			player.sendPacket(SystemMessageId.DUE_TO_YOUR_REELING_AND_OR_PUMPING_SKILL_BEING_THREE_OR_MORE_LEVELS_HIGHER_THAN_YOUR_FISHING_SKILL_A_50_DAMAGE_PENALTY_WILL_BE_APPLIED);
 			pen = (int) (dmg * 0.05);

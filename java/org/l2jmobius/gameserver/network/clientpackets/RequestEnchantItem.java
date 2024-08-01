@@ -33,7 +33,6 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.EnchantResult;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
-import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Util;
 
@@ -79,6 +78,8 @@ public class RequestEnchantItem extends ClientPacket
 		if ((item == null) || (scroll == null))
 		{
 			player.setActiveEnchantItemId(Player.ID_NONE);
+			player.sendPacket(SystemMessageId.YOU_HAVE_CANCELLED_THE_ENCHANTING_PROCESS);
+			player.sendPacket(new EnchantResult(2, 0, 0));
 			return;
 		}
 		
@@ -231,6 +232,7 @@ public class RequestEnchantItem extends ClientPacket
 							player.sendSkillList();
 						}
 					}
+					player.sendItemList(false);
 					break;
 				}
 				case FAILURE:
@@ -287,7 +289,7 @@ public class RequestEnchantItem extends ClientPacket
 							{
 								iu.addModifiedItem(itm);
 							}
-							player.sendPacket(iu);
+							player.sendInventoryUpdate(iu);
 							player.broadcastUserInfo();
 						}
 						
@@ -403,44 +405,10 @@ public class RequestEnchantItem extends ClientPacket
 							}
 						}
 					}
+					player.sendItemList(true);
 					break;
 				}
 			}
-			
-			final StatusUpdate su = new StatusUpdate(player);
-			su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());
-			player.sendPacket(su);
-			if (scroll.getCount() == 0)
-			{
-				iu.addRemovedItem(scroll);
-			}
-			else
-			{
-				iu.addModifiedItem(scroll);
-			}
-			
-			if (item.getCount() == 0)
-			{
-				iu.addRemovedItem(item);
-			}
-			else
-			{
-				iu.addModifiedItem(item);
-			}
-			
-			if (support != null)
-			{
-				if (support.getCount() == 0)
-				{
-					iu.addRemovedItem(support);
-				}
-				else
-				{
-					iu.addModifiedItem(support);
-				}
-			}
-			
-			player.sendPacket(iu);
 			player.broadcastUserInfo();
 			player.setActiveEnchantItemId(Player.ID_NONE);
 		}

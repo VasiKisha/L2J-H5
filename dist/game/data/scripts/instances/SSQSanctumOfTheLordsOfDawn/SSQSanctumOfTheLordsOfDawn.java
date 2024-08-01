@@ -50,7 +50,7 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 	// Item
 	private static final int IDENTITY_CARD = 13822;
 	// Skill
-	private static SkillHolder GUARD_SKILL = new SkillHolder(5978, 1);
+	private static final SkillHolder GUARD_SKILL = new SkillHolder(5978, 1);
 	// Locations
 	private static final Location ENTER = new Location(-76161, 213401, -7120, 0, 0);
 	private static final Location EXIT = new Location(-12585, 122305, -2989, 0, 0);

@@ -20,6 +20,8 @@ What is done
 -Gracia instances
 -Freya grandboss
 -Castle dungeon instances
+-Kratei's Cube
+-Underground Coliseum
 -High Five treasure boxes
 -Fixed server lag on many occasions
 -Auto potions voiced command

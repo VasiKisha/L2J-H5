@@ -40,7 +40,7 @@ public class OnNpcCanBeSeen implements IBaseEvent
 		return _npc;
 	}
 	
-	public Player getActiveChar()
+	public Player getPlayer()
 	{
 		return _player;
 	}

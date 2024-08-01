@@ -19,193 +19,50 @@ package conquerablehalls.RainbowSpringsChateau;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
-import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.Future;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.data.SpawnTable;
+import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
+import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.enums.SiegeClanType;
 import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.CHSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
-import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
 import org.l2jmobius.gameserver.model.Party;
-import org.l2jmobius.gameserver.model.Spawn;
+import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.siege.SiegeClan;
 import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
-import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
 import org.l2jmobius.gameserver.model.siege.clanhalls.SiegeStatus;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
+import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
+import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
+import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
+import org.l2jmobius.gameserver.util.Util;
 
 /**
- * Rainbow Springs Chateau clan hall siege script.
- * @author BiggBoss
+ * @author LordWinter
  */
 public class RainbowSpringsChateau extends ClanHallSiegeEngine
 {
-	protected static class SetFinalAttackers implements Runnable
-	{
-		@Override
-		public void run()
-		{
-			if (_rainbow == null)
-			{
-				_rainbow = CHSiegeManager.getInstance().getSiegableHall(RAINBOW_SPRINGS);
-			}
-			
-			int spotLeft = 4;
-			if (_rainbow.getOwnerId() > 0)
-			{
-				final Clan owner = ClanTable.getInstance().getClan(_rainbow.getOwnerId());
-				if (owner != null)
-				{
-					_rainbow.free();
-					owner.setHideoutId(0);
-					_acceptedClans.add(owner);
-					--spotLeft;
-				}
-				
-				for (int i = 0; i < spotLeft; i++)
-				{
-					long counter = 0;
-					Clan clan = null;
-					for (Entry<Integer, Long> entry : _warDecreesCount.entrySet())
-					{
-						final Clan actingClan = ClanTable.getInstance().getClan(entry.getKey());
-						if ((actingClan == null) || (actingClan.getDissolvingExpiryTime() > 0))
-						{
-							_warDecreesCount.remove(entry.getKey());
-							continue;
-						}
-						
-						final long count = entry.getValue();
-						if (count > counter)
-						{
-							counter = count;
-							clan = actingClan;
-						}
-					}
-					if ((clan != null) && (_acceptedClans.size() < 4))
-					{
-						_acceptedClans.add(clan);
-						final Player leader = clan.getLeader().getPlayer();
-						if (leader != null)
-						{
-							leader.sendMessage("Your clan has been accepted to join the RainBow Srpings Chateau siege!");
-						}
-					}
-				}
-				if (_acceptedClans.size() >= 2)
-				{
-					_nextSiege = ThreadPool.schedule(new SiegeStart(), 3600000);
-					_rainbow.updateSiegeStatus(SiegeStatus.WAITING_BATTLE);
-				}
-				else
-				{
-					Broadcast.toAllOnlinePlayers("Rainbow Springs Chateau siege aborted due lack of population");
-				}
-			}
-		}
-	}
-	
-	protected static class SiegeStart implements Runnable
-	{
-		@Override
-		public void run()
-		{
-			if (_rainbow == null)
-			{
-				_rainbow = CHSiegeManager.getInstance().getSiegableHall(RAINBOW_SPRINGS);
-			}
-			
-			// XXX _rainbow.siegeStarts();
-			
-			spawnGourds();
-			_siegeEnd = ThreadPool.schedule(new SiegeEnd(null), _rainbow.getSiegeLength() - 120000);
-		}
-	}
-	
-	public static final Clan _winner = null;
-	
-	@Override
-	public Clan getWinner()
-	{
-		return _winner;
-	}
-	
-	private static class SiegeEnd implements Runnable
-	{
-		private final Clan _winner;
-		
-		protected SiegeEnd(Clan winner)
-		{
-			_winner = winner;
-		}
-		
-		@Override
-		public void run()
-		{
-			if (_rainbow == null)
-			{
-				_rainbow = CHSiegeManager.getInstance().getSiegableHall(RAINBOW_SPRINGS);
-			}
-			
-			unSpawnGourds();
-			
-			if (_winner != null)
-			{
-				_rainbow.setOwner(_winner);
-			}
-			
-			// XXX _rainbow.siegeEnds();
-			
-			ThreadPool.schedule(new SetFinalAttackers(), _rainbow.getNextSiegeTime());
-			setRegistrationEndString((_rainbow.getNextSiegeTime() + System.currentTimeMillis()) - 3600000);
-			// Teleport out of the arenas is made 2 mins after game ends
-			ThreadPool.schedule(new TeleportBack(), 120000);
-		}
-	}
-	
-	protected static class TeleportBack implements Runnable
-	{
-		@Override
-		public void run()
-		{
-			for (int arenaId : ARENA_ZONES)
-			{
-				final Collection<Creature> chars = ZoneManager.getInstance().getZoneById(arenaId).getCharactersInside();
-				for (Creature chr : chars)
-				{
-					if (chr != null)
-					{
-						chr.teleToLocation(TeleportWhereType.TOWN);
-					}
-				}
-			}
-		}
-	}
-	
-	private static final int RAINBOW_SPRINGS = 62;
+	private static final SimpleDateFormat SIMPLE_FORMAT = new SimpleDateFormat("HH:mm dd.MM.yyyy");
 	
 	private static final int WAR_DECREES = 8034;
 	private static final int RAINBOW_NECTAR = 8030;
@@ -216,6 +73,60 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 	private static final int MESSENGER = 35604;
 	private static final int CARETAKER = 35603;
 	private static final int CHEST = 35593;
+	private static final int ENRAGED_YETI = 35592;
+	
+	protected static final Map<Integer, Long> _warDecreesCount = new HashMap<>();
+	protected static final List<Clan> _acceptedClans = new ArrayList<>();
+	protected static ArrayList<Integer> _playersOnArena = new ArrayList<>();
+	protected static final List<Npc> chests = new ArrayList<>();
+	
+	private static final int ITEM_A = 8035;
+	private static final int ITEM_B = 8036;
+	private static final int ITEM_C = 8037;
+	private static final int ITEM_D = 8038;
+	private static final int ITEM_E = 8039;
+	private static final int ITEM_F = 8040;
+	private static final int ITEM_G = 8041;
+	private static final int ITEM_H = 8042;
+	private static final int ITEM_I = 8043;
+	private static final int ITEM_K = 8045;
+	private static final int ITEM_L = 8046;
+	private static final int ITEM_N = 8047;
+	private static final int ITEM_O = 8048;
+	private static final int ITEM_P = 8049;
+	private static final int ITEM_R = 8050;
+	private static final int ITEM_S = 8051;
+	private static final int ITEM_T = 8052;
+	private static final int ITEM_U = 8053;
+	private static final int ITEM_W = 8054;
+	private static final int ITEM_Y = 8055;
+	
+	protected static int _generated;
+	protected Future<?> _task = null;
+	protected Future<?> _chesttask = null;
+	private Clan _winner;
+	
+	private static class Word
+	{
+		private final String _name;
+		private final int[][] _items;
+		
+		public Word(String name, int[]... items)
+		{
+			_name = name;
+			_items = items;
+		}
+		
+		public String getName()
+		{
+			return _name;
+		}
+		
+		public int[][] getItems()
+		{
+			return _items;
+		}
+	}
 	
 	private static final int[] GOURDS =
 	{
@@ -224,7 +135,18 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 		35590,
 		35591
 	};
-	private static Spawn[] _gourds = new Spawn[4];
+	
+	private static Npc[] _gourds = new Npc[4];
+	private static Npc[] _yetis = new Npc[4];
+	protected Npc _chest1;
+	protected Npc _chest2;
+	protected Npc _chest3;
+	protected Npc _chest4;
+	
+	private static final Skill[] DEBUFFS =
+	{
+		SkillData.getInstance().getSkill(4991, 1)
+	};
 	
 	private static final int[] YETIS =
 	{
@@ -234,214 +156,176 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 		35599
 	};
 	
-	private static final Location[] ARENAS = new Location[]
+	//@formatter:off
+	private static final int[][] ARENAS =
 	{
-		new Location(151562, -127080, -2214), // Arena 1
-		new Location(153141, -125335, -2214), // Arena 2
-		new Location(153892, -127530, -2214), // Arena 3
-		new Location(155657, -125752, -2214), // Arena 4
+		{151562, -127080, -2214},
+		{153141, -125335, -2214},
+		{153892, -127530, -2214},
+		{155657, -125752, -2214},
 	};
 	
-	protected static final int[] ARENA_ZONES =
+	private static final int[][] YETIS_SPAWN =
 	{
-		112081,
-		112082,
-		112083,
-		112084
+		{151560, -127075, -2221},
+		{153129, -125337, -2221},
+		{153884, -127534, -2221},
+		{156657, -125753, -2221},
 	};
 	
-	private static final String[] _textPassages =
+	protected static final int[][] CHESTS_SPAWN =
 	{
-		"Fight for Rainbow Springs!",
-		"Are you a match for the Yetti?",
-		"Did somebody order a knuckle sandwich?"
+		{151560, -127075, -2221},
+		{153129, -125337, -2221},
+		{153884, -127534, -2221},
+		{155657, -125753, -2221},
+		
 	};
 	
-	private static final Skill[] DEBUFFS = {};
+	protected final int[] arenaChestsCnt =
+	{
+		0, 0, 0, 0
+	};
 	
-	protected static Map<Integer, Long> _warDecreesCount = new HashMap<>();
-	protected static List<Clan> _acceptedClans = new ArrayList<>(4);
-	private static Map<String, List<Clan>> _usedTextPassages = new HashMap<>();
-	private static Map<Clan, Integer> _pendingItemToGet = new HashMap<>();
-	
-	protected static SiegableHall _rainbow;
-	protected static ScheduledFuture<?> _nextSiege;
-	protected static ScheduledFuture<?> _siegeEnd;
-	private static String _registrationEnds;
+	protected static final Word[] WORLD_LIST =
+	{
+		new Word("BABYDUCK", new int[] {ITEM_B, 2}, new int[] {ITEM_A, 1}, new int[] {ITEM_Y, 1}, new int[] {ITEM_D, 1}, new int[] {ITEM_U, 1}, new int[] {ITEM_C, 1}, new int[] {ITEM_K, 1}),
+		new Word("ALBATROS", new int[] {ITEM_A, 2}, new int[] {ITEM_L, 1}, new int[] {ITEM_B, 1}, new int[] {ITEM_T, 1}, new int[] {ITEM_R, 1}, new int[] {ITEM_O, 1}, new int[] {ITEM_S, 1}),
+		new Word("PELICAN", new int[] {ITEM_P, 1}, new int[] {ITEM_E, 1}, new int[] {ITEM_L, 1}, new int[] {ITEM_I, 1}, new int[] {ITEM_C, 1}, new int[] {ITEM_A, 1}, new int[] {ITEM_N, 1}),
+		new Word("KINGFISHER", new int[] {ITEM_K, 1}, new int[] {ITEM_I, 1}, new int[] {ITEM_N, 1}, new int[] {ITEM_G, 1}, new int[] {ITEM_F, 1}, new int[] {ITEM_I, 1}, new int[] {ITEM_S, 1}, new int[] {ITEM_H, 1}, new int[] {ITEM_E, 1}, new int[] {ITEM_R, 1}),
+		new Word("CYGNUS", new int[] {ITEM_C, 1}, new int[] {ITEM_Y, 1}, new int[] {ITEM_G, 1}, new int[] {ITEM_N, 1}, new int[] {ITEM_U, 1}, new int[] {ITEM_S, 1}),
+		new Word("TRITON", new int[] {ITEM_T, 2}, new int[] {ITEM_R, 1}, new int[] {ITEM_I, 1}, new int[] {ITEM_N, 1}),
+		new Word("RAINBOW", new int[] {ITEM_R, 1}, new int[] {ITEM_A, 1}, new int[] {ITEM_I, 1}, new int[] {ITEM_N, 1}, new int[] {ITEM_B, 1}, new int[] {ITEM_O, 1}, new int[] {ITEM_W, 1}),
+		new Word("SPRING", new int[] {ITEM_S, 1}, new int[] {ITEM_P, 1}, new int[] {ITEM_R, 1}, new int[] {ITEM_I, 1}, new int[] {ITEM_N, 1}, new int[] {ITEM_G, 1})
+	};
+	//@formatter:on
 	
 	public RainbowSpringsChateau()
 	{
 		super(RAINBOW_SPRINGS);
 		
 		addFirstTalkId(MESSENGER);
-		addTalkId(MESSENGER);
 		addFirstTalkId(CARETAKER);
-		addTalkId(CARETAKER);
 		addFirstTalkId(YETIS);
+		addTalkId(MESSENGER);
+		addTalkId(CARETAKER);
 		addTalkId(YETIS);
 		
-		loadAttackers();
+		for (int squashes : GOURDS)
+		{
+			addSpawnId(squashes);
+			addKillId(squashes);
+		}
+		addSpawnId(ENRAGED_YETI);
 		
-		_rainbow = CHSiegeManager.getInstance().getSiegableHall(RAINBOW_SPRINGS);
-		if (_rainbow != null)
-		{
-			final long delay = _rainbow.getNextSiegeTime();
-			if (delay > -1)
-			{
-				setRegistrationEndString(delay - 3600000);
-				_nextSiege = ThreadPool.schedule(new SetFinalAttackers(), delay);
-			}
-			else
-			{
-				LOGGER.warning("CHSiegeManager: No Date setted for RainBow Springs Chateau Clan hall siege!. SIEGE CANCELED!");
-			}
-		}
-	}
-	
-	@Override
-	public String onFirstTalk(Npc npc, Player player)
-	{
-		String html = "";
-		final int npcId = npc.getId();
-		if (npcId == MESSENGER)
-		{
-			final String main = (_rainbow.getOwnerId() > 0) ? "messenger_yetti001.htm" : "messenger_yetti001a.htm";
-			html = HtmCache.getInstance().getHtm(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/" + main);
-			html = html.replace("%time%", _registrationEnds);
-			if (_rainbow.getOwnerId() > 0)
-			{
-				html = html.replace("%owner%", ClanTable.getInstance().getClan(_rainbow.getOwnerId()).getName());
-			}
-		}
-		else if (npcId == CARETAKER)
-		{
-			if (_rainbow.isInSiege())
-			{
-				html = "game_manager003.htm";
-			}
-			else
-			{
-				html = "game_manager001.htm";
-			}
-		}
-		else if (CommonUtil.contains(YETIS, npcId))
-		{
-			// TODO: Review.
-			if (_rainbow.isInSiege())
-			{
-				if (!player.isClanLeader())
-				{
-					html = "no_clan_leader.htm";
-				}
-				else
-				{
-					final Clan clan = player.getClan();
-					if (_acceptedClans.contains(clan))
-					{
-						final int index = _acceptedClans.indexOf(clan);
-						if (npcId == YETIS[index])
-						{
-							html = "yeti_main.htm";
-						}
-					}
-				}
-			}
-		}
-		player.setLastQuestNpcObject(npc.getObjectId());
-		return html;
+		addSkillSeeId(YETIS);
+		
+		addKillId(CHEST);
+		
+		_generated = -1;
+		_winner = ClanTable.getInstance().getClan(_hall.getOwnerId());
 	}
 	
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
-		String html = event;
+		String htmltext = event;
 		final Clan clan = player.getClan();
+		
 		switch (npc.getId())
 		{
 			case MESSENGER:
 			{
 				switch (event)
 				{
-					case "register":
+					case "Register":
 					{
 						if (!player.isClanLeader())
 						{
-							html = "messenger_yetti010.htm";
+							htmltext = "35604-07.htm";
 						}
 						else if ((clan.getCastleId() > 0) || (clan.getFortId() > 0) || (clan.getHideoutId() > 0))
 						{
-							html = "messenger_yetti012.htm";
+							htmltext = "35604-09.htm";
 						}
-						else if (!_rainbow.isRegistering())
+						else if (!_hall.isRegistering())
 						{
-							html = "messenger_yetti014.htm";
+							htmltext = "35604-11.htm";
 						}
 						else if (_warDecreesCount.containsKey(clan.getId()))
 						{
-							html = "messenger_yetti013.htm";
+							htmltext = "35604-10.htm";
+						}
+						else if (getAttackers().size() >= 4)
+						{
+							htmltext = "35604-18.htm";
 						}
 						else if ((clan.getLevel() < 3) || (clan.getMembersCount() < 5))
 						{
-							html = "messenger_yetti011.htm";
+							htmltext = "35604-08.htm";
 						}
 						else
 						{
 							final Item warDecrees = player.getInventory().getItemByItemId(WAR_DECREES);
 							if (warDecrees == null)
 							{
-								html = "messenger_yetti008.htm";
+								htmltext = "35604-05.htm";
 							}
 							else
 							{
 								final long count = warDecrees.getCount();
 								_warDecreesCount.put(clan.getId(), count);
 								player.destroyItem("Rainbow Springs Registration", warDecrees, npc, true);
-								updateAttacker(clan.getId(), count, false);
-								html = "messenger_yetti009.htm";
+								registerClan(clan, count, true);
+								htmltext = "35604-06.htm";
 							}
 						}
 						break;
 					}
-					case "cancel":
+					case "Cancel":
 					{
 						if (!player.isClanLeader())
 						{
-							html = "messenger_yetti010.htm";
+							htmltext = "35604-08.htm";
 						}
 						else if (!_warDecreesCount.containsKey(clan.getId()))
 						{
-							html = "messenger_yetti016.htm";
+							htmltext = "35604-12.htm";
 						}
-						else if (!_rainbow.isRegistering())
+						else if (!_hall.isRegistering())
 						{
-							html = "messenger_yetti017.htm";
+							htmltext = "35604-13.htm";
 						}
 						else
 						{
-							updateAttacker(clan.getId(), 0, true);
-							html = "messenger_yetti018.htm";
+							registerClan(clan, 0, false);
+							htmltext = "35604-17.htm";
 						}
 						break;
 					}
-					case "unregister":
+					case "Unregister":
 					{
-						if (_rainbow.isRegistering())
+						if (!player.isClanLeader())
+						{
+							htmltext = "35604-07.htm";
+						}
+						else if (_hall.isRegistering())
 						{
 							if (_warDecreesCount.containsKey(clan.getId()))
 							{
 								player.addItem("Rainbow Spring unregister", WAR_DECREES, _warDecreesCount.get(clan.getId()) / 2, npc, true);
 								_warDecreesCount.remove(clan.getId());
-								html = "messenger_yetti019.htm";
+								htmltext = "35604-14.htm";
 							}
 							else
 							{
-								html = "messenger_yetti020.htm";
+								htmltext = "35604-16.htm";
 							}
 						}
-						else if (_rainbow.isWaitingBattle())
+						else if (_hall.isWaitingBattle())
 						{
 							_acceptedClans.remove(clan);
-							html = "messenger_yetti020.htm";
+							htmltext = "35604-16.htm";
 						}
 						break;
 					}
@@ -450,247 +334,530 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 			}
 			case CARETAKER:
 			{
-				if (event.equals("portToArena"))
+				switch (event)
 				{
-					final Party party = player.getParty();
-					if (clan == null)
+					case "GoToArena":
 					{
-						html = "game_manager009.htm";
-					}
-					else if (!player.isClanLeader())
-					{
-						html = "game_manager004.htm";
-					}
-					else if (!player.isInParty())
-					{
-						html = "game_manager005.htm";
-					}
-					else if (party.getLeaderObjectId() != player.getObjectId())
-					{
-						html = "game_manager006.htm";
-					}
-					else
-					{
-						final int clanId = player.getClanId();
-						boolean nonClanMemberInParty = false;
-						for (Player member : party.getMembers())
+						final Party party = player.getParty();
+						if (clan == null)
 						{
-							if (member.getClanId() != clanId)
-							{
-								nonClanMemberInParty = true;
-								break;
-							}
+							htmltext = "35603-07.htm";
 						}
-						if (nonClanMemberInParty)
+						else if (!player.isClanLeader())
 						{
-							html = "game_manager007.htm";
+							htmltext = "35603-02.htm";
 						}
-						else if (party.getMemberCount() < 5)
+						else if (!player.isInParty())
 						{
-							html = "game_manager008.htm";
+							htmltext = "35603-03.htm";
 						}
-						else if ((clan.getCastleId() > 0) || (clan.getFortId() > 0) || (clan.getHideoutId() > 0))
+						else if (party.getLeaderObjectId() != player.getObjectId())
 						{
-							html = "game_manager010.htm";
+							htmltext = "35603-04.htm";
 						}
-						else if (clan.getLevel() < Config.CHS_CLAN_MINLEVEL)
-						{
-							html = "game_manager011.htm";
-						}
-						// else if () // Something about the rules.
-						// {
-						// html = "game_manager012.htm";
-						// }
-						// else if () // Already registered.
-						// {
-						// html = "game_manager013.htm";
-						// }
-						else if (!_acceptedClans.contains(clan))
-						{
-							html = "game_manager014.htm";
-						}
-						// else if () // Not have enough cards to register.
-						// {
-						// html = "game_manager015.htm";
-						// }
 						else
 						{
-							portToArena(player, _acceptedClans.indexOf(clan));
+							final int clanId = player.getId();
+							boolean nonClanMemberInParty = false;
+							for (Player member : party.getMembers())
+							{
+								if (member.getId() != clanId)
+								{
+									nonClanMemberInParty = true;
+									break;
+								}
+							}
+							
+							if (nonClanMemberInParty)
+							{
+								htmltext = "35603-05.htm";
+							}
+							else if (party.getMemberCount() < 5)
+							{
+								htmltext = "35603-06.htm";
+							}
+							if ((clan.getCastleId() > 0) || (clan.getFortId() > 0) || (clan.getHideoutId() > 0))
+							{
+								htmltext = "35603-08.htm";
+							}
+							else if (clan.getLevel() < Config.CHS_CLAN_MINLEVEL)
+							{
+								htmltext = "35603-09.htm";
+							}
+							else if (!_acceptedClans.contains(clan))
+							{
+								htmltext = "35603-10.htm";
+							}
+							else
+							{
+								portToArena(player, _acceptedClans.indexOf(clan));
+							}
+							return null;
 						}
+						break;
 					}
 				}
 				break;
 			}
 		}
 		
-		if (event.startsWith("enterText"))
+		if (event.startsWith("getItem"))
 		{
-			// Shouldn't happen
-			if (!_acceptedClans.contains(clan))
+			final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
+			boolean has = true;
+			if (_generated == -1)
 			{
-				return null;
+				has = false;
 			}
-			
-			final String[] split = event.split("_ ");
-			if (split.length < 2)
+			else
 			{
-				return null;
-			}
-			
-			final String passage = split[1];
-			if (!isValidPassage(passage))
-			{
-				return null;
-			}
-			
-			if (_usedTextPassages.containsKey(passage))
-			{
-				final List<Clan> list = _usedTextPassages.get(passage);
-				if (list.contains(clan))
+				final Word word = WORLD_LIST[_generated];
+				switch (_generated)
 				{
-					html = "yeti_passage_used.htm";
-				}
-				else
-				{
-					list.add(clan);
-					synchronized (_pendingItemToGet)
+					case 0:
 					{
-						if (_pendingItemToGet.containsKey(clan))
+						has = (player.getInventory().getInventoryItemCount(ITEM_B, -1) >= 2) && (player.getInventory().getInventoryItemCount(ITEM_A, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_Y, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_D, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_U, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_C, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_K, -1) >= 1);
+						break;
+					}
+					case 1:
+					{
+						has = (player.getInventory().getInventoryItemCount(ITEM_A, -1) >= 2) && (player.getInventory().getInventoryItemCount(ITEM_L, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_B, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_T, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_R, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_O, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_S, -1) >= 1);
+						break;
+					}
+					case 2:
+					{
+						has = (player.getInventory().getInventoryItemCount(ITEM_P, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_E, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_L, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_I, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_C, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_A, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_N, -1) >= 1);
+						break;
+					}
+					case 3:
+					{
+						has = (player.getInventory().getInventoryItemCount(ITEM_K, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_I, -1) >= 2) && (player.getInventory().getInventoryItemCount(ITEM_N, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_G, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_F, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_S, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_H, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_E, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_R, -1) >= 1);
+						break;
+					}
+					case 4:
+					{
+						has = (player.getInventory().getInventoryItemCount(ITEM_C, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_Y, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_G, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_N, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_U, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_S, -1) >= 1);
+						break;
+					}
+					case 5:
+					{
+						has = (player.getInventory().getInventoryItemCount(ITEM_T, -1) >= 2) && (player.getInventory().getInventoryItemCount(ITEM_R, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_I, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_O, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_N, -1) >= 1);
+						break;
+					}
+					case 6:
+					{
+						has = (player.getInventory().getInventoryItemCount(ITEM_R, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_A, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_I, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_N, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_B, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_O, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_W, -1) >= 1);
+						break;
+					}
+					case 7:
+					{
+						has = (player.getInventory().getInventoryItemCount(ITEM_S, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_P, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_R, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_I, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_N, -1) >= 1) && (player.getInventory().getInventoryItemCount(ITEM_G, -1) >= 1);
+						break;
+					}
+				}
+				
+				if (has)
+				{
+					for (int[] itemInfo : word.getItems())
+					{
+						player.destroyItemByItemId("Rainbow Item", itemInfo[0], itemInfo[1], player, true);
+					}
+					
+					final int rnd = Rnd.get(100);
+					if ((_generated >= 0) && (_generated <= 5))
+					{
+						if (rnd < 70)
 						{
-							int left = _pendingItemToGet.get(clan);
-							++left;
-							_pendingItemToGet.put(clan, left);
+							giveItems(player, RAINBOW_NECTAR, 1);
+						}
+						else if (rnd < 80)
+						{
+							giveItems(player, RAINBOW_MWATER, 1);
+						}
+						else if (rnd < 90)
+						{
+							giveItems(player, RAINBOW_WATER, 1);
 						}
 						else
 						{
-							_pendingItemToGet.put(clan, 1);
+							giveItems(player, RAINBOW_SULFUR, 1);
 						}
 					}
-					html = "yeti_item_exchange.htm";
+					else
+					{
+						if (rnd < 10)
+						{
+							giveItems(player, RAINBOW_NECTAR, 1);
+						}
+						else if (rnd < 40)
+						{
+							giveItems(player, RAINBOW_MWATER, 1);
+						}
+						else if (rnd < 70)
+						{
+							giveItems(player, RAINBOW_WATER, 1);
+						}
+						else
+						{
+							giveItems(player, RAINBOW_SULFUR, 1);
+						}
+					}
+				}
+				
+				if (!has)
+				{
+					html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/35596-02.htm");
+				}
+				else
+				{
+					html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/35596-04.htm");
+				}
+				player.sendPacket(html);
+			}
+			return null;
+		}
+		else if (event.startsWith("seeItem"))
+		{
+			final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
+			html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/35596-05.htm");
+			if (_generated == -1)
+			{
+				html.replace("%word%", "<fstring>" + NpcStringId.UNDECIDED + "</fstring>");
+			}
+			else
+			{
+				html.replace("%word%", WORLD_LIST[_generated].getName());
+			}
+			player.sendPacket(html);
+			return null;
+		}
+		return htmltext;
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
+		final int npcId = npc.getId();
+		
+		if (npcId == MESSENGER)
+		{
+			final String main = (_hall.getOwnerId() > 0) ? "35604-01.htm" : "35604-00.htm";
+			html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/" + main);
+			html.replace("%nextSiege%", SIMPLE_FORMAT.format(_hall.getSiegeDate().getTime()));
+			if (_hall.getOwnerId() > 0)
+			{
+				html.replace("%owner%", ClanTable.getInstance().getClan(_hall.getOwnerId()).getName());
+			}
+			player.sendPacket(html);
+		}
+		else if (npcId == CARETAKER)
+		{
+			final String main = (_hall.isInSiege() || !_hall.isWaitingBattle()) ? "35603-00.htm" : "35603-01.htm";
+			html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/" + main);
+			player.sendPacket(html);
+		}
+		else if (CommonUtil.contains(YETIS, npcId))
+		{
+			final Clan clan = player.getClan();
+			if (_acceptedClans.contains(clan))
+			{
+				final int index = _acceptedClans.indexOf(clan);
+				if (npcId == YETIS[index])
+				{
+					if (!player.isClanLeader())
+					{
+						html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/35596-00.htm");
+					}
+					else
+					{
+						html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/35596-01.htm");
+					}
+				}
+				else
+				{
+					html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/35596-06.htm");
+				}
+			}
+			else
+			{
+				html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/35596-06.htm");
+			}
+			player.sendPacket(html);
+		}
+		player.setLastQuestNpcObject(npc.getObjectId());
+		return "";
+	}
+	
+	@Override
+	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	{
+		if (targets.contains(npc))
+		{
+			final Clan clan = caster.getClan();
+			if ((clan == null) || !_acceptedClans.contains(clan))
+			{
+				return null;
+			}
+			
+			final int index = _acceptedClans.indexOf(clan);
+			int warIndex = Integer.MIN_VALUE;
+			
+			if (npc.isInsideRadius2D(caster, 60))
+			{
+				switch (skill.getId())
+				{
+					case 2240:
+					{
+						if (getRandom(100) < 10)
+						{
+							addSpawn(ENRAGED_YETI, caster.getX() + 10, caster.getY() + 10, caster.getZ(), 0, false, 0, false);
+						}
+						reduceGourdHp(index, caster);
+						break;
+					}
+					case 2241:
+					{
+						warIndex = rndEx(_acceptedClans.size(), index);
+						if (warIndex == Integer.MIN_VALUE)
+						{
+							return null;
+						}
+						increaseGourdHp(warIndex);
+						break;
+					}
+					case 2242:
+					{
+						warIndex = rndEx(_acceptedClans.size(), index);
+						if (warIndex == Integer.MIN_VALUE)
+						{
+							return null;
+						}
+						moveGourds(warIndex);
+						break;
+					}
+					case 2243:
+					{
+						warIndex = rndEx(_acceptedClans.size(), index);
+						if (warIndex == Integer.MIN_VALUE)
+						{
+							return null;
+						}
+						castDebuffsOnEnemies(caster, warIndex);
+						break;
+					}
 				}
 			}
 		}
-		// TODO(Zoey76): Rewrite this to prevent exploits...
-		// else if (event.startsWith("getItem"))
-		// {
-		// if (!_pendingItemToGet.containsKey(clan))
-		// {
-		// html = "yeti_cannot_exchange.htm";
-		// }
-		//
-		// int left = _pendingItemToGet.get(clan);
-		// if (left > 0)
-		// {
-		// int itemId = Integer.parseInt(event.split("_")[1]);
-		// player.addItem("Rainbow Spring Chateau Siege", itemId, 1, npc, true);
-		// --left;
-		// _pendingItemToGet.put(clan, left);
-		// html = "yeti_main.htm";
-		// }
-		// else
-		// {
-		// html = "yeti_cannot_exchange.htm";
-		// }
-		// }
-		return html;
+		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
 	public String onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		if (!_rainbow.isInSiege())
-		{
-			return null;
-		}
-		
 		final Clan clan = killer.getClan();
+		final int index = _acceptedClans.indexOf(clan);
 		if ((clan == null) || !_acceptedClans.contains(clan))
 		{
 			return null;
 		}
 		
-		final int npcId = npc.getId();
-		final int index = _acceptedClans.indexOf(clan);
-		if (npcId == CHEST)
+		if (npc.getId() == CHEST)
 		{
-			shoutRandomText(npc);
-		}
-		else if (npcId == GOURDS[index])
-		{
-			synchronized (this)
+			chestDie(npc);
+			if (chests.contains(npc))
 			{
-				if (_siegeEnd != null)
-				{
-					_siegeEnd.cancel(false);
-				}
-				ThreadPool.execute(new SiegeEnd(clan));
+				chests.remove(npc);
+			}
+			
+			final int chance = Rnd.get(100);
+			if (chance <= 5)
+			{
+				npc.dropItem(killer, ITEM_A, 1);
+			}
+			else if ((chance > 5) && (chance <= 10))
+			{
+				npc.dropItem(killer, ITEM_B, 1);
+			}
+			else if ((chance > 10) && (chance <= 15))
+			{
+				npc.dropItem(killer, ITEM_C, 1);
+			}
+			else if ((chance > 15) && (chance <= 20))
+			{
+				npc.dropItem(killer, ITEM_D, 1);
+			}
+			else if ((chance > 20) && (chance <= 25))
+			{
+				npc.dropItem(killer, ITEM_E, 1);
+			}
+			else if ((chance > 25) && (chance <= 30))
+			{
+				npc.dropItem(killer, ITEM_F, 1);
+			}
+			else if ((chance > 30) && (chance <= 35))
+			{
+				npc.dropItem(killer, ITEM_G, 1);
+			}
+			else if ((chance > 35) && (chance <= 40))
+			{
+				npc.dropItem(killer, ITEM_H, 1);
+			}
+			else if ((chance > 40) && (chance <= 45))
+			{
+				npc.dropItem(killer, ITEM_I, 1);
+			}
+			else if ((chance > 45) && (chance <= 50))
+			{
+				npc.dropItem(killer, ITEM_K, 1);
+			}
+			else if ((chance > 50) && (chance <= 55))
+			{
+				npc.dropItem(killer, ITEM_L, 1);
+			}
+			else if ((chance > 55) && (chance <= 60))
+			{
+				npc.dropItem(killer, ITEM_N, 1);
+			}
+			else if ((chance > 60) && (chance <= 65))
+			{
+				npc.dropItem(killer, ITEM_O, 1);
+			}
+			else if ((chance > 65) && (chance <= 70))
+			{
+				npc.dropItem(killer, ITEM_P, 1);
+			}
+			else if ((chance > 70) && (chance <= 75))
+			{
+				npc.dropItem(killer, ITEM_R, 1);
+			}
+			else if ((chance > 75) && (chance <= 80))
+			{
+				npc.dropItem(killer, ITEM_S, 1);
+			}
+			else if ((chance > 80) && (chance <= 85))
+			{
+				npc.dropItem(killer, ITEM_T, 1);
+			}
+			else if ((chance > 85) && (chance <= 90))
+			{
+				npc.dropItem(killer, ITEM_U, 1);
+			}
+			else if ((chance > 90) && (chance <= 95))
+			{
+				npc.dropItem(killer, ITEM_W, 1);
+			}
+			else if (chance > 95)
+			{
+				npc.dropItem(killer, ITEM_Y, 1);
 			}
 		}
 		
+		if (npc.getId() == GOURDS[index])
+		{
+			_missionAccomplished = true;
+			_winner = ClanTable.getInstance().getClan(clan.getId());
+			
+			synchronized (this)
+			{
+				cancelSiegeTask();
+				endSiege();
+				
+				ThreadPool.schedule(() ->
+				{
+					for (int id : _playersOnArena)
+					{
+						final Player pl = World.getInstance().getPlayer(id);
+						if (pl != null)
+						{
+							pl.teleToLocation(TeleportWhereType.TOWN);
+						}
+					}
+					_playersOnArena = new ArrayList<>();
+				}, 120 * 1000);
+			}
+		}
 		return null;
 	}
 	
 	@Override
-	public String onItemUse(ItemTemplate item, Player player)
+	public final String onSpawn(Npc npc)
 	{
-		if (!_rainbow.isInSiege())
+		if (npc.getId() == ENRAGED_YETI)
 		{
-			return null;
+			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.OOOH_WHO_POURED_NECTAR_ON_MY_HEAD_WHILE_I_WAS_SLEEPING);
 		}
 		
-		final WorldObject target = player.getTarget();
-		if (!(target instanceof Npc))
+		if (CommonUtil.contains(GOURDS, npc.getId()))
 		{
-			return null;
+			npc.disableCoreAI(true);
+			npc.setImmobilized(true);
 		}
-		
-		final int yeti = target.getId();
-		if (!isYetiTarget(yeti))
-		{
-			return null;
-		}
-		
-		final Clan clan = player.getClan();
-		if ((clan == null) || !_acceptedClans.contains(clan))
-		{
-			return null;
-		}
-		
-		// Nectar must spawn the enraged yeti. Dunno if it makes any other thing
-		// Also, the items must execute:
-		// - Reduce gourd hpb ( reduceGourdHp(int, Player) )
-		// - Cast debuffs on enemy clans ( castDebuffsOnEnemies(int) )
-		// - Change arena gourds ( moveGourds() )
-		// - Increase gourd hp ( increaseGourdHp(int) )
-		
-		final int itemId = item.getId();
-		if (itemId == RAINBOW_NECTAR)
-		{
-			// Spawn enraged (where?)
-			reduceGourdHp(_acceptedClans.indexOf(clan), player);
-		}
-		else if (itemId == RAINBOW_MWATER)
-		{
-			increaseGourdHp(_acceptedClans.indexOf(clan));
-		}
-		else if (itemId == RAINBOW_WATER)
-		{
-			moveGourds();
-		}
-		else if (itemId == RAINBOW_SULFUR)
-		{
-			castDebuffsOnEnemies(_acceptedClans.indexOf(clan));
-		}
-		return null;
+		return super.onSpawn(npc);
 	}
 	
-	private void portToArena(Player leader, int arena)
+	@Override
+	public void startSiege()
+	{
+		if ((_acceptedClans == null) || _acceptedClans.isEmpty() || (_acceptedClans.size() < 2))
+		{
+			onSiegeEnds();
+			_acceptedClans.clear();
+			_hall.updateNextSiege();
+			final SystemMessage sm = new SystemMessage(SystemMessageId.THE_SIEGE_OF_S1_HAS_BEEN_CANCELED_DUE_TO_LACK_OF_INTEREST);
+			sm.addString(ClanHallTable.getInstance().getClanHallById(_hall.getId()).getName());
+			Broadcast.toAllOnlinePlayers(sm);
+			return;
+		}
+		
+		spawnGourds();
+		spawnYetis();
+	}
+	
+	@Override
+	public void prepareOwner()
+	{
+		if (_hall.getOwnerId() > 0)
+		{
+			registerClan(ClanTable.getInstance().getClan(_hall.getOwnerId()), 10000, true);
+		}
+		_hall.banishForeigners();
+		final SystemMessage msg = new SystemMessage(SystemMessageId.THE_REGISTRATION_TERM_FOR_S1_HAS_ENDED);
+		msg.addString(ClanHallTable.getInstance().getClanHallById(_hall.getId()).getName());
+		Broadcast.toAllOnlinePlayers(msg);
+		_hall.updateSiegeStatus(SiegeStatus.WAITING_BATTLE);
+		_siegeTask = ThreadPool.schedule(new SiegeStarts(), 3600000);
+	}
+	
+	@Override
+	public void endSiege()
+	{
+		if (_hall.getOwnerId() > 0)
+		{
+			final Clan clan = ClanTable.getInstance().getClan(_hall.getOwnerId());
+			clan.setHideoutId(0);
+			_hall.free();
+		}
+		super.endSiege();
+	}
+	
+	@Override
+	public void onSiegeEnds()
+	{
+		unSpawnGourds();
+		unSpawnYetis();
+		unSpawnChests();
+		clearTables();
+	}
+	
+	protected void portToArena(Player leader, int arena)
 	{
 		if ((arena < 0) || (arena > 3))
 		{
-			LOGGER.warning("RainbowSptringChateau siege: Wrong arena id passed: " + arena);
+			LOGGER.warning(getClass().getSimpleName() + ": Wrong arena id passed: " + arena);
 			return;
 		}
+		
 		for (Player pc : leader.getParty().getMembers())
 		{
 			if (pc != null)
@@ -700,136 +867,219 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 				{
 					pc.getSummon().unSummon(pc);
 				}
-				pc.teleToLocation(ARENAS[arena]);
+				_playersOnArena.add(pc.getObjectId());
+				pc.teleToLocation(ARENAS[arena][0], ARENAS[arena][1], ARENAS[arena][2], true);
 			}
 		}
 	}
 	
-	protected static void spawnGourds()
+	protected void spawnYetis()
 	{
+		if ((_acceptedClans == null) || _acceptedClans.isEmpty())
+		{
+			return;
+		}
+		
 		for (int i = 0; i < _acceptedClans.size(); i++)
 		{
-			if (_gourds[i] == null)
+			if (_yetis[i] == null)
 			{
 				try
 				{
-					_gourds[i] = new Spawn(GOURDS[i]);
-					_gourds[i].setXYZ(ARENAS[i].getX() + 150, ARENAS[i].getY() + 150, ARENAS[i].getZ());
-					_gourds[i].setHeading(1);
-					_gourds[i].setAmount(1);
+					_yetis[i] = addSpawn(YETIS[i], YETIS_SPAWN[i][0], YETIS_SPAWN[i][1], YETIS_SPAWN[i][2], 0, false, 0, false);
+					_yetis[i].setHeading(1);
+					_task = ThreadPool.scheduleAtFixedRate(new GenerateTask(_yetis[i]), 10000, 300000);
 				}
 				catch (Exception e)
 				{
-					LOGGER.warning("Problem at RainbowSpringsChateau: " + e.getMessage());
+					LOGGER.warning(getClass().getSimpleName() + ": Problem with spawnYetis: " + e.getMessage());
 				}
 			}
-			SpawnTable.getInstance().addNewSpawn(_gourds[i], false);
-			_gourds[i].init();
 		}
 	}
 	
-	protected static void unSpawnGourds()
+	protected void spawnGourds()
 	{
+		if ((_acceptedClans == null) || _acceptedClans.isEmpty() || (_acceptedClans.size() < 2))
+		{
+			return;
+		}
+		
 		for (int i = 0; i < _acceptedClans.size(); i++)
 		{
-			_gourds[i].getLastSpawn().deleteMe();
-			SpawnTable.getInstance().deleteSpawn(_gourds[i], false);
-		}
-	}
-	
-	private void moveGourds()
-	{
-		final Spawn[] tempArray = _gourds;
-		final int iterator = _acceptedClans.size();
-		for (int i = 0; i < iterator; i++)
-		{
-			final Spawn oldSpawn = _gourds[(iterator - 1) - i];
-			final Spawn curSpawn = tempArray[i];
-			_gourds[(iterator - 1) - i] = curSpawn;
-			curSpawn.getLastSpawn().teleToLocation(oldSpawn.getLocation());
-		}
-	}
-	
-	private void reduceGourdHp(int index, Player player)
-	{
-		final Spawn gourd = _gourds[index];
-		gourd.getLastSpawn().reduceCurrentHp(1000, player, null);
-	}
-	
-	private void increaseGourdHp(int index)
-	{
-		final Spawn gourd = _gourds[index];
-		final Npc gourdNpc = gourd.getLastSpawn();
-		gourdNpc.setCurrentHp(gourdNpc.getCurrentHp() + 1000);
-	}
-	
-	private void castDebuffsOnEnemies(int myArena)
-	{
-		for (int id : ARENA_ZONES)
-		{
-			if (id == myArena)
+			
+			try
 			{
-				continue;
+				_gourds[i] = addSpawn(GOURDS[i], ARENAS[i][0] + 150, ARENAS[i][1] + 150, ARENAS[i][2], 1);
+			}
+			catch (Exception e)
+			{
+				LOGGER.warning(getClass().getSimpleName() + ": Problem with spawnGourds: " + e.getMessage());
+			}
+		}
+		_chesttask = ThreadPool.scheduleAtFixedRate(new ChestsSpawn(), 5000, 5000);
+	}
+	
+	protected void unSpawnYetis()
+	{
+		if ((_acceptedClans == null) || _acceptedClans.isEmpty())
+		{
+			return;
+		}
+		
+		for (int i = 0; i < _acceptedClans.size(); i++)
+		{
+			if (_yetis[i] != null)
+			{
+				_yetis[i].deleteMe();
 			}
 			
-			final Collection<Creature> chars = ZoneManager.getInstance().getZoneById(id).getCharactersInside();
-			for (Creature chr : chars)
+			if (_task != null)
 			{
-				if (chr != null)
+				_task.cancel(false);
+				_task = null;
+			}
+		}
+	}
+	
+	protected void unSpawnGourds()
+	{
+		if ((_acceptedClans == null) || _acceptedClans.isEmpty())
+		{
+			return;
+		}
+		
+		for (int i = 0; i < _acceptedClans.size(); i++)
+		{
+			if ((_gourds[i] != null) && (_gourds[i].getSpawn().getLastSpawn() != null))
+			{
+				_gourds[i].getSpawn().getLastSpawn().deleteMe();
+			}
+		}
+	}
+	
+	protected void unSpawnChests()
+	{
+		if (!chests.isEmpty())
+		{
+			for (Npc chest : chests)
+			{
+				if (chest != null)
 				{
-					for (Skill sk : DEBUFFS)
+					chest.deleteMe();
+					if (_chesttask != null)
 					{
-						sk.applyEffects(chr, chr);
+						_chesttask.cancel(false);
+						_chesttask = null;
 					}
 				}
 			}
 		}
 	}
 	
-	private void shoutRandomText(Npc npc)
+	private static void moveGourds(int index)
 	{
-		final int length = _textPassages.length;
-		if (_usedTextPassages.size() >= length)
+		final Npc[] tempArray = _gourds;
+		for (int i = 0; i < index; i++)
 		{
-			return;
+			final Npc oldSpawn = _gourds[(index - 1) - i];
+			final Npc curSpawn = tempArray[i];
+			_gourds[(index - 1) - i] = curSpawn;
+			
+			final int newX = oldSpawn.getX();
+			final int newY = oldSpawn.getY();
+			final int newZ = oldSpawn.getZ();
+			curSpawn.getSpawn().getLastSpawn().teleToLocation(newX, newY, newZ, true);
 		}
-		
-		final int randomPos = getRandom(length);
-		final String message = _textPassages[randomPos];
-		if (_usedTextPassages.containsKey(message))
+	}
+	
+	private static void reduceGourdHp(int index, Player player)
+	{
+		final Npc gourd = _gourds[index];
+		if ((gourd != null) && (gourd.getSpawn().getLastSpawn() != null))
 		{
-			shoutRandomText(npc);
+			gourd.getSpawn().getLastSpawn().reduceCurrentHp(1000, player, null);
+		}
+	}
+	
+	private static void increaseGourdHp(int index)
+	{
+		final Npc gourd = _gourds[index];
+		if (gourd != null)
+		{
+			final Npc gourdNpc = gourd.getSpawn().getLastSpawn();
+			if (gourdNpc != null)
+			{
+				gourdNpc.setCurrentHp(gourdNpc.getCurrentHp() + 1000);
+			}
+		}
+	}
+	
+	private void castDebuffsOnEnemies(Player player, int myArena)
+	{
+		if (_acceptedClans.contains(player.getClan()))
+		{
+			final int index = _acceptedClans.indexOf(player.getClan());
+			if (_playersOnArena.contains(player.getObjectId()))
+			{
+				for (Player pl : player.getParty().getMembers())
+				{
+					if (index != myArena)
+					{
+						continue;
+					}
+					
+					if (pl != null)
+					{
+						for (Skill sk : DEBUFFS)
+						{
+							sk.applyEffects(pl, pl);
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	private void registerClan(Clan clan, long count, boolean register)
+	{
+		if (register)
+		{
+			final SiegeClan sc = new SiegeClan(clan.getId(), SiegeClanType.ATTACKER);
+			getAttackers().put(clan.getId(), sc);
+			
+			final int spotLeft = 4;
+			for (int i = 0; i < spotLeft; i++)
+			{
+				long counter = 0;
+				Clan fightclan = null;
+				for (int clanId : _warDecreesCount.keySet())
+				{
+					final Clan actingClan = ClanTable.getInstance().getClan(clanId);
+					if ((actingClan == null) || (actingClan.getDissolvingExpiryTime() > 0))
+					{
+						_warDecreesCount.remove(clanId);
+						continue;
+					}
+					
+					final long counts = _warDecreesCount.get(clanId);
+					if (counts > counter)
+					{
+						counter = counts;
+						fightclan = actingClan;
+					}
+				}
+				if ((fightclan != null) && (_acceptedClans.size() < 4))
+				{
+					_acceptedClans.add(clan);
+				}
+			}
+			updateAttacker(clan.getId(), count, false);
 		}
 		else
 		{
-			_usedTextPassages.put(message, new ArrayList<>());
-			final int objId = npc.getObjectId();
-			npc.broadcastPacket(new NpcSay(objId, ChatType.NPC_SHOUT, npc.getId(), message));
+			updateAttacker(clan.getId(), 0, true);
 		}
-	}
-	
-	private static boolean isValidPassage(String text)
-	{
-		for (String st : _textPassages)
-		{
-			if (st.equalsIgnoreCase(text))
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	private static boolean isYetiTarget(int npcId)
-	{
-		for (int yeti : YETIS)
-		{
-			if (yeti == npcId)
-			{
-				return true;
-			}
-		}
-		return false;
 	}
 	
 	private void updateAttacker(int clanId, long count, boolean remove)
@@ -853,7 +1103,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 		}
 		catch (Exception e)
 		{
-			e.printStackTrace();
+			LOGGER.warning(getClass().getSimpleName() + ": Problem with updateAttacker: " + e.getMessage());
 		}
 	}
 	
@@ -866,61 +1116,140 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 			final ResultSet rset = statement.executeQuery();
 			while (rset.next())
 			{
-				final int clanId = rset.getInt("clan_id");
-				final long count = rset.getLong("decrees_count");
+				final int clanId = rset.getInt("clanId");
+				final long count = rset.getLong("war_decrees_count");
 				_warDecreesCount.put(clanId, count);
+				for (int clan : _warDecreesCount.keySet())
+				{
+					final Clan loadClan = ClanTable.getInstance().getClan(clan);
+					_acceptedClans.add(loadClan);
+				}
 			}
 			rset.close();
 			statement.close();
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning("Problem at RainbowSpringsChateau: " + e.getMessage());
+			LOGGER.warning(getClass().getSimpleName() + ".loadAttackers()->" + e.getMessage());
 		}
 	}
 	
-	protected static void setRegistrationEndString(long time)
+	private void clearTables()
 	{
-		final Calendar c = Calendar.getInstance();
-		c.setTime(new Date(time));
-		final int year = c.get(Calendar.YEAR);
-		final int month = c.get(Calendar.MONTH) + 1;
-		final int day = c.get(Calendar.DAY_OF_MONTH);
-		final int hour = c.get(Calendar.HOUR_OF_DAY);
-		final int mins = c.get(Calendar.MINUTE);
-		_registrationEnds = year + "-" + month + "-" + day + " " + hour + (mins < 10 ? ":0" : ":") + mins;
+		try (Connection con = DatabaseFactory.getConnection())
+		{
+			final PreparedStatement stat1 = con.prepareStatement("DELETE FROM rainbowsprings_attacker_list");
+			stat1.execute();
+			stat1.close();
+		}
+		catch (Exception e)
+		{
+			LOGGER.warning(getClass().getSimpleName() + ".clearTables()->" + e.getMessage());
+		}
 	}
 	
-	public static void launchSiege()
+	protected class ChestsSpawn implements Runnable
 	{
-		_nextSiege.cancel(false);
-		ThreadPool.execute(new SiegeStart());
+		@Override
+		public void run()
+		{
+			for (int i = 0; i < _acceptedClans.size(); i++)
+			{
+				if (arenaChestsCnt[i] < 4)
+				{
+					final Npc chest = addSpawn(CHEST, CHESTS_SPAWN[i][0] + getRandom(-400, 400), CHESTS_SPAWN[i][1] + getRandom(-400, 400), CHESTS_SPAWN[i][2], 0, false, 0, false);
+					if (chest != null)
+					{
+						chests.add(chest);
+					}
+					arenaChestsCnt[i]++;
+				}
+				
+				if (arenaChestsCnt[i] < 4)
+				{
+					final Npc chest = addSpawn(CHEST, CHESTS_SPAWN[i][0] + getRandom(-400, 400), CHESTS_SPAWN[i][1] + getRandom(-400, 400), CHESTS_SPAWN[i][2], 0, false, 0, false);
+					if (chest != null)
+					{
+						chests.add(chest);
+					}
+					arenaChestsCnt[i]++;
+				}
+				
+				if (arenaChestsCnt[i] < 4)
+				{
+					final Npc chest = addSpawn(CHEST, CHESTS_SPAWN[i][0] + getRandom(-400, 400), CHESTS_SPAWN[i][1] + getRandom(-400, 400), CHESTS_SPAWN[i][2], 0, false, 0, false);
+					if (chest != null)
+					{
+						chests.add(chest);
+					}
+					arenaChestsCnt[i]++;
+				}
+				
+				if (arenaChestsCnt[i] < 4)
+				{
+					final Npc chest = addSpawn(CHEST, CHESTS_SPAWN[i][0] + getRandom(-400, 400), CHESTS_SPAWN[i][1] + getRandom(-400, 400), CHESTS_SPAWN[i][2], 0, false, 0, false);
+					if (chest != null)
+					{
+						chests.add(chest);
+					}
+					arenaChestsCnt[i]++;
+				}
+			}
+		}
+	}
+	
+	protected class GenerateTask implements Runnable
+	{
+		protected final Npc _npc;
+		
+		protected GenerateTask(Npc npc)
+		{
+			_npc = npc;
+		}
+		
+		@Override
+		public void run()
+		{
+			_generated = getRandom(WORLD_LIST.length);
+			final Word word = WORLD_LIST[_generated];
+			final ExShowScreenMessage msg = new ExShowScreenMessage(word.getName(), 5000);
+			final int region = MapRegionManager.getInstance().getMapRegionLocId(_npc.getX(), _npc.getY());
+			for (Player player : World.getInstance().getPlayers())
+			{
+				if ((region == MapRegionManager.getInstance().getMapRegionLocId(player.getX(), player.getY())) && Util.checkIfInRange(750, _npc, player, false))
+				{
+					player.sendPacket(msg);
+				}
+			}
+		}
+	}
+	
+	protected void chestDie(Npc npc)
+	{
+		for (int i = 0; i < _acceptedClans.size(); i++)
+		{
+			arenaChestsCnt[i]--;
+		}
+	}
+	
+	private int rndEx(int size, int ex)
+	{
+		int rnd = Integer.MIN_VALUE;
+		for (int i = 0; i < Byte.MAX_VALUE; i++)
+		{
+			rnd = Rnd.get(size);
+			if (rnd != ex)
+			{
+				break;
+			}
+		}
+		return rnd;
 	}
 	
 	@Override
-	public void endSiege()
+	public Clan getWinner()
 	{
-		if (_siegeEnd != null)
-		{
-			_siegeEnd.cancel(false);
-		}
-		ThreadPool.execute(new SiegeEnd(null));
-	}
-	
-	public static void updateAdminDate(long date)
-	{
-		if (_rainbow == null)
-		{
-			_rainbow = CHSiegeManager.getInstance().getSiegableHall(RAINBOW_SPRINGS);
-		}
-		
-		_rainbow.setNextSiegeDate(date);
-		if (_nextSiege != null)
-		{
-			_nextSiege.cancel(true);
-		}
-		setRegistrationEndString(date - 3600000);
-		_nextSiege = ThreadPool.schedule(new SetFinalAttackers(), _rainbow.getNextSiegeTime());
+		return _winner;
 	}
 	
 	public static void main(String[] args)

@@ -17,10 +17,11 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Buff effect implementation.
@@ -40,8 +41,8 @@ public class Buff extends AbstractEffect
 	}
 	
 	@Override
-	public boolean onActionTime(BuffInfo info)
+	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
-		return info.getSkill().isPassive() || info.getSkill().isToggle();
+		return skill.isPassive() || skill.isToggle();
 	}
 }

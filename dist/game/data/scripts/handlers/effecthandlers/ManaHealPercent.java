@@ -21,7 +21,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -53,10 +53,9 @@ public class ManaHealPercent extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature target = info.getEffected();
-		if ((target == null) || target.isDead() || target.isDoor())
+		if ((effected == null) || effected.isDead() || effected.isDoor())
 		{
 			return;
 		}
@@ -64,24 +63,24 @@ public class ManaHealPercent extends AbstractEffect
 		double amount = 0;
 		final double power = _power;
 		final boolean full = (power == 100.0);
-		amount = full ? target.getMaxMp() : (target.getMaxMp() * power) / 100.0;
-		// Prevents overheal and negative amount
-		amount = Math.max(Math.min(amount, target.getMaxRecoverableMp() - target.getCurrentMp()), 0);
+		amount = full ? effected.getMaxMp() : (effected.getMaxMp() * power) / 100.0;
+		// Prevents overheal and negative amount.
+		amount = Math.max(Math.min(amount, effected.getMaxRecoverableMp() - effected.getCurrentMp()), 0);
 		if (amount != 0)
 		{
-			target.setCurrentMp(amount + target.getCurrentMp());
+			effected.setCurrentMp(amount + effected.getCurrentMp());
 		}
 		SystemMessage sm;
-		if (info.getEffector().getObjectId() != target.getObjectId())
+		if (effector.getObjectId() != effected.getObjectId())
 		{
 			sm = new SystemMessage(SystemMessageId.S2_MP_HAS_BEEN_RESTORED_BY_C1);
-			sm.addString(info.getEffector().getName());
+			sm.addString(effector.getName());
 		}
 		else
 		{
 			sm = new SystemMessage(SystemMessageId.S1_MP_HAS_BEEN_RESTORED);
 		}
 		sm.addInt((int) amount);
-		target.sendPacket(sm);
+		effected.sendPacket(sm);
 	}
 }

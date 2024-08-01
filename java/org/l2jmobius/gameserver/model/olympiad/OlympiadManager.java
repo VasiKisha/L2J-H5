@@ -75,7 +75,7 @@ public class OlympiadManager
 		List<List<Integer>> result = null;
 		for (Entry<Integer, List<Integer>> classList : _classBasedRegisters.entrySet())
 		{
-			if ((classList.getValue() != null) && (classList.getValue().size() >= Config.ALT_OLY_CLASSED))
+			if ((classList.getValue() != null) && (classList.getValue().size() >= Config.OLYMPIAD_CLASSED))
 			{
 				if (result == null)
 				{
@@ -90,12 +90,12 @@ public class OlympiadManager
 	
 	protected final boolean hasEnoughRegisteredNonClassed()
 	{
-		return _nonClassBasedRegisters.size() >= Config.ALT_OLY_NONCLASSED;
+		return _nonClassBasedRegisters.size() >= Config.OLYMPIAD_NONCLASSED;
 	}
 	
 	protected final boolean hasEnoughRegisteredTeams()
 	{
-		return _teamsBasedRegisters.size() >= Config.ALT_OLY_TEAMS;
+		return _teamsBasedRegisters.size() >= Config.OLYMPIAD_TEAMS;
 	}
 	
 	protected void clearRegistered()

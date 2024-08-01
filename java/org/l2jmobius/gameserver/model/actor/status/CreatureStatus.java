@@ -262,6 +262,10 @@ public class CreatureStatus
 		final int currentHp = (int) _currentHp;
 		final double maxHp = _creature.getMaxHp();
 		
+		// Tempfix for updating UserInfo when skills like Final Frenzy and Final Fortress conditions activate.
+		final double thirtyPercent = maxHp * 0.3;
+		final boolean updateUserInfo = _creature.isPlayer() && (((currentHp < thirtyPercent) && (newHp > thirtyPercent)) || ((currentHp > thirtyPercent) && (newHp < thirtyPercent)));
+		
 		synchronized (this)
 		{
 			if (_creature.isDead())
@@ -298,6 +302,11 @@ public class CreatureStatus
 		if (hpWasChanged && broadcastPacket)
 		{
 			_creature.broadcastStatusUpdate();
+		}
+		
+		if (updateUserInfo)
+		{
+			_creature.getActingPlayer().updateUserInfo();
 		}
 		
 		return hpWasChanged;

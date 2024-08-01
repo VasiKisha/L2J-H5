@@ -988,7 +988,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="7800" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1007,7 +1007,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="14200" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1026,7 +1026,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="24100" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1045,7 +1045,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="38450" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1064,7 +1064,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="58500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1083,7 +1083,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="86000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1102,7 +1102,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="113000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1121,7 +1121,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="145500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1140,7 +1140,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="186000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
 		</cond>
 		<for>

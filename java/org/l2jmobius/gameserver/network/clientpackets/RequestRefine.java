@@ -99,7 +99,7 @@ public class RequestRefine extends AbstractRefinePacket
 			{
 				iu.addModifiedItem(itm);
 			}
-			player.sendPacket(iu);
+			player.sendPacket(iu); // Sent inventory update for unequip instantly.
 			player.broadcastUserInfo();
 		}
 		
@@ -124,7 +124,7 @@ public class RequestRefine extends AbstractRefinePacket
 		
 		final InventoryUpdate iu = new InventoryUpdate();
 		iu.addModifiedItem(targetItem);
-		player.sendPacket(iu);
+		player.sendPacket(iu); // Sent inventory update for destruction instantly.
 		
 		final StatusUpdate su = new StatusUpdate(player);
 		su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());

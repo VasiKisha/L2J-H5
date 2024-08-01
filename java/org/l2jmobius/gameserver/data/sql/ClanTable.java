@@ -107,6 +107,8 @@ public class ClanTable
 		LOGGER.info(getClass().getSimpleName() + ": Restored " + cids.size() + " clans from the database.");
 		allianceCheck();
 		restoreClanWars();
+		
+		ThreadPool.scheduleAtFixedRate(this::updateClanRanks, 1000, 1200000); // 20 minutes.
 	}
 	
 	/**
@@ -547,6 +549,33 @@ public class ClanTable
 		{
 			clan.updateClanInDB();
 		}
+	}
+	
+	private void updateClanRanks()
+	{
+		for (Clan clan : _clans.values())
+		{
+			clan.setRank(getClanRank(clan));
+		}
+	}
+	
+	public int getClanRank(Clan clan)
+	{
+		if (clan.getLevel() < 3)
+		{
+			return 0;
+		}
+		
+		int rank = 1;
+		for (Clan c : _clans.values())
+		{
+			if ((clan != c) && ((clan.getLevel() < c.getLevel()) || ((clan.getLevel() == c.getLevel()) && (clan.getReputationScore() <= c.getReputationScore()))))
+			{
+				rank++;
+			}
+		}
+		
+		return rank;
 	}
 	
 	public static ClanTable getInstance()

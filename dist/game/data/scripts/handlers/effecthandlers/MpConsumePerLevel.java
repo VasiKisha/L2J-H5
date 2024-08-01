@@ -20,7 +20,7 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -38,22 +38,21 @@ public class MpConsumePerLevel extends AbstractEffect
 	}
 	
 	@Override
-	public boolean onActionTime(BuffInfo info)
+	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature target = info.getEffected();
-		if (target.isDead())
+		if (effected.isDead())
 		{
 			return false;
 		}
 		
-		final double consume = _power * getTicksMultiplier() * ((target.getLevel() - 1) / 7.5);
-		if (consume > target.getCurrentMp())
+		final double consume = _power * getTicksMultiplier() * ((effected.getLevel() - 1) / 7.5);
+		if (consume > effected.getCurrentMp())
 		{
-			target.sendPacket(SystemMessageId.YOUR_SKILL_WAS_DEACTIVATED_DUE_TO_LACK_OF_MP);
+			effected.sendPacket(SystemMessageId.YOUR_SKILL_WAS_DEACTIVATED_DUE_TO_LACK_OF_MP);
 			return false;
 		}
 		
-		target.reduceCurrentMp(consume);
-		return info.getSkill().isToggle();
+		effected.reduceCurrentMp(consume);
+		return skill.isToggle();
 	}
 }

@@ -27,16 +27,16 @@ import org.l2jmobius.gameserver.model.stats.Stat;
 
 public class FuncEnchant extends AbstractFunction
 {
-	public FuncEnchant(Stat stat, int order, Object owner, double value, Condition applayCond)
+	public FuncEnchant(Stat stat, int order, Object owner, double value, Condition applyCond)
 	{
-		super(stat, order, owner, value, applayCond);
+		super(stat, order, owner, value, applyCond);
 	}
 	
 	@Override
 	public double calc(Creature effector, Creature effected, Skill skill, double initVal)
 	{
 		double value = initVal;
-		if ((getApplayCond() != null) && !getApplayCond().test(effector, effected, skill))
+		if ((getApplyCond() != null) && !getApplyCond().test(effector, effected, skill))
 		{
 			return value;
 		}
@@ -55,16 +55,16 @@ public class FuncEnchant extends AbstractFunction
 			enchant = 3;
 		}
 		
-		if (effector.isPlayer() && effector.getActingPlayer().isInOlympiadMode() && (Config.ALT_OLY_ENCHANT_LIMIT >= 0) && ((enchant + overenchant) > Config.ALT_OLY_ENCHANT_LIMIT))
+		if (effector.isPlayer() && effector.getActingPlayer().isInOlympiadMode() && (Config.OLYMPIAD_ENCHANT_LIMIT >= 0) && ((enchant + overenchant) > Config.OLYMPIAD_ENCHANT_LIMIT))
 		{
-			if (Config.ALT_OLY_ENCHANT_LIMIT > 3)
+			if (Config.OLYMPIAD_ENCHANT_LIMIT > 3)
 			{
-				overenchant = Config.ALT_OLY_ENCHANT_LIMIT - 3;
+				overenchant = Config.OLYMPIAD_ENCHANT_LIMIT - 3;
 			}
 			else
 			{
 				overenchant = 0;
-				enchant = Config.ALT_OLY_ENCHANT_LIMIT;
+				enchant = Config.OLYMPIAD_ENCHANT_LIMIT;
 			}
 		}
 		

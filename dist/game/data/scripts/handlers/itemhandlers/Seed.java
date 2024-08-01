@@ -49,7 +49,7 @@ public class Seed implements IItemHandler
 		}
 		
 		final WorldObject tgt = playable.getTarget();
-		if (!tgt.isNpc())
+		if ((tgt == null) || !tgt.isNpc())
 		{
 			playable.sendPacket(SystemMessageId.INVALID_TARGET);
 			return false;

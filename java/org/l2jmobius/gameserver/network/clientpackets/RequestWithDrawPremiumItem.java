@@ -48,7 +48,7 @@ public class RequestWithDrawPremiumItem extends ClientPacket
 		{
 			return;
 		}
-		else if (_itemCount <= 0)
+		else if (_itemCount < 1)
 		{
 			return;
 		}

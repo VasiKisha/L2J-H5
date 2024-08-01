@@ -339,7 +339,7 @@ public class SellBuffsManager implements IXmlReader
 		{
 			sb.append("</table>");
 			sb.append("<br><br><br>");
-			sb.append("At this moment you cant add any buffs!");
+			sb.append("At this moment you cannot add any buffs!");
 		}
 		else
 		{

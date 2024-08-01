@@ -442,9 +442,7 @@ public class FeedableBeasts extends AbstractNpcAI
 			final TamedBeast nextNpc = new TamedBeast(nextNpcId, player, food - FOODSKILLDIFF, npc.getX(), npc.getY(), npc.getZ());
 			nextNpc.setRunning();
 			Q00020_BringUpWithLove.checkJewelOfInnocence(player);
-			
-			// Support for A Grand Plan for Taming Wild Beasts (655) quest.
-			Q00655_AGrandPlanForTamingWildBeasts.reward(player, nextNpc);
+			Q00655_AGrandPlanForTamingWildBeasts.checkCrystalofPurity(player);
 			
 			// also, perform a rare random chat
 			if (getRandom(20) == 0)

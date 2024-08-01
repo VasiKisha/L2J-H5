@@ -641,11 +641,11 @@ public class SpawnTable implements IXmlReader
 							final NpcTemplate template = NpcData.getInstance().getTemplate(spawn.getId());
 							final String title = template.getTitle();
 							final String name = title.isEmpty() ? template.getName() : template.getName() + " - " + title;
-							writer.write("		<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnDelay=\"" + spawnDelay + "\" /> <!-- " + name + " -->" + Config.EOL);
-							writer.write(currentLine + Config.EOL);
+							writer.write("		<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnDelay=\"" + spawnDelay + "\" /> <!-- " + name + " -->" + System.lineSeparator());
+							writer.write(currentLine + System.lineSeparator());
 							continue;
 						}
-						writer.write(currentLine + Config.EOL);
+						writer.write(currentLine + System.lineSeparator());
 					}
 					writer.close();
 					reader.close();
@@ -665,12 +665,12 @@ public class SpawnTable implements IXmlReader
 					final String title = template.getTitle();
 					final String name = title.isEmpty() ? template.getName() : template.getName() + " - " + title;
 					final BufferedWriter writer = new BufferedWriter(new FileWriter(spawnFile));
-					writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Config.EOL);
-					writer.write("<list enabled=\"true\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"../../xsd/spawns.xsd\">" + Config.EOL);
-					writer.write("	<spawn name=\"" + x + "_" + y + "\">" + Config.EOL);
-					writer.write("		<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnDelay=\"" + spawnDelay + "\" /> <!-- " + name + " -->" + Config.EOL);
-					writer.write("	</spawn>" + Config.EOL);
-					writer.write("</list>" + Config.EOL);
+					writer.write("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator());
+					writer.write("<list enabled=\"true\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"../../xsd/spawns.xsd\">" + System.lineSeparator());
+					writer.write("	<spawn name=\"" + x + "_" + y + "\">" + System.lineSeparator());
+					writer.write("		<npc id=\"" + spawnId + (spawn.getAmount() > 1 ? "\" count=\"" + spawnCount : "") + "\" x=\"" + spawnX + "\" y=\"" + spawnY + "\" z=\"" + spawnZ + (spawn.getHeading() > 0 ? "\" heading=\"" + spawnHeading : "") + "\" respawnDelay=\"" + spawnDelay + "\" /> <!-- " + name + " -->" + System.lineSeparator());
+					writer.write("	</spawn>" + System.lineSeparator());
+					writer.write("</list>" + System.lineSeparator());
 					writer.close();
 					LOGGER.info(getClass().getSimpleName() + ": Created file: " + OTHER_XML_FOLDER + "/" + x + "_" + y + ".xml");
 				}
@@ -746,7 +746,7 @@ public class SpawnTable implements IXmlReader
 								continue;
 							}
 						}
-						writer.write(currentLine + Config.EOL);
+						writer.write(currentLine + System.lineSeparator());
 						if (currentLine.contains("</list>"))
 						{
 							lastLineFound = true;
@@ -777,7 +777,7 @@ public class SpawnTable implements IXmlReader
 								continue SEARCH;
 							}
 						}
-						writer.write(currentLine + Config.EOL);
+						writer.write(currentLine + System.lineSeparator());
 						if (currentLine.contains("</list>"))
 						{
 							lastLineFound = true;

@@ -21,6 +21,7 @@ import org.l2jmobius.commons.network.WritablePacket;
 import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.network.ConnectionState;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 
@@ -67,14 +68,20 @@ public abstract class ServerPacket extends WritablePacket<GameClient>
 	@Override
 	protected boolean write(GameClient client, WritableBuffer buffer)
 	{
+		final GameClient c = client;
+		if ((c == null) || c.isDetached() || (c.getConnectionState() == ConnectionState.DISCONNECTED))
+		{
+			return true; // Disconnected client.
+		}
+		
 		try
 		{
-			writeImpl(client, buffer);
+			writeImpl(c, buffer);
 			return true;
 		}
 		catch (Exception e)
 		{
-			PacketLogger.warning("Error writing packet " + this + " to client (" + e.getMessage() + ") " + client + "]]");
+			PacketLogger.warning("Error writing packet " + this + " to client (" + e.getMessage() + ") " + c + "]]");
 			PacketLogger.warning(CommonUtil.getStackTrace(e));
 		}
 		return false;

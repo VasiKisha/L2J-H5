@@ -19,9 +19,10 @@ package handlers.effecthandlers;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Attackable;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 
 /**
@@ -40,9 +41,9 @@ public class TransferHate extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		return Formulas.calcProbability(_chance, info.getEffector(), info.getEffected(), info.getSkill());
+		return Formulas.calcProbability(_chance, effector, effected, skill);
 	}
 	
 	@Override
@@ -52,23 +53,23 @@ public class TransferHate extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		World.getInstance().forEachVisibleObjectInRange(info.getEffector(), Attackable.class, info.getSkill().getAffectRange(), hater ->
+		World.getInstance().forEachVisibleObjectInRange(effector, Attackable.class, skill.getAffectRange(), hater ->
 		{
 			if ((hater == null) || hater.isDead())
 			{
 				return;
 			}
 			
-			final long hate = hater.getHating(info.getEffector());
+			final long hate = hater.getHating(effector);
 			if (hate <= 0)
 			{
 				return;
 			}
 			
-			hater.reduceHate(info.getEffector(), -hate);
-			hater.addDamageHate(info.getEffected(), 0, hate);
+			hater.reduceHate(effector, -hate);
+			hater.addDamageHate(effected, 0, hate);
 		});
 	}
 }

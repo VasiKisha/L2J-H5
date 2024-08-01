@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
 
 /**
@@ -49,7 +48,7 @@ public class AuditFormatter extends Formatter
 			}
 		}
 		
-		output.append(Config.EOL);
+		output.append(System.lineSeparator());
 		return output.toString();
 	}
 }

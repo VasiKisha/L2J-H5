@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="32500" level="70" type="Folk" name="Inspector Sinai">
 		<!-- Confirmed CT2.5 -->
@@ -121,7 +121,7 @@
 			<height normal="23" />
 		</collision>
 	</npc>
-	<npc id="32503" level="70" type="Teleporter" name="Entrance Manager" title="Kratei's Cube">
+	<npc id="32503" level="70" type="KrateisCubeManager" name="Entrance Manager" title="Kratei's Cube">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
@@ -161,7 +161,7 @@
 			<height normal="16.5" />
 		</collision>
 	</npc>
-	<npc id="32504" level="70" type="Folk" name="Match Manager" title="Kratei's Cube">
+	<npc id="32504" level="70" type="KrateisMatchManager" name="Match Manager" title="Kratei's Cube">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
@@ -201,7 +201,7 @@
 			<height normal="17" />
 		</collision>
 	</npc>
-	<npc id="32505" level="70" type="Folk" name="Match Manager" title="Kratei's Cube">
+	<npc id="32505" level="70" type="KrateisMatchManager" name="Match Manager" title="Kratei's Cube">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
@@ -241,7 +241,7 @@
 			<height normal="17" />
 		</collision>
 	</npc>
-	<npc id="32506" level="70" type="Folk" name="Match Manager" title="Kratei's Cube">
+	<npc id="32506" level="70" type="KrateisMatchManager" name="Match Manager" title="Kratei's Cube">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
@@ -523,7 +523,7 @@
 			<height normal="30" />
 		</collision>
 	</npc>
-	<npc id="32513" level="70" type="Folk" name="Kun" title="Entrance Manager">
+	<npc id="32513" level="70" type="UCManager" name="Kun" title="Entrance Manager">
 		<!-- Confirmed CT2.5 -->
 		<race>DWARF</race>
 		<sex>MALE</sex>
@@ -559,7 +559,7 @@
 			<height normal="17.285" />
 		</collision>
 	</npc>
-	<npc id="32514" level="70" type="Folk" name="Tarion" title="Entrance Manager">
+	<npc id="32514" level="70" type="UCManager" name="Tarion" title="Entrance Manager">
 		<!-- Confirmed CT2.5 -->
 		<race>DWARF</race>
 		<sex>MALE</sex>
@@ -595,7 +595,7 @@
 			<height normal="17.285" />
 		</collision>
 	</npc>
-	<npc id="32515" level="70" type="Folk" name="Leo" title="Entrance Manager">
+	<npc id="32515" level="70" type="UCManager" name="Leo" title="Entrance Manager">
 		<!-- Confirmed CT2.5 -->
 		<race>DWARF</race>
 		<sex>MALE</sex>
@@ -631,7 +631,7 @@
 			<height normal="17.285" />
 		</collision>
 	</npc>
-	<npc id="32516" level="70" type="Folk" name="Candice" title="Entrance Manager">
+	<npc id="32516" level="70" type="UCManager" name="Candice" title="Entrance Manager">
 		<!-- Confirmed CT2.5 -->
 		<race>DWARF</race>
 		<sex>MALE</sex>

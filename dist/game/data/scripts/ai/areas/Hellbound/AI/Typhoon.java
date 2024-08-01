@@ -33,7 +33,7 @@ public class Typhoon extends AbstractNpcAI
 	// NPCs
 	private static final int TYPHOON = 25539;
 	// Skills
-	private static SkillHolder STORM = new SkillHolder(5434, 1); // Gust
+	private static final SkillHolder STORM = new SkillHolder(5434, 1); // Gust
 	
 	public Typhoon()
 	{

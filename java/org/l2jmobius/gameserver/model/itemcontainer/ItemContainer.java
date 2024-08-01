@@ -296,7 +296,7 @@ public abstract class ItemContainer
 			// If additional items where created send InventoryUpdate.
 			if ((count > 1) && (item != null) && !item.isStackable() && (item.getItemLocation() == ItemLocation.INVENTORY))
 			{
-				actor.sendPacket(iu);
+				actor.sendInventoryUpdate(iu);
 			}
 		}
 		

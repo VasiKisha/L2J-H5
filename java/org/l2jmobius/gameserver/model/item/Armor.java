@@ -85,7 +85,7 @@ public class Armor extends ItemTemplate
 		catch (Exception nfe)
 		{
 			// Incorrect syntax, don't add new skill
-			LOGGER.info("> Couldnt parse " + skill + " in armor enchant skills! item " + this);
+			LOGGER.info("> Could not parse " + skill + " in armor enchant skills! item " + this);
 		}
 		if ((id > 0) && (level > 0))
 		{

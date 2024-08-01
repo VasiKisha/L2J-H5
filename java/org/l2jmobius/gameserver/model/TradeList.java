@@ -590,8 +590,8 @@ public class TradeList
 			// Transfer items
 			partnerList.TransferItems(_owner, partnerIU, ownerIU);
 			TransferItems(partnerList.getOwner(), ownerIU, partnerIU);
-			_owner.sendPacket(ownerIU);
-			_partner.sendPacket(partnerIU);
+			_owner.sendInventoryUpdate(ownerIU);
+			_partner.sendInventoryUpdate(partnerIU);
 			
 			// Update current load as well
 			StatusUpdate playerSU = new StatusUpdate(_owner);
@@ -816,8 +816,8 @@ public class TradeList
 		}
 		
 		// Send inventory update packet
-		_owner.sendPacket(ownerIU);
-		player.sendPacket(playerIU);
+		_owner.sendInventoryUpdate(ownerIU);
+		player.sendInventoryUpdate(playerIU);
 		return ok ? 0 : 2;
 	}
 	
@@ -997,8 +997,8 @@ public class TradeList
 		if (ok)
 		{
 			// Send inventory update packet
-			_owner.sendPacket(ownerIU);
-			player.sendPacket(playerIU);
+			_owner.sendInventoryUpdate(ownerIU);
+			player.sendInventoryUpdate(playerIU);
 		}
 		return ok;
 	}

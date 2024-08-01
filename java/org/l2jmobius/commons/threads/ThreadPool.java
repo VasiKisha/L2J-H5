@@ -90,7 +90,7 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + Config.EOL + e.getMessage() + Config.EOL + e.getStackTrace());
+			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
 			return null;
 		}
 	}
@@ -110,7 +110,7 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + Config.EOL + e.getMessage() + Config.EOL + e.getStackTrace());
+			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
 			return null;
 		}
 	}
@@ -130,7 +130,7 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + Config.EOL + e.getMessage() + Config.EOL + e.getStackTrace());
+			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
 			return null;
 		}
 	}
@@ -147,7 +147,7 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + Config.EOL + e.getMessage() + Config.EOL + e.getStackTrace());
+			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
 		}
 	}
 	
@@ -170,43 +170,6 @@ public class ThreadPool
 			return MAX_DELAY;
 		}
 		return delay;
-	}
-	
-	public static String[] getStats()
-	{
-		final String[] stats = new String[30];
-		int pos = 0;
-		stats[pos++] = "High Priority pool:";
-		stats[pos++] = " |- ActiveCount: ...... " + HIGH_PRIORITY_SCHEDULED_POOL.getActiveCount();
-		stats[pos++] = " |- CorePoolSize: ..... " + HIGH_PRIORITY_SCHEDULED_POOL.getCorePoolSize();
-		stats[pos++] = " |- PoolSize: ......... " + HIGH_PRIORITY_SCHEDULED_POOL.getPoolSize();
-		stats[pos++] = " |- LargestPoolSize: .. " + HIGH_PRIORITY_SCHEDULED_POOL.getLargestPoolSize();
-		stats[pos++] = " |- MaximumPoolSize: .. " + HIGH_PRIORITY_SCHEDULED_POOL.getMaximumPoolSize();
-		stats[pos++] = " |- CompletedTaskCount: " + HIGH_PRIORITY_SCHEDULED_POOL.getCompletedTaskCount();
-		stats[pos++] = " |- QueuedTaskCount: .. " + HIGH_PRIORITY_SCHEDULED_POOL.getQueue().size();
-		stats[pos++] = " |- TaskCount: ........ " + HIGH_PRIORITY_SCHEDULED_POOL.getTaskCount();
-		stats[pos++] = " | -------";
-		stats[pos++] = "Scheduled pool:";
-		stats[pos++] = " |- ActiveCount: ...... " + SCHEDULED_POOL.getActiveCount();
-		stats[pos++] = " |- CorePoolSize: ..... " + SCHEDULED_POOL.getCorePoolSize();
-		stats[pos++] = " |- PoolSize: ......... " + SCHEDULED_POOL.getPoolSize();
-		stats[pos++] = " |- LargestPoolSize: .. " + SCHEDULED_POOL.getLargestPoolSize();
-		stats[pos++] = " |- MaximumPoolSize: .. " + SCHEDULED_POOL.getMaximumPoolSize();
-		stats[pos++] = " |- CompletedTaskCount: " + SCHEDULED_POOL.getCompletedTaskCount();
-		stats[pos++] = " |- QueuedTaskCount: .. " + SCHEDULED_POOL.getQueue().size();
-		stats[pos++] = " |- TaskCount: ........ " + SCHEDULED_POOL.getTaskCount();
-		stats[pos++] = " | -------";
-		stats[pos++] = "Instant pool:";
-		stats[pos++] = " |- ActiveCount: ...... " + INSTANT_POOL.getActiveCount();
-		stats[pos++] = " |- CorePoolSize: ..... " + INSTANT_POOL.getCorePoolSize();
-		stats[pos++] = " |- PoolSize: ......... " + INSTANT_POOL.getPoolSize();
-		stats[pos++] = " |- LargestPoolSize: .. " + INSTANT_POOL.getLargestPoolSize();
-		stats[pos++] = " |- MaximumPoolSize: .. " + INSTANT_POOL.getMaximumPoolSize();
-		stats[pos++] = " |- CompletedTaskCount: " + INSTANT_POOL.getCompletedTaskCount();
-		stats[pos++] = " |- QueuedTaskCount: .. " + INSTANT_POOL.getQueue().size();
-		stats[pos++] = " |- TaskCount: ........ " + INSTANT_POOL.getTaskCount();
-		stats[pos] = " | -------";
-		return stats;
 	}
 	
 	/**

@@ -17,12 +17,14 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.ai.CtrlEvent;
+import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Sleep effect implementation.
@@ -48,20 +50,24 @@ public class Sleep extends AbstractEffect
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffected().isPlayer())
+		if (effected.isPlayer())
 		{
-			info.getEffected().getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+		}
+		else
+		{
+			effected.getAI().notifyEvent(CtrlEvent.EVT_THINK);
 		}
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		info.getEffected().abortAttack();
-		info.getEffected().abortCast();
-		info.getEffected().stopMove(null);
-		info.getEffected().getAI().notifyEvent(CtrlEvent.EVT_SLEEPING);
+		effected.abortAttack();
+		effected.abortCast();
+		effected.stopMove(null);
+		effected.getAI().notifyEvent(CtrlEvent.EVT_SLEEPING);
 	}
 }

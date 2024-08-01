@@ -526,7 +526,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 			return null;
 		}
 		
-		// There are lots of mobs walls, and item get is random, it could happen that you dont get the item until the last wall, and there's 4 different silenos groups. 1 enchant comes only from group 2 and the 2nd comes from group 4. Chances, lets say 20% of getting the enchant when killing the
+		// There are lots of mobs walls, and item get is random, it could happen that you do not get the item until the last wall, and there's 4 different silenos groups. 1 enchant comes only from group 2 and the 2nd comes from group 4. Chances, lets say 20% of getting the enchant when killing the
 		// right mob When you kill a mob wall, another mage type appears behind. If all mobs from the front are killed then the ones that are behind are despawned. Also this mobs should be damaged, like with 30% of max HP, because they should be easy to kill.
 		switch (npc.getId())
 		{

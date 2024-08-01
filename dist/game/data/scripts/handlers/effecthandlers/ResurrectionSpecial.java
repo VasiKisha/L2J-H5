@@ -17,13 +17,14 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Resurrection Special effect implementation.
@@ -53,28 +54,28 @@ public class ResurrectionSpecial extends AbstractEffect
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffected().isPlayer() && !info.getEffected().isPet())
+		if (!effected.isPlayer() && !effected.isPet())
 		{
 			return;
 		}
 		
-		if (info.getEffected().getActingPlayer().isInOlympiadMode())
+		if (effected.getActingPlayer().isInOlympiadMode())
 		{
 			return;
 		}
 		
-		final Player caster = info.getEffector().getActingPlayer();
-		if (info.getEffected().isPlayer())
+		final Player caster = effector.getActingPlayer();
+		if (effected.isPlayer())
 		{
-			info.getEffected().getActingPlayer().reviveRequest(caster, false, _power);
+			effected.getActingPlayer().reviveRequest(caster, false, _power);
 			return;
 		}
-		if (info.getEffected().isPet())
+		if (effected.isPet())
 		{
-			final Pet pet = (Pet) info.getEffected();
-			info.getEffected().getActingPlayer().reviveRequest(pet.getActingPlayer(), true, _power);
+			final Pet pet = (Pet) effected;
+			effected.getActingPlayer().reviveRequest(pet.getActingPlayer(), true, _power);
 		}
 	}
 }

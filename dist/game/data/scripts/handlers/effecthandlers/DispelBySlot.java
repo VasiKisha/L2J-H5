@@ -30,6 +30,7 @@ import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Dispel By Slot effect implementation.
@@ -73,14 +74,13 @@ public class DispelBySlot extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
 		if (_dispelAbnormals.isEmpty())
 		{
 			return;
 		}
 		
-		final Creature effected = info.getEffected();
 		final EffectList effectList = effected.getEffectList();
 		// There is no need to iterate over all buffs,
 		// Just iterate once over all slots to dispel and get the buff with that abnormal if exists,
@@ -90,7 +90,7 @@ public class DispelBySlot extends AbstractEffect
 			// Dispel transformations (buff and by GM)
 			if ((entry.getKey() == AbnormalType.TRANSFORM) && (effected.isTransformed() || (effected.isPlayer() || (entry.getValue() == effected.getActingPlayer().getTransformationId()) || (entry.getValue() < 0))))
 			{
-				info.getEffected().stopTransformation(true);
+				effected.stopTransformation(true);
 				continue;
 			}
 			

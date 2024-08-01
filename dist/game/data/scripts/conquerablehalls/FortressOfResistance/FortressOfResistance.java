@@ -20,6 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.l2jmobius.commons.util.TimeUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.model.Location;
@@ -29,7 +30,6 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Fortress of Resistance clan hall siege Script.
@@ -83,7 +83,7 @@ public class FortressOfResistance extends ClanHallSiegeEngine
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(getName() + ": Couldnt set the Bloody Lord Nurka spawn " + e);
+			LOGGER.warning(getName() + ": Could not set the Bloody Lord Nurka spawn " + e);
 		}
 	}
 	
@@ -95,7 +95,7 @@ public class FortressOfResistance extends ClanHallSiegeEngine
 			// FIXME: We don't have an object id to put in here :(
 			_messengerMsg = new NpcHtmlMessage();
 			_messengerMsg.setHtml(html);
-			_messengerMsg.replace("%nextSiege%", Util.formatDate(_hall.getSiegeDate().getTime(), "yyyy-MM-dd HH:mm:ss"));
+			_messengerMsg.replace("%nextSiege%", TimeUtil.formatDate(_hall.getSiegeDate().getTime(), "yyyy-MM-dd HH:mm:ss"));
 		}
 	}
 	

@@ -18,11 +18,12 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Detection effect implementation.
@@ -42,15 +43,15 @@ public class Detection extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffector().isPlayer() || !info.getEffected().isPlayer())
+		if (!effector.isPlayer() || !effected.isPlayer())
 		{
 			return;
 		}
 		
-		final Player player = info.getEffector().getActingPlayer();
-		final Player target = info.getEffected().getActingPlayer();
+		final Player player = effector.getActingPlayer();
+		final Player target = effected.getActingPlayer();
 		if (target.isInvisible())
 		{
 			if (player.isInPartyWith(target))

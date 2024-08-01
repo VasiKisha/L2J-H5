@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="NpcBuffersData.xsd">
 	<npc id="106"> <!-- Birthday Cake -->
 		<skill id="22250" level="1" initialDelay="1" delay="60" affectScope="PARTY" affectObject="FRIEND" /> <!-- Birthday Cake Vitality Buff -->

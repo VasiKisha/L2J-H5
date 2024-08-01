@@ -17,10 +17,11 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Transfer Damage effect implementation.
@@ -34,20 +35,20 @@ public class TransferDamage extends AbstractEffect
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isPlayable() && info.getEffector().isPlayer())
+		if (effected.isPlayable() && effector.isPlayer())
 		{
-			((Playable) info.getEffected()).setTransferDamageTo(null);
+			((Playable) effected).setTransferDamageTo(null);
 		}
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isPlayable() && info.getEffector().isPlayer())
+		if (effected.isPlayable() && effector.isPlayer())
 		{
-			((Playable) info.getEffected()).setTransferDamageTo(info.getEffector().getActingPlayer());
+			((Playable) effected).setTransferDamageTo(effector.getActingPlayer());
 		}
 	}
 }

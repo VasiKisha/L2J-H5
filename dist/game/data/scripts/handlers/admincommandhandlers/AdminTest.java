@@ -18,7 +18,6 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -35,21 +34,13 @@ public class AdminTest implements IAdminCommandHandler
 {
 	private static final String[] ADMIN_COMMANDS =
 	{
-		"admin_stats",
 		"admin_skill_test"
 	};
 	
 	@Override
 	public boolean useAdminCommand(String command, Player activeChar)
 	{
-		if (command.equals("admin_stats"))
-		{
-			for (String line : ThreadPool.getStats())
-			{
-				activeChar.sendMessage(line);
-			}
-		}
-		else if (command.startsWith("admin_skill_test"))
+		if (command.startsWith("admin_skill_test"))
 		{
 			try
 			{

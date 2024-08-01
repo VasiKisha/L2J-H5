@@ -110,7 +110,7 @@ public class FestivalMonster extends Monster
 		{
 			iu.addNewItem(addedOfferings);
 		}
-		partyLeader.sendPacket(iu);
+		partyLeader.sendInventoryUpdate(iu);
 		
 		super.doItemDrop(lastAttacker); // Normal drop
 	}

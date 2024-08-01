@@ -18,11 +18,12 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -52,46 +53,46 @@ public class Relax extends AbstractEffect
 	}
 	
 	@Override
-	public boolean onActionTime(BuffInfo info)
+	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isDead())
+		if (effected.isDead())
 		{
 			return false;
 		}
 		
-		if (info.getEffected().isPlayer() && !info.getEffected().getActingPlayer().isSitting())
+		if (effected.isPlayer() && !effected.getActingPlayer().isSitting())
 		{
 			return false;
 		}
 		
-		if (((info.getEffected().getCurrentHp() + 1) > info.getEffected().getMaxRecoverableHp()) && info.getSkill().isToggle())
+		if (((effected.getCurrentHp() + 1) > effected.getMaxRecoverableHp()) && skill.isToggle())
 		{
-			info.getEffected().sendPacket(SystemMessageId.THAT_SKILL_HAS_BEEN_DE_ACTIVATED_AS_HP_WAS_FULLY_RECOVERED);
+			effected.sendPacket(SystemMessageId.THAT_SKILL_HAS_BEEN_DE_ACTIVATED_AS_HP_WAS_FULLY_RECOVERED);
 			return false;
 		}
 		
 		final double manaDam = _power * getTicksMultiplier();
-		if ((manaDam > info.getEffected().getCurrentMp()) && info.getSkill().isToggle())
+		if ((manaDam > effected.getCurrentMp()) && skill.isToggle())
 		{
-			info.getEffected().sendPacket(SystemMessageId.YOUR_SKILL_WAS_DEACTIVATED_DUE_TO_LACK_OF_MP);
+			effected.sendPacket(SystemMessageId.YOUR_SKILL_WAS_DEACTIVATED_DUE_TO_LACK_OF_MP);
 			return false;
 		}
 		
-		info.getEffected().reduceCurrentMp(manaDam);
+		effected.reduceCurrentMp(manaDam);
 		
-		return info.getSkill().isToggle();
+		return skill.isToggle();
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isPlayer())
+		if (effected.isPlayer())
 		{
-			info.getEffected().getActingPlayer().sitDown(false);
+			effected.getActingPlayer().sitDown(false);
 		}
 		else
 		{
-			info.getEffected().getAI().setIntention(CtrlIntention.AI_INTENTION_REST);
+			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_REST);
 		}
 	}
 }

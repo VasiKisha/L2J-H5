@@ -18,11 +18,12 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Cubic;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Summon Cubic effect implementation.
@@ -63,20 +64,20 @@ public class SummonCubic extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((info.getEffected() == null) || !info.getEffected().isPlayer() || info.getEffected().isAlikeDead() || info.getEffected().getActingPlayer().inObserverMode())
+		if ((effected == null) || !effected.isPlayer() || effected.isAlikeDead() || effected.getActingPlayer().inObserverMode())
 		{
 			return;
 		}
 		
 		if (_cubicId < 0)
 		{
-			LOGGER.warning(SummonCubic.class.getSimpleName() + ": Invalid Cubic ID:" + _cubicId + " in skill ID: " + info.getSkill().getId());
+			LOGGER.warning(SummonCubic.class.getSimpleName() + ": Invalid Cubic ID:" + _cubicId + " in skill ID: " + skill.getId());
 			return;
 		}
 		
-		final Player player = info.getEffected().getActingPlayer();
+		final Player player = effected.getActingPlayer();
 		if (player.inObserverMode() || player.isMounted())
 		{
 			return;
@@ -87,10 +88,10 @@ public class SummonCubic extends AbstractEffect
 		// 8 at 101 (+1 Power)
 		// 12 at 130 (+30 Power)
 		// Because 12 is max 5115-5117 skills
-		int cubicSkillLevel = info.getSkill().getLevel();
+		int cubicSkillLevel = skill.getLevel();
 		if (cubicSkillLevel > 100)
 		{
-			cubicSkillLevel = ((info.getSkill().getLevel() - 100) / 7) + 8;
+			cubicSkillLevel = ((skill.getLevel() - 100) / 7) + 8;
 		}
 		
 		// If cubic is already present, it's replaced.
@@ -105,7 +106,7 @@ public class SummonCubic extends AbstractEffect
 		{
 			// If maximum amount is reached, random cubic is removed.
 			// Players with no mastery can have only one cubic.
-			final int allowedCubicCount = info.getEffected().getActingPlayer().getStat().getMaxCubicCount();
+			final int allowedCubicCount = effected.getActingPlayer().getStat().getMaxCubicCount();
 			final int currentCubicCount = player.getCubics().size();
 			// Extra cubics are removed, one by one, randomly.
 			for (int i = 0; i <= (currentCubicCount - allowedCubicCount); i++)
@@ -118,7 +119,7 @@ public class SummonCubic extends AbstractEffect
 			}
 		}
 		// Adding a new cubic.
-		player.addCubic(_cubicId, cubicSkillLevel, _cubicPower, _cubicDelay, _cubicSkillChance, _cubicMaxCount, _cubicDuration, info.getEffected() != info.getEffector());
+		player.addCubic(_cubicId, cubicSkillLevel, _cubicPower, _cubicDelay, _cubicSkillChance, _cubicMaxCount, _cubicDuration, effected != effector);
 		player.broadcastUserInfo();
 	}
 }

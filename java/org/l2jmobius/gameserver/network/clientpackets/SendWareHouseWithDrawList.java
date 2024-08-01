@@ -27,6 +27,7 @@ import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerWarehouse;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.EnchantResult;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.util.Util;
@@ -92,12 +93,21 @@ public class SendWareHouseWithDrawList extends ClientPacket
 		final Npc manager = player.getLastFolkNPC();
 		if (((manager == null) || !manager.isWarehouse() || !manager.canInteract(player)) && !player.isGM())
 		{
+			player.sendPacket(SystemMessageId.YOU_FAILED_AT_SENDING_THE_PACKAGE_BECAUSE_YOU_ARE_TOO_FAR_FROM_THE_WAREHOUSE);
 			return;
 		}
 		
 		if (!(warehouse instanceof PlayerWarehouse) && !player.getAccessLevel().allowTransaction())
 		{
 			player.sendMessage("Transactions are disabled for your Access Level.");
+			return;
+		}
+		
+		if (player.getActiveEnchantItemId() != Player.ID_NONE)
+		{
+			player.sendPacket(SystemMessageId.YOU_HAVE_CANCELLED_THE_ENCHANTING_PROCESS);
+			player.sendPacket(new EnchantResult(2, 0, 0));
+			player.setActiveEnchantItemId(Player.ID_NONE);
 			return;
 		}
 		
@@ -188,7 +198,7 @@ public class SendWareHouseWithDrawList extends ClientPacket
 		}
 		
 		// Send updated item list to the player
-		player.sendPacket(playerIU);
+		player.sendInventoryUpdate(playerIU);
 		
 		// Update current load status on player
 		final StatusUpdate su = new StatusUpdate(player);

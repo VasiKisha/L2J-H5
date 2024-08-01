@@ -18,12 +18,13 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.instancemanager.FortManager;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -45,11 +46,11 @@ public class TakeFortStart extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffector().isPlayer())
+		if (effector.isPlayer())
 		{
-			final Player player = info.getEffector().getActingPlayer();
+			final Player player = effector.getActingPlayer();
 			final Fort fort = FortManager.getInstance().getFort(player);
 			final Clan clan = player.getClan();
 			if ((fort != null) && (clan != null))

@@ -17,10 +17,11 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 
 /**
@@ -39,9 +40,9 @@ public class TargetMeProbability extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		return Formulas.calcProbability(_chance, info.getEffector(), info.getEffected(), info.getSkill());
+		return Formulas.calcProbability(_chance, effector, effected, skill);
 	}
 	
 	@Override
@@ -51,16 +52,16 @@ public class TargetMeProbability extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isPlayable() && (info.getEffected().getTarget() != info.getEffector()))
+		if (effected.isPlayable() && (effected.getTarget() != effector))
 		{
-			final Player effector = info.getEffector().getActingPlayer();
-			// If effector is null, then its not a player, but NPC. If its not null, then it should check if the skill is pvp skill.
-			if ((effector == null) || effector.checkPvpSkill(info.getEffected(), info.getSkill()))
+			// If effector is null, then its not a player, but NPC. If it is not null, then it should check if the skill is pvp skill.
+			final Player player = effector.getActingPlayer();
+			if ((player == null) || player.checkPvpSkill(effected, skill))
 			{
-				// Target is different
-				info.getEffected().setTarget(info.getEffector());
+				// Target is different.
+				effected.setTarget(player);
 			}
 		}
 	}

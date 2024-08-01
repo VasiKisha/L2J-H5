@@ -20,7 +20,7 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.network.serverpackets.StartRotation;
 import org.l2jmobius.gameserver.network.serverpackets.StopRotation;
@@ -41,9 +41,9 @@ public class Bluff extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		return Formulas.calcProbability(_chance, info.getEffector(), info.getEffected(), info.getSkill());
+		return Formulas.calcProbability(_chance, effector, effected, skill);
 	}
 	
 	@Override
@@ -53,16 +53,14 @@ public class Bluff extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature effected = info.getEffected();
 		// Headquarters NPC should not rotate
 		if ((effected.getId() == 35062) || effected.isRaid() || effected.isRaidMinion())
 		{
 			return;
 		}
 		
-		final Creature effector = info.getEffector();
 		effected.broadcastPacket(new StartRotation(effected.getObjectId(), effected.getHeading(), 1, 65535));
 		effected.broadcastPacket(new StopRotation(effected.getObjectId(), effector.getHeading(), 65535));
 		effected.setHeading(effector.getHeading());

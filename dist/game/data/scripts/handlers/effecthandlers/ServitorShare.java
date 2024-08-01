@@ -20,11 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Stat;
 
 /**
@@ -60,33 +61,33 @@ public class ServitorShare extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		super.onStart(info);
+		super.onStart(effector, effected, skill);
 		
-		info.getEffected().getActingPlayer().setServitorShare(_stats);
-		if (info.getEffected().getActingPlayer().getSummon() != null)
+		effected.getActingPlayer().setServitorShare(_stats);
+		if (effected.getActingPlayer().getSummon() != null)
 		{
-			info.getEffected().getActingPlayer().getSummon().broadcastInfo();
-			info.getEffected().getActingPlayer().getSummon().getStatus().startHpMpRegeneration();
+			effected.getActingPlayer().getSummon().broadcastInfo();
+			effected.getActingPlayer().getSummon().getStatus().startHpMpRegeneration();
 		}
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		info.getEffected().getActingPlayer().setServitorShare(null);
-		if (info.getEffected().getSummon() != null)
+		effected.getActingPlayer().setServitorShare(null);
+		if (effected.getSummon() != null)
 		{
-			if (info.getEffected().getSummon().getCurrentHp() > info.getEffected().getSummon().getMaxHp())
+			if (effected.getSummon().getCurrentHp() > effected.getSummon().getMaxHp())
 			{
-				info.getEffected().getSummon().setCurrentHp(info.getEffected().getSummon().getMaxHp());
+				effected.getSummon().setCurrentHp(effected.getSummon().getMaxHp());
 			}
-			if (info.getEffected().getSummon().getCurrentMp() > info.getEffected().getSummon().getMaxMp())
+			if (effected.getSummon().getCurrentMp() > effected.getSummon().getMaxMp())
 			{
-				info.getEffected().getSummon().setCurrentMp(info.getEffected().getSummon().getMaxMp());
+				effected.getSummon().setCurrentMp(effected.getSummon().getMaxMp());
 			}
-			info.getEffected().getSummon().broadcastInfo();
+			effected.getSummon().broadcastInfo();
 		}
 	}
 }

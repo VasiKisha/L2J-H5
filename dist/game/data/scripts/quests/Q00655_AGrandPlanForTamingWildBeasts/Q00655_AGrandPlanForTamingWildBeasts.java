@@ -16,84 +16,71 @@
  */
 package quests.Q00655_AGrandPlanForTamingWildBeasts;
 
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-
-import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.instancemanager.CHSiegeManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
+import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
- * A Grand Plan for Taming Wild Beasts (655)
- * @author Zoey76
+ * @author LordWinter
  */
 public class Q00655_AGrandPlanForTamingWildBeasts extends Quest
 {
-	// NPCs
 	private static final int MESSENGER = 35627;
-	// Items
-	private static final int CRYSTAL_OF_PURITY = 8084;
+	
+	private static final int STONE = 8084;
 	private static final int TRAINER_LICENSE = 8293;
-	// Misc
-	private static final int REQUIRED_CRYSTAL_COUNT = 10;
-	private static final int REQUIRED_CLAN_LEVEL = 4;
-	private static final int MINUTES_TO_SIEGE = 3600;
-	private static final String PATH_TO_HTML = "data/scripts/conquerablehalls/flagwar/WildBeastReserve/messenger_initial.htm";
+	
+	private static final SiegableHall BEAST_STRONGHOLD = CHSiegeManager.getInstance().getSiegableHall(63);
 	
 	public Q00655_AGrandPlanForTamingWildBeasts()
 	{
 		super(655);
+		
 		addStartNpc(MESSENGER);
 		addTalkId(MESSENGER);
-		registerQuestItems(CRYSTAL_OF_PURITY, TRAINER_LICENSE);
 	}
 	
 	@Override
-	public String onEvent(String event, Npc npc, Player player)
+	public final String onTalk(Npc npc, Player player)
 	{
-		final QuestState qs = getQuestState(player, false);
-		if (qs == null)
+		String htmltext = getNoQuestMsg(player);
+		final QuestState st = getQuestState(player, true);
+		if (st == null)
 		{
-			return null;
+			return htmltext;
 		}
 		
-		String htmltext = null;
-		final Clan clan = player.getClan();
-		final long minutesToSiege = getMinutesToSiege();
-		switch (event)
+		switch (st.getState())
 		{
-			case "35627-06.html":
+			case State.CREATED:
 			{
-				if (qs.isCreated() && (clan != null) && (clan.getLevel() >= REQUIRED_CLAN_LEVEL) && (clan.getFortId() == 0) && player.isClanLeader() && (minutesToSiege > 0) && (minutesToSiege < MINUTES_TO_SIEGE))
+				if (BEAST_STRONGHOLD.getSiege().getAttackers().size() >= 5)
 				{
-					qs.startQuest();
-					htmltext = event;
-				}
-				break;
-			}
-			case "35627-06a.html":
-			{
-				htmltext = event;
-				break;
-			}
-			case "35627-11.html":
-			{
-				if ((minutesToSiege > 0) && (minutesToSiege < MINUTES_TO_SIEGE))
-				{
-					htmltext = HtmCache.getInstance().getHtm(player, PATH_TO_HTML);
+					htmltext = "35627-00.htm";
 				}
 				else
 				{
-					htmltext = getHtm(player, event);
-					htmltext = htmltext.replace("%next_siege%", getSiegeDate());
+					htmltext = "35627-01.htm";
+					st.startQuest();
+				}
+				break;
+			}
+			case State.STARTED:
+			{
+				if (getQuestItemsCount(player, STONE) < 10)
+				{
+					htmltext = "35627-02.htm";
+				}
+				else
+				{
+					takeItems(player, STONE, 10);
+					giveItems(player, TRAINER_LICENSE, 1);
+					st.exitQuest(true, true);
+					htmltext = "35627-03.htm";
 				}
 				break;
 			}
@@ -101,135 +88,12 @@ public class Q00655_AGrandPlanForTamingWildBeasts extends Quest
 		return htmltext;
 	}
 	
-	@Override
-	public String onTalk(Npc npc, Player talker)
+	public static void checkCrystalofPurity(Player player)
 	{
-		final QuestState qs = getQuestState(talker, true);
-		String htmltext = getNoQuestMsg(talker);
-		final long minutesToSiege = getMinutesToSiege();
-		if (qs.isCreated())
+		final QuestState st = player.getQuestState(Q00655_AGrandPlanForTamingWildBeasts.class.getSimpleName());
+		if ((st != null) && st.isCond(1) && (getQuestItemsCount(player, STONE) < 10))
 		{
-			final Clan clan = talker.getClan();
-			if (clan == null)
-			{
-				return htmltext;
-			}
-			
-			if ((minutesToSiege > 0) && (minutesToSiege < MINUTES_TO_SIEGE))
-			{
-				if (talker.isClanLeader())
-				{
-					if (clan.getFortId() == 0)
-					{
-						if (clan.getLevel() >= REQUIRED_CLAN_LEVEL)
-						{
-							htmltext = "35627-01.html";
-						}
-						else
-						{
-							htmltext = "35627-03.html";
-						}
-					}
-					else
-					{
-						htmltext = "35627-04.html";
-					}
-				}
-				else if ((clan.getFortId() == ClanHallSiegeEngine.BEAST_FARM) && (minutesToSiege > 0) && (minutesToSiege < MINUTES_TO_SIEGE))
-				{
-					htmltext = HtmCache.getInstance().getHtm(talker, PATH_TO_HTML);
-				}
-				else
-				{
-					htmltext = "35627-05.html";
-				}
-			}
-			else
-			{
-				htmltext = getHtm(talker, "35627-02.html");
-				htmltext = htmltext.replace("%next_siege%", getSiegeDate());
-			}
-		}
-		else if ((minutesToSiege < 0) || (minutesToSiege > MINUTES_TO_SIEGE))
-		{
-			takeItems(talker, TRAINER_LICENSE, -1);
-			takeItems(talker, CRYSTAL_OF_PURITY, -1);
-			qs.exitQuest(true, true);
-			htmltext = "35627-07.html";
-		}
-		else if (hasQuestItems(talker, TRAINER_LICENSE))
-		{
-			htmltext = "35627-09.html";
-		}
-		else if (getQuestItemsCount(talker, CRYSTAL_OF_PURITY) < REQUIRED_CRYSTAL_COUNT)
-		{
-			htmltext = "35627-08.html";
-		}
-		else
-		{
-			giveItems(talker, TRAINER_LICENSE, 1);
-			takeItems(talker, CRYSTAL_OF_PURITY, -1);
-			qs.setCond(3, true);
-			htmltext = "35627-10.html";
-		}
-		return htmltext;
-	}
-	
-	/**
-	 * Gets the Wild Beast Reserve's siege date.
-	 * @return the siege date
-	 */
-	private static String getSiegeDate()
-	{
-		final SiegableHall hall = CHSiegeManager.getInstance().getSiegableHall(ClanHallSiegeEngine.BEAST_FARM);
-		if (hall != null)
-		{
-			final Calendar calendar = hall.getSiegeDate();
-			if (calendar != null)
-			{
-				return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calendar.getTime());
-			}
-		}
-		return "Unknown date.";
-	}
-	
-	/**
-	 * Gets the minutes to next siege.
-	 * @return minutes to next siege
-	 */
-	private static long getMinutesToSiege()
-	{
-		final SiegableHall hall = CHSiegeManager.getInstance().getSiegableHall(ClanHallSiegeEngine.BEAST_FARM);
-		return hall != null ? (hall.getNextSiegeTime() - System.currentTimeMillis()) / 3600 : -1;
-	}
-	
-	/**
-	 * Rewards the clan leader with a Crystal of Purity after player tame a wild beast.
-	 * @param player the player
-	 * @param npc the wild beast
-	 */
-	public static void reward(Player player, Npc npc)
-	{
-		final Clan clan = player.getClan();
-		final Player clanLeader = clan != null ? clan.getLeader().getPlayer() : null;
-		if (clanLeader != null)
-		{
-			final QuestState qs655 = clanLeader.getQuestState(Q00655_AGrandPlanForTamingWildBeasts.class.getSimpleName());
-			if ((qs655 != null) && (getQuestItemsCount(clanLeader, CRYSTAL_OF_PURITY) < REQUIRED_CRYSTAL_COUNT) && Util.checkIfInRange(2000, clanLeader, npc, true))
-			{
-				if (clanLeader.getLevel() >= REQUIRED_CLAN_LEVEL)
-				{
-					giveItems(clanLeader, CRYSTAL_OF_PURITY, 1);
-				}
-				if (getQuestItemsCount(clanLeader, CRYSTAL_OF_PURITY) >= 9)
-				{
-					qs655.setCond(2, true);
-				}
-				else
-				{
-					playSound(clanLeader, QuestSound.ITEMSOUND_QUEST_ITEMGET);
-				}
-			}
+			giveItems(player, STONE, 1);
 		}
 	}
 }

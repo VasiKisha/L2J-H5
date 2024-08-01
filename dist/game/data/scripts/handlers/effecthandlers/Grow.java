@@ -17,11 +17,12 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Grow effect implementation.
@@ -40,21 +41,21 @@ public class Grow extends AbstractEffect
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isNpc())
+		if (effected.isNpc())
 		{
-			final Npc npc = (Npc) info.getEffected();
+			final Npc npc = (Npc) effected;
 			npc.setCollisionRadius(npc.getTemplate().getFCollisionRadius());
 		}
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isNpc())
+		if (effected.isNpc())
 		{
-			final Npc npc = (Npc) info.getEffected();
+			final Npc npc = (Npc) effected;
 			npc.setCollisionRadius(npc.getTemplate().getCollisionRadiusGrown());
 		}
 	}

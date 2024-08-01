@@ -109,7 +109,7 @@ public class ManorManager extends AbstractNpcAI
 	// @formatter:on
 	public void onNpcManorBypass(OnNpcManorBypass evt)
 	{
-		final Player player = evt.getActiveChar();
+		final Player player = evt.getPlayer();
 		if (CastleManorManager.getInstance().isUnderMaintenance())
 		{
 			player.sendPacket(SystemMessageId.THE_MANOR_SYSTEM_IS_CURRENTLY_UNDER_MAINTENANCE);

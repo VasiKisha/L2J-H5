@@ -49,6 +49,6 @@ public class ExBrProductInfo extends ServerPacket
 		buffer.writeInt(_product.getItemId()); // item id
 		buffer.writeInt(_product.getItemCount()); // quality
 		buffer.writeInt(_product.getItemWeight()); // weight
-		buffer.writeInt(_product.isTradable()); // 0 - dont drop/trade
+		buffer.writeInt(_product.isTradable()); // 0 - do not drop/trade
 	}
 }

@@ -17,9 +17,10 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Mana Heal Over Time effect implementation.
@@ -36,15 +37,15 @@ public class ManaHealOverTime extends AbstractEffect
 	}
 	
 	@Override
-	public boolean onActionTime(BuffInfo info)
+	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isDead())
+		if (effected.isDead())
 		{
 			return false;
 		}
 		
-		double mp = info.getEffected().getCurrentMp();
-		final double maxmp = info.getEffected().getMaxRecoverableMp();
+		double mp = effected.getCurrentMp();
+		final double maxmp = effected.getMaxRecoverableMp();
 		
 		// Not needed to set the MP and send update packet if player is already at max MP
 		if (mp >= maxmp)
@@ -54,7 +55,7 @@ public class ManaHealOverTime extends AbstractEffect
 		
 		mp += _power * getTicksMultiplier();
 		mp = Math.min(mp, maxmp);
-		info.getEffected().setCurrentMp(mp);
-		return info.getSkill().isToggle();
+		effected.setCurrentMp(mp);
+		return skill.isToggle();
 	}
 }

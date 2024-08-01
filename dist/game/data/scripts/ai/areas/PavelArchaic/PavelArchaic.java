@@ -43,10 +43,10 @@ public class PavelArchaic extends AbstractNpcAI
 	{
 		if (getRandom(100) < 70)
 		{
-			final Npc golem1 = addSpawn(PINCER_GOLEM2, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, false);
+			final Npc golem1 = addSpawn(PINCER_GOLEM2, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, false);
 			addAttackDesire(golem1, killer);
 			
-			final Npc golem2 = addSpawn(PINCER_GOLEM3, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, false);
+			final Npc golem2 = addSpawn(PINCER_GOLEM3, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, false);
 			addAttackDesire(golem2, killer);
 		}
 		return super.onKill(npc, killer, isSummon);

@@ -267,7 +267,7 @@ public class BossZone extends ZoneType
 						getSettings().getRaidList().add(obj);
 					}
 				}
-				// if inside zone isnt any player, force all boss instance return to its spawn points
+				// if inside zone is not any player, force all boss instance return to its spawn points
 				if ((count == 0) && !getSettings().getRaidList().isEmpty())
 				{
 					for (int i = 0; i < getSettings().getRaidList().size(); i++)

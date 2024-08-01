@@ -268,8 +268,8 @@ public abstract class DocumentBase
 			value = Double.parseDouble(valueString);
 		}
 		
-		final Condition applayCond = parseCondition(n.getFirstChild(), template);
-		final FuncTemplate ft = new FuncTemplate(attachCond, applayCond, functionName, order, stat, value);
+		final Condition applyCond = parseCondition(n.getFirstChild(), template);
+		final FuncTemplate ft = new FuncTemplate(attachCond, applyCond, functionName, order, stat, value);
 		if (template instanceof ItemTemplate)
 		{
 			((ItemTemplate) template).attach(ft);
@@ -300,13 +300,13 @@ public abstract class DocumentBase
 		}
 		
 		final StatSet parameters = parseParameters(n.getFirstChild(), template);
-		final Condition applayCond = parseCondition(n.getFirstChild(), template);
+		final Condition applyCond = parseCondition(n.getFirstChild(), template);
 		if (template instanceof IIdentifiable)
 		{
 			set.set("id", ((IIdentifiable) template).getId());
 		}
 		
-		final AbstractEffect effect = AbstractEffect.createEffect(attachCond, applayCond, set, parameters);
+		final AbstractEffect effect = AbstractEffect.createEffect(attachCond, applyCond, set, parameters);
 		parseTemplate(n, effect);
 		if (template instanceof ItemTemplate)
 		{

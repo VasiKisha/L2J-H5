@@ -207,7 +207,7 @@ public class SignsPriest extends Npc
 					final int newSeal = Integer.parseInt(command.substring(15));
 					if (player.getClassId().level() >= 1)
 					{
-						// even if in htmls is said that ally can have castle too, but its not
+						// even if in htmls is said that ally can have castle too, but it is not
 						if ((cabal == SevenSigns.CABAL_DUSK) && Config.ALT_GAME_CASTLE_DUSK && (player.getClan() != null) && (player.getClan().getCastleId() > 0))
 						{
 							showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "signs_33_dusk_no.htm");

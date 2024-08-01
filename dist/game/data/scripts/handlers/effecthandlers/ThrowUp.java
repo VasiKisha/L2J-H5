@@ -20,10 +20,11 @@ import org.l2jmobius.gameserver.enums.FlyType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 
@@ -50,52 +51,52 @@ public class ThrowUp extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		// Get current position of the Creature
-		final int curX = info.getEffected().getX();
-		final int curY = info.getEffected().getY();
-		final int curZ = info.getEffected().getZ();
+		// Get current position of the Creature.
+		final int curX = effected.getX();
+		final int curY = effected.getY();
+		final int curZ = effected.getZ();
 		
-		// Calculate distance between effector and effected current position
-		final double dx = info.getEffector().getX() - curX;
-		final double dy = info.getEffector().getY() - curY;
-		final double dz = info.getEffector().getZ() - curZ;
+		// Calculate distance between effector and effected current position.
+		final double dx = effector.getX() - curX;
+		final double dy = effector.getY() - curY;
+		final double dz = effector.getZ() - curZ;
 		final double distance = Math.sqrt((dx * dx) + (dy * dy));
 		if (distance > 2000)
 		{
-			LOGGER.info("EffectThrow was going to use invalid coordinates for characters, getEffected: " + curX + "," + curY + " and getEffector: " + info.getEffector().getX() + "," + info.getEffector().getY());
+			LOGGER.info("EffectThrow was going to use invalid coordinates for characters, getEffected: " + curX + "," + curY + " and getEffector: " + effector.getX() + "," + effector.getY());
 			return;
 		}
-		int offset = Math.min((int) distance + info.getSkill().getFlyRadius(), 1400);
+		int offset = Math.min((int) distance + skill.getFlyRadius(), 1400);
 		double cos;
 		double sin;
 		
-		// approximation for moving futher when z coordinates are different
-		// TODO: handle Z axis movement better
+		// Approximation for moving futher when z coordinates are different.
+		// TODO: Handle Z axis movement better.
 		offset += Math.abs(dz);
 		if (offset < 5)
 		{
 			offset = 5;
 		}
 		
-		// If no distance
+		// If no distance.
 		if (distance < 1)
 		{
 			return;
 		}
 		
-		// Calculate movement angles needed
+		// Calculate movement angles needed.
 		sin = dy / distance;
 		cos = dx / distance;
 		
-		// Calculate the new destination with offset included
-		final int x = info.getEffector().getX() - (int) (offset * cos);
-		final int y = info.getEffector().getY() - (int) (offset * sin);
-		final int z = info.getEffected().getZ();
-		final Location destination = GeoEngine.getInstance().getValidLocation(info.getEffected().getX(), info.getEffected().getY(), info.getEffected().getZ(), x, y, z, info.getEffected().getInstanceId());
-		info.getEffected().broadcastPacket(new FlyToLocation(info.getEffected(), destination, FlyType.THROW_UP));
-		info.getEffected().setXYZ(destination);
-		info.getEffected().broadcastPacket(new ValidateLocation(info.getEffected()));
+		// Calculate the new destination with offset included.
+		final int x = effector.getX() - (int) (offset * cos);
+		final int y = effector.getY() - (int) (offset * sin);
+		final int z = effected.getZ();
+		final Location destination = GeoEngine.getInstance().getValidLocation(effected.getX(), effected.getY(), effected.getZ(), x, y, z, effected.getInstanceId());
+		effected.broadcastPacket(new FlyToLocation(effected, destination, FlyType.THROW_UP));
+		effected.setXYZ(destination);
+		effected.broadcastPacket(new ValidateLocation(effected));
 	}
 }

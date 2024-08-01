@@ -39,9 +39,9 @@ public class Amaskari extends AbstractNpcAI
 	private static final int AMASKARI = 22449;
 	private static final int AMASKARI_PRISONER = 22450;
 	// Skills
-	// private static SkillHolder INVINCIBILITY = new SkillHolder(5417, 1);
+	// private static final SkillHolder INVINCIBILITY = new SkillHolder(5417, 1);
 	private static final int BUFF_ID = 4632;
-	private static SkillHolder[] BUFF =
+	private static final SkillHolder[] BUFF =
 	{
 		new SkillHolder(BUFF_ID, 1),
 		new SkillHolder(BUFF_ID, 2),

@@ -20,9 +20,10 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.AttackableAI;
 import org.l2jmobius.gameserver.ai.CtrlEvent;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Run Away effect implementation.
@@ -48,9 +49,9 @@ public class RunAway extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffected().isAttackable())
+		if (!effected.isAttackable())
 		{
 			return;
 		}
@@ -60,12 +61,12 @@ public class RunAway extends AbstractEffect
 			return;
 		}
 		
-		if (info.getEffected().isCastingNow() && info.getEffected().canAbortCast())
+		if (effected.isCastingNow() && effected.canAbortCast())
 		{
-			info.getEffected().abortCast();
+			effected.abortCast();
 		}
 		
-		((AttackableAI) info.getEffected().getAI()).setFearTime(_time);
-		info.getEffected().getAI().notifyEvent(CtrlEvent.EVT_AFRAID, info.getEffector(), true);
+		((AttackableAI) effected.getAI()).setFearTime(_time);
+		effected.getAI().notifyEvent(CtrlEvent.EVT_AFRAID, effector, true);
 	}
 }

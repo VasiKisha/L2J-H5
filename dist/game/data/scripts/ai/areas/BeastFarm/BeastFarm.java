@@ -36,6 +36,7 @@ import org.l2jmobius.gameserver.network.serverpackets.AbstractNpcInfo;
 
 import ai.AbstractNpcAI;
 import quests.Q00020_BringUpWithLove.Q00020_BringUpWithLove;
+import quests.Q00655_AGrandPlanForTamingWildBeasts.Q00655_AGrandPlanForTamingWildBeasts;
 
 /**
  * Growth-capable mobs: Polymorphing upon successful feeding.<br>
@@ -283,6 +284,7 @@ public class BeastFarm extends AbstractNpcAI
 			}
 			
 			Q00020_BringUpWithLove.checkJewelOfInnocence(player);
+			Q00655_AGrandPlanForTamingWildBeasts.checkCrystalofPurity(player);
 		}
 		else
 		{

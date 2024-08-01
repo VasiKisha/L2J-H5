@@ -18,7 +18,7 @@ package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.instancemanager.games.BlockChecker;
+import org.l2jmobius.gameserver.instancemanager.games.BlockCheckerManager;
 import org.l2jmobius.gameserver.model.ArenaParticipantsHolder;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -56,7 +56,7 @@ public class Block extends Monster
 		// Do not update color while sending old info
 		synchronized (this)
 		{
-			final BlockChecker event = holder.getEvent();
+			final BlockCheckerManager event = holder.getEvent();
 			if (_colorEffect == 0x53)
 			{
 				// Change color
@@ -142,7 +142,7 @@ public class Block extends Monster
 		}
 	}
 	
-	private void increaseTeamPointsAndSend(Player player, int team, BlockChecker eng)
+	private void increaseTeamPointsAndSend(Player player, int team, BlockCheckerManager eng)
 	{
 		eng.increasePlayerPoints(player, team);
 		
@@ -154,7 +154,7 @@ public class Block extends Monster
 		eng.getHolder().broadCastPacketToTeam(secretPoints);
 	}
 	
-	private void dropItem(int id, BlockChecker eng, Player player)
+	private void dropItem(int id, BlockCheckerManager eng, Player player)
 	{
 		final Item drop = ItemData.getInstance().createItem("Loot", id, 1, player, this);
 		final int x = getX() + Rnd.get(50);

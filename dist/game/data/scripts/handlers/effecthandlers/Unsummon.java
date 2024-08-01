@@ -18,11 +18,12 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -42,12 +43,12 @@ public class Unsummon extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		final int magicLevel = info.getSkill().getMagicLevel();
-		if ((magicLevel <= 0) || ((info.getEffected().getLevel() - 9) <= magicLevel))
+		final int magicLevel = skill.getMagicLevel();
+		if ((magicLevel <= 0) || ((effected.getLevel() - 9) <= magicLevel))
 		{
-			final double chance = _chance * Formulas.calcAttributeBonus(info.getEffector(), info.getEffected(), info.getSkill()) * Formulas.calcGeneralTraitBonus(info.getEffector(), info.getEffected(), info.getSkill().getTraitType(), false);
+			final double chance = _chance * Formulas.calcAttributeBonus(effector, effected, skill) * Formulas.calcGeneralTraitBonus(effector, effected, skill.getTraitType(), false);
 			if (chance > (Rnd.nextDouble() * 100))
 			{
 				return true;
@@ -63,9 +64,9 @@ public class Unsummon extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Summon summon = info.getEffected().getSummon();
+		final Summon summon = effected.getSummon();
 		if (summon != null)
 		{
 			final Player summonOwner = summon.getOwner();

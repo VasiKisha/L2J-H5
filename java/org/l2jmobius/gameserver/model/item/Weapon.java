@@ -129,8 +129,8 @@ public class Weapon extends ItemTemplate
 				}
 				catch (Exception nfe)
 				{
-					// Incorrect syntax, dont add new skill
-					LOGGER.info("> Couldnt parse " + skill + " in weapon enchant skills! item " + this);
+					// Incorrect syntax, do not add new skill
+					LOGGER.info("> Could not parse " + skill + " in weapon enchant skills! item " + this);
 				}
 				if ((id > 0) && (level > 0))
 				{
@@ -156,7 +156,7 @@ public class Weapon extends ItemTemplate
 				catch (Exception nfe)
 				{
 					// Incorrect syntax, don't add new skill
-					LOGGER.info("> Couldnt parse " + skill + " in weapon onmagic skills! item " + this);
+					LOGGER.info("> Could not parse " + skill + " in weapon onmagic skills! item " + this);
 				}
 				if ((id > 0) && (level > 0) && (chance > 0))
 				{
@@ -183,7 +183,7 @@ public class Weapon extends ItemTemplate
 				catch (Exception nfe)
 				{
 					// Incorrect syntax, don't add new skill
-					LOGGER.info("> Couldnt parse " + skill + " in weapon oncrit skills! item " + this);
+					LOGGER.info("> Could not parse " + skill + " in weapon oncrit skills! item " + this);
 				}
 				if ((id > 0) && (level > 0) && (chance > 0))
 				{

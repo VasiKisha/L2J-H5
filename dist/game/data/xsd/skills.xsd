@@ -608,6 +608,7 @@
 					<xs:enumeration value="PhysicalAttackMute" />
 					<xs:enumeration value="PhysicalMute" />
 					<xs:enumeration value="PhysicalSoulAttack" />
+					<xs:enumeration value="PolearmSingleTarget" />
 					<xs:enumeration value="Pumping" />
 					<xs:enumeration value="ProtectionBlessing" />
 					<xs:enumeration value="RandomizeHate" />

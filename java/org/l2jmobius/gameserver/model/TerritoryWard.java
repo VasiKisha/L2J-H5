@@ -153,7 +153,7 @@ public class TerritoryWard
 		// Refresh inventory
 		final InventoryUpdate iu = new InventoryUpdate();
 		iu.addItem(_item);
-		_player.sendPacket(iu);
+		_player.sendInventoryUpdate(iu);
 		
 		// Refresh player stats
 		_player.broadcastUserInfo();

@@ -26,7 +26,6 @@ import org.l2jmobius.gameserver.ai.NextAction;
 import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
 import org.l2jmobius.gameserver.enums.IllegalActionPunishmentType;
 import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.handler.ItemHandler;
@@ -48,7 +47,6 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ExUseSharedGroupItem;
-import org.l2jmobius.gameserver.network.serverpackets.ItemList;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Util;
 
@@ -88,12 +86,13 @@ public class UseItem extends ClientPacket
 		
 		if (player.getActiveTradeList() != null)
 		{
-			player.cancelActiveTrade();
+			player.sendPacket(SystemMessageId.YOU_CANNOT_PICK_UP_OR_USE_ITEMS_WHILE_TRADING);
+			return;
 		}
 		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
-			player.sendPacket(SystemMessageId.WHILE_OPERATING_A_PRIVATE_STORE_OR_WORKSHOP_YOU_CANNOT_DISCARD_DESTROY_OR_TRADE_AN_ITEM);
+			player.sendPacket(SystemMessageId.YOU_MAY_NOT_USE_ITEMS_IN_A_PRIVATE_STORE_OR_PRIVATE_WORK_SHOP);
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
@@ -182,6 +181,14 @@ public class UseItem extends ClientPacket
 		
 		if (item.isEquipable())
 		{
+			// Check if player is casting or using a skill.
+			if (player.isCastingNow() || player.isCastingSimultaneouslyNow())
+			{
+				player.sendPacket(SystemMessageId.YOU_CANNOT_CHANGE_WEAPONS_DURING_AN_ATTACK);
+				player.sendPacket(ActionFailed.STATIC_PACKET);
+				return;
+			}
+			
 			// Don't allow to put formal wear while a cursed weapon is equipped.
 			if (player.isCursedWeaponEquipped() && (_itemId == 6408))
 			{
@@ -343,7 +350,7 @@ public class UseItem extends ClientPacket
 				player.getInventory().setPaperdollItem(Inventory.PAPERDOLL_LHAND, item);
 				player.broadcastUserInfo();
 				// Send a Server->Client packet ItemList to this Player to update left hand equipment.
-				player.sendPacket(new ItemList(player, false));
+				player.sendItemList(false);
 				return;
 			}
 			

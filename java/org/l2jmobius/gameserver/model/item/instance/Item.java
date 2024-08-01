@@ -71,6 +71,7 @@ import org.l2jmobius.gameserver.model.options.Options;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.functions.AbstractFunction;
+import org.l2jmobius.gameserver.model.variables.ItemVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.DropItem;
 import org.l2jmobius.gameserver.network.serverpackets.GetItem;
@@ -574,7 +575,11 @@ public class Item extends WorldObject
 	 */
 	public boolean isEnchantable()
 	{
-		return (_loc == ItemLocation.INVENTORY) || (_loc == ItemLocation.PAPERDOLL) ? _itemTemplate.isEnchantable() : false;
+		if ((_loc == ItemLocation.INVENTORY) || (_loc == ItemLocation.PAPERDOLL))
+		{
+			return _itemTemplate.isEnchantable();
+		}
+		return false;
 	}
 	
 	/**
@@ -698,7 +703,11 @@ public class Item extends WorldObject
 	 */
 	public EtcItem getEtcItem()
 	{
-		return _itemTemplate instanceof EtcItem ? (EtcItem) _itemTemplate : null;
+		if (_itemTemplate instanceof EtcItem)
+		{
+			return (EtcItem) _itemTemplate;
+		}
+		return null;
 	}
 	
 	/**
@@ -706,7 +715,11 @@ public class Item extends WorldObject
 	 */
 	public Weapon getWeaponItem()
 	{
-		return _itemTemplate instanceof Weapon ? (Weapon) _itemTemplate : null;
+		if (_itemTemplate instanceof Weapon)
+		{
+			return (Weapon) _itemTemplate;
+		}
+		return null;
 	}
 	
 	/**
@@ -714,7 +727,11 @@ public class Item extends WorldObject
 	 */
 	public Armor getArmorItem()
 	{
-		return _itemTemplate instanceof Armor ? (Armor) _itemTemplate : null;
+		if (_itemTemplate instanceof Armor)
+		{
+			return (Armor) _itemTemplate;
+		}
+		return null;
 	}
 	
 	/**
@@ -789,11 +806,22 @@ public class Item extends WorldObject
 	 */
 	public boolean isDropable()
 	{
-		if (Config.ALT_ALLOW_AUGMENT_TRADE && isAugmented())
+		if (!_itemTemplate.isDropable())
 		{
-			return true;
+			return false;
 		}
-		return !isAugmented() && _itemTemplate.isDropable();
+		
+		if (isEquipable() && (getTransmogId() > 0))
+		{
+			return false;
+		}
+		
+		if (isAugmented())
+		{
+			return Config.ALT_ALLOW_AUGMENT_TRADE;
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -802,11 +830,17 @@ public class Item extends WorldObject
 	 */
 	public boolean isDestroyable()
 	{
-		if (!Config.ALT_ALLOW_AUGMENT_DESTROY && isAugmented())
+		if (!_itemTemplate.isDestroyable())
 		{
 			return false;
 		}
-		return _itemTemplate.isDestroyable();
+		
+		if (isAugmented())
+		{
+			return Config.ALT_ALLOW_AUGMENT_DESTROY;
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -815,11 +849,22 @@ public class Item extends WorldObject
 	 */
 	public boolean isTradeable()
 	{
-		if (Config.ALT_ALLOW_AUGMENT_TRADE && isAugmented())
+		if (!_itemTemplate.isTradeable())
 		{
-			return true;
+			return false;
 		}
-		return !isAugmented() && _itemTemplate.isTradeable();
+		
+		if (isEquipable() && (getTransmogId() > 0))
+		{
+			return false;
+		}
+		
+		if (isAugmented())
+		{
+			return Config.ALT_ALLOW_AUGMENT_TRADE;
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -828,11 +873,22 @@ public class Item extends WorldObject
 	 */
 	public boolean isSellable()
 	{
-		if (Config.ALT_ALLOW_AUGMENT_TRADE && isAugmented())
+		if (!_itemTemplate.isSellable())
 		{
-			return true;
+			return false;
 		}
-		return !isAugmented() && _itemTemplate.isSellable();
+		
+		if (isEquipable() && (getTransmogId() > 0))
+		{
+			return false;
+		}
+		
+		if (isAugmented())
+		{
+			return Config.ALT_ALLOW_AUGMENT_TRADE;
+		}
+		
+		return true;
 	}
 	
 	/**
@@ -841,7 +897,17 @@ public class Item extends WorldObject
 	 */
 	public boolean isDepositable(boolean isPrivateWareHouse)
 	{
-		return !isEquipped() && _itemTemplate.isDepositable() && (isPrivateWareHouse || (isTradeable() && !isShadowItem()));
+		if (!_itemTemplate.isDepositable() || isEquipped())
+		{
+			return false;
+		}
+		
+		if (!isPrivateWareHouse && (!isTradeable() || isShadowItem()))
+		{
+			return false;
+		}
+		
+		return true;
 	}
 	
 	public boolean isPotion()
@@ -1355,13 +1421,13 @@ public class Item extends WorldObject
 			}
 		}
 		
-		if (_mana == 0) // The life time has expired
+		if (_mana == 0) // The life time has expired.
 		{
 			sm = new SystemMessage(SystemMessageId.S1_S_REMAINING_MANA_IS_NOW_0_AND_THE_ITEM_HAS_DISAPPEARED);
 			sm.addItemName(_itemTemplate);
 			player.sendPacket(sm);
 			
-			// unequip
+			// Unequip.
 			if (isEquipped())
 			{
 				final InventoryUpdate iu = new InventoryUpdate();
@@ -1370,36 +1436,35 @@ public class Item extends WorldObject
 					item.unChargeAllShots();
 					iu.addModifiedItem(item);
 				}
-				player.sendPacket(iu);
+				player.sendInventoryUpdate(iu);
 				player.broadcastUserInfo();
 			}
 			
 			if (_loc != ItemLocation.WAREHOUSE)
 			{
-				// destroy
+				// Destroy.
 				player.getInventory().destroyItem("Item", this, player, null);
 				
-				// send update
+				// Send update.
 				final InventoryUpdate iu = new InventoryUpdate();
 				iu.addRemovedItem(this);
-				player.sendPacket(iu);
+				player.sendInventoryUpdate(iu);
 				
 				final StatusUpdate su = new StatusUpdate(player);
 				su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());
 				player.sendPacket(su);
-				
 			}
 			else
 			{
 				player.getWarehouse().destroyItem("Item", this, player, null);
 			}
 			
-			// delete from world
+			// Delete from world.
 			World.getInstance().removeObject(this);
 		}
 		else
 		{
-			// Reschedule if still equipped
+			// Reschedule if still equipped.
 			if (!_consumingMana && isEquipped())
 			{
 				scheduleConsumeManaTask();
@@ -1408,7 +1473,7 @@ public class Item extends WorldObject
 			{
 				final InventoryUpdate iu = new InventoryUpdate();
 				iu.addModifiedItem(this);
-				player.sendPacket(iu);
+				player.sendInventoryUpdate(iu);
 			}
 		}
 	}
@@ -1731,6 +1796,12 @@ public class Item extends WorldObject
 				ps.setInt(1, getObjectId());
 				ps.executeUpdate();
 			}
+			
+			try (PreparedStatement ps = con.prepareStatement("DELETE FROM item_variables WHERE id = ?"))
+			{
+				ps.setInt(1, getObjectId());
+				ps.executeUpdate();
+			}
 		}
 		catch (Exception e)
 		{
@@ -1835,31 +1906,31 @@ public class Item extends WorldObject
 				item.unChargeAllShots();
 				iu.addModifiedItem(item);
 			}
-			player.sendPacket(iu);
+			player.sendInventoryUpdate(iu);
 			player.broadcastUserInfo();
 		}
 		
 		if (_loc != ItemLocation.WAREHOUSE)
 		{
-			// destroy
+			// Destroy.
 			player.getInventory().destroyItem("Item", this, player, null);
 			
-			// send update
+			// Send update.
 			final InventoryUpdate iu = new InventoryUpdate();
 			iu.addRemovedItem(this);
-			player.sendPacket(iu);
+			player.sendInventoryUpdate(iu);
 			
 			final StatusUpdate su = new StatusUpdate(player);
 			su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());
 			player.sendPacket(su);
-			
 		}
 		else
 		{
 			player.getWarehouse().destroyItem("Item", this, player, null);
 		}
 		player.sendPacket(SystemMessageId.THE_LIMITED_TIME_ITEM_HAS_DISAPPEARED_BECAUSE_THE_REMAINING_TIME_RAN_OUT);
-		// delete from world
+		
+		// Delete from world.
 		World.getInstance().removeObject(this);
 	}
 	
@@ -1977,9 +2048,9 @@ public class Item extends WorldObject
 			return enchant;
 		}
 		
-		if (player.isInOlympiadMode() && (Config.ALT_OLY_ENCHANT_LIMIT >= 0) && (enchant > Config.ALT_OLY_ENCHANT_LIMIT))
+		if (player.isInOlympiadMode() && (Config.OLYMPIAD_ENCHANT_LIMIT >= 0) && (enchant > Config.OLYMPIAD_ENCHANT_LIMIT))
 		{
-			enchant = Config.ALT_OLY_ENCHANT_LIMIT;
+			enchant = Config.OLYMPIAD_ENCHANT_LIMIT;
 		}
 		
 		return enchant;
@@ -2128,7 +2199,12 @@ public class Item extends WorldObject
 	public int[] getEnchantOptions()
 	{
 		final EnchantOptions op = EnchantItemOptionsData.getInstance().getOptions(this);
-		return op != null ? op.getOptions() : DEFAULT_ENCHANT_OPTIONS;
+		if (op != null)
+		{
+			return op.getOptions();
+		}
+		
+		return DEFAULT_ENCHANT_OPTIONS;
 	}
 	
 	/**
@@ -2176,6 +2252,44 @@ public class Item extends WorldObject
 		}
 	}
 	
+	@Override
+	public void setHeading(int heading)
+	{
+	}
+	
+	public void stopAllTasks()
+	{
+		ItemLifeTimeTaskManager.getInstance().remove(this);
+	}
+	
+	public ItemVariables getVariables()
+	{
+		final ItemVariables vars = getScript(ItemVariables.class);
+		return vars != null ? vars : addScript(new ItemVariables(getObjectId()));
+	}
+	
+	public int getTransmogId()
+	{
+		if (!Config.ENABLE_TRANSMOG)
+		{
+			return 0;
+		}
+		
+		return getVariables().getInt(ItemVariables.TRANSMOG_ID, 0);
+	}
+	
+	public void setTransmogId(int transmogId)
+	{
+		getVariables().set(ItemVariables.TRANSMOG_ID, transmogId);
+		getVariables().storeMe();
+	}
+	
+	public void removeTransmog()
+	{
+		getVariables().remove(ItemVariables.TRANSMOG_ID);
+		getVariables().storeMe();
+	}
+	
 	/**
 	 * Returns the item in String format
 	 * @return String
@@ -2189,15 +2303,5 @@ public class Item extends WorldObject
 		sb.append(getObjectId());
 		sb.append("]");
 		return sb.toString();
-	}
-	
-	@Override
-	public void setHeading(int heading)
-	{
-	}
-	
-	public void stopAllTasks()
-	{
-		ItemLifeTimeTaskManager.getInstance().remove(this);
 	}
 }

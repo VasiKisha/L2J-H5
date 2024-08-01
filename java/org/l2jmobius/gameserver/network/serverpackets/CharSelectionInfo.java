@@ -173,7 +173,18 @@ public class CharSelectionInfo extends ServerPacket
 						if (Config.OFFLINE_DISCONNECT_SAME_ACCOUNT)
 						{
 							final Player player = World.getInstance().getPlayer(charInfopackage.getObjectId());
-							if (player != null)
+							if ((player != null) && player.isInStoreMode())
+							{
+								Disconnection.of(player).storeMe().deleteMe();
+								continue;
+							}
+						}
+						
+						// Disconnect offline play.
+						if (Config.OFFLINE_PLAY_DISCONNECT_SAME_ACCOUNT)
+						{
+							final Player player = World.getInstance().getPlayer(charInfopackage.getObjectId());
+							if ((player != null) && player.isOfflinePlay())
 							{
 								Disconnection.of(player).storeMe().deleteMe();
 							}

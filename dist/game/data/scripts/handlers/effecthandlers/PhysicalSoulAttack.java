@@ -23,7 +23,6 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -41,9 +40,9 @@ public class PhysicalSoulAttack extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		return !Formulas.calcPhysicalSkillEvasion(info.getEffector(), info.getEffected(), info.getSkill());
+		return !Formulas.calcPhysicalSkillEvasion(effector, effected, skill);
 	}
 	
 	@Override
@@ -59,44 +58,41 @@ public class PhysicalSoulAttack extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature target = info.getEffected();
-		final Creature creature = info.getEffector();
-		final Skill skill = info.getSkill();
-		if (creature.isAlikeDead())
+		if (effector.isAlikeDead())
 		{
 			return;
 		}
 		
-		if (((skill.getFlyRadius() > 0) || (skill.getFlyType() != null)) && creature.isMovementDisabled())
+		if (((skill.getFlyRadius() > 0) || (skill.getFlyType() != null)) && effector.isMovementDisabled())
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_CANNOT_BE_USED_DUE_TO_UNSUITABLE_TERMS);
 			sm.addSkillName(skill);
-			creature.sendPacket(sm);
+			effector.sendPacket(sm);
 			return;
 		}
 		
-		if (target.isPlayer() && target.getActingPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
+		if (effected.isPlayer() && effected.getActingPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
 		{
-			target.stopFakeDeath(true);
+			effected.stopFakeDeath(true);
 		}
 		
 		int damage = 0;
-		final boolean ss = skill.isPhysical() && creature.isChargedShot(ShotType.SOULSHOTS);
-		final byte shld = Formulas.calcShldUse(creature, target, skill);
+		final boolean ss = skill.isPhysical() && effector.isChargedShot(ShotType.SOULSHOTS);
+		final byte shld = Formulas.calcShldUse(effector, effected, skill);
 		// Physical damage critical rate is only affected by STR.
 		boolean crit = false;
 		if (skill.getBaseCritRate() > 0)
 		{
-			crit = Formulas.calcCrit(creature, target, skill);
+			crit = Formulas.calcCrit(effector, effected, skill);
 		}
 		
-		damage = (int) Formulas.calcPhysDam(creature, target, skill, shld, false, ss);
-		if ((skill.getMaxSoulConsumeCount() > 0) && creature.isPlayer())
+		damage = (int) Formulas.calcPhysDam(effector, effected, skill, shld, false, ss);
+		if ((skill.getMaxSoulConsumeCount() > 0) && effector.isPlayer())
 		{
-			// Souls Formula (each soul increase +4%)
-			final int chargedSouls = (creature.getActingPlayer().getChargedSouls() <= skill.getMaxSoulConsumeCount()) ? creature.getActingPlayer().getChargedSouls() : skill.getMaxSoulConsumeCount();
+			// Souls Formula (each soul increase +4%).
+			final int chargedSouls = (effector.getActingPlayer().getChargedSouls() <= skill.getMaxSoulConsumeCount()) ? effector.getActingPlayer().getChargedSouls() : skill.getMaxSoulConsumeCount();
 			damage *= 1 + (chargedSouls * 0.04);
 		}
 		if (crit)
@@ -106,21 +102,21 @@ public class PhysicalSoulAttack extends AbstractEffect
 		
 		if (damage > 0)
 		{
-			creature.sendDamageMessage(target, damage, false, crit, false);
-			target.reduceCurrentHp(damage, creature, skill);
-			target.notifyDamageReceived(damage, creature, skill, crit, false);
+			effector.sendDamageMessage(effected, damage, false, crit, false);
+			effected.reduceCurrentHp(damage, effector, skill);
+			effected.notifyDamageReceived(damage, effector, skill, crit, false);
 			
 			// Check if damage should be reflected
-			Formulas.calcDamageReflected(creature, target, skill, crit);
+			Formulas.calcDamageReflected(effector, effected, skill, crit);
 		}
 		else
 		{
-			creature.sendPacket(SystemMessageId.YOUR_ATTACK_HAS_FAILED);
+			effector.sendPacket(SystemMessageId.YOUR_ATTACK_HAS_FAILED);
 		}
 		
 		if (skill.isSuicideAttack())
 		{
-			creature.doDie(creature);
+			effector.doDie(effector);
 		}
 	}
 }

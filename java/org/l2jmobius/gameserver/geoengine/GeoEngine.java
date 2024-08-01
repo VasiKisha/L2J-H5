@@ -85,6 +85,13 @@ public class GeoEngine
 		}
 		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + loadedRegions + " regions.");
+		
+		// Avoid wrong configuration when no files are loaded.
+		if ((loadedRegions == 0) && (Config.PATHFINDING > 0))
+		{
+			Config.PATHFINDING = 0;
+			LOGGER.info(getClass().getSimpleName() + ": Pathfinding is disabled.");
+		}
 	}
 	
 	public boolean hasGeoPos(int geoX, int geoY)
@@ -497,7 +504,7 @@ public class GeoEngine
 	}
 	
 	/**
-	 * Checks if its possible to move from one location to another.
+	 * Checks if it is possible to move from one location to another.
 	 * @param fromX the X coordinate to start checking from
 	 * @param fromY the Y coordinate to start checking from
 	 * @param fromZ the Z coordinate to start checking from
@@ -573,7 +580,7 @@ public class GeoEngine
 	}
 	
 	/**
-	 * Checks if its possible to move from one location to another.
+	 * Checks if it is possible to move from one location to another.
 	 * @param from the {@code ILocational} to start checking from
 	 * @param toX the X coordinate to end checking at
 	 * @param toY the Y coordinate to end checking at
@@ -586,7 +593,7 @@ public class GeoEngine
 	}
 	
 	/**
-	 * Checks if its possible to move from one location to another.
+	 * Checks if it is possible to move from one location to another.
 	 * @param from the {@code ILocational} to start checking from
 	 * @param to the {@code ILocational} to end checking at
 	 * @return {@code true} if the character at start coordinates can move to end coordinates, {@code false} otherwise

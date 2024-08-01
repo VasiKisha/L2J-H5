@@ -95,20 +95,6 @@ public class Q00366_SilverHairedShaman extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
-	{
-		if (getRandom(100) < MOBS.get(npc.getId()))
-		{
-			final Player luckyPlayer = getRandomPartyMember(player, npc);
-			if (luckyPlayer != null)
-			{
-				giveItemRandomly(luckyPlayer, npc, SAIRONS_SILVER_HAIR, 1, 0, 1, true);
-			}
-		}
-		return super.onKill(npc, player, isSummon);
-	}
-	
-	@Override
 	public String onTalk(Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, true);
@@ -132,5 +118,16 @@ public class Q00366_SilverHairedShaman extends Quest
 			}
 		}
 		return htmltext;
+	}
+	
+	@Override
+	public String onKill(Npc npc, Player killer, boolean isSummon)
+	{
+		final QuestState qs = getRandomPartyMemberState(killer, 1, 3, npc);
+		if ((qs != null) && (getRandom(100) < MOBS.get(npc.getId())))
+		{
+			giveItemRandomly(qs.getPlayer(), npc, SAIRONS_SILVER_HAIR, 1, 0, 1, true);
+		}
+		return super.onKill(npc, killer, isSummon);
 	}
 }

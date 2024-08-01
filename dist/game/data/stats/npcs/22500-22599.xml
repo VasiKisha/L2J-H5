@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="22500" level="78" type="Monster" name="Lost Watcher">
 		<!-- Confirmed CT2.5 -->
@@ -2021,7 +2021,7 @@
 					<item id="4040" min="1" max="1" chance="4.6318" /> <!-- Mold Lubricant -->
 					<item id="9628" min="1" max="1" chance="1.8164" /> <!-- Leonard -->
 					<item id="9630" min="1" max="1" chance="1.2189" /> <!-- Orichalcum -->
-					<item id="6867" min="1" max="1" chance="0.4313" /> <!-- Recipe: Sealed DraconicВ LeatherВ Gloves (60%) -->
+					<item id="6867" min="1" max="1" chance="0.4313" /> <!-- Recipe: Sealed Draconic Leather Gloves (60%) -->
 					<item id="1345" min="60" max="180" chance="25.7325" /> <!-- Shining Arrow -->
 				</group>
 			</drop>
@@ -2111,7 +2111,7 @@
 					<item id="9628" min="1" max="1" chance="2.9122" /> <!-- Leonard -->
 					<item id="9630" min="1" max="1" chance="1.9543" /> <!-- Orichalcum -->
 					<item id="9629" min="1" max="1" chance="1.6144" /> <!-- Adamantine -->
-					<item id="6869" min="1" max="1" chance="0.6915" /> <!-- Recipe: Sealed DraconicВ LeatherВ Boots (60%) -->
+					<item id="6869" min="1" max="1" chance="0.6915" /> <!-- Recipe: Sealed Draconic Leather Boots (60%) -->
 				</group>
 			</drop>
 			<spoil>
@@ -3483,7 +3483,7 @@
 					<item id="9628" min="1" max="1" chance="1.3014" /> <!-- Leonard -->
 					<item id="9630" min="1" max="1" chance="0.8733" /> <!-- Orichalcum -->
 					<item id="9629" min="1" max="1" chance="0.7215" /> <!-- Adamantine -->
-					<item id="6867" min="1" max="1" chance="0.309" /> <!-- Recipe: Sealed DraconicВ LeatherВ Gloves (60%) -->
+					<item id="6867" min="1" max="1" chance="0.309" /> <!-- Recipe: Sealed Draconic Leather Gloves (60%) -->
 					<item id="1345" min="20" max="60" chance="55.3114" /> <!-- Shining Arrow -->
 				</group>
 			</drop>
@@ -3568,7 +3568,7 @@
 					<item id="9628" min="1" max="1" chance="2.9122" /> <!-- Leonard -->
 					<item id="9630" min="1" max="1" chance="1.9543" /> <!-- Orichalcum -->
 					<item id="9629" min="1" max="1" chance="1.6144" /> <!-- Adamantine -->
-					<item id="6869" min="1" max="1" chance="0.6915" /> <!-- Recipe: Sealed DraconicВ LeatherВ Boots (60%) -->
+					<item id="6869" min="1" max="1" chance="0.6915" /> <!-- Recipe: Sealed Draconic Leather Boots (60%) -->
 				</group>
 			</drop>
 			<spoil>
@@ -5045,7 +5045,7 @@
 					<item id="9628" min="1" max="1" chance="24.3185" /> <!-- Leonard -->
 					<item id="9630" min="1" max="1" chance="16.319" /> <!-- Orichalcum -->
 					<item id="9629" min="1" max="1" chance="13.4809" /> <!-- Adamantine -->
-					<item id="6867" min="1" max="1" chance="5.7739" /> <!-- Recipe: Sealed DraconicВ LeatherВ Gloves (60%) -->
+					<item id="6867" min="1" max="1" chance="5.7739" /> <!-- Recipe: Sealed Draconic Leather Gloves (60%) -->
 					<item id="14052" min="4" max="12" chance="9.6894" /> <!-- Noble Enhancement Stone -->
 					<item id="1345" min="2700" max="8100" chance="7.6559" /> <!-- Shining Arrow -->
 				</group>
@@ -5133,7 +5133,7 @@
 					<item id="9628" min="1" max="1" chance="8.4401" /> <!-- Leonard -->
 					<item id="9630" min="1" max="1" chance="5.6637" /> <!-- Orichalcum -->
 					<item id="9629" min="1" max="1" chance="4.6787" /> <!-- Adamantine -->
-					<item id="6869" min="1" max="1" chance="2.0039" /> <!-- Recipe: Sealed DraconicВ LeatherВ Boots (60%) -->
+					<item id="6869" min="1" max="1" chance="2.0039" /> <!-- Recipe: Sealed Draconic Leather Boots (60%) -->
 					<item id="14052" min="1" max="1" chance="26.9028" /> <!-- Noble Enhancement Stone -->
 				</group>
 			</drop>
@@ -6461,7 +6461,7 @@
 					<item id="4040" min="1" max="1" chance="15.5498" /> <!-- Mold Lubricant -->
 					<item id="9628" min="1" max="1" chance="6.0979" /> <!-- Leonard -->
 					<item id="9630" min="1" max="1" chance="4.092" /> <!-- Orichalcum -->
-					<item id="6867" min="1" max="1" chance="1.4478" /> <!-- Recipe: Sealed DraconicВ LeatherВ Gloves (60%) -->
+					<item id="6867" min="1" max="1" chance="1.4478" /> <!-- Recipe: Sealed Draconic Leather Gloves (60%) -->
 					<item id="1345" min="300" max="900" chance="17.2776" /> <!-- Shining Arrow -->
 				</group>
 			</drop>

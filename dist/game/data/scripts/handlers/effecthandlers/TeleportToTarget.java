@@ -25,7 +25,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 import org.l2jmobius.gameserver.util.Util;
@@ -48,9 +48,9 @@ public class TeleportToTarget extends AbstractEffect
 	}
 	
 	@Override
-	public boolean canStart(BuffInfo info)
+	public boolean canStart(Creature effector, Creature effected, Skill skill)
 	{
-		return (info.getEffected() != null) && GeoEngine.getInstance().canSeeTarget(info.getEffected(), info.getEffector());
+		return (effected != null) && GeoEngine.getInstance().canSeeTarget(effected, effector);
 	}
 	
 	@Override
@@ -60,18 +60,16 @@ public class TeleportToTarget extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature creature = info.getEffector();
-		final Creature target = info.getEffected();
-		if (target == null)
+		if (effected == null)
 		{
 			return;
 		}
 		
-		final int px = target.getX();
-		final int py = target.getY();
-		double ph = Util.convertHeadingToDegree(target.getHeading());
+		final int px = effected.getX();
+		final int py = effected.getY();
+		double ph = Util.convertHeadingToDegree(effected.getHeading());
 		ph += 180;
 		if (ph > 360)
 		{
@@ -81,13 +79,13 @@ public class TeleportToTarget extends AbstractEffect
 		ph = (Math.PI * ph) / 180;
 		final int x = (int) (px + (25 * Math.cos(ph)));
 		final int y = (int) (py + (25 * Math.sin(ph)));
-		final int z = target.getZ();
-		final Location loc = GeoEngine.getInstance().getValidLocation(creature.getX(), creature.getY(), creature.getZ(), x, y, z, creature.getInstanceId());
-		creature.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
-		creature.broadcastPacket(new FlyToLocation(creature, loc.getX(), loc.getY(), loc.getZ(), FlyType.DUMMY));
-		creature.abortAttack();
-		creature.abortCast();
-		creature.setXYZ(loc);
-		creature.broadcastPacket(new ValidateLocation(creature));
+		final int z = effected.getZ();
+		final Location loc = GeoEngine.getInstance().getValidLocation(effector.getX(), effector.getY(), effector.getZ(), x, y, z, effector.getInstanceId());
+		effector.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		effector.broadcastPacket(new FlyToLocation(effector, loc.getX(), loc.getY(), loc.getZ(), FlyType.DUMMY));
+		effector.abortAttack();
+		effector.abortCast();
+		effector.setXYZ(loc);
+		effector.broadcastPacket(new ValidateLocation(effector));
 	}
 }

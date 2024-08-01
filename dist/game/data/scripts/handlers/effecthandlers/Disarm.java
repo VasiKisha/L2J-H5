@@ -20,13 +20,14 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 
 /**
@@ -43,9 +44,9 @@ public class Disarm extends AbstractEffect
 	}
 	
 	@Override
-	public boolean canStart(BuffInfo info)
+	public boolean canStart(Creature effector, Creature effected, Skill skill)
 	{
-		return info.getEffected().isPlayer();
+		return effected.isPlayer();
 	}
 	
 	@Override
@@ -55,9 +56,9 @@ public class Disarm extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Player player = info.getEffected().getActingPlayer();
+		final Player player = effected.getActingPlayer();
 		if (player == null)
 		{
 			return;
@@ -74,16 +75,16 @@ public class Disarm extends AbstractEffect
 		
 		final InventoryUpdate iu = new InventoryUpdate();
 		iu.addModifiedItem(itemToDisarm);
-		player.sendPacket(iu);
+		player.sendInventoryUpdate(iu);
 		player.broadcastUserInfo();
 		
 		_disarmedPlayers.put(player.getObjectId(), itemToDisarm.getObjectId());
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		final Player player = info.getEffected().getActingPlayer();
+		final Player player = effected.getActingPlayer();
 		if (player == null)
 		{
 			return;
@@ -104,6 +105,6 @@ public class Disarm extends AbstractEffect
 		player.getInventory().equipItem(item);
 		final InventoryUpdate iu = new InventoryUpdate();
 		iu.addModifiedItem(item);
-		player.sendPacket(iu);
+		player.sendInventoryUpdate(iu);
 	}
 }

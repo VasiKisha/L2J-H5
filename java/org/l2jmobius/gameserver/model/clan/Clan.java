@@ -68,7 +68,6 @@ import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.ExSubPledgeSkillAdd;
-import org.l2jmobius.gameserver.network.serverpackets.ItemList;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeReceiveSubPledgeCreated;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeShowInfoUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeShowMemberListAll;
@@ -1281,9 +1280,9 @@ public class Clan implements IIdentifiable, INamable
 	/**
 	 * @return all the clan skills.
 	 */
-	public Skill[] getAllSkills()
+	public Collection<Skill> getAllSkills()
 	{
-		return _skills.values().toArray(new Skill[_skills.values().size()]);
+		return _skills.values();
 	}
 	
 	/**
@@ -2141,7 +2140,7 @@ public class Clan implements IIdentifiable, INamable
 		return _reputationScore;
 	}
 	
-	public void setRank(int rank)
+	public synchronized void setRank(int rank)
 	{
 		_rank = rank;
 	}
@@ -2676,7 +2675,7 @@ public class Clan implements IIdentifiable, INamable
 		su.addAttribute(StatusUpdate.SP, (int) player.getSp());
 		player.sendPacket(su);
 		
-		player.sendPacket(new ItemList(player, false));
+		player.sendItemList(false);
 		changeLevel(_level + 1);
 		
 		// Notify to scripts
@@ -2703,6 +2702,7 @@ public class Clan implements IIdentifiable, INamable
 		}
 		
 		setLevel(level);
+		setRank(ClanTable.getInstance().getClanRank(this));
 		
 		if (_leader.isOnline())
 		{
@@ -2911,7 +2911,7 @@ public class Clan implements IIdentifiable, INamable
 		return false;
 	}
 	
-	public List<SubPledgeSkill> getAllSubSkills()
+	public Collection<SubPledgeSkill> getAllSubSkills()
 	{
 		final List<SubPledgeSkill> list = new LinkedList<>();
 		for (Skill skill : _subPledgeSkills.values())

@@ -16,8 +16,6 @@
  */
 package org.l2jmobius.commons.util;
 
-import org.l2jmobius.Config;
-
 /**
  * String utilities optimized for the best performance.<br>
  * <h1>How to Use It</h1>
@@ -268,7 +266,7 @@ public class StringUtil
 		final StringBuilder sbString = new StringBuilder();
 		for (StackTraceElement element : trace)
 		{
-			sbString.append(element.toString()).append(Config.EOL);
+			sbString.append(element.toString()).append(System.lineSeparator());
 		}
 		return sbString.toString();
 	}

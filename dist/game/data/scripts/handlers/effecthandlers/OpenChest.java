@@ -18,11 +18,12 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Chest;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Open Chest effect implementation.
@@ -42,15 +43,15 @@ public class OpenChest extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!(info.getEffected() instanceof Chest))
+		if (!(effected instanceof Chest))
 		{
 			return;
 		}
 		
-		final Player player = info.getEffector().getActingPlayer();
-		final Chest chest = (Chest) info.getEffected();
+		final Player player = effector.getActingPlayer();
+		final Chest chest = (Chest) effected;
 		if (chest.isDead() || (player.getInstanceId() != chest.getInstanceId()))
 		{
 			return;
@@ -61,7 +62,7 @@ public class OpenChest extends AbstractEffect
 			player.broadcastSocialAction(3);
 			chest.setSpecialDrop();
 			chest.setMustRewardExpSp(false);
-			chest.reduceCurrentHp(chest.getMaxHp(), player, info.getSkill());
+			chest.reduceCurrentHp(chest.getMaxHp(), player, skill);
 		}
 		else
 		{

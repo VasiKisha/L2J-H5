@@ -28,17 +28,13 @@ import org.l2jmobius.gameserver.handler.EffectHandler;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.functions.AbstractFunction;
 import org.l2jmobius.gameserver.model.stats.functions.FuncTemplate;
 
 /**
- * Abstract effect implementation.<br>
- * Instant effects should not override {@link #onExit(BuffInfo)}.<br>
- * Instant effects should not override {@link #canStart(BuffInfo)}, all checks should be done {@link #onStart(BuffInfo)}.<br>
- * Do not call super class methods {@link #onStart(BuffInfo)} nor {@link #onExit(BuffInfo)}.
- * @author Zoey76
+ * Abstract effect implementation.
+ * @author Zoey76, Mobius
  */
 public abstract class AbstractEffect
 {
@@ -161,10 +157,12 @@ public abstract class AbstractEffect
 	 * If it lands will be scheduled and added to the character effect list.<br>
 	 * Override in effect implementation to change behavior.<br>
 	 * <b>Warning:</b> Must be used only for instant effects continuous effects will not call this they have their success handled by activate_rate.
-	 * @param info the buff info
+	 * @param effector
+	 * @param effected
+	 * @param skill
 	 * @return {@code true} if this effect land, {@code false} otherwise
 	 */
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
 		return true;
 	}
@@ -181,38 +179,40 @@ public abstract class AbstractEffect
 	/**
 	 * Verify if the buff can start.<br>
 	 * Used for continuous effects.
-	 * @param info the buff info
+	 * @param effector
+	 * @param effected
+	 * @param skill
 	 * @return {@code true} if all the start conditions are meet, {@code false} otherwise
 	 */
-	public boolean canStart(BuffInfo info)
+	public boolean canStart(Creature effector, Creature effected, Skill skill)
 	{
 		return true;
 	}
 	
-	/**
-	 * Called on effect start.
-	 * @param info the buff info
-	 */
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
 	}
 	
 	/**
 	 * Called on each tick.<br>
 	 * If the abnormal time is lesser than zero it will last forever.
-	 * @param info the buff info
+	 * @param effector
+	 * @param effected
+	 * @param skill
 	 * @return if {@code true} this effect will continue forever, if {@code false} it will stop after abnormal time has passed
 	 */
-	public boolean onActionTime(BuffInfo info)
+	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
 		return false;
 	}
 	
 	/**
 	 * Called when the effect is exited.
-	 * @param info the buff info
+	 * @param effector
+	 * @param effected
+	 * @param skill
 	 */
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
 	}
 	

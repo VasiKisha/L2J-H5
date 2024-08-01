@@ -64,7 +64,7 @@ public class ExEnchantSkillInfoDetail extends ServerPacket
 		}
 		if (esd == null)
 		{
-			throw new IllegalArgumentException("Skill " + skillId + " dont have enchant data for level " + skillLevel);
+			throw new IllegalArgumentException("Skill " + skillId + " does not have enchant data for level " + skillLevel);
 		}
 		if (type == 0)
 		{

@@ -226,7 +226,7 @@ public class AdminEnchant implements IAdminCommandHandler
 			// Send packets.
 			final InventoryUpdate iu = new InventoryUpdate();
 			iu.addModifiedItem(itemInstance);
-			player.sendPacket(iu);
+			player.sendInventoryUpdate(iu);
 			player.broadcastUserInfo();
 			
 			// Information.

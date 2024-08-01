@@ -18,10 +18,11 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.instancemanager.FortManager;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.siege.Fort;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Take Fort effect implementation.
@@ -41,17 +42,17 @@ public class TakeFort extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffector().isPlayer())
+		if (!effector.isPlayer())
 		{
 			return;
 		}
 		
-		final Fort fort = FortManager.getInstance().getFort(info.getEffector().getActingPlayer());
+		final Fort fort = FortManager.getInstance().getFort(effector);
 		if (fort != null)
 		{
-			fort.endOfSiege(info.getEffector().getActingPlayer().getClan());
+			fort.endOfSiege(effector.getActingPlayer().getClan());
 		}
 	}
 }

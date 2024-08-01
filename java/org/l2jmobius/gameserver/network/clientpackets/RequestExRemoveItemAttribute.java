@@ -69,7 +69,7 @@ public class RequestExRemoveItemAttribute extends ClientPacket
 			
 			final InventoryUpdate iu = new InventoryUpdate();
 			iu.addModifiedItem(targetItem);
-			player.sendPacket(iu);
+			player.sendInventoryUpdate(iu);
 			SystemMessage sm;
 			final byte realElement = targetItem.isArmor() ? Elementals.getOppositeElement(_element) : _element;
 			if (targetItem.getEnchantLevel() > 0)

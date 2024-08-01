@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -58,11 +58,9 @@ public class Heal extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature target = info.getEffected();
-		final Creature creature = info.getEffector();
-		if ((target == null) || target.isDead() || target.isDoor() || target.isInvul())
+		if ((effected == null) || effected.isDead() || effected.isDoor() || effected.isInvul())
 		{
 			return;
 		}
@@ -70,24 +68,24 @@ public class Heal extends AbstractEffect
 		double amount = _power;
 		double staticShotBonus = 0;
 		int mAtkMul = 1;
-		final boolean sps = info.getSkill().isMagic() && creature.isChargedShot(ShotType.SPIRITSHOTS);
-		final boolean bss = info.getSkill().isMagic() && creature.isChargedShot(ShotType.BLESSED_SPIRITSHOTS);
-		if (((sps || bss) && (creature.isPlayer() && creature.getActingPlayer().isMageClass())) || creature.isSummon())
+		final boolean sps = skill.isMagic() && effector.isChargedShot(ShotType.SPIRITSHOTS);
+		final boolean bss = skill.isMagic() && effector.isChargedShot(ShotType.BLESSED_SPIRITSHOTS);
+		if (((sps || bss) && (effector.isPlayer() && effector.getActingPlayer().isMageClass())) || effector.isSummon())
 		{
-			staticShotBonus = info.getSkill().getMpConsume(); // static bonus for spiritshots
+			staticShotBonus = skill.getMpConsume(); // static bonus for spiritshots
 			mAtkMul = bss ? 4 : 2;
 			staticShotBonus *= bss ? 2.4 : 1.0;
 		}
-		else if ((sps || bss) && creature.isNpc())
+		else if ((sps || bss) && effector.isNpc())
 		{
-			staticShotBonus = 2.4 * info.getSkill().getMpConsume(); // always blessed spiritshots
+			staticShotBonus = 2.4 * skill.getMpConsume(); // always blessed spiritshots
 			mAtkMul = 4;
 		}
 		else
 		{
 			// no static bonus
 			// grade dynamic bonus
-			final Item weaponInst = creature.getActiveWeaponInstance();
+			final Item weaponInst = effector.getActiveWeaponInstance();
 			if (weaponInst != null)
 			{
 				mAtkMul = weaponInst.getTemplate().getCrystalType() == CrystalType.S84 ? 4 : weaponInst.getTemplate().getCrystalType() == CrystalType.S80 ? 2 : 1;
@@ -96,44 +94,44 @@ public class Heal extends AbstractEffect
 			mAtkMul = bss ? mAtkMul * 4 : mAtkMul + 1;
 		}
 		
-		if (!info.getSkill().isStatic())
+		if (!skill.isStatic())
 		{
-			amount += staticShotBonus + Math.sqrt(mAtkMul * creature.getMAtk(creature, null));
-			amount = target.calcStat(Stat.HEAL_EFFECT, amount, null, null);
+			amount += staticShotBonus + Math.sqrt(mAtkMul * effector.getMAtk(effector, null));
+			amount = effected.calcStat(Stat.HEAL_EFFECT, amount, null, null);
 			// Heal critic, since CT2.3 Gracia Final
-			if (info.getSkill().isMagic() && Formulas.calcMCrit(creature.getMCriticalHit(target, info.getSkill())))
+			if (skill.isMagic() && Formulas.calcMCrit(effector.getMCriticalHit(effected, skill)))
 			{
 				amount *= 3;
 			}
 		}
 		
-		// Prevents overheal and negative amount
-		amount = Math.max(Math.min(amount, target.getMaxRecoverableHp() - target.getCurrentHp()), 0);
+		// Prevents overheal and negative amount.
+		amount = Math.max(Math.min(amount, effected.getMaxRecoverableHp() - effected.getCurrentHp()), 0);
 		if (amount != 0)
 		{
-			target.setCurrentHp(amount + target.getCurrentHp());
+			effected.setCurrentHp(amount + effected.getCurrentHp());
 		}
 		
-		if (target.isPlayer())
+		if (effected.isPlayer())
 		{
-			if (info.getSkill().getId() == 4051)
+			if (skill.getId() == 4051)
 			{
-				target.sendPacket(SystemMessageId.REJUVENATING_HP);
+				effected.sendPacket(SystemMessageId.REJUVENATING_HP);
 			}
 			else
 			{
-				if (creature.isPlayer() && (creature != target))
+				if (effector.isPlayer() && (effector != effected))
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.S2_HP_HAS_BEEN_RESTORED_BY_C1);
-					sm.addString(creature.getName());
+					sm.addString(effector.getName());
 					sm.addInt((int) amount);
-					target.sendPacket(sm);
+					effected.sendPacket(sm);
 				}
 				else
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.S1_HP_HAS_BEEN_RESTORED);
 					sm.addInt((int) amount);
-					target.sendPacket(sm);
+					effected.sendPacket(sm);
 				}
 			}
 		}

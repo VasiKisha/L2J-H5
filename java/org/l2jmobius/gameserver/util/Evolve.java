@@ -219,7 +219,7 @@ public class Evolve
 		// Inventory update
 		final InventoryUpdate iu = new InventoryUpdate();
 		iu.addRemovedItem(removedItem);
-		player.sendPacket(iu);
+		player.sendInventoryUpdate(iu);
 		
 		final StatusUpdate su = new StatusUpdate(player);
 		su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());

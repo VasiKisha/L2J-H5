@@ -36,7 +36,6 @@ import org.l2jmobius.gameserver.data.xml.ArmorSetData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.model.ArmorSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -1014,8 +1013,18 @@ public abstract class Inventory extends ItemContainer
 		final Item item = _paperdoll[slot];
 		if (item != null)
 		{
+			if (Config.ENABLE_TRANSMOG)
+			{
+				final int transmogId = item.getTransmogId();
+				if (transmogId > 0)
+				{
+					return transmogId;
+				}
+			}
+			
 			return item.getId();
 		}
+		
 		return 0;
 	}
 	
@@ -1027,7 +1036,21 @@ public abstract class Inventory extends ItemContainer
 	public int getPaperdollItemDisplayId(int slot)
 	{
 		final Item item = _paperdoll[slot];
-		return (item != null) ? item.getDisplayId() : 0;
+		if (item != null)
+		{
+			if (Config.ENABLE_TRANSMOG)
+			{
+				final int transmogId = item.getTransmogId();
+				if (transmogId > 0)
+				{
+					return transmogId;
+				}
+			}
+			
+			return item.getDisplayId();
+		}
+		
+		return 0;
 	}
 	
 	public int getPaperdollAugmentationId(int slot)
@@ -1267,7 +1290,7 @@ public abstract class Inventory extends ItemContainer
 	
 	/**
 	 * Unequips item in body slot and returns alterations.<br>
-	 * <b>If you dont need return value use {@link Inventory#unEquipItemInBodySlot(int)} instead</b>
+	 * <b>If you do not need return value use {@link Inventory#unEquipItemInBodySlot(int)} instead</b>
 	 * @param slot : int designating the slot of the paperdoll
 	 * @return List<Item> : List of changes
 	 */
@@ -1297,7 +1320,7 @@ public abstract class Inventory extends ItemContainer
 	
 	/**
 	 * Unequips item in slot and returns alterations<br>
-	 * <b>If you dont need return value use {@link Inventory#unEquipItemInSlot(int)} instead</b>
+	 * <b>If you do not need return value use {@link Inventory#unEquipItemInSlot(int)} instead</b>
 	 * @param slot : int designating the slot
 	 * @return Collection<Item> : Collection of items altered
 	 */
@@ -1485,7 +1508,7 @@ public abstract class Inventory extends ItemContainer
 	{
 		if (getOwner().isPlayer())
 		{
-			if (((Player) getOwner()).getPrivateStoreType() != PrivateStoreType.NONE)
+			if (((Player) getOwner()).isInStoreMode())
 			{
 				return;
 			}

@@ -18,11 +18,12 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.EffectScope;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
 
@@ -44,21 +45,21 @@ public class ConsumeBody extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((info.getEffector() == null) || (info.getEffected() == null) || !info.getEffected().isNpc() || !info.getEffected().isDead())
+		if ((effector == null) || (effected == null) || !effected.isNpc() || !effected.isDead())
 		{
 			return;
 		}
 		
-		if (info.getSkill().hasEffects(EffectScope.START))
+		if (skill.hasEffects(EffectScope.START))
 		{
-			DecayTaskManager.getInstance().cancel(info.getEffected());
-			ThreadPool.schedule(() -> info.getEffected().onDecay(), Formulas.calcAtkSpd(info.getEffector(), info.getSkill(), info.getSkill().getHitTime() + info.getSkill().getCoolTime()));
+			DecayTaskManager.getInstance().cancel(effected);
+			ThreadPool.schedule(() -> effected.onDecay(), Formulas.calcAtkSpd(effector, skill, skill.getHitTime() + skill.getCoolTime()));
 		}
 		else
 		{
-			((Npc) info.getEffected()).endDecayTask();
+			((Npc) effected).endDecayTask();
 		}
 	}
 }

@@ -72,7 +72,7 @@ public class RaidBossPointsManager
 		}
 		catch (SQLException e)
 		{
-			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldnt load raid points ", e);
+			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Could not load raid points ", e);
 		}
 	}
 	

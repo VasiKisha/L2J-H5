@@ -40,13 +40,13 @@ public class OlympiadGameClassed extends OlympiadGameNormal
 	@Override
 	protected final int getDivider()
 	{
-		return Config.ALT_OLY_DIVIDER_CLASSED;
+		return Config.OLYMPIAD_DIVIDER_CLASSED;
 	}
 	
 	@Override
 	protected final int[][] getReward()
 	{
-		return Config.ALT_OLY_CLASSED_REWARD;
+		return Config.OLYMPIAD_CLASSED_REWARD;
 	}
 	
 	@Override

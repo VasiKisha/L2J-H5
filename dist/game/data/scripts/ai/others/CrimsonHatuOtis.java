@@ -33,8 +33,8 @@ public class CrimsonHatuOtis extends AbstractNpcAI
 	// Npc
 	private static final int CRIMSON_HATU_OTIS = 18558;
 	// Skills
-	private static SkillHolder BOSS_SPINING_SLASH = new SkillHolder(4737, 1);
-	private static SkillHolder BOSS_HASTE = new SkillHolder(4175, 1);
+	private static final SkillHolder BOSS_SPINING_SLASH = new SkillHolder(4737, 1);
+	private static final SkillHolder BOSS_HASTE = new SkillHolder(4175, 1);
 	
 	private CrimsonHatuOtis()
 	{

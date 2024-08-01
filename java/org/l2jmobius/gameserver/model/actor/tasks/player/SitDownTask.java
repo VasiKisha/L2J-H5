@@ -36,7 +36,8 @@ public class SitDownTask implements Runnable
 	{
 		if (_player != null)
 		{
-			_player.setParalyzed(false);
+			_player.setParalyzed(true);
+			_player.setSittingProgress(false);
 		}
 	}
 }

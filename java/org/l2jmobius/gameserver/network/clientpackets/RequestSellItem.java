@@ -31,6 +31,7 @@ import org.l2jmobius.gameserver.model.actor.instance.Merchant;
 import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
 import org.l2jmobius.gameserver.model.holders.UniqueItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExBuySellList;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
@@ -56,6 +57,7 @@ public class RequestSellItem extends ClientPacket
 		{
 			return;
 		}
+		
 		_items = new ArrayList<>(size);
 		for (int i = 0; i < size; i++)
 		{
@@ -176,5 +178,6 @@ public class RequestSellItem extends ClientPacket
 		su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());
 		player.sendPacket(su);
 		player.sendPacket(new ExBuySellList(player, true));
+		player.sendPacket(SystemMessageId.THE_TRANSACTION_IS_COMPLETE);
 	}
 }

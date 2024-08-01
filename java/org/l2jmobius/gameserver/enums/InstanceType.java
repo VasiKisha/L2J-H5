@@ -103,7 +103,8 @@ public enum InstanceType
 	// Custom
 	ClassMaster(Folk),
 	SchemeBuffer(Npc),
-	EventMob(Npc);
+	EventMob(Npc),
+	UCManagerInstance(Folk);
 	
 	private final InstanceType _parent;
 	private final long _typeL;

@@ -17,9 +17,10 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Cubic Mastery effect implementation.
@@ -37,26 +38,26 @@ public class CubicMastery extends AbstractEffect
 	}
 	
 	@Override
-	public boolean canStart(BuffInfo info)
+	public boolean canStart(Creature effector, Creature effected, Skill skill)
 	{
-		return (info.getEffector() != null) && (info.getEffected() != null) && info.getEffected().isPlayer();
+		return (effector != null) && (effected != null) && effected.isPlayer();
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		info.getEffected().getActingPlayer().getStat().setMaxCubicCount(_cubicCount);
+		effected.getActingPlayer().getStat().setMaxCubicCount(_cubicCount);
 	}
 	
 	@Override
-	public boolean onActionTime(BuffInfo info)
+	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
-		return info.getSkill().isPassive();
+		return skill.isPassive();
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		info.getEffected().getActingPlayer().getStat().setMaxCubicCount(1);
+		effected.getActingPlayer().getStat().setMaxCubicCount(1);
 	}
 }

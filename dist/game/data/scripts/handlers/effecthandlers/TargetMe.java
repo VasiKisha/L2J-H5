@@ -16,50 +16,62 @@
  */
 package handlers.effecthandlers;
 
+import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Target Me effect implementation.
- * @author -Nemesiss-
+ * @author -Nemesiss-, Mobius
  */
 public class TargetMe extends AbstractEffect
 {
+	private final int _chance;
+	
 	public TargetMe(Condition attachCond, Condition applyCond, StatSet set, StatSet params)
 	{
 		super(attachCond, applyCond, set, params);
+		
+		_chance = params.getInt("chance", 100);
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isPlayable())
+		return Rnd.get(100) < _chance;
+	}
+	
+	@Override
+	public void onStart(Creature effector, Creature effected, Skill skill)
+	{
+		if (effected.isPlayable())
 		{
-			((Playable) info.getEffected()).setLockedTarget(null);
+			if (effected.getTarget() != effector)
+			{
+				// If effector is null, then its not a player, but NPC. If it is not null, then it should check if the skill is pvp skill.
+				final Player player = effector.getActingPlayer();
+				if ((player == null) || player.checkPvpSkill(effected, skill))
+				{
+					// Target is different.
+					effected.setTarget(player);
+				}
+			}
+			
+			((Playable) effected).setLockedTarget(effector);
 		}
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isPlayable())
+		if (effected.isPlayable())
 		{
-			if (info.getEffected().getTarget() != info.getEffector())
-			{
-				final Player effector = info.getEffector().getActingPlayer();
-				// If effector is null, then its not a player, but NPC. If its not null, then it should check if the skill is pvp skill.
-				if ((effector == null) || effector.checkPvpSkill(info.getEffected(), info.getSkill()))
-				{
-					// Target is different
-					info.getEffected().setTarget(info.getEffector());
-				}
-			}
-			
-			((Playable) info.getEffected()).setLockedTarget(info.getEffector());
+			((Playable) effected).setLockedTarget(null);
 		}
 	}
 }

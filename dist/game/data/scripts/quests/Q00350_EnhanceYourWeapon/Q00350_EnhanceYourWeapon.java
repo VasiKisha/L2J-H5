@@ -31,6 +31,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.AbsorberInfo;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
@@ -43,6 +44,7 @@ import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
+import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 /**
@@ -160,19 +162,29 @@ public class Q00350_EnhanceYourWeapon extends Quest
 		else if (event.endsWith("-09.htm"))
 		{
 			giveItems(player, RED_SOUL_CRYSTAL0_ID, 1);
+			playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 		}
 		else if (event.endsWith("-10.htm"))
 		{
 			giveItems(player, GREEN_SOUL_CRYSTAL0_ID, 1);
+			playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 		}
 		else if (event.endsWith("-11.htm"))
 		{
 			giveItems(player, BLUE_SOUL_CRYSTAL0_ID, 1);
+			playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 		}
 		else if (event.equalsIgnoreCase("exit.htm"))
 		{
-			qs.exitQuest(true);
+			qs.exitQuest(true, true);
+			
+			final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
+			html.setFile(player, "data/scripts/quests/Q00350_EnhanceYourWeapon/exit.htm");
+			html.replace("%npcname%", npc.getName());
+			player.sendPacket(html);
+			return null;
 		}
+		
 		return htmltext;
 	}
 	
@@ -283,7 +295,7 @@ public class Q00350_EnhanceYourWeapon extends Quest
 			player.sendPacket(sms);
 			
 			// Send inventory update packet
-			player.sendPacket(playerIU);
+			player.sendInventoryUpdate(playerIU);
 		}
 	}
 	
@@ -373,6 +385,11 @@ public class Q00350_EnhanceYourWeapon extends Quest
 			for (Player pl : killer.getParty().getMembers())
 			{
 				if (pl == null)
+				{
+					continue;
+				}
+				
+				if (pl.calculateDistance3D(killer) > Config.ALT_PARTY_RANGE)
 				{
 					continue;
 				}
@@ -517,7 +534,7 @@ public class Q00350_EnhanceYourWeapon extends Quest
 			final File file = new File(Config.DATAPACK_ROOT, "data/LevelUpCrystalData.xml");
 			if (!file.exists())
 			{
-				LOGGER.severe("[EnhanceYourWeapon] Missing LevelUpCrystalData.xml. The quest wont work without it!");
+				LOGGER.severe("[EnhanceYourWeapon] Missing LevelUpCrystalData.xml. The quest will not work without it!");
 				return;
 			}
 			

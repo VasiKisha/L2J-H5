@@ -36,6 +36,7 @@ import java.util.logging.Logger;
 import org.w3c.dom.Document;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.scripting.java.JavaExecutionContext;
 
@@ -156,11 +157,24 @@ public class ScriptEngineManager implements IXmlReader
 		}
 		
 		path = path.toAbsolutePath();
+		// System.out.println("Executing script at path: " + path.toString());
 		
+		// Check if the path exists
+		if (!Files.exists(path))
+		{
+			throw new Exception("Script file does not exist: " + path.toString());
+		}
+		
+		// Execute the script and check for errors.
 		final Entry<Path, Throwable> error = JAVA_EXECUTION_CONTEXT.executeScript(path);
 		if (error != null)
 		{
-			throw new Exception("ScriptEngine: " + error.getKey() + " failed execution!", error.getValue());
+			final Throwable cause = error.getValue();
+			if (cause != null)
+			{
+				LOGGER.warning(CommonUtil.getStackTrace(cause));
+			}
+			throw new Exception("ScriptEngine: " + error.getKey() + " failed execution!", cause);
 		}
 	}
 	

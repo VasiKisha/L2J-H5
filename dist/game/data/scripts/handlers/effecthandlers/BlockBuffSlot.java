@@ -21,10 +21,11 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Block Buff Slot effect implementation.
@@ -54,14 +55,14 @@ public class BlockBuffSlot extends AbstractEffect
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		info.getEffected().getEffectList().removeBlockedBuffSlots(_blockBuffSlots);
+		effected.getEffectList().removeBlockedBuffSlots(_blockBuffSlots);
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		info.getEffected().getEffectList().addBlockedBuffSlots(_blockBuffSlots);
+		effected.getEffectList().addBlockedBuffSlots(_blockBuffSlots);
 	}
 }

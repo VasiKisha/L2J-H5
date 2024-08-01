@@ -17,6 +17,7 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -33,7 +34,7 @@ public class MoveToPawn extends ServerPacket
 	private final int _ty;
 	private final int _tz;
 	
-	public MoveToPawn(Creature creature, Creature target, int distance)
+	public MoveToPawn(Creature creature, WorldObject target, int distance)
 	{
 		_objectId = creature.getObjectId();
 		_targetId = target.getObjectId();

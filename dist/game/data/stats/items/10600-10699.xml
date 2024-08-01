@@ -662,7 +662,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="33" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</cond>
 		<for>

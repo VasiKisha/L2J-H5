@@ -396,15 +396,15 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 			
 			final Location firstNode = holder.getNodes().get(0);
 			final StringBuilder sb = new StringBuilder();
-			sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + Config.EOL);
-			sb.append("<list enabled=\"true\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"../../../data/xsd/zones.xsd\">" + Config.EOL);
-			sb.append("\t<zone name=\"" + holder.getName() + "\" type=\"ScriptZone\" shape=\"NPoly\" minZ=\"" + (firstNode.getZ() - 100) + "\" maxZ=\"" + (firstNode.getZ() + 100) + "\">" + Config.EOL);
+			sb.append("<?xml version=\"1.0\" encoding=\"UTF-8\"?>" + System.lineSeparator());
+			sb.append("<list enabled=\"true\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xsi:noNamespaceSchemaLocation=\"../../../data/xsd/zones.xsd\">" + System.lineSeparator());
+			sb.append("\t<zone name=\"" + holder.getName() + "\" type=\"ScriptZone\" shape=\"NPoly\" minZ=\"" + (firstNode.getZ() - 100) + "\" maxZ=\"" + (firstNode.getZ() + 100) + "\">" + System.lineSeparator());
 			for (Location loc : holder.getNodes())
 			{
-				sb.append("\t\t<node X=\"" + loc.getX() + "\" Y=\"" + loc.getY() + "\" />" + Config.EOL);
+				sb.append("\t\t<node X=\"" + loc.getX() + "\" Y=\"" + loc.getY() + "\" />" + System.lineSeparator());
 			}
-			sb.append("\t</zone>" + Config.EOL);
-			sb.append("</list>" + Config.EOL);
+			sb.append("\t</zone>" + System.lineSeparator());
+			sb.append("</list>" + System.lineSeparator());
 			try
 			{
 				File file = new File(Config.DATAPACK_ROOT, "log/points/" + activeChar.getAccountName() + "/" + holder.getName() + ".xml");

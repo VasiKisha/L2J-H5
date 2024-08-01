@@ -18,7 +18,6 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.holders.ElementalItemHolder;
@@ -62,7 +61,7 @@ public class RequestExEnchantItemAttribute extends ClientPacket
 			return;
 		}
 		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_ADD_ELEMENTAL_POWER_WHILE_OPERATING_A_PRIVATE_STORE_OR_PRIVATE_WORKSHOP);
 			player.setActiveEnchantAttrItemId(Player.ID_NONE);
@@ -136,7 +135,7 @@ public class RequestExEnchantItemAttribute extends ClientPacket
 		
 		if (item.isArmor() && (item.getElementals() != null))
 		{
-			// cant add opposite element
+			// cannot add opposite element
 			for (Elementals elm : item.getElementals())
 			{
 				if (elm.getElement() == opositeElement)
@@ -243,7 +242,7 @@ public class RequestExEnchantItemAttribute extends ClientPacket
 			// send packets
 			final InventoryUpdate iu = new InventoryUpdate();
 			iu.addModifiedItem(item);
-			player.sendPacket(iu);
+			player.sendInventoryUpdate(iu);
 		}
 		else
 		{

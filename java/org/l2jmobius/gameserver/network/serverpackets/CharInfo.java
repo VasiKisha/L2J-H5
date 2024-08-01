@@ -203,7 +203,7 @@ public class CharInfo extends ServerPacket
 		buffer.writeByte(_player.isNoble()); // Symbol on char menu ctrl+I
 		buffer.writeByte(_player.isHero() || (_player.isGM() && Config.GM_HERO_AURA)); // Hero Aura
 		
-		buffer.writeByte(_player.isFishing()); // 1: Fishing Mode (Cant be undone by setting back to 0)
+		buffer.writeByte(_player.isFishing()); // 1: Fishing Mode (Cannot be undone by setting back to 0)
 		buffer.writeInt(_player.getFishX());
 		buffer.writeInt(_player.getFishY());
 		buffer.writeInt(_player.getFishZ());

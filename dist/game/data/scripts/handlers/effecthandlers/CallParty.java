@@ -17,10 +17,11 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Call Party effect implementation.
@@ -40,18 +41,18 @@ public class CallParty extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffector().isInParty())
+		if (!effector.isInParty())
 		{
 			return;
 		}
 		
-		for (Player partyMember : info.getEffector().getParty().getMembers())
+		for (Player partyMember : effector.getParty().getMembers())
 		{
-			if (CallPc.checkSummonTargetStatus(partyMember, info.getEffector().getActingPlayer()) && (info.getEffector() != partyMember))
+			if (CallPc.checkSummonTargetStatus(partyMember, effector.getActingPlayer()) && (effector != partyMember))
 			{
-				partyMember.teleToLocation(info.getEffector().getLocation(), true);
+				partyMember.teleToLocation(effector.getLocation(), true);
 			}
 		}
 	}

@@ -209,16 +209,6 @@ public class GameClient extends Client<org.l2jmobius.commons.network.Connection<
 	
 	public void sendPacket(ServerPacket packet)
 	{
-		if (_isDetached)
-		{
-			return;
-		}
-		
-		if (_connectionState == ConnectionState.DISCONNECTED)
-		{
-			return;
-		}
-		
 		// Packet should never be null.
 		if (packet == null)
 		{

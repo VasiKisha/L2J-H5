@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -39,24 +39,24 @@ public class MagicalAttackMp extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isInvul())
+		if (effected.isInvul())
 		{
 			return false;
 		}
-		if (!Formulas.calcMagicAffected(info.getEffector(), info.getEffected(), info.getSkill()))
+		if (!Formulas.calcMagicAffected(effector, effected, skill))
 		{
-			if (info.getEffector().isPlayer())
+			if (effector.isPlayer())
 			{
-				info.getEffector().sendPacket(SystemMessageId.YOUR_ATTACK_HAS_FAILED);
+				effector.sendPacket(SystemMessageId.YOUR_ATTACK_HAS_FAILED);
 			}
-			if (info.getEffected().isPlayer())
+			if (effected.isPlayer())
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_RESISTED_C2_S_MAGIC);
-				sm.addString(info.getEffected().getName());
-				sm.addString(info.getEffector().getName());
-				info.getEffected().sendPacket(sm);
+				sm.addString(effected.getName());
+				sm.addString(effector.getName());
+				effected.sendPacket(sm);
 			}
 			return false;
 		}
@@ -76,40 +76,38 @@ public class MagicalAttackMp extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature target = info.getEffected();
-		final Creature creature = info.getEffector();
-		if (creature.isAlikeDead())
+		if (effector.isAlikeDead())
 		{
 			return;
 		}
 		
-		final boolean sps = info.getSkill().useSpiritShot() && creature.isChargedShot(ShotType.SPIRITSHOTS);
-		final boolean bss = info.getSkill().useSpiritShot() && creature.isChargedShot(ShotType.BLESSED_SPIRITSHOTS);
-		final byte shld = Formulas.calcShldUse(creature, target, info.getSkill());
-		final boolean mcrit = Formulas.calcMCrit(creature.getMCriticalHit(target, info.getSkill()));
-		final double damage = Formulas.calcManaDam(creature, target, info.getSkill(), shld, sps, bss, mcrit);
-		final double mp = (damage > target.getCurrentMp() ? target.getCurrentMp() : damage);
+		final boolean sps = skill.useSpiritShot() && effector.isChargedShot(ShotType.SPIRITSHOTS);
+		final boolean bss = skill.useSpiritShot() && effector.isChargedShot(ShotType.BLESSED_SPIRITSHOTS);
+		final byte shld = Formulas.calcShldUse(effector, effected, skill);
+		final boolean mcrit = Formulas.calcMCrit(effector.getMCriticalHit(effected, skill));
+		final double damage = Formulas.calcManaDam(effector, effected, skill, shld, sps, bss, mcrit);
+		final double mp = (damage > effected.getCurrentMp() ? effected.getCurrentMp() : damage);
 		if (damage > 0)
 		{
-			target.stopEffectsOnDamage(true);
-			target.setCurrentMp(target.getCurrentMp() - mp);
+			effected.stopEffectsOnDamage(true);
+			effected.setCurrentMp(effected.getCurrentMp() - mp);
 		}
 		
-		if (target.isPlayer())
+		if (effected.isPlayer())
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S2_S_MP_HAS_BEEN_DRAINED_BY_C1);
-			sm.addString(creature.getName());
+			sm.addString(effector.getName());
 			sm.addInt((int) mp);
-			target.sendPacket(sm);
+			effected.sendPacket(sm);
 		}
 		
-		if (creature.isPlayer())
+		if (effector.isPlayer())
 		{
 			final SystemMessage sm2 = new SystemMessage(SystemMessageId.YOUR_OPPONENT_S_MP_WAS_REDUCED_BY_S1);
 			sm2.addInt((int) mp);
-			creature.sendPacket(sm2);
+			effector.sendPacket(sm2);
 		}
 	}
 }

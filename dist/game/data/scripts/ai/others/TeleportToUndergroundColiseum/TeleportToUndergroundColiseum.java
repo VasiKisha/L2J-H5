@@ -88,7 +88,6 @@ public class TeleportToUndergroundColiseum extends AbstractNpcAI
 	{
 		addStartNpc(MANAGERS);
 		addStartNpc(COLISEUM_HELPER, PADDIES);
-		addFirstTalkId(COLISEUM_HELPER);
 		addTalkId(MANAGERS);
 		addTalkId(COLISEUM_HELPER, PADDIES);
 	}
@@ -124,12 +123,6 @@ public class TeleportToUndergroundColiseum extends AbstractNpcAI
 			player.teleToLocation(getRandomEntry(COLISEUM_LOCS), false);
 		}
 		return null;
-	}
-	
-	@Override
-	public String onFirstTalk(Npc npc, Player player)
-	{
-		return "32491.htm";
 	}
 	
 	public static void main(String[] args)

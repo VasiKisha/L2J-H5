@@ -48,7 +48,6 @@ public class RequestDeleteSentPost extends ClientPacket
 		{
 			_msgIds[i] = readInt();
 		}
-		return;
 	}
 	
 	@Override

@@ -2082,7 +2082,7 @@
 		<spawn X="-75459" Y="-238829" Z="-8218" type="spectatorSpawn" />
 	</zone>
 	<!-- No Bookmark Zone -->
-	<zone name="no_boormark_olympiad_stadiums" type="ConditionZone" shape="Cuboid" minZ="-8485" maxZ="1149">
+	<zone name="no_bookmark_olympiad_stadiums" type="ConditionZone" shape="Cuboid" minZ="-8485" maxZ="1149">
 		<stat name="NoBookmark" val="true" />
 		<node X="-98296" Y="-262136" />
 		<node X="-65544" Y="-229384" />

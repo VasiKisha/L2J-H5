@@ -52,6 +52,11 @@ public class AddTradeItem extends ClientPacket
 			return;
 		}
 		
+		if (_count < 1)
+		{
+			return;
+		}
+		
 		final TradeList trade = player.getActiveTradeList();
 		if (trade == null)
 		{

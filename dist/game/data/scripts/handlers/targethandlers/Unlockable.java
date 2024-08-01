@@ -25,6 +25,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.instance.Chest;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
+import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
  * @author UnAfraid
@@ -36,6 +37,7 @@ public class Unlockable implements ITargetTypeHandler
 	{
 		if ((target == null) || (!target.isDoor() && !(target instanceof Chest)))
 		{
+			creature.sendPacket(SystemMessageId.INVALID_TARGET);
 			return Collections.emptyList();
 		}
 		

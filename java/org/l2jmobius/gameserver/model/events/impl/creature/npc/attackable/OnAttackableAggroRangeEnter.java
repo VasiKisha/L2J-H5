@@ -42,7 +42,7 @@ public class OnAttackableAggroRangeEnter implements IBaseEvent
 		return _npc;
 	}
 	
-	public Player getActiveChar()
+	public Player getPlayer()
 	{
 		return _player;
 	}

@@ -300,6 +300,23 @@ public class World
 	}
 	
 	/**
+	 * This operation is quite heave as it iterates all world visible objects.
+	 * @param npcId the id of the NPC to find.
+	 * @return the first NPC found corresponding to the given id.
+	 */
+	public Npc getNpc(int npcId)
+	{
+		for (WorldObject wo : getVisibleObjects())
+		{
+			if (wo.isNpc() && (wo.getId() == npcId))
+			{
+				return (Npc) wo;
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * Add a WorldObject in the world. <b><u>Concept</u>:</b> WorldObject (including Player) are identified in <b>_visibleObjects</b> of his current WorldRegion and in <b>_knownObjects</b> of other surrounding Creatures<br>
 	 * Player are identified in <b>_allPlayers</b> of World, in <b>_allPlayers</b> of his current WorldRegion and in <b>_knownPlayer</b> of other surrounding Creatures <b><u> Actions</u>:</b>
 	 * <li>Add the WorldObject object in _allPlayers* of World</li>

@@ -52,7 +52,7 @@ public class Q00365_DevilsLegacy extends Quest
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	// Skill
-	private static SkillHolder POISON = new SkillHolder(4035, 2);
+	private static final SkillHolder POISON = new SkillHolder(4035, 2);
 	// Mobs
 	private static final Map<Integer, Double> MOBS = new HashMap<>();
 	static

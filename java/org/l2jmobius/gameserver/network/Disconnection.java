@@ -46,7 +46,7 @@ public class Disconnection
 		return null;
 	}
 	
-	public static Player getActiveChar(GameClient client, Player player)
+	public static Player getPlayer(GameClient client, Player player)
 	{
 		if (player != null)
 		{
@@ -87,7 +87,7 @@ public class Disconnection
 	private Disconnection(GameClient client, Player player)
 	{
 		_client = getClient(client, player);
-		_player = getActiveChar(client, player);
+		_player = getPlayer(client, player);
 		
 		// Stop player tasks.
 		if (_player != null)

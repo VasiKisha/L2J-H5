@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.model.stats.Stat;
 
@@ -52,52 +52,50 @@ public class MagicalSoulAttack extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature target = info.getEffected();
-		final Creature creature = info.getEffector();
-		if (creature.isAlikeDead())
+		if (effector.isAlikeDead())
 		{
 			return;
 		}
 		
-		if (target.isPlayer() && target.getActingPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
+		if (effected.isPlayer() && effected.getActingPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
 		{
-			target.stopFakeDeath(true);
+			effected.stopFakeDeath(true);
 		}
 		
-		final boolean sps = info.getSkill().useSpiritShot() && creature.isChargedShot(ShotType.SPIRITSHOTS);
-		final boolean bss = info.getSkill().useSpiritShot() && creature.isChargedShot(ShotType.BLESSED_SPIRITSHOTS);
-		final boolean mcrit = Formulas.calcMCrit(creature.getMCriticalHit(target, info.getSkill()));
-		final byte shld = Formulas.calcShldUse(creature, target, info.getSkill());
-		int damage = (int) Formulas.calcMagicDam(creature, target, info.getSkill(), shld, sps, bss, mcrit);
-		if ((info.getSkill().getMaxSoulConsumeCount() > 0) && creature.isPlayer())
+		final boolean sps = skill.useSpiritShot() && effector.isChargedShot(ShotType.SPIRITSHOTS);
+		final boolean bss = skill.useSpiritShot() && effector.isChargedShot(ShotType.BLESSED_SPIRITSHOTS);
+		final boolean mcrit = Formulas.calcMCrit(effector.getMCriticalHit(effected, skill));
+		final byte shld = Formulas.calcShldUse(effector, effected, skill);
+		int damage = (int) Formulas.calcMagicDam(effector, effected, skill, shld, sps, bss, mcrit);
+		if ((skill.getMaxSoulConsumeCount() > 0) && effector.isPlayer())
 		{
 			// Souls Formula (each soul increase +4%)
-			final int chargedSouls = (creature.getActingPlayer().getChargedSouls() <= info.getSkill().getMaxSoulConsumeCount()) ? creature.getActingPlayer().getChargedSouls() : info.getSkill().getMaxSoulConsumeCount();
+			final int chargedSouls = (effector.getActingPlayer().getChargedSouls() <= skill.getMaxSoulConsumeCount()) ? effector.getActingPlayer().getChargedSouls() : skill.getMaxSoulConsumeCount();
 			damage *= 1 + (chargedSouls * 0.04);
 		}
 		
 		if (damage > 0)
 		{
 			// Manage attack or cast break of the target (calculating rate, sending message...)
-			if (!target.isRaid() && Formulas.calcAtkBreak(target, damage))
+			if (!effected.isRaid() && Formulas.calcAtkBreak(effected, damage))
 			{
-				target.breakAttack();
-				target.breakCast();
+				effected.breakAttack();
+				effected.breakCast();
 			}
 			
 			// Shield Deflect Magic: Reflect all damage on caster.
-			if (target.getStat().calcStat(Stat.VENGEANCE_SKILL_MAGIC_DAMAGE, 0, target, info.getSkill()) > Rnd.get(100))
+			if (effected.getStat().calcStat(Stat.VENGEANCE_SKILL_MAGIC_DAMAGE, 0, effected, skill) > Rnd.get(100))
 			{
-				creature.reduceCurrentHp(damage, target, info.getSkill());
-				creature.notifyDamageReceived(damage, target, info.getSkill(), mcrit, false);
+				effector.reduceCurrentHp(damage, effected, skill);
+				effector.notifyDamageReceived(damage, effected, skill, mcrit, false);
 			}
 			else
 			{
-				target.reduceCurrentHp(damage, creature, info.getSkill());
-				target.notifyDamageReceived(damage, creature, info.getSkill(), mcrit, false);
-				creature.sendDamageMessage(target, damage, mcrit, false, false);
+				effected.reduceCurrentHp(damage, effector, skill);
+				effected.notifyDamageReceived(damage, effector, skill, mcrit, false);
+				effector.sendDamageMessage(effected, damage, mcrit, false, false);
 			}
 		}
 	}

@@ -56,8 +56,8 @@ public class MonRaceInfo extends ServerPacket
 			buffer.writeInt(12080); // end X
 			buffer.writeInt(181875 + (58 * (7 - i))); // end Y
 			buffer.writeInt(-3566); // end Z
-			buffer.writeDouble(_monsters[i].getTemplate().getFCollisionHeight()); // coll. height
-			buffer.writeDouble(_monsters[i].getTemplate().getFCollisionRadius()); // coll. radius
+			buffer.writeDouble(_monsters[i].getTemplate().getCollisionHeight());
+			buffer.writeDouble(_monsters[i].getTemplate().getCollisionRadius());
 			buffer.writeInt(120); // ?? unknown
 			for (int j = 0; j < 20; j++)
 			{

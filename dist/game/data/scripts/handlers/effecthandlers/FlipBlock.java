@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Block;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Flip Block effect implementation.
@@ -44,10 +44,8 @@ public class FlipBlock extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature effector = info.getEffector();
-		final Creature effected = info.getEffected();
 		final Block block = effected instanceof Block ? (Block) effected : null;
 		final Player player = effector.isPlayer() ? (Player) effector : null;
 		if ((block == null) || (player == null))

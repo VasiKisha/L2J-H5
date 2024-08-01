@@ -18,10 +18,11 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.instancemanager.CastleManager;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Take Castle effect implementation.
@@ -41,13 +42,14 @@ public class TakeCastle extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffector().isPlayer())
+		if (!effector.isPlayer())
 		{
 			return;
 		}
-		final Castle castle = CastleManager.getInstance().getCastle(info.getEffector());
-		castle.engrave(info.getEffector().getActingPlayer().getClan(), info.getEffected());
+		
+		final Castle castle = CastleManager.getInstance().getCastle(effector);
+		castle.engrave(effector.getActingPlayer().getClan(), effected);
 	}
 }

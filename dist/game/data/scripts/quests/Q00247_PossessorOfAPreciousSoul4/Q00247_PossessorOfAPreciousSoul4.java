@@ -43,7 +43,7 @@ public class Q00247_PossessorOfAPreciousSoul4 extends Quest
 	// Location
 	private static final Location CARADINE_LOC = new Location(143209, 43968, -3038);
 	// Skill
-	private static SkillHolder MIMIRS_ELIXIR = new SkillHolder(4339, 1);
+	private static final SkillHolder MIMIRS_ELIXIR = new SkillHolder(4339, 1);
 	
 	public Q00247_PossessorOfAPreciousSoul4()
 	{

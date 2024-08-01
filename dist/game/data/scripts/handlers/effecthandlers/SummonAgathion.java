@@ -17,10 +17,11 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Summon Agathion effect implementation.
@@ -49,14 +50,14 @@ public class SummonAgathion extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((info.getEffected() == null) || !info.getEffected().isPlayer())
+		if ((effected == null) || !effected.isPlayer())
 		{
 			return;
 		}
 		
-		final Player player = info.getEffected().getActingPlayer();
+		final Player player = effected.getActingPlayer();
 		player.setAgathionId(_npcId);
 		player.broadcastUserInfo();
 	}

@@ -17,9 +17,10 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Static Damage effect implementation.
@@ -43,18 +44,18 @@ public class StaticDamage extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffector().isAlikeDead())
+		if (effector.isAlikeDead())
 		{
 			return;
 		}
 		
-		info.getEffected().reduceCurrentHp(_power, info.getEffector(), info.getSkill());
-		info.getEffected().notifyDamageReceived(_power, info.getEffector(), info.getSkill(), false, false);
-		if (info.getEffector().isPlayer())
+		effected.reduceCurrentHp(_power, effector, skill);
+		effected.notifyDamageReceived(_power, effector, skill, false, false);
+		if (effector.isPlayer())
 		{
-			info.getEffector().sendDamageMessage(info.getEffected(), _power, false, false, false);
+			effector.sendDamageMessage(effected, _power, false, false, false);
 		}
 	}
 }

@@ -17,10 +17,11 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Detect Hidden Objects effect implementation.
@@ -40,14 +41,14 @@ public class DetectHiddenObjects extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffected().isDoor())
+		if (!effected.isDoor())
 		{
 			return;
 		}
 		
-		final Door door = (Door) info.getEffected();
+		final Door door = (Door) effected;
 		if (door.getTemplate().isStealth())
 		{
 			door.setMeshIndex(1);

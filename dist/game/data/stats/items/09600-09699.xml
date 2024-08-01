@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="9600" type="EtcItem" name="Hidden First Page">
 		<!-- The first hidden page of the Devil's Old Book. -->
@@ -817,7 +817,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="1838000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -841,7 +841,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="3404500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -865,7 +865,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="6379000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -889,7 +889,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="10579500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -913,7 +913,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="18876000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -937,7 +937,7 @@
 		<set name="weight" val="100" />
 		<set name="price" val="34319000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -958,7 +958,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="938500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -977,7 +977,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="1810000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -996,7 +996,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="3563000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1015,7 +1015,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="6281500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1034,7 +1034,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="12118000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1053,7 +1053,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="24439500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>
@@ -1073,7 +1073,7 @@
 		<set name="handler" val="PetFood" />
 		<set name="item_skill" val="2361-1" /> <!-- Evolving Wolf's Food -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 	</item>

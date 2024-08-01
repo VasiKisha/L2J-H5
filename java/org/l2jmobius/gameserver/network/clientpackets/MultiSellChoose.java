@@ -32,7 +32,6 @@ import org.l2jmobius.gameserver.model.multisell.Ingredient;
 import org.l2jmobius.gameserver.model.multisell.PreparedListContainer;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.ItemList;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -449,7 +448,7 @@ public class MultiSellChoose extends ClientPacket
 						}
 					}
 				}
-				player.sendPacket(new ItemList(player, false));
+				player.sendItemList(false);
 				
 				final StatusUpdate su = new StatusUpdate(player);
 				su.addAttribute(StatusUpdate.CUR_LOAD, player.getCurrentLoad());

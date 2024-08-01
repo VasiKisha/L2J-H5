@@ -17,8 +17,8 @@
 package org.l2jmobius.gameserver.model;
 
 import java.lang.reflect.Constructor;
-import java.util.Collection;
 import java.util.Deque;
+import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedDeque;
 import java.util.logging.Level;
@@ -37,6 +37,7 @@ import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 import org.l2jmobius.gameserver.model.interfaces.INamable;
+import org.l2jmobius.gameserver.model.sevensigns.SevenSignsFestival;
 import org.l2jmobius.gameserver.model.zone.type.NpcSpawnTerritory;
 import org.l2jmobius.gameserver.model.zone.type.WaterZone;
 import org.l2jmobius.gameserver.taskmanager.RespawnTaskManager;
@@ -77,7 +78,7 @@ public class Spawn extends Location implements IIdentifiable, INamable
 	private Constructor<? extends Npc> _constructor;
 	/** If True an Npc is respawned each time that another is killed */
 	private boolean _doRespawn = true;
-	private static Collection<SpawnListener> _spawnListeners = ConcurrentHashMap.newKeySet();
+	private static Set<SevenSignsFestival> _spawnListeners = ConcurrentHashMap.newKeySet(1);
 	private final Deque<Npc> _spawnedNpcs = new ConcurrentLinkedDeque<>();
 	private boolean _randomWalk = false; // Is random walk
 	private int _spawnTemplateId = 0;
@@ -499,19 +500,19 @@ public class Spawn extends Location implements IIdentifiable, INamable
 		return npc;
 	}
 	
-	public static void addSpawnListener(SpawnListener listener)
+	public static void addSpawnListener(SevenSignsFestival listener)
 	{
 		_spawnListeners.add(listener);
 	}
 	
-	public static void removeSpawnListener(SpawnListener listener)
+	public static void removeSpawnListener(SevenSignsFestival listener)
 	{
 		_spawnListeners.remove(listener);
 	}
 	
 	public static void notifyNpcSpawned(Npc npc)
 	{
-		for (SpawnListener listener : _spawnListeners)
+		for (SevenSignsFestival listener : _spawnListeners)
 		{
 			listener.npcSpawned(npc);
 		}

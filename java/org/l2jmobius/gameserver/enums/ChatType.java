@@ -64,7 +64,7 @@ public enum ChatType
 	/**
 	 * Finds the {@code ChatType} by its clientId
 	 * @param clientId the clientId
-	 * @return the {@code ChatType} if its found, {@code null} otherwise.
+	 * @return the {@code ChatType} if it is found, {@code null} otherwise.
 	 */
 	public static ChatType findByClientId(int clientId)
 	{

@@ -48,9 +48,9 @@ public class Q00194_SevenSignsMammonsContract extends Quest
 	// Misc
 	private static final int MIN_LEVEL = 79;
 	// Skills
-	private static SkillHolder TRANSFORMATION_FROG = new SkillHolder(6201, 1);
-	private static SkillHolder TRANSFORMATION_KID = new SkillHolder(6202, 1);
-	private static SkillHolder TRANSFORMATION_NATIVE = new SkillHolder(6203, 1);
+	private static final SkillHolder TRANSFORMATION_FROG = new SkillHolder(6201, 1);
+	private static final SkillHolder TRANSFORMATION_KID = new SkillHolder(6202, 1);
+	private static final SkillHolder TRANSFORMATION_NATIVE = new SkillHolder(6203, 1);
 	
 	public Q00194_SevenSignsMammonsContract()
 	{

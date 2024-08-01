@@ -35,7 +35,7 @@ public class GiftOfVitality extends LongTimeEvent
 	private static final SkillHolder GIFT_OF_VITALITY = new SkillHolder(23179, 1);
 	private static final SkillHolder JOY_OF_VITALITY = new SkillHolder(23180, 1);
 	
-	private static SkillHolder[] FIGHTER_SKILLS =
+	private static final SkillHolder[] FIGHTER_SKILLS =
 	{
 		new SkillHolder(5627, 1), // Wind Walk
 		new SkillHolder(5628, 1), // Shield
@@ -46,7 +46,7 @@ public class GiftOfVitality extends LongTimeEvent
 		new SkillHolder(5632, 1), // Haste
 	};
 	
-	private static SkillHolder[] MAGE_SKILLS =
+	private static final SkillHolder[] MAGE_SKILLS =
 	{
 		new SkillHolder(5627, 1), // Wind Walk
 		new SkillHolder(5628, 1), // Shield
@@ -57,7 +57,7 @@ public class GiftOfVitality extends LongTimeEvent
 		new SkillHolder(5636, 1), // Empower
 	};
 	
-	private static SkillHolder[] SERVITOR_SKILLS =
+	private static final SkillHolder[] SERVITOR_SKILLS =
 	{
 		new SkillHolder(5627, 1), // Wind Walk
 		new SkillHolder(5628, 1), // Shield

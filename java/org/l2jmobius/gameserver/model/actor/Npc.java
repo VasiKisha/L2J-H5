@@ -30,13 +30,13 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.NpcPersonalAIData;
+import org.l2jmobius.gameserver.data.xml.DynamicExpRateData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.enums.AISkillScope;
 import org.l2jmobius.gameserver.enums.AIType;
 import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.enums.Team;
@@ -511,7 +511,7 @@ public class Npc extends Creature
 		{
 			return false;
 		}
-		else if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		else if (player.isInStoreMode())
 		{
 			return false;
 		}
@@ -1038,7 +1038,7 @@ public class Npc extends Creature
 			{
 				if (player.getOlympiadBuffCount() > 0)
 				{
-					filename = (player.getOlympiadBuffCount() == Config.ALT_OLY_MAX_BUFFS ? Olympiad.OLYMPIAD_HTML_PATH + "olympiad_buffs.htm" : Olympiad.OLYMPIAD_HTML_PATH + "olympiad_5buffs.htm");
+					filename = (player.getOlympiadBuffCount() == Config.OLYMPIAD_MAX_BUFFS ? Olympiad.OLYMPIAD_HTML_PATH + "olympiad_buffs.htm" : Olympiad.OLYMPIAD_HTML_PATH + "olympiad_5buffs.htm");
 				}
 				else
 				{
@@ -1120,18 +1120,30 @@ public class Npc extends Creature
 	}
 	
 	/**
-	 * @return the Exp Reward of this Npc (modified by RATE_XP).
+	 * @param level
+	 * @return the Exp Reward of this Npc (modified by RATE_XP, or from DynamicExpRates.xml if enabled).
 	 */
-	public long getExpReward()
+	public long getExpReward(int level)
 	{
+		if (DynamicExpRateData.getInstance().isEnabled())
+		{
+			return (long) (getTemplate().getExp() * DynamicExpRateData.getInstance().getDynamicExpRate(level));
+		}
+		
 		return (long) (getTemplate().getExp() * Config.RATE_XP);
 	}
 	
 	/**
-	 * @return the SP Reward of this Npc (modified by RATE_SP).
+	 * @param level
+	 * @return the SP Reward of this Npc (modified by RATE_SP, or from DynamicExpRates.xml if enabled).
 	 */
-	public int getSpReward()
+	public int getSpReward(int level)
 	{
+		if (DynamicExpRateData.getInstance().isEnabled())
+		{
+			return (int) (getTemplate().getSP() * DynamicExpRateData.getInstance().getDynamicSpRate(level));
+		}
+		
 		return (int) (getTemplate().getSP() * Config.RATE_SP);
 	}
 	

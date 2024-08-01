@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="10400" type="EtcItem" name="Icarus Heavy Arms Piece">
 		<!-- An essential ingredient that a Dwarf needs to make Icarus Heavy Arms. It can be sold to public stores. -->
@@ -354,7 +354,7 @@
 		<set name="handler" val="PetFood" />
 		<set name="item_skill" val="2361-1" /> <!-- Evolving Wolf's Food -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="UPGRADE_BABY_PET_GROUP" />
 		</cond>
 	</item>

@@ -22,7 +22,6 @@ import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.instancemanager.MailManager;
 import org.l2jmobius.gameserver.model.AccessLevel;
 import org.l2jmobius.gameserver.model.BlockList;
@@ -83,7 +82,7 @@ public class RequestSendPost extends ClientPacket
 			{
 				final int objectId = readInt();
 				final long count = readLong();
-				if ((objectId < 1) || (count < 0))
+				if ((objectId < 1) || (count < 1))
 				{
 					_items = null;
 					return;
@@ -93,6 +92,10 @@ public class RequestSendPost extends ClientPacket
 		}
 		
 		_reqAdena = readLong();
+		if (_reqAdena < 0)
+		{
+			_items = null;
+		}
 	}
 	
 	@Override
@@ -140,7 +143,7 @@ public class RequestSendPost extends ClientPacket
 			return;
 		}
 		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_FORWARD_BECAUSE_THE_PRIVATE_SHOP_OR_WORKSHOP_IS_IN_PROGRESS);
 			return;
@@ -333,7 +336,7 @@ public class RequestSendPost extends ClientPacket
 		}
 		
 		// Send updated item list to the player
-		player.sendPacket(playerIU);
+		player.sendInventoryUpdate(playerIU);
 		
 		// Update current load status on player
 		final StatusUpdate su = new StatusUpdate(player);

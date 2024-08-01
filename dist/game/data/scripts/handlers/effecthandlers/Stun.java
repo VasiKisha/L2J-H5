@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Stun effect implementation.
@@ -50,17 +50,16 @@ public class Stun extends AbstractEffect
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature effected = info.getEffected();
 		if ((effected == null) || effected.isRaid())
 		{
 			return;
 		}
+		
 		effected.stopStunning(false);
 		if (effected.isSummon())
 		{
-			final Creature effector = info.getEffector();
 			if ((effector != null) && !effector.isDead())
 			{
 				if (effector.isPlayable() && (effected.getActingPlayer().getPvpFlag() == 0))
@@ -80,13 +79,13 @@ public class Stun extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature effected = info.getEffected();
 		if ((effected == null) || effected.isRaid())
 		{
 			return;
 		}
+		
 		effected.startStunning();
 	}
 }

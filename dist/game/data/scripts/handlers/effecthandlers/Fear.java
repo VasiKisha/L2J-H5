@@ -19,6 +19,7 @@ package handlers.effecthandlers;
 import org.l2jmobius.gameserver.ai.CtrlEvent;
 import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.instance.Defender;
 import org.l2jmobius.gameserver.model.actor.instance.FortCommander;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
@@ -26,7 +27,7 @@ import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Fear effect implementation.
@@ -40,11 +41,11 @@ public class Fear extends AbstractEffect
 	}
 	
 	@Override
-	public boolean canStart(BuffInfo info)
+	public boolean canStart(Creature effector, Creature effected, Skill skill)
 	{
-		return info.getEffected().isPlayer() || info.getEffected().isSummon() || (info.getEffected().isAttackable() && //
-			!((info.getEffected() instanceof Defender) || (info.getEffected() instanceof FortCommander) || //
-				(info.getEffected() instanceof SiegeFlag) || (info.getEffected().getTemplate().getRace() == Race.SIEGE_WEAPON)));
+		return effected.isPlayer() || effected.isSummon() || (effected.isAttackable() && //
+			!((effected instanceof Defender) || (effected instanceof FortCommander) || //
+				(effected instanceof SiegeFlag) || (effected.getTemplate().getRace() == Race.SIEGE_WEAPON)));
 	}
 	
 	@Override
@@ -66,20 +67,20 @@ public class Fear extends AbstractEffect
 	}
 	
 	@Override
-	public boolean onActionTime(BuffInfo info)
+	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
-		info.getEffected().getAI().notifyEvent(CtrlEvent.EVT_AFRAID, info.getEffector(), false);
+		effected.getAI().notifyEvent(CtrlEvent.EVT_AFRAID, effector, false);
 		return false;
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isCastingNow() && info.getEffected().canAbortCast())
+		if (effected.isCastingNow() && effected.canAbortCast())
 		{
-			info.getEffected().abortCast();
+			effected.abortCast();
 		}
 		
-		info.getEffected().getAI().notifyEvent(CtrlEvent.EVT_AFRAID, info.getEffector(), true);
+		effected.getAI().notifyEvent(CtrlEvent.EVT_AFRAID, effector, true);
 	}
 }

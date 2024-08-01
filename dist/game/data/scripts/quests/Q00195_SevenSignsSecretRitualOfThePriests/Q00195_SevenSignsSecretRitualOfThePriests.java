@@ -47,8 +47,8 @@ public class Q00195_SevenSignsSecretRitualOfThePriests extends Quest
 	// Misc
 	private static final int MIN_LEVEL = 79;
 	// Skills
-	// private static SkillHolder TRANSFORM_DISPEL = new SkillHolder(6200, 1);
-	private static SkillHolder TRANSFORMATION = new SkillHolder(6204, 1);
+	// private static final SkillHolder TRANSFORM_DISPEL = new SkillHolder(6200, 1);
+	private static final SkillHolder TRANSFORMATION = new SkillHolder(6204, 1);
 	
 	public Q00195_SevenSignsSecretRitualOfThePriests()
 	{

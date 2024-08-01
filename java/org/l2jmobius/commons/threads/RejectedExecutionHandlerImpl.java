@@ -21,8 +21,6 @@ import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
-
 /**
  * @author NB4L1
  */
@@ -38,7 +36,7 @@ public class RejectedExecutionHandlerImpl implements RejectedExecutionHandler
 			return;
 		}
 		
-		LOGGER.warning(runnable.getClass().getSimpleName() + Config.EOL + runnable + " from " + executor + " " + new RejectedExecutionException());
+		LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + runnable + " from " + executor + " " + new RejectedExecutionException());
 		
 		if (Thread.currentThread().getPriority() > Thread.NORM_PRIORITY)
 		{

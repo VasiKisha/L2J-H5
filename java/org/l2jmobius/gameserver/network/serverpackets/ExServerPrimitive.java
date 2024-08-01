@@ -395,7 +395,7 @@ public class ExServerPrimitive extends ServerPacket
 		buffer.writeInt(_points.size() + _lines.size());
 		for (Point point : _points)
 		{
-			buffer.writeByte(1); // Its the type in this case Point
+			buffer.writeByte(1); // It is the type in this case Point
 			buffer.writeString(point.getName());
 			final int color = point.getColor();
 			buffer.writeInt((color >> 16) & 0xFF); // R
@@ -408,7 +408,7 @@ public class ExServerPrimitive extends ServerPacket
 		}
 		for (Line line : _lines)
 		{
-			buffer.writeByte(2); // Its the type in this case Line
+			buffer.writeByte(2); // It is the type in this case Line
 			buffer.writeString(line.getName());
 			final int color = line.getColor();
 			buffer.writeInt((color >> 16) & 0xFF); // R

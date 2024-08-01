@@ -43,7 +43,11 @@ public class RequestOustPartyMember extends ClientPacket
 		
 		if (player.isInParty() && player.getParty().isLeader(player))
 		{
-			if (player.getParty().isInDimensionalRift() && !player.getParty().getDimensionalRift().getRevivedAtWaitingRoom().contains(player))
+			if (player.getUCState() != Player.UC_STATE_NONE)
+			{
+				player.sendMessage("You can't dismiss party member when you are in Underground Coliseum.");
+			}
+			else if (player.getParty().isInDimensionalRift() && !player.getParty().getDimensionalRift().getRevivedAtWaitingRoom().contains(player))
 			{
 				player.sendMessage("You can't dismiss party member when you are in Dimensional Rift.");
 			}

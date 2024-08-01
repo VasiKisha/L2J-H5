@@ -27,7 +27,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 
 /**
@@ -46,9 +46,9 @@ public class Confuse extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		return Formulas.calcProbability(_chance, info.getEffector(), info.getEffected(), info.getSkill());
+		return Formulas.calcProbability(_chance, effector, effected, skill);
 	}
 	
 	@Override
@@ -64,30 +64,30 @@ public class Confuse extends AbstractEffect
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffected().isPlayer())
+		if (!effected.isPlayer())
 		{
-			info.getEffected().getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			effected.getAI().notifyEvent(CtrlEvent.EVT_THINK);
 		}
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		info.getEffected().getAI().notifyEvent(CtrlEvent.EVT_CONFUSED);
+		effected.getAI().notifyEvent(CtrlEvent.EVT_CONFUSED);
 		
-		// Getting the possible targets
-		final List<Creature> targetList = World.getInstance().getVisibleObjects(info.getEffected(), Creature.class);
+		// Getting the possible targets.
+		final List<Creature> targetList = World.getInstance().getVisibleObjects(effected, Creature.class);
 		
-		// If there is no target, exit function
+		// If there is no target, exit function.
 		if (!targetList.isEmpty())
 		{
-			// Choosing randomly a new target
+			// Choosing randomly a new target.
 			final Creature target = targetList.get(Rnd.get(targetList.size()));
-			// Attacking the target
-			info.getEffected().setTarget(target);
-			info.getEffected().getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+			// Attacking the target.
+			effected.setTarget(target);
+			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
 		}
 	}
 }

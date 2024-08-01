@@ -89,9 +89,9 @@ public class GrandBoss extends Monster
 	}
 	
 	@Override
-	public float getVitalityPoints(long damage)
+	public float getVitalityPoints(int level, long damage)
 	{
-		return -super.getVitalityPoints(damage) / 100;
+		return -super.getVitalityPoints(level, damage) / 100;
 	}
 	
 	@Override

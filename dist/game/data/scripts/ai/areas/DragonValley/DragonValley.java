@@ -171,7 +171,7 @@ public class DragonValley extends AbstractNpcAI
 				for (int i = 0; i < rnd; i++)
 				{
 					final Playable playable = isSummon ? attacker.getSummon() : attacker;
-					final Npc minion = addSpawn(DRAKOS_ASSASSIN, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), true, 0, true);
+					final Npc minion = addSpawn(DRAKOS_ASSASSIN, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), true, 0, true);
 					addAttackDesire(minion, playable);
 				}
 			}
@@ -279,7 +279,7 @@ public class DragonValley extends AbstractNpcAI
 		{
 			int val = npc.getScriptValue();
 			final Playable attacker = isSummon ? player.getSummon() : player;
-			final Npc ghost1 = addSpawn(EXPLODING_ORC_GHOST, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+			final Npc ghost1 = addSpawn(EXPLODING_ORC_GHOST, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 			ghost1.getVariables().set("playable", attacker);
 			addAttackDesire(ghost1, attacker);
 			val++;

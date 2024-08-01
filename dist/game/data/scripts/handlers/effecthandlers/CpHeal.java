@@ -21,7 +21,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -53,36 +53,34 @@ public class CpHeal extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature target = info.getEffected();
-		if ((target == null) || target.isDead() || target.isDoor())
+		if ((effected == null) || effected.isDead() || effected.isDoor())
 		{
 			return;
 		}
 		
 		double amount = _power;
 		
-		// Prevents overheal and negative amount
-		amount = Math.max(Math.min(amount, target.getMaxRecoverableCp() - target.getCurrentCp()), 0);
+		// Prevents overheal and negative amount.
+		amount = Math.max(Math.min(amount, effected.getMaxRecoverableCp() - effected.getCurrentCp()), 0);
 		if (amount != 0)
 		{
-			target.setCurrentCp(amount + target.getCurrentCp());
+			effected.setCurrentCp(amount + effected.getCurrentCp());
 		}
 		
-		final Creature caster = info.getEffector();
-		if ((caster != null) && (caster != target))
+		if ((effector != null) && (effector != effected))
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S2_CP_HAS_BEEN_RESTORED_BY_C1);
-			sm.addString(caster.getName());
+			sm.addString(effector.getName());
 			sm.addInt((int) amount);
-			target.sendPacket(sm);
+			effected.sendPacket(sm);
 		}
 		else
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_CP_HAS_BEEN_RESTORED);
 			sm.addInt((int) amount);
-			target.sendPacket(sm);
+			effected.sendPacket(sm);
 		}
 	}
 }

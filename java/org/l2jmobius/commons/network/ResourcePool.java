@@ -20,33 +20,26 @@ package org.l2jmobius.commons.network;
 
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Map.Entry;
+import java.util.NavigableMap;
+import java.util.TreeMap;
 
 import org.l2jmobius.commons.network.internal.BufferPool;
 
 /**
  * Manages pools of ByteBuffers for efficient resource allocation and reuse.<br>
  * This class maintains a collection of buffer pools, each optimized for different buffer sizes, to reduce the overhead of buffer allocation.
- * @author JoeAlisson
+ * @author JoeAlisson, Mobius
  */
 public class ResourcePool
 {
 	// private static final Logger LOGGER = Logger.getLogger(ResourcePool.class.getName());
 	
-	private final Map<Integer, BufferPool> _bufferPools;
-	private int[] _bufferSizes;
-	private int _bufferSegmentSize;
+	private final NavigableMap<Integer, BufferPool> _bufferPools = new TreeMap<>();
+	private int _bufferSegmentSize = 64;
 	
 	public ResourcePool()
 	{
-		_bufferSizes = new int[]
-		{
-			2,
-			64
-		};
-		_bufferPools = new HashMap<>(4);
-		_bufferSegmentSize = 64;
 	}
 	
 	public ByteBuffer getHeaderBuffer()
@@ -82,27 +75,32 @@ public class ResourcePool
 	
 	private ByteBuffer getSizedBuffer(int size)
 	{
-		final BufferPool pool = _bufferPools.get(size);
 		ByteBuffer buffer = null;
-		if (pool != null)
+		
+		final Entry<Integer, BufferPool> entry = _bufferPools.ceilingEntry(size);
+		if (entry != null)
 		{
-			buffer = pool.get();
+			final BufferPool pool = entry.getValue();
+			if (pool != null)
+			{
+				buffer = pool.get();
+			}
 		}
+		
 		if (buffer == null)
 		{
 			buffer = ByteBuffer.allocateDirect(size).order(ByteOrder.LITTLE_ENDIAN);
 		}
+		
 		return buffer;
 	}
 	
 	private int determineBufferSize(int size)
 	{
-		for (int bufferSize : _bufferSizes)
+		final Entry<Integer, BufferPool> entry = _bufferPools.ceilingEntry(size);
+		if (entry != null)
 		{
-			if (size <= bufferSize)
-			{
-				return bufferSize;
-			}
+			return entry.getKey();
 		}
 		
 		// LOGGER.warning("There is no buffer pool handling buffer size " + size);
@@ -142,7 +140,6 @@ public class ResourcePool
 		{
 			_bufferPools.values().forEach(pool -> pool.initialize(initBufferPoolFactor));
 		}
-		_bufferSizes = _bufferPools.keySet().stream().sorted().mapToInt(Integer::intValue).toArray();
 	}
 	
 	public void setBufferSegmentSize(int size)

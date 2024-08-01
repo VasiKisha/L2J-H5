@@ -128,7 +128,7 @@ public class PetInfo extends ServerPacket
 		buffer.writeInt(-1); // High Five NPCString ID
 		buffer.writeString(_summon.getTitle()); // owner name
 		buffer.writeInt(1);
-		buffer.writeInt(_summon.getPvpFlag()); // 0 = white,2= purpleblink, if its greater then karma = purple
+		buffer.writeInt(_summon.getPvpFlag()); // 0 = white,2= purpleblink, if it is greater then karma = purple
 		buffer.writeInt(_summon.getKarma()); // karma
 		buffer.writeInt(_curFed); // how fed it is
 		buffer.writeInt(_maxFed); // max fed it can be

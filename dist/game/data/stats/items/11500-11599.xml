@@ -251,7 +251,7 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="160" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>

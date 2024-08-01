@@ -27,7 +27,6 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.BroadcastingTower;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
-import org.l2jmobius.gameserver.network.serverpackets.ItemList;
 
 public class Observation implements IBypassHandler
 {
@@ -160,7 +159,7 @@ public class Observation implements IBypassHandler
 		{
 			// enter mode
 			player.enterObserverMode(pos);
-			player.sendPacket(new ItemList(player, false));
+			player.sendItemList(false);
 		}
 		player.sendPacket(ActionFailed.STATIC_PACKET);
 	}

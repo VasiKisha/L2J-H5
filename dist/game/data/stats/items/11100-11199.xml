@@ -994,7 +994,7 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="100" />
 		<set name="price" val="21159000" /> <!-- H5 Price -->
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="GROWN_UP_WOLF_GROUP" />
 		</cond>
 		<for>

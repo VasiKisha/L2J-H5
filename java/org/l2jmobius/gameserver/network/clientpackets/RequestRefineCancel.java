@@ -159,6 +159,6 @@ public class RequestRefineCancel extends ClientPacket
 		
 		// send inventory update
 		iu.addModifiedItem(targetItem);
-		player.sendPacket(iu);
+		player.sendInventoryUpdate(iu);
 	}
 }

@@ -83,8 +83,8 @@ public class CrestTable
 					_nextId.set(id + 1);
 				}
 				
-				// delete all unused crests except the last one we dont want to reuse
-				// a crest id because client will display wrong crest if its reused
+				// delete all unused crests except the last one we do not want to reuse
+				// a crest id because client will display wrong crest if it is reused
 				if (!crestsInUse.contains(id) && (id != (_nextId.get() - 1)))
 				{
 					removeCrest(id);
@@ -178,8 +178,8 @@ public class CrestTable
 	{
 		_crests.remove(crestId);
 		
-		// avoid removing last crest id we dont want to lose index...
-		// because client will display wrong crest if its reused
+		// avoid removing last crest id we do not want to lose index...
+		// because client will display wrong crest if it is reused
 		if (crestId == (_nextId.get() - 1))
 		{
 			return;

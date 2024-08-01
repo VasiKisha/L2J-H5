@@ -62,7 +62,7 @@ public enum PartyDistributionType
 	/**
 	 * Finds the {@code PartyDistributionType} by its id
 	 * @param id the id
-	 * @return the {@code PartyDistributionType} if its found, {@code null} otherwise.
+	 * @return the {@code PartyDistributionType} if it is found, {@code null} otherwise.
 	 */
 	public static PartyDistributionType findById(int id)
 	{

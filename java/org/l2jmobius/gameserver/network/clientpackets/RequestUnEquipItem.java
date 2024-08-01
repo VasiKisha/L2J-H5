@@ -118,7 +118,7 @@ public class RequestUnEquipItem extends ClientPacket
 			
 			final InventoryUpdate iu = new InventoryUpdate();
 			iu.addItems(unequipped);
-			player.sendPacket(iu);
+			player.sendInventoryUpdate(iu);
 		}
 	}
 }

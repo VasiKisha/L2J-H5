@@ -18,10 +18,11 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExVoteSystemInfo;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -52,9 +53,9 @@ public class GiveRecommendation extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Player target = (info.getEffected() != null) && info.getEffected().isPlayer() ? (Player) info.getEffected() : null;
+		final Player target = (effected != null) && effected.isPlayer() ? (Player) effected : null;
 		if (target != null)
 		{
 			int recommendationsGiven = _amount;
@@ -78,7 +79,7 @@ public class GiveRecommendation extends AbstractEffect
 			}
 			else
 			{
-				final Player player = (info.getEffector() != null) && info.getEffector().isPlayer() ? (Player) info.getEffector() : null;
+				final Player player = (effector != null) && effector.isPlayer() ? (Player) effector : null;
 				if (player != null)
 				{
 					player.sendPacket(SystemMessageId.NOTHING_HAPPENED);

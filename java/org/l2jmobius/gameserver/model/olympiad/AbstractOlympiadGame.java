@@ -183,7 +183,7 @@ public abstract class AbstractOlympiadGame
 			player.setInOlympiadMode(true);
 			player.setOlympiadStart(false);
 			player.setOlympiadSide(par.getSide());
-			player.setOlympiadBuffCount(Config.ALT_OLY_MAX_BUFFS);
+			player.setOlympiadBuffCount(Config.OLYMPIAD_MAX_BUFFS);
 			loc.setInstanceId(OlympiadGameManager.getInstance().getOlympiadTask(id).getZone().getInstanceId());
 			player.teleToLocation(loc, false);
 			player.sendPacket(new ExOlympiadMode(2));
@@ -460,7 +460,7 @@ public abstract class AbstractOlympiadGame
 				sm.addInt(it[1]);
 				player.sendPacket(sm);
 			}
-			player.sendPacket(iu);
+			player.sendInventoryUpdate(iu);
 		}
 		catch (Exception e)
 		{

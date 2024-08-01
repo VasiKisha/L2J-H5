@@ -21,7 +21,6 @@ import java.util.Date;
 import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
 
 public class OlympiadFormatter extends Formatter
@@ -44,7 +43,7 @@ public class OlympiadFormatter extends Formatter
 				StringUtil.append(output, ",", p.toString());
 			}
 		}
-		output.append(Config.EOL);
+		output.append(System.lineSeparator());
 		return output.toString();
 	}
 }

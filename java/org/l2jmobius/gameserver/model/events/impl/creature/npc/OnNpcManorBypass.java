@@ -41,7 +41,7 @@ public class OnNpcManorBypass implements IBaseEvent
 		_nextPeriod = nextPeriod;
 	}
 	
-	public Player getActiveChar()
+	public Player getPlayer()
 	{
 		return _player;
 	}

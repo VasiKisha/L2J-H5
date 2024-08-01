@@ -1267,15 +1267,15 @@ public class Q00335_TheSongOfTheHunter extends Quest
 					{
 						if (!hasQuestItems(qs.getPlayer(), HAKAS_HEAD))
 						{
-							addSpawn(BREKA_OVERLORD_HAKA, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+							addSpawn(BREKA_OVERLORD_HAKA, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						}
 						else if (!hasQuestItems(qs.getPlayer(), JAKAS_HEAD))
 						{
-							addSpawn(BREKA_OVERLORD_JAKA, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+							addSpawn(BREKA_OVERLORD_JAKA, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						}
 						else if (!hasQuestItems(qs.getPlayer(), MARKAS_HEAD))
 						{
-							addSpawn(BREKA_OVERLORD_MARKA, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+							addSpawn(BREKA_OVERLORD_MARKA, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						}
 					}
 					break;
@@ -1284,7 +1284,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), TEST_INSTRUCTIONS_1) && !hasQuestItems(qs.getPlayer(), WINDSUS_ALEPH_SKIN) && (getRandom(10) < 2))
 					{
-						addSpawn(WINDSUS_ALEPH, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(WINDSUS_ALEPH, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 					}
 					break;
 				}
@@ -1292,7 +1292,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), FIRST_CIRCLE_REQUEST_2A) && !hasQuestItems(qs.getPlayer(), TITANS_TABLET) && (getRandom(10) < 2))
 					{
-						addSpawn(GOK_MAGOK, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(GOK_MAGOK, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 					}
 					break;
 				}
@@ -1302,23 +1302,23 @@ public class Q00335_TheSongOfTheHunter extends Quest
 					{
 						if (!hasQuestItems(qs.getPlayer(), ATHUS_HEAD))
 						{
-							addSpawn(TARLK_RAIDER_ATHU, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+							addSpawn(TARLK_RAIDER_ATHU, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						}
 						else if (!hasQuestItems(qs.getPlayer(), LANKAS_HEAD))
 						{
-							addSpawn(TARLK_RAIDER_LANKA, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+							addSpawn(TARLK_RAIDER_LANKA, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						}
 						else if (!hasQuestItems(qs.getPlayer(), TRISKAS_HEAD))
 						{
-							addSpawn(TARLK_RAIDER_TRISKA, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+							addSpawn(TARLK_RAIDER_TRISKA, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						}
 						else if (!hasQuestItems(qs.getPlayer(), MOTURAS_HEAD))
 						{
-							addSpawn(TARLK_RAIDER_MOTURA, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+							addSpawn(TARLK_RAIDER_MOTURA, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						}
 						else if (!hasQuestItems(qs.getPlayer(), KALATHS_HEAD))
 						{
-							addSpawn(TARLK_RAIDER_KALATH, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+							addSpawn(TARLK_RAIDER_KALATH, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						}
 					}
 					break;
@@ -1327,7 +1327,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), FIRST_CIRCLE_REQUEST_4B) && !hasQuestItems(qs.getPlayer(), TOTEM_OF_KADESH) && (getRandom(10) < 2))
 					{
-						addSpawn(LETO_SHAMAN_KETZ, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(LETO_SHAMAN_KETZ, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 					}
 					
 					evolveBloodCrystal(qs.getPlayer());
@@ -1337,7 +1337,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), FIRST_CIRCLE_REQUEST_1B) && !hasQuestItems(qs.getPlayer(), FANG_OF_NARAK) && (getRandom(10) < 2))
 					{
-						addSpawn(LETO_CHIEF_NARAK, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(LETO_CHIEF_NARAK, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 					}
 					
 					evolveBloodCrystal(qs.getPlayer());
@@ -1347,7 +1347,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), FIRST_CIRCLE_REQUEST_5B) && !hasQuestItems(qs.getPlayer(), KAIKIS_HEAD) && (getRandom(10) < 2))
 					{
-						addSpawn(TIMAK_RAIDER_KAIKEE, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(TIMAK_RAIDER_KAIKEE, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 					}
 					break;
 				}
@@ -1355,7 +1355,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_1B) && !hasQuestItems(qs.getPlayer(), OKUNS_HEAD) && (getRandom(10) == 0))
 					{
-						addSpawn(TIMAK_OVERLORD_OKUN, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(TIMAK_OVERLORD_OKUN, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 					}
 					break;
 				}
@@ -1364,7 +1364,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_7C) && (getQuestItemsCount(qs.getPlayer(), TEMPEST_SHARD) < 40) && (getRandom(20) < 2))
 					{
-						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.SHOW_ME_THE_PRETTY_SPARKLING_THINGS_THEY_RE_ALL_MINE));
 					}
 					break;
@@ -1373,7 +1373,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_10C) && (getQuestItemsCount(qs.getPlayer(), HAMADRYAD_SHARD) < 40) && (getRandom(20) < 2))
 					{
-						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.SHOW_ME_THE_PRETTY_SPARKLING_THINGS_THEY_RE_ALL_MINE));
 					}
 					break;
@@ -1382,7 +1382,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), FIRST_CIRCLE_REQUEST_3A) && !hasQuestItems(qs.getPlayer(), BOOK_OF_SHUNAIMAN) && (getRandom(10) < 2))
 					{
-						addSpawn(KARUL_CHIEF_OROOTO, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(KARUL_CHIEF_OROOTO, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 					}
 					break;
 				}
@@ -1390,7 +1390,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_2B) && !hasQuestItems(qs.getPlayer(), KAKRANS_HEAD) && (getRandom(10) < 2))
 					{
-						addSpawn(TAIK_OVERLORD_KAKRAN, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(TAIK_OVERLORD_KAKRAN, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 					}
 					break;
 				}
@@ -1398,7 +1398,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_3B) && (getQuestItemsCount(qs.getPlayer(), NARCISSUSS_SOULSTONE) < 40) && (getRandom(20) < 2))
 					{
-						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.SHOW_ME_THE_PRETTY_SPARKLING_THINGS_THEY_RE_ALL_MINE));
 					}
 					break;
@@ -1407,7 +1407,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_5C) && (getQuestItemsCount(qs.getPlayer(), COIN_OF_OLD_EMPIRE) < 20) && (getRandom(20) < 2))
 					{
-						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.SHOW_ME_THE_PRETTY_SPARKLING_THINGS_THEY_RE_ALL_MINE));
 					}
 					break;
@@ -1416,13 +1416,13 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_5C) && (getQuestItemsCount(qs.getPlayer(), COIN_OF_OLD_EMPIRE) < 20) && (getRandom(20) < 2))
 					{
-						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(GREMLIN_FILCHER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.SHOW_ME_THE_PRETTY_SPARKLING_THINGS_THEY_RE_ALL_MINE));
 					}
 					
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_2A) && !hasQuestItems(qs.getPlayer(), BUST_OF_TRAVIS) && (getRandom(10) < 2))
 					{
-						addSpawn(HATAR_CHIEFTAIN_KUBEL, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(HATAR_CHIEFTAIN_KUBEL, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 					}
 					break;
 				}
@@ -1430,7 +1430,7 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_6B) && !hasQuestItems(qs.getPlayer(), KERUNOSS_GOLD_MANE) && (getRandom(10) < 2))
 					{
-						addSpawn(VANOR_ELDER_KERUNOS, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(VANOR_ELDER_KERUNOS, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 					}
 					break;
 				}
@@ -1491,8 +1491,8 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), FIRST_CIRCLE_REQUEST_2A) && !hasQuestItems(qs.getPlayer(), TITANS_TABLET) && (getRandom(2) == 0))
 					{
-						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
-						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
+						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.WE_LL_TAKE_THE_PROPERTY_OF_THE_ANCIENT_EMPIRE));
 					}
 					break;
@@ -1501,8 +1501,8 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), SECOND_CIRCLE_REQUEST_2A) && !hasQuestItems(qs.getPlayer(), BUST_OF_TRAVIS) && (getRandom(2) == 0))
 					{
-						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
-						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
+						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.WE_LL_TAKE_THE_PROPERTY_OF_THE_ANCIENT_EMPIRE));
 					}
 					break;
@@ -1511,8 +1511,8 @@ public class Q00335_TheSongOfTheHunter extends Quest
 				{
 					if (hasQuestItems(qs.getPlayer(), FIRST_CIRCLE_REQUEST_3A) && !hasQuestItems(qs.getPlayer(), BOOK_OF_SHUNAIMAN) && (getRandom(2) == 0))
 					{
-						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
-						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 10, npc.getHeading(), false, 0, true);
+						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
+						addSpawn(BLACK_LEGION_STORMTROOPER, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
 						npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, NpcStringId.WE_LL_TAKE_THE_PROPERTY_OF_THE_ANCIENT_EMPIRE));
 					}
 					break;

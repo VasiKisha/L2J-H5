@@ -26,10 +26,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.time.SchedulingPattern;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.commons.util.TimeUtil;
 import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.instancemanager.AntiFeedManager;
 import org.l2jmobius.gameserver.instancemanager.InstanceManager;
@@ -139,18 +141,30 @@ public class Deathmatch extends Event
 			public void parseDocument(Document doc, File f)
 			{
 				final AtomicInteger count = new AtomicInteger(0);
-				forEach(doc, "event", eventNode -> forEach(eventNode, "schedule", reward ->
+				forEach(doc, "event", eventNode ->
 				{
-					final StatSet attributes = new StatSet(parseAttributes(reward));
-					final String pattern = attributes.getString("pattern");
-					final SchedulingPattern schedulingPattern = new SchedulingPattern(pattern);
-					final StatSet params = new StatSet();
-					final String name = "Deathmatch";
-					params.set("Name", name);
-					params.set("SchedulingPattern", schedulingPattern);
-					getTimers().addTimer("Schedule" + count.incrementAndGet(), params, schedulingPattern.getDelayToNextFromNow(), null, null);
-					LOGGER.info("Event " + name + " scheduled at " + schedulingPattern.getNextAsFormattedDateString());
-				}));
+					final StatSet att = new StatSet(parseAttributes(eventNode));
+					final String name = att.getString("name");
+					for (Node node = doc.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
+					{
+						switch (node.getNodeName())
+						{
+							case "schedule":
+							{
+								final StatSet attributes = new StatSet(parseAttributes(node));
+								final String pattern = attributes.getString("pattern");
+								final SchedulingPattern schedulingPattern = new SchedulingPattern(pattern);
+								final StatSet params = new StatSet();
+								params.set("Name", name);
+								params.set("SchedulingPattern", pattern);
+								final long delay = schedulingPattern.getDelayToNextFromNow();
+								getTimers().addTimer("Schedule" + count.incrementAndGet(), params, delay + 5000, null, null); // Added 5 seconds to prevent overlapping.
+								LOGGER.info("Event " + name + " scheduled at " + TimeUtil.getDateTimeString(System.currentTimeMillis() + delay));
+								break;
+							}
+						}
+					}
+				});
 			}
 		}.load();
 	}
@@ -161,9 +175,10 @@ public class Deathmatch extends Event
 		if (event.startsWith("Schedule"))
 		{
 			eventStart(null);
-			final SchedulingPattern schedulingPattern = params.getObject("SchedulingPattern", SchedulingPattern.class);
-			getTimers().addTimer(event, params, schedulingPattern.getDelayToNextFromNow() + 1000, null, null);
-			LOGGER.info("Event " + params.getString("Name") + " scheduled at " + schedulingPattern.getNextAsFormattedDateString());
+			final SchedulingPattern schedulingPattern = new SchedulingPattern(params.getString("SchedulingPattern"));
+			final long delay = schedulingPattern.getDelayToNextFromNow();
+			getTimers().addTimer(event, params, delay + 5000, null, null); // Added 5 seconds to prevent overlapping.
+			LOGGER.info("Event " + params.getString("Name") + " scheduled at " + TimeUtil.getDateTimeString(System.currentTimeMillis() + delay));
 		}
 	}
 	

@@ -42,7 +42,6 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
-import org.l2jmobius.gameserver.network.serverpackets.ItemList;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeBookItemList;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeItemMakeInfo;
@@ -420,7 +419,7 @@ public class RecipeManager
 			updateCurLoad();
 			_activeMakers.remove(_player.getObjectId());
 			_player.setCrafting(false);
-			_target.sendPacket(new ItemList(_target, false));
+			_target.sendItemList(false);
 		}
 		
 		private void updateMakeInfo(boolean success)

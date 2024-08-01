@@ -93,7 +93,7 @@ public class JavaExecutionContext
 			final List<String> sourcePathStrings = new ArrayList<>();
 			for (Path sourcePath : sourcePaths)
 			{
-				sourcePathStrings.add(sourcePath.toString());
+				sourcePathStrings.add(sourcePath.toAbsolutePath().toString());
 			}
 			
 			final StringWriter strOut = new StringWriter();
@@ -101,28 +101,7 @@ public class JavaExecutionContext
 			final boolean compilationSuccess = COMPILER.getTask(out, fileManager, compilationDiagnostics, OPTIONS, null, fileManager.getJavaFileObjectsFromStrings(sourcePathStrings)).call();
 			if (!compilationSuccess)
 			{
-				out.println();
-				out.println("----------------");
-				out.println("File diagnostics");
-				out.println("----------------");
-				for (Diagnostic<? extends JavaFileObject> diagnostic : fileManagerDiagnostics.getDiagnostics())
-				{
-					out.println("\t" + diagnostic.getKind() + ": " + diagnostic.getSource().getName() + ", Line " + diagnostic.getLineNumber() + ", Column " + diagnostic.getColumnNumber());
-					out.println("\t\tcode: " + diagnostic.getCode());
-					out.println("\t\tmessage: " + diagnostic.getMessage(null));
-				}
-				
-				out.println();
-				out.println("-----------------------");
-				out.println("Compilation diagnostics");
-				out.println("-----------------------");
-				for (Diagnostic<? extends JavaFileObject> diagnostic : compilationDiagnostics.getDiagnostics())
-				{
-					out.println("\t" + diagnostic.getKind() + ": " + diagnostic.getSource().getName() + ", Line " + diagnostic.getLineNumber() + ", Column " + diagnostic.getColumnNumber());
-					out.println("\t\tcode: " + diagnostic.getCode());
-					out.println("\t\tmessage: " + diagnostic.getMessage(null));
-				}
-				
+				logDiagnostics(out, fileManagerDiagnostics, compilationDiagnostics);
 				throw new RuntimeException(strOut.toString());
 			}
 			
@@ -134,7 +113,7 @@ public class JavaExecutionContext
 				for (ScriptingOutputFileObject compiledClass : compiledClasses)
 				{
 					final Path compiledSourcePath = compiledClass.getSourcePath();
-					// sourePath can be relative, so we have to use endsWith
+					// sourcePath can be relative, so we have to use endsWith
 					if ((compiledSourcePath != null) && (compiledSourcePath.equals(sourcePath) || compiledSourcePath.endsWith(sourcePath)))
 					{
 						final String javaName = compiledClass.getJavaName();
@@ -149,22 +128,7 @@ public class JavaExecutionContext
 						{
 							final ScriptingClassLoader loader = new ScriptingClassLoader(CLASS_LOADER, compiledClasses);
 							final Class<?> javaClass = loader.loadClass(javaName);
-							Method mainMethod = null;
-							for (Method m : javaClass.getMethods())
-							{
-								if (m.getName().equals("main") && Modifier.isStatic(m.getModifiers()) && (m.getParameterCount() == 1) && (m.getParameterTypes()[0] == String[].class))
-								{
-									mainMethod = m;
-									break;
-								}
-							}
-							if ((mainMethod != null) && !javaClass.isAnnotationPresent(Disabled.class))
-							{
-								mainMethod.invoke(null, (Object) new String[]
-								{
-									compiledSourcePath.toString()
-								});
-							}
+							executeMainMethod(javaClass, compiledSourcePath);
 						}
 						catch (Exception e)
 						{
@@ -180,11 +144,60 @@ public class JavaExecutionContext
 				
 				if (!found)
 				{
-					LOGGER.severe("Compilation successfull, but class coresponding to " + sourcePath.toString() + " not found!");
+					LOGGER.severe("Compilation successful, but class corresponding to " + sourcePath.toString() + " not found!");
 				}
 			}
 			
 			return executionFailures;
+		}
+	}
+	
+	private void logDiagnostics(PrintWriter out, DiagnosticCollector<JavaFileObject> fileManagerDiagnostics, DiagnosticCollector<JavaFileObject> compilationDiagnostics)
+	{
+		out.println();
+		out.println("----------------");
+		out.println("File diagnostics");
+		out.println("----------------");
+		for (Diagnostic<? extends JavaFileObject> diagnostic : fileManagerDiagnostics.getDiagnostics())
+		{
+			logDiagnostic(out, diagnostic);
+		}
+		
+		out.println();
+		out.println("-----------------------");
+		out.println("Compilation diagnostics");
+		out.println("-----------------------");
+		for (Diagnostic<? extends JavaFileObject> diagnostic : compilationDiagnostics.getDiagnostics())
+		{
+			logDiagnostic(out, diagnostic);
+		}
+	}
+	
+	private void logDiagnostic(PrintWriter out, Diagnostic<? extends JavaFileObject> diagnostic)
+	{
+		String sourceName = (diagnostic.getSource() != null) ? diagnostic.getSource().getName() : "Unknown Source";
+		out.println("\t" + diagnostic.getKind() + ": " + sourceName + ", Line " + diagnostic.getLineNumber() + ", Column " + diagnostic.getColumnNumber());
+		out.println("\t\tcode: " + diagnostic.getCode());
+		out.println("\t\tmessage: " + diagnostic.getMessage(null));
+	}
+	
+	private void executeMainMethod(Class<?> javaClass, Path compiledSourcePath) throws Exception
+	{
+		if (javaClass.isAnnotationPresent(Disabled.class))
+		{
+			return;
+		}
+		
+		for (Method method : javaClass.getMethods())
+		{
+			if (method.getName().equals("main") && Modifier.isStatic(method.getModifiers()) && (method.getParameterCount() == 1) && (method.getParameterTypes()[0] == String[].class))
+			{
+				method.invoke(null, (Object) new String[]
+				{
+					compiledSourcePath.toString()
+				});
+				break;
+			}
 		}
 	}
 	

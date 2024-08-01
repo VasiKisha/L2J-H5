@@ -16,63 +16,89 @@
  */
 package quests.Q00504_CompetitionForTheBanditStronghold;
 
-import java.text.SimpleDateFormat;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.instancemanager.CHSiegeManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
 
 /**
- * Competition for the Bandit Stronghold (504)
- * @author BiggBoss, Zoey76
+ * @author LordWinter
  */
-public class Q00504_CompetitionForTheBanditStronghold extends Quest
+public final class Q00504_CompetitionForTheBanditStronghold extends Quest
 {
-	// Misc
-	private static final SiegableHall BANDIT_STRONGHOLD = CHSiegeManager.getInstance().getSiegableHall(35);
-	// NPC
 	private static final int MESSENGER = 35437;
-	// Monsters
-	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
-	// Items
+	
 	private static final int TARLK_AMULET = 4332;
-	private static final int CONTEST_CERTIFICATE = 4333;
 	private static final int TROPHY_OF_ALLIANCE = 5009;
-	static
+	
+	private static final int[] MOBS =
 	{
-		MONSTERS.put(20570, 6); // Tarlk Bugbear
-		MONSTERS.put(20571, 7); // Tarlk Bugbear Warrior
-		MONSTERS.put(20572, 8); // Tarlk Bugbear High Warrior
-		MONSTERS.put(20573, 9); // Tarlk Basilisk
-		MONSTERS.put(20574, 7); // Elder Tarlk Basilisk
-	}
+		20570,
+		20571,
+		20572,
+		20573,
+		20574
+	};
+	
+	private static final SiegableHall BANDIT_STRONGHOLD = CHSiegeManager.getInstance().getSiegableHall(35);
 	
 	public Q00504_CompetitionForTheBanditStronghold()
 	{
 		super(504);
+		
 		addStartNpc(MESSENGER);
 		addTalkId(MESSENGER);
-		addKillId(MONSTERS.keySet());
+		
+		for (int mob : MOBS)
+		{
+			addKillId(mob);
+		}
 	}
 	
 	@Override
-	public String onEvent(String event, Npc npc, Player player)
+	public String onTalk(Npc npc, Player player)
 	{
-		final QuestState qs = getQuestState(player, false);
-		String htmltext = null;
-		if ((qs != null) && event.equals("35437-02.htm"))
+		String htmltext = getNoQuestMsg(player);
+		final QuestState st = getQuestState(player, true);
+		if (st == null)
 		{
-			qs.startQuest();
-			giveItems(player, CONTEST_CERTIFICATE, 1);
-			htmltext = "35437-02.htm";
+			return htmltext;
+		}
+		
+		switch (st.getState())
+		{
+			case State.CREATED:
+			{
+				if (BANDIT_STRONGHOLD.getSiege().getAttackers().size() >= 5)
+				{
+					htmltext = "35437-00.htm";
+				}
+				else
+				{
+					htmltext = "35437-01.htm";
+					st.startQuest();
+				}
+				break;
+			}
+			case State.STARTED:
+			{
+				if (getQuestItemsCount(player, TARLK_AMULET) < 30)
+				{
+					htmltext = "35437-02.htm";
+				}
+				else
+				{
+					takeItems(player, TARLK_AMULET, 30);
+					rewardItems(player, TROPHY_OF_ALLIANCE, 1);
+					st.exitQuest(true);
+					htmltext = "35437-03.htm";
+				}
+				break;
+			}
 		}
 		return htmltext;
 	}
@@ -80,89 +106,25 @@ public class Q00504_CompetitionForTheBanditStronghold extends Quest
 	@Override
 	public String onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		final QuestState qs = getQuestState(killer, false);
-		if ((qs == null) || !hasQuestItems(killer, CONTEST_CERTIFICATE) || !qs.isStarted())
+		final QuestState st = getQuestState(killer, false);
+		if (st == null)
 		{
 			return null;
 		}
 		
-		if (getRandom(10) < MONSTERS.get(npc.getId()))
+		if (st.isStarted() && st.isCond(1))
 		{
 			giveItems(killer, TARLK_AMULET, 1);
 			if (getQuestItemsCount(killer, TARLK_AMULET) < 30)
 			{
-				playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
+				playSound(killer, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 			}
 			else
 			{
-				playSound(killer, QuestSound.ITEMSOUND_QUEST_MIDDLE);
+				st.setCond(2, true);
 			}
 		}
-		return null;
-	}
-	
-	@Override
-	public String onTalk(Npc npc, Player player)
-	{
-		final QuestState qs = getQuestState(player, true);
-		final Clan clan = player.getClan();
-		String htmltext = getNoQuestMsg(player);
-		if (!BANDIT_STRONGHOLD.isWaitingBattle())
-		{
-			htmltext = getHtm(player, "35437-09.html");
-			htmltext = htmltext.replace("%nextSiege%", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(BANDIT_STRONGHOLD.getSiegeDate().getTime()));
-		}
-		else if ((clan == null) || (clan.getLevel() < 4))
-		{
-			htmltext = "35437-04.html";
-		}
-		else if (!player.isClanLeader())
-		{
-			htmltext = "35437-05.html";
-		}
-		else if ((clan.getHideoutId() > 0) || (clan.getFortId() > 0) || (clan.getCastleId() > 0))
-		{
-			htmltext = "35437-10.html";
-		}
-		else
-		{
-			switch (qs.getState())
-			{
-				case State.CREATED:
-				{
-					if (!BANDIT_STRONGHOLD.isWaitingBattle())
-					{
-						htmltext = getHtm(player, "35437-03.html");
-						htmltext = htmltext.replace("%nextSiege%", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(BANDIT_STRONGHOLD.getSiegeDate().getTime()));
-					}
-					else
-					{
-						htmltext = "35437-01.htm";
-					}
-					break;
-				}
-				case State.STARTED:
-				{
-					if (getQuestItemsCount(player, TARLK_AMULET) < 30)
-					{
-						htmltext = "35437-07.html";
-					}
-					else
-					{
-						takeItems(player, TARLK_AMULET, 30);
-						rewardItems(player, TROPHY_OF_ALLIANCE, 1);
-						qs.exitQuest(true);
-						htmltext = "35437-08.html";
-					}
-					break;
-				}
-				case State.COMPLETED:
-				{
-					htmltext = "35437-07a.html";
-					break;
-				}
-			}
-		}
-		return htmltext;
+		
+		return super.onKill(npc, killer, isSummon);
 	}
 }

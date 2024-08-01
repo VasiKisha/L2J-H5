@@ -17,10 +17,11 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.ExRegenMax;
 
 /**
@@ -38,17 +39,17 @@ public class HealOverTime extends AbstractEffect
 	}
 	
 	@Override
-	public boolean onActionTime(BuffInfo info)
+	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isDead() || info.getEffected().isDoor())
+		if (effected.isDead() || effected.isDoor())
 		{
 			return false;
 		}
 		
-		double hp = info.getEffected().getCurrentHp();
-		final double maxhp = info.getEffected().getMaxRecoverableHp();
+		double hp = effected.getCurrentHp();
+		final double maxhp = effected.getMaxRecoverableHp();
 		
-		// Not needed to set the HP and send update packet if player is already at max HP
+		// Not needed to set the HP and send update packet if player is already at max HP.
 		if (hp >= maxhp)
 		{
 			return false;
@@ -56,16 +57,16 @@ public class HealOverTime extends AbstractEffect
 		
 		hp += _power * getTicksMultiplier();
 		hp = Math.min(hp, maxhp);
-		info.getEffected().setCurrentHp(hp);
-		return info.getSkill().isToggle();
+		effected.setCurrentHp(hp);
+		return skill.isToggle();
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isPlayer() && (getTicks() > 0) && (info.getSkill().getAbnormalType() == AbnormalType.HP_RECOVER))
+		if (effected.isPlayer() && (getTicks() > 0) && (skill.getAbnormalType() == AbnormalType.HP_RECOVER))
 		{
-			info.getEffected().sendPacket(new ExRegenMax(info.getAbnormalTime(), getTicks(), _power));
+			effected.sendPacket(new ExRegenMax(skill.getAbnormalTime(), getTicks(), _power));
 		}
 	}
 }

@@ -97,7 +97,7 @@ public class RaidBossSpawnManager
 		}
 		catch (SQLException e)
 		{
-			LOGGER.warning(getClass().getSimpleName() + ": Couldnt load raidboss_spawnlist table");
+			LOGGER.warning(getClass().getSimpleName() + ": Could not load raidboss_spawnlist table");
 		}
 		catch (Exception e)
 		{
@@ -350,7 +350,7 @@ public class RaidBossSpawnManager
 				}
 				catch (SQLException e)
 				{
-					LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldnt update raidboss_spawnlist table " + e.getMessage(), e);
+					LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Could not update raidboss_spawnlist table " + e.getMessage(), e);
 				}
 			}
 		}
@@ -382,7 +382,7 @@ public class RaidBossSpawnManager
 	 */
 	public String getRaidBossStatus(int bossId)
 	{
-		String msg = "RaidBoss Status..." + Config.EOL;
+		String msg = "RaidBoss Status..." + System.lineSeparator();
 		if (_bosses.containsKey(bossId))
 		{
 			final RaidBoss boss = _bosses.get(bossId);

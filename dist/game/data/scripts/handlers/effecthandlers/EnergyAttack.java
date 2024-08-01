@@ -26,7 +26,6 @@ import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.BaseStat;
 import org.l2jmobius.gameserver.model.stats.Formulas;
@@ -52,10 +51,10 @@ public class EnergyAttack extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
 		// TODO: Verify this on retail
-		return !Formulas.calcPhysicalSkillEvasion(info.getEffector(), info.getEffected(), info.getSkill());
+		return !Formulas.calcPhysicalSkillEvasion(effector, effected, skill);
 	}
 	
 	@Override
@@ -71,21 +70,19 @@ public class EnergyAttack extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Player attacker = info.getEffector().isPlayer() ? (Player) info.getEffector() : null;
+		final Player attacker = effector.isPlayer() ? (Player) effector : null;
 		if (attacker == null)
 		{
 			return;
 		}
 		
-		final Creature target = info.getEffected();
-		final Skill skill = info.getSkill();
-		double attack = attacker.getPAtk(target);
-		double defence = target.getPDef(attacker);
+		double attack = attacker.getPAtk(effected);
+		double defence = effected.getPDef(attacker);
 		if (!_ignoreShieldDefence)
 		{
-			final byte shield = Formulas.calcShldUse(attacker, target, skill, true);
+			final byte shield = Formulas.calcShldUse(attacker, effected, skill, true);
 			switch (shield)
 			{
 				case Formulas.SHIELD_DEFENSE_FAILED:
@@ -94,7 +91,7 @@ public class EnergyAttack extends AbstractEffect
 				}
 				case Formulas.SHIELD_DEFENSE_SUCCEED:
 				{
-					defence += target.getShldDef();
+					defence += effected.getShldDef();
 					break;
 				}
 				case Formulas.SHIELD_DEFENSE_PERFECT_BLOCK:
@@ -109,8 +106,8 @@ public class EnergyAttack extends AbstractEffect
 		boolean critical = false;
 		if (defence != -1)
 		{
-			final double damageMultiplier = Formulas.calcWeaponTraitBonus(attacker, target) * Formulas.calcAttributeBonus(attacker, target, skill) * Formulas.calcGeneralTraitBonus(attacker, target, skill.getTraitType(), true);
-			final boolean ss = info.getSkill().useSoulShot() && attacker.isChargedShot(ShotType.SOULSHOTS);
+			final double damageMultiplier = Formulas.calcWeaponTraitBonus(attacker, effected) * Formulas.calcAttributeBonus(attacker, effected, skill) * Formulas.calcGeneralTraitBonus(attacker, effected, skill.getTraitType(), true);
+			final boolean ss = skill.useSoulShot() && attacker.isChargedShot(ShotType.SOULSHOTS);
 			final double ssBoost = ss ? 2 : 1.0;
 			double weaponTypeBoost;
 			final Weapon weapon = attacker.getActiveWeaponItem();
@@ -130,14 +127,14 @@ public class EnergyAttack extends AbstractEffect
 			attack *= ssBoost;
 			attack *= energyChargesBoost;
 			attack *= weaponTypeBoost;
-			if (target.isPlayer())
+			if (effected.isPlayer())
 			{
-				defence *= target.getStat().calcStat(Stat.PVP_PHYS_SKILL_DEF, 1.0);
+				defence *= effected.getStat().calcStat(Stat.PVP_PHYS_SKILL_DEF, 1.0);
 			}
 			
 			damage = attack / defence;
 			damage *= damageMultiplier;
-			if (target.isPlayer())
+			if (effected.isPlayer())
 			{
 				damage *= attacker.getStat().calcStat(Stat.PVP_PHYS_SKILL_DMG, 1.0);
 				damage = attacker.getStat().calcStat(Stat.PHYSICAL_SKILL_POWER, damage);
@@ -152,12 +149,12 @@ public class EnergyAttack extends AbstractEffect
 		
 		if (damage > 0)
 		{
-			attacker.sendDamageMessage(target, (int) damage, false, critical, false);
-			target.reduceCurrentHp(damage, attacker, skill);
-			target.notifyDamageReceived(damage, attacker, skill, critical, false);
+			attacker.sendDamageMessage(effected, (int) damage, false, critical, false);
+			effected.reduceCurrentHp(damage, attacker, skill);
+			effected.notifyDamageReceived(damage, attacker, skill, critical, false);
 			
 			// Check if damage should be reflected
-			Formulas.calcDamageReflected(attacker, target, skill, critical);
+			Formulas.calcDamageReflected(attacker, effected, skill, critical);
 		}
 	}
 }

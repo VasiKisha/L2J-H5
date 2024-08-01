@@ -216,22 +216,25 @@ public class AutoUseTaskManager
 							}
 						}
 						
+						// Buff use check.
 						final WorldObject target = player.getTarget();
-						if (canCastBuff(player, target, skill))
+						if (!canCastBuff(player, target, skill))
 						{
-							// Playable target cast.
-							final Playable caster = pet != null ? pet : player;
-							if ((target != null) && target.isPlayable() && (target.getActingPlayer().getPvpFlag() == 0) && (target.getActingPlayer().getKarma() <= 0))
-							{
-								caster.doCast(skill);
-							}
-							else // Target self, cast and re-target.
-							{
-								final WorldObject savedTarget = target;
-								caster.setTarget(caster);
-								caster.doCast(skill);
-								caster.setTarget(savedTarget);
-							}
+							continue BUFFS;
+						}
+						
+						// Playable target cast.
+						final Playable caster = pet != null ? pet : player;
+						if ((target != null) && target.isPlayable() && (target.getActingPlayer().getPvpFlag() == 0) && (target.getActingPlayer().getKarma() <= 0))
+						{
+							caster.doCast(skill);
+						}
+						else // Target self, cast and re-target.
+						{
+							final WorldObject savedTarget = target;
+							caster.setTarget(caster);
+							caster.doCast(skill);
+							caster.setTarget(savedTarget);
 						}
 					}
 					
@@ -241,7 +244,8 @@ public class AutoUseTaskManager
 						continue;
 					}
 					
-					SKILLS:
+					final int count = player.getAutoUseSettings().getAutoSkills().size();
+					SKILLS: for (int i = 0; i < count; i++)
 					{
 						// Already casting.
 						if (player.isCastingNow())
@@ -312,11 +316,20 @@ public class AutoUseTaskManager
 							}
 						}
 						
+						// Increment skill order.
+						player.getAutoUseSettings().incrementSkillOrder();
+						
+						// Skill use check.
 						final Playable caster = pet != null ? pet : player;
-						if (!canUseMagic(caster, target, skill) || caster.useMagic(skill, true, false))
+						if (!canUseMagic(caster, target, skill))
 						{
-							player.getAutoUseSettings().incrementSkillOrder();
+							continue SKILLS;
 						}
+						
+						// Use the skill.
+						caster.useMagic(skill, true, false);
+						
+						break SKILLS;
 					}
 				}
 			}

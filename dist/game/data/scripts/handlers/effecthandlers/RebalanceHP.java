@@ -24,7 +24,6 @@ import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.util.Util;
 
@@ -52,18 +51,16 @@ public class RebalanceHP extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffector().isPlayer() || !info.getEffector().isInParty())
+		if (!effector.isPlayer() || !effector.isInParty())
 		{
 			return;
 		}
 		
 		double fullHP = 0;
 		double currentHPs = 0;
-		final Party party = info.getEffector().getParty();
-		final Skill skill = info.getSkill();
-		final Creature effector = info.getEffector();
+		final Party party = effector.getParty();
 		for (Player member : party.getMembers())
 		{
 			if (!member.isDead() && Util.checkIfInRange(skill.getAffectRange(), effector, member, true))

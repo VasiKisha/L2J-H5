@@ -16,6 +16,8 @@
  */
 package custom.events.TeamVsTeam;
 
+import static java.util.concurrent.TimeUnit.MINUTES;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -26,10 +28,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.time.SchedulingPattern;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.commons.util.TimeUtil;
 import org.l2jmobius.gameserver.enums.PartyDistributionType;
 import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.enums.Team;
@@ -53,7 +57,6 @@ import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.quest.Event;
@@ -62,7 +65,9 @@ import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
+import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPVPMatchCCRecord;
+import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -75,9 +80,19 @@ import org.l2jmobius.gameserver.util.Util;
  */
 public class TvT extends Event
 {
+	enum EventState
+	{
+		INACTIVE,
+		PARTICIPATING,
+		STARTING,
+		STARTED
+	}
+	
+	private static final String HTML_PATH = "data/scripts/custom/events/TeamVsTeam/";
 	// NPC
 	private static final int MANAGER = 70010;
 	// Skills
+	private static final SkillHolder GHOST_WALKING = new SkillHolder(100000, 1); // Custom Ghost Walking
 	private static final SkillHolder[] FIGHTER_BUFFS =
 	{
 		new SkillHolder(4322, 1), // Wind Walk
@@ -98,7 +113,10 @@ public class TvT extends Event
 		new SkillHolder(4330, 1), // Concentration
 		new SkillHolder(4331, 1), // Empower
 	};
-	private static final SkillHolder GHOST_WALKING = new SkillHolder(100000, 1); // Custom Ghost Walking
+	
+	/** The state of the Ctf. */
+	private static EventState _state = EventState.INACTIVE;
+	
 	// Others
 	private static final int INSTANCE_ID = 3049;
 	private static final int BLUE_DOOR_ID = 24190002;
@@ -119,7 +137,7 @@ public class TvT extends Event
 	private static final int MAXIMUM_PARTICIPANT_LEVEL = 200;
 	private static final int MINIMUM_PARTICIPANT_COUNT = 4;
 	private static final int MAXIMUM_PARTICIPANT_COUNT = 24; // Scoreboard has 25 slots
-	private static final int PARTY_MEMBER_COUNT = 8;
+	private static final int PARTY_MEMBER_COUNT = 7;
 	private static final ItemHolder REWARD = new ItemHolder(57, 100000); // Adena
 	// Misc
 	private static final Map<Player, Integer> PLAYER_SCORES = new ConcurrentHashMap<>();
@@ -130,7 +148,7 @@ public class TvT extends Event
 	private static volatile int RED_SCORE;
 	private static InstanceWorld PVP_WORLD = null;
 	private static Npc MANAGER_NPC_INSTANCE = null;
-	private static boolean EVENT_ACTIVE = false;
+	private static boolean TEAM_FORFEIT = false;
 	
 	private TvT()
 	{
@@ -150,25 +168,37 @@ public class TvT extends Event
 			@Override
 			public void load()
 			{
-				parseDatapackFile("data/scripts/custom/events/TeamVsTeam/config.xml");
+				parseDatapackFile(HTML_PATH + "config.xml");
 			}
 			
 			@Override
 			public void parseDocument(Document doc, File f)
 			{
 				final AtomicInteger count = new AtomicInteger(0);
-				forEach(doc, "event", eventNode -> forEach(eventNode, "schedule", reward ->
+				forEach(doc, "event", eventNode ->
 				{
-					final StatSet attributes = new StatSet(parseAttributes(reward));
-					final String pattern = attributes.getString("pattern");
-					final SchedulingPattern schedulingPattern = new SchedulingPattern(pattern);
-					final StatSet params = new StatSet();
-					final String name = "Team Vs Team";
-					params.set("Name", name);
-					params.set("SchedulingPattern", schedulingPattern);
-					getTimers().addTimer("Schedule" + count.incrementAndGet(), params, schedulingPattern.getDelayToNextFromNow(), null, null);
-					LOGGER.info("Event " + name + " scheduled at " + schedulingPattern.getNextAsFormattedDateString());
-				}));
+					final StatSet att = new StatSet(parseAttributes(eventNode));
+					final String name = att.getString("name");
+					for (Node node = doc.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
+					{
+						switch (node.getNodeName())
+						{
+							case "schedule":
+							{
+								final StatSet attributes = new StatSet(parseAttributes(node));
+								final String pattern = attributes.getString("pattern");
+								final SchedulingPattern schedulingPattern = new SchedulingPattern(pattern);
+								final StatSet params = new StatSet();
+								params.set("Name", name);
+								params.set("SchedulingPattern", pattern);
+								final long delay = schedulingPattern.getDelayToNextFromNow();
+								getTimers().addTimer("Schedule" + count.incrementAndGet(), params, delay + 5000, null, null); // Added 5 seconds to prevent overlapping.
+								LOGGER.info("Event " + name + " scheduled at " + TimeUtil.getDateTimeString(System.currentTimeMillis() + delay));
+								break;
+							}
+						}
+					}
+				});
 			}
 		}.load();
 	}
@@ -179,16 +209,17 @@ public class TvT extends Event
 		if (event.startsWith("Schedule"))
 		{
 			eventStart(null);
-			final SchedulingPattern schedulingPattern = params.getObject("SchedulingPattern", SchedulingPattern.class);
-			getTimers().addTimer(event, params, schedulingPattern.getDelayToNextFromNow() + 1000, null, null);
-			LOGGER.info("Event " + params.getString("Name") + " scheduled at " + schedulingPattern.getNextAsFormattedDateString());
+			final SchedulingPattern schedulingPattern = new SchedulingPattern(params.getString("SchedulingPattern"));
+			final long delay = schedulingPattern.getDelayToNextFromNow();
+			getTimers().addTimer(event, params, delay + 5000, null, null); // Added 5 seconds to prevent overlapping.
+			LOGGER.info("Event " + params.getString("Name") + " scheduled at " + TimeUtil.getDateTimeString(System.currentTimeMillis() + delay));
 		}
 	}
 	
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
-	{
-		if (!EVENT_ACTIVE)
+	{ // Event not participating, no starting or started return null.
+		if (!IS_PARTICIPATING() && !IS_STARTING() && !IS_STARTED())
 		{
 			return null;
 		}
@@ -276,6 +307,11 @@ public class TvT extends Event
 			}
 			case "TeleportToArena":
 			{
+				// Set state to STARTING
+				setState(EventState.STARTING);
+				
+				TEAM_FORFEIT = false;
+				
 				// Remove offline players.
 				for (Player participant : PLAYER_LIST)
 				{
@@ -294,7 +330,8 @@ public class TvT extends Event
 						removeListeners(participant);
 						participant.setRegisteredOnEvent(false);
 					}
-					EVENT_ACTIVE = false;
+					// Set state INACTIVE
+					setState(EventState.INACTIVE);
 					return null;
 				}
 				// Create the instance.
@@ -424,9 +461,19 @@ public class TvT extends Event
 			}
 			case "StartFight":
 			{
+				// Set state STARTED
+				setState(EventState.STARTED);
+				
 				// Open doors.
 				PVP_WORLD.openDoor(BLUE_DOOR_ID);
 				PVP_WORLD.openDoor(RED_DOOR_ID);
+				
+				// add event FIGHT_TIME
+				for (Player participant : PLAYER_LIST)
+				{
+					participant.sendPacket(new ExSendUIEvent(participant, false, false, (int) MINUTES.toSeconds(FIGHT_TIME), 10, NpcStringId.TIME_REMAINING));
+				}
+				
 				// Send message.
 				broadcastScreenMessageWithEffect("The fight has began!", 5);
 				// Schedule finish.
@@ -448,6 +495,7 @@ public class TvT extends Event
 				// Close doors.
 				PVP_WORLD.closeDoor(BLUE_DOOR_ID);
 				PVP_WORLD.closeDoor(RED_DOOR_ID);
+				
 				// Disable players.
 				for (Player participant : PLAYER_LIST)
 				{
@@ -470,8 +518,25 @@ public class TvT extends Event
 						participant.doRevive();
 					}
 				}
+				// Team wins by Forfeit.
+				if (TEAM_FORFEIT)
+				{
+					Set<Player> TeamWinner = (BLUE_TEAM.isEmpty() && !RED_TEAM.isEmpty() ? RED_TEAM : BLUE_TEAM);
+					
+					final Skill skill = CommonSkill.FIREWORK.getSkill();
+					broadcastScreenMessageWithEffect("Team " + (TeamWinner == BLUE_TEAM ? "Blue" : "Red") + " won the event by forfeit!", 7);
+					for (Player participant : TeamWinner)
+					{
+						if ((participant != null) && (participant.getInstanceId() == PVP_WORLD.getInstanceId()))
+						{
+							participant.broadcastPacket(new MagicSkillUse(participant, participant, skill.getId(), skill.getLevel(), skill.getHitTime(), skill.getReuseDelay()));
+							participant.broadcastSocialAction(3);
+							giveItems(participant, REWARD);
+						}
+					}
+				}
 				// Team Blue wins.
-				if (BLUE_SCORE > RED_SCORE)
+				else if ((BLUE_SCORE > RED_SCORE) && (!TEAM_FORFEIT))
 				{
 					final Skill skill = CommonSkill.FIREWORK.getSkill();
 					broadcastScreenMessageWithEffect("Team Blue won the event!", 7);
@@ -486,7 +551,7 @@ public class TvT extends Event
 					}
 				}
 				// Team Red wins.
-				else if (RED_SCORE > BLUE_SCORE)
+				else if ((RED_SCORE > BLUE_SCORE) && (!TEAM_FORFEIT))
 				{
 					final Skill skill = CommonSkill.FIREWORK.getSkill();
 					broadcastScreenMessageWithEffect("Team Red won the event!", 7);
@@ -516,10 +581,16 @@ public class TvT extends Event
 			case "ScoreBoard":
 			{
 				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, Util.sortByValue(PLAYER_SCORES, true)));
+				// remove event FIGHT_TIME
+				for (Player participant : PLAYER_LIST)
+				{
+					participant.sendPacket(new ExSendUIEvent(participant, false, false, 0, 0, NpcStringId.TIME_REMAINING));
+				}
 				break;
 			}
 			case "TeleportOut":
 			{
+				TEAM_FORFEIT = false;
 				// Remove event listeners.
 				for (Player participant : PLAYER_LIST)
 				{
@@ -527,17 +598,11 @@ public class TvT extends Event
 					participant.setTeam(Team.NONE);
 					participant.setOnEvent(false);
 					participant.leaveParty();
-					PVP_WORLD.ejectPlayer(participant);
 				}
 				// Destroy world.
 				if (PVP_WORLD != null)
 				{
-					final Instance instance = InstanceManager.getInstance().getInstance(PVP_WORLD.getInstanceId());
-					if (instance != null)
-					{
-						instance.setDuration(60000);
-						instance.setEmptyDestroyTime(0);
-					}
+					PVP_WORLD.destroy();
 					PVP_WORLD = null;
 				}
 				// Enable players.
@@ -554,7 +619,8 @@ public class TvT extends Event
 						summon.disableAllSkills();
 					}
 				}
-				EVENT_ACTIVE = false;
+				// Set state INACTIVE
+				setState(EventState.INACTIVE);
 				break;
 			}
 			case "ResurrectPlayer":
@@ -599,7 +665,7 @@ public class TvT extends Event
 			case "manager-cancel":
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
-				html.setFile(player, "data/scripts/custom/events/TeamVsTeam/manager-cancel.html");
+				html.setFile(player, HTML_PATH + "manager-cancel.html");
 				html.replace("%player_numbers%", String.valueOf(PLAYER_LIST.size()));
 				player.sendPacket(html);
 				break;
@@ -607,7 +673,7 @@ public class TvT extends Event
 			case "manager-register":
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
-				html.setFile(player, "data/scripts/custom/events/TeamVsTeam/manager-register.html");
+				html.setFile(player, HTML_PATH + "manager-register.html");
 				html.replace("%player_numbers%", String.valueOf(PLAYER_LIST.size()));
 				player.sendPacket(html);
 				break;
@@ -644,6 +710,9 @@ public class TvT extends Event
 						broadcastScreenMessageWithEffect("Player " + player.getName() + " was kicked for been inactive!", 7);
 					}
 				}
+				
+				player.sendPacket(new ExSendUIEvent(player, false, false, 0, 0, NpcStringId.TIME_REMAINING));
+				player.sendPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, Util.sortByValue(PLAYER_SCORES, true)));
 			}
 		}
 		return htmltext;
@@ -652,8 +721,8 @@ public class TvT extends Event
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		// Event not active.
-		if (!EVENT_ACTIVE)
+		// Event not participating, no starting or started return null.
+		if (!IS_PARTICIPATING() && !IS_STARTING() && !IS_STARTED())
 		{
 			return null;
 		}
@@ -698,7 +767,7 @@ public class TvT extends Event
 				resetActivityTimers(creature.getActingPlayer());
 			}
 		}
-		return null;
+		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
@@ -852,12 +921,13 @@ public class TvT extends Event
 	{
 		cancelQuestTimer("KickPlayer" + player.getObjectId(), null, player);
 		cancelQuestTimer("KickPlayerWarning" + player.getObjectId(), null, player);
-		startQuestTimer("KickPlayer" + player.getObjectId(), PVP_WORLD.getDoor(BLUE_DOOR_ID).isOpen() ? INACTIVITY_TIME * 60000 : (INACTIVITY_TIME * 60000) + (WAIT_TIME * 60000), null, player);
-		startQuestTimer("KickPlayerWarning" + player.getObjectId(), PVP_WORLD.getDoor(BLUE_DOOR_ID).isOpen() ? (INACTIVITY_TIME / 2) * 60000 : ((INACTIVITY_TIME / 2) * 60000) + (WAIT_TIME * 60000), null, player);
+		startQuestTimer("KickPlayer" + player.getObjectId(), IS_STARTED() ? INACTIVITY_TIME * 60000 : (INACTIVITY_TIME * 60000) + (WAIT_TIME * 60000), null, player);
+		startQuestTimer("KickPlayerWarning" + player.getObjectId(), IS_STARTED() ? (INACTIVITY_TIME / 2) * 60000 : ((INACTIVITY_TIME / 2) * 60000) + (WAIT_TIME * 60000), null, player);
 	}
 	
 	private void manageForfeit()
 	{
+		TEAM_FORFEIT = true;
 		cancelQuestTimer("10", null, null);
 		cancelQuestTimer("9", null, null);
 		cancelQuestTimer("8", null, null);
@@ -882,6 +952,12 @@ public class TvT extends Event
 		PLAYER_SCORES.remove(player);
 		BLUE_TEAM.remove(player);
 		RED_TEAM.remove(player);
+		
+		if (IS_STARTED())
+		{
+			player.sendPacket(new ExSendUIEvent(player, false, false, 0, 0, NpcStringId.TIME_REMAINING));
+		}
+		
 		// Manage forfeit.
 		if ((BLUE_TEAM.isEmpty() && !RED_TEAM.isEmpty()) || //
 			(RED_TEAM.isEmpty() && !BLUE_TEAM.isEmpty()))
@@ -921,11 +997,8 @@ public class TvT extends Event
 	@Override
 	public boolean eventStart(Player eventMaker)
 	{
-		if (EVENT_ACTIVE)
-		{
-			return false;
-		}
-		EVENT_ACTIVE = true;
+		// Set state PARTICIPATING
+		setState(EventState.PARTICIPATING);
 		
 		// Cancel timers. (In case event started immediately after another event was canceled.)
 		for (List<QuestTimer> timers : getQuestTimers().values())
@@ -958,12 +1031,6 @@ public class TvT extends Event
 	@Override
 	public boolean eventStop()
 	{
-		if (!EVENT_ACTIVE)
-		{
-			return false;
-		}
-		EVENT_ACTIVE = false;
-		
 		// Despawn event manager.
 		MANAGER_NPC_INSTANCE.deleteMe();
 		// Cancel timers.
@@ -991,21 +1058,97 @@ public class TvT extends Event
 				summon.setImmobilized(false);
 				summon.enableAllSkills();
 			}
-			PVP_WORLD.ejectPlayer(participant);
+			
+			if (IS_STARTED())
+			{
+				participant.sendPacket(new ExSendUIEvent(participant, false, false, 0, 0, NpcStringId.TIME_REMAINING));
+			}
 		}
+		
+		if (IS_STARTED())
+		{
+			PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, Util.sortByValue(PLAYER_SCORES, true)));
+		}
+		
 		if (PVP_WORLD != null)
 		{
-			final Instance instance = InstanceManager.getInstance().getInstance(PVP_WORLD.getInstanceId());
-			if (instance != null)
-			{
-				instance.setDuration(60000);
-				instance.setEmptyDestroyTime(0);
-			}
+			PVP_WORLD.destroy();
 			PVP_WORLD = null;
 		}
 		// Send message to players.
 		Broadcast.toAllOnlinePlayers("TvT Event: Event was canceled.");
+		
+		// Set state PARTICIPATING
+		setState(EventState.INACTIVE);
 		return true;
+	}
+	
+	/**
+	 * Sets the CtF Event state.
+	 * @param state as EventState
+	 */
+	public static void setState(EventState state)
+	{
+		synchronized (_state)
+		{
+			_state = state;
+		}
+	}
+	
+	/**
+	 * Is CtF Event inactive
+	 * @return true if event is inactive(waiting for next event cycle), otherwise false
+	 */
+	public static boolean IS_INACTIVE()
+	{
+		boolean isInactive;
+		synchronized (_state)
+		{
+			isInactive = _state == EventState.INACTIVE;
+		}
+		return isInactive;
+	}
+	
+	/**
+	 * Is CtF Event in participation.
+	 * @return true if event is in participation progress, otherwise false
+	 */
+	public static boolean IS_PARTICIPATING()
+	{
+		boolean isParticipating;
+		synchronized (_state)
+		{
+			isParticipating = _state == EventState.PARTICIPATING;
+		}
+		return isParticipating;
+	}
+	
+	/**
+	 * Is CtF Event starting
+	 * @return true if event is starting up(setting up fighting spot, teleport players etc.), otherwise false
+	 */
+	public static boolean IS_STARTING()
+	{
+		boolean isStarting;
+		synchronized (_state)
+		{
+			isStarting = _state == EventState.STARTING;
+		}
+		return isStarting;
+	}
+	
+	/**
+	 * Is CtF Event started?
+	 * @return true if event is started, otherwise false
+	 */
+	public static boolean IS_STARTED()
+	{
+		boolean isStarted;
+		synchronized (_state)
+		{
+			isStarted = _state == EventState.STARTED;
+		}
+		return isStarted;
 	}
 	
 	@Override

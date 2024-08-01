@@ -28,15 +28,15 @@ import org.l2jmobius.gameserver.model.stats.Stat;
  */
 public class FuncEnchantHp extends AbstractFunction
 {
-	public FuncEnchantHp(Stat stat, int order, Object owner, double value, Condition applayCond)
+	public FuncEnchantHp(Stat stat, int order, Object owner, double value, Condition applyCond)
 	{
-		super(stat, order, owner, value, applayCond);
+		super(stat, order, owner, value, applyCond);
 	}
 	
 	@Override
 	public double calc(Creature effector, Creature effected, Skill skill, double initVal)
 	{
-		if ((getApplayCond() != null) && !getApplayCond().test(effector, effected, skill))
+		if ((getApplyCond() != null) && !getApplyCond().test(effector, effected, skill))
 		{
 			return initVal;
 		}

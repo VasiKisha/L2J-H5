@@ -20,6 +20,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.instancemanager.InstanceManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
@@ -27,7 +28,7 @@ import org.l2jmobius.gameserver.model.holders.SummonRequestHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
@@ -57,15 +58,15 @@ public class CallPc extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected() == info.getEffector())
+		if (effected == effector)
 		{
 			return;
 		}
 		
-		final Player target = info.getEffected().getActingPlayer();
-		final Player player = info.getEffector().getActingPlayer();
+		final Player target = effected.getActingPlayer();
+		final Player player = effector.getActingPlayer();
 		if (player != null)
 		{
 			if (checkSummonTargetStatus(target, player))
@@ -97,7 +98,7 @@ public class CallPc extends AbstractEffect
 		else if (target != null)
 		{
 			final WorldObject previousTarget = target.getTarget();
-			target.teleToLocation(info.getEffector());
+			target.teleToLocation(effector);
 			target.setTarget(previousTarget);
 		}
 	}

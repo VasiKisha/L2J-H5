@@ -459,7 +459,7 @@ public class Pet extends Summon
 		broadcastPacket(new StopMove(this));
 		if (!object.isItem())
 		{
-			// dont try to pickup anything that is not an item :)
+			// do not try to pickup anything that is not an item :)
 			LOGGER_PET.warning(this + " trying to pickup wrong target." + object);
 			sendPacket(ActionFailed.STATIC_PACKET);
 			return;
@@ -590,7 +590,7 @@ public class Pet extends Summon
 				sendPacket(smsg);
 			}
 			
-			// If owner is in party and it isnt finders keepers, distribute the item instead of stealing it -.-
+			// If owner is in party and it is not finders keepers, distribute the item instead of stealing it -.-
 			if (getOwner().isInParty() && (getOwner().getParty().getDistributionType() != PartyDistributionType.FINDERS_KEEPERS))
 			{
 				getOwner().getParty().distributeItem(getOwner(), target);
@@ -700,15 +700,23 @@ public class Pet extends Summon
 		// Send target update packet
 		if (!newItem.isStackable())
 		{
-			final InventoryUpdate iu = new InventoryUpdate();
-			iu.addNewItem(newItem);
-			sendPacket(iu);
+			final Player owner = getOwner();
+			if (owner != null)
+			{
+				final InventoryUpdate iu = new InventoryUpdate();
+				iu.addNewItem(newItem);
+				owner.sendInventoryUpdate(iu);
+			}
 		}
 		else if ((playerOldItem != null) && newItem.isStackable())
 		{
-			final InventoryUpdate iu = new InventoryUpdate();
-			iu.addModifiedItem(newItem);
-			sendPacket(iu);
+			final Player owner = getOwner();
+			if (owner != null)
+			{
+				final InventoryUpdate iu = new InventoryUpdate();
+				iu.addModifiedItem(newItem);
+				owner.sendInventoryUpdate(iu);
+			}
 		}
 		
 		return newItem;
@@ -751,8 +759,7 @@ public class Pet extends Summon
 			{
 				final InventoryUpdate iu = new InventoryUpdate();
 				iu.addRemovedItem(removedItem);
-				
-				owner.sendPacket(iu);
+				owner.sendInventoryUpdate(iu);
 				
 				final StatusUpdate su = new StatusUpdate(owner);
 				su.addAttribute(StatusUpdate.CUR_LOAD, owner.getCurrentLoad());
@@ -1086,7 +1093,7 @@ public class Pet extends Summon
 	
 	public synchronized void startFeed()
 	{
-		// stop feeding task if its active
+		// stop feeding task if it is active
 		stopFeed();
 		if (!isDead() && (getOwner().getSummon() == this))
 		{
@@ -1319,9 +1326,14 @@ public class Pet extends Summon
 				// name not set yet
 				controlItem.setCustomType2(name != null ? 1 : 0);
 				controlItem.updateDatabase();
-				final InventoryUpdate iu = new InventoryUpdate();
-				iu.addModifiedItem(controlItem);
-				sendPacket(iu);
+				
+				final Player owner = getOwner();
+				if (owner != null)
+				{
+					final InventoryUpdate iu = new InventoryUpdate();
+					iu.addModifiedItem(controlItem);
+					owner.sendInventoryUpdate(iu);
+				}
 			}
 		}
 		else

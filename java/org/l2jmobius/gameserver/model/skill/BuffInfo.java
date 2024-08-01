@@ -241,7 +241,7 @@ public class BuffInfo
 		}
 		
 		// When effects are initialized, the successfully landed.
-		if (_effected.isPlayer() && !_skill.isPassive())
+		if (_effected.isPlayer() && (_effected.getActingPlayer().hasEnteredWorld() || Config.SHOW_EFFECT_MESSAGES_ON_LOGIN) && !_skill.isPassive())
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_S_EFFECT_CAN_BE_FELT);
 			sm.addSkillName(_skill);
@@ -263,7 +263,7 @@ public class BuffInfo
 			}
 			
 			// Call on start.
-			effect.onStart(this);
+			effect.onStart(_effector, _effected, _skill);
 			
 			// Do not add continuous effect if target just died from the initial effect, otherwise they'll be ticked forever.
 			if (_effected.isDead())
@@ -304,7 +304,7 @@ public class BuffInfo
 		if (_isInUse)
 		{
 			// Callback for on action time event.
-			continueForever = effect.onActionTime(this);
+			continueForever = effect.onActionTime(_effector, _effected, _skill);
 		}
 		
 		if (!continueForever && _skill.isToggle())
@@ -341,7 +341,7 @@ public class BuffInfo
 			// Instant effects shouldn't call onExit(..).
 			if ((effect != null) && !effect.isInstant())
 			{
-				effect.onExit(this);
+				effect.onExit(_effector, _effected, _skill);
 			}
 		}
 		// Remove abnormal visual effects.

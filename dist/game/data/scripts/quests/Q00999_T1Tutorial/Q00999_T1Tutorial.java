@@ -87,17 +87,17 @@ public class Q00999_T1Tutorial extends Quest
 		super(-1);
 		// @formatter:off
 		Event.put("32133_02", new Object[]{"32133-03.htm", -119692, 44504, 380, DIPLOMA, 0x7b, SOULSHOT_NOVICE, 200, 0x7c, SOULSHOT_NOVICE, 200});
-		Event.put("30008_02", new Object[]{"30008-03.htm", 0, 0, 0, RECOMMENDATION_01, 0x00, SOULSHOT_NOVICE, 200, 0x00, 0, 0});
+		Event.put("30008_02", new Object[]{"30008-03.htm", -84058, 243239, -3730, RECOMMENDATION_01, 0x00, SOULSHOT_NOVICE, 200, 0x00, 0, 0});
 		Event.put("30008_04", new Object[]{"30008-04.htm", -84058, 243239, -3730, 0, 0x00, 0, 0, 0, 0, 0});
-		Event.put("30017_02", new Object[]{"30017-03.htm", 0, 0, 0, RECOMMENDATION_02, 0x0a, SPIRITSHOT_NOVICE, 100, 0x00, 0, 0});
+		Event.put("30017_02", new Object[]{"30017-03.htm", -84058, 243239, -3730, RECOMMENDATION_02, 0x0a, SPIRITSHOT_NOVICE, 100, 0x00, 0, 0});
 		Event.put("30017_04", new Object[]{"30017-04.htm", -84058, 243239, -3730, 0, 0x0a, 0, 0, 0x00, 0, 0});
-		Event.put("30370_02", new Object[]{"30370-03.htm", 0, 0, 0, LEAF_OF_MOTHERTREE, 0x19, SPIRITSHOT_NOVICE, 100, 0x12, SOULSHOT_NOVICE, 200});
+		Event.put("30370_02", new Object[]{"30370-03.htm", 45491, 48359, -3086, LEAF_OF_MOTHERTREE, 0x19, SPIRITSHOT_NOVICE, 100, 0x12, SOULSHOT_NOVICE, 200});
 		Event.put("30370_04", new Object[]{"30370-04.htm", 45491, 48359, -3086, 0, 0x19, 0, 0, 0x12, 0, 0});
-		Event.put("30129_02", new Object[]{"30129-03.htm", 0, 0, 0, BLOOD_OF_JUNDIN, 0x26, SPIRITSHOT_NOVICE, 100, 0x1f, SOULSHOT_NOVICE, 200});
+		Event.put("30129_02", new Object[]{"30129-03.htm", 12116, 16666, -4610, BLOOD_OF_JUNDIN, 0x26, SPIRITSHOT_NOVICE, 100, 0x1f, SOULSHOT_NOVICE, 200});
 		Event.put("30129_04", new Object[]{"30129-04.htm", 12116, 16666, -4610, 0, 0x26, 0, 0, 0x1f, 0, 0});
-		Event.put("30528_02", new Object[]{"30528-03.htm", 0, 0, 0, LICENSE_OF_MINER, 0x35, SOULSHOT_NOVICE, 200, 0x00, 0, 0});
+		Event.put("30528_02", new Object[]{"30528-03.htm", 115642, -178046, -941, LICENSE_OF_MINER, 0x35, SOULSHOT_NOVICE, 200, 0x00, 0, 0});
 		Event.put("30528_04", new Object[]{"30528-04.htm", 115642, -178046, -941, 0, 0x35, 0, 0, 0x00, 0, 0});
-		Event.put("30573_02", new Object[]{"30573-03.htm", 0, 0, 0, VOUCHER_OF_FLAME, 0x31, SPIRITSHOT_NOVICE, 100, 0x2c, SOULSHOT_NOVICE, 200});
+		Event.put("30573_02", new Object[]{"30573-03.htm", -45067, -113549, -235, VOUCHER_OF_FLAME, 0x31, SPIRITSHOT_NOVICE, 100, 0x2c, SOULSHOT_NOVICE, 200});
 		Event.put("30573_04", new Object[]{"30573-04.htm", -45067, -113549, -235, 0, 0x31, 0, 0, 0x2c, 0, 0});
 		Talks.put(30017, new Talk(0, new String[]{"30017-01.htm", "30017-02.htm", "30017-04.htm"}, 0, 0));
 		Talks.put(30008, new Talk(0, new String[]{"30008-01.htm", "30008-02.htm", "30008-04.htm"}, 0, 0));

@@ -207,7 +207,7 @@ public class Calculator
 	}
 	
 	/**
-	 * Get array of all function, dont use for add/remove
+	 * Get array of all function, do not use for add/remove
 	 * @return
 	 */
 	public AbstractFunction[] getFunctions()

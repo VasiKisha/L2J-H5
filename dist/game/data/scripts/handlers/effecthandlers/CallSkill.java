@@ -17,10 +17,10 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
@@ -45,15 +45,14 @@ public class CallSkill extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
 		// Prevent infinite loop.
-		final Skill skill = info.getSkill();
 		if ((skill != null) && (skill.getId() == _skill.getSkillId()) && (skill.getLevel() == _skill.getSkillLevel()))
 		{
 			return;
 		}
 		
-		info.getEffector().makeTriggerCast(_skill.getSkill(), info.getEffected(), true);
+		effector.makeTriggerCast(_skill.getSkill(), effected, true);
 	}
 }

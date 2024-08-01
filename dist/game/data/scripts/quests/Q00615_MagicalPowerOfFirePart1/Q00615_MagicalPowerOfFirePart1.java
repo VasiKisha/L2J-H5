@@ -76,8 +76,8 @@ public class Q00615_MagicalPowerOfFirePart1 extends Quest
 		7225, // Mark of Varka's Alliance - Level 5
 	};
 	// Skills
-	private static SkillHolder GOW = new SkillHolder(4547, 1); // Gaze of Watcher
-	private static SkillHolder DISPEL_GOW = new SkillHolder(4548, 1); // Quest - Dispel Watcher Gaze
+	private static final SkillHolder GOW = new SkillHolder(4547, 1); // Gaze of Watcher
+	private static final SkillHolder DISPEL_GOW = new SkillHolder(4548, 1); // Quest - Dispel Watcher Gaze
 	// Misc
 	private static final int MIN_LEVEL = 74;
 	

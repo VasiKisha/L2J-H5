@@ -34,7 +34,7 @@ public class TarBeetle extends AbstractNpcAI
 	private static final int TAR_BEETLE = 18804;
 	// Skills
 	private static final int TAR_SPITE = 6142;
-	private static SkillHolder[] SKILLS =
+	private static final SkillHolder[] SKILLS =
 	{
 		new SkillHolder(TAR_SPITE, 1),
 		new SkillHolder(TAR_SPITE, 2),

@@ -17,12 +17,12 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.EnchantResult;
 import org.l2jmobius.gameserver.util.Util;
 
 /**
@@ -57,6 +57,9 @@ public class RequestGiveItemToPet extends ClientPacket
 		
 		if (player.getActiveEnchantItemId() != Player.ID_NONE)
 		{
+			player.setActiveEnchantItemId(Player.ID_NONE);
+			player.sendPacket(SystemMessageId.YOU_HAVE_CANCELLED_THE_ENCHANTING_PROCESS);
+			player.sendPacket(new EnchantResult(2, 0, 0));
 			return;
 		}
 		// Alt game - Karma punishment
@@ -65,7 +68,7 @@ public class RequestGiveItemToPet extends ClientPacket
 			return;
 		}
 		
-		if (player.getPrivateStoreType() != PrivateStoreType.NONE)
+		if (player.isInStoreMode())
 		{
 			player.sendMessage("You cannot exchange items while trading.");
 			return;

@@ -334,9 +334,10 @@ public abstract class Vehicle extends Creature
 						player.teleToLocation(new Location(oustX, oustY, oustZ), true);
 						return;
 					}
+					
 					final InventoryUpdate iu = new InventoryUpdate();
 					iu.addModifiedItem(ticket);
-					player.sendPacket(iu);
+					player.sendInventoryUpdate(iu);
 				}
 				addPassenger(player);
 			}

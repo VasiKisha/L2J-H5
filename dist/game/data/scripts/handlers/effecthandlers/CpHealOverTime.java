@@ -17,9 +17,10 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Cp Heal Over Time effect implementation.
@@ -36,15 +37,15 @@ public class CpHealOverTime extends AbstractEffect
 	}
 	
 	@Override
-	public boolean onActionTime(BuffInfo info)
+	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffected().isDead())
+		if (effected.isDead())
 		{
 			return false;
 		}
 		
-		double cp = info.getEffected().getCurrentCp();
-		final double maxcp = info.getEffected().getMaxRecoverableCp();
+		double cp = effected.getCurrentCp();
+		final double maxcp = effected.getMaxRecoverableCp();
 		
 		// Not needed to set the CP and send update packet if player is already at max CP
 		if (cp >= maxcp)
@@ -54,7 +55,7 @@ public class CpHealOverTime extends AbstractEffect
 		
 		cp += _power * getTicksMultiplier();
 		cp = Math.min(cp, maxcp);
-		info.getEffected().setCurrentCp(cp);
+		effected.setCurrentCp(cp);
 		return true;
 	}
 }

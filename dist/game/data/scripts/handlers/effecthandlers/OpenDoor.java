@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -51,15 +51,14 @@ public class OpenDoor extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffected().isDoor())
+		if (!effected.isDoor())
 		{
 			return;
 		}
 		
-		final Creature effector = info.getEffector();
-		Door door = (Door) info.getEffected();
+		Door door = (Door) effected;
 		// Check if door in the different instance
 		if (effector.getInstanceId() != door.getInstanceId())
 		{

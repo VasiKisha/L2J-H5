@@ -18,6 +18,7 @@ package handlers.effecthandlers;
 
 import java.util.Set;
 
+import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -27,7 +28,7 @@ import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Get Agro effect implementation.
@@ -35,9 +36,13 @@ import org.l2jmobius.gameserver.model.skill.BuffInfo;
  */
 public class GetAgro extends AbstractEffect
 {
+	private final int _chance;
+	
 	public GetAgro(Condition attachCond, Condition applyCond, StatSet set, StatSet params)
 	{
 		super(attachCond, applyCond, set, params);
+		
+		_chance = params.getInt("chance", 100);
 	}
 	
 	@Override
@@ -47,18 +52,22 @@ public class GetAgro extends AbstractEffect
 	}
 	
 	@Override
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
+	{
+		return Rnd.get(100) < _chance;
+	}
+	
+	@Override
 	public boolean isInstant()
 	{
 		return true;
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature effected = info.getEffected();
 		if ((effected != null) && effected.isAttackable())
 		{
-			final Creature effector = info.getEffector();
 			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, effector);
 			
 			// Monsters from the same clan should assist.
@@ -72,6 +81,7 @@ public class GetAgro extends AbstractEffect
 					{
 						nearby.addDamageHate(effector, 1, 200);
 						nearby.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, effector);
+						nearby.setRunning();
 					}
 				});
 			}

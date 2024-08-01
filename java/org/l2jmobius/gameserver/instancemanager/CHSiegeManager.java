@@ -186,8 +186,7 @@ public class CHSiegeManager
 	{
 		for (SiegableHall hall : _siegableHalls.values())
 		{
-			// Rainbow springs has his own attackers table
-			if ((hall.getId() == 62) || (hall.getSiege() == null))
+			if (hall.getSiege() == null)
 			{
 				continue;
 			}

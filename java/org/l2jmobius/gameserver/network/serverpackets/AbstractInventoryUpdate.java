@@ -17,9 +17,9 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.ConcurrentSkipListMap;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.ItemInfo;
@@ -30,7 +30,7 @@ import org.l2jmobius.gameserver.model.item.instance.Item;
  */
 public abstract class AbstractInventoryUpdate extends AbstractItemPacket
 {
-	private final Map<Integer, ItemInfo> _items = new ConcurrentSkipListMap<>();
+	private final Map<Integer, ItemInfo> _items = new HashMap<>();
 	
 	public AbstractInventoryUpdate()
 	{
@@ -43,38 +43,69 @@ public abstract class AbstractInventoryUpdate extends AbstractItemPacket
 	
 	public AbstractInventoryUpdate(List<ItemInfo> items)
 	{
-		for (ItemInfo item : items)
+		synchronized (_items)
 		{
-			_items.put(item.getObjectId(), item);
+			for (ItemInfo item : items)
+			{
+				_items.put(item.getObjectId(), item);
+			}
 		}
 	}
 	
 	public void addItem(Item item)
 	{
-		_items.put(item.getObjectId(), new ItemInfo(item));
+		synchronized (_items)
+		{
+			_items.put(item.getObjectId(), new ItemInfo(item));
+		}
 	}
 	
 	public void addNewItem(Item item)
 	{
-		_items.put(item.getObjectId(), new ItemInfo(item, 1));
+		synchronized (_items)
+		{
+			_items.put(item.getObjectId(), new ItemInfo(item, 1));
+		}
 	}
 	
 	public void addModifiedItem(Item item)
 	{
-		_items.put(item.getObjectId(), new ItemInfo(item, 2));
+		synchronized (_items)
+		{
+			_items.put(item.getObjectId(), new ItemInfo(item, 2));
+		}
 	}
 	
 	public void addRemovedItem(Item item)
 	{
-		_items.put(item.getObjectId(), new ItemInfo(item, 3));
+		synchronized (_items)
+		{
+			_items.put(item.getObjectId(), new ItemInfo(item, 3));
+		}
 	}
 	
 	public void addItems(Collection<Item> items)
 	{
-		for (Item item : items)
+		synchronized (_items)
 		{
-			_items.put(item.getObjectId(), new ItemInfo(item));
+			for (Item item : items)
+			{
+				_items.put(item.getObjectId(), new ItemInfo(item));
+			}
 		}
+	}
+	
+	public void putAll(Map<Integer, ItemInfo> items)
+	{
+		synchronized (_items)
+		{
+			_items.putAll(items);
+		}
+	}
+	
+	public Map<Integer, ItemInfo> getItemEntries()
+	{
+		return _items;
 	}
 	
 	public Collection<ItemInfo> getItems()
@@ -84,11 +115,16 @@ public abstract class AbstractInventoryUpdate extends AbstractItemPacket
 	
 	protected void writeItems(WritableBuffer buffer)
 	{
-		buffer.writeShort(_items.size());
-		for (ItemInfo item : _items.values())
+		synchronized (_items)
 		{
-			buffer.writeShort(item.getChange()); // Update type : 01-add, 02-modify, 03-remove
-			writeItem(item, buffer);
+			buffer.writeShort(_items.size());
+			for (ItemInfo item : _items.values())
+			{
+				buffer.writeShort(item.getChange()); // Update type : 01-add, 02-modify, 03-remove
+				writeItem(item, buffer);
+			}
+			
+			_items.clear();
 		}
 	}
 }

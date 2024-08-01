@@ -20,15 +20,12 @@ import java.io.File;
 import java.text.DecimalFormat;
 import java.text.DecimalFormatSymbols;
 import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.StringJoiner;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
@@ -244,19 +241,6 @@ public class Util
 	}
 	
 	/**
-	 * (Based on implode() in PHP)
-	 * @param strings an array of strings to concatenate
-	 * @param delimiter the delimiter to put between the strings
-	 * @return a delimited string for a given array of string elements.
-	 */
-	public static String implodeString(Iterable<String> strings, String delimiter)
-	{
-		final StringJoiner sj = new StringJoiner(delimiter);
-		strings.forEach(sj::add);
-		return sj.toString();
-	}
-	
-	/**
 	 * Based on implode() in PHP
 	 * @param <T>
 	 * @param array
@@ -443,26 +427,10 @@ public class Util
 		return (new DecimalFormat(format, new DecimalFormatSymbols(Locale.ENGLISH))).format(value);
 	}
 	
-	/**
-	 * Format the given date on the given format
-	 * @param date : the date to format.
-	 * @param format : the format to correct by.
-	 * @return a string representation of the formatted date.
-	 */
-	public static String formatDate(Date date, String format)
-	{
-		return date == null ? null : (new SimpleDateFormat(format)).format(date);
-	}
-	
 	public static File[] getDatapackFiles(String dirname, String extention)
 	{
 		final File dir = new File(Config.DATAPACK_ROOT, "data/" + dirname);
 		return !dir.exists() ? null : dir.listFiles(new ExtFilter(extention));
-	}
-	
-	public static String getDateString(Date date)
-	{
-		return (new SimpleDateFormat("yyyy-MM-dd")).format(date.getTime());
 	}
 	
 	private static void buildHtmlBypassCache(Player player, HtmlActionScope scope, String html)
@@ -675,7 +643,7 @@ public class Util
 	 */
 	public static void fillMultiEditContent(Player player, String text)
 	{
-		player.sendPacket(new ShowBoard(Arrays.asList("0", "0", "0", "0", "0", "0", player.getName(), Integer.toString(player.getObjectId()), player.getAccountName(), "9", " ", " ", text.replace("<br>", Config.EOL), "0", "0", "0", "0")));
+		player.sendPacket(new ShowBoard(Arrays.asList("0", "0", "0", "0", "0", "0", player.getName(), Integer.toString(player.getObjectId()), player.getAccountName(), "9", " ", " ", text.replace("<br>", System.lineSeparator()), "0", "0", "0", "0")));
 	}
 	
 	public static String formatTime(int time)

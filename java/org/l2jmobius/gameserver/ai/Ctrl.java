@@ -37,7 +37,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
  * Like a character's movement was disabled (by Root spell, for instance).<br>
  * Depending on character's ability AI may choose to wait, or to use magic ATTACK and so on.<br>
  * Additionally incoming events are compared with client's state of the character,<br>
- * and required network messages are sent to client's, i.e. if we have incoming event that character's movement was disabled, it causes changing if its behavior,<br>
+ * and required network messages are sent to client's, i.e. if we have incoming event that character's movement was disabled, it causes changing if it is behavior,<br>
  * and if client's state for the character is "moving" we send messages to clients to stop the avatar/mob.
  */
 public interface Ctrl

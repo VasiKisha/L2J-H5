@@ -18,7 +18,6 @@ package handlers.actionhandlers;
 
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -73,7 +72,7 @@ public class PlayerAction implements IActionHandler
 		{
 			// Check if this Player has a Private Store
 			final Player targetPlayer = target.getActingPlayer();
-			if (targetPlayer.getPrivateStoreType() != PrivateStoreType.NONE)
+			if (targetPlayer.isInStoreMode())
 			{
 				player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
 			}

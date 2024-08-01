@@ -256,7 +256,7 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 				catch (Exception nfe)
 				{
 					// Incorrect syntax, don't add new skill
-					LOGGER.info("Couldnt parse " + skills + " in weapon unequip skills! item " + this);
+					LOGGER.info("Could not parse " + skills + " in weapon unequip skills! item " + this);
 				}
 				if ((id > 0) && (level > 0))
 				{

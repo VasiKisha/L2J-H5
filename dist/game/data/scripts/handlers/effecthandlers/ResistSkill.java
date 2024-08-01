@@ -25,7 +25,7 @@ import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Resist Skill effect implementaion.
@@ -57,9 +57,8 @@ public class ResistSkill extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature effected = info.getEffected();
 		for (SkillHolder holder : _skills)
 		{
 			effected.addInvulAgainst(holder);
@@ -67,11 +66,11 @@ public class ResistSkill extends AbstractEffect
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
 		for (SkillHolder holder : _skills)
 		{
-			info.getEffected().removeInvulAgainst(holder);
+			effected.removeInvulAgainst(holder);
 		}
 	}
 	

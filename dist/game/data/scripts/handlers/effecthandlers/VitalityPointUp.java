@@ -17,9 +17,10 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Vitality Point Up effect implementation.
@@ -43,12 +44,12 @@ public class VitalityPointUp extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((info.getEffected() != null) && info.getEffected().isPlayer())
+		if ((effected != null) && effected.isPlayer())
 		{
-			info.getEffected().getActingPlayer().updateVitalityPoints(_value, false, false);
-			info.getEffected().getActingPlayer().updateUserInfo();
+			effected.getActingPlayer().updateVitalityPoints(_value, false, false);
+			effected.getActingPlayer().updateUserInfo();
 		}
 	}
 }

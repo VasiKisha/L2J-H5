@@ -21,7 +21,7 @@ import java.text.DateFormat;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.games.Lottery;
+import org.l2jmobius.gameserver.instancemanager.games.LotteryManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -102,13 +102,13 @@ public class Loto implements IBypassHandler
 		}
 		else if ((value >= 1) && (value <= 21)) // 1-20 - buttons, 21 - second buy lottery ticket window
 		{
-			if (!Lottery.getInstance().isStarted())
+			if (!LotteryManager.getInstance().isStarted())
 			{
 				// tickets can't be sold
 				player.sendPacket(SystemMessageId.LOTTERY_TICKETS_ARE_NOT_CURRENTLY_BEING_SOLD);
 				return;
 			}
-			if (!Lottery.getInstance().isSellableTickets())
+			if (!LotteryManager.getInstance().isSellableTickets())
 			{
 				// tickets can't be sold
 				player.sendPacket(SystemMessageId.TICKETS_FOR_THE_CURRENT_LOTTERY_ARE_NO_LONGER_AVAILABLE);
@@ -175,13 +175,13 @@ public class Loto implements IBypassHandler
 		}
 		else if (value == 22) // 22 - selected ticket with 5 numbers
 		{
-			if (!Lottery.getInstance().isStarted())
+			if (!LotteryManager.getInstance().isStarted())
 			{
 				// tickets can't be sold
 				player.sendPacket(SystemMessageId.LOTTERY_TICKETS_ARE_NOT_CURRENTLY_BEING_SOLD);
 				return;
 			}
-			if (!Lottery.getInstance().isSellableTickets())
+			if (!LotteryManager.getInstance().isSellableTickets())
 			{
 				// tickets can't be sold
 				player.sendPacket(SystemMessageId.TICKETS_FOR_THE_CURRENT_LOTTERY_ARE_NO_LONGER_AVAILABLE);
@@ -189,7 +189,7 @@ public class Loto implements IBypassHandler
 			}
 			
 			final long price = Config.ALT_LOTTERY_TICKET_PRICE;
-			final int lotonumber = Lottery.getInstance().getId();
+			final int lotonumber = LotteryManager.getInstance().getId();
 			int enchant = 0;
 			int type2 = 0;
 			
@@ -219,7 +219,7 @@ public class Loto implements IBypassHandler
 			{
 				return;
 			}
-			Lottery.getInstance().increasePrize(price);
+			LotteryManager.getInstance().increasePrize(price);
 			
 			sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
 			sm.addItemName(4442);
@@ -239,7 +239,7 @@ public class Loto implements IBypassHandler
 			{
 				iu.addModifiedItem(adenaupdate);
 			}
-			player.sendPacket(iu);
+			player.sendInventoryUpdate(iu);
 			
 			filename = (npc.getHtmlPath(npcId, 6));
 			html.setFile(player, filename);
@@ -254,7 +254,7 @@ public class Loto implements IBypassHandler
 			filename = (npc.getHtmlPath(npcId, 4));
 			html.setFile(player, filename);
 			
-			final int lotonumber = Lottery.getInstance().getId();
+			final int lotonumber = LotteryManager.getInstance().getId();
 			String message = "";
 			for (Item item : player.getInventory().getItems())
 			{
@@ -265,12 +265,12 @@ public class Loto implements IBypassHandler
 				if ((item.getId() == 4442) && (item.getCustomType1() < lotonumber))
 				{
 					message = message + "<a action=\"bypass -h npc_%objectId%_Loto " + item.getObjectId() + "\">" + item.getCustomType1() + " Event Number ";
-					final int[] numbers = Lottery.getInstance().decodeNumbers(item.getEnchantLevel(), item.getCustomType2());
+					final int[] numbers = LotteryManager.getInstance().decodeNumbers(item.getEnchantLevel(), item.getCustomType2());
 					for (int i = 0; i < 5; i++)
 					{
 						message += numbers[i] + " ";
 					}
-					final long[] check = Lottery.getInstance().checkTicket(item);
+					final long[] check = LotteryManager.getInstance().checkTicket(item);
 					if (check[0] > 0)
 					{
 						switch ((int) check[0])
@@ -314,13 +314,13 @@ public class Loto implements IBypassHandler
 		}
 		else if (value > 25) // >25 - check lottery ticket by item object id
 		{
-			final int lotonumber = Lottery.getInstance().getId();
+			final int lotonumber = LotteryManager.getInstance().getId();
 			final Item item = player.getInventory().getItemByObjectId(value);
 			if ((item == null) || (item.getId() != 4442) || (item.getCustomType1() >= lotonumber))
 			{
 				return;
 			}
-			final long[] check = Lottery.getInstance().checkTicket(item);
+			final long[] check = LotteryManager.getInstance().checkTicket(item);
 			
 			sm = new SystemMessage(SystemMessageId.S1_HAS_DISAPPEARED);
 			sm.addItemName(4442);
@@ -335,14 +335,14 @@ public class Loto implements IBypassHandler
 			return;
 		}
 		html.replace("%objectId%", String.valueOf(npc.getObjectId()));
-		html.replace("%race%", Integer.toString(Lottery.getInstance().getId()));
-		html.replace("%adena%", Long.toString(Lottery.getInstance().getPrize()));
+		html.replace("%race%", Integer.toString(LotteryManager.getInstance().getId()));
+		html.replace("%adena%", Long.toString(LotteryManager.getInstance().getPrize()));
 		html.replace("%ticket_price%", Long.toString(Config.ALT_LOTTERY_TICKET_PRICE));
 		html.replace("%prize5%", Float.toString(Config.ALT_LOTTERY_5_NUMBER_RATE * 100));
 		html.replace("%prize4%", Float.toString(Config.ALT_LOTTERY_4_NUMBER_RATE * 100));
 		html.replace("%prize3%", Float.toString(Config.ALT_LOTTERY_3_NUMBER_RATE * 100));
 		html.replace("%prize2%", Long.toString(Config.ALT_LOTTERY_2_AND_1_NUMBER_PRIZE));
-		html.replace("%enddate%", "" + DateFormat.getDateInstance().format(Lottery.getInstance().getEndDate()));
+		html.replace("%enddate%", "" + DateFormat.getDateInstance().format(LotteryManager.getInstance().getEndDate()));
 		player.sendPacket(html);
 		
 		// Send a Server->Client ActionFailed to the Player in order to avoid that the client wait another packet

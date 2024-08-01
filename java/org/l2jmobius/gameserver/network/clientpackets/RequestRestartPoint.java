@@ -207,7 +207,12 @@ public class RequestRestartPoint extends ClientPacket
 				castle = CastleManager.getInstance().getCastle(player);
 				fort = FortManager.getInstance().getFort(player);
 				hall = CHSiegeManager.getInstance().getNearbyClanHall(player);
-				final SiegeFlag flag = TerritoryWarManager.getInstance().getHQForClan(player.getClan());
+				SiegeFlag flag = TerritoryWarManager.getInstance().getHQForClan(player.getClan());
+				if (flag == null)
+				{
+					flag = TerritoryWarManager.getInstance().getFlagForClan(player.getClan());
+				}
+				
 				if ((castle != null) && castle.getSiege().isInProgress())
 				{
 					siegeClan = castle.getSiege().getAttackerClan(player.getClan());

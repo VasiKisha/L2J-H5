@@ -20,13 +20,14 @@ import java.util.List;
 
 import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -49,14 +50,14 @@ public class ConvertItem extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((info.getEffector() == null) || (info.getEffected() == null) || info.getEffected().isAlikeDead() || !info.getEffected().isPlayer())
+		if ((effector == null) || (effected == null) || effected.isAlikeDead() || !effected.isPlayer())
 		{
 			return;
 		}
 		
-		final Player player = info.getEffected().getActingPlayer();
+		final Player player = effected.getActingPlayer();
 		if (player.isEnchanting())
 		{
 			return;
@@ -93,7 +94,7 @@ public class ConvertItem extends AbstractEffect
 		{
 			iu.addModifiedItem(item);
 		}
-		player.sendPacket(iu);
+		player.sendInventoryUpdate(iu);
 		
 		if (unequipped.isEmpty())
 		{
@@ -165,8 +166,7 @@ public class ConvertItem extends AbstractEffect
 		final InventoryUpdate u = new InventoryUpdate();
 		u.addRemovedItem(destroyItem);
 		u.addItem(newItem);
-		
-		player.sendPacket(u);
+		player.sendInventoryUpdate(u);
 		
 		player.broadcastUserInfo();
 	}

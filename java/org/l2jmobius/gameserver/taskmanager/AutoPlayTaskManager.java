@@ -256,7 +256,7 @@ public class AutoPlayTaskManager
 				else
 				{
 					double closestDistance = Double.MAX_VALUE;
-					TARGET: for (Creature nearby : World.getInstance().getVisibleObjectsInRange(player, Creature.class, player.getAutoPlaySettings().isShortRange() && (targetMode != 2 /* Characters */) ? 600 : 1400))
+					TARGET: for (Creature nearby : World.getInstance().getVisibleObjectsInRange(player, Creature.class, player.getAutoPlaySettings().isShortRange() && (targetMode != 2 /* Characters */) ? Config.AUTO_PLAY_SHORT_RANGE : Config.AUTO_PLAY_LONG_RANGE))
 					{
 						// Skip unavailable creatures.
 						if ((nearby == null) || nearby.isAlikeDead())

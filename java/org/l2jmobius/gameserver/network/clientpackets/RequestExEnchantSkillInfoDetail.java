@@ -69,7 +69,7 @@ public class RequestExEnchantSkillInfoDetail extends ClientPacket
 		
 		final int playerskillLevel = player.getSkillLevel(_skillId);
 		
-		// dont have such skill
+		// does not have such skill
 		if (playerskillLevel == 0)
 		{
 			return;
@@ -81,13 +81,13 @@ public class RequestExEnchantSkillInfoDetail extends ClientPacket
 			final EnchantSkillLearn esl = EnchantSkillGroupsData.getInstance().getSkillEnchantmentBySkillId(_skillId);
 			if (esl != null)
 			{
-				// if player dont have min level to enchant
+				// if player does not have min level to enchant
 				if (playerskillLevel != esl.getBaseLevel())
 				{
 					return;
 				}
 			}
-			// enchant data dont exist?
+			// enchant data does not exist?
 			else
 			{
 				return;

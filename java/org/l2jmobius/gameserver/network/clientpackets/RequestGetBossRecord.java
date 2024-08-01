@@ -48,7 +48,7 @@ public class RequestGetBossRecord extends ClientPacket
 		
 		if (_bossId != 0)
 		{
-			PacketLogger.info("C5: RequestGetBossRecord: d: " + _bossId + " ActiveChar: " + player); // should be always 0, log it if isnt 0 for furture research
+			PacketLogger.info("C5: RequestGetBossRecord: d: " + _bossId + " ActiveChar: " + player); // should be always 0, log it if is not 0 for furture research
 		}
 		
 		final int points = RaidBossPointsManager.getInstance().getPointsByOwnerId(player.getObjectId());

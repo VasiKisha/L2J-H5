@@ -51,9 +51,9 @@ public class OlympiadManagerLink implements IBypassHandler
 		"olympiad"
 	};
 	
-	private static final String FEWER_THAN = "Fewer than " + Config.ALT_OLY_REG_DISPLAY;
-	private static final String MORE_THAN = "More than " + Config.ALT_OLY_REG_DISPLAY;
-	private static final int GATE_PASS = Config.ALT_OLY_COMP_RITEM;
+	private static final String FEWER_THAN = "Fewer than " + Config.OLYMPIAD_REG_DISPLAY;
+	private static final String MORE_THAN = "More than " + Config.OLYMPIAD_REG_DISPLAY;
+	private static final int GATE_PASS = Config.OLYMPIAD_COMP_RITEM;
 	
 	private static final SkillHolder[] ALLOWED_BUFFS =
 	{
@@ -153,11 +153,11 @@ public class OlympiadManagerLink implements IBypassHandler
 							}
 						}
 						html.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "noble_registered.htm");
-						if (Config.ALT_OLY_REG_DISPLAY > 0)
+						if (Config.OLYMPIAD_REG_DISPLAY > 0)
 						{
-							html.replace("%listClassed%", classed < Config.ALT_OLY_REG_DISPLAY ? FEWER_THAN : MORE_THAN);
-							html.replace("%listNonClassedTeam%", teams < Config.ALT_OLY_REG_DISPLAY ? FEWER_THAN : MORE_THAN);
-							html.replace("%listNonClassed%", nonClassed < Config.ALT_OLY_REG_DISPLAY ? FEWER_THAN : MORE_THAN);
+							html.replace("%listClassed%", classed < Config.OLYMPIAD_REG_DISPLAY ? FEWER_THAN : MORE_THAN);
+							html.replace("%listNonClassedTeam%", teams < Config.OLYMPIAD_REG_DISPLAY ? FEWER_THAN : MORE_THAN);
+							html.replace("%listNonClassed%", nonClassed < Config.OLYMPIAD_REG_DISPLAY ? FEWER_THAN : MORE_THAN);
 						}
 						else
 						{
@@ -229,7 +229,7 @@ public class OlympiadManagerLink implements IBypassHandler
 						if (passes > 0)
 						{
 							player.getVariables().remove(Olympiad.UNCLAIMED_OLYMPIAD_PASSES_VAR);
-							player.addItem("Olympiad", GATE_PASS, passes * Config.ALT_OLY_GP_PER_POINT, player, true);
+							player.addItem("Olympiad", GATE_PASS, passes * Config.OLYMPIAD_GP_PER_POINT, player, true);
 						}
 						break;
 					}
@@ -240,7 +240,7 @@ public class OlympiadManagerLink implements IBypassHandler
 					}
 					default:
 					{
-						LOGGER.warning("Olympiad System: Couldnt send packet for request " + val);
+						LOGGER.warning("Olympiad System: Could not send packet for request " + val);
 						break;
 					}
 				}
@@ -290,7 +290,7 @@ public class OlympiadManagerLink implements IBypassHandler
 				
 				if (buffCount > 0)
 				{
-					html.setFile(player, buffCount == Config.ALT_OLY_MAX_BUFFS ? Olympiad.OLYMPIAD_HTML_PATH + "olympiad_buffs.htm" : Olympiad.OLYMPIAD_HTML_PATH + "olympiad_5buffs.htm");
+					html.setFile(player, buffCount == Config.OLYMPIAD_MAX_BUFFS ? Olympiad.OLYMPIAD_HTML_PATH + "olympiad_buffs.htm" : Olympiad.OLYMPIAD_HTML_PATH + "olympiad_5buffs.htm");
 					html.replace("%objectId%", String.valueOf(target.getObjectId()));
 					player.sendPacket(html);
 				}
@@ -359,7 +359,7 @@ public class OlympiadManagerLink implements IBypassHandler
 					}
 					default:
 					{
-						LOGGER.warning("Olympiad System: Couldnt send packet for request " + val);
+						LOGGER.warning("Olympiad System: Could not send packet for request " + val);
 						break;
 					}
 				}

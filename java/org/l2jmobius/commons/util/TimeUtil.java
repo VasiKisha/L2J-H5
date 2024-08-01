@@ -16,9 +16,11 @@
  */
 package org.l2jmobius.commons.util;
 
+import java.text.SimpleDateFormat;
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
 import java.util.Calendar;
+import java.util.Date;
 
 /**
  * @author UnAfraid
@@ -144,5 +146,56 @@ public class TimeUtil
 		calendar.set(Calendar.SECOND, 0);
 		calendar.set(Calendar.MILLISECOND, 0);
 		return calendar;
+	}
+	
+	/**
+	 * Formats the given date using the specified format.
+	 * @param date the date to format
+	 * @param format the format pattern to use
+	 * @return a string representation of the formatted date, or {@code null} if the date is {@code null}
+	 */
+	public static String formatDate(Date date, String format)
+	{
+		return date == null ? null : (new SimpleDateFormat(format)).format(date);
+	}
+	
+	/**
+	 * Formats the given date to a string representation in the "dd/MM/yyyy" format.
+	 * @param date the date to format
+	 * @return a string representation of the formatted date
+	 */
+	public static String getDateString(Date date)
+	{
+		return formatDate(date, "dd/MM/yyyy");
+	}
+	
+	/**
+	 * Formats the given date to a string representation in the "dd/MM/yyyy HH:mm:ss" format.
+	 * @param date the date to format
+	 * @return a string representation of the formatted date
+	 */
+	public static String getDateTimeString(Date date)
+	{
+		return formatDate(date, "dd/MM/yyyy HH:mm:ss");
+	}
+	
+	/**
+	 * Formats the date represented by the given milliseconds since the epoch to a string representation in the "dd/MM/yyyy" format.
+	 * @param timeMillis the milliseconds since the epoch to format
+	 * @return a string representation of the formatted date
+	 */
+	public static String getDateString(long timeMillis)
+	{
+		return getDateString(new Date(timeMillis));
+	}
+	
+	/**
+	 * Formats the date and time represented by the given milliseconds since the epoch to a string representation in the "dd/MM/yyyy HH:mm:ss" format.
+	 * @param timeMillis the milliseconds since the epoch to format
+	 * @return a string representation of the formatted date and time
+	 */
+	public static String getDateTimeString(long timeMillis)
+	{
+		return getDateTimeString(new Date(timeMillis));
 	}
 }

@@ -21,7 +21,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
 
@@ -53,21 +53,19 @@ public class Resurrection extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Creature target = info.getEffected();
-		final Creature creature = info.getEffector();
-		if (creature.isPlayer())
+		if (effector.isPlayer())
 		{
-			if (target.getActingPlayer() != null)
+			if (effected.getActingPlayer() != null)
 			{
-				target.getActingPlayer().reviveRequest(creature.getActingPlayer(), target.isPet(), _power);
+				effected.getActingPlayer().reviveRequest(effector.getActingPlayer(), effected.isPet(), _power);
 			}
 		}
 		else
 		{
-			DecayTaskManager.getInstance().cancel(target);
-			target.doRevive(Formulas.calculateSkillResurrectRestorePercent(_power, creature));
+			DecayTaskManager.getInstance().cancel(effected);
+			effected.doRevive(Formulas.calculateSkillResurrectRestorePercent(_power, effector));
 		}
 	}
 }

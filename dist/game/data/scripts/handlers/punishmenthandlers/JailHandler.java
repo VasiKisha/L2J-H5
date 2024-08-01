@@ -192,7 +192,7 @@ public class JailHandler implements IPunishmentHandler
 		
 		// Open a Html message to inform the player
 		final NpcHtmlMessage msg = new NpcHtmlMessage();
-		String content = HtmCache.getInstance().getHtm(player, "html/jail_in.htm");
+		String content = HtmCache.getInstance().getHtm(player, "data/html/jail_in.htm");
 		if (content != null)
 		{
 			content = content.replace("%reason%", task != null ? task.getReason() : "");
@@ -209,7 +209,22 @@ public class JailHandler implements IPunishmentHandler
 			final long delay = (task.getExpirationTime() - System.currentTimeMillis()) / 1000;
 			if (delay > 0)
 			{
-				player.sendMessage("You've been jailed for " + (delay > 60 ? ((delay / 60) + " minutes.") : delay + " seconds."));
+				final long minutes = delay / 60;
+				final long seconds = delay % 60;
+				String message = "You've been jailed for ";
+				if (minutes > 0)
+				{
+					message += minutes + " minute" + (minutes > 1 ? "s" : "");
+					if (seconds > 0)
+					{
+						message += " and ";
+					}
+				}
+				if ((seconds > 0) || (minutes == 0))
+				{
+					message += seconds + " second" + (seconds > 1 ? "s" : "");
+				}
+				player.sendMessage(message);
 			}
 			else
 			{
@@ -228,7 +243,7 @@ public class JailHandler implements IPunishmentHandler
 		
 		// Open a Html message to inform the player
 		final NpcHtmlMessage msg = new NpcHtmlMessage();
-		final String content = HtmCache.getInstance().getHtm(player, "html/jail_out.htm");
+		final String content = HtmCache.getInstance().getHtm(player, "data/html/jail_out.htm");
 		if (content != null)
 		{
 			msg.setHtml(content);

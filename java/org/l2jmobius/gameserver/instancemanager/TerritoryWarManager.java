@@ -646,7 +646,7 @@ public class TerritoryWarManager implements Siegable
 			reward[0] = temp[0];
 			reward[1] = 0;
 			// badges for being online. if char was not online at least 10 mins
-			// than he cant get rewards(also this will handle that player already get his/her rewards)
+			// than he cannot get rewards(also this will handle that player already get his/her rewards)
 			if (temp[6] < 10)
 			{
 				return reward;

@@ -90,7 +90,7 @@ public class HomeBoard implements IParseBoardHandler
 				break;
 			}
 		}
-		return commandCheck && (player.isCastingNow() || player.isCastingSimultaneouslyNow() || player.isInCombat() || player.isInDuel() || player.isInOlympiadMode() || player.isInsideZone(ZoneId.SIEGE) || player.isInsideZone(ZoneId.PVP) || (player.getPvpFlag() > 0) || player.isAlikeDead() || player.isOnEvent());
+		return commandCheck && (player.isCastingNow() || player.isCastingSimultaneouslyNow() || player.isInCombat() || player.isInDuel() || player.isInOlympiadMode() || player.isInsideZone(ZoneId.SIEGE) || player.isInsideZone(ZoneId.PVP) || (player.getPvpFlag() > 0) || player.isAlikeDead() || player.isOnEvent() || player.isInStoreMode());
 	};
 	
 	private static final Predicate<Player> KARMA_CHECK = player -> Config.COMMUNITYBOARD_KARMA_DISABLED && (player.getKarma() > 0);
@@ -108,7 +108,7 @@ public class HomeBoard implements IParseBoardHandler
 	public boolean parseCommunityBoardCommand(String command, Player player)
 	{
 		// Old custom conditions check move to here
-		if (COMBAT_CHECK.test(command, player))
+		if (Config.COMMUNITYBOARD_COMBAT_DISABLED && COMBAT_CHECK.test(command, player))
 		{
 			player.sendMessage("You can't use the Community Board right now.");
 			return false;
@@ -117,6 +117,12 @@ public class HomeBoard implements IParseBoardHandler
 		if (KARMA_CHECK.test(player))
 		{
 			player.sendMessage("Players with Karma cannot use the Community Board.");
+			return false;
+		}
+		
+		if (Config.COMMUNITYBOARD_PEACE_ONLY && !player.isInsideZone(ZoneId.PEACE))
+		{
+			player.sendMessage("Community Board cannot be used out of peace zone.");
 			return false;
 		}
 		

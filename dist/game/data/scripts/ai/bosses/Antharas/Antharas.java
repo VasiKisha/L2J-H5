@@ -551,12 +551,12 @@ public class Antharas extends AbstractNpcAI
 							creature.deleteMe();
 						}
 					}
-					if (player != null) // Player dont will be null just when is this event called from GM command
+					if (player != null) // Player cannot be null when is this event is called from a GM command.
 					{
 						player.sendMessage(getClass().getSimpleName() + ": All minions have been deleted!");
 					}
 				}
-				else if (player != null) // Player dont will be null just when is this event called from GM command
+				else if (player != null) // Player cannot be null when is this event is called from a GM command.
 				{
 					player.sendMessage(getClass().getSimpleName() + ": You can't despawn minions right now!");
 				}
@@ -677,7 +677,10 @@ public class Antharas extends AbstractNpcAI
 				zone.broadcastPacket(new SpecialCamera(npc, 1200, 20, -10, 0, 10000, 13000, 0, 0, 0, 0, 0));
 				zone.broadcastPacket(new PlaySound("BS01_D"));
 				addSpawn(CUBE, 177615, 114941, -7709, 0, false, 900000);
-				final long respawnTime = (Config.ANTHARAS_SPAWN_INTERVAL + getRandom(-Config.ANTHARAS_SPAWN_RANDOM, Config.ANTHARAS_SPAWN_RANDOM)) * 3600000;
+				
+				final long baseIntervalMillis = Config.ANTHARAS_SPAWN_INTERVAL * 3600000;
+				final long randomRangeMillis = Config.ANTHARAS_SPAWN_RANDOM * 3600000;
+				final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
 				setRespawn(respawnTime);
 				startQuestTimer("CLEAR_STATUS", respawnTime, null, null);
 				cancelQuestTimer("SET_REGEN", npc, null);

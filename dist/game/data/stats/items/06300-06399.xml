@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="6300" type="EtcItem" name="Nephilim Shaman Posting Ticket">
 		<!-- Giran/Wizard/Mobile. Can only be used to place a mercenary when the seal of strife is possessed by the Lords of Dawn. -->
@@ -347,7 +347,7 @@
 		<set name="handler" val="PetFood" />
 		<set name="item_skill" val="2180-1" /> <!-- Feed: Castle Strider -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="STRIDER,WYVERN_GROUP" />
 		</cond>
 	</item>

@@ -168,7 +168,7 @@ public enum ClientPackets
 	REQUEST_CONFIRM_SIEGE_WAITING_LIST(0xAE, RequestConfirmSiegeWaitingList::new, ConnectionState.IN_GAME),
 	REQUEST_SET_CASTLE_SIEGE_TIME(0xAF, RequestSetCastleSiegeTime::new, ConnectionState.IN_GAME),
 	MULTI_SELL_CHOOSE(0xB0, MultiSellChoose::new, ConnectionState.IN_GAME),
-	NET_PING(0xB1, null, ConnectionState.IN_GAME),
+	NET_PING(0xB1, RequestNetPing::new, ConnectionState.IN_GAME),
 	REQUEST_REMAIN_TIME(0xB2, null, ConnectionState.IN_GAME),
 	BYPASS_USER_CMD(0xB3, BypassUserCmd::new, ConnectionState.IN_GAME),
 	SNOOP_QUIT(0xB4, SnoopQuit::new, ConnectionState.IN_GAME),

@@ -92,7 +92,7 @@ public class EtcItem extends ItemTemplate
 				final String[] data = part.split(",");
 				if (data.length != 4)
 				{
-					LOGGER.info("> Couldnt parse " + part + " in capsuled_items! item " + this);
+					LOGGER.info("> Could not parse " + part + " in capsuled_items! item " + this);
 					continue;
 				}
 				final int itemId = Integer.parseInt(data[0]);

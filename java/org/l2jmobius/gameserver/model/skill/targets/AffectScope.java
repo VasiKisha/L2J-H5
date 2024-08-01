@@ -23,7 +23,7 @@ package org.l2jmobius.gameserver.model.skill.targets;
 public enum AffectScope
 {
 	/** Affects Valakas. */
-	BALAKAS_SCOPE,
+	VALAKAS_SCOPE,
 	/** Affects dead clan mates. */
 	DEAD_PLEDGE,
 	/** Affects fan area. */

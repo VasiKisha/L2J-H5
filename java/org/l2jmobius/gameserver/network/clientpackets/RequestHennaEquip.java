@@ -76,7 +76,7 @@ public class RequestHennaEquip extends ClientPacket
 			player.getInventory().reduceAdena("Henna", henna.getWearFee(), player, player.getLastFolkNPC());
 			final InventoryUpdate iu = new InventoryUpdate();
 			iu.addModifiedItem(player.getInventory().getAdenaInstance());
-			player.sendPacket(iu);
+			player.sendInventoryUpdate(iu);
 			player.sendPacket(SystemMessageId.THE_SYMBOL_HAS_BEEN_ADDED);
 		}
 		else

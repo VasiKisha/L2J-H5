@@ -23,7 +23,6 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 
@@ -39,9 +38,9 @@ public class Backstab extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		return !info.getEffector().isInFrontOf(info.getEffected()) && !Formulas.calcPhysicalSkillEvasion(info.getEffector(), info.getEffected(), info.getSkill()) && Formulas.calcBlowSuccess(info.getEffector(), info.getEffected(), info.getSkill());
+		return !effector.isInFrontOf(effected) && !Formulas.calcPhysicalSkillEvasion(effector, effected, skill) && Formulas.calcBlowSuccess(effector, effected, skill);
 	}
 	
 	@Override
@@ -57,43 +56,40 @@ public class Backstab extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (info.getEffector().isAlikeDead())
+		if (effector.isAlikeDead())
 		{
 			return;
 		}
 		
-		final Creature target = info.getEffected();
-		final Creature creature = info.getEffector();
-		final Skill skill = info.getSkill();
-		final boolean ss = skill.useSoulShot() && creature.isChargedShot(ShotType.SOULSHOTS);
-		final byte shld = Formulas.calcShldUse(creature, target, skill);
-		double damage = Formulas.calcBackstabDamage(creature, target, skill, shld, ss);
+		final boolean ss = skill.useSoulShot() && effector.isChargedShot(ShotType.SOULSHOTS);
+		final byte shld = Formulas.calcShldUse(effector, effected, skill);
+		double damage = Formulas.calcBackstabDamage(effector, effected, skill, shld, ss);
 		
 		// Crit rate base crit rate for skill, modified with STR bonus
-		if (Formulas.calcCrit(creature, target, skill))
+		if (Formulas.calcCrit(effector, effected, skill))
 		{
 			damage *= 2;
 		}
 		
-		target.reduceCurrentHp(damage, creature, skill);
-		target.notifyDamageReceived(damage, creature, skill, true, false);
+		effected.reduceCurrentHp(damage, effector, skill);
+		effected.notifyDamageReceived(damage, effector, skill, true, false);
 		
 		// Manage attack or cast break of the target (calculating rate, sending message...)
-		if (!target.isRaid() && Formulas.calcAtkBreak(target, damage))
+		if (!effected.isRaid() && Formulas.calcAtkBreak(effected, damage))
 		{
-			target.breakAttack();
-			target.breakCast();
+			effected.breakAttack();
+			effected.breakCast();
 		}
 		
-		if (creature.isPlayer())
+		if (effector.isPlayer())
 		{
-			final Player activePlayer = creature.getActingPlayer();
-			activePlayer.sendDamageMessage(target, (int) damage, false, true, false);
+			final Player activePlayer = effector.getActingPlayer();
+			activePlayer.sendDamageMessage(effected, (int) damage, false, true, false);
 		}
 		
 		// Check if damage should be reflected
-		Formulas.calcDamageReflected(creature, target, skill, true);
+		Formulas.calcDamageReflected(effector, effected, skill, true);
 	}
 }

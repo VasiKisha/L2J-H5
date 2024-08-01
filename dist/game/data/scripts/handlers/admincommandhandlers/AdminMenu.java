@@ -84,6 +84,7 @@ public class AdminMenu implements IAdminCommandHandler
 				final String targetName = command.substring(23);
 				final Player player = World.getInstance().getPlayer(targetName);
 				teleportCharacter(player, activeChar.getLocation(), activeChar, "Admin is teleporting you.");
+				activeChar.setTarget(null);
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{

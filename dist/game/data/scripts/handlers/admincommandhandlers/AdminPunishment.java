@@ -132,7 +132,7 @@ public class AdminPunishment implements IAdminCommandHandler
 										String expire = "never";
 										if (expiration > 0)
 										{
-											// Synchronize date formatter since its not thread safe.
+											// Synchronize date formatter since it is not thread safe.
 											synchronized (DATE_FORMATTER)
 											{
 												expire = DATE_FORMATTER.format(new Date(expiration));
@@ -412,7 +412,7 @@ public class AdminPunishment implements IAdminCommandHandler
 	private static String findCharId(String key)
 	{
 		final int charId = CharInfoTable.getInstance().getIdByName(key);
-		if (charId > 0) // Yeah its a char name!
+		if (charId > 0) // Yeah it's a char name!
 		{
 			return Integer.toString(charId);
 		}

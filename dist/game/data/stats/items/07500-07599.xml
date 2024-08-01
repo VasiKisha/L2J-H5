@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="7500" type="EtcItem" name="Halisha's Mark">
 		<!-- Cursed mark that summons minion of Halisha. -->
@@ -1107,7 +1107,7 @@
 		<set name="handler" val="PetFood" />
 		<set name="item_skill" val="2048-1" /> <!-- Wolves' Food -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<cond msgId="600">
 			<player categoryType="BABY_PET_GROUP" />
 		</cond>
 	</item>

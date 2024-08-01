@@ -24,6 +24,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
@@ -44,7 +45,6 @@ import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
-import org.l2jmobius.gameserver.model.SpawnListener;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -57,7 +57,6 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Seven Signs Festival of Darkness Engine.<br>
@@ -68,7 +67,7 @@ import org.l2jmobius.gameserver.util.Util;
  * </ul>
  * @author Tempy
  */
-public class SevenSignsFestival implements SpawnListener
+public class SevenSignsFestival
 {
 	protected static final Logger LOGGER = Logger.getLogger(SevenSignsFestival.class.getName());
 	
@@ -1512,8 +1511,6 @@ public class SevenSignsFestival implements SpawnListener
 	 */
 	public boolean setFinalScore(Player player, int oracle, int festivalId, long offeringScore)
 	{
-		List<String> partyMembers;
-		
 		final int currDawnHighScore = getHighestScore(SevenSigns.CABAL_DAWN, festivalId);
 		final int currDuskHighScore = getHighestScore(SevenSigns.CABAL_DUSK, festivalId);
 		int thisCabalHighScore = 0;
@@ -1544,18 +1541,18 @@ public class SevenSignsFestival implements SpawnListener
 			}
 			
 			final List<Integer> prevParticipants = getPreviousParticipants(oracle, festivalId);
-			partyMembers = new ArrayList<>(prevParticipants.size());
 			
 			// Record a string list of the party members involved.
+			final StringJoiner sj = new StringJoiner(",");
 			for (Integer partyMember : prevParticipants)
 			{
-				partyMembers.add(CharInfoTable.getInstance().getNameById(partyMember));
+				sj.add(CharInfoTable.getInstance().getNameById(partyMember));
 			}
 			
 			// Update the highest scores and party list.
 			currFestData.set("date", String.valueOf(System.currentTimeMillis()));
 			currFestData.set("score", offeringScore);
-			currFestData.set("members", Util.implodeString(partyMembers, ","));
+			currFestData.set("members", sj.toString());
 			
 			// Only add the score to the cabal's overall if it's higher than the other cabal's score.
 			if (offeringScore > otherCabalHighScore)
@@ -1698,7 +1695,6 @@ public class SevenSignsFestival implements SpawnListener
 	 * Used with the SpawnListener, to update the required "chat guide" instances, for use with announcements in the oracles.
 	 * @param npc
 	 */
-	@Override
 	public void npcSpawned(Npc npc)
 	{
 		if (npc == null)

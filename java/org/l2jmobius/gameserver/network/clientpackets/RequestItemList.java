@@ -17,7 +17,6 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.network.serverpackets.ItemList;
 
 /**
  * @version $Revision: 1.3.4.3 $ $Date: 2005/03/27 15:29:30 $
@@ -43,6 +42,6 @@ public class RequestItemList extends ClientPacket
 			return;
 		}
 		
-		player.sendPacket(new ItemList(player, true));
+		player.sendItemList(true);
 	}
 }

@@ -25,6 +25,7 @@ import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.BypassHandler;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
+import org.l2jmobius.gameserver.instancemanager.CaptchaManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -59,7 +60,8 @@ public class RequestBypassToServer extends ClientPacket
 		"_match",
 		"_diary",
 		"_olympiad?command",
-		"manor_menu_select"
+		"manor_menu_select",
+		"report"
 	};
 	
 	// S
@@ -226,6 +228,10 @@ public class RequestBypassToServer extends ClientPacket
 					final boolean time = split[2].split("=")[1].equals("1");
 					EventDispatcher.getInstance().notifyEventAsync(new OnNpcManorBypass(player, lastNpc, ask, state, time), lastNpc);
 				}
+			}
+			else if (_command.startsWith("report"))
+			{
+				CaptchaManager.getInstance().analyseBypass(_command, player);
 			}
 			else
 			{

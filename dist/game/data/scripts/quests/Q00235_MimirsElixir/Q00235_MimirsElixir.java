@@ -51,7 +51,7 @@ public class Q00235_MimirsElixir extends Quest
 	// Misc
 	private static final int MIN_LEVEL = 75;
 	// Skill
-	private static SkillHolder QUEST_MIMIRS_ELIXIR = new SkillHolder(4339, 1);
+	private static final SkillHolder QUEST_MIMIRS_ELIXIR = new SkillHolder(4339, 1);
 	// Mobs
 	private static final Map<Integer, ItemChanceHolder> MOBS = new HashMap<>();
 	static

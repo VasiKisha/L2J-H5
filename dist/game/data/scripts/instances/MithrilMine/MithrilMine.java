@@ -47,7 +47,7 @@ public class MithrilMine extends AbstractInstance
 	// Item
 	private static final int COLD_RESISTANCE_POTION = 15514;
 	// Skill
-	private static SkillHolder BLESS_OF_SWORD = new SkillHolder(6286, 1);
+	private static final SkillHolder BLESS_OF_SWORD = new SkillHolder(6286, 1);
 	// Location
 	private static final Location START_LOC = new Location(186852, -173492, -3763, 0, 0);
 	private static final Location EXIT_LOC = new Location(178823, -184303, -347, 0, 0);

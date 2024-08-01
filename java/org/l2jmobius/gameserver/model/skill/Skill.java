@@ -1261,12 +1261,12 @@ public class Skill implements IIdentifiable
 				{
 					if (effect.isInstant())
 					{
-						if (applyInstantEffects && effect.calcSuccess(info))
+						if (applyInstantEffects && effect.calcSuccess(info.getEffector(), info.getEffected(), info.getSkill()))
 						{
-							effect.onStart(info);
+							effect.onStart(info.getEffector(), info.getEffected(), info.getSkill());
 						}
 					}
-					else if (addContinuousEffects && effect.canStart(info))
+					else if (addContinuousEffects && effect.canStart(info.getEffector(), info.getEffected(), info.getSkill()))
 					{
 						info.addEffect(effect);
 					}
@@ -1704,7 +1704,7 @@ public class Skill implements IIdentifiable
 	}
 	
 	/**
-	 * @param effectType Effect type to check if its present on this skill effects.
+	 * @param effectType Effect type to check if it is present on this skill effects.
 	 * @param effectTypes Effect types to check if are present on this skill effects.
 	 * @return {@code true} if at least one of specified {@link EffectType} types is present on this skill effects, {@code false} otherwise.
 	 */

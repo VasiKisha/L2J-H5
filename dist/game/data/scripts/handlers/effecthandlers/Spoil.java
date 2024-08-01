@@ -18,10 +18,11 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.ai.CtrlEvent;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -37,9 +38,9 @@ public class Spoil extends AbstractEffect
 	}
 	
 	@Override
-	public boolean calcSuccess(BuffInfo info)
+	public boolean calcSuccess(Creature effector, Creature effected, Skill skill)
 	{
-		return Formulas.calcMagicSuccess(info.getEffector(), info.getEffected(), info.getSkill());
+		return Formulas.calcMagicSuccess(effector, effected, skill);
 	}
 	
 	@Override
@@ -49,23 +50,23 @@ public class Spoil extends AbstractEffect
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!info.getEffected().isMonster() || info.getEffected().isDead())
+		if (!effected.isMonster() || effected.isDead())
 		{
-			info.getEffector().sendPacket(SystemMessageId.INVALID_TARGET);
+			effector.sendPacket(SystemMessageId.INVALID_TARGET);
 			return;
 		}
 		
-		final Monster target = (Monster) info.getEffected();
+		final Monster target = (Monster) effected;
 		if (target.isSpoiled())
 		{
-			info.getEffector().sendPacket(SystemMessageId.IT_HAS_ALREADY_BEEN_SPOILED);
+			effector.sendPacket(SystemMessageId.IT_HAS_ALREADY_BEEN_SPOILED);
 			return;
 		}
 		
-		target.setSpoilerObjectId(info.getEffector().getObjectId());
-		info.getEffector().sendPacket(SystemMessageId.THE_SPOIL_CONDITION_HAS_BEEN_ACTIVATED);
-		target.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, info.getEffector());
+		target.setSpoilerObjectId(effector.getObjectId());
+		effector.sendPacket(SystemMessageId.THE_SPOIL_CONDITION_HAS_BEEN_ACTIVATED);
+		target.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, effector);
 	}
 }

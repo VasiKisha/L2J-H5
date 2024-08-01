@@ -19,10 +19,18 @@ package org.l2jmobius.gameserver.taskmanager;
 import java.util.Calendar;
 
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.instancemanager.DayNightSpawnManager;
+import org.l2jmobius.gameserver.model.World;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.impl.OnDayNightChange;
+import org.l2jmobius.gameserver.model.skill.CommonSkill;
+import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 /**
  * GameTime task manager class.
@@ -71,6 +79,30 @@ public class GameTimeTaskManager extends Thread
 			if ((_gameHour < 6) != _isNight)
 			{
 				_isNight = !_isNight;
+				
+				// Shadow Sense skill for Dark Elf players.
+				for (Player player : World.getInstance().getPlayers())
+				{
+					if (player.getRace() == Race.DARK_ELF)
+					{
+						final Skill shadowSense = player.getKnownSkill(CommonSkill.SHADOW_SENSE.getId());
+						if (shadowSense != null)
+						{
+							if (_isNight)
+							{
+								// It is night, apply the skill.
+								player.sendPacket(new SystemMessage(SystemMessageId.IT_IS_NOW_MIDNIGHT_AND_THE_EFFECT_OF_S1_CAN_BE_FELT).addSkillName(shadowSense));
+								player.addSkill(shadowSense, false);
+							}
+							else
+							{
+								// It is day, remove the skill.
+								player.sendPacket(new SystemMessage(SystemMessageId.IT_IS_DAWN_AND_THE_EFFECT_OF_S1_WILL_NOW_DISAPPEAR).addSkillName(shadowSense));
+								player.getEffectList().stopSkillEffects(SkillFinishType.NORMAL, shadowSense);
+							}
+						}
+					}
+				}
 				
 				ThreadPool.execute(() -> DayNightSpawnManager.getInstance().notifyChangeMode());
 				

@@ -330,7 +330,7 @@ public class InstanceWorld
 	}
 	
 	/**
-	 * Open a door if it is present in the instance and its not open.
+	 * Open a door if it is present in the instance and it is not open.
 	 * @param doorId the ID of the door to open
 	 */
 	public void openDoor(int doorId)
@@ -343,7 +343,7 @@ public class InstanceWorld
 	}
 	
 	/**
-	 * Close a door if it is present in the instance and its open.
+	 * Close a door if it is present in the instance and it is open.
 	 * @param doorId the ID of the door to close
 	 */
 	public void closeDoor(int doorId)
@@ -372,6 +372,25 @@ public class InstanceWorld
 	public Door getDoor(int doorId)
 	{
 		return _instance.getDoor(doorId);
+	}
+	
+	/**
+	 * Get count of players inside instance.
+	 * @return players count inside instance
+	 */
+	public int getPlayersCount()
+	{
+		return _instance.getPlayers().size();
+	}
+	
+	/**
+	 * Destroy current instance world.<br>
+	 * <b><font color=red>Use this method to destroy instance world properly.</font></b>
+	 */
+	public void destroy()
+	{
+		_instance.setEmptyDestroyTime(0);
+		_instance.setDuration(1000);
 	}
 	
 	/**

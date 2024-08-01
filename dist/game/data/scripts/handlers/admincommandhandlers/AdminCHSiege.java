@@ -76,12 +76,12 @@ public class AdminCHSiege implements IAdminCommandHandler
 		hall = getHall(split[1], activeChar);
 		if (hall == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Couldnt find he desired siegable hall (" + split[1] + ")");
+			BuilderUtil.sendSysMessage(activeChar, "Could not find he desired siegable hall (" + split[1] + ")");
 			return false;
 		}
 		if (hall.getSiege() == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "The given hall dont have any attached siege!");
+			BuilderUtil.sendSysMessage(activeChar, "The given hall does not have any attached siege!");
 			return false;
 		}
 		
@@ -107,7 +107,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 		{
 			if (!hall.isInSiege())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "The requested clan hall isnt in siege!");
+				BuilderUtil.sendSysMessage(activeChar, "The requested clan hall is not in siege!");
 			}
 			else
 			{
@@ -340,7 +340,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 		final SiegableHall hall = CHSiegeManager.getInstance().getSiegableHall(ch);
 		if (hall == null)
 		{
-			gm.sendMessage("Couldnt find the clan hall.");
+			gm.sendMessage("Could not find the clan hall.");
 		}
 		
 		return hall;

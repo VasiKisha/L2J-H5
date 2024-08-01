@@ -52,26 +52,30 @@ public abstract class AbstractInstance extends AbstractNpcAI
 		final InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
 		if (world != null)
 		{
-			if (world.getTemplateId() == templateId)
+			if (world.getTemplateId() != templateId)
 			{
-				onEnterInstance(player, world, false);
+				if (world.getPlayersCount() > 0)
+				{
+					player.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_ANOTHER_INSTANCE_ZONE_THEREFORE_YOU_CANNOT_ENTER_CORRESPONDING_DUNGEON);
+					return;
+				}
 				
-				final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
-				if (inst.isRemoveBuffEnabled())
-				{
-					handleRemoveBuffs(player, world);
-				}
-				if (!inst.getEnterLocs().isEmpty())
-				{
-					teleportPlayer(player, inst.getEnterLocs().stream().findAny().get(), world.getInstanceId(), false);
-				}
-				return;
+				world.destroy();
 			}
-			player.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_ANOTHER_INSTANCE_ZONE_THEREFORE_YOU_CANNOT_ENTER_CORRESPONDING_DUNGEON);
-			return;
+			
+			onEnterInstance(player, world, false);
+			
+			final Instance instance = InstanceManager.getInstance().getInstance(world.getInstanceId());
+			if (instance.isRemoveBuffEnabled())
+			{
+				handleRemoveBuffs(player, world);
+			}
+			if (!instance.getEnterLocs().isEmpty())
+			{
+				teleportPlayer(player, instance.getEnterLocs().stream().findAny().get(), world.getInstanceId(), false);
+			}
 		}
-		
-		if (checkConditions(player))
+		else if (checkConditions(player))
 		{
 			final InstanceWorld instance = new InstanceWorld();
 			instance.setInstance(InstanceManager.getInstance().createDynamicInstance(templateId));

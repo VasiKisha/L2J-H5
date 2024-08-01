@@ -2353,8 +2353,11 @@ public class AttackableAI extends CreatureAI
 			_globalAggro = 0;
 		}
 		
-		// Add the attacker to the _aggroList of the actor
-		me.addDamageHate(attacker, 0, 1);
+		// Add the attacker to the _aggroList of the actor if not present.
+		if (!me.isInAggroList(attacker))
+		{
+			me.addDamageHate(attacker, 0, 1);
+		}
 		
 		// Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player
 		if (!me.isRunning())

@@ -521,7 +521,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="938500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</cond>
 		<for>
@@ -538,7 +538,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="1810000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</cond>
 		<for>
@@ -555,7 +555,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="3563000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</cond>
 		<for>
@@ -572,7 +572,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="6281500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</cond>
 		<for>
@@ -589,7 +589,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="12118000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</cond>
 		<for>
@@ -606,7 +606,7 @@
 		<set name="weight" val="160" />
 		<set name="price" val="24439500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
 		</cond>
 		<for>
@@ -622,7 +622,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1932" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</cond>
 		<for>
@@ -638,7 +638,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="10091" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</cond>
 		<for>
@@ -654,7 +654,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="31949" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</cond>
 		<for>
@@ -670,7 +670,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="78374" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</cond>
 		<for>
@@ -686,7 +686,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="231417" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</cond>
 		<for>
@@ -702,7 +702,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="828490" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</cond>
 		<for>
@@ -718,7 +718,7 @@
 		<set name="weight" val="150" />
 		<set name="price" val="2582800" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<cond msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
 		</cond>
 		<for>

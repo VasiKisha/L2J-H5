@@ -18,9 +18,10 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.data.xml.TransformData;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Transformation effect implementation.
@@ -38,20 +39,20 @@ public class Transformation extends AbstractEffect
 	}
 	
 	@Override
-	public boolean canStart(BuffInfo info)
+	public boolean canStart(Creature effector, Creature effected, Skill skill)
 	{
-		return info.getEffected().isPlayer();
+		return effected.isPlayer();
 	}
 	
 	@Override
-	public void onExit(BuffInfo info)
+	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		info.getEffected().stopTransformation(false);
+		effected.stopTransformation(false);
 	}
 	
 	@Override
-	public void onStart(BuffInfo info)
+	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		TransformData.getInstance().transformPlayer(_id, info.getEffected().getActingPlayer());
+		TransformData.getInstance().transformPlayer(_id, effected.getActingPlayer());
 	}
 }

@@ -1388,7 +1388,7 @@ public class CastleChamberlain extends AbstractNpcAI
 	// @formatter:on
 	public void onNpcManorBypass(OnNpcManorBypass evt)
 	{
-		final Player player = evt.getActiveChar();
+		final Player player = evt.getPlayer();
 		final Npc npc = evt.getTarget();
 		if (isOwner(player, npc))
 		{
