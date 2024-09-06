@@ -74,8 +74,8 @@ public class NornilsGarden extends AbstractInstance
 	private static final int TEMPLATE_ID = 11;
 	private static final int DURATION_TIME = 70;
 	private static final int EMPTY_DESTROY_TIME = 5;
-	private static final int INSTANCE_LEVEL_MIN = 18;
-	private static final int INSTANCE_LEVEL_MAX = 22;
+	private static final int INSTANCE_LEVEL_MIN = 17;
+	private static final int INSTANCE_LEVEL_MAX = 21;
 	private static final int[][] AUTO_GATES =
 	{
 		// Warriors gate
@@ -227,17 +227,6 @@ public class NornilsGarden extends AbstractInstance
 		super.teleportPlayer(player, loc, instanceId);
 	}
 	
-	private void exitInstance(Player player)
-	{
-		final InstanceWorld inst = InstanceManager.getInstance().getWorld(player);
-		if (inst instanceof NornilsWorld)
-		{
-			final NornilsWorld world = ((NornilsWorld) inst);
-			world.removeAllowed(player);
-			teleportPlayer(player, EXIT_PPL, 0);
-		}
-	}
-	
 	private final synchronized String enterInstance(Npc npc, Player player)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
@@ -274,7 +263,7 @@ public class NornilsGarden extends AbstractInstance
 		final NornilsWorld newWorld = new NornilsWorld();
 		final Instance instance = InstanceManager.getInstance().createDynamicInstance(TEMPLATE_ID);
 		newWorld.setInstance(instance);
-		InstanceManager.getInstance().addWorld(world);
+		InstanceManager.getInstance().addWorld(newWorld);
 		instance.setExitLoc(new Location(player));
 		instance.setAllowSummon(false);
 		instance.setDuration(DURATION_TIME * 60000);
@@ -503,13 +492,9 @@ public class NornilsGarden extends AbstractInstance
 		}
 		else if ((npc.getId() == 32258) && event.equalsIgnoreCase("exit"))
 		{
-			try
+			if (player.getInstanceId() > 0)
 			{
-				exitInstance(player);
-			}
-			catch (Exception e)
-			{
-				// Not Important.
+				super.teleportPlayer(player, EXIT_PPL, 0);
 			}
 		}
 		else if (CommonUtil.contains(FINAL_GATES, npc.getId()))
@@ -523,7 +508,7 @@ public class NornilsGarden extends AbstractInstance
 				int correct = st.getInt("correct");
 				correct++;
 				st.set("correct", String.valueOf(correct));
-				htmltext = npc.getId() + "-0" + correct + 2 + ".html";
+				htmltext = npc.getId() + "-0" + Integer.sum(correct, 2) + ".html";
 			}
 			else if (event.equalsIgnoreCase("check"))
 			{
