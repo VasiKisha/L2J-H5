@@ -416,8 +416,15 @@ public class KrateisCubeManager implements IXmlReader
 			calendar.set(Calendar.SECOND, 0);
 			_isHalfAnHour = false;
 		}
+		
+		final long currentTime = System.currentTimeMillis();
+		if (calendar.getTimeInMillis() < currentTime)
+		{
+			calendar.add(Calendar.DAY_OF_YEAR, 1);
+		}
+		
 		_nextMatchTime = calendar.getTimeInMillis();
-		final long lastTime = _nextMatchTime - System.currentTimeMillis();
+		final long lastTime = _nextMatchTime - currentTime;
 		_eventTask = ThreadPool.schedule(this::closeRegistration, lastTime);
 		getManagerMessage(KrateiMsgType.INITIALIZED);
 		
