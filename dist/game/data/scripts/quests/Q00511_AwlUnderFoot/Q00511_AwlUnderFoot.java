@@ -451,7 +451,7 @@ public class Q00511_AwlUnderFoot extends Quest
 	private void rewardPlayer(Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
-		if (qs.isCond(1))
+		if ((qs != null) && qs.isCond(1))
 		{
 			giveItems(player, DL_MARK, 140);
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
