@@ -312,6 +312,11 @@ public class AutoPlayTaskManager
 		
 		private boolean isTargetModeValid(int mode, Player player, Creature creature)
 		{
+			if (!creature.isTargetable() || (creature.isNpc() && creature.isInvul()))
+			{
+				return false;
+			}
+			
 			switch (mode)
 			{
 				case 1: // Monster
