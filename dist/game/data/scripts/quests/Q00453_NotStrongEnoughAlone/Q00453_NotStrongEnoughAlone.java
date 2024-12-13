@@ -20,6 +20,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.enums.QuestType;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -242,9 +243,10 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 	@Override
 	public String onKill(Npc npc, Player player, boolean isSummon)
 	{
-		if (player.getParty() != null)
+		final Party party = player.getParty();
+		if (party != null)
 		{
-			for (Player member : player.getParty().getMembers())
+			for (Player member : party.getMembers())
 			{
 				increaseKill(member, npc);
 			}

@@ -52,10 +52,11 @@ public class ConditionSlotItemId extends ConditionInventory
 		}
 		
 		final Item itemSlot = effector.getInventory().getPaperdollItem(_slot);
-		if (itemSlot != null)
+		if (itemSlot == null)
 		{
-			return (itemSlot.getId() == _itemId) && (itemSlot.getEnchantLevel() >= _enchantLevel);
+			return _itemId == 0;
 		}
-		return _itemId == 0;
+		
+		return (itemSlot.getId() == _itemId) && (itemSlot.getEnchantLevel() >= _enchantLevel);
 	}
 }

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
@@ -27,6 +31,7 @@ import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 import org.l2jmobius.gameserver.model.quest.Event;
@@ -137,19 +142,21 @@ public class RequestRestartPoint extends ClientPacket
 		{
 			_requestedPointType = 5;
 		}
+		
+		final Clan clan = player.getClan();
 		switch (_requestedPointType)
 		{
 			case 1: // to clanhall
 			{
-				if ((player.getClan() == null) || (player.getClan().getHideoutId() == 0))
+				if ((clan == null) || (clan.getHideoutId() == 0))
 				{
 					PacketLogger.warning("Player [" + player.getName() + "] called RestartPointPacket - To Clanhall and he doesn't have Clanhall!");
 					return;
 				}
 				loc = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.CLANHALL);
-				if ((ClanHallTable.getInstance().getClanHallByOwner(player.getClan()) != null) && (ClanHallTable.getInstance().getClanHallByOwner(player.getClan()).getFunction(ClanHall.FUNC_RESTORE_EXP) != null))
+				if ((ClanHallTable.getInstance().getClanHallByOwner(clan) != null) && (ClanHallTable.getInstance().getClanHallByOwner(clan).getFunction(ClanHall.FUNC_RESTORE_EXP) != null))
 				{
-					player.restoreExp(ClanHallTable.getInstance().getClanHallByOwner(player.getClan()).getFunction(ClanHall.FUNC_RESTORE_EXP).getLevel());
+					player.restoreExp(ClanHallTable.getInstance().getClanHallByOwner(clan).getFunction(ClanHall.FUNC_RESTORE_EXP).getLevel());
 				}
 				break;
 			}
@@ -159,11 +166,11 @@ public class RequestRestartPoint extends ClientPacket
 				if ((castle != null) && castle.getSiege().isInProgress())
 				{
 					// Siege in progress
-					if (castle.getSiege().checkIsDefender(player.getClan()))
+					if (castle.getSiege().checkIsDefender(clan))
 					{
 						loc = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.CASTLE);
 					}
-					else if (castle.getSiege().checkIsAttacker(player.getClan()))
+					else if (castle.getSiege().checkIsAttacker(clan))
 					{
 						loc = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.TOWN);
 					}
@@ -175,29 +182,29 @@ public class RequestRestartPoint extends ClientPacket
 				}
 				else
 				{
-					if ((player.getClan() == null) || (player.getClan().getCastleId() == 0))
+					if ((clan == null) || (clan.getCastleId() == 0))
 					{
 						return;
 					}
 					loc = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.CASTLE);
 				}
-				if ((CastleManager.getInstance().getCastleByOwner(player.getClan()) != null) && (CastleManager.getInstance().getCastleByOwner(player.getClan()).getFunction(Castle.FUNC_RESTORE_EXP) != null))
+				if ((CastleManager.getInstance().getCastleByOwner(clan) != null) && (CastleManager.getInstance().getCastleByOwner(clan).getFunction(Castle.FUNC_RESTORE_EXP) != null))
 				{
-					player.restoreExp(CastleManager.getInstance().getCastleByOwner(player.getClan()).getFunction(Castle.FUNC_RESTORE_EXP).getLvl());
+					player.restoreExp(CastleManager.getInstance().getCastleByOwner(clan).getFunction(Castle.FUNC_RESTORE_EXP).getLvl());
 				}
 				break;
 			}
 			case 3: // to fortress
 			{
-				if (((player.getClan() == null) || (player.getClan().getFortId() == 0)) && !isInDefense)
+				if (((clan == null) || (clan.getFortId() == 0)) && !isInDefense)
 				{
 					PacketLogger.warning("Player [" + player.getName() + "] called RestartPointPacket - To Fortress and he doesn't have Fortress!");
 					return;
 				}
 				loc = MapRegionManager.getInstance().getTeleToLocation(player, TeleportWhereType.FORTRESS);
-				if ((FortManager.getInstance().getFortByOwner(player.getClan()) != null) && (FortManager.getInstance().getFortByOwner(player.getClan()).getFunction(Fort.FUNC_RESTORE_EXP) != null))
+				if ((FortManager.getInstance().getFortByOwner(clan) != null) && (FortManager.getInstance().getFortByOwner(clan).getFunction(Fort.FUNC_RESTORE_EXP) != null))
 				{
-					player.restoreExp(FortManager.getInstance().getFortByOwner(player.getClan()).getFunction(Fort.FUNC_RESTORE_EXP).getLevel());
+					player.restoreExp(FortManager.getInstance().getFortByOwner(clan).getFunction(Fort.FUNC_RESTORE_EXP).getLevel());
 				}
 				break;
 			}
@@ -207,23 +214,23 @@ public class RequestRestartPoint extends ClientPacket
 				castle = CastleManager.getInstance().getCastle(player);
 				fort = FortManager.getInstance().getFort(player);
 				hall = CHSiegeManager.getInstance().getNearbyClanHall(player);
-				SiegeFlag flag = TerritoryWarManager.getInstance().getHQForClan(player.getClan());
+				SiegeFlag flag = TerritoryWarManager.getInstance().getHQForClan(clan);
 				if (flag == null)
 				{
-					flag = TerritoryWarManager.getInstance().getFlagForClan(player.getClan());
+					flag = TerritoryWarManager.getInstance().getFlagForClan(clan);
 				}
 				
 				if ((castle != null) && castle.getSiege().isInProgress())
 				{
-					siegeClan = castle.getSiege().getAttackerClan(player.getClan());
+					siegeClan = castle.getSiege().getAttackerClan(clan);
 				}
 				else if ((fort != null) && fort.getSiege().isInProgress())
 				{
-					siegeClan = fort.getSiege().getAttackerClan(player.getClan());
+					siegeClan = fort.getSiege().getAttackerClan(clan);
 				}
 				else if ((hall != null) && hall.isInSiege())
 				{
-					siegeClan = hall.getSiege().getAttackerClan(player.getClan());
+					siegeClan = hall.getSiege().getAttackerClan(clan);
 				}
 				if (((siegeClan == null) || siegeClan.getFlag().isEmpty()) && (flag == null))
 				{

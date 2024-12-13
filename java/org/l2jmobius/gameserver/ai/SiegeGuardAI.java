@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.ai;
 
@@ -31,9 +35,7 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Defender;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -131,7 +133,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 		}
 		
 		// Check if the target isn't invulnerable
-		if (target.isInvul() && ((target.isPlayer() && target.isGM()) || (target.isSummon() && ((Summon) target).getOwner().isGM())))
+		if (target.isInvul() && ((target.isPlayer() && target.isGM()) || (target.isSummon() && target.asSummon().getOwner().isGM())))
 		{
 			return false;
 		}
@@ -140,7 +142,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 		Creature currentTarget = target;
 		if (currentTarget.isSummon())
 		{
-			final Player owner = ((Summon) currentTarget).getOwner();
+			final Player owner = currentTarget.asSummon().getOwner();
 			if (_actor.isInsideRadius3D(owner, 1000))
 			{
 				currentTarget = owner;
@@ -148,7 +150,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 		}
 		
 		// Check if the target isn't in silent move mode AND too far (>100)
-		if (currentTarget.isPlayable() && ((Playable) currentTarget).isSilentMovingAffected() && !_actor.isInsideRadius2D(currentTarget, 250))
+		if (currentTarget.isPlayable() && currentTarget.asPlayable().isSilentMovingAffected() && !_actor.isInsideRadius2D(currentTarget, 250))
 		{
 			return false;
 		}
@@ -173,7 +175,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 			// Check if actor is not dead
 			if (!_actor.isAlikeDead())
 			{
-				final Attackable npc = (Attackable) _actor;
+				final Attackable npc = _actor.asAttackable();
 				
 				// If its _knownPlayer isn't empty set the Intention to AI_INTENTION_ACTIVE
 				if (!World.getInstance().getVisibleObjects(npc, Player.class).isEmpty())
@@ -241,7 +243,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 	 */
 	private void thinkActive()
 	{
-		final Attackable npc = (Attackable) _actor;
+		final Attackable npc = _actor.asAttackable();
 		
 		// Update every 1s the _globalAggro counter to come close to 0
 		if (_globalAggro != 0)
@@ -325,7 +327,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 			// Stop hating this target after the attack timeout or if target is dead
 			if (attackTarget != null)
 			{
-				((Attackable) _actor).stopHating(attackTarget);
+				_actor.asAttackable().stopHating(attackTarget);
 			}
 			
 			// Cancel target and timeout
@@ -346,18 +348,18 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 	{
 		final Creature target = getAttackTarget();
 		// Call all WorldObject of its Faction inside the Faction Range
-		if ((((Npc) _actor).getTemplate().getClans() == null) || (target == null) || target.isInvul())
+		if ((_actor.asNpc().getTemplate().getClans() == null) || (target == null) || target.isInvul())
 		{
 			return;
 		}
 		
 		// Go through all Creature that belong to its faction
-		// for (Creature creature : _actor.getKnownList().getKnownCharactersInRadius(((Npc) _actor).getFactionRange()+_actor.getTemplate().collisionRadius))
+		// for (Creature creature : _actor.getKnownList().getKnownCharactersInRadius(_actor.asNpc().getFactionRange()+_actor.getTemplate().collisionRadius))
 		for (Creature creature : World.getInstance().getVisibleObjectsInRange(_actor, Creature.class, 1000))
 		{
 			if (!(creature instanceof Npc))
 			{
-				if (_selfAnalysis.hasHealOrResurrect && creature.isPlayer() && (((Npc) _actor).getCastle().getSiege().checkIsDefender(((Player) creature).getClan()))//
+				if (_selfAnalysis.hasHealOrResurrect && creature.isPlayer() && (_actor.asNpc().getCastle().getSiege().checkIsDefender(creature.asPlayer().getClan()))//
 					&& !_actor.isAttackDisabled() && (creature.getCurrentHp() < (creature.getMaxHp() * 0.6)) && (_actor.getCurrentHp() > (_actor.getMaxHp() / 2)) && (_actor.getCurrentMp() > (_actor.getMaxMp() / 2)) && creature.isInCombat())
 				{
 					for (Skill sk : _selfAnalysis.healSkills)
@@ -386,8 +388,8 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 				continue;
 			}
 			
-			final Npc npc = (Npc) creature;
-			if (!npc.isInMyClan((Npc) _actor))
+			final Npc npc = creature.asNpc();
+			if (!npc.isInMyClan(_actor.asNpc()))
 			{
 				continue;
 			}
@@ -458,7 +460,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 		
 		// never attack defenders
 		final Defender sGuard = (Defender) _actor;
-		if (attackTarget.isPlayer() && (sGuard.getConquerableHall() == null) && sGuard.getCastle().getSiege().checkIsDefender(((Player) attackTarget).getClan()))
+		if (attackTarget.isPlayer() && (sGuard.getConquerableHall() == null) && sGuard.getCastle().getSiege().checkIsDefender(attackTarget.asPlayer().getClan()))
 		{
 			// Cancel the target
 			sGuard.stopHating(attackTarget);
@@ -571,7 +573,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 			}
 			if (dist2 <= (range * range))
 			{
-				final Creature hated = _actor.isConfused() ? attackTarget : ((Attackable) _actor).getMostHated();
+				final Creature hated = _actor.isConfused() ? attackTarget : _actor.asAttackable().getMostHated();
 				if (hated == null)
 				{
 					setIntention(AI_INTENTION_ACTIVE, null, null);
@@ -689,7 +691,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 		}
 		
 		// Add the attacker to the _aggroList of the actor
-		((Attackable) _actor).addDamageHate(attacker, 0, 1);
+		_actor.asAttackable().addDamageHate(attacker, 0, 1);
 		
 		// Set the Creature movement type to run and send Server->Client packet ChangeMoveType to all others Player
 		if (!_actor.isRunning())
@@ -724,7 +726,7 @@ public class SiegeGuardAI extends CreatureAI implements Runnable
 			return;
 		}
 		
-		final Attackable me = (Attackable) _actor;
+		final Attackable me = _actor.asAttackable();
 		if (target != null)
 		{
 			// Add the target to the actor _aggroList or update hate if already present

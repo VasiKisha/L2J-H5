@@ -47,7 +47,6 @@ import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldRegion;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
@@ -435,7 +434,7 @@ public class Instance
 					final Npc spawned = spawnDat.doSpawn(false);
 					if ((set.getInt("delay") >= 0) && spawned.isAttackable())
 					{
-						((Attackable) spawned).setOnKillDelay(set.getInt("delay"));
+						spawned.asAttackable().setOnKillDelay(set.getInt("delay"));
 					}
 					if (set.getInt("respawn") == 0)
 					{

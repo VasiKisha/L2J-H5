@@ -36,7 +36,6 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.BabyPet;
-import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
 import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
@@ -207,7 +206,7 @@ public class RequestActionUse extends ClientPacket
 				}
 				if (summon.isHungry())
 				{
-					if (summon.isPet() && !((Pet) summon).getPetData().getFood().isEmpty())
+					if (summon.isPet() && !summon.asPet().getPetData().getFood().isEmpty())
 					{
 						player.sendPacket(SystemMessageId.YOU_MAY_NOT_RESTORE_A_HUNGRY_PET);
 					}
@@ -1204,7 +1203,7 @@ public class RequestActionUse extends ClientPacket
 	{
 		if ((summon != null) && ((checkPet && summon.isPet()) || summon.isServitor()))
 		{
-			if (summon.isPet() && ((Pet) summon).isUncontrollable())
+			if (summon.isPet() && summon.asPet().isUncontrollable())
 			{
 				player.sendPacket(SystemMessageId.ONLY_A_CLAN_LEADER_THAT_IS_A_NOBLESSE_CAN_VIEW_THE_SIEGE_WAR_STATUS_WINDOW_DURING_A_SIEGE_WAR);
 				return false;
@@ -1347,7 +1346,7 @@ public class RequestActionUse extends ClientPacket
 		}
 		
 		// Checks for partner.
-		final Player partner = target.getActingPlayer();
+		final Player partner = target.asPlayer();
 		if (partner.isInStoreMode() || partner.isCrafting())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_IS_IN_PRIVATE_SHOP_MODE_OR_IN_A_BATTLE_AND_CANNOT_BE_REQUESTED_FOR_A_COUPLE_ACTION);

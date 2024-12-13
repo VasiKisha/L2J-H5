@@ -130,7 +130,7 @@ public class TimerHolder<T> implements Runnable
 			return;
 		}
 		
-		_task.cancel(true);
+		_task.cancel(false);
 		_cancelScript.onTimerCancel(this);
 	}
 	

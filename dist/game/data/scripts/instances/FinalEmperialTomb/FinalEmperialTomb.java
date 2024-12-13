@@ -42,8 +42,6 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Territory;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
@@ -496,7 +494,8 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 		{
 			controlStatus(world);
 			
-			if ((player.getParty() == null) || (player.getParty().getCommandChannel() == null))
+			final Party party = player.getParty();
+			if ((party == null) || (party.getCommandChannel() == null))
 			{
 				if (player.getInventory().getInventoryItemCount(DEWDROP_OF_DESTRUCTION_ITEM_ID, -1) > 0)
 				{
@@ -507,7 +506,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 			}
 			else
 			{
-				for (Player channelMember : player.getParty().getCommandChannel().getMembers())
+				for (Player channelMember : party.getCommandChannel().getMembers())
 				{
 					if (player.getInventory().getInventoryItemCount(DEWDROP_OF_DESTRUCTION_ITEM_ID, -1) > 0)
 					{
@@ -684,7 +683,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 		npc.setRandomWalking(false);
 		if (npc.isInstanceTypes(InstanceType.Attackable))
 		{
-			((Attackable) npc).setSeeThroughSilentMove(true);
+			npc.asAttackable().setSeeThroughSilentMove(true);
 		}
 		if (CommonUtil.contains(AI_DISABLED_MOBS, npcId))
 		{
@@ -724,7 +723,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					break;
 				}
-				final Monster demon = (Monster) addSpawn(PORTRAIT_SPAWNS[i][0] + 2, PORTRAIT_SPAWNS[i][5], PORTRAIT_SPAWNS[i][6], PORTRAIT_SPAWNS[i][7], PORTRAIT_SPAWNS[i][8], false, 0, false, _world.getInstanceId());
+				final Monster demon = addSpawn(PORTRAIT_SPAWNS[i][0] + 2, PORTRAIT_SPAWNS[i][5], PORTRAIT_SPAWNS[i][6], PORTRAIT_SPAWNS[i][7], PORTRAIT_SPAWNS[i][8], false, 0, false, _world.getInstanceId()).asMonster();
 				demons.add(demon);
 			}
 			_world.setParameter("demons", demons);
@@ -841,7 +840,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 						}
 						if (!targetList.isEmpty())
 						{
-							frintezza.doCast(skill, (Creature) targetList.get(0), targetList);
+							frintezza.doCast(skill, targetList.get(0).asCreature(), targetList);
 						}
 					}
 					break;
@@ -949,7 +948,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 					final List<Monster> demons = _world.getParameters().getList("demons", Monster.class, new ArrayList<>());
 					for (int[] element : PORTRAIT_SPAWNS)
 					{
-						final Monster demon = (Monster) addSpawn(element[0] + 2, element[5], element[6], element[7], element[8], false, 0, false, _world.getInstanceId());
+						final Monster demon = addSpawn(element[0] + 2, element[5], element[6], element[7], element[8], false, 0, false, _world.getInstanceId()).asMonster();
 						demon.setImmobilized(true);
 						demon.disableAllSkills();
 						demons.add(demon);
@@ -1400,7 +1399,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				mob.setRunning();
 				if (target != null)
 				{
-					((Monster) mob).addDamageHate(target, 0, 500);
+					mob.asMonster().addDamageHate(target, 0, 500);
 					mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
 				}
 				else

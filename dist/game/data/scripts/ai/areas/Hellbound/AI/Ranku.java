@@ -54,7 +54,7 @@ public class Ranku extends AbstractNpcAI
 	{
 		if (event.equalsIgnoreCase("checkup") && (npc.getId() == RANKU) && !npc.isDead())
 		{
-			for (Monster minion : ((Monster) npc).getMinionList().getSpawnedMinions())
+			for (Monster minion : npc.asMonster().getMinionList().getSpawnedMinions())
 			{
 				if ((minion != null) && !minion.isDead() && MY_TRACKING_SET.contains(minion.getObjectId()))
 				{
@@ -72,7 +72,7 @@ public class Ranku extends AbstractNpcAI
 	{
 		if (npc.getId() == RANKU)
 		{
-			for (Monster minion : ((Monster) npc).getMinionList().getSpawnedMinions())
+			for (Monster minion : npc.asMonster().getMinionList().getSpawnedMinions())
 			{
 				if ((minion != null) && !minion.isDead() && !MY_TRACKING_SET.contains(minion.getObjectId()))
 				{
@@ -95,7 +95,7 @@ public class Ranku extends AbstractNpcAI
 				MY_TRACKING_SET.remove(npc.getObjectId());
 			}
 			
-			final Monster master = ((Monster) npc).getLeader();
+			final Monster master = npc.asMonster().getLeader();
 			if ((master != null) && !master.isDead())
 			{
 				final Monster minion2 = MinionList.spawnMinion(master, MINION_2);
@@ -104,7 +104,7 @@ public class Ranku extends AbstractNpcAI
 		}
 		else if (npc.getId() == RANKU)
 		{
-			for (Monster minion : ((Monster) npc).getMinionList().getSpawnedMinions())
+			for (Monster minion : npc.asMonster().getMinionList().getSpawnedMinions())
 			{
 				if (MY_TRACKING_SET.contains(minion.getObjectId()))
 				{

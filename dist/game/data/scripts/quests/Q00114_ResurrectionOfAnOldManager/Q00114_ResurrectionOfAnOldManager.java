@@ -238,7 +238,7 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 			{
 				if ((golem == null) || golem.isDead())
 				{
-					golem = (Attackable) addSpawn(GUARDIAN, 96977, -110625, -3280, 0, false, 0);
+					golem = addSpawn(GUARDIAN, 96977, -110625, -3280, 0, false, 0).asAttackable();
 					golem.broadcastPacket(new NpcSay(golem.getObjectId(), ChatType.NPC_GENERAL, golem.getId(), NpcStringId.YOU_S1_YOU_ATTACKED_WENDY_PREPARE_TO_DIE).addStringParameter(player.getName()));
 					golem.setRunning();
 					golem.addDamageHate(player, 0, 999);
@@ -413,13 +413,14 @@ public class Q00114_ResurrectionOfAnOldManager extends Quest
 	{
 		if (creature.isPlayer())
 		{
-			final QuestState qs = getQuestState(creature.getActingPlayer(), false);
+			final Player player = creature.asPlayer();
+			final QuestState qs = getQuestState(player, false);
 			if ((qs != null) && qs.isCond(17))
 			{
-				takeItems((Player) creature, DETCTOR, 1);
-				giveItems((Player) creature, DETCTOR2, 1);
+				takeItems(creature.asPlayer(), DETCTOR, 1);
+				giveItems(creature.asPlayer(), DETCTOR2, 1);
 				qs.setCond(18, true);
-				showOnScreenMsg(creature.getActingPlayer(), NpcStringId.THE_RADIO_SIGNAL_DETECTOR_IS_RESPONDING_A_SUSPICIOUS_PILE_OF_STONES_CATCHES_YOUR_EYE, 2, 4500);
+				showOnScreenMsg(player, NpcStringId.THE_RADIO_SIGNAL_DETECTOR_IS_RESPONDING_A_SUSPICIOUS_PILE_OF_STONES_CATCHES_YOUR_EYE, 2, 4500);
 			}
 		}
 		return super.onCreatureSee(npc, creature);

@@ -1,7 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="6100" levels="3" name="Turkey's Choice - Scissors">
-		<!-- Turkey's Choice - Scissors. -->
+		<!-- Level 1: Turkey's Choice - Scissors. -->
+		<!-- Level 2: Turkey's Choice - Rock. -->
+		<!-- Level 3: Turkey's Choice - Paper. -->
 		<set name="effectPoint" val="1" />
 		<set name="hitTime" val="3000" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -10,7 +12,11 @@
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="6103" levels="5" name="Showdown with the Turkey - 1 Win">
-		<!-- 1st win. -->
+		<!-- Level 1: 1st win. -->
+		<!-- Level 2: 2nd consecutive win. -->
+		<!-- Level 3: 3rd consecutive win. -->
+		<!-- Level 4: 4th consecutive win. -->
+		<!-- Level 5: 5th consecutive win. -->
 		<table name="#abnormalLevels">1 2 3 4 5</table>
 		<table name="#icons">icon.xmas_pcwin1_i00 icon.xmas_pcwin2_i00 icon.xmas_pcwin3_i00 icon.xmas_pcwin4_i00 icon.xmas_pcwin5_i00</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -236,7 +242,9 @@
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="6117" levels="3" name="Choice - Scissors">
-		<!-- You have selected Scissors. You cannot move for 30 seconds. -->
+		<!-- Level 1: You have selected Scissors. You cannot move for 30 seconds. -->
+		<!-- Level 2: You have selected Rock. You cannot move for 30 seconds. -->
+		<!-- Level 3: You have selected Paper. You cannot move for 30 seconds. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#icons">icon.xmas_gawi_i00 icon.xmas_bawi_i00 icon.xmas_bo_i00</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -385,7 +393,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="LIMIT" />
 			</effect>
 		</for>
@@ -507,7 +515,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="6135" levels="1" name="Cow Basic Attack">
+	<skill id="6135" levels="1" name="Mutant Curse">
 		<!-- Curse of the Mutant Animal: Temporarily in shock and unable to move. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="2" />
@@ -604,8 +612,10 @@
 		<set name="operateType" val="A2" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="6142" levels="3" name="Tar Spite">
-		<!-- You are covered in hot and sticky tar. Your Speed is decreased by 30% for 5 minutes. P. Def. and evasion are decreased by 10%. -->
+	<skill id="6142" levels="3" name="Tar Trap">
+		<!-- Level 1: You are covered in hot and sticky tar. Your Speed is decreased by 30% for 5 minutes. P. Def. and evasion are decreased by 10%. -->
+		<!-- Level 2: You are covered in hot and sticky tar. Your Speed is decreased by 60% for 5 minutes. P. Def. and evasion are decreased by 20%. -->
+		<!-- Level 3: You are covered in hot and sticky tar. Your Speed is decreased by 90% for 5 minutes. P. Def. and evasion are decreased by 30%. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#pDef">0.9 0.8 0.7</table>
 		<table name="#speed">0.7 0.4 0.1</table>
@@ -970,7 +980,7 @@
 		<set name="power" val="2320" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6173" levels="1" name="Presentation - Memorial Service for Repose">
@@ -1237,7 +1247,7 @@
 		<set name="reuseDelay" val="6000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 </list>

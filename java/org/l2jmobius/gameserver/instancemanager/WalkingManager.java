@@ -219,7 +219,7 @@ public class WalkingManager implements IXmlReader
 	 */
 	public boolean isOnWalk(Npc npc)
 	{
-		final Monster monster = npc.isMonster() ? ((Monster) npc).getLeader() == null ? (Monster) npc : ((Monster) npc).getLeader() : null;
+		final Monster monster = npc.isMonster() ? npc.asMonster().getLeader() == null ? npc.asMonster() : npc.asMonster().getLeader() : null;
 		if (((monster != null) && !isRegistered(monster)) || !isRegistered(npc))
 		{
 			return false;
@@ -395,7 +395,7 @@ public class WalkingManager implements IXmlReader
 	 */
 	public void stopMoving(Npc npc, boolean suspend, boolean stoppedByAttack)
 	{
-		final Monster monster = npc.isMonster() ? ((Monster) npc).getLeader() == null ? (Monster) npc : ((Monster) npc).getLeader() : null;
+		final Monster monster = npc.isMonster() ? npc.asMonster().getLeader() == null ? npc.asMonster() : npc.asMonster().getLeader() : null;
 		if (((monster != null) && !isRegistered(monster)) || !isRegistered(npc))
 		{
 			return;

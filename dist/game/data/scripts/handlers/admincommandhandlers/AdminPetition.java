@@ -108,7 +108,7 @@ public class AdminPetition implements IAdminCommandHandler
 					activeChar.sendPacket(SystemMessageId.THAT_IS_AN_INCORRECT_TARGET);
 					return false;
 				}
-				final Player targetPlayer = (Player) targetChar;
+				final Player targetPlayer = targetChar.asPlayer();
 				final String val = command.substring(15);
 				petitionId = PetitionManager.getInstance().submitPetition(targetPlayer, val, 9);
 				PetitionManager.getInstance().acceptPetition(activeChar, petitionId);

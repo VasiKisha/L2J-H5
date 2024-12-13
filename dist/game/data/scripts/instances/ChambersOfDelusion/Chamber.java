@@ -359,15 +359,16 @@ public abstract class Chamber extends AbstractInstance
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if ((player != null) && (world != null) && (npc.getId() >= ROOM_GATEKEEPER_FIRST) && (npc.getId() <= ROOM_GATEKEEPER_LAST))
 		{
+			final Party party = player.getParty();
 			switch (event)
 			{
 				case "next_room":
 				{
-					if (player.getParty() == null)
+					if (party == null)
 					{
 						htmltext = getHtm(player, "data/scripts/instances/ChambersOfDelusion/no_party.html");
 					}
-					else if (player.getParty().getLeaderObjectId() != player.getObjectId())
+					else if (party.getLeaderObjectId() != player.getObjectId())
 					{
 						htmltext = getHtm(player, "data/scripts/instances/ChambersOfDelusion/no_leader.html");
 					}
@@ -385,11 +386,11 @@ public abstract class Chamber extends AbstractInstance
 				}
 				case "go_out":
 				{
-					if (player.getParty() == null)
+					if (party == null)
 					{
 						htmltext = getHtm(player, "data/scripts/instances/ChambersOfDelusion/no_party.html");
 					}
-					else if (player.getParty().getLeaderObjectId() != player.getObjectId())
+					else if (party.getLeaderObjectId() != player.getObjectId())
 					{
 						htmltext = getHtm(player, "data/scripts/instances/ChambersOfDelusion/no_leader.html");
 					}
@@ -400,7 +401,7 @@ public abstract class Chamber extends AbstractInstance
 						stopRoomChangeTask(world);
 						stopBanishTask(world);
 						
-						for (Player partyMember : player.getParty().getMembers())
+						for (Player partyMember : party.getMembers())
 						{
 							exitInstance(partyMember);
 						}
@@ -411,7 +412,7 @@ public abstract class Chamber extends AbstractInstance
 				}
 				case "look_party":
 				{
-					if ((player.getParty() != null) && (player.getParty() == world.getParameters().getObject("PartyInside", Party.class)))
+					if ((party != null) && (party == world.getParameters().getObject("PartyInside", Party.class)))
 					{
 						teleportPlayer(player, ROOM_ENTER_POINTS[world.getParameters().getInt("currentRoom", 0)], world.getInstanceId(), false);
 					}

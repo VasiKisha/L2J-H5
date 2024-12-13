@@ -1,35 +1,49 @@
+/*
+ * Copyright (c) 2013 L2jMobius
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+ */
 package org.l2jmobius.commons.network.base;
 
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
  * Abstract class for writable packets backed by a byte array, with a maximum raw data size of 65533 bytes.<br>
  * Provides methods to write various types of data to the packet.
- * @author Pantelis Andrianakis
+ * @author Mobius
  * @since October 29th 2020
  */
 public abstract class BaseWritablePacket
 {
+	private static final Map<Class<?>, Integer> MAXIMUM_PACKET_SIZE = new ConcurrentHashMap<>();
+	
+	private final int _initialSize = MAXIMUM_PACKET_SIZE.getOrDefault(getClass(), 8);
+	
 	private byte[] _data;
 	private byte[] _sendableBytes;
 	private int _position = 2; // Allocate space for size (max length 65535 - size header).
 	
-	/**
-	 * Construct a WritablePacket with an initial data size of 32 bytes.
-	 */
 	protected BaseWritablePacket()
 	{
-		this(32);
-	}
-	
-	/**
-	 * Construct a WritablePacket with a given initial data size.
-	 * @param initialSize
-	 */
-	protected BaseWritablePacket(int initialSize)
-	{
-		_data = new byte[initialSize];
+		_data = new byte[_initialSize];
 	}
 	
 	public void write(byte value)
@@ -238,6 +252,12 @@ public abstract class BaseWritablePacket
 			if (_position == 2)
 			{
 				write();
+				
+				// Update maximum packet size if needed.
+				if (_position > _initialSize)
+				{
+					MAXIMUM_PACKET_SIZE.put(getClass(), Math.min(_position, 65535));
+				}
 			}
 			
 			// Check if data was written.

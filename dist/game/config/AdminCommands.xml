@@ -35,6 +35,9 @@
 	<admin command="admin_announce_screen" accessLevel="100" />
 	<admin command="admin_announces" accessLevel="30" />
 
+	<!-- ADMIN AUGMENT -->
+	<admin command="admin_augment" accessLevel="100" confirmDlg="true" />
+
 	<!-- ADMIN BAN -->
 	<admin command="admin_punishment" accessLevel="30" />
 	<admin command="admin_punishment_add" accessLevel="30" confirmDlg="true" />
@@ -44,10 +47,14 @@
 	<admin command="admin_bbs" accessLevel="100" />
 
 	<!-- ADMIN BUFFS -->
+	<admin command="admin_buff" accessLevel="100" />
 	<admin command="admin_getbuffs" accessLevel="100" />
 	<admin command="admin_getbuffs_ps" accessLevel="100" />
 	<admin command="admin_stopbuff" accessLevel="100" />
 	<admin command="admin_stopallbuffs" accessLevel="100" confirmDlg="true" />
+	<admin command="admin_viewblockedeffects" accessLevel="100" />
+	<admin command="admin_viewskilleffects" accessLevel="100" />
+	<admin command="admin_viewskilleffects_ps" accessLevel="100" />
 	<admin command="admin_areacancel" accessLevel="100" />
 	<admin command="admin_removereuse" accessLevel="100" />
 	<admin command="admin_switch_gm_buffs" accessLevel="100" />
@@ -508,6 +515,9 @@
 	<admin command="admin_show_skills" accessLevel="100" />
 	<admin command="admin_remove_skills" accessLevel="100" />
 	<admin command="admin_skill_list" accessLevel="100" />
+	<admin command="admin_skill_race" accessLevel="100" />
+	<admin command="admin_skill_class" accessLevel="100" />
+	<admin command="admin_skill_add_list" accessLevel="100" />
 	<admin command="admin_skill_index" accessLevel="100" />
 	<admin command="admin_add_skill" accessLevel="100" />
 	<admin command="admin_remove_skill" accessLevel="100" />

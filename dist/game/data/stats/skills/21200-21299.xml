@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
-	<skill id="21200" levels="1" name="Age of the Three Kingdoms">
+	<skill id="21200" levels="1" name="Age of Three Kingdoms">
 		<!-- For 20 minutes, increases Speed by 33, Atk. Spd. by 33%, M. Atk. by 65%, Casting Spd. by 30%, physical P. Atk., and P. Def. by 15%. Reuse Delay 2 hour. Consumes 1 Proof of Friendship upon skill use. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="1200" />
@@ -566,7 +566,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21246" levels="1" name="Rudolph's Energy">
+	<skill id="21246" levels="1" name="Rudolph's Vitality">
 		<!-- For 10 minute(s), Vitality is replenished when Exp. is acquired through hunting. Reuse time is 30 minutes. -->
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
@@ -619,7 +619,7 @@
 		<set name="magicLevel" val="84" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="15" />
@@ -635,7 +635,7 @@
 		<set name="magicLevel" val="84" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="15" />
@@ -651,7 +651,7 @@
 		<set name="magicLevel" val="84" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="15" />
@@ -667,7 +667,7 @@
 		<set name="magicLevel" val="84" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="15" />
@@ -683,7 +683,7 @@
 		<set name="magicLevel" val="84" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="15" />
@@ -699,7 +699,7 @@
 		<set name="magicLevel" val="84" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="100" />
 				<param chance="30" />
@@ -739,17 +739,17 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="21261" levels="1" name="Bad Bunny's Necklace">
+	<skill id="21261" levels="1" name="Angry Bunny Necklace">
 		<!-- Its effects are MP+250, HP+500, CP+1035, increased P. Atk., increased M. Atk., increase M. Crit Rate, and increased Crit Atk. power. -->
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="21262" levels="1" name="Bad Bunny's Earring">
+	<skill id="21262" levels="1" name="Angry Bunny Earring">
 		<!-- Its effects are HP+250, Vampiric Rage effect, increased accuracy, decreased re-use time for magic skills, and decreased MP consumption for magic skills. When two identical earrings are equipped, only one effect is applied. -->
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="21263" levels="1" name="Bad Bunny's Ring">
+	<skill id="21263" levels="1" name="Angry Bunny Ring">
 		<!-- Its effects are increased Atk. Spd., and increased Casting Spd. When two identical rings are equipped, only one effect is applied. -->
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="5800" levels="1" name="Self-Destruction">
 		<set name="effectPoint" val="-676" />
@@ -264,7 +264,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5827" levels="6" name="Fireball">
@@ -289,7 +289,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5828" levels="6" name="Unholy Flare">
@@ -313,7 +313,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5829" levels="6" name="Fire Flare">
@@ -337,7 +337,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5830" levels="1" name="Polearm Thrust">
@@ -352,7 +352,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5831" levels="1" name="Polearm Swing">
@@ -369,7 +369,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="70" />
 			</effect>
@@ -501,7 +501,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5838" levels="1" name="Throwing Javelin">
@@ -516,7 +516,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5839" levels="1" name="Breath">
@@ -535,7 +535,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5840" levels="1" name="Fire Breath">
@@ -556,7 +556,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5841" levels="1" name="Multi Defense">
@@ -594,7 +594,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5843" levels="1" name="Terror">
@@ -637,7 +637,7 @@
 		<set name="power" val="834" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5845" levels="12" name="NPC Trigger Bleed">
@@ -646,7 +646,7 @@
 		<set name="magicLevel" val="#magicLevel" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="20" />
@@ -657,7 +657,18 @@
 		</for>
 	</skill>
 	<skill id="5846" levels="12" name="Bleed">
-		<!-- HP is decreased momentarily from bleeding. Effect 2. -->
+		<!-- Level 1: HP is decreased momentarily from bleeding. Effect 2. -->
+		<!-- Level 2: HP is decreased momentarily from bleeding. Effect 3. -->
+		<!-- Level 3: HP is decreased momentarily from bleeding. Effect 4. -->
+		<!-- Level 4: HP is decreased momentarily from bleeding. Effect 5. -->
+		<!-- Level 5: HP is decreased momentarily from bleeding. Effect 6. -->
+		<!-- Level 6: HP is decreased momentarily from bleeding. Effect 7. -->
+		<!-- Level 7: HP is decreased momentarily from bleeding. Effect 8. -->
+		<!-- Level 8: HP is decreased momentarily from bleeding. Effect 8. -->
+		<!-- Level 9: HP is decreased momentarily from bleeding. Effect 9. -->
+		<!-- Level 10: HP is decreased momentarily from bleeding. Effect 9. -->
+		<!-- Level 11: HP is decreased momentarily from bleeding. Effect 10. -->
+		<!-- Level 12: HP is decreased momentarily from bleeding. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#dot">18 25 34 44 54 62 67 67 70 70 71 71</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -960,7 +971,16 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="5866" levels="10" name="Soul Worm">
-		<!-- Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 1: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 2: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 3: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 4: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 5: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 6: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 7: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 8: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 9: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 10: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
 		<table name="#abnormalLevels">8 8 8 9 9 9 9 10 10 10</table>
 		<table name="#magicLevel">76 77 78 79 80 81 82 83 84 85</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -980,7 +1000,16 @@
 		<set name="trait" val="POISON" />
 	</skill>
 	<skill id="5867" levels="10" name="Soul Worm">
-		<!-- Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 1: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 2: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 3: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 4: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 5: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 6: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 7: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 8: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 9: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 10: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
 		<table name="#abnormalLevels">8 8 8 9 9 9 9 10 10 10</table>
 		<table name="#magicLevel">76 77 78 79 80 81 82 83 84 85</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -1003,7 +1032,16 @@
 		<set name="trait" val="POISON" />
 	</skill>
 	<skill id="5868" levels="10" name="Soul Worm">
-		<!-- Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 1: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 2: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 3: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 4: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 5: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 6: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 7: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 8: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 9: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 10: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
 		<table name="#abnormalLevels">8 8 8 9 9 9 9 10 10 10</table>
 		<table name="#magicLevel">76 77 78 79 80 81 82 83 84 85</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -1024,7 +1062,16 @@
 		<set name="trait" val="POISON" />
 	</skill>
 	<skill id="5869" levels="10" name="Soul Worm">
-		<!-- Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 1: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 2: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 3: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 4: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 5: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 6: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 7: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 8: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 9: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 10: Mental blow is received. Current MP, Max MP, and MP recovery bonus are decreased. Inflicted with poison and HP is temporarily decreased. Effect 10. -->
 		<table name="#abnormalLevels">8 8 8 9 9 9 9 10 10 10</table>
 		<table name="#magicLevel">76 77 78 79 80 81 82 83 84 85</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -1045,7 +1092,16 @@
 		<set name="trait" val="POISON" />
 	</skill>
 	<skill id="5870" levels="10" name="Flash Worm">
-		<!-- Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 1: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 2: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 3: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 4: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 5: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 6: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 7: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 8: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 9: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 10: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 10. -->
 		<table name="#abnormalLevels">8 8 8 9 9 9 9 10 10 10</table>
 		<table name="#magicLevel">76 77 78 79 80 81 82 83 84 85</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -1064,7 +1120,16 @@
 		<set name="trait" val="BLEED" />
 	</skill>
 	<skill id="5871" levels="10" name="Flash Worm">
-		<!-- Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 1: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 2: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 3: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 4: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 5: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 6: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 7: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 8: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 9: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 10: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 10. -->
 		<table name="#abnormalLevels">8 8 8 9 9 9 9 10 10 10</table>
 		<table name="#magicLevel">76 77 78 79 80 81 82 83 84 85</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -1085,7 +1150,16 @@
 		<set name="trait" val="BLEED" />
 	</skill>
 	<skill id="5872" levels="10" name="Flash Worm">
-		<!-- Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 1: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 2: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 3: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 8. -->
+		<!-- Level 4: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 5: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 6: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 7: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 9. -->
+		<!-- Level 8: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 9: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 10. -->
+		<!-- Level 10: Physical blow is received. P. Def., Max HP, and HP regeneration bonus are decreased. Inflicted with bleed and HP is temporarily decreased. Effect 10. -->
 		<table name="#abnormalLevels">8 8 8 9 9 9 9 10 10 10</table>
 		<table name="#magicLevel">76 77 78 79 80 81 82 83 84 85</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -1293,7 +1367,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1351,7 +1425,7 @@
 		<set name="soulMaxConsumeCount" val="1" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Disarm" />
 		</for>
 	</skill>
@@ -1383,7 +1457,7 @@
 		<set name="targetType" val="FRONT_AREA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1624,7 +1698,7 @@
 		<set name="operateType" val="A3" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="5897" levels="1" name="Spike of Anger">
+	<skill id="5897" levels="1" name="Spike of Anchor">
 		<!-- P. Def., M. Def., Evasion, and Speed are decreased. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="10" />
@@ -1652,7 +1726,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="5898" levels="2" name="Blast of Anger">
+	<skill id="5898" levels="2" name="Blast of Anchor">
 		<!-- P. Def., M. Def., Evasion, and Speed are decreased. -->
 		<table name="#hitTime">2000 22940</table>
 		<table name="#mpConsume">140 150</table>
@@ -1698,7 +1772,7 @@
 		<set name="power" val="3000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 </list>

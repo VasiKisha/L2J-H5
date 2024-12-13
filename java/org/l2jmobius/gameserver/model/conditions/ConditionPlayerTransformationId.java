@@ -42,7 +42,7 @@ public class ConditionPlayerTransformationId extends Condition
 	@Override
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		return (player != null) && (_id == -1 ? player.isTransformed() : player.getTransformationId() == _id);
 	}
 }

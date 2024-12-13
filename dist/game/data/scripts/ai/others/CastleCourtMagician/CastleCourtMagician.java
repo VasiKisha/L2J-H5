@@ -18,6 +18,7 @@ package ai.others.CastleCourtMagician;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
 import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -125,7 +126,8 @@ public class CastleCourtMagician extends AbstractNpcAI
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
-		if ((player.getClan() == null) && (player.getClanId() != npc.getCastle().getOwnerId()))
+		final Clan clan = player.getClan();
+		if ((clan == null) || (player.getClanId() != npc.getCastle().getOwnerId()))
 		{
 			return "courtmagician-01.html";
 		}
@@ -267,7 +269,7 @@ public class CastleCourtMagician extends AbstractNpcAI
 			{
 				if (player.getClanId() == npc.getCastle().getOwnerId())
 				{
-					final Player clanLeader = player.getClan().getLeader().getPlayer();
+					final Player clanLeader = clan.getLeader().getPlayer();
 					if ((clanLeader != null) && clanLeader.isAffectedBySkill(CLAN_GATE))
 					{
 						if (CallPc.checkSummonTargetStatus(player, clanLeader)) // TODO: Custom one, retail does not check it but for sure lets check same conditions like when summon player by skill.

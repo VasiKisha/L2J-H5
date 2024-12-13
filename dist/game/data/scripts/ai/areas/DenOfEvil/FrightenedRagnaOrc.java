@@ -19,7 +19,6 @@ package ai.areas.DenOfEvil;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.holders.SkillHolder;
@@ -116,7 +115,7 @@ public class FrightenedRagnaOrc extends AbstractNpcAI
 						npc.doCast(SKILL.getSkill());
 						for (int i = 0; i < 10; i++)
 						{
-							((Attackable) npc).dropItem(player, Inventory.ADENA_ID, ADENA);
+							npc.asAttackable().dropItem(player, Inventory.ADENA_ID, ADENA);
 						}
 					}
 					else

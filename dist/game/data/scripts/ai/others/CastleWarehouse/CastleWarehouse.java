@@ -18,6 +18,7 @@ package ai.others.CastleWarehouse;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.clan.Clan;
 
 import ai.AbstractNpcAI;
 
@@ -70,18 +71,19 @@ public class CastleWarehouse extends AbstractNpcAI
 			}
 			case "Receive":
 			{
+				final Clan clan = player.getClan();
 				if (!npc.isMyLord(player))
 				{
 					htmltext = "warehouse-no.html";
 				}
-				else if (player.getClan().getBloodAllianceCount() == 0)
+				else if (clan.getBloodAllianceCount() == 0)
 				{
 					htmltext = "warehouse-05.html";
 				}
 				else
 				{
-					giveItems(player, BLOOD_ALLIANCE, player.getClan().getBloodAllianceCount());
-					player.getClan().resetBloodAllianceCount();
+					giveItems(player, BLOOD_ALLIANCE, clan.getBloodAllianceCount());
+					clan.resetBloodAllianceCount();
 					htmltext = "warehouse-06.html";
 				}
 				break;

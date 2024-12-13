@@ -66,7 +66,7 @@ public class SummonPet extends AbstractEffect
 			return;
 		}
 		
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if ((player.hasSummon() || player.isMounted()))
 		{
 			player.sendPacket(SystemMessageId.YOU_ALREADY_HAVE_A_PET);

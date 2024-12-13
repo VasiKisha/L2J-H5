@@ -92,7 +92,7 @@ public class FestivalMonster extends Monster
 			return;
 		}
 		
-		killingChar = (Player) lastAttacker;
+		killingChar = lastAttacker.asPlayer();
 		final Party associatedParty = killingChar.getParty();
 		if (associatedParty == null)
 		{

@@ -59,7 +59,7 @@ public class SoulEating extends AbstractEffect
 		// TODO: Verify logic.
 		if (playable.isPlayer() && (exp >= _expNeeded))
 		{
-			final Player player = playable.getActingPlayer();
+			final Player player = playable.asPlayer();
 			final int maxSouls = (int) player.calcStat(Stat.MAX_SOULS, 0, null, null);
 			if (player.getChargedSouls() >= maxSouls)
 			{
@@ -71,7 +71,7 @@ public class SoulEating extends AbstractEffect
 			
 			if ((player.getTarget() != null) && player.getTarget().isNpc())
 			{
-				final Npc npc = (Npc) playable.getTarget();
+				final Npc npc = playable.getTarget().asNpc();
 				player.broadcastPacket(new ExSpawnEmitter(player, npc), 500);
 			}
 		}

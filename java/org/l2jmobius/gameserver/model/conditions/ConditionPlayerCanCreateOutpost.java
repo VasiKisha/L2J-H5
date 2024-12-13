@@ -21,6 +21,7 @@ import org.l2jmobius.gameserver.instancemanager.FortManager;
 import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
@@ -49,8 +50,14 @@ public class ConditionPlayerCanCreateOutpost extends Condition
 			return !_value;
 		}
 		
-		final Player player = effector.getActingPlayer();
-		boolean canCreateOutpost = !player.isAlikeDead() && !player.isCursedWeaponEquipped() && (player.getClan() != null);
+		final Player player = effector.asPlayer();
+		final Clan clan = player.getClan();
+		boolean canCreateOutpost = true;
+		if (player.isAlikeDead() || player.isCursedWeaponEquipped() || (clan == null))
+		{
+			canCreateOutpost = false;
+		}
+		
 		final Castle castle = CastleManager.getInstance().getCastle(player);
 		final Fort fort = FortManager.getInstance().getFort(player);
 		if ((castle == null) && (fort == null))
@@ -73,12 +80,12 @@ public class ConditionPlayerCanCreateOutpost extends Condition
 			player.sendMessage("You must be a clan leader to construct an outpost or flag.");
 			canCreateOutpost = false;
 		}
-		else if (TerritoryWarManager.getInstance().getHQForClan(player.getClan()) != null)
+		else if (TerritoryWarManager.getInstance().getHQForClan(clan) != null)
 		{
 			player.sendPacket(SystemMessageId.AN_OUTPOST_OR_HEADQUARTERS_CANNOT_BE_BUILT_BECAUSE_ONE_ALREADY_EXISTS);
 			canCreateOutpost = false;
 		}
-		else if (TerritoryWarManager.getInstance().getFlagForClan(player.getClan()) != null)
+		else if (TerritoryWarManager.getInstance().getFlagForClan(clan) != null)
 		{
 			player.sendPacket(SystemMessageId.A_FLAG_IS_ALREADY_BEING_DISPLAYED_ANOTHER_FLAG_CANNOT_BE_DISPLAYED);
 			canCreateOutpost = false;

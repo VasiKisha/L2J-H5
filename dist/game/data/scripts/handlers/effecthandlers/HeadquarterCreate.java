@@ -50,7 +50,7 @@ public class HeadquarterCreate extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if (!player.isClanLeader())
 		{
 			return;

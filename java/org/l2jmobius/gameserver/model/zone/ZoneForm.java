@@ -57,4 +57,6 @@ public abstract class ZoneForm
 	}
 	
 	public abstract Location getRandomPoint();
+	
+	public abstract Location getCenterPoint();
 }

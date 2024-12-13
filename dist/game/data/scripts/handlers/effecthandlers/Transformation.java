@@ -53,6 +53,6 @@ public class Transformation extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		TransformData.getInstance().transformPlayer(_id, effected.getActingPlayer());
+		TransformData.getInstance().transformPlayer(_id, effected.asPlayer());
 	}
 }

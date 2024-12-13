@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="3100" levels="10" name="Item Skill: Sleep">
 		<!-- Chance: Momentarily throws the target into a state of sleep during magic use. Additional chance to be put into sleep greatly decreases while the effect lasts. -->
@@ -114,7 +114,16 @@
 		</for>
 	</skill>
 	<skill id="3104" levels="10" name="Item Skill: Poison">
-		<!-- Chance: Momentarily throws the target into a poisoned state during magic use. Effect 5. -->
+		<!-- Level 1: Chance: Momentarily throws the target into a poisoned state during magic use. Effect 5. -->
+		<!-- Level 2: Chance: Momentarily throws the target into a poisoned state during magic use. Effect 5. -->
+		<!-- Level 3: Chance: Momentarily throws the target into a poisoned state during magic use. Effect 6. -->
+		<!-- Level 4: Chance: Momentarily throws the target into a poisoned state during magic use. Effect 6. -->
+		<!-- Level 5: Chance: Momentarily throws the target into a poisoned state during magic use. Effect 6. -->
+		<!-- Level 6: Chance: Momentarily throws the target into a poisoned state during magic use. Effect 7. -->
+		<!-- Level 7: Chance: Momentarily throws the target into a poisoned state during magic use. Effect 7. -->
+		<!-- Level 8: Chance: Momentarily throws the target into a poisoned state during magic use. Effect 7. -->
+		<!-- Level 9: Chance: Momentarily throws the target into a poisoned state during magic use. Effect 8. -->
+		<!-- Level 10: Chance: Momentarily throws the target into a poisoned state during magic use. Effect 8. -->
 		<table name="#abnormalLevels">5 5 6 6 6 7 7 7 8 8</table>
 		<table name="#dot">41 41 50 50 50 58 58 58 63 63</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
@@ -143,7 +152,16 @@
 		</for>
 	</skill>
 	<skill id="3105" levels="10" name="Item Skill: Bleed">
-		<!-- Chance: Momentarily throws the target into a bleeding state during magic use. Effect 5. -->
+		<!-- Level 1: Chance: Momentarily throws the target into a bleeding state during magic use. Effect 5. -->
+		<!-- Level 2: Chance: Momentarily throws the target into a bleeding state during magic use. Effect 5. -->
+		<!-- Level 3: Chance: Momentarily throws the target into a bleeding state during magic use. Effect 6. -->
+		<!-- Level 4: Chance: Momentarily throws the target into a bleeding state during magic use. Effect 6. -->
+		<!-- Level 5: Chance: Momentarily throws the target into a bleeding state during magic use. Effect 6. -->
+		<!-- Level 6: Chance: Momentarily throws the target into a bleeding state during magic use. Effect 7. -->
+		<!-- Level 7: Chance: Momentarily throws the target into a bleeding state during magic use. Effect 7. -->
+		<!-- Level 8: Chance: Momentarily throws the target into a bleeding state during magic use. Effect 7. -->
+		<!-- Level 9: Chance: Momentarily throws the target into a bleeding state during magic use. Effect 8. -->
+		<!-- Level 10: Chance: Momentarily throws the target into a bleeding state during magic use. Effect 8. -->
 		<table name="#abnormalLevels">5 5 6 6 6 7 7 7 8 8</table>
 		<table name="#dot">44 44 54 54 54 62 62 62 67 67</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
@@ -224,7 +242,16 @@
 		</for>
 	</skill>
 	<skill id="3108" levels="10" name="Item Skill: Aggression Up">
-		<!-- Chance: Increases a target's urge to attack during a critical attack. Power 438. -->
+		<!-- Level 1: Chance: Increases a target's urge to attack during a critical attack. Power 438. -->
+		<!-- Level 2: Chance: Increases a target's urge to attack during a critical attack. Power 467. -->
+		<!-- Level 3: Chance: Increases a target's urge to attack during a critical attack. Power 495. -->
+		<!-- Level 4: Chance: Increases a target's urge to attack during a critical attack. Power 523. -->
+		<!-- Level 5: Chance: Increases a target's urge to attack during a critical attack. Power 549. -->
+		<!-- Level 6: Chance: Increases a target's urge to attack during a critical attack. Power 574. -->
+		<!-- Level 7: Chance: Increases a target's urge to attack during a critical attack. Power 597. -->
+		<!-- Level 8: Chance: Increases a target's urge to attack during a critical attack. Power 617. -->
+		<!-- Level 9: Chance: Increases a target's urge to attack during a critical attack. Power 635. -->
+		<!-- Level 10: Chance: Increases a target's urge to attack during a critical attack. Power 659. -->
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<set name="castRange" val="40" />
 		<set name="effectPoint" val="-1" />
@@ -242,7 +269,16 @@
 		</for>
 	</skill>
 	<skill id="3109" levels="10" name="Item Skill: Aggression Down">
-		<!-- Chance: Decreases a target's urge to attack during a critical attack. Power 219. -->
+		<!-- Level 1: Chance: Decreases a target's urge to attack during a critical attack. Power 219. -->
+		<!-- Level 2: Chance: Decreases a target's urge to attack during a critical attack. Power 234. -->
+		<!-- Level 3: Chance: Decreases a target's urge to attack during a critical attack. Power 248. -->
+		<!-- Level 4: Chance: Decreases a target's urge to attack during a critical attack. Power 262. -->
+		<!-- Level 5: Chance: Decreases a target's urge to attack during a critical attack. Power 275. -->
+		<!-- Level 6: Chance: Decreases a target's urge to attack during a critical attack. Power 287. -->
+		<!-- Level 7: Chance: Decreases a target's urge to attack during a critical attack. Power 299. -->
+		<!-- Level 8: Chance: Decreases a target's urge to attack during a critical attack. Power 309. -->
+		<!-- Level 9: Chance: Decreases a target's urge to attack during a critical attack. Power 318. -->
+		<!-- Level 10: Chance: Decreases a target's urge to attack during a critical attack. Power 330. -->
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#power">-219 -234 -248 -262 -275 -287 -299 -309 -318 -330</table>
 		<set name="castRange" val="40" />
@@ -261,7 +297,16 @@
 		</for>
 	</skill>
 	<skill id="3110" levels="10" name="Item Skill: Mana Burn">
-		<!-- Chance: Burns up a target's MP during a critical attack. Power 49. -->
+		<!-- Level 1: Chance: Burns up a target's MP during a critical attack. Power 49. -->
+		<!-- Level 2: Chance: Burns up a target's MP during a critical attack. Power 53. -->
+		<!-- Level 3: Chance: Burns up a target's MP during a critical attack. Power 57. -->
+		<!-- Level 4: Chance: Burns up a target's MP during a critical attack. Power 61. -->
+		<!-- Level 5: Chance: Burns up a target's MP during a critical attack. Power 66. -->
+		<!-- Level 6: Chance: Burns up a target's MP during a critical attack. Power 70. -->
+		<!-- Level 7: Chance: Burns up a target's MP during a critical attack. Power 74. -->
+		<!-- Level 8: Chance: Burns up a target's MP during a critical attack. Power 78. -->
+		<!-- Level 9: Chance: Burns up a target's MP during a critical attack. Power 82. -->
+		<!-- Level 10: Chance: Burns up a target's MP during a critical attack. Power 88. -->
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#power">49 53 57 61 66 70 74 78 82 88</table>
 		<set name="castRange" val="40" />
@@ -274,7 +319,7 @@
 		<set name="reuseDelay" val="30000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttackMp" />
+			<effect name="MagicalDamageMp" />
 		</for>
 	</skill>
 	<skill id="3111" levels="10" name="Item Skill: Slow">
@@ -486,7 +531,16 @@
 		</for>
 	</skill>
 	<skill id="3119" levels="10" name="Item Skill: Poison">
-		<!-- Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 5. -->
+		<!-- Level 1: Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 5. -->
+		<!-- Level 2: Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 5. -->
+		<!-- Level 3: Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 6. -->
+		<!-- Level 4: Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 6. -->
+		<!-- Level 5: Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 6. -->
+		<!-- Level 6: Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 7. -->
+		<!-- Level 7: Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 7. -->
+		<!-- Level 8: Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 7. -->
+		<!-- Level 9: Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 8. -->
+		<!-- Level 10: Chance: Momentarily throws the target into a poisoned state during a critical attack. Effect 8. -->
 		<table name="#abnormalLevels">5 5 6 6 6 7 7 7 8 8</table>
 		<table name="#dot">41 41 50 50 50 58 58 58 63 63</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
@@ -514,7 +568,16 @@
 		</for>
 	</skill>
 	<skill id="3120" levels="10" name="Item Skill: Bleed">
-		<!-- Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 5. -->
+		<!-- Level 1: Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 5. -->
+		<!-- Level 2: Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 5. -->
+		<!-- Level 3: Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 6. -->
+		<!-- Level 4: Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 6. -->
+		<!-- Level 5: Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 6. -->
+		<!-- Level 6: Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 7. -->
+		<!-- Level 7: Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 7. -->
+		<!-- Level 8: Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 7. -->
+		<!-- Level 9: Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 8. -->
+		<!-- Level 10: Chance: Momentarily throws the target into a bleeding state during a critical attack. Effect 8. -->
 		<table name="#abnormalLevels">5 5 6 6 6 7 7 7 8 8</table>
 		<table name="#dot">44 44 54 54 54 62 62 62 67 67</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
@@ -592,7 +655,16 @@
 		</for>
 	</skill>
 	<skill id="3123" levels="10" name="Item Skill: Heal">
-		<!-- Active: Immediately recovers your HP. Power 308. -->
+		<!-- Level 1: Active: Immediately recovers your HP. Power 308. -->
+		<!-- Level 2: Active: Immediately recovers your HP. Power 337. -->
+		<!-- Level 3: Active: Immediately recovers your HP. Power 365. -->
+		<!-- Level 4: Active: Immediately recovers your HP. Power 393. -->
+		<!-- Level 5: Active: Immediately recovers your HP. Power 421. -->
+		<!-- Level 6: Active: Immediately recovers your HP. Power 448. -->
+		<!-- Level 7: Active: Immediately recovers your HP. Power 474. -->
+		<!-- Level 8: Active: Immediately recovers your HP. Power 498. -->
+		<!-- Level 9: Active: Immediately recovers your HP. Power 520. -->
+		<!-- Level 10: Active: Immediately recovers your HP. Power 552. -->
 		<table name="#amount">308 337 365 393 421 448 474 498 520 552</table>
 		<table name="#effectPoints">440 481 521 562 602 640 677 711 743 789</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
@@ -616,7 +688,16 @@
 		</for>
 	</skill>
 	<skill id="3124" levels="10" name="Item Skill: Blessed Body">
-		<!-- Active: Increases Max HP by 30 temporarily. -->
+		<!-- Level 1: Active: Increases Max HP by 30 temporarily. -->
+		<!-- Level 2: Active: Increases Max HP by 60 temporarily. -->
+		<!-- Level 3: Active: Increases Max HP by 90 temporarily. -->
+		<!-- Level 4: Active: Increases Max HP by 120 temporarily. -->
+		<!-- Level 5: Active: Increases Max HP by 150 temporarily. -->
+		<!-- Level 6: Active: Increases Max HP by 180 temporarily. -->
+		<!-- Level 7: Active: Increases Max HP by 210 temporarily. -->
+		<!-- Level 8: Active: Increases Max HP by 240 temporarily. -->
+		<!-- Level 9: Active: Increases Max HP by 270 temporarily. -->
+		<!-- Level 10: Active: Increases Max HP by 300 temporarily. -->
 		<table name="#effectPoints">440 481 521 562 602 640 677 711 743 789</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#maxHp">30 60 90 120 150 180 210 240 270 300</table>
@@ -695,7 +776,16 @@
 		</for>
 	</skill>
 	<skill id="3127" levels="10" name="Item Skill: Recharge">
-		<!-- Active: Regenerates MP. Power 41. -->
+		<!-- Level 1: Active: Regenerates MP. Power 41. -->
+		<!-- Level 2: Active: Regenerates MP. Power 44. -->
+		<!-- Level 3: Active: Regenerates MP. Power 47. -->
+		<!-- Level 4: Active: Regenerates MP. Power 50. -->
+		<!-- Level 5: Active: Regenerates MP. Power 53. -->
+		<!-- Level 6: Active: Regenerates MP. Power 57. -->
+		<!-- Level 7: Active: Regenerates MP. Power 59. -->
+		<!-- Level 8: Active: Regenerates MP. Power 62. -->
+		<!-- Level 9: Active: Regenerates MP. Power 65. -->
+		<!-- Level 10: Active: Regenerates MP. Power 69. -->
 		<table name="#amount">41 44 47 50 53 57 59 62 65 69</table>
 		<table name="#effectPoints">440 481 521 562 602 640 677 711 743 789</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
@@ -720,7 +810,16 @@
 		</for>
 	</skill>
 	<skill id="3128" levels="10" name="Item Skill: Blessed Soul">
-		<!-- Active: Increases Max MP by 20 temporarily. -->
+		<!-- Level 1: Active: Increases Max MP by 20 temporarily. -->
+		<!-- Level 2: Active: Increases Max MP by 40 temporarily. -->
+		<!-- Level 3: Active: Increases Max MP by 60 temporarily. -->
+		<!-- Level 4: Active: Increases Max MP by 80 temporarily. -->
+		<!-- Level 5: Active: Increases Max MP by 100 temporarily. -->
+		<!-- Level 6: Active: Increases Max MP by 120 temporarily. -->
+		<!-- Level 7: Active: Increases Max MP by 140 temporarily. -->
+		<!-- Level 8: Active: Increases Max MP by 160 temporarily. -->
+		<!-- Level 9: Active: Increases Max MP by 180 temporarily. -->
+		<!-- Level 10: Active: Increases Max MP by 200 temporarily. -->
 		<table name="#effectPoints">440 481 521 562 602 640 677 711 743 789</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#maxMp">20 40 60 80 100 120 140 160 180 200</table>
@@ -772,7 +871,16 @@
 		</for>
 	</skill>
 	<skill id="3130" levels="10" name="Item Skill: Ritual">
-		<!-- Active: Regenerates CP. Power 264. -->
+		<!-- Level 1: Active: Regenerates CP. Power 264. -->
+		<!-- Level 2: Active: Regenerates CP. Power 289. -->
+		<!-- Level 3: Active: Regenerates CP. Power 313. -->
+		<!-- Level 4: Active: Regenerates CP. Power 337. -->
+		<!-- Level 5: Active: Regenerates CP. Power 361. -->
+		<!-- Level 6: Active: Regenerates CP. Power 384. -->
+		<!-- Level 7: Active: Regenerates CP. Power 406. -->
+		<!-- Level 8: Active: Regenerates CP. Power 427. -->
+		<!-- Level 9: Active: Regenerates CP. Power 446. -->
+		<!-- Level 10: Active: Regenerates CP. Power 473. -->
 		<table name="#amount">264 289 313 337 361 384 406 427 446 473</table>
 		<table name="#effectPoints">440 481 521 562 602 640 677 711 743 789</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
@@ -795,7 +903,16 @@
 		</for>
 	</skill>
 	<skill id="3131" levels="10" name="Item Skill: Cheer">
-		<!-- Active: Increases Max CP by 30 temporarily. -->
+		<!-- Level 1: Active: Increases Max CP by 30 temporarily. -->
+		<!-- Level 2: Active: Increases Max CP by 60 temporarily. -->
+		<!-- Level 3: Active: Increases Max CP by 90 temporarily. -->
+		<!-- Level 4: Active: Increases Max CP by 120 temporarily. -->
+		<!-- Level 5: Active: Increases Max CP by 150 temporarily. -->
+		<!-- Level 6: Active: Increases Max CP by 180 temporarily. -->
+		<!-- Level 7: Active: Increases Max CP by 210 temporarily. -->
+		<!-- Level 8: Active: Increases Max CP by 240 temporarily. -->
+		<!-- Level 9: Active: Increases Max CP by 270 temporarily. -->
+		<!-- Level 10: Active: Increases Max CP by 300 temporarily. -->
 		<table name="#effectPoints">440 481 521 562 602 640 677 711 743 789</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#maxCp">30 60 90 120 150 180 210 240 270 300</table>
@@ -1266,7 +1383,16 @@
 		</for>
 	</skill>
 	<skill id="3149" levels="10" name="Item Skill: Aggression">
-		<!-- Active: Increases the target's urge to attack. Power 438. -->
+		<!-- Level 1: Active: Increases the target's urge to attack. Power 438. -->
+		<!-- Level 2: Active: Increases the target's urge to attack. Power 467. -->
+		<!-- Level 3: Active: Increases the target's urge to attack. Power 495. -->
+		<!-- Level 4: Active: Increases the target's urge to attack. Power 523. -->
+		<!-- Level 5: Active: Increases the target's urge to attack. Power 549. -->
+		<!-- Level 6: Active: Increases the target's urge to attack. Power 574. -->
+		<!-- Level 7: Active: Increases the target's urge to attack. Power 597. -->
+		<!-- Level 8: Active: Increases the target's urge to attack. Power 617. -->
+		<!-- Level 9: Active: Increases the target's urge to attack. Power 635. -->
+		<!-- Level 10: Active: Increases the target's urge to attack. Power 659. -->
 		<table name="#effectPoints">-438 -467 -495 -523 -549 -574 -597 -617 -635 -659</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">21 22 24 25 27 29 30 31 33 35</table>
@@ -1289,7 +1415,16 @@
 		</for>
 	</skill>
 	<skill id="3150" levels="10" name="Item Skill: Charm">
-		<!-- Active: Decreases a target's urge to attack. Power 219. -->
+		<!-- Level 1: Active: Decreases a target's urge to attack. Power 219. -->
+		<!-- Level 2: Active: Decreases a target's urge to attack. Power 234. -->
+		<!-- Level 3: Active: Decreases a target's urge to attack. Power 248. -->
+		<!-- Level 4: Active: Decreases a target's urge to attack. Power 262. -->
+		<!-- Level 5: Active: Decreases a target's urge to attack. Power 275. -->
+		<!-- Level 6: Active: Decreases a target's urge to attack. Power 287. -->
+		<!-- Level 7: Active: Decreases a target's urge to attack. Power 299. -->
+		<!-- Level 8: Active: Decreases a target's urge to attack. Power 309. -->
+		<!-- Level 9: Active: Decreases a target's urge to attack. Power 318. -->
+		<!-- Level 10: Active: Decreases a target's urge to attack. Power 330. -->
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">38 42 44 47 51 52 55 58 61 65</table>
 		<table name="#mpInitialConsume">10 11 11 12 13 13 14 15 16 17</table>
@@ -1357,7 +1492,16 @@
 		</for>
 	</skill>
 	<skill id="3153" levels="10" name="Item Skill: Vampiric Touch">
-		<!-- Active: Absorbs HP. Power 49. -->
+		<!-- Level 1: Active: Absorbs HP. Power 49. -->
+		<!-- Level 2: Active: Absorbs HP. Power 53. -->
+		<!-- Level 3: Active: Absorbs HP. Power 57. -->
+		<!-- Level 4: Active: Absorbs HP. Power 61. -->
+		<!-- Level 5: Active: Absorbs HP. Power 66. -->
+		<!-- Level 6: Active: Absorbs HP. Power 70. -->
+		<!-- Level 7: Active: Absorbs HP. Power 74. -->
+		<!-- Level 8: Active: Absorbs HP. Power 78. -->
+		<!-- Level 9: Active: Absorbs HP. Power 82. -->
+		<!-- Level 10: Active: Absorbs HP. Power 88. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">59 63 68 72 77 81 85 89 93 99</table>
@@ -1386,7 +1530,16 @@
 		</for>
 	</skill>
 	<skill id="3154" levels="10" name="Item Skill: Mana Burn">
-		<!-- Active: Burns up the enemy's MP. Power 68. -->
+		<!-- Level 1: Active: Burns up the enemy's MP. Power 68. -->
+		<!-- Level 2: Active: Burns up the enemy's MP. Power 73. -->
+		<!-- Level 3: Active: Burns up the enemy's MP. Power 79. -->
+		<!-- Level 4: Active: Burns up the enemy's MP. Power 84. -->
+		<!-- Level 5: Active: Burns up the enemy's MP. Power 90. -->
+		<!-- Level 6: Active: Burns up the enemy's MP. Power 96. -->
+		<!-- Level 7: Active: Burns up the enemy's MP. Power 101. -->
+		<!-- Level 8: Active: Burns up the enemy's MP. Power 107. -->
+		<!-- Level 9: Active: Burns up the enemy's MP. Power 112. -->
+		<!-- Level 10: Active: Burns up the enemy's MP. Power 120. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">49 53 56 60 64 68 71 75 78 83</table>
@@ -1407,11 +1560,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttackMp" />
+			<effect name="MagicalDamageMp" />
 		</for>
 	</skill>
 	<skill id="3155" levels="10" name="Item Skill: Unlock">
-		<!-- Active: Opens level 1 doors with 100% probability, level 2 doors with 30% probability, and chests below level 36 with 90% probability. Requires 4 Keys of a Thief. -->
+		<!-- Level 1: Active: Opens level 1 doors with 100% probability, level 2 doors with 30% probability, and chests below level 36 with 90% probability. Requires 4 Keys of a Thief. -->
+		<!-- Level 2: Active: Opens level 1 doors with 100% probability, level 2 doors with 75% probability, and chests below level 40 with 90% probability. Requires 5 Keys of a Thief. -->
+		<!-- Level 3: Active: Opens doors below level 2 with 100% probability, level 3 doors with 5% probability, and chests below level 44 with 90% probability. Requires 6 Keys of a Thief. -->
+		<!-- Level 4: Active: Opens doors below level 2 with 100% probability, level 3 doors with 30% probability, and chests below level 48 with 90% probability. Requires 7 Keys of a Thief. -->
+		<!-- Level 5: Active: Opens doors below level 2 with 100% probability, level 3 doors with 75% probability, and chests below level 52 with 90% probability. Requires 8 Keys of a Thief. -->
+		<!-- Level 6: Active: Opens level 3 doors with 100% probability and chests below level 56 with 90% probability. Requires 10 Keys of a Thief. -->
+		<!-- Level 7: Active: Opens level 3 doors with 100% probability and chests below level 60 with 90% probability. Requires 11 Keys of a Thief. -->
+		<!-- Level 8: Active: Opens level 3 doors with 100% probability and chests below level 64 with 90% probability. Requires 13 Keys of a Thief. -->
+		<!-- Level 9: Active: Opens level 3 doors with 100% probability and chests below level 68 with 90% probability. Requires 15 Keys of a Thief. -->
+		<!-- Level 10: Active: Opens level 3 doors with 100% probability and chests below level 72 with 90% probability. Requires 17 Keys of a Thief. -->
 		<table name="#effectPoints">-5 -6 -7 -8 -9 -10 -11 -12 -13 -14</table>
 		<table name="#itemConsumeCount">4 5 6 7 8 10 11 13 15 17</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
@@ -1506,7 +1668,15 @@
 		</for>
 	</skill>
 	<skill id="3160" levels="9" name="Item Skill: Resurrection">
-		<!-- Active: Resurrects a corpse. -->
+		<!-- Level 1: Active: Resurrects a corpse. -->
+		<!-- Level 2: Active: Resurrects a corpse. Restores about 20% of additional Exp. -->
+		<!-- Level 3: Active: Resurrects a corpse. Restores about 30% of additional Exp. -->
+		<!-- Level 4: Active: Resurrects a corpse. Restores about 40% of additional Exp. -->
+		<!-- Level 5: Active: Resurrects a corpse. Restores about 50% of additional Exp. -->
+		<!-- Level 6: Active: Resurrects a corpse. Restores about 55% of additional Exp. -->
+		<!-- Level 7: Active: Resurrects a corpse. Restores about 60% of additional Exp. -->
+		<!-- Level 8: Active: Resurrects a corpse. Restores about 65% of additional Exp. -->
+		<!-- Level 9: Active: Resurrects a corpse. Restores about 70% of additional Exp. -->
 		<table name="#effectPoints">440 481 521 562 602 640 677 711 743</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70</table>
 		<table name="#mpConsume">42 44 47 51 52 55 58 61 65</table>
@@ -1642,7 +1812,16 @@
 		</for>
 	</skill>
 	<skill id="3165" levels="10" name="Item Skill: Prominence">
-		<!-- Active: Detonates a fireball by compressing the air around the caster. Power 61. -->
+		<!-- Level 1: Active: Detonates a fireball by compressing the air around the caster. Power 61. -->
+		<!-- Level 2: Active: Detonates a fireball by compressing the air around the caster. Power 66. -->
+		<!-- Level 3: Active: Detonates a fireball by compressing the air around the caster. Power 72. -->
+		<!-- Level 4: Active: Detonates a fireball by compressing the air around the caster. Power 77. -->
+		<!-- Level 5: Active: Detonates a fireball by compressing the air around the caster. Power 82. -->
+		<!-- Level 6: Active: Detonates a fireball by compressing the air around the caster. Power 87. -->
+		<!-- Level 7: Active: Detonates a fireball by compressing the air around the caster. Power 92. -->
+		<!-- Level 8: Active: Detonates a fireball by compressing the air around the caster. Power 97. -->
+		<!-- Level 9: Active: Detonates a fireball by compressing the air around the caster. Power 102. -->
+		<!-- Level 10: Active: Detonates a fireball by compressing the air around the caster. Power 110. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1665,11 +1844,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3167" levels="10" name="Item Skill: Hydro Blast">
-		<!-- Active: Unleashes a spray of highly pressurized water. Power 61. -->
+		<!-- Level 1: Active: Unleashes a spray of highly pressurized water. Power 61. -->
+		<!-- Level 2: Active: Unleashes a spray of highly pressurized water. Power 66. -->
+		<!-- Level 3: Active: Unleashes a spray of highly pressurized water. Power 72. -->
+		<!-- Level 4: Active: Unleashes a spray of highly pressurized water. Power 77. -->
+		<!-- Level 5: Active: Unleashes a spray of highly pressurized water. Power 82. -->
+		<!-- Level 6: Active: Unleashes a spray of highly pressurized water. Power 87. -->
+		<!-- Level 7: Active: Unleashes a spray of highly pressurized water. Power 92. -->
+		<!-- Level 8: Active: Unleashes a spray of highly pressurized water. Power 97. -->
+		<!-- Level 9: Active: Unleashes a spray of highly pressurized water. Power 102. -->
+		<!-- Level 10: Active: Unleashes a spray of highly pressurized water. Power 110. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1692,11 +1880,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
-	<skill id="3168" levels="10" name="Item Skill: Hurricane">
-		<!-- Active: Creates a whirlwind of destruction. Power 61. -->
+	<skill id="3168" levels="10" name="Item Skill: Tempest">
+		<!-- Level 1: Active: Creates a whirlwind of destruction. Power 61. -->
+		<!-- Level 2: Active: Creates a whirlwind of destruction. Power 66. -->
+		<!-- Level 3: Active: Creates a whirlwind of destruction. Power 72. -->
+		<!-- Level 4: Active: Creates a whirlwind of destruction. Power 77. -->
+		<!-- Level 5: Active: Creates a whirlwind of destruction. Power 82. -->
+		<!-- Level 6: Active: Creates a whirlwind of destruction. Power 87. -->
+		<!-- Level 7: Active: Creates a whirlwind of destruction. Power 92. -->
+		<!-- Level 8: Active: Creates a whirlwind of destruction. Power 97. -->
+		<!-- Level 9: Active: Creates a whirlwind of destruction. Power 102. -->
+		<!-- Level 10: Active: Creates a whirlwind of destruction. Power 110. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1719,11 +1916,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3169" levels="10" name="Item Skill: Stone">
-		<!-- Active: Attacks the target with a stone boulder. Power 61. -->
+		<!-- Level 1: Active: Attacks the target with a stone boulder. Power 61. -->
+		<!-- Level 2: Active: Attacks the target with a stone boulder. Power 66. -->
+		<!-- Level 3: Active: Attacks the target with a stone boulder. Power 72. -->
+		<!-- Level 4: Active: Attacks the target with a stone boulder. Power 77. -->
+		<!-- Level 5: Active: Attacks the target with a stone boulder. Power 82. -->
+		<!-- Level 6: Active: Attacks the target with a stone boulder. Power 87. -->
+		<!-- Level 7: Active: Attacks the target with a stone boulder. Power 92. -->
+		<!-- Level 8: Active: Attacks the target with a stone boulder. Power 97. -->
+		<!-- Level 9: Active: Attacks the target with a stone boulder. Power 102. -->
+		<!-- Level 10: Active: Attacks the target with a stone boulder. Power 110. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1746,11 +1952,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3170" levels="10" name="Item Skill: Solar Flare">
-		<!-- Active: Unleashes a holy attack. Power 61. -->
+		<!-- Level 1: Active: Unleashes a holy attack. Power 61. -->
+		<!-- Level 2: Active: Unleashes a holy attack. Power 66. -->
+		<!-- Level 3: Active: Unleashes a holy attack. Power 72. -->
+		<!-- Level 4: Active: Unleashes a holy attack. Power 77. -->
+		<!-- Level 5: Active: Unleashes a holy attack. Power 82. -->
+		<!-- Level 6: Active: Unleashes a holy attack. Power 87. -->
+		<!-- Level 7: Active: Unleashes a holy attack. Power 92. -->
+		<!-- Level 8: Active: Unleashes a holy attack. Power 97. -->
+		<!-- Level 9: Active: Unleashes a holy attack. Power 102. -->
+		<!-- Level 10: Active: Unleashes a holy attack. Power 110. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1773,11 +1988,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3171" levels="10" name="Item Skill: Shadow Flare">
-		<!-- Active: Unleashes a dark attack. Power 61. -->
+		<!-- Level 1: Active: Unleashes a dark attack. Power 61. -->
+		<!-- Level 2: Active: Unleashes a dark attack. Power 66. -->
+		<!-- Level 3: Active: Unleashes a dark attack. Power 72. -->
+		<!-- Level 4: Active: Unleashes a dark attack. Power 77. -->
+		<!-- Level 5: Active: Unleashes a dark attack. Power 82. -->
+		<!-- Level 6: Active: Unleashes a dark attack. Power 87. -->
+		<!-- Level 7: Active: Unleashes a dark attack. Power 92. -->
+		<!-- Level 8: Active: Unleashes a dark attack. Power 97. -->
+		<!-- Level 9: Active: Unleashes a dark attack. Power 102. -->
+		<!-- Level 10: Active: Unleashes a dark attack. Power 110. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1800,11 +2024,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3172" levels="10" name="Item Skill: Aura Flare">
-		<!-- Active: Unleashes an elemental attack. Power 61. -->
+		<!-- Level 1: Active: Unleashes an elemental attack. Power 61. -->
+		<!-- Level 2: Active: Unleashes an elemental attack. Power 66. -->
+		<!-- Level 3: Active: Unleashes an elemental attack. Power 72. -->
+		<!-- Level 4: Active: Unleashes an elemental attack. Power 77. -->
+		<!-- Level 5: Active: Unleashes an elemental attack. Power 82. -->
+		<!-- Level 6: Active: Unleashes an elemental attack. Power 87. -->
+		<!-- Level 7: Active: Unleashes an elemental attack. Power 92. -->
+		<!-- Level 8: Active: Unleashes an elemental attack. Power 97. -->
+		<!-- Level 9: Active: Unleashes an elemental attack. Power 102. -->
+		<!-- Level 10: Active: Unleashes an elemental attack. Power 110. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1825,11 +2058,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3173" levels="10" name="Item Skill: Prominence">
-		<!-- Active: Unleashes a fire attack against the enemies near a target. Power 31. -->
+		<!-- Level 1: Active: Unleashes a fire attack against the enemies near a target. Power 31. -->
+		<!-- Level 2: Active: Unleashes a fire attack against the enemies near a target. Power 33. -->
+		<!-- Level 3: Active: Unleashes a fire attack against the enemies near a target. Power 36. -->
+		<!-- Level 4: Active: Unleashes a fire attack against the enemies near a target. Power 39. -->
+		<!-- Level 5: Active: Unleashes a fire attack against the enemies near a target. Power 41. -->
+		<!-- Level 6: Active: Unleashes a fire attack against the enemies near a target. Power 44. -->
+		<!-- Level 7: Active: Unleashes a fire attack against the enemies near a target. Power 46. -->
+		<!-- Level 8: Active: Unleashes a fire attack against the enemies near a target. Power 49. -->
+		<!-- Level 9: Active: Unleashes a fire attack against the enemies near a target. Power 51. -->
+		<!-- Level 10: Active: Unleashes a fire attack against the enemies near a target. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1854,11 +2096,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3174" levels="10" name="Item Skill: Hydro Blast">
-		<!-- Active: Unleashes a water attack against the enemies near a target. Power 31. -->
+		<!-- Level 1: Active: Unleashes a water attack against the enemies near a target. Power 31. -->
+		<!-- Level 2: Active: Unleashes a water attack against the enemies near a target. Power 33. -->
+		<!-- Level 3: Active: Unleashes a water attack against the enemies near a target. Power 36. -->
+		<!-- Level 4: Active: Unleashes a water attack against the enemies near a target. Power 39. -->
+		<!-- Level 5: Active: Unleashes a water attack against the enemies near a target. Power 41. -->
+		<!-- Level 6: Active: Unleashes a water attack against the enemies near a target. Power 44. -->
+		<!-- Level 7: Active: Unleashes a water attack against the enemies near a target. Power 46. -->
+		<!-- Level 8: Active: Unleashes a water attack against the enemies near a target. Power 49. -->
+		<!-- Level 9: Active: Unleashes a water attack against the enemies near a target. Power 51. -->
+		<!-- Level 10: Active: Unleashes a water attack against the enemies near a target. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1883,11 +2134,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3175" levels="10" name="Item Skill: Hurricane">
-		<!-- Active: Unleashes a wind attack against the enemies near a target. Power 31. -->
+		<!-- Level 1: Active: Unleashes a wind attack against the enemies near a target. Power 31. -->
+		<!-- Level 2: Active: Unleashes a wind attack against the enemies near a target. Power 33. -->
+		<!-- Level 3: Active: Unleashes a wind attack against the enemies near a target. Power 36. -->
+		<!-- Level 4: Active: Unleashes a wind attack against the enemies near a target. Power 39. -->
+		<!-- Level 5: Active: Unleashes a wind attack against the enemies near a target. Power 41. -->
+		<!-- Level 6: Active: Unleashes a wind attack against the enemies near a target. Power 44. -->
+		<!-- Level 7: Active: Unleashes a wind attack against the enemies near a target. Power 46. -->
+		<!-- Level 8: Active: Unleashes a wind attack against the enemies near a target. Power 49. -->
+		<!-- Level 9: Active: Unleashes a wind attack against the enemies near a target. Power 51. -->
+		<!-- Level 10: Active: Unleashes a wind attack against the enemies near a target. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1912,11 +2172,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3176" levels="10" name="Item Skill: Stone">
-		<!-- Active: Attacks the enemies near a target with a stone boulder. Power 31. -->
+		<!-- Level 1: Active: Attacks the enemies near a target with a stone boulder. Power 31. -->
+		<!-- Level 2: Active: Attacks the enemies near a target with a stone boulder. Power 33. -->
+		<!-- Level 3: Active: Attacks the enemies near a target with a stone boulder. Power 36. -->
+		<!-- Level 4: Active: Attacks the enemies near a target with a stone boulder. Power 39. -->
+		<!-- Level 5: Active: Attacks the enemies near a target with a stone boulder. Power 41. -->
+		<!-- Level 6: Active: Attacks the enemies near a target with a stone boulder. Power 44. -->
+		<!-- Level 7: Active: Attacks the enemies near a target with a stone boulder. Power 46. -->
+		<!-- Level 8: Active: Attacks the enemies near a target with a stone boulder. Power 49. -->
+		<!-- Level 9: Active: Attacks the enemies near a target with a stone boulder. Power 51. -->
+		<!-- Level 10: Active: Attacks the enemies near a target with a stone boulder. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1941,11 +2210,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3177" levels="10" name="Item Skill: Solar Flare">
-		<!-- Active: Unleashes a holy attack against the enemies near a target. Power 31. -->
+		<!-- Level 1: Active: Unleashes a holy attack against the enemies near a target. Power 31. -->
+		<!-- Level 2: Active: Unleashes a holy attack against the enemies near a target. Power 33. -->
+		<!-- Level 3: Active: Unleashes a holy attack against the enemies near a target. Power 36. -->
+		<!-- Level 4: Active: Unleashes a holy attack against the enemies near a target. Power 39. -->
+		<!-- Level 5: Active: Unleashes a holy attack against the enemies near a target. Power 41. -->
+		<!-- Level 6: Active: Unleashes a holy attack against the enemies near a target. Power 44. -->
+		<!-- Level 7: Active: Unleashes a holy attack against the enemies near a target. Power 46. -->
+		<!-- Level 8: Active: Unleashes a holy attack against the enemies near a target. Power 49. -->
+		<!-- Level 9: Active: Unleashes a holy attack against the enemies near a target. Power 51. -->
+		<!-- Level 10: Active: Unleashes a holy attack against the enemies near a target. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1970,11 +2248,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3178" levels="10" name="Item Skill: Shadow Flare">
-		<!-- Active: Unleashes a dark attack against the enemies near a target. Power 31. -->
+		<!-- Level 1: Active: Unleashes a dark attack against the enemies near a target. Power 31. -->
+		<!-- Level 2: Active: Unleashes a dark attack against the enemies near a target. Power 33. -->
+		<!-- Level 3: Active: Unleashes a dark attack against the enemies near a target. Power 36. -->
+		<!-- Level 4: Active: Unleashes a dark attack against the enemies near a target. Power 39. -->
+		<!-- Level 5: Active: Unleashes a dark attack against the enemies near a target. Power 41. -->
+		<!-- Level 6: Active: Unleashes a dark attack against the enemies near a target. Power 44. -->
+		<!-- Level 7: Active: Unleashes a dark attack against the enemies near a target. Power 46. -->
+		<!-- Level 8: Active: Unleashes a dark attack against the enemies near a target. Power 49. -->
+		<!-- Level 9: Active: Unleashes a dark attack against the enemies near a target. Power 51. -->
+		<!-- Level 10: Active: Unleashes a dark attack against the enemies near a target. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -1999,11 +2286,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3179" levels="10" name="Item Skill: Aura Flare">
-		<!-- Active: Unleashes an elemental attack against the enemies near a target. Power 31. -->
+		<!-- Level 1: Active: Unleashes an elemental attack against the enemies near a target. Power 31. -->
+		<!-- Level 2: Active: Unleashes an elemental attack against the enemies near a target. Power 33. -->
+		<!-- Level 3: Active: Unleashes an elemental attack against the enemies near a target. Power 36. -->
+		<!-- Level 4: Active: Unleashes an elemental attack against the enemies near a target. Power 39. -->
+		<!-- Level 5: Active: Unleashes an elemental attack against the enemies near a target. Power 41. -->
+		<!-- Level 6: Active: Unleashes an elemental attack against the enemies near a target. Power 44. -->
+		<!-- Level 7: Active: Unleashes an elemental attack against the enemies near a target. Power 46. -->
+		<!-- Level 8: Active: Unleashes an elemental attack against the enemies near a target. Power 49. -->
+		<!-- Level 9: Active: Unleashes an elemental attack against the enemies near a target. Power 51. -->
+		<!-- Level 10: Active: Unleashes an elemental attack against the enemies near a target. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -2026,11 +2322,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3180" levels="10" name="Item Skill: Prominence">
-		<!-- Active: Unleashes a flaming attack against nearby enemies. Power 31. -->
+		<!-- Level 1: Active: Unleashes a flaming attack against nearby enemies. Power 31. -->
+		<!-- Level 2: Active: Unleashes a flaming attack against nearby enemies. Power 33. -->
+		<!-- Level 3: Active: Unleashes a flaming attack against nearby enemies. Power 36. -->
+		<!-- Level 4: Active: Unleashes a flaming attack against nearby enemies. Power 39. -->
+		<!-- Level 5: Active: Unleashes a flaming attack against nearby enemies. Power 41. -->
+		<!-- Level 6: Active: Unleashes a flaming attack against nearby enemies. Power 44. -->
+		<!-- Level 7: Active: Unleashes a flaming attack against nearby enemies. Power 46. -->
+		<!-- Level 8: Active: Unleashes a flaming attack against nearby enemies. Power 49. -->
+		<!-- Level 9: Active: Unleashes a flaming attack against nearby enemies. Power 51. -->
+		<!-- Level 10: Active: Unleashes a flaming attack against nearby enemies. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -2053,11 +2358,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3181" levels="10" name="Item Skill: Hydro Blast">
-		<!-- Active: Unleashes a water attack against nearby enemies. Power 31. -->
+		<!-- Level 1: Active: Unleashes a water attack against nearby enemies. Power 31. -->
+		<!-- Level 2: Active: Unleashes a water attack against nearby enemies. Power 33. -->
+		<!-- Level 3: Active: Unleashes a water attack against nearby enemies. Power 36. -->
+		<!-- Level 4: Active: Unleashes a water attack against nearby enemies. Power 39. -->
+		<!-- Level 5: Active: Unleashes a water attack against nearby enemies. Power 41. -->
+		<!-- Level 6: Active: Unleashes a water attack against nearby enemies. Power 44. -->
+		<!-- Level 7: Active: Unleashes a water attack against nearby enemies. Power 46. -->
+		<!-- Level 8: Active: Unleashes a water attack against nearby enemies. Power 49. -->
+		<!-- Level 9: Active: Unleashes a water attack against nearby enemies. Power 51. -->
+		<!-- Level 10: Active: Unleashes a water attack against nearby enemies. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -2080,11 +2394,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3182" levels="10" name="Item Skill: Hurricane">
-		<!-- Active: Unleashes a wind attack against nearby enemies. Power 31. -->
+		<!-- Level 1: Active: Unleashes a wind attack against nearby enemies. Power 31. -->
+		<!-- Level 2: Active: Unleashes a wind attack against nearby enemies. Power 33. -->
+		<!-- Level 3: Active: Unleashes a wind attack against nearby enemies. Power 36. -->
+		<!-- Level 4: Active: Unleashes a wind attack against nearby enemies. Power 39. -->
+		<!-- Level 5: Active: Unleashes a wind attack against nearby enemies. Power 41. -->
+		<!-- Level 6: Active: Unleashes a wind attack against nearby enemies. Power 44. -->
+		<!-- Level 7: Active: Unleashes a wind attack against nearby enemies. Power 46. -->
+		<!-- Level 8: Active: Unleashes a wind attack against nearby enemies. Power 49. -->
+		<!-- Level 9: Active: Unleashes a wind attack against nearby enemies. Power 51. -->
+		<!-- Level 10: Active: Unleashes a wind attack against nearby enemies. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -2107,11 +2430,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3183" levels="10" name="Item Skill: Stone">
-		<!-- Active: Unleashes an earth attack against nearby enemies. Power 31. -->
+		<!-- Level 1: Active: Unleashes an earth attack against nearby enemies. Power 31. -->
+		<!-- Level 2: Active: Unleashes an earth attack against nearby enemies. Power 33. -->
+		<!-- Level 3: Active: Unleashes an earth attack against nearby enemies. Power 36. -->
+		<!-- Level 4: Active: Unleashes an earth attack against nearby enemies. Power 39. -->
+		<!-- Level 5: Active: Unleashes an earth attack against nearby enemies. Power 41. -->
+		<!-- Level 6: Active: Unleashes an earth attack against nearby enemies. Power 44. -->
+		<!-- Level 7: Active: Unleashes an earth attack against nearby enemies. Power 46. -->
+		<!-- Level 8: Active: Unleashes an earth attack against nearby enemies. Power 49. -->
+		<!-- Level 9: Active: Unleashes an earth attack against nearby enemies. Power 51. -->
+		<!-- Level 10: Active: Unleashes an earth attack against nearby enemies. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -2134,11 +2466,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3184" levels="10" name="Item Skill: Solar Flare">
-		<!-- Active: Unleashes a holy attack against nearby enemies. Power 31. -->
+		<!-- Level 1: Active: Unleashes a holy attack against nearby enemies. Power 31. -->
+		<!-- Level 2: Active: Unleashes a holy attack against nearby enemies. Power 33. -->
+		<!-- Level 3: Active: Unleashes a holy attack against nearby enemies. Power 36. -->
+		<!-- Level 4: Active: Unleashes a holy attack against nearby enemies. Power 39. -->
+		<!-- Level 5: Active: Unleashes a holy attack against nearby enemies. Power 41. -->
+		<!-- Level 6: Active: Unleashes a holy attack against nearby enemies. Power 44. -->
+		<!-- Level 7: Active: Unleashes a holy attack against nearby enemies. Power 46. -->
+		<!-- Level 8: Active: Unleashes a holy attack against nearby enemies. Power 49. -->
+		<!-- Level 9: Active: Unleashes a holy attack against nearby enemies. Power 51. -->
+		<!-- Level 10: Active: Unleashes a holy attack against nearby enemies. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -2161,11 +2502,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3185" levels="10" name="Item Skill: Shadow Flare">
-		<!-- Active: Unleashes a dark attack against nearby enemies. Power 31. -->
+		<!-- Level 1: Active: Unleashes a dark attack against nearby enemies. Power 31. -->
+		<!-- Level 2: Active: Unleashes a dark attack against nearby enemies. Power 33. -->
+		<!-- Level 3: Active: Unleashes a dark attack against nearby enemies. Power 36. -->
+		<!-- Level 4: Active: Unleashes a dark attack against nearby enemies. Power 39. -->
+		<!-- Level 5: Active: Unleashes a dark attack against nearby enemies. Power 41. -->
+		<!-- Level 6: Active: Unleashes a dark attack against nearby enemies. Power 44. -->
+		<!-- Level 7: Active: Unleashes a dark attack against nearby enemies. Power 46. -->
+		<!-- Level 8: Active: Unleashes a dark attack against nearby enemies. Power 49. -->
+		<!-- Level 9: Active: Unleashes a dark attack against nearby enemies. Power 51. -->
+		<!-- Level 10: Active: Unleashes a dark attack against nearby enemies. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -2188,11 +2538,20 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3186" levels="10" name="Item Skill: Aura Flare">
-		<!-- Active: Unleashes an elemental attack against nearby enemies. Power 31. -->
+		<!-- Level 1: Active: Unleashes an elemental attack against nearby enemies. Power 31. -->
+		<!-- Level 2: Active: Unleashes an elemental attack against nearby enemies. Power 33. -->
+		<!-- Level 3: Active: Unleashes an elemental attack against nearby enemies. Power 36. -->
+		<!-- Level 4: Active: Unleashes an elemental attack against nearby enemies. Power 39. -->
+		<!-- Level 5: Active: Unleashes an elemental attack against nearby enemies. Power 41. -->
+		<!-- Level 6: Active: Unleashes an elemental attack against nearby enemies. Power 44. -->
+		<!-- Level 7: Active: Unleashes an elemental attack against nearby enemies. Power 46. -->
+		<!-- Level 8: Active: Unleashes an elemental attack against nearby enemies. Power 49. -->
+		<!-- Level 9: Active: Unleashes an elemental attack against nearby enemies. Power 51. -->
+		<!-- Level 10: Active: Unleashes an elemental attack against nearby enemies. Power 55. -->
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#mpConsume">33 35 38 40 43 45 48 50 52 55</table>
@@ -2213,7 +2572,7 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="3187" levels="10" name="Item Skill: Slow">
@@ -2491,7 +2850,16 @@
 		</for>
 	</skill>
 	<skill id="3195" levels="10" name="Item Skill: Poison">
-		<!-- Active: Temporarily poisons a target. Effect 5. -->
+		<!-- Level 1: Active: Temporarily poisons a target. Effect 5. -->
+		<!-- Level 2: Active: Temporarily poisons a target. Effect 5. -->
+		<!-- Level 3: Active: Temporarily poisons a target. Effect 6. -->
+		<!-- Level 4: Active: Temporarily poisons a target. Effect 6. -->
+		<!-- Level 5: Active: Temporarily poisons a target. Effect 6. -->
+		<!-- Level 6: Active: Temporarily poisons a target. Effect 7. -->
+		<!-- Level 7: Active: Temporarily poisons a target. Effect 7. -->
+		<!-- Level 8: Active: Temporarily poisons a target. Effect 7. -->
+		<!-- Level 9: Active: Temporarily poisons a target. Effect 8. -->
+		<!-- Level 10: Active: Temporarily poisons a target. Effect 8. -->
 		<table name="#abnormalLevels">5 5 6 6 6 7 7 7 8 8</table>
 		<table name="#dmg">41 41 50 50 50 58 58 58 63 63</table>
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>
@@ -2527,7 +2895,16 @@
 		</for>
 	</skill>
 	<skill id="3196" levels="10" name="Item Skill: Bleed">
-		<!-- Active: Temporarily causes a target to bleed heavily. Effect 5. -->
+		<!-- Level 1: Active: Temporarily causes a target to bleed heavily. Effect 5. -->
+		<!-- Level 2: Active: Temporarily causes a target to bleed heavily. Effect 5. -->
+		<!-- Level 3: Active: Temporarily causes a target to bleed heavily. Effect 6. -->
+		<!-- Level 4: Active: Temporarily causes a target to bleed heavily. Effect 6. -->
+		<!-- Level 5: Active: Temporarily causes a target to bleed heavily. Effect 6. -->
+		<!-- Level 6: Active: Temporarily causes a target to bleed heavily. Effect 7. -->
+		<!-- Level 7: Active: Temporarily causes a target to bleed heavily. Effect 7. -->
+		<!-- Level 8: Active: Temporarily causes a target to bleed heavily. Effect 7. -->
+		<!-- Level 9: Active: Temporarily causes a target to bleed heavily. Effect 8. -->
+		<!-- Level 10: Active: Temporarily causes a target to bleed heavily. Effect 8. -->
 		<table name="#abnormalLevels">5 5 6 6 6 7 7 7 8 8</table>
 		<table name="#dmg">44 44 54 54 54 62 62 62 67 67</table>
 		<table name="#effectPoints">-436 -465 -493 -521 -547 -572 -595 -615 -633 -657</table>

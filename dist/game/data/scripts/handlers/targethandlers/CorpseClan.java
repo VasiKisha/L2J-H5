@@ -42,7 +42,7 @@ public class CorpseClan implements ITargetTypeHandler
 		final List<WorldObject> targetList = new ArrayList<>();
 		if (creature.isPlayable())
 		{
-			final Player player = creature.getActingPlayer();
+			final Player player = creature.asPlayer();
 			if (player == null)
 			{
 				return targetList;
@@ -119,7 +119,7 @@ public class CorpseClan implements ITargetTypeHandler
 		{
 			// for buff purposes, returns friendly mobs nearby and mob itself
 			targetList.add(creature);
-			final Npc npc = (Npc) creature;
+			final Npc npc = creature.asNpc();
 			if ((npc.getTemplate().getClans() == null) || npc.getTemplate().getClans().isEmpty())
 			{
 				return targetList;

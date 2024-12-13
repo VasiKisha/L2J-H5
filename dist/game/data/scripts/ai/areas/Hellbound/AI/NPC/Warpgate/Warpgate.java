@@ -32,7 +32,7 @@ import quests.Q00133_ThatsBloodyHot.Q00133_ThatsBloodyHot;
 
 /**
  * Warpgate teleport AI.
- * @author _DS_
+ * @author DS
  */
 public class Warpgate extends AbstractNpcAI
 {
@@ -94,7 +94,7 @@ public class Warpgate extends AbstractNpcAI
 	{
 		if (creature.isPlayer())
 		{
-			final Player player = creature.getActingPlayer();
+			final Player player = creature.asPlayer();
 			if (!canEnter(player) && !player.canOverrideCond(PlayerCondOverride.ZONE_CONDITIONS) && !player.isOnEvent())
 			{
 				startQuestTimer("TELEPORT", 1000, null, player);

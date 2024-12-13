@@ -75,7 +75,7 @@ public class Fishing extends AbstractEffect
 			return;
 		}
 		
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if (!Config.ALLOW_FISHING && !player.canOverrideCond(PlayerCondOverride.SKILL_CONDITIONS))
 		{
 			player.sendMessage("Fishing is disabled!");

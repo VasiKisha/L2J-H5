@@ -31,7 +31,8 @@ import org.l2jmobius.gameserver.util.Broadcast;
 import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
- * @author littlecrow Admin commands handler for controllable mobs
+ * Admin commands handler for controllable mobs.
+ * @author littlecrow
  */
 public class AdminMobGroup implements IAdminCommandHandler
 {
@@ -96,7 +97,7 @@ public class AdminMobGroup implements IAdminCommandHandler
 		{
 			if (activeChar.getTarget().isCreature())
 			{
-				final Creature target = (Creature) activeChar.getTarget();
+				final Creature target = activeChar.getTarget().asCreature();
 				attack(command, activeChar, target);
 			}
 		}

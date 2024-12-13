@@ -28,7 +28,6 @@ import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.instancemanager.CaptchaManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
@@ -151,7 +150,7 @@ public class RequestBypassToServer extends ClientPacket
 					final WorldObject object = World.getInstance().findObject(Integer.parseInt(id));
 					if ((object != null) && object.isNpc() && (endOfId > 0) && player.isInsideRadius2D(object, Npc.INTERACTION_DISTANCE))
 					{
-						((Npc) object).onBypassFeedback(player, _command.substring(endOfId + 1));
+						object.asNpc().onBypassFeedback(player, _command.substring(endOfId + 1));
 					}
 				}
 				
@@ -243,7 +242,7 @@ public class RequestBypassToServer extends ClientPacket
 						final WorldObject bypassOrigin = World.getInstance().findObject(bypassOriginId);
 						if ((bypassOrigin != null) && bypassOrigin.isCreature())
 						{
-							handler.useBypass(_command, player, (Creature) bypassOrigin);
+							handler.useBypass(_command, player, bypassOrigin.asCreature());
 						}
 						else
 						{
@@ -302,7 +301,7 @@ public class RequestBypassToServer extends ClientPacket
 		}
 		if (obj instanceof Npc)
 		{
-			final Npc temp = (Npc) obj;
+			final Npc temp = obj.asNpc();
 			temp.setTarget(player);
 			temp.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, player.getLocation());
 		}

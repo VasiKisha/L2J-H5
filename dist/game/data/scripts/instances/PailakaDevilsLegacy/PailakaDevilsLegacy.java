@@ -23,7 +23,6 @@ import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.instancemanager.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -135,7 +134,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 				}
 				case "LEMATAN_TELEPORT":
 				{
-					((Attackable) npc).clearAggroList();
+					npc.asAttackable().clearAggroList();
 					npc.disableCoreAI(false);
 					npc.teleToLocation(LEMATAN_PORT);
 					npc.getVariables().set("ON_SHIP", 1);
@@ -269,12 +268,12 @@ public class PailakaDevilsLegacy extends AbstractInstance
 	@Override
 	public String onEnterZone(Creature creature, ZoneType zone)
 	{
-		if ((creature.isPlayer()) && !creature.isDead() && !creature.isTeleporting() && ((Player) creature).isOnline())
+		if ((creature.isPlayer()) && !creature.isDead() && !creature.isTeleporting() && creature.asPlayer().isOnline())
 		{
 			final InstanceWorld world = InstanceManager.getInstance().getWorld(creature);
 			if ((world != null) && (world.getTemplateId() == TEMPLATE_ID))
 			{
-				startQuestTimer("TELEPORT", 1000, world.getParameters().getObject("lematanNpc", Npc.class), (Player) creature);
+				startQuestTimer("TELEPORT", 1000, world.getParameters().getObject("lematanNpc", Npc.class), creature.asPlayer());
 			}
 		}
 		return super.onEnterZone(creature, zone);
@@ -283,22 +282,30 @@ public class PailakaDevilsLegacy extends AbstractInstance
 	@Override
 	public String onExitZone(Creature creature, ZoneType zone)
 	{
-		if (creature.isPlayer() && creature.hasSummon() && ((creature.getSummon().getTemplate().getId() == TIGRESS_LEVEL1) || (creature.getSummon().getTemplate().getId() == TIGRESS_LEVEL2)))
+		if (creature.isPlayer())
 		{
-			final Summon tigress = creature.getSummon();
-			if (!tigress.isDead())
+			final Player player = creature.asPlayer();
+			if (player.hasSummon())
 			{
-				tigress.getAI().stopFollow();
-				tigress.abortAttack();
-				tigress.abortCast();
-				if (tigress.hasAI())
+				final Summon summon = player.getSummon();
+				final int templateId = summon.getTemplate().getId();
+				if ((templateId == TIGRESS_LEVEL1) || (templateId == TIGRESS_LEVEL2))
 				{
-					tigress.getAI().stopAITask();
+					if (!summon.isDead())
+					{
+						summon.getAI().stopFollow();
+						summon.abortAttack();
+						summon.abortCast();
+						if (summon.hasAI())
+						{
+							summon.getAI().stopAITask();
+						}
+						summon.setTarget(null);
+					}
+					summon.decayMe();
+					creature.asPlayer().setPet(null);
 				}
-				tigress.setTarget(null);
 			}
-			tigress.decayMe();
-			((Player) creature).setPet(null);
 		}
 		return super.onExitZone(creature, zone);
 	}

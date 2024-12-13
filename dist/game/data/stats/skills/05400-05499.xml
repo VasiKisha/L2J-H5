@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="5400" levels="1" name="Presentation - Solar Spark">
 		<set name="castRange" val="750" />
@@ -251,7 +251,18 @@
 		</for>
 	</skill>
 	<skill id="5424" levels="12" name="Bleed">
-		<!-- Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 1: Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 2: Inflicts a wound that reduces HP. Effect 3. -->
+		<!-- Level 3: Inflicts a wound that reduces HP. Effect 4. -->
+		<!-- Level 4: Inflicts a wound that reduces HP. Effect 5. -->
+		<!-- Level 5: Inflicts a wound that reduces HP. Effect 6. -->
+		<!-- Level 6: Inflicts a wound that reduces HP. Effect 7. -->
+		<!-- Level 7: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 8: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 9: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 10: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 11: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 12: Inflicts a wound that reduces HP. Effect 10. -->
 		<table name="#dot">15 21 43 55 89 103 140 168 174 232 265 295</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<set name="abnormalLevel" val="1" />
@@ -372,7 +383,7 @@
 		<set name="power" val="115" />
 		<set name="targetType" val="CLAN" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5431" levels="1" name="Slow">
@@ -423,7 +434,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="GUST" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 		<endEffects>
@@ -453,7 +464,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="GUST" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 		<endEffects>
@@ -563,7 +574,7 @@
 		<set name="reuseDelay" val="10000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5443" levels="4" name="Cry of the Wolf">
@@ -622,7 +633,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
@@ -655,7 +666,51 @@
 		</for>
 	</skill>
 	<skill id="5446" levels="45" name="Soul Expansion">
-		<!-- Soul increased to level 1. -->
+		<!-- Level 1: Soul increased to level 1. -->
+		<!-- Level 2: Soul increased to level 2. -->
+		<!-- Level 3: Soul increased to level 3. -->
+		<!-- Level 4: Soul increased to level 4. -->
+		<!-- Level 5: Soul increased to level 5. -->
+		<!-- Level 6: Soul increased to level 6. -->
+		<!-- Level 7: Soul increased to level 7. -->
+		<!-- Level 8: Soul increased to level 8. -->
+		<!-- Level 9: Soul increased to level 9. -->
+		<!-- Level 10: Soul increased to level 10. -->
+		<!-- Level 11: Soul increased to level 11. -->
+		<!-- Level 12: Soul increased to level 12. -->
+		<!-- Level 13: Soul increased to level 13. -->
+		<!-- Level 14: Soul increased to level 14. -->
+		<!-- Level 15: Soul increased to level 15. -->
+		<!-- Level 16: Soul increased to level 16. -->
+		<!-- Level 17: Soul increased to level 17. -->
+		<!-- Level 18: Soul increased to level 18. -->
+		<!-- Level 19: Soul increased to level 19. -->
+		<!-- Level 20: Soul increased to level 20. -->
+		<!-- Level 21: Soul increased to level 21. -->
+		<!-- Level 22: Soul increased to level 22. -->
+		<!-- Level 23: Soul increased to level 23. -->
+		<!-- Level 24: Soul increased to level 24. -->
+		<!-- Level 25: Soul increased to level 25. -->
+		<!-- Level 26: Soul increased to level 26. -->
+		<!-- Level 27: Soul increased to level 27. -->
+		<!-- Level 28: Soul increased to level 28. -->
+		<!-- Level 29: Soul increased to level 29. -->
+		<!-- Level 30: Soul increased to level 30. -->
+		<!-- Level 31: Soul increased to level 31. -->
+		<!-- Level 32: Soul increased to level 32. -->
+		<!-- Level 33: Soul increased to level 33. -->
+		<!-- Level 34: Soul increased to level 34. -->
+		<!-- Level 35: Soul increased to level 35. -->
+		<!-- Level 36: Soul increased to level 36. -->
+		<!-- Level 37: Soul increased to level 37. -->
+		<!-- Level 38: Soul increased to level 38. -->
+		<!-- Level 39: Soul increased to level 39. -->
+		<!-- Level 40: Soul increased to level 40. -->
+		<!-- Level 41: Soul increased to level 41. -->
+		<!-- Level 42: Soul increased to level 42. -->
+		<!-- Level 43: Soul increased to level 43. -->
+		<!-- Level 44: Soul increased to level 44. -->
+		<!-- Level 45: Soul increased to level 45. -->
 		<table name="#icons">icon.skill5446_1 icon.skill5446_2 icon.skill5446_3 icon.skill5446_4 icon.skill5446_5 icon.skill5446_6 icon.skill5446_7 icon.skill5446_8 icon.skill5446_9 icon.skill5446_10 icon.skill5446_11 icon.skill5446_12 icon.skill5446_13 icon.skill5446_14 icon.skill5446_15 icon.skill5446_16 icon.skill5446_17 icon.skill5446_18 icon.skill5446_19 icon.skill5446_20 icon.skill5446_21 icon.skill5446_22 icon.skill5446_23 icon.skill5446_24 icon.skill5446_25 icon.skill5446_26 icon.skill5446_27 icon.skill5446_28 icon.skill5446_29 icon.skill5446_30 icon.skill5446_31 icon.skill5446_32 icon.skill5446_33 icon.skill5446_34 icon.skill5446_35 icon.skill5446_36 icon.skill5446_37 icon.skill5446_38 icon.skill5446_39
 			icon.skill5446_40 icon.skill5446_41 icon.skill5446_42 icon.skill5446_43 icon.skill5446_44 icon.skill5446_45
 		</table>
@@ -709,8 +764,14 @@
 			<effect name="Stun" />
 		</for>
 	</skill>
-	<skill id="5450" levels="7" name="Thin Skin">
-		<!-- Instantly decreases HP due to Bleed Attack. Effect 4. -->
+	<skill id="5450" levels="7" name="Tin Skin">
+		<!-- Level 1: Instantly decreases HP due to Bleed Attack. Effect 4. -->
+		<!-- Level 2: Instantly decreases HP due to Bleed Attack. Effect 5. -->
+		<!-- Level 3: Instantly decreases HP due to Bleed Attack. Effect 5. -->
+		<!-- Level 4: Instantly decreases HP due to Bleed Attack. Effect 6. -->
+		<!-- Level 5: Instantly decreases HP due to Bleed Attack. Effect 7. -->
+		<!-- Level 6: Instantly decreases HP due to Bleed Attack. Effect 8. -->
+		<!-- Level 7: Instantly decreases HP due to Bleed Attack. Effect 8. -->
 		<table name="#abnormalLevels">4 5 5 6 7 8 8</table>
 		<table name="#dot">218 266 266 307 307 335 335</table>
 		<table name="#magicLevel">46 52 58 62 66 70 74</table>
@@ -747,7 +808,9 @@
 		</for>
 	</skill>
 	<skill id="5452" levels="3" name="Spite">
-		<!-- Greatly increases the amount of Critical Damage received -->
+		<!-- Level 1: Greatly increases the amount of Critical Damage received -->
+		<!-- Level 2: Greatly increases the amount of Critical Damage received -->
+		<!-- Level 3: Greatly increases the amount of Critical Damage received. -->
 		<table name="#defCritDamage">1.4 1.5 1.6</table>
 		<table name="#magicLevel">66 70 74</table>
 		<set name="abnormalLevel" val="1" />
@@ -772,7 +835,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="MagicalAttackMp" />
+			<effect name="MagicalDamageMp" />
 		</for>
 	</skill>
 	<skill id="5454" levels="1" name="Shadow Bind">
@@ -887,7 +950,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5462" levels="1" name="Fire Attacks">
@@ -949,7 +1012,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5469" levels="1" name="Raid Boss - Level 22">
@@ -981,7 +1044,7 @@
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="5473" levels="1" name="Raid Boss - Level 81">
-		<!-- This once-noble soul was originally a powerful seer able to communicate directly with the divine -->
+		<!-- This once-noble soul was originally a powerful seer able to communicate directly with the divine; now only his overwhelming hatred against Beleth remains. -->
 		<set name="icon" val="icon.skillraid" />
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="P" />
@@ -1124,7 +1187,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="5488" levels="1" name="Counter Critical Power Up">
+	<skill id="5488" levels="1" name="Counter Critical Damage Up">
 		<!-- Increases critical attack power. Effect 1. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="15" />
@@ -1190,7 +1253,7 @@
 		<set name="reuseDelay" val="17000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5493" levels="1" name="Naia Production">
@@ -1245,7 +1308,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="71" />
 			</effect>
@@ -1265,7 +1328,7 @@
 		<set name="power" val="607" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5497" levels="1" name="Horn of Rising Darkness">
@@ -1290,7 +1353,7 @@
 		<set name="power" val="2319" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="52" />
@@ -1325,7 +1388,7 @@
 		<set name="power" val="200" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 </list>

@@ -21,7 +21,6 @@ import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -61,7 +60,7 @@ public class TurekOrcs extends AbstractNpcAI
 			if ((npc.getCurrentHp() > (npc.getMaxHp() * 0.7)) && (npc.getVariables().getInt("state") == 2))
 			{
 				npc.getVariables().set("state", 3);
-				((Attackable) npc).returnHome();
+				npc.asAttackable().returnHome();
 			}
 			else
 			{
@@ -94,12 +93,16 @@ public class TurekOrcs extends AbstractNpcAI
 	@Override
 	public String onEventReceived(String eventName, Npc sender, Npc receiver, WorldObject reference)
 	{
-		if (eventName.equals("WARNING") && !receiver.isDead() && (receiver.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK) && (reference != null) && (reference.getActingPlayer() != null) && !reference.getActingPlayer().isDead())
+		if (eventName.equals("WARNING") && !receiver.isDead() && (receiver.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK) && (reference != null))
 		{
-			receiver.getVariables().set("state", 3);
-			receiver.setRunning();
-			((Attackable) receiver).addDamageHate(reference.getActingPlayer(), 0, 99999);
-			receiver.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, reference.getActingPlayer());
+			final Player player = reference.asPlayer();
+			if ((player != null) && !player.isDead())
+			{
+				receiver.getVariables().set("state", 3);
+				receiver.setRunning();
+				receiver.asAttackable().addDamageHate(player, 0, 99999);
+				receiver.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+			}
 		}
 		return super.onEventReceived(eventName, sender, receiver, reference);
 	}

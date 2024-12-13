@@ -44,7 +44,7 @@ public class Recovery extends AbstractEffect
 	{
 		if (effected.isPlayer())
 		{
-			effected.getActingPlayer().reduceDeathPenaltyBuffLevel();
+			effected.asPlayer().reduceDeathPenaltyBuffLevel();
 		}
 	}
 }

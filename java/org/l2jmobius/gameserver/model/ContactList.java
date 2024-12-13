@@ -44,7 +44,7 @@ public class ContactList
 	private final Player _player;
 	private final Set<String> _contacts = ConcurrentHashMap.newKeySet();
 	
-	private static final String QUERY_ADD = "INSERT INTO character_contacts (charId, contactId) VALUES (?, ?)";
+	private static final String QUERY_ADD = "REPLACE INTO character_contacts (charId, contactId) VALUES (?, ?)";
 	private static final String QUERY_REMOVE = "DELETE FROM character_contacts WHERE charId = ? and contactId = ?";
 	private static final String QUERY_LOAD = "SELECT contactId FROM character_contacts WHERE charId = ?";
 	

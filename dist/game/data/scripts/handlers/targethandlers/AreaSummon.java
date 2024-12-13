@@ -36,7 +36,7 @@ public class AreaSummon implements ITargetTypeHandler
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
 		final List<WorldObject> targetList = new LinkedList<>();
-		final Creature targetCreature = creature.getSummon();
+		final Creature targetCreature = creature.isPlayer() ? creature.asPlayer().getSummon() : null;
 		if ((targetCreature == null) || !targetCreature.isServitor() || targetCreature.isDead())
 		{
 			return targetList;

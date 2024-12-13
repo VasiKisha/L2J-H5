@@ -29,7 +29,7 @@ import org.l2jmobius.gameserver.network.ServerPackets;
  */
 public class ExReplyPostItemList extends AbstractItemPacket
 {
-	Player _player;
+	private final Player _player;
 	private final Collection<Item> _itemList;
 	
 	public ExReplyPostItemList(Player player)

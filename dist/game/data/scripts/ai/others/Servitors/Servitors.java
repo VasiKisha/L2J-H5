@@ -108,12 +108,12 @@ public class Servitors extends AbstractNpcAI
 		if (event.getAttacker().isNpc() && event.getTarget().isServitor() //
 			&& Util.checkIfInRange(1500, event.getAttacker(), event.getTarget(), true))
 		{
-			final Servitor target = (Servitor) event.getTarget();
+			final Servitor target = event.getTarget().asServitor();
 			final Player master = target.getOwner();
 			final QuestState qs = master.getQuestState(Q00230_TestOfTheSummoner.class.getSimpleName());
 			if ((qs != null) && hasQuestItems(master, CRYSTAL_OF_INPROGRESS_3RD))
 			{
-				final Npc killer = (Npc) event.getAttacker();
+				final Npc killer = event.getAttacker().asNpc();
 				final List<Integer> items = MONSTERS.get(killer.getId());
 				giveItems(master, items.get(2), 1); // Crystal of Defeat
 				playSound(master, QuestSound.ITEMSOUND_QUEST_ITEMGET);

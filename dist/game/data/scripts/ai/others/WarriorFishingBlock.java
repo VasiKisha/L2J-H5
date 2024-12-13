@@ -19,7 +19,6 @@ package ai.others;
 import org.l2jmobius.gameserver.ai.CtrlEvent;
 import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -88,9 +87,9 @@ public class WarriorFishingBlock extends AbstractNpcAI
 				}
 				else
 				{
-					final Player target = obj.getActingPlayer();
+					final Player target = obj.asPlayer();
 					npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(NPC_STRINGS_ON_SPAWN), target.getName());
-					((Attackable) npc).addDamageHate(target, 0, 2000);
+					npc.asAttackable().addDamageHate(target, 0, 2000);
 					npc.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, target);
 					npc.addAttackerToAttackByList(target);
 					

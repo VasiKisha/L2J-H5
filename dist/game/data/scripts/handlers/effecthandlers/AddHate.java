@@ -17,7 +17,6 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
@@ -55,11 +54,11 @@ public class AddHate extends AbstractEffect
 		final double val = _power;
 		if (val > 0)
 		{
-			((Attackable) effected).addDamageHate(effector, 0, (int) val);
+			effected.asAttackable().addDamageHate(effector, 0, (int) val);
 		}
 		else if (val < 0)
 		{
-			((Attackable) effected).reduceHate(effector, (int) -val);
+			effected.asAttackable().reduceHate(effector, (int) -val);
 		}
 	}
 }

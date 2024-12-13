@@ -19,7 +19,6 @@ package quests.Q00275_DarkWingedSpies;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -115,7 +114,7 @@ public class Q00275_DarkWingedSpies extends Quest
 		if (creature.isPlayer())
 		{
 			npc.setRunning();
-			((Attackable) npc).addDamageHate(creature, 0, 1);
+			npc.asAttackable().addDamageHate(creature, 0, 1);
 			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, creature);
 		}
 		return super.onCreatureSee(npc, creature);

@@ -97,7 +97,7 @@ public class DamageZone extends ZoneType
 		Future<?> task = _task;
 		if ((task == null) && ((_damageHPPerSec != 0) || (_damageMPPerSec != 0)))
 		{
-			final Player player = creature.getActingPlayer();
+			final Player player = creature.asPlayer();
 			final Castle castle = getCastle();
 			if (castle != null) // Castle zone
 			{
@@ -159,24 +159,27 @@ public class DamageZone extends ZoneType
 		@Override
 		public void run()
 		{
+			if (getCharactersInside().isEmpty())
+			{
+				if (_task != null)
+				{
+					_task.cancel(false);
+					_task = null;
+				}
+				return;
+			}
+			
 			if (!isEnabled())
 			{
 				return;
 			}
 			
-			if (getCharactersInside().isEmpty())
-			{
-				_task.cancel(false);
-				_task = null;
-				return;
-			}
-			
 			boolean siege = false;
-			
 			if (_castle != null)
 			{
 				siege = _castle.getSiege().isInProgress();
-				// castle zones active only during siege
+				
+				// Castle zones active only during siege.
 				if (!siege)
 				{
 					_task.cancel(false);
@@ -191,8 +194,8 @@ public class DamageZone extends ZoneType
 				{
 					if (siege)
 					{
-						// during siege defenders not affected
-						final Player player = character.getActingPlayer();
+						// During siege defenders not affected.
+						final Player player = character.asPlayer();
 						if ((player != null) && player.isInSiege() && (player.getSiegeState() == 2))
 						{
 							continue;

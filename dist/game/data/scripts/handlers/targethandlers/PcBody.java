@@ -44,7 +44,7 @@ public class PcBody implements ITargetTypeHandler
 			final Player player;
 			if (creature.isPlayer())
 			{
-				player = creature.getActingPlayer();
+				player = creature.asPlayer();
 			}
 			else
 			{
@@ -54,7 +54,7 @@ public class PcBody implements ITargetTypeHandler
 			final Player targetPlayer;
 			if (target.isPlayer())
 			{
-				targetPlayer = target.getActingPlayer();
+				targetPlayer = target.asPlayer();
 			}
 			else
 			{
@@ -64,7 +64,7 @@ public class PcBody implements ITargetTypeHandler
 			final Pet targetPet;
 			if (target.isPet())
 			{
-				targetPet = (Pet) target;
+				targetPet = target.asPet();
 			}
 			else
 			{

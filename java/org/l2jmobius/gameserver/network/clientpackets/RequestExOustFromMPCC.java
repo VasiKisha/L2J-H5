@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -40,7 +41,8 @@ public class RequestExOustFromMPCC extends ClientPacket
 	{
 		final Player target = World.getInstance().getPlayer(_name);
 		final Player player = getPlayer();
-		if ((target != null) && target.isInParty() && player.isInParty() && player.getParty().isInCommandChannel() && target.getParty().isInCommandChannel() && player.getParty().getCommandChannel().getLeader().equals(player) && player.getParty().getCommandChannel().equals(target.getParty().getCommandChannel()))
+		final Party party = player.getParty();
+		if ((target != null) && target.isInParty() && (party != null) && party.isInCommandChannel() && target.getParty().isInCommandChannel() && party.getCommandChannel().getLeader().equals(player) && party.getCommandChannel().equals(target.getParty().getCommandChannel()))
 		{
 			if (player.equals(target))
 			{
@@ -53,11 +55,11 @@ public class RequestExOustFromMPCC extends ClientPacket
 			target.getParty().broadcastPacket(sm);
 			
 			// check if CC has not been canceled
-			if (player.getParty().isInCommandChannel())
+			if (party.isInCommandChannel())
 			{
 				sm = new SystemMessage(SystemMessageId.C1_S_PARTY_HAS_BEEN_DISMISSED_FROM_THE_COMMAND_CHANNEL);
 				sm.addString(target.getParty().getLeader().getName());
-				player.getParty().getCommandChannel().broadcastPacket(sm);
+				party.getCommandChannel().broadcastPacket(sm);
 			}
 		}
 		else

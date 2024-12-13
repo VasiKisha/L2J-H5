@@ -63,6 +63,6 @@ public class Betray extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, effected.getActingPlayer());
+		effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, effected.asPlayer());
 	}
 }

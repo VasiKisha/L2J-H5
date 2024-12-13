@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.siege;
 
@@ -889,12 +893,14 @@ public class Siege implements Siegable
 	
 	public void registerAttacker(Player player, boolean force)
 	{
-		if (player.getClan() == null)
+		final Clan clan = player.getClan();
+		if (clan == null)
 		{
 			return;
 		}
+		
 		final int allyId = getCastle().getOwnerId() != 0 ? ClanTable.getInstance().getClan(getCastle().getOwnerId()).getAllyId() : 0;
-		if ((allyId != 0) && (player.getClan().getAllyId() == allyId) && !force)
+		if ((allyId != 0) && (clan.getAllyId() == allyId) && !force)
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_REGISTER_AS_AN_ATTACKER_BECAUSE_YOU_ARE_IN_AN_ALLIANCE_WITH_THE_CASTLE_OWNING_CLAN);
 			return;
@@ -902,20 +908,20 @@ public class Siege implements Siegable
 		
 		if (force)
 		{
-			if (SiegeManager.getInstance().checkIsRegistered(player.getClan(), getCastle().getResidenceId()))
+			if (SiegeManager.getInstance().checkIsRegistered(clan, getCastle().getResidenceId()))
 			{
 				player.sendPacket(SystemMessageId.YOU_HAVE_ALREADY_REQUESTED_A_CASTLE_SIEGE);
 			}
 			else
 			{
-				saveSiegeClan(player.getClan(), ATTACKER, false); // Save to database
+				saveSiegeClan(clan, ATTACKER, false); // Save to database
 			}
 			return;
 		}
 		
 		if (checkIfCanRegister(player, ATTACKER))
 		{
-			saveSiegeClan(player.getClan(), ATTACKER, false); // Save to database
+			saveSiegeClan(clan, ATTACKER, false); // Save to database
 		}
 	}
 	
@@ -936,22 +942,23 @@ public class Siege implements Siegable
 			return;
 		}
 		
+		final Clan clan = player.getClan();
 		if (force)
 		{
-			if (SiegeManager.getInstance().checkIsRegistered(player.getClan(), getCastle().getResidenceId()))
+			if (SiegeManager.getInstance().checkIsRegistered(clan, getCastle().getResidenceId()))
 			{
 				player.sendPacket(SystemMessageId.YOU_HAVE_ALREADY_REQUESTED_A_CASTLE_SIEGE);
 			}
 			else
 			{
-				saveSiegeClan(player.getClan(), DEFENDER_NOT_APPROVED, false); // Save to database
+				saveSiegeClan(clan, DEFENDER_NOT_APPROVED, false); // Save to database
 			}
 			return;
 		}
 		
 		if (checkIfCanRegister(player, DEFENDER_NOT_APPROVED))
 		{
-			saveSiegeClan(player.getClan(), DEFENDER_NOT_APPROVED, false); // Save to database
+			saveSiegeClan(clan, DEFENDER_NOT_APPROVED, false); // Save to database
 		}
 	}
 	
@@ -1122,6 +1129,7 @@ public class Siege implements Siegable
 	 */
 	private boolean checkIfCanRegister(Player player, byte typeId)
 	{
+		final Clan clan = player.getClan();
 		if (_isRegistrationOver)
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.THE_DEADLINE_TO_REGISTER_FOR_THE_SIEGE_OF_S1_HAS_PASSED);
@@ -1132,23 +1140,23 @@ public class Siege implements Siegable
 		{
 			player.sendPacket(SystemMessageId.THIS_IS_NOT_THE_TIME_FOR_SIEGE_REGISTRATION_AND_SO_REGISTRATION_AND_CANCELLATION_CANNOT_BE_DONE);
 		}
-		else if ((player.getClan() == null) || (player.getClan().getLevel() < SiegeManager.getInstance().getSiegeClanMinLevel()))
+		else if ((clan == null) || (clan.getLevel() < SiegeManager.getInstance().getSiegeClanMinLevel()))
 		{
 			player.sendPacket(SystemMessageId.ONLY_CLANS_OF_LEVEL_5_OR_HIGHER_MAY_REGISTER_FOR_A_CASTLE_SIEGE);
 		}
-		else if (player.getClan().getId() == getCastle().getOwnerId())
+		else if (clan.getId() == getCastle().getOwnerId())
 		{
 			player.sendPacket(SystemMessageId.CASTLE_OWNING_CLANS_ARE_AUTOMATICALLY_REGISTERED_ON_THE_DEFENDING_SIDE);
 		}
-		else if (player.getClan().getCastleId() > 0)
+		else if (clan.getCastleId() > 0)
 		{
 			player.sendPacket(SystemMessageId.A_CLAN_THAT_OWNS_A_CASTLE_CANNOT_PARTICIPATE_IN_ANOTHER_SIEGE);
 		}
-		else if (SiegeManager.getInstance().checkIsRegistered(player.getClan(), getCastle().getResidenceId()))
+		else if (SiegeManager.getInstance().checkIsRegistered(clan, getCastle().getResidenceId()))
 		{
 			player.sendPacket(SystemMessageId.YOU_HAVE_ALREADY_REQUESTED_A_CASTLE_SIEGE);
 		}
-		else if (checkIfAlreadyRegisteredForSameDay(player.getClan()))
+		else if (checkIfAlreadyRegisteredForSameDay(clan))
 		{
 			player.sendPacket(SystemMessageId.YOUR_APPLICATION_HAS_BEEN_DENIED_BECAUSE_YOU_HAVE_ALREADY_SUBMITTED_A_REQUEST_FOR_ANOTHER_CASTLE_SIEGE);
 		}

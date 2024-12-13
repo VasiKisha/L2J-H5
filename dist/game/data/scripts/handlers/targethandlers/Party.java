@@ -42,7 +42,7 @@ public class Party implements ITargetTypeHandler
 		}
 		
 		final int radius = skill.getAffectRange();
-		final Player player = creature.getActingPlayer();
+		final Player player = creature.asPlayer();
 		if (creature.isSummon())
 		{
 			if (Skill.addCharacter(creature, player, radius, false))

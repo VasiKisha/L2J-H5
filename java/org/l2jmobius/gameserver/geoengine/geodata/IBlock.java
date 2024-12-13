@@ -38,6 +38,8 @@ public interface IBlock
 	
 	void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe);
 	
+	short getNearestNswe(int geoX, int geoY, int worldZ);
+	
 	int getNearestZ(int geoX, int geoY, int worldZ);
 	
 	int getNextLowerZ(int geoX, int geoY, int worldZ);

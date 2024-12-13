@@ -96,7 +96,7 @@ public class ConditionSiegeZone extends Condition
 			return false;
 		}
 		
-		final Player player = (Player) creature;
+		final Player player = creature.asPlayer();
 		if ((castle == null) || (castle.getResidenceId() <= 0))
 		{
 			if ((value & COND_NOT_ZONE) != 0)
@@ -141,7 +141,7 @@ public class ConditionSiegeZone extends Condition
 			return false;
 		}
 		
-		final Player player = (Player) creature;
+		final Player player = creature.asPlayer();
 		if ((fort == null) || (fort.getResidenceId() <= 0))
 		{
 			if ((value & COND_NOT_ZONE) != 0)

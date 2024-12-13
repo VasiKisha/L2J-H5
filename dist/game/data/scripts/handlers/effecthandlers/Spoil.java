@@ -58,7 +58,7 @@ public class Spoil extends AbstractEffect
 			return;
 		}
 		
-		final Monster target = (Monster) effected;
+		final Monster target = effected.asMonster();
 		if (target.isSpoiled())
 		{
 			effector.sendPacket(SystemMessageId.IT_HAS_ALREADY_BEEN_SPOILED);

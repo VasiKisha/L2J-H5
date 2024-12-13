@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
-	<skill id="23100" levels="1" name="Fourth Consecutive Win">
+	<skill id="23100" levels="1" name="4th Consecutive Win">
 		<!-- 4-time win at the Jack's Game. -->
 		<set name="blockedInOlympiad" val="true" />
 		<set name="castRange" val="500" />
@@ -187,7 +187,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="ONE" />
 	</skill>
-	<skill id="23117" levels="1" name="Zombie Agathion Cute Trick">
+	<skill id="23117" levels="1" name="Frozen Corpse Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -216,7 +216,7 @@
 			<player agathionId="1535" />
 		</cond>
 	</skill>
-	<skill id="23119" levels="1" name="Baekyi Hwamae Agathion Cute Trick">
+	<skill id="23119" levels="1" name="Bluebird Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -228,7 +228,7 @@
 			<player agathionId="1536" />
 		</cond>
 	</skill>
-	<skill id="23120" levels="1" name="Kwanwoo Hwamae Agathion Cute Trick">
+	<skill id="23120" levels="1" name="Hatbird Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -602,7 +602,7 @@
 			<player agathionId="1544" />
 		</cond>
 	</skill>
-	<skill id="23147" levels="1" name="Hayance Agathion Cute Trick">
+	<skill id="23147" levels="1" name="Heintz Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -626,7 +626,7 @@
 			<player agathionId="1546" />
 		</cond>
 	</skill>
-	<skill id="23149" levels="1" name="Taman ze Lapatui Agathion Cute Trick">
+	<skill id="23149" levels="1" name="Taman Zu Rapatui Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -697,7 +697,7 @@
 		<set name="reuseDelay" val="60000" />
 		<set name="targetType" val="SELF" />
 	</skill>
-	<skill id="23155" levels="1" name="Reindeer Scratch">
+	<skill id="23155" levels="1" name="Hand of Warmth">
 		<!-- Raises affection level with a kind hand. For 10 minutes, raises physical Critical Rate by 30% and the occurrence rate of Prominent Damage through magic damage by 2. The Hand of Warmth can only be used when Rudolph has requests an Expression of Affection. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="600" />
@@ -871,7 +871,7 @@
 		<set name="magicLevel" val="-1" />
 		<set name="reuseDelay" val="600" />
 		<set name="itemConsumeCount" val="3" />
-		<set name="itemConsumeId" val="20904" />
+		<set name="itemConsumeId" val="20904" /> <!-- Rose Essense -->
 		<set name="operateType" val="A2" />
 		<set name="targetType" val="ONE" />
 		<for>
@@ -890,7 +890,7 @@
 		<set name="blockedInOlympiad" val="true" />
 		<set name="effectPoint" val="1" />
 		<set name="itemConsumeCount" val="10" />
-		<set name="itemConsumeId" val="20904" />
+		<set name="itemConsumeId" val="20904" /> <!-- Rose Essense -->
 		<set name="icon" val="BranchSys2.icon.br_rosalia_rose_red_i00" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="reuseDelay" val="2400" />
@@ -911,7 +911,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="23169" levels="1" name="Mesmerized">
+	<skill id="23169" levels="1" name="Mesmerization">
 		<!-- The state in which you are mesmerized upon seduction. You won't be cast with Critical Seduction for 40 minutes. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="2400" />
@@ -925,7 +925,7 @@
 		<set name="targetType" val="NONE" />
 		<set name="trait" val="ETC" />
 	</skill>
-	<skill id="23170" levels="1" name="Mesmerized">
+	<skill id="23170" levels="1" name="Mesmerization">
 		<!-- The state in which you are mesmerized upon seduction. You won't be cast with Rosy Seduction for 10 minutes. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="600" />
@@ -1006,7 +1006,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="23174" levels="1" name="Narrow Escape from Death">
+	<skill id="23174" levels="1" name="Narrow Escape">
 		<!-- Revives from death with completely recovered status. Buff/de-buff doesn't disappear at death but is maintained. But Blessing of Noblesse and Amulet of Luck disappear. Reuse delay is 12 hours. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="1800" />
@@ -1086,7 +1086,7 @@
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="23179" levels="1" name="Blessing of Vitality">
+	<skill id="23179" levels="1" name="Bless of Vitality">
 		<!-- Vitality level is maintained for 2 hours due to the effect of sealed magic of the Magic Research Institute. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="7200" />

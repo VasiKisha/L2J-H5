@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests.Q00144_PailakaInjuredDragon;
 
@@ -48,7 +52,7 @@ import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Pailaka Injured Dragon
- * @author Pandragon
+ * @author Mobius
  */
 public class Q00144_PailakaInjuredDragon extends Quest
 {
@@ -835,17 +839,16 @@ public class Q00144_PailakaInjuredDragon extends Quest
 	@Override
 	public String onCreatureSee(Npc npc, Creature creature)
 	{
-		if (creature.isPlayer())
+		if (creature.isPlayer() && npc.isScriptValue(0))
 		{
-			if (npc.isScriptValue(0))
+			final Player player = creature.asPlayer();
+			final QuestState qs = getQuestState(player, false);
+			if ((qs == null) || (qs.getState() != State.STARTED) || creature.isSummon())
 			{
-				final QuestState qs = getQuestState(creature.getActingPlayer(), false);
-				if ((qs == null) || (qs.getState() != State.STARTED) || creature.isSummon())
-				{
-					return super.onCreatureSee(npc, creature);
-				}
-				startQuestTimer("LATANA_INTRO_CAMERA_START", 600, npc, creature.getActingPlayer());
+				return super.onCreatureSee(npc, creature);
 			}
+			
+			startQuestTimer("LATANA_INTRO_CAMERA_START", 600, npc, player);
 		}
 		return super.onCreatureSee(npc, creature);
 	}
@@ -860,7 +863,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 				// Every monster on pailaka should be Aggresive and Active, with the same clan, also wall mobs cannot move, they all use magic from far, and if you get in combat range they hit.
 				if (mobId == npc.getId())
 				{
-					final Monster monster = (Monster) npc;
+					final Monster monster = npc.asMonster();
 					monster.setImmobilized(true);
 					break;
 				}
@@ -872,7 +875,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 	@Override
 	public String onEnterZone(Creature creature, ZoneType zone)
 	{
-		if (creature.isPlayer() && !creature.isDead() && !creature.isTeleporting() && ((Player) creature).isOnline())
+		if (creature.isPlayer() && !creature.isDead() && !creature.isTeleporting() && creature.asPlayer().isOnline())
 		{
 			final InstanceWorld world = InstanceManager.getInstance().getWorld(creature);
 			if ((world != null) && (world.getTemplateId() == INSTANCE_ID))
@@ -887,7 +890,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 						{
 							continue;
 						}
-						teleportPlayer(creature.getActingPlayer(), zoneTeleport, world.getInstanceId());
+						teleportPlayer(creature.asPlayer(), zoneTeleport, world.getInstanceId());
 						break;
 					}
 				}
@@ -903,7 +906,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 		{
 			if (chance < element[2])
 			{
-				((Monster) mob).dropItem(player, element[0], element[1]);
+				mob.asMonster().dropItem(player, element[0], element[1]);
 				return;
 			}
 		}
@@ -917,7 +920,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 		{
 			if (getRandom(100) < drop.getChance())
 			{
-				((Monster) mob).dropItem(player, drop.getId(), getRandom(1, 6));
+				mob.asMonster().dropItem(player, drop.getId(), getRandom(1, 6));
 				return;
 			}
 		}

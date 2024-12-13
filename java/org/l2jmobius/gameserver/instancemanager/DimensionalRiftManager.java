@@ -39,6 +39,7 @@ import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.model.DimensionalRift;
 import org.l2jmobius.gameserver.model.DimensionalRiftRoom;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -259,19 +260,20 @@ public class DimensionalRiftManager
 			return;
 		}
 		
-		if (player.getParty().getLeaderObjectId() != player.getObjectId())
+		final Party party = player.getParty();
+		if (party.getLeaderObjectId() != player.getObjectId())
 		{
 			showHtmlFile(player, "data/html/seven_signs/rift/NotPartyLeader.htm", npc);
 			return;
 		}
 		
-		if (player.getParty().isInDimensionalRift())
+		if (party.isInDimensionalRift())
 		{
 			handleCheat(player, npc);
 			return;
 		}
 		
-		if (player.getParty().getMemberCount() < Config.RIFT_MIN_PARTY_SIZE)
+		if (party.getMemberCount() < Config.RIFT_MIN_PARTY_SIZE)
 		{
 			final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
 			html.setFile(player, "data/html/seven_signs/rift/SmallParty.htm");
@@ -288,7 +290,7 @@ public class DimensionalRiftManager
 			return;
 		}
 		
-		for (Player p : player.getParty().getMembers())
+		for (Player p : party.getMembers())
 		{
 			if (!checkIfInPeaceZone(p.getX(), p.getY(), p.getZ()))
 			{
@@ -305,7 +307,7 @@ public class DimensionalRiftManager
 		
 		Item i;
 		final int count = getNeededItems(type);
-		for (Player p : player.getParty().getMembers())
+		for (Player p : party.getMembers())
 		{
 			i = p.getInventory().getItemByItemId(DIMENSIONAL_FRAGMENT_ITEM_ID);
 			if (i == null)
@@ -339,7 +341,7 @@ public class DimensionalRiftManager
 			return;
 		}
 		
-		for (Player p : player.getParty().getMembers())
+		for (Player p : party.getMembers())
 		{
 			i = p.getInventory().getItemByItemId(DIMENSIONAL_FRAGMENT_ITEM_ID);
 			if (!p.destroyItem("RiftEntrance", i, count, null, false))
@@ -362,7 +364,7 @@ public class DimensionalRiftManager
 		}
 		// find empty room
 		while (_rooms.get(type).get(room).isPartyInside());
-		new DimensionalRift(player.getParty(), type, room);
+		new DimensionalRift(party, type, room);
 	}
 	
 	public void killRift(DimensionalRift d)

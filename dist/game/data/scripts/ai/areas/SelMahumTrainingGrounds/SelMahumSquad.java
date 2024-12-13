@@ -26,7 +26,6 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
@@ -178,7 +177,7 @@ public class SelMahumSquad extends AbstractNpcAI
 			{
 				if (npc.isMonster() && !npc.isDead())
 				{
-					((Monster) npc).returnHome();
+					npc.asMonster().returnHome();
 				}
 				break;
 			}
@@ -301,7 +300,7 @@ public class SelMahumSquad extends AbstractNpcAI
 	{
 		if (npc.isMonster() && (npc.getVariables().getInt("REWARD_TIME_GONE") == 0))
 		{
-			((Monster) npc).dropItem(killer, 15492, 1);
+			npc.asMonster().dropItem(killer, 15492, 1);
 		}
 		cancelQuestTimer("chef_remove_invul", npc, null);
 		cancelQuestTimer("chef_disable_reward", npc, null);

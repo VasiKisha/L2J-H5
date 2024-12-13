@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.actor.stat;
 
@@ -26,7 +30,9 @@ import org.l2jmobius.gameserver.model.PetLevelData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.ClassMaster;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
+import org.l2jmobius.gameserver.model.actor.status.PlayerStatus;
 import org.l2jmobius.gameserver.model.actor.transform.TransformTemplate;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
@@ -159,7 +165,7 @@ public class PlayerStat extends PlayableStat
 		// if this player has a pet and it is in his range he takes from the owner's Exp, give the pet Exp now
 		if (player.hasPet() && Util.checkIfInShortRange(Config.ALT_PARTY_RANGE, player, player.getSummon(), false))
 		{
-			final Pet pet = (Pet) player.getSummon();
+			final Pet pet = player.getSummon().asPet();
 			ratioTakenByPlayer = pet.getPetLevelData().getOwnerExpTaken() / 100f;
 			
 			// only give exp/sp to the pet by taking from the owner if the pet has a non-zero, positive ratio
@@ -237,13 +243,14 @@ public class PlayerStat extends PlayableStat
 			// Send a Server->Client System Message to the Player
 			SystemMessage sm = new SystemMessage(SystemMessageId.YOUR_EXPERIENCE_HAS_DECREASED_BY_S1);
 			sm.addLong(addToExp);
-			getActiveChar().sendPacket(sm);
+			final Player player = getActiveChar();
+			player.sendPacket(sm);
 			sm = new SystemMessage(SystemMessageId.YOUR_SP_HAS_DECREASED_BY_S1);
 			sm.addLong(addToSp);
-			getActiveChar().sendPacket(sm);
+			player.sendPacket(sm);
 			if (getLevel() < level)
 			{
-				getActiveChar().broadcastStatusUpdate();
+				player.broadcastStatusUpdate();
 			}
 		}
 		return true;
@@ -258,9 +265,10 @@ public class PlayerStat extends PlayableStat
 		}
 		
 		// Notify to scripts
-		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_LEVEL_CHANGED, getActiveChar()))
+		final Player player = getActiveChar();
+		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_LEVEL_CHANGED, player))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerLevelChanged(getActiveChar(), getLevel(), getLevel() + value), getActiveChar());
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerLevelChanged(player, getLevel(), getLevel() + value), player);
 		}
 		
 		final boolean levelIncreased = super.addLevel(value);
@@ -268,42 +276,43 @@ public class PlayerStat extends PlayableStat
 		{
 			if (!Config.DISABLE_TUTORIAL)
 			{
-				final QuestState qs = getActiveChar().getQuestState("Q00255_Tutorial");
+				final QuestState qs = player.getQuestState("Q00255_Tutorial");
 				if (qs != null)
 				{
-					qs.getQuest().notifyEvent("CE40", null, getActiveChar());
+					qs.getQuest().notifyEvent("CE40", null, player);
 				}
 			}
 			
-			getActiveChar().setCurrentCp(getMaxCp());
-			getActiveChar().broadcastPacket(new SocialAction(getActiveChar().getObjectId(), SocialAction.LEVEL_UP));
-			getActiveChar().sendPacket(SystemMessageId.YOUR_LEVEL_HAS_INCREASED);
+			player.setCurrentCp(getMaxCp());
+			player.broadcastPacket(new SocialAction(player.getObjectId(), SocialAction.LEVEL_UP));
+			player.sendPacket(SystemMessageId.YOUR_LEVEL_HAS_INCREASED);
 			
-			ClassMaster.showQuestionMark(getActiveChar());
+			ClassMaster.showQuestionMark(player);
 		}
 		
 		// Give AutoGet skills and all normal skills if Auto-Learn is activated.
-		getActiveChar().rewardSkills();
+		player.rewardSkills();
 		
-		if (getActiveChar().getClan() != null)
+		final Clan clan = player.getClan();
+		if (clan != null)
 		{
-			getActiveChar().getClan().updateClanMember(getActiveChar());
-			getActiveChar().getClan().broadcastToOnlineMembers(new PledgeShowMemberListUpdate(getActiveChar()));
+			clan.updateClanMember(player);
+			clan.broadcastToOnlineMembers(new PledgeShowMemberListUpdate(player));
 		}
-		if (getActiveChar().isInParty())
+		if (player.isInParty())
 		{
-			getActiveChar().getParty().recalculatePartyLevel(); // Recalculate the party level
+			player.getParty().recalculatePartyLevel(); // Recalculate the party level
 		}
 		
-		if (getActiveChar().isTransformed() || getActiveChar().isInStance())
+		if (player.isTransformed() || player.isInStance())
 		{
-			getActiveChar().getTransformation().onLevelUp(getActiveChar());
+			player.getTransformation().onLevelUp(player);
 		}
 		
 		// Synchronize level with pet if possible.
-		if (getActiveChar().hasPet())
+		if (player.hasPet())
 		{
-			final Pet pet = (Pet) getActiveChar().getSummon();
+			final Pet pet = player.getSummon().asPet();
 			if (pet.getPetData().isSynchLevel() && (pet.getLevel() != getLevel()))
 			{
 				final byte availableLevel = (byte) Math.min(pet.getPetData().getMaxLevel(), getLevel());
@@ -311,29 +320,29 @@ public class PlayerStat extends PlayableStat
 				pet.getStat().getExpForLevel(availableLevel);
 				pet.setCurrentHp(pet.getMaxHp());
 				pet.setCurrentMp(pet.getMaxMp());
-				pet.broadcastPacket(new SocialAction(getActiveChar().getObjectId(), SocialAction.LEVEL_UP));
+				pet.broadcastPacket(new SocialAction(player.getObjectId(), SocialAction.LEVEL_UP));
 				pet.updateAndBroadcastStatus(1);
 			}
 		}
 		
-		final StatusUpdate su = new StatusUpdate(getActiveChar());
+		final StatusUpdate su = new StatusUpdate(player);
 		su.addAttribute(StatusUpdate.LEVEL, getLevel());
 		su.addAttribute(StatusUpdate.MAX_CP, getMaxCp());
 		su.addAttribute(StatusUpdate.MAX_HP, getMaxHp());
 		su.addAttribute(StatusUpdate.MAX_MP, getMaxMp());
-		getActiveChar().sendPacket(su);
+		player.sendPacket(su);
 		
 		// Update the overloaded status of the Player
-		getActiveChar().refreshOverloaded();
+		player.refreshOverloaded();
 		// Update the expertise status of the Player
-		getActiveChar().refreshExpertisePenalty();
+		player.refreshExpertisePenalty();
 		// Send a Server->Client packet UserInfo to the Player
-		getActiveChar().updateUserInfo();
+		player.updateUserInfo();
 		// Nevit System
 		if (Config.NEVIT_ENABLED)
 		{
-			getActiveChar().sendPacket(new ExVoteSystemInfo(getActiveChar()));
-			getActiveChar().getNevitSystem().addPoints(2000);
+			player.sendPacket(new ExVoteSystemInfo(player));
+			player.getNevitSystem().addPoints(2000);
 		}
 		
 		return levelIncreased;
@@ -347,9 +356,10 @@ public class PlayerStat extends PlayableStat
 			return false;
 		}
 		
-		final StatusUpdate su = new StatusUpdate(getActiveChar());
+		final Player player = getActiveChar();
+		final StatusUpdate su = new StatusUpdate(player);
 		su.addAttribute(StatusUpdate.SP, (int) getSp());
-		getActiveChar().sendPacket(su);
+		player.sendPacket(su);
 		
 		return true;
 	}
@@ -363,15 +373,16 @@ public class PlayerStat extends PlayableStat
 	@Override
 	public Player getActiveChar()
 	{
-		return (Player) super.getActiveChar();
+		return super.getActiveChar().asPlayer();
 	}
 	
 	@Override
 	public long getExp()
 	{
-		if (getActiveChar().isSubClassActive())
+		final Player player = getActiveChar();
+		if (player.isSubClassActive())
 		{
-			return getActiveChar().getSubClasses().get(getActiveChar().getClassIndex()).getExp();
+			return player.getSubClasses().get(player.getClassIndex()).getExp();
 		}
 		return super.getExp();
 	}
@@ -384,9 +395,10 @@ public class PlayerStat extends PlayableStat
 	@Override
 	public void setExp(long value)
 	{
-		if (getActiveChar().isSubClassActive())
+		final Player player = getActiveChar();
+		if (player.isSubClassActive())
 		{
-			getActiveChar().getSubClasses().get(getActiveChar().getClassIndex()).setExp(value);
+			player.getSubClasses().get(player.getClassIndex()).setExp(value);
 		}
 		else
 		{
@@ -463,9 +475,10 @@ public class PlayerStat extends PlayableStat
 	@Override
 	public byte getLevel()
 	{
-		if (getActiveChar().isSubClassActive())
+		final Player player = getActiveChar();
+		if (player.isSubClassActive())
 		{
-			final SubClassHolder holder = getActiveChar().getSubClasses().get(getActiveChar().getClassIndex());
+			final SubClassHolder holder = player.getSubClasses().get(player.getClassIndex());
 			if (holder != null)
 			{
 				return holder.getLevel();
@@ -488,9 +501,10 @@ public class PlayerStat extends PlayableStat
 			level = (byte) (ExperienceData.getInstance().getMaxLevel() - 1);
 		}
 		
-		if (getActiveChar().isSubClassActive())
+		final Player player = getActiveChar();
+		if (player.isSubClassActive())
 		{
-			getActiveChar().getSubClasses().get(getActiveChar().getClassIndex()).setLevel(value);
+			player.getSubClasses().get(player.getClassIndex()).setLevel(value);
 		}
 		else
 		{
@@ -502,15 +516,20 @@ public class PlayerStat extends PlayableStat
 	public int getMaxCp()
 	{
 		// Get the Max CP (base+modifier) of the Player
-		final int val = (getActiveChar() == null) ? 1 : (int) calcStat(Stat.MAX_CP, getActiveChar().getTemplate().getBaseCpMax(getActiveChar().getLevel()));
+		final Player player = getActiveChar();
+		final int val = (player == null) ? 1 : (int) calcStat(Stat.MAX_CP, player.getTemplate().getBaseCpMax(player.getLevel()));
 		if (val != _oldMaxCp)
 		{
 			_oldMaxCp = val;
 			
 			// Launch a regen task if the new Max CP is higher than the old one
-			if (getActiveChar().getStatus().getCurrentCp() != val)
+			if (player != null)
 			{
-				getActiveChar().getStatus().setCurrentCp(getActiveChar().getStatus().getCurrentCp()); // trigger start of regeneration
+				final PlayerStatus status = player.getStatus();
+				if (status.getCurrentCp() != val)
+				{
+					status.setCurrentCp(status.getCurrentCp()); // trigger start of regeneration
+				}
 			}
 		}
 		return val;
@@ -520,15 +539,20 @@ public class PlayerStat extends PlayableStat
 	public int getMaxHp()
 	{
 		// Get the Max HP (base+modifier) of the Player
-		final int val = (getActiveChar() == null) ? 1 : (int) calcStat(Stat.MAX_HP, getActiveChar().getTemplate().getBaseHpMax(getActiveChar().getLevel()));
+		final Player player = getActiveChar();
+		final int val = (player == null) ? 1 : (int) calcStat(Stat.MAX_HP, player.getTemplate().getBaseHpMax(player.getLevel()));
 		if (val != _oldMaxHp)
 		{
 			_oldMaxHp = val;
 			
 			// Launch a regen task if the new Max HP is higher than the old one
-			if (getActiveChar().getStatus().getCurrentHp() != val)
+			if (player != null)
 			{
-				getActiveChar().getStatus().setCurrentHp(getActiveChar().getStatus().getCurrentHp()); // trigger start of regeneration
+				final PlayerStatus status = player.getStatus();
+				if (status.getCurrentHp() != val)
+				{
+					status.setCurrentHp(status.getCurrentHp()); // trigger start of regeneration
+				}
 			}
 		}
 		return val;
@@ -538,15 +562,20 @@ public class PlayerStat extends PlayableStat
 	public int getMaxMp()
 	{
 		// Get the Max MP (base+modifier) of the Player
-		final int val = (getActiveChar() == null) ? 1 : (int) calcStat(Stat.MAX_MP, getActiveChar().getTemplate().getBaseMpMax(getActiveChar().getLevel()));
+		final Player player = getActiveChar();
+		final int val = (player == null) ? 1 : (int) calcStat(Stat.MAX_MP, player.getTemplate().getBaseMpMax(player.getLevel()));
 		if (val != _oldMaxMp)
 		{
 			_oldMaxMp = val;
 			
 			// Launch a regen task if the new Max MP is higher than the old one
-			if (getActiveChar().getStatus().getCurrentMp() != val)
+			if (player != null)
 			{
-				getActiveChar().getStatus().setCurrentMp(getActiveChar().getStatus().getCurrentMp()); // trigger start of regeneration
+				final PlayerStatus status = player.getStatus();
+				if (status.getCurrentMp() != val)
+				{
+					status.setCurrentMp(status.getCurrentMp()); // trigger start of regeneration
+				}
 			}
 		}
 		return val;
@@ -555,9 +584,10 @@ public class PlayerStat extends PlayableStat
 	@Override
 	public long getSp()
 	{
-		if (getActiveChar().isSubClassActive())
+		final Player player = getActiveChar();
+		if (player.isSubClassActive())
 		{
-			return getActiveChar().getSubClasses().get(getActiveChar().getClassIndex()).getSp();
+			return player.getSubClasses().get(player.getClassIndex()).getSp();
 		}
 		return super.getSp();
 	}
@@ -570,9 +600,10 @@ public class PlayerStat extends PlayableStat
 	@Override
 	public void setSp(long value)
 	{
-		if (getActiveChar().isSubClassActive())
+		final Player player = getActiveChar();
+		if (player.isSubClassActive())
 		{
-			getActiveChar().getSubClasses().get(getActiveChar().getClassIndex()).setSp(value);
+			player.getSubClasses().get(player.getClassIndex()).setSp(value);
 		}
 		else
 		{
@@ -613,21 +644,22 @@ public class PlayerStat extends PlayableStat
 		double val = super.getRunSpeed() + Config.RUN_SPD_BOOST;
 		
 		// Apply max run speed cap.
-		if ((val > Config.MAX_RUN_SPEED) && !getActiveChar().canOverrideCond(PlayerCondOverride.MAX_STATS_VALUE))
+		final Player player = getActiveChar();
+		if ((val > Config.MAX_RUN_SPEED) && !player.canOverrideCond(PlayerCondOverride.MAX_STATS_VALUE))
 		{
 			return Config.MAX_RUN_SPEED;
 		}
 		
 		// Check for mount penalties
-		if (getActiveChar().isMounted())
+		if (player.isMounted())
 		{
 			// if level diff with mount >= 10, it decreases move speed by 50%
-			if ((getActiveChar().getMountLevel() - getActiveChar().getLevel()) >= 10)
+			if ((player.getMountLevel() - player.getLevel()) >= 10)
 			{
 				val /= 2;
 			}
 			// if mount is hungry, it decreases move speed by 50%
-			if (getActiveChar().isHungry())
+			if (player.isHungry())
 			{
 				val /= 2;
 			}
@@ -642,20 +674,21 @@ public class PlayerStat extends PlayableStat
 		double val = super.getWalkSpeed() + Config.RUN_SPD_BOOST;
 		
 		// Apply max run speed cap.
-		if ((val > Config.MAX_RUN_SPEED) && !getActiveChar().canOverrideCond(PlayerCondOverride.MAX_STATS_VALUE))
+		final Player player = getActiveChar();
+		if ((val > Config.MAX_RUN_SPEED) && !player.canOverrideCond(PlayerCondOverride.MAX_STATS_VALUE))
 		{
 			return Config.MAX_RUN_SPEED;
 		}
 		
-		if (getActiveChar().isMounted())
+		if (player.isMounted())
 		{
 			// if level diff with mount >= 10, it decreases move speed by 50%
-			if ((getActiveChar().getMountLevel() - getActiveChar().getLevel()) >= 10)
+			if ((player.getMountLevel() - player.getLevel()) >= 10)
 			{
 				val /= 2;
 			}
 			// if mount is hungry, it decreases move speed by 50%
-			if (getActiveChar().isHungry())
+			if (player.isHungry())
 			{
 				val /= 2;
 			}
@@ -701,21 +734,22 @@ public class PlayerStat extends PlayableStat
 		
 		if (!quiet && (level != _vitalityLevel))
 		{
+			final Player player = getActiveChar();
 			if (level < _vitalityLevel)
 			{
-				getActiveChar().sendPacket(SystemMessageId.YOUR_VITALITY_HAS_DECREASED);
+				player.sendPacket(SystemMessageId.YOUR_VITALITY_HAS_DECREASED);
 			}
 			else
 			{
-				getActiveChar().sendPacket(SystemMessageId.YOUR_VITALITY_HAS_INCREASED);
+				player.sendPacket(SystemMessageId.YOUR_VITALITY_HAS_INCREASED);
 			}
 			if (level == 0)
 			{
-				getActiveChar().sendPacket(SystemMessageId.YOUR_VITALITY_IS_FULLY_EXHAUSTED);
+				player.sendPacket(SystemMessageId.YOUR_VITALITY_IS_FULLY_EXHAUSTED);
 			}
 			else if (level == 4)
 			{
-				getActiveChar().sendPacket(SystemMessageId.YOUR_VITALITY_IS_AT_MAXIMUM);
+				player.sendPacket(SystemMessageId.YOUR_VITALITY_IS_AT_MAXIMUM);
 			}
 		}
 		
@@ -756,15 +790,16 @@ public class PlayerStat extends PlayableStat
 		float points = value;
 		if (useRates)
 		{
-			if (getActiveChar().isLucky())
+			final Player player = getActiveChar();
+			if (player.isLucky())
 			{
 				return;
 			}
 			
 			if (points < 0) // vitality consumed
 			{
-				int stat = (int) calcStat(Stat.VITALITY_CONSUME_RATE, 1, getActiveChar(), null);
-				if (getActiveChar().getNevitSystem().isAdventBlessingActive())
+				int stat = (int) calcStat(Stat.VITALITY_CONSUME_RATE, 1, player, null);
+				if (player.getNevitSystem().isAdventBlessingActive())
 				{
 					stat = -10; // increase Vitality During Blessing
 				}

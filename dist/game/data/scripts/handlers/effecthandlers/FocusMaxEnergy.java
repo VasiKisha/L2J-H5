@@ -18,6 +18,7 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -49,8 +50,9 @@ public class FocusMaxEnergy extends AbstractEffect
 			final int maxCharge = (sonicMastery != null) ? sonicMastery.getLevel() : (focusMastery != null) ? focusMastery.getLevel() : 0;
 			if (maxCharge != 0)
 			{
-				final int count = maxCharge - effected.getActingPlayer().getCharges();
-				effected.getActingPlayer().increaseCharges(count, maxCharge);
+				final Player player = effected.asPlayer();
+				final int count = maxCharge - player.getCharges();
+				player.increaseCharges(count, maxCharge);
 			}
 		}
 	}

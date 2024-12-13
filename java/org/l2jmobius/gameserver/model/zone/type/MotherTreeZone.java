@@ -68,7 +68,7 @@ public class MotherTreeZone extends ZoneType
 	{
 		if (creature.isPlayer())
 		{
-			final Player player = creature.getActingPlayer();
+			final Player player = creature.asPlayer();
 			creature.setInsideZone(ZoneId.MOTHER_TREE, true);
 			if (_enterMsg != 0)
 			{
@@ -82,7 +82,7 @@ public class MotherTreeZone extends ZoneType
 	{
 		if (creature.isPlayer())
 		{
-			final Player player = creature.getActingPlayer();
+			final Player player = creature.asPlayer();
 			player.setInsideZone(ZoneId.MOTHER_TREE, false);
 			if (_leaveMsg != 0)
 			{

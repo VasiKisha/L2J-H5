@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.ai;
 
@@ -642,7 +646,7 @@ public abstract class AbstractAI implements Ctrl
 	{
 		if (_actor.isSummon())
 		{
-			final Summon summon = (Summon) _actor;
+			final Summon summon = _actor.asSummon();
 			if (summon.getOwner() != null)
 			{
 				summon.getOwner().getAI().setAutoAttacking(isAutoAttacking);
@@ -660,23 +664,31 @@ public abstract class AbstractAI implements Ctrl
 	{
 		if (_actor.isSummon())
 		{
-			final Summon summon = (Summon) _actor;
+			final Summon summon = _actor.asSummon();
 			if (summon.getOwner() != null)
 			{
 				summon.getOwner().getAI().clientStartAutoAttack();
 			}
 			return;
 		}
+		
 		if (!_clientAutoAttacking)
 		{
-			if (_actor.isPlayer() && _actor.hasSummon())
+			if (_actor.isPlayer())
 			{
-				_actor.getSummon().broadcastPacket(new AutoAttackStart(_actor.getSummon().getObjectId()));
+				final Player player = _actor.asPlayer();
+				if (player.hasSummon())
+				{
+					final Summon summon = player.getSummon();
+					summon.broadcastPacket(new AutoAttackStart(summon.getObjectId()));
+				}
 			}
+			
 			// Send a Server->Client packet AutoAttackStart to the actor and all Player in its _knownPlayers
 			_actor.broadcastPacket(new AutoAttackStart(_actor.getObjectId()));
 			setAutoAttacking(true);
 		}
+		
 		AttackStanceTaskManager.getInstance().addAttackStanceTask(_actor);
 	}
 	
@@ -688,7 +700,7 @@ public abstract class AbstractAI implements Ctrl
 	{
 		if (_actor.isSummon())
 		{
-			final Summon summon = (Summon) _actor;
+			final Summon summon = _actor.asSummon();
 			if (summon.getOwner() != null)
 			{
 				summon.getOwner().getAI().clientStopAutoAttack();
@@ -764,7 +776,7 @@ public abstract class AbstractAI implements Ctrl
 	 * Create and Launch an AI Follow Task to execute every 1s.
 	 * @param target The Creature to follow
 	 */
-	public synchronized void startFollow(Creature target)
+	public void startFollow(Creature target)
 	{
 		startFollow(target, -1);
 	}
@@ -774,7 +786,7 @@ public abstract class AbstractAI implements Ctrl
 	 * @param target The Creature to follow
 	 * @param range
 	 */
-	public synchronized void startFollow(Creature target, int range)
+	public void startFollow(Creature target, int range)
 	{
 		stopFollow();
 		_followTarget = target;
@@ -791,7 +803,7 @@ public abstract class AbstractAI implements Ctrl
 	/**
 	 * Stop an AI Follow Task.
 	 */
-	public synchronized void stopFollow()
+	public void stopFollow()
 	{
 		CreatureFollowTaskManager.getInstance().remove(_actor);
 		_followTarget = null;

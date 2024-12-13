@@ -1,25 +1,29 @@
 /*
- * Copyright © 2019-2021 Async-mmocore
- *
- * This file is part of the Async-mmocore project.
- *
- * Async-mmocore is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Async-mmocore is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (c) 2013 L2jMobius
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.commons.network.internal;
 
 import java.nio.ByteBuffer;
 import java.util.Arrays;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.commons.network.ReadableBuffer;
 import org.l2jmobius.commons.network.ResourcePool;
@@ -27,24 +31,31 @@ import org.l2jmobius.commons.network.ResourcePool;
 /**
  * An implementation of a packet buffer backed by a byte array.<br>
  * This class extends {@link InternalWritableBuffer} and implements {@link ReadableBuffer}, providing methods for writing to and reading from a byte array.
- * @author JoeAlisson
+ * @author JoeAlisson, Mobius
  */
 public class ArrayPacketBuffer extends InternalWritableBuffer implements ReadableBuffer
 {
+	private static final Map<Class<?>, Integer> MAXIMUM_PACKET_SIZE = new ConcurrentHashMap<>();
+	
 	private final ResourcePool _resourcePool;
+	private final Class<?> _packetClass;
+	private final int _initialSize;
+	
 	private byte[] _data;
 	private int _index;
 	private int _limit;
 	
 	/**
 	 * Create a ArrayPacketBuffer
-	 * @param size the initial buffer size
 	 * @param resourcePool the resource pool used to get ByteBuffers
+	 * @param packetClass the Class<?> of the writable packet
 	 */
-	public ArrayPacketBuffer(int size, ResourcePool resourcePool)
+	public ArrayPacketBuffer(ResourcePool resourcePool, Class<?> packetClass)
 	{
-		_data = new byte[size];
 		_resourcePool = resourcePool;
+		_packetClass = packetClass;
+		_initialSize = MAXIMUM_PACKET_SIZE.getOrDefault(packetClass, resourcePool.getSegmentSize());
+		_data = new byte[_initialSize];
 	}
 	
 	private void ensureSize(int size)
@@ -274,6 +285,12 @@ public class ArrayPacketBuffer extends InternalWritableBuffer implements Readabl
 	
 	public ByteBuffer toByteBuffer()
 	{
+		// Update maximum packet size if needed.
+		if (_limit > _initialSize)
+		{
+			MAXIMUM_PACKET_SIZE.put(_packetClass, Math.min(_limit, 65535));
+		}
+		
 		final ByteBuffer buffer = _resourcePool.getBuffer(_limit);
 		buffer.put(_data, 0, _limit);
 		return buffer.flip();

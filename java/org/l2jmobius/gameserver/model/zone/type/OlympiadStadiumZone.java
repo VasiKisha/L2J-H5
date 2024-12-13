@@ -195,21 +195,20 @@ public class OlympiadStadiumZone extends ZoneRespawn
 	@Override
 	protected void onEnter(Creature creature)
 	{
-		if ((getSettings().getOlympiadTask() != null) && getSettings().getOlympiadTask().isBattleStarted())
+		creature.setInsideZone(ZoneId.PVP, true);
+		
+		if (creature.isPlayer() && (getSettings().getOlympiadTask() != null) && getSettings().getOlympiadTask().isBattleStarted())
 		{
-			creature.setInsideZone(ZoneId.PVP, true);
-			if (creature.isPlayer())
-			{
-				creature.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_A_COMBAT_ZONE);
-				getSettings().getOlympiadTask().getGame().sendOlympiadInfo(creature);
-			}
+			creature.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_A_COMBAT_ZONE);
+			getSettings().getOlympiadTask().getGame().sendOlympiadInfo(creature);
 		}
 		
 		if (!creature.isPlayable())
 		{
 			return;
 		}
-		final Player player = creature.getActingPlayer();
+		
+		final Player player = creature.asPlayer();
 		if (player != null)
 		{
 			// only participants, observers and GMs allowed
@@ -231,14 +230,12 @@ public class OlympiadStadiumZone extends ZoneRespawn
 	@Override
 	protected void onExit(Creature creature)
 	{
-		if ((getSettings().getOlympiadTask() != null) && getSettings().getOlympiadTask().isBattleStarted())
+		creature.setInsideZone(ZoneId.PVP, false);
+		
+		if (creature.isPlayer() && (getSettings().getOlympiadTask() != null) && getSettings().getOlympiadTask().isBattleStarted())
 		{
-			creature.setInsideZone(ZoneId.PVP, false);
-			if (creature.isPlayer())
-			{
-				creature.sendPacket(SystemMessageId.YOU_HAVE_LEFT_A_COMBAT_ZONE);
-				creature.sendPacket(ExOlympiadMatchEnd.STATIC_PACKET);
-			}
+			creature.sendPacket(SystemMessageId.YOU_HAVE_LEFT_A_COMBAT_ZONE);
+			creature.sendPacket(ExOlympiadMatchEnd.STATIC_PACKET);
 		}
 	}
 	

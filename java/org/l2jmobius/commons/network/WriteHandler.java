@@ -26,22 +26,20 @@ import java.nio.channels.CompletionHandler;
  * @param <T> The type of Client associated with this write handler.
  * @author JoeAlisson
  */
-class WriteHandler<T extends Client<Connection<T>>> implements CompletionHandler<Long, T>
+public class WriteHandler<T extends Client<Connection<T>>> implements CompletionHandler<Long, T>
 {
-	// private static final Logger LOGGER = Logger.getLogger(WriteHandler.class.getName());
-	
 	@Override
 	public void completed(Long result, T client)
 	{
-		// Client probably disconnected.
+		// If client is null, there's nothing to handle, possibly due to disconnection.
 		if (client == null)
 		{
 			return;
 		}
 		
+		// Negative result indicates failure to send data, possibly due to client disconnection.
 		if (result < 0)
 		{
-			// LOGGER.warning("Couldn't send data to client " + client);
 			if (client.isConnected())
 			{
 				client.disconnect();
@@ -49,12 +47,12 @@ class WriteHandler<T extends Client<Connection<T>>> implements CompletionHandler
 			return;
 		}
 		
-		if ((result < client.getDataSentSize()) && (result > 0))
+		// If there is still data remaining to send, resume sending with the remaining data.
+		if ((result > 0) && (result < client.getDataSentSize()))
 		{
-			// LOGGER.info("Still " + result + " data to send. Trying to send");
 			client.resumeSend(result);
 		}
-		else
+		else // All data sent, finish the writing process.
 		{
 			client.finishWriting();
 		}
@@ -63,10 +61,7 @@ class WriteHandler<T extends Client<Connection<T>>> implements CompletionHandler
 	@Override
 	public void failed(Throwable e, T client)
 	{
-		// if (!(e instanceof IOException))
-		// {
-		// LOGGER.log(Level.WARNING, e.getMessage(), e);
-		// }
+		// Handle failures, disconnecting the client if an error occurs.
 		client.disconnect();
 	}
 }

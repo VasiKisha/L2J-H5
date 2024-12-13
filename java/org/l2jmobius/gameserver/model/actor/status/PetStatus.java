@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.actor.status;
 
@@ -40,7 +44,8 @@ public class PetStatus extends SummonStatus
 	@Override
 	public void reduceHp(double value, Creature attacker, boolean awake, boolean isDOT, boolean isHpConsumption)
 	{
-		if (getActiveChar().isDead())
+		final Pet pet = getActiveChar();
+		if (pet.isDead())
 		{
 			return;
 		}
@@ -52,14 +57,14 @@ public class PetStatus extends SummonStatus
 			return;
 		}
 		
-		if (!isDOT && (getActiveChar().getOwner() != null))
+		if (!isDOT && (pet.getOwner() != null))
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.YOUR_PET_RECEIVED_S2_DAMAGE_BY_C1);
 			sm.addString(attacker.getName());
 			sm.addInt((int) value);
-			getActiveChar().sendPacket(sm);
+			pet.sendPacket(sm);
 		}
-		getActiveChar().getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, attacker);
+		pet.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, attacker);
 	}
 	
 	public int getCurrentFed()
@@ -75,6 +80,6 @@ public class PetStatus extends SummonStatus
 	@Override
 	public Pet getActiveChar()
 	{
-		return (Pet) super.getActiveChar();
+		return super.getActiveChar().asPet();
 	}
 }

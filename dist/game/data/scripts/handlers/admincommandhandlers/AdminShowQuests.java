@@ -105,7 +105,7 @@ public class AdminShowQuests implements IAdminCommandHandler
 			targetObject = activeChar.getTarget();
 			if ((targetObject != null) && targetObject.isPlayer())
 			{
-				target = targetObject.getActingPlayer();
+				target = targetObject.asPlayer();
 			}
 		}
 		
@@ -187,6 +187,8 @@ public class AdminShowQuests implements IAdminCommandHandler
 						replyMSG.append("<tr><td><a action=\"bypass -h admin_charquestmenu " + target.getName() + " " + rs.getString(1) + "\">" + rs.getString(1) + "</a></td></tr>");
 					}
 					replyMSG.append("</table></body></html>");
+					rs.close();
+					req.close();
 					break;
 				}
 				case "name":
@@ -207,6 +209,8 @@ public class AdminShowQuests implements IAdminCommandHandler
 						}
 						replyMSG.append("<tr><td>" + var_name + "</td><td>" + rs.getString(2) + "</td><td><edit var=\"var" + var_name + "\" width=80 height=15></td><td><button value=\"Set\" action=\"bypass -h admin_setcharquest " + target.getName() + " " + val[1] + " " + var_name + " $var" + var_name + "\" width=30 height=15 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td><button value=\"Del\" action=\"bypass -h admin_setcharquest " + target.getName() + " " + val[1] + " " + var_name + " delete\" width=30 height=15 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr>");
 					}
+					rs.close();
+					req.close();
 					replyMSG.append("</table><br><br><table width=250><tr><td>Repeatable quest:</td><td>Unrepeatable quest:</td></tr>");
 					replyMSG.append("<tr><td><button value=\"Quest Complete\" action=\"bypass -h admin_setcharquest " + target.getName() + " " + val[1] + " state COMPLETED 1\" width=120 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td>");
 					replyMSG.append("<td><button value=\"Quest Complete\" action=\"bypass -h admin_setcharquest " + target.getName() + " " + val[1] + " state COMPLETED 0\" width=120 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr>");
@@ -225,6 +229,8 @@ public class AdminShowQuests implements IAdminCommandHandler
 					{
 						replyMSG.append("<tr><td><a action=\"bypass -h admin_charquestmenu " + target.getName() + " " + rs.getString(1) + "\">" + rs.getString(1) + "</a></td></tr>");
 					}
+					rs.close();
+					req.close();
 					replyMSG.append("</table></body></html>");
 					break;
 				}

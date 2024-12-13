@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="4100" levels="12" name="NPC Prominence">
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -18,7 +18,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4101" levels="12" name="NPC Spinning Slash">
@@ -36,11 +36,13 @@
 		<set name="reuseDelay" val="6000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
-	<skill id="4102" levels="3" name="Become weak against line of fire">
-		<!-- Instantly decreases Resistance to fire attacks and increases Resistance to water attacks. Effect 2. -->
+	<skill id="4102" levels="3" name="Surrender To Fire">
+		<!-- Level 1: Instantly decreases Resistance to fire attacks and increases Resistance to water attacks. Effect 2. -->
+		<!-- Level 2: Instantly decreases Resistance to fire attacks and increases Resistance to water attacks. Effect 3. -->
+		<!-- Level 3: Instantly decreases Resistance to fire attacks and increases Resistance to water attacks. Effect 4. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#fireRes">15 25 30</table>
 		<table name="#magicLevel">20 40 70</table>
@@ -93,7 +95,18 @@
 		</for>
 	</skill>
 	<skill id="4104" levels="12" name="Flame">
-		<!-- Burning flames engulf you, inflicting continuous damage. Effect 2. -->
+		<!-- Level 1: Burning flames engulf you, inflicting continuous damage. Effect 2. -->
+		<!-- Level 2: Burning flames engulf you, inflicting continuous damage. Effect 3. -->
+		<!-- Level 3: Burning flames engulf you, inflicting continuous damage. Effect 4. -->
+		<!-- Level 4: Burning flames engulf you, inflicting continuous damage. Effect 5. -->
+		<!-- Level 5: Burning flames engulf you, inflicting continuous damage. Effect 6. -->
+		<!-- Level 6: Burning flames engulf you, inflicting continuous damage. Effect 7. -->
+		<!-- Level 7: Burning flames engulf you, inflicting continuous damage. Effect 8. -->
+		<!-- Level 8: Burning flames engulf you, inflicting continuous damage. Effect 8. -->
+		<!-- Level 9: Burning flames engulf you, inflicting continuous damage. Effect 9. -->
+		<!-- Level 10: Burning flames engulf you, inflicting continuous damage. Effect 9. -->
+		<!-- Level 11: Burning flames engulf you, inflicting continuous damage. Effect 10. -->
+		<!-- Level 12: Burning flames engulf you, inflicting continuous damage. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#dmg">18 27 39 53 67 81 91 91 100 100 108 108</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -141,7 +154,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4106" levels="1" name="Antharas Stun">
@@ -164,7 +177,7 @@
 		<set name="targetType" val="FRONT_AURA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -191,7 +204,7 @@
 		<set name="targetType" val="BEHIND_AURA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="ThrowUp" />
 			<effect name="Stun" />
 		</for>
@@ -274,7 +287,7 @@
 		<set name="power" val="650" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4111" levels="1" name="Antharas Fossilization">
@@ -301,7 +314,7 @@
 		<set name="power" val="10" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Petrification">
 				<mul stat="regHp" val="0" />
 			</effect>
@@ -321,7 +334,7 @@
 		<set name="power" val="57200" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4113" levels="1" name="Animal doing ordinary attack">
@@ -338,7 +351,7 @@
 		<set name="power" val="57200" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4114" levels="1" name="Aden Flame">
@@ -357,7 +370,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4115" levels="1" name="Aden Heal">
@@ -377,7 +390,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4116" levels="10" name="Resist M.Atk">
+	<skill id="4116" levels="10" name="Resist M. Atk.">
 		<!-- Resistant to M. Atk. -->
 		<table name="#mDef">1.05 1.11 1.17 1.25 1.33 1.43 1.67 2 3.33 10</table>
 		<set name="icon" val="icon.skill4116_new" />
@@ -451,8 +464,10 @@
 			<effect name="Paralyze" />
 		</for>
 	</skill>
-	<skill id="4119" levels="3" name="Fall in accuracy">
-		<!-- Instantly reduces Accuracy. Effect 1. -->
+	<skill id="4119" levels="3" name="Decrease Accuracy">
+		<!-- Level 1: Instantly reduces Accuracy. Effect 1. -->
+		<!-- Level 2: Instantly reduces Accuracy. Effect 2. -->
+		<!-- Level 3: Instantly reduces Accuracy. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#accCombat">6 9 12</table>
 		<table name="#magicLevel">20 40 70</table>
@@ -481,7 +496,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4120" levels="12" name="Shock">
+	<skill id="4120" levels="12" name="Stun">
 		<!-- You are stunned and temporarily prohibited from movement. -->
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">25 40 56 76 99 121 142 151 159 165 168 170</table>
@@ -510,7 +525,7 @@
 			<using kind="BOW" />
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -570,7 +585,7 @@
 		<set name="reuseDelay" val="17000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4125" levels="1" name="Antharas Regeneration">
@@ -616,7 +631,7 @@
 		<set name="power" val="0" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4128" levels="1" name="Wind Of Force">
@@ -630,7 +645,7 @@
 		<set name="power" val="14000" />
 		<set name="targetType" val="FRONT_AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4129" levels="1" name="Earthquake">
@@ -643,7 +658,7 @@
 		<set name="power" val="4000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4130" levels="1" name="Striking of Thunderbolt">
@@ -658,7 +673,7 @@
 		<set name="power" val="367" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4131" levels="1" name="Stun">
@@ -695,7 +710,7 @@
 		<set name="power" val="3885" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4133" levels="1" name="Angel Heal">
@@ -744,7 +759,7 @@
 		<set name="power" val="10000000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4137" levels="12" name="Hydro Screw">
@@ -767,7 +782,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4138" levels="12" name="NPC AE - Corpse Burst">
@@ -789,7 +804,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="AREA_CORPSE_MOB" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 			<effect name="ConsumeBody" />
 		</for>
 	</skill>
@@ -808,11 +823,22 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4140" levels="12" name="Contract Payment">
-		<!-- Your MP is continuously consumed as payment for summoning an unholy creature. Effect 1. -->
+		<!-- Level 1: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 1. -->
+		<!-- Level 2: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 2. -->
+		<!-- Level 3: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 3. -->
+		<!-- Level 4: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 4. -->
+		<!-- Level 5: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 5. -->
+		<!-- Level 6: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 6. -->
+		<!-- Level 7: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 7. -->
+		<!-- Level 8: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 7. -->
+		<!-- Level 9: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 8. -->
+		<!-- Level 10: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 8. -->
+		<!-- Level 11: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 9. -->
+		<!-- Level 12: Your MP is continuously consumed as payment for summoning an unholy creature. Effect 9. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 7 8 8 9 9</table>
 		<table name="#damage">1 1.1 1.2 1.3 1.4 1.5 1.6 1.6 1.7 1.7 1.8 1.8</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -849,7 +875,7 @@
 		<set name="power" val="0.0" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4142" levels="12" name="NPC Fast Wind Fist">
@@ -865,7 +891,7 @@
 		<set name="power" val="0.0" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4143" levels="10" name="Treasure Bomb">
@@ -881,7 +907,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4144" levels="80" name="Mimic Strong Attack">
@@ -897,11 +923,13 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4145" levels="3" name="Decrease P. Atk.">
-		<!-- Reduction in P. Atk. Effect 1. -->
+		<!-- Level 1: Reduction in P. Atk. Effect 1. -->
+		<!-- Level 2: Reduction in P. Atk. Effect 2. -->
+		<!-- Level 3: Reduction in P. Atk. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#pAtk">0.83 0.8 0.77</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -922,8 +950,10 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4146" levels="3" name="Decrease P.Def">
-		<!-- Temporarily reduces one's P. Def. Effect 1. -->
+	<skill id="4146" levels="3" name="Decrease P. Def.">
+		<!-- Level 1: Temporarily reduces one's P. Def. Effect 1. -->
+		<!-- Level 2: Temporarily reduces one's P. Def. Effect 2. -->
+		<!-- Level 3: Temporarily reduces one's P. Def. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#pDef">0.83 0.8 0.77</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -955,7 +985,18 @@
 		</for>
 	</skill>
 	<skill id="4148" levels="12" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 2. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 2. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 3. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 4. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 5. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 6. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 7. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 10: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 11: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 12: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#dot">16 24 32 41 50 58 63 63 66 66 68 68</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -980,7 +1021,18 @@
 		</for>
 	</skill>
 	<skill id="4149" levels="12" name="Bleed">
-		<!-- You suffer a wound that continually reduces HP. Effect 2. -->
+		<!-- Level 1: You suffer a wound that continually reduces HP. Effect 2. -->
+		<!-- Level 2: You suffer a wound that continually reduces HP. Effect 3. -->
+		<!-- Level 3: You suffer a wound that continually reduces HP. Effect 4. -->
+		<!-- Level 4: You suffer a wound that continually reduces HP. Effect 5. -->
+		<!-- Level 5: You suffer a wound that continually reduces HP. Effect 6. -->
+		<!-- Level 6: You suffer a wound that continually reduces HP. Effect 7. -->
+		<!-- Level 7: You suffer a wound that continually reduces HP. Effect 8. -->
+		<!-- Level 8: You suffer a wound that continually reduces HP. Effect 8. -->
+		<!-- Level 9: You suffer a wound that continually reduces HP. Effect 9. -->
+		<!-- Level 10: You suffer a wound that continually reduces HP. Effect 9. -->
+		<!-- Level 11: You suffer a wound that continually reduces HP. Effect 10. -->
+		<!-- Level 12: You suffer a wound that continually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#dot">18 25 34 44 54 62 67 67 70 70 71 71</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -1005,7 +1057,18 @@
 		</for>
 	</skill>
 	<skill id="4150" levels="12" name="Flame">
-		<!-- Burning flames engulf you, inflicting continuous damage. Effect 2. -->
+		<!-- Level 1: Burning flames engulf you, inflicting continuous damage. Effect 2. -->
+		<!-- Level 2: Burning flames engulf you, inflicting continuous damage. Effect 3. -->
+		<!-- Level 3: Burning flames engulf you, inflicting continuous damage. Effect 4. -->
+		<!-- Level 4: Burning flames engulf you, inflicting continuous damage. Effect 5. -->
+		<!-- Level 5: Burning flames engulf you, inflicting continuous damage. Effect 6. -->
+		<!-- Level 6: Burning flames engulf you, inflicting continuous damage. Effect 7. -->
+		<!-- Level 7: Burning flames engulf you, inflicting continuous damage. Effect 8. -->
+		<!-- Level 8: Burning flames engulf you, inflicting continuous damage. Effect 8. -->
+		<!-- Level 9: Burning flames engulf you, inflicting continuous damage. Effect 9. -->
+		<!-- Level 10: Burning flames engulf you, inflicting continuous damage. Effect 9. -->
+		<!-- Level 11: Burning flames engulf you, inflicting continuous damage. Effect 10. -->
+		<!-- Level 12: Burning flames engulf you, inflicting continuous damage. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#dot">14 21 30 40 51 61 68 68 72 72 74 74</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -1047,7 +1110,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4152" levels="12" name="NPC HP Drain - Magic">
@@ -1103,7 +1166,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 			<effect name="Debuff">
 				<mul stat="runSpd" val="0.8" />
 			</effect>
@@ -1124,7 +1187,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttackMp" />
+			<effect name="MagicalDamageMp" />
 		</for>
 	</skill>
 	<skill id="4155" levels="12" name="NPC Twister - Magic">
@@ -1144,7 +1207,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4156" levels="12" name="NPC Curve Beam Cannon - Magic">
@@ -1162,7 +1225,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4157" levels="12" name="NPC Blaze - Magic">
@@ -1184,7 +1247,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4158" levels="12" name="NPC Prominence - Magic">
@@ -1204,7 +1267,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4159" levels="12" name="NPC Straight Beam Cannon - Magic">
@@ -1222,7 +1285,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4160" levels="12" name="NPC Aura Burn - Magic">
@@ -1240,7 +1303,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4161" levels="1" name="Summon PC">
@@ -1252,8 +1315,10 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="ONE" />
 	</skill>
-	<skill id="4162" levels="3" name="Decrease P. Atk.">
-		<!-- Reduction in Atk. Spd. Effect 1. -->
+	<skill id="4162" levels="3" name="Decrease Atk. Spd.">
+		<!-- Level 1: Reduction in Atk. Spd. Effect 1. -->
+		<!-- Level 2: Reduction in Atk. Spd. Effect 2. -->
+		<!-- Level 3: Reduction in Atk. Spd. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#pAtkSpd">0.83 0.8 0.77</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -1274,7 +1339,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4163" levels="12" name="NPC Self Damage Shield">
+	<skill id="4163" levels="12" name="NPC Self-Damage Shield">
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">12 19 26 35 45 55 65 69 72 75 77 78</table>
 		<set name="abnormalLevel" val="2" />
@@ -1322,7 +1387,23 @@
 		</endEffects>
 	</skill>
 	<skill id="4165" levels="17" name="Icy Air">
-		<!-- Continuously damaged by icy air. Effect 5. -->
+		<!-- Level 1: Continuously damaged by icy air. Effect 5. -->
+		<!-- Level 2: Continuously damaged by icy air. Effect 5. -->
+		<!-- Level 3: Continuously damaged by icy air. Effect 5. -->
+		<!-- Level 4: Continuously damaged by icy air. Effect 5. -->
+		<!-- Level 5: Continuously damaged by icy air. Effect 5. -->
+		<!-- Level 6: Continuously damaged by icy air. Effect 5. -->
+		<!-- Level 7: Continuously damaged by icy air. Effect 5. -->
+		<!-- Level 8: Continuously damaged by icy air. Effect 5. -->
+		<!-- Level 9: Continuously damaged by icy air. Effect 5. -->
+		<!-- Level 10: Continuously damaged by icy air. Effect 8. -->
+		<!-- Level 11: Continuously damaged by icy air. Effect 8. -->
+		<!-- Level 12: Continuously damaged by icy air. Effect 8. -->
+		<!-- Level 13: Continuously damaged by icy air. Effect 8. -->
+		<!-- Level 14: Continuously damaged by icy air. Effect 8. -->
+		<!-- Level 15: Continuously damaged by icy air. Effect 8. -->
+		<!-- Level 16: Continuously damaged by icy air. Effect 8. -->
+		<!-- Level 17: Continuously damaged by icy air. Effect 8. -->
 		<table name="#abnormalLevels">5 5 5 6 6 7 7 8 8 8 8 8 8 8 8 8 8</table>
 		<table name="#dot">102 102 102 125 125 144 144 157 157 157 157 164 164 164 164 164 164</table>
 		<table name="#magicLevel">40 44 48 52 56 62 66 70 74 76 78 80 81 82 83 84 85</table>
@@ -1346,7 +1427,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4166" levels="18" name="Stuns">
+	<skill id="4166" levels="18" name="Stun">
 		<!-- Instantly paralyzed from being stunned. -->
 		<table name="#magicLevel">40 44 48 52 56 60 64 68 72 74 76 78 80 81 82 83 84 85</table>
 		<set name="abnormalLevel" val="1" />
@@ -1367,7 +1448,7 @@
 			<effect name="Stun" />
 		</for>
 	</skill>
-	<skill id="4167" levels="1" name="Curse of Fairy Mymyu">
+	<skill id="4167" levels="1" name="Curse of Fairy Mimyu">
 		<!-- Fairy Mimyu's Curse reduces Physical Dmg. and Atk. Speed. -->
 		<set name="abnormalLevel" val="99" />
 		<set name="abnormalTime" val="3600" />
@@ -1386,7 +1467,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4168" levels="12" name="BOSS Power Strike">
+	<skill id="4168" levels="12" name="BOSS Strike">
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
 		<table name="#mpConsume">16 23 32 42 53 65 75 79 82 84 85 87</table>
 		<table name="#power">121 325 893 2338 5884 11371 17463 20261 23243 26363 29567 32796</table>
@@ -1401,7 +1482,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4169" levels="12" name="Stun">
@@ -1429,7 +1510,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1466,7 +1547,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4172" levels="12" name="Stun">
@@ -1492,7 +1573,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1590,7 +1671,7 @@
 			<effect name="DispelAll" />
 		</for>
 	</skill>
-	<skill id="4178" levels="12" name="BOSS Flame Strike">
+	<skill id="4178" levels="12" name="BOSS Flamestrike">
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
 		<table name="#mpConsume">23 32 44 58 74 89 102 107 112 114 116 118</table>
 		<table name="#power">21 31 43 58 75 92 108 115 121 125 129 132</table>
@@ -1607,10 +1688,10 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
-	<skill id="4179" levels="12" name="BOSS Power Strike">
+	<skill id="4179" levels="12" name="BOSS Strike">
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
 		<table name="#mpConsume">16 23 32 42 53 65 75 79 82 84 85 87</table>
 		<table name="#power">121 325 893 2338 5884 11371 17463 20261 23243 26363 29567 32796</table>
@@ -1625,7 +1706,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4180" levels="12" name="Stun">
@@ -1653,7 +1734,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1677,7 +1758,18 @@
 		</for>
 	</skill>
 	<skill id="4182" levels="12" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 2. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 2. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 3. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 4. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 5. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 6. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 7. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 10: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 11: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 12: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#dmg">13 18 25 32 39 45 49 49 52 52 53 53</table>
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
@@ -1705,7 +1797,18 @@
 		</for>
 	</skill>
 	<skill id="4183" levels="12" name="Decrease P. Atk.">
-		<!-- Instantly reduces P. Atk. Effect 1. -->
+		<!-- Level 1: Instantly reduces P. Atk. Effect 1. -->
+		<!-- Level 2: Instantly reduces P. Atk. Effect 2. -->
+		<!-- Level 3: Instantly reduces P. Atk. Effect 2. -->
+		<!-- Level 4: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 5: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 6: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 7: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 8: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 9: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 10: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 11: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 12: Instantly reduces P. Atk. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
 		<table name="#mpConsume">17 29 39 53 67 83 97 103 108 112 115 116</table>
@@ -1731,7 +1834,18 @@
 		</for>
 	</skill>
 	<skill id="4184" levels="12" name="Decrease Atk. Spd.">
-		<!-- Instantly reduces Atk. Spd. Effect 1. -->
+		<!-- Level 1: Instantly reduces Atk. Spd. Effect 1. -->
+		<!-- Level 2: Instantly reduces Atk. Spd. Effect 2. -->
+		<!-- Level 3: Instantly reduces Atk. Spd. Effect 2. -->
+		<!-- Level 4: Instantly reduces Atk. Spd. Effect 3. -->
+		<!-- Level 5: Instantly reduces Atk. Spd. Effect 3. -->
+		<!-- Level 6: Instantly reduces Atk. Spd. Effect 3. -->
+		<!-- Level 7: Instantly reduces Atk. Spd. Effect 3. -->
+		<!-- Level 8: Instantly reduces Atk. Spd. Effect 3. -->
+		<!-- Level 9: Instantly reduces Atk. Spd. Effect 3. -->
+		<!-- Level 10: Instantly reduces Atk. Spd. Effect 3. -->
+		<!-- Level 11: Instantly reduces Atk. Spd. Effect 3. -->
+		<!-- Level 12: Instantly reduces Atk. Spd. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
 		<table name="#mpConsume">17 29 39 53 67 83 97 103 108 112 115 116</table>
@@ -1806,7 +1920,18 @@
 		</for>
 	</skill>
 	<skill id="4187" levels="12" name="Decrease Speed">
-		<!-- Instantly reduces Speed. Effect 1. -->
+		<!-- Level 1: Instantly reduces Speed. Effect 1. -->
+		<!-- Level 2: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 3: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 4: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 5: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 6: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 7: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 8: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 9: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 10: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 11: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 12: Instantly reduces Speed. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
 		<table name="#mpConsume">17 29 39 53 67 83 97 103 108 112 115 116</table>
@@ -1832,7 +1957,18 @@
 		</for>
 	</skill>
 	<skill id="4188" levels="12" name="Bleed">
-		<!-- Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 1: Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 2: Inflicts a wound that reduces HP. Effect 3. -->
+		<!-- Level 3: Inflicts a wound that reduces HP. Effect 4. -->
+		<!-- Level 4: Inflicts a wound that reduces HP. Effect 5. -->
+		<!-- Level 5: Inflicts a wound that reduces HP. Effect 6. -->
+		<!-- Level 6: Inflicts a wound that reduces HP. Effect 7. -->
+		<!-- Level 7: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 8: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 9: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 10: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 11: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 12: Inflicts a wound that reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#damage">19 28 38 49 60 69 75 75 78 78 79 79</table>
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
@@ -1884,7 +2020,18 @@
 		</for>
 	</skill>
 	<skill id="4190" levels="12" name="Decrease MP">
-		<!-- Decreases the target's usable amount of MP. Effect 2. -->
+		<!-- Level 1: Decreases the target's usable amount of MP. Effect 2. -->
+		<!-- Level 2: Decreases the target's usable amount of MP. Effect 2. -->
+		<!-- Level 3: Decreases the target's usable amount of MP. Effect 2. -->
+		<!-- Level 4: Decreases the target's usable amount of MP. Effect 2. -->
+		<!-- Level 5: Decreases the target's usable amount of MP. Effect 2. -->
+		<!-- Level 6: Decreases the target's usable amount of MP. Effect 3. -->
+		<!-- Level 7: Decreases the target's usable amount of MP. Effect 4. -->
+		<!-- Level 8: Decreases the target's usable amount of MP. Effect 5. -->
+		<!-- Level 9: Decreases the target's usable amount of MP. Effect 6. -->
+		<!-- Level 10: Decreases the target's usable amount of MP. Effect 7. -->
+		<!-- Level 11: Decreases the target's usable amount of MP. Effect 8. -->
+		<!-- Level 12: Decreases the target's usable amount of MP. Effect 8. -->
 		<table name="#abnormalLevels">2 2 2 2 2 3 4 5 6 7 8 8</table>
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
 		<table name="#mpConsume">17 29 39 53 67 83 97 103 108 112 115 116</table>
@@ -1910,7 +2057,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4191" levels="12" name="BOSS Wind Strike">
+	<skill id="4191" levels="12" name="BOSS Windstrike">
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
 		<table name="#mpConsume">12 19 26 35 45 55 65 69 72 75 77 78</table>
 		<table name="#power">21 31 43 58 75 92 108 115 121 125 129 132</table>
@@ -1926,7 +2073,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4192" levels="12" name="BOSS HP Drain">
@@ -1983,7 +2130,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4195" levels="12" name="BOSS Twister">
@@ -2002,10 +2149,10 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
-	<skill id="4196" levels="12" name="Decreases Speed">
+	<skill id="4196" levels="12" name="Decrease Speed">
 		<!-- Instantly reduces Speed. Effect 2. -->
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
 		<table name="#mpConsume">12 19 26 35 45 55 65 69 72 75 77 78</table>
@@ -2030,7 +2177,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 			<effect name="Debuff">
 				<mul stat="runSpd" val="0.8" />
 			</effect>
@@ -2063,7 +2210,18 @@
 		</for>
 	</skill>
 	<skill id="4198" levels="12" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 2. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 2. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 3. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 4. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 5. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 6. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 7. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 10: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 11: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 12: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#dmg">13 18 25 32 39 45 49 49 52 52 53 53</table>
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
@@ -2092,7 +2250,18 @@
 		</for>
 	</skill>
 	<skill id="4199" levels="12" name="Decrease P. Atk.">
-		<!-- Instantly reduces P. Atk. Effect 1. -->
+		<!-- Level 1: Instantly reduces P. Atk. Effect 1. -->
+		<!-- Level 2: Instantly reduces P. Atk. Effect 2. -->
+		<!-- Level 3: Instantly reduces P. Atk. Effect 2. -->
+		<!-- Level 4: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 5: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 6: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 7: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 8: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 9: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 10: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 11: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 12: Instantly reduces P. Atk. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">14 24 34 44 54 64 74 79 84 89 94 99</table>
 		<table name="#mpConsume">17 29 39 53 67 83 97 103 108 112 115 116</table>

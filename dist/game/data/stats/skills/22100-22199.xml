@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="22100" levels="1" name="Soul Scent">
 		<!-- When using a monster's corpse, comforts the monster's soul to borrow the monster's power temporarily. For 2 minutes, increases Max HP by 40%, Max MP by 40%, Max CP by 40%, physical P. Def. by 30%, M. Def. by 30%, Speed by 20, and M. Atk. by 45%. Decreases MP consumption during skill use by 10%. -->
@@ -42,7 +42,7 @@
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20629" />
+		<set name="itemConsumeId" val="20629" /> <!-- Fortune of Love Box (event) -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -200,14 +200,14 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22108" levels="1" name="Halloween Toy Box">
+	<skill id="22108" levels="1" name="Halloween Toy Chest">
 		<table name="#extractableItems">
 			20712,1,20;20713,1,20;20714,1,20;20715,1,20;20716,1,20
 		</table>
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20710" />
+		<set name="itemConsumeId" val="20710" /> <!-- Halloween Toy Box (Event) -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -222,14 +222,14 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22109" levels="1" name="Shiny Halloween Toy Box">
+	<skill id="22109" levels="1" name="Shiny Halloween Toy Chest">
 		<table name="#extractableItems">
 			20718,1,20;20719,1,20;20720,1,20;20721,1,20;20722,1,20
 		</table>
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20717" />
+		<set name="itemConsumeId" val="20717" /> <!-- Shiny Halloween Toy Box (Event) -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -244,7 +244,7 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22110" levels="1" name="Lucky Sky Lantern Summon">
+	<skill id="22110" levels="1" name="Summon Lucky Lamp">
 		<set name="blockedInOlympiad" val="true" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="itemConsumeCount" val="1" />
@@ -258,7 +258,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22111" levels="1" name="Ambient Sky Lantern Summon">
+	<skill id="22111" levels="1" name="Summon Environment Lamp">
 		<set name="blockedInOlympiad" val="true" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="itemConsumeCount" val="1" />
@@ -272,7 +272,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22112" levels="1" name="Sway Sky Lantern Summon">
+	<skill id="22112" levels="1" name="Summon Rolling Lamp">
 		<set name="blockedInOlympiad" val="true" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="itemConsumeCount" val="1" />
@@ -286,7 +286,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22113" levels="1" name="Comfort Sky Lantern Summon">
+	<skill id="22113" levels="1" name="Summon Peace Lamp">
 		<set name="blockedInOlympiad" val="true" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="itemConsumeCount" val="1" />
@@ -300,14 +300,14 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22114" levels="1" name="Morph Scroll Box">
+	<skill id="22114" levels="1" name="Scroll of Transformation Box">
 		<table name="#extractableItems">
 			20364,1,33;20365,1,33;20366,1,34
 		</table>
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20739" />
+		<set name="itemConsumeId" val="20739" /> <!-- Morph Scroll Box -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -322,7 +322,7 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22115" levels="1" name="Santa's Weapon Exchange Ticket Box">
+	<skill id="22115" levels="1" name="White Bearded Santa's Weapon Exchange Ticket Box">
 		<table name="#extractableItems">
 			20755,1,99.99949;20757,1,0.00051
 		</table>
@@ -568,7 +568,9 @@
 		</for>
 	</skill>
 	<skill id="22128" levels="3" name="Rudolph's Joy">
-		<!-- For 5 minutes, raises Atk. Spd. by 10% and magic Casting Spd. by 10%. -->
+		<!-- Level 1: For 5 minutes, raises Atk. Spd. by 10% and magic Casting Spd. by 10%. -->
+		<!-- Level 2: For 5 minutes, raises Atk. Spd. by 15% and magic Casting Spd. by 15%. -->
+		<!-- Level 3: For 5 minutes, raises Atk. Spd. by 20% and magic Casting Spd. by 20%. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#AtkSpd">1.1 1.15 1.2</table>
 		<set name="abnormalInstant" val="true" />
@@ -1090,7 +1092,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22158" levels="10" name="Rose Petal">
+	<skill id="22158" levels="10" name="Red Rose Herb">
 		<!-- Increases HP/MP Regeneration by 20% for 5 minutes. When the herb effect reaches level 10, the rose spirit consumes a red rose herb effect and replenishes some Vitality. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9 10</table>
 		<table name="#icons">BranchSys2.icon.Br_herb_rose_red_i00 BranchSys2.icon.Br_herb_rose_red_i01 BranchSys2.icon.Br_herb_rose_red_i02 BranchSys2.icon.Br_herb_rose_red_i03 BranchSys2.icon.Br_herb_rose_red_i04 BranchSys2.icon.Br_herb_rose_red_i05 BranchSys2.icon.Br_herb_rose_red_i06 BranchSys2.icon.Br_herb_rose_red_i07 BranchSys2.icon.Br_herb_rose_red_i08 BranchSys2.icon.Br_herb_rose_red_i09</table>
@@ -1113,7 +1115,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22159" levels="1" name="Vesper Super Power">
+	<skill id="22159" levels="1" name="Vesper's Mighty Power">
 		<!-- For 10 minutes, increase physical P. Atk. by 15%, magic M. Atk. by 20%, and Speed by 10. -->
 		<set name="abnormalInstant" val="true" />
 		<set name="abnormalLevel" val="1" />
@@ -1137,7 +1139,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22160" levels="1" name="Vesper Critical Power">
+	<skill id="22160" levels="1" name="Vesper's Critical Attack Power">
 		<!-- For 10 minutes, increase physical Critical Attack Rate by 15, magic Critical Rate by 2, and Speed by 10. Recovers 5% of the standard short-range physical damage inflicted on the enemy as HP. -->
 		<set name="abnormalInstant" val="true" />
 		<set name="abnormalLevel" val="1" />
@@ -1186,7 +1188,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22162" levels="1" name="Mt. Fuji Herb">
+	<skill id="22162" levels="1" name="Herb of Mt. Fuji">
 		<!-- For 10 minutes, Vitality is recovered when acquiring Exp. -->
 		<set name="abnormalInstant" val="true" />
 		<set name="abnormalLevel" val="2" />
@@ -1252,7 +1254,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22165" levels="1" name="Energy Replenish">
+	<skill id="22165" levels="1" name="Energy Replenishing">
 		<!-- Replenishes a Soul Avatar's energy by 5000. -->
 		<set name="icon" val="icon.skill0788" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -1262,7 +1264,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22166" levels="1" name="Energy Replenish">
+	<skill id="22166" levels="1" name="Energy Replenishing">
 		<!-- Replenishes a Soul Avatar's energy by 10000. -->
 		<set name="icon" val="icon.skill0788" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -1272,14 +1274,14 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22167" levels="1" name="April Fools' Day Vesper Weapon Gift">
+	<skill id="22167" levels="1" name="April Fool's Day Vesper Weapon Gift">
 		<!-- Acquires one of the 14 types of Vesper weapons. -->
 		<table name="#extractableItems">
 			13457,1,13.32;13458,1,6.66;13459,1,6.66;13460,1,6.66;13461,1,6.66;13462,1,6.66;13463,1,6.66;13464,1,6.66;13466,1,6.66;13467,1,6.66;13468,1,6.66;13469,1,6.66;13470,1,6.66;13465,1,6.66
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20958" />
+		<set name="itemConsumeId" val="20958" /> <!-- April Fools' Day Special Gift - For Event -->
 		<set name="icon" val="icon.skill0001" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
@@ -1295,7 +1297,7 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22168" levels="1" name="Thirst Quencher">
+	<skill id="22168" levels="1" name="Thirst for Victory Quenching Drink">
 		<!-- Replenishes an Agathion's energy by 1000. -->
 		<set name="icon" val="icon.skill0001" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -1305,7 +1307,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22169" levels="1" name="Soccer Ball of Cheers Release">
+	<skill id="22169" levels="1" name="Soccer Ball of Cheering Release">
 		<table name="#extractableItems">
 			6575,2,45;6573,1,30;6571,1,15;6569,1,9.4;6577,1,0.6
 		</table>
@@ -1327,7 +1329,7 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22170" levels="1" name="Hardin's Protection">
+	<skill id="22170" levels="1" name="Hardin's Divine Protection">
 		<!-- Maximizes P. Def. for 10 seconds. -->
 		<set name="abnormalLevel" val="2" />
 		<set name="abnormalTime" val="10" />
@@ -1359,7 +1361,7 @@
 		<set name="reuseDelay" val="900000" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22172" levels="1" name="Sylphide's Wings">
+	<skill id="22172" levels="1" name="Silpeed's Wing">
 		<!-- Increases your Speed by 300 for 15 seconds. -->
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="15" />
@@ -1374,7 +1376,7 @@
 		<set name="reuseDelay" val="900000" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22173" levels="1" name="Sylphide's Blessing">
+	<skill id="22173" levels="1" name="Silpeed's Blessing">
 		<!-- Increases the user's Speed and those of friendly nearby targets by 300 for 15 seconds. -->
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="15" />
@@ -1389,7 +1391,7 @@
 		<set name="reuseDelay" val="900000" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22174" levels="1" name="Yibein's Recovery Scroll">
+	<skill id="22174" levels="1" name="Evain's Recovery Scroll">
 		<!-- Recovers the HP of the user and friendly nearby targets by 500. -->
 		<set name="blockedInOlympiad" val="true" />
 		<set name="effectPoint" val="800" />
@@ -1402,7 +1404,7 @@
 		<set name="reuseDelay" val="1800000" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22175" levels="1" name="Rune of Life">
+	<skill id="22175" levels="1" name="Good/Bad of Life">
 		<!-- When HP falls below 30%, it is restored by 500. -->
 		<set name="icon" val="icon.skill0001" />
 		<set name="magicLevel" val="1" />
@@ -1417,7 +1419,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22176" levels="1" name="Rune of Spirit">
+	<skill id="22176" levels="1" name="Good/Bad of Mind">
 		<!-- When MP falls below 10%, it is restored by 500. -->
 		<set name="icon" val="icon.skill0001" />
 		<set name="magicLevel" val="1" />
@@ -1442,7 +1444,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22178" levels="1" name="Hero's Potion">
+	<skill id="22178" levels="1" name="Potion of a Hero">
 		<set name="blockedInOlympiad" val="true" />
 		<set name="icon" val="icon.skill0001" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -1491,7 +1493,7 @@
 		<!-- set name="reuseDelay" val="86400000" / -->
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="21106" />
+		<set name="itemConsumeId" val="21106" /> <!-- Wondrous Cubic - 1 time use -->
 		<set name="operateType" val="A1" /> <!-- FIXME: value unconfirmed -->
 		<set name="staticReuse" val="true" />
 		<set name="targetType" val="SELF" />
@@ -1509,7 +1511,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22182" levels="1" name="Birthday Joy">
+	<skill id="22182" levels="1" name="Joyous Vitality Potion">
 		<!-- Birthday gift received once a year. Increases your Vitality whenever you gain experience. This buff is active for 12 hours and is not lost upon death. However, it will disappear if you change to a subclass. -->
 		<set name="canBeDispeled" val="false" />
 		<set name="operateType" val="A1" /> <!-- FIXME: value unconfirmed -->

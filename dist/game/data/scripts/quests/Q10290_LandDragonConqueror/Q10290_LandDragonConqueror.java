@@ -18,6 +18,7 @@ package quests.Q10290_LandDragonConqueror;
 
 import java.util.function.Function;
 
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -94,13 +95,14 @@ public class Q10290_LandDragonConqueror extends Quest
 		};
 		
 		// rewards go only to command channel, not to a single party or player (retail Freya AI)
-		if (player.getParty().isInCommandChannel())
+		final Party party = player.getParty();
+		if (party.isInCommandChannel())
 		{
-			player.getParty().getCommandChannel().forEachMember(rewardCheck);
+			party.getCommandChannel().forEachMember(rewardCheck);
 		}
 		else
 		{
-			player.getParty().forEachMember(rewardCheck);
+			party.forEachMember(rewardCheck);
 		}
 		return super.onKill(npc, player, isSummon);
 	}

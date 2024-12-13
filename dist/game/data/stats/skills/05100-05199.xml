@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="5100" levels="1" name="Cancel Capture B">
 		<set name="effectPoint" val="1" />
@@ -150,7 +150,7 @@
 			</not>
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5111" levels="1" name="Big Bang">
@@ -177,7 +177,7 @@
 			</not>
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5112" levels="12" name="Stun">
@@ -313,7 +313,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -349,7 +349,7 @@
 		<set name="reuseDelay" val="17000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5120" levels="1" name="Stun">
@@ -376,7 +376,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -537,7 +537,7 @@
 		<set name="element" val="0" /> <!-- Fire -->
 		<set name="elementPower" val="20" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5131" levels="1" name="Tsunami">
@@ -550,7 +550,7 @@
 		<set name="element" val="1" /> <!-- Water -->
 		<set name="elementPower" val="20" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5132" levels="1" name="Cyclone">
@@ -563,7 +563,7 @@
 		<set name="element" val="2" /> <!-- Wind -->
 		<set name="elementPower" val="20" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5133" levels="1" name="Gehenna">
@@ -576,7 +576,7 @@
 		<set name="element" val="5" /> <!-- Dark -->
 		<set name="elementPower" val="20" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5134" levels="1" name="Anti-Summoning Field">
@@ -611,7 +611,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5136" levels="1" name="Spin Slash">
@@ -627,7 +627,7 @@
 		<set name="reuseDelay" val="17000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5137" levels="1" name="Hold of King">
@@ -683,7 +683,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -706,7 +706,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5140" levels="1" name="Dark Curse">
@@ -752,7 +752,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5142" levels="1" name="Corpse Kaboom">
@@ -771,7 +771,7 @@
 		<set name="targetType" val="AREA_CORPSE_MOB" />
 		<for>
 			<effect name="ConsumeBody" />
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5143" levels="1" name="Sailren Use Blow">
@@ -890,7 +890,16 @@
 		</for>
 	</skill>
 	<skill id="5149" levels="10" name="Recharge">
-		<!-- Active: Restores MP. Power 33. -->
+		<!-- Level 1: Active: Restores MP. Power 33. -->
+		<!-- Level 2: Active: Restores MP. Power 35. -->
+		<!-- Level 3: Active: Restores MP. Power 38. -->
+		<!-- Level 4: Active: Restores MP. Power 40. -->
+		<!-- Level 5: Active: Restores MP. Power 43. -->
+		<!-- Level 6: Active: Restores MP. Power 45. -->
+		<!-- Level 7: Active: Restores MP. Power 48. -->
+		<!-- Level 8: Active: Restores MP. Power 50. -->
+		<!-- Level 9: Active: Restores MP. Power 52. -->
+		<!-- Level 10: Active: Restores MP. Power 55. -->
 		<table name="#amount">33 35 38 40 43 45 48 50 52 55</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<set name="hitTime" val="6000" />
@@ -908,7 +917,16 @@
 		</for>
 	</skill>
 	<skill id="5150" levels="10" name="Blessed Soul">
-		<!-- Active: Increases the maximum MP by 16 temporarily. -->
+		<!-- Level 1: Active: Increases the maximum MP by 16 temporarily. -->
+		<!-- Level 2: Active: Increases the maximum MP by 32 temporarily. -->
+		<!-- Level 3: Active: Increases the maximum MP by 48 temporarily. -->
+		<!-- Level 4: Active: Increases the maximum MP by 68 temporarily. -->
+		<!-- Level 5: Active: Increases the maximum MP by 80 temporarily. -->
+		<!-- Level 6: Active: Increases the maximum MP by 96 temporarily. -->
+		<!-- Level 7: Active: Increases the maximum MP by 112 temporarily. -->
+		<!-- Level 8: Active: Increases the maximum MP by 128 temporarily. -->
+		<!-- Level 9: Active: Increases the maximum MP by 144 temporarily. -->
+		<!-- Level 10: Active: Increases the maximum MP by 160 temporarily. -->
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#maxMp">16 32 48 68 80 96 112 128 144 160</table>
 		<set name="abnormalLevel" val="1" />
@@ -949,7 +967,16 @@
 		</for>
 	</skill>
 	<skill id="5152" levels="10" name="Ritual">
-		<!-- Active: Restores CP. Power 264. -->
+		<!-- Level 1: Active: Restores CP. Power 264. -->
+		<!-- Level 2: Active: Restores CP. Power 289. -->
+		<!-- Level 3: Active: Restores CP. Power 313. -->
+		<!-- Level 4: Active: Restores CP. Power 337. -->
+		<!-- Level 5: Active: Restores CP. Power 361. -->
+		<!-- Level 6: Active: Restores CP. Power 384. -->
+		<!-- Level 7: Active: Restores CP. Power 406. -->
+		<!-- Level 8: Active: Restores CP. Power 427. -->
+		<!-- Level 9: Active: Restores CP. Power 446. -->
+		<!-- Level 10: Active: Restores CP. Power 473. -->
 		<table name="#amount">264 289 313 337 361 384 406 427 446 473</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<set name="hitTime" val="5000" />
@@ -967,7 +994,16 @@
 		</for>
 	</skill>
 	<skill id="5153" levels="10" name="Cheer">
-		<!-- Active: Increases maximum CP by 24 temporarily. -->
+		<!-- Level 1: Active: Increases maximum CP by 24 temporarily. -->
+		<!-- Level 2: Active: Increases maximum CP by 48 temporarily. -->
+		<!-- Level 3: Active: Increases maximum CP by 72 temporarily. -->
+		<!-- Level 4: Active: Increases maximum CP by 96 temporarily. -->
+		<!-- Level 5: Active: Increases maximum CP by 120 temporarily. -->
+		<!-- Level 6: Active: Increases maximum CP by 144 temporarily. -->
+		<!-- Level 7: Active: Increases maximum CP by 168 temporarily. -->
+		<!-- Level 8: Active: Increases maximum CP by 192 temporarily. -->
+		<!-- Level 9: Active: Increases maximum CP by 216 temporarily. -->
+		<!-- Level 10: Active: Increases maximum CP by 240 temporarily. -->
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#maxCp">24 48 72 96 120 144 168 192 216 240</table>
 		<set name="abnormalLevel" val="1" />
@@ -1203,7 +1239,16 @@
 		</for>
 	</skill>
 	<skill id="5165" levels="10" name="Charm">
-		<!-- Active: Decreases the target's urge to attack. Power 219. -->
+		<!-- Level 1: Active: Decreases the target's urge to attack. Power 219. -->
+		<!-- Level 2: Active: Decreases the target's urge to attack. Power 234. -->
+		<!-- Level 3: Active: Decreases the target's urge to attack. Power 248. -->
+		<!-- Level 4: Active: Decreases the target's urge to attack. Power 262. -->
+		<!-- Level 5: Active: Decreases the target's urge to attack. Power 275. -->
+		<!-- Level 6: Active: Decreases the target's urge to attack. Power 287. -->
+		<!-- Level 7: Active: Decreases the target's urge to attack. Power 299. -->
+		<!-- Level 8: Active: Decreases the target's urge to attack. Power 309. -->
+		<!-- Level 9: Active: Decreases the target's urge to attack. Power 318. -->
+		<!-- Level 10: Active: Decreases the target's urge to attack. Power 330. -->
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
 		<table name="#power">-219 -234 -248 -262 -275 -287 -299 -309 -318 -330</table>
 		<set name="castRange" val="600" />
@@ -1435,7 +1480,16 @@
 		</for>
 	</skill>
 	<skill id="5174" levels="10" name="Poison">
-		<!-- Active: Temporarily poisons the target, weakening it. Effect 5. -->
+		<!-- Level 1: Active: Temporarily poisons the target, weakening it. Effect 5. -->
+		<!-- Level 2: Active: Temporarily poisons the target, weakening it. Effect 5. -->
+		<!-- Level 3: Active: Temporarily poisons the target, weakening it. Effect 6. -->
+		<!-- Level 4: Active: Temporarily poisons the target, weakening it. Effect 6. -->
+		<!-- Level 5: Active: Temporarily poisons the target, weakening it. Effect 6. -->
+		<!-- Level 6: Active: Temporarily poisons the target, weakening it. Effect 7. -->
+		<!-- Level 7: Active: Temporarily poisons the target, weakening it. Effect 7. -->
+		<!-- Level 8: Active: Temporarily poisons the target, weakening it. Effect 7. -->
+		<!-- Level 9: Active: Temporarily poisons the target, weakening it. Effect 8. -->
+		<!-- Level 10: Active: Temporarily poisons the target, weakening it. Effect 8. -->
 		<table name="#abnormalLevels">5 5 6 6 6 7 7 7 8 8</table>
 		<table name="#dot">41 41 50 50 50 58 58 58 63 63</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
@@ -1464,7 +1518,16 @@
 		</for>
 	</skill>
 	<skill id="5175" levels="10" name="Bleed">
-		<!-- Active: Causes the target to bleed. Effect 5. -->
+		<!-- Level 1: Active: Causes the target to bleed. Effect 5. -->
+		<!-- Level 2: Active: Causes the target to bleed. Effect 5. -->
+		<!-- Level 3: Active: Causes the target to bleed. Effect 6. -->
+		<!-- Level 4: Active: Causes the target to bleed. Effect 6. -->
+		<!-- Level 5: Active: Causes the target to bleed. Effect 6. -->
+		<!-- Level 6: Active: Causes the target to bleed. Effect 7. -->
+		<!-- Level 7: Active: Causes the target to bleed. Effect 7. -->
+		<!-- Level 8: Active: Causes the target to bleed. Effect 7. -->
+		<!-- Level 9: Active: Causes the target to bleed. Effect 8. -->
+		<!-- Level 10: Active: Causes the target to bleed. Effect 8. -->
 		<table name="#abnormalLevels">5 5 6 6 6 7 7 7 8 8</table>
 		<table name="#dot">44 44 54 54 54 62 62 62 67 67</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 70 75</table>
@@ -1556,7 +1619,7 @@
 		<set name="power" val="116" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5179" levels="1" name="Raid Boss - Level 80">
@@ -1597,7 +1660,7 @@
 			<effect name="ProtectionBlessing" />
 		</for>
 	</skill>
-	<skill id="5183" levels="1" name="Production: Dimensional Stun">
+	<skill id="5183" levels="1" name="Dimensional Stun">
 		<!-- You are stunned and temporarily prohibited from movement. -->
 		<set name="affectRange" val="300" />
 		<set name="effectPoint" val="-100" />
@@ -1612,7 +1675,7 @@
 			<effect name="ThrowUp" />
 		</for>
 	</skill>
-	<skill id="5184" levels="1" name="Production: Valakas Dragon Breath">
+	<skill id="5184" levels="1" name="Dragon Breath">
 		<set name="affectRange" val="1200" />
 		<set name="castRange" val="600" />
 		<set name="coolTime" val="2000" />
@@ -1637,11 +1700,12 @@
 		<set name="reuseDelay" val="6000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5186" levels="2" name="Pet Haste">
-		<!-- Temporarily increases Atk. Spd. Effect 1. -->
+		<!-- Level 1: Temporarily increases Atk. Spd. Effect 1. -->
+		<!-- Level 2: Temporarily increases Atk. Spd. Effect 2. -->
 		<table name="#abnormalLevels">1 2</table>
 		<table name="#magicLevel">44 52</table>
 		<table name="#mpConsume">16 19</table>
@@ -1669,7 +1733,10 @@
 		</for>
 	</skill>
 	<skill id="5187" levels="4" name="Pet Vampiric Rage">
-		<!-- Provides the ability to recover HP temporarily by damaging the enemy, excluding damage caused by skills and ranged attacks. Effect 1. -->
+		<!-- Level 1: Provides the ability to recover HP temporarily by damaging the enemy, excluding damage caused by skills and ranged attacks. Effect 1. -->
+		<!-- Level 2: Provides the ability to recover HP temporarily by damaging the enemy, excluding damage caused by skills and ranged attacks. Effect 2. -->
+		<!-- Level 3: Provides the ability to recover HP temporarily by damaging the enemy, excluding damage caused by skills and ranged attacks. Effect 3. -->
+		<!-- Level 4: Provides the ability to recover HP temporarily by damaging the enemy, excluding damage caused by skills and ranged attacks. Effect 4. -->
 		<table name="#abnormalLevels">1 2 3 4</table>
 		<table name="#absorbDam">6 7 8 9</table>
 		<table name="#magicLevel">30 44 58 72</table>
@@ -1697,7 +1764,9 @@
 		</for>
 	</skill>
 	<skill id="5188" levels="3" name="Pet Regeneration">
-		<!-- Increases HP recovery bonus for a fixed time. Effect 1. -->
+		<!-- Level 1: Increases HP recovery bonus for a fixed time. Effect 1. -->
+		<!-- Level 2: Increases HP recovery bonus for a fixed time. Effect 2. -->
+		<!-- Level 3: Increases HP recovery bonus for a fixed time. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#effectPoints">331 457 532</table>
 		<table name="#magicLevel">35 48 56</table>
@@ -1726,7 +1795,12 @@
 		</for>
 	</skill>
 	<skill id="5189" levels="6" name="Pet Blessed Body">
-		<!-- Increases maximum HP temporarily. Effect 1. -->
+		<!-- Level 1: Increases maximum HP temporarily. Effect 1. -->
+		<!-- Level 2: Increases maximum HP temporarily. Effect 2. -->
+		<!-- Level 3: Increases maximum HP temporarily. Effect 3. -->
+		<!-- Level 4: Increases maximum HP temporarily. Effect 4. -->
+		<!-- Level 5: Increases maximum HP temporarily. Effect 5. -->
+		<!-- Level 6: Increases maximum HP temporarily. Effect 6. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6</table>
 		<table name="#effectPoints">597 457 495 532 597 646</table>
 		<table name="#magicLevel">44 48 52 56 64 72</table>
@@ -1755,7 +1829,12 @@
 		</for>
 	</skill>
 	<skill id="5190" levels="6" name="Pet Blessed Soul">
-		<!-- Increases maximum MP temporarily. Effect 1. -->
+		<!-- Level 1: Increases maximum MP temporarily. Effect 1. -->
+		<!-- Level 2: Increases maximum MP temporarily. Effect 2. -->
+		<!-- Level 3: Increases maximum MP temporarily. Effect 3. -->
+		<!-- Level 4: Increases maximum MP temporarily. Effect 4. -->
+		<!-- Level 5: Increases maximum MP temporarily. Effect 5. -->
+		<!-- Level 6: Increases maximum MP temporarily. Effect 6. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6</table>
 		<table name="#effectPoints">418 457 495 532 582 635</table>
 		<table name="#magicLevel">44 48 52 56 62 70</table>
@@ -1784,7 +1863,9 @@
 		</for>
 	</skill>
 	<skill id="5191" levels="3" name="Pet Guidance">
-		<!-- Increases Accuracy temporarily. Effect 1. -->
+		<!-- Level 1: Increases Accuracy temporarily. Effect 1. -->
+		<!-- Level 2: Increases Accuracy temporarily. Effect 2. -->
+		<!-- Level 3: Increases Accuracy temporarily. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#accCombat">2 3 4</table>
 		<table name="#effectPoints">379 457 532</table>
@@ -1813,7 +1894,8 @@
 		</for>
 	</skill>
 	<skill id="5192" levels="2" name="Pet Wind Walk">
-		<!-- Increases Speed temporarily. Effect 1. -->
+		<!-- Level 1: Increases Speed temporarily. Effect 1. -->
+		<!-- Level 2: Increases Speed temporarily. Effect 2. -->
 		<table name="#abnormalLevels">1 2</table>
 		<table name="#effectPoints">204 285</table>
 		<table name="#magicLevel">20 30</table>
@@ -1842,7 +1924,9 @@
 		</for>
 	</skill>
 	<skill id="5193" levels="3" name="Pet Acumen">
-		<!-- Increases Casting Spd. temporarily. Effect 1. -->
+		<!-- Level 1: Increases Casting Spd. temporarily. Effect 1. -->
+		<!-- Level 2: Increases Casting Spd. temporarily. Effect 2. -->
+		<!-- Level 3: Increases Casting Spd. temporarily. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#effectPoints">204 331 457</table>
 		<table name="#magicLevel">20 35 48</table>
@@ -1871,7 +1955,9 @@
 		</for>
 	</skill>
 	<skill id="5194" levels="3" name="Pet Empower">
-		<!-- Increases M. Atk. power temporarily. Effect 1. -->
+		<!-- Level 1: Increases M. Atk. power temporarily. Effect 1. -->
+		<!-- Level 2: Increases M. Atk. power temporarily. Effect 2. -->
+		<!-- Level 3: Increases M. Atk. power temporarily. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#effectPoints">243 418 495</table>
 		<table name="#magicLevel">25 44 52</table>
@@ -1900,7 +1986,18 @@
 		</for>
 	</skill>
 	<skill id="5195" levels="12" name="Pet Greater Heal">
-		<!-- Recovers HP and increases HP recovery bonus in an instant. Power 50. Effect 1. -->
+		<!-- Level 1: Recovers HP and increases HP recovery bonus in an instant. Power 50. Effect 1. -->
+		<!-- Level 2: Recovers HP and increases HP recovery bonus in an instant. Power 92. Effect 1. -->
+		<!-- Level 3: Recovers HP and increases HP recovery bonus in an instant. Power 148. Effect 2. -->
+		<!-- Level 4: Recovers HP and increases HP recovery bonus in an instant. Power 219. Effect 2. -->
+		<!-- Level 5: Recovers HP and increases HP recovery bonus in an instant. Power 299. Effect 4. -->
+		<!-- Level 6: Recovers HP and increases HP recovery bonus in an instant. Power 380. Effect 6. -->
+		<!-- Level 7: Recovers HP and increases HP recovery bonus in an instant. Power 450. Effect 7. -->
+		<!-- Level 8: Recovers HP and increases HP recovery bonus in an instant. Power 477. Effect 7. -->
+		<!-- Level 9: Recovers HP and increases HP recovery bonus in an instant. Power 500. Effect 7. -->
+		<!-- Level 10: Recovers HP and increases HP recovery bonus in an instant. Power 525. Effect 7. -->
+		<!-- Level 11: Recovers HP and increases HP recovery bonus in an instant. Power 542. Effect 7. -->
+		<!-- Level 12: Recovers HP and increases HP recovery bonus in an instant. Power 550. Effect 7. -->
 		<table name="#abnormalLevels">1 1 2 2 4 6 7 7 7 7 7 7</table>
 		<table name="#amount">58 92 148 219 299 380 450 477 500 525 542 550</table>
 		<table name="#effectPoints">83 151 245 362 494 628 743 789 826 867 895 913</table>

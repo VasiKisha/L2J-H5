@@ -54,7 +54,7 @@ public class CastleVCmd implements IVoicedCommandHandler
 					return false;
 				}
 				
-				final Door door = (Door) activeChar.getTarget();
+				final Door door = activeChar.getTarget().asDoor();
 				if (door == null)
 				{
 					activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
@@ -93,7 +93,7 @@ public class CastleVCmd implements IVoicedCommandHandler
 					activeChar.sendPacket(SystemMessageId.ONLY_THE_CLAN_LEADER_MAY_ISSUE_COMMANDS);
 					return false;
 				}
-				final Door door2 = (Door) activeChar.getTarget();
+				final Door door2 = activeChar.getTarget().asDoor();
 				if (door2 == null)
 				{
 					activeChar.sendPacket(SystemMessageId.INVALID_TARGET);

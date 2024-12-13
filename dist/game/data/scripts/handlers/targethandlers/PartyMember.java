@@ -22,9 +22,11 @@ import java.util.List;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 /**
  * @author UnAfraid
@@ -40,9 +42,37 @@ public class PartyMember implements ITargetTypeHandler
 			return Collections.emptyList();
 		}
 		
-		if (!target.isDead() && ((target == creature) || (creature.isInParty() && target.isInParty() && (creature.getParty().getLeaderObjectId() == target.getParty().getLeaderObjectId())) || (creature.isPlayer() && target.isSummon() && (creature.getSummon() == target)) || (creature.isSummon() && target.isPlayer() && (creature == target.getSummon()))))
+		// Check if target is a valid party member.
+		if (!target.isDead())
 		{
-			return Collections.singletonList(target);
+			if (target == creature)
+			{
+				return Collections.singletonList(target);
+			}
+			
+			if (creature.isInParty() && target.isInParty() && (creature.getParty().getLeaderObjectId() == target.getParty().getLeaderObjectId()))
+			{
+				return Collections.singletonList(target);
+			}
+			
+			if (creature.isPlayer() && target.isSummon() && (creature.asPlayer().getSummon() == target))
+			{
+				return Collections.singletonList(target);
+			}
+			
+			if (creature.isSummon() && target.isPlayer() && (creature == target.asPlayer().getSummon()))
+			{
+				return Collections.singletonList(target);
+			}
+		}
+		
+		final Player player = creature.asPlayer();
+		if ((player != null) && target.isPlayer())
+		{
+			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_CANNOT_BE_USED_DUE_TO_UNSUITABLE_TERMS);
+			sm.addSkillName(skill);
+			player.sendPacket(sm);
+			return Collections.emptyList();
 		}
 		
 		return Collections.emptyList();

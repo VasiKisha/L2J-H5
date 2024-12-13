@@ -66,7 +66,7 @@ public class SummonCubic extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((effected == null) || !effected.isPlayer() || effected.isAlikeDead() || effected.getActingPlayer().inObserverMode())
+		if ((effected == null) || !effected.isPlayer() || effected.isAlikeDead())
 		{
 			return;
 		}
@@ -77,7 +77,7 @@ public class SummonCubic extends AbstractEffect
 			return;
 		}
 		
-		final Player player = effected.getActingPlayer();
+		final Player player = effected.asPlayer();
 		if (player.inObserverMode() || player.isMounted())
 		{
 			return;
@@ -106,7 +106,7 @@ public class SummonCubic extends AbstractEffect
 		{
 			// If maximum amount is reached, random cubic is removed.
 			// Players with no mastery can have only one cubic.
-			final int allowedCubicCount = effected.getActingPlayer().getStat().getMaxCubicCount();
+			final int allowedCubicCount = player.getStat().getMaxCubicCount();
 			final int currentCubicCount = player.getCubics().size();
 			// Extra cubics are removed, one by one, randomly.
 			for (int i = 0; i <= (currentCubicCount - allowedCubicCount); i++)

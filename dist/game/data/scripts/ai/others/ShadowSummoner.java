@@ -17,7 +17,6 @@
 package ai.others;
 
 import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -80,7 +79,7 @@ public class ShadowSummoner extends AbstractNpcAI
 	{
 		if (!creature.isPlayer() && (creature.getId() == DEMONS_BANQUET_2))
 		{
-			((Attackable) npc).clearAggroList();
+			npc.asAttackable().clearAggroList();
 			addAttackDesire(npc, creature, 99999);
 		}
 		return super.onCreatureSee(npc, creature);

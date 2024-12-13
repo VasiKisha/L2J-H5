@@ -21,6 +21,7 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -45,7 +46,7 @@ public class OutpostDestroy extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if (!player.isClanLeader())
 		{
 			return;
@@ -53,12 +54,13 @@ public class OutpostDestroy extends AbstractEffect
 		
 		if (TerritoryWarManager.getInstance().isTWInProgress())
 		{
-			final SiegeFlag flag = TerritoryWarManager.getInstance().getHQForClan(player.getClan());
+			final Clan clan = player.getClan();
+			final SiegeFlag flag = TerritoryWarManager.getInstance().getHQForClan(clan);
 			if (flag != null)
 			{
 				flag.deleteMe();
 			}
-			TerritoryWarManager.getInstance().setHQForClan(player.getClan(), null);
+			TerritoryWarManager.getInstance().setHQForClan(clan, null);
 		}
 	}
 }

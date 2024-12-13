@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="6000" levels="1" name="not_used">
 		<set name="magicLevel" val="83" />
@@ -272,7 +272,6 @@
 		</for>
 	</skill>
 	<skill id="6035" levels="1" name="Red Team Transformation">
-		<!-- High Five Confirmed -->
 		<!-- You are transformed into a wee Red Smidge with a big red hammer. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="3600" />
@@ -381,7 +380,7 @@
 			<target mindistance="200" />
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="EnemyCharge" />
 		</for>
 	</skill>
@@ -423,7 +422,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6044" levels="1" name="Phoenix Flame Beak">
@@ -444,7 +443,7 @@
 		<set name="reuseDelay" val="13000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6045" levels="1" name="Presentation - Fortune Bug">
@@ -470,7 +469,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6047" levels="14" name="Whirlwind">
@@ -490,7 +489,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6048" levels="14" name="Lance Smash">
@@ -512,7 +511,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6049" levels="4" name="Battle Cry">
@@ -558,7 +557,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6051" levels="14" name="Energy Burst">
@@ -579,7 +578,7 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6052" levels="14" name="Shockwave">
@@ -600,10 +599,10 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
-	<skill id="6053" levels="4" name="Howl">
+	<skill id="6053" levels="4" name="Ignite">
 		<!-- Amplifies one's own abilities with a loud roar, raising P. Atk., P. Def., M. Atk., and M. Def. -->
 		<table name="#abnormalLevels">1 2 3 4</table>
 		<table name="#amount">1.05 1.1 1.2 1.3</table>
@@ -823,7 +822,7 @@
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="6070" levels="1" name="Raid Boss - Level 81">
-		<!-- In his bid for power, he committed atrocities in Gracia rarely seen before the fall. Because of his thirst for violence and bloodshed, he was transformed into undead by the Seed of Infinity.. -->
+		<!-- In his bid for power, he committed atrocities in Gracia rarely seen before the fall. Because of his thirst for violence and bloodshed, he was transformed into undead by the Seed of Infinity. -->
 		<set name="icon" val="icon.skillraid" />
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="P" />
@@ -1061,7 +1060,21 @@
 		</for>
 	</skill>
 	<skill id="6095" levels="15" name="Panther Dark Claw">
-		<!-- Attacker's P. Atk. is supplemented with Power 469, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 1: Attacker's P. Atk. is supplemented with Power 469, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 2: Attacker's P. Atk. is supplemented with Power 758, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 3: Attacker's P. Atk. is supplemented with Power 1136, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 4: Attacker's P. Atk. is supplemented with Power 1327, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 5: Attacker's P. Atk. is supplemented with Power 1525, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 6: Attacker's P. Atk. is supplemented with Power 1727, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 7: Attacker's P. Atk. is supplemented with Power 1925, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 8: Attacker's P. Atk. is supplemented with Power 2020, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 9: Attacker's P. Atk. is supplemented with Power 2067, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 10: Attacker's P. Atk. is supplemented with Power 2112, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 11: Attacker's P. Atk. is supplemented with Power 2156, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 12: Attacker's P. Atk. is supplemented with Power 2200, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 13: Attacker's P. Atk. is supplemented with Power 2241, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 14: Attacker's P. Atk. is supplemented with Power 2282, decreasing Resistance to Dark by 25 for 30 seconds. -->
+		<!-- Level 15: Attacker's P. Atk. is supplemented with Power 2320, decreasing Resistance to Dark by 25 for 30 seconds. -->
 		<table name="#magicLevel">42 51 60 64 68 72 76 78 79 80 81 82 83 84 85</table>
 		<table name="#power">469 758 1136 1327 1525 1727 1925 2020 2067 2112 2156 2200 2241 2282 2320</table>
 		<set name="abnormalLevel" val="3" />
@@ -1085,14 +1098,26 @@
 		<set name="reuseDelay" val="10000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Debuff">
 				<sub stat="darkRes" val="25" />
 			</effect>
 		</for>
 	</skill>
 	<skill id="6096" levels="13" name="Panther Fatal Claw">
-		<!-- Panther's P. Atk. is supplemented with Power 3408 in a deadly attack. -->
+		<!-- Level 1: Panther's P. Atk. is supplemented with Power 3408 in a deadly attack. -->
+		<!-- Level 2: Panther's P. Atk. is supplemented with Power 3980 in a deadly attack. -->
+		<!-- Level 3: Panther's P. Atk. is supplemented with Power 4575 in a deadly attack. -->
+		<!-- Level 4: Panther's P. Atk. is supplemented with Power 5180 in a deadly attack. -->
+		<!-- Level 5: Panther's P. Atk. is supplemented with Power 5773 in a deadly attack. -->
+		<!-- Level 6: Panther's P. Atk. is supplemented with Power 6060 in a deadly attack. -->
+		<!-- Level 7: Panther's P. Atk. is supplemented with Power 6199 in a deadly attack. -->
+		<!-- Level 8: Panther's P. Atk. is supplemented with Power 6335 in a deadly attack. -->
+		<!-- Level 9: Panther's P. Atk. is supplemented with Power 6468 in a deadly attack. -->
+		<!-- Level 10: Panther's P. Atk. is supplemented with Power 6598 in a deadly attack. -->
+		<!-- Level 11: Panther's P. Atk. is supplemented with Power 6723 in a deadly attack. -->
+		<!-- Level 12: Panther's P. Atk. is supplemented with Power 6844 in a deadly attack. -->
+		<!-- Level 13: Panther's P. Atk. is supplemented with Power 6960 in a deadly attack. -->
 		<table name="#magicLevel">60 64 68 72 76 78 79 80 81 82 83 84 85</table>
 		<table name="#power">3408 3980 4575 5180 5773 6060 6199 6335 6468 6598 6723 6844 6960</table>
 		<set name="blowChance" val="20" />

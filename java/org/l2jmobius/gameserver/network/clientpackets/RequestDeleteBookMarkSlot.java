@@ -24,12 +24,12 @@ import org.l2jmobius.gameserver.model.actor.Player;
  */
 public class RequestDeleteBookMarkSlot extends ClientPacket
 {
-	private int id;
+	private int _id;
 	
 	@Override
 	protected void readImpl()
 	{
-		id = readInt();
+		_id = readInt();
 	}
 	
 	@Override
@@ -41,6 +41,6 @@ public class RequestDeleteBookMarkSlot extends ClientPacket
 			return;
 		}
 		
-		player.teleportBookmarkDelete(id);
+		player.teleportBookmarkDelete(_id);
 	}
 }

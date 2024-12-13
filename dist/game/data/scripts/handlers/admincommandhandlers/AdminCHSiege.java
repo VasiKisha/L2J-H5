@@ -200,7 +200,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 				{
 					BuilderUtil.sendSysMessage(activeChar, "You must target a player with clan!");
 				}
-				else if ((target = (Player) rawTarget).getClan() == null)
+				else if ((target = rawTarget.asPlayer()).getClan() == null)
 				{
 					BuilderUtil.sendSysMessage(activeChar, "Your target does not have any clan!");
 				}
@@ -255,7 +255,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 				{
 					BuilderUtil.sendSysMessage(activeChar, "You must target a player with clan!");
 				}
-				else if ((target = (Player) rawTarget).getClan() == null)
+				else if ((target = rawTarget.asPlayer()).getClan() == null)
 				{
 					BuilderUtil.sendSysMessage(activeChar, "Your target does not have any clan!");
 				}

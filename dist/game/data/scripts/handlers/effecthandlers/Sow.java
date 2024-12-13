@@ -55,8 +55,8 @@ public class Sow extends AbstractEffect
 			return;
 		}
 		
-		final Player player = effector.getActingPlayer();
-		final Monster target = (Monster) effected;
+		final Player player = effector.asPlayer();
+		final Monster target = effected.asMonster();
 		if (target.isDead() || (!target.getTemplate().canBeSown()) || target.isSeeded() || (target.getSeederId() != player.getObjectId()))
 		{
 			return;
@@ -73,7 +73,7 @@ public class Sow extends AbstractEffect
 		if (calcSuccess(player, target, seed))
 		{
 			player.sendPacket(QuestSound.ITEMSOUND_QUEST_ITEMGET.getPacket());
-			target.setSeeded(player.getActingPlayer());
+			target.setSeeded(player);
 			sm = new SystemMessage(SystemMessageId.THE_SEED_WAS_SUCCESSFULLY_SOWN);
 		}
 		else

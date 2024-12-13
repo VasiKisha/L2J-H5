@@ -52,8 +52,8 @@ public class Sweeper extends AbstractEffect
 			return;
 		}
 		
-		final Player player = effector.getActingPlayer();
-		final Attackable monster = (Attackable) effected;
+		final Player player = effector.asPlayer();
+		final Attackable monster = effected.asAttackable();
 		if (!monster.checkSpoilOwner(player, false))
 		{
 			return;

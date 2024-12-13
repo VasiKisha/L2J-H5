@@ -22,8 +22,8 @@ import java.util.List;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
@@ -44,12 +44,16 @@ public class CorpseMob implements ITargetTypeHandler
 			return Collections.emptyList();
 		}
 		
-		if (skill.hasEffectType(EffectType.SUMMON) && target.isServitor() && (target.getActingPlayer() != null) && (target.getActingPlayer().getObjectId() == creature.getObjectId()))
+		if (skill.hasEffectType(EffectType.SUMMON) && target.isServitor())
 		{
-			return Collections.emptyList();
+			final Player targetPlayer = target.asPlayer();
+			if ((targetPlayer != null) && (targetPlayer.getObjectId() == creature.getObjectId()))
+			{
+				return Collections.emptyList();
+			}
 		}
 		
-		if (skill.hasEffectType(EffectType.HP_DRAIN) && ((Attackable) target).isOldCorpse(creature.getActingPlayer(), Config.CORPSE_CONSUME_SKILL_ALLOWED_TIME_BEFORE_DECAY, true))
+		if (skill.hasEffectType(EffectType.HP_DRAIN) && target.asAttackable().isOldCorpse(creature.asPlayer(), Config.CORPSE_CONSUME_SKILL_ALLOWED_TIME_BEFORE_DECAY, true))
 		{
 			return Collections.emptyList();
 		}

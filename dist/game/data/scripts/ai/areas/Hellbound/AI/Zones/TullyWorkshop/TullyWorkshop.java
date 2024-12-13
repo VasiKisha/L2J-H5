@@ -1104,7 +1104,7 @@ public class TullyWorkshop extends AbstractNpcAI
 		{
 			if (Math.abs(npc.getZ() - attacker.getZ()) > 150)
 			{
-				((Monster) npc).clearAggroList();
+				npc.asMonster().clearAggroList();
 				attacker.teleToLocation(npc.getX() + 50, npc.getY() - 50, npc.getZ());
 			}
 		}
@@ -1152,10 +1152,10 @@ public class TullyWorkshop extends AbstractNpcAI
 		final int npcId = npc.getId();
 		if ((npcId == TEMENIR) || (npcId == DRAXIUS) || (npcId == KIRETCENAH))
 		{
-			if (!((Monster) npc).hasMinions())
+			if (!npc.asMonster().hasMinions())
 			{
-				MinionList.spawnMinion((Monster) npc, 25596);
-				MinionList.spawnMinion((Monster) npc, 25596);
+				MinionList.spawnMinion(npc.asMonster(), 25596);
+				MinionList.spawnMinion(npc.asMonster(), 25596);
 			}
 			
 			if (!is7thFloorAttackBegan)
@@ -1475,7 +1475,7 @@ public class TullyWorkshop extends AbstractNpcAI
 		is7thFloorAttackBegan = false;
 		for (int[] data : SPAWNLIST_7TH_FLOOR)
 		{
-			final Monster monster = (Monster) addSpawn(data[0], data[1], data[2], data[3], data[4], false, 0, false);
+			final Monster monster = addSpawn(data[0], data[1], data[2], data[3], data[4], false, 0, false).asMonster();
 			if ((data[0] == TEMENIR) || (data[0] == DRAXIUS) || (data[0] == KIRETCENAH))
 			{
 				spawnedFollowers.add(monster);

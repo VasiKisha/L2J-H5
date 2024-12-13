@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
@@ -31,13 +31,19 @@ import org.l2jmobius.gameserver.network.ServerPackets;
  */
 public class ExShowCastleInfo extends ServerPacket
 {
+	private final Collection<Castle> _castles;
+	
+	public ExShowCastleInfo()
+	{
+		_castles = CastleManager.getInstance().getCastles();
+	}
+	
 	@Override
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.EX_SHOW_CASTLE_INFO.writeId(this, buffer);
-		final List<Castle> castles = CastleManager.getInstance().getCastles();
-		buffer.writeInt(castles.size());
-		for (Castle castle : castles)
+		buffer.writeInt(_castles.size());
+		for (Castle castle : _castles)
 		{
 			buffer.writeInt(castle.getResidenceId());
 			if (castle.getOwnerId() > 0)

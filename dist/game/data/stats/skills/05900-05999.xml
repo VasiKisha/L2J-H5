@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="5900" levels="1" name="Burst of Oblivion">
 		<!-- When a blow is incurred, the target is continuously removed, and skills and magic cannot be used. -->
@@ -21,7 +21,7 @@
 		<set name="targetType" val="FRONT_AREA" />
 		<set name="trait" val="DERANGEMENT" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="90" />
@@ -52,7 +52,7 @@
 		<set name="targetType" val="NONE" />
 		<set name="trait" val="DERANGEMENT" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="90" />
@@ -152,7 +152,8 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="5907" levels="2" name="Ritual of Entombment">
-		<!-- ????? ?? ?? ??? ????. ??? ???? ?? ??? ??? ??? ???. -->
+		<!-- Level 1: 순간적으로 적을 홀드 상태에 빠트린다. 효과가 지속되는 동안 추가로 홀드에 걸리지 않는다. -->
+		<!-- Level 2: Temporarily inflicts Hold on the enemy. Additional Hold is not available while effects last. -->
 		<table name="#hitTime">3000 34400</table>
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="10" />
@@ -210,7 +211,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" /> <!-- FIXME: value unconfirmed -->
+			<effect name="PhysicalDamage" /> <!-- FIXME: value unconfirmed -->
 		</for>
 	</skill>
 	<skill id="5910" levels="1" name="Stronghold Attack">
@@ -224,7 +225,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" /> <!-- FIXME: value unconfirmed -->
+			<effect name="PhysicalDamage" /> <!-- FIXME: value unconfirmed -->
 		</for>
 	</skill>
 	<skill id="5911" levels="1" name="Pestilence Cleanse">
@@ -249,11 +250,11 @@
 		<set name="targetType" val="NONE" />
 		<set name="trait" val="DERANGEMENT" />
 	</skill>
-	<skill id="5913" levels="1" name="Putrefection Cleanse">
+	<skill id="5913" levels="1" name="Putrefaction Cleanse">
 		<set name="magicLevel" val="83" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="100" />
@@ -362,7 +363,7 @@
 		<set name="power" val="150" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5921" levels="1" name="Inhale">
@@ -429,7 +430,7 @@
 		<set name="power" val="121" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 			<effect name="Debuff">
 				<sub stat="rEvas" val="3" />
 				<mul stat="pDef" val="0.5" />
@@ -557,7 +558,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5933" levels="1" name="Dark Blade">
@@ -577,7 +578,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5934" levels="1" name="Meet the soul of darkness and fight against it.">
@@ -618,7 +619,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5936" levels="1" name="Earth Ring">
@@ -637,7 +638,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5937" levels="1" name="Self Stun">
@@ -651,7 +652,6 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="5938" levels="5" name="Attack Ability Up">
-		<!-- High Five Confirmed -->
 		<table name="#accCombat">1.2 1.4 1.6 1.8 2</table>
 		<table name="#critDmg">1.2 1.4 1.6 1.8 2</table>
 		<table name="#critRate">1.2 1.4 1.6 1.8 2</table>
@@ -687,7 +687,6 @@
 		</for>
 	</skill>
 	<skill id="5939" levels="5" name="Defense Ability Up">
-		<!-- High Five Confirmed -->
 		<table name="#mDef">1.2 1.4 1.6 1.8 2</table>
 		<table name="#pDef">1.25 1.5 1.75 2 2.25</table>
 		<table name="#regHp">1.25 1.5 1.75 2 2.25</table>
@@ -836,7 +835,6 @@
 		<set name="targetType" val="ONE" />
 	</skill>
 	<skill id="5946" levels="1" name="Large Firework">
-		<!-- High Five Confirmed -->
 		<set name="castRange" val="900" />
 		<set name="effectRange" val="1500" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -846,7 +844,6 @@
 		<set name="targetType" val="ONE" />
 	</skill>
 	<skill id="5947" levels="1" name="Large Firework">
-		<!-- High Five Confirmed -->
 		<set name="castRange" val="900" />
 		<set name="effectRange" val="1500" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -856,7 +853,6 @@
 		<set name="targetType" val="ONE" />
 	</skill>
 	<skill id="5948" levels="1" name="Large Firework">
-		<!-- High Five Confirmed -->
 		<set name="castRange" val="900" />
 		<set name="effectRange" val="1500" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -866,7 +862,6 @@
 		<set name="targetType" val="ONE" />
 	</skill>
 	<skill id="5949" levels="1" name="Large Firework">
-		<!-- High Five Confirmed -->
 		<set name="castRange" val="900" />
 		<set name="effectRange" val="1500" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -1081,7 +1076,8 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="5968" levels="2" name="Rapid Shot">
-		<!-- Temporarily increases your own bow Atk. Spd. Effect 1. -->
+		<!-- Level 1: Temporarily increases your own bow Atk. Spd. Effect 1. -->
+		<!-- Level 2: Temporarily increases your own bow Atk. Spd. Effect 2. -->
 		<table name="#abnormalLevels">1 2</table>
 		<table name="#effectPoints">303 549</table>
 		<table name="#magicLevel">32 55</table>
@@ -1097,7 +1093,8 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="5969" levels="2" name="Punch of Doom">
-		<!-- Becomes shocked momentarily while propelling a powerful iron-fist to enemy that gives significant damage. Requires a hand-to-hand combat weapon. Ignores shield defense. Over-hit is possible. Power 10331. -->
+		<!-- Level 1: Becomes shocked momentarily while propelling a powerful iron-fist to enemy that gives significant damage. Requires a hand-to-hand combat weapon. Ignores shield defense. Over-hit is possible. Power 10331. -->
+		<!-- Level 2: Becomes shocked momentarily while propelling a powerful iron-fist to enemy that gives significant damage. Requires a hand-to-hand combat weapon. Ignores shield defense. Over-hit is possible. Power 12288. -->
 		<table name="#effectPoints">-674 -698</table>
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="9" />
@@ -1232,7 +1229,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5976" levels="3" name="Dark Storm">
@@ -1251,7 +1248,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5977" levels="3" name="Dark Strike">
@@ -1272,7 +1269,6 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="5979" levels="1" name="Forced Move">
-		<!-- High Five Confirmed -->
 		<set name="castRange" val="900" />
 		<set name="effectRange" val="1200" />
 		<set name="hitTime" val="2500" />
@@ -1297,11 +1293,11 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5981" levels="3" name="Lilith's Curse">
-		<!-- High Five Confirmed -->
+		<!-- Max HP and Speed are decreased. -->
 		<table name="#magicLvl">51 51 79</table>
 		<!-- Max HP and Speed are decreased. -->
 		<set name="abnormalLevel" val="3" />
@@ -1500,7 +1496,9 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="5990" levels="3" name="Lesser Heal">
-		<!-- Quickly restores HP. Power 817. -->
+		<!-- Level 1: Quickly restores HP. Power 817. -->
+		<!-- Level 2: Quickly restores HP. Power 839. -->
+		<!-- Level 3: Quickly restores HP. Power 867. -->
 		<table name="#effectPoints">595 610 631</table>
 		<set name="effectPoint" val="#effectPoints" />
 		<set name="hitTime" val="2000" />
@@ -1532,7 +1530,7 @@
 		<set name="operateType" val="A2" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="5993" levels="1" name="Command of Anger">
+	<skill id="5993" levels="1" name="Command of Anchor">
 		<!-- When a blow is incurred, an opponent loses their target and cannot use skills and magic. -->
 		<set name="abnormalLevel" val="8" />
 		<set name="abnormalTime" val="10" />
@@ -1556,8 +1554,8 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="DERANGEMENT" />
 		<for>
-			<effect name="MagicalAttack" />
-			<effect name="TriggerSkillByDamage">
+			<effect name="MagicalDamage" />
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Attackable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="90" />

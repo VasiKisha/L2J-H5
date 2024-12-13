@@ -1,7 +1,19 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="4700" levels="13" name="Gift of Queen">
-		<!-- Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 1. -->
+		<!-- Level 1: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 1. -->
+		<!-- Level 2: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 2. -->
+		<!-- Level 3: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
+		<!-- Level 4: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
+		<!-- Level 5: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
+		<!-- Level 6: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
+		<!-- Level 7: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
+		<!-- Level 8: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
+		<!-- Level 9: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
+		<!-- Level 10: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
+		<!-- Level 11: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
+		<!-- Level 12: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
+		<!-- Level 13: Queen's buff magic temporarily increases party members' P. Atk. and Accuracy. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3 3 3 3 3 3 3 3 3 3 3</table>
 		<table name="#abnormalTime">120 120 120 150 165 180 195 210 225 240 255 270 285</table>
 		<table name="#accCombat">2 2 3 3 3 3 3 3 3 3 3 3 3</table>
@@ -31,7 +43,7 @@
 		</for>
 	</skill>
 	<skill id="4701" levels="13" name="Cure of Queen">
-		<!-- Has a chance to remove curses that decrease Accuracy, P. Atk. and Atk. Spd. from all party members . -->
+		<!-- Has a chance to remove curses that decrease Accuracy, P. Atk. and Atk. Spd. from all party members. -->
 		<table name="#effectPoints">541 611 659 666 669 673 676 679 681 684 687 689 692</table>
 		<table name="#magicLevel">57 66 75 77 78 79 80 81 82 83 84 85 86</table>
 		<table name="#mpConsume">62 79 98 102 104 107 108 110 113 115 117 119 122</table>
@@ -52,7 +64,19 @@
 		</for>
 	</skill>
 	<skill id="4702" levels="13" name="Blessing of Seraphim">
-		<!-- Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 1. -->
+		<!-- Level 1: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 1. -->
+		<!-- Level 2: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 2. -->
+		<!-- Level 3: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
+		<!-- Level 4: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
+		<!-- Level 5: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
+		<!-- Level 6: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
+		<!-- Level 7: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
+		<!-- Level 8: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
+		<!-- Level 9: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
+		<!-- Level 10: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
+		<!-- Level 11: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
+		<!-- Level 12: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
+		<!-- Level 13: Buff magic used by the Unicorn Seraphim. Party members' MP regeneration bonus temporarily increased. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3 3 3 3 3 3 3 3 3 3 3</table>
 		<table name="#abnormalTime">120 120 120 150 165 180 195 210 225 240 255 270 285</table>
 		<table name="#effectPoints">541 611 659 666 669 673 676 679 681 684 687 689 692</table>
@@ -80,7 +104,19 @@
 		</for>
 	</skill>
 	<skill id="4703" levels="13" name="Gift of Seraphim">
-		<!-- Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. ?? 1. -->
+		<!-- Level 1: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. 효력 1. -->
+		<!-- Level 2: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 2. -->
+		<!-- Level 3: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
+		<!-- Level 4: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
+		<!-- Level 5: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
+		<!-- Level 6: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
+		<!-- Level 7: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
+		<!-- Level 8: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
+		<!-- Level 9: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
+		<!-- Level 10: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
+		<!-- Level 11: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
+		<!-- Level 12: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
+		<!-- Level 13: Unicorn Seraphim's buff magic temporarily reduces party members' magic skill recovery time. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3 3 3 3 3 3 3 3 3 3 3</table>
 		<table name="#abnormalTime">120 120 120 150 165 180 195 210 225 240 255 270 285</table>
 		<table name="#effectPoints">541 611 659 666 669 673 676 679 681 684 687 689 692</table>
@@ -108,7 +144,19 @@
 		</for>
 	</skill>
 	<skill id="4704" levels="13" name="Cure of Seraphim">
-		<!-- Unicorn Seraphim's cure magic. Removes Sleep, Hold, Stun, Silence and Paralysis debuffs from party members. -->
+		<!-- Level 1: Unicorn Seraphim's cure magic. Removes Sleep, Hold, Stun, Silence and Paralysis debuffs from party members. -->
+		<!-- Level 2: Unicorn Seraphim's cure magic. Removes Sleep, Hold, Stun, Silence and Paralysis debuffs from party members. -->
+		<!-- Level 3: Unicorn Seraphim's cure magic. Removes Sleep, Hold, Stun, Silence and Paralysis debuffs from party members. -->
+		<!-- Level 4: Unicorn Seraphim's cure magic. Removes Sleep, Hold, Stun, Silence and Paralysis debuffs from party members. -->
+		<!-- Level 5: Unicorn Seraphim's cure magic. Removes Sleep, Hold, Stun, Silence and Paralysis debuffs from party members. -->
+		<!-- Level 6: Unicorn Seraphim's cure magic. Removes Sleep, Hold, Stun, Silence and Paralysis debuffs from party members. -->
+		<!-- Level 7: Curse canceling magic used by unicorn seraphim. Cancels party members' Sleep, Hold, Stun, and Paralysis debuff. -->
+		<!-- Level 8: Curse canceling magic used by unicorn seraphim. Cancels party members' Sleep, Hold, Stun, and Paralysis debuff. -->
+		<!-- Level 9: Curse canceling magic used by unicorn seraphim. Cancels party members' Sleep, Hold, Stun, and Paralysis debuff. -->
+		<!-- Level 10: Curse canceling magic used by unicorn seraphim. Cancels party members' Sleep, Hold, Stun, and Paralysis debuff. -->
+		<!-- Level 11: Curse canceling magic used by unicorn seraphim. Cancels party members' Sleep, Hold, Stun, and Paralysis debuff. -->
+		<!-- Level 12: Curse canceling magic used by unicorn seraphim. Cancels party members' Sleep, Hold, Stun, and Paralysis debuff. -->
+		<!-- Level 13: Curse canceling magic used by unicorn seraphim. Cancels party members' Sleep, Hold, Stun, and Paralysis debuff. -->
 		<table name="#effectPoints">541 611 659 666 669 673 676 679 681 684 687 689 692</table>
 		<table name="#magicLevel">57 66 75 77 78 79 80 81 82 83 84 85 86</table>
 		<table name="#mpConsume">62 79 98 102 104 107 108 110 113 115 117 119 122</table>
@@ -129,7 +177,19 @@
 		</for>
 	</skill>
 	<skill id="4705" levels="13" name="Curse of Shade">
-		<!-- Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def and M. Def. Effect 1. -->
+		<!-- Level 1: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def and M. Def. Effect 1. -->
+		<!-- Level 2: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def and M. Def. Effect 2. -->
+		<!-- Level 3: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def and M. Def. Effect 3. -->
+		<!-- Level 4: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def and M. Def. Effect 3. -->
+		<!-- Level 5: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def and M. Def. Effect 3. -->
+		<!-- Level 6: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def and M. Def. Effect 3. -->
+		<!-- Level 7: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 8: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 9: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 10: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 11: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 12: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 13: Nightshade's debuff magic. Provokes the enemy to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3 3 3 3 3 3 3 3 3 3 3</table>
 		<table name="#activateRates">40 40 40 41 42 43 44 45 46 47 48 49 50</table>
 		<table name="#effectPoints">-1621 -1831 -1975 -1997 -2007 -2017 -2026 -2035 -2043 -2051 -2059 -2066 -2074</table>
@@ -169,7 +229,19 @@
 		</for>
 	</skill>
 	<skill id="4706" levels="13" name="Mass Curse of Shade">
-		<!-- Nightshade's debuff magic. Provokes nearby enemies and decreases P. Def and M. Def with curse. Effect 1. -->
+		<!-- Level 1: Nightshade's debuff magic. Provokes nearby enemies and decreases P. Def and M. Def with curse. Effect 1. -->
+		<!-- Level 2: Nightshade's debuff magic. Provokes nearby enemies and decreases P. Def and M. Def with curse. Effect 2. -->
+		<!-- Level 3: Nightshade's debuff magic. Provokes nearby enemies and decreases P. Def and M. Def with curse. Effect 3. -->
+		<!-- Level 4: Nightshade's debuff magic. Provokes nearby enemies and decreases P. Def and M. Def with curse. Effect 3. -->
+		<!-- Level 5: Nightshade's debuff magic. Provokes nearby enemies and decreases P. Def and M. Def with curse. Effect 3. -->
+		<!-- Level 6: Nightshade's debuff magic. Provokes nearby enemies and decreases P. Def and M. Def with curse. Effect 3. -->
+		<!-- Level 7: Nightshade's debuff magic. Provokes surrounding enemies to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 8: Nightshade's debuff magic. Provokes surrounding enemies to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 9: Nightshade's debuff magic. Provokes surrounding enemies to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 10: Nightshade's debuff magic. Provokes surrounding enemies to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 11: Nightshade's debuff magic. Provokes surrounding enemies to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 12: Nightshade's debuff magic. Provokes surrounding enemies to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
+		<!-- Level 13: Nightshade's debuff magic. Provokes surrounding enemies to attack and then casts a curse to instantly decrease their P. Def. and M. Def. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3 3 3 3 3 3 3 3 3 3 3</table>
 		<table name="#activateRates">40 40 40 41 42 43 44 45 46 47 48 49 50</table>
 		<table name="#effectPoints">-1621 -1831 -1975 -1997 -2007 -2017 -2026 -2035 -2043 -2051 -2059 -2066 -2074</table>
@@ -210,7 +282,19 @@
 		</for>
 	</skill>
 	<skill id="4707" levels="13" name="Shade Sacrifice">
-		<!-- Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 589. -->
+		<!-- Level 1: Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 589. -->
+		<!-- Level 2: Nightshade special ability. Sacrifice HP in order to regenerate the HP of a selected target. Power 700. -->
+		<!-- Level 3: Nightshade special ability. Sacrifice HP in order to regenerate the HP of a selected target. Power 789. -->
+		<!-- Level 4: Nightshade special ability. Sacrifice HP in order to regenerate the HP of a selected target. Power 804. -->
+		<!-- Level 5: Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 810. -->
+		<!-- Level 6: Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 816. -->
+		<!-- Level 7: Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 826. -->
+		<!-- Level 8: Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 835. -->
+		<!-- Level 9: Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 844. -->
+		<!-- Level 10: Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 852. -->
+		<!-- Level 11: Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 860. -->
+		<!-- Level 12: Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 867. -->
+		<!-- Level 13: Nightshade special HP recovery magic. Sacrifices one's own HP to regenerate HP of party members. Power 874. -->
 		<table name="#amount">541 611 659 666 669 673 676 679 681 684 687 689 692</table>
 		<table name="#effectPoints">589 700 789 804 810 816 826 835 844 852 860 867 874</table>
 		<table name="#hpConsume">706 840 946 964 972 979 991 1002 1013 1023 1032 1041 1049</table>
@@ -233,7 +317,16 @@
 		</for>
 	</skill>
 	<skill id="4708" levels="10" name="Cursed Strike">
-		<!-- Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 1046. -->
+		<!-- Level 1: Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 1046. -->
+		<!-- Level 2: Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 1230. -->
+		<!-- Level 3: Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 1425. -->
+		<!-- Level 4: Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 1626. -->
+		<!-- Level 5: Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 1727. -->
+		<!-- Level 6: Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 1827. -->
+		<!-- Level 7: Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 1925. -->
+		<!-- Level 8: Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 2020. -->
+		<!-- Level 9: Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 2067. -->
+		<!-- Level 10: Physical attack used by Cursed Man to inflict damage and stun target simultaneously. Power 2112. -->
 		<table name="#effectPoints">-279 -296 -311 -323 -328 -333 -337 -340 -341 -342</table>
 		<table name="#magicLevel">58 62 66 70 72 74 76 78 79 80</table>
 		<table name="#mpConsume">58 62 67 71 73 75 77 78 79 80</table>
@@ -259,12 +352,21 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
 	<skill id="4709" levels="10" name="Cursed Blow">
-		<!-- Cursed Man's attack that unleashes immense damage upon a targeted enemy. Power 1249. -->
+		<!-- Level 1: Cursed Man's attack that unleashes immense damage upon a targeted enemy. Power 1249. -->
+		<!-- Level 2: Cursed Man's attack that unleashes immense damage upon a targeted enemy. Power 2164. -->
+		<!-- Level 3: Cursed Man's attack that unleashes immense damage upon a targeted enemy. Power 3408. -->
+		<!-- Level 4: Cursed Man's attack that unleashes immense damage upon a targeted enemy. Power 4878. -->
+		<!-- Level 5: Cursed Man's attack that unleashes immense damage upon a targeted enemy. Power 5627. -->
+		<!-- Level 6: Cursed Man's attack that unleashes immense damage upon a targeted enemy. Power 6335. -->
+		<!-- Level 7: Cursed Man's attack that unleashes a powerful attack upon the enemy's vital parts. Power 7698. -->
+		<!-- Level 8: Cursed Man's attack that unleashes a powerful attack upon the enemy's vital parts. Power 8079. -->
+		<!-- Level 9: Cursed Man's attack that unleashes a powerful attack upon the enemy's vital parts. Power 8265. -->
+		<!-- Level 10: Cursed Man's attack that unleashes a powerful attack upon the enemy's vital parts. Power 8447. -->
 		<table name="#effectPoints">-279 -296 -311 -323 -328 -333 -337 -340 -341 -342</table>
 		<table name="#magicLevel">58 62 66 70 72 74 76 78 79 80</table>
 		<table name="#mpConsume">58 62 67 71 73 75 77 78 79 80</table>
@@ -286,7 +388,18 @@
 		</for>
 	</skill>
 	<skill id="4710" levels="12" name="Wild Stun">
-		<!-- De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 16. -->
+		<!-- Level 1: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 16. -->
+		<!-- Level 2: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 35. -->
+		<!-- Level 3: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 73. -->
+		<!-- Level 4: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 138. -->
+		<!-- Level 5: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 238. -->
+		<!-- Level 6: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 375. -->
+		<!-- Level 7: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 537. -->
+		<!-- Level 8: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 619. -->
+		<!-- Level 9: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 697. -->
+		<!-- Level 10: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 766. -->
+		<!-- Level 11: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 821. -->
+		<!-- Level 12: De-buff attack used by Hatchling of Wind/Strider. Inflicts damage and stun simultaneously. Power 864. -->
 		<table name="#effectPoints">-49 -73 -102 -135 -170 -202 -226 -235 -240 -243 -246 -248</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">3 5 7 9 12 14 17 18 18 19 20 20</table>
@@ -313,7 +426,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -346,7 +459,18 @@
 		</for>
 	</skill>
 	<skill id="4712" levels="12" name="Bright Burst">
-		<!-- Star Hatchling/Strider's attack skill. Power 6. -->
+		<!-- Level 1: Star Hatchling/Strider's attack skill. Power 6. -->
+		<!-- Level 2: Star Hatchling/Strider's attack skill. Power 9. -->
+		<!-- Level 3: Star Hatchling/Strider's attack skill. Power 13. -->
+		<!-- Level 4: Star Hatchling/Strider's attack skill. Power 17. -->
+		<!-- Level 5: Star Hatchling/Strider's attack skill. Power 23. -->
+		<!-- Level 6: Star Hatchling/Strider's attack skill. Power 28. -->
+		<!-- Level 7: Star Hatchling/Strider's attack skill. Power 34. -->
+		<!-- Level 8: Star Hatchling/Strider's attack skill. Power 36. -->
+		<!-- Level 9: Star Hatchling/Strider's attack skill. Power 39. -->
+		<!-- Level 10: Star Hatchling/Strider's attack skill. Power 41. -->
+		<!-- Level 11: Star Hatchling/Strider's attack skill. Power 42. -->
+		<!-- Level 12: Star Hatchling/Strider's attack skill. Power 43. -->
 		<table name="#effectPoints">-138 -204 -285 -379 -477 -566 -635 -659 -676 -689 -700 -709</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">6 6 7 7 8 8 9 9 10 10 11 11</table>
@@ -364,11 +488,22 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4713" levels="12" name="Bright Heal">
-		<!-- Star Hatchling/Strider's recovery magic. Regenerates the pet's HP. Power 33. -->
+		<!-- Level 1: Star Hatchling/Strider's recovery magic. Regenerates the pet's HP. Power 33. -->
+		<!-- Level 2: Star Hatchling/Strider's recovery magic. Regenerates the pet's HP. Power 61. -->
+		<!-- Level 3: Star Hatchling/Strider's recovery magic. Regenerates the pet's HP. Power 98. -->
+		<!-- Level 4: Star Hatchling/Strider's recovery magic. Regenerates the pet's HP. Power 145. -->
+		<!-- Level 5: Star Hatchling/Strider's recovery magic. Regenerates the pet's HP. Power 198. -->
+		<!-- Level 6: Star Hatchling/Strider's recovery magic. Regenerates the pet's HP. Power 251. -->
+		<!-- Level 7: Star Hatchling/Strider's recovery magic. Regenerates the pet's HP. Power 298. -->
+		<!-- Level 8: Star Hatchling/Strider's recovery magic. Regenerates the pet's HP. Power 316. -->
+		<!-- Level 9: Star Hatchling/Strider's recovery magic. Recovers one's own HP. Power 331. -->
+		<!-- Level 10: Star Hatchling/Strider's recovery magic. Recovers one's own HP. Power 347. -->
+		<!-- Level 11: Star Hatchling/Strider's recovery magic. Recovers one's own HP. Power 358. -->
+		<!-- Level 12: Star Hatchling/Strider's recovery magic. Recovers one's own HP. Power 366. -->
 		<table name="#amount">33 61 98 145 198 251 298 316 330 338 341 342</table>
 		<table name="#effectPoints">33 61 98 145 198 251 298 316 331 347 358 366</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -411,7 +546,18 @@
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="4717" levels="12" name="Heal Trick">
-		<!-- A recovery magic used by a pet. Regenerates master's HP just a little bit. Power 9. -->
+		<!-- Level 1: A recovery magic used by a pet. Regenerates master's HP just a little bit. Power 9. -->
+		<!-- Level 2: Recovery magic used by a pet. Regenerates its master's HP a little bit. Power 16. -->
+		<!-- Level 3: Recovery magic used by a pet. Regenerates its master's HP a little bit. Power 25. -->
+		<!-- Level 4: Recovery magic used by a pet. Regenerates its master's HP a little bit. Power 37. -->
+		<!-- Level 5: Recovery magic used by a pet. Regenerates its master's HP a little bit. Power 50. -->
+		<!-- Level 6: Recovery magic used by a pet. Regenerates its master's HP a little bit. Power 63. -->
+		<!-- Level 7: Recovery magic used by a pet. Regenerates its master's HP a little bit. Power 75. -->
+		<!-- Level 8: Recovery magic used by a pet. Regenerates its master's HP a little bit. Power 79. -->
+		<!-- Level 9: Recovery magic used by a pet. Regenerates its master's HP a little bit. Power 83. -->
+		<!-- Level 10: A recovery magic used by a pet. Regenerates master's HP just a little bit. Power 87. -->
+		<!-- Level 11: A recovery magic used by a pet. Regenerates master's HP just a little bit. Power 90. -->
+		<!-- Level 12: A recovery magic used by a pet. Regenerates master's HP just a little bit. Power 92. -->
 		<table name="#effectPoints">9 16 25 37 50 63 75 79 83 87 90 92</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">5 8 12 17 20 25 29 32 33 33 34 34</table>
@@ -434,7 +580,18 @@
 		</for>
 	</skill>
 	<skill id="4718" levels="12" name="Greater Heal Trick">
-		<!-- Recovery magic used by a pet. Regenerates its master's HP. Power 37. -->
+		<!-- Level 1: Recovery magic used by a pet. Regenerates its master's HP. Power 37. -->
+		<!-- Level 2: Recovery magic used by a pet. Regenerates its master's HP. Power 64. -->
+		<!-- Level 3: Recovery magic used by a pet. Regenerates its master's HP. Power 99. -->
+		<!-- Level 4: Recovery magic used by a pet. Regenerates its master's HP. Power 139. -->
+		<!-- Level 5: Recovery magic used by a pet. Regenerates its master's HP. Power 171. -->
+		<!-- Level 6: Recovery magic used by a pet. Regenerates its master's HP. Power 205. -->
+		<!-- Level 7: Recovery magic used by a pet. Regenerates its master's HP. Power 236. -->
+		<!-- Level 8: Recovery magic used by a pet. Regenerates its master's HP. Power 266. -->
+		<!-- Level 9: Recovery magic used by a pet. Regenerates its master's HP. Power 300. -->
+		<!-- Level 10: Recovery magic used by a pet. Regenerates its master's HP. Power 332. -->
+		<!-- Level 11: Recovery magic used by a pet. Regenerates its master's HP. Power 355. -->
+		<!-- Level 12: Recovery magic used by a pet. Regenerates its master's HP. Power 368. -->
 		<table name="#effectPoints">62 113 184 272 371 471 558 592 620 651 672 685</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">33 59 88 122 162 195 228 242 252 259 262 262</table>
@@ -471,7 +628,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4720" levels="12" name="BOSS Strike">
@@ -489,7 +646,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4721" levels="12" name="BOSS Strike">
@@ -507,7 +664,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4722" levels="12" name="BOSS Strike">
@@ -525,7 +682,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4723" levels="12" name="BOSS Strike">
@@ -543,7 +700,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4724" levels="12" name="Stun">
@@ -571,7 +728,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -600,7 +757,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -629,7 +786,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -658,7 +815,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -687,7 +844,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -800,7 +957,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4735" levels="12" name="BOSS Spinning Slash">
@@ -817,7 +974,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4736" levels="12" name="BOSS Spinning Slash">
@@ -834,7 +991,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4737" levels="12" name="BOSS Spinning Slash">
@@ -851,7 +1008,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4738" levels="12" name="BOSS Spinning Slash">
@@ -868,7 +1025,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4739" levels="12" name="BOSS Strike">
@@ -886,7 +1043,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4740" levels="12" name="BOSS Strike">
@@ -904,7 +1061,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4741" levels="12" name="BOSS Strike">
@@ -922,7 +1079,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4742" levels="12" name="BOSS Strike">
@@ -940,7 +1097,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4743" levels="12" name="BOSS Strike">
@@ -958,7 +1115,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4744" levels="12" name="Stun">
@@ -986,7 +1143,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1015,7 +1172,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1044,7 +1201,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1073,7 +1230,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1102,7 +1259,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1215,7 +1372,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4755" levels="12" name="BOSS Power Shot">
@@ -1232,7 +1389,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4756" levels="12" name="BOSS Power Shot">
@@ -1249,7 +1406,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4757" levels="12" name="BOSS Power Shot">
@@ -1266,7 +1423,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4758" levels="12" name="BOSS Power Shot">
@@ -1283,7 +1440,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4759" levels="12" name="Stun">
@@ -1310,7 +1467,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1338,7 +1495,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1366,7 +1523,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1394,7 +1551,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1422,7 +1579,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1440,7 +1597,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4765" levels="12" name="BOSS Power Shot">
@@ -1457,7 +1614,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4766" levels="12" name="BOSS Power Shot">
@@ -1474,7 +1631,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4767" levels="12" name="BOSS Power Shot">
@@ -1491,7 +1648,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4768" levels="12" name="BOSS Power Shot">
@@ -1508,7 +1665,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4769" levels="12" name="Stun">
@@ -1535,7 +1692,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1563,7 +1720,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1591,7 +1748,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1619,7 +1776,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1647,7 +1804,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1665,7 +1822,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4775" levels="12" name="BOSS Spear Attack">
@@ -1682,7 +1839,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4776" levels="12" name="BOSS Spear Attack">
@@ -1699,7 +1856,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4777" levels="12" name="BOSS Spear Attack">
@@ -1716,7 +1873,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4778" levels="12" name="BOSS Spear Attack">
@@ -1733,7 +1890,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4779" levels="12" name="BOSS Heal">

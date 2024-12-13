@@ -41,7 +41,7 @@ public class AreaFriendly implements ITargetTypeHandler
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
 		final List<WorldObject> targetList = new LinkedList<>();
-		final Player player = creature.getActingPlayer();
+		final Player player = creature.asPlayer();
 		if (!checkTarget(player, target) && (skill.getCastRange() >= 0))
 		{
 			player.sendPacket(SystemMessageId.THAT_IS_AN_INCORRECT_TARGET);
@@ -54,7 +54,7 @@ public class AreaFriendly implements ITargetTypeHandler
 			return targetList;
 		}
 		
-		if (player.getActingPlayer().isInOlympiadMode())
+		if (player.isInOlympiadMode())
 		{
 			targetList.add(player);
 			return targetList;
@@ -97,7 +97,7 @@ public class AreaFriendly implements ITargetTypeHandler
 		
 		if (target.isPlayable())
 		{
-			final Player targetPlayer = target.getActingPlayer();
+			final Player targetPlayer = target.asPlayer();
 			if (player == targetPlayer)
 			{
 				return true;

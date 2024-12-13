@@ -93,7 +93,7 @@ public class MithrilMine extends AbstractInstance
 				{
 					for (Location loc : MOB_SPAWNS)
 					{
-						final Attackable spawnedMob = (Attackable) addSpawn(MITHRIL_MILLIPEDE, loc, false, 0, false, world.getInstanceId());
+						final Attackable spawnedMob = addSpawn(MITHRIL_MILLIPEDE, loc, false, 0, false, world.getInstanceId()).asAttackable();
 						spawnedMob.setScriptValue(1);
 						spawnedMob.setRunning();
 						spawnedMob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, npc);
@@ -108,7 +108,7 @@ public class MithrilMine extends AbstractInstance
 				{
 					if (knownChar.getId() == KEGOR)
 					{
-						final Npc kegor = (Npc) knownChar;
+						final Npc kegor = knownChar.asNpc();
 						kegor.setScriptValue(2);
 						kegor.setWalking();
 						kegor.setTarget(player);

@@ -46,7 +46,7 @@ public class TalismanSlot extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getActingPlayer().getStat().addTalismanSlots(_slots);
+		effected.asPlayer().getStat().addTalismanSlots(_slots);
 	}
 	
 	@Override
@@ -58,6 +58,6 @@ public class TalismanSlot extends AbstractEffect
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getActingPlayer().getStat().addTalismanSlots(-_slots);
+		effected.asPlayer().getStat().addTalismanSlots(-_slots);
 	}
 }

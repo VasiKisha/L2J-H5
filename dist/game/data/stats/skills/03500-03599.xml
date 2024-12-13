@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="3500" levels="1" name="Wooden Set">
 		<!-- Increases P. Def. and Max HP. -->
@@ -74,7 +74,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3506" levels="1" name="Brigandine Set">
+	<skill id="3506" levels="1" name="Brigandine Heavy Armor Set">
 		<!-- Increases P. Def. and Max HP. -->
 		<set name="icon" val="icon.armor_t43_u_i00" />
 		<set name="magicLevel" val="1" />
@@ -87,7 +87,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3507" levels="1" name="Mithril Set">
+	<skill id="3507" levels="1" name="Elven Mithril Robe Set">
 		<!-- Increases Speed. INT-1, WIT+1 -->
 		<set name="icon" val="icon.armor_t51_u_i00" />
 		<set name="magicLevel" val="1" />
@@ -99,7 +99,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3508" levels="1" name="Mithril Light Armor Set">
+	<skill id="3508" levels="1" name="Reinforced Mithril Light Armor Set">
 		<!-- Increases Evasion. -->
 		<set name="icon" val="icon.armor_t47_u_i00" />
 		<set name="magicLevel" val="1" />
@@ -111,7 +111,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3509" levels="1" name="Chain Mail Set">
+	<skill id="3509" levels="1" name="Chain Mail Heavy Armor Set">
 		<!-- Increases Resistance to Dagger attacks. -->
 		<set name="icon" val="icon.armor_t48_u_i00" />
 		<set name="magicLevel" val="1" />
@@ -192,7 +192,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3516" levels="1" name="Full Plate Set">
+	<skill id="3516" levels="1" name="Full Plate Heavy Armor Set">
 		<!-- Increases Max HP. -->
 		<set name="icon" val="icon.armor_t62_ul_i00" />
 		<set name="magicLevel" val="1" />
@@ -332,7 +332,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3527" levels="1" name="Doom Light Armor Set">
+	<skill id="3527" levels="1" name="Light Armor of Doom Set">
 		<!-- Increases Resistance to poison attacks and increases lung capacity, P. Atk., and MP Recovery Bonus. STR-1, CON-2, DEX+3 -->
 		<set name="icon" val="icon.armor_t72_ul_i00" />
 		<set name="magicLevel" val="1" />
@@ -508,7 +508,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3538" levels="1" name="Nightmarish Leather Light Armor Set">
+	<skill id="3538" levels="1" name="Light Leather Armor of Nightmare Set">
 		<!-- Increases Resistance to Sleep/Hold attack and M. Def. Restores HP by using part of the damage inflicted upon the enemy, excluding damage caused by skill or remote attack. DEX+1, CON-1 -->
 		<set name="icon" val="icon.armor_t81_ul_i00" />
 		<set name="magicLevel" val="1" />
@@ -544,7 +544,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3540" levels="1" name="Nightmare Robe Set">
+	<skill id="3540" levels="1" name="Robe of Nightmare Set">
 		<!-- Increases MP regeneration, M. Atk. and Resistance to sleep/hold attacks. INT+2, WIT-2 -->
 		<set name="icon" val="icon.armor_t82_ul_i00" />
 		<set name="magicLevel" val="1" />
@@ -701,7 +701,10 @@
 		</for>
 	</skill>
 	<skill id="3552" levels="4" name="Special Ability: PvP Damage">
-		<!-- Inflicts additional damage during PvP. -->
+		<!-- Level 1: Inflicts additional damage during PvP. -->
+		<!-- Level 2: Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
+		<!-- Level 3: Inflicts additional damage during PvP. -->
+		<!-- Level 4: Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
 		<table name="#atkCountMax">0 4 0 4</table>
 		<table name="#bonus">1.05 1.05 1.1 1.1</table>
 		<table name="#magicLevel">64 64 72 72</table>
@@ -833,7 +836,8 @@
 		</for>
 	</skill>
 	<skill id="3559" levels="2" name="Earring of Zaken">
-		<!-- Bleed/shock/mental attacks, and improves the effectiveness of HP recovery magic and restores HP by using some of the damage inflicted upon the enemy. Excludes damage from skill or ranged attacks. -->
+		<!-- Level 1: Bleed/shock/mental attacks, and improves the effectiveness of HP recovery magic and restores HP by using some of the damage inflicted upon the enemy. Excludes damage from skill or ranged attacks. -->
+		<!-- Level 2: Increases Resistance to Dark, bleed/shock/mental attacks, bleed/shock/mental attack rate, and received HP recovery. Restores some of the damage inflicted on the enemy as the user's HP. Excludes damage caused by skills and long-range attack. -->
 		<table name="#darkRes">0 15</table>
 		<table name="#healEffect">1.1 1.15</table>
 		<table name="#magicLevel">75 80</table>
@@ -1059,7 +1063,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3571" levels="2" name="Special Ability: Critical Stun">
+	<skill id="3571" levels="2" name="Special Ability: Crtical Stun">
 		<!-- Instantly stuns and paralyzes target. -->
 		<table name="#activateRates">27 43</table>
 		<table name="#magicLevel">75 84</table>
@@ -1081,7 +1085,7 @@
 			<effect name="Stun" />
 		</for>
 	</skill>
-	<skill id="3572" levels="4" name="Special Ability: Critical Damage">
+	<skill id="3572" levels="4" name="Special Ability: Crtical Damage">
 		<!-- Increases Critical Damage. Inflicts additional damage during PvP. -->
 		<table name="#cAtkAdd">265 906 999 1059</table>
 		<table name="#magicLevel">75 84 85 86</table>
@@ -1115,7 +1119,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3574" levels="3" name="Special Ability: Critical Slow">
+	<skill id="3574" levels="3" name="Special Ability: Crtical Slow">
 		<!-- Temporarily decreases Speed. Effect 3. -->
 		<table name="#activateRates">16 24 33</table>
 		<table name="#magicLevel">75 84 84</table>
@@ -1157,7 +1161,10 @@
 		</for>
 	</skill>
 	<skill id="3576" levels="4" name="Special Ability: MP Regeneration">
-		<!-- Increases MP Recovery Bonus. Inflicts additional damage during PvP. -->
+		<!-- Level 1: Increases MP Recovery Bonus. Inflicts additional damage during PvP. -->
+		<!-- Level 2: Increases MP Recovery Bonus. Inflicts additional damage during PvP. -->
+		<!-- Level 3: Increases MP recovery bonus. Inflicts additional damage during PvP. -->
+		<!-- Level 4: Increases MP recovery bonus. Inflicts additional damage during PvP. -->
 		<table name="#magicLevel">75 84 85 86</table>
 		<table name="#regMp">0.54 1.95 2.04 2.05</table>
 		<set name="icon" val="icon.skill1047" />
@@ -1174,7 +1181,8 @@
 		</for>
 	</skill>
 	<skill id="3577" levels="2" name="Special Ability: Magic Hold">
-		<!-- Magically immobilizes target. -->
+		<!-- Level 1: Magically immobilizes target. -->
+		<!-- Level 2: Magically immobilizes a target. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="30" />
 		<set name="abnormalType" val="ROOT_MAGICALLY" />

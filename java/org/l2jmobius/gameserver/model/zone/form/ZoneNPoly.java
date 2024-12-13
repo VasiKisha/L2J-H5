@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.zone.form;
 
@@ -26,13 +30,14 @@ import org.l2jmobius.gameserver.model.zone.ZoneForm;
 
 /**
  * A not so primitive npoly zone
- * @author durgus
+ * @author durgus, Mobius
  */
 public class ZoneNPoly extends ZoneForm
 {
 	private final Polygon _p;
 	private final int _z1;
 	private final int _z2;
+	private final Location _centerPoint;
 	
 	/**
 	 * @param x
@@ -46,6 +51,37 @@ public class ZoneNPoly extends ZoneForm
 		
 		_z1 = Math.min(z1, z2);
 		_z2 = Math.max(z1, z2);
+		
+		double area = 0;
+		double cx = 0;
+		double cy = 0;
+		for (int i = 0; i < _p.npoints; i++)
+		{
+			final int nextIndex = (i + 1) % _p.npoints;
+			final double crossProduct = (_p.xpoints[i] * _p.ypoints[nextIndex]) - (_p.xpoints[nextIndex] * _p.ypoints[i]);
+			area += crossProduct;
+			cx += (_p.xpoints[i] + _p.xpoints[nextIndex]) * crossProduct;
+			cy += (_p.ypoints[i] + _p.ypoints[nextIndex]) * crossProduct;
+		}
+		area /= 2.0;
+		if (area == 0)
+		{
+			cx = 0;
+			cy = 0;
+			for (int i = 0; i < _p.npoints; i++)
+			{
+				cx += _p.xpoints[i];
+				cy += _p.ypoints[i];
+			}
+			cx /= _p.npoints;
+			cy /= _p.npoints;
+		}
+		else
+		{
+			cx /= (6.0 * area);
+			cy /= (6.0 * area);
+		}
+		_centerPoint = new Location((int) cx, (int) cy, (_z1 + _z2) / 2);
 	}
 	
 	@Override
@@ -138,5 +174,11 @@ public class ZoneNPoly extends ZoneForm
 	public int[] getY()
 	{
 		return _p.ypoints;
+	}
+	
+	@Override
+	public Location getCenterPoint()
+	{
+		return _centerPoint;
 	}
 }

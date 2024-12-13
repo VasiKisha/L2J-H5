@@ -38,7 +38,7 @@ public class CharmOfCourage implements IItemHandler
 			return false;
 		}
 		
-		final Player player = playable.getActingPlayer();
+		final Player player = playable.asPlayer();
 		int level = player.getLevel();
 		final int itemLevel = item.getTemplate().getCrystalType().getLevel();
 		if (level < 20)

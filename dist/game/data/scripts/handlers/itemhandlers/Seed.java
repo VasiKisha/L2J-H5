@@ -54,13 +54,13 @@ public class Seed implements IItemHandler
 			playable.sendPacket(SystemMessageId.INVALID_TARGET);
 			return false;
 		}
-		else if (!tgt.isMonster() || ((Monster) tgt).isRaid() || (tgt instanceof Chest))
+		else if (!tgt.isMonster() || tgt.asMonster().isRaid() || (tgt instanceof Chest))
 		{
 			playable.sendPacket(SystemMessageId.THE_TARGET_IS_UNAVAILABLE_FOR_SEEDING);
 			return false;
 		}
 		
-		final Monster target = (Monster) tgt;
+		final Monster target = tgt.asMonster();
 		if (target.isDead())
 		{
 			playable.sendPacket(SystemMessageId.INVALID_TARGET);
@@ -83,7 +83,7 @@ public class Seed implements IItemHandler
 			return false;
 		}
 		
-		final Player player = playable.getActingPlayer();
+		final Player player = playable.asPlayer();
 		target.setSeeded(seed, player);
 		
 		final SkillHolder[] skills = item.getTemplate().getSkills();

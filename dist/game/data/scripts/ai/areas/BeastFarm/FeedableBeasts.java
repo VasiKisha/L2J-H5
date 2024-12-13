@@ -474,7 +474,7 @@ public class FeedableBeasts extends AbstractNpcAI
 		{
 			// if not trained, the newly spawned mob will automatically be aggro against its feeder
 			// (what happened to "never bite the hand that feeds you" anyway?!)
-			final Attackable nextNpc = (Attackable) addSpawn(nextNpcId, npc);
+			final Attackable nextNpc = addSpawn(nextNpcId, npc).asAttackable();
 			
 			if (MAD_COW_POLYMORPH.containsKey(nextNpcId))
 			{
@@ -502,7 +502,7 @@ public class FeedableBeasts extends AbstractNpcAI
 			// despawn the mad cow
 			npc.deleteMe();
 			// spawn the new mob
-			final Attackable nextNpc = (Attackable) addSpawn(MAD_COW_POLYMORPH.get(npc.getId()), npc);
+			final Attackable nextNpc = addSpawn(MAD_COW_POLYMORPH.get(npc.getId()), npc).asAttackable();
 			
 			// register the player in the feedinfo for the mob that just spawned
 			FEED_INFO.put(nextNpc.getObjectId(), player.getObjectId());

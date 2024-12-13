@@ -50,12 +50,9 @@ public class ConditionPlayerGrade extends Condition
 		_value = value;
 	}
 	
-	/**
-	 * 
-	 */
 	@Override
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
-		return (effector.getActingPlayer() != null) && (_value == (byte) effector.getActingPlayer().getExpertiseLevel());
+		return effector.isPlayer() && (_value == (byte) effector.asPlayer().getExpertiseLevel());
 	}
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="22000" levels="1" name="Spicy Kimchee">
 		<!-- Regeneration is temporarily increased. Effectiveness 1. -->
@@ -107,7 +107,7 @@
 			<effect name="Buff" />
 		</for>
 	</skill>
-	<skill id="22004" levels="1" name="Energy Ginseng">
+	<skill id="22004" levels="1" name="Vitality Ginseng">
 		<!-- Recovers energy upon acquiring Exp. points. -->
 		<set name="abnormalInstant" val="true" />
 		<set name="abnormalLevel" val="1" />
@@ -129,7 +129,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22005" levels="1" name="Energy Red Ginseng">
+	<skill id="22005" levels="1" name="Vitality Red Ginseng">
 		<!-- Replenishes a certain amount of Vitality. -->
 		<set name="blockedInOlympiad" val="true" />
 		<set name="effectPoint" val="100" />
@@ -164,7 +164,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20081" />
+		<set name="itemConsumeId" val="20081" /> <!-- Good Luck Lucky Bag -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -185,7 +185,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20082" />
+		<set name="itemConsumeId" val="20082" /> <!-- Lucky Four-leaf Clover -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -200,14 +200,14 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22009" levels="1" name="Holiday Miracle">
+	<skill id="22009" levels="1" name="Miracle of Christmas">
 		<table name="#extractableItems">
 			20094,1,20;20095,1,80
 		</table>
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20093" />
+		<set name="itemConsumeId" val="20093" /> <!-- Spirit of the Holiday -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -228,7 +228,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20097" />
+		<set name="itemConsumeId" val="20097" /> <!-- Mysterious Formal Dress (Event) Pack -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -249,7 +249,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20075" />
+		<set name="itemConsumeId" val="20075" /> <!-- Santa Claus' Gift - Joy - 4-hour limited period -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -270,7 +270,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20076" />
+		<set name="itemConsumeId" val="20076" /> <!-- Santa Claus' Gift - Enjoyment - 4-hour limited period -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -285,7 +285,7 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22013" levels="1" name="Holiday Festival">
+	<skill id="22013" levels="1" name="Christmas Festival">
 		<!-- Maximum HP/MP/CP, Physical/Defense Power, Speed and Physical Attack Power are increased, and MP consumption for skills is decreased. Effectiveness 3. -->
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="1800" />
@@ -316,7 +316,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22014" levels="1" name="Holiday Festival">
+	<skill id="22014" levels="1" name="Christmas Festival">
 		<!-- Maximum HP/MP/CP, Physical/Defense Power, Speed and Physical Attack Power are increased, and MP consumption for skills is decreased. Effectiveness 3. -->
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="1800" />
@@ -347,7 +347,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22015" levels="1" name="Holiday Festival">
+	<skill id="22015" levels="1" name="Christmas Festival">
 		<!-- Maximum HP/MP/CP, Physical/Defense Power and Speed are increased, and MP consumption for skills is decreased. Effectiveness 3. -->
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="1800" />
@@ -377,7 +377,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22016" levels="1" name="Holiday Festival">
+	<skill id="22016" levels="1" name="Christmas Festival">
 		<!-- Maximum HP/MP/CP, Physical/Defense Power, Speed and Magic Attack Power are increased, and MP consumption for skills is decreased. Effectiveness 3. -->
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="1800" />
@@ -414,7 +414,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20077" />
+		<set name="itemConsumeId" val="20077" /> <!-- Santa Claus' Gift - Luck - 4-hour limited period -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -435,7 +435,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20078" />
+		<set name="itemConsumeId" val="20078" /> <!-- Santa Claus' Gift - Luck - 4-hour limited period -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -495,13 +495,13 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22023" levels="1" name="Simple Valentine Cake">
+	<skill id="22023" levels="1" name="Shabby Valentine Cake">
 		<table name="#extractableItems">
 			10134,1,9;10138,1,9;1539,4,41;1540,3,16;20196,1,25
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20195" />
+		<set name="itemConsumeId" val="20195" /> <!-- Simple Valentine Cake -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -516,13 +516,13 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22024" levels="1" name="Velvety Valentine Cake">
+	<skill id="22024" levels="1" name="Ordinary Valentine Cake">
 		<table name="#extractableItems">
 			948,2,14;952,3,19;1538,1,11;3936,1,6;20200,1,20;20197,1,30
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20196" />
+		<set name="itemConsumeId" val="20196" /> <!-- Velvety Valentine Cake -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -537,13 +537,13 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22025" levels="1" name="Delectable Valentine Cake">
+	<skill id="22025" levels="1" name="Delicious Valentine Cake">
 		<table name="#extractableItems">
 			947,2,14;951,3,39;20201,1,17;20198,1,30
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20197" />
+		<set name="itemConsumeId" val="20197" /> <!-- Delectable Valentine Cake -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -558,13 +558,13 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22026" levels="1" name="Decadent Valentine Cake">
+	<skill id="22026" levels="1" name="Perfect Valentine Cake">
 		<table name="#extractableItems">
 			959,1,14;729,2,26;20202,1,35;20203,1,25
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20198" />
+		<set name="itemConsumeId" val="20198" /> <!-- Decadent Valentine Cake -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -579,13 +579,13 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="22027" levels="1" name="Heavenly Valentine Cake">
+	<skill id="22027" levels="1" name="Fantasy Valentine Cake">
 		<table name="#extractableItems">
 			6659,1,0.00661;6660,1,0.1;20208,1,8;20206,1,11;20207,1,18;20204,1,62.893
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20199" />
+		<set name="itemConsumeId" val="20199" /> <!-- Heavenly Valentine Cake - 30-day limited period -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -611,7 +611,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22029" levels="1" name="Baguette Herb">
+	<skill id="22029" levels="1" name="Baguette's Herb">
 		<!-- Increases Atk. Spd. for a certain amount of time. -->
 		<set name="abnormalInstant" val="true" />
 		<set name="abnormalLevel" val="1" />
@@ -636,7 +636,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22030" levels="1" name="Cream Puff Herb">
+	<skill id="22030" levels="1" name="Fresh Cream Herb">
 		<!-- Recovers Vitality upon acquiring Exp. points. -->
 		<set name="abnormalInstant" val="true" />
 		<set name="abnormalLevel" val="1" />
@@ -686,14 +686,14 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22032" levels="1" name="Baguette Legacy">
+	<skill id="22032" levels="1" name="Legacy of Baguette">
 		<table name="#extractableItems">
 			20255,1,8.34;20256,1,8.34;20257,1,8.34;20258,1,8.34;20259,1,8.34;20260,1,8.34;20261,1,8.34;20262,1,8.34;20263,1,8.34;20264,1,8.34;20265,1,8.34;20270,1,8.26
 		</table>
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20271" />
+		<set name="itemConsumeId" val="20271" /> <!-- Baguette Legacy -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -715,7 +715,7 @@
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20277" />
+		<set name="itemConsumeId" val="20277" /> <!-- Baguette Legacy - Kamael -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -742,7 +742,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22035" levels="1" name="Birthday Cake Effect">
+	<skill id="22035" levels="1" name="Birthday Cake Vitality Buff">
 		<!-- Birthday Cake Vitality Buff. Increases your Vitality whenever you gain experience. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="120" />
@@ -778,8 +778,9 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="SELF" />
 	</skill>
-	<skill id="22039" levels="2" name="Rune of Experience Points">
-		<!-- Acquired Exp. increases by 30%. -->
+	<skill id="22039" levels="2" name="Rune of Exp. 30%">
+		<!-- Level 1: Acquired Exp. increases by 30%. -->
+		<!-- Level 2: Acquired Exp. increases by 50%. -->
 		<table name="#bonusExp">30 50</table>
 		<table name="#icons">br_cashtex.skill.br_cash_rune_of_exp_buff_3 br_cashtex.skill.br_cash_rune_of_exp_buff_5</table>
 		<set name="icon" val="#icons" />
@@ -792,8 +793,9 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22040" levels="2" name="Rune of SP">
-		<!-- Acquired SP increases by 30%. -->
+	<skill id="22040" levels="2" name="Rune of SP 30%">
+		<!-- Level 1: Acquired SP increases by 30%. -->
+		<!-- Level 2: Acquired SP increases by 50%. -->
 		<table name="#bonusSp">30 50</table>
 		<table name="#icons">br_cashtex.skill.br_cash_rune_of_sp_buff_3 br_cashtex.skill.br_cash_rune_of_sp_buff_5</table>
 		<set name="icon" val="#icons" />
@@ -806,8 +808,9 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22041" levels="2" name="Rune of Crystal Form Level">
-		<!-- The user's grade penalty decreases by 3 level. -->
+	<skill id="22041" levels="2" name="Rune of Crystal Level 3">
+		<!-- Level 1: The user's grade penalty decreases by 3 level. -->
+		<!-- Level 2: The user's grade penalty decreases by 5 level. -->
 		<table name="#bonus">3 5</table>
 		<table name="#icons">br_cashtex.skill.br_cash_rune_of_rp_buff_3 br_cashtex.skill.br_cash_rune_of_rp_buff_5</table>
 		<set name="icon" val="#icons" />
@@ -833,7 +836,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22043" levels="6" name="Secret medicine of Will">
+	<skill id="22043" levels="6" name="Secret Medicine of Will - D grade">
 		<table name="#amount">0 800 1500 2000 2500 3000</table>
 		<table name="#levelRange">0;0 20;39 40;51 52;60 61;75 76;85</table>
 		<set name="blockedInOlympiad" val="true" />
@@ -850,7 +853,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22044" levels="6" name="Secret medicine of Life">
+	<skill id="22044" levels="6" name="Secret Medicine of Life - D grade">
 		<table name="#levelRange">0;0 20;39 40;51 52;60 61;75 76;85</table>
 		<set name="blockedInOlympiad" val="true" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -866,7 +869,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22045" levels="1" name="Omen Beast Transformation Scroll">
+	<skill id="22045" levels="1" name="Onyx Beast Transformation Scroll">
 		<!-- Transformed into an Onyx Beast. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="1800" />
@@ -1069,7 +1072,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22054" levels="1" name="Potion of Energy Maintenance">
+	<skill id="22054" levels="1" name="Vitality Maintaining Potion">
 		<!-- State in which the Vitality Stage is maintained. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="600" />
@@ -1088,7 +1091,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22055" levels="1" name="Potion of Energy Replenishing">
+	<skill id="22055" levels="1" name="Vitality Replenishing Potion">
 		<set name="blockedInOlympiad" val="true" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
@@ -1253,7 +1256,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22065" levels="1" name="Bless the Body">
+	<skill id="22065" levels="1" name="Blessed Body">
 		<!-- Increases Max HP by 35% for 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="3600" />
@@ -1311,7 +1314,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22068" levels="1" name="Bless the Soul">
+	<skill id="22068" levels="1" name="Blessed Soul">
 		<!-- Increases Max MP by 35% for 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="3600" />
@@ -1370,7 +1373,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20515" />
+		<set name="itemConsumeId" val="20515" /> <!-- Huge Fortuna Box -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -1391,7 +1394,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20516" />
+		<set name="itemConsumeId" val="20516" /> <!-- Huge Fortuna Cube -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -1502,7 +1505,7 @@
 		<set name="operateType" val="A2" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22083" levels="1" name="Resist Unholy">
+	<skill id="22083" levels="1" name="Resist Dark">
 		<!-- Increases Resistance to Dark by 23% for 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="3600" />
@@ -1579,7 +1582,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="22087" levels="1" name="Blessing Shield">
+	<skill id="22087" levels="1" name="Bless Shield">
 		<!-- Increases Shield defense rate by 15 for 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="3600" />
@@ -1681,7 +1684,7 @@
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20573" />
+		<set name="itemConsumeId" val="20573" /> <!-- Small Scroll Chest (Event) -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -1703,7 +1706,7 @@
 		<set name="blockedInOlympiad" val="true" />
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="20574" />
+		<set name="itemConsumeId" val="20574" /> <!-- Large Scroll Chest (Event) -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />

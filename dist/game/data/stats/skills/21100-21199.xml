@@ -1,6 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
-	<skill id="21100" levels="1" name="Great Wizard's Soul Power: Brilliance">
+	<skill id="21100" levels="1" name="Soul of a Wise Magician's Ability">
 		<!-- For 5 minutes, receives the soul's help to raise Casting Spd. by 20%, M. Atk. by 20%, and M. Def. by 20%. Decreases MP consumption for skill use by 5%. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -22,7 +22,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21101" levels="1" name="Blessed Escape">
+	<skill id="21101" levels="1" name="Blessed Scroll of Escape">
 		<!-- Allows the use of Blessed Escape. Reuse delay is 12 hours. -->
 		<set name="blockedInOlympiad" val="true" />
 		<set name="hitTime" val="200" />
@@ -68,7 +68,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21103" levels="1" name="Great Adventurer's Soul Power : Endless">
+	<skill id="21103" levels="1" name="Soul of an Adventurer of Immortality's Ability">
 		<!-- For 5 minutes, receives the soul's help to raise Max HP by 20%, Max MP by 20%, and Speed by 20%. Increases Resistance to de-buffs by 10%. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -90,7 +90,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21104" levels="1" name="Instinct of Destruction">
+	<skill id="21104" levels="1" name="Appetite for Destruction">
 		<!-- For 30 seconds, awakens the destructive instincts and increases P. Atk., Critical Rate and Critical Damage by 50%. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="30" />
@@ -188,7 +188,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21111" levels="1" name="Great Adventurer's Soul Power: Resilience">
+	<skill id="21111" levels="1" name="Soul of an Adventurer of Immortality's Ability">
 		<!-- For 5 minutes, receives the soul's help to raise Max HP by 20%, Max MP by 20%, and Speed by 20%. Increases Resistance to de-buffs by 10%. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -210,7 +210,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21112" levels="1" name="Great Warrior's Soul Power: Strength">
+	<skill id="21112" levels="1" name="Soul of a Strong Warrior's Ability">
 		<!-- For 5 minutes, increases Atk. Spd. by 20%, P. Atk. by 10%, and P. Def. by 20% with the soul's help. Bestows the ability to recover as HP 5% of the standard short-range physical damage inflicted on the enemy. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -232,7 +232,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21113" levels="1" name="Great Wizard's Soul Power: Acuity">
+	<skill id="21113" levels="1" name="Soul of a Wise Magician's Ability">
 		<!-- For 5 minutes, receives the soul's help to raise Casting Spd. by 20%, M. Atk. by 20%, and M. Def. by 20%. Decreases MP consumption for skill use by 5%. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -254,7 +254,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21114" levels="1" name="Great Adventurer's Soul Power: Resilience">
+	<skill id="21114" levels="1" name="Soul of an Adventurer of Immortality's Ability">
 		<!-- For 5 minutes, receives the soul's help to raise Max HP by 20%, Max MP by 20%, and Speed by 20%. Increases Resistance to de-buffs by 10%. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -276,7 +276,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21115" levels="1" name="Great Warrior's Soul Power: Strength">
+	<skill id="21115" levels="1" name="Soul of a Strong Warrior's Ability">
 		<!-- For 5 minutes, increases Atk. Spd. by 20%, P. Atk. by 10%, and P. Def. by 20% with the soul's help. Bestows the ability to recover as HP 5% of the standard short-range physical damage inflicted on the enemy. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -298,7 +298,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21116" levels="1" name="Great Wizard's Soul Power: Acuity">
+	<skill id="21116" levels="1" name="Soul of a Wise Magician's Ability">
 		<!-- For 5 minutes, receives the soul's help to raise Casting Spd. by 20%, M. Atk. by 20%, and M. Def. by 20%. Decreases MP consumption for skill use by 5%. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -320,7 +320,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21117" levels="1" name="Great Adventurer's Soul Power : Immortality">
+	<skill id="21117" levels="1" name="Ability of Prominent Adventure's Soul">
 		<!-- For 5 minutes, receives the soul's help to raise Max HP by 20%, Max MP by 20%, and Speed by 20%. Increases HP Recovery Bonus by 20% and MP Recovery Bonus by 20%. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -343,7 +343,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21118" levels="1" name="Great Warrior's Soul Power: Destruction">
+	<skill id="21118" levels="1" name="Soul of a Brave Warrior's Ability">
 		<!-- For 5 minutes, increases Atk. Spd. by 20%, P. Atk. by 10%, and P. Def. by 20% with the soul's help. Increases Critical Damage by 20% and critical rate by 20%. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -366,7 +366,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21119" levels="1" name="Great Wizard's Soul Power: Brilliance">
+	<skill id="21119" levels="1" name="Soul of a Great Magician's Ability">
 		<!-- For 5 minutes, receives the soul's help to increase Casting Spd. by 20%, M. Atk. by 20%, and M. Def. by 20%. Increases the power of Prominent Damage through magic damage by 20% and the chance of prominent damage occurring through magic damage by 2. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -410,7 +410,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="ONE" />
 	</skill>
-	<skill id="21122" levels="1" name="Blessing of Skooldy : Protection of Darkness">
+	<skill id="21122" levels="1" name="Blessing of Skooldie: Protection of Darkness">
 		<!-- For 1 hour, increases Max HP by 20%, Max MP by 20%, P. Def. by 20%, and M. Def. by 20%. Increases Resistance to Dark by 20. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="3600" />
@@ -433,7 +433,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21123" levels="1" name="Blessing of Skooldy : Protection of Darkness">
+	<skill id="21123" levels="1" name="Blessing of Skooldie: Protection of Darkness">
 		<!-- For 1 hour, increases Max HP by 20%, Max MP by 20%, P. Def. by 20%, and M. Def. by 20%. Increases Resistance to Dark by 20. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="3600" />
@@ -456,7 +456,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21124" levels="1" name="Blessing of Skooldy : Protection of Darkness">
+	<skill id="21124" levels="1" name="Blessing of Skooldie: Protection of Darkness">
 		<!-- For 1 hour, increases Max HP by 20%, Max MP by 20%, P. Def. by 20%, and M. Def. by 20%. Increases Resistance to Dark by 20. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="3600" />
@@ -479,7 +479,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21125" levels="1" name="Blessing of Skooldy : Protection of Darkness">
+	<skill id="21125" levels="1" name="Blessing of Skooldie: Protection of Darkness">
 		<!-- For 1 hour, increases Max HP by 20%, Max MP by 20%, P. Def. by 20%, and M. Def. by 20%. Increases Resistance to Dark by 20. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="3600" />
@@ -502,7 +502,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21126" levels="1" name="Blessing of Skooldy : Protection of Darkness">
+	<skill id="21126" levels="1" name="Blessing of Skooldie: Protection of Darkness">
 		<!-- For 1 hour, increases Max HP by 20%, Max MP by 20%, P. Def. by 20%, and M. Def. by 20%. Increases Resistance to Dark by 20. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="3600" />
@@ -642,7 +642,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21132" levels="1" name="Ability of Shadow">
+	<skill id="21132" levels="1" name="Shadow Ability">
 		<!-- For 2 minutes, decreases the user's Speed by 30%, and obtains the ability to prevent a monster's preemptive attack. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="120" />
@@ -704,7 +704,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21136" levels="1" name="Authority of Golden Jack O'Lantern Mask">
+	<skill id="21136" levels="1" name="Golden Jack O'Lantern's Authority">
 		<!-- For 10 minutes, increases party members' Max HP by 40%, Max MP by 40%, Max CP by 40%, P. Def. by 30%, M. Def. by 30%, and Speed by 30. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="600" />
@@ -987,7 +987,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21152" levels="1" name="Continuous Fireworks">
+	<skill id="21152" levels="1" name="Fireworks">
 		<!-- Sets off firecrackers. Re-use delay is 5 minutes. -->
 		<set name="icon" val="BranchSys.icon.br_rocket_cap_i00" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -1244,7 +1244,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21169" levels="1" name="Transform Kadomas">
+	<skill id="21169" levels="1" name="Kadomas Transformation">
 		<!-- Transforms into a Kadomas. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="3600" />
@@ -1281,7 +1281,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21171" levels="1" name="Riding Jet Bike">
+	<skill id="21171" levels="1" name="Jet Bike Mount">
 		<!-- Mounts a jet bike. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="3600" />
@@ -1509,7 +1509,7 @@
 		<set name="operateType" val="T" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="21190" levels="1" name="Soul Shield">
+	<skill id="21190" levels="1" name="Soul's Shield">
 		<!-- For 10 seconds, increases P. Def. and M. Def. by 60%. Consumes 500 energy. Reuse delay 20 minutes. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="10" />
@@ -1558,7 +1558,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21193" levels="1" name="Power of Guardian Deity">
+	<skill id="21193" levels="1" name="Guardian Deity's Strength">
 		<!-- Increases Critical Damage by 35% for 10 minutes. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="600" />
@@ -1634,7 +1634,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21197" levels="1" name="Buff of Virtue">
+	<skill id="21197" levels="1" name="Induk's Buff">
 		<!-- Restores all HP, MP, and CP using the strength of Induk. Reuse delay 30 minutes. Can only be used when HP, MP, and CP are all below 30%. Consumes 1 Proof of a Warrior upon skill use. -->
 		<set name="blockedInOlympiad" val="true" />
 		<set name="icon" val="BranchSys2.icon.br_pekingopera_mask_a_i00" />
@@ -1646,7 +1646,7 @@
 		<set name="reuseDelay" val="1800000" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="21198" levels="1" name="Silence of Fidelity">
+	<skill id="21198" levels="1" name="Silence of Loyalty">
 		<!-- Through the power of loyalty, increases party members' P. Def., M. Def. by 30%, physical P. Atk. by 20%, M. Atk. by 45%, and Speed by 30 for 5 minutes. Reuse delay 30 minutes. Consumes 1 Proof of a Warrior upon skill use. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -1664,7 +1664,7 @@
 		<set name="targetType" val="NONE" />
 		<set name="trait" val="ETC" />
 	</skill>
-	<skill id="21199" levels="1" name="Vitality of Courage">
+	<skill id="21199" levels="1" name="Vitality of Excellence">
 		<!-- Restores all Vitality using the power of Excellence, and for 5 minutes, maintains the Vitality stage. Reuse delay 30 minutes. Consumes 1 Proof of a Warrior upon skill use. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />

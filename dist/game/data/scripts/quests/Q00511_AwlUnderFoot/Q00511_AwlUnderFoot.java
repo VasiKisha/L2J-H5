@@ -379,9 +379,10 @@ public class Q00511_AwlUnderFoot extends Quest
 			final FAUWorld world = (FAUWorld) tmpworld;
 			if (CommonUtil.contains(RAIDS3, npc.getId()))
 			{
-				if (player.getParty() != null)
+				final Party party = player.getParty();
+				if (party != null)
 				{
-					for (Player pl : player.getParty().getMembers())
+					for (Player pl : party.getMembers())
 					{
 						rewardPlayer(pl);
 					}

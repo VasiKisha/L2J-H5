@@ -110,7 +110,7 @@ public class Block extends Monster
 	{
 		if (attacker.isPlayer())
 		{
-			return (attacker.getActingPlayer() != null) && (attacker.getActingPlayer().getBlockCheckerArena() > -1);
+			return attacker.isPlayer() && (attacker.asPlayer().getBlockCheckerArena() > -1);
 		}
 		return true;
 	}

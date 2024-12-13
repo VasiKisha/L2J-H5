@@ -757,6 +757,25 @@ public class SchedulingPattern
 	}
 	
 	/**
+	 * Retures next matching moment as a long
+	 * @param millis
+	 * @return The next matching moment as a long.
+	 */
+	public long nextFrom(long millis)
+	{
+		return next(millis) - millis;
+	}
+	
+	/**
+	 * Retures next matching moment as a long
+	 * @return The next matching moment as a long.
+	 */
+	public long nextFromNow()
+	{
+		return nextFrom(System.currentTimeMillis());
+	}
+	
+	/**
 	 * Returns the pattern as a string.
 	 * @return The pattern as a string.
 	 */

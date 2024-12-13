@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.ai;
 
@@ -33,6 +37,7 @@ import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.instancemanager.DimensionalRiftManager;
 import org.l2jmobius.gameserver.instancemanager.ItemsOnGroundManager;
 import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -40,9 +45,7 @@ import org.l2jmobius.gameserver.model.WorldRegion;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.FestivalMonster;
 import org.l2jmobius.gameserver.model.actor.instance.FriendlyMob;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
@@ -182,7 +185,7 @@ public class AttackableAI extends CreatureAI
 				return false;
 			}
 			
-			if (target.isSummon() && ((Summon) target).getOwner().isGM())
+			if (target.isSummon() && target.asSummon().getOwner().isGM())
 			{
 				return false;
 			}
@@ -202,13 +205,13 @@ public class AttackableAI extends CreatureAI
 		}
 		
 		// Check if the target is a Playable and if the AI isn't a Raid Boss, can see Silent Moving players and the target isn't in silent move mode
-		if (target.isPlayable() && !(me.isRaid()) && !(me.canSeeThroughSilentMove()) && ((Playable) target).isSilentMovingAffected())
+		if (target.isPlayable() && !(me.isRaid()) && !(me.canSeeThroughSilentMove()) && target.asPlayable().isSilentMovingAffected())
 		{
 			return false;
 		}
 		
 		// Gets the player if there is any.
-		final Player player = target.getActingPlayer();
+		final Player player = target.asPlayer();
 		if (player != null)
 		{
 			// Don't take the aggro if the GM has the access level below or equal to GM_DONT_TAKE_AGGRO
@@ -223,15 +226,16 @@ public class AttackableAI extends CreatureAI
 				return false;
 			}
 			
-			if (Config.FACTION_SYSTEM_ENABLED && Config.FACTION_GUARDS_ENABLED && ((player.isGood() && ((Npc) _actor).getTemplate().isClan(Config.FACTION_EVIL_TEAM_NAME)) || (player.isEvil() && ((Npc) _actor).getTemplate().isClan(Config.FACTION_GOOD_TEAM_NAME))))
+			if (Config.FACTION_SYSTEM_ENABLED && Config.FACTION_GUARDS_ENABLED && ((player.isGood() && _actor.asNpc().getTemplate().isClan(Config.FACTION_EVIL_TEAM_NAME)) || (player.isEvil() && _actor.asNpc().getTemplate().isClan(Config.FACTION_GOOD_TEAM_NAME))))
 			{
 				return true;
 			}
 			
-			if (player.isInParty() && player.getParty().isInDimensionalRift())
+			final Party party = player.getParty();
+			if (player.isInParty() && party.isInDimensionalRift())
 			{
-				final byte riftType = player.getParty().getDimensionalRift().getType();
-				final byte riftRoom = player.getParty().getDimensionalRift().getCurrentRoom();
+				final byte riftType = party.getDimensionalRift().getType();
+				final byte riftRoom = party.getDimensionalRift().getCurrentRoom();
 				if ((me instanceof RiftInvader) && !DimensionalRiftManager.getInstance().getRoom(riftType, riftRoom).checkIfInZone(me.getX(), me.getY(), me.getZ()))
 				{
 					return false;
@@ -250,7 +254,7 @@ public class AttackableAI extends CreatureAI
 			// Check if the Monster target is aggressive
 			if (target.isMonster() && Config.GUARD_ATTACK_AGGRO_MOB)
 			{
-				return (((Monster) target).isAggressive() && GeoEngine.getInstance().canSeeTarget(me, target));
+				return (target.asMonster().isAggressive() && GeoEngine.getInstance().canSeeTarget(me, target));
 			}
 			
 			return false;
@@ -264,7 +268,7 @@ public class AttackableAI extends CreatureAI
 			}
 			
 			// Check if the Player target has karma (=PK)
-			if (target.isPlayer() && (((Player) target).getKarma() > 0))
+			if (target.isPlayer() && (target.asPlayer().getKarma() > 0))
 			{
 				return GeoEngine.getInstance().canSeeTarget(me, target); // Los Check
 			}
@@ -281,7 +285,7 @@ public class AttackableAI extends CreatureAI
 				
 				if (me.isChaos() && me.isInsideRadius2D(target, me.getAggroRange()))
 				{
-					if (((Attackable) target).isInMyClan(me))
+					if (target.asAttackable().isInMyClan(me))
 					{
 						return false;
 					}
@@ -542,7 +546,7 @@ public class AttackableAI extends CreatureAI
 				 */
 				if ((npc instanceof FestivalMonster) && target.isPlayer())
 				{
-					final Player targetPlayer = (Player) target;
+					final Player targetPlayer = target.asPlayer();
 					if (!(targetPlayer.isFestivalParticipant()))
 					{
 						return;
@@ -566,7 +570,7 @@ public class AttackableAI extends CreatureAI
 					}
 					if (target.isPlayable() && EventDispatcher.getInstance().hasListener(EventType.ON_NPC_HATE, getActiveChar()))
 					{
-						final TerminateReturn term = EventDispatcher.getInstance().notifyEvent(new OnAttackableHate(getActiveChar(), target.getActingPlayer(), target.isSummon()), getActiveChar(), TerminateReturn.class);
+						final TerminateReturn term = EventDispatcher.getInstance().notifyEvent(new OnAttackableHate(getActiveChar(), target.asPlayer(), target.isSummon()), getActiveChar(), TerminateReturn.class);
 						if ((term != null) && term.terminate())
 						{
 							return;
@@ -625,7 +629,7 @@ public class AttackableAI extends CreatureAI
 		}
 		
 		// Order this attackable to return to its spawn because there's no target to attack
-		if (!npc.isWalker() && (npc.getSpawn() != null) && (npc.calculateDistance2D(npc.getSpawn()) > Config.MAX_DRIFT_RANGE) && ((getTarget() == null) || getTarget().isInvisible() || (getTarget().isPlayer() && !Config.ATTACKABLES_CAMP_PLAYER_CORPSES && getTarget().getActingPlayer().isAlikeDead())))
+		if (!npc.isWalker() && (npc.getSpawn() != null) && (npc.calculateDistance2D(npc.getSpawn()) > Config.MAX_DRIFT_RANGE) && ((getTarget() == null) || getTarget().isInvisible() || (getTarget().isPlayer() && !Config.ATTACKABLES_CAMP_PLAYER_CORPSES && getTarget().asPlayer().isAlikeDead())))
 		{
 			npc.setWalking();
 			npc.returnHome();
@@ -633,7 +637,7 @@ public class AttackableAI extends CreatureAI
 		}
 		
 		// Do not leave dead player
-		if ((getTarget() != null) && getTarget().isPlayer() && getTarget().getActingPlayer().isAlikeDead())
+		if ((getTarget() != null) && getTarget().isPlayer() && getTarget().asPlayer().isAlikeDead())
 		{
 			return;
 		}
@@ -761,9 +765,9 @@ public class AttackableAI extends CreatureAI
 					}
 					
 					// Minions should return as well.
-					if (((Monster) _actor).hasMinions())
+					if (_actor.asMonster().hasMinions())
 					{
-						for (Monster minion : ((Monster) _actor).getMinionList().getSpawnedMinions())
+						for (Monster minion : _actor.asMonster().getMinionList().getSpawnedMinions())
 						{
 							if (Config.AGGRO_DISTANCE_CHECK_RESTORE_LIFE)
 							{
@@ -840,7 +844,10 @@ public class AttackableAI extends CreatureAI
 		// Actor should be able to see target.
 		if (!GeoEngine.getInstance().canSeeTarget(_actor, originalAttackTarget))
 		{
-			moveTo(originalAttackTarget);
+			if (_actor.calculateDistance3D(originalAttackTarget) < 6000)
+			{
+				moveTo(originalAttackTarget);
+			}
 			return;
 		}
 		
@@ -907,7 +914,7 @@ public class AttackableAI extends CreatureAI
 							
 							if (EventDispatcher.getInstance().hasListener(EventType.ON_ATTACKABLE_FACTION_CALL, nearby))
 							{
-								EventDispatcher.getInstance().notifyEventAsync(new OnAttackableFactionCall(nearby, npc, finalTarget.getActingPlayer(), finalTarget.isSummon()), nearby);
+								EventDispatcher.getInstance().notifyEventAsync(new OnAttackableFactionCall(nearby, npc, finalTarget.asPlayer(), finalTarget.isSummon()), nearby);
 							}
 						}
 						else if (nearby.getAI()._intention != AI_INTENTION_ATTACK)
@@ -1003,7 +1010,7 @@ public class AttackableAI extends CreatureAI
 			_chaosTime++;
 			if (npc instanceof RaidBoss)
 			{
-				if (!((Monster) npc).hasMinions())
+				if (!npc.asMonster().hasMinions())
 				{
 					if ((_chaosTime > Config.RAID_CHAOS_TIME) && (Rnd.get(100) <= (100 - ((npc.getCurrentHp() * 100) / npc.getMaxHp()))))
 					{
@@ -2091,7 +2098,7 @@ public class AttackableAI extends CreatureAI
 				{
 					continue;
 				}
-				final Creature obj = target.isCreature() ? (Creature) target : null;
+				final Creature obj = target.isCreature() ? target.asCreature() : null;
 				if ((obj == null) || !GeoEngine.getInstance().canSeeTarget(actor, obj) || (dist2 > range))
 				{
 					continue;
@@ -2102,7 +2109,7 @@ public class AttackableAI extends CreatureAI
 				}
 				if (obj.isAttackable() && actor.isChaos())
 				{
-					if (!((Attackable) obj).isInMyClan(actor))
+					if (!obj.asAttackable().isInMyClan(actor))
 					{
 						return obj;
 					}
@@ -2175,7 +2182,7 @@ public class AttackableAI extends CreatureAI
 				{
 					if (actor.isChaos())
 					{
-						if (((Attackable) obj).isInMyClan(actor))
+						if (obj.asAttackable().isInMyClan(actor))
 						{
 							return;
 						}
@@ -2248,7 +2255,7 @@ public class AttackableAI extends CreatureAI
 				{
 					if (actor.isChaos())
 					{
-						if (((Attackable) obj).isInMyClan(actor))
+						if (obj.asAttackable().isInMyClan(actor))
 						{
 							return;
 						}
@@ -2377,7 +2384,7 @@ public class AttackableAI extends CreatureAI
 		
 		if (me.isMonster())
 		{
-			Monster master = (Monster) me;
+			Monster master = me.asMonster();
 			if (master.hasMinions())
 			{
 				master.getMinionList().onAssist(me, attacker);
@@ -2430,7 +2437,7 @@ public class AttackableAI extends CreatureAI
 		
 		if (me.isMonster())
 		{
-			Monster master = (Monster) me;
+			Monster master = me.asMonster();
 			if (master.hasMinions())
 			{
 				master.getMinionList().onAssist(me, target);
@@ -2459,7 +2466,7 @@ public class AttackableAI extends CreatureAI
 	
 	public Attackable getActiveChar()
 	{
-		return (Attackable) _actor;
+		return _actor.asAttackable();
 	}
 	
 	public int getFearTime()

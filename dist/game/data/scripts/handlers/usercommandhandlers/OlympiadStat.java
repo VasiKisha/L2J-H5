@@ -53,7 +53,7 @@ public class OlympiadStat implements IUserCommandHandler
 		final WorldObject target = player.getTarget();
 		if (target != null)
 		{
-			if (target.isPlayer() && target.getActingPlayer().isNoble())
+			if (target.isPlayer() && target.asPlayer().isNoble())
 			{
 				nobleObjId = target.getObjectId();
 			}

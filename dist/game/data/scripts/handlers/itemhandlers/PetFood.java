@@ -40,7 +40,7 @@ public class PetFood implements IItemHandler
 	@Override
 	public boolean useItem(Playable playable, Item item, boolean forceUse)
 	{
-		if (playable.isPet() && !((Pet) playable).canEatFoodId(item.getId()))
+		if (playable.isPet() && !playable.asPet().canEatFoodId(item.getId()))
 		{
 			playable.sendPacket(SystemMessageId.THIS_PET_CANNOT_USE_THIS_ITEM);
 			return false;
@@ -64,7 +64,7 @@ public class PetFood implements IItemHandler
 		{
 			if (activeChar.isPet())
 			{
-				final Pet pet = (Pet) activeChar;
+				final Pet pet = activeChar.asPet();
 				if (pet.destroyItem("Consume", item.getObjectId(), 1, null, false))
 				{
 					pet.broadcastPacket(new MagicSkillUse(pet, pet, skillId, skillLevel, 0, 0));
@@ -79,7 +79,7 @@ public class PetFood implements IItemHandler
 			}
 			else if (activeChar.isPlayer())
 			{
-				final Player player = activeChar.getActingPlayer();
+				final Player player = activeChar.asPlayer();
 				if (player.isMounted())
 				{
 					final Set<Integer> foodIds = PetDataTable.getInstance().getPetData(player.getMountNpcId()).getFood();

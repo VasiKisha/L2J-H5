@@ -21,8 +21,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * Duel End packet implementation.
- * @author KenM, Zoey76
+ * @author KenM
  */
 public class ExDuelEnd extends ServerPacket
 {
@@ -31,7 +30,7 @@ public class ExDuelEnd extends ServerPacket
 	
 	private final boolean _partyDuel;
 	
-	private ExDuelEnd(boolean isPartyDuel)
+	public ExDuelEnd(boolean isPartyDuel)
 	{
 		_partyDuel = isPartyDuel;
 	}

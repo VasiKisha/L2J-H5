@@ -89,7 +89,7 @@ public class DoorAI extends CreatureAI
 	@Override
 	protected void onEvtAttacked(Creature attacker)
 	{
-		ThreadPool.execute(new onEventAttackedDoorTask((Door) _actor, attacker));
+		ThreadPool.execute(new onEventAttackedDoorTask(_actor.asDoor(), attacker));
 	}
 	
 	@Override

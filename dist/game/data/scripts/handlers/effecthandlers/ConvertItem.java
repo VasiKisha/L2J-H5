@@ -57,7 +57,7 @@ public class ConvertItem extends AbstractEffect
 			return;
 		}
 		
-		final Player player = effected.getActingPlayer();
+		final Player player = effected.asPlayer();
 		if (player.isEnchanting())
 		{
 			return;

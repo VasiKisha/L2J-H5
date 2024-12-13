@@ -20,6 +20,7 @@ import java.text.SimpleDateFormat;
 
 import org.l2jmobius.gameserver.handler.IUserCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**
@@ -61,10 +62,11 @@ public class ClanPenalty implements IUserCommandHandler
 			penalty = true;
 		}
 		
-		if ((player.getClan() != null) && (player.getClan().getCharPenaltyExpiryTime() > System.currentTimeMillis()))
+		final Clan clan = player.getClan();
+		if ((clan != null) && (clan.getCharPenaltyExpiryTime() > System.currentTimeMillis()))
 		{
 			htmlContent.append("<td width=170>Unable to invite a clan member.</td><td width=100 align=center>");
-			htmlContent.append(format.format(player.getClan().getCharPenaltyExpiryTime()));
+			htmlContent.append(format.format(clan.getCharPenaltyExpiryTime()));
 			htmlContent.append("</td>");
 			penalty = true;
 		}

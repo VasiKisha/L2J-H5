@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="21000" levels="1" name="Release Seal on Agathion - Majo">
 		<!-- Removes the seal of Agathion. -->
@@ -96,7 +96,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21006" levels="1" name="Large Firework Effect">
+	<skill id="21006" levels="1" name="Large Fireworks Ability">
 		<!-- Sets off firecrackers. -->
 		<set name="icon" val="BranchSys.icon.br_Afro_hair_i00" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -105,7 +105,7 @@
 		<set name="reuseDelay" val="3600000" />
 		<set name="targetType" val="SELF" />
 	</skill>
-	<skill id="21007" levels="1" name="Ability of Doubt">
+	<skill id="21007" levels="1" name="Mysterious Ability">
 		<!-- Increases the size of your head. -->
 		<set name="abnormalLevel" val="0" />
 		<set name="abnormalTime" val="600" />
@@ -162,7 +162,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21011" levels="1" name="Energy Recovery">
+	<skill id="21011" levels="1" name="Vitality Replenishing">
 		<!-- Recovers Vitality when acquiring Exp. for 20 minutes. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="1200" />
@@ -182,7 +182,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21012" levels="1" name="Energy Recovery">
+	<skill id="21012" levels="1" name="Vitality Replenishing">
 		<!-- Recovers Vitality when acquiring Exp. for 20 minutes. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="1200" />
@@ -202,7 +202,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21013" levels="1" name="Energy Recovery">
+	<skill id="21013" levels="1" name="Vitality Replenishing">
 		<!-- Recovers Vitality when acquiring Exp. for 20 minutes. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="1200" />
@@ -283,7 +283,7 @@
 			</effect>
 		</selfEffects>
 	</skill>
-	<skill id="21017" levels="1" name="Holiday Dream Weapon">
+	<skill id="21017" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. Increases critical rate. Bestows the ability to regenerate HP by using some of the damage inflicted on the enemy. Excludes damage caused by skills and long-range attack. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -297,7 +297,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21018" levels="1" name="Holiday Dream Weapon">
+	<skill id="21018" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. The rate and power of critical attacks are increased. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -311,7 +311,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21019" levels="1" name="Holiday Dream Weapon">
+	<skill id="21019" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. Increases deadly attack rate. Decreases MP consumption for skills. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -325,7 +325,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21020" levels="1" name="Holiday Dream Weapon">
+	<skill id="21020" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. Increases critical rate. Bestows the ability to regenerate HP by using some of the damage inflicted on the enemy. Excludes damage caused by skills and long-range attack. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -339,7 +339,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21021" levels="1" name="Holiday Dream Weapon">
+	<skill id="21021" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. The rate and power of critical attacks are increased. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -353,7 +353,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21022" levels="1" name="Holiday Dream Weapon">
+	<skill id="21022" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP and Casting Spd. Decreases MP consumption for skills. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -367,7 +367,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21023" levels="1" name="Holiday Dream Weapon">
+	<skill id="21023" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP and M. Atk. Decreases MP consumption for skills. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -381,7 +381,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21024" levels="1" name="Holiday Dream Weapon">
+	<skill id="21024" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. MP consumption is decreased. Bestows the ability to regenerate HP by using some of the damage inflicted on the enemy. Excludes damage caused by skills and long-range attack. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -395,7 +395,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21025" levels="1" name="Holiday Dream Weapon">
+	<skill id="21025" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. The rate and range of critical attacks are increased. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -409,7 +409,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21026" levels="1" name="Holiday Dream Weapon">
+	<skill id="21026" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. Increases the number of enemies that can be attacked at the same time. Bestows the ability to regenerate HP by using some of the damage inflicted on the enemy. Excludes damage caused by skills and long-range attack. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -423,7 +423,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21027" levels="1" name="Holiday Dream Weapon">
+	<skill id="21027" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. Atk. Spd. increases, and MP consumption for skills is decreased. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -438,7 +438,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21028" levels="1" name="Holiday Dream Weapon">
+	<skill id="21028" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. Increases critical rate. Bestows the ability to regenerate HP by using some of the damage inflicted on the enemy. Excludes damage caused by skills and long-range attack. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -452,7 +452,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21029" levels="1" name="Holiday Dream Weapon">
+	<skill id="21029" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. The rate and power of critical attacks are increased. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -466,7 +466,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21030" levels="1" name="Holiday Dream Weapon">
+	<skill id="21030" levels="1" name="Christmas Dream Weapon">
 		<!-- Increases Max CP. Evasion and Accuracy are increased. -->
 		<set name="icon" val="BranchSys.icon.br_xmas_weapon_i00" />
 		<set name="magicLevel" val="1" />
@@ -634,7 +634,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21042" levels="1" name="Baguette's Blessing">
+	<skill id="21042" levels="1" name="Blessing of Baguette">
 		<!-- Blessing of Baguette. It fills 100% of HP and recovers 50% of MP. -->
 		<set name="blockedInOlympiad" val="true" />
 		<set name="hitTime" val="3000" />
@@ -765,7 +765,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21051" levels="1" name="Steam Beatle Mount">
+	<skill id="21051" levels="1" name="Steam Beetle Mount">
 		<!-- Mounts a Steam Beetle. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="3600" />
@@ -784,7 +784,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21052" levels="1" name="Bless the Body">
+	<skill id="21052" levels="1" name="Blessed Body">
 		<!-- Increases Max HP by 25% for 30 minutes. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="1800" />
@@ -802,7 +802,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21053" levels="1" name="Bless the Soul">
+	<skill id="21053" levels="1" name="Blessed Soul">
 		<!-- Increases Max MP by 25% for 30 minutes. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="1800" />
@@ -820,7 +820,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21054" levels="1" name="Blessed Resurrection Ability">
+	<skill id="21054" levels="1" name="Blessed Resurrection">
 		<!-- Allows the use of Blessed Resurrection. Reuse delay is 12 hours. -->
 		<set name="blockedInOlympiad" val="true" />
 		<set name="castRange" val="400" />
@@ -1062,7 +1062,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21066" levels="1" name="Energy Recovery">
+	<skill id="21066" levels="1" name="Vitality Replenishing">
 		<!-- Recovers Vitality when acquiring Exp. for 5 minutes. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="300" />
@@ -1083,7 +1083,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21067" levels="1" name="Blessed Escape Ability">
+	<skill id="21067" levels="1" name="Blessed Escape">
 		<!-- Allows the use of Blessed Escape. Reuse delay is 12 hours. -->
 		<set name="blockedInOlympiad" val="true" />
 		<set name="hitTime" val="200" />
@@ -1107,7 +1107,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21068" levels="1" name="Resist Unholy">
+	<skill id="21068" levels="1" name="UnResistance to Holy">
 		<!-- Increases Resistance to Dark by 30 for 5 minutes. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -1269,7 +1269,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21076" levels="1" name="Resist Unholy">
+	<skill id="21076" levels="1" name="UnResistance to Holy">
 		<!-- Increases Resistance to Dark by 30 for 5 minutes. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -1431,7 +1431,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21084" levels="1" name="Energy Recovery">
+	<skill id="21084" levels="1" name="Vitality Replenishing">
 		<!-- Recovers Vitality when acquiring Exp. for 5 minutes. Reuse delay is 1 hour. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -1563,7 +1563,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21090" levels="1" name="Soul of Phoenix">
+	<skill id="21090" levels="1" name="Soul of the Phoenix">
 		<!-- Receives the soul's help, and revives from death with completely recovered status. Buff/de-buff doesn't disappear at death but is maintained. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="1800" />
@@ -1641,7 +1641,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21096" levels="1" name="Ability of Cool Watermelon">
+	<skill id="21096" levels="1" name="Refreshing Watermelon's Ability">
 		<!-- For 30 minutes, increases critical rate by 30% and Critical Damage by 35%. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="1800" />
@@ -1691,7 +1691,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21098" levels="1" name="Great Adventurer's Soul Power : Endless">
+	<skill id="21098" levels="1" name="Soul of an Adventurer of Immortality's Ability">
 		<!-- For 5 minutes, receives the soul's help to raise Max HP by 20%, Max MP by 20%, and Speed by 20%. Increases Resistance to de-buffs by 10%. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />
@@ -1713,7 +1713,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="21099" levels="1" name="Great Warrior's Soul Power: Strength">
+	<skill id="21099" levels="1" name="Soul of a Strong Warrior's Ability">
 		<!-- For 5 minutes, increases Atk. Spd. by 20%, P. Atk. by 10%, and P. Def. by 20% with the soul's help. Bestows the ability to recover as HP 5% of the standard short-range physical damage inflicted on the enemy. -->
 		<set name="abnormalLevel" val="26" />
 		<set name="abnormalTime" val="300" />

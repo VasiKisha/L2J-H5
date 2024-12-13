@@ -52,7 +52,7 @@ public class TakeFort extends AbstractEffect
 		final Fort fort = FortManager.getInstance().getFort(effector);
 		if (fort != null)
 		{
-			fort.endOfSiege(effector.getActingPlayer().getClan());
+			fort.endOfSiege(effector.asPlayer().getClan());
 		}
 	}
 }

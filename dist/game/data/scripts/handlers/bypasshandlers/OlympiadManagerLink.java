@@ -24,7 +24,6 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.OlympiadManager;
@@ -206,12 +205,12 @@ public class OlympiadManagerLink implements IBypassHandler
 					}
 					case 7: // Equipment Rewards
 					{
-						MultisellData.getInstance().separateAndSend(102, player, (Npc) target, false);
+						MultisellData.getInstance().separateAndSend(102, player, target.asNpc(), false);
 						break;
 					}
 					case 8: // Misc. Rewards
 					{
-						MultisellData.getInstance().separateAndSend(103, player, (Npc) target, false);
+						MultisellData.getInstance().separateAndSend(103, player, target.asNpc(), false);
 						break;
 					}
 					case 9: // Your Grand Olympiad Score from the previous period is %points% point(s) | TODO: cleanup (not used anymore)

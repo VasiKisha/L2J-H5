@@ -1,7 +1,9 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="4400" levels="3" name="Acumen">
-		<!-- Temporarily increases Casting Spd. Effect 1. -->
+		<!-- Level 1: Temporarily increases Casting Spd. Effect 1. -->
+		<!-- Level 2: Temporarily increases Casting Spd. Effect 2. -->
+		<!-- Level 3: Temporarily increases Casting Spd. Effect 3. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#mAtkSpd">1.15 1.23 1.3</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -21,7 +23,9 @@
 		</for>
 	</skill>
 	<skill id="4401" levels="3" name="Empower">
-		<!-- Temporarily increases M. Atk. Effect 1. -->
+		<!-- Level 1: Temporarily increases M. Atk. Effect 1. -->
+		<!-- Level 2: Temporarily increases M. Atk. Effect 2. -->
+		<!-- Level 3: Temporarily increases M. Atk. Effect 3. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#mAtk">1.55 1.65 1.75</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -41,7 +45,8 @@
 		</for>
 	</skill>
 	<skill id="4402" levels="2" name="Haste">
-		<!-- Temporarily increases Atk. Spd. Effect 1. -->
+		<!-- Level 1: Temporarily increases Atk. Spd. Effect 1. -->
+		<!-- Level 2: Temporarily increases Atk. Spd. Effect 2. -->
 		<table name="#abnormalLevels">2 3</table>
 		<table name="#pAtkSpd">1.15 1.33</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -61,7 +66,9 @@
 		</for>
 	</skill>
 	<skill id="4403" levels="3" name="Guidance">
-		<!-- Temporarily increases Accuracy. Effect 1. -->
+		<!-- Level 1: Temporarily increases Accuracy. Effect 1. -->
+		<!-- Level 2: Temporarily increases Accuracy. Effect 2. -->
+		<!-- Level 3: Temporarily increases Accuracy. Effect 3. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#accCombat">2 3 4</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -81,7 +88,9 @@
 		</for>
 	</skill>
 	<skill id="4404" levels="3" name="Focus">
-		<!-- Temporarily increases the probability of critical attack. Effect 1. -->
+		<!-- Level 1: Temporarily increases the probability of critical attack. Effect 1. -->
+		<!-- Level 2: Temporarily increases the probability of critical attack. Effect 2. -->
+		<!-- Level 3: Temporarily increases the probability of critical attack. Effect 3. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#rCrit">1.2 1.25 1.3</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -101,7 +110,9 @@
 		</for>
 	</skill>
 	<skill id="4405" levels="3" name="Death Whisper">
-		<!-- Temporarily increases critical attack power. Effect 1. -->
+		<!-- Level 1: Temporarily increases critical attack power. Effect 1. -->
+		<!-- Level 2: Temporarily increases critical attack power. Effect 2. -->
+		<!-- Level 3: Temporarily increases critical attack power. Effect 3. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#cAtk">1.25 1.3 1.35</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -121,7 +132,9 @@
 		</for>
 	</skill>
 	<skill id="4406" levels="3" name="Agility">
-		<!-- Temporarily increases evasion. Effect 1. -->
+		<!-- Level 1: Temporarily increases evasion. Effect 1. -->
+		<!-- Level 2: Temporarily increases evasion. Effect 2. -->
+		<!-- Level 3: Temporarily increases evasion. Effect 3. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#rEvas">2 3 4</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -140,14 +153,14 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4407" levels="2" name="Monster Type">
+	<skill id="4407" levels="2" name="Ordinary Monster">
 		<table name="#icons">icon.skill0000 icon.skill4407</table>
 		<set name="icon" val="#icons" />
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 	</skill>
-	<skill id="4408" levels="20" name="HP Modifiers">
+	<skill id="4408" levels="20" name="HP Increase (1x)">
 		<table name="#icons">icon.skill0000 icon.skill0000 icon.skill0000 icon.skill0000 icon.skill0000 icon.skill0000 icon.skill0000 icon.skill4381 icon.skill4311 icon.skill4303 icon.skill4304 icon.skill4305 icon.skill4306 icon.skill4307 icon.skill4308 icon.skill4309 icon.skill4310 icon.skill4408_x10 icon.skill4408_x11 icon.skill4408_x12</table>
 		<table name="#maxhp">1 1.1 1.21 1.33 1.46 1.61 1.77 0.25 0.5 2 3 4 5 6 7 8 9 10 11 12</table>
 		<set name="icon" val="#icons" />
@@ -161,7 +174,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4409" levels="20" name="MP Modifiers">
+	<skill id="4409" levels="20" name="MP Increase (1x)">
 		<table name="#icons">icon.skill0000 icon.skill0000 icon.skill0000 icon.skill0000 icon.skill0000 icon.skill0000 icon.skill0000 icon.skill4381 icon.skill4311 icon.skill4303 icon.skill4304 icon.skill4305 icon.skill4306 icon.skill4307 icon.skill4308 icon.skill4309 icon.skill4310 icon.skill4409_x10 icon.skill4409_x11 icon.skill4409_x12</table>
 		<table name="#maxmp">1 1.1 1.21 1.33 1.46 1.61 1.77 0.25 0.5 2 3 4 5 6 7 8 9 10 11 12</table>
 		<set name="icon" val="#icons" />
@@ -175,7 +188,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4410" levels="22" name="P. Atk. Modifiers">
+	<skill id="4410" levels="22" name="Extremely Weak P. Atk.">
 		<table name="#icons">icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0000 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill0141 icon.skill4410_max</table>
 		<table name="#pAtk">0.39 0.43 0.47 0.52 0.57 0.63 0.69 0.76 0.83 0.91 1 1.1 1.21 1.33 1.46 1.61 1.77 1.94 2.14 2.35 2.59 10</table>
 		<set name="icon" val="#icons" />
@@ -188,7 +201,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4411" levels="22" name="M. Atk. Modifiers">
+	<skill id="4411" levels="22" name="Extremely Weak M. Atk.">
 		<table name="#icons">icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill0000 icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_normal icon.skill4411_max</table>
 		<table name="#mAtk">0.15 0.18 0.22 0.27 0.32 0.39 0.47 0.57 0.69 0.83 1 1.21 1.46 1.77 2.14 2.59 3.13 3.79 4.59 5.55 6.72 100</table>
 		<set name="icon" val="#icons" />
@@ -201,7 +214,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4412" levels="22" name="P. Def. Modifiers">
+	<skill id="4412" levels="22" name="Extremely Weak P. Def.">
 		<table name="#icons">icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0000 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill0142 icon.skill4412_new</table>
 		<table name="#pDef">0.39 0.43 0.47 0.52 0.57 0.63 0.69 0.76 0.83 0.91 1 1.1 1.21 1.33 1.46 1.61 1.77 1.94 2.14 2.35 2.59 10</table>
 		<set name="icon" val="#icons" />
@@ -214,7 +227,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4413" levels="22" name="M. Def. Modifiers">
+	<skill id="4413" levels="22" name="Extremely Weak M. Def.">
 		<table name="#icons">icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill0000 icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_normal icon.skill4413_max</table>
 		<table name="#mDef">0.39 0.43 0.47 0.52 0.57 0.63 0.69 0.76 0.83 0.91 1 1.1 1.21 1.33 1.46 1.61 1.77 1.94 2.14 2.35 2.59 10</table>
 		<set name="icon" val="#icons" />
@@ -227,8 +240,10 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4414" levels="3" name="Armor Type">
-		<!-- Strong P. Def. and weak Evasion. -->
+	<skill id="4414" levels="3" name="Heavy Armor Type">
+		<!-- Level 1: Strong P. Def. and weak Evasion. -->
+		<!-- Level 2: Strong P. Def. and weak Evasion. -->
+		<!-- Level 3: Weak P. Def. and strong Evasion. -->
 		<table name="#evasion">-10 0 10</table>
 		<table name="#icons">icon.skill4312 icon.skill0000 icon.skill4313</table>
 		<table name="#pdef">1.15 1 0.85</table>
@@ -243,7 +258,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4415" levels="26" name="Weapon Type">
+	<skill id="4415" levels="26" name="Bare Hands">
 		<table name="#pAtk">1 1.38 1 1.38 1 1.38 0.87 1.21 2.22 2.5 1 1.38 1.16 1.62 1.16 1.62 1.16 1.62 1.16 1.62 1.08 1.62 0.93 1.62 1.38 1.62</table>
 		<table name="#pAtkSpd">1 0.71 1 0.71 1 0.71 1.14 0.82 0.89 0.64 1 0.71 0.85 0.61 0.85 0.61 0.85 0.61 0.85 0.61 0.92 0.61 1.07 0.61 0.62 0.61</table>
 		<set name="magicLevel" val="1" />
@@ -256,8 +271,32 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4416" levels="25" name="Races">
-		<!-- Called out of their graves by black magic, a curse or the power of an evil mind, most of these creatures lack intelligence and can perform only simple actions. However, some high-ranking undead possess great knowledge and sophistication even when compared to ordinary humanoids. -->
+	<skill id="4416" levels="25" name="Undead">
+		<!-- Level 1: Called out of their graves by black magic, a curse or the power of an evil mind, most of these creatures lack intelligence and can perform only simple actions. However, some high-ranking undead possess great knowledge and sophistication even when compared to ordinary humanoids. -->
+		<!-- Level 2: The common name for the biotechnological items of the Magic and Titan Ages. Their M. Atk. is generally strong and they sometimes use high-level magic, such as teleportation. -->
+		<!-- Level 3: They are animals who prey on humanoids for food. Some of them are mythological creatures that existed before the origins of humanity. -->
+		<!-- Level 4: These general animals are hunted by humanoids. They sometimes attack humanoids, but only to defend themselves or their territory. -->
+		<!-- Level 5: These consist of trees, grasses, mushrooms, and fungi. Instinctual creatures, it is generally impossible to have a conversation with them. -->
+		<!-- Level 6: They have two arms, two legs, and they walk upright. Culture and communal life varies by race. -->
+		<!-- Level 7: They are not necessarily creatures, but elemental energy beings. They basically belong to the 4 elements, which are water, fire, wind, and earth, but they also dwell in natural objects. They are known to be governed by the gods of water, fire, wind, and earth. -->
+		<!-- Level 8: These creatures of the heavenly realm or the race posses sacred blessings and were originally creatures of the spirits of light. In some very rare cases, angels can manifest the gods' will in reality. -->
+		<!-- Level 9: This race of darkness opposes the angels. Beings that are changed by the curse of darkness become demons as well. -->
+		<!-- Level 10: This word refers to True Dragon that is the most powerful and represents evil creatures Shilen gave birth to and its kinds. Most of this race flies with two wings like reptiles and emits strong energy through its mouth. -->
+		<!-- Level 11: This race looks similar to a humanoid, but they are approximately 2-3 times in size. This includes the ancient Giants who once ruled the continent, their descendants, and even the monsters that have regressed and in whom only a small fragment of the race's history remains. -->
+		<!-- Level 12: They consist of insects, spiders and worms and act upon their highly refined instincts. Sometimes their instincts present themselves in a more developed form than that of humanoid society. -->
+		<!-- Level 13: Many members of this ancient race left our world as it changed to become more hostile. Some scholars theorize that Fairies were actually living works of art created by the gods for their entertainment. -->
+		<!-- Level 14: The last race created by the gods, Humans won the race war for domination of the entire world. Their strong desire for domination is perhaps fueled by the fact that their life span is the shortest among all the races. -->
+		<!-- Level 15: This water race worships Eva and love peace. They possess vast knowledge, but lack the will and strength to implement it. The original students of magic, they have since taught its principles to humans. -->
+		<!-- Level 16: These Elves formed an alliance long ago and dedicated themselves to understanding the dark arts which were forbidden by their kin. Gradually they became darker in their appearance and personality as generations passed. They are now adept in the practice and usage of black magic and continue to worship Shilen as their God. -->
+		<!-- Level 17: Created by Pa'agrio, the Orcs are the physically strongest of all the races. They worship the spirits of the past and have a very tribal culture. -->
+		<!-- Level 18: Although unable to use magic, Dwarves are strong and good with their hands. They have sharp eyes and intelligent minds. Their business savvy is impressive, and they sometimes invent strange mechanical devices. -->
+		<!-- Level 19: Although unable to use magic, Dwarves are strong and good with their hands. They have sharp eyes and intelligent minds. Their business savvy is impressive, and they sometimes invent strange mechanical devices. -->
+		<!-- Level 20: Although unable to use magic, Dwarves are strong and good with their hands. They have sharp eyes and intelligent minds. Their business savvy is impressive, and they sometimes invent strange mechanical devices. -->
+		<!-- Level 21: These massive Dwarf-made weapons are built to besiege castles. -->
+		<!-- Level 22: The soldiers hired to protect castles; normally hired by a lord. -->
+		<!-- Level 23: The soldiers hired to attack castles; normally hired by a lord with payment. -->
+		<!-- Level 24: An unknown life form that has never been discovered before. -->
+		<!-- Level 25: Battle race who have been sealed for a long time, and their origin is unknown. Their military-like classes and unique battle abilities cannot be copied by other races. -->
 		<table name="#icons">icon.skill4290 icon.skill4291 icon.skill4292 icon.skill4293 icon.skill4294 icon.skill4295 icon.skill4296 icon.skill4297 icon.skill4298 icon.skill4299 icon.skill4300 icon.skill4301 icon.skill4302 icon.skill4416_human icon.skill4416_elf icon.skill4416_darkelf icon.skill4416_orc icon.skill4416_dwarf icon.skill4416_etc icon.skill4416_none icon.skill4416_siegeweapon icon.skill4416_castleguard icon.skill4416_mercenary icon.skill4416_none icon.skill4296</table>
 		<table name="#pDefAnimals">0 0 0 -15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</table>
 		<table name="#pDefBeasts">0 0 -15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0</table>
@@ -292,8 +331,45 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4417" levels="38" name="Race Types">
-		<!-- Animals -->
+	<skill id="4417" levels="38" name="Animals">
+		<!-- Level 1: Animals -->
+		<!-- Level 2: Beasts -->
+		<!-- Level 3: Beasts -->
+		<!-- Level 4: Beasts -->
+		<!-- Level 5: Beasts -->
+		<!-- Level 6: Bugs -->
+		<!-- Level 7: Bugs -->
+		<!-- Level 8: Bugs -->
+		<!-- Level 9: Magic Creatures -->
+		<!-- Level 10: Magic Creatures -->
+		<!-- Level 11: Magic Creatures -->
+		<!-- Level 12: Demons -->
+		<!-- Level 13: Demons -->
+		<!-- Level 14: Demons -->
+		<!-- Level 15: Angels -->
+		<!-- Level 16: Angels -->
+		<!-- Level 17: Angels -->
+		<!-- Level 18: Dragons -->
+		<!-- Level 19: Spirits -->
+		<!-- Level 20: Spirits -->
+		<!-- Level 21: Spirits -->
+		<!-- Level 22: Spirits -->
+		<!-- Level 23: Spirits -->
+		<!-- Level 24: Fairies -->
+		<!-- Level 25: Giants -->
+		<!-- Level 26: Humanoids -->
+		<!-- Level 27: Humanoids -->
+		<!-- Level 28: Humanoids -->
+		<!-- Level 29: Humanoids -->
+		<!-- Level 30: Humanoids -->
+		<!-- Level 31: Humanoids -->
+		<!-- Level 32: Humanoids -->
+		<!-- Level 33: Plants -->
+		<!-- Level 34: Undead -->
+		<!-- Level 35: Undead -->
+		<!-- Level 36: Undead -->
+		<!-- Level 37: Undead -->
+		<!-- Level 38: Undead -->
 		<table name="#icons">icon.skill4293 icon.skill4292 icon.skill4292 icon.skill4292 icon.skill4292 icon.skill4301 icon.skill4301 icon.skill4301 icon.skill4291 icon.skill4291 icon.skill4291 icon.skill4298 icon.skill4298 icon.skill4298 icon.skill4297 icon.skill4297 icon.skill4297 icon.skill4299 icon.skill4296 icon.skill4296 icon.skill4296 icon.skill4296 icon.skill4296 icon.skill4302 icon.skill4300 icon.skill4295 icon.skill4295 icon.skill4295 icon.skill4295 icon.skill4295 icon.skill4295 icon.skill4295 icon.skill4294 icon.skill4290 icon.skill4290 icon.skill4290 icon.skill4290 icon.skill4290</table>
 		<table name="#pDefBleed">0 0 0 0 0 0 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 15 0 0 0</table>
 		<table name="#pDefBlunts">0 0 0 0 0 0 0 0 0 -15 0 0 0 0 0 0 15 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 15 0 0</table>
@@ -876,7 +952,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="4461" levels="5" name="Dagger Weak Point">
+	<skill id="4461" levels="5" name="Weak Point against Daggers/Rapier Weapon">
 		<!-- Weak against Dagger/Rapier attacks. -->
 		<table name="#traits">-11 -25 -43 -67 -100</table>
 		<set name="icon" val="icon.skill4461" />
@@ -907,7 +983,9 @@
 		</for>
 	</skill>
 	<skill id="4463" levels="3" name="Surrender To Water">
-		<!-- Instantly decreases Resistance to water attacks and increases Resistance to fire attacks. Effect 2. -->
+		<!-- Level 1: Instantly decreases Resistance to water attacks and increases Resistance to fire attacks. Effect 2. -->
+		<!-- Level 2: Instantly decreases Resistance to water attacks and increases Resistance to fire attacks. Effect 3. -->
+		<!-- Level 3: Instantly decreases Resistance to water attacks and increases Resistance to fire attacks. Effect 4. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#fire">7 12 15</table>
 		<table name="#magicLevel">20 40 70</table>
@@ -941,7 +1019,9 @@
 		</for>
 	</skill>
 	<skill id="4464" levels="3" name="Surrender To Wind">
-		<!-- Instantly decreases Resistance to wind attacks and increases Resistance to earth attacks. Effect 2. -->
+		<!-- Level 1: Instantly decreases Resistance to wind attacks and increases Resistance to earth attacks. Effect 2. -->
+		<!-- Level 2: Instantly decreases Resistance to wind attacks and increases Resistance to earth attacks. Effect 3. -->
+		<!-- Level 3: Instantly decreases Resistance to wind attacks and increases Resistance to earth attacks. Effect 4. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#earth">7 12 15</table>
 		<table name="#magicLevel">20 40 70</table>
@@ -975,7 +1055,9 @@
 		</for>
 	</skill>
 	<skill id="4465" levels="3" name="Surrender To Earth">
-		<!-- Instantly decreases Resistance to earth attacks and increases Resistance to wind attacks. Effect 2. -->
+		<!-- Level 1: Instantly decreases Resistance to earth attacks and increases Resistance to wind attacks. Effect 2. -->
+		<!-- Level 2: Instantly decreases Resistance to earth attacks and increases Resistance to wind attacks. Effect 3. -->
+		<!-- Level 3: Instantly decreases Resistance to earth attacks and increases Resistance to wind attacks. Effect 4. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#earth">15 25 30</table>
 		<table name="#magicLevel">20 40 70</table>
@@ -1009,7 +1091,9 @@
 		</for>
 	</skill>
 	<skill id="4466" levels="3" name="Surrender To Darkness">
-		<!-- Instantly decreases Resistance to Dark and increases Resistance to Holy. Effect 2. -->
+		<!-- Level 1: Instantly decreases Resistance to Dark and increases Resistance to Holy. Effect 2. -->
+		<!-- Level 2: Instantly decreases Resistance to Dark and increases Resistance to Holy. Effect 2. -->
+		<!-- Level 3: Instantly decreases Resistance to Dark and increases Resistance to Holy. Effect 4. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#dark">15 25 30</table>
 		<table name="#holy">7 12 15</table>
@@ -1043,7 +1127,9 @@
 		</for>
 	</skill>
 	<skill id="4467" levels="3" name="Surrender To Light">
-		<!-- Instantly decreases Resistance to Holy and increases Resistance to Dark. Effect 2. -->
+		<!-- Level 1: Instantly decreases Resistance to Holy and increases Resistance to Dark. Effect 2. -->
+		<!-- Level 2: Instantly decreases Resistance to Holy and increases Resistance to Dark. Effect 3. -->
+		<!-- Level 3: Instantly decreases Resistance to Holy and increases Resistance to Dark. Effect 4. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#dark">7 12 15</table>
 		<table name="#holy">15 25 30</table>
@@ -1111,7 +1197,18 @@
 		<set name="targetType" val="ONE" />
 	</skill>
 	<skill id="4471" levels="12" name="NPC Anger">
-		<!-- Increases NPC's P. Atk. and P. Def. Effect 1. -->
+		<!-- Level 1: Increases NPC's P. Atk. and P. Def. Effect 1. -->
+		<!-- Level 2: Increases NPC's P. Atk. and P. Def. Effect 2. -->
+		<!-- Level 3: Increases NPC's P. Atk. and P. Def. Effect 3. -->
+		<!-- Level 4: Increases NPC's P. Atk. and P. Def. Effect 4. -->
+		<!-- Level 5: Increases NPC's P. Atk. and P. Def. Effect 5. -->
+		<!-- Level 6: Increases NPC's P. Atk. and P. Def. Effect 6. -->
+		<!-- Level 7: Increases NPC's P. Atk. and P. Def. Effect 7. -->
+		<!-- Level 8: Increases NPC's P. Atk. and P. Def. Effect 8. -->
+		<!-- Level 9: Increases NPC's P. Atk. and P. Def. Effect 9. -->
+		<!-- Level 10: Increases NPC's P. Atk. and P. Def. Effect 10. -->
+		<!-- Level 11: Increases NPC's P. Atk. and P. Def. Effect 11. -->
+		<!-- Level 12: Increases NPC's P. Atk. and P. Def. Effect 12. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9 10 11 12</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">10 16 21 28 36 44 52 55 58 60 61 62</table>
@@ -1151,7 +1248,7 @@
 		<set name="reuseDelay" val="6000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4473" levels="12" name="Stun">
@@ -1180,7 +1277,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1265,7 +1362,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4478" levels="1" name="Ice Fairy Aqua Splash">
@@ -1282,7 +1379,7 @@
 		<set name="power" val="183" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4479" levels="1" name="Ice Fairy Resist Cold">
@@ -1425,8 +1522,19 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="ONE" />
 	</skill>
-	<skill id="4486" levels="12" name="Decrease P. Def">
-		<!-- Temporarily reduces P. Def. Effect 1. -->
+	<skill id="4486" levels="12" name="Decrease P. Def.">
+		<!-- Level 1: Temporarily reduces P. Def. Effect 1. -->
+		<!-- Level 2: Temporarily reduces P. Def. Effect 2. -->
+		<!-- Level 3: Temporarily reduces P. Def. Effect 2. -->
+		<!-- Level 4: Temporarily reduces P. Def. Effect 3. -->
+		<!-- Level 5: Temporarily reduces P. Def. Effect 3. -->
+		<!-- Level 6: Temporarily reduces P. Def. Effect 3. -->
+		<!-- Level 7: Temporarily reduces P. Def. Effect 3. -->
+		<!-- Level 8: Temporarily reduces P. Def. Effect 3. -->
+		<!-- Level 9: Temporarily reduces P. Def. Effect 3. -->
+		<!-- Level 10: Temporarily reduces P. Def. Effect 3. -->
+		<!-- Level 11: Temporarily reduces P. Def. Effect 3. -->
+		<!-- Level 12: Temporarily reduces P. Def. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">19 31 42 56 72 88 104 110 116 120 122 124</table>
@@ -1459,7 +1567,18 @@
 		</for>
 	</skill>
 	<skill id="4487" levels="12" name="Decrease M. Def.">
-		<!-- Instantly reduces M. Def. Effect 1. -->
+		<!-- Level 1: Instantly reduces M. Def. Effect 1. -->
+		<!-- Level 2: Instantly reduces M. Def. Effect 2. -->
+		<!-- Level 3: Instantly reduces M. Def. Effect 2. -->
+		<!-- Level 4: Instantly reduces M. Def. Effect 3. -->
+		<!-- Level 5: Instantly reduces M. Def. Effect 3. -->
+		<!-- Level 6: Instantly reduces M. Def. Effect 3. -->
+		<!-- Level 7: Instantly reduces M. Def. Effect 3. -->
+		<!-- Level 8: Instantly reduces M. Def. Effect 3. -->
+		<!-- Level 9: Instantly reduces M. Def. Effect 3. -->
+		<!-- Level 10: Instantly reduces M. Def. Effect 3. -->
+		<!-- Level 11: Instantly reduces M. Def. Effect 3. -->
+		<!-- Level 12: Instantly reduces M. Def. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mdef">0.83 0.8 0.8 0.77 0.77 0.77 0.77 0.77 0.77 0.77 0.77 0.77</table>
@@ -1527,7 +1646,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttackMp" />
+			<effect name="MagicalDamageMp" />
 		</for>
 	</skill>
 	<skill id="4490" levels="12" name="NPC Holy Wall">
@@ -1552,7 +1671,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4491" levels="12" name="Holy Weapon">
@@ -1579,7 +1698,7 @@
 		<set name="reuseDelay" val="25000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Buff">
 				<add stat="holyPower" val="20" />
 			</effect>
@@ -1609,7 +1728,7 @@
 		<set name="reuseDelay" val="6000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4493" levels="12" name="NPC Debuff Shield Slow">
@@ -1631,7 +1750,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="50" />
@@ -1641,7 +1760,8 @@
 		</for>
 	</skill>
 	<skill id="4494" levels="2" name="Raid Boss">
-		<!-- If the person who made the greatest contribution is 3 or more levels higher than the raid monster, then the item/adena rewards will decrease. If the difference is 9 or more levels, the monster will drop nothing at all. -->
+		<!-- Level 1: If the person who made the greatest contribution is 3 or more levels higher than the raid monster, then the item/adena rewards will decrease. If the difference is 9 or more levels, the monster will drop nothing at all. -->
+		<!-- Level 2: If the person who made the greatest contribution is 3 or more levels higher than the underground prisoner, then the item/adena rewards will decrease. If the difference is 9 or more levels, then the monster will drop nothing at all. -->
 		<set name="icon" val="icon.skillraid" />
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="P" />
@@ -1661,7 +1781,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4496" levels="12" name="Stun">
@@ -1688,7 +1808,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>

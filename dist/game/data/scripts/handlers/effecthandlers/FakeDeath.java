@@ -18,6 +18,7 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
@@ -72,8 +73,9 @@ public class FakeDeath extends AbstractEffect
 	{
 		if (effected.isPlayer())
 		{
-			effected.getActingPlayer().setFakeDeath(false);
-			effected.getActingPlayer().setRecentFakeDeath(true);
+			final Player player = effected.asPlayer();
+			player.setFakeDeath(false);
+			player.setRecentFakeDeath(true);
 		}
 		
 		effected.broadcastPacket(new ChangeWaitType(effected, ChangeWaitType.WT_STOP_FAKEDEATH));

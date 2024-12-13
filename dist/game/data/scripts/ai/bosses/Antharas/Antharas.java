@@ -709,12 +709,12 @@ public class Antharas extends AbstractNpcAI
 	{
 		if (npc.getId() == ANTHARAS)
 		{
-			((Attackable) npc).setCanReturnToSpawnPoint(false);
+			npc.asAttackable().setCanReturnToSpawnPoint(false);
 			npc.setRandomWalking(false);
 			
 			cancelQuestTimer("SET_REGEN", npc, null);
 			startQuestTimer("SET_REGEN", 60000, npc, null);
-			((Attackable) npc).setOnKillDelay(0);
+			npc.asAttackable().setOnKillDelay(0);
 		}
 		else
 		{
@@ -722,7 +722,7 @@ public class Antharas extends AbstractNpcAI
 			{
 				final int x = npc.getTemplate().getParameters().getInt("suicide" + i + "_x");
 				final int y = npc.getTemplate().getParameters().getInt("suicide" + i + "_y");
-				final Attackable bomber = (Attackable) addSpawn(BOMBER, npc.getX(), npc.getY(), npc.getZ(), 0, true, 15000, true);
+				final Attackable bomber = addSpawn(BOMBER, npc.getX(), npc.getY(), npc.getZ(), 0, true, 15000, true).asAttackable();
 				bomber.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(x, y, npc.getZ()));
 			}
 			npc.deleteMe();

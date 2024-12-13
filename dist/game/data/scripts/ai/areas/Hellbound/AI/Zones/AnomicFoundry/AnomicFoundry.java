@@ -24,7 +24,6 @@ import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
@@ -109,7 +108,7 @@ public class AnomicFoundry extends AbstractNpcAI
 		{
 			if ((npc != null) && !npc.isDead())
 			{
-				((Attackable) npc).returnHome();
+				npc.asAttackable().returnHome();
 			}
 		}
 		else if (event.equalsIgnoreCase("reset_respawn_time"))
@@ -250,7 +249,7 @@ public class AnomicFoundry extends AbstractNpcAI
 	{
 		for (Spawn spawn : SpawnTable.getInstance().getSpawns(helperId))
 		{
-			final Monster monster = (Monster) spawn.getLastSpawn();
+			final Monster monster = spawn.getLastSpawn().asMonster();
 			if ((monster != null) && (agressor != null) && !monster.isDead() && monster.isInsideRadius3D(requester, range) && !agressor.isDead())
 			{
 				monster.addDamageHate(agressor, 0, 1000);

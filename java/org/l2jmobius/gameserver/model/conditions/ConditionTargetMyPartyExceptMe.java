@@ -40,7 +40,7 @@ public class ConditionTargetMyPartyExceptMe extends Condition
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
 		boolean isPartyMember = true;
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if ((player == null) || (effected == null) || !effected.isPlayer())
 		{
 			isPartyMember = false;

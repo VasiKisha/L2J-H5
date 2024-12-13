@@ -25,6 +25,10 @@ import org.l2jmobius.gameserver.network.ServerPackets;
  */
 public class AcquireSkillDone extends ServerPacket
 {
+	public AcquireSkillDone()
+	{
+	}
+	
 	@Override
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{

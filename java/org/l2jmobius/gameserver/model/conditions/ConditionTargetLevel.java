@@ -40,6 +40,11 @@ public class ConditionTargetLevel extends Condition
 	@Override
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
-		return (effected != null) && (effected.getLevel() >= _level);
+		if (effected == null)
+		{
+			return false;
+		}
+		
+		return effected.getLevel() >= _level;
 	}
 }

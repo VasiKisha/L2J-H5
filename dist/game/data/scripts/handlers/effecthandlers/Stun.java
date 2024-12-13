@@ -19,7 +19,6 @@ package handlers.effecthandlers;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
@@ -62,18 +61,18 @@ public class Stun extends AbstractEffect
 		{
 			if ((effector != null) && !effector.isDead())
 			{
-				if (effector.isPlayable() && (effected.getActingPlayer().getPvpFlag() == 0))
+				if (effector.isPlayable() && (effected.asPlayer().getPvpFlag() == 0))
 				{
-					effected.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, effected.getActingPlayer());
+					effected.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, effected.asPlayer());
 				}
 				else
 				{
-					((Summon) effected).doSummonAttack(effector);
+					effected.asSummon().doSummonAttack(effector);
 				}
 			}
 			else
 			{
-				effected.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, effected.getActingPlayer());
+				effected.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, effected.asPlayer());
 			}
 		}
 	}

@@ -29,7 +29,6 @@ import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.enums.QuestType;
 import org.l2jmobius.gameserver.model.AggroInfo;
 import org.l2jmobius.gameserver.model.CommandChannel;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -281,14 +280,14 @@ public class Q00456_DontKnowDontCare extends Quest
 		}
 		
 		final Set<Integer> allowedPlayers = new HashSet<>();
-		for (AggroInfo aggro : ((Attackable) npc).getAggroList().values())
+		for (AggroInfo aggro : npc.asAttackable().getAggroList().values())
 		{
 			if ((aggro.getAttacker() == null) || !aggro.getAttacker().isPlayer())
 			{
 				continue;
 			}
 			
-			final Player attacker = aggro.getAttacker().getActingPlayer();
+			final Player attacker = aggro.getAttacker().asPlayer();
 			if (attacker.isInParty() //
 				&& attacker.getParty().isInCommandChannel() //
 				&& attacker.getParty().getCommandChannel().equals(cc) // only players from the same cc are allowed

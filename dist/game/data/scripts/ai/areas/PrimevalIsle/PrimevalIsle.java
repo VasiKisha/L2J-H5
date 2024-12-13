@@ -125,7 +125,7 @@ public class PrimevalIsle extends AbstractNpcAI
 		if (skill.getId() == CREW_SKILL.getSkillId())
 		{
 			startQuestTimer("START_INVUL", 4000, npc, null);
-			final Npc target = (Npc) npc.getTarget();
+			final Npc target = npc.getTarget().asNpc();
 			if (target != null)
 			{
 				target.doDie(npc);
@@ -133,7 +133,7 @@ public class PrimevalIsle extends AbstractNpcAI
 		}
 		if (npc.isInCombat())
 		{
-			final Attackable mob = (Attackable) npc;
+			final Attackable mob = npc.asAttackable();
 			final Creature target = mob.getMostHated();
 			if (((npc.getCurrentHp() / npc.getMaxHp()) * 100) < 60)
 			{
@@ -249,7 +249,7 @@ public class PrimevalIsle extends AbstractNpcAI
 		{
 			if (creature.isPlayer())
 			{
-				final Attackable mob = (Attackable) npc;
+				final Attackable mob = npc.asAttackable();
 				final int ag_type = npc.getTemplate().getParameters().getInt("ag_type", 0);
 				final int probPhysicalSpecial1 = npc.getTemplate().getParameters().getInt("ProbPhysicalSpecial1", 0);
 				final int probPhysicalSpecial2 = npc.getTemplate().getParameters().getInt("ProbPhysicalSpecial2", 0);
@@ -308,7 +308,7 @@ public class PrimevalIsle extends AbstractNpcAI
 		{
 			npc.setScriptValue(1);
 			npc.broadcastSay(ChatType.NPC_GENERAL, "?");
-			((Attackable) npc).clearAggroList();
+			npc.asAttackable().clearAggroList();
 			startQuestTimer("TREX_ATTACK", 6000, npc, player);
 		}
 		return super.onAggroRangeEnter(npc, player, isSummon);
@@ -334,7 +334,7 @@ public class PrimevalIsle extends AbstractNpcAI
 		}
 		else if (CommonUtil.contains(TREX, npc.getId()))
 		{
-			final Attackable mob = (Attackable) npc;
+			final Attackable mob = npc.asAttackable();
 			final Creature target = mob.getMostHated();
 			
 			if (((npc.getCurrentHp() / npc.getMaxHp()) * 100) <= 30)
@@ -408,7 +408,7 @@ public class PrimevalIsle extends AbstractNpcAI
 			
 			if ((((npc.getCurrentHp() / npc.getMaxHp()) * 100) <= 30) && (npc.getVariables().getInt("SELFBUFF_USED") == 0))
 			{
-				final Attackable mob = (Attackable) npc;
+				final Attackable mob = npc.asAttackable();
 				target = mob.getMostHated();
 				mob.clearAggroList();
 				if (!npc.isSkillDisabled(selfRangeBuff1.getSkill()))

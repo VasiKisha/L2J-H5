@@ -57,7 +57,7 @@ public class TargetMeProbability extends AbstractEffect
 		if (effected.isPlayable() && (effected.getTarget() != effector))
 		{
 			// If effector is null, then its not a player, but NPC. If it is not null, then it should check if the skill is pvp skill.
-			final Player player = effector.getActingPlayer();
+			final Player player = effector.asPlayer();
 			if ((player == null) || player.checkPvpSkill(effected, skill))
 			{
 				// Target is different.

@@ -17,8 +17,6 @@
 package org.l2jmobius.gameserver.model.conditions;
 
 import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
@@ -46,11 +44,11 @@ public class ConditionTargetAggro extends Condition
 		{
 			if (effected.isMonster())
 			{
-				return ((Monster) effected).isAggressive() == _isAggro;
+				return effected.asMonster().isAggressive() == _isAggro;
 			}
 			if (effected.isPlayer())
 			{
-				return ((Player) effected).getKarma() > 0;
+				return effected.asPlayer().getKarma() > 0;
 			}
 		}
 		return false;

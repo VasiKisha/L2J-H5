@@ -40,7 +40,7 @@ public class DivineBeast extends AbstractNpcAI
 	@Override
 	public void onSummonSpawn(Summon summon)
 	{
-		startQuestTimer("VALIDATE_TRANSFORMATION", CHECK_TIME, null, summon.getActingPlayer(), true);
+		startQuestTimer("VALIDATE_TRANSFORMATION", CHECK_TIME, null, summon.asPlayer(), true);
 	}
 	
 	@Override

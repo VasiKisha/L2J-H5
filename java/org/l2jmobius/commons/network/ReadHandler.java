@@ -29,11 +29,14 @@ import java.nio.channels.CompletionHandler;
  */
 public class ReadHandler<T extends Client<Connection<T>>> implements CompletionHandler<Integer, T>
 {
-	// private static final Logger LOGGER = Logger.getLogger(ReadHandler.class.getName());
-	
 	private final PacketHandler<T> _packetHandler;
 	private final PacketExecutor<T> _executor;
 	
+	/**
+	 * Constructs a ReadHandler with the specified packet handler and executor.
+	 * @param packetHandler The handler responsible for managing packets.
+	 * @param executor The executor responsible for executing parsed packets.
+	 */
 	public ReadHandler(PacketHandler<T> packetHandler, PacketExecutor<T> executor)
 	{
 		_packetHandler = packetHandler;
@@ -43,24 +46,27 @@ public class ReadHandler<T extends Client<Connection<T>>> implements CompletionH
 	@Override
 	public void completed(Integer bytesRead, T client)
 	{
+		// Exit if the client is disconnected or there was a read error.
 		if (!client.isConnected())
 		{
 			return;
 		}
 		
-		// LOGGER.info("Reading " + bytesRead + " from " + client);
+		// Handle disconnection if no bytes were read.
 		if (bytesRead < 0)
 		{
 			client.disconnect();
 			return;
 		}
 		
+		// If partial data is read, resume reading the remaining bytes.
 		if (bytesRead < client.getExpectedReadSize())
 		{
 			client.resumeRead(bytesRead);
 			return;
 		}
 		
+		// Process either payload or header based on client state.
 		if (client.isReadingPayload())
 		{
 			handlePayload(client);
@@ -75,6 +81,8 @@ public class ReadHandler<T extends Client<Connection<T>>> implements CompletionH
 	{
 		final ByteBuffer buffer = client.getConnection().getReadingBuffer();
 		buffer.flip();
+		
+		// Read packet size from header and adjust buffer size accordingly.
 		final int dataSize = Short.toUnsignedInt(buffer.getShort()) - ConnectionConfig.HEADER_SIZE;
 		if (dataSize > 0)
 		{
@@ -90,25 +98,25 @@ public class ReadHandler<T extends Client<Connection<T>>> implements CompletionH
 	{
 		final ByteBuffer buffer = client.getConnection().getReadingBuffer();
 		buffer.flip();
+		
+		// Parse the buffer and execute the resulting packet.
 		parseAndExecutePacket(client, buffer);
-		client.isReading.set(false);
-		if (client.canReadNextPacket())
-		{
-			client.read();
-		}
+		client.read(); // Continue reading next data.
 	}
 	
 	private void parseAndExecutePacket(T client, ByteBuffer incomingBuffer)
 	{
-		// LOGGER.info("Trying to parse data");
 		try
 		{
+			// Wrap the incoming buffer for readability.
 			final ReadableBuffer buffer = ReadableBuffer.of(incomingBuffer);
-			final boolean decrypted = client.decrypt(buffer, 0, buffer.remaining());
-			if (decrypted)
+			
+			// Decrypt and process the buffer if decryption succeeds.
+			if (client.decrypt(buffer, 0, buffer.remaining()))
 			{
 				final ReadablePacket<T> packet = _packetHandler.handlePacket(buffer, client);
-				// LOGGER.info("Data parsed to packet " + packet);
+				
+				// If a packet is created, initialize and execute it.
 				if (packet != null)
 				{
 					packet.init(client, buffer);
@@ -118,15 +126,15 @@ public class ReadHandler<T extends Client<Connection<T>>> implements CompletionH
 		}
 		catch (Exception e)
 		{
-			// LOGGER.log(Level.WARNING, e.getMessage(), e);
+			// Placeholder for logging exceptions in packet parsing.
 		}
 	}
 	
 	private void execute(ReadablePacket<T> packet)
 	{
+		// Execute the packet if it was successfully read.
 		if (packet.read())
 		{
-			// LOGGER.info("packet " + packet + " was read from client " + packet.client);
 			_executor.execute(packet);
 		}
 	}
@@ -134,7 +142,7 @@ public class ReadHandler<T extends Client<Connection<T>>> implements CompletionH
 	@Override
 	public void failed(Throwable e, T client)
 	{
-		// LOGGER.log(Level.INFO, "Failed to read from client", e);
+		// Disconnect the client on read failure.
 		client.disconnect();
 	}
 }

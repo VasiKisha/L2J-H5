@@ -388,7 +388,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 					addSpawn(GUARDIAN_OF_THE_TOMB_1, GUARDIAN_OF_THE_TOMB_1_LOC, false, 0, false, world.getInstanceId());
 					for (Location LOC : SLAVE_SPAWN_1_LOC)
 					{
-						final Attackable mob = (Attackable) addSpawn(TRAINEE_OF_REST, LOC, false, 0, false, world.getInstanceId());
+						final Attackable mob = addSpawn(TRAINEE_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
 						mob.setRunning();
 						mob.addDamageHate(player, 0, 999);
 						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
@@ -397,7 +397,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 					addSpawn(GUARDIAN_OF_THE_TOMB_2, GUARDIAN_OF_THE_TOMB_2_LOC, false, 0, false, world.getInstanceId());
 					for (Location LOC : SLAVE_SPAWN_2_LOC)
 					{
-						final Attackable mob = (Attackable) addSpawn(TRAINEE_OF_REST, LOC, false, 0, false, world.getInstanceId());
+						final Attackable mob = addSpawn(TRAINEE_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
 						mob.setRunning();
 						mob.addDamageHate(player, 0, 999);
 						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
@@ -406,7 +406,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 					addSpawn(GUARDIAN_OF_THE_TOMB_3, GUARDIAN_OF_THE_TOMB_3_LOC, false, 0, false, world.getInstanceId());
 					for (Location LOC : SLAVE_SPAWN_3_LOC)
 					{
-						final Attackable mob = (Attackable) addSpawn(SUPPLICANT_OF_REST, LOC, false, 0, false, world.getInstanceId());
+						final Attackable mob = addSpawn(SUPPLICANT_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
 						mob.setRunning();
 						mob.addDamageHate(player, 0, 999);
 						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
@@ -415,7 +415,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 					addSpawn(GUARDIAN_OF_THE_TOMB_4, GUARDIAN_OF_THE_TOMB_4_LOC, false, 0, false, world.getInstanceId());
 					for (Location LOC : SLAVE_SPAWN_4_LOC)
 					{
-						final Attackable mob = (Attackable) addSpawn(SUPPLICANT_OF_REST, LOC, false, 0, false, world.getInstanceId());
+						final Attackable mob = addSpawn(SUPPLICANT_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
 						mob.setRunning();
 						mob.addDamageHate(player, 0, 999);
 						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);

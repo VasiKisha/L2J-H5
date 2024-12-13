@@ -66,12 +66,12 @@ public class Summon extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (!effector.isPlayer() || effector.hasSummon())
+		if (!effector.isPlayer() || effector.asPlayer().hasSummon())
 		{
 			return;
 		}
 		
-		final Player player = effected.getActingPlayer();
+		final Player player = effected.asPlayer();
 		final NpcTemplate template = NpcData.getInstance().getTemplate(_npcId);
 		final Servitor summon = new Servitor(template, player);
 		final int consumeItemInterval = (_consumeItemInterval > 0 ? _consumeItemInterval : (template.getRace() != Race.SIEGE_WEAPON ? 240 : 60)) * 1000;

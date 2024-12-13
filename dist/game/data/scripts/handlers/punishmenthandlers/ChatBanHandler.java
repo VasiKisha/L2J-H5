@@ -23,7 +23,9 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
 import org.l2jmobius.gameserver.model.punishment.PunishmentType;
 import org.l2jmobius.gameserver.network.GameClient;
+import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.EtcStatusUpdate;
+import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 
 /**
  * This class handles chat ban punishment.
@@ -152,16 +154,33 @@ public class ChatBanHandler implements IPunishmentHandler
 	 */
 	private void applyToPlayer(PunishmentTask task, Player player)
 	{
-		final long delay = (task.getExpirationTime() - System.currentTimeMillis()) / 1000;
+		final long delay = ((task.getExpirationTime() - System.currentTimeMillis()) / 1000) + 1;
 		if (delay > 0)
 		{
-			player.sendMessage("You've been chat banned for " + (delay > 60 ? ((delay / 60) + " minutes.") : delay + " seconds."));
+			final long hours = delay / 3600;
+			final long minutes = (delay % 3600) / 60;
+			String message = "You've been chat banned for ";
+			if (hours > 0)
+			{
+				message += hours + " hour" + (hours > 1 ? "'s." : ".");
+				if (minutes > 0)
+				{
+					message += " and ";
+				}
+			}
+			if ((minutes > 0) || (hours == 0))
+			{
+				message += minutes + " minute" + (minutes > 1 ? "'s." : ".");
+			}
+			player.sendPacket(SystemMessageId.CHAT_DISABLED);
+			player.sendMessage(message);
 		}
 		else
 		{
 			player.sendMessage("You've been chat banned forever.");
 		}
 		player.sendPacket(new EtcStatusUpdate(player));
+		player.sendPacket(new PlaySound("systemmsg_e.346"));
 	}
 	
 	/**
@@ -170,7 +189,8 @@ public class ChatBanHandler implements IPunishmentHandler
 	 */
 	private void removeFromPlayer(Player player)
 	{
-		player.sendMessage("Your Chat ban has been lifted");
+		player.sendPacket(new PlaySound("systemmsg_e.345"));
+		player.sendPacket(SystemMessageId.CHAT_ENABLED);
 		player.sendPacket(new EtcStatusUpdate(player));
 	}
 	

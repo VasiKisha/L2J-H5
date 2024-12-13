@@ -23,7 +23,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.util.MinionList;
 
 import ai.AbstractNpcAI;
@@ -74,7 +73,7 @@ public class Epidos extends AbstractNpcAI
 			{
 				final int hpDecreasePercent = (int) (((_lastHp.get(npc.getObjectId()) - npc.getCurrentHp()) * 100) / npc.getMaxHp());
 				int minionsCount = 0;
-				final int spawnedMinions = ((Monster) npc).getMinionList().countSpawnedMinions();
+				final int spawnedMinions = npc.asMonster().getMinionList().countSpawnedMinions();
 				
 				if ((hpDecreasePercent > 5) && (hpDecreasePercent <= 15) && (spawnedMinions <= 9))
 				{
@@ -91,7 +90,7 @@ public class Epidos extends AbstractNpcAI
 				
 				for (int i = 0; i < minionsCount; i++)
 				{
-					MinionList.spawnMinion((Monster) npc, MINIONS[Arrays.binarySearch(EPIDOSES, npc.getId())]);
+					MinionList.spawnMinion(npc.asMonster(), MINIONS[Arrays.binarySearch(EPIDOSES, npc.getId())]);
 				}
 				
 				_lastHp.put(npc.getObjectId(), npc.getCurrentHp());

@@ -45,7 +45,7 @@ public class TargetParty implements ITargetTypeHandler
 		}
 		
 		final int radius = skill.getAffectRange();
-		final Player player = (Player) creature.getTarget();
+		final Player player = creature.getTarget().asPlayer();
 		if (player.isInParty())
 		{
 			for (Player partyMember : player.getParty().getMembers())

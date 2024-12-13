@@ -22,7 +22,6 @@ import java.util.List;
 import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.holders.SkillHolder;
@@ -87,13 +86,13 @@ public class Anais extends AbstractNpcAI
 				if ((_current != null) || (_pot < 4))
 				{
 					final WorldObject target = npc.getTarget();
-					_nextTarget = (target != null) && target.isPlayer() ? (Player) target : null;
+					_nextTarget = (target != null) && target.isPlayer() ? target.asPlayer() : null;
 					final Npc b = _divineBurners.get(_pot);
 					_pot += 1;
 					b.setDisplayEffect(1);
 					b.setWalking();
 					final Npc ward = addSpawn(GRAIL_WARD, new Location(b.getX(), b.getY(), b.getZ()), true, 0);
-					((Attackable) ward).addDamageHate(_nextTarget, 0, 999);
+					ward.asAttackable().addDamageHate(_nextTarget, 0, 999);
 					ward.setRunning();
 					ward.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, _nextTarget, null);
 					startQuestTimer("GUARD_ATTACK", 1000, ward, _nextTarget, true);

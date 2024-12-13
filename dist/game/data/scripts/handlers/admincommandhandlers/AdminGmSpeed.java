@@ -76,7 +76,7 @@ public class AdminGmSpeed implements IAdminCommandHandler
 			final WorldObject target = player.getTarget();
 			if ((target != null) && target.isCreature())
 			{
-				targetCharacter = (Creature) target;
+				targetCharacter = target.asCreature();
 			}
 			else
 			{
@@ -87,7 +87,7 @@ public class AdminGmSpeed implements IAdminCommandHandler
 			targetCharacter.getStat().setGmSpeedMultiplier(runSpeedBoost > 0 ? runSpeedBoost : 1);
 			if (targetCharacter.isPlayer())
 			{
-				((Player) targetCharacter).broadcastUserInfo();
+				targetCharacter.asPlayer().broadcastUserInfo();
 			}
 			else
 			{

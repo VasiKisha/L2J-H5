@@ -40,7 +40,7 @@ public class ConditionPlayerCanEscape extends Condition
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
 		boolean canTeleport = true;
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if (player == null)
 		{
 			canTeleport = false;

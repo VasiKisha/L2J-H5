@@ -42,7 +42,7 @@ public class Flag extends AbstractEffect
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getActingPlayer().updatePvPFlag(0);
+		effected.asPlayer().updatePvPFlag(0);
 	}
 	
 	@Override

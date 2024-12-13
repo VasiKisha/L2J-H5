@@ -45,7 +45,7 @@ public class AdminCamera implements IAdminCommandHandler
 			return false;
 		}
 		
-		final Creature target = (Creature) activeChar.getTarget();
+		final Creature target = activeChar.getTarget().asCreature();
 		final String[] com = command.split(" ");
 		switch (com[0])
 		{

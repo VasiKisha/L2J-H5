@@ -16,6 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -82,7 +83,8 @@ public class RequestDuelStart extends ClientPacket
 		if (_partyDuel == 1)
 		{
 			// Player must be in a party & the party leader
-			if (!player.isInParty() || !player.getParty().isLeader(player))
+			final Party party = player.getParty();
+			if (!player.isInParty() || !party.isLeader(player))
 			{
 				player.sendMessage("You have to be the leader of a party in order to request a party duel.");
 				return;
@@ -94,14 +96,14 @@ public class RequestDuelStart extends ClientPacket
 				return;
 			}
 			// Target may not be of the same party
-			else if (player.getParty().containsPlayer(targetChar))
+			else if (party.containsPlayer(targetChar))
 			{
 				player.sendMessage("This player is a member of your own party.");
 				return;
 			}
 			
 			// Check if every player is ready for a duel
-			for (Player temp : player.getParty().getMembers())
+			for (Player temp : party.getMembers())
 			{
 				if (!temp.canDuel())
 				{

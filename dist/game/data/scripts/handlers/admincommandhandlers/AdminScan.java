@@ -81,7 +81,7 @@ public class AdminScan implements IAdminCommandHandler
 				{
 					final int objectId = Integer.parseInt(st.nextToken());
 					final WorldObject target = World.getInstance().findObject(objectId);
-					final Npc npc = target instanceof Npc ? (Npc) target : null;
+					final Npc npc = target instanceof Npc ? target.asNpc() : null;
 					if (npc == null)
 					{
 						BuilderUtil.sendSysMessage(activeChar, "NPC does not exist or object_id does not belong to an NPC");

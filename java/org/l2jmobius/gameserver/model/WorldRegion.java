@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model;
 
@@ -68,7 +72,7 @@ public class WorldRegion
 			{
 				if (wo.isAttackable())
 				{
-					final Attackable mob = (Attackable) wo;
+					final Attackable mob = wo.asAttackable();
 					
 					// Set target to null and cancel attack or cast.
 					mob.setTarget(null);
@@ -103,7 +107,7 @@ public class WorldRegion
 				}
 				else if (wo instanceof Npc)
 				{
-					RandomAnimationTaskManager.getInstance().remove((Npc) wo);
+					RandomAnimationTaskManager.getInstance().remove(wo.asNpc());
 				}
 			}
 		}
@@ -114,12 +118,12 @@ public class WorldRegion
 				if (wo.isAttackable())
 				{
 					// Start HP/MP/CP regeneration task.
-					((Attackable) wo).getStatus().startHpMpRegeneration();
-					RandomAnimationTaskManager.getInstance().add((Npc) wo);
+					wo.asAttackable().getStatus().startHpMpRegeneration();
+					RandomAnimationTaskManager.getInstance().add(wo.asNpc());
 				}
 				else if (wo.isNpc())
 				{
-					RandomAnimationTaskManager.getInstance().add((Npc) wo);
+					RandomAnimationTaskManager.getInstance().add(wo.asNpc());
 				}
 			}
 		}
@@ -262,7 +266,7 @@ public class WorldRegion
 	
 	/**
 	 * Add the WorldObject in the WorldObjectHashSet(WorldObject) _visibleObjects containing WorldObject visible in this WorldRegion<br>
-	 * If WorldObject is a Player, Add the Player in the WorldObjectHashSet(Player) _allPlayable containing Player of all player in game in this WorldRegion
+	 * If WorldObject is a Player, Add the Player in the HashSet(Player) _allPlayable containing Player of all player in game in this WorldRegion
 	 * @param object
 	 */
 	public void addVisibleObject(WorldObject object)
@@ -278,7 +282,7 @@ public class WorldRegion
 		{
 			for (int i = 0; i < _surroundingRegions.length; i++)
 			{
-				_surroundingRegions[i].addDoor((Door) object);
+				_surroundingRegions[i].addDoor(object.asDoor());
 			}
 		}
 		else if (object.isFence())
@@ -297,7 +301,7 @@ public class WorldRegion
 	}
 	
 	/**
-	 * Remove the WorldObject from the WorldObjectHashSet(WorldObject) _visibleObjects in this WorldRegion. If WorldObject is a Player, remove it from the WorldObjectHashSet(Player) _allPlayable of this WorldRegion
+	 * Remove the WorldObject from the WorldObjectHashSet(WorldObject) _visibleObjects in this WorldRegion. If WorldObject is a Player, remove it from the HashSet(Player) _allPlayable of this WorldRegion
 	 * @param object
 	 */
 	public void removeVisibleObject(WorldObject object)
@@ -318,7 +322,7 @@ public class WorldRegion
 		{
 			for (int i = 0; i < _surroundingRegions.length; i++)
 			{
-				_surroundingRegions[i].removeDoor((Door) object);
+				_surroundingRegions[i].removeDoor(object.asDoor());
 			}
 		}
 		else if (object.isFence())

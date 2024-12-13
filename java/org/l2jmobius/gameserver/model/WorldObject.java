@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model;
 
@@ -28,9 +32,16 @@ import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.handler.IActionShiftHandler;
 import org.l2jmobius.gameserver.instancemanager.IdManager;
 import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.instance.Door;
+import org.l2jmobius.gameserver.model.actor.instance.Monster;
+import org.l2jmobius.gameserver.model.actor.instance.Pet;
+import org.l2jmobius.gameserver.model.actor.instance.Servitor;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.interfaces.IDecayable;
@@ -258,14 +269,118 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	{
 	}
 	
-	public Player getActingPlayer()
+	/**
+	 * Returns this object as an {@code Attackable} if it is an instance of the {@code Attackable} class.<br>
+	 * If this object does not extend the {@code Attackable} class, it returns {@code null}.
+	 * @return the current object as an {@code Attackable} if applicable, otherwise {@code null}.
+	 */
+	public Attackable asAttackable()
 	{
 		return null;
 	}
 	
 	/**
+	 * Returns this object as a {@code Creature} if it is an instance of the {@code Creature} class.<br>
+	 * If this object does not extend the {@code Creature} class, it returns {@code null}.
+	 * @return the current object as a {@code Creature} if applicable, otherwise {@code null}.
+	 */
+	public Creature asCreature()
+	{
+		return null;
+	}
+	
+	/**
+	 * Returns this object as a {@code Door} if it is an instance of the {@code Door} class.<br>
+	 * If this object does not extend the {@code Door} class, it returns {@code null}.
+	 * @return the current object as a {@code Door} if applicable, otherwise {@code null}.
+	 */
+	public Door asDoor()
+	{
+		return null;
+	}
+	
+	/**
+	 * Returns this object as a {@code Monster} if it is an instance of the {@code Monster} class.<br>
+	 * If this object does not extend the {@code Monster} class, it returns {@code null}.
+	 * @return the current object as a {@code Monster} if applicable, otherwise {@code null}.
+	 */
+	public Monster asMonster()
+	{
+		return null;
+	}
+	
+	/**
+	 * Returns this object as an {@code Npc} if it is an instance of the {@code Npc} class.<br>
+	 * If this object does not extend the {@code Npc} class, it returns {@code null}.
+	 * @return the current object as an {@code Npc} if applicable, otherwise {@code null}.
+	 */
+	public Npc asNpc()
+	{
+		return null;
+	}
+	
+	/**
+	 * Returns this object as a {@code Pet} if it is an instance of the {@code Pet} class.<br>
+	 * If this object does not extend the {@code Pet} class, it returns {@code null}.
+	 * @return the current object as a {@code Pet} if applicable, otherwise {@code null}.
+	 */
+	public Pet asPet()
+	{
+		return null;
+	}
+	
+	/**
+	 * Returns this object as a {@code Playable} if it is an instance of the {@code Playable} class.<br>
+	 * If this object does not extend the {@code Playable} class, it returns {@code null}.
+	 * @return the current object as a {@code Playable} if applicable, otherwise {@code null}.
+	 */
+	public Playable asPlayable()
+	{
+		return null;
+	}
+	
+	/**
+	 * Returns this object as a {@code Player} if it is an instance of the {@code Player} class.<br>
+	 * If this object does not extend the {@code Player} class, it returns {@code null}.
+	 * @return the current object as a {@code Player} if applicable, otherwise {@code null}.
+	 */
+	public Player asPlayer()
+	{
+		return null;
+	}
+	
+	/**
+	 * Returns this object as a {@code Servitor} if it is an instance of the {@code Servitor} class.<br>
+	 * If this object does not extend the {@code Servitor} class, it returns {@code null}.
+	 * @return the current object as a {@code Servitor} if applicable, otherwise {@code null}.
+	 */
+	public Servitor asServitor()
+	{
+		return null;
+	}
+	
+	/**
+	 * Returns this object as a {@code Summon} if it is an instance of the {@code Summon} class.<br>
+	 * If this object does not extend the {@code Summon} class, it returns {@code null}.
+	 * @return the current object as a {@code Summon} if applicable, otherwise {@code null}.
+	 */
+	public Summon asSummon()
+	{
+		return null;
+	}
+	
+	/**
+	 * Verify if object is instance of Artefact.
+	 * @return {@code true} if object is instance of Artefact, {@code false} otherwise.
+	 */
+	public boolean isArtefact()
+	{
+		return false;
+	}
+	
+	/**
 	 * Verify if object is instance of Attackable.
-	 * @return {@code true} if object is instance of Attackable, {@code false} otherwise
+	 * @return {@code true} if object is instance of Attackable, {@code false} otherwise.
 	 */
 	public boolean isAttackable()
 	{
@@ -274,7 +389,7 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	
 	/**
 	 * Verify if object is instance of Creature.
-	 * @return {@code true} if object is instance of Creature, {@code false} otherwise
+	 * @return {@code true} if object is instance of Creature, {@code false} otherwise.
 	 */
 	public boolean isCreature()
 	{
@@ -282,8 +397,17 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	}
 	
 	/**
+	 * Verify if object is instance of Cubic.
+	 * @return {@code true} if object is instance of Cubic, {@code false} otherwise.
+	 */
+	public boolean isCubic()
+	{
+		return false;
+	}
+	
+	/**
 	 * Verify if object is instance of Door.
-	 * @return {@code true} if object is instance of Door, {@code false} otherwise
+	 * @return {@code true} if object is instance of Door, {@code false} otherwise.
 	 */
 	public boolean isDoor()
 	{
@@ -291,17 +415,35 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	}
 	
 	/**
-	 * Verify if object is instance of Artefact.
-	 * @return {@code true} if object is instance of Artefact, {@code false} otherwise
+	 * Verify if object is a fake player.
+	 * @return {@code true} if object is a fake player, {@code false} otherwise.
 	 */
-	public boolean isArtefact()
+	public boolean isFakePlayer()
+	{
+		return false;
+	}
+	
+	/**
+	 * Verifies if this object is a fence.
+	 * @return {@code true} if object is Fence, {@code false} otherwise.
+	 */
+	public boolean isFence()
+	{
+		return false;
+	}
+	
+	/**
+	 * Verify if object is instance of Item.
+	 * @return {@code true} if object is instance of Item, {@code false} otherwise.
+	 */
+	public boolean isItem()
 	{
 		return false;
 	}
 	
 	/**
 	 * Verify if object is instance of Monster.
-	 * @return {@code true} if object is instance of Monster, {@code false} otherwise
+	 * @return {@code true} if object is instance of Monster, {@code false} otherwise.
 	 */
 	public boolean isMonster()
 	{
@@ -310,7 +452,7 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	
 	/**
 	 * Verify if object is instance of Npc.
-	 * @return {@code true} if object is instance of Npc, {@code false} otherwise
+	 * @return {@code true} if object is instance of Npc, {@code false} otherwise.
 	 */
 	public boolean isNpc()
 	{
@@ -319,7 +461,7 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	
 	/**
 	 * Verify if object is instance of Pet.
-	 * @return {@code true} if object is instance of Pet, {@code false} otherwise
+	 * @return {@code true} if object is instance of Pet, {@code false} otherwise.
 	 */
 	public boolean isPet()
 	{
@@ -327,17 +469,8 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	}
 	
 	/**
-	 * Verify if object is instance of Player.
-	 * @return {@code true} if object is instance of Player, {@code false} otherwise
-	 */
-	public boolean isPlayer()
-	{
-		return false;
-	}
-	
-	/**
 	 * Verify if object is instance of Playable.
-	 * @return {@code true} if object is instance of Playable, {@code false} otherwise
+	 * @return {@code true} if object is instance of Playable, {@code false} otherwise.
 	 */
 	public boolean isPlayable()
 	{
@@ -345,17 +478,17 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	}
 	
 	/**
-	 * Verify if object is a fake player.
-	 * @return {@code true} if object is a fake player, {@code false} otherwise
+	 * Verify if object is instance of Player.
+	 * @return {@code true} if object is instance of Player, {@code false} otherwise.
 	 */
-	public boolean isFakePlayer()
+	public boolean isPlayer()
 	{
 		return false;
 	}
 	
 	/**
 	 * Verify if object is instance of Servitor.
-	 * @return {@code true} if object is instance of Servitor, {@code false} otherwise
+	 * @return {@code true} if object is instance of Servitor, {@code false} otherwise.
 	 */
 	public boolean isServitor()
 	{
@@ -364,7 +497,7 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	
 	/**
 	 * Verify if object is instance of Summon.
-	 * @return {@code true} if object is instance of Summon, {@code false} otherwise
+	 * @return {@code true} if object is instance of Summon, {@code false} otherwise.
 	 */
 	public boolean isSummon()
 	{
@@ -373,7 +506,7 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	
 	/**
 	 * Verify if object is instance of Trap.
-	 * @return {@code true} if object is instance of Trap, {@code false} otherwise
+	 * @return {@code true} if object is instance of Trap, {@code false} otherwise.
 	 */
 	public boolean isTrap()
 	{
@@ -381,26 +514,8 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	}
 	
 	/**
-	 * Verify if object is instance of Item.
-	 * @return {@code true} if object is instance of Item, {@code false} otherwise
-	 */
-	public boolean isItem()
-	{
-		return false;
-	}
-	
-	/**
-	 * Verifies if the object is a walker NPC.
-	 * @return {@code true} if object is a walker NPC, {@code false} otherwise
-	 */
-	public boolean isWalker()
-	{
-		return false;
-	}
-	
-	/**
 	 * Verifies if this object is a vehicle.
-	 * @return {@code true} if object is Vehicle, {@code false} otherwise
+	 * @return {@code true} if object is Vehicle, {@code false} otherwise.
 	 */
 	public boolean isVehicle()
 	{
@@ -408,10 +523,10 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	}
 	
 	/**
-	 * Verifies if this object is a fence.
-	 * @return {@code true} if object is Fence, {@code false} otherwise
+	 * Verifies if the object is a walker NPC.
+	 * @return {@code true} if object is a walker NPC, {@code false} otherwise.
 	 */
-	public boolean isFence()
+	public boolean isWalker()
 	{
 		return false;
 	}
@@ -693,7 +808,7 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 		
 		if (isPlayer())
 		{
-			final Player player = getActingPlayer();
+			final Player player = asPlayer();
 			if ((oldInstanceId > 0) && (oldI != null))
 			{
 				oldI.removePlayer(_objectId);
@@ -717,7 +832,7 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 		}
 		else if (isNpc())
 		{
-			final Npc npc = (Npc) this;
+			final Npc npc = asNpc();
 			if ((oldInstanceId > 0) && (oldI != null))
 			{
 				oldI.removeNpc(npc);
@@ -742,11 +857,11 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 		final int endTime = (int) ((instance.getInstanceEndTime() - instance.getInstanceStartTime()) / 1000);
 		if (instance.isTimerIncrease())
 		{
-			sendPacket(new ExSendUIEvent(getActingPlayer(), hide, true, startTime, endTime, instance.getTimerText()));
+			sendPacket(new ExSendUIEvent(asPlayer(), hide, true, startTime, endTime, instance.getTimerText()));
 		}
 		else
 		{
-			sendPacket(new ExSendUIEvent(getActingPlayer(), hide, false, endTime - startTime, 0, instance.getTimerText()));
+			sendPacket(new ExSendUIEvent(asPlayer(), hide, false, endTime - startTime, 0, instance.getTimerText()));
 		}
 	}
 	

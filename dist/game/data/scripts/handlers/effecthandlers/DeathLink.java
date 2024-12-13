@@ -61,7 +61,7 @@ public class DeathLink extends AbstractEffect
 		
 		final boolean sps = skill.useSpiritShot() && effector.isChargedShot(ShotType.SPIRITSHOTS);
 		final boolean bss = skill.useSpiritShot() && effector.isChargedShot(ShotType.BLESSED_SPIRITSHOTS);
-		if (effected.isPlayer() && effected.getActingPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
+		if (effected.isPlayer() && effected.asPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
 		{
 			effected.stopFakeDeath(true);
 		}

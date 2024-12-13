@@ -434,7 +434,7 @@ public class Q00021_HiddenTruth extends Quest
 	{
 		if (creature.isPlayer())
 		{
-			playSound((Player) creature, QuestSound.HORROR_01);
+			playSound(creature.asPlayer(), QuestSound.HORROR_01);
 		}
 		return super.onCreatureSee(npc, creature);
 	}

@@ -1,27 +1,32 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.geoengine.geodata.blocks;
 
 import java.nio.ByteBuffer;
 
+import org.l2jmobius.gameserver.geoengine.geodata.Cell;
 import org.l2jmobius.gameserver.geoengine.geodata.IBlock;
 
 /**
- * @author HorridoJoho
+ * @author HorridoJoho, Mobius
  */
 public class ComplexBlock implements IBlock
 {
@@ -60,7 +65,7 @@ public class ComplexBlock implements IBlock
 	@Override
 	public void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
 	{
-		final byte currentNswe = getCellNSWE(geoX, geoY);
+		final short currentNswe = getNearestNswe(geoX, geoY, worldZ);
 		if ((currentNswe & nswe) == 0)
 		{
 			final short currentHeight = (short) getCellHeight(geoX, geoY);
@@ -74,7 +79,7 @@ public class ComplexBlock implements IBlock
 	@Override
 	public void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
 	{
-		final byte currentNswe = getCellNSWE(geoX, geoY);
+		final short currentNswe = getNearestNswe(geoX, geoY, worldZ);
 		if ((currentNswe & nswe) != 0)
 		{
 			final short currentHeight = (short) getCellHeight(geoX, geoY);
@@ -83,6 +88,29 @@ public class ComplexBlock implements IBlock
 			final short newCombinedData = (short) (encodedHeight | newNswe); // Combine height and NSWE.
 			_data[((geoX % IBlock.BLOCK_CELLS_X) * IBlock.BLOCK_CELLS_Y) + (geoY % IBlock.BLOCK_CELLS_Y)] = (short) (newCombinedData & 0xffff);
 		}
+	}
+	
+	@Override
+	public short getNearestNswe(int geoX, int geoY, int worldZ)
+	{
+		short nswe = 0;
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_NORTH))
+		{
+			nswe = (short) (nswe | Cell.NSWE_NORTH);
+		}
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_EAST))
+		{
+			nswe = (short) (nswe | Cell.NSWE_EAST);
+		}
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_SOUTH))
+		{
+			nswe = (short) (nswe | Cell.NSWE_SOUTH);
+		}
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_WEST))
+		{
+			nswe = (short) (nswe | Cell.NSWE_WEST);
+		}
+		return nswe;
 	}
 	
 	@Override

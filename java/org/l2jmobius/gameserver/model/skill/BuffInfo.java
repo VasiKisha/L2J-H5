@@ -27,7 +27,6 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.EffectList;
 import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectTaskInfo;
 import org.l2jmobius.gameserver.model.effects.EffectTickTask;
@@ -241,7 +240,7 @@ public class BuffInfo
 		}
 		
 		// When effects are initialized, the successfully landed.
-		if (_effected.isPlayer() && (_effected.getActingPlayer().hasEnteredWorld() || Config.SHOW_EFFECT_MESSAGES_ON_LOGIN) && !_skill.isPassive())
+		if (_effected.isPlayer() && (_effected.asPlayer().hasEnteredWorld() || Config.SHOW_EFFECT_MESSAGES_ON_LOGIN) && !_skill.isPassive())
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_S_EFFECT_CAN_BE_FELT);
 			sm.addSkillName(_skill);
@@ -347,7 +346,7 @@ public class BuffInfo
 		// Remove abnormal visual effects.
 		removeAbnormalVisualEffects(broadcast);
 		// Set the proper system message.
-		if (!(_effected.isSummon() && !((Summon) _effected).getOwner().hasSummon()))
+		if (!(_effected.isSummon() && !_effected.asSummon().getOwner().hasSummon()))
 		{
 			SystemMessageId smId = null;
 			if (_finishType == SkillFinishType.SILENT)

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
@@ -23,6 +27,7 @@ import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
 import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -88,9 +93,10 @@ public class UserInfo extends ServerPacket
 		buffer.writeInt(_player.getZ());
 		buffer.writeInt(_player.getVehicle() != null ? _player.getVehicle().getObjectId() : 0);
 		buffer.writeInt(_player.getObjectId());
-		buffer.writeString(_player.getAppearance().getVisibleName());
+		final PlayerAppearance appearance = _player.getAppearance();
+		buffer.writeString(appearance.getVisibleName());
 		buffer.writeInt(_player.getRace().ordinal());
-		buffer.writeInt(_player.getAppearance().isFemale());
+		buffer.writeInt(appearance.isFemale());
 		buffer.writeInt(_player.getBaseClass());
 		buffer.writeInt(_player.getLevel());
 		buffer.writeLong(_player.getExp());
@@ -151,9 +157,9 @@ public class UserInfo extends ServerPacket
 		buffer.writeDouble(_player.getAttackSpeedMultiplier());
 		buffer.writeDouble(_player.getCollisionRadius());
 		buffer.writeDouble(_player.getCollisionHeight());
-		buffer.writeInt(_player.getAppearance().getHairStyle());
-		buffer.writeInt(_player.getAppearance().getHairColor());
-		buffer.writeInt(_player.getAppearance().getFace());
+		buffer.writeInt(appearance.getHairStyle());
+		buffer.writeInt(appearance.getHairColor());
+		buffer.writeInt(appearance.getFace());
 		buffer.writeInt(_player.isGM()); // builder level
 		
 		String title = _player.getTitle();
@@ -205,12 +211,12 @@ public class UserInfo extends ServerPacket
 		buffer.writeInt(_player.getFishY()); // fishing y
 		buffer.writeInt(_player.getFishZ()); // fishing z
 		
-		buffer.writeInt(_player.getAppearance().getNameColor());
+		buffer.writeInt(appearance.getNameColor());
 		// new c5
 		buffer.writeByte(_player.isRunning()); // changes the Speed display on Status Window
 		buffer.writeInt(_player.getPledgeClass()); // changes the text above CP on Status Window
 		buffer.writeInt(_player.getPledgeType());
-		buffer.writeInt(_player.getAppearance().getTitleColor());
+		buffer.writeInt(appearance.getTitleColor());
 		buffer.writeInt(_player.isCursedWeaponEquipped() ? CursedWeaponsManager.getInstance().getLevel(_player.getCursedWeaponEquippedId()) : 0);
 		// T1 Starts
 		buffer.writeInt(_player.getTransformationDisplayId());

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.zone.form;
 
@@ -26,13 +30,14 @@ import org.l2jmobius.gameserver.model.zone.ZoneForm;
 
 /**
  * A primitive rectangular zone
- * @author durgus
+ * @author durgus, Mobius
  */
 public class ZoneCuboid extends ZoneForm
 {
 	private final int _z1;
 	private final int _z2;
 	private final Rectangle _r;
+	private final Location _centerPoint;
 	
 	public ZoneCuboid(int x1, int x2, int y1, int y2, int z1, int z2)
 	{
@@ -45,6 +50,8 @@ public class ZoneCuboid extends ZoneForm
 		
 		_z1 = Math.min(z1, z2);
 		_z2 = Math.max(z1, z2);
+		
+		_centerPoint = new Location((_x1 + _x2) / 2, (_y1 + _y2) / 2, (_z1 + _z2) / 2);
 	}
 	
 	@Override
@@ -133,5 +140,11 @@ public class ZoneCuboid extends ZoneForm
 		final int y = Rnd.get(_r.y, _r.y + _r.height);
 		
 		return new Location(x, y, GeoEngine.getInstance().getHeight(x, y, (_z1 + _z2) / 2));
+	}
+	
+	@Override
+	public Location getCenterPoint()
+	{
+		return _centerPoint;
 	}
 }

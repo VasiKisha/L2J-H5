@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.geoengine.pathfinding.cellnodes;
 
@@ -21,16 +25,13 @@ import org.l2jmobius.gameserver.geoengine.geodata.Cell;
 import org.l2jmobius.gameserver.geoengine.pathfinding.AbstractNodeLoc;
 
 /**
- * @author -Nemesiss-, HorridoJoho
+ * @author Mobius
  */
 public class NodeLoc extends AbstractNodeLoc
 {
 	private int _x;
 	private int _y;
-	private boolean _goNorth;
-	private boolean _goEast;
-	private boolean _goSouth;
-	private boolean _goWest;
+	private int _nswe;
 	private int _geoHeight;
 	
 	public NodeLoc(int x, int y, int z)
@@ -42,41 +43,58 @@ public class NodeLoc extends AbstractNodeLoc
 	{
 		_x = x;
 		_y = y;
-		_goNorth = GeoEngine.getInstance().checkNearestNswe(x, y, z, Cell.NSWE_NORTH);
-		_goEast = GeoEngine.getInstance().checkNearestNswe(x, y, z, Cell.NSWE_EAST);
-		_goSouth = GeoEngine.getInstance().checkNearestNswe(x, y, z, Cell.NSWE_SOUTH);
-		_goWest = GeoEngine.getInstance().checkNearestNswe(x, y, z, Cell.NSWE_WEST);
-		_geoHeight = GeoEngine.getInstance().getNearestZ(x, y, z);
+		_nswe = 0; // Reset the bitmask.
+		
+		// Set the NSWE bitmask based on movement possibilities.
+		final GeoEngine geoEngine = GeoEngine.getInstance();
+		if (geoEngine.checkNearestNswe(x, y, z, Cell.NSWE_NORTH))
+		{
+			_nswe |= Cell.NSWE_NORTH;
+		}
+		if (geoEngine.checkNearestNswe(x, y, z, Cell.NSWE_EAST))
+		{
+			_nswe |= Cell.NSWE_EAST;
+		}
+		if (geoEngine.checkNearestNswe(x, y, z, Cell.NSWE_SOUTH))
+		{
+			_nswe |= Cell.NSWE_SOUTH;
+		}
+		if (geoEngine.checkNearestNswe(x, y, z, Cell.NSWE_WEST))
+		{
+			_nswe |= Cell.NSWE_WEST;
+		}
+		
+		_geoHeight = geoEngine.getNearestZ(x, y, z);
 	}
 	
 	public boolean canGoNorth()
 	{
-		return _goNorth;
+		return (_nswe & Cell.NSWE_NORTH) != 0;
 	}
 	
 	public boolean canGoEast()
 	{
-		return _goEast;
+		return (_nswe & Cell.NSWE_EAST) != 0;
 	}
 	
 	public boolean canGoSouth()
 	{
-		return _goSouth;
+		return (_nswe & Cell.NSWE_SOUTH) != 0;
 	}
 	
 	public boolean canGoWest()
 	{
-		return _goWest;
+		return (_nswe & Cell.NSWE_WEST) != 0;
 	}
 	
 	public boolean canGoNone()
 	{
-		return !canGoNorth() && !canGoEast() && !canGoSouth() && !canGoWest();
+		return _nswe == 0;
 	}
 	
 	public boolean canGoAll()
 	{
-		return canGoNorth() && canGoEast() && canGoSouth() && canGoWest();
+		return _nswe == Cell.NSWE_ALL;
 	}
 	
 	@Override
@@ -122,25 +140,9 @@ public class NodeLoc extends AbstractNodeLoc
 		result = (prime * result) + _x;
 		result = (prime * result) + _y;
 		
-		int nswe = 0;
-		if (canGoNorth())
-		{
-			nswe |= Cell.NSWE_NORTH;
-		}
-		if (canGoEast())
-		{
-			nswe |= Cell.NSWE_EAST;
-		}
-		if (canGoSouth())
-		{
-			nswe |= Cell.NSWE_SOUTH;
-		}
-		if (canGoWest())
-		{
-			nswe |= Cell.NSWE_WEST;
-		}
+		// Combine the geo height and the NSWE bitmask into the hash.
+		result = (prime * result) + (((_geoHeight & 0xFFFF) << 1) | _nswe);
 		
-		result = (prime * result) + (((_geoHeight & 0xFFFF) << 1) | nswe);
 		return result;
 	}
 	
@@ -151,15 +153,14 @@ public class NodeLoc extends AbstractNodeLoc
 		{
 			return true;
 		}
-		if (obj == null)
+		
+		if ((obj == null) || (getClass() != obj.getClass()))
 		{
 			return false;
 		}
-		if (!(obj instanceof NodeLoc))
-		{
-			return false;
-		}
+		
+		// Compare _x, _y, _geoHeight, and the bitmask _nswe directly.
 		final NodeLoc other = (NodeLoc) obj;
-		return (_x == other._x) && (_y == other._y) && (!_goNorth == !other._goNorth) && (!_goEast == !other._goEast) && (!_goSouth == !other._goSouth) && (!_goWest == !other._goWest) && (_geoHeight == other._geoHeight);
+		return (_x == other._x) && (_y == other._y) && (_geoHeight == other._geoHeight) && (_nswe == other._nswe);
 	}
 }

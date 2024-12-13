@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="7000" levels="1" name="NPC Default">
 		<set name="magicLevel" val="1" />
@@ -247,7 +247,10 @@
 		</for>
 	</skill>
 	<skill id="7029" levels="4" name="Super Haste">
-		<!-- Speed is increased. -->
+		<!-- Level 1: Speed is increased. -->
+		<!-- Level 2: speed is increased significantly. -->
+		<!-- Level 3: Speed is increased dramatically. -->
+		<!-- Level 4: Grants the combined power of two warriors. -->
 		<table name="#amount">1 1 1 1</table>
 		<table name="#mAtkSpd">2 3 4 5</table>
 		<table name="#pAtk">250 500 750 1500</table>
@@ -1250,7 +1253,7 @@
 			<effect name="DispelBySlot">
 				<param dispel="PA_UP,9;PD_UP,9" />
 			</effect>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="PA_UP;PD_UP" />
 			</effect>
 		</for>
@@ -1280,7 +1283,7 @@
 			<effect name="DispelBySlot">
 				<param dispel="MA_UP,9;MD_UP,9" />
 			</effect>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="MA_UP;MD_UP" />
 			</effect>
 		</for>
@@ -1310,7 +1313,7 @@
 			<effect name="DispelBySlot">
 				<param dispel="MAX_HP_UP,9;MAX_MP_UP,9" />
 			</effect>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="MAX_HP_UP;MAX_MP_UP" />
 			</effect>
 		</for>
@@ -1340,7 +1343,7 @@
 			<effect name="DispelBySlot">
 				<param dispel="CRITICAL_PROB_UP,9;CRITICAL_DMG_UP,9" />
 			</effect>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="CRITICAL_PROB_UP;CRITICAL_DMG_UP" />
 			</effect>
 		</for>
@@ -1370,7 +1373,7 @@
 			<effect name="DispelBySlot">
 				<param dispel="SHIELD_PROB_UP,9;SHIELD_DEFENCE_UP,9" />
 			</effect>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="SHIELD_PROB_UP;SHIELD_DEFENCE_UP" />
 			</effect>
 		</for>
@@ -1400,7 +1403,7 @@
 			<effect name="DispelBySlot">
 				<param dispel="SPEED_UP,9;AVOID_UP,9" />
 			</effect>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="SPEED_UP;AVOID_UP" />
 			</effect>
 		</for>

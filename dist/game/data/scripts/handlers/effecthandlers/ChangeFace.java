@@ -52,7 +52,7 @@ public class ChangeFace extends AbstractEffect
 			return;
 		}
 		
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		player.getAppearance().setFace(_value);
 		player.broadcastUserInfo();
 	}

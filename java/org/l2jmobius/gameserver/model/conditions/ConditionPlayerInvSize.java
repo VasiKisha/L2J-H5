@@ -17,6 +17,7 @@
 package org.l2jmobius.gameserver.model.conditions;
 
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
@@ -40,9 +41,10 @@ public class ConditionPlayerInvSize extends Condition
 	@Override
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
-		if (effector.getActingPlayer() != null)
+		final Player player = effector.asPlayer();
+		if (player != null)
 		{
-			return effector.getActingPlayer().getInventory().getNonQuestSize() <= (effector.getActingPlayer().getInventoryLimit() - _size);
+			return player.getInventory().getNonQuestSize() <= (player.getInventoryLimit() - _size);
 		}
 		return true;
 	}

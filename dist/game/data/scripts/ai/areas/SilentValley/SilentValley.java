@@ -21,7 +21,6 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 
@@ -158,7 +157,7 @@ public class SilentValley extends AbstractNpcAI
 	{
 		if (creature.isPlayable())
 		{
-			final Player player = (creature.isSummon()) ? ((Summon) creature).getOwner() : creature.getActingPlayer();
+			final Player player = (creature.isSummon()) ? creature.asSummon().getOwner() : creature.asPlayer();
 			if ((npc.getId() == GUARD1) || (npc.getId() == GUARD2))
 			{
 				npc.setTarget(player);

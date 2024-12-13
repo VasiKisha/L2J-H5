@@ -238,7 +238,7 @@ public class Q00458_PerfectForm extends Quest
 			{
 				qs.set(variable, String.valueOf(currentValue + 1)); // IncreaseNPCLogByID
 				
-				final Attackable mob = (Attackable) npc;
+				final Attackable mob = npc.asAttackable();
 				if (mob.isOverhit())
 				{
 					qs.set("overhitsTotal", String.valueOf(qs.getInt("overhitsTotal") + 1)); // memoStateEx 1

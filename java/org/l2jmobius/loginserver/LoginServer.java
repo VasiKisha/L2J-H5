@@ -33,8 +33,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseBackup;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.enums.ServerMode;
-import org.l2jmobius.commons.network.ConnectionBuilder;
-import org.l2jmobius.commons.network.ConnectionHandler;
+import org.l2jmobius.commons.network.ConnectionManager;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.PropertiesParser;
 import org.l2jmobius.gameserver.network.loginserverpackets.game.ServerStatus;
@@ -131,8 +130,7 @@ public class LoginServer
 			System.exit(1);
 		}
 		
-		final ConnectionHandler<LoginClient> connectionHandlerClients = new ConnectionBuilder<>(new InetSocketAddress(Config.LOGIN_BIND_ADDRESS, Config.PORT_LOGIN), LoginClient::new, new LoginPacketHandler(), ThreadPool::execute).build();
-		connectionHandlerClients.start();
+		new ConnectionManager<>(new InetSocketAddress(Config.LOGIN_BIND_ADDRESS, Config.PORT_LOGIN), LoginClient::new, new LoginPacketHandler());
 		LOGGER.info(getClass().getSimpleName() + ": is now listening on: " + Config.LOGIN_BIND_ADDRESS + ":" + Config.PORT_LOGIN);
 	}
 	

@@ -22,6 +22,7 @@ import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 /**
  * Player Call Pc condition implementation.
@@ -40,9 +41,16 @@ public class ConditionPlayerCallPc extends Condition
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
 		boolean canCallPlayer = true;
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if (player == null)
 		{
+			canCallPlayer = false;
+		}
+		else if ((effected != null) && effected.isPlayer() && effected.isDead())
+		{
+			final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_DEAD_AT_THE_MOMENT_AND_CANNOT_BE_SUMMONED);
+			sm.addPcName(effected.asPlayer());
+			player.sendPacket(sm);
 			canCallPlayer = false;
 		}
 		else if (player.isInOlympiadMode())

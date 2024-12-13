@@ -52,7 +52,7 @@ public class SummonTrap extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((effected == null) || !effected.isPlayer() || effected.isAlikeDead() || effected.getActingPlayer().inObserverMode())
+		if ((effected == null) || !effected.isPlayer() || effected.isAlikeDead())
 		{
 			return;
 		}
@@ -63,7 +63,7 @@ public class SummonTrap extends AbstractEffect
 			return;
 		}
 		
-		final Player player = effected.getActingPlayer();
+		final Player player = effected.asPlayer();
 		if (player.inObserverMode() || player.isMounted())
 		{
 			return;

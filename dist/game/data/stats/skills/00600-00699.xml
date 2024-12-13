@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="600" levels="1" name="Residence Guidance">
 		<!-- Accuracy of clan members in residence increases by 4. -->
@@ -138,7 +138,9 @@
 		</for>
 	</skill>
 	<skill id="611" levels="3" name="Fire Squad">
-		<!-- The corresponding troops' P. Atk. increase by 17.3. -->
+		<!-- Level 1: The corresponding troops' P. Atk. increase by 17.3. -->
+		<!-- Level 2: The corresponding troops' P. Atk. increase by 17.3 and Critical Rate increase by 15. -->
+		<!-- Level 3: The corresponding troops' P. Atk. increase by 17.3, Critical Rate increase by 15, and Critical Damage increase by 100. -->
 		<table name="#cAtkAdd">0 0 100</table>
 		<table name="#rCrit">0 15 15</table>
 		<set name="icon" val="icon.skill1463" />
@@ -154,7 +156,9 @@
 		</for>
 	</skill>
 	<skill id="612" levels="3" name="Water Squad">
-		<!-- The corresponding troops' P. Def. increase by 27.3. -->
+		<!-- Level 1: The corresponding troops' P. Def. increase by 27.3. -->
+		<!-- Level 2: The corresponding troops' P. Def. increase by 27.3 and M. Def. increase by 17.6. -->
+		<!-- Level 3: The corresponding troops' P. Def. increase by 27.3, M. Def. increase by 17.6, and Shield Defense. increase by 6%. -->
 		<table name="#mDef">0 17.6 17.6</table>
 		<table name="#sDef">1 1 1.06</table>
 		<set name="icon" val="icon.skill1464" />
@@ -170,7 +174,9 @@
 		</for>
 	</skill>
 	<skill id="613" levels="3" name="Wind Squad">
-		<!-- The corresponding troops' Accuracy increase by 2. -->
+		<!-- Level 1: The corresponding troops' Accuracy increase by 2. -->
+		<!-- Level 2: The corresponding troops' Accuracy increase by 2 and Evasion increase by 2. -->
+		<!-- Level 3: The corresponding troops' Accuracy increase by 2, Evasion increase by 2, and Speed increase by 3. -->
 		<table name="#rEvas">0 2 2</table>
 		<table name="#runSpd">0 0 3</table>
 		<set name="icon" val="icon.skill1465" />
@@ -186,7 +192,9 @@
 		</for>
 	</skill>
 	<skill id="614" levels="3" name="Earth Squad">
-		<!-- The corresponding troops' M. Def. increase by 17. -->
+		<!-- Level 1: The corresponding troops' M. Def. increase by 17. -->
+		<!-- Level 2: The corresponding troops' M. Def. increase by 31.1. -->
+		<!-- Level 3: The corresponding troops' M. Def. increase by 44. -->
 		<table name="#mDef">17 31.1 44</table>
 		<set name="icon" val="icon.skill1466" />
 		<set name="magicLevel" val="1" />
@@ -198,8 +206,10 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="615" levels="3" name="Holy Squad">
-		<!-- The corresponding troops' heal power increase by 20. -->
+	<skill id="615" levels="3" name="Divine Squad">
+		<!-- Level 1: The corresponding troops' heal power increase by 20. -->
+		<!-- Level 2: The corresponding troops' heal power increase by 20 and Max MP increase by 30%. -->
+		<!-- Level 3: The corresponding troops' heal power increase by 20, Max MP increase by 30%, and MP consumption decreases by 5%. -->
 		<table name="#maxMp">1 1.3 1.3</table>
 		<table name="#MpConsumeRate">1 1 0.95</table>
 		<set name="icon" val="icon.skill1043" />
@@ -217,7 +227,9 @@
 		</for>
 	</skill>
 	<skill id="616" levels="3" name="Dark Squad">
-		<!-- The corresponding troops' M. Atk. increase by 7.17. -->
+		<!-- Level 1: The corresponding troops' M. Atk. increase by 7.17. -->
+		<!-- Level 2: The corresponding troops' M. Atk. increase by 19.32. -->
+		<!-- Level 3: The corresponding troops' M. Atk. increase by 19.32 and magic Critical Damage rate increases by 1%. -->
 		<table name="#mAtk">7.17 19.32 19.32</table>
 		<table name="#mCritRate">1 1 1.01</table>
 		<set name="icon" val="icon.skill1443" />
@@ -345,7 +357,8 @@
 		</for>
 	</skill>
 	<skill id="622" levels="2" name="Ultimate Escape">
-		<!-- Increases the user's Evasion by 20 and Speed by 33 for 20 seconds. -->
+		<!-- Level 1: Increases the user's Evasion by 20 and Speed by 33 for 20 seconds. -->
+		<!-- Level 2: Increases the user's Evasion by 35, Speed by 66 and physical attack skill Evasion Rate by 25% for 20 seconds. -->
 		<table name="#magicLevel">36 52</table>
 		<table name="#mpConsume">31 47</table>
 		<table name="#pSkillEvas">0 25</table>
@@ -411,6 +424,66 @@
 	</skill>
 	<skill id="625" levels="1" name="Soul Gathering" enchantGroup1="1" enchantGroup2="1">
 		<!-- Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. -->
+		<!-- Level 101 (+1 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 102 (+2 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 103 (+3 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 104 (+4 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 105 (+5 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 106 (+6 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 107 (+7 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 108 (+8 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 109 (+9 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 110 (+10 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 111 (+11 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 112 (+12 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 113 (+13 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 114 (+14 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 115 (+15 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 116 (+16 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 117 (+17 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 118 (+18 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 119 (+19 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 120 (+20 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 121 (+21 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 122 (+22 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 123 (+23 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 124 (+24 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 125 (+25 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 126 (+26 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 127 (+27 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 128 (+28 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 129 (+29 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 130 (+30 Cost): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Cost: Decreases HP consumption. -->
+		<!-- Level 201 (+1 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 202 (+2 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 203 (+3 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 204 (+4 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 205 (+5 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 206 (+6 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 207 (+7 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 208 (+8 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 209 (+9 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 210 (+10 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 211 (+11 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 212 (+12 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 213 (+13 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 214 (+14 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 215 (+15 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 216 (+16 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 217 (+17 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 218 (+18 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 219 (+19 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 220 (+20 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 221 (+21 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 222 (+22 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 223 (+23 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 224 (+24 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 225 (+25 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 226 (+26 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 227 (+27 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 228 (+28 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 229 (+29 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 230 (+30 Recycle): Gathers in nearby souls. Up to 8 souls can be absorbed at once. Consumes 10 Spirit Ore. Enchant Recycle: Reuse time decreases. -->
 		<table name="#ench1hpConsume">196 193 190 186 183 180 176 173 170 166 163 160 156 153 150 146 143 140 136 133 130 126 123 120 116 113 110 106 103 100</table>
 		<table name="#ench2reuseDelay">1770000 1710000 1710000 1680000 1650000 1620000 1590000 1560000 1530000 1500000 1470000 1410000 1410000 1380000 1350000 1320000 1290000 1260000 1230000 1200000 1170000 1110000 1110000 1080000 1050000 1020000 990000 960000 930000 900000</table>
 		<table name="#enchMagicLvl">76 76 76 77 77 77 78 78 78 79 79 79 80 80 80 81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
@@ -441,7 +514,70 @@
 		</for>
 	</skill>
 	<skill id="626" levels="4" name="Critical Sense" enchantGroup1="1" enchantGroup2="1">
-		<!-- Increases Critical Rate by 10% and Critical Damage by 111. -->
+		<!-- Level 1: Increases Critical Rate by 10% and Critical Damage by 111. -->
+		<!-- Level 2: Increases Critical Rate by 15% and Critical Damage by 177. -->
+		<!-- Level 3: Increases Critical Rate by 20% and Critical Damage by 253. -->
+		<!-- Level 4: Increases Critical Rate by 25% and Critical Damage by 317. -->
+		<!-- Level 101 (+1 Power): Increases Critical Rate by 25.1% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 102 (+2 Power): Increases Critical Rate by 25.3% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 103 (+3 Power): Increases Critical Rate by 25.5% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 104 (+4 Power): Increases Critical Rate by 25.6% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 105 (+5 Power): Increases Critical Rate by 25.8% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 106 (+6 Power): Increases Critical Rate by 26% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 107 (+7 Power): Increases Critical Rate by 26.1% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 108 (+8 Power): Increases Critical Rate by 26.3% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 109 (+9 Power): Increases Critical Rate by 26.5% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 110 (+10 Power): Increases Critical Rate by 26.6% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 111 (+11 Power): Increases Critical Rate by 26.8% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 112 (+12 Power): Increases Critical Rate by 27% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 113 (+13 Power): Increases Critical Rate by 27.1% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 114 (+14 Power): Increases Critical Rate by 27.3% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 115 (+15 Power): Increases Critical Rate by 27.5% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 116 (+16 Power): Increases Critical Rate by 27.6% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 117 (+17 Power): Increases Critical Rate by 27.8% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 118 (+18 Power): Increases Critical Rate by 28% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 119 (+19 Power): Increases Critical Rate by 28.1% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 120 (+20 Power): Increases Critical Rate by 28.3% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 121 (+21 Power): Increases Critical Rate by 28.5% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 122 (+22 Power): Increases Critical Rate by 28.6% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 123 (+23 Power): Increases Critical Rate by 28.8% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 124 (+24 Power): Increases Critical Rate by 29% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 125 (+25 Power): Increases Critical Rate by 29.1% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 126 (+26 Power): Increases Critical Rate by 29.3% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 127 (+27 Power): Increases Critical Rate by 29.5% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 128 (+28 Power): Increases Critical Rate by 29.6% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 129 (+29 Power): Increases Critical Rate by 29.8% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 130 (+30 Power): Increases Critical Rate by 30% and Critical Damage by 317. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 201 (+1 Power): Increases Critical Rate by 25% and Critical Damage by 322. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 202 (+2 Power): Increases Critical Rate by 25% and Critical Damage by 327. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 203 (+3 Power): Increases Critical Rate by 25% and Critical Damage by 331. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 204 (+4 Power): Increases Critical Rate by 25% and Critical Damage by 336. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 205 (+5 Power): Increases Critical Rate by 25% and Critical Damage by 341. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 206 (+6 Power): Increases Critical Rate by 25% and Critical Damage by 346. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 207 (+7 Power): Increases Critical Rate by 25% and Critical Damage by 350. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 208 (+8 Power): Increases Critical Rate by 25% and Critical Damage by 355. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 209 (+9 Power): Increases Critical Rate by 25% and Critical Damage by 360. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 210 (+10 Power): Increases Critical Rate by 25% and Critical Damage by 365. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 211 (+11 Power): Increases Critical Rate by 25% and Critical Damage by 369. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 212 (+12 Power): Increases Critical Rate by 25% and Critical Damage by 374. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 213 (+13 Power): Increases Critical Rate by 25% and Critical Damage by 379. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 214 (+14 Power): Increases Critical Rate by 25% and Critical Damage by 384. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 215 (+15 Power): Increases Critical Rate by 25% and Critical Damage by 388. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 216 (+16 Power): Increases Critical Rate by 25% and Critical Damage by 393. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 217 (+17 Power): Increases Critical Rate by 25% and Critical Damage by 398. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 218 (+18 Power): Increases Critical Rate by 25% and Critical Damage by 403. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 219 (+19 Power): Increases Critical Rate by 25% and Critical Damage by 407. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 220 (+20 Power): Increases Critical Rate by 25% and Critical Damage by 412. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 221 (+21 Power): Increases Critical Rate by 25% and Critical Damage by 417. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 222 (+22 Power): Increases Critical Rate by 25% and Critical Damage by 422. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 223 (+23 Power): Increases Critical Rate by 25% and Critical Damage by 426. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 224 (+24 Power): Increases Critical Rate by 25% and Critical Damage by 431. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 225 (+25 Power): Increases Critical Rate by 25% and Critical Damage by 436. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 226 (+26 Power): Increases Critical Rate by 25% and Critical Damage by 441. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 227 (+27 Power): Increases Critical Rate by 25% and Critical Damage by 445. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 228 (+28 Power): Increases Critical Rate by 25% and Critical Damage by 450. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 229 (+29 Power): Increases Critical Rate by 25% and Critical Damage by 455. Enchant Power: The skill's effect is enhanced. -->
+		<!-- Level 230 (+30 Power): Increases Critical Rate by 25% and Critical Damage by 460. Enchant Power: The skill's effect is enhanced. -->
 		<table name="#cAtk">111 177 253 317</table>
 		<table name="#magicLevel">43 52 60 66</table>
 		<table name="#rCrit">1.1 1.15 1.2 1.25</table>
@@ -474,7 +610,166 @@
 		</enchant2for>
 	</skill>
 	<skill id="627" levels="40" name="Soul Shock" enchantGroup1="2" enchantGroup2="2" enchantGroup3="2" enchantGroup4="2">
-		<!-- Attacks the enemy with 344 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 1: Attacks the enemy with 344 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 2: Attacks the enemy with 367 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 3: Attacks the enemy with 391 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 4: Attacks the enemy with 443 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 5: Attacks the enemy with 471 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 6: Attacks the enemy with 500 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 7: Attacks the enemy with 530 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 8: Attacks the enemy with 562 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 9: Attacks the enemy with 595 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 10: Attacks the enemy with 630 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 11: Attacks the enemy with 666 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 12: Attacks the enemy with 703 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 13: Attacks the enemy with 742 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 14: Attacks the enemy with 782 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 15: Attacks the enemy with 823 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 16: Attacks the enemy with 866 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 17: Attacks the enemy with 910 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 18: Attacks the enemy with 955 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 19: Attacks the enemy with 1002 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 20: Attacks the enemy with 1050 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 21: Attacks the enemy with 1100 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 22: Attacks the enemy with 1150 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 23: Attacks the enemy with 1202 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 24: Attacks the enemy with 1255 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 25: Attacks the enemy with 1309 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 26: Attacks the enemy with 1364 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 27: Attacks the enemy with 1420 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 28: Attacks the enemy with 1476 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 29: Attacks the enemy with 1534 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 30: Attacks the enemy with 1592 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 31: Attacks the enemy with 1651 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 32: Attacks the enemy with 1710 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 33: Attacks the enemy with 1770 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 34: Attacks the enemy with 1830 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 35: Attacks the enemy with 1891 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 36: Attacks the enemy with 1951 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 37: Attacks the enemy with 2012 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 38: Attacks the enemy with 2072 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 39: Attacks the enemy with 2132 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 40: Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. -->
+		<!-- Level 101 (+1 Power): Attacks the enemy with 2268 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 102 (+2 Power): Attacks the enemy with 2286 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 103 (+3 Power): Attacks the enemy with 2304 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 104 (+4 Power): Attacks the enemy with 2322 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 105 (+5 Power): Attacks the enemy with 2339 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 106 (+6 Power): Attacks the enemy with 2357 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 107 (+7 Power): Attacks the enemy with 2375 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 108 (+8 Power): Attacks the enemy with 2393 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 109 (+9 Power): Attacks the enemy with 2410 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 110 (+10 Power): Attacks the enemy with 2428 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 111 (+11 Power): Attacks the enemy with 2446 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 112 (+12 Power): Attacks the enemy with 2464 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 113 (+13 Power): Attacks the enemy with 2481 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 114 (+14 Power): Attacks the enemy with 2499 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 115 (+15 Power): Attacks the enemy with 2517 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 116 (+16 Power): Attacks the enemy with 2535 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 117 (+17 Power): Attacks the enemy with 2553 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 118 (+18 Power): Attacks the enemy with 2570 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 119 (+19 Power): Attacks the enemy with 2588 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 120 (+20 Power): Attacks the enemy with 2606 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 121 (+21 Power): Attacks the enemy with 2624 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 122 (+22 Power): Attacks the enemy with 2641 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 123 (+23 Power): Attacks the enemy with 2659 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 124 (+24 Power): Attacks the enemy with 2677 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 125 (+25 Power): Attacks the enemy with 2695 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 126 (+26 Power): Attacks the enemy with 2712 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 127 (+27 Power): Attacks the enemy with 2730 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 128 (+28 Power): Attacks the enemy with 2748 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 129 (+29 Power): Attacks the enemy with 2766 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 130 (+30 Power): Attacks the enemy with 2784 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Power: Increases Power. -->
+		<!-- Level 201 (+1 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 202 (+2 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 203 (+3 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 204 (+4 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 205 (+5 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 206 (+6 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 207 (+7 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 208 (+8 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 209 (+9 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 210 (+10 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 211 (+11 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 212 (+12 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 213 (+13 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 214 (+14 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 215 (+15 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 216 (+16 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 217 (+17 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 218 (+18 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 219 (+19 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 220 (+20 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 221 (+21 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 222 (+22 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 223 (+23 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 224 (+24 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 225 (+25 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 226 (+26 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 227 (+27 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 228 (+28 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 229 (+29 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 230 (+30 Cost): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 301 (+1 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 4 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 302 (+2 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 5 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 303 (+3 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 6 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 304 (+4 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 7 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 305 (+5 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 8 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 306 (+6 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 9 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 307 (+7 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 10 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 308 (+8 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 11 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 309 (+9 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 12 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 310 (+10 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 13 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 311 (+11 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 14 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 312 (+12 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 15 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 313 (+13 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 16 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 314 (+14 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 17 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 315 (+15 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 18 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 316 (+16 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 19 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 317 (+17 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 20 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 318 (+18 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 21 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 319 (+19 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 22 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 320 (+20 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 23 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 321 (+21 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 24 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 322 (+22 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 25 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 323 (+23 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 26 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 324 (+24 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 27 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 325 (+25 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 28 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 326 (+26 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 29 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 327 (+27 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 30 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 328 (+28 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 31 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 329 (+29 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 32 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 330 (+30 Time): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 33 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant Time: Increases duration. -->
+		<!-- Level 401 (+1 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 402 (+2 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 403 (+3 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 404 (+4 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 405 (+5 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 406 (+6 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 407 (+7 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 408 (+8 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 409 (+9 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 410 (+10 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 411 (+11 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 412 (+12 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 413 (+13 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 414 (+14 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 415 (+15 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 416 (+16 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 417 (+17 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 418 (+18 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 419 (+19 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 420 (+20 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 421 (+21 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 422 (+22 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 423 (+23 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 424 (+24 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 425 (+25 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 426 (+26 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 427 (+27 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 428 (+28 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 429 (+29 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 430 (+30 Chance): Attacks the enemy with 2192 Power added to P. Atk. and causes fear for 3 seconds. Requires a crossbow. Over-hit is possible. Consumes 5 Souls. Enchant chance: Increases the success rate. -->
 		<table name="#effectPoints">-337 -346 -356 -366 -375 -385 -395 -405 -415 -425 -435 -445 -455 -465 -474 -484 -494 -503 -513 -522 -532 -541 -550 -558 -567 -575 -583 -591 -599 -607 -614 -621 -627 -634 -640 -646 -651 -656 -661 -665</table>
 		<table name="#magicLevel">34 35 36 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74</table>
 		<table name="#mpConsume">48 49 51 52 54 56 56 58 59 61 63 65 66 68 70 72 72 74 76 78 80 81 83 85 87 88 89 91 92 94 96 97 99 100 102 103 105 106 108 109</table>
@@ -519,11 +814,11 @@
 			<using kind="CROSSBOW" />
 		</cond>
 		<for>
-			<effect name="PhysicalSoulAttack" />
+			<effect name="PhysicalSoulDamage" />
 			<effect name="Fear" />
 		</for>
 		<enchant4for>
-			<effect name="PhysicalSoulAttack" />
+			<effect name="PhysicalSoulDamage" />
 			<effect name="Fear" />
 		</enchant4for>
 	</skill>
@@ -899,7 +1194,7 @@
 		<set name="magicLevel" val="75" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="2" />
@@ -916,7 +1211,7 @@
 		<set name="magicLevel" val="75" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -932,7 +1227,7 @@
 		<set name="magicLevel" val="75" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="2" />
@@ -949,7 +1244,7 @@
 		<set name="magicLevel" val="75" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="2" />
@@ -966,7 +1261,7 @@
 		<set name="magicLevel" val="75" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -1357,7 +1652,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="671" levels="1" name="Transform Vale Master">
+	<skill id="671" levels="1" name="Transform Veil Master">
 		<!-- Transforms you into a Veil Master. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="1800" />
@@ -1475,7 +1770,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="676" levels="1" name="Divine Warrior Sonic Blaster">
@@ -1494,7 +1789,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="677" levels="1" name="Divine Warrior Transfixion of Earth">
@@ -1514,7 +1809,7 @@
 		<set name="reuseDelay" val="4000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="678" levels="1" name="Divine Warrior War Cry">
@@ -1638,7 +1933,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1668,7 +1963,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1748,7 +2043,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 			<effect name="TargetCancel">
 				<param chance="40" />
@@ -1772,7 +2067,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="688" levels="1" name="Divine Rogue Bleed Attack">
@@ -1801,7 +2096,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="139" />
 			</effect>
@@ -1882,7 +2177,7 @@
 			</effect>
 		</selfEffects>
 	</skill>
-	<skill id="692" levels="1" name="Divine Wizard Holy Flare">
+	<skill id="692" levels="1" name="Divine Wizard Divine Flare">
 		<!-- Attacks a contacted target with non-attribute attack. Temporarily decreases your M. Atk. during PvP. Power 102. -->
 		<set name="abnormalLevel" val="0" />
 		<set name="abnormalTime" val="3" />
@@ -1901,7 +2196,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 		<selfEffects>
 			<effect name="Buff">
@@ -1909,7 +2204,7 @@
 			</effect>
 		</selfEffects>
 	</skill>
-	<skill id="693" levels="1" name="Divine Wizard Holy Strike">
+	<skill id="693" levels="1" name="Divine Wizard Divine Strike">
 		<!-- Unleashes holy attack. Over-hit is possible. Power 128. -->
 		<set name="castRange" val="900" />
 		<set name="effectPoint" val="-844" />
@@ -1930,10 +2225,10 @@
 			<target race="UNDEAD" />
 		</cond>
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
-	<skill id="694" levels="1" name="Divine Wizard Holy Curtain">
+	<skill id="694" levels="1" name="Divine Wizard Divine Curtain">
 		<!-- Attack a large number of enemies with divine rainstorm. Power 64. -->
 		<set name="affectLimit" val="5-12" />
 		<set name="affectRange" val="100" />
@@ -1952,10 +2247,10 @@
 		<set name="reuseDelay" val="4000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
-	<skill id="695" levels="1" name="Divine Wizard Holy Cloud">
+	<skill id="695" levels="1" name="Divine Wizard Divine Cloud">
 		<!-- Instantly bring divine clouds making nearby enemies Sleep. Decrease probability of additional Sleep state while effects last. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="30" />
@@ -1987,7 +2282,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="696" levels="1" name="Divine Wizard Surrender to Holy">
+	<skill id="696" levels="1" name="Divine Wizard Surrender to Divine">
 		<!-- Instantly decrease Resistance to Holy, and increase Resistance to Dark. Effect 3. -->
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="30" />

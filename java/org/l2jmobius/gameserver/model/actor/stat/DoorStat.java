@@ -33,7 +33,7 @@ public class DoorStat extends CreatureStat
 	@Override
 	public Door getActiveChar()
 	{
-		return (Door) super.getActiveChar();
+		return super.getActiveChar().asDoor();
 	}
 	
 	@Override

@@ -54,7 +54,7 @@ public class FocusSouls extends AbstractEffect
 			return;
 		}
 		
-		final Player target = effected.getActingPlayer();
+		final Player target = effected.asPlayer();
 		final int maxSouls = (int) target.calcStat(Stat.MAX_SOULS, 0, null, null);
 		if (maxSouls > 0)
 		{

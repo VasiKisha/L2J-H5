@@ -40,6 +40,6 @@ public class RequestExChangeName extends ClientPacket
 	@Override
 	protected void runImpl()
 	{
-		PacketLogger.info("Recieved [C]RequestExChangeName name: " + _newName + " type: " + _type + " CharSlot: " + _charSlot);
+		PacketLogger.info("Recieved " + getClass().getSimpleName() + " name: " + _newName + " type: " + _type + " CharSlot: " + _charSlot);
 	}
 }

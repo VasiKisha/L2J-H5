@@ -18,6 +18,7 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -48,8 +49,9 @@ public class VitalityPointUp extends AbstractEffect
 	{
 		if ((effected != null) && effected.isPlayer())
 		{
-			effected.getActingPlayer().updateVitalityPoints(_value, false, false);
-			effected.getActingPlayer().updateUserInfo();
+			final Player player = effected.asPlayer();
+			player.updateVitalityPoints(_value, false, false);
+			player.updateUserInfo();
 		}
 	}
 }

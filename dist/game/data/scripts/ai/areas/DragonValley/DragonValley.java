@@ -20,7 +20,7 @@ import java.util.EnumMap;
 
 import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.model.actor.Attackable;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -186,7 +186,7 @@ public class DragonValley extends AbstractNpcAI
 		{
 			spawnGhost(npc, killer, isSummon, 20);
 		}
-		else if (((Attackable) npc).isSpoiled())
+		else if (npc.asAttackable().isSpoiled())
 		{
 			npc.dropItem(killer, getRandom(GREATER_HERB_OF_MANA, SUPERIOR_HERB_OF_MANA), 1);
 			manageMoraleBoost(killer, npc);
@@ -197,7 +197,7 @@ public class DragonValley extends AbstractNpcAI
 	@Override
 	public String onSpawn(Npc npc)
 	{
-		((Attackable) npc).setOnKillDelay(0);
+		npc.asAttackable().setOnKillDelay(0);
 		if (npc.getId() == EXPLODING_ORC_GHOST)
 		{
 			startQuestTimer("SELF_DESTRUCTION", 3000, npc, null);
@@ -223,9 +223,10 @@ public class DragonValley extends AbstractNpcAI
 	{
 		double points = 0;
 		int moraleBoostLv = 0;
-		if (player.isInParty() && (player.getParty().getMemberCount() >= MIN_MEMBERS) && (npc != null))
+		final Party party = player.getParty();
+		if ((party != null) && (party.getMemberCount() >= MIN_MEMBERS) && (npc != null))
 		{
-			for (Player member : player.getParty().getMembers())
+			for (Player member : party.getMembers())
 			{
 				if ((member.getLevel() >= MIN_LEVEL) && (member.getClassId().level() >= CLASS_LEVEL) && (npc.calculateDistance3D(member) < MIN_DISTANCE))
 				{
@@ -246,7 +247,7 @@ public class DragonValley extends AbstractNpcAI
 				moraleBoostLv = 1;
 			}
 			
-			for (Player member : player.getParty().getMembers())
+			for (Player member : party.getMembers())
 			{
 				if (npc.calculateDistance3D(member) < MIN_DISTANCE)
 				{

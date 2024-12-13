@@ -16,7 +16,6 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -105,12 +104,12 @@ public class EmeraldHorn extends AbstractNpcAI
 		{
 			if (!npc.getVariables().getBoolean(HIGH_DAMAGE_FLAG, false))
 			{
-				final Creature mostHated = ((Attackable) npc).getMostHated();
+				final Creature mostHated = npc.asAttackable().getMostHated();
 				if (mostHated != null)
 				{
 					if (mostHated.isDead())
 					{
-						((Attackable) npc).stopHating(mostHated);
+						npc.asAttackable().stopHating(mostHated);
 					}
 					else
 					{

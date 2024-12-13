@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.util;
 
@@ -52,6 +56,7 @@ public class Broadcast
 	 */
 	public static void toPlayersTargettingMyself(Creature creature, ServerPacket packet)
 	{
+		packet.sendInBroadcast();
 		World.getInstance().forEachVisibleObject(creature, Player.class, player ->
 		{
 			if (player.getTarget() == creature)
@@ -74,6 +79,7 @@ public class Broadcast
 	 */
 	public static void toKnownPlayers(Creature creature, ServerPacket packet)
 	{
+		packet.sendInBroadcast();
 		World.getInstance().forEachVisibleObject(creature, Player.class, player ->
 		{
 			try
@@ -81,17 +87,18 @@ public class Broadcast
 				player.sendPacket(packet);
 				if ((packet instanceof CharInfo) && creature.isPlayer())
 				{
-					final int relation = ((Player) creature).getRelation(player);
-					final boolean isAutoAttackable = creature.isAutoAttackable(player);
-					final RelationCache cache = creature.getKnownRelations().get(player.getObjectId());
+					final Player broadcaster = creature.asPlayer();
+					final int relation = broadcaster.getRelation(player);
+					final boolean isAutoAttackable = broadcaster.isAutoAttackable(player);
+					final RelationCache cache = broadcaster.getKnownRelations().get(player.getObjectId());
 					if ((cache == null) || (cache.getRelation() != relation) || (cache.isAutoAttackable() != isAutoAttackable))
 					{
-						player.sendPacket(new RelationChanged((Player) creature, relation, isAutoAttackable));
-						if (creature.hasSummon())
+						player.sendPacket(new RelationChanged(broadcaster, relation, isAutoAttackable));
+						if (broadcaster.hasSummon())
 						{
-							player.sendPacket(new RelationChanged(creature.getSummon(), relation, isAutoAttackable));
+							player.sendPacket(new RelationChanged(broadcaster.getSummon(), relation, isAutoAttackable));
 						}
-						creature.getKnownRelations().put(player.getObjectId(), new RelationCache(relation, isAutoAttackable));
+						broadcaster.getKnownRelations().put(player.getObjectId(), new RelationCache(relation, isAutoAttackable));
 					}
 				}
 			}
@@ -122,6 +129,7 @@ public class Broadcast
 			radius = 1500;
 		}
 		
+		packet.sendInBroadcast();
 		World.getInstance().forEachVisibleObjectInRange(creature, Player.class, radius, player -> player.sendPacket(packet));
 	}
 	
@@ -137,6 +145,7 @@ public class Broadcast
 	 */
 	public static void toSelfAndKnownPlayers(Creature creature, ServerPacket packet)
 	{
+		packet.sendInBroadcast();
 		if (creature.isPlayer())
 		{
 			creature.sendPacket(packet);
@@ -154,6 +163,7 @@ public class Broadcast
 			radius = 600;
 		}
 		
+		packet.sendInBroadcast();
 		if (creature.isPlayer())
 		{
 			creature.sendPacket(packet);
@@ -173,6 +183,7 @@ public class Broadcast
 	 */
 	public static void toAllOnlinePlayers(ServerPacket packet)
 	{
+		packet.sendInBroadcast();
 		for (Player player : World.getInstance().getPlayers())
 		{
 			if (player.isOnline())
@@ -216,6 +227,11 @@ public class Broadcast
 	 */
 	public static <T extends ZoneType> void toAllPlayersInZoneType(Class<T> zoneType, ServerPacket... packets)
 	{
+		for (ServerPacket packet : packets)
+		{
+			packet.sendInBroadcast();
+		}
+		
 		for (ZoneType zone : ZoneManager.getInstance().getAllZones(zoneType))
 		{
 			for (Creature creature : zone.getCharactersInside())

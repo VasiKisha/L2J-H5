@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.ai;
 
@@ -37,7 +41,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	private static final int AVOID_RADIUS = 70;
 	
 	private volatile boolean _thinking; // to prevent recursive thinking
-	private volatile boolean _startFollow = ((Summon) _actor).getFollowStatus();
+	private volatile boolean _startFollow = _actor.asSummon().getFollowStatus();
 	private Creature _lastAttack = null;
 	
 	private volatile boolean _startAvoid = false;
@@ -72,7 +76,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	{
 		if (_startFollow)
 		{
-			setIntention(AI_INTENTION_FOLLOW, ((Summon) _actor).getOwner());
+			setIntention(AI_INTENTION_FOLLOW, _actor.asSummon().getOwner());
 		}
 		else
 		{
@@ -132,7 +136,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		}
 		
 		clientStopMoving(null);
-		final Summon summon = (Summon) _actor;
+		final Summon summon = _actor.asSummon();
 		summon.setFollowStatus(false);
 		setIntention(AI_INTENTION_IDLE);
 		_startFollow = val;
@@ -147,7 +151,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		}
 		
 		setIntention(AI_INTENTION_IDLE);
-		((Summon) _actor).doPickupItem(getTarget());
+		_actor.asSummon().doPickupItem(getTarget());
 	}
 	
 	private void thinkInteract()
@@ -207,7 +211,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	{
 		if (_lastAttack == null)
 		{
-			((Summon) _actor).setFollowStatus(_startFollow);
+			_actor.asSummon().setFollowStatus(_startFollow);
 		}
 		else
 		{
@@ -235,7 +239,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	private void avoidAttack(Creature attacker)
 	{
 		// trying to avoid if summon near owner
-		if ((((Summon) _actor).getOwner() != null) && (((Summon) _actor).getOwner() != attacker) && ((Summon) _actor).getOwner().isInsideRadius3D(_actor, 2 * AVOID_RADIUS))
+		if ((_actor.asSummon().getOwner() != null) && (_actor.asSummon().getOwner() != attacker) && _actor.asSummon().getOwner().isInsideRadius3D(_actor, 2 * AVOID_RADIUS))
 		{
 			_startAvoid = true;
 		}
@@ -253,8 +257,8 @@ public class SummonAI extends PlayableAI implements Runnable
 		{
 			return;
 		}
-		final int ownerX = ((Summon) _actor).getOwner().getX();
-		final int ownerY = ((Summon) _actor).getOwner().getY();
+		final int ownerX = _actor.asSummon().getOwner().getX();
+		final int ownerY = _actor.asSummon().getOwner().getY();
 		final double angle = Math.toRadians(Rnd.get(-90, 90)) + Math.atan2(ownerY - _actor.getY(), ownerX - _actor.getX());
 		final int targetX = ownerX + (int) (AVOID_RADIUS * Math.cos(angle));
 		final int targetY = ownerY + (int) (AVOID_RADIUS * Math.sin(angle));
@@ -275,7 +279,7 @@ public class SummonAI extends PlayableAI implements Runnable
 			case AI_INTENTION_MOVE_TO:
 			case AI_INTENTION_PICK_UP:
 			{
-				((Summon) _actor).setFollowStatus(_startFollow);
+				_actor.asSummon().setFollowStatus(_startFollow);
 			}
 		}
 	}

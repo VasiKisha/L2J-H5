@@ -38,7 +38,7 @@ public class Ground implements ITargetTypeHandler
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
 		final List<WorldObject> targetList = new LinkedList<>();
-		final Player player = (Player) creature;
+		final Player player = creature.asPlayer();
 		final int maxTargets = skill.getAffectLimit();
 		final boolean srcInArena = (creature.isInsideZone(ZoneId.PVP) && !creature.isInsideZone(ZoneId.SIEGE));
 		World.getInstance().forEachVisibleObject(creature, Creature.class, character ->

@@ -75,12 +75,12 @@ public class Message
 		_content = rset.getString("content");
 		_expiration = rset.getLong("expiration");
 		_reqAdena = rset.getLong("reqAdena");
-		_hasAttachments = rset.getBoolean("hasAttachments");
-		_unread = rset.getBoolean("isUnread");
-		_deletedBySender = rset.getBoolean("isDeletedBySender");
-		_deletedByReceiver = rset.getBoolean("isDeletedByReceiver");
+		_hasAttachments = Boolean.parseBoolean(rset.getString("hasAttachments"));
+		_unread = Boolean.parseBoolean(rset.getString("isUnread"));
+		_deletedBySender = Boolean.parseBoolean(rset.getString("isDeletedBySender"));
+		_deletedByReceiver = Boolean.parseBoolean(rset.getString("isDeletedByReceiver"));
 		_sendBySystem = rset.getInt("sendBySystem");
-		_returned = rset.getBoolean("isReturned");
+		_returned = Boolean.parseBoolean(rset.getString("isReturned"));
 	}
 	
 	/*

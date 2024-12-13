@@ -162,14 +162,15 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 			world.setParameter("storeTime", System.currentTimeMillis());
 			
 			final List<Player> playersInside = new ArrayList<>();
-			if (!player.isInParty())
+			final Party party = player.getParty();
+			if (party == null)
 			{
 				playersInside.add(player);
 				managePlayerEnter(player, world);
 			}
-			else if (player.getParty().isInCommandChannel())
+			else if (party.isInCommandChannel())
 			{
-				for (Player member : player.getParty().getCommandChannel().getMembers())
+				for (Player member : party.getCommandChannel().getMembers())
 				{
 					playersInside.add(member);
 					managePlayerEnter(member, world);
@@ -177,7 +178,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 			}
 			else
 			{
-				for (Player member : player.getParty().getMembers())
+				for (Player member : party.getMembers())
 				{
 					playersInside.add(member);
 					managePlayerEnter(member, world);
@@ -260,13 +261,14 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 		{
 			sm.addPcName(member);
 			
-			if (player.getParty().isInCommandChannel())
+			final Party party = player.getParty();
+			if (party.isInCommandChannel())
 			{
-				player.getParty().getCommandChannel().broadcastPacket(sm);
+				party.getCommandChannel().broadcastPacket(sm);
 			}
 			else
 			{
-				player.getParty().broadcastPacket(sm);
+				party.broadcastPacket(sm);
 			}
 		}
 		else
@@ -478,11 +480,11 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 	{
 		if ((player != null) && (npcId != ZAKEN_60) && (npcId != ZAKEN_83))
 		{
-			final Attackable mob = (Attackable) addSpawn(npcId, ROOM_DATA[roomId - 1][0] + getRandom(350), ROOM_DATA[roomId - 1][1] + getRandom(350), ROOM_DATA[roomId - 1][2], 0, false, 0, false, world.getInstanceId());
+			final Attackable mob = addSpawn(npcId, ROOM_DATA[roomId - 1][0] + getRandom(350), ROOM_DATA[roomId - 1][1] + getRandom(350), ROOM_DATA[roomId - 1][2], 0, false, 0, false, world.getInstanceId()).asAttackable();
 			addAttackDesire(mob, player);
 			return mob;
 		}
-		return (Attackable) addSpawn(npcId, ROOM_DATA[roomId - 1][0], ROOM_DATA[roomId - 1][1], ROOM_DATA[roomId - 1][2], 0, false, 0, false, world.getInstanceId());
+		return addSpawn(npcId, ROOM_DATA[roomId - 1][0], ROOM_DATA[roomId - 1][1], ROOM_DATA[roomId - 1][2], 0, false, 0, false, world.getInstanceId()).asAttackable();
 	}
 	
 	private void manageNpcSpawn(InstanceWorld world)

@@ -53,7 +53,7 @@ public class FuncHenna extends AbstractFunction
 		// Should not apply henna bonus to summons.
 		if (effector.isPlayer())
 		{
-			final Player pc = effector.getActingPlayer();
+			final Player pc = effector.asPlayer();
 			switch (getStat())
 			{
 				case STAT_STR:

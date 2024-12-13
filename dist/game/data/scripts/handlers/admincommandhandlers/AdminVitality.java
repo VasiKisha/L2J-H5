@@ -60,7 +60,7 @@ public class AdminVitality implements IAdminCommandHandler
 		if ((activeChar.getTarget() != null) && activeChar.getTarget().isPlayer())
 		{
 			Player target;
-			target = (Player) activeChar.getTarget();
+			target = activeChar.getTarget().asPlayer();
 			if (cmd.equals("admin_set_vitality"))
 			{
 				try

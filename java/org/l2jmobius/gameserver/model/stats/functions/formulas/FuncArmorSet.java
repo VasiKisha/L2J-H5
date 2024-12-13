@@ -56,7 +56,7 @@ public class FuncArmorSet extends AbstractFunction
 		// Should not apply armor set bonus to summons.
 		if (effector.isPlayer())
 		{
-			final Player player = effector.getActingPlayer();
+			final Player player = effector.asPlayer();
 			final Item chest = player.getChestArmorInstance();
 			if (chest != null)
 			{

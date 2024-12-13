@@ -42,7 +42,7 @@ public class EnableCloak extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getActingPlayer().getStat().setCloakSlotStatus(true);
+		effected.asPlayer().getStat().setCloakSlotStatus(true);
 	}
 	
 	@Override
@@ -54,6 +54,6 @@ public class EnableCloak extends AbstractEffect
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getActingPlayer().getStat().setCloakSlotStatus(false);
+		effected.asPlayer().getStat().setCloakSlotStatus(false);
 	}
 }

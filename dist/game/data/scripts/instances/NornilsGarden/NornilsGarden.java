@@ -444,7 +444,7 @@ public class NornilsGarden extends AbstractInstance
 	@Override
 	public String onEnterZone(Creature creature, ZoneType zone)
 	{
-		if (creature.isPlayer() && !creature.isDead() && !creature.isTeleporting() && ((Player) creature).isOnline())
+		if (creature.isPlayer() && !creature.isDead() && !creature.isTeleporting() && creature.asPlayer().isOnline())
 		{
 			final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(creature);
 			if (tmpworld instanceof NornilsWorld)

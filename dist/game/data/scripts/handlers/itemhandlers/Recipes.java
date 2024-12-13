@@ -46,7 +46,7 @@ public class Recipes implements IItemHandler
 			return false;
 		}
 		
-		final Player player = playable.getActingPlayer();
+		final Player player = playable.asPlayer();
 		if (player.isCrafting())
 		{
 			player.sendPacket(SystemMessageId.YOU_MAY_NOT_ALTER_YOUR_RECIPE_BOOK_WHILE_ENGAGED_IN_MANUFACTURING);

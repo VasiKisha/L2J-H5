@@ -112,7 +112,7 @@ public class Keltas extends AbstractNpcAI
 	{
 		for (Location loc : ENFORCER_SPAWN_POINTS)
 		{
-			final Monster minion = (Monster) addSpawn(ENFORCER, loc, false, 0, false);
+			final Monster minion = addSpawn(ENFORCER, loc, false, 0, false).asMonster();
 			final Spawn spawn = minion.getSpawn();
 			spawn.setRespawnDelay(60);
 			spawn.setAmount(1);
@@ -122,7 +122,7 @@ public class Keltas extends AbstractNpcAI
 		
 		for (Location loc : EXECUTIONER_SPAWN_POINTS)
 		{
-			final Monster minion = (Monster) addSpawn(EXECUTIONER, loc, false, 0, false);
+			final Monster minion = addSpawn(EXECUTIONER, loc, false, 0, false).asMonster();
 			final Spawn spawn = minion.getSpawn();
 			spawn.setRespawnDelay(80);
 			spawn.setAmount(1);
@@ -178,7 +178,7 @@ public class Keltas extends AbstractNpcAI
 	@Override
 	public String onSpawn(Npc npc)
 	{
-		_spawnedKeltas = (Monster) npc;
+		_spawnedKeltas = npc.asMonster();
 		_spawnedKeltas.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.GUYS_SHOW_THEM_OUR_POWER);
 		spawnMinions();
 		startQuestTimer("despawn", 1800000, null, null);

@@ -39,7 +39,7 @@ public class GlobalVariablesManager extends AbstractVariables
 	// SQL Queries.
 	private static final String SELECT_QUERY = "SELECT * FROM global_variables";
 	private static final String DELETE_QUERY = "DELETE FROM global_variables";
-	private static final String INSERT_QUERY = "INSERT INTO global_variables (var, value) VALUES (?, ?)";
+	private static final String INSERT_QUERY = "REPLACE INTO global_variables (var, value) VALUES (?, ?)";
 	
 	protected GlobalVariablesManager()
 	{

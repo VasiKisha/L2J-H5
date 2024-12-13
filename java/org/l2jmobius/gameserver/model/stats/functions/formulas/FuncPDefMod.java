@@ -47,7 +47,7 @@ public class FuncPDefMod extends AbstractFunction
 		double value = initVal;
 		if (effector.isPlayer())
 		{
-			final Player p = effector.getActingPlayer();
+			final Player p = effector.asPlayer();
 			if (!p.getInventory().isPaperdollSlotEmpty(Inventory.PAPERDOLL_CHEST))
 			{
 				value -= p.isTransformed() ? p.getTransformation().getBaseDefBySlot(p, Inventory.PAPERDOLL_CHEST) : p.getTemplate().getBaseDefBySlot(Inventory.PAPERDOLL_CHEST);

@@ -40,7 +40,7 @@ public class ConditionPlayerCanTakeCastle extends Condition
 			return false;
 		}
 		
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if (player.isAlikeDead() || player.isCursedWeaponEquipped() || !player.isClanLeader())
 		{
 			return false;
@@ -65,6 +65,7 @@ public class ConditionPlayerCanTakeCastle extends Condition
 			player.sendPacket(SystemMessageId.THE_DISTANCE_IS_TOO_FAR_AND_SO_THE_CASTING_HAS_BEEN_STOPPED);
 			return false;
 		}
+		
 		castle.getSiege().announceToPlayer(new SystemMessage(SystemMessageId.THE_OPPOSING_CLAN_HAS_STARTED_TO_ENGRAVE_THE_HOLY_ARTIFACT), false);
 		return true;
 	}

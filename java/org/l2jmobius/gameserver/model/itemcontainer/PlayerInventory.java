@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.itemcontainer;
 
@@ -547,7 +551,7 @@ public class PlayerInventory extends Inventory
 	 * Destroy item from inventory and checks _adena and _ancientAdena
 	 * @param process : String Identifier of process triggering this action
 	 * @param item : Item to be destroyed
-	 * @param actor : Player Player requesting the item destroy
+	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
@@ -561,7 +565,7 @@ public class PlayerInventory extends Inventory
 	 * Destroy item from inventory and checks _adena and _ancientAdena
 	 * @param process : String Identifier of process triggering this action
 	 * @param item : Item to be destroyed
-	 * @param actor : Player Player requesting the item destroy
+	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
@@ -594,7 +598,7 @@ public class PlayerInventory extends Inventory
 	 * @param process : String Identifier of process triggering this action
 	 * @param objectId : int Item Instance identifier of the item to be destroyed
 	 * @param count : int Quantity of items to be destroyed
-	 * @param actor : Player Player requesting the item destroy
+	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
@@ -610,7 +614,7 @@ public class PlayerInventory extends Inventory
 	 * @param process : String Identifier of process triggering this action
 	 * @param itemId : int Item identifier of the item to be destroyed
 	 * @param count : int Quantity of items to be destroyed
-	 * @param actor : Player Player requesting the item destroy
+	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
@@ -836,7 +840,9 @@ public class PlayerInventory extends Inventory
 					}
 					else
 					{
-						paperdoll[slot][1] = invdata.getInt("item_id");
+						final int itemId = invdata.getInt("item_id");
+						final ItemTemplate template = ItemData.getInstance().getTemplate(itemId);
+						paperdoll[slot][1] = template == null ? itemId : template.getDisplayId();
 					}
 					paperdoll[slot][2] = invdata.getInt("enchant_level");
 				}

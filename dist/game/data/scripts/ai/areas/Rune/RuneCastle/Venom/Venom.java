@@ -25,7 +25,6 @@ import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.instancemanager.CastleManager;
 import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.impl.sieges.castle.OnCastleSiegeFinish;
@@ -236,13 +235,13 @@ public class Venom extends AbstractNpcAI
 			case 4995:
 			{
 				teleportTarget(player);
-				((Attackable) npc).stopHating(player);
+				npc.asAttackable().stopHating(player);
 				break;
 			}
 			case 4996:
 			{
 				teleportTarget(player);
-				((Attackable) npc).stopHating(player);
+				npc.asAttackable().stopHating(player);
 				if ((_targets != null) && !_targets.isEmpty())
 				{
 					for (Player target : _targets)
@@ -254,7 +253,7 @@ public class Venom extends AbstractNpcAI
 						if (((x * x) + (y * y) + (z * z)) <= (range * range))
 						{
 							teleportTarget(target);
-							((Attackable) npc).stopHating(target);
+							npc.asAttackable().stopHating(target);
 						}
 					}
 					_targets.clear();
@@ -283,7 +282,7 @@ public class Venom extends AbstractNpcAI
 				_venom.disableSkill(RANGE_TELEPORT.getSkill(), -1);
 				_venom.doRevive();
 				npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.WHO_DARES_TO_COVET_THE_THRONE_OF_OUR_CASTLE_LEAVE_IMMEDIATELY_OR_YOU_WILL_PAY_THE_PRICE_OF_YOUR_AUDACITY_WITH_YOUR_VERY_OWN_BLOOD);
-				((Attackable) _venom).setCanReturnToSpawnPoint(false);
+				_venom.asAttackable().setCanReturnToSpawnPoint(false);
 				if (checkStatus() == DEAD)
 				{
 					_venom.deleteMe();

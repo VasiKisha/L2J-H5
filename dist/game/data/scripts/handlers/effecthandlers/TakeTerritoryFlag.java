@@ -22,6 +22,7 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -48,7 +49,7 @@ public class TakeTerritoryFlag extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if (!player.isClanLeader())
 		{
 			return;
@@ -58,11 +59,12 @@ public class TakeTerritoryFlag extends AbstractEffect
 		{
 			// Spawn a new flag.
 			final SiegeFlag flag = new SiegeFlag(player, NpcData.getInstance().getTemplate(FLAG_NPC_ID), false, false);
-			flag.setTitle(player.getClan().getName());
+			final Clan clan = player.getClan();
+			flag.setTitle(clan.getName());
 			flag.setCurrentHpMp(flag.getMaxHp(), flag.getMaxMp());
 			flag.setHeading(player.getHeading());
 			flag.spawnMe(player.getX(), player.getY(), player.getZ() + 50);
-			TerritoryWarManager.getInstance().addClanFlag(player.getClan(), flag);
+			TerritoryWarManager.getInstance().addClanFlag(clan, flag);
 		}
 	}
 }

@@ -53,7 +53,7 @@ public class CpDamPercent extends AbstractEffect
 			return;
 		}
 		
-		if (effected.isPlayer() && effected.getActingPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
+		if (effected.isPlayer() && effected.asPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
 		{
 			effected.stopFakeDeath(true);
 		}

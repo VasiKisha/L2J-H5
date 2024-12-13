@@ -19,6 +19,7 @@ package ai.bosses.Sailren;
 import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
 import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -94,7 +95,8 @@ public class Sailren extends AbstractNpcAI
 			case "enter":
 			{
 				String htmltext = null;
-				if (!player.isInParty())
+				final Party party = player.getParty();
+				if (party == null)
 				{
 					htmltext = "32109-01.html";
 				}
@@ -106,7 +108,7 @@ public class Sailren extends AbstractNpcAI
 				{
 					htmltext = "32109-05.html";
 				}
-				else if (!player.getParty().isLeader(player))
+				else if (!party.isLeader(player))
 				{
 					htmltext = "32109-03.html";
 				}
@@ -119,7 +121,7 @@ public class Sailren extends AbstractNpcAI
 					takeItems(player, GAZKH, 1);
 					STATUS = Status.IN_FIGHT;
 					_lastAttack = System.currentTimeMillis();
-					for (Player member : player.getParty().getMembers())
+					for (Player member : party.getMembers())
 					{
 						if (member.isInsideRadius3D(npc, 1000))
 						{

@@ -359,14 +359,15 @@ public class UrbanArea extends AbstractInstance
 	{
 		if (firstEntrance)
 		{
-			if (player.getParty() == null)
+			final Party party = player.getParty();
+			if (party == null)
 			{
 				teleportPlayer(player, ENTRY_POINT, world.getInstanceId());
 				world.addAllowed(player);
 			}
 			else
 			{
-				for (Player partyMember : player.getParty().getMembers())
+				for (Player partyMember : party.getMembers())
 				{
 					teleportPlayer(partyMember, ENTRY_POINT, world.getInstanceId());
 					world.addAllowed(partyMember);

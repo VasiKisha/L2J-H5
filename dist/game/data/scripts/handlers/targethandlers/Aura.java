@@ -46,7 +46,7 @@ public class Aura implements ITargetTypeHandler
 				// Stealth door targeting.
 				if (obj.isDoor())
 				{
-					final Door door = (Door) obj;
+					final Door door = obj.asDoor();
 					if (!door.getTemplate().isStealth())
 					{
 						continue;

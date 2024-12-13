@@ -50,7 +50,7 @@ public class TakeFortStart extends AbstractEffect
 	{
 		if (effector.isPlayer())
 		{
-			final Player player = effector.getActingPlayer();
+			final Player player = effector.asPlayer();
 			final Fort fort = FortManager.getInstance().getFort(player);
 			final Clan clan = player.getClan();
 			if ((fort != null) && (clan != null))

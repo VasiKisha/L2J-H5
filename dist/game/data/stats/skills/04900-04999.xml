@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="4900" levels="1" name="Raid Boss - Level 78">
 		<!-- Created by the dark side of the God of Light, Einhasad, to punish the arrogance of the Giant Argos, this giant Monster Eye is set in the Wall of Argos. It controls other monster eyes in order to eradicate the eyes of Argos and thwart his plans. -->
@@ -372,7 +372,7 @@
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="4953" levels="1" name="Raid Boss - Level 61">
-		<!-- This capricious Queen of All the Fairies has ruled the Enchanted Forest for thousands of years. She fears the gradual weakening of the Seal of Shilen . -->
+		<!-- This capricious Queen of All the Fairies has ruled the Enchanted Forest for thousands of years. She fears the gradual weakening of the Seal of Shilen. -->
 		<set name="icon" val="icon.skillraid" />
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="P" />
@@ -671,7 +671,7 @@
 		<set name="power" val="57742" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4994" levels="1" name="Venom - Sonic Storm">
@@ -687,7 +687,7 @@
 		<set name="reuseDelay" val="20000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4995" levels="1" name="Venom - Teleport">

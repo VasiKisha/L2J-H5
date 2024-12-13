@@ -39,7 +39,7 @@ public class PeaceZone extends ZoneType
 	{
 		if (creature.isPlayer())
 		{
-			final Player player = creature.getActingPlayer();
+			final Player player = creature.asPlayer();
 			if (player.isCombatFlagEquipped() && TerritoryWarManager.getInstance().isTWInProgress())
 			{
 				TerritoryWarManager.getInstance().dropCombatFlag(player, false, true);

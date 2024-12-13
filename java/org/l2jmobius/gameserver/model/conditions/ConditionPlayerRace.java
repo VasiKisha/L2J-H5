@@ -47,6 +47,7 @@ public class ConditionPlayerRace extends Condition
 		{
 			return false;
 		}
-		return _races.contains(effector.getActingPlayer().getRace());
+		
+		return _races.contains(effector.asPlayer().getRace());
 	}
 }

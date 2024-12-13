@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="2300" levels="1" name="Hair Style Change Potion">
 		<set name="hitTime" val="500" />
@@ -91,7 +91,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="2306" levels="3" name="Primeval Crystals">
+	<skill id="2306" levels="3" name="Blue Primeval Crystal">
 		<table name="#amount">50000 100000 200000</table>
 		<table name="#itemConsumeId">8954 8955 8956</table>
 		<set name="hitTime" val="200" />
@@ -599,7 +599,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="2333" levels="4" name="Divine Stone">
+	<skill id="2333" levels="4" name="Holy Stone">
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -696,7 +696,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="2340" levels="1" name="Unholy Resist Potion">
+	<skill id="2340" levels="1" name="Dark Resist Potion">
 		<!-- Increases the Resistance to dark element. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="600" />

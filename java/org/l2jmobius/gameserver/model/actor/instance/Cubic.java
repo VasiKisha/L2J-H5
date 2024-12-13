@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
@@ -33,6 +37,7 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.tasks.cubics.CubicAction;
 import org.l2jmobius.gameserver.model.actor.tasks.cubics.CubicDisappear;
 import org.l2jmobius.gameserver.model.actor.tasks.cubics.CubicHeal;
@@ -289,13 +294,10 @@ public class Cubic implements IIdentifiable
 			// Custom event targeting
 			if (_owner.isOnEvent())
 			{
-				if (ownerTarget.getActingPlayer() != null)
+				final Player target = ownerTarget.asPlayer();
+				if ((target != null) && ((_owner.getTeam() != target.getTeam()) || _owner.isOnSoloEvent()) && !(target.isDead()))
 				{
-					final Player target = ownerTarget.getActingPlayer();
-					if (((_owner.getTeam() != target.getTeam()) || _owner.isOnSoloEvent()) && !(target.isDead()))
-					{
-						_target = (Creature) ownerTarget;
-					}
+					_target = ownerTarget.asCreature();
 				}
 				return;
 			}
@@ -353,7 +355,7 @@ public class Cubic implements IIdentifiable
 					{
 						if (partyEnemy.getMembers().contains(ownerTarget))
 						{
-							_target = (Creature) ownerTarget;
+							_target = ownerTarget.asCreature();
 						}
 						return;
 					}
@@ -376,10 +378,10 @@ public class Cubic implements IIdentifiable
 			{
 				if (_owner.isOlympiadStart() && ownerTarget.isPlayable())
 				{
-					final Player targetPlayer = ownerTarget.getActingPlayer();
+					final Player targetPlayer = ownerTarget.asPlayer();
 					if ((targetPlayer != null) && (targetPlayer.getOlympiadGameId() == _owner.getOlympiadGameId()) && (targetPlayer.getOlympiadSide() != _owner.getOlympiadSide()))
 					{
-						_target = (Creature) ownerTarget;
+						_target = ownerTarget.asCreature();
 					}
 				}
 				return;
@@ -390,15 +392,15 @@ public class Cubic implements IIdentifiable
 				// target mob which has aggro on you or your summon
 				if (ownerTarget.isAttackable())
 				{
-					final Attackable attackable = (Attackable) ownerTarget;
+					final Attackable attackable = ownerTarget.asAttackable();
 					if (attackable.isInAggroList(_owner) && !attackable.isDead())
 					{
-						_target = (Creature) ownerTarget;
+						_target = ownerTarget.asCreature();
 						return;
 					}
 					if (_owner.hasSummon() && attackable.isInAggroList(_owner.getSummon()) && !attackable.isDead())
 					{
-						_target = (Creature) ownerTarget;
+						_target = ownerTarget.asCreature();
 						return;
 					}
 				}
@@ -407,9 +409,9 @@ public class Cubic implements IIdentifiable
 				Player enemy = null;
 				if (((_owner.getPvpFlag() > 0) && !_owner.isInsideZone(ZoneId.PEACE)) || _owner.isInsideZone(ZoneId.PVP))
 				{
-					if (!((Creature) ownerTarget).isDead())
+					if (!ownerTarget.asCreature().isDead())
 					{
-						enemy = ownerTarget.getActingPlayer();
+						enemy = ownerTarget.asPlayer();
 					}
 					
 					if (enemy != null)
@@ -492,9 +494,13 @@ public class Cubic implements IIdentifiable
 			skill.applyEffects(_owner, target, false, false, true, 0);
 			
 			// If this is a bad skill notify the duel manager, so it can be removed after the duel (player & target must be in the same duel).
-			if (target.isPlayer() && target.getActingPlayer().isInDuel() && skill.isBad() && (_owner.getDuelId() == target.getActingPlayer().getDuelId()))
+			if (target.isPlayer())
 			{
-				DuelManager.getInstance().onBuff(target.getActingPlayer(), skill);
+				final Player player = target.asPlayer();
+				if (player.isInDuel() && skill.isBad() && (_owner.getDuelId() == player.getDuelId()))
+				{
+					DuelManager.getInstance().onBuff(player, skill);
+				}
 			}
 		}
 	}
@@ -601,9 +607,13 @@ public class Cubic implements IIdentifiable
 				skill.applyEffects(_owner, target, false, false, true, 0);
 				
 				// If this is a bad skill notify the duel manager, so it can be removed after the duel (player & target must be in the same duel).
-				if (target.isPlayer() && target.getActingPlayer().isInDuel() && skill.isBad() && (_owner.getDuelId() == target.getActingPlayer().getDuelId()))
+				if (target.isPlayer())
 				{
-					DuelManager.getInstance().onBuff(target.getActingPlayer(), skill);
+					final Player player = target.asPlayer();
+					if (player.isInDuel() && skill.isBad() && (_owner.getDuelId() == player.getDuelId()))
+					{
+						DuelManager.getInstance().onBuff(player, skill);
+					}
 				}
 			}
 			
@@ -668,24 +678,30 @@ public class Cubic implements IIdentifiable
 					percentleft = (partyMember.getCurrentHp() / partyMember.getMaxHp());
 					target = partyMember;
 				}
-				if (partyMember.getSummon() != null)
+				
+				final Player player = partyMember.asPlayer();
+				if (player != null)
 				{
-					if (partyMember.getSummon().isDead())
+					final Summon summon = player.getSummon();
+					if (summon != null)
 					{
-						continue;
-					}
-					
-					// If party member's pet not dead, check if it is in cast range of heal cubic.
-					if (!isInCubicRange(_owner, partyMember.getSummon()))
-					{
-						continue;
-					}
-					
-					// member's pet is in cubic casting range, check if he need heal and if he have the lowest HP
-					if ((partyMember.getSummon().getCurrentHp() < partyMember.getSummon().getMaxHp()) && (percentleft > (partyMember.getSummon().getCurrentHp() / partyMember.getSummon().getMaxHp())))
-					{
-						percentleft = (partyMember.getSummon().getCurrentHp() / partyMember.getSummon().getMaxHp());
-						target = partyMember.getSummon();
+						if (summon.isDead())
+						{
+							continue;
+						}
+						
+						// If party member's pet not dead, check if it is in cast range of heal cubic.
+						if (!isInCubicRange(_owner, summon))
+						{
+							continue;
+						}
+						
+						// member's pet is in cubic casting range, check if he need heal and if he have the lowest HP
+						if ((summon.getCurrentHp() < summon.getMaxHp()) && (percentleft > (summon.getCurrentHp() / summon.getMaxHp())))
+						{
+							percentleft = (summon.getCurrentHp() / summon.getMaxHp());
+							target = summon;
+						}
 					}
 				}
 			}

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package instances.FinalEmperialTomb;
 
@@ -213,12 +217,12 @@ public class ScarletVanHalisha extends AbstractNpcAI
 		{
 			if (obj.isPlayable() || (obj instanceof Decoy))
 			{
-				if (obj.isPlayer() && obj.getActingPlayer().isInvisible())
+				if (obj.isPlayer() && obj.asPlayer().isInvisible())
 				{
 					continue;
 				}
 				
-				if (((((Creature) obj).getZ() < (npc.getZ() - 100)) && (((Creature) obj).getZ() > (npc.getZ() + 100))) || !GeoEngine.getInstance().canSeeTarget(obj, npc))
+				if (((obj.asCreature().getZ() < (npc.getZ() - 100)) && (obj.asCreature().getZ() > (npc.getZ() + 100))) || !GeoEngine.getInstance().canSeeTarget(obj, npc))
 				{
 					continue;
 				}
@@ -254,9 +258,9 @@ public class ScarletVanHalisha extends AbstractNpcAI
 						}
 					}
 				}
-				if (Util.checkIfInRange(skillRange, npc, obj, true) && !((Creature) obj).isDead())
+				if (Util.checkIfInRange(skillRange, npc, obj, true) && !obj.asCreature().isDead())
 				{
-					result.add((Creature) obj);
+					result.add(obj.asCreature());
 				}
 			}
 		}

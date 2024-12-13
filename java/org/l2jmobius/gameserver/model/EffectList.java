@@ -17,6 +17,7 @@
 package org.l2jmobius.gameserver.model;
 
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -24,7 +25,6 @@ import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
-import java.util.concurrent.CopyOnWriteArraySet;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.function.Consumer;
@@ -36,7 +36,6 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
 import org.l2jmobius.gameserver.model.effects.EffectType;
@@ -76,8 +75,8 @@ public class EffectList
 	private final Queue<BuffInfo> _passives = new ConcurrentLinkedQueue<>();
 	/** Map containing the all stacked effect in progress for each abnormal type. */
 	private final Map<AbnormalType, BuffInfo> _stackedEffects = new ConcurrentHashMap<>();
-	/** Set containing all abnormal types that shouldn't be added to this creature effect list. */
-	private final Set<AbnormalType> _blockedBuffSlots = new CopyOnWriteArraySet<>();
+	/** Set containing all {@code AbnormalType}s that shouldn't be added to this creature effect list. */
+	private final Set<AbnormalType> _blockedAbnormalTypes = EnumSet.noneOf(AbnormalType.class);
 	/** Short buff skill ID. */
 	private BuffInfo _shortBuff = null;
 	/** If {@code true} this effect list has buffs removed on any action. */
@@ -444,31 +443,31 @@ public class EffectList
 	}
 	
 	/**
-	 * Adds abnormal types to the blocked buff slot set.
-	 * @param blockedBuffSlots the blocked buff slot set to add
+	 * Adds {@code AbnormalType}s to the blocked buff slot set.
+	 * @param blockedAbnormalTypes the blocked buff slot set to add
 	 */
-	public void addBlockedBuffSlots(Set<AbnormalType> blockedBuffSlots)
+	public void addBlockedAbnormalTypes(Set<AbnormalType> blockedAbnormalTypes)
 	{
-		_blockedBuffSlots.addAll(blockedBuffSlots);
+		_blockedAbnormalTypes.addAll(blockedAbnormalTypes);
 	}
 	
 	/**
-	 * Removes abnormal types from the blocked buff slot set.
+	 * Removes {@code AbnormalType}s from the blocked buff slot set.
 	 * @param blockedBuffSlots the blocked buff slot set to remove
 	 * @return {@code true} if the blocked buff slots set has been modified, {@code false} otherwise
 	 */
-	public boolean removeBlockedBuffSlots(Set<AbnormalType> blockedBuffSlots)
+	public boolean removeBlockedAbnormalTypes(Set<AbnormalType> blockedBuffSlots)
 	{
-		return _blockedBuffSlots.removeAll(blockedBuffSlots);
+		return _blockedAbnormalTypes.removeAll(blockedBuffSlots);
 	}
 	
 	/**
-	 * Gets all the blocked abnormal types for this creature effect list.
-	 * @return the current blocked buff slots set
+	 * Gets all the blocked {@code AbnormalType}s for this creature effect list.
+	 * @return the current blocked {@code AbnormalType}s set in unmodifiable view.
 	 */
-	public Set<AbnormalType> getAllBlockedBuffSlots()
+	public Set<AbnormalType> getBlockedAbnormalTypes()
 	{
-		return _blockedBuffSlots;
+		return Collections.unmodifiableSet(_blockedAbnormalTypes);
 	}
 	
 	/**
@@ -1366,7 +1365,7 @@ public class EffectList
 		
 		// Support for blocked buff slots.
 		final Skill skill = info.getSkill();
-		if (_blockedBuffSlots.contains(skill.getAbnormalType()))
+		if (_blockedAbnormalTypes.contains(skill.getAbnormalType()))
 		{
 			return;
 		}
@@ -1555,9 +1554,10 @@ public class EffectList
 						ps = new PartySpelled(_owner);
 					}
 					
-					if (_owner.getActingPlayer().isInOlympiadMode() && _owner.getActingPlayer().isOlympiadStart())
+					final Player player = _owner.asPlayer();
+					if (player.isInOlympiadMode() && player.isOlympiadStart())
 					{
-						os = new ExOlympiadSpelledInfo(_owner.getActingPlayer());
+						os = new ExOlympiadSpelledInfo(player);
 					}
 				}
 				else if (_owner.isSummon())
@@ -1628,7 +1628,7 @@ public class EffectList
 				{
 					if (_owner.isSummon())
 					{
-						final Player summonOwner = ((Summon) _owner).getOwner();
+						final Player summonOwner = _owner.asSummon().getOwner();
 						if (summonOwner != null)
 						{
 							if (summonOwner.isInParty())
@@ -1650,7 +1650,7 @@ public class EffectList
 				
 				if (os != null)
 				{
-					final OlympiadGameTask game = OlympiadGameManager.getInstance().getOlympiadTask(_owner.getActingPlayer().getOlympiadGameId());
+					final OlympiadGameTask game = OlympiadGameManager.getInstance().getOlympiadTask(_owner.asPlayer().getOlympiadGameId());
 					if ((game != null) && game.isBattleStarted())
 					{
 						game.getZone().broadcastPacketToObservers(os);

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="6200" levels="1" name="NPC Transform Dispel">
 		<!-- Cancels transformation. -->
@@ -45,7 +45,7 @@
 			<effect name="DispelBySlotProbability">
 				<param dispel="IMPROVE_SPEED_AVOID_UP;SPEED_UP" rate="100" />
 			</effect>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="IMPROVE_SPEED_AVOID_UP;SPEED_UP" />
 			</effect>
 		</for>
@@ -76,7 +76,7 @@
 			<effect name="DispelBySlotProbability">
 				<param dispel="IMPROVE_SPEED_AVOID_UP;SPEED_UP" rate="100" />
 			</effect>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="IMPROVE_SPEED_AVOID_UP;SPEED_UP" />
 			</effect>
 		</for>
@@ -107,7 +107,7 @@
 			<effect name="DispelBySlotProbability">
 				<param dispel="IMPROVE_SPEED_AVOID_UP;SPEED_UP" rate="100" />
 			</effect>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="IMPROVE_SPEED_AVOID_UP;SPEED_UP" />
 			</effect>
 		</for>
@@ -138,13 +138,31 @@
 			<effect name="DispelBySlotProbability">
 				<param dispel="IMPROVE_SPEED_AVOID_UP;SPEED_UP" rate="100" />
 			</effect>
-			<effect name="BlockBuffSlot">
+			<effect name="BlockAbnormalSlot">
 				<param slot="IMPROVE_SPEED_AVOID_UP;SPEED_UP" />
 			</effect>
 		</for>
 	</skill>
 	<skill id="6205" levels="19" name="Strider Bite">
-		<!-- Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 1649 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 67 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 1: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 1649 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 67 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 2: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 2045 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 77 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 3: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 2476 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 77 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 4: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 2927 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 84 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 5: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 3108 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 84 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 6: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 3288 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 84 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 7: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 3464 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 84 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 8: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 3636 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 84 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 9: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 3801 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 87 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 10: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 3881 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 87 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 11: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 3959 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 87 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 12: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 4034 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 87 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 13: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 4107 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 87 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 14: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 4176 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 87 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 15: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 4243 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 87 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 16: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 4307 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 87 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 17: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 4367 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 87 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 18: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 4424 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 87 HP every second. Over-hit and Critical are possible. -->
+		<!-- Level 19: Commands the mounted strider to bite the enemies at the front. Attacks the enemy with 4477 Power added to P. Atk., causes bleed for 20 seconds, and makes him consume 89 HP every second. Over-hit and Critical are possible. -->
 		<table name="#dot">65 75 75 82 82 82 82 82 85 85 85 85 85 85 85 85 85 85 87</table>
 		<table name="#effectPoints">-523 -566 -604 -635 -646 -655 -662 -669 -676 -679 -681 -684 -687 -689 -692 -694 -696 -698 -700</table>
 		<table name="#magicLevel">55 60 65 70 72 74 76 78 80 81 82 83 84 85 86 87 88 89 90</table>
@@ -173,7 +191,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
@@ -239,7 +257,10 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="6209" levels="4" name="Weapon Grade Penalty">
-		<!-- The equipped weapon's grade doesn't match your level, so the following penalties are incurred: Decrease in accuracy by 16, Critical Rate by 10%, Critical Damage by 10%, Atk. Spd. by 10%, and P. Atk. by 10%. -->
+		<!-- Level 1: The equipped weapon's grade doesn't match your level, so the following penalties are incurred: Decrease in accuracy by 16, Critical Rate by 10%, Critical Damage by 10%, Atk. Spd. by 10%, and P. Atk. by 10%. -->
+		<!-- Level 2: The equipped weapon's grade doesn't match your level, so the following penalties are incurred: Decrease in accuracy by 16, Critical Rate by 20%, Critical Damage by 20%, Atk. Spd. by 10%, and P. Atk. by 10%. -->
+		<!-- Level 3: The equipped weapon's grade doesn't match your level, so the following penalties are incurred: Decrease in accuracy by 16, Critical Rate by 30%, Critical Damage by 30%, Atk. Spd. by 10%, and P. Atk. by 10%. -->
+		<!-- Level 4: The equipped weapon's grade doesn't match your level, so the following penalties are incurred: Decrease in accuracy by 16, Critical Rate by 40%, Critical Damage by 40%, Atk. Spd. by 10%, and P. Atk. by 10%. -->
 		<table name="#cAtk">0.9 0.8 0.7 0.6</table>
 		<table name="#icons">icon.skill6209_1 icon.skill6209_2 icon.skill6209_3 icon.skill6209_4</table>
 		<table name="#rCrit">0.9 0.8 0.7 0.6</table>
@@ -259,7 +280,10 @@
 		</for>
 	</skill>
 	<skill id="6213" levels="4" name="Armor Grade Penalty">
-		<!-- When equipped with armor or accessories whose grade doesn't fit with your level, a penalty is incurred with decreases in evasion by 2.5, Atk. Spd./Casting Spd./Speed by 16.67%. -->
+		<!-- Level 1: When equipped with armor or accessories whose grade doesn't fit with your level, a penalty is incurred with decreases in evasion by 2.5, Atk. Spd./Casting Spd./Speed by 16.67%. -->
+		<!-- Level 2: When equipped with armor or accessories whose grade doesn't fit with your level, a penalty is incurred with decreases in evasion by 5, Atk. Spd./Casting Spd./Speed by 30.56%. -->
+		<!-- Level 3: When equipped with armor or accessories whose grade doesn't fit with your level, a penalty is incurred with decreases in evasion by 7.5, Atk. Spd./Casting Spd./Speed by 42.13%. -->
+		<!-- Level 4: When equipped with armor or accessories whose grade doesn't fit with your level, a penalty is incurred with decreases in evasion by 10, Atk. Spd./Casting Spd./Speed by 51.77%. -->
 		<table name="#amount">0.8333 0.6944 0.5787 0.4823</table>
 		<table name="#icons">icon.skill6213_1 icon.skill6213_2 icon.skill6213_3 icon.skill6213_4</table>
 		<table name="#rEvas">2.5 5 7.5 10</table>
@@ -418,7 +442,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="6237" levels="1" name="Moving Speed Decrease">
+	<skill id="6237" levels="1" name="Speed Decrease">
 		<!-- Speed is reduced by 80% for 10 seconds. -->
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="10" />
@@ -439,7 +463,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="6238" levels="1" name="Moving Speed Decrease">
+	<skill id="6238" levels="1" name="Speed Decrease">
 		<!-- Speed/Casting Spd./Atk. Spd. are reduced by 50% for 20 seconds. -->
 		<set name="abnormalLevel" val="4" />
 		<set name="abnormalTime" val="20" />
@@ -458,7 +482,7 @@
 		<set name="power" val="18162" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Debuff">
 				<mul stat="runSpd" val="0.5" />
 				<mul stat="pAtkSpd" val="0.5" />
@@ -487,7 +511,11 @@
 		</for>
 	</skill>
 	<skill id="6240" levels="5" name="Heatstroke">
-		<!-- Heatstroke stage 1. Inflicted with heatstroke. You are extremely hot and fatigued. -->
+		<!-- Level 1: Heatstroke stage 1. Inflicted with heatstroke. You are extremely hot and fatigued. -->
+		<!-- Level 2: Heatstroke stage 2. Inflicted with heatstroke. You are extremely hot and fatigued. -->
+		<!-- Level 3: Heatstroke stage 3. Inflicted with heatstroke. You are extremely hot and fatigued. -->
+		<!-- Level 4: Heatstroke stage 4. Inflicted with heatstroke. You are extremely hot and fatigued. -->
+		<!-- Level 5: Heatstroke stage 5. Inflicted with heatstroke. You are extremely hot and fatigued. -->
 		<table name="#abnormalLevels">1 2 3 4 5</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
 		<set name="abnormalTime" val="86400" />
@@ -777,7 +805,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack">
+			<effect name="PhysicalDamage">
 				<param power="2959" />
 			</effect>
 			<effect name="Stun" />
@@ -857,7 +885,11 @@
 		<set name="trait" val="POISON" />
 	</skill>
 	<skill id="6271" levels="5" name="Grima Power Up">
-		<!-- Increase Physical Attack by 10%. -->
+		<!-- Level 1: Increase Physical Attack by 10%. -->
+		<!-- Level 2: Increase Physical Attack by 20%. -->
+		<!-- Level 3: Increase Physical Attack by 30%. -->
+		<!-- Level 4: Increase Physical Attack by 40%. -->
+		<!-- Level 5: Increase Physical Attack by 50%. -->
 		<table name="#abnormalLevels">1 2 3 4 5</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
 		<set name="abnormalTime" val="300" />
@@ -904,7 +936,7 @@
 		<set name="reuseDelay" val="10000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="CallSkill">
 				<param skillId="6662" skillLevel="2" />
 			</effect>
@@ -925,7 +957,7 @@
 		<set name="reuseDelay" val="10000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="CallSkill">
 				<param skillId="6662" skillLevel="2" />
 			</effect>
@@ -970,7 +1002,7 @@
 		<set name="power" val="18560" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6279" levels="1" name="Attack Nearby Range">
@@ -986,7 +1018,7 @@
 		<set name="power" val="18560" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6280" levels="1" name="Death Clack">
@@ -1022,7 +1054,7 @@
 		<set name="power" val="18560" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6282" levels="1" name="Reflect Magic">
@@ -1055,7 +1087,7 @@
 		<set name="power" val="18560" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6284" levels="1" name="Freya's Bless">
@@ -1190,7 +1222,7 @@
 		<set name="power" val="4563" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6291" levels="1" name="Power Strike">
@@ -1205,7 +1237,7 @@
 		<set name="power" val="4563" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6292" levels="1" name="Rush">
@@ -1227,7 +1259,7 @@
 			<target mindistance="250" />
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="EnemyCharge" />
 		</for>
 	</skill>
@@ -1246,7 +1278,7 @@
 		<set name="power" val="4563" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6294" levels="1" name="Leader's Roar">
@@ -1299,7 +1331,7 @@
 			<target mindistance="250" />
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="EnemyCharge" />
 		</for>
 	</skill>
@@ -1317,7 +1349,7 @@
 		<set name="power" val="4563" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6298" levels="1" name="Summon Follower Knight">
@@ -1343,7 +1375,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="CallSkill">
 				<param skillId="6662" skillLevel="1" />
 			</effect>

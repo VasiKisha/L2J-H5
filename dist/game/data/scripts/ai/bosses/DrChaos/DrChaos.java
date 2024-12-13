@@ -22,7 +22,6 @@ import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
@@ -41,7 +40,7 @@ import ai.AbstractNpcAI;
  * <li>The status of the RB is saved under GBs table, in order to retrieve the state if server restarts.</li>
  * <li>The spawn of the different NPCs (Dr. Chaos / War golem) is handled by that script aswell.</li>
  * </ul>
- * @author Kerberos, Tryskell.
+ * @author Kerberos, Tryskell
  */
 public class DrChaos extends AbstractNpcAI
 {
@@ -203,7 +202,7 @@ public class DrChaos extends AbstractNpcAI
 				}
 				if (npc.calculateDistance2D(CHAOS_X, CHAOS_Y, CHAOS_Z) > 2000)
 				{
-					((Attackable) npc).clearAggroList();
+					npc.asAttackable().clearAggroList();
 					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(CHAOS_X, CHAOS_Y, CHAOS_Z, 0));
 				}
 				break;
@@ -216,7 +215,7 @@ public class DrChaos extends AbstractNpcAI
 				}
 				else if (npc.calculateDistance2D(npc.getSpawn()) > 10000)
 				{
-					((Attackable) npc).clearAggroList();
+					npc.asAttackable().clearAggroList();
 					// npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(CHAOS_X, CHAOS_Y, CHAOS_Z, 0));
 					npc.teleToLocation(npc.getSpawn(), false);
 				}

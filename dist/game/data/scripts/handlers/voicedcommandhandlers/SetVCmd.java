@@ -44,7 +44,7 @@ public class SetVCmd implements IVoicedCommandHandler
 				return false;
 			}
 			
-			final Player player = activeChar.getTarget().getActingPlayer();
+			final Player player = activeChar.getTarget().asPlayer();
 			if ((activeChar.getClan() == null) || (player.getClan() == null) || (activeChar.getClan().getId() != player.getClan().getId()))
 			{
 				return false;

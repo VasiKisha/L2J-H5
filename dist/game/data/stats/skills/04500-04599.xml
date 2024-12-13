@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="4500" levels="1" name="Treasure Chest - Level 27">
 		<!-- A locked chest that could contain treasure or a nasty surprise. -->
@@ -333,7 +333,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4530" levels="1" name="Quest - Summoned HP Heal">
@@ -675,7 +675,16 @@
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="4551" levels="10" name="Hot Springs Rheumatism">
-		<!-- Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased. Effect 1. -->
+		<!-- Level 1: Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased. Effect 1. -->
+		<!-- Level 2: Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased but P. Def. is decreased. Effect 2. -->
+		<!-- Level 3: Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased but P. Def. is decreased. Effect 3. -->
+		<!-- Level 4: Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased but P. Def. is decreased. Effect 4. -->
+		<!-- Level 5: Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased but P. Def. is decreased. Effect 5. -->
+		<!-- Level 6: Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased but P. Def. is decreased. Effect 6. -->
+		<!-- Level 7: Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased but P. Def. is decreased. Effect 7. -->
+		<!-- Level 8: Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased but P. Def. is decreased. Effect 8. -->
+		<!-- Level 9: Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased but P. Def. is decreased. Effect 9. -->
+		<!-- Level 10: Infected with Hot Springs Rheumatism. While afflicted, your critical attack success rate is increased but P. Def. is decreased. Effect 10. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9 10</table>
 		<table name="#pDef">1 0.96 0.96 0.96 0.92 0.92 0.92 0.88 0.88 0.85</table>
 		<table name="#rCrit">30 50 80 100 50 0 0 0 0 0</table>
@@ -702,7 +711,16 @@
 		</for>
 	</skill>
 	<skill id="4552" levels="10" name="Hot Springs Cholera">
-		<!-- Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased. Effect 1. -->
+		<!-- Level 1: Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased. Effect 1. -->
+		<!-- Level 2: Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased but Evasion is decreased. Effect 2. -->
+		<!-- Level 3: Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased but Evasion is decreased. Effect 3. -->
+		<!-- Level 4: Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased but Evasion is decreased. Effect 4. -->
+		<!-- Level 5: Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased but Evasion is decreased. Effect 5. -->
+		<!-- Level 6: Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased but Evasion is decreased. Effect 6. -->
+		<!-- Level 7: Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased but Evasion is decreased. Effect 7. -->
+		<!-- Level 8: Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased but Evasion is decreased. Effect 8. -->
+		<!-- Level 9: Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased but Evasion is decreased. Effect 9. -->
+		<!-- Level 10: Infected with Hot Springs Cholera. While afflicted, your Accuracy is increased but Evasion is decreased. Effect 10. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9 10</table>
 		<table name="#accCombat">3 6 8 10 6 0 0 0 0 0</table>
 		<table name="#rEvas">0 3 3 3 5 5 5 8 8 10</table>
@@ -729,7 +747,16 @@
 		</for>
 	</skill>
 	<skill id="4553" levels="10" name="Hot Springs Flu">
-		<!-- Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased. Effect 1. -->
+		<!-- Level 1: Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased. Effect 1. -->
+		<!-- Level 2: Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased but P. Atk. is decreased. Effect 2. -->
+		<!-- Level 3: Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased but P. Atk. is decreased. Effect 3. -->
+		<!-- Level 4: Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased but P. Atk. is decreased. Effect 4. -->
+		<!-- Level 5: Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased but P. Atk. is decreased. Effect 5. -->
+		<!-- Level 6: Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased but P. Atk. is decreased. Effect 6. -->
+		<!-- Level 7: Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased but P. Atk. is decreased. Effect 7. -->
+		<!-- Level 8: Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased but P. Atk. is decreased. Effect 8. -->
+		<!-- Level 9: Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased but P. Atk. is decreased. Effect 9. -->
+		<!-- Level 10: Infected with Hot Springs Flu. While afflicted, your Atk. Spd. is increased but P. Atk. is decreased. Effect 10. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9 10</table>
 		<table name="#pAtk">1 0.96 0.96 0.96 0.92 0.92 0.92 0.88 0.88 0.85</table>
 		<table name="#pAtkSpd">1.04 1.08 1.12 1.16 1.08 1 1 1 1 1</table>
@@ -756,7 +783,16 @@
 		</for>
 	</skill>
 	<skill id="4554" levels="10" name="Hot Spring Malaria">
-		<!-- Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased. Effect 1. -->
+		<!-- Level 1: Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased. Effect 1. -->
+		<!-- Level 2: Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased and Decreases MP consumption. Effect 2. -->
+		<!-- Level 3: Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased and Decreases MP consumption. Effect 3. -->
+		<!-- Level 4: Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased and Decreases MP consumption. Effect 4. -->
+		<!-- Level 5: Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased and Decreases MP consumption. Effect 5. -->
+		<!-- Level 6: Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased and Decreases MP consumption. Effect 6. -->
+		<!-- Level 7: Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased and Decreases MP consumption. Effect 7. -->
+		<!-- Level 8: Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased and Decreases MP consumption. Effect 8. -->
+		<!-- Level 9: Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased and Decreases MP consumption. Effect 9. -->
+		<!-- Level 10: Infected with Hot Springs Malaria. While afflicted, your Casting Spd. is increased and Decreases MP consumption. Effect 10. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9 10</table>
 		<table name="#mAtkSpd">1.04 1.08 1.12 1.16 1.08 1 1 1 1 1</table>
 		<table name="#MpConsumeRate">1 0.96 0.96 0.96 0.92 0.92 0.92 0.88 0.88 0.84</table>
@@ -872,7 +908,7 @@
 		<set name="reuseDelay" val="8000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4561" levels="12" name="NPC Fire Burn - Magic">
@@ -892,7 +928,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4562" levels="12" name="NPC Solar Flare">
@@ -915,7 +951,7 @@
 		<set name="reuseDelay" val="30000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4563" levels="12" name="NPC Solar Flare - Magic">
@@ -937,7 +973,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4564" levels="12" name="NPC Solar Flare - Slow">
@@ -959,7 +995,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4565" levels="12" name="NPC Eruption">
@@ -981,7 +1017,7 @@
 		<set name="reuseDelay" val="20000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4566" levels="12" name="NPC Eruption - Magic">
@@ -1002,7 +1038,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4567" levels="12" name="NPC Eruption - Slow">
@@ -1023,7 +1059,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4568" levels="12" name="NPC AE Solar Flare">
@@ -1047,7 +1083,7 @@
 		<set name="reuseDelay" val="30000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4569" levels="12" name="NPC AE Solar Flare - Magic">
@@ -1070,7 +1106,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4570" levels="12" name="NPC AE Solar Flare - Slow">
@@ -1093,7 +1129,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4571" levels="12" name="NPC Blazing Circle">
@@ -1113,7 +1149,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="4572" levels="12" name="NPC Triple Sonic Slash">
@@ -1133,7 +1169,7 @@
 		<set name="reuseDelay" val="30000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4573" levels="12" name="NPC Sonic Blaster">
@@ -1152,7 +1188,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4574" levels="12" name="NPC Sonic Storm">
@@ -1172,7 +1208,7 @@
 		<set name="reuseDelay" val="20000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="4575" levels="2" name="NPC Clan Buff - Haste">
@@ -1226,7 +1262,18 @@
 		</for>
 	</skill>
 	<skill id="4577" levels="12" name="Decrease Accuracy">
-		<!-- Temporarily decreases Accuracy. Effect 1. -->
+		<!-- Level 1: Temporarily decreases Accuracy. Effect 1. -->
+		<!-- Level 2: Temporarily decreases Accuracy. Effect 2. -->
+		<!-- Level 3: Temporarily decreases Accuracy. Effect 2. -->
+		<!-- Level 4: Temporarily decreases Accuracy. Effect 3. -->
+		<!-- Level 5: Temporarily decreases Accuracy. Effect 3. -->
+		<!-- Level 6: Temporarily decreases Accuracy. Effect 3. -->
+		<!-- Level 7: Temporarily decreases Accuracy. Effect 3. -->
+		<!-- Level 8: Temporarily decreases Accuracy. Effect 3. -->
+		<!-- Level 9: Temporarily decreases Accuracy. Effect 3. -->
+		<!-- Level 10: Temporarily decreases Accuracy. Effect 3. -->
+		<!-- Level 11: Temporarily decreases Accuracy. Effect 3. -->
+		<!-- Level 12: Temporarily decreases Accuracy. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#accCombat">1 2 3 4 5 6 7 8 9 10 11 12</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -1280,7 +1327,18 @@
 		</for>
 	</skill>
 	<skill id="4579" levels="12" name="Bleed">
-		<!-- Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 1: Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 2: Inflicts a wound that reduces HP. Effect 3. -->
+		<!-- Level 3: Inflicts a wound that reduces HP. Effect 4. -->
+		<!-- Level 4: Inflicts a wound that reduces HP. Effect 5. -->
+		<!-- Level 5: Inflicts a wound that reduces HP. Effect 6. -->
+		<!-- Level 6: Inflicts a wound that reduces HP. Effect 7. -->
+		<!-- Level 7: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 8: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 9: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 10: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 11: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 12: Inflicts a wound that reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#damage">18 25 34 44 54 62 67 67 70 70 71 71</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -1315,7 +1373,18 @@
 		</for>
 	</skill>
 	<skill id="4580" levels="12" name="Decrease P. Atk.">
-		<!-- Reduces P. Atk. Effect 1. -->
+		<!-- Level 1: Reduces P. Atk. Effect 1. -->
+		<!-- Level 2: Reduces P. Atk. Effect 2. -->
+		<!-- Level 3: Reduces P. Atk. Effect 2. -->
+		<!-- Level 4: Reduces P. Atk. Effect 3. -->
+		<!-- Level 5: Reduces P. Atk. Effect 3. -->
+		<!-- Level 6: Reduces P. Atk. Effect 3. -->
+		<!-- Level 7: Reduces P. Atk. Effect 3. -->
+		<!-- Level 8: Reduces P. Atk. Effect 3. -->
+		<!-- Level 9: Reduces P. Atk. Effect 3. -->
+		<!-- Level 10: Reduces P. Atk. Effect 3. -->
+		<!-- Level 11: Reduces P. Atk. Effect 3. -->
+		<!-- Level 12: Reduces P. Atk. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">24 39 54 73 94 116 136 144 152 158 161 163</table>
@@ -1372,7 +1441,18 @@
 		</for>
 	</skill>
 	<skill id="4582" levels="12" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 2. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 2. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 3. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 4. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 5. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 6. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 7. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 10: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 11: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 12: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#dmg">16 24 32 41 50 58 63 63 66 66 68 68</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -1403,7 +1483,18 @@
 		</for>
 	</skill>
 	<skill id="4583" levels="12" name="Decrease Speed">
-		<!-- Instantly reduces Speed. Effect 1. -->
+		<!-- Level 1: Instantly reduces Speed. Effect 1. -->
+		<!-- Level 2: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 3: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 4: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 5: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 6: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 7: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 8: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 9: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 10: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 11: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 12: Instantly reduces Speed. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">36 59 82 111 143 176 206 220 231 239 244 247</table>
@@ -1432,7 +1523,18 @@
 		</for>
 	</skill>
 	<skill id="4584" levels="12" name="Reducing P. Def Stun">
-		<!-- Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 1. -->
+		<!-- Level 1: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 1. -->
+		<!-- Level 2: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 2. -->
+		<!-- Level 3: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 2. -->
+		<!-- Level 4: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 3. -->
+		<!-- Level 5: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 3. -->
+		<!-- Level 6: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 3. -->
+		<!-- Level 7: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 3. -->
+		<!-- Level 8: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 3. -->
+		<!-- Level 9: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 3. -->
+		<!-- Level 10: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 3. -->
+		<!-- Level 11: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 3. -->
+		<!-- Level 12: Instantly decreases P. Def. and throws the enemy into a temporary state of shock. Effect 3. -->
 		<table name="#abnormalLevels">11 12 12 13 13 13 13 13 13 13 13 13</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">24 39 54 73 94 116 136 144 152 158 161 163</table>
@@ -1457,7 +1559,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun">
 				<mul stat="pDef" val="#pDef" />
 			</effect>
@@ -1502,7 +1604,18 @@
 		</for>
 	</skill>
 	<skill id="4586" levels="12" name="Decrease Evasion">
-		<!-- Reduces Evasion. Effect 1. -->
+		<!-- Level 1: Reduces Evasion. Effect 1. -->
+		<!-- Level 2: Reduces Evasion. Effect 2. -->
+		<!-- Level 3: Reduces Evasion. Effect 2. -->
+		<!-- Level 4: Reduces Evasion. Effect 3. -->
+		<!-- Level 5: Reduces Evasion. Effect 3. -->
+		<!-- Level 6: Reduces Evasion. Effect 3. -->
+		<!-- Level 7: Reduces Evasion. Effect 3. -->
+		<!-- Level 8: Reduces Evasion. Effect 3. -->
+		<!-- Level 9: Reduces Evasion. Effect 3. -->
+		<!-- Level 10: Reduces Evasion. Effect 3. -->
+		<!-- Level 11: Reduces Evasion. Effect 3. -->
+		<!-- Level 12: Reduces Evasion. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">13 20 27 35 45 55 65 69 73 77 78 83</table>
@@ -1532,7 +1645,18 @@
 		</for>
 	</skill>
 	<skill id="4587" levels="12" name="Decrease P. Atk.">
-		<!-- Instantly reduces P. Atk. Effect 1. -->
+		<!-- Level 1: Instantly reduces P. Atk. Effect 1. -->
+		<!-- Level 2: Instantly reduces P. Atk. Effect 2. -->
+		<!-- Level 3: Instantly reduces P. Atk. Effect 2. -->
+		<!-- Level 4: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 5: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 6: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 7: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 8: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 9: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 10: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 11: Instantly reduces P. Atk. Effect 3. -->
+		<!-- Level 12: Instantly reduces P. Atk. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">18 29 40 53 68 83 98 104 109 113 115 117</table>
@@ -1600,7 +1724,18 @@
 		</for>
 	</skill>
 	<skill id="4589" levels="12" name="Decrease Speed">
-		<!-- Instantly reduces Speed. Effect 1. -->
+		<!-- Level 1: Instantly reduces Speed. Effect 1. -->
+		<!-- Level 2: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 3: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 4: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 5: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 6: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 7: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 8: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 9: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 10: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 11: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 12: Instantly reduces Speed. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">35 58 79 105 135 165 194 207 217 224 229 233</table>
@@ -1630,7 +1765,18 @@
 		</for>
 	</skill>
 	<skill id="4590" levels="12" name="Decrease Speed">
-		<!-- Instantly reduces Speed. Effect 1. -->
+		<!-- Level 1: Instantly reduces Speed. Effect 1. -->
+		<!-- Level 2: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 3: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 4: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 5: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 6: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 7: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 8: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 9: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 10: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 11: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 12: Instantly reduces Speed. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">35 58 79 105 135 165 194 207 217 224 229 233</table>
@@ -1659,7 +1805,18 @@
 		</for>
 	</skill>
 	<skill id="4591" levels="12" name="Decrease Speed">
-		<!-- Instantly reduces Speed. Effect 1. -->
+		<!-- Level 1: Instantly reduces Speed. Effect 1. -->
+		<!-- Level 2: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 3: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 4: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 5: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 6: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 7: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 8: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 9: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 10: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 11: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 12: Instantly reduces Speed. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">35 58 79 105 135 165 194 207 217 224 229 233</table>
@@ -1688,7 +1845,18 @@
 		</for>
 	</skill>
 	<skill id="4592" levels="12" name="Decrease P. Def.">
-		<!-- Reduces P. Def. Effect 1. -->
+		<!-- Level 1: Reduces P. Def. Effect 1. -->
+		<!-- Level 2: Reduces P. Def. Effect 2. -->
+		<!-- Level 3: Reduces P. Def. Effect 2. -->
+		<!-- Level 4: Reduces P. Def. Effect 3. -->
+		<!-- Level 5: Reduces P. Def. Effect 3. -->
+		<!-- Level 6: Reduces P. Def. Effect 3. -->
+		<!-- Level 7: Reduces P. Def. Effect 3. -->
+		<!-- Level 8: Reduces P. Def. Effect 3. -->
+		<!-- Level 9: Reduces P. Def. Effect 3. -->
+		<!-- Level 10: Reduces P. Def. Effect 3. -->
+		<!-- Level 11: Reduces P. Def. Effect 3. -->
+		<!-- Level 12: Reduces P. Def. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">24 39 53 70 90 110 130 138 145 150 153 155</table>
@@ -1719,7 +1887,18 @@
 		</for>
 	</skill>
 	<skill id="4593" levels="12" name="Decrease P. Def.">
-		<!-- Reduces P. Def. Effect 1. -->
+		<!-- Level 1: Reduces P. Def. Effect 1. -->
+		<!-- Level 2: Reduces P. Def. Effect 2. -->
+		<!-- Level 3: Reduces P. Def. Effect 2. -->
+		<!-- Level 4: Reduces P. Def. Effect 3. -->
+		<!-- Level 5: Reduces P. Def. Effect 3. -->
+		<!-- Level 6: Reduces P. Def. Effect 3. -->
+		<!-- Level 7: Reduces P. Def. Effect 3. -->
+		<!-- Level 8: Reduces P. Def. Effect 3. -->
+		<!-- Level 9: Reduces P. Def. Effect 3. -->
+		<!-- Level 10: Reduces P. Def. Effect 3. -->
+		<!-- Level 11: Reduces P. Def. Effect 3. -->
+		<!-- Level 12: Reduces P. Def. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">24 39 53 70 90 110 130 138 145 150 153 155</table>
@@ -1749,7 +1928,18 @@
 		</for>
 	</skill>
 	<skill id="4594" levels="12" name="Decrease P. Def.">
-		<!-- Reduces P. Def. Effect 1. -->
+		<!-- Level 1: Reduces P. Def. Effect 1. -->
+		<!-- Level 2: Reduces P. Def. Effect 2. -->
+		<!-- Level 3: Reduces P. Def. Effect 2. -->
+		<!-- Level 4: Reduces P. Def. Effect 3. -->
+		<!-- Level 5: Reduces P. Def. Effect 3. -->
+		<!-- Level 6: Reduces P. Def. Effect 3. -->
+		<!-- Level 7: Reduces P. Def. Effect 3. -->
+		<!-- Level 8: Reduces P. Def. Effect 3. -->
+		<!-- Level 9: Reduces P. Def. Effect 3. -->
+		<!-- Level 10: Reduces P. Def. Effect 3. -->
+		<!-- Level 11: Reduces P. Def. Effect 3. -->
+		<!-- Level 12: Reduces P. Def. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">24 39 53 70 90 110 130 138 145 150 153 155</table>
@@ -1806,7 +1996,18 @@
 		</for>
 	</skill>
 	<skill id="4596" levels="12" name="Bleed">
-		<!-- Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 1: Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 2: Inflicts a wound that reduces HP. Effect 3. -->
+		<!-- Level 3: Inflicts a wound that reduces HP. Effect 4. -->
+		<!-- Level 4: Inflicts a wound that reduces HP. Effect 5. -->
+		<!-- Level 5: Inflicts a wound that reduces HP. Effect 6. -->
+		<!-- Level 6: Inflicts a wound that reduces HP. Effect 7. -->
+		<!-- Level 7: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 8: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 9: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 10: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 11: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 12: Inflicts a wound that reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#damage">18 25 34 44 54 62 67 67 70 70 71 71</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -1838,7 +2039,18 @@
 		</for>
 	</skill>
 	<skill id="4597" levels="12" name="Bleed">
-		<!-- Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 1: Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 2: Inflicts a wound that reduces HP. Effect 3. -->
+		<!-- Level 3: Inflicts a wound that reduces HP. Effect 4. -->
+		<!-- Level 4: Inflicts a wound that reduces HP. Effect 5. -->
+		<!-- Level 5: Inflicts a wound that reduces HP. Effect 6. -->
+		<!-- Level 6: Inflicts a wound that reduces HP. Effect 7. -->
+		<!-- Level 7: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 8: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 9: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 10: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 11: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 12: Inflicts a wound that reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#damage">18 25 34 44 54 62 67 67 70 70 71 71</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -1869,7 +2081,18 @@
 		</for>
 	</skill>
 	<skill id="4598" levels="12" name="Bleed">
-		<!-- Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 1: Inflicts a wound that reduces HP. Effect 2. -->
+		<!-- Level 2: Inflicts a wound that reduces HP. Effect 3. -->
+		<!-- Level 3: Inflicts a wound that reduces HP. Effect 4. -->
+		<!-- Level 4: Inflicts a wound that reduces HP. Effect 5. -->
+		<!-- Level 5: Inflicts a wound that reduces HP. Effect 6. -->
+		<!-- Level 6: Inflicts a wound that reduces HP. Effect 7. -->
+		<!-- Level 7: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 8: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 9: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 10: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 11: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 12: Inflicts a wound that reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#damage">18 25 34 44 54 62 67 67 70 70 71 71</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -1900,7 +2123,18 @@
 		</for>
 	</skill>
 	<skill id="4599" levels="12" name="Decrease Speed">
-		<!-- Instantly reduces Speed. Effect 1. -->
+		<!-- Level 1: Instantly reduces Speed. Effect 1. -->
+		<!-- Level 2: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 3: Instantly reduces Speed. Effect 2. -->
+		<!-- Level 4: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 5: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 6: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 7: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 8: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 9: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 10: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 11: Instantly reduces Speed. Effect 3. -->
+		<!-- Level 12: Instantly reduces Speed. Effect 3. -->
 		<table name="#abnormalLevels">1 2 2 3 3 3 3 3 3 3 3 3</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">35 58 81 109 141 174 203 216 227 235 241 244</table>

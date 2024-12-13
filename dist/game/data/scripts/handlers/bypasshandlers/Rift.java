@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.bypasshandlers;
 
@@ -20,8 +24,8 @@ import java.util.logging.Level;
 
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.instancemanager.DimensionalRiftManager;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 
 public class Rift implements IBypassHandler
@@ -46,7 +50,7 @@ public class Rift implements IBypassHandler
 			try
 			{
 				final Byte b1 = Byte.parseByte(command.substring(10)); // Selected Area: Recruit, Soldier etc
-				DimensionalRiftManager.getInstance().start(player, b1, (Npc) target);
+				DimensionalRiftManager.getInstance().start(player, b1, target.asNpc());
 				return true;
 			}
 			catch (Exception e)
@@ -56,16 +60,17 @@ public class Rift implements IBypassHandler
 		}
 		else
 		{
-			final boolean inRift = player.isInParty() && player.getParty().isInDimensionalRift();
+			final Party party = player.getParty();
+			final boolean inRift = player.isInParty() && party.isInDimensionalRift();
 			if (command.toLowerCase().startsWith(COMMANDS[1])) // ChangeRiftRoom
 			{
 				if (inRift)
 				{
-					player.getParty().getDimensionalRift().manualTeleport(player, (Npc) target);
+					party.getDimensionalRift().manualTeleport(player, target.asNpc());
 				}
 				else
 				{
-					DimensionalRiftManager.getInstance().handleCheat(player, (Npc) target);
+					DimensionalRiftManager.getInstance().handleCheat(player, target.asNpc());
 				}
 				
 				return true;
@@ -74,11 +79,11 @@ public class Rift implements IBypassHandler
 			{
 				if (inRift)
 				{
-					player.getParty().getDimensionalRift().manualExitRift(player, (Npc) target);
+					party.getDimensionalRift().manualExitRift(player, target.asNpc());
 				}
 				else
 				{
-					DimensionalRiftManager.getInstance().handleCheat(player, (Npc) target);
+					DimensionalRiftManager.getInstance().handleCheat(player, target.asNpc());
 				}
 			}
 			return true;

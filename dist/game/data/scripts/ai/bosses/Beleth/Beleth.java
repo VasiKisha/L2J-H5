@@ -31,7 +31,6 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -620,7 +619,7 @@ public class Beleth extends AbstractNpcAI
 				npc.doCast(FIREBALL.getSkill());
 				return null;
 			}
-			((Attackable) npc).clearAggroList();
+			npc.asAttackable().clearAggroList();
 		}
 		return null;
 	}
@@ -695,7 +694,7 @@ public class Beleth extends AbstractNpcAI
 				npc.doCast(LIGHTENING.getSkill());
 				return null;
 			}
-			((Attackable) npc).clearAggroList();
+			npc.asAttackable().clearAggroList();
 		}
 		
 		return null;

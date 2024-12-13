@@ -1,33 +1,34 @@
 /*
- * Copyright © 2019-2021 Async-mmocore
- *
- * This file is part of the Async-mmocore project.
- *
- * Async-mmocore is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Async-mmocore is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (c) 2013 L2jMobius
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.commons.network;
 
 import org.l2jmobius.commons.network.internal.ArrayPacketBuffer;
 import org.l2jmobius.commons.network.internal.InternalWritableBuffer;
-import org.l2jmobius.commons.network.internal.NotWrittenBufferException;
 
 /**
  * Abstract class representing a packet that can be sent to clients.<br>
  * All data sent must include a header with 2 bytes and an optional payload.<br>
  * The first two bytes are a 16-bit integer indicating the size of the packet.
  * @param <T> The type of Client associated with this packet.
- * @author JoeAlisson
+ * @author JoeAlisson, Mobius
  */
 public abstract class WritablePacket<T extends Client<Connection<T>>>
 {
@@ -38,7 +39,17 @@ public abstract class WritablePacket<T extends Client<Connection<T>>>
 	{
 	}
 	
-	public InternalWritableBuffer writeData(T client) throws NotWrittenBufferException
+	/**
+	 * Writes the packet data to the buffer for the specified client.
+	 * <p>
+	 * If the packet is marked as broadcast, it attempts to use a cached buffer to reduce redundant data processing.<br>
+	 * Otherwise, it directly writes the data to a new buffer.
+	 * </p>
+	 * @param client The client for whom the packet data is being written.
+	 * @return An {@link InternalWritableBuffer} containing the packet data.
+	 * @throws Exception If an error occurs during the data writing process.
+	 */
+	public InternalWritableBuffer writeData(T client) throws Exception
 	{
 		if (_broadcast)
 		{
@@ -48,24 +59,38 @@ public abstract class WritablePacket<T extends Client<Connection<T>>>
 		return writeDataToBuffer(client);
 	}
 	
-	private synchronized InternalWritableBuffer writeDataWithCache(T client) throws NotWrittenBufferException
+	/**
+	 * Writes the packet data to the buffer for the specified client.<br>
+	 * If the packet is marked as broadcast, it will attempt to use a cached buffer.
+	 * @param client The client to whom the packet data is being written.
+	 * @return An {@link InternalWritableBuffer} containing the packet data.
+	 * @throws Exception If an error occurs during writing.
+	 */
+	private synchronized InternalWritableBuffer writeDataWithCache(T client) throws Exception
 	{
 		if (_broadcastCacheBuffer != null)
 		{
-			return InternalWritableBuffer.dynamicOf(_broadcastCacheBuffer, client.getResourcePool());
+			return InternalWritableBuffer.dynamicOf(_broadcastCacheBuffer, client.getResourcePool(), getClass());
 		}
 		
 		InternalWritableBuffer buffer = writeDataToBuffer(client);
 		if (buffer instanceof ArrayPacketBuffer)
 		{
 			_broadcastCacheBuffer = (ArrayPacketBuffer) buffer;
-			buffer = InternalWritableBuffer.dynamicOf(_broadcastCacheBuffer, client.getResourcePool());
+			buffer = InternalWritableBuffer.dynamicOf(_broadcastCacheBuffer, client.getResourcePool(), getClass());
 		}
 		
 		return buffer;
 	}
 	
-	private InternalWritableBuffer writeDataToBuffer(T client) throws NotWrittenBufferException
+	/**
+	 * Writes packet data to a new buffer for the specified client.<br>
+	 * This method initializes the buffer's position and releases resources if writing fails.
+	 * @param client The client to whom the packet data is being written.
+	 * @return An {@link InternalWritableBuffer} containing the packet data.
+	 * @throws Exception If an error occurs during writing.
+	 */
+	private InternalWritableBuffer writeDataToBuffer(T client) throws Exception
 	{
 		final InternalWritableBuffer buffer = choosePacketBuffer(client);
 		buffer.position(ConnectionConfig.HEADER_SIZE);
@@ -76,19 +101,29 @@ public abstract class WritablePacket<T extends Client<Connection<T>>>
 		}
 		
 		buffer.releaseResources();
-		throw new NotWrittenBufferException();
+		throw new Exception();
 	}
 	
+	/**
+	 * Chooses an appropriate buffer based on whether the packet is marked as broadcast.
+	 * @param client The client for whom the buffer is being chosen.
+	 * @return An {@link InternalWritableBuffer} suitable for the packet type.
+	 */
 	private InternalWritableBuffer choosePacketBuffer(T client)
 	{
 		if (_broadcast)
 		{
-			return InternalWritableBuffer.arrayBacked(client.getResourcePool());
+			return InternalWritableBuffer.arrayBacked(client.getResourcePool(), getClass());
 		}
 		
-		return InternalWritableBuffer.dynamicOf(client.getResourcePool().getSegmentBuffer(), client.getResourcePool());
+		return InternalWritableBuffer.dynamicOf(client.getResourcePool(), getClass());
 	}
 	
+	/**
+	 * Writes the header to the specified buffer.
+	 * @param buffer The buffer to which the header is written.
+	 * @param header The header value to write.
+	 */
 	public void writeHeader(InternalWritableBuffer buffer, int header)
 	{
 		buffer.writeShort(0, (short) header);
@@ -97,12 +132,12 @@ public abstract class WritablePacket<T extends Client<Connection<T>>>
 	/**
 	 * Mark this packet as broadcast. A broadcast packet is sent to more than one client.<br>
 	 * Caution: This method should be called before {@link Client#writePacket(WritablePacket)}.<br>
-	 * A broadcast packet will create a Buffer cache where the data is written once and only the copy is sent to the client. note: Each copy will be encrypted to each client
-	 * @param broadcast true if the packet is sent to more than one client
+	 * A broadcast packet will create a Buffer cache where the data is written once and only the copy is sent to the client.
+	 * @implNote Each copy will be encrypted to each client.
 	 */
-	public void sendInBroadcast(boolean broadcast)
+	public void sendInBroadcast()
 	{
-		_broadcast = broadcast;
+		_broadcast = true;
 	}
 	
 	/**
@@ -124,6 +159,10 @@ public abstract class WritablePacket<T extends Client<Connection<T>>>
 	 */
 	protected abstract boolean write(T client, WritableBuffer buffer);
 	
+	/**
+	 * Converts this packet to a string representation.
+	 * @return The simple name of the packet's class.
+	 */
 	@Override
 	public String toString()
 	{

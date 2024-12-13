@@ -173,7 +173,7 @@ public class AdminPunishment implements IAdminCommandHandler
 							}
 							if (target == null)
 							{
-								target = activeChar.getTarget().getActingPlayer();
+								target = activeChar.getTarget().asPlayer();
 							}
 							String content = HtmCache.getInstance().getHtm(activeChar, "data/html/admin/punishment-player.htm");
 							if (content != null)

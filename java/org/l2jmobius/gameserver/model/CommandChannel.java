@@ -23,7 +23,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExCloseMPCC;
@@ -194,7 +193,7 @@ public class CommandChannel extends AbstractPlayerGroup
 	 */
 	public boolean meetRaidWarCondition(WorldObject obj)
 	{
-		if (!(obj.isCreature() && ((Creature) obj).isRaid()))
+		if (!(obj.isCreature() && obj.asCreature().isRaid()))
 		{
 			return false;
 		}

@@ -35,6 +35,7 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
 import org.l2jmobius.gameserver.model.holders.DropGroupHolder;
 import org.l2jmobius.gameserver.model.holders.DropHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -89,7 +90,7 @@ public class NpcViewMod implements IBypassHandler
 					target = player.getTarget();
 				}
 				
-				final Npc npc = target instanceof Npc ? (Npc) target : null;
+				final Npc npc = target instanceof Npc ? target.asNpc() : null;
 				if (npc == null)
 				{
 					return false;
@@ -111,7 +112,7 @@ public class NpcViewMod implements IBypassHandler
 				{
 					final DropType dropListType = Enum.valueOf(DropType.class, dropListTypeString);
 					final WorldObject target = World.getInstance().findObject(Integer.parseInt(st.nextToken()));
-					final Npc npc = target instanceof Npc ? (Npc) target : null;
+					final Npc npc = target instanceof Npc ? target.asNpc() : null;
 					if (npc == null)
 					{
 						return false;
@@ -301,10 +302,11 @@ public class NpcViewMod implements IBypassHandler
 		final DecimalFormat chanceFormat = new DecimalFormat("0.00##");
 		int leftHeight = 0;
 		int rightHeight = 0;
-		final double dropAmountAdenaEffectBonus = player.getStat().getBonusDropAdenaMultiplier();
-		final double dropAmountEffectBonus = player.getStat().getBonusDropAmountMultiplier();
-		final double dropRateEffectBonus = player.getStat().getBonusDropRateMultiplier();
-		final double spoilRateEffectBonus = player.getStat().getBonusSpoilRateMultiplier();
+		final PlayerStat stat = player.getStat();
+		final double dropAmountAdenaEffectBonus = stat.getBonusDropAdenaMultiplier();
+		final double dropAmountEffectBonus = stat.getBonusDropAmountMultiplier();
+		final double dropRateEffectBonus = stat.getBonusDropRateMultiplier();
+		final double spoilRateEffectBonus = stat.getBonusSpoilRateMultiplier();
 		final StringBuilder leftSb = new StringBuilder();
 		final StringBuilder rightSb = new StringBuilder();
 		String limitReachedMsg = "";
@@ -338,6 +340,10 @@ public class NpcViewMod implements IBypassHandler
 				if (Config.RATE_DROP_CHANCE_BY_ID.get(dropItem.getItemId()) != null)
 				{
 					rateChance *= Config.RATE_DROP_CHANCE_BY_ID.get(dropItem.getItemId());
+					if ((dropItem.getItemId() == Inventory.ADENA_ID) && (rateChance > 100))
+					{
+						rateChance = 100;
+					}
 				}
 				else if (item.hasExImmediateEffect())
 				{

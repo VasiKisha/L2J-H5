@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="5500" levels="1" name="Black Dragon Claw">
 		<!-- HP is decreased momentarily from bleeding. Effect 10. -->
@@ -24,7 +24,7 @@
 		<set name="targetType" val="FRONT_AREA" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="52" />
 			</effect>
@@ -127,7 +127,7 @@
 		<set name="power" val="2319" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5506" levels="1" name="Water Blossom">
@@ -144,7 +144,7 @@
 		<set name="power" val="2319" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5507" levels="1" name="Wind Blossom">
@@ -161,7 +161,7 @@
 		<set name="power" val="2319" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5508" levels="1" name="Earth Blossom">
@@ -178,7 +178,7 @@
 		<set name="power" val="2319" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5509" levels="1" name="Fire Power">
@@ -409,7 +409,7 @@
 		<set name="power" val="85" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttackByAbnormal" />
+			<effect name="MagicalDamageByAbnormal" />
 		</for>
 	</skill>
 	<skill id="5523" levels="1" name="Chain Magic - Unholy Castle">
@@ -527,7 +527,7 @@
 		<set name="power" val="971" />
 		<set name="targetType" val="PARTY_OTHER" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5528" levels="1" name="Self-Destruct">
@@ -538,7 +538,18 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="5529" levels="12" name="Surrender to the Unholy">
-		<!-- Dark attribute temporarily weakened. Effect 2. -->
+		<!-- Level 1: Dark attribute temporarily weakened. Effect 2. -->
+		<!-- Level 2: Dark attribute temporarily weakened. Effect 2. -->
+		<!-- Level 3: Dark attribute temporarily weakened. Effect 2. -->
+		<!-- Level 4: Dark attribute temporarily weakened. Effect 3. -->
+		<!-- Level 5: Dark attribute temporarily weakened. Effect 3. -->
+		<!-- Level 6: Dark attribute temporarily weakened. Effect 3. -->
+		<!-- Level 7: Dark attribute temporarily weakened. Effect 4. -->
+		<!-- Level 8: Dark attribute temporarily weakened. Effect 4. -->
+		<!-- Level 9: Dark attribute temporarily weakened. Effect 4. -->
+		<!-- Level 10: Dark attribute temporarily weakened. Effect 5. -->
+		<!-- Level 11: Dark attribute temporarily weakened. Effect 5. -->
+		<!-- Level 12: Dark attribute temporarily weakened. Effect 5. -->
 		<table name="#abnormalLevels">2 2 2 3 3 3 4 4 4 5 5 5</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">10 16 23 31 40 49 57 61 64 66 68 68</table>
@@ -589,7 +600,6 @@
 		<set name="trait" val="BLEED" />
 	</skill>
 	<skill id="5531" levels="1" name="Direction-Beleth Magic Skill 1">
-		<!-- High Five Confirmed -->
 		<set name="castRange" val="400" />
 		<set name="effectRange" val="900" />
 		<set name="hitTime" val="3000" />
@@ -599,7 +609,6 @@
 		<set name="targetType" val="ONE" />
 	</skill>
 	<skill id="5532" levels="1" name="Direction-Beleth Summon Skill 1">
-		<!-- High Five Confirmed -->
 		<set name="attributePower" val="50" />
 		<set name="element" val="0" /> <!-- Fire -->
 		<set name="castRange" val="400" />
@@ -828,7 +837,7 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="5547" levels="1" name="Maximum Ability">
-		<!-- Attack ability, magic power, and heal value increase . -->
+		<!-- Attack ability, magic power, and heal value increase. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="8" />
 		<set name="abnormalType" val="MAXIMUM_ABILITY" />
@@ -890,7 +899,7 @@
 		<set name="magicLevel" val="#magicLevel" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="15" />
@@ -1065,7 +1074,9 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="5561" levels="3" name="Seed of Revenge">
-		<!-- The growing seed of revenge. Attack power increases. -->
+		<!-- Level 1: The growing seed of revenge. Attack power increases. -->
+		<!-- Level 2: The growing seed of revenge. Attack power and the probability of Critical Hit increase. -->
+		<!-- Level 3: The full grown seed of revenge. Attack power and the probability of Critical hit/damage increase, and the Insane Crusher can be used. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#activationChance">10 10 0</table>
 		<table name="#cAtk">1 1 1.25</table>
@@ -1081,7 +1092,7 @@
 		<set name="magicLevel" val="83" />
 		<set name="operateType" val="A2" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="#activationChance" />
@@ -1094,7 +1105,9 @@
 		</for>
 	</skill>
 	<skill id="5562" levels="3" name="Spirit of Phoenix">
-		<!-- Growing Spirit of Phoenix. Increases P. Def. -->
+		<!-- Level 1: Growing Spirit of Phoenix. Increases P. Def. -->
+		<!-- Level 2: Growing Spirit of Phoenix. Defense power, dark attributes and Resistance to fire attributes are increased. -->
+		<!-- Level 3: Spirit of Phoenix which is full of strength. Defense power, dark attributes and Resistance to fire attributes/the amount of received heal are increased, and Flame Gust can be used. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#activationChance">10 10 0</table>
 		<table name="#elementRes">0 30 30</table>
@@ -1110,7 +1123,7 @@
 		<set name="magicLevel" val="83" />
 		<set name="operateType" val="A2" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="#activationChance" />
@@ -1124,7 +1137,9 @@
 		</for>
 	</skill>
 	<skill id="5563" levels="3" name="Eva's Will">
-		<!-- The growing will of Eva. Increases M. Def. -->
+		<!-- Level 1: The growing will of Eva. Increases M. Def. -->
+		<!-- Level 2: The growing will of Eva. M. Def. and Water attribute attacking power increase. -->
+		<!-- Level 3: Revealed Eva's will. M. Def., Water attribute attacking power, and Critical hit probability increase. Touch of Eva can be used. -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#activationChance">10 10 0</table>
 		<table name="#icons">icon.skill0786 icon.skill0786_2 icon.skill0786_3</table>
@@ -1140,7 +1155,7 @@
 		<set name="magicLevel" val="83" />
 		<set name="operateType" val="A2" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="#activationChance" />
@@ -1152,8 +1167,10 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="5564" levels="3" name="Pain of Shilen">
-		<!-- Shilen's Growing Pain - Critical Damage is increased. -->
+	<skill id="5564" levels="3" name="Pain of Shillien">
+		<!-- Level 1: Shilen's Growing Pain - Critical Damage is increased. -->
+		<!-- Level 2: Shilen's Growing Pain - Critical Damage and Wind attack attribute are increased. -->
+		<!-- Level 3: Shilen's Growing Pain - Critical Damage and Wind attack attribute are increased. In addition, a portion of the damage you inflict on your enemy can be absorbed as HP. The Spirit of Shilen can now be used! -->
 		<table name="#abnormalLevels">2 3 4</table>
 		<table name="#absorbDam">0 0 8</table>
 		<table name="#activationChance">10 10 0</table>
@@ -1169,7 +1186,7 @@
 		<set name="magicLevel" val="83" />
 		<set name="operateType" val="A2" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="#activationChance" />
@@ -1228,7 +1245,7 @@
 		<set name="power" val="47" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5568" levels="1" name="Frost Armor">
@@ -1277,7 +1294,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="5570" levels="1" name="Excessive Loyalty">
+	<skill id="5570" levels="1" name="Excessive Royalty">
 		<!-- Summoner's Wrath. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="20" />
@@ -1449,8 +1466,6 @@
 		</for>
 	</skill>
 	<skill id="5579" levels="1" name="Cubic Cure">
-		<!-- High Five Confirmed -->
-		<!-- Smart Cubic Skill -->
 		<set name="castRange" val="600" />
 		<set name="effectPoint" val="408" />
 		<set name="effectRange" val="1100" />
@@ -1478,7 +1493,7 @@
 		<set name="reuseDelay" val="10000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5581" levels="1" name="Divine Beast Stun Attack">
@@ -1499,7 +1514,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" /> <!-- using 1 second due abnormal don't have abnormal time -->
 		</for>
 	</skill>
@@ -1522,7 +1537,7 @@
 		<set name="reuseDelay" val="120000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5583" levels="1" name="Divine Beast Roar">
@@ -1602,7 +1617,9 @@
 		</for>
 	</skill>
 	<skill id="5586" levels="3" name="Pet Might">
-		<!-- Increases attacking power temporarily. Effect 1. -->
+		<!-- Level 1: Increases attacking power temporarily. Effect 1. -->
+		<!-- Level 2: Increases attacking power temporarily. Effect 2. -->
+		<!-- Level 3: Increases attacking power temporarily. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#effectPoints">121 204 379</table>
 		<table name="#magicLevel">7 20 40</table>
@@ -1631,7 +1648,9 @@
 		</for>
 	</skill>
 	<skill id="5587" levels="3" name="Pet Shield">
-		<!-- Increases defense power temporarily. Effect 1. -->
+		<!-- Level 1: Increases defense power temporarily. Effect 1. -->
+		<!-- Level 2: Increases defense power temporarily. Effect 2. -->
+		<!-- Level 3: Increases defense power temporarily. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#effectPoints">121 243 418</table>
 		<table name="#magicLevel">7 25 44</table>
@@ -1660,7 +1679,9 @@
 		</for>
 	</skill>
 	<skill id="5588" levels="3" name="Pet Focus">
-		<!-- Temporarily increase the probability of Critical attack power. Effect 1. -->
+		<!-- Level 1: Temporarily increase the probability of Critical attack power. Effect 1. -->
+		<!-- Level 2: Temporarily increase the probability of Critical attack power. Effect 2. -->
+		<!-- Level 3: Temporarily increase the probability of Critical attack power. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#effectPoints">243 418 495</table>
 		<table name="#magicLevel">25 44 52</table>
@@ -1689,7 +1710,9 @@
 		</for>
 	</skill>
 	<skill id="5589" levels="3" name="Pet Death Whisper">
-		<!-- Temporarily increase the Critical attack power. Effect 1. -->
+		<!-- Level 1: Temporarily increase the Critical attack power. Effect 1. -->
+		<!-- Level 2: Temporarily increase the Critical attack power. Effect 2. -->
+		<!-- Level 3: Temporarily increase the Critical attack power. Effect 3. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#cAtk">1.25 1.3 1.35</table>
 		<table name="#effectPoints">379 457 532</table>
@@ -1718,7 +1741,18 @@
 		</for>
 	</skill>
 	<skill id="5590" levels="12" name="Pet Battle Heal">
-		<!-- Quickly recovers HP. Power 91. -->
+		<!-- Level 1: Quickly recovers HP. Power 91. -->
+		<!-- Level 2: Quickly recovers HP. Power 166. -->
+		<!-- Level 3: Quickly recovers HP. Power 269. -->
+		<!-- Level 4: Quickly recovers HP. Power 398. -->
+		<!-- Level 5: Quickly recovers HP. Power 544. -->
+		<!-- Level 6: Quickly recovers HP. Power 690. -->
+		<!-- Level 7: Quickly recovers HP. Power 817. -->
+		<!-- Level 8: Quickly recovers HP. Power 867. -->
+		<!-- Level 9: Quickly recovers HP. Power 909. -->
+		<!-- Level 10: Quickly recovers HP. Power 954. -->
+		<!-- Level 11: Quickly recovers HP. Power 985. -->
+		<!-- Level 12: Quickly recovers HP. Power 1005. -->
 		<table name="#amount">91 166 269 398 544 690 817 867 909 954 985 1005</table>
 		<table name="#effectPoints">66 121 196 290 396 502 595 631 661 694 716 731</table>
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
@@ -1760,7 +1794,22 @@
 		</for>
 	</skill>
 	<skill id="5592" levels="16" name="Lightning Barrier">
-		<!-- Temporarily paralyzed. -->
+		<!-- Level 1: Temporarily paralyzed. -->
+		<!-- Level 2: Temporarily paralyzes target. -->
+		<!-- Level 3: Temporarily paralyzes target. -->
+		<!-- Level 4: Temporarily paralyzes target. -->
+		<!-- Level 5: Temporarily paralyzes target. -->
+		<!-- Level 6: Temporarily paralyzes target. -->
+		<!-- Level 7: Temporarily paralyzes target. -->
+		<!-- Level 8: Temporarily paralyzes target. -->
+		<!-- Level 9: Temporarily paralyzes target. -->
+		<!-- Level 10: Temporarily paralyzes target. -->
+		<!-- Level 11: Temporarily paralyzes target. -->
+		<!-- Level 12: Temporarily paralyzes target. -->
+		<!-- Level 13: Temporarily paralyzes target. -->
+		<!-- Level 14: Temporarily paralyzes target. -->
+		<!-- Level 15: Temporarily paralyzes target. -->
+		<!-- Level 16: Temporarily paralyzes target. -->
 		<table name="#activateRates">80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 95</table>
 		<table name="#magicLevel">80 81 81 81 82 82 82 83 83 83 84 84 85 85 85 85</table>
 		<set name="abnormalLevel" val="1" />

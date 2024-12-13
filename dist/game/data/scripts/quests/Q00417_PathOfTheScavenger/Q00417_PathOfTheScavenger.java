@@ -18,7 +18,6 @@ package quests.Q00417_PathOfTheScavenger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -412,7 +411,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 				}
 				case HONEY_BEAR:
 				{
-					if (npc.isScriptValue(2) && firstAttacker && ((Attackable) npc).isSpoiled() && hasQuestItems(killer, BEAR_PICTURE) && giveItemRandomly(killer, npc, HONEY_JAR, 1, 5, 1, true))
+					if (npc.isScriptValue(2) && firstAttacker && npc.asAttackable().isSpoiled() && hasQuestItems(killer, BEAR_PICTURE) && giveItemRandomly(killer, npc, HONEY_JAR, 1, 5, 1, true))
 					{
 						qs.setCond(6);
 					}
@@ -421,7 +420,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 				case HUNTER_TARANTULA:
 				case PLUNDER_TARANTULA:
 				{
-					if (npc.isScriptValue(2) && firstAttacker && ((Attackable) npc).isSpoiled() && hasQuestItems(killer, TARANTULA_PICTURE) && giveItemRandomly(killer, npc, BEAD, 1, 20, 1, true))
+					if (npc.isScriptValue(2) && firstAttacker && npc.asAttackable().isSpoiled() && hasQuestItems(killer, TARANTULA_PICTURE) && giveItemRandomly(killer, npc, BEAD, 1, 20, 1, true))
 					{
 						qs.setCond(8);
 					}

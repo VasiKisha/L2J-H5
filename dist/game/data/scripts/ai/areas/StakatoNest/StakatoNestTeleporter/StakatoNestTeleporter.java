@@ -17,6 +17,7 @@
 package ai.areas.StakatoNest.StakatoNestTeleporter;
 
 import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.QuestState;
@@ -55,9 +56,10 @@ public class StakatoNestTeleporter extends AbstractNpcAI
 		if (LOCS.length > index)
 		{
 			final Location loc = LOCS[index];
-			if (player.getParty() != null)
+			final Party party = player.getParty();
+			if (party != null)
 			{
-				for (Player partyMember : player.getParty().getMembers())
+				for (Player partyMember : party.getMembers())
 				{
 					if (partyMember.isInsideRadius3D(player, 1000))
 					{

@@ -34,7 +34,7 @@ import ai.AbstractNpcAI;
 
 /**
  * Sin Eater AI.
- * @author St3eT.
+ * @author St3eT
  */
 public class SinEater extends AbstractNpcAI
 {
@@ -88,7 +88,7 @@ public class SinEater extends AbstractNpcAI
 	public void onCreatureKill(OnCreatureDeath event)
 	{
 		final int random = getRandom(100);
-		final Summon summon = (Summon) event.getTarget();
+		final Summon summon = event.getTarget().asSummon();
 		if (random < 30)
 		{
 			broadcastSummonSay(summon, NpcStringId.OH_THIS_IS_JUST_GREAT_WHAT_ARE_YOU_GOING_TO_DO_NOW);
@@ -111,7 +111,7 @@ public class SinEater extends AbstractNpcAI
 		if (getRandom(100) < 30)
 		{
 			final int random = getRandom(100);
-			final Summon summon = (Summon) event.getTarget();
+			final Summon summon = event.getTarget().asSummon();
 			if (random < 35)
 			{
 				broadcastSummonSay(summon, NpcStringId.OH_THAT_SMARTS);

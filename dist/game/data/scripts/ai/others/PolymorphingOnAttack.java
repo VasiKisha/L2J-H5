@@ -100,7 +100,7 @@ public class PolymorphingOnAttack extends AbstractNpcAI
 					npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npcString));
 				}
 				npc.deleteMe();
-				final Attackable newNpc = (Attackable) addSpawn(tmp.get(0), npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true);
+				final Attackable newNpc = addSpawn(tmp.get(0), npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, true).asAttackable();
 				final Creature originalAttacker = isSummon ? attacker.getSummon() : attacker;
 				newNpc.setRunning();
 				newNpc.addDamageHate(originalAttacker, 0, 500);

@@ -17,7 +17,6 @@
 package ai.areas.ForgeOfTheGods;
 
 import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 
@@ -162,7 +161,7 @@ public class ForgeOfTheGods extends AbstractNpcAI
 		}
 		if (mob != null)
 		{
-			((Attackable) mob).addDamageHate(killer, 0, 9999);
+			mob.asAttackable().addDamageHate(killer, 0, 9999);
 			mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK);
 		}
 		return super.onKill(npc, killer, isSummon);

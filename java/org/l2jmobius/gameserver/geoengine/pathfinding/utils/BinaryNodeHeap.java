@@ -1,25 +1,29 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.geoengine.pathfinding.utils;
 
 import org.l2jmobius.gameserver.geoengine.pathfinding.geonodes.GeoNode;
 
 /**
- * @author -Nemesiss-
+ * @author -Nemesiss-, Mobius
  */
 public class BinaryNodeHeap
 {
@@ -36,77 +40,52 @@ public class BinaryNodeHeap
 	{
 		_size++;
 		int pos = _size;
-		_list[pos] = n;
-		while (pos != 1)
+		while ((pos > 1) && (n.getCost() < _list[pos / 2].getCost()))
 		{
-			final int p2 = pos / 2;
-			if (_list[pos].getCost() <= _list[p2].getCost())
-			{
-				final GeoNode temp = _list[p2];
-				_list[p2] = _list[pos];
-				_list[pos] = temp;
-				pos = p2;
-			}
-			else
-			{
-				break;
-			}
+			_list[pos] = _list[pos / 2];
+			pos /= 2;
 		}
+		_list[pos] = n;
 	}
 	
 	public GeoNode removeFirst()
 	{
-		final GeoNode first = _list[1];
-		_list[1] = _list[_size];
-		_list[_size] = null;
-		_size--;
-		int pos = 1;
-		int cpos;
-		int dblcpos;
-		GeoNode temp;
-		while (true)
+		if (_size == 0)
 		{
-			cpos = pos;
-			dblcpos = cpos * 2;
-			if ((dblcpos + 1) <= _size)
+			return null;
+		}
+		
+		final GeoNode first = _list[1]; // The node to return.
+		final GeoNode last = _list[_size]; // The last node in the heap.
+		_list[_size--] = null; // Remove the last node and decrease the size.
+		
+		int pos = 1;
+		int child;
+		
+		// "Bubbling down" the last node to its correct position.
+		while ((pos * 2) <= _size)
+		{
+			child = pos * 2;
+			if ((child != _size) && (_list[child + 1].getCost() < _list[child].getCost()))
 			{
-				if (_list[cpos].getCost() >= _list[dblcpos].getCost())
-				{
-					pos = dblcpos;
-				}
-				if (_list[pos].getCost() >= _list[dblcpos + 1].getCost())
-				{
-					pos = dblcpos + 1;
-				}
-			}
-			else if (dblcpos <= _size)
-			{
-				if (_list[cpos].getCost() >= _list[dblcpos].getCost())
-				{
-					pos = dblcpos;
-				}
+				child++;
 			}
 			
-			if (cpos != pos)
-			{
-				temp = _list[cpos];
-				_list[cpos] = _list[pos];
-				_list[pos] = temp;
-			}
-			else
+			if (last.getCost() <= _list[child].getCost())
 			{
 				break;
 			}
+			
+			_list[pos] = _list[child];
+			pos = child;
 		}
+		
+		_list[pos] = last;
 		return first;
 	}
 	
 	public boolean contains(GeoNode n)
 	{
-		if (_size == 0)
-		{
-			return false;
-		}
 		for (int i = 1; i <= _size; i++)
 		{
 			if (_list[i].equals(n))

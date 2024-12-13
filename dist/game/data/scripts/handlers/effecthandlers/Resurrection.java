@@ -18,6 +18,7 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
@@ -57,9 +58,10 @@ public class Resurrection extends AbstractEffect
 	{
 		if (effector.isPlayer())
 		{
-			if (effected.getActingPlayer() != null)
+			final Player player = effected.asPlayer();
+			if (player != null)
 			{
-				effected.getActingPlayer().reviveRequest(effector.getActingPlayer(), effected.isPet(), _power);
+				player.reviveRequest(effector.asPlayer(), effected.isPet(), _power);
 			}
 		}
 		else

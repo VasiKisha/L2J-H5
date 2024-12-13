@@ -200,7 +200,7 @@ public class CharSummonTable
 					
 					if (player.hasServitor())
 					{
-						final Servitor summon = (Servitor) player.getSummon();
+						final Servitor summon = player.getSummon().asServitor();
 						summon.setCurrentHp(curHp);
 						summon.setCurrentMp(curMp);
 						summon.setLifeTimeRemaining(time);

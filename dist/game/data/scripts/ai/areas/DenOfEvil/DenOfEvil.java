@@ -214,7 +214,7 @@ public class DenOfEvil extends AbstractNpcAI
 						if (creature.isNpc())
 						{
 							// respawn eye
-							final Npc npc = (Npc) creature;
+							final Npc npc = creature.asNpc();
 							if (CommonUtil.contains(EYE_IDS, npc.getId()))
 							{
 								ThreadPool.schedule(new RespawnNewEye(npc.getLocation()), 15000);

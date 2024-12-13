@@ -21,8 +21,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * Duel Start packet implementation.
- * @author KenM, Zoey76
+ * @author KenM
  */
 public class ExDuelStart extends ServerPacket
 {
@@ -31,9 +30,9 @@ public class ExDuelStart extends ServerPacket
 	
 	private final boolean _partyDuel;
 	
-	public ExDuelStart(boolean partyDuel)
+	public ExDuelStart(boolean isPartyDuel)
 	{
-		_partyDuel = partyDuel;
+		_partyDuel = isPartyDuel;
 	}
 	
 	@Override

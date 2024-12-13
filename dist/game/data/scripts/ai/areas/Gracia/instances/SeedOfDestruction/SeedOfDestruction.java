@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.Gracia.instances.SeedOfDestruction;
 
@@ -31,6 +35,7 @@ import org.l2jmobius.gameserver.instancemanager.InstanceManager;
 import org.l2jmobius.gameserver.instancemanager.SoDManager;
 import org.l2jmobius.gameserver.model.CommandChannel;
 import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -814,12 +819,15 @@ public class SeedOfDestruction extends AbstractNpcAI
 			LOGGER.info("SoD is now in test mode - DEBUG OR GM PLAYER");
 			return true;
 		}
-		if (player.getParty() == null)
+		
+		final Party party = player.getParty();
+		if (party == null)
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_CURRENTLY_IN_A_PARTY_SO_YOU_CANNOT_ENTER);
 			return false;
 		}
-		final CommandChannel channel = player.getParty().getCommandChannel();
+		
+		final CommandChannel channel = party.getCommandChannel();
 		if (channel == null)
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_ENTER_BECAUSE_YOU_ARE_NOT_ASSOCIATED_WITH_THE_CURRENT_COMMAND_CHANNEL);
@@ -835,6 +843,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 			player.sendPacket(SystemMessageId.YOU_CANNOT_ENTER_DUE_TO_THE_PARTY_HAVING_EXCEEDED_THE_LIMIT);
 			return false;
 		}
+		
 		for (Player channelMember : channel.getMembers())
 		{
 			if (channelMember.getLevel() < Config.MIN_TIAT_LEVEL)
@@ -844,6 +853,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				channel.broadcastPacket(sm);
 				return false;
 			}
+			
 			if (!Util.checkIfInRange(1000, player, channelMember, true))
 			{
 				final SystemMessage sm = (new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED));
@@ -851,6 +861,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				channel.broadcastPacket(sm);
 				return false;
 			}
+			
 			final Long reentertime = InstanceManager.getInstance().getInstanceTime(channelMember.getObjectId(), INSTANCE_ID);
 			if (System.currentTimeMillis() < reentertime)
 			{
@@ -917,7 +928,8 @@ public class SeedOfDestruction extends AbstractNpcAI
 			((SODWorld) world).ZoneWaitForTP = true;
 			teleto.instanceId = instanceId;
 			
-			if (player.getParty() == null)
+			final Party party = player.getParty();
+			if (party == null)
 			{
 				player.sendMessage("Welcome to Seed of Destruction. Time to finish the instance is 130 minutes.");
 				InstanceManager.getInstance().setInstanceTime(player.getObjectId(), INSTANCE_ID, (System.currentTimeMillis()));
@@ -928,9 +940,9 @@ public class SeedOfDestruction extends AbstractNpcAI
 				}
 				world.addAllowed(player);
 			}
-			else if (player.getParty().getCommandChannel() != null)
+			else if (party.getCommandChannel() != null)
 			{
-				for (Player channelMember : player.getParty().getCommandChannel().getMembers())
+				for (Player channelMember : party.getCommandChannel().getMembers())
 				{
 					player.sendMessage("Welcome to Seed of Destruction. Time to finish the instance is 130 minutes.");
 					InstanceManager.getInstance().setInstanceTime(channelMember.getObjectId(), INSTANCE_ID, (System.currentTimeMillis()));
@@ -944,7 +956,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 			}
 			else
 			{
-				for (Player partyMember : player.getParty().getMembers())
+				for (Player partyMember : party.getMembers())
 				{
 					player.sendMessage("Welcome to Seed of Destruction. Time to finish the instance is 130 minutes.");
 					InstanceManager.getInstance().setInstanceTime(partyMember.getObjectId(), INSTANCE_ID, (System.currentTimeMillis()));
@@ -960,12 +972,16 @@ public class SeedOfDestruction extends AbstractNpcAI
 		}
 	}
 	
-	private void removeBuffs(Creature ch)
+	private void removeBuffs(Creature creature)
 	{
-		ch.stopAllEffectsExceptThoseThatLastThroughDeath();
-		if (ch.hasSummon())
+		creature.stopAllEffectsExceptThoseThatLastThroughDeath();
+		if (creature.isPlayer())
 		{
-			ch.getSummon().stopAllEffectsExceptThoseThatLastThroughDeath();
+			final Player player = creature.asPlayer();
+			if (player.hasSummon())
+			{
+				player.getSummon().stopAllEffectsExceptThoseThatLastThroughDeath();
+			}
 		}
 	}
 	
@@ -1104,7 +1120,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 			npc.setRandomWalking(false);
 			if (npc.isAttackable())
 			{
-				((Attackable) npc).setSeeThroughSilentMove(true);
+				npc.asAttackable().setSeeThroughSilentMove(true);
 			}
 			if (mob[0] == SPAWN_DEVICE)
 			{
@@ -1253,7 +1269,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 						final Player target = world.getAllowed().stream().findAny().get();
 						if ((world.deviceSpawnedMobCount < MAX_DEVICE_SPAWNED_MOB_COUNT) && (target != null) && ((npc != null) && (target.getInstanceId() == npc.getInstanceId())) && !target.isDead())
 						{
-							final Attackable mob = (Attackable) addSpawn(SPAWN_MOB_IDS[getRandom(SPAWN_MOB_IDS.length)], npc.getSpawn().getX(), npc.getSpawn().getY(), npc.getSpawn().getZ(), npc.getSpawn().getHeading(), false, 0, false, world.getInstanceId());
+							final Attackable mob = addSpawn(SPAWN_MOB_IDS[getRandom(SPAWN_MOB_IDS.length)], npc.getSpawn().getX(), npc.getSpawn().getY(), npc.getSpawn().getZ(), npc.getSpawn().getHeading(), false, 0, false, world.getInstanceId()).asAttackable();
 							world.deviceSpawnedMobCount++;
 							mob.setSeeThroughSilentMove(true);
 							mob.setRunning();
@@ -1333,7 +1349,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				}
 				else if (npc.getId() == NAEZD)
 				{
-					final Attackable mob = (Attackable) addSpawn(npc.getId(), npc.getSpawn().getX(), npc.getSpawn().getY(), npc.getSpawn().getZ(), npc.getSpawn().getHeading(), false, 0, false, world.getInstanceId());
+					final Attackable mob = addSpawn(npc.getId(), npc.getSpawn().getX(), npc.getSpawn().getY(), npc.getSpawn().getZ(), npc.getSpawn().getHeading(), false, 0, false, world.getInstanceId()).asAttackable();
 					mob.setRandomWalking(false);
 					mob.setSeeThroughSilentMove(true);
 					mob.setIsRaidMinion(true);
@@ -1443,7 +1459,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				final SODWorld world = (SODWorld) tmpworld;
 				if ((zone.getId() == 25253) && world.ZoneWaitForTP)
 				{
-					startQuestTimer("ThroneSpawn", 55000, null, (Player) creature);
+					startQuestTimer("ThroneSpawn", 55000, null, creature.asPlayer());
 					playMovie(world, Movie.SC_BOSS_TIAT_OPENING);
 					world.ZoneWaitForTP = false;
 				}

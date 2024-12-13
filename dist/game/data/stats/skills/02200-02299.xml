@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="2200" levels="3" name="Item - Jade Treasure Box">
 		<table name="#extractableItems">
@@ -652,7 +652,7 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="2229" levels="8" name="Treasure Chest Key">
+	<skill id="2229" levels="8" name="Treasure Chest Key - 1">
 		<table name="#effectPoints">-1 -2 -3 -4 -5 -6 -7 -8</table>
 		<table name="#itemConsumeId">6665 6666 6667 6668 6669 6670 6671 6672</table>
 		<set name="castRange" val="40" />
@@ -762,7 +762,7 @@
 			</and>
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -851,7 +851,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="2239" levels="1" name="Petrification Scroll">
+	<skill id="2239" levels="1" name="Petrifaction Scroll">
 		<!-- Turns target to stone. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="5" />
@@ -1587,8 +1587,15 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="2274" levels="8" name="Fisherman's Potion">
-		<!-- Fisherman's Potion Green. Fishing Mastery Level is now reduced. You can now catch green fish. -->
+	<skill id="2274" levels="8" name="Fisherman's Potion – Green">
+		<!-- Level 1: Fisherman's Potion – Green. Fishing Mastery Level is now reduced. You can now catch green fish. -->
+		<!-- Level 2: Fisherman's Potion – Jade. Fishing Mastery Level is now reduced. You can now catch jade fish. -->
+		<!-- Level 3: Fisherman's Potion – Blue. Fishing Mastery Level is now reduced. You can now catch blue fish. -->
+		<!-- Level 4: Fisherman's Potion – Yellow. Fishing Mastery Level is now reduced. You can now catch yellow fish. -->
+		<!-- Level 5: Fisherman's Potion – Orange. Fishing Mastery Level is now reduced. You can now catch orange fish. -->
+		<!-- Level 6: Fisherman's Potion – Purple. Fishing Mastery Level is now reduced. You can now catch purple fish. -->
+		<!-- Level 7: Fisherman's Potion – Red. Fishing Mastery Level is now reduced. You can now catch red fish. -->
+		<!-- Level 8: Fisherman's Potion – White. Fishing Mastery Level is now reduced. You can now catch white fish. -->
 		<table name="#active_skill_id_lvl">1315,4 1315,7 1315,10 1315,13 1315,16 1315,19 1315,22 1315,25</table>
 		<table name="#icons">icon.etc_oblivion_green_i00 icon.etc_oblivion_jade_i00 icon.etc_oblivion_blue_i00 icon.etc_oblivion_yellow_i00 icon.etc_oblivion_orange_i00 icon.etc_oblivion_violet_i00 icon.etc_oblivion_red_i00 icon.etc_oblivion_white_i00</table>
 		<table name="#power">2 5 8 11 14 17 20 23</table>
@@ -1838,7 +1845,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="2286" levels="6" name="Scroll: Recovery">
+	<skill id="2286" levels="6" name="Scroll: Recovery (No Grade)">
 		<table name="#levelRange">1;19 20;39 40;51 52;60 61;75 76;85</table>
 		<table name="#itemConsumeId">8594 8595 8596 8597 8598 8599</table>
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -1858,7 +1865,7 @@
 			<effect name="Recovery" />
 		</for>
 	</skill>
-	<skill id="2287" levels="6" name="Elixir of Life">
+	<skill id="2287" levels="6" name="Elixir of Life (No Grade)">
 		<table name="#amount">250 650 1100 1500 1900 2300</table>
 		<table name="#levelRange">1;19 20;39 40;51 52;60 61;75 76;85</table>
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -1874,7 +1881,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="2288" levels="6" name="Elixir of Mental Strength">
+	<skill id="2288" levels="6" name="Elixir of Mental Strength (No Grade)">
 		<table name="#amount">60 140 220 290 360 420</table>
 		<table name="#levelRange">1;19 20;39 40;51 52;60 61;75 76;85</table>
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -1890,7 +1897,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="2289" levels="6" name="Elixir of CP">
+	<skill id="2289" levels="6" name="Elixir of CP (No Grade)">
 		<table name="#amount">150 350 600 800 1000 1200</table>
 		<table name="#levelRange">1;19 20;39 40;51 52;60 61;75 76;85</table>
 		<set name="isMagic" val="2" /> <!-- Static Skill -->

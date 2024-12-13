@@ -19,6 +19,7 @@ package quests.Q00246_PossessorOfAPreciousSoul3;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -202,9 +203,10 @@ public class Q00246_PossessorOfAPreciousSoul3 extends Quest
 			case BARAKIEL:
 			{
 				QuestState pst;
-				if ((player.getParty() != null) && !player.getParty().getMembers().isEmpty())
+				final Party party = player.getParty();
+				if ((party != null) && !party.getMembers().isEmpty())
 				{
-					for (Player member : player.getParty().getMembers())
+					for (Player member : party.getMembers())
 					{
 						if (member.calculateDistance3D(npc) > Config.ALT_PARTY_RANGE)
 						{

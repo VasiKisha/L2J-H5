@@ -393,7 +393,7 @@ public abstract class ClanHallSiegeEngine extends Quest implements Siegable
 		{
 			if ((chr != null) && chr.isPlayer())
 			{
-				chr.getActingPlayer().startPvPFlag();
+				chr.asPlayer().startPvPFlag();
 			}
 		}
 		

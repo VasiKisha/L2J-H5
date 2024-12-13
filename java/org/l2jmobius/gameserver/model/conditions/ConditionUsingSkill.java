@@ -40,6 +40,11 @@ public class ConditionUsingSkill extends Condition
 	@Override
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
-		return (skill != null) && (skill.getId() == _skillId);
+		if (skill == null)
+		{
+			return false;
+		}
+		
+		return skill.getId() == _skillId;
 	}
 }

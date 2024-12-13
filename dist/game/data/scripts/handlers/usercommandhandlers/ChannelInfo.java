@@ -18,6 +18,7 @@ package handlers.usercommandhandlers;
 
 import org.l2jmobius.gameserver.handler.IUserCommandHandler;
 import org.l2jmobius.gameserver.model.CommandChannel;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExMultiPartyCommandChannelInfo;
 
@@ -40,12 +41,13 @@ public class ChannelInfo implements IUserCommandHandler
 			return false;
 		}
 		
-		if ((player.getParty() == null) || (player.getParty().getCommandChannel() == null))
+		final Party party = player.getParty();
+		if ((party == null) || (party.getCommandChannel() == null))
 		{
 			return false;
 		}
 		
-		final CommandChannel channel = player.getParty().getCommandChannel();
+		final CommandChannel channel = party.getCommandChannel();
 		player.sendPacket(new ExMultiPartyCommandChannelInfo(channel));
 		return true;
 	}

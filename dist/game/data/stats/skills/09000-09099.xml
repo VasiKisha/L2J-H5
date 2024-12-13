@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="9000" levels="1" name="PC room private weapon strengthening order sheet - D grade">
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
@@ -80,7 +80,7 @@
 			<target npcId="13270" />
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="9011" levels="1" name="Might">
@@ -1030,7 +1030,7 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="9067" levels="1" name="Potion of Vitality Maintenance">
+	<skill id="9067" levels="1" name="Vitality Maintaining Potion">
 		<!-- Vitality is maintained for 10 minutes. -->
 		<set name="abnormalLevel" val="2" />
 		<set name="abnormalTime" val="600" />
@@ -1051,7 +1051,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="9068" levels="2" name="Potion of Vitality Maintenance">
+	<skill id="9068" levels="2" name="Vitality Maintaining Potion">
 		<!-- Vitality is maintained for 30 minutes. -->
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="1800" />

@@ -1,36 +1,87 @@
 /*
- * Copyright © 2019-2021 Async-mmocore
- *
- * This file is part of the Async-mmocore project.
- *
- * Async-mmocore is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Async-mmocore is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (c) 2013 L2jMobius
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.commons.network;
 
+import java.lang.Thread.UncaughtExceptionHandler;
+import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.ThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
+import java.util.logging.Logger;
+
+import org.l2jmobius.commons.network.internal.MMOThreadFactory;
+
 /**
- * Defines a functional interface for executing incoming network packets.<br>
- * Implementations should handle the processing of packets, ideally offloading long-running or blocking operations to separate threads.
+ * Defines a class for executing incoming network packets.<br>
+ * Handles the processing of packets, ideally offloading long-running or blocking operations to separate threads.
  * @param <T> The type of Client associated with the packet to be executed.
- * @author JoeAlisson
+ * @author Mobius
  */
-@FunctionalInterface
-public interface PacketExecutor<T extends Client<Connection<T>>>
+public class PacketExecutor<T extends Client<Connection<T>>>
 {
-	/**
-	 * Executes the provided packet.<br>
-	 * It is highly recommended to execute long-running or blocking code in another thread to avoid network processing delays.
-	 * @param packet The packet to be executed.
-	 */
-	void execute(ReadablePacket<T> packet);
+	private static final Logger LOGGER = Logger.getLogger(PacketExecutor.class.getName());
+	
+	private final ThreadPoolExecutor _executor;
+	
+	public PacketExecutor(ConnectionConfig config)
+	{
+		_executor = new ThreadPoolExecutor(config.threadPoolSize, Integer.MAX_VALUE, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new MMOThreadFactory("PacketExecutor", config.threadPriority));
+	}
+	
+	public void execute(ReadablePacket<T> packet)
+	{
+		try
+		{
+			_executor.execute(new PacketRunnable<>(packet));
+		}
+		catch (Exception e)
+		{
+			LOGGER.warning(packet.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
+		}
+	}
+	
+	private static class PacketRunnable<T extends Client<Connection<T>>> implements Runnable
+	{
+		private final ReadablePacket<T> _packet;
+		
+		public PacketRunnable(ReadablePacket<T> packet)
+		{
+			_packet = packet;
+		}
+		
+		@Override
+		public void run()
+		{
+			try
+			{
+				_packet.run();
+			}
+			catch (Throwable e)
+			{
+				final Thread t = Thread.currentThread();
+				final UncaughtExceptionHandler h = t.getUncaughtExceptionHandler();
+				if (h != null)
+				{
+					h.uncaughtException(t, e);
+				}
+			}
+		}
+	}
 }

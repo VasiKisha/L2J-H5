@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.taskmanager;
 
@@ -45,8 +49,8 @@ public class AutoPlayTaskManager
 {
 	private static final Set<Set<Player>> POOLS = ConcurrentHashMap.newKeySet();
 	private static final Map<Player, Integer> IDLE_COUNT = new ConcurrentHashMap<>();
-	private static final int POOL_SIZE = 300;
-	private static final int TASK_DELAY = 300;
+	private static final int POOL_SIZE = 200;
+	private static final int TASK_DELAY = 700;
 	private static final Integer AUTO_ATTACK_ACTION = 2;
 	
 	protected AutoPlayTaskManager()
@@ -90,7 +94,7 @@ public class AutoPlayTaskManager
 				final WorldObject target = player.getTarget();
 				if ((target != null) && target.isCreature())
 				{
-					final Creature creature = (Creature) target;
+					final Creature creature = target.asCreature();
 					if (creature.isAlikeDead() || !isTargetModeValid(targetMode, player, creature))
 					{
 						// Logic for Spoil (254) skill.
@@ -99,7 +103,7 @@ public class AutoPlayTaskManager
 							final Skill sweeper = player.getKnownSkill(42);
 							if (sweeper != null)
 							{
-								final Monster monster = ((Monster) target);
+								final Monster monster = target.asMonster();
 								if (monster.checkSpoilOwner(player, false))
 								{
 									// Move to target.
@@ -243,9 +247,9 @@ public class AutoPlayTaskManager
 					if (leader.calculateDistance3D(player) < (Config.ALT_PARTY_RANGE * 2 /* 2? */))
 					{
 						final WorldObject leaderTarget = leader.getTarget();
-						if ((leaderTarget != null) && (leaderTarget.isAttackable() || (leaderTarget.isPlayable() && !party.containsPlayer(leaderTarget.getActingPlayer()))))
+						if ((leaderTarget != null) && (leaderTarget.isAttackable() || (leaderTarget.isPlayable() && !party.containsPlayer(leaderTarget.asPlayer()))))
 						{
-							creature = (Creature) leaderTarget;
+							creature = leaderTarget.asCreature();
 						}
 						else if ((player.getAI().getIntention() != CtrlIntention.AI_INTENTION_FOLLOW) && !player.isDisabled())
 						{
@@ -312,7 +316,7 @@ public class AutoPlayTaskManager
 		
 		private boolean isTargetModeValid(int mode, Player player, Creature creature)
 		{
-			if (!creature.isTargetable() || (creature.isNpc() && creature.isInvul()))
+			if (!creature.isTargetable() || (creature.isNpc() && (creature.isInvul() || !creature.asNpc().isShowName())))
 			{
 				return false;
 			}
@@ -321,7 +325,7 @@ public class AutoPlayTaskManager
 			{
 				case 1: // Monster
 				{
-					return creature.isMonster() && creature.isAutoAttackable(player);
+					return creature.isMonster() && !creature.isRaid() && creature.isAutoAttackable(player);
 				}
 				case 2: // Characters
 				{

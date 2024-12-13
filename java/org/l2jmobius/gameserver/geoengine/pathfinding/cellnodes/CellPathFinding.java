@@ -1,25 +1,27 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.geoengine.pathfinding.cellnodes;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -33,7 +35,7 @@ import org.l2jmobius.gameserver.instancemanager.IdManager;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 
 /**
- * @author Sami, DS Credits to Diamond
+ * @author Sami, DS, Diamond, Mobius
  */
 public class CellPathFinding extends PathFinding
 {
@@ -87,20 +89,21 @@ public class CellPathFinding extends PathFinding
 	@Override
 	public List<AbstractNodeLoc> findPath(int x, int y, int z, int tx, int ty, int tz, int instanceId, boolean playable)
 	{
-		final int gx = GeoEngine.getInstance().getGeoX(x);
-		final int gy = GeoEngine.getInstance().getGeoY(y);
-		if (!GeoEngine.getInstance().hasGeo(x, y))
+		final GeoEngine geoEngine = GeoEngine.getInstance();
+		final int gx = geoEngine.getGeoX(x);
+		final int gy = geoEngine.getGeoY(y);
+		if (!geoEngine.hasGeo(x, y))
 		{
 			return null;
 		}
-		final int gz = GeoEngine.getInstance().getHeight(x, y, z);
-		final int gtx = GeoEngine.getInstance().getGeoX(tx);
-		final int gty = GeoEngine.getInstance().getGeoY(ty);
-		if (!GeoEngine.getInstance().hasGeo(tx, ty))
+		final int gz = geoEngine.getHeight(x, y, z);
+		final int gtx = geoEngine.getGeoX(tx);
+		final int gty = geoEngine.getGeoY(ty);
+		if (!geoEngine.hasGeo(tx, ty))
 		{
 			return null;
 		}
-		final int gtz = GeoEngine.getInstance().getHeight(tx, ty, tz);
+		final int gtz = geoEngine.getHeight(tx, ty, tz);
 		final CellNodeBuffer buffer = alloc(64 + (2 * Math.max(Math.abs(gx - gtx), Math.abs(gy - gty))), playable);
 		if (buffer == null)
 		{
@@ -108,20 +111,15 @@ public class CellPathFinding extends PathFinding
 		}
 		
 		final boolean debug = Config.DEBUG_PATH && playable;
-		
 		if (debug)
 		{
 			if (_debugItems == null)
 			{
-				_debugItems = new LinkedList<>();
+				_debugItems = new ArrayList<>();
 			}
 			else
 			{
-				for (Item item : _debugItems)
-				{
-					item.decayMe();
-				}
-				
+				_debugItems.forEach(Item::decayMe);
 				_debugItems.clear();
 			}
 		}
@@ -178,10 +176,6 @@ public class CellPathFinding extends PathFinding
 			_postFilterPlayableUses++;
 		}
 		
-		ListIterator<AbstractNodeLoc> middlePoint;
-		int currentX;
-		int currentY;
-		int currentZ;
 		int pass = 0;
 		boolean remove;
 		do
@@ -190,23 +184,18 @@ public class CellPathFinding extends PathFinding
 			_postFilterPasses++;
 			
 			remove = false;
-			middlePoint = path.listIterator();
-			currentX = x;
-			currentY = y;
-			currentZ = z;
+			int currentX = x;
+			int currentY = y;
+			int currentZ = z;
+			final int size = path.size();
+			final List<AbstractNodeLoc> newPath = new ArrayList<>(size);
 			
-			while (middlePoint.hasNext())
+			for (int i = 0; i < (size - 1); i++)
 			{
-				final AbstractNodeLoc locMiddle = middlePoint.next();
-				if (!middlePoint.hasNext())
+				AbstractNodeLoc locMiddle = path.get(i);
+				AbstractNodeLoc locEnd = path.get(i + 1);
+				if (geoEngine.canMoveToTarget(currentX, currentY, currentZ, locEnd.getX(), locEnd.getY(), locEnd.getZ(), instanceId))
 				{
-					break;
-				}
-				
-				final AbstractNodeLoc locEnd = path.get(middlePoint.nextIndex());
-				if (GeoEngine.getInstance().canMoveToTarget(currentX, currentY, currentZ, locEnd.getX(), locEnd.getY(), locEnd.getZ(), instanceId))
-				{
-					middlePoint.remove();
 					remove = true;
 					if (debug)
 					{
@@ -215,13 +204,16 @@ public class CellPathFinding extends PathFinding
 				}
 				else
 				{
+					newPath.add(locMiddle);
 					currentX = locMiddle.getX();
 					currentY = locMiddle.getY();
 					currentZ = locMiddle.getZ();
 				}
 			}
+			// Add the last node
+			newPath.add(path.get(size - 1));
+			path = newPath;
 		}
-		// Only one postfilter pass for AI.
 		while (playable && remove && (path.size() > 2) && (pass < Config.MAX_POSTFILTER_PASSES));
 		
 		if (debug)
@@ -236,7 +228,7 @@ public class CellPathFinding extends PathFinding
 	
 	private List<AbstractNodeLoc> constructPath(AbstractNode<NodeLoc> node)
 	{
-		final LinkedList<AbstractNodeLoc> path = new LinkedList<>();
+		final List<AbstractNodeLoc> path = new ArrayList<>();
 		int previousDirectionX = Integer.MIN_VALUE;
 		int previousDirectionY = Integer.MIN_VALUE;
 		int directionX;

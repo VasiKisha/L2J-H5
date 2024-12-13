@@ -114,7 +114,7 @@ public class Quarry extends AbstractNpcAI
 						{
 							if (getRandom(10000) < item.getChance())
 							{
-								npc.dropItem((Player) npc.getTarget(), item.getId(), (int) (item.getCount() * Config.RATE_QUEST_DROP));
+								npc.dropItem(npc.getTarget().asPlayer(), item.getId(), (int) (item.getCount() * Config.RATE_QUEST_DROP));
 								break;
 							}
 						}
@@ -162,7 +162,7 @@ public class Quarry extends AbstractNpcAI
 	{
 		if (creature.isAttackable())
 		{
-			final Attackable npc = (Attackable) creature;
+			final Attackable npc = creature.asAttackable();
 			if ((npc.getId() == SLAVE) && !npc.isDead() && !npc.isDecayed() && (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_FOLLOW) && (HellboundEngine.getInstance().getLevel() == 5))
 			{
 				startQuestTimer("DECAY", 1000, npc, null);

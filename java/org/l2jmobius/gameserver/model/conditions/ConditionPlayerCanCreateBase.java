@@ -22,6 +22,7 @@ import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
 import org.l2jmobius.gameserver.instancemanager.SiegeManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
@@ -51,8 +52,14 @@ public class ConditionPlayerCanCreateBase extends Condition
 			return !_value;
 		}
 		
-		final Player player = effector.getActingPlayer();
-		boolean canCreateBase = !player.isAlikeDead() && !player.isCursedWeaponEquipped() && (player.getClan() != null);
+		final Player player = effector.asPlayer();
+		boolean canCreateBase = true;
+		final Clan clan = player.getClan();
+		if (player.isAlikeDead() || player.isCursedWeaponEquipped() || (clan == null))
+		{
+			canCreateBase = false;
+		}
+		
 		final Castle castle = CastleManager.getInstance().getCastle(player);
 		final Fort fort = FortManager.getInstance().getFort(player);
 		final SystemMessage sm;
@@ -70,7 +77,7 @@ public class ConditionPlayerCanCreateBase extends Condition
 			player.sendPacket(sm);
 			canCreateBase = false;
 		}
-		else if (((castle != null) && (castle.getSiege().getAttackerClan(player.getClan()) == null)) || ((fort != null) && (fort.getSiege().getAttackerClan(player.getClan()) == null)))
+		else if (((castle != null) && (castle.getSiege().getAttackerClan(clan) == null)) || ((fort != null) && (fort.getSiege().getAttackerClan(clan) == null)))
 		{
 			sm = new SystemMessage(SystemMessageId.S1_CANNOT_BE_USED_DUE_TO_UNSUITABLE_TERMS);
 			sm.addSkillName(skill);
@@ -84,7 +91,7 @@ public class ConditionPlayerCanCreateBase extends Condition
 			player.sendPacket(sm);
 			canCreateBase = false;
 		}
-		else if (((castle != null) && (castle.getSiege().getAttackerClan(player.getClan()).getNumFlags() >= SiegeManager.getInstance().getFlagMaxCount())) || ((fort != null) && (fort.getSiege().getAttackerClan(player.getClan()).getNumFlags() >= FortSiegeManager.getInstance().getFlagMaxCount())))
+		else if (((castle != null) && (castle.getSiege().getAttackerClan(clan).getNumFlags() >= SiegeManager.getInstance().getFlagMaxCount())) || ((fort != null) && (fort.getSiege().getAttackerClan(clan).getNumFlags() >= FortSiegeManager.getInstance().getFlagMaxCount())))
 		{
 			sm = new SystemMessage(SystemMessageId.S1_CANNOT_BE_USED_DUE_TO_UNSUITABLE_TERMS);
 			sm.addSkillName(skill);

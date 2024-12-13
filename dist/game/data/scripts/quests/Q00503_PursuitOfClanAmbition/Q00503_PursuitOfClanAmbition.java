@@ -803,9 +803,10 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 	
 	private static QuestState getLeaderQuestState(Player player, String quest)
 	{
-		if (player.getClan() != null)
+		final Clan clan = player.getClan();
+		if (clan != null)
 		{
-			final Player leader = player.getClan().getLeader().getPlayer();
+			final Player leader = clan.getLeader().getPlayer();
 			if (leader != null)
 			{
 				return leader.getQuestState(quest);

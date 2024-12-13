@@ -23,7 +23,6 @@ import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -232,7 +231,7 @@ public class SelMahumDrill extends AbstractNpcAI
 						}
 						if (receiver.canBeAttacked())
 						{
-							((Attackable) receiver).clearAggroList();
+							receiver.asAttackable().clearAggroList();
 						}
 						receiver.disableCoreAI(true);
 						receiver.getVariables().set("BUSY_STATE", 1);

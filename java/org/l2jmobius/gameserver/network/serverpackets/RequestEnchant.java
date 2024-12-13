@@ -25,20 +25,17 @@ import org.l2jmobius.gameserver.network.ServerPackets;
  */
 public class RequestEnchant extends ServerPacket
 {
-	private final int _unk;
+	private final int _result;
 	
-	/**
-	 * @param value
-	 */
-	public RequestEnchant(int value)
+	public RequestEnchant(int result)
 	{
-		_unk = value;
+		_result = result;
 	}
 	
 	@Override
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.EX_PUT_ENCHANT_TARGET_ITEM_RESULT.writeId(this, buffer);
-		buffer.writeInt(_unk);
+		buffer.writeInt(_result);
 	}
 }

@@ -42,6 +42,7 @@ import org.l2jmobius.gameserver.instancemanager.tasks.FourSepulchersChangeAttack
 import org.l2jmobius.gameserver.instancemanager.tasks.FourSepulchersChangeCoolDownTimeTask;
 import org.l2jmobius.gameserver.instancemanager.tasks.FourSepulchersChangeEntryTimeTask;
 import org.l2jmobius.gameserver.instancemanager.tasks.FourSepulchersChangeWarmUpTimeTask;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -846,21 +847,22 @@ public class FourSepulchersManager
 			return;
 		}
 		
+		final Party party = player.getParty();
 		if (Config.FS_PARTY_MEMBER_COUNT > 1)
 		{
-			if (!player.isInParty() || (player.getParty().getMemberCount() < Config.FS_PARTY_MEMBER_COUNT))
+			if (!player.isInParty() || (party.getMemberCount() < Config.FS_PARTY_MEMBER_COUNT))
 			{
 				showHtmlFile(player, npcId + "-SP.htm", npc, null);
 				return;
 			}
 			
-			if (!player.getParty().isLeader(player))
+			if (!party.isLeader(player))
 			{
 				showHtmlFile(player, npcId + "-NL.htm", npc, null);
 				return;
 			}
 			
-			for (Player mem : player.getParty().getMembers())
+			for (Player mem : party.getMembers())
 			{
 				final QuestState qs = mem.getQuestState(hostQuest.getName());
 				if ((qs == null) || (!qs.isStarted() && !qs.isCompleted()))
@@ -883,12 +885,12 @@ public class FourSepulchersManager
 		}
 		else if ((Config.FS_PARTY_MEMBER_COUNT <= 1) && player.isInParty())
 		{
-			if (!player.getParty().isLeader(player))
+			if (!party.isLeader(player))
 			{
 				showHtmlFile(player, npcId + "-NL.htm", npc, null);
 				return;
 			}
-			for (Player mem : player.getParty().getMembers())
+			for (Player mem : party.getMembers())
 			{
 				final QuestState qs = mem.getQuestState(hostQuest.getName());
 				if ((qs == null) || (!qs.isStarted() && !qs.isCompleted()))
@@ -945,10 +947,11 @@ public class FourSepulchersManager
 		final int[] loc = _startHallSpawns.get(npcId);
 		int driftx;
 		int drifty;
+		final Party party = player.getParty();
 		if (Config.FS_PARTY_MEMBER_COUNT > 1)
 		{
 			final List<Player> members = new LinkedList<>();
-			for (Player mem : player.getParty().getMembers())
+			for (Player mem : party.getMembers())
 			{
 				if (!mem.isDead() && Util.checkIfInRange(700, player, mem, true))
 				{
@@ -982,7 +985,7 @@ public class FourSepulchersManager
 		if ((Config.FS_PARTY_MEMBER_COUNT <= 1) && player.isInParty())
 		{
 			final List<Player> members = new LinkedList<>();
-			for (Player mem : player.getParty().getMembers())
+			for (Player mem : party.getMembers())
 			{
 				if (!mem.isDead() && Util.checkIfInRange(700, player, mem, true))
 				{

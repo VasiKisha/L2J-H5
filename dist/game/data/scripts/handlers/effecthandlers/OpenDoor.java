@@ -58,7 +58,7 @@ public class OpenDoor extends AbstractEffect
 			return;
 		}
 		
-		Door door = (Door) effected;
+		Door door = effected.asDoor();
 		// Check if door in the different instance
 		if (effector.getInstanceId() != door.getInstanceId())
 		{

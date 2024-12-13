@@ -137,7 +137,8 @@ public class Q00508_AClansReputation extends Quest
 	@Override
 	public String onKill(Npc npc, Player player, boolean isSummon)
 	{
-		if (player.getClan() == null)
+		final Clan clan = player.getClan();
+		if (clan == null)
 		{
 			return null;
 		}
@@ -149,7 +150,7 @@ public class Q00508_AClansReputation extends Quest
 		}
 		else
 		{
-			final Player pleader = player.getClan().getLeader().getPlayer();
+			final Player pleader = clan.getLeader().getPlayer();
 			if ((pleader != null) && player.isInsideRadius3D(pleader, Config.ALT_PARTY_RANGE))
 			{
 				qs = pleader.getQuestState(getName());

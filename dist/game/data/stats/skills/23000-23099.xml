@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="23000" levels="1" name="Majo Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
@@ -12,7 +12,7 @@
 			<player agathionId="1501" />
 		</cond>
 	</skill>
-	<skill id="23001" levels="1" name="Gold Majo Agathion Cute Trick">
+	<skill id="23001" levels="1" name="Gold Crown Majo Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -24,7 +24,7 @@
 			<player agathionId="1502" />
 		</cond>
 	</skill>
-	<skill id="23002" levels="1" name="Black Majo Agathion Cute Trick">
+	<skill id="23002" levels="1" name="Black Crown Majo Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -321,7 +321,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="23017" levels="1" name="Holiday Festival">
+	<skill id="23017" levels="1" name="Christmas Festival">
 		<!-- Maximum HP/MP/CP, Physical/Defense Power, Speed and Physical/Magic Attack Power are increased, and MP consumption for skills is decreased. Effectiveness 1. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="3600" />
@@ -348,7 +348,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="23018" levels="1" name="Thomas D. Turkey's Mistake">
+	<skill id="23018" levels="1" name="Stupid Turkey's Mistake">
 		<!-- Maximum HP/MP/CP, Physical/Defense Power, Speed and Physical/Magic Attack Power are increased, and MP consumption for skills is decreased. Effectiveness 2. -->
 		<set name="abnormalLevel" val="2" />
 		<set name="abnormalTime" val="3600" />
@@ -377,7 +377,9 @@
 		</for>
 	</skill>
 	<skill id="23019" levels="3" name="Scissors">
-		<!-- Challenging with "scissors." Cannot move. -->
+		<!-- Level 1: Challenging with "scissors." Cannot move. -->
+		<!-- Level 2: Challenging with "rock." Cannot move. -->
+		<!-- Level 3: Challenging with "paper." Cannot move. -->
 		<table name="#icons">BranchSys.icon.br_xmas_gawi_i00 BranchSys.icon.br_xmas_bawi_i00 BranchSys.icon.br_xmas_bo_i00</table>
 		<table name="#magicLevel">1 2 3</table>
 		<set name="abnormalLevel" val="1" />
@@ -397,7 +399,7 @@
 			<effect name="ImmobileBuff" />
 		</for>
 	</skill>
-	<skill id="23020" levels="1" name="Challenge the Turkey">
+	<skill id="23020" levels="1" name="Start attacking the Turkey">
 		<!-- Presentation of the Turkey's Attack -->
 		<set name="affectRange" val="500" />
 		<set name="blockedInOlympiad" val="true" />
@@ -416,8 +418,17 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="SELF" />
 	</skill>
-	<skill id="23022" levels="10" name="First Win">
-		<!-- First win at the rock-scissors-paper match. -->
+	<skill id="23022" levels="10" name="First win">
+		<!-- Level 1: First win at the rock-scissors-paper match. -->
+		<!-- Level 2: Second consecutive win at the rock-scissors-paper match. -->
+		<!-- Level 3: Third consecutive win at the rock-scissors-paper match. -->
+		<!-- Level 4: Fourth consecutive win at the rock-scissors-paper match. -->
+		<!-- Level 5: Fifth consecutive win at the rock-scissors-paper match. -->
+		<!-- Level 6: Sixth consecutive win at the rock-scissors-paper match. -->
+		<!-- Level 7: Seventh consecutive win at the rock-scissors-paper match. -->
+		<!-- Level 8: Eighth consecutive win at the rock-scissors-paper match. -->
+		<!-- Level 9: Ninth consecutive win at the rock-scissors-paper match. -->
+		<!-- Level 10: Tenth consecutive win at the rock-scissors-paper match. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9 10</table>
 		<table name="#icons">BranchSys.icon.br_xmas_pcwin1_i00 BranchSys.icon.br_xmas_pcwin2_i00 BranchSys.icon.br_xmas_pcwin3_i00 BranchSys.icon.br_xmas_pcwin4_i00 BranchSys.icon.br_xmas_pcwin5_i00 BranchSys.icon.br_xmas_pcwin6_i00 BranchSys.icon.br_xmas_pcwin7_i00 BranchSys.icon.br_xmas_pcwin8_i00 BranchSys.icon.br_xmas_pcwin9_i00 BranchSys.icon.br_xmas_pcwin10_i00</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -467,7 +478,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="23025" levels="1" name="Charming Cupid Agathion Cute Trick">
+	<skill id="23025" levels="1" name="White Cupid Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -479,7 +490,7 @@
 			<player agathionId="1508" />
 		</cond>
 	</skill>
-	<skill id="23026" levels="1" name="Naughty Cupid Agathion Cute Trick">
+	<skill id="23026" levels="1" name="Dark Cupid Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -1205,7 +1216,7 @@
 			<effect name="RestorationRandom" />
 		</for>
 	</skill>
-	<skill id="23067" levels="1" name="Pomona Agathion Cute Trick">
+	<skill id="23067" levels="1" name="Live Event Souvenir Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -1291,7 +1302,7 @@
 		<set name="operateType" val="A2" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="23072" levels="1" name="Eva's Wrath">
+	<skill id="23072" levels="1" name="Eva's Authority">
 		<!-- For 70 seconds, attacks the spirit using Eva's Authority. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="70" />
@@ -1309,7 +1320,7 @@
 			<effect name="Buff" />
 		</for>
 	</skill>
-	<skill id="23073" levels="1" name="Switch Mode">
+	<skill id="23073" levels="1" name="Switch State">
 		<!-- The spirit's mode is switched. Change to counterattack mode or lethal move mode. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="2" />
@@ -1503,7 +1514,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="23083" levels="1" name="Dancing Kid Agathion Cute Trick">
+	<skill id="23083" levels="1" name="Dancing Child Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -1541,7 +1552,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="23085" levels="1" name="Monkey King Agathion Cute Trick">
+	<skill id="23085" levels="1" name="Son-o-gong Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -1579,7 +1590,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="23087" levels="1" name="Utanka Agathion Cute Trick">
+	<skill id="23087" levels="1" name="Wutangka Agathion Cute Trick">
 		<!-- You can see the summoned spirit's cute tricks. -->
 		<set name="hitTime" val="3000" />
 		<set name="icon" val="icon.skill_agathion_cute" />
@@ -1655,7 +1666,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="23091" levels="1" name="Trick of Halloween Children">
+	<skill id="23091" levels="1" name="Three Siblings' Trickery">
 		<!-- By the three sibling's trickery, Max HP/MP/CP are increased by 40% for 10 seconds. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="10" />
@@ -1742,7 +1753,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="ONE" />
 	</skill>
-	<skill id="23097" levels="1" name="First Consecutive Win">
+	<skill id="23097" levels="1" name="First win">
 		<!-- 1-time win at the Jack's Game. -->
 		<set name="blockedInOlympiad" val="true" />
 		<set name="castRange" val="500" />
@@ -1764,7 +1775,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="ONE" />
 	</skill>
-	<skill id="23099" levels="1" name="Third Consecutive Win">
+	<skill id="23099" levels="1" name="3rd Consecutive Win">
 		<!-- 3-time win at the Jack's Game. -->
 		<set name="blockedInOlympiad" val="true" />
 		<set name="castRange" val="500" />

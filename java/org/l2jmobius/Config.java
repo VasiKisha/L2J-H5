@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius;
 
@@ -179,6 +183,7 @@ public class Config
 	public static boolean DANCE_CANCEL_BUFF;
 	public static boolean DANCE_CONSUME_ADDITIONAL_MP;
 	public static boolean ALT_STORE_DANCES;
+	public static boolean ALT_STORE_TOGGLES;
 	public static boolean AUTO_LEARN_DIVINE_INSPIRATION;
 	public static boolean ALT_GAME_CANCEL_BOW;
 	public static boolean ALT_GAME_CANCEL_CAST;
@@ -252,6 +257,7 @@ public class Config
 	public static boolean FAME_FOR_DEAD_PLAYERS;
 	public static boolean IS_CRAFTING_ENABLED;
 	public static boolean CRAFT_MASTERWORK;
+	public static double CRAFT_MASTERWORK_CHANCE_RATE;
 	public static int DWARF_RECIPE_LIMIT;
 	public static int COMMON_RECIPE_LIMIT;
 	public static boolean ALT_GAME_CREATION;
@@ -502,7 +508,6 @@ public class Config
 	public static boolean GM_DEBUG_HTML_PATHS;
 	public static boolean USE_SUPER_HASTE_AS_GM_SPEED;
 	public static boolean LOG_CHAT;
-	public static boolean LOG_AUTO_ANNOUNCEMENTS;
 	public static boolean LOG_ITEMS;
 	public static boolean LOG_ITEMS_SMALL_LOG;
 	public static boolean LOG_ITEMS_IDS_ONLY;
@@ -558,6 +563,7 @@ public class Config
 	public static int MIN_MONSTER_ANIMATION;
 	public static int MAX_MONSTER_ANIMATION;
 	public static boolean CORRECT_PRICES;
+	public static long MULTISELL_AMOUNT_LIMIT;
 	public static boolean ENABLE_FALLING_DAMAGE;
 	public static String UC_START_TIME;
 	public static int UC_TIME_PERIOD;
@@ -867,6 +873,8 @@ public class Config
 	// --------------------------------------------------
 	// Seven Signs Settings
 	// --------------------------------------------------
+	public static boolean ALT_SEVENSIGNS_OPEN_CATACUMBS;
+	public static boolean ALT_SEVENSIGNS_OPEN_NECROPOLIS;
 	public static boolean ALT_GAME_CASTLE_DAWN;
 	public static boolean ALT_GAME_CASTLE_DUSK;
 	public static boolean ALT_GAME_REQUIRE_CLAN_CASTLE;
@@ -1003,6 +1011,7 @@ public class Config
 	public static boolean ALT_ALLOW_AUGMENT_PVP_ITEMS;
 	public static boolean ALT_ALLOW_AUGMENT_TRADE;
 	public static boolean ALT_ALLOW_AUGMENT_DESTROY;
+	public static double SOUL_CRYSTAL_CHANCE_MULTIPLIER;
 	public static double HP_REGEN_MULTIPLIER;
 	public static double MP_REGEN_MULTIPLIER;
 	public static double CP_REGEN_MULTIPLIER;
@@ -1093,6 +1102,7 @@ public class Config
 	public static float MEDIUM_WEIGHT;
 	public static float HIGH_WEIGHT;
 	public static boolean ADVANCED_DIAGONAL_STRATEGY;
+	public static boolean AVOID_ABSTRUCTED_PATH_NODES;
 	public static float DIAGONAL_WEIGHT;
 	public static int MAX_POSTFILTER_PASSES;
 	public static boolean DEBUG_PATH;
@@ -1258,6 +1268,8 @@ public class Config
 	public static int DUALBOX_CHECK_MAX_PLAYERS_PER_IP;
 	public static int DUALBOX_CHECK_MAX_OLYMPIAD_PARTICIPANTS_PER_IP;
 	public static int DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP;
+	public static int DUALBOX_CHECK_MAX_OFFLINEPLAY_PER_IP;
+	public static int DUALBOX_CHECK_MAX_OFFLINEPLAY_PREMIUM_PER_IP;
 	public static boolean DUALBOX_COUNT_OFFLINE_TRADERS;
 	public static Map<Integer, Integer> DUALBOX_CHECK_WHITELIST;
 	public static boolean ENABLE_ONLINE_COMMAND;
@@ -1430,8 +1442,8 @@ public class Config
 			PACKET_ENCRYPTION = serverConfig.getBoolean("PacketEncryption", false);
 			REQUEST_ID = serverConfig.getInt("RequestServerID", 0);
 			ACCEPT_ALTERNATE_ID = serverConfig.getBoolean("AcceptAlternateID", true);
-			DATABASE_DRIVER = serverConfig.getString("Driver", "org.mariadb.jdbc.Driver");
-			DATABASE_URL = serverConfig.getString("URL", "jdbc:mariadb://localhost/l2jmobiush5?useUnicode=true&characterEncoding=utf-8");
+			DATABASE_DRIVER = serverConfig.getString("Driver", "com.mysql.cj.jdbc.Driver");
+			DATABASE_URL = serverConfig.getString("URL", "jdbc:mysql://localhost/l2jmobiush5?useUnicode=true&characterEncoding=utf-8");
 			DATABASE_LOGIN = serverConfig.getString("Login", "root");
 			DATABASE_PASSWORD = serverConfig.getString("Password", "");
 			DATABASE_MAX_CONNECTIONS = serverConfig.getInt("MaximumDatabaseConnections", 10);
@@ -1644,6 +1656,8 @@ public class Config
 			FS_MAX_SUPPLY_LEVEL = featureConfig.getInt("FortressMaxSupplyLevel", 6);
 			FS_FEE_FOR_CASTLE = featureConfig.getInt("FortressFeeForCastle", 25000);
 			FS_MAX_OWN_TIME = featureConfig.getInt("FortressMaximumOwnTime", 168);
+			ALT_SEVENSIGNS_OPEN_CATACUMBS = featureConfig.getBoolean("AltOpenCatacumbs", false);
+			ALT_SEVENSIGNS_OPEN_NECROPOLIS = featureConfig.getBoolean("AltOpenNecropolis", false);
 			ALT_GAME_CASTLE_DAWN = featureConfig.getBoolean("AltCastleForDawn", true);
 			ALT_GAME_CASTLE_DUSK = featureConfig.getBoolean("AltCastleForDusk", true);
 			ALT_GAME_REQUIRE_CLAN_CASTLE = featureConfig.getBoolean("AltRequireClanCastle", false);
@@ -1793,6 +1807,7 @@ public class Config
 			DANCE_CANCEL_BUFF = characterConfig.getBoolean("DanceCancelBuff", false);
 			DANCE_CONSUME_ADDITIONAL_MP = characterConfig.getBoolean("DanceConsumeAdditionalMP", true);
 			ALT_STORE_DANCES = characterConfig.getBoolean("AltStoreDances", false);
+			ALT_STORE_TOGGLES = characterConfig.getBoolean("AltStoreToggles", false);
 			AUTO_LEARN_DIVINE_INSPIRATION = characterConfig.getBoolean("AutoLearnDivineInspiration", false);
 			ALT_GAME_CANCEL_BOW = characterConfig.getString("AltGameCancelByHit", "Cast").equalsIgnoreCase("bow") || characterConfig.getString("AltGameCancelByHit", "Cast").equalsIgnoreCase("all");
 			ALT_GAME_CANCEL_CAST = characterConfig.getString("AltGameCancelByHit", "Cast").equalsIgnoreCase("cast") || characterConfig.getString("AltGameCancelByHit", "Cast").equalsIgnoreCase("all");
@@ -1921,6 +1936,7 @@ public class Config
 			ALT_ALLOW_AUGMENT_PVP_ITEMS = characterConfig.getBoolean("AltAllowAugmentPvPItems", false);
 			ALT_ALLOW_AUGMENT_TRADE = characterConfig.getBoolean("AltAllowAugmentTrade", false);
 			ALT_ALLOW_AUGMENT_DESTROY = characterConfig.getBoolean("AltAllowAugmentDestroy", true);
+			SOUL_CRYSTAL_CHANCE_MULTIPLIER = characterConfig.getDouble("SoulCrystalChanceMultiplier", 1);
 			ALT_GAME_KARMA_PLAYER_CAN_BE_KILLED_IN_PEACEZONE = characterConfig.getBoolean("AltKarmaPlayerCanBeKilledInPeaceZone", false);
 			ALT_GAME_KARMA_PLAYER_CAN_SHOP = characterConfig.getBoolean("AltKarmaPlayerCanShop", true);
 			ALT_GAME_KARMA_PLAYER_CAN_TELEPORT = characterConfig.getBoolean("AltKarmaPlayerCanTeleport", true);
@@ -1935,6 +1951,7 @@ public class Config
 			FAME_FOR_DEAD_PLAYERS = characterConfig.getBoolean("FameForDeadPlayers", true);
 			IS_CRAFTING_ENABLED = characterConfig.getBoolean("CraftingEnabled", true);
 			CRAFT_MASTERWORK = characterConfig.getBoolean("CraftMasterwork", true);
+			CRAFT_MASTERWORK_CHANCE_RATE = characterConfig.getDouble("CraftMasterworkChanceRate", 1);
 			DWARF_RECIPE_LIMIT = characterConfig.getInt("DwarfRecipeLimit", 50);
 			COMMON_RECIPE_LIMIT = characterConfig.getInt("CommonRecipeLimit", 50);
 			ALT_GAME_CREATION = characterConfig.getBoolean("AltGameCreation", false);
@@ -2066,7 +2083,6 @@ public class Config
 			GM_DEBUG_HTML_PATHS = generalConfig.getBoolean("GMDebugHtmlPaths", true);
 			USE_SUPER_HASTE_AS_GM_SPEED = generalConfig.getBoolean("UseSuperHasteAsGMSpeed", false);
 			LOG_CHAT = generalConfig.getBoolean("LogChat", false);
-			LOG_AUTO_ANNOUNCEMENTS = generalConfig.getBoolean("LogAutoAnnouncements", false);
 			LOG_ITEMS = generalConfig.getBoolean("LogItems", false);
 			LOG_ITEMS_SMALL_LOG = generalConfig.getBoolean("LogItemsSmallLog", false);
 			LOG_ITEMS_IDS_ONLY = generalConfig.getBoolean("LogItemsIdsOnly", false);
@@ -2275,6 +2291,7 @@ public class Config
 			ENABLE_PRIME_SHOP = generalConfig.getBoolean("EnablePrimeShop", false);
 			PRIME_SHOP_ITEM_ID = generalConfig.getInt("PrimeShopItemId", -1);
 			CORRECT_PRICES = generalConfig.getBoolean("CorrectPrices", true);
+			MULTISELL_AMOUNT_LIMIT = generalConfig.getLong("MultisellAmountLimit", 10000);
 			ENABLE_FALLING_DAMAGE = generalConfig.getBoolean("EnableFallingDamage", true);
 			
 			// Load UndergroundColiseum config file
@@ -2685,6 +2702,7 @@ public class Config
 			MEDIUM_WEIGHT = geoEngineConfig.getFloat("MediumWeight", 2);
 			HIGH_WEIGHT = geoEngineConfig.getFloat("HighWeight", 3);
 			ADVANCED_DIAGONAL_STRATEGY = geoEngineConfig.getBoolean("AdvancedDiagonalStrategy", true);
+			AVOID_ABSTRUCTED_PATH_NODES = geoEngineConfig.getBoolean("AvoidAbstructedPathNodes", true);
 			DIAGONAL_WEIGHT = geoEngineConfig.getFloat("DiagonalWeight", 0.707f);
 			MAX_POSTFILTER_PASSES = geoEngineConfig.getInt("MaxPostfilterPasses", 3);
 			DEBUG_PATH = geoEngineConfig.getBoolean("DebugPath", false);
@@ -2905,6 +2923,8 @@ public class Config
 			DUALBOX_CHECK_MAX_PLAYERS_PER_IP = dualboxCheckConfig.getInt("DualboxCheckMaxPlayersPerIP", 0);
 			DUALBOX_CHECK_MAX_OLYMPIAD_PARTICIPANTS_PER_IP = dualboxCheckConfig.getInt("DualboxCheckMaxOlympiadParticipantsPerIP", 0);
 			DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP = dualboxCheckConfig.getInt("DualboxCheckMaxL2EventParticipantsPerIP", 0);
+			DUALBOX_CHECK_MAX_OFFLINEPLAY_PER_IP = dualboxCheckConfig.getInt("DualboxCheckMaxOfflinePlayPerIP", 0);
+			DUALBOX_CHECK_MAX_OFFLINEPLAY_PREMIUM_PER_IP = dualboxCheckConfig.getInt("DualboxCheckMaxOfflinePlayPremiumPerIP", 0);
 			DUALBOX_COUNT_OFFLINE_TRADERS = dualboxCheckConfig.getBoolean("DualboxCountOfflineTraders", false);
 			final String[] dualboxCheckWhiteList = dualboxCheckConfig.getString("DualboxCheckWhitelist", "127.0.0.1,0").split(";");
 			DUALBOX_CHECK_WHITELIST = new HashMap<>(dualboxCheckWhiteList.length);
@@ -3322,8 +3342,8 @@ public class Config
 			LOGIN_BLOCK_AFTER_BAN = loginConfig.getInt("LoginBlockAfterBan", 900);
 			LOGIN_SERVER_SCHEDULE_RESTART = loginConfig.getBoolean("LoginRestartSchedule", false);
 			LOGIN_SERVER_SCHEDULE_RESTART_TIME = loginConfig.getLong("LoginRestartTime", 24);
-			DATABASE_DRIVER = loginConfig.getString("Driver", "org.mariadb.jdbc.Driver");
-			DATABASE_URL = loginConfig.getString("URL", "jdbc:mariadb://localhost/l2jmobiush5?useUnicode=true&characterEncoding=utf-8");
+			DATABASE_DRIVER = loginConfig.getString("Driver", "com.mysql.cj.jdbc.Driver");
+			DATABASE_URL = loginConfig.getString("URL", "jdbc:mysql://localhost/l2jmobiush5?useUnicode=true&characterEncoding=utf-8");
 			DATABASE_LOGIN = loginConfig.getString("Login", "root");
 			DATABASE_PASSWORD = loginConfig.getString("Password", "");
 			DATABASE_MAX_CONNECTIONS = loginConfig.getInt("MaximumDatabaseConnections", 10);

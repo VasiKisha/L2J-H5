@@ -392,7 +392,7 @@ public abstract class ItemContainer
 	 * Destroy item from inventory and updates database
 	 * @param process : String Identifier of process triggering this action
 	 * @param item : Item to be destroyed
-	 * @param actor : Player Player requesting the item destroy
+	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
@@ -406,7 +406,7 @@ public abstract class ItemContainer
 	 * @param process : String Identifier of process triggering this action
 	 * @param item : Item to be destroyed
 	 * @param count
-	 * @param actor : Player Player requesting the item destroy
+	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
@@ -449,7 +449,7 @@ public abstract class ItemContainer
 	 * @param process : String Identifier of process triggering this action
 	 * @param objectId : int Item Instance identifier of the item to be destroyed
 	 * @param count : int Quantity of items to be destroyed
-	 * @param actor : Player Player requesting the item destroy
+	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
@@ -464,7 +464,7 @@ public abstract class ItemContainer
 	 * @param process : String Identifier of process triggering this action
 	 * @param itemId : int Item identifier of the item to be destroyed
 	 * @param count : int Quantity of items to be destroyed
-	 * @param actor : Player Player requesting the item destroy
+	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
@@ -477,7 +477,7 @@ public abstract class ItemContainer
 	/**
 	 * Destroy all items from inventory and updates database
 	 * @param process : String Identifier of process triggering this action
-	 * @param actor : Player Player requesting the item destroy
+	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 */
 	public void destroyAllItems(String process, Player actor, Object reference)
@@ -588,7 +588,7 @@ public abstract class ItemContainer
 					
 					World.getInstance().addObject(item);
 					
-					final Player owner = getOwner() != null ? getOwner().getActingPlayer() : null;
+					final Player owner = getOwner() != null ? getOwner().asPlayer() : null;
 					
 					// If stackable item is found in inventory just add to current quantity
 					if (item.isStackable() && (getItemByItemId(item.getId()) != null))

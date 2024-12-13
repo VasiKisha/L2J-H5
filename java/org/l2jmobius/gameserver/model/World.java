@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model;
 
@@ -152,7 +156,7 @@ public class World
 		
 		if (object.isPlayer())
 		{
-			final Player newPlayer = (Player) object;
+			final Player newPlayer = object.asPlayer();
 			if (newPlayer.isTeleporting()) // TODO: Drop when we stop removing player from the world while teleporting.
 			{
 				return;
@@ -188,7 +192,7 @@ public class World
 		_allObjects.remove(object.getObjectId());
 		if (object.isPlayer())
 		{
-			final Player player = (Player) object;
+			final Player player = object.asPlayer();
 			if (player.isTeleporting()) // TODO: Drop when we stop removing player from the world while teleporting.
 			{
 				return;
@@ -310,7 +314,7 @@ public class World
 		{
 			if (wo.isNpc() && (wo.getId() == npcId))
 			{
-				return (Npc) wo;
+				return wo.asNpc();
 			}
 		}
 		return null;
@@ -341,15 +345,15 @@ public class World
 		
 		forEachVisibleObject(object, WorldObject.class, wo ->
 		{
-			if (object.isPlayer() && wo.isVisibleFor((Player) object))
+			if (object.isPlayer() && wo.isVisibleFor(object.asPlayer()))
 			{
-				wo.sendInfo((Player) object);
+				wo.sendInfo(object.asPlayer());
 				if (wo.isCreature())
 				{
-					final CreatureAI ai = ((Creature) wo).getAI();
+					final CreatureAI ai = wo.asCreature().getAI();
 					if (ai != null)
 					{
-						ai.describeStateToPlayer((Player) object);
+						ai.describeStateToPlayer(object.asPlayer());
 						if (wo.isMonster() && (ai.getIntention() == CtrlIntention.AI_INTENTION_IDLE))
 						{
 							ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
@@ -358,15 +362,15 @@ public class World
 				}
 			}
 			
-			if (wo.isPlayer() && object.isVisibleFor((Player) wo))
+			if (wo.isPlayer() && object.isVisibleFor(wo.asPlayer()))
 			{
-				object.sendInfo((Player) wo);
+				object.sendInfo(wo.asPlayer());
 				if (object.isCreature())
 				{
-					final CreatureAI ai = ((Creature) object).getAI();
+					final CreatureAI ai = object.asCreature().getAI();
 					if (ai != null)
 					{
-						ai.describeStateToPlayer((Player) wo);
+						ai.describeStateToPlayer(wo.asPlayer());
 						if (object.isMonster() && (ai.getIntention() == CtrlIntention.AI_INTENTION_IDLE))
 						{
 							ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
@@ -431,7 +435,7 @@ public class World
 				
 				if (object.isCreature())
 				{
-					final Creature objectCreature = (Creature) object;
+					final Creature objectCreature = object.asCreature();
 					final CreatureAI ai = objectCreature.getAI();
 					if (ai != null)
 					{
@@ -451,7 +455,7 @@ public class World
 				
 				if (wo.isCreature())
 				{
-					final Creature woCreature = (Creature) wo;
+					final Creature woCreature = wo.asCreature();
 					final CreatureAI ai = woCreature.getAI();
 					if (ai != null)
 					{
@@ -504,7 +508,7 @@ public class World
 				
 				if (object.isCreature())
 				{
-					final Creature objectCreature = (Creature) object;
+					final Creature objectCreature = object.asCreature();
 					final CreatureAI ai = objectCreature.getAI();
 					if (ai != null)
 					{
@@ -524,7 +528,7 @@ public class World
 				
 				if (wo.isCreature())
 				{
-					final Creature woCreature = (Creature) wo;
+					final Creature woCreature = wo.asCreature();
 					final CreatureAI ai = woCreature.getAI();
 					if (ai != null)
 					{
@@ -566,15 +570,15 @@ public class World
 					continue;
 				}
 				
-				if (object.isPlayer() && wo.isVisibleFor((Player) object))
+				if (object.isPlayer() && wo.isVisibleFor(object.asPlayer()))
 				{
-					wo.sendInfo((Player) object);
+					wo.sendInfo(object.asPlayer());
 					if (wo.isCreature())
 					{
-						final CreatureAI ai = ((Creature) wo).getAI();
+						final CreatureAI ai = wo.asCreature().getAI();
 						if (ai != null)
 						{
-							ai.describeStateToPlayer((Player) object);
+							ai.describeStateToPlayer(object.asPlayer());
 							if (wo.isMonster() && (ai.getIntention() == CtrlIntention.AI_INTENTION_IDLE))
 							{
 								ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
@@ -583,15 +587,15 @@ public class World
 					}
 				}
 				
-				if (wo.isPlayer() && object.isVisibleFor((Player) wo))
+				if (wo.isPlayer() && object.isVisibleFor(wo.asPlayer()))
 				{
-					object.sendInfo((Player) wo);
+					object.sendInfo(wo.asPlayer());
 					if (object.isCreature())
 					{
-						final CreatureAI ai = ((Creature) object).getAI();
+						final CreatureAI ai = object.asCreature().getAI();
 						if (ai != null)
 						{
-							ai.describeStateToPlayer((Player) wo);
+							ai.describeStateToPlayer(wo.asPlayer());
 							if (object.isMonster() && (ai.getIntention() == CtrlIntention.AI_INTENTION_IDLE))
 							{
 								ai.setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
@@ -770,18 +774,18 @@ public class World
 	{
 		if (object.isPlayer())
 		{
-			((Creature) object).stopMove(((Player) object).getLastServerPosition());
+			object.asCreature().stopMove(object.asPlayer().getLastServerPosition());
 		}
 		else if (object.isSummon())
 		{
-			final Summon summon = (Summon) object;
+			final Summon summon = object.asSummon();
 			summon.unSummon(summon.getOwner());
 		}
 		else if (_allObjects.remove(object.getObjectId()) != null)
 		{
 			if (object.isNpc())
 			{
-				final Npc npc = (Npc) object;
+				final Npc npc = object.asNpc();
 				LOGGER.warning("Deleting npc " + object.getName() + " NPCID[" + npc.getId() + "] from invalid location X:" + object.getX() + " Y:" + object.getY() + " Z:" + object.getZ());
 				npc.deleteMe();
 				
@@ -794,7 +798,7 @@ public class World
 			else if (object.isCreature())
 			{
 				LOGGER.warning("Deleting object " + object.getName() + " OID[" + object.getObjectId() + "] from invalid location X:" + object.getX() + " Y:" + object.getY() + " Z:" + object.getZ());
-				((Creature) object).deleteMe();
+				object.asCreature().deleteMe();
 			}
 			
 			if (object.getWorldRegion() != null)

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="3800" levels="1" name="Dynasty Stockings">
 		<!-- Increases Max MP, M. Atk., and Resistance to Dark. -->
@@ -68,7 +68,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3805" levels="1" name="Dynasty Jewel Leather Mail">
+	<skill id="3805" levels="1" name="Dynasty Jewel Leather Armor">
 		<!-- Increases Accuracy/Evasion/Max MP/Atk. Spd./Resistance to Dark. -->
 		<set name="icon" val="icon.armor_t92_ud_i00" />
 		<set name="magicLevel" val="80" />
@@ -343,7 +343,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3827" levels="1" name="Sword of Critical Power">
+	<skill id="3827" levels="1" name="Sword of Critical Damage">
 		<!-- Increases Critical Damage. -->
 		<set name="icon" val="icon.skill0193" />
 		<set name="magicLevel" val="67" />
@@ -373,7 +373,7 @@
 		<set name="magicLevel" val="70" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="6" />
@@ -411,7 +411,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3832" levels="1" name="Rapier of Critical Power">
+	<skill id="3832" levels="1" name="Rapier of Critical Damage">
 		<!-- Increases Critical Damage. -->
 		<set name="icon" val="icon.skill0193" />
 		<set name="magicLevel" val="67" />
@@ -441,7 +441,7 @@
 		<set name="magicLevel" val="70" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="6" />
@@ -509,7 +509,7 @@
 		<set name="magicLevel" val="70" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="6" />
@@ -642,7 +642,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3850" levels="1" name="Ancient Sword of Critical Power">
+	<skill id="3850" levels="1" name="Ancient Sword of Critical Damage">
 		<!-- Increases Critical Damage. -->
 		<set name="icon" val="icon.skill0193" />
 		<set name="magicLevel" val="75" />
@@ -781,7 +781,7 @@
 		<set name="magicLevel" val="70" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="5" />
@@ -928,7 +928,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3873" levels="2" name="Polearm of Critical Power">
+	<skill id="3873" levels="2" name="Polearm of Critical Damage">
 		<!-- Increases Critical Damage. -->
 		<table name="#cAtkAdd">156 377</table>
 		<table name="#magicLevel">58 82</table>
@@ -972,7 +972,7 @@
 		<set name="magicLevel" val="70" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="6" />
@@ -1053,7 +1053,7 @@
 		<set name="magicLevel" val="70" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="6" />
@@ -1063,7 +1063,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3883" levels="1" name="Fist Weapon of Critical Power">
+	<skill id="3883" levels="1" name="Fist Weapon of Critical Damage">
 		<!-- Increases Critical Damage. -->
 		<set name="icon" val="icon.skill0193" />
 		<set name="magicLevel" val="75" />
@@ -1097,7 +1097,7 @@
 		<set name="magicLevel" val="61" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="#activationChance" />

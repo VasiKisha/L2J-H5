@@ -18,6 +18,7 @@ package ai.others.FameManager;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 import ai.AbstractNpcAI;
@@ -88,12 +89,13 @@ public class FameManager extends AbstractNpcAI
 			}
 			case "clanRep":
 			{
-				if ((player.getClan() != null) && (player.getClan().getLevel() >= MIN_CLAN_LEVEL))
+				final Clan clan = player.getClan();
+				if ((clan != null) && (clan.getLevel() >= MIN_CLAN_LEVEL))
 				{
 					if ((player.getFame() >= REPUTATION_COST) && (player.getLevel() >= MIN_LEVEL) && (player.getClassId().level() >= CLASS_LEVEL))
 					{
 						player.setFame(player.getFame() - REPUTATION_COST);
-						player.getClan().addReputationScore(50);
+						clan.addReputationScore(50);
 						player.updateUserInfo();
 						player.sendPacket(SystemMessageId.YOU_HAVE_ACQUIRED_50_CLAN_FAME_POINTS);
 						htmltext = npc.getId() + "-04.html";

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.actor.stat;
 
@@ -36,14 +40,15 @@ public class PetStat extends SummonStat
 	
 	public boolean addExp(int value)
 	{
-		if (getActiveChar().isUncontrollable() || !super.addExp(value))
+		final Pet pet = getActiveChar();
+		if (pet.isUncontrollable() || !super.addExp(value))
 		{
 			return false;
 		}
 		
-		getActiveChar().updateAndBroadcastStatus(1);
+		pet.updateAndBroadcastStatus(1);
 		// The PetInfo packet wipes the PartySpelled (list of active spells' icons). Re-add them
-		getActiveChar().updateEffectIcons(true);
+		pet.updateEffectIcons(true);
 		
 		return true;
 	}
@@ -51,15 +56,16 @@ public class PetStat extends SummonStat
 	public boolean addExpAndSp(double addToExp, double addToSp)
 	{
 		final long finalExp = Math.round(addToExp);
-		if (getActiveChar().isUncontrollable() || !addExp(finalExp))
+		final Pet pet = getActiveChar();
+		if (pet.isUncontrollable() || !addExp(finalExp))
 		{
 			return false;
 		}
 		
 		final SystemMessage sm = new SystemMessage(SystemMessageId.YOUR_PET_GAINED_S1_EXPERIENCE_POINTS);
 		sm.addLong(finalExp);
-		getActiveChar().updateAndBroadcastStatus(1);
-		getActiveChar().sendPacket(sm);
+		pet.updateAndBroadcastStatus(1);
+		pet.sendPacket(sm);
 		return true;
 	}
 	
@@ -76,21 +82,22 @@ public class PetStat extends SummonStat
 		// Sync up exp with current level
 		// if (getExp() > getExpForLevel(getLevel() + 1) || getExp() < getExpForLevel(getLevel())) setExp(Experience.LEVEL[getLevel()]);
 		
-		final StatusUpdate su = new StatusUpdate(getActiveChar());
+		final Pet pet = getActiveChar();
+		final StatusUpdate su = new StatusUpdate(pet);
 		su.addAttribute(StatusUpdate.LEVEL, getLevel());
 		su.addAttribute(StatusUpdate.MAX_HP, getMaxHp());
 		su.addAttribute(StatusUpdate.MAX_MP, getMaxMp());
-		getActiveChar().broadcastPacket(su);
+		pet.broadcastPacket(su);
 		if (levelIncreased)
 		{
-			getActiveChar().broadcastPacket(new SocialAction(getActiveChar().getObjectId(), SocialAction.LEVEL_UP));
+			pet.broadcastPacket(new SocialAction(pet.getObjectId(), SocialAction.LEVEL_UP));
 		}
 		// Send a Server->Client packet PetInfo to the Player
-		getActiveChar().updateAndBroadcastStatus(1);
+		pet.updateAndBroadcastStatus(1);
 		
-		if (getActiveChar().getControlItem() != null)
+		if (pet.getControlItem() != null)
 		{
-			getActiveChar().getControlItem().setEnchantLevel(getLevel());
+			pet.getControlItem().setEnchantLevel(getLevel());
 		}
 		
 		return levelIncreased;
@@ -99,15 +106,16 @@ public class PetStat extends SummonStat
 	@Override
 	public long getExpForLevel(int level)
 	{
+		final Pet pet = getActiveChar();
 		try
 		{
-			return PetDataTable.getInstance().getPetLevelData(getActiveChar().getId(), level).getPetMaxExp();
+			return PetDataTable.getInstance().getPetLevelData(pet.getId(), level).getPetMaxExp();
 		}
 		catch (NullPointerException e)
 		{
-			if (getActiveChar() != null)
+			if (pet != null)
 			{
-				LOGGER.warning("Pet objectId:" + getActiveChar().getObjectId() + ", NpcId:" + getActiveChar().getId() + ", level:" + level + " is missing data from pets_stats table!");
+				LOGGER.warning("Pet objectId:" + pet.getObjectId() + ", NpcId:" + pet.getId() + ", level:" + level + " is missing data from pets_stats table!");
 			}
 			throw e;
 		}
@@ -116,7 +124,7 @@ public class PetStat extends SummonStat
 	@Override
 	public Pet getActiveChar()
 	{
-		return (Pet) super.getActiveChar();
+		return super.getActiveChar().asPet();
 	}
 	
 	public int getFeedBattle()
@@ -132,19 +140,20 @@ public class PetStat extends SummonStat
 	@Override
 	public void setLevel(byte value)
 	{
-		getActiveChar().setPetData(PetDataTable.getInstance().getPetLevelData(getActiveChar().getTemplate().getId(), value));
-		if (getActiveChar().getPetLevelData() == null)
+		final Pet pet = getActiveChar();
+		pet.setPetData(PetDataTable.getInstance().getPetLevelData(pet.getTemplate().getId(), value));
+		if (pet.getPetLevelData() == null)
 		{
-			throw new IllegalArgumentException("No pet data for npc: " + getActiveChar().getTemplate().getId() + " level: " + value);
+			throw new IllegalArgumentException("No pet data for npc: " + pet.getTemplate().getId() + " level: " + value);
 		}
-		getActiveChar().stopFeed();
+		pet.stopFeed();
 		super.setLevel(value);
 		
-		getActiveChar().startFeed();
+		pet.startFeed();
 		
-		if (getActiveChar().getControlItem() != null)
+		if (pet.getControlItem() != null)
 		{
-			getActiveChar().getControlItem().setEnchantLevel(getLevel());
+			pet.getControlItem().setEnchantLevel(getLevel());
 		}
 	}
 	

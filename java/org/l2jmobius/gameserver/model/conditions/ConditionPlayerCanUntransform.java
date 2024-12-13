@@ -40,7 +40,7 @@ public class ConditionPlayerCanUntransform extends Condition
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
 		boolean canUntransform = true;
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if (player == null)
 		{
 			canUntransform = false;

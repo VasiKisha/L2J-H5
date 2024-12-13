@@ -48,8 +48,13 @@ public class ConditionPlayerCanSummonSiegeGolem extends Condition
 			return !_value;
 		}
 		
-		final Player player = effector.getActingPlayer();
-		boolean canSummonSiegeGolem = !player.isAlikeDead() && !player.isCursedWeaponEquipped() && (player.getClan() != null);
+		final Player player = effector.asPlayer();
+		boolean canSummonSiegeGolem = true;
+		if (player.isAlikeDead() || player.isCursedWeaponEquipped() || (player.getClan() == null))
+		{
+			canSummonSiegeGolem = false;
+		}
+		
 		final Castle castle = CastleManager.getInstance().getCastle(player);
 		final Fort fort = FortManager.getInstance().getFort(player);
 		if ((castle == null) && (fort == null))

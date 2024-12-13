@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="8200" levels="1" name="Light Draconic Leather Armor Set - PvP">
 		<!-- Increases Max MP/Atk. Spd./P. Atk./weight limit. Decreases damage received during PvP and has a chance to cancel the opponent's target when under attack. DEX+1, STR+1, CON-2 -->
@@ -16,7 +16,7 @@
 				<mul stat="pvpMagicalDef" val="1.05" />
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -32,7 +32,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -66,7 +66,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -83,7 +83,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -120,7 +120,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -146,7 +146,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -172,7 +172,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -198,7 +198,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -215,7 +215,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -252,7 +252,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -277,7 +277,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -304,7 +304,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -331,7 +331,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -358,7 +358,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -384,7 +384,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -410,7 +410,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -437,7 +437,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -464,7 +464,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -491,7 +491,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -508,7 +508,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -545,7 +545,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -571,7 +571,7 @@
 				<mul stat="pvpMagicalDef" val="1.05" />
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -597,7 +597,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -614,7 +614,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -651,7 +651,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -677,7 +677,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -704,7 +704,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -731,7 +731,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -758,7 +758,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -785,7 +785,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -812,7 +812,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -839,7 +839,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -865,7 +865,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -899,7 +899,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8235" levels="1" name="Nightmare Helm">
+	<skill id="8235" levels="1" name="Helm of Nightmare">
 		<!-- Increases Resistance to sleep/hold attacks and magic resistance. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="magicLevel" val="67" />
@@ -913,7 +913,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8236" levels="1" name="Nightmare Helm">
+	<skill id="8236" levels="1" name="Helm of Nightmare">
 		<!-- Increases MP regeneration/M. Atk. And Resistance to sleep/hold attacks. -->
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
 		<set name="magicLevel" val="67" />
@@ -961,7 +961,7 @@
 		<set name="reuseDelay" val="20000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="8239" levels="1" name="Critical Up">
@@ -982,7 +982,7 @@
 				<mul stat="critRate" val="1.3" />
 				<mul stat="pAtkSpd" val="1.33" />
 			</effect>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param isCritical="true" />
 				<param minDamage="1" chance="99" />
@@ -993,7 +993,9 @@
 		</for>
 	</skill>
 	<skill id="8240" levels="3" name="Obliteration Storm">
-		<!-- Delivers a powerful range attack, shocking the target. Consumes all accumulated critical hits. Requires a Stage 3 critical hit. -->
+		<!-- Level 1: Delivers a powerful range attack, shocking the target. Consumes all accumulated critical hits. Requires a Stage 3 critical hit. -->
+		<!-- Level 2: Delivers a powerful range attack, shocking the target. Consumes all accumulated critical hits. Requires a Stage 5 critical hit. -->
+		<!-- Level 3: Delivers a powerful range attack, shocking the target. Consumes all accumulated critical hits. Requires a Stage 7 critical hit. -->
 		<table name="#abnormalLevel">4 6 8</table>
 		<table name="#power">9132 12784 16436</table>
 		<set name="abnormalLevel" val="1" />
@@ -1019,7 +1021,7 @@
 			<player checkAbnormal="SEED_OF_CRITICAL,#abnormalLevel" />
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 		<selfEffects>
@@ -1067,7 +1069,7 @@
 		<set name="reuseDelay" val="20000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="8243" levels="1" name="Chill Strike">
@@ -1086,7 +1088,7 @@
 		<set name="reuseDelay" val="120000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="8244" levels="1" name="Transform Gatekeeper">
@@ -1166,7 +1168,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8248" levels="1" name="Cancel Gatekeeper Transformation">
+	<skill id="8248" levels="1" name="Cancels Gatekeeper Transformation">
 		<!-- Cancels transformation. -->
 		<set name="effectPoint" val="10" />
 		<set name="hitTime" val="2500" />
@@ -1181,7 +1183,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8249" levels="1" name="Cancel Critical Hit">
+	<skill id="8249" levels="1" name="Cancels Critical Hit">
 		<set name="effectPoint" val="10" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="99" />
@@ -1194,7 +1196,8 @@
 		</for>
 	</skill>
 	<skill id="8250" levels="2" name="Summon Tigress">
-		<!-- Summons Tigress. -->
+		<!-- Level 1: Summons Tigress. -->
+		<!-- Level 2: Summons a strengthened Tigress. -->
 		<table name="#npcIds">14916 14917</table>
 		<set name="hitTime" val="15000" />
 		<set name="icon" val="icon.skill0283" />
@@ -1357,7 +1360,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8261" levels="1" name="Steam Beatle Mount">
+	<skill id="8261" levels="1" name="Steam Beetle Mount">
 		<!-- Mounts a Steam Beetle. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="3600" />
@@ -1378,7 +1381,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8262" levels="1" name="Tawny Maned Lion Mount">
+	<skill id="8262" levels="1" name="Golden Maned Lion Mount">
 		<!-- Mounts a golden maned lion. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="3600" />
@@ -1399,7 +1402,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8263" levels="1" name="Transform Snow King">
+	<skill id="8263" levels="1" name="Transform Snow Kung">
 		<!-- Transforms user into a Snow Kung. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="3600" />
@@ -1568,7 +1571,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8278" levels="1" name="Transform Guard of Dawn">
+	<skill id="8278" levels="1" name="Transform Guard of Down">
 		<!-- Transforms into a Guard of the Dawn. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="1800" />
@@ -1731,7 +1734,7 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="8289" levels="3" name="Special Ability Focus">
+	<skill id="8289" levels="3" name="Special Ability: Focus">
 		<!-- Increases critical rate. Inflicts additional damage during PvP. -->
 		<table name="#magicLevel">84 85 86</table>
 		<table name="#rCrit">128.7 137.1 137.1</table>
@@ -1831,7 +1834,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8295" levels="1" name="Special Ability Focus">
+	<skill id="8295" levels="1" name="Special Ability: Focus">
 		<!-- Increases critical rate. Inflicts additional damage during PvP. -->
 		<set name="icon" val="icon.skill1077" />
 		<set name="magicLevel" val="81" />
@@ -1846,7 +1849,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8296" levels="1" name="Special Ability Focus">
+	<skill id="8296" levels="1" name="Special Ability: Focus">
 		<!-- Increases critical rate. Inflicts additional damage during PvP. -->
 		<set name="icon" val="icon.skill1077" />
 		<set name="magicLevel" val="83" />
@@ -1861,7 +1864,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8297" levels="1" name="Special Ability Haste">
+	<skill id="8297" levels="1" name="Special Ability: Haste">
 		<!-- Increases Atk. Spd. Inflicts additional damage during PvP. -->
 		<set name="icon" val="icon.skill1077" />
 		<set name="magicLevel" val="85" />
@@ -1876,7 +1879,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8298" levels="1" name="Special Ability Focus">
+	<skill id="8298" levels="1" name="Special Ability: Focus">
 		<!-- Increases critical rate. Inflicts additional damage during PvP. -->
 		<set name="icon" val="icon.skill1077" />
 		<set name="magicLevel" val="85" />

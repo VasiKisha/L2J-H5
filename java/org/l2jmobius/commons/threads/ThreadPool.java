@@ -1,22 +1,29 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.commons.threads;
 
+import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.concurrent.LinkedBlockingQueue;
+import java.util.concurrent.RejectedExecutionException;
+import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -27,8 +34,7 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.CommonUtil;
 
 /**
- * This class is a thread pool manager that handles two types of thread pools, the scheduled pool and the instant pool, using a ScheduledThreadPoolExecutor and a ThreadPoolExecutor respectively.<br>
- * It uses the Config class to set the size of the pools and has a method to remove old tasks. It also provides scheduling methods and logs useful information in case of exceptions.
+ * This class provides methods to schedule tasks with a delay or at a fixed rate, as well as immediate execution.
  * @author Mobius
  */
 public class ThreadPool
@@ -173,7 +179,7 @@ public class ThreadPool
 	}
 	
 	/**
-	 * Shutdown thread pooling system correctly. Send different informations.
+	 * Shutdown thread pooling system correctly.
 	 */
 	public static void shutdown()
 	{
@@ -185,7 +191,68 @@ public class ThreadPool
 		}
 		catch (Throwable t)
 		{
-			LOGGER.info("ThreadPool: Problem at Shutting down. " + t.getMessage());
+			LOGGER.info("ThreadPool: Problem while shutting down. " + t.getMessage());
+		}
+	}
+	
+	/**
+	 * Handles tasks rejected by ThreadPoolExecutor, either running them in a new thread<br>
+	 * or in the current thread depending on the thread's priority.
+	 */
+	private static class RejectedExecutionHandlerImpl implements RejectedExecutionHandler
+	{
+		private static final Logger LOGGER = Logger.getLogger(RejectedExecutionHandlerImpl.class.getName());
+		
+		@Override
+		public void rejectedExecution(Runnable runnable, ThreadPoolExecutor executor)
+		{
+			if (executor.isShutdown())
+			{
+				return;
+			}
+			
+			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + runnable + " from " + executor + " " + new RejectedExecutionException());
+			
+			if (Thread.currentThread().getPriority() > Thread.NORM_PRIORITY)
+			{
+				new Thread(runnable).start();
+			}
+			else
+			{
+				runnable.run();
+			}
+		}
+	}
+	
+	/**
+	 * Wraps a Runnable to handle any uncaught exceptions during its execution<br>
+	 * by passing them to the thread's uncaught exception handler.
+	 */
+	private static class RunnableWrapper implements Runnable
+	{
+		private final Runnable _runnable;
+		
+		public RunnableWrapper(Runnable runnable)
+		{
+			_runnable = runnable;
+		}
+		
+		@Override
+		public void run()
+		{
+			try
+			{
+				_runnable.run();
+			}
+			catch (Throwable e)
+			{
+				final Thread t = Thread.currentThread();
+				final UncaughtExceptionHandler h = t.getUncaughtExceptionHandler();
+				if (h != null)
+				{
+					h.uncaughtException(t, e);
+				}
+			}
 		}
 	}
 }

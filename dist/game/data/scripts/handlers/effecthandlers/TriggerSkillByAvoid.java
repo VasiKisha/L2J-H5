@@ -84,7 +84,7 @@ public class TriggerSkillByAvoid extends AbstractEffect
 				continue;
 			}
 			
-			final Creature targetChar = (Creature) triggerTarget;
+			final Creature targetChar = triggerTarget.asCreature();
 			if (!targetChar.isInvul())
 			{
 				event.getTarget().makeTriggerCast(triggerSkill, targetChar);

@@ -54,7 +54,7 @@ public class NpcBufferAI implements Runnable
 		}
 		
 		final Skill skill = _skillData.getSkill();
-		final Player player = _npc.getSummoner().getActingPlayer();
+		final Player player = _npc.getSummoner().asPlayer();
 		
 		switch (_skillData.getAffectScope())
 		{
@@ -124,7 +124,7 @@ public class NpcBufferAI implements Runnable
 	{
 		if (target.isPlayable())
 		{
-			final Player targetPlayer = target.getActingPlayer();
+			final Player targetPlayer = target.asPlayer();
 			if (player == targetPlayer)
 			{
 				return true;
@@ -183,7 +183,7 @@ public class NpcBufferAI implements Runnable
 		
 		if (target.isPlayable())
 		{
-			final Player targetPlayer = target.getActingPlayer();
+			final Player targetPlayer = target.asPlayer();
 			if (!isFriendly(player, targetPlayer))
 			{
 				if (targetPlayer.getPvpFlag() != 0)

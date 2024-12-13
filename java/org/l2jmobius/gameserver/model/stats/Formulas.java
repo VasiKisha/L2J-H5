@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.stats;
 
@@ -32,9 +36,9 @@ import org.l2jmobius.gameserver.instancemanager.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Cubic;
-import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
 import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.item.Armor;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -247,7 +251,7 @@ public class Formulas
 	 */
 	public static double calcHpRegen(Creature creature)
 	{
-		double init = creature.isPlayer() ? creature.getActingPlayer().getTemplate().getBaseHpRegen(creature.getLevel()) : creature.getTemplate().getBaseHpReg();
+		double init = creature.isPlayer() ? creature.asPlayer().getTemplate().getBaseHpRegen(creature.getLevel()) : creature.getTemplate().getBaseHpReg();
 		double hpRegenMultiplier = creature.isRaid() ? Config.RAID_HP_REGEN_MULTIPLIER : Config.HP_REGEN_MULTIPLIER;
 		double hpRegenBonus = 0;
 		
@@ -258,7 +262,7 @@ public class Formulas
 		
 		if (creature.isPlayer())
 		{
-			final Player player = creature.getActingPlayer();
+			final Player player = creature.asPlayer();
 			
 			// SevenSigns Festival modifier
 			if (SevenSignsFestival.getInstance().isFestivalInProgress() && player.isFestivalParticipant())
@@ -274,11 +278,12 @@ public class Formulas
 				}
 			}
 			
-			if (player.isInsideZone(ZoneId.CLAN_HALL) && (player.getClan() != null) && (player.getClan().getHideoutId() > 0))
+			final Clan clan = player.getClan();
+			if (player.isInsideZone(ZoneId.CLAN_HALL) && (clan != null) && (clan.getHideoutId() > 0))
 			{
 				final ClanHallZone zone = ZoneManager.getInstance().getZone(player, ClanHallZone.class);
 				final int posChIndex = zone == null ? -1 : zone.getResidenceId();
-				final int clanHallIndex = player.getClan().getHideoutId();
+				final int clanHallIndex = clan.getHideoutId();
 				if ((clanHallIndex > 0) && (clanHallIndex == posChIndex))
 				{
 					final ClanHall clansHall = ClanHallTable.getInstance().getClanHallById(clanHallIndex);
@@ -289,11 +294,11 @@ public class Formulas
 				}
 			}
 			
-			if (player.isInsideZone(ZoneId.CASTLE) && (player.getClan() != null) && (player.getClan().getCastleId() > 0))
+			if (player.isInsideZone(ZoneId.CASTLE) && (clan != null) && (clan.getCastleId() > 0))
 			{
 				final CastleZone zone = ZoneManager.getInstance().getZone(player, CastleZone.class);
 				final int posCastleIndex = zone == null ? -1 : zone.getResidenceId();
-				final int castleIndex = player.getClan().getCastleId();
+				final int castleIndex = clan.getCastleId();
 				if ((castleIndex > 0) && (castleIndex == posCastleIndex))
 				{
 					final Castle castle = CastleManager.getInstance().getCastleById(castleIndex);
@@ -304,11 +309,11 @@ public class Formulas
 				}
 			}
 			
-			if (player.isInsideZone(ZoneId.FORT) && (player.getClan() != null) && (player.getClan().getFortId() > 0))
+			if (player.isInsideZone(ZoneId.FORT) && (clan != null) && (clan.getFortId() > 0))
 			{
 				final FortZone zone = ZoneManager.getInstance().getZone(player, FortZone.class);
 				final int posFortIndex = zone == null ? -1 : zone.getResidenceId();
-				final int fortIndex = player.getClan().getFortId();
+				final int fortIndex = clan.getFortId();
 				if ((fortIndex > 0) && (fortIndex == posFortIndex))
 				{
 					final Fort fort = FortManager.getInstance().getFortById(fortIndex);
@@ -346,7 +351,7 @@ public class Formulas
 		}
 		else if (creature.isPet())
 		{
-			init = ((Pet) creature).getPetLevelData().getPetRegenHP() * Config.PET_HP_REGEN_MULTIPLIER;
+			init = creature.asPet().getPetLevelData().getPetRegenHP() * Config.PET_HP_REGEN_MULTIPLIER;
 		}
 		
 		return (creature.calcStat(Stat.REGENERATE_HP_RATE, Math.max(1, init), null, null) * hpRegenMultiplier) + hpRegenBonus;
@@ -359,13 +364,13 @@ public class Formulas
 	 */
 	public static double calcMpRegen(Creature creature)
 	{
-		double init = creature.isPlayer() ? creature.getActingPlayer().getTemplate().getBaseMpRegen(creature.getLevel()) : creature.getTemplate().getBaseMpReg();
+		double init = creature.isPlayer() ? creature.asPlayer().getTemplate().getBaseMpRegen(creature.getLevel()) : creature.getTemplate().getBaseMpReg();
 		double mpRegenMultiplier = creature.isRaid() ? Config.RAID_MP_REGEN_MULTIPLIER : Config.MP_REGEN_MULTIPLIER;
 		double mpRegenBonus = 0;
 		
 		if (creature.isPlayer())
 		{
-			final Player player = creature.getActingPlayer();
+			final Player player = creature.asPlayer();
 			
 			// SevenSigns Festival modifier
 			if (SevenSignsFestival.getInstance().isFestivalInProgress() && player.isFestivalParticipant())
@@ -381,11 +386,12 @@ public class Formulas
 				mpRegenBonus += mpBonus;
 			}
 			
-			if (player.isInsideZone(ZoneId.CLAN_HALL) && (player.getClan() != null) && (player.getClan().getHideoutId() > 0))
+			final Clan clan = player.getClan();
+			if (player.isInsideZone(ZoneId.CLAN_HALL) && (clan != null) && (clan.getHideoutId() > 0))
 			{
 				final ClanHallZone zone = ZoneManager.getInstance().getZone(player, ClanHallZone.class);
 				final int posChIndex = zone == null ? -1 : zone.getResidenceId();
-				final int clanHallIndex = player.getClan().getHideoutId();
+				final int clanHallIndex = clan.getHideoutId();
 				if ((clanHallIndex > 0) && (clanHallIndex == posChIndex))
 				{
 					final ClanHall clansHall = ClanHallTable.getInstance().getClanHallById(clanHallIndex);
@@ -396,11 +402,11 @@ public class Formulas
 				}
 			}
 			
-			if (player.isInsideZone(ZoneId.CASTLE) && (player.getClan() != null) && (player.getClan().getCastleId() > 0))
+			if (player.isInsideZone(ZoneId.CASTLE) && (clan != null) && (clan.getCastleId() > 0))
 			{
 				final CastleZone zone = ZoneManager.getInstance().getZone(player, CastleZone.class);
 				final int posCastleIndex = zone == null ? -1 : zone.getResidenceId();
-				final int castleIndex = player.getClan().getCastleId();
+				final int castleIndex = clan.getCastleId();
 				if ((castleIndex > 0) && (castleIndex == posCastleIndex))
 				{
 					final Castle castle = CastleManager.getInstance().getCastleById(castleIndex);
@@ -411,11 +417,11 @@ public class Formulas
 				}
 			}
 			
-			if (player.isInsideZone(ZoneId.FORT) && (player.getClan() != null) && (player.getClan().getFortId() > 0))
+			if (player.isInsideZone(ZoneId.FORT) && (clan != null) && (clan.getFortId() > 0))
 			{
 				final FortZone zone = ZoneManager.getInstance().getZone(player, FortZone.class);
 				final int posFortIndex = zone == null ? -1 : zone.getResidenceId();
-				final int fortIndex = player.getClan().getFortId();
+				final int fortIndex = clan.getFortId();
 				if ((fortIndex > 0) && (fortIndex == posFortIndex))
 				{
 					final Fort fort = FortManager.getInstance().getFortById(fortIndex);
@@ -445,7 +451,7 @@ public class Formulas
 		}
 		else if (creature.isPet())
 		{
-			init = ((Pet) creature).getPetLevelData().getPetRegenMP() * Config.PET_MP_REGEN_MULTIPLIER;
+			init = creature.asPet().getPetLevelData().getPetRegenMP() * Config.PET_MP_REGEN_MULTIPLIER;
 		}
 		
 		return (creature.calcStat(Stat.REGENERATE_MP_RATE, Math.max(1, init), null, null) * mpRegenMultiplier) + mpRegenBonus;
@@ -459,7 +465,7 @@ public class Formulas
 	public static double calcCpRegen(Player player)
 	{
 		// With CON bonus
-		final double init = player.getActingPlayer().getTemplate().getBaseCpRegen(player.getLevel()) * player.getLevelMod() * BaseStat.CON.calcBonus(player);
+		final double init = player.asPlayer().getTemplate().getBaseCpRegen(player.getLevel()) * player.getLevelMod() * BaseStat.CON.calcBonus(player);
 		double cpRegenMultiplier = Config.CP_REGEN_MULTIPLIER;
 		if (player.isSitting())
 		{
@@ -507,7 +513,13 @@ public class Formulas
 	
 	public static double calcSiegeRegenModifier(Player player)
 	{
-		if ((player == null) || (player.getClan() == null))
+		if (player == null)
+		{
+			return 0;
+		}
+		
+		final Clan clan = player.getClan();
+		if (clan == null)
 		{
 			return 0;
 		}
@@ -518,7 +530,7 @@ public class Formulas
 			return 0;
 		}
 		
-		final SiegeClan siegeClan = siege.getAttackerClan(player.getClan().getId());
+		final SiegeClan siegeClan = siege.getAttackerClan(clan.getId());
 		if ((siegeClan == null) || siegeClan.getFlag().isEmpty() || !Util.checkIfInRange(200, player, siegeClan.getFlag().stream().findFirst().get(), true))
 		{
 			return 0;
@@ -575,16 +587,20 @@ public class Formulas
 		final double weaponMod = attacker.getRandomDamageMultiplier();
 		
 		double penaltyMod = 1;
-		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY) && (attacker.getActingPlayer() != null) && ((target.getLevel() - attacker.getActingPlayer().getLevel()) >= 2))
+		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY))
 		{
-			final int levelDiff = target.getLevel() - attacker.getActingPlayer().getLevel() - 1;
-			if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
+			final Player attackerPlayer = attacker.asPlayer();
+			if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
 			{
-				penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
-			}
-			else
-			{
-				penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
+				final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 1;
+				if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
+				{
+					penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
+				}
+				else
+				{
+					penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
+				}
 			}
 		}
 		
@@ -644,16 +660,20 @@ public class Formulas
 		final double weaponMod = attacker.getRandomDamageMultiplier();
 		
 		double penaltyMod = 1;
-		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY) && (attacker.getActingPlayer() != null) && ((target.getLevel() - attacker.getActingPlayer().getLevel()) >= 2))
+		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY))
 		{
-			final int levelDiff = target.getLevel() - attacker.getActingPlayer().getLevel() - 1;
-			if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
+			final Player attackerPlayer = attacker.asPlayer();
+			if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
 			{
-				penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
-			}
-			else
-			{
-				penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
+				final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 1;
+				if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
+				{
+					penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
+				}
+				else
+				{
+					penaltyMod *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
+				}
 			}
 		}
 		
@@ -781,40 +801,45 @@ public class Formulas
 			{
 				damage *= attacker.calcStat(Stat.PVE_PHYSICAL_DMG, 1, null, null);
 			}
-			if (!target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY) && (attacker.getActingPlayer() != null) && ((target.getLevel() - attacker.getActingPlayer().getLevel()) >= 2))
+			
+			if (!target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY))
 			{
-				final int levelDiff = target.getLevel() - attacker.getActingPlayer().getLevel() - 1;
-				if (skill != null)
+				final Player attackerPlayer = attacker.asPlayer();
+				if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
 				{
-					if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
+					final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 1;
+					if (skill != null)
 					{
-						damage *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
+						if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
+						{
+							damage *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
+						}
+						else
+						{
+							damage *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
+						}
+					}
+					else if (crit)
+					{
+						if (levelDiff >= Config.NPC_CRIT_DMG_PENALTY.length)
+						{
+							damage *= Config.NPC_CRIT_DMG_PENALTY[Config.NPC_CRIT_DMG_PENALTY.length - 1];
+						}
+						else
+						{
+							damage *= Config.NPC_CRIT_DMG_PENALTY[levelDiff];
+						}
 					}
 					else
 					{
-						damage *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
-					}
-				}
-				else if (crit)
-				{
-					if (levelDiff >= Config.NPC_CRIT_DMG_PENALTY.length)
-					{
-						damage *= Config.NPC_CRIT_DMG_PENALTY[Config.NPC_CRIT_DMG_PENALTY.length - 1];
-					}
-					else
-					{
-						damage *= Config.NPC_CRIT_DMG_PENALTY[levelDiff];
-					}
-				}
-				else
-				{
-					if (levelDiff >= Config.NPC_DMG_PENALTY.length)
-					{
-						damage *= Config.NPC_DMG_PENALTY[Config.NPC_DMG_PENALTY.length - 1];
-					}
-					else
-					{
-						damage *= Config.NPC_DMG_PENALTY[levelDiff];
+						if (levelDiff >= Config.NPC_DMG_PENALTY.length)
+						{
+							damage *= Config.NPC_DMG_PENALTY[Config.NPC_DMG_PENALTY.length - 1];
+						}
+						else
+						{
+							damage *= Config.NPC_DMG_PENALTY[levelDiff];
+						}
 					}
 				}
 			}
@@ -915,16 +940,20 @@ public class Formulas
 		if (target.isAttackable())
 		{
 			damage *= attacker.calcStat(Stat.PVE_MAGICAL_DMG, 1, null, null);
-			if (!target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY) && (attacker.getActingPlayer() != null) && ((target.getLevel() - attacker.getActingPlayer().getLevel()) >= 2))
+			if (!target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY))
 			{
-				final int levelDiff = target.getLevel() - attacker.getActingPlayer().getLevel() - 1;
-				if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
+				final Player attackerPlayer = attacker.asPlayer();
+				if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
 				{
-					damage *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
-				}
-				else
-				{
-					damage *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
+					final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 1;
+					if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
+					{
+						damage *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
+					}
+					else
+					{
+						damage *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
+					}
 				}
 			}
 		}
@@ -1207,7 +1236,7 @@ public class Formulas
 		
 		if (sendSysMsg && target.isPlayer())
 		{
-			final Player enemy = target.getActingPlayer();
+			final Player enemy = target.asPlayer();
 			
 			switch (shldSuccess)
 			{
@@ -1294,7 +1323,7 @@ public class Formulas
 		}
 		
 		final int activateRate = skill.getActivateRate();
-		if ((activateRate == -1) || (skill.getBasicProperty() == BaseStat.NONE))
+		if ((activateRate == -1) || (activateRate > 99) || (skill.getBasicProperty() == BaseStat.NONE))
 		{
 			return true;
 		}
@@ -1433,16 +1462,20 @@ public class Formulas
 		
 		final double lvlModifier = Math.pow(1.3, target.getLevel() - (Config.CALCULATE_MAGIC_SUCCESS_BY_SKILL_MAGIC_LEVEL && (skill.getMagicLevel() > 0) ? skill.getMagicLevel() : attacker.getLevel()));
 		float targetModifier = 1;
-		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_MAGIC_PENALTY) && (attacker.getActingPlayer() != null) && ((target.getLevel() - attacker.getActingPlayer().getLevel()) >= 3))
+		if (target.isAttackable() && !target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_MAGIC_PENALTY))
 		{
-			final int levelDiff = target.getLevel() - attacker.getActingPlayer().getLevel() - 2;
-			if (levelDiff >= Config.NPC_SKILL_CHANCE_PENALTY.length)
+			final Player attackerPlayer = attacker.asPlayer();
+			if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 3))
 			{
-				targetModifier = Config.NPC_SKILL_CHANCE_PENALTY[Config.NPC_SKILL_CHANCE_PENALTY.length - 1];
-			}
-			else
-			{
-				targetModifier = Config.NPC_SKILL_CHANCE_PENALTY[levelDiff];
+				final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 2;
+				if (levelDiff >= Config.NPC_SKILL_CHANCE_PENALTY.length)
+				{
+					targetModifier = Config.NPC_SKILL_CHANCE_PENALTY[Config.NPC_SKILL_CHANCE_PENALTY.length - 1];
+				}
+				else
+				{
+					targetModifier = Config.NPC_SKILL_CHANCE_PENALTY[levelDiff];
+				}
 			}
 		}
 		// general magic resist
@@ -1483,16 +1516,20 @@ public class Formulas
 		if (target.isAttackable())
 		{
 			damage *= attacker.calcStat(Stat.PVE_MAGICAL_DMG, 1, null, null);
-			if (!target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY) && (attacker.getActingPlayer() != null) && ((target.getLevel() - attacker.getActingPlayer().getLevel()) >= 2))
+			if (!target.isRaid() && !target.isRaidMinion() && (target.getLevel() >= Config.MIN_NPC_LEVEL_DMG_PENALTY))
 			{
-				final int levelDiff = target.getLevel() - attacker.getActingPlayer().getLevel() - 1;
-				if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
+				final Player attackerPlayer = attacker.asPlayer();
+				if ((attackerPlayer != null) && ((target.getLevel() - attackerPlayer.getLevel()) >= 2))
 				{
-					damage *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
-				}
-				else
-				{
-					damage *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
+					final int levelDiff = target.getLevel() - attackerPlayer.getLevel() - 1;
+					if (levelDiff >= Config.NPC_SKILL_DMG_PENALTY.length)
+					{
+						damage *= Config.NPC_SKILL_DMG_PENALTY[Config.NPC_SKILL_DMG_PENALTY.length - 1];
+					}
+					else
+					{
+						damage *= Config.NPC_SKILL_DMG_PENALTY[levelDiff];
+					}
 				}
 			}
 		}
@@ -1557,13 +1594,13 @@ public class Formulas
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_DODGES_THE_ATTACK);
 				sm.addString(target.getName());
-				creature.getActingPlayer().sendPacket(sm);
+				creature.asPlayer().sendPacket(sm);
 			}
 			if (target.isPlayer())
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_AVOIDED_C1_S_ATTACK_2);
 				sm.addString(creature.getName());
-				target.getActingPlayer().sendPacket(sm);
+				target.asPlayer().sendPacket(sm);
 			}
 			return true;
 		}

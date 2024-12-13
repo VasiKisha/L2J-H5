@@ -48,7 +48,7 @@ public class DetectHiddenObjects extends AbstractEffect
 			return;
 		}
 		
-		final Door door = (Door) effected;
+		final Door door = effected.asDoor();
 		if (door.getTemplate().isStealth())
 		{
 			door.setMeshIndex(1);

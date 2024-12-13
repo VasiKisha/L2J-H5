@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="6600" levels="28" name="NPC earth attack">
 		<table name="#effectPoints">-138 -204 -285 -379 -477 -566 -597 -624 -646 -655 -662 -669 -676 -679 -681 -684 -687 -689 -692 -694 -696 -698 -700 -702 -704 -706 -707 -709</table>
@@ -32,7 +32,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack">
+			<effect name="PhysicalDamage">
 				<param power="#power" />
 			</effect>
 		</for>
@@ -95,7 +95,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack">
+			<effect name="PhysicalDamage">
 				<param power="#power" />
 			</effect>
 		</for>
@@ -196,7 +196,7 @@
 		<set name="reuseDelay" val="6000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Debuff">
 				<mul stat="runSpd" val="0.5" />
 			</effect>
@@ -226,7 +226,7 @@
 		<set name="reuseDelay" val="6000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Debuff">
 				<mul stat="runSpd" val="0.1" />
 			</effect>
@@ -305,7 +305,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun">
 				<mul stat="defCritRate" val="0.5" />
 			</effect>
@@ -516,7 +516,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="6636" levels="1" name="Energy of Moving Speed">
+	<skill id="6636" levels="1" name="Energy of Speed">
 		<!-- Increases Moving Spd. temporarily. Effect 2. -->
 		<set name="abnormalInstant" val="true" />
 		<set name="abnormalLevel" val="2" />
@@ -614,7 +614,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="6640" levels="1" name="Energizing Aura">
+	<skill id="6640" levels="1" name="Vitalizing Aura">
 		<!-- Recovers Vitality upon acquiring Experience Points. -->
 		<set name="abnormalInstant" val="true" />
 		<set name="abnormalLevel" val="1" />
@@ -653,7 +653,7 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6642" levels="1" name="Dash">
@@ -674,7 +674,7 @@
 			<target mindistance="200" />
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="EnemyCharge" />
 		</for>
 	</skill>
@@ -692,7 +692,7 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6644" levels="1" name="Ice Queen Freya">
@@ -843,7 +843,8 @@
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="6662" levels="2" name="Pillar of Frozen">
-		<!-- All actions are prohibited for 7 seconds, and you lose 115 HP per second. -->
+		<!-- Level 1: All actions are prohibited for 7 seconds, and you lose 115 HP per second. -->
+		<!-- Level 2: All actions are prohibited for 15 seconds, and you lose 115 HP per second. -->
 		<table name="#abnormalLevels">1 2</table>
 		<table name="#abnormalTime">7 15</table>
 		<table name="#activateRates">70 -1</table>
@@ -1096,7 +1097,7 @@
 		<set name="power" val="120" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6677" levels="1" name="Hold">
@@ -1139,7 +1140,7 @@
 		<set name="power" val="120" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6680" levels="1" name="Faint Plus">
@@ -1219,7 +1220,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="6684" levels="1" name="Maguen Recall">
+	<skill id="6684" levels="1" name="Maguen Party Recall">
 		<set name="affectRange" val="1000" />
 		<set name="castRange" val="400" />
 		<set name="effectPoint" val="100" />
@@ -1395,7 +1396,7 @@
 		<set name="reuseDelay" val="7000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="CallSkill">
 				<param skillId="6698" skillLevel="1" />
 			</effect>

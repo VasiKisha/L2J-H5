@@ -16,10 +16,8 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Player;
 
 import ai.AbstractNpcAI;
 
@@ -40,7 +38,7 @@ public class Gordon extends AbstractNpcAI
 	@Override
 	public String onCreatureSee(Npc npc, Creature creature)
 	{
-		if (creature.isPlayer() && ((Player) creature).isCursedWeaponEquipped())
+		if (creature.isPlayer() && creature.asPlayer().isCursedWeaponEquipped())
 		{
 			addAttackDesire(npc, creature);
 		}
@@ -50,7 +48,7 @@ public class Gordon extends AbstractNpcAI
 	@Override
 	public String onSpawn(Npc npc)
 	{
-		((Attackable) npc).setCanReturnToSpawnPoint(false);
+		npc.asAttackable().setCanReturnToSpawnPoint(false);
 		return super.onSpawn(npc);
 	}
 	

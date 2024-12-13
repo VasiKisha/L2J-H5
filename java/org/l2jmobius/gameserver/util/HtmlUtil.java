@@ -16,12 +16,6 @@
  */
 package org.l2jmobius.gameserver.util;
 
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.function.Function;
-
-import org.l2jmobius.gameserver.model.PageResult;
-
 /**
  * A class containing useful methods for constructing HTML
  * @author NosBit
@@ -219,66 +213,5 @@ public class HtmlUtil
 		sb.append("</tr>");
 		sb.append("</table>");
 		return sb.toString();
-	}
-	
-	public static <T> PageResult createPage(Collection<T> elements, int page, int elementsPerPage, Function<Integer, String> pagerFunction, Function<T, String> bodyFunction)
-	{
-		return createPage(elements, elements.size(), page, elementsPerPage, pagerFunction, bodyFunction);
-	}
-	
-	public static <T> PageResult createPage(T[] elements, int page, int elementsPerPage, Function<Integer, String> pagerFunction, Function<T, String> bodyFunction)
-	{
-		return createPage(Arrays.asList(elements), elements.length, page, elementsPerPage, pagerFunction, bodyFunction);
-	}
-	
-	public static <T> PageResult createPage(Iterable<T> elements, int size, int pageValue, int elementsPerPage, Function<Integer, String> pagerFunction, Function<T, String> bodyFunction)
-	{
-		int pages = size / elementsPerPage;
-		if ((elementsPerPage * pages) < size)
-		{
-			pages++;
-		}
-		
-		final StringBuilder pagerTemplate = new StringBuilder();
-		if (pages > 1)
-		{
-			int breakit = 0;
-			for (int i = 0; i < pages; i++)
-			{
-				pagerTemplate.append(pagerFunction.apply(i));
-				breakit++;
-				
-				if (breakit > 5)
-				{
-					pagerTemplate.append("</tr><tr>");
-					breakit = 0;
-				}
-			}
-		}
-		
-		int page = pageValue;
-		if (page >= pages)
-		{
-			page = pages - 1;
-		}
-		
-		final int start = page > 0 ? elementsPerPage * page : 0;
-		final StringBuilder sb = new StringBuilder();
-		int i = 0;
-		for (T element : elements)
-		{
-			if (i++ < start)
-			{
-				continue;
-			}
-			
-			sb.append(bodyFunction.apply(element));
-			
-			if (i >= (elementsPerPage + start))
-			{
-				break;
-			}
-		}
-		return new PageResult(pages, pagerTemplate, sb);
 	}
 }

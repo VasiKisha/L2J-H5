@@ -93,7 +93,7 @@ public class DispelBySlotProbability extends AbstractEffect
 			if ((Rnd.get(100) < _rate))
 			{
 				// Dispel transformations (buff and by GM)
-				if ((entry.getKey() == AbnormalType.TRANSFORM) && (effected.isTransformed() || (effected.isPlayer() || (entry.getValue() == effected.getActingPlayer().getTransformationId()) || (entry.getValue() < 0))))
+				if ((entry.getKey() == AbnormalType.TRANSFORM) && (effected.isTransformed() || (effected.isPlayer() || (entry.getValue() == effected.asPlayer().getTransformationId()) || (entry.getValue() < 0))))
 				{
 					effected.stopTransformation(true);
 				}

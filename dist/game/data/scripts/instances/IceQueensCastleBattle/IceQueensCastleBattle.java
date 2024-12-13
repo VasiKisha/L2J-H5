@@ -436,7 +436,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						{
 							if ((minion != null) && !minion.isDead() && !minion.isInCombat())
 							{
-								manageRandomAttack(world, (Attackable) minion);
+								manageRandomAttack(world, minion.asAttackable());
 							}
 						}
 						break;
@@ -492,7 +492,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						
 						for (Location loc : KNIGHTS_LOC)
 						{
-							final Attackable knight = (Attackable) addSpawn((params.getBoolean("isHardCore", false) ? KNIGHT_HARD : KNIGHT_EASY), loc, false, 0, false, world.getInstanceId());
+							final Attackable knight = addSpawn((params.getBoolean("isHardCore", false) ? KNIGHT_HARD : KNIGHT_EASY), loc, false, 0, false, world.getInstanceId()).asAttackable();
 							knight.disableCoreAI(true);
 							knight.setDisplayEffect(1);
 							knight.getSpawn().setLocation(loc);
@@ -511,7 +511,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						{
 							final boolean isHardMode = params.getBoolean("isHardCore", false);
 							final Location loc = new Location(MIDDLE_POINT.getX() + getRandom(-1000, 1000), MIDDLE_POINT.getY() + getRandom(-1000, 1000), MIDDLE_POINT.getZ());
-							final Attackable knight = (Attackable) addSpawn(isHardMode ? KNIGHT_HARD : KNIGHT_EASY, npc.getLocation(), false, 0, false, world.getInstanceId());
+							final Attackable knight = addSpawn(isHardMode ? KNIGHT_HARD : KNIGHT_EASY, npc.getLocation(), false, 0, false, world.getInstanceId()).asAttackable();
 							knight.getVariables().set("SPAWNED_NPC", npc);
 							knight.disableCoreAI(true);
 							knight.setImmobilized(true);
@@ -528,7 +528,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						if (params.getBoolean("canSpawnMobs", true))
 						{
 							final Location loc = new Location(MIDDLE_POINT.getX() + getRandom(-1000, 1000), MIDDLE_POINT.getY() + getRandom(-1000, 1000), MIDDLE_POINT.getZ());
-							final Attackable glacier = (Attackable) addSpawn(GLACIER, loc, false, 0, false, world.getInstanceId());
+							final Attackable glacier = addSpawn(GLACIER, loc, false, 0, false, world.getInstanceId()).asAttackable();
 							glacier.setDisplayEffect(1);
 							glacier.disableCoreAI(true);
 							glacier.setImmobilized(true);
@@ -543,13 +543,13 @@ public class IceQueensCastleBattle extends AbstractInstance
 							npc.disableCoreAI(false);
 							npc.setImmobilized(false);
 							npc.setDisplayEffect(2);
-							manageRandomAttack(world, (Attackable) npc);
+							manageRandomAttack(world, npc.asAttackable());
 						}
 						break;
 					}
 					case "FIND_TARGET":
 					{
-						manageRandomAttack(world, (Attackable) npc);
+						manageRandomAttack(world, npc.asAttackable());
 						break;
 					}
 					case "CHANGE_STATE":
@@ -666,7 +666,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 					}
 					case "LEADER_RANDOMIZE":
 					{
-						final Attackable mob = (Attackable) npc;
+						final Attackable mob = npc.asAttackable();
 						mob.clearAggroList();
 						
 						World.getInstance().forEachVisibleObjectInRange(npc, Player.class, 1000, character -> mob.addDamageHate(character, 0, getRandom(10000, 20000)));
@@ -675,7 +675,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 					}
 					case "LEADER_DASH":
 					{
-						final Creature mostHated = ((Attackable) npc).getMostHated();
+						final Creature mostHated = npc.asAttackable().getMostHated();
 						if (getRandomBoolean() && !npc.isCastingNow() && (mostHated != null) && !mostHated.isDead() && (npc.calculateDistance3D(mostHated) < 1000))
 						{
 							npc.setTarget(mostHated);
@@ -686,7 +686,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 					}
 					case "LEADER_DESTROY":
 					{
-						final Attackable mob = (Attackable) npc;
+						final Attackable mob = npc.asAttackable();
 						if (npc.getVariables().getInt("OFF_SHOUT") == 0)
 						{
 							manageScreenMsg(world, NpcStringId.THE_SPACE_FEELS_LIKE_ITS_GRADUALLY_STARTING_TO_SHAKE);
@@ -713,7 +713,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 									npc.broadcastSay(ChatType.SHOUT, NpcStringId.ARCHER_HEED_MY_CALL);
 									for (int i = 0; i < 3; i++)
 									{
-										final Attackable breath = (Attackable) addSpawn(BREATH, npc.getLocation(), true, 0, false, world.getInstanceId());
+										final Attackable breath = addSpawn(BREATH, npc.getLocation(), true, 0, false, world.getInstanceId()).asAttackable();
 										breath.setRunning();
 										breath.addDamageHate(mob.getMostHated(), 0, 999);
 										breath.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, mob.getMostHated());
@@ -819,7 +819,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							npc.doCast(HINDER_STRIDER.getSkill());
 						}
 						
-						final Creature mostHated = ((Attackable) npc).getMostHated();
+						final Creature mostHated = npc.asAttackable().getMostHated();
 						final boolean canReachMostHated = (mostHated != null) && !mostHated.isDead() && (npc.calculateDistance3D(mostHated) <= 800);
 						if (getRandom(10000) < 3333)
 						{
@@ -902,7 +902,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						npc.doCast(HINDER_STRIDER.getSkill());
 					}
 					
-					final Creature mostHated = ((Attackable) npc).getMostHated();
+					final Creature mostHated = npc.asAttackable().getMostHated();
 					final boolean canReachMostHated = (mostHated != null) && !mostHated.isDead() && (npc.calculateDistance3D(mostHated) <= 800);
 					if (getRandom(10000) < 3333)
 					{
@@ -984,7 +984,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 				{
 					if (npc.isCoreAIDisabled())
 					{
-						manageRandomAttack(world, (Attackable) npc);
+						manageRandomAttack(world, npc.asAttackable());
 						npc.disableCoreAI(false);
 						npc.setImmobilized(false);
 						npc.setDisplayEffect(2);
@@ -1012,7 +1012,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 					}
 					else if ((npc.getVariables().getInt("OFF_SHOUT") == 0) && (npc.getVariables().getInt("DELAY_VAL") == 1))
 					{
-						final Creature mostHated = ((Attackable) npc).getMostHated();
+						final Creature mostHated = npc.asAttackable().getMostHated();
 						final boolean canReachMostHated = (mostHated != null) && !mostHated.isDead() && (npc.calculateDistance3D(mostHated) < 1000);
 						if (npc.getVariables().getInt("TIMER_ON") == 0)
 						{
@@ -1035,7 +1035,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							}
 							else if (npc.checkDoCastConditions(POWER_STRIKE.getSkill()) && !npc.isCastingNow() && canReachMostHated)
 							{
-								npc.setTarget(((Attackable) npc).getMostHated());
+								npc.setTarget(npc.asAttackable().getMostHated());
 								npc.doCast(POWER_STRIKE.getSkill());
 							}
 						}
@@ -1051,7 +1051,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							}
 							else if (npc.checkDoCastConditions(POINT_TARGET.getSkill()) && !npc.isCastingNow() && canReachMostHated)
 							{
-								npc.setTarget(((Attackable) npc).getMostHated());
+								npc.setTarget(npc.asAttackable().getMostHated());
 								npc.doCast(POINT_TARGET.getSkill());
 							}
 						}
@@ -1067,7 +1067,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							}
 							else if (npc.checkDoCastConditions(CYLINDER_THROW.getSkill()) && !npc.isCastingNow() && canReachMostHated)
 							{
-								npc.setTarget(((Attackable) npc).getMostHated());
+								npc.setTarget(npc.asAttackable().getMostHated());
 								npc.doCast(CYLINDER_THROW.getSkill());
 							}
 						}
@@ -1093,7 +1093,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 					{
 						if (getRandom(100) < 75)
 						{
-							final Attackable breath = (Attackable) addSpawn(BREATH, npc.getLocation(), false, 0, false, world.getInstanceId());
+							final Attackable breath = addSpawn(BREATH, npc.getLocation(), false, 0, false, world.getInstanceId()).asAttackable();
 							if (player != null)
 							{
 								breath.setRunning();
@@ -1213,14 +1213,15 @@ public class IceQueensCastleBattle extends AbstractInstance
 			world.setParameter("isHardCore", world.getTemplateId() == TEMPLATE_ID_HARD);
 			
 			final List<Player> playersInside = new ArrayList<>();
-			if (!player.isInParty())
+			final Party party = player.getParty();
+			if (party == null)
 			{
 				playersInside.add(player);
 				managePlayerEnter(player, world);
 			}
-			else if (player.getParty().isInCommandChannel())
+			else if (party.isInCommandChannel())
 			{
-				for (Player member : player.getParty().getCommandChannel().getMembers())
+				for (Player member : party.getCommandChannel().getMembers())
 				{
 					playersInside.add(member);
 					managePlayerEnter(member, world);
@@ -1228,7 +1229,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 			}
 			else
 			{
-				for (Player member : player.getParty().getMembers())
+				for (Player member : party.getMembers())
 				{
 					playersInside.add(member);
 					managePlayerEnter(member, world);

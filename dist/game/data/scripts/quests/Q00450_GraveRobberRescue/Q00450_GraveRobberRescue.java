@@ -167,7 +167,7 @@ public class Q00450_GraveRobberRescue extends Quest
 				npc.deleteMe();
 				htmltext = null;
 				
-				final Attackable monster = (Attackable) addSpawn(WARRIOR_MON, npc.getX(), npc.getY(), npc.getZ(), npc.getHeading(), true, 600000);
+				final Attackable monster = addSpawn(WARRIOR_MON, npc.getX(), npc.getY(), npc.getZ(), npc.getHeading(), true, 600000).asAttackable();
 				monster.setRunning();
 				monster.addDamageHate(player, 0, 999);
 				monster.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);

@@ -135,8 +135,10 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 			{
 				_varangkaMinion1 = addSpawn(VARANGKA + 1, player.getX() + Rnd.get(10, 50), player.getY() + Rnd.get(10, 50), -967, 0, false, 0);
 				_varangkaMinion1.setRunning();
-				((Attackable) _varangkaMinion1).addDamageHate(_varangka.getTarget().getActingPlayer(), 1, 99999);
-				_varangkaMinion1.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, _varangka.getTarget().getActingPlayer());
+				
+				final Player targetPlayer = _varangka.getTarget().asPlayer();
+				_varangkaMinion1.asAttackable().addDamageHate(targetPlayer, 1, 99999);
+				_varangkaMinion1.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, targetPlayer);
 			}
 			return null;
 		}
@@ -146,8 +148,10 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 			{
 				_varangkaMinion2 = addSpawn(VARANGKA + 2, player.getX() + Rnd.get(10, 50), player.getY() + Rnd.get(10, 50), -967, 0, false, 0);
 				_varangkaMinion2.setRunning();
-				((Attackable) _varangkaMinion2).addDamageHate(_varangka.getTarget().getActingPlayer(), 1, 99999);
-				_varangkaMinion2.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, _varangka.getTarget().getActingPlayer());
+				
+				final Player targetPlayer = _varangka.getTarget().asPlayer();
+				_varangkaMinion2.asAttackable().addDamageHate(targetPlayer, 1, 99999);
+				_varangkaMinion2.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, targetPlayer);
 			}
 			return null;
 		}
@@ -320,7 +324,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 					if ((creature instanceof Attackable) && (creature.getId() >= VARANGKA) && (creature.getId() <= (VARANGKA + 2)))
 					{
 						creature.setRunning();
-						((Attackable) creature).addDamageHate(player, 1, 99999);
+						creature.asAttackable().addDamageHate(player, 1, 99999);
 						creature.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
 					}
 				}
@@ -338,7 +342,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 	{
 		if (creature.isPlayer())
 		{
-			ThreadPool.schedule(new zoneCheck(creature.getActingPlayer()), 1000);
+			ThreadPool.schedule(new zoneCheck(creature.asPlayer()), 1000);
 		}
 		return super.onEnterZone(creature, zone);
 	}

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="6300" levels="1" name="Self-Destruction">
 		<set name="affectRange" val="350" />
@@ -13,14 +13,15 @@
 		<set name="power" val="3194" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="CallSkill">
 				<param skillId="6662" skillLevel="1" />
 			</effect>
 		</for>
 	</skill>
 	<skill id="6301" levels="2" name="Cold Mana's Fragment">
-		<!-- Recovers MP by 60 per second. -->
+		<!-- Level 1: Recovers MP by 60 per second. -->
+		<!-- Level 2: Recovers MP by 30 per second. -->
 		<table name="#abnormalLevels">1 2</table>
 		<table name="#mdot">60 30</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -75,7 +76,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6304" levels="1" name="Shock">
@@ -120,7 +121,7 @@
 		<set name="reuseDelay" val="4000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6306" levels="1" name="Solina Strike">
@@ -172,7 +173,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6308" levels="1" name="Opus of the Wave">
@@ -193,7 +194,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6309" levels="1" name="Pain of the Ascetic">
@@ -214,7 +215,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6310" levels="1" name="Loss of Quest">
@@ -252,7 +253,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6312" levels="1" name="Launch Sacred Sword Energy">
@@ -271,7 +272,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6313" levels="1" name="Solina Bless">
@@ -317,7 +318,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6315" levels="1" name="Sacred Strike">
@@ -335,7 +336,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6316" levels="1" name="Accomplish of Authority">
@@ -374,7 +375,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6318" levels="1" name="Divine Shield Protection">
@@ -465,7 +466,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6322" levels="1" name="Divine Impact">
@@ -486,7 +487,7 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6323" levels="1" name="Divine Bolt">
@@ -501,7 +502,7 @@
 		<set name="power" val="85" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6324" levels="1" name="Divine Strike">
@@ -520,7 +521,7 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6325" levels="1" name="Divine Nova">
@@ -539,7 +540,7 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6326" levels="1" name="Martyr's Happiness">
@@ -556,7 +557,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6327" levels="1" name="Sacred Worship">
@@ -574,7 +575,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6328" levels="1" name="Fighter Judgement">
@@ -595,7 +596,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6329" levels="1" name="Fighter Strike">
@@ -613,7 +614,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6330" levels="1" name="Salmon Porridge Attack">
@@ -696,7 +697,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="200" />
 			</effect>
@@ -726,7 +727,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -743,7 +744,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6336" levels="1" name="Electric Rain 2">
@@ -759,7 +760,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="6337" levels="1" name="Red Slash 1">
@@ -775,7 +776,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6338" levels="1" name="Red Slash 2">
@@ -791,7 +792,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6339" levels="1" name="Sacred Hammer Attack">
@@ -820,7 +821,7 @@
 		<set name="targetType" val="AREA" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="200" />
 			</effect>
@@ -850,7 +851,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -868,7 +869,7 @@
 		<set name="reuseDelay" val="500" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6342" levels="1" name="Trap Over Steam">
@@ -882,11 +883,12 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6343" levels="2" name="Maguen Plasma - Power">
-		<!-- The Wild Maguen blesses you with a buff that increases your M. Atk. and P. Atk. for 10 minutes. -->
+		<!-- Level 1: The Wild Maguen blesses you with a buff that increases your M. Atk. and P. Atk. for 10 minutes. -->
+		<!-- Level 2: You are once again blessed by the Wild Maguen, who further increases your M. Atk. and P. Atk. -->
 		<table name="#icons">icon.skill6343_1 icon.skill6343_2</table>
 		<table name="#mAtk">1.08 1.15</table>
 		<table name="#pAtk">1.02 1.03</table>
@@ -914,7 +916,8 @@
 		</for>
 	</skill>
 	<skill id="6365" levels="2" name="Maguen Plasma - Speed">
-		<!-- The Wild Maguen blesses you with a buff that increases your Speed, Atk. Spd. and Casting Speed for 10 minutes. -->
+		<!-- Level 1: The Wild Maguen blesses you with a buff that increases your Speed, Atk. Spd. and  Casting Speed for 10 minutes. -->
+		<!-- Level 2: You are once again blessed by the Wild Maguen, who further increases your Speed, Atk. Spd. and Casting Speed. -->
 		<table name="#icons">icon.skill6365_1 icon.skill6365_2</table>
 		<table name="#pmAtkSpd">1.04 1.08</table>
 		<table name="#runSpd">5 10</table>
@@ -943,7 +946,8 @@
 		</for>
 	</skill>
 	<skill id="6366" levels="2" name="Maguen Plasma - Critical">
-		<!-- The Wild Maguen blesses you with a buff that increases your Critical Rate and Critical Damage for 10 minutes. -->
+		<!-- Level 1: The Wild Maguen blesses you with a buff that increases your Critical Rate and Critical Damage for 10 minutes. -->
+		<!-- Level 2: You are once again blessed by the Wild Maguen, who further increases your Critical Rate and Critical Damage. -->
 		<table name="#cAtk">1.05 1.1</table>
 		<table name="#icons">icon.skill6366_1 icon.skill6366_2</table>
 		<table name="#mCritPower">1.02 1.04</table>
@@ -973,7 +977,9 @@
 		</for>
 	</skill>
 	<skill id="6367" levels="3" name="Maguen Plasma - Bistakon">
-		<!-- Level 1: The energy of Bistakon surrounds you. -->
+		<!-- Level 1: Level 1: The energy of Bistakon surrounds you. -->
+		<!-- Level 2: Level 2: The energy of Bistakon surrounds you. -->
+		<!-- Level 3: Level 3: The energy of Bistakon surrounds you. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#icons">icon.skill6367_1 icon.skill6367_2 icon.skill6367_3</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -995,7 +1001,9 @@
 		</for>
 	</skill>
 	<skill id="6368" levels="3" name="Maguen Plasma - Cokrakon">
-		<!-- Level 1: The energy of Cokrakon surrounds you. -->
+		<!-- Level 1: Level 1: The energy of Cokrakon surrounds you. -->
+		<!-- Level 2: Level 2: The energy of Cokrakon surrounds you. -->
+		<!-- Level 3: Level 3: The energy of Cokrakon surrounds you. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#icons">icon.skill6368_1 icon.skill6368_2 icon.skill6368_3</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -1017,7 +1025,9 @@
 		</for>
 	</skill>
 	<skill id="6369" levels="3" name="Maguen Plasma - Reptilikon">
-		<!-- Level 1: The energy of Reptilikon surrounds you. -->
+		<!-- Level 1: Level 1: The energy of Reptilikon surrounds you. -->
+		<!-- Level 2: Level 2: The energy of Reptilikon surrounds you. -->
+		<!-- Level 3: Level 3: The energy of Reptilikon surrounds you. -->
 		<table name="#abnormalLevels">1 2 3</table>
 		<table name="#icons">icon.skill6369_1 icon.skill6369_2 icon.skill6369_3</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -1084,8 +1094,16 @@
 		</for>
 	</skill>
 	<skill id="6372" levels="10" name="Power Up">
-		<!-- 2% of Atk. Spd. And 100% of Physical Skill Damage are increased. -->
-		<!-- High Five Confirmed -->
+		<!-- Level 1: 2% of Atk. Spd. And 100% of Physical Skill Damage are increased. -->
+		<!-- Level 2: 4% of Atk. Spd. And 110% of Physical Skill Damage are increased. -->
+		<!-- Level 3: 6% of Atk. Spd. And 120% of Physical Skill Damage are increased. -->
+		<!-- Level 4: 8% of Atk. Spd. And 130% of Physical Skill Damage are increased. -->
+		<!-- Level 5: 10% of Atk. Spd. And 140% of Physical Skill Damage are increased. -->
+		<!-- Level 6: 12% of Atk. Spd. And 150% of Physical Skill Damage are increased. -->
+		<!-- Level 7: 14% of Atk. Spd. And 160% of Physical Skill Damage are increased. -->
+		<!-- Level 8: 16% of Atk. Spd. And 170% of Physical Skill Damage are increased. -->
+		<!-- Level 9: 18% of Atk. Spd. And 180% of Physical Skill Damage are increased. -->
+		<!-- Level 10: 20% of Atk. Spd. And 190% of Physical Skill Damage are increased. -->
 		<table name="#abnormalLvl">1 2 3 4 5 6 7 8 9 10</table>
 		<table name="#pAtkSpd">1.02 1.04 1.06 1.08 1.1 1.12 1.14 1.16 1.18 1.2</table>
 		<table name="#physicalSkillPower">2 2.1 2.2 2.3 2.4 2.5 2.6 2.7 2.8 2.9</table>
@@ -1133,7 +1151,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="6374" levels="1" name="Notification">
+	<skill id="6374" levels="1" name="Notification - Thunderbolts">
 		<set name="effectPoint" val="1" />
 		<set name="isMagic" val="1" /> <!-- Magic Skill -->
 		<set name="magicLevel" val="85" />
@@ -1141,7 +1159,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="6375" levels="1" name="Notification">
+	<skill id="6375" levels="1" name="Notification - Thunderbolts">
 		<set name="effectPoint" val="1" />
 		<set name="isMagic" val="1" /> <!-- Magic Skill -->
 		<set name="magicLevel" val="85" />
@@ -1150,7 +1168,15 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="6376" levels="9" name="Sonic Strike">
-		<!-- For 5 minutes, 10% of max HP, 10% of max MP and 20 HP per second decrease from Dopagen's Sonic Strike. -->
+		<!-- Level 1: For 5 minutes, 10% of max HP, 10% of max MP and 20 HP per second decrease from Dopagen's Sonic Strike. -->
+		<!-- Level 2: For 5 minutes, 20% of max HP, 20% of max MP and 40 HP per second decrease from Dopagen's Sonic Strike. -->
+		<!-- Level 3: For 5 minutes, 30% of max HP, 30% of max MP and 60 HP per second decrease from Dopagen's Sonic Strike. -->
+		<!-- Level 4: For 5 minutes, 40% of max HP, 40% of max MP and 80 HP per second decrease from Dopagen's Sonic Strike. -->
+		<!-- Level 5: For 5 minutes, 50% of max HP, 50% of max MP and 100 HP per second decrease from Dopagen's Sonic Strike. -->
+		<!-- Level 6: For 5 minutes, 60% of max HP, 60% of max MP and 120 HP per second decrease from Dopagen's Sonic Strike. -->
+		<!-- Level 7: For 5 minutes, 70% of max HP, 70% of max MP and 140 HP per second decrease from Dopagen's Sonic Strike. -->
+		<!-- Level 8: For 5 minutes, 80% of max HP, 80% of max MP and 160 HP per second decrease from Dopagen's Sonic Strike. -->
+		<!-- Level 9: For 5 minutes, 90% of max HP, 90% of max MP and 180 HP per second decrease from Dopagen's Sonic Strike. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
 		<set name="abnormalTime" val="300" />
@@ -1163,7 +1189,16 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="6377" levels="10" name="Assault Boost">
-		<!-- Atk. Spd. Increases by 5%. -->
+		<!-- Level 1: Atk. Spd. Increases by 5%. -->
+		<!-- Level 2: Atk. Spd. Increases by 10%. -->
+		<!-- Level 3: Atk. Spd. Increases by 15%. -->
+		<!-- Level 4: Atk. Spd. Increases by 20%. -->
+		<!-- Level 5: Atk. Spd. Increases by 25%. -->
+		<!-- Level 6: Atk. Spd. Increases by 30%. -->
+		<!-- Level 7: Atk. Spd. Increases by 35%. -->
+		<!-- Level 8: Atk. Spd. Increases by 40%. -->
+		<!-- Level 9: Atk. Spd. Increases by 45%. -->
+		<!-- Level 10: Atk. Spd. Increases by 50%. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6 7 8 9 10</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
 		<set name="abnormalTime" val="600" />
@@ -1335,7 +1370,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6385" levels="1" name="Bistakon Critical Claw">
@@ -1392,7 +1427,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1412,7 +1447,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6388" levels="1" name="Bistakon Jump Blow">
@@ -1427,7 +1462,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6389" levels="1" name="Cokrakon Sonic Cage">
@@ -1500,7 +1535,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1544,7 +1579,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6394" levels="1" name="Cokrakon Sonic Bomb">
@@ -1559,7 +1594,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="6395" levels="1" name="Cokrakon Dreadful Clow">
@@ -1642,7 +1677,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1686,7 +1721,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 </list>

@@ -22,14 +22,15 @@ import java.util.StringTokenizer;
 import org.l2jmobius.gameserver.data.xml.FenceData;
 import org.l2jmobius.gameserver.enums.FenceState;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.PageResult;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Fence;
+import org.l2jmobius.gameserver.model.html.PageBuilder;
+import org.l2jmobius.gameserver.model.html.PageResult;
+import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
  * @author Sahar, Nik64
@@ -174,12 +175,8 @@ public class AdminFence implements IAdminCommandHandler
 	
 	private void sendHtml(Player activeChar, int page)
 	{
-		final PageResult result = HtmlUtil.createPage(FenceData.getInstance().getFences().values(), page, 10, currentPage ->
+		final PageResult result = PageBuilder.newBuilder(FenceData.getInstance().getFences().values(), 10, "bypass -h admin_listfence").currentPage(page).style(ButtonsStyle.INSTANCE).bodyHandler((pages, fence, sb) ->
 		{
-			return "<td align=center><button action=\"bypass -h admin_listfence " + currentPage + "\" value=\"" + (currentPage + 1) + "\" width=35 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>";
-		}, fence ->
-		{
-			final StringBuilder sb = new StringBuilder();
 			sb.append("<tr><td>");
 			sb.append(fence.getName() == null ? fence.getId() : fence.getName());
 			sb.append("</td><td>");
@@ -206,14 +203,11 @@ public class AdminFence implements IAdminCommandHandler
 			sb.append(fence.getId());
 			sb.append("\" width=30 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\">");
 			sb.append("</td></tr>");
-			return sb.toString();
-		});
+		}).build();
 		
-		final NpcHtmlMessage html = new NpcHtmlMessage(0, 1);
+		final NpcHtmlMessage html = new NpcHtmlMessage();
 		html.setFile(activeChar, "data/html/admin/fences.htm");
-		html.replace("%pages%", result.getPagerTemplate().toString());
-		html.replace("%announcements%", result.getBodyTemplate().toString());
-		if (result.getPages() > 0)
+		if (result.getPages() > 1)
 		{
 			html.replace("%pages%", "<table width=280 cellspacing=0><tr>" + result.getPagerTemplate() + "</tr></table>");
 		}

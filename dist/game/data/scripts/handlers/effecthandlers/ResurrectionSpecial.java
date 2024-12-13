@@ -19,7 +19,6 @@ package handlers.effecthandlers;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
@@ -61,21 +60,20 @@ public class ResurrectionSpecial extends AbstractEffect
 			return;
 		}
 		
-		if (effected.getActingPlayer().isInOlympiadMode())
+		final Player player = effected.asPlayer();
+		if (player.isInOlympiadMode())
 		{
 			return;
 		}
 		
-		final Player caster = effector.getActingPlayer();
+		final Player caster = effector.asPlayer();
 		if (effected.isPlayer())
 		{
-			effected.getActingPlayer().reviveRequest(caster, false, _power);
-			return;
+			player.reviveRequest(caster, false, _power);
 		}
 		if (effected.isPet())
 		{
-			final Pet pet = (Pet) effected;
-			effected.getActingPlayer().reviveRequest(pet.getActingPlayer(), true, _power);
+			player.reviveRequest(player, true, _power);
 		}
 	}
 }

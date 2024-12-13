@@ -22,15 +22,15 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.AnnouncementsTable;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.model.PageResult;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.announce.Announcement;
 import org.l2jmobius.gameserver.model.announce.AnnouncementType;
 import org.l2jmobius.gameserver.model.announce.AutoAnnouncement;
 import org.l2jmobius.gameserver.model.announce.IAnnouncement;
+import org.l2jmobius.gameserver.model.html.PageBuilder;
+import org.l2jmobius.gameserver.model.html.PageResult;
 import org.l2jmobius.gameserver.util.Broadcast;
 import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.HtmlUtil;
 import org.l2jmobius.gameserver.util.Util;
 
 /**
@@ -459,12 +459,8 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						}
 						
 						String content = HtmCache.getInstance().getHtm(activeChar, "data/html/admin/announces-list.htm");
-						final PageResult result = HtmlUtil.createPage(AnnouncementsTable.getInstance().getAllAnnouncements(), page, 8, currentPage ->
+						final PageResult result = PageBuilder.newBuilder(AnnouncementsTable.getInstance().getAllAnnouncements(), 8, "bypass admin_announces list").currentPage(page).bodyHandler((pages, announcement, sb) ->
 						{
-							return "<td align=center><button action=\"bypass admin_announces list " + currentPage + "\" value=\"" + (currentPage + 1) + "\" width=35 height=20 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>";
-						}, announcement ->
-						{
-							final StringBuilder sb = new StringBuilder();
 							sb.append("<tr>");
 							sb.append("<td width=5></td>");
 							sb.append("<td width=80>" + announcement.getId() + "</td>");
@@ -491,8 +487,8 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							sb.append("<td width=60><button action=\"bypass -h admin_announces remove " + announcement.getId() + "\" value=\"Remove\" width=\"60\" height=\"21\" back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 							sb.append("<td width=5></td>");
 							sb.append("</tr>");
-							return sb.toString();
-						});
+						}).build();
+						
 						content = content.replace("%pages%", result.getPagerTemplate().toString());
 						content = content.replace("%announcements%", result.getBodyTemplate().toString());
 						Util.sendCBHtml(activeChar, content);

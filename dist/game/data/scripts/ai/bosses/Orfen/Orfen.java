@@ -137,7 +137,7 @@ public class Orfen extends AbstractNpcAI
 	
 	public void setSpawnPoint(Npc npc, int index)
 	{
-		((Attackable) npc).clearAggroList();
+		npc.asAttackable().clearAggroList();
 		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null, null);
 		final Spawn spawn = npc.getSpawn();
 		spawn.setLocation(POS[index]);
@@ -153,16 +153,16 @@ public class Orfen extends AbstractNpcAI
 		final int x = npc.getX();
 		final int y = npc.getY();
 		Attackable mob;
-		mob = (Attackable) addSpawn(RAIKEL_LEOS, x + 100, y + 100, npc.getZ(), 0, false, 0);
+		mob = addSpawn(RAIKEL_LEOS, x + 100, y + 100, npc.getZ(), 0, false, 0).asAttackable();
 		mob.setIsRaidMinion(true);
 		MINIONS.add(mob);
-		mob = (Attackable) addSpawn(RAIKEL_LEOS, x + 100, y - 100, npc.getZ(), 0, false, 0);
+		mob = addSpawn(RAIKEL_LEOS, x + 100, y - 100, npc.getZ(), 0, false, 0).asAttackable();
 		mob.setIsRaidMinion(true);
 		MINIONS.add(mob);
-		mob = (Attackable) addSpawn(RAIKEL_LEOS, x - 100, y + 100, npc.getZ(), 0, false, 0);
+		mob = addSpawn(RAIKEL_LEOS, x - 100, y + 100, npc.getZ(), 0, false, 0).asAttackable();
 		mob.setIsRaidMinion(true);
 		MINIONS.add(mob);
-		mob = (Attackable) addSpawn(RAIKEL_LEOS, x - 100, y - 100, npc.getZ(), 0, false, 0);
+		mob = addSpawn(RAIKEL_LEOS, x - 100, y - 100, npc.getZ(), 0, false, 0).asAttackable();
 		mob.setIsRaidMinion(true);
 		MINIONS.add(mob);
 		startQuestTimer("check_minion_loc", 10000, npc, null, true);
@@ -210,7 +210,7 @@ public class Orfen extends AbstractNpcAI
 				if (!npc.isInsideRadius2D(mob, 3000))
 				{
 					mob.teleToLocation(npc.getLocation());
-					((Attackable) npc).clearAggroList();
+					npc.asAttackable().clearAggroList();
 					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null, null);
 				}
 			}
@@ -228,7 +228,7 @@ public class Orfen extends AbstractNpcAI
 		}
 		else if (event.equalsIgnoreCase("spawn_minion"))
 		{
-			final Attackable mob = (Attackable) addSpawn(RAIKEL_LEOS, npc.getX(), npc.getY(), npc.getZ(), 0, false, 0);
+			final Attackable mob = addSpawn(RAIKEL_LEOS, npc.getX(), npc.getY(), npc.getZ(), 0, false, 0).asAttackable();
 			mob.setIsRaidMinion(true);
 			MINIONS.add(mob);
 		}

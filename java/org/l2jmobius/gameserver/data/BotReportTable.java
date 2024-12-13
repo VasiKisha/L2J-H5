@@ -42,7 +42,6 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -219,8 +218,8 @@ public class BotReportTable
 			return false;
 		}
 		
-		final Creature bot = ((Creature) target);
-		if ((!bot.isPlayer() && !bot.isFakePlayer()) || (bot.isFakePlayer() && !((Npc) bot).getTemplate().isFakePlayerTalkable()) || (target.getObjectId() == reporter.getObjectId()))
+		final Creature bot = target.asCreature();
+		if ((!bot.isPlayer() && !bot.isFakePlayer()) || (bot.isFakePlayer() && !bot.asNpc().getTemplate().isFakePlayerTalkable()) || (target.getObjectId() == reporter.getObjectId()))
 		{
 			return false;
 		}
@@ -231,7 +230,7 @@ public class BotReportTable
 			return false;
 		}
 		
-		if (bot.isPlayer() && bot.getActingPlayer().isInOlympiadMode())
+		if (bot.isPlayer() && bot.asPlayer().isInOlympiadMode())
 		{
 			reporter.sendPacket(SystemMessageId.THIS_CHARACTER_CANNOT_MAKE_A_REPORT_YOU_CANNOT_MAKE_A_REPORT_WHILE_LOCATED_INSIDE_A_PEACE_ZONE_OR_A_BATTLEFIELD_WHILE_YOU_ARE_AN_OPPOSING_CLAN_MEMBER_DURING_A_CLAN_WAR_OR_WHILE_PARTICIPATING_IN_THE_OLYMPIAD);
 			return false;
@@ -243,7 +242,7 @@ public class BotReportTable
 			return false;
 		}
 		
-		if (bot.isPlayer() && (bot.getActingPlayer().getExp() == bot.getActingPlayer().getStat().getStartingExp()))
+		if (bot.isPlayer() && (bot.asPlayer().getExp() == bot.asPlayer().getStat().getStartingExp()))
 		{
 			reporter.sendPacket(SystemMessageId.YOU_CANNOT_REPORT_A_CHARACTER_WHO_HAS_NOT_ACQUIRED_ANY_EXP_AFTER_CONNECTING);
 			return false;
@@ -330,7 +329,7 @@ public class BotReportTable
 		
 		if (bot.isPlayer())
 		{
-			handleReport(bot.getActingPlayer(), rcd);
+			handleReport(bot.asPlayer(), rcd);
 		}
 		
 		return true;

@@ -1,7 +1,16 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="3600" levels="10" name="Special Ability: Anger">
-		<!-- Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. -->
+		<!-- Level 1: Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. -->
+		<!-- Level 2: Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. -->
+		<!-- Level 3: Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. -->
+		<!-- Level 4: Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. -->
+		<!-- Level 5: Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. -->
+		<!-- Level 6: Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. -->
+		<!-- Level 7: Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
+		<!-- Level 8: Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
+		<!-- Level 9: Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
+		<!-- Level 10: Decreases Max HP and increases P. Atk. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 75 80</table>
 		<table name="#pAtk">20.44 22.64 24.77 26.78 28.59 30.12 31.30 39 45 78.33</table>
 		<table name="#pvpBonus">1 1 1 1 1 1 1.05 1.05 1.05 1.05</table>
@@ -21,7 +30,16 @@
 		</for>
 	</skill>
 	<skill id="3601" levels="10" name="Special Ability: Haste">
-		<!-- Increases Atk. Spd. Enables the character to attack multiple opponents. -->
+		<!-- Level 1: Increases Atk. Spd. Enables the character to attack multiple opponents. -->
+		<!-- Level 2: Increases Atk. Spd. Enables the character to attack multiple opponents. -->
+		<!-- Level 3: Increases Atk. Spd. Enables the character to attack multiple opponents. -->
+		<!-- Level 4: Increases Atk. Spd. Enables the character to attack multiple opponents. -->
+		<!-- Level 5: Increases Atk. Spd. Enables the character to attack multiple opponents. -->
+		<!-- Level 6: Increases Atk. Spd. Enables the character to attack multiple opponents. -->
+		<!-- Level 7: Increases Atk. Spd. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
+		<!-- Level 8: Increases Atk. Spd. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
+		<!-- Level 9: Increases Atk. Spd. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
+		<!-- Level 10: Increases Atk. Spd. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 75 84</table>
 		<table name="#pAtkSpd">1.08 1.07 1.07 1.07 1.06 1.06 1.06 1.06 1.07 1.11</table>
 		<table name="#pvpBonus">1 1 1 1 1 1 1.05 1.05 1.05 1.05</table>
@@ -39,7 +57,16 @@
 		</for>
 	</skill>
 	<skill id="3602" levels="10" name="Special Ability: Guidance">
-		<!-- Increases Accuracy. Enables the character to attack multiple opponents. -->
+		<!-- Level 1: Increases Accuracy. Enables the character to attack multiple opponents. -->
+		<!-- Level 2: Increases Accuracy. Enables the character to attack multiple opponents. -->
+		<!-- Level 3: Increases Accuracy. Enables the character to attack multiple opponents. -->
+		<!-- Level 4: Increases Accuracy. Enables the character to attack multiple opponents. -->
+		<!-- Level 5: Increases Accuracy. Enables the character to attack multiple opponents. -->
+		<!-- Level 6: Increases Accuracy. Enables the character to attack multiple opponents. -->
+		<!-- Level 7: Increases Accuracy. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
+		<!-- Level 8: Increases Accuracy. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
+		<!-- Level 9: Increases Accuracy. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
+		<!-- Level 10: Increases Accuracy. Enables the character to attack multiple opponents. Inflicts additional damage during PvP. -->
 		<table name="#accCombat">6.88 6.07 5.72 5.37 5.02 4.68 4.34 3.95 5.27 7.5</table>
 		<table name="#magicLevel">46 49 52 55 58 61 64 67 75 84</table>
 		<table name="#pvpBonus">1 1 1 1 1 1 1.05 1.05 1.05 1.05</table>
@@ -174,7 +201,9 @@
 		</for>
 	</skill>
 	<skill id="3608" levels="3" name="Apella Heavy Armor Set">
-		<!-- Increases Max CP/CP recovery bonus, and decreases the skill player's death Exp. penalty. Increases one's own M. Def. when under attack. Decreases Critical Damage success rate. -->
+		<!-- Level 1: Increases Max CP/CP recovery bonus, and decreases the skill player's death Exp. penalty. Increases one's own M. Def. when under attack. Decreases Critical Damage success rate. -->
+		<!-- Level 2: Increases Max CP/CP recovery bonus, and decreases MP consumption and the player's death Exp. penalty. Increases one's own M. Def. and critical rate when under attack. Decreases Critical Damage success rate. -->
+		<!-- Level 3: Increases Max CP/CP recovery bonus, and decreases MP consumption and the player's death Exp. penalty. Increases one's own M. Def. and critical rate when under attack. Decreases Critical Damage success rate. -->
 		<table name="#maxCP">1035 1116 1116</table>
 		<table name="#mpConsumeRate">1 0.95 0.95</table>
 		<table name="#triggeredLevel">1 2 2</table>
@@ -192,7 +221,7 @@
 				<mul stat="magicalMpConsumeRate" val="#mpConsumeRate" />
 				<mul stat="danceMpConsumeRate" val="#mpConsumeRate" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="10" />
@@ -202,7 +231,9 @@
 		</for>
 	</skill>
 	<skill id="3609" levels="3" name="Apella Light Armor Set">
-		<!-- Increases Max CP/CP recovery bonus, and decreases the player's death Exp. penalty. Increases Evasion when under attack. Decreases received Critical Damage. -->
+		<!-- Level 1: Increases Max CP/CP recovery bonus, and decreases the player's death Exp. penalty. Increases Evasion when under attack. Decreases received Critical Damage. -->
+		<!-- Level 2: Increases Max CP/CP recovery bonus, and decreases MP consumption and the player's death Exp. penalty. Increases Evasion and Atk. Spd. when under attack. Decreases received Critical Damage. -->
+		<!-- Level 3: Increases Max CP/CP recovery bonus, and decreases MP consumption and the player's death Exp. penalty. Increases Evasion and Atk. Spd. when under attack. Decreases received Critical Damage. -->
 		<table name="#maxCP">1035 1116 1116</table>
 		<table name="#mpConsumeRate">1 0.95 0.95</table>
 		<table name="#triggeredLevel">1 2 2</table>
@@ -220,7 +251,7 @@
 				<mul stat="magicalMpConsumeRate" val="#mpConsumeRate" />
 				<mul stat="danceMpConsumeRate" val="#mpConsumeRate" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="10" />
@@ -230,7 +261,9 @@
 		</for>
 	</skill>
 	<skill id="3610" levels="3" name="Apella Robe Set">
-		<!-- Increases Max CP/CP recovery bonus, and decreases the player's death Exp. penalty. Increases Speed and P. Def. when under attack. -->
+		<!-- Level 1: Increases Max CP/CP recovery bonus, and decreases the player's death Exp. penalty. Increases Speed and P. Def. when under attack. -->
+		<!-- Level 2: Increases Max CP/CP recovery bonus, and decreases MP consumption and the player's death Exp. penalty. Increases Speed, P. Def., and M. Atk. when under attack. -->
+		<!-- Level 3: Increases Max CP/CP recovery bonus, and decreases MP consumption and the player's death Exp. penalty. Increases Speed, P. Def., and M. Atk. when under attack. -->
 		<table name="#maxCP">1035 1116 1116</table>
 		<table name="#mpConsumeRate">1 0.95 0.95</table>
 		<table name="#triggeredLevel">1 2 2</table>
@@ -248,7 +281,7 @@
 				<mul stat="magicalMpConsumeRate" val="#mpConsumeRate" />
 				<mul stat="danceMpConsumeRate" val="#mpConsumeRate" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="10" />
@@ -257,7 +290,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3611" levels="1" name="Enchant Heavy Armor (Grade D)">
+	<skill id="3611" levels="1" name="Enchant Heavy Armor (D Grade)">
 		<!-- Strengthens a set item to increase P. Def. and MP Recovery Bonus. -->
 		<set name="icon" val="icon.skill0231" />
 		<set name="magicLevel" val="1" />
@@ -279,7 +312,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3612" levels="1" name="Enchant Light Armor (Grade D)">
+	<skill id="3612" levels="1" name="Enchant Light Armor (D Grade)">
 		<!-- Increases M. Def. and Evasion by enchanting set items. -->
 		<set name="icon" val="icon.skill0233" />
 		<set name="magicLevel" val="1" />
@@ -296,7 +329,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3613" levels="1" name="Enchant Robe (Grade D)">
+	<skill id="3613" levels="1" name="Enchant Robe (D Grade)">
 		<!-- Increases P. Def. and weight capacity by enchanting set items. -->
 		<set name="icon" val="icon.skill0234" />
 		<set name="magicLevel" val="1" />
@@ -311,7 +344,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3614" levels="1" name="Enchant Heavy Armor (Grade C)">
+	<skill id="3614" levels="1" name="Enchant Heavy Armor (C Grade)">
 		<!-- Strengthens a set item to increase P. Def. and MP Recovery Bonus. -->
 		<set name="icon" val="icon.skill0231" />
 		<set name="magicLevel" val="1" />
@@ -333,7 +366,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3615" levels="1" name="Enchant Light Armor (Grade C)">
+	<skill id="3615" levels="1" name="Enchant Light Armor (C Grade)">
 		<!-- Increases M. Def. and Evasion by enchanting set items. -->
 		<set name="icon" val="icon.skill0233" />
 		<set name="magicLevel" val="1" />
@@ -350,7 +383,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3616" levels="1" name="Enchant Robe (Grade C)">
+	<skill id="3616" levels="1" name="Enchant Robe (C Grade)">
 		<!-- Increases P. Def. and weight capacity by enchanting set items. -->
 		<set name="icon" val="icon.skill0234" />
 		<set name="magicLevel" val="1" />
@@ -365,7 +398,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3617" levels="1" name="Enchant Heavy Armor (Grade B)">
+	<skill id="3617" levels="1" name="Enchant Heavy Armor (B Grade)">
 		<!-- Strengthens a set item to increase P. Def. and MP Recovery Bonus. -->
 		<set name="icon" val="icon.skill0231" />
 		<set name="magicLevel" val="1" />
@@ -387,7 +420,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3618" levels="1" name="Enchant Light Armor (Grade B)">
+	<skill id="3618" levels="1" name="Enchant Light Armor (B Grade)">
 		<!-- Increases M. Def. and Evasion by enchanting set items. -->
 		<set name="icon" val="icon.skill0233" />
 		<set name="magicLevel" val="1" />
@@ -404,7 +437,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3619" levels="1" name="Enchant Robe (Grade B)">
+	<skill id="3619" levels="1" name="Enchant Robe (B Grade)">
 		<!-- Increases P. Def. and weight capacity by enchanting set items. -->
 		<set name="icon" val="icon.skill0234" />
 		<set name="magicLevel" val="1" />
@@ -419,7 +452,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3620" levels="1" name="Enchant Heavy Armor (Grade A)">
+	<skill id="3620" levels="1" name="Enchant Heavy Armor (A Grade)">
 		<!-- Strengthens a set item to increase P. Def. and MP Recovery Bonus. -->
 		<set name="icon" val="icon.skill0231" />
 		<set name="magicLevel" val="1" />
@@ -441,7 +474,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3621" levels="1" name="Enchant Light Armor (Grade A)">
+	<skill id="3621" levels="1" name="Enchant Light Armor (A Grade)">
 		<!-- Increases M. Def. and Evasion by enchanting set items. -->
 		<set name="icon" val="icon.skill0233" />
 		<set name="magicLevel" val="1" />
@@ -458,7 +491,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3622" levels="1" name="Enchant Robe (Grade A)">
+	<skill id="3622" levels="1" name="Enchant Robe (A Grade)">
 		<!-- Increases P. Def. and weight capacity by enchanting set items. -->
 		<set name="icon" val="icon.skill0234" />
 		<set name="magicLevel" val="1" />
@@ -473,7 +506,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3623" levels="1" name="Enchant Heavy Armor (Grade S)">
+	<skill id="3623" levels="1" name="Enchant Heavy Armor (S Grade)">
 		<!-- Strengthens a set item to increase P. Def. and MP Recovery Bonus. -->
 		<set name="icon" val="icon.skill0231" />
 		<set name="magicLevel" val="1" />
@@ -495,7 +528,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3624" levels="1" name="Enchant Light Armor (Grade S)">
+	<skill id="3624" levels="1" name="Enchant Light Armor (S Grade)">
 		<!-- Increases M. Def. and Evasion by enchanting set items. -->
 		<set name="icon" val="icon.skill0233" />
 		<set name="magicLevel" val="1" />
@@ -512,7 +545,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3625" levels="1" name="Enchant Robe (Grade S)">
+	<skill id="3625" levels="1" name="Enchant Robe (S Grade)">
 		<!-- Increases P. Def. and weight capacity by enchanting set items. -->
 		<set name="icon" val="icon.skill0234" />
 		<set name="magicLevel" val="1" />
@@ -652,7 +685,7 @@
 		<set name="reuseDelay" val="60000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="3631" levels="1" name="Void Flow">
@@ -670,7 +703,7 @@
 		<set name="reuseDelay" val="60000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="3632" levels="1" name="Clan Gate">
@@ -697,7 +730,8 @@
 		</for>
 	</skill>
 	<skill id="3633" levels="2" name="Residential Shock Immunity">
-		<!-- Active: Momentarily increases Resistance to shock attacks. -->
+		<!-- Level 1: Active: Momentarily increases Resistance to shock attacks. -->
+		<!-- Level 2: Active: Momentarily gives complete Resistance to shock attacks. -->
 		<table name="#trait_shock">80 100</table>
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="7" />
@@ -817,7 +851,7 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="3640" levels="1" name="Dynasty Jewel Leather Mail Dagger Master">
+	<skill id="3640" levels="1" name="Dynasty Jewel Leather Armor">
 		<!-- Increases Evasion, Max HP, Atk. Spd., and Resistance to Hold. -->
 		<set name="icon" val="icon.armor_t92_ud_i00" />
 		<set name="magicLevel" val="1" />
@@ -836,7 +870,7 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="3641" levels="1" name="Dynasty Jewel Leather Mail Bow Master">
+	<skill id="3641" levels="1" name="Dynasty Jewel Leather Armor">
 		<!-- Increases Accuracy/Max MP/Atk. Spd./MP Recovery Rate/Resistance to Dark. -->
 		<set name="icon" val="icon.armor_t92_ub_i00" />
 		<set name="magicLevel" val="1" />
@@ -853,7 +887,7 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="3642" levels="1" name="Dynasty Jeweled Leather Armor Force Master">
+	<skill id="3642" levels="1" name="Dynasty Jewel Leather Armor">
 		<!-- Increases P. Atk./Max HP/Resistance to Dark, and decreases MP consumption. -->
 		<set name="icon" val="icon.armor_t92_ud_i00" />
 		<set name="magicLevel" val="1" />
@@ -869,7 +903,7 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="3643" levels="1" name="Dynasty Jeweled Leather Armor Weapon Master">
+	<skill id="3643" levels="1" name="Dynasty Jewel Leather Armor">
 		<!-- Increases P. Atk/Max HP/Critical Rate/Critical Damage/Resistance to Dark. -->
 		<set name="icon" val="icon.armor_t92_ub_i00" />
 		<set name="magicLevel" val="1" />
@@ -886,7 +920,7 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="3644" levels="1" name="Dynasty Jeweled Leather Armor Summoner">
+	<skill id="3644" levels="1" name="Dynasty Jewel Leather Armor">
 		<!-- Increases P. Atk., P. Def, Max HP, Atk. Speed and Resistance to Dark. -->
 		<set name="icon" val="icon.armor_t92_ub_i00" />
 		<set name="magicLevel" val="1" />
@@ -903,7 +937,7 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="3645" levels="1" name="Dynasty Silver Satin Tunic Healer">
+	<skill id="3645" levels="1" name="Dynasty Silver Satin Tunic">
 		<!-- Increases Casting Spd./Max MP/Heal Power/Resistance to Dark, and decreases magic cancel rate against damage. -->
 		<set name="icon" val="icon.armor_t93_uh_i00" />
 		<set name="magicLevel" val="1" />
@@ -920,7 +954,7 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="3646" levels="1" name="Dynasty Silver Satin Tunic Enchanter">
+	<skill id="3646" levels="1" name="Dynasty Silver Satin Tunic">
 		<!-- Increases Casting Spd./Max MP/Resistance to Dark, and decreases MP Consumption/magic cancel rate against damage. -->
 		<set name="icon" val="icon.armor_t93_ue_i00" />
 		<set name="magicLevel" val="1" />
@@ -937,7 +971,7 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="3647" levels="1" name="Dynasty Silver Satin Tunic Summoner">
+	<skill id="3647" levels="1" name="Dynasty Silver Satin Tunic">
 		<!-- Increases Casting Spd./Max MP/P. Atk./P. Def./Resistance to Dark. -->
 		<set name="icon" val="icon.armor_t93_us_i00" />
 		<set name="magicLevel" val="1" />
@@ -954,7 +988,7 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="3648" levels="1" name="Dynasty Silver Satin Tunic Human Wizard">
+	<skill id="3648" levels="1" name="Dynasty Silver Satin Tunic">
 		<!-- Increases Casting Spd./Max MP/M. Atk./Resistance to Dark. -->
 		<set name="icon" val="icon.armor_t93_uw_i00" />
 		<set name="magicLevel" val="1" />
@@ -998,7 +1032,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="50" chance="20" />
@@ -1014,7 +1048,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="50" chance="10" />
@@ -1030,7 +1064,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="50" chance="20" />
@@ -1046,7 +1080,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="50" chance="10" />
@@ -1062,7 +1096,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="5" />
@@ -1077,7 +1111,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="50" chance="10" />
@@ -1093,7 +1127,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="50" chance="10" />
@@ -1109,7 +1143,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="50" chance="10" />
@@ -1125,7 +1159,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="40" />
 				<param chance="10" />
@@ -1140,7 +1174,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="20" />
@@ -1155,7 +1189,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="20" />
@@ -1184,7 +1218,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="10" />
@@ -1199,7 +1233,7 @@
 		<set name="magicLevel" val="80" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="25" />
@@ -1256,7 +1290,7 @@
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="20" />
 				<param chance="2" />

@@ -37,6 +37,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.residences.ClanHall;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
@@ -233,7 +234,7 @@ public class MapRegionManager implements IXmlReader
 		Location loc;
 		if (creature.isPlayer())
 		{
-			final Player player = creature.getActingPlayer();
+			final Player player = creature.asPlayer();
 			if (player.getUCState() != Player.UC_STATE_NONE)
 			{
 				return null;
@@ -242,12 +243,13 @@ public class MapRegionManager implements IXmlReader
 			Castle castle = null;
 			Fort fort = null;
 			ClanHall clanhall = null;
-			if ((player.getClan() != null) && !player.isFlyingMounted() && !player.isFlying()) // flying players in gracia cannot use teleports to aden continent
+			final Clan clan = player.getClan();
+			if ((clan != null) && !player.isFlyingMounted() && !player.isFlying()) // flying players in gracia cannot use teleports to aden continent
 			{
 				// If teleport to clan hall
 				if (teleportWhere == TeleportWhereType.CLANHALL)
 				{
-					clanhall = ClanHallTable.getInstance().getAbstractHallByOwner(player.getClan());
+					clanhall = ClanHallTable.getInstance().getAbstractHallByOwner(clan);
 					if (clanhall != null)
 					{
 						final ClanHallZone zone = clanhall.getZone();
@@ -265,13 +267,13 @@ public class MapRegionManager implements IXmlReader
 				// If teleport to castle
 				if (teleportWhere == TeleportWhereType.CASTLE)
 				{
-					castle = CastleManager.getInstance().getCastleByOwner(player.getClan());
+					castle = CastleManager.getInstance().getCastleByOwner(clan);
 					// Otherwise check if player is on castle or fortress ground
 					// and player's clan is defender
 					if (castle == null)
 					{
 						castle = CastleManager.getInstance().getCastle(player);
-						if (!((castle != null) && castle.getSiege().isInProgress() && (castle.getSiege().getDefenderClan(player.getClan()) != null)))
+						if (!((castle != null) && castle.getSiege().isInProgress() && (castle.getSiege().getDefenderClan(clan) != null)))
 						{
 							castle = null;
 						}
@@ -290,13 +292,13 @@ public class MapRegionManager implements IXmlReader
 				// If teleport to fortress
 				if (teleportWhere == TeleportWhereType.FORTRESS)
 				{
-					fort = FortManager.getInstance().getFortByOwner(player.getClan());
+					fort = FortManager.getInstance().getFortByOwner(clan);
 					// Otherwise check if player is on castle or fortress ground
 					// and player's clan is defender
 					if (fort == null)
 					{
 						fort = FortManager.getInstance().getFort(player);
-						if (!((fort != null) && fort.getSiege().isInProgress() && (fort.getOwnerClan() == player.getClan())))
+						if (!((fort != null) && fort.getSiege().isInProgress() && (fort.getOwnerClan() == clan)))
 						{
 							fort = null;
 						}
@@ -318,7 +320,7 @@ public class MapRegionManager implements IXmlReader
 					castle = CastleManager.getInstance().getCastle(player);
 					fort = FortManager.getInstance().getFort(player);
 					clanhall = ClanHallTable.getInstance().getNearbyAbstractHall(creature.getX(), creature.getY(), 10000);
-					final SiegeFlag twFlag = TerritoryWarManager.getInstance().getHQForClan(player.getClan());
+					final SiegeFlag twFlag = TerritoryWarManager.getInstance().getHQForClan(clan);
 					if (twFlag != null)
 					{
 						return twFlag.getLocation();
@@ -328,7 +330,7 @@ public class MapRegionManager implements IXmlReader
 						if (castle.getSiege().isInProgress())
 						{
 							// Check if player's clan is attacker
-							final Collection<Npc> flags = castle.getSiege().getFlag(player.getClan());
+							final Collection<Npc> flags = castle.getSiege().getFlag(clan);
 							if ((flags != null) && !flags.isEmpty())
 							{
 								// Spawn to flag - Need more work to get player to the nearest flag
@@ -341,7 +343,7 @@ public class MapRegionManager implements IXmlReader
 						if (fort.getSiege().isInProgress())
 						{
 							// Check if player's clan is attacker
-							final Set<Npc> flags = fort.getSiege().getFlag(player.getClan());
+							final Set<Npc> flags = fort.getSiege().getFlag(clan);
 							if ((flags != null) && !flags.isEmpty())
 							{
 								// Spawn to flag - Need more work to get player to the nearest flag
@@ -352,7 +354,7 @@ public class MapRegionManager implements IXmlReader
 					else if ((clanhall != null) && clanhall.isSiegableHall())
 					{
 						final SiegableHall sHall = (SiegableHall) clanhall;
-						final Collection<Npc> flags = sHall.getSiege().getFlag(player.getClan());
+						final Collection<Npc> flags = sHall.getSiege().getFlag(clan);
 						if ((flags != null) && !flags.isEmpty())
 						{
 							return flags.stream().findFirst().get().getLocation();
@@ -369,7 +371,7 @@ public class MapRegionManager implements IXmlReader
 			
 			// Checking if needed to be respawned in "far" town from the castle; and if player's clan is participating
 			castle = CastleManager.getInstance().getCastle(player);
-			if ((castle != null) && castle.getSiege().isInProgress() && (castle.getSiege().checkIsDefender(player.getClan()) || castle.getSiege().checkIsAttacker(player.getClan())) && (SevenSigns.getInstance().getSealOwner(SevenSigns.SEAL_STRIFE) == SevenSigns.CABAL_DAWN))
+			if ((castle != null) && castle.getSiege().isInProgress() && (castle.getSiege().checkIsDefender(clan) || castle.getSiege().checkIsAttacker(clan)) && (SevenSigns.getInstance().getSealOwner(SevenSigns.SEAL_STRIFE) == SevenSigns.CABAL_DAWN))
 			{
 				return castle.getResidenceZone().getOtherSpawnLoc();
 			}
@@ -387,17 +389,17 @@ public class MapRegionManager implements IXmlReader
 					}
 				}
 			}
-		}
-		
-		if (Config.FACTION_SYSTEM_ENABLED && Config.FACTION_RESPAWN_AT_BASE)
-		{
-			if (creature.getActingPlayer().isGood())
+			
+			if (Config.FACTION_SYSTEM_ENABLED && Config.FACTION_RESPAWN_AT_BASE)
 			{
-				return Config.FACTION_GOOD_BASE_LOCATION;
-			}
-			if (creature.getActingPlayer().isEvil())
-			{
-				return Config.FACTION_EVIL_BASE_LOCATION;
+				if (player.isGood())
+				{
+					return Config.FACTION_GOOD_BASE_LOCATION;
+				}
+				if (player.isEvil())
+				{
+					return Config.FACTION_EVIL_BASE_LOCATION;
+				}
 			}
 		}
 		
@@ -441,7 +443,7 @@ public class MapRegionManager implements IXmlReader
 			final RespawnZone zone = ZoneManager.getInstance().getZone(creature, RespawnZone.class);
 			if (zone != null)
 			{
-				return getRestartRegion(creature, zone.getRespawnPoint((Player) creature)).getSpawnLoc();
+				return getRestartRegion(creature, zone.getRespawnPoint(creature.asPlayer())).getSpawnLoc();
 			}
 			
 			// Opposing race check.
@@ -468,7 +470,7 @@ public class MapRegionManager implements IXmlReader
 	{
 		try
 		{
-			final Player player = (Player) creature;
+			final Player player = creature.asPlayer();
 			final MapRegion region = REGIONS.get(point);
 			if (region.getBannedRace().containsKey(player.getRace()))
 			{

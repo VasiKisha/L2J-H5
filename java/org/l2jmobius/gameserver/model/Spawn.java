@@ -31,9 +31,7 @@ import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.instancemanager.WalkingManager;
 import org.l2jmobius.gameserver.instancemanager.ZoneManager;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 import org.l2jmobius.gameserver.model.interfaces.INamable;
@@ -427,6 +425,16 @@ public class Spawn extends Location implements IIdentifiable, INamable
 			{
 				newlocz = geoZ;
 			}
+			
+			// Prevent new z exceeding spawn territory high z.
+			if (_spawnTerritory != null)
+			{
+				final int highZ = _spawnTerritory.getHighZ();
+				if (highZ < newlocz)
+				{
+					newlocz = highZ;
+				}
+			}
 		}
 		
 		npc.stopAllEffects();
@@ -483,18 +491,18 @@ public class Spawn extends Location implements IIdentifiable, INamable
 		// Minions
 		if (npc.isMonster() && NpcData.getMasterMonsterIDs().contains(npc.getId()))
 		{
-			((Monster) npc).getMinionList().spawnMinions(npc.getTemplate().getParameters().getMinionList("Privates"));
+			npc.asMonster().getMinionList().spawnMinions(npc.getTemplate().getParameters().getMinionList("Privates"));
 		}
 		
 		if (npc.isAttackable())
 		{
-			((Attackable) npc).setChampion(false);
+			npc.asAttackable().setChampion(false);
 		}
 		
 		// Set champion on next spawn
 		if (Config.CHAMPION_ENABLE && npc.isMonster() && !npc.isQuestMonster() && !_template.isUndying() && !npc.isRaid() && !npc.isRaidMinion() && (Config.CHAMPION_FREQUENCY > 0) && (npc.getLevel() >= Config.CHAMP_MIN_LEVEL) && (npc.getLevel() <= Config.CHAMP_MAX_LEVEL) && (Config.CHAMPION_ENABLE_IN_INSTANCES || (getInstanceId() == 0)) && (Rnd.get(100) < Config.CHAMPION_FREQUENCY))
 		{
-			((Attackable) npc).setChampion(true);
+			npc.asAttackable().setChampion(true);
 		}
 		
 		return npc;

@@ -35,6 +35,7 @@ import org.l2jmobius.gameserver.model.AdminCommandAccessRight;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -285,6 +286,7 @@ public class AdminData implements IXmlReader
 		}
 		else
 		{
+			player.sendPacket(new PlaySound("systemmsg_e.702"));
 			player.sendPacket(SystemMessageId.THERE_ARE_NO_GMS_CURRENTLY_VISIBLE_IN_THE_PUBLIC_LIST_AS_THEY_MAY_BE_PERFORMING_OTHER_FUNCTIONS_AT_THE_MOMENT);
 		}
 	}

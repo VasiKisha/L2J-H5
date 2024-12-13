@@ -17,6 +17,7 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeReceiveWarList;
 
 /**
@@ -45,11 +46,12 @@ public class RequestPledgeWarList extends ClientPacket
 			return;
 		}
 		
-		if (player.getClan() == null)
+		final Clan clan = player.getClan();
+		if (clan == null)
 		{
 			return;
 		}
 		
-		player.sendPacket(new PledgeReceiveWarList(player.getClan(), _tab));
+		player.sendPacket(new PledgeReceiveWarList(clan, _tab));
 	}
 }

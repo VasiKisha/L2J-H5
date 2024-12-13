@@ -18,6 +18,7 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
@@ -50,16 +51,18 @@ public class NevitsHourglass extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getActingPlayer().storeRecommendations(true);
-		effected.getActingPlayer().getStat().setPausedNevitHourglassStatus(true);
+		final Player player = effected.asPlayer();
+		player.storeRecommendations(true);
+		player.getStat().setPausedNevitHourglassStatus(true);
 	}
 	
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		if (!effected.getActingPlayer().isInsideZone(ZoneId.PEACE))
+		final Player player = effected.asPlayer();
+		if (!player.isInsideZone(ZoneId.PEACE))
 		{
-			effected.getActingPlayer().getStat().setPausedNevitHourglassStatus(false);
+			player.getStat().setPausedNevitHourglassStatus(false);
 		}
 	}
 }

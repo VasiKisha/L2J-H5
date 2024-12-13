@@ -29,8 +29,6 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.ControllableMob;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.util.Util;
@@ -146,7 +144,7 @@ public class ControllableMobAI extends AttackableAI
 			return;
 		}
 		
-		final Attackable npc = (Attackable) _actor;
+		final Attackable npc = _actor.asAttackable();
 		npc.setTarget(getAttackTarget());
 		
 		if (_actor.isMuted())
@@ -268,18 +266,18 @@ public class ControllableMobAI extends AttackableAI
 			if (getAttackTarget() != null)
 			{
 				// stop hating
-				((Attackable) _actor).stopHating(getAttackTarget());
+				_actor.asAttackable().stopHating(getAttackTarget());
 			}
 			setIntention(AI_INTENTION_ACTIVE);
 		}
 		else
 		{
 			// notify aggression
-			if (((Npc) _actor).getTemplate().getClans() != null)
+			if (_actor.asNpc().getTemplate().getClans() != null)
 			{
 				World.getInstance().forEachVisibleObject(_actor, Npc.class, npc ->
 				{
-					if (!npc.isInMyClan((Npc) _actor))
+					if (!npc.isInMyClan(_actor.asNpc()))
 					{
 						return;
 					}
@@ -378,7 +376,7 @@ public class ControllableMobAI extends AttackableAI
 		}
 		
 		// Spawn protection (only against mobs)
-		if (target.isPlayer() && ((Player) target).isSpawnProtected())
+		if (target.isPlayer() && target.asPlayer().isSpawnProtected())
 		{
 			return false;
 		}
@@ -390,7 +388,7 @@ public class ControllableMobAI extends AttackableAI
 		}
 		
 		// Check if the target isn't in silent move mode
-		if (target.isPlayable() && ((Playable) target).isSilentMovingAffected())
+		if (target.isPlayable() && target.asPlayable().isSilentMovingAffected())
 		{
 			return false;
 		}
@@ -402,7 +400,7 @@ public class ControllableMobAI extends AttackableAI
 		final List<Creature> potentialTarget = new ArrayList<>();
 		World.getInstance().forEachVisibleObject(_actor, Creature.class, target ->
 		{
-			if (Util.checkIfInShortRange(((Attackable) _actor).getAggroRange(), _actor, target, true) && checkAutoAttackCondition(target))
+			if (Util.checkIfInShortRange(_actor.asAttackable().getAggroRange(), _actor, target, true) && checkAutoAttackCondition(target))
 			{
 				potentialTarget.add(target);
 			}

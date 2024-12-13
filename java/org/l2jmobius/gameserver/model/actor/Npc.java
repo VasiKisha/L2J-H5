@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.actor;
 
@@ -1181,7 +1185,7 @@ public class Npc extends Creature
 		_killingBlowWeaponId = (weapon != null) ? weapon.getId() : 0;
 		if (_isFakePlayer && (killer != null) && killer.isPlayable())
 		{
-			final Player player = killer.getActingPlayer();
+			final Player player = killer.asPlayer();
 			if (isScriptValue(0) && (getKarma() < 0))
 			{
 				if (Config.FAKE_PLAYER_KILL_KARMA)
@@ -1337,7 +1341,7 @@ public class Npc extends Creature
 		final Creature summoner = getSummoner();
 		if ((summoner != null) && summoner.isNpc())
 		{
-			((Npc) summoner).removeSummonedNpc(getObjectId());
+			summoner.asNpc().removeSummonedNpc(getObjectId());
 		}
 		
 		// Stop all timers
@@ -1536,7 +1540,7 @@ public class Npc extends Creature
 	{
 		if ((target != null) && target.isPlayable() && EventDispatcher.getInstance().hasListener(EventType.ON_NPC_SKILL_FINISHED, this))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnNpcSkillFinished(this, target.getActingPlayer(), skill), this);
+			EventDispatcher.getInstance().notifyEventAsync(new OnNpcSkillFinished(this, target.asPlayer(), skill), this);
 		}
 	}
 	
@@ -1574,6 +1578,12 @@ public class Npc extends Creature
 	public boolean isNpc()
 	{
 		return true;
+	}
+	
+	@Override
+	public Npc asNpc()
+	{
+		return this;
 	}
 	
 	public void setTeam(Team team, boolean broadcast)
@@ -1771,7 +1781,7 @@ public class Npc extends Creature
 	{
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_NPC_EVENT_RECEIVED, receiver))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnNpcEventReceived(eventName, this, (Npc) receiver, reference), receiver);
+			EventDispatcher.getInstance().notifyEventAsync(new OnNpcEventReceived(eventName, this, receiver.asNpc(), reference), receiver);
 		}
 	}
 	

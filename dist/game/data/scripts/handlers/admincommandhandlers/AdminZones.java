@@ -35,7 +35,6 @@ import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.instancemanager.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.PageResult;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
@@ -45,6 +44,8 @@ import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
 import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerDlgAnswer;
 import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMoveRequest;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
+import org.l2jmobius.gameserver.model.html.PageBuilder;
+import org.l2jmobius.gameserver.model.html.PageResult;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.form.ZoneNPoly;
 import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
@@ -52,7 +53,6 @@ import org.l2jmobius.gameserver.network.serverpackets.ExServerPrimitive;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowTerritory;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.HtmlUtil;
 import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
@@ -504,12 +504,9 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 		msg.setFile(activeChar, "data/html/admin/zone_editor_create.htm");
 		final ZoneNodeHolder holder = _zones.computeIfAbsent(activeChar.getObjectId(), key -> new ZoneNodeHolder());
 		final AtomicInteger position = new AtomicInteger(page * 20);
-		final PageResult result = HtmlUtil.createPage(holder.getNodes(), page, 20, i ->
+		
+		final PageResult result = PageBuilder.newBuilder(holder.getNodes(), 20, "bypass -h admin_zones list").currentPage(page).bodyHandler((pages, loc, sb) ->
 		{
-			return "<td align=center><button action=\"bypass -h admin_zones list " + i + "\" value=\"" + (i + 1) + "\" width=30 height=22 back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>";
-		}, loc ->
-		{
-			final StringBuilder sb = new StringBuilder();
 			sb.append("<tr>");
 			sb.append("<td fixwidth=5></td>");
 			sb.append("<td fixwidth=20>" + position.getAndIncrement() + "</td>");
@@ -521,8 +518,8 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 			sb.append("<td fixwidth=30><a action=\"bypass -h admin_zones delete " + holder.indexOf(loc) + "\">[D]</a></td>");
 			sb.append("<td fixwidth=5></td>");
 			sb.append("</tr>");
-			return sb.toString();
-		});
+		}).build();
+		
 		msg.replace("%name%", holder.getName());
 		msg.replace("%pages%", result.getPagerTemplate());
 		msg.replace("%nodes%", result.getBodyTemplate());

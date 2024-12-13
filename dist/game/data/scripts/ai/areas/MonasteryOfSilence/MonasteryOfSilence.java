@@ -102,7 +102,7 @@ public class MonasteryOfSilence extends AbstractNpcAI
 						else if (character.getId() == KNIGHT)
 						{
 							character.setRunning();
-							((Attackable) character).addDamageHate(npc, 0, 100);
+							character.asAttackable().addDamageHate(npc, 0, 100);
 							character.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, npc, null);
 						}
 					}
@@ -137,7 +137,7 @@ public class MonasteryOfSilence extends AbstractNpcAI
 	@Override
 	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
-		final Attackable mob = (Attackable) npc;
+		final Attackable mob = npc.asAttackable();
 		
 		switch (npc.getId())
 		{

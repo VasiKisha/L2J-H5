@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="5300" levels="9" name="NPC(party) - Physical Range Long Range Attack - Dark">
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
@@ -18,7 +18,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5301" levels="9" name="Stun">
@@ -48,12 +48,20 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
 	<skill id="5302" levels="9" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">8 8 9 9 9 10 10 10 10</table>
 		<table name="#dot">286 286 314 314 314 338 338 338 338</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
@@ -80,14 +88,22 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="POISON" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
 		</for>
 	</skill>
 	<skill id="5303" levels="9" name="Bleed">
-		<!-- Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 1: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 2: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 3: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 4: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 5: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 6: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 7: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 8: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 9: Inflicts a wound that reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">8 8 9 9 9 10 10 10 10</table>
 		<table name="#dot">145 145 157 157 157 168 168 168 168</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
@@ -114,7 +130,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
@@ -149,12 +165,20 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="PARALYZE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Paralyze" />
 		</for>
 	</skill>
 	<skill id="5305" levels="9" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#dot">381 381 418 418 418 450 450 450 450</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
 		<table name="#mpConsume">76 78 80 82 84 84 85 86 87</table>
@@ -178,7 +202,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="POISON" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
@@ -211,7 +235,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="PARALYZE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Paralyze" />
 		</for>
 	</skill>
@@ -241,12 +265,20 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
 	<skill id="5308" levels="9" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">8 8 9 9 9 10 10 10 10</table>
 		<table name="#dot">286 286 314 314 314 338 338 338 338</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
@@ -272,14 +304,22 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="POISON" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
 		</for>
 	</skill>
 	<skill id="5309" levels="9" name="Bleed">
-		<!-- Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 1: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 2: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 3: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 4: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 5: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 6: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 7: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 8: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 9: Inflicts a wound that reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">8 8 9 9 9 10 10 10 10</table>
 		<table name="#dot">145 145 157 157 157 168 168 168 168</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
@@ -305,7 +345,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
@@ -328,7 +368,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5311" levels="9" name="NPC(party) - Magic Close Range DD - less powerful">
@@ -347,7 +387,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5312" levels="9" name="NPC(party) -Magic Single Long Range DD - Fire">
@@ -370,7 +410,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5313" levels="9" name="NPC(party) -Magic Range Long Range DD - Fire">
@@ -393,7 +433,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5314" levels="9" name="NPC(party) -Magic Range Close Range DD - Fire">
@@ -414,7 +454,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5315" levels="9" name="NPC(party) -Magic Range Close Range DD - Fire(Self-Destruction)">
@@ -430,7 +470,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5316" levels="9" name="NPC(party) -Magic Single Long Range DD - Water">
@@ -453,7 +493,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5317" levels="9" name="NPC(party) -Magic Range Long Range DD - Water">
@@ -476,7 +516,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5318" levels="9" name="NPC(party) -Magic Range Close Range DD - Water">
@@ -497,7 +537,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5319" levels="9" name="NPC(party) -Magic Single Long Range DD - Wind">
@@ -592,7 +632,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5329" levels="9" name="NPC(party) -Magic Range Long Range DD - Holy">
@@ -615,7 +655,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5330" levels="9" name="NPC(party) -Magic Range Close Range DD - Holy">
@@ -636,7 +676,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5331" levels="9" name="NPC HP Drain">
@@ -654,7 +694,7 @@
 		<set name="power" val="250" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5332" levels="9" name="NPC MP Burn">
@@ -676,11 +716,19 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttackMp" />
+			<effect name="MagicalDamageMp" />
 		</for>
 	</skill>
 	<skill id="5333" levels="9" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">8 8 9 9 9 10 10 10 10</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
 		<table name="#mpConsume">55 57 58 60 61 61 62 62 63</table>
@@ -708,7 +756,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="POISON" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 			<effect name="Debuff" />
 		</for>
 	</skill>
@@ -727,7 +775,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5335" levels="9" name="NPC(party) - Physical Single Long Range Attack">
@@ -744,7 +792,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5336" levels="9" name="NPC(party) - Physical Range Close Range Attack">
@@ -760,7 +808,7 @@
 		<set name="power" val="12777" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5337" levels="9" name="NPC(party) - Physical Range Long Range Attack">
@@ -788,7 +836,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5339" levels="9" name="NPC(party) - Physical Single Long Range Attack - Fire">
@@ -814,7 +862,7 @@
 		<set name="power" val="12777" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5341" levels="9" name="NPC(party) - Physical Range Long Range Attack - Fire">
@@ -842,7 +890,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5343" levels="9" name="NPC(party) - Physical Single Long Range Attack - Water">
@@ -885,7 +933,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5347" levels="9" name="NPC(party) - Physical Single Long Range Attack - Wind">
@@ -928,7 +976,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5351" levels="9" name="NPC(party) - Physical Single Long Range Attack - Earth">
@@ -953,7 +1001,7 @@
 		<set name="power" val="12777" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5353" levels="9" name="NPC(party) - Physical Range Long Range Attack - Earth">
@@ -994,7 +1042,7 @@
 		<set name="power" val="12777" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5357" levels="9" name="NPC(party) - Physical Range Long Range Attack - Holy">
@@ -1022,7 +1070,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5359" levels="9" name="NPC(party) - Physical Single Long Range Attack - Dark">
@@ -1041,7 +1089,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5360" levels="9" name="NPC(party) - Physical Range Close Range Attack - Dark">
@@ -1059,7 +1107,7 @@
 		<set name="power" val="12777" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5361" levels="9" name="NPC(party) - Physical Range Long Range Attack - Dark">
@@ -1097,12 +1145,20 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
 	<skill id="5363" levels="9" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">8 8 9 9 9 10 10 10 10</table>
 		<table name="#dot">286 286 314 314 314 338 338 338 338</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
@@ -1129,14 +1185,22 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="POISON" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
 		</for>
 	</skill>
 	<skill id="5364" levels="9" name="Bleed">
-		<!-- Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 1: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 2: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 3: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 4: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 5: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 6: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 7: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 8: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 9: Inflicts a wound that reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">8 8 9 9 9 10 10 10 10</table>
 		<table name="#dot">145 145 157 157 157 168 168 168 168</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
@@ -1163,7 +1227,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
@@ -1196,12 +1260,20 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="PARALYZE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Paralyze" />
 		</for>
 	</skill>
 	<skill id="5366" levels="9" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#dot">381 381 418 418 418 450 450 450 450</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
 		<table name="#mpConsume">76 78 80 82 84 84 85 86 87</table>
@@ -1226,7 +1298,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="POISON" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
@@ -1258,7 +1330,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="PARALYZE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Paralyze" />
 		</for>
 	</skill>
@@ -1282,7 +1354,15 @@
 		<set name="trait" val="SHOCK" />
 	</skill>
 	<skill id="5369" levels="9" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">8 8 9 9 9 10 10 10 10</table>
 		<table name="#dot">286 286 314 314 314 338 338 338 338</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
@@ -1308,14 +1388,22 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="POISON" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="#dot" />
 			</effect>
 		</for>
 	</skill>
 	<skill id="5370" levels="9" name="Bleed">
-		<!-- Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 1: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 2: Inflicts a wound that reduces HP. Effect 8. -->
+		<!-- Level 3: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 4: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 5: Inflicts a wound that reduces HP. Effect 9. -->
+		<!-- Level 6: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 7: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 8: Inflicts a wound that reduces HP. Effect 10. -->
+		<!-- Level 9: Inflicts a wound that reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">8 8 9 9 9 10 10 10 10</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -1351,7 +1439,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5372" levels="9" name="NPC(party) - Magic Close Range DD - less powerful">
@@ -1370,7 +1458,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5373" levels="9" name="NPC(party) -Magic Single Long Range DD - Fire">
@@ -1401,7 +1489,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5375" levels="9" name="NPC(party) -Magic Range Close Range DD - Fire">
@@ -1426,7 +1514,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5377" levels="9" name="NPC(party) -Magic Single Long Range DD - Water">
@@ -1472,7 +1560,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5381" levels="9" name="NPC(party) -Magic Range Long Range DD - Wind">
@@ -1500,7 +1588,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5383" levels="9" name="NPC(party) -Magic Single Long Range DD - Earth">
@@ -1522,7 +1610,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5384" levels="9" name="NPC(party) -Magic Range Long Range DD - Earth">
@@ -1584,7 +1672,7 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5390" levels="9" name="NPC(party) -Magic Range Long Range DD - Holy">
@@ -1607,7 +1695,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5391" levels="9" name="NPC(party) -Magic Range Close Range DD - Holy">
@@ -1628,7 +1716,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5392" levels="9" name="NPC HP Drain">
@@ -1673,11 +1761,19 @@
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttackMp" />
+			<effect name="MagicalDamageMp" />
 		</for>
 	</skill>
 	<skill id="5394" levels="9" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">8 8 9 9 9 10 10 10 10</table>
 		<table name="#magicLevel">75 78 81 84 87 90 93 96 99</table>
 		<table name="#mpConsume">55 57 58 60 61 61 62 62 63</table>
@@ -1708,7 +1804,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="POISON" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 			<effect name="Debuff" />
 		</for>
 	</skill>
@@ -1776,7 +1872,7 @@
 		<set name="power" val="657" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5399" levels="1" name="Heat of Desert">

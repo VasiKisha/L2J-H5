@@ -39,7 +39,6 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.instance.Servitor;
 import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
@@ -580,11 +579,11 @@ public class Party extends AbstractPlayerGroup
 	}
 	
 	/**
-	 * finds a player in the party by name
-	 * @param name
-	 * @return
+	 * Finds a player in the party by their name.
+	 * @param name The name of the player to find.
+	 * @return The player with the matching name, or {@code null} if no player with that name is in the party.
 	 */
-	private Player getPlayerByName(String name)
+	public Player getPlayerByName(String name)
 	{
 		for (Player member : _members)
 		{
@@ -597,9 +596,9 @@ public class Party extends AbstractPlayerGroup
 	}
 	
 	/**
-	 * distribute item(s) to party members
-	 * @param player
-	 * @param item
+	 * Distributes an item to party members.
+	 * @param player The player initiating the distribution.
+	 * @param item The item to be distributed.
 	 */
 	public void distributeItem(Player player, Item item)
 	{
@@ -758,14 +757,14 @@ public class Party extends AbstractPlayerGroup
 			if (validMembers.contains(member))
 			{
 				// The servitor penalty
-				final float penalty = member.hasServitor() ? ((Servitor) member.getSummon()).getExpMultiplier() : 1;
+				final float penalty = member.hasServitor() ? member.getSummon().asServitor().getExpMultiplier() : 1;
 				final double sqLevel = member.getLevel() * member.getLevel();
 				final double preCalculation = (sqLevel / sqLevelSum) * penalty;
 				
 				// Add the XP/SP points to the requested party member
 				double addexp = Math.round(member.calcStat(Stat.EXPSP_RATE, xpReward * preCalculation, null, null));
 				final double addsp = member.calcStat(Stat.EXPSP_RATE, spReward * preCalculation, null, null);
-				addexp = calculateExpSpPartyCutoff(member.getActingPlayer(), topLvl, addexp, addsp, useVitalityRate);
+				addexp = calculateExpSpPartyCutoff(member.asPlayer(), topLvl, addexp, addsp, useVitalityRate);
 				if (addexp > 0)
 				{
 					member.updateVitalityPoints(vitalityPoints, true, false);

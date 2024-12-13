@@ -184,7 +184,7 @@ public class TerritoryWarSuperClass extends Quest
 		{
 			return "";
 		}
-		final Player actingPlayer = killer.getActingPlayer();
+		final Player actingPlayer = killer.asPlayer();
 		if ((actingPlayer != null) && (qs.getPlayer() != null))
 		{
 			if (actingPlayer.getParty() != null)

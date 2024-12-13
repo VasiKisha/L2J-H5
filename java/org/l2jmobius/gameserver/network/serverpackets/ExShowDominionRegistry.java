@@ -47,9 +47,11 @@ public class ExShowDominionRegistry extends ServerPacket
 		if (TerritoryWarManager.getInstance().getRegisteredClans(castleId) != null)
 		{
 			_clanReq = TerritoryWarManager.getInstance().getRegisteredClans(castleId).size();
-			if (player.getClan() != null)
+			
+			final Clan clan = player.getClan();
+			if (clan != null)
 			{
-				_isClanRegistered = (TerritoryWarManager.getInstance().getRegisteredClans(castleId).contains(player.getClan()));
+				_isClanRegistered = (TerritoryWarManager.getInstance().getRegisteredClans(castleId).contains(clan));
 			}
 		}
 		if (TerritoryWarManager.getInstance().getRegisteredMercenaries(castleId) != null)

@@ -52,32 +52,29 @@ public class ConditionPlayerCanSweep extends Condition
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
 		boolean canSweep = false;
-		if (effector.getActingPlayer() != null)
+		if (effector.isPlayer() && (skill != null))
 		{
-			final Player sweeper = effector.getActingPlayer();
-			if (skill != null)
+			final Player sweeper = effector.asPlayer();
+			final List<WorldObject> targets = skill.getTargetList(sweeper);
+			if (targets != null)
 			{
-				final List<WorldObject> targets = skill.getTargetList(sweeper);
-				if (targets != null)
+				Attackable target;
+				for (WorldObject objTarget : targets)
 				{
-					Attackable target;
-					for (WorldObject objTarget : targets)
+					if ((objTarget != null) && objTarget.isAttackable())
 					{
-						if ((objTarget != null) && objTarget.isAttackable())
+						target = objTarget.asAttackable();
+						if (target.isDead())
 						{
-							target = (Attackable) objTarget;
-							if (target.isDead())
+							if (target.isSpoiled())
 							{
-								if (target.isSpoiled())
-								{
-									canSweep = target.checkSpoilOwner(sweeper, true);
-									canSweep &= !target.isOldCorpse(sweeper, Config.CORPSE_CONSUME_SKILL_ALLOWED_TIME_BEFORE_DECAY, true);
-									canSweep &= sweeper.getInventory().checkInventorySlotsAndWeight(target.getSpoilLootItems(), true, true);
-								}
-								else
-								{
-									sweeper.sendPacket(SystemMessageId.SWEEPER_FAILED_TARGET_NOT_SPOILED);
-								}
+								canSweep = target.checkSpoilOwner(sweeper, true);
+								canSweep &= !target.isOldCorpse(sweeper, Config.CORPSE_CONSUME_SKILL_ALLOWED_TIME_BEFORE_DECAY, true);
+								canSweep &= sweeper.getInventory().checkInventorySlotsAndWeight(target.getSpoilLootItems(), true, true);
+							}
+							else
+							{
+								sweeper.sendPacket(SystemMessageId.SWEEPER_FAILED_TARGET_NOT_SPOILED);
 							}
 						}
 					}

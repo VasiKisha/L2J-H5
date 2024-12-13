@@ -18,6 +18,7 @@ package org.l2jmobius.gameserver.geoengine.geodata.blocks;
 
 import java.nio.ByteBuffer;
 
+import org.l2jmobius.gameserver.geoengine.geodata.Cell;
 import org.l2jmobius.gameserver.geoengine.geodata.IBlock;
 
 /**
@@ -48,6 +49,12 @@ public class FlatBlock implements IBlock
 	public void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
 	{
 		throw new RuntimeException("Cannot unset NSWE on a flat block!");
+	}
+	
+	@Override
+	public short getNearestNswe(int geoX, int geoY, int worldZ)
+	{
+		return Cell.NSWE_ALL;
 	}
 	
 	@Override

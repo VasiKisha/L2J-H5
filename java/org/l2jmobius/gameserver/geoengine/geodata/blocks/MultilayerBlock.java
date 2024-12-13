@@ -1,27 +1,32 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.geoengine.geodata.blocks;
 
 import java.nio.ByteBuffer;
 
+import org.l2jmobius.gameserver.geoengine.geodata.Cell;
 import org.l2jmobius.gameserver.geoengine.geodata.IBlock;
 
 /**
- * @author HorridoJoho
+ * @author HorridoJoho, Mobius
  */
 public class MultilayerBlock implements IBlock
 {
@@ -106,6 +111,12 @@ public class MultilayerBlock implements IBlock
 	}
 	
 	@Override
+	public boolean checkNearestNswe(int geoX, int geoY, int worldZ, int nswe)
+	{
+		return (getNearestNSWE(geoX, geoY, worldZ) & nswe) == nswe;
+	}
+	
+	@Override
 	public void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
 	{
 		final int startOffset = getCellDataOffset(geoX, geoY);
@@ -115,7 +126,6 @@ public class MultilayerBlock implements IBlock
 		int nearestDZ = 0;
 		int nearestLayerZ = 0;
 		int nearestOffset = 0;
-		short nearestLayerData = 0;
 		for (int offset = startOffset + 1; offset < endOffset; offset += 2)
 		{
 			final short layerData = extractLayerData(offset);
@@ -124,7 +134,6 @@ public class MultilayerBlock implements IBlock
 			{
 				nearestLayerZ = layerZ;
 				nearestOffset = offset;
-				nearestLayerData = layerData;
 				break;
 			}
 			
@@ -137,7 +146,7 @@ public class MultilayerBlock implements IBlock
 			}
 		}
 		
-		final short currentNswe = (short) extractLayerNswe(nearestLayerData);
+		final short currentNswe = getNearestNswe(geoX, geoY, worldZ);
 		if ((currentNswe & nswe) == 0)
 		{
 			final short encodedHeight = (short) (nearestLayerZ << 1); // Shift left by 1 bit.
@@ -158,7 +167,6 @@ public class MultilayerBlock implements IBlock
 		int nearestDZ = 0;
 		int nearestLayerZ = 0;
 		int nearestOffset = 0;
-		short nearestLayerData = 0;
 		for (int offset = startOffset + 1; offset < endOffset; offset += 2)
 		{
 			final short layerData = extractLayerData(offset);
@@ -167,7 +175,6 @@ public class MultilayerBlock implements IBlock
 			{
 				nearestLayerZ = layerZ;
 				nearestOffset = offset;
-				nearestLayerData = layerData;
 				break;
 			}
 			
@@ -180,7 +187,7 @@ public class MultilayerBlock implements IBlock
 			}
 		}
 		
-		final short currentNswe = (short) extractLayerNswe(nearestLayerData);
+		final short currentNswe = getNearestNswe(geoX, geoY, worldZ);
 		if ((currentNswe & nswe) != 0)
 		{
 			final short encodedHeight = (short) (nearestLayerZ << 1); // Shift left by 1 bit.
@@ -191,6 +198,29 @@ public class MultilayerBlock implements IBlock
 		}
 	}
 	
+	@Override
+	public short getNearestNswe(int geoX, int geoY, int worldZ)
+	{
+		short nswe = 0;
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_NORTH))
+		{
+			nswe = (short) (nswe | Cell.NSWE_NORTH);
+		}
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_EAST))
+		{
+			nswe = (short) (nswe | Cell.NSWE_EAST);
+		}
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_SOUTH))
+		{
+			nswe = (short) (nswe | Cell.NSWE_SOUTH);
+		}
+		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_WEST))
+		{
+			nswe = (short) (nswe | Cell.NSWE_WEST);
+		}
+		return nswe;
+	}
+	
 	private int extractLayerNswe(short layer)
 	{
 		return (byte) (layer & 0x000f);
@@ -199,12 +229,6 @@ public class MultilayerBlock implements IBlock
 	private int extractLayerHeight(short layer)
 	{
 		return (short) (layer & 0x0fff0) >> 1;
-	}
-	
-	@Override
-	public boolean checkNearestNswe(int geoX, int geoY, int worldZ, int nswe)
-	{
-		return (getNearestNSWE(geoX, geoY, worldZ) & nswe) == nswe;
 	}
 	
 	@Override

@@ -22,6 +22,7 @@ import java.util.List;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 
@@ -34,9 +35,13 @@ public class Summon implements ITargetTypeHandler
 	@Override
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
-		if (creature.hasSummon())
+		if (creature.isPlayer())
 		{
-			return Collections.singletonList(creature.getSummon());
+			final Player player = creature.asPlayer();
+			if (player.hasSummon())
+			{
+				return Collections.singletonList(player.getSummon());
+			}
 		}
 		
 		return Collections.emptyList();

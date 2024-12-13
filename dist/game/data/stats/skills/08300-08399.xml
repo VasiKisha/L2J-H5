@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="8300" levels="1" name="Dynasty Sigil">
 		<set name="icon" val="icon.dynasty_sigil_i01" />
@@ -18,7 +18,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="10" />
@@ -44,7 +44,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="10" />
@@ -83,7 +83,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="25" />
@@ -110,7 +110,7 @@
 				<mul stat="pvpPhysSkillsDef" val="1.05" />
 				<mul stat="pvpPhysDef" val="1.05" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="25" />
@@ -127,7 +127,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="25" />
@@ -153,7 +153,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="50" />
 				<param chance="25" />
@@ -181,7 +181,7 @@
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="P" />
 		<for>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="33" />
@@ -265,7 +265,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8312" levels="2" name="Special Ability Cheap Shot">
+	<skill id="8312" levels="2" name="Special Ability: Cheap Shot">
 		<!-- Decreases MP consumption. -->
 		<table name="#magicLevel">80 84</table>
 		<table name="#MpConsumeRate">0.96 0.92</table>
@@ -825,7 +825,8 @@
 		</for>
 	</skill>
 	<skill id="8348" levels="2" name="Royal Guard Earring - Gludio">
-		<!-- Increases Resistance to Bleed by 15%, effectiveness of Shock attacks by 15% and Resistance to Water by 8. -->
+		<!-- Level 1: Increases Resistance to Bleed by 15%, effectiveness of Shock attacks by 15% and Resistance to Water by 8. -->
+		<!-- Level 2: Increases Max CP by 5%, Resistance to Bleed attacks by 15%, effectiveness of Shock attacks by 15% and Resistance to Water by 10. -->
 		<table name="#icons">icon.accessary_inferno_earing_i00 icon.accessory_earring_of_domi_protection_i00</table>
 		<table name="#maxCp">1 1.05</table>
 		<set name="icon" val="#icons" />
@@ -843,7 +844,8 @@
 		</for>
 	</skill>
 	<skill id="8349" levels="2" name="Royal Guard Earring - Dion">
-		<!-- Increases Resistance to Poison attacks by 15%, effectiveness of Hold attacks by 15% and Resistance to Holy by 8. -->
+		<!-- Level 1: Increases Resistance to Poison attacks by 15%, effectiveness of Hold attacks by 15% and Resistance to Holy by 8. -->
+		<!-- Level 2: Increases Max CP by 5%, Resistance to Poison attacks by 15%, effectiveness of Hold attacks by 15% and Resistance to Holy by 10. -->
 		<table name="#icons">icon.accessary_inferno_earing_i00 icon.accessory_earring_of_domi_protection_i00</table>
 		<table name="#maxCp">1 1.05</table>
 		<set name="icon" val="#icons" />
@@ -861,7 +863,8 @@
 		</for>
 	</skill>
 	<skill id="8350" levels="2" name="Royal Guard Earring - Giran">
-		<!-- Increases Resistance to Paralysis attacks by 15%, effectiveness of Bleed attacks by 15% and Resistance to Wind by 8. -->
+		<!-- Level 1: Increases Resistance to Paralysis attacks by 15%, effectiveness of Bleed attacks by 15% and Resistance to Wind by 8. -->
+		<!-- Level 2: Increases Max CP by 5%, Resistance to Paralysis attacks by 15%, effectiveness of Bleed attacks by 15% and Resistance to Wind by 10. -->
 		<table name="#icons">icon.accessary_inferno_earing_i00 icon.accessory_earring_of_domi_protection_i00</table>
 		<table name="#maxCp">1 1.05</table>
 		<set name="icon" val="#icons" />
@@ -879,7 +882,8 @@
 		</for>
 	</skill>
 	<skill id="8351" levels="2" name="Royal Guard Earring - Oren">
-		<!-- Increases Resistance to Hold attacks by 15%, effectiveness of Paralysis attacks by 15% and Resistance to Dark by 8. -->
+		<!-- Level 1: Increases Resistance to Hold attacks by 15%, effectiveness of Paralysis attacks by 15% and Resistance to Dark by 8. -->
+		<!-- Level 2: Increases Max CP by 5%, Resistance to Hold attacks by 15%, effectiveness of Paralysis attacks by 15% and Resistance to Dark by 10. -->
 		<table name="#icons">icon.accessary_inferno_earing_i00 icon.accessory_earring_of_domi_protection_i00</table>
 		<table name="#maxCp">1 1.05</table>
 		<set name="icon" val="#icons" />
@@ -897,7 +901,8 @@
 		</for>
 	</skill>
 	<skill id="8352" levels="2" name="Royal Guard Earring - Aden">
-		<!-- Increases Resistance to Shock attacks by 15%, effectiveness of Mental attacks by 15% and Resistance to Earth by 8. -->
+		<!-- Level 1: Increases Resistance to Shock attacks by 15%, effectiveness of Mental attacks by 15% and Resistance to Earth by 8. -->
+		<!-- Level 2: Increases Max CP by 5% and Resistance to Shock attacks by 15%, bonus for Abnormal Mind attacks by 15% and Resistance to Earth by 10. -->
 		<table name="#icons">icon.accessary_inferno_earing_i00 icon.accessory_earring_of_domi_protection_i00</table>
 		<table name="#maxCp">1 1.05</table>
 		<set name="icon" val="#icons" />
@@ -915,7 +920,8 @@
 		</for>
 	</skill>
 	<skill id="8353" levels="2" name="Royal Guard Earring - Innadril">
-		<!-- Increases Resistance to Shock attacks by 15%, effectiveness of Sleep attacks by 15% and Resistance to Water by 8. -->
+		<!-- Level 1: Increases Resistance to Shock attacks by 15%, effectiveness of Sleep attacks by 15% and Resistance to Water by 8. -->
+		<!-- Level 2: Increases Max CP by 5% and Resistance to Shock by 15%, effectiveness of Sleep attacks by 15% and Resistance to Water by 10. -->
 		<table name="#icons">icon.accessary_inferno_earing_i00 icon.accessory_earring_of_domi_protection_i00</table>
 		<table name="#maxCp">1 1.05</table>
 		<set name="icon" val="#icons" />
@@ -933,7 +939,8 @@
 		</for>
 	</skill>
 	<skill id="8354" levels="2" name="Royal Guard Earring - Goddard">
-		<!-- Increases Resistance to Sleep by 15%, effectiveness of Shock attacks by 15% and Resistance to Fire by 8. -->
+		<!-- Level 1: Increases Resistance to Sleep by 15%, effectiveness of Shock attacks by 15% and Resistance to Fire by 8. -->
+		<!-- Level 2: Increases Max CP by 5% and Resistance to Sleep attacks by 15%, effectiveness of Shock attacks by 15% and Resistance to Fire by 10. -->
 		<table name="#icons">icon.accessary_inferno_earing_i00 icon.accessory_earring_of_domi_protection_i00</table>
 		<table name="#maxCp">1 1.05</table>
 		<set name="icon" val="#icons" />
@@ -951,7 +958,8 @@
 		</for>
 	</skill>
 	<skill id="8355" levels="2" name="Royal Guard Earring - Rune">
-		<!-- Increases Resistance to Hold by 15%, effectiveness of Poison attacks by 15% and Resistance to Fire by 8. -->
+		<!-- Level 1: Increases Resistance to Hold by 15%, effectiveness of Poison attacks by 15% and Resistance to Fire by 8. -->
+		<!-- Level 2: Increases Max CP by 5%, Resistance to Hold by 15%, effectiveness of Poison attacks by 15% and Resistance to Fire by 10. -->
 		<table name="#icons">icon.accessary_inferno_earing_i00 icon.accessory_earring_of_domi_protection_i00</table>
 		<table name="#maxCp">1 1.05</table>
 		<set name="icon" val="#icons" />
@@ -969,7 +977,8 @@
 		</for>
 	</skill>
 	<skill id="8356" levels="2" name="Royal Guard Earring - Schuttgart">
-		<!-- Increases Resistance to mental attacks by 15%, effectiveness of Hold attacks by 15% and Resistance to Wind by 8. -->
+		<!-- Level 1: Increases Resistance to mental attacks by 15%, effectiveness of Hold attacks by 15% and Resistance to Wind by 8. -->
+		<!-- Level 2: Increases Max CP by 5%, Resistance to mental attacks by 15%, effectiveness of Hold attacks by 15% and Resistance to Wind by 10. -->
 		<table name="#icons">icon.accessary_inferno_earing_i00 icon.accessory_earring_of_domi_protection_i00</table>
 		<table name="#maxCp">1 1.05</table>
 		<set name="icon" val="#icons" />
@@ -1030,7 +1039,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="8360" levels="1" name="Energy Maintenance Effect">
+	<skill id="8360" levels="1" name="Vitality Maintenance Effect">
 		<!-- Maintains Vitality when aquiring Exp. for 30 minutes. -->
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="1800" />
@@ -1111,14 +1120,14 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="8367" levels="1" name="Dynasty Jewel Leather Mail">
+	<skill id="8367" levels="1" name="Dynasty Jewel Leather Armor">
 		<!-- Increases P. Atk./Max HP/Resistance to Dark, and decreases MP consumption. -->
 		<set name="icon" val="icon.armor_t91_uf_i00" />
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="8368" levels="1" name="Dynasty Jewel Leather Mail">
+	<skill id="8368" levels="1" name="Dynasty Jewel Leather Armor">
 		<!-- Increases Casting Spd./Max MP/Resistance to Dark, and decreases MP Consumption/magic cancel rate against damage. -->
 		<set name="icon" val="icon.armor_t93_ue_i00" />
 		<set name="magicLevel" val="1" />
@@ -1256,7 +1265,8 @@
 		<set name="targetType" val="AURA" />
 	</skill>
 	<skill id="8379" levels="2" name="Royal Guard Ring - Gludio">
-		<!-- Increases Resistance to Earth by 12. -->
+		<!-- Level 1: Increases Resistance to Earth by 12. -->
+		<!-- Level 2: Increases Resistance to Earth by 15. -->
 		<table name="#earthRes">12 15</table>
 		<table name="#icons">icon.accessary_inferno_ring_i00 icon.accessory_ring_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1270,7 +1280,8 @@
 		</for>
 	</skill>
 	<skill id="8380" levels="2" name="Royal Guard Ring - Dion">
-		<!-- Increases Resistance to water by 12. -->
+		<!-- Level 1: Increases Resistance to water by 12. -->
+		<!-- Level 2: Increases Resistance to water by 15. -->
 		<table name="#icons">icon.accessary_inferno_ring_i00 icon.accessory_ring_of_domi_protection_i00</table>
 		<table name="#waterRes">12 15</table>
 		<set name="icon" val="#icons" />
@@ -1284,7 +1295,8 @@
 		</for>
 	</skill>
 	<skill id="8381" levels="2" name="Royal Guard Ring - Giran">
-		<!-- Increases Resistance to fire by 12. -->
+		<!-- Level 1: Increases Resistance to fire by 12. -->
+		<!-- Level 2: Increases Resistance to fire by 15. -->
 		<table name="#fireRes">12 15</table>
 		<table name="#icons">icon.accessary_inferno_ring_i00 icon.accessory_ring_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1298,7 +1310,8 @@
 		</for>
 	</skill>
 	<skill id="8382" levels="2" name="Royal Guard Ring - Oren">
-		<!-- Increases Resistance to Earth by 12. -->
+		<!-- Level 1: Increases Resistance to Earth by 12. -->
+		<!-- Level 2: Increases Resistance to Earth by 15. -->
 		<table name="#earthRes">12 15</table>
 		<table name="#icons">icon.accessary_inferno_ring_i00 icon.accessory_ring_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1312,7 +1325,8 @@
 		</for>
 	</skill>
 	<skill id="8383" levels="2" name="Royal Guard Ring - Aden">
-		<!-- Increases Resistance to Holy by 12. -->
+		<!-- Level 1: Increases Resistance to Holy by 12. -->
+		<!-- Level 2: Increases Resistance to Holy by 15. -->
 		<table name="#holyRes">12 15</table>
 		<table name="#icons">icon.accessary_inferno_ring_i00 icon.accessory_ring_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1326,7 +1340,8 @@
 		</for>
 	</skill>
 	<skill id="8384" levels="2" name="Royal Guard Ring - Innadril">
-		<!-- Increases Resistance to Holy by 12. -->
+		<!-- Level 1: Increases Resistance to Holy by 12. -->
+		<!-- Level 2: Increases Resistance to Holy by 15. -->
 		<table name="#holyRes">12 15</table>
 		<table name="#icons">icon.accessary_inferno_ring_i00 icon.accessory_ring_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1340,7 +1355,8 @@
 		</for>
 	</skill>
 	<skill id="8385" levels="2" name="Royal Guard Ring - Goddard">
-		<!-- Increases Resistance to Dark by 12. -->
+		<!-- Level 1: Increases Resistance to Dark by 12. -->
+		<!-- Level 2: Increases Resistance to Dark by 15. -->
 		<table name="#darkRes">12 15</table>
 		<table name="#icons">icon.accessary_inferno_ring_i00 icon.accessory_ring_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1354,7 +1370,8 @@
 		</for>
 	</skill>
 	<skill id="8386" levels="2" name="Royal Guard Ring - Rune">
-		<!-- Increases Resistance to wind by 12. -->
+		<!-- Level 1: Increases Resistance to wind by 12. -->
+		<!-- Level 2: Increases Resistance to wind by 15. -->
 		<table name="#icons">icon.accessary_inferno_ring_i00 icon.accessory_ring_of_domi_protection_i00</table>
 		<table name="#windRes">12 15</table>
 		<set name="icon" val="#icons" />
@@ -1368,7 +1385,8 @@
 		</for>
 	</skill>
 	<skill id="8387" levels="2" name="Royal Guard Ring - Schuttgart">
-		<!-- Increases Resistance to Dark by 12. -->
+		<!-- Level 1: Increases Resistance to Dark by 12. -->
+		<!-- Level 2: Increases Resistance to Dark by 15. -->
 		<table name="#darkRes">12 15</table>
 		<table name="#icons">icon.accessary_inferno_ring_i00 icon.accessory_ring_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1382,7 +1400,8 @@
 		</for>
 	</skill>
 	<skill id="8388" levels="2" name="Royal Guard Necklace - Gludio">
-		<!-- Increases Resistance to water by 26. -->
+		<!-- Level 1: Increases Resistance to water by 26. -->
+		<!-- Level 2: Increases Resistance to water by 30. -->
 		<table name="#icons">icon.accessary_inferno_necklace_i00 icon.accessory_nectklace_of_domi_protection_i00</table>
 		<table name="#waterRes">26 30</table>
 		<set name="icon" val="#icons" />
@@ -1396,7 +1415,8 @@
 		</for>
 	</skill>
 	<skill id="8389" levels="2" name="Royal Guard Necklace - Dion">
-		<!-- Increases Resistance to Holy by 26. -->
+		<!-- Level 1: Increases Resistance to Holy by 26. -->
+		<!-- Level 2: Increases Resistance to Holy by 30. -->
 		<table name="#holyRes">26 30</table>
 		<table name="#icons">icon.accessary_inferno_necklace_i00 icon.accessory_nectklace_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1410,7 +1430,8 @@
 		</for>
 	</skill>
 	<skill id="8390" levels="2" name="Royal Guard Necklace - Giran">
-		<!-- Increases Resistance to wind by 26. -->
+		<!-- Level 1: Increases Resistance to wind by 26. -->
+		<!-- Level 2: Increases Resistance to wind by 30. -->
 		<table name="#icons">icon.accessary_inferno_necklace_i00 icon.accessory_nectklace_of_domi_protection_i00</table>
 		<table name="#windRes">26 30</table>
 		<set name="icon" val="#icons" />
@@ -1424,7 +1445,8 @@
 		</for>
 	</skill>
 	<skill id="8391" levels="2" name="Royal Guard Necklace - Oren">
-		<!-- Increases Resistance to Dark by 26. -->
+		<!-- Level 1: Increases Resistance to Dark by 26. -->
+		<!-- Level 2: Increases Resistance to Dark by 30. -->
 		<table name="#darkRes">26 30</table>
 		<table name="#icons">icon.accessary_inferno_necklace_i00 icon.accessory_nectklace_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1438,7 +1460,8 @@
 		</for>
 	</skill>
 	<skill id="8392" levels="2" name="Royal Guard Necklace - Aden">
-		<!-- Increases Resistance to Earth by 26. -->
+		<!-- Level 1: Increases Resistance to Earth by 26. -->
+		<!-- Level 2: Increases Resistance to Earth by 30. -->
 		<table name="#earthRes">26 30</table>
 		<table name="#icons">icon.accessary_inferno_necklace_i00 icon.accessory_nectklace_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1452,7 +1475,8 @@
 		</for>
 	</skill>
 	<skill id="8393" levels="2" name="Royal Guard Necklace - Innadril">
-		<!-- Increases Resistance to water by 26. -->
+		<!-- Level 1: Increases Resistance to water by 26. -->
+		<!-- Level 2: Increases Resistance to water by 30. -->
 		<table name="#icons">icon.accessary_inferno_necklace_i00 icon.accessory_nectklace_of_domi_protection_i00</table>
 		<table name="#waterRes">26 30</table>
 		<set name="icon" val="#icons" />
@@ -1466,7 +1490,8 @@
 		</for>
 	</skill>
 	<skill id="8394" levels="2" name="Royal Guard Necklace - Goddard">
-		<!-- Increases Resistance to fire by 26. -->
+		<!-- Level 1: Increases Resistance to fire by 26. -->
+		<!-- Level 2: Increases Resistance to fire by 30. -->
 		<table name="#fireRes">26 30</table>
 		<table name="#icons">icon.accessary_inferno_necklace_i00 icon.accessory_nectklace_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1480,7 +1505,8 @@
 		</for>
 	</skill>
 	<skill id="8395" levels="2" name="Royal Guard Necklace - Rune">
-		<!-- Increases Resistance to fire by 26. -->
+		<!-- Level 1: Increases Resistance to fire by 26. -->
+		<!-- Level 2: Increases Resistance to fire by 30. -->
 		<table name="#fireRes">26 30</table>
 		<table name="#icons">icon.accessary_inferno_necklace_i00 icon.accessory_nectklace_of_domi_protection_i00</table>
 		<set name="icon" val="#icons" />
@@ -1494,7 +1520,8 @@
 		</for>
 	</skill>
 	<skill id="8396" levels="2" name="Royal Guard Necklace - Schuttgart">
-		<!-- Increases Resistance to wind by 26. -->
+		<!-- Level 1: Increases Resistance to wind by 26. -->
+		<!-- Level 2: Increases Resistance to wind by 30. -->
 		<table name="#icons">icon.accessary_inferno_necklace_i00 icon.accessory_nectklace_of_domi_protection_i00</table>
 		<table name="#windRes">26 30</table>
 		<set name="icon" val="#icons" />
@@ -1507,7 +1534,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8397" levels="1" name="Moirai Armor Set">
+	<skill id="8397" levels="1" name="Moirai Heavy Armor Set">
 		<!-- Increases P. Atk. by 4.26%, Atk. Spd. by 4%, M. Def by 2%, Resistance to Stun by 50% and Resistance to Fire/Water/Wind/Earth attack by 3. Cloak equip possible. STR+2. CON-2 -->
 		<set name="icon" val="icon.armor_t100_u_i00" />
 		<set name="magicLevel" val="82" />

@@ -17,6 +17,7 @@
 package org.l2jmobius.gameserver.model.conditions;
 
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -45,7 +46,8 @@ public class ConditionChangeWeapon extends Condition
 	@Override
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
-		if (effector.getActingPlayer() == null)
+		final Player player = effector.asPlayer();
+		if (player == null)
 		{
 			return false;
 		}
@@ -63,7 +65,7 @@ public class ConditionChangeWeapon extends Condition
 				return false;
 			}
 			
-			if (effector.getActingPlayer().isEnchanting())
+			if (player.isEnchanting())
 			{
 				return false;
 			}

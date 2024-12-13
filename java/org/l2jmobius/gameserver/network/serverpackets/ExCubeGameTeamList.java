@@ -29,10 +29,10 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 public class ExCubeGameTeamList extends ServerPacket
 {
 	// Players Lists
-	List<Player> _bluePlayers;
-	List<Player> _redPlayers;
+	private final List<Player> _bluePlayers;
+	private final List<Player> _redPlayers;
 	// Common Values
-	int _roomNumber;
+	private final int _roomNumber;
 	
 	/**
 	 * Show Minigame Waiting List to Player

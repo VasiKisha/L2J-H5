@@ -72,7 +72,7 @@ public class Pumping extends AbstractEffect
 			return;
 		}
 		
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		final Fishing fish = player.getFishCombat();
 		if (fish == null)
 		{

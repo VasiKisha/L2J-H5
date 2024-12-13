@@ -66,16 +66,16 @@ public class Unsummon extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Summon summon = effected.getSummon();
+		final Summon summon = effected.asSummon();
 		if (summon != null)
 		{
-			final Player summonOwner = summon.getOwner();
 			summon.abortAttack();
 			summon.abortCast();
 			summon.stopAllEffects();
 			
-			summon.unSummon(summonOwner);
-			summonOwner.sendPacket(SystemMessageId.YOUR_SERVITOR_HAS_VANISHED_YOU_LL_NEED_TO_SUMMON_A_NEW_ONE);
+			final Player player = summon.getOwner();
+			summon.unSummon(player);
+			player.sendPacket(SystemMessageId.YOUR_SERVITOR_HAS_VANISHED_YOU_LL_NEED_TO_SUMMON_A_NEW_ONE);
 		}
 	}
 }

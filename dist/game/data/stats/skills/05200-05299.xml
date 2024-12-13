@@ -1,7 +1,14 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="5200" levels="8" name="Pet Recharge">
-		<!-- Regenerates MP. -->
+		<!-- Level 1: Regenerates MP. -->
+		<!-- Level 2: Regenerates MP. -->
+		<!-- Level 3: Regenerates MP. -->
+		<!-- Level 4: Restores MP. -->
+		<!-- Level 5: Restores MP. -->
+		<!-- Level 6: Restores MP. -->
+		<!-- Level 7: Restores MP. -->
+		<!-- Level 8: Restores MP. -->
 		<table name="#amount">120 124 128 138 144 149 153 155</table>
 		<table name="#effectPoints">604 617 630 659 676 689 700 709</table>
 		<table name="#magicLevel">65 67 69 75 80 85 90 95</table>
@@ -26,7 +33,12 @@
 		</for>
 	</skill>
 	<skill id="5201" levels="6" name="Pet Concentration">
-		<!-- Temporarily lowers the probability of magic being canceled due to damage taken. Effect 1. -->
+		<!-- Level 1: Temporarily lowers the probability of magic being canceled due to damage taken. Effect 1. -->
+		<!-- Level 2: Temporarily lowers the probability of magic being canceled due to damage taken. Effect 2. -->
+		<!-- Level 3: Temporarily lowers the probability of magic being canceled due to damage taken. Effect 3. -->
+		<!-- Level 4: Temporarily lowers the probability of magic being canceled due to damage taken. Effect 4. -->
+		<!-- Level 5: Temporarily lowers the probability of magic being canceled due to damage taken. Effect 5. -->
+		<!-- Level 6: Temporarily lowers the probability of magic being canceled due to damage taken. Effect 6. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6</table>
 		<table name="#cancel">18 25 36 42 48 53</table>
 		<table name="#effectPoints">204 285 418 495 566 624</table>
@@ -519,7 +531,7 @@
 		<set name="power" val="5800" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5228" levels="1" name="Jump Attack">
@@ -535,7 +547,7 @@
 		<set name="reuseDelay" val="1000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5229" levels="1" name="Strong Punch">
@@ -563,7 +575,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 			<effect name="ThrowUp" />
 		</for>
@@ -589,7 +601,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -614,7 +626,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -639,7 +651,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -654,7 +666,7 @@
 		<set name="power" val="4563" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5234" levels="1" name="Weight Spin Attack - Mid">
@@ -668,7 +680,7 @@
 		<set name="power" val="7685" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5235" levels="1" name="Weight Spin Attack - Strong">
@@ -682,7 +694,7 @@
 		<set name="power" val="13688" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5236" levels="1" name="Speed Up">
@@ -746,7 +758,7 @@
 		<set name="reuseDelay" val="6000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 			<effect name="Paralyze" />
 		</for>
 	</skill>
@@ -792,7 +804,7 @@
 		<set name="targetType" val="FRONT_AREA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -818,7 +830,7 @@
 		<set name="targetType" val="AREA" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -919,7 +931,7 @@
 		<set name="reuseDelay" val="4000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5247" levels="12" name="Seed of Darkness">
@@ -979,7 +991,7 @@
 		<set name="reuseDelay" val="4000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5249" levels="12" name="Boss Dark Circle">
@@ -1000,7 +1012,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5250" levels="1" name="Stun">
@@ -1030,7 +1042,18 @@
 		</for>
 	</skill>
 	<skill id="5251" levels="12" name="Poison">
-		<!-- A toxin that gradually reduces HP. Effect 2. -->
+		<!-- Level 1: A toxin that gradually reduces HP. Effect 2. -->
+		<!-- Level 2: A toxin that gradually reduces HP. Effect 3. -->
+		<!-- Level 3: A toxin that gradually reduces HP. Effect 4. -->
+		<!-- Level 4: A toxin that gradually reduces HP. Effect 5. -->
+		<!-- Level 5: A toxin that gradually reduces HP. Effect 6. -->
+		<!-- Level 6: A toxin that gradually reduces HP. Effect 7. -->
+		<!-- Level 7: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 8: A toxin that gradually reduces HP. Effect 8. -->
+		<!-- Level 9: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 10: A toxin that gradually reduces HP. Effect 9. -->
+		<!-- Level 11: A toxin that gradually reduces HP. Effect 10. -->
+		<!-- Level 12: A toxin that gradually reduces HP. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#calledSkillLevel">1 2 3 4 5 6 7 8 9 10 11 12</table>
 		<table name="#dot">32 47 63 82 100 115 126 126 132 132 132 135</table>
@@ -1093,7 +1116,18 @@
 		</for>
 	</skill>
 	<skill id="5253" levels="12" name="Bleed">
-		<!-- HP decreasing caused by bleeding. Effect 2. -->
+		<!-- Level 1: HP decreasing caused by bleeding. Effect 2. -->
+		<!-- Level 2: HP decreasing caused by bleeding. Effect 3. -->
+		<!-- Level 3: HP decreasing caused by bleeding. Effect 4. -->
+		<!-- Level 4: HP decreasing caused by bleeding. Effect 5. -->
+		<!-- Level 5: HP decreasing caused by bleeding. Effect 6. -->
+		<!-- Level 6: HP decreasing caused by bleeding. Effect 7. -->
+		<!-- Level 7: HP decreasing caused by bleeding. Effect 8. -->
+		<!-- Level 8: HP decreasing caused by bleeding. Effect 8. -->
+		<!-- Level 9: HP decreasing caused by bleeding. Effect 9. -->
+		<!-- Level 10: HP decreasing caused by bleeding. Effect 9. -->
+		<!-- Level 11: HP decreasing caused by bleeding. Effect 10. -->
+		<!-- Level 12: HP decreasing caused by bleeding. Effect 10. -->
 		<table name="#abnormalLevels">2 3 4 5 6 7 8 8 9 9 10 10</table>
 		<table name="#calledSkillLevel">1 2 3 4 5 6 7 8 9 10 11 12</table>
 		<table name="#dot">35 50 68 87 107 123 134 134 139 139 142 142</table>
@@ -1132,7 +1166,18 @@
 		</endEffects>
 	</skill>
 	<skill id="5254" levels="12" name="Invasion of Spirit">
-		<!-- Decreases MP. Effect 2. -->
+		<!-- Level 1: Decreases MP. Effect 2. -->
+		<!-- Level 2: Decreases MP. Effect 2. -->
+		<!-- Level 3: Decreases MP. Effect 2. -->
+		<!-- Level 4: Decreases MP. Effect 2. -->
+		<!-- Level 5: Decreases MP. Effect 2. -->
+		<!-- Level 6: Decreases MP. Effect 3. -->
+		<!-- Level 7: Decreases MP. Effect 4. -->
+		<!-- Level 8: Decreases MP. Effect 5. -->
+		<!-- Level 9: Decreases MP. Effect 6. -->
+		<!-- Level 10: Decreases MP. Effect 7. -->
+		<!-- Level 11: Decreases MP. Effect 8. -->
+		<!-- Level 12: Decreases MP. Effect 8. -->
 		<table name="#abnormalLevels">2 2 2 2 2 3 4 5 6 7 8 8</table>
 		<table name="#calledSkillLevel">1 2 3 4 5 6 7 8 9 10 11 12</table>
 		<table name="#dot">4 6 8 11 14 17 20 21 22 23 23 23</table>
@@ -1179,7 +1224,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttackMp" />
+			<effect name="MagicalDamageMp" />
 		</for>
 	</skill>
 	<skill id="5256" levels="1" name="Announcement of Death">
@@ -1238,7 +1283,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttackMp" />
+			<effect name="MagicalDamageMp" />
 		</for>
 	</skill>
 	<skill id="5259" levels="12" name="Fear">
@@ -1336,7 +1381,7 @@
 		<set name="reuseDelay" val="25000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5263" levels="12" name="NPC _ Chain Lightning">
@@ -1358,11 +1403,22 @@
 		<set name="reuseDelay" val="20000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5264" levels="12" name="Death Mark">
-		<!-- Marked with the brand of darkness. Effect 1. -->
+		<!-- Level 1: Marked with the brand of darkness. Effect 1. -->
+		<!-- Level 2: Marked with the brand of darkness. Effect 2. -->
+		<!-- Level 3: Marked with the brand of darkness. Effect 3. -->
+		<!-- Level 4: Marked with the brand of darkness. Effect 4. -->
+		<!-- Level 5: Marked with the brand of darkness. Effect 5. -->
+		<!-- Level 6: Marked with the brand of darkness. Effect 6. -->
+		<!-- Level 7: Marked with the brand of darkness. Effect 7. -->
+		<!-- Level 8: Marked with the brand of darkness. Effect 8. -->
+		<!-- Level 9: Marked with the brand of darkness. Effect 9. -->
+		<!-- Level 10: Marked with the brand of darkness. Effect 10. -->
+		<!-- Level 11: Marked with the brand of darkness. Effect 11. -->
+		<!-- Level 12: Marked with the brand of darkness. Effect 12. -->
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">14 23 32 42 54 66 78 83 87 90 92 93</table>
 		<table name="#mpInitialConsume">4 6 8 11 14 17 20 21 22 23 23 24</table>
@@ -1410,11 +1466,22 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5266" levels="12" name="Magical Backfire">
-		<!-- Increased MP consumption. Effect 1. -->
+		<!-- Level 1: Increased MP consumption. Effect 1. -->
+		<!-- Level 2: Increased MP consumption. Effect 2. -->
+		<!-- Level 3: Increased MP consumption. Effect 2. -->
+		<!-- Level 4: Increased MP consumption. Effect 3. -->
+		<!-- Level 5: Increased MP consumption. Effect 3. -->
+		<!-- Level 6: Increased MP consumption. Effect 3. -->
+		<!-- Level 7: Increased MP consumption. Effect 3. -->
+		<!-- Level 8: Increased MP consumption. Effect 3. -->
+		<!-- Level 9: Increased MP consumption. Effect 3. -->
+		<!-- Level 10: Increased MP consumption. Effect 3. -->
+		<!-- Level 11: Increased MP consumption. Effect 3. -->
+		<!-- Level 12: Increased MP consumption. Effect 3. -->
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>
 		<table name="#mpConsume">14 23 32 42 54 66 78 83 87 90 92 93</table>
 		<table name="#mpInitialConsume">4 6 8 11 14 17 20 21 22 23 23 24</table>
@@ -1461,11 +1528,27 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="5268" levels="17" name="Poison">
-		<!-- A toxin that gradually reduces HP. -->
+		<!-- Level 1: A toxin that gradually reduces HP. -->
+		<!-- Level 2: A toxin that gradually reduces HP. -->
+		<!-- Level 3: A toxin that gradually reduces HP. -->
+		<!-- Level 4: A toxin that gradually reduces HP. -->
+		<!-- Level 5: A toxin that gradually reduces HP. -->
+		<!-- Level 6: A toxin that gradually reduces HP. -->
+		<!-- Level 7: Inflicted with poison. -->
+		<!-- Level 8: Inflicted with poison. -->
+		<!-- Level 9: Inflicted with poison. -->
+		<!-- Level 10: Inflicted with poison. -->
+		<!-- Level 11: Inflicted with poison. -->
+		<!-- Level 12: Inflicted with poison. -->
+		<!-- Level 13: Inflicted with poison. -->
+		<!-- Level 14: Inflicted with poison. -->
+		<!-- Level 15: Inflicted with poison. -->
+		<!-- Level 16: Inflicted with poison. -->
+		<!-- Level 17: Inflicted with poison. -->
 		<table name="#dmg">18 22 26 26 26 28 55 55 55 55 57 57 57 57 57 57 57</table>
 		<table name="#magicLevel">49 55 60 64 68 72 76 77 78 79 80 81 82 83 84 85 86</table>
 		<set name="abnormalLevel" val="1" />
@@ -1491,7 +1574,23 @@
 		</for>
 	</skill>
 	<skill id="5269" levels="17" name="Slow Trap">
-		<!-- Decreases Atk. Spd. and Casting Spd. Effect 3. -->
+		<!-- Level 1: Decreases Atk. Spd. and Casting Spd. Effect 3. -->
+		<!-- Level 2: Decreases Atk. Spd. and Casting Spd. Effect 3. -->
+		<!-- Level 3: Decreases Atk. Spd. and Casting Spd. Effect 3. -->
+		<!-- Level 4: Decreases Atk. Spd. and Casting Spd. Effect 3. -->
+		<!-- Level 5: Decreases Atk. Spd. and Casting Spd. Effect 3. -->
+		<!-- Level 6: Decreases Atk. Spd. and Casting Spd. Effect 3. -->
+		<!-- Level 7: Atk. and Casting / Speed are decreased. Effect 3. -->
+		<!-- Level 8: Atk. and Casting / Speed are decreased. Effect 3. -->
+		<!-- Level 9: Atk. and Casting / Speed are decreased. Effect 3. -->
+		<!-- Level 10: Atk. and Casting / Speed are decreased. Effect 3. -->
+		<!-- Level 11: Atk. and Casting / Speed are decreased. Effect 3. -->
+		<!-- Level 12: Atk. and Casting / Speed are decreased. Effect 3. -->
+		<!-- Level 13: Atk. and Casting / Speed are decreased. Effect 3. -->
+		<!-- Level 14: Atk. and Casting / Speed are decreased. Effect 3. -->
+		<!-- Level 15: Atk. and Casting / Speed are decreased. Effect 3. -->
+		<!-- Level 16: Atk. and Casting / Speed are decreased. Effect 3. -->
+		<!-- Level 17: Atk. and Casting / Speed are decreased. Effect 3. -->
 		<table name="#magicLevel">52 58 62 66 70 74 76 77 78 79 80 81 82 83 84 85 86</table>
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="30" />
@@ -1516,7 +1615,22 @@
 		</for>
 	</skill>
 	<skill id="5270" levels="16" name="Flash Trap">
-		<!-- Receives instant impact and stunned after losing the target. -->
+		<!-- Level 1: Receives instant impact and stunned after losing the target. -->
+		<!-- Level 2: Receives instant impact and stunned after losing the target. -->
+		<!-- Level 3: Receives instant impact and stunned after losing the target. -->
+		<!-- Level 4: Receives instant impact and stunned after losing the target. -->
+		<!-- Level 5: Receives instant impact and stunned after losing the target. -->
+		<!-- Level 6: Loses the target, temporarily receives shock, and cannot move. -->
+		<!-- Level 7: Loses the target, temporarily receives shock, and cannot move. -->
+		<!-- Level 8: Loses the target, temporarily receives shock, and cannot move. -->
+		<!-- Level 9: Loses the target, temporarily receives shock, and cannot move. -->
+		<!-- Level 10: Loses the target, temporarily receives shock, and cannot move. -->
+		<!-- Level 11: Loses the target, temporarily receives shock, and cannot move. -->
+		<!-- Level 12: Loses the target, temporarily receives shock, and cannot move. -->
+		<!-- Level 13: Loses the target, temporarily receives shock, and cannot move. -->
+		<!-- Level 14: Loses the target, temporarily receives shock, and cannot move. -->
+		<!-- Level 15: Loses the target, temporarily receives shock, and cannot move. -->
+		<!-- Level 16: Loses the target, temporarily receives shock, and cannot move. -->
 		<table name="#magicLevel">55 60 64 68 72 76 77 78 79 80 81 82 83 84 85 86</table>
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="3" />
@@ -1542,7 +1656,25 @@
 		</for>
 	</skill>
 	<skill id="5271" levels="19" name="Hold">
-		<!-- Temporarily immobilized. -->
+		<!-- Level 1: Temporarily immobilized. -->
+		<!-- Level 2: Temporarily immobilized. -->
+		<!-- Level 3: Temporarily immobilized. -->
+		<!-- Level 4: Temporarily immobilized. -->
+		<!-- Level 5: Temporarily immobilized. -->
+		<!-- Level 6: Temporarily immobilized. -->
+		<!-- Level 7: Temporarily immobilized. -->
+		<!-- Level 8: Temporarily immobilized. -->
+		<!-- Level 9: Temporarily immobilized by the hold. -->
+		<!-- Level 10: Temporarily immobilized by the hold. -->
+		<!-- Level 11: Temporarily immobilized by the hold. -->
+		<!-- Level 12: Temporarily immobilized by the hold. -->
+		<!-- Level 13: Temporarily immobilized by the hold. -->
+		<!-- Level 14: Temporarily immobilized by the hold. -->
+		<!-- Level 15: Temporarily immobilized by the hold. -->
+		<!-- Level 16: Temporarily immobilized by the hold. -->
+		<!-- Level 17: Temporarily immobilized by the hold. -->
+		<!-- Level 18: Temporarily immobilized by the hold. -->
+		<!-- Level 19: Temporarily immobilized by the hold. -->
 		<table name="#magicLevel">40 46 52 58 62 66 70 74 76 77 78 79 80 81 82 83 84 85 86</table>
 		<table name="#traits">NONE HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD HOLD</table>
 		<set name="abnormalLevel" val="1" />
@@ -1600,7 +1732,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5274" levels="9" name="NPC(party) - Physical Single Long Range Attack">
@@ -1617,7 +1749,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5275" levels="9" name="NPC(party) - Physical Range Close Range Attack">
@@ -1634,7 +1766,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5276" levels="9" name="NPC(party) - Physical Range Long Range Attack">
@@ -1653,7 +1785,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5277" levels="9" name="NPC(party) - Physical Single Close Range Attack - Fire">
@@ -1673,7 +1805,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5278" levels="9" name="NPC(party) - Physical Single Long Range Attack - Fire">
@@ -1692,7 +1824,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5279" levels="9" name="NPC(party) - Physical Range Close Range Attack - Fire">
@@ -1710,7 +1842,7 @@
 		<set name="power" val="13066" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5280" levels="9" name="NPC(party) - Physical Range Long Range Attack - Fire">
@@ -1731,7 +1863,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5281" levels="9" name="NPC(party) - Physical Single Close Range Attack - Water">
@@ -1752,7 +1884,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5282" levels="9" name="NPC(party) - Physical Single Long Range Attack - Water">
@@ -1771,7 +1903,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5283" levels="9" name="NPC(party) - Physical Range Close Range Attack - Water">
@@ -1789,7 +1921,7 @@
 		<set name="power" val="13066" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5284" levels="9" name="NPC(party) - Physical Range Long Range Attack - Water">
@@ -1810,7 +1942,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5285" levels="9" name="NPC(party) - Physical Single Close Range Attack - Wind">
@@ -1831,7 +1963,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5286" levels="9" name="NPC(party) - Physical Single Long Range Attack - Wind">
@@ -1850,7 +1982,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5287" levels="9" name="NPC(party) - Physical Range Close Range Attack - Wind">
@@ -1868,7 +2000,7 @@
 		<set name="power" val="13066" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5288" levels="9" name="NPC(party) - Physical Range Long Range Attack - Wind">
@@ -1889,7 +2021,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5289" levels="9" name="NPC(party) - Physical Single Close Range Attack - Earth">
@@ -1910,7 +2042,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5290" levels="9" name="NPC(party) - Physical Single Long Range Attack - Earth">
@@ -1929,7 +2061,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5291" levels="9" name="NPC(party) - Physical Range Close Range Attack - Earth">
@@ -1947,7 +2079,7 @@
 		<set name="power" val="13066" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5292" levels="9" name="NPC(party) - Physical Range Long Range Attack - Earth">
@@ -1968,7 +2100,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5293" levels="9" name="NPC(party) - Physical Single Close Range Attack - Holy">
@@ -1989,7 +2121,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5294" levels="9" name="NPC(party) - Physical Single Long Range Attack - Holy">
@@ -2008,7 +2140,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5295" levels="9" name="NPC(party) - Physical Range Close Range Attack - Holy">
@@ -2026,7 +2158,7 @@
 		<set name="power" val="13066" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5296" levels="9" name="NPC(party) - Physical Range Long Range Attack - Holy">
@@ -2047,7 +2179,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5297" levels="9" name="NPC(party) - Physical Single Close Range Attack - Dark">
@@ -2067,7 +2199,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5298" levels="9" name="NPC(party) - Physical Single Long Range Attack - Dark">
@@ -2086,7 +2218,7 @@
 		<set name="power" val="#power" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="5299" levels="9" name="NPC(party) - Physical Range Close Range Attack - Dark">
@@ -2104,7 +2236,7 @@
 		<set name="power" val="13066" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 </list>

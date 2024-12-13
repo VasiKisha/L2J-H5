@@ -38,7 +38,7 @@ public class FuncShare extends AbstractFunction
 	{
 		if (((getApplyCond() == null) || getApplyCond().test(effector, effected, skill)) && (effector != null) && effector.isServitor())
 		{
-			final Summon summon = (Summon) effector;
+			final Summon summon = effector.asSummon();
 			final Player player = summon.getOwner();
 			if (player != null)
 			{

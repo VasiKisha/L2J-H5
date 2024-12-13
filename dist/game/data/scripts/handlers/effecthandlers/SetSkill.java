@@ -19,6 +19,7 @@ package handlers.effecthandlers;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -60,7 +61,8 @@ public class SetSkill extends AbstractEffect
 			return;
 		}
 		
-		effected.getActingPlayer().addSkill(addedSkill, true);
-		effected.getActingPlayer().sendSkillList();
+		final Player player = effected.asPlayer();
+		player.addSkill(addedSkill, true);
+		player.sendSkillList();
 	}
 }

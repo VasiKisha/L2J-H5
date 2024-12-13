@@ -25,6 +25,7 @@ import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -158,7 +159,8 @@ public class SignsPriest extends Npc
 					else if ((cabal == SevenSigns.CABAL_DUSK) && Config.ALT_GAME_CASTLE_DUSK) // dusk
 					{
 						// castle owners cannot participate with dusk side
-						if ((player.getClan() != null) && (player.getClan().getCastleId() > 0))
+						final Clan clan = player.getClan();
+						if ((clan != null) && (clan.getCastleId() > 0))
 						{
 							showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "signs_33_dusk_no.htm");
 							break;
@@ -167,7 +169,8 @@ public class SignsPriest extends Npc
 					else if ((cabal == SevenSigns.CABAL_DAWN) && Config.ALT_GAME_CASTLE_DAWN) // dawn
 					{
 						// clans without castle need to pay participation fee
-						if ((player.getClan() == null) || (player.getClan().getCastleId() == 0))
+						final Clan clan = player.getClan();
+						if ((clan == null) || (clan.getCastleId() == 0))
 						{
 							showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "signs_33_dawn_fee.htm");
 							break;
@@ -208,7 +211,8 @@ public class SignsPriest extends Npc
 					if (player.getClassId().level() >= 1)
 					{
 						// even if in htmls is said that ally can have castle too, but it is not
-						if ((cabal == SevenSigns.CABAL_DUSK) && Config.ALT_GAME_CASTLE_DUSK && (player.getClan() != null) && (player.getClan().getCastleId() > 0))
+						final Clan clan = player.getClan();
+						if ((cabal == SevenSigns.CABAL_DUSK) && Config.ALT_GAME_CASTLE_DUSK && (clan != null) && (clan.getCastleId() > 0))
 						{
 							showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "signs_33_dusk_no.htm");
 							return;
@@ -217,7 +221,7 @@ public class SignsPriest extends Npc
 						if (Config.ALT_GAME_CASTLE_DAWN && (cabal == SevenSigns.CABAL_DAWN))
 						{
 							boolean allowJoinDawn = false;
-							if ((player.getClan() != null) && (player.getClan().getCastleId() > 0))
+							if ((clan != null) && (clan.getCastleId() > 0))
 							{
 								allowJoinDawn = true;
 							}

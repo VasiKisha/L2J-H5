@@ -39,7 +39,7 @@ public class ConditionPlayerCanRefuelAirship extends Condition
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
 		boolean canRefuelAirship = true;
-		final Player player = effector.getActingPlayer();
+		final Player player = effector.asPlayer();
 		if ((player == null) || (player.getAirShip() == null) || !(player.getAirShip() instanceof ControllableAirShip) || ((player.getAirShip().getFuel() + _value) > player.getAirShip().getMaxFuel()))
 		{
 			canRefuelAirship = false;

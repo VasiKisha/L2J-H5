@@ -128,8 +128,8 @@ public class AutoSpawnHandler
 				// Register random spawn group, set various options on the created spawn instance.
 				final AutoSpawnInstance spawnInst = registerSpawn(rs.getInt("npcId"), rs.getInt("initialDelay"), rs.getInt("respawnDelay"), rs.getInt("despawnDelay"));
 				spawnInst.setSpawnCount(rs.getInt("count"));
-				spawnInst.setBroadcast(rs.getBoolean("broadcastSpawn"));
-				spawnInst.setRandomSpawn(rs.getBoolean("randomSpawn"));
+				spawnInst.setBroadcast(Boolean.parseBoolean(rs.getString("broadcastSpawn")));
+				spawnInst.setRandomSpawn(Boolean.parseBoolean(rs.getString("randomSpawn")));
 				
 				// Restore the spawn locations for this spawn group/instance.
 				ps.setInt(1, rs.getInt("groupId"));

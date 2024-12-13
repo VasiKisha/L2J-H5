@@ -1,24 +1,29 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -56,7 +61,8 @@ public class GMViewCharacterInfo extends ServerPacket
 		buffer.writeInt(_player.getObjectId());
 		buffer.writeString(_player.getName());
 		buffer.writeInt(_player.getRace().ordinal());
-		buffer.writeInt(_player.getAppearance().isFemale());
+		final PlayerAppearance appearance = _player.getAppearance();
+		buffer.writeInt(appearance.isFemale());
 		buffer.writeInt(_player.getClassId().getId());
 		buffer.writeInt(_player.getLevel());
 		buffer.writeLong(_player.getExp());
@@ -113,9 +119,9 @@ public class GMViewCharacterInfo extends ServerPacket
 		buffer.writeDouble(_player.getAttackSpeedMultiplier()); // 2.9); //
 		buffer.writeDouble(_player.getCollisionRadius()); // scale
 		buffer.writeDouble(_player.getCollisionHeight()); // y offset ??!? fem dwarf 4033
-		buffer.writeInt(_player.getAppearance().getHairStyle());
-		buffer.writeInt(_player.getAppearance().getHairColor());
-		buffer.writeInt(_player.getAppearance().getFace());
+		buffer.writeInt(appearance.getHairStyle());
+		buffer.writeInt(appearance.getHairColor());
+		buffer.writeInt(appearance.getFace());
 		buffer.writeInt(_player.isGM()); // builder level
 		buffer.writeString(_player.getTitle());
 		buffer.writeInt(_player.getClanId()); // pledge id
@@ -137,8 +143,8 @@ public class GMViewCharacterInfo extends ServerPacket
 		buffer.writeInt(_player.getPledgeClass()); // changes the text above CP on Status Window
 		buffer.writeByte(_player.isNoble());
 		buffer.writeByte(_player.isHero());
-		buffer.writeInt(_player.getAppearance().getNameColor());
-		buffer.writeInt(_player.getAppearance().getTitleColor());
+		buffer.writeInt(appearance.getNameColor());
+		buffer.writeInt(appearance.getTitleColor());
 		final byte attackAttribute = _player.getAttackElement();
 		buffer.writeShort(attackAttribute);
 		buffer.writeShort(_player.getAttackElementValue(attackAttribute));

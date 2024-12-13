@@ -372,7 +372,7 @@ public class TowerOfNaia extends AbstractNpcAI
 			addKillId(npcId);
 		}
 		
-		_lock = (Monster) addSpawn(LOCK, 16409, 244438, 11620, -1048, false, 0, false);
+		_lock = addSpawn(LOCK, 16409, 244438, 11620, -1048, false, 0, false).asMonster();
 		_controller = addSpawn(CONTROLLER, 16608, 244420, 11620, 31264, false, 0, false);
 		_counter = 90;
 		initSporeChallenge();
@@ -412,7 +412,7 @@ public class TowerOfNaia extends AbstractNpcAI
 		if (event.equalsIgnoreCase("spawn_lock"))
 		{
 			htmltext = null;
-			_lock = (Monster) addSpawn(LOCK, 16409, 244438, 11620, -1048, false, 0, false);
+			_lock = addSpawn(LOCK, 16409, 244438, 11620, -1048, false, 0, false).asMonster();
 			_counter = 90;
 		}
 		

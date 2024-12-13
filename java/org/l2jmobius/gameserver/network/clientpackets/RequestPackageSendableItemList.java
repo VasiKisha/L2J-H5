@@ -24,16 +24,16 @@ import org.l2jmobius.gameserver.network.serverpackets.PackageSendableList;
 
 /**
  * @author -Wooden-
- * @author UnAfraid Thanks mrTJO
+ * @author UnAfraid, mrTJO
  */
 public class RequestPackageSendableItemList extends ClientPacket
 {
-	private int _objectID;
+	private int _objectId;
 	
 	@Override
 	protected void readImpl()
 	{
-		_objectID = readInt();
+		_objectId = readInt();
 	}
 	
 	@Override
@@ -46,6 +46,6 @@ public class RequestPackageSendableItemList extends ClientPacket
 		}
 		
 		final Collection<Item> items = player.getInventory().getAvailableItems(true, true, true);
-		player.sendPacket(new PackageSendableList(items, _objectID, player.getAdena()));
+		player.sendPacket(new PackageSendableList(items, _objectId, player.getAdena()));
 	}
 }

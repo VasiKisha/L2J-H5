@@ -64,7 +64,7 @@ public class JailZone extends ZoneType
 	{
 		if (creature.isPlayer())
 		{
-			final Player player = creature.getActingPlayer();
+			final Player player = creature.asPlayer();
 			player.setInsideZone(ZoneId.JAIL, false);
 			player.setInsideZone(ZoneId.NO_SUMMON_FRIEND, false);
 			

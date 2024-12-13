@@ -35,7 +35,7 @@ public class Bypass implements IItemHandler
 		{
 			return false;
 		}
-		final Player player = (Player) playable;
+		final Player player = playable.asPlayer();
 		final int itemId = item.getId();
 		final String filename = "data/html/item/" + itemId + ".htm";
 		final String content = HtmCache.getInstance().getHtm(player, filename);

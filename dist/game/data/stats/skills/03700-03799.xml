@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="3700" levels="1" name="Doom Shield">
 		<!-- Increases M. Def. -->
@@ -1045,7 +1045,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3768" levels="1" name="Nightmarish Leather Armor">
+	<skill id="3768" levels="1" name="Leather Armor of Nightmare">
 		<!-- Increases Resistance to sleep/hold attacks and M. Def. A portion of the damage inflicted on the enemy is used to recover one's own HP. Excludes damage caused by skills and long-range attack. -->
 		<set name="icon" val="icon.armor_t81_ul_i00" />
 		<set name="magicLevel" val="67" />
@@ -1111,7 +1111,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="3772" levels="1" name="Nightmare Robe">
+	<skill id="3772" levels="1" name="Robe of Nightmare">
 		<!-- Increases Resistance to sleep/hold attacks and MP regeneration/M. Atk. -->
 		<set name="icon" val="icon.armor_t82_ul_i00" />
 		<set name="magicLevel" val="67" />

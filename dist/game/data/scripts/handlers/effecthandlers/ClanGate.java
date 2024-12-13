@@ -41,10 +41,10 @@ public class ClanGate extends AbstractEffect
 	{
 		if (effected.isPlayer())
 		{
-			final Clan clan = effected.getActingPlayer().getClan();
+			final Clan clan = effected.asPlayer().getClan();
 			if (clan != null)
 			{
-				clan.broadcastToOtherOnlineMembers(new SystemMessage(SystemMessageId.COURT_MAGICIAN_THE_PORTAL_HAS_BEEN_CREATED), effected.getActingPlayer());
+				clan.broadcastToOtherOnlineMembers(new SystemMessage(SystemMessageId.COURT_MAGICIAN_THE_PORTAL_HAS_BEEN_CREATED), effected.asPlayer());
 			}
 		}
 	}

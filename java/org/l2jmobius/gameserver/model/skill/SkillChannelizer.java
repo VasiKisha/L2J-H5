@@ -28,7 +28,6 @@ import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillLaunched;
 import org.l2jmobius.gameserver.util.Util;
@@ -167,8 +166,8 @@ public class SkillChannelizer implements Runnable
 				{
 					if (chars.isCreature())
 					{
-						targetList.add((Creature) chars);
-						((Creature) chars).getSkillChannelized().addChannelizer(skill.getChannelingSkillId(), _channelizer);
+						targetList.add(chars.asCreature());
+						chars.asCreature().getSkillChannelized().addChannelizer(skill.getChannelingSkillId(), _channelizer);
 					}
 				}
 				
@@ -211,7 +210,7 @@ public class SkillChannelizer implements Runnable
 							// Update PvP status
 							if (creature.isPlayable() && _channelizer.isPlayer() && channelingSkill.isBad())
 							{
-								((Player) _channelizer).updatePvPStatus(creature);
+								_channelizer.asPlayer().updatePvPStatus(creature);
 							}
 							
 							channelingSkill.applyEffects(_channelizer, creature);

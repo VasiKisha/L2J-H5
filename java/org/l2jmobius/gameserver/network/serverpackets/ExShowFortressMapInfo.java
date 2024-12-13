@@ -23,6 +23,7 @@ import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
 import org.l2jmobius.gameserver.model.FortSiegeSpawn;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.siege.Fort;
+import org.l2jmobius.gameserver.model.siege.FortSiege;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -32,10 +33,14 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 public class ExShowFortressMapInfo extends ServerPacket
 {
 	private final Fort _fortress;
+	private final FortSiege _siege;
+	private final List<FortSiegeSpawn> _commanders;
 	
 	public ExShowFortressMapInfo(Fort fortress)
 	{
 		_fortress = fortress;
+		_siege = fortress.getSiege();
+		_commanders = FortSiegeManager.getInstance().getCommanderSpawnList(fortress.getResidenceId());
 	}
 	
 	@Override
@@ -43,16 +48,15 @@ public class ExShowFortressMapInfo extends ServerPacket
 	{
 		ServerPackets.EX_SHOW_FORTRESS_MAP_INFO.writeId(this, buffer);
 		buffer.writeInt(_fortress.getResidenceId());
-		buffer.writeInt(_fortress.getSiege().isInProgress()); // fortress siege status
+		buffer.writeInt(_siege.isInProgress()); // fortress siege status
 		buffer.writeInt(_fortress.getFortSize()); // barracks count
-		final List<FortSiegeSpawn> commanders = FortSiegeManager.getInstance().getCommanderSpawnList(_fortress.getResidenceId());
-		if ((commanders != null) && !commanders.isEmpty() && _fortress.getSiege().isInProgress())
+		if ((_commanders != null) && !_commanders.isEmpty() && _siege.isInProgress())
 		{
-			switch (commanders.size())
+			switch (_commanders.size())
 			{
 				case 3:
 				{
-					for (FortSiegeSpawn spawn : commanders)
+					for (FortSiegeSpawn spawn : _commanders)
 					{
 						if (isSpawned(spawn.getId()))
 						{
@@ -68,7 +72,7 @@ public class ExShowFortressMapInfo extends ServerPacket
 				case 4: // TODO: change 4 to 5 once control room supported
 				{
 					int count = 0;
-					for (FortSiegeSpawn spawn : commanders)
+					for (FortSiegeSpawn spawn : _commanders)
 					{
 						count++;
 						if (count == 4)
@@ -97,14 +101,10 @@ public class ExShowFortressMapInfo extends ServerPacket
 		}
 	}
 	
-	/**
-	 * @param npcId
-	 * @return
-	 */
 	private boolean isSpawned(int npcId)
 	{
 		boolean ret = false;
-		for (Spawn spawn : _fortress.getSiege().getCommanders())
+		for (Spawn spawn : _siege.getCommanders())
 		{
 			if (spawn.getId() == npcId)
 			{

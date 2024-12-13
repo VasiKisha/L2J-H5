@@ -1,20 +1,22 @@
 /*
- * Copyright © 2019-2021 Async-mmocore
- *
- * This file is part of the Async-mmocore project.
- *
- * Async-mmocore is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
- *
- * Async-mmocore is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
- *
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * Copyright (c) 2013 L2jMobius
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.commons.network.internal;
 
@@ -26,7 +28,7 @@ import org.l2jmobius.commons.network.WritableBuffer;
 /**
  * An abstract base class for internal writable buffers.<br>
  * This class defines the common interface for various implementations of writable buffers within the network package.
- * @author JoeAlisson
+ * @author JoeAlisson, Mobius
  */
 public abstract class InternalWritableBuffer extends WritableBuffer
 {
@@ -59,36 +61,38 @@ public abstract class InternalWritableBuffer extends WritableBuffer
 	public abstract void releaseResources();
 	
 	/**
-	 * Create a new Dynamic Buffer that increases as needed
-	 * @param buffer the initial under layer buffer
-	 * @param resourcePool the resource pool used to get new buffers when needed
-	 * @return a new Dynamic Buffer
-	 */
-	public static InternalWritableBuffer dynamicOf(ByteBuffer buffer, ResourcePool resourcePool)
-	{
-		return new DynamicPacketBuffer(buffer, resourcePool);
-	}
-	
-	/**
 	 * Create a new Dynamic Buffer that increases as needed based on ArrayPacketBuffer
 	 * @param buffer the base buffer
 	 * @param resourcePool the resource pool used to get new buffers when needed
+	 * @param packetClass the Class<?> of the writable packet
 	 * @return a new Dynamic buffer
 	 */
-	public static InternalWritableBuffer dynamicOf(ArrayPacketBuffer buffer, ResourcePool resourcePool)
+	public static InternalWritableBuffer dynamicOf(ArrayPacketBuffer buffer, ResourcePool resourcePool, Class<?> packetClass)
 	{
-		final DynamicPacketBuffer copy = new DynamicPacketBuffer(buffer.toByteBuffer(), resourcePool);
+		final DynamicPacketBuffer copy = new DynamicPacketBuffer(buffer.toByteBuffer(), resourcePool, packetClass);
 		copy.limit(buffer.limit());
 		return copy;
 	}
 	
 	/**
+	 * Create a new Dynamic Buffer that increases as needed
+	 * @param resourcePool the resource pool used to get new buffers
+	 * @param packetClass the Class<?> of the writable packet
+	 * @return a new Dynamic Buffer
+	 */
+	public static InternalWritableBuffer dynamicOf(ResourcePool resourcePool, Class<?> packetClass)
+	{
+		return new DynamicPacketBuffer(resourcePool, packetClass);
+	}
+	
+	/**
 	 * Create a new buffer backed by array
 	 * @param resourcePool the resource pool used to get new buffers
+	 * @param packetClass the Class<?> of the writable packet
 	 * @return a Buffer backed by array
 	 */
-	public static InternalWritableBuffer arrayBacked(ResourcePool resourcePool)
+	public static InternalWritableBuffer arrayBacked(ResourcePool resourcePool, Class<?> packetClass)
 	{
-		return new ArrayPacketBuffer(resourcePool.getSegmentSize(), resourcePool);
+		return new ArrayPacketBuffer(resourcePool, packetClass);
 	}
 }

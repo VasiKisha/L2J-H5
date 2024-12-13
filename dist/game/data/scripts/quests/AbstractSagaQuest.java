@@ -28,7 +28,6 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -152,7 +151,7 @@ public abstract class AbstractSagaQuest extends Quest
 				st2.set("spawned", "1");
 				startQuestTimer("Archon Hellisha has despawned", 600000, archon, player);
 				autoChat(archon, _text[13].replace("PLAYERNAME", st2.getPlayer().getName()));
-				((Attackable) archon).addDamageHate(st2.getPlayer(), 0, 99999);
+				archon.asAttackable().addDamageHate(st2.getPlayer(), 0, 99999);
 				archon.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, st2.getPlayer(), null);
 			}
 			else
@@ -436,10 +435,10 @@ public abstract class AbstractSagaQuest extends Quest
 				}
 				case "Mob_3 Timer 1":
 				{
-					final Npc mob2 = FindSpawn(player, (Npc) World.getInstance().findObject(st.getInt("Mob_2")));
+					final Npc mob2 = FindSpawn(player, World.getInstance().findObject(st.getInt("Mob_2")).asNpc());
 					if (World.getInstance().getVisibleObjects(npc, Npc.class).contains(mob2))
 					{
-						((Attackable) npc).addDamageHate(mob2, 0, 99999);
+						npc.asAttackable().addDamageHate(mob2, 0, 99999);
 						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, mob2, null);
 						mob2.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, npc, null);
 						autoChat(npc, _text[14].replace("PLAYERNAME", player.getName()));
@@ -766,7 +765,7 @@ public abstract class AbstractSagaQuest extends Quest
 	{
 		if (SPAWN_LIST.containsKey(npc) && (SPAWN_LIST.get(npc) != player.getObjectId()))
 		{
-			final Player questPlayer = (Player) World.getInstance().findObject(SPAWN_LIST.get(npc));
+			final Player questPlayer = World.getInstance().findObject(SPAWN_LIST.get(npc)).asPlayer();
 			if (questPlayer == null)
 			{
 				return null;

@@ -1,23 +1,28 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
 import java.util.StringTokenizer;
 
+import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.sql.TeleportLocationTable;
 import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.TeleportLocation;
@@ -57,35 +62,37 @@ public class DungeonGatekeeper extends Npc
 		if (actualCommand.startsWith("necro"))
 		{
 			boolean canPort = true;
-			if (isSealValidationPeriod)
+			if (!Config.ALT_SEVENSIGNS_OPEN_NECROPOLIS)
 			{
-				if ((compWinner == SevenSigns.CABAL_DAWN) && ((playerCabal != SevenSigns.CABAL_DAWN) || (sealAvariceOwner != SevenSigns.CABAL_DAWN)))
+				if (isSealValidationPeriod)
 				{
-					player.sendPacket(SystemMessageId.ONLY_A_LORD_OF_DAWN_MAY_USE_THIS);
-					canPort = false;
+					if ((compWinner == SevenSigns.CABAL_DAWN) && ((playerCabal != SevenSigns.CABAL_DAWN) || (sealAvariceOwner != SevenSigns.CABAL_DAWN)))
+					{
+						player.sendPacket(SystemMessageId.ONLY_A_LORD_OF_DAWN_MAY_USE_THIS);
+						canPort = false;
+					}
+					else if ((compWinner == SevenSigns.CABAL_DUSK) && ((playerCabal != SevenSigns.CABAL_DUSK) || (sealAvariceOwner != SevenSigns.CABAL_DUSK)))
+					{
+						player.sendPacket(SystemMessageId.ONLY_A_REVOLUTIONARY_OF_DUSK_MAY_USE_THIS);
+						canPort = false;
+					}
+					else if ((compWinner == SevenSigns.CABAL_NULL) && (playerCabal != SevenSigns.CABAL_NULL))
+					{
+						canPort = true;
+					}
+					else if (playerCabal == SevenSigns.CABAL_NULL)
+					{
+						canPort = false;
+					}
 				}
-				else if ((compWinner == SevenSigns.CABAL_DUSK) && ((playerCabal != SevenSigns.CABAL_DUSK) || (sealAvariceOwner != SevenSigns.CABAL_DUSK)))
+				else
 				{
-					player.sendPacket(SystemMessageId.ONLY_A_REVOLUTIONARY_OF_DUSK_MAY_USE_THIS);
-					canPort = false;
-				}
-				else if ((compWinner == SevenSigns.CABAL_NULL) && (playerCabal != SevenSigns.CABAL_NULL))
-				{
-					canPort = true;
-				}
-				else if (playerCabal == SevenSigns.CABAL_NULL)
-				{
-					canPort = false;
+					if (playerCabal == SevenSigns.CABAL_NULL)
+					{
+						canPort = false;
+					}
 				}
 			}
-			else
-			{
-				if (playerCabal == SevenSigns.CABAL_NULL)
-				{
-					canPort = false;
-				}
-			}
-			
 			if (!canPort)
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -102,35 +109,37 @@ public class DungeonGatekeeper extends Npc
 		else if (actualCommand.startsWith("cata"))
 		{
 			boolean canPort = true;
-			if (isSealValidationPeriod)
+			if (!Config.ALT_SEVENSIGNS_OPEN_CATACUMBS)
 			{
-				if ((compWinner == SevenSigns.CABAL_DAWN) && ((playerCabal != SevenSigns.CABAL_DAWN) || (sealGnosisOwner != SevenSigns.CABAL_DAWN)))
+				if (isSealValidationPeriod)
 				{
-					player.sendPacket(SystemMessageId.ONLY_A_LORD_OF_DAWN_MAY_USE_THIS);
-					canPort = false;
+					if ((compWinner == SevenSigns.CABAL_DAWN) && ((playerCabal != SevenSigns.CABAL_DAWN) || (sealGnosisOwner != SevenSigns.CABAL_DAWN)))
+					{
+						player.sendPacket(SystemMessageId.ONLY_A_LORD_OF_DAWN_MAY_USE_THIS);
+						canPort = false;
+					}
+					else if ((compWinner == SevenSigns.CABAL_DUSK) && ((playerCabal != SevenSigns.CABAL_DUSK) || (sealGnosisOwner != SevenSigns.CABAL_DUSK)))
+					{
+						player.sendPacket(SystemMessageId.ONLY_A_REVOLUTIONARY_OF_DUSK_MAY_USE_THIS);
+						canPort = false;
+					}
+					else if ((compWinner == SevenSigns.CABAL_NULL) && (playerCabal != SevenSigns.CABAL_NULL))
+					{
+						canPort = true;
+					}
+					else if (playerCabal == SevenSigns.CABAL_NULL)
+					{
+						canPort = false;
+					}
 				}
-				else if ((compWinner == SevenSigns.CABAL_DUSK) && ((playerCabal != SevenSigns.CABAL_DUSK) || (sealGnosisOwner != SevenSigns.CABAL_DUSK)))
+				else
 				{
-					player.sendPacket(SystemMessageId.ONLY_A_REVOLUTIONARY_OF_DUSK_MAY_USE_THIS);
-					canPort = false;
-				}
-				else if ((compWinner == SevenSigns.CABAL_NULL) && (playerCabal != SevenSigns.CABAL_NULL))
-				{
-					canPort = true;
-				}
-				else if (playerCabal == SevenSigns.CABAL_NULL)
-				{
-					canPort = false;
+					if (playerCabal == SevenSigns.CABAL_NULL)
+					{
+						canPort = false;
+					}
 				}
 			}
-			else
-			{
-				if (playerCabal == SevenSigns.CABAL_NULL)
-				{
-					canPort = false;
-				}
-			}
-			
 			if (!canPort)
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());

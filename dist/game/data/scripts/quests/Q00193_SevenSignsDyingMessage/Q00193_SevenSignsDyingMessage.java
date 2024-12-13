@@ -164,7 +164,7 @@ public class Q00193_SevenSignsDyingMessage extends Quest
 					ns.addStringParameter(player.getName());
 					npc.broadcastPacket(ns);
 					startQuestTimer("heal", 30000 - getRandom(20000), npc, player);
-					final Monster monster = (Monster) addSpawn(SHILENS_EVIL_THOUGHTS, 82425, 47232, -3216, 0, false, 0, false);
+					final Monster monster = addSpawn(SHILENS_EVIL_THOUGHTS, 82425, 47232, -3216, 0, false, 0, false).asMonster();
 					monster.broadcastPacket(new NpcSay(monster.getObjectId(), ChatType.NPC_GENERAL, monster.getId(), NpcStringId.YOU_ARE_NOT_THE_OWNER_OF_THAT_ITEM));
 					monster.setRunning();
 					monster.addDamageHate(player, 0, 999);

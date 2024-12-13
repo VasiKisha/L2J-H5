@@ -16,7 +16,6 @@
  */
 package ai.areas.IsleOfPrayer;
 
-import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.holders.ItemHolder;
@@ -65,7 +64,7 @@ public class EvasGiftBox extends AbstractNpcAI
 	public String onSpawn(Npc npc)
 	{
 		npc.setRandomWalking(false);
-		((Attackable) npc).setOnKillDelay(0);
+		npc.asAttackable().setOnKillDelay(0);
 		return super.onSpawn(npc);
 	}
 	

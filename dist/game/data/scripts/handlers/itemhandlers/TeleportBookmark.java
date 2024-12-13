@@ -38,7 +38,7 @@ public class TeleportBookmark implements IItemHandler
 			return false;
 		}
 		
-		final Player player = playable.getActingPlayer();
+		final Player player = playable.asPlayer();
 		if (player.getBookmarkSlot() >= 9)
 		{
 			player.sendPacket(SystemMessageId.YOUR_NUMBER_OF_MY_TELEPORTS_SLOTS_HAS_REACHED_ITS_MAXIMUM_LIMIT);

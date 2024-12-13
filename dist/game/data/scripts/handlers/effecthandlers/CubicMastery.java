@@ -46,7 +46,7 @@ public class CubicMastery extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getActingPlayer().getStat().setMaxCubicCount(_cubicCount);
+		effected.asPlayer().getStat().setMaxCubicCount(_cubicCount);
 	}
 	
 	@Override
@@ -58,6 +58,6 @@ public class CubicMastery extends AbstractEffect
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getActingPlayer().getStat().setMaxCubicCount(1);
+		effected.asPlayer().getStat().setMaxCubicCount(1);
 	}
 }

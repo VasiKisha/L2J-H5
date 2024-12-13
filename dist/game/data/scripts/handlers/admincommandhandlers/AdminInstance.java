@@ -115,7 +115,7 @@ public class AdminInstance implements IAdminCommandHandler
 				target.setInstanceId(val);
 				if (target.isPlayer())
 				{
-					final Player player = (Player) target;
+					final Player player = target.asPlayer();
 					player.sendMessage("Admin set your instance to:" + val);
 					player.teleToLocation(player.getLocation());
 				}

@@ -39,7 +39,7 @@ public class ConditionPlayerInsideZoneId extends Condition
 	@Override
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
-		if (effector.getActingPlayer() == null)
+		if (effector.asPlayer() == null)
 		{
 			return false;
 		}

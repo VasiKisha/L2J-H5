@@ -91,7 +91,7 @@ public class TriggerSkillBySkill extends AbstractEffect
 				continue;
 			}
 			
-			final Creature targetChar = (Creature) triggerTarget;
+			final Creature targetChar = triggerTarget.asCreature();
 			if (!targetChar.isInvul())
 			{
 				event.getCaster().makeTriggerCast(triggerSkill, targetChar);

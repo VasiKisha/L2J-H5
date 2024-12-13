@@ -25,6 +25,7 @@ import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.instancemanager.FourSepulchersManager;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -225,9 +226,10 @@ public class SepulcherNpc extends Npc
 				setInvul(false);
 				reduceCurrentHp(getMaxHp() + 1, player, null);
 				Player leader = player;
-				if ((player.getParty() != null) && !player.getParty().isLeader(player))
+				final Party party = player.getParty();
+				if ((party != null) && !party.isLeader(player))
 				{
-					leader = player.getParty().getLeader();
+					leader = party.getLeader();
 				}
 				leader.addItem("Quest", HALLS_KEY, 1, leader, true);
 				break;
@@ -325,9 +327,11 @@ public class SepulcherNpc extends Npc
 					default:
 					{
 						openNextDoor(getId());
-						if (player.getParty() != null)
+						
+						final Party party = player.getParty();
+						if (party != null)
 						{
-							for (Player mem : player.getParty().getMembers())
+							for (Player mem : party.getMembers())
 							{
 								if ((mem != null) && (mem.getInventory().getItemByItemId(HALLS_KEY) != null))
 								{

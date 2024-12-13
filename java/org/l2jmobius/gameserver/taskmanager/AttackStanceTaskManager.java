@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Cubic;
 import org.l2jmobius.gameserver.network.serverpackets.AutoAttackStop;
 
@@ -74,9 +75,13 @@ public class AttackStanceTaskManager implements Runnable
 						{
 							creature.broadcastPacket(new AutoAttackStop(creature.getObjectId()));
 							creature.getAI().setAutoAttacking(false);
-							if (creature.isPlayer() && creature.hasSummon())
+							if (creature.isPlayer())
 							{
-								creature.getSummon().broadcastPacket(new AutoAttackStop(creature.getSummon().getObjectId()));
+								final Player player = creature.asPlayer();
+								if (player.hasSummon())
+								{
+									player.getSummon().broadcastPacket(new AutoAttackStop(player.getSummon().getObjectId()));
+								}
 							}
 						}
 						iterator.remove();
@@ -106,7 +111,7 @@ public class AttackStanceTaskManager implements Runnable
 		
 		if (creature.isPlayable())
 		{
-			for (Cubic cubic : creature.getActingPlayer().getCubics().values())
+			for (Cubic cubic : creature.asPlayer().getCubics().values())
 			{
 				if (cubic.getId() != Cubic.LIFE_CUBIC)
 				{
@@ -128,7 +133,7 @@ public class AttackStanceTaskManager implements Runnable
 		{
 			if (actor.isSummon())
 			{
-				actor = actor.getActingPlayer();
+				actor = actor.asPlayer();
 			}
 			CREATURE_ATTACK_STANCES.remove(actor);
 		}
@@ -146,7 +151,7 @@ public class AttackStanceTaskManager implements Runnable
 		{
 			if (actor.isSummon())
 			{
-				actor = actor.getActingPlayer();
+				actor = actor.asPlayer();
 			}
 			return CREATURE_ATTACK_STANCES.containsKey(actor);
 		}

@@ -18,9 +18,9 @@ package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -37,7 +37,7 @@ import org.l2jmobius.gameserver.model.holders.SkillHolder;
 public class ArmorSetData implements IXmlReader
 {
 	private ArmorSet[] _armorSets;
-	private final Map<Integer, ArmorSet> _armorSetMap = new HashMap<>();
+	private final Map<Integer, ArmorSet> _armorSetMap = new ConcurrentHashMap<>();
 	
 	/**
 	 * Instantiates a new armor sets data.

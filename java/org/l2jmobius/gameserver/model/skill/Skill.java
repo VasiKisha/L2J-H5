@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.skill;
 
@@ -41,6 +45,7 @@ import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
 import org.l2jmobius.gameserver.handler.TargetHandler;
 import org.l2jmobius.gameserver.model.ExtractableProductItem;
 import org.l2jmobius.gameserver.model.ExtractableSkill;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -168,7 +173,7 @@ public class Skill implements IIdentifiable
 	private final boolean _isGMSkill; // True if skill is GM skill
 	private final boolean _isSevenSigns;
 	
-	private final int _baseCritRate; // percent of success for skill critical hit (especially for PhysicalAttack & Blow - they're not affected by rCrit values or buffs).
+	private final int _baseCritRate; // percent of success for skill critical hit (especially for PhysicalDamage & Blow - they're not affected by rCrit values or buffs).
 	private final boolean _directHpDmg; // If true then damage is being make directly
 	private final boolean _isTriggeredSkill; // If true the skill will take activation buff slot instead of a normal buff slot
 	private final int _effectPoint;
@@ -956,7 +961,7 @@ public class Skill implements IIdentifiable
 			return true;
 		}
 		
-		if (creature.isPlayer() && creature.getActingPlayer().isMounted() && isBad() && !MountEnabledSkillList.contains(_id))
+		if (creature.isPlayer() && creature.asPlayer().isMounted() && isBad() && !MountEnabledSkillList.contains(_id))
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_CANNOT_BE_USED_DUE_TO_UNSUITABLE_TERMS);
 			sm.addSkillName(_id);
@@ -970,7 +975,7 @@ public class Skill implements IIdentifiable
 			return true;
 		}
 		
-		final Creature target = object instanceof Creature ? (Creature) object : null;
+		final Creature target = object instanceof Creature ? object.asCreature() : null;
 		for (Condition cond : preCondition)
 		{
 			if (!cond.test(creature, target, this))
@@ -1006,7 +1011,7 @@ public class Skill implements IIdentifiable
 		// If the WorldObject targeted is a Creature, it becomes the Creature target
 		if ((objTarget != null) && objTarget.isCreature())
 		{
-			target = (Creature) objTarget;
+			target = objTarget.asCreature();
 		}
 		return getTargetList(creature, onlyFirst, target);
 	}
@@ -1085,8 +1090,8 @@ public class Skill implements IIdentifiable
 			return false;
 		}
 		
-		final Player player = caster.getActingPlayer();
-		final Player targetPlayer = target.getActingPlayer();
+		final Player player = caster.asPlayer();
+		final Player targetPlayer = target.asPlayer();
 		if (player != null)
 		{
 			if (targetPlayer != null)
@@ -1094,6 +1099,16 @@ public class Skill implements IIdentifiable
 				if ((targetPlayer == caster) || (targetPlayer == player))
 				{
 					return false;
+				}
+				
+				// Auto play.
+				if (player.isAutoPlaying())
+				{
+					final int targetMode = player.getAutoPlaySettings().getNextTargetMode();
+					if ((targetMode == 1 /* Monster */) || (targetMode == 3 /* NPC */))
+					{
+						return false;
+					}
 				}
 				
 				if (targetPlayer.inObserverMode())
@@ -1111,16 +1126,18 @@ public class Skill implements IIdentifiable
 					return false;
 				}
 				
-				if (player.isInParty() && targetPlayer.isInParty())
+				final Party party = player.getParty();
+				final Party targetParty = targetPlayer.getParty();
+				if ((party != null) && (targetParty != null))
 				{
 					// Same party
-					if (player.getParty().getLeaderObjectId() == targetPlayer.getParty().getLeaderObjectId())
+					if (party.getLeaderObjectId() == targetParty.getLeaderObjectId())
 					{
 						return false;
 					}
 					
 					// Same command channel
-					if (player.getParty().isInCommandChannel() && (player.getParty().getCommandChannel() == targetPlayer.getParty().getCommandChannel()))
+					if (party.isInCommandChannel() && (party.getCommandChannel() == targetParty.getCommandChannel()))
 					{
 						return false;
 					}
@@ -1347,9 +1364,13 @@ public class Skill implements IIdentifiable
 			}
 			
 			// Support for buff sharing feature including healing herbs.
-			if (effected.isPlayer() && effected.hasServitor() && (_abnormalType != AbnormalType.TRANSFORM) && ((addContinuousEffects && isContinuous() && !_isDebuff) || _isRecoveryHerb))
+			if (effected.isPlayer())
 			{
-				applyEffects(effector, effected.getSummon(), _isRecoveryHerb, 0);
+				final Player player = effected.asPlayer();
+				if (player.hasServitor() && (_abnormalType != AbnormalType.TRANSFORM) && ((addContinuousEffects && isContinuous() && !_isDebuff) || _isRecoveryHerb))
+				{
+					applyEffects(effector, player.getSummon(), _isRecoveryHerb, 0);
+				}
 			}
 		}
 		
@@ -1373,9 +1394,17 @@ public class Skill implements IIdentifiable
 			
 			// Support for buff sharing feature.
 			// Avoiding Servitor Share since it's implementation already "shares" the effect.
-			if (addContinuousEffects && info.getEffected().isPlayer() && info.getEffected().hasServitor() && isContinuous() && !_isDebuff && (getId() != CommonSkill.SERVITOR_SHARE.getId()))
+			if (addContinuousEffects)
 			{
-				applyEffects(effector, info.getEffected().getSummon(), false, 0);
+				final Creature effectedCreature = info.getEffected();
+				if (effectedCreature.isPlayer())
+				{
+					final Player player = effectedCreature.asPlayer();
+					if (player.hasServitor() && isContinuous() && !_isDebuff && (getId() != CommonSkill.SERVITOR_SHARE.getId()))
+					{
+						applyEffects(effector, player.getSummon(), false, 0);
+					}
+				}
 			}
 		}
 		
@@ -1417,7 +1446,7 @@ public class Skill implements IIdentifiable
 	{
 		for (WorldObject obj : targets)
 		{
-			final Creature target = (Creature) obj;
+			final Creature target = obj.asCreature();
 			if (Formulas.calcBuffDebuffReflection(target, this))
 			{
 				// If skill is reflected instant effects should be casted on target and continuous effects on caster.

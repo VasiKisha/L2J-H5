@@ -64,11 +64,12 @@ public class RankuFloor extends AbstractInstance
 		{
 			if (!player.canOverrideCond(PlayerCondOverride.INSTANCE_CONDITIONS))
 			{
-				if (player.getParty() == null)
+				final Party party = player.getParty();
+				if (party == null)
 				{
 					htmltext = "gk-noparty.htm";
 				}
-				else if (!player.getParty().isLeader(player))
+				else if (!party.isLeader(player))
 				{
 					htmltext = "gk-noleader.htm";
 				}
@@ -161,7 +162,8 @@ public class RankuFloor extends AbstractInstance
 	{
 		if (firstEntrance)
 		{
-			if (player.getParty() == null)
+			final Party party = player.getParty();
+			if (party == null)
 			{
 				teleportPlayer(player, ENTRY_POINT, world.getInstanceId());
 				player.destroyItemByItemId("Quest", SEAL_BREAKER_10, 1, null, true);
@@ -169,7 +171,7 @@ public class RankuFloor extends AbstractInstance
 			}
 			else
 			{
-				for (Player partyMember : player.getParty().getMembers())
+				for (Player partyMember : party.getMembers())
 				{
 					teleportPlayer(partyMember, ENTRY_POINT, world.getInstanceId());
 					partyMember.destroyItemByItemId("Quest", SEAL_BREAKER_10, 1, null, true);

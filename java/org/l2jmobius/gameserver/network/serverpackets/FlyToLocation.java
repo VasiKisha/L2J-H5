@@ -49,7 +49,7 @@ public class FlyToLocation extends ServerPacket
 		_type = type;
 		if (creature.isPlayer())
 		{
-			creature.getActingPlayer().setBlinkActive(true);
+			creature.asPlayer().setBlinkActive(true);
 		}
 	}
 	

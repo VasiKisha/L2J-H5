@@ -51,6 +51,6 @@ public class FocusEnergy extends AbstractEffect
 			return;
 		}
 		
-		effected.getActingPlayer().increaseCharges(1, _charge);
+		effected.asPlayer().increaseCharges(1, _charge);
 	}
 }

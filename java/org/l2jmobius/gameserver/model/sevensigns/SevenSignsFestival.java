@@ -1098,13 +1098,14 @@ public class SevenSignsFestival
 		final Player player = World.getInstance().getPlayer(partyMemberName);
 		if (player != null)
 		{
-			if (player.getClan() != null)
+			final Clan clan = player.getClan();
+			if (clan != null)
 			{
-				player.getClan().addReputationScore(Config.FESTIVAL_WIN_POINTS);
+				clan.addReputationScore(Config.FESTIVAL_WIN_POINTS);
 				final SystemMessage sm = new SystemMessage(SystemMessageId.CLAN_MEMBER_C1_WAS_AN_ACTIVE_MEMBER_OF_THE_HIGHEST_RANKED_PARTY_IN_THE_FESTIVAL_OF_DARKNESS_S2_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE);
 				sm.addString(partyMemberName);
 				sm.addInt(Config.FESTIVAL_WIN_POINTS);
-				player.getClan().broadcastToOnlineMembers(sm);
+				clan.broadcastToOnlineMembers(sm);
 			}
 		}
 		else

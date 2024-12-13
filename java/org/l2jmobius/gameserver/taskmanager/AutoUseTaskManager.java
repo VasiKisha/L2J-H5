@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.taskmanager;
 
@@ -25,12 +29,10 @@ import org.l2jmobius.gameserver.data.xml.PetSkillData;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.handler.ItemHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Guard;
-import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -47,7 +49,7 @@ import org.l2jmobius.gameserver.model.zone.ZoneId;
 public class AutoUseTaskManager
 {
 	private static final Set<Set<Player>> POOLS = ConcurrentHashMap.newKeySet();
-	private static final int POOL_SIZE = 300;
+	private static final int POOL_SIZE = 200;
 	private static final int TASK_DELAY = 300;
 	private static final int REUSE_MARGIN_TIME = 3;
 	
@@ -225,9 +227,23 @@ public class AutoUseTaskManager
 						
 						// Playable target cast.
 						final Playable caster = pet != null ? pet : player;
-						if ((target != null) && target.isPlayable() && (target.getActingPlayer().getPvpFlag() == 0) && (target.getActingPlayer().getKarma() <= 0))
+						if ((target != null) && (target.isPlayable()))
 						{
-							caster.doCast(skill);
+							final Player targetPlayer = target.asPlayer();
+							if (((targetPlayer.getPvpFlag() == 0) && (targetPlayer.getKarma() <= 0)) || (targetPlayer.getParty() == caster.getParty()))
+							{
+								caster.doCast(skill);
+							}
+							else
+							{
+								if (!caster.getEffectList().isAffectedBySkill(skill.getId()))
+								{
+									final WorldObject savedTarget = target;
+									caster.setTarget(caster);
+									caster.doCast(skill);
+									caster.setTarget(savedTarget);
+								}
+							}
 						}
 						else // Target self, cast and re-target.
 						{
@@ -295,7 +311,7 @@ public class AutoUseTaskManager
 						}
 						
 						// Check bad skill target.
-						if ((target == null) || ((Creature) target).isDead())
+						if ((target == null) || target.asCreature().isDead())
 						{
 							break SKILLS;
 						}
@@ -337,12 +353,12 @@ public class AutoUseTaskManager
 		
 		private boolean canCastBuff(Player player, WorldObject target, Skill skill)
 		{
-			if ((target != null) && target.isCreature() && ((Creature) target).isAlikeDead() && (skill.getTargetType() != TargetType.SELF) && (skill.getTargetType() != TargetType.CORPSE) && (skill.getTargetType() != TargetType.PC_BODY))
+			if ((target != null) && target.isCreature() && target.asCreature().isAlikeDead() && (skill.getTargetType() != TargetType.SELF) && (skill.getTargetType() != TargetType.CORPSE) && (skill.getTargetType() != TargetType.PC_BODY))
 			{
 				return false;
 			}
 			
-			final Playable playableTarget = (target == null) || !target.isPlayable() || (skill.getTargetType() == TargetType.SELF) ? player : (Playable) target;
+			final Playable playableTarget = (target == null) || !target.isPlayable() || (skill.getTargetType() == TargetType.SELF) ? player : target.asPlayable();
 			if ((player != playableTarget) && (player.calculateDistance3D(playableTarget) > skill.getCastRange()))
 			{
 				return false;
@@ -373,13 +389,14 @@ public class AutoUseTaskManager
 				return false;
 			}
 			
-			if ((skill.getMpConsume() > 0) && (playable.getCurrentMp() < skill.getMpConsume()))
+			final int mpConsume = skill.getMpInitialConsume() + skill.getMpConsume();
+			if ((mpConsume > 0) && (playable.getCurrentMp() < mpConsume))
 			{
 				return false;
 			}
 			
 			// Check if monster is spoiled to avoid Spoil (254) skill recast.
-			if ((skill.getId() == 254) && (target != null) && target.isMonster() && ((Monster) target).isSpoiled())
+			if ((skill.getId() == 254) && (target != null) && target.isMonster() && target.asMonster().isSpoiled())
 			{
 				return false;
 			}

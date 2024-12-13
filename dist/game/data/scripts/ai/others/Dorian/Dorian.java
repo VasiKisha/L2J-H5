@@ -48,7 +48,7 @@ public class Dorian extends AbstractNpcAI
 	{
 		if (creature.isPlayer())
 		{
-			final Player pl = creature.getActingPlayer();
+			final Player pl = creature.asPlayer();
 			final QuestState qs = pl.getQuestState(Q00024_InhabitantsOfTheForestOfTheDead.class.getSimpleName());
 			if ((qs != null) && qs.isCond(3))
 			{

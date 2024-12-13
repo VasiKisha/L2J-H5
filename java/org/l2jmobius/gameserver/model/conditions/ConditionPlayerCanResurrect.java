@@ -55,7 +55,7 @@ public class ConditionPlayerCanResurrect extends Condition
 		boolean canResurrect = true;
 		if (effected.isPlayer())
 		{
-			final Player player = effected.getActingPlayer();
+			final Player player = effected.asPlayer();
 			if (!player.isDead())
 			{
 				canResurrect = false;
@@ -125,7 +125,7 @@ public class ConditionPlayerCanResurrect extends Condition
 		}
 		else if (effected.isSummon())
 		{
-			final Summon summon = (Summon) effected;
+			final Summon summon = effected.asSummon();
 			final Player player = summon.getOwner();
 			if (!summon.isDead())
 			{

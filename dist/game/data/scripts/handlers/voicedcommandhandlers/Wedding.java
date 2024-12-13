@@ -168,7 +168,7 @@ public class Wedding implements IVoicedCommandHandler
 			}
 			return false;
 		}
-		final Player ptarget = (Player) activeChar.getTarget();
+		final Player ptarget = activeChar.getTarget().asPlayer();
 		// check if player target himself
 		if (ptarget.getObjectId() == activeChar.getObjectId())
 		{

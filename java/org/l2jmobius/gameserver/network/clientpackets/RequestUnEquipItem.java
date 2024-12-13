@@ -52,7 +52,7 @@ public class RequestUnEquipItem extends ClientPacket
 			return;
 		}
 		
-		final Item item = player.getInventory().getPaperdollItemByItemId(_slot);
+		final Item item = player.getInventory().getPaperdollItemBySlotId(_slot);
 		// Wear-items are not to be unequipped.
 		if (item == null)
 		{

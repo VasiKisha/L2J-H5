@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="8400" levels="1" name="Vorpal Heavy Armor Set">
 		<!-- When equipped, increases P. Def. by 8.47%, P. Atk. by 5.57%, Accuracy by 4, Speed by 7, M. Def by 2%, Max HP by 541, Resistance to bleed/hold/sleep by 50%, and Resistance to Fire/Water/Wind/Earth by 5. Can equip a cloak. CON+2. STR-2 -->
@@ -70,8 +70,8 @@
 			<effect name="EnableCloak" />
 		</for>
 	</skill>
-	<skill id="8403" levels="1" name="Elegia Armor Set">
-		<!-- STR+3, CON-2.P. Atk. increases by 6.59% when equipped -->
+	<skill id="8403" levels="1" name="Elegia Heavy Armor Set">
+		<!-- STR+3, CON-2.P. Atk. increases by 6.59% when equipped; Critical rate increases by 127; Resistance to bleed/hold/sleep attacks increases by 50%; Resistance to magic damage increases by 2%; Max. HP increases by 550; Resistance to fire/water/wind/earth attributes increases by 5; Recover HP as a part of damage inflicted on the enemy. Can equip a cloak. -->
 		<set name="icon" val="icon.armor_t97_u_i00" />
 		<set name="magicLevel" val="85" />
 		<set name="operateType" val="P" />
@@ -145,7 +145,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -175,7 +175,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -205,7 +205,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -234,7 +234,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -269,7 +269,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -302,7 +302,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -328,13 +328,13 @@
 		</for>
 	</skill>
 	<skill id="8412" levels="1" name="Elegia Armor Set - PvP">
-		<!-- STR+3, CON-2. P. Atk. increases by 6.59% when equipped -->
+		<!-- STR+3, CON-2. P. Atk. increases by 6.59% when equipped; Critical rate increases by 127; Resistance to bleed/hold/sleep attacks increases by 50%; Resistance to magic damage increases by 2%; Max. HP increases by 550; Resistance to fire/water/wind/earth attributes increases by 5; Recover HP as a part of damage inflicted on the enemy. During PvP, incurred damage decreases and all of the attacker's speeds decrease at a fixed rate. Can equip a cloak. -->
 		<set name="icon" val="icon.armor_t97_u_i00" />
 		<set name="magicLevel" val="85" />
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -368,7 +368,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -399,7 +399,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Playable" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param minDamage="1" />
 				<param chance="2" />
@@ -1090,7 +1090,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8461" levels="1" name="Heavy Set">
+	<skill id="8461" levels="1" name="Enchant Heavy Armor (S Grade)">
 		<!-- P. Def and MP Recovery Bonus increase when a set item is enchanted. -->
 		<set name="icon" val="icon.skill0231" />
 		<set name="magicLevel" val="1" />
@@ -1112,7 +1112,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8462" levels="1" name="Light Set">
+	<skill id="8462" levels="1" name="Enchant Light Armor (S Grade)">
 		<!-- Increases M. Def. and Evasion by enchanting set items. -->
 		<set name="icon" val="icon.skill0233" />
 		<set name="magicLevel" val="1" />
@@ -1129,7 +1129,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="8463" levels="1" name="Magic Set">
+	<skill id="8463" levels="1" name="Enchant Robe (S Grade)">
 		<!-- Increases P. Def. and weight capacity by enchanting set items. -->
 		<set name="icon" val="icon.skill0234" />
 		<set name="magicLevel" val="1" />
@@ -1188,14 +1188,14 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="8469" levels="2" name="Dagger of Avoidance">
+	<skill id="8469" levels="2" name="Dagger of Evasion">
 		<!-- Increases Evasion when equipped with a dagger. -->
 		<set name="icon" val="icon.skill1087" />
 		<set name="magicLevel" val="85" />
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="8470" levels="2" name="Fist of Haste">
+	<skill id="8470" levels="2" name="Fist Weapon of Haste">
 		<!-- Increases Atk. Spd. -->
 		<set name="icon" val="icon.skill1086" />
 		<set name="magicLevel" val="85" />
@@ -1209,7 +1209,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="8472" levels="2" name="Blunt of Focus">
+	<skill id="8472" levels="2" name="Blunt Weapon of Focus">
 		<!-- Increases critical rate. -->
 		<set name="icon" val="icon.skill1077" />
 		<set name="magicLevel" val="85" />
@@ -1223,7 +1223,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="8474" levels="2" name="Blunt of Empower">
+	<skill id="8474" levels="2" name="Blunt Weapon of Empower">
 		<!-- Increases M. Atk. -->
 		<set name="icon" val="icon.skill1059" />
 		<set name="magicLevel" val="85" />
@@ -1258,14 +1258,14 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="8479" levels="2" name="Ancientsword of Regeneration">
+	<skill id="8479" levels="2" name="Ancient Sword of Regeneration">
 		<!-- Increases HP Recovery Bonus when equiped with an ancient sword. -->
 		<set name="icon" val="icon.skill1044" />
 		<set name="magicLevel" val="85" />
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="8480" levels="2" name="Dual Weapon of Guidance">
+	<skill id="8480" levels="2" name="Dual-Blade Weapon of Guidance">
 		<!-- Increases Accuracy when equipped with a dual-blade weapon. -->
 		<set name="icon" val="icon.skill1240" />
 		<set name="magicLevel" val="85" />

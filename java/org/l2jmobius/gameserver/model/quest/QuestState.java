@@ -587,7 +587,7 @@ public class QuestState
 			return;
 		}
 		
-		((Player) creature).addNotifyQuestOfDeath(this);
+		creature.asPlayer().addNotifyQuestOfDeath(this);
 	}
 	
 	/**

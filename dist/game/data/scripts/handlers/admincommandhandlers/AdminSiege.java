@@ -39,7 +39,7 @@ import org.l2jmobius.gameserver.util.Util;
 
 /**
  * This class handles all siege commands.
- * @author Zoey76 (rework)
+ * @author Zoey76
  */
 public class AdminSiege implements IAdminCommandHandler
 {
@@ -83,7 +83,7 @@ public class AdminSiege implements IAdminCommandHandler
 			Player player = null;
 			if ((activeChar.getTarget() != null) && activeChar.getTarget().isPlayer())
 			{
-				player = activeChar.getTarget().getActingPlayer();
+				player = activeChar.getTarget().asPlayer();
 			}
 			
 			String val = st.nextToken();

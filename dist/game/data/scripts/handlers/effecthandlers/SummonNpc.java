@@ -71,7 +71,7 @@ public class SummonNpc extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if ((effected == null) || !effected.isPlayer() || effected.isAlikeDead() || effected.getActingPlayer().inObserverMode())
+		if ((effected == null) || !effected.isPlayer() || effected.isAlikeDead())
 		{
 			return;
 		}
@@ -82,8 +82,8 @@ public class SummonNpc extends AbstractEffect
 			return;
 		}
 		
-		final Player player = effected.getActingPlayer();
-		if (player.isMounted())
+		final Player player = effected.asPlayer();
+		if (player.inObserverMode() || player.isMounted())
 		{
 			return;
 		}
@@ -119,7 +119,7 @@ public class SummonNpc extends AbstractEffect
 				int z = player.getZ();
 				if (skill.getTargetType() == TargetType.GROUND)
 				{
-					final Location wordPosition = player.getActingPlayer().getCurrentSkillWorldPosition();
+					final Location wordPosition = player.getCurrentSkillWorldPosition();
 					if (wordPosition != null)
 					{
 						x = wordPosition.getX();

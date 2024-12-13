@@ -39,7 +39,7 @@ public class ClanMember implements ITargetTypeHandler
 		if (creature.isNpc())
 		{
 			// for buff purposes, returns friendly mobs nearby and mob itself
-			final Npc npc = (Npc) creature;
+			final Npc npc = creature.asNpc();
 			if ((npc.getTemplate().getClans() == null) || npc.getTemplate().getClans().isEmpty())
 			{
 				targetList.add(creature);

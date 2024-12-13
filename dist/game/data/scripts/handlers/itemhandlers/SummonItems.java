@@ -43,7 +43,7 @@ public class SummonItems extends ItemSkillsTemplate
 			return false;
 		}
 		
-		final Player player = playable.getActingPlayer();
+		final Player player = playable.asPlayer();
 		if (!player.getClient().getFloodProtectors().canUsePetSummonItem() || (player.getBlockCheckerArena() != -1) || player.inObserverMode() || player.isAllSkillsDisabled() || player.isCastingNow())
 		{
 			return false;

@@ -22,6 +22,7 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.instancemanager.FourSepulchersManager;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
@@ -335,15 +336,16 @@ public class SepulcherMonster extends Monster
 			}
 		}
 		
-		final Player player = killer.getActingPlayer();
+		final Player player = killer.asPlayer();
 		if (player == null)
 		{
 			return;
 		}
 		
-		if (player.getParty() != null)
+		final Party party = player.getParty();
+		if (party != null)
 		{
-			for (Player mem : player.getParty().getMembers())
+			for (Player mem : party.getMembers())
 			{
 				final QuestState qs = mem.getQuestState(questId);
 				if ((qs != null) && (qs.isStarted() || qs.isCompleted()) && (mem.getInventory().getItemByItemId(oldBrooch) == null))

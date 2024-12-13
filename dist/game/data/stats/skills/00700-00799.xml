@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="700" levels="1" name="Divine Healer Group Heal">
 		<!-- Restores HP of a party member by 400 power and causes 27 HP recovery every second for 15 seconds. -->
@@ -47,7 +47,7 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="702" levels="1" name="Divine Healer Cleanse">
+	<skill id="702" levels="1" name="Divine Healer Clans">
 		<!-- Cancel all the debuffs of the target. -->
 		<set name="castRange" val="600" />
 		<set name="effectPoint" val="676" />
@@ -486,7 +486,10 @@
 		</for>
 	</skill>
 	<skill id="717" levels="4" name="Zaken Concentrated Attack">
-		<!-- Focuses on one specific place and attacks. Over-hit is possible. Power 2751. -->
+		<!-- Level 1: Focuses on one specific place and attacks. Over-hit is possible. Power 2751. -->
+		<!-- Level 2: Focuses on one specific place and attacks. Over-hit is possible. Power 3252. -->
+		<!-- Level 3: Focuses on one specific place and attacks. Over-hit is possible. Power 3752. -->
+		<!-- Level 4: Focuses on one specific place and attacks. Over-hit is possible. Power 4224. -->
 		<table name="#effectPoints">-307 -323 -335 -342</table>
 		<table name="#magicLevel">65 70 75 80</table>
 		<table name="#mpConsume">60 65 69 72</table>
@@ -505,11 +508,14 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="718" levels="4" name="Zaken Dancing Sword">
-		<!-- Uses Dancing Swords to attack all at once. Over-hit is possible. Power 1651. -->
+		<!-- Level 1: Uses Dancing Swords to attack all at once. Over-hit is possible. Power 1651. -->
+		<!-- Level 2: Uses Dancing Swords to attack all at once. Over-hit is possible. Power 1951. -->
+		<!-- Level 3: Uses Dancing Swords to attack all at once. Over-hit is possible. Power 2251. -->
+		<!-- Level 4: Uses Dancing Swords to attack all at once. Over-hit is possible. Power 2534. -->
 		<table name="#effectPoints">-307 -323 -335 -342</table>
 		<table name="#magicLevel">65 70 75 80</table>
 		<table name="#mpConsume">60 65 69 72</table>
@@ -527,7 +533,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="719" levels="1" name="Zaken Vampiric Rage">
@@ -553,8 +559,9 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="720" levels="2" name="Anakim Holy Light Burst">
-		<!-- Strong pound attack. Over-hit is possible. Power 3189. -->
+	<skill id="720" levels="2" name="Anakim Divine Light Burst">
+		<!-- Level 1: Strong pound attack. Over-hit is possible. Power 3189. -->
+		<!-- Level 2: Strong pound attack. Over-hit is possible. Power 3590. -->
 		<table name="#effectPoints">-335 -342</table>
 		<table name="#magicLevel">75 80</table>
 		<table name="#mpConsume">69 72</table>
@@ -576,11 +583,12 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="721" levels="2" name="Anakim Energy Attack">
-		<!-- Concentrates energy and Fires it. Power 186. -->
+		<!-- Level 1: Concentrates energy and Fires it. Power 186. -->
+		<!-- Level 2: Concentrates energy and Fires it. Power 197. -->
 		<table name="#effectPoints">-335 -342</table>
 		<table name="#magicLevel">75 80</table>
 		<table name="#mpConsume">69 72</table>
@@ -601,11 +609,12 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
-	<skill id="722" levels="2" name="Anakim Holy Beam">
-		<!-- Launch beam. Power 186. -->
+	<skill id="722" levels="2" name="Anakim Divine Beam">
+		<!-- Level 1: Launch beam. Power 186. -->
+		<!-- Level 2: Launch beam. Power 197. -->
 		<table name="#effectPoints">-335 -342</table>
 		<table name="#magicLevel">75 80</table>
 		<table name="#mpConsume">69 72</table>
@@ -626,7 +635,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="723" levels="1" name="Anakim Sunshine">
@@ -667,7 +676,8 @@
 		</for>
 	</skill>
 	<skill id="725" levels="2" name="Venom Power Smash">
-		<!-- Unleashes a powerful strike. Over-hit is possible. Power 2626. -->
+		<!-- Level 1: Unleashes a powerful strike. Over-hit is possible. Power 2626. -->
+		<!-- Level 2: Unleashes a powerful strike. Over-hit is possible. Power 2957. -->
 		<table name="#magicLevel">75 80</table>
 		<table name="#power">2626 2957</table>
 		<set name="castRange" val="40" />
@@ -684,11 +694,12 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="726" levels="2" name="Venom Sonic Storm">
-		<!-- Attack the surrounding area by detonating the sword energy. Power 2626. -->
+		<!-- Level 1: Attack the surrounding area by detonating the sword energy. Power 2626. -->
+		<!-- Level 2: Attack the surrounding area by detonating the sword energy. Power 2957. -->
 		<table name="#magicLevel">75 80</table>
 		<table name="#power">1576 1774</table>
 		<set name="affectRange" val="150" />
@@ -704,7 +715,7 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="727" levels="1" name="Venom Disillusion">
@@ -744,7 +755,7 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="729" levels="1" name="Gordon Sword Stab">
@@ -763,7 +774,7 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="730" levels="1" name="Gordon Press">
@@ -813,7 +824,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="732" levels="1" name="Ranku Stun Attack">
@@ -842,7 +853,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -862,7 +873,7 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="734" levels="1" name="Kechi Air Blade">
@@ -880,7 +891,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="735" levels="1" name="Devil Spinning Weapon">
@@ -900,7 +911,7 @@
 		<set name="reuseDelay" val="11000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
 	<skill id="736" levels="1" name="Devil Seed">
@@ -961,7 +972,9 @@
 		</for>
 	</skill>
 	<skill id="738" levels="3" name="Heretic Heal">
-		<!-- Recover the target's HP immediately. Power 892. -->
+		<!-- Level 1: Recover the target's HP immediately. Power 892. -->
+		<!-- Level 2: Recover the target's HP immediately. Power 926. -->
+		<!-- Level 3: Recover the target's HP immediately. Power 956. -->
 		<table name="#amount">892 926 956</table>
 		<table name="#magicLevel">70 73 76</table>
 		<set name="castRange" val="600" />
@@ -983,7 +996,9 @@
 		</for>
 	</skill>
 	<skill id="739" levels="3" name="Heretic Battle Heal">
-		<!-- Quickly restores the target's HP by 743 power. -->
+		<!-- Level 1: Quickly restores the target's HP by 743 power. -->
+		<!-- Level 2: Quickly restores the target's HP by 772 power. -->
+		<!-- Level 3: Quickly restores the target's HP by 796 power. -->
 		<table name="#amount">743 772 796</table>
 		<table name="#effectPoints">595 617 637</table>
 		<table name="#magicLevel">70 73 76</table>
@@ -1008,7 +1023,9 @@
 		</for>
 	</skill>
 	<skill id="740" levels="3" name="Heretic Resurrection">
-		<!-- Resurrects a corpse. Regenerate additional 50 percent of the experience value. -->
+		<!-- Level 1: Resurrects a corpse. Regenerate additional 50 percent of the experience value. -->
+		<!-- Level 2: Resurrects a corpse. Restores the experience value about 55 percent additionally. -->
+		<!-- Level 3: Resurrects a corpse. Restores the experience value about 60 percent additionally. -->
 		<table name="#effectPoints">595 617 637</table>
 		<table name="#magicLevel">70 73 76</table>
 		<table name="#mpConsume">182 189 195</table>
@@ -1068,8 +1085,10 @@
 			</effect>
 		</for>
 	</skill>
-	<skill id="742" levels="3" name="Vale Master Bursting Flame">
-		<!-- Attack the enemy by unleashing dark flames. Power 112. -->
+	<skill id="742" levels="3" name="Veil Master Bursting Flame">
+		<!-- Level 1: Attack the enemy by unleashing dark flames. Power 112. -->
+		<!-- Level 2: Attack the enemy by unleashing dark flames. Power 117. -->
+		<!-- Level 3: Attack the enemy by unleashing dark flames. Power 122. -->
 		<table name="#magicLevel">70 73 76</table>
 		<table name="#mpConsume">68 70 73</table>
 		<table name="#mpInitialConsume">17 18 19</table>
@@ -1090,11 +1109,13 @@
 		<set name="reuseDelay" val="2000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
-	<skill id="743" levels="3" name="Vale Master Dark Explosion">
-		<!-- Detonate the soul to attack surrounding enemies. Power 56. -->
+	<skill id="743" levels="3" name="Veil Master Dark Explosion">
+		<!-- Level 1: Detonate the soul to attack surrounding enemies. Power 56. -->
+		<!-- Level 2: Detonate the soul to attack surrounding enemies. Power 59. -->
+		<!-- Level 3: Detonate the soul to attack surrounding enemies. Power 61. -->
 		<table name="#effectPoints">-323 -331 -337</table>
 		<table name="#magicLevel">70 73 76</table>
 		<table name="#mpConsume">68 70 73</table>
@@ -1118,11 +1139,13 @@
 		<set name="reuseDelay" val="4000" />
 		<set name="targetType" val="AREA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
-	<skill id="744" levels="3" name="Vale Master Dark Flare">
-		<!-- Attack a large number of enemies by creating huge explosion. Power 112. -->
+	<skill id="744" levels="3" name="Veil Master Dark Flare">
+		<!-- Level 1: Attack a large number of enemies by creating huge explosion. Power 112. -->
+		<!-- Level 2: Attack a large number of enemies by creating huge explosion. Power 117. -->
+		<!-- Level 3: Attack a large number of enemies by creating huge explosion. Power 122. -->
 		<table name="#magicLevel">70 73 76</table>
 		<table name="#mpConsume">68 70 73</table>
 		<table name="#mpInitialConsume">17 18 19</table>
@@ -1144,10 +1167,10 @@
 		<set name="reuseDelay" val="5000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalAttack" />
+			<effect name="MagicalDamage" />
 		</for>
 	</skill>
-	<skill id="745" levels="3" name="Vale Master Dark Cure">
+	<skill id="745" levels="3" name="Veil Master Dark Cure">
 		<!-- Cancel all the debuffs of the target. -->
 		<table name="#effectPoints">635 650 662</table>
 		<table name="#magicLevel">70 73 76</table>
@@ -1172,7 +1195,9 @@
 		</for>
 	</skill>
 	<skill id="746" levels="3" name="Saber Tooth Tiger Bite">
-		<!-- Bites ferociously. Over-hit is possible. Power 1789. -->
+		<!-- Level 1: Bites ferociously. Over-hit is possible. Power 1789. -->
+		<!-- Level 2: Bites ferociously. Over-hit is possible. Power 1955. -->
+		<!-- Level 3: Bites ferociously. Over-hit is possible. Power 2117. -->
 		<table name="#effectPoints">-648 -660 -671</table>
 		<table name="#magicLevel">70 73 76</table>
 		<table name="#power">1789 1955 2117</table>
@@ -1191,11 +1216,13 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="747" levels="3" name="Saber Tooth Tiger Fear">
-		<!-- Inflicts damage on surrounding enemies and causes them to flee. Over-hit is possible. Power 895. -->
+		<!-- Level 1: Inflicts damage on surrounding enemies and causes them to flee. Over-hit is possible. Power 895. -->
+		<!-- Level 2: Inflicts damage on surrounding enemies and causes them to flee. Over-hit is possible. Power 978. -->
+		<!-- Level 3: Inflicts damage on surrounding enemies and causes them to flee. Over-hit is possible. Power 1059. -->
 		<table name="#dmg">895 978 1059</table>
 		<table name="#effectPoints">-323 -331 -337</table>
 		<table name="#magicLevel">70 73 76</table>
@@ -1222,7 +1249,7 @@
 		<set name="targetType" val="AURA" />
 		<set name="trait" val="DERANGEMENT" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Fear" />
 		</for>
 	</skill>
@@ -1248,7 +1275,9 @@
 		</for>
 	</skill>
 	<skill id="749" levels="3" name="Oel Mahum Stun Attack">
-		<!-- Cause damage and shock together at the same time. Make the enemies shocked momentarily. Over-hit is possible. Power 895. -->
+		<!-- Level 1: Cause damage and shock together at the same time. Make the enemies shocked momentarily. Over-hit is possible. Power 895. -->
+		<!-- Level 2: Cause damage and shock together at the same time. Make the enemies shocked momentarily. Over-hit is possible. Power 978. -->
+		<!-- Level 3: Cause damage and shock together at the same time. Make the enemies shocked momentarily. Over-hit is possible. Power 1059. -->
 		<table name="#dmg">895 978 1059</table>
 		<table name="#effectPoints">-323 -331 -337</table>
 		<table name="#magicLevel">70 73 76</table>
@@ -1277,7 +1306,7 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="SHOCK" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Stun" />
 		</for>
 	</skill>
@@ -1303,7 +1332,9 @@
 		</for>
 	</skill>
 	<skill id="751" levels="3" name="Oel Mahum Arm Flourish">
-		<!-- Flourish weapons to attack surrounding enemy. Over-hit is possible. Power 1073. -->
+		<!-- Level 1: Flourish weapons to attack surrounding enemy. Over-hit is possible. Power 1073. -->
+		<!-- Level 2: Flourish weapons to attack surrounding enemy. Over-hit is possible. Power 1173. -->
+		<!-- Level 3: Flourish weapons to attack surrounding enemy. Over-hit is possible. Power 1271. -->
 		<table name="#dmg">1073 1173 1271</table>
 		<table name="#effectPoints">-323 -331 -337</table>
 		<table name="#magicLevel">70 73 76</table>
@@ -1326,11 +1357,13 @@
 		<set name="reuseDelay" val="4000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="752" levels="3" name="Doll Blader Sting">
-		<!-- Causes injury by deadly attacks. Instantly causes the enemies to bleed. Over-hit is possible. Power 1193. Effect 3. -->
+		<!-- Level 1: Causes injury by deadly attacks. Instantly causes the enemies to bleed. Over-hit is possible. Power 1193. Effect 3. -->
+		<!-- Level 2: Causes injury by deadly attacks. Instantly causes the enemies to bleed. Over-hit is possible. Power 1303. Effect 3. -->
+		<!-- Level 3: Causes injury by deadly attacks. Instantly causes the enemies to bleed. Over-hit is possible. Power 1412. Effect 3. -->
 		<table name="#effectPoints">-323 -331 -337</table>
 		<table name="#magicLevel">70 73 76</table>
 		<table name="#mpConsume">71 74 77</table>
@@ -1359,14 +1392,16 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="BLEED" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="134" />
 			</effect>
 		</for>
 	</skill>
 	<skill id="753" levels="3" name="Doll Blader Throwing Knife">
-		<!-- Throw a dagger to attack enemy in the distance. Over-hit is possible. Power 4769. -->
+		<!-- Level 1: Throw a dagger to attack enemy in the distance. Over-hit is possible. Power 4769. -->
+		<!-- Level 2: Throw a dagger to attack enemy in the distance. Over-hit is possible. Power 5211. -->
+		<!-- Level 3: Throw a dagger to attack enemy in the distance. Over-hit is possible. Power 5645. -->
 		<table name="#effectPoints">-323 -331 -337</table>
 		<table name="#magicLevel">70 73 76</table>
 		<table name="#mpConsume">142 148 153</table>
@@ -1385,7 +1420,7 @@
 		<set name="reuseDelay" val="6000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="754" levels="1" name="Doll Blader Clairvoyance">
@@ -1421,7 +1456,7 @@
 			<effect name="Buff">
 				<mul stat="mDef" val="1.15" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="300" />
 				<param chance="20" />
@@ -1443,7 +1478,7 @@
 				<add stat="windRes" val="20" />
 				<add stat="earthRes" val="20" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="100" />
 				<param chance="20" />
@@ -1463,7 +1498,7 @@
 				<add stat="holyRes" val="20" />
 				<add stat="darkRes" val="20" />
 			</effect>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="100" />
 				<param chance="20" />
@@ -1486,7 +1521,7 @@
 					<using kind="SWORD,BLUNT,DUAL,DUALFIST,DAGGER,DUALDAGGER,POLE,ANCIENTSWORD,RAPIER" />
 				</mul>
 			</effect>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="3" />
@@ -1510,7 +1545,7 @@
 					<using kind="CROSSBOW,BOW" />
 				</add>
 			</effect>
-			<effect name="TriggerSkillByAttack">
+			<effect name="TriggerSkillByDamageDealt">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="100" />
 				<param isCritical="false" />
 				<param minDamage="1" chance="3" />
@@ -1556,7 +1591,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="1" />
 				<param chance="8" />
@@ -1598,7 +1633,7 @@
 			</and>
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="Debuff">
 				<mul stat="maxCp" val="0.1" />
 				<add stat="debuffVuln" val="30" />
@@ -1643,6 +1678,36 @@
 	</skill>
 	<skill id="764" levels="1" name="Song of Wind Storm" enchantGroup1="5" enchantGroup2="5">
 		<!-- For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Increases the additional MP consumption when singing while sing/dance effect lasts. -->
+		<!-- Level 101 (+1 Time): For 2 minutes 8 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 102 (+2 Time): For 2 minutes 16 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 103 (+3 Time): For 2 minutes 24 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 104 (+4 Time): For 2 minutes 32 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 105 (+5 Time): For 2 minutes 40 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 106 (+6 Time): For 2 minutes 48 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 107 (+7 Time): For 2 minutes 56 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 108 (+8 Time): For 3 minutes 4 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 109 (+9 Time): For 3 minutes 12 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 110 (+10 Time): For 3 minutes 20 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 111 (+11 Time): For 3 minutes 28 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 112 (+12 Time): For 3 minutes 36 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 113 (+13 Time): For 3 minutes 44 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 114 (+14 Time): For 3 minutes 52 seconds, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 115 (+15 Time): For 4 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Time: Increases duration. -->
+		<!-- Level 201 (+1 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 202 (+2 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 203 (+3 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 204 (+4 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 205 (+5 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 206 (+6 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 207 (+7 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 208 (+8 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 209 (+9 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 210 (+10 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 211 (+11 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 212 (+12 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 213 (+13 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 214 (+14 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 215 (+15 Cost): For 2 minutes, increases a party member's Resistance to bows by 10 and Resistance to crossbows by 5. Additionally increases MP consumption when singing while song/dance is in effect. Enchant Cost: Decreases MP consumption. -->
 		<table name="#ench1AbnormalTimes">128 136 144 152 160 168 176 184 192 200 208 216 224 232 240</table>
 		<table name="#ench1EffectPoints">666 669 673 676 679 681 684 687 689 692 694 696 698 700 702</table>
 		<table name="#ench2EffectPoints">704 706 707 709 710 711 713 714 715 1 1 1 1 1 1</table>
@@ -1673,6 +1738,36 @@
 	</skill>
 	<skill id="765" levels="1" name="Dance of Blade Storm" enchantGroup1="5" enchantGroup2="5">
 		<!-- For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. -->
+		<!-- Level 101 (+1 Time): For 16 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 102 (+2 Time): For 17 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 103 (+3 Time): For 18 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 104 (+4 Time): For 19 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 105 (+5 Time): For 20 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 106 (+6 Time): For 21 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 107 (+7 Time): For 22 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 108 (+8 Time): For 23 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 109 (+9 Time): For 24 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 110 (+10 Time): For 25 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 111 (+11 Time): For 26 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 112 (+12 Time): For 27 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 113 (+13 Time): For 28 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 114 (+14 Time): For 29 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 115 (+15 Time): For 30 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Time: Increases duration. -->
+		<!-- Level 201 (+1 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 202 (+2 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 203 (+3 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 204 (+4 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 205 (+5 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 206 (+6 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 207 (+7 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 208 (+8 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 209 (+9 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 210 (+10 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 211 (+11 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 212 (+12 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 213 (+13 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 214 (+14 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
+		<!-- Level 215 (+15 Cost): For 15 seconds, increases a party member's Resistance to bows by 45 and Resistance to crossbows by 25. Decreases M. Atk. by 99%. Additionally increases MP consumption when singing while song/dance is in effect. Requires a dualsword. Enchant Cost: Decreases MP consumption. -->
 		<table name="#ench1AbnormalTimes">18 21 24 27 30 33 36 39 42 45 48 51 54 57 60</table>
 		<table name="#ench1EffectPoints">666 669 673 676 679 681 684 687 689 692 694 696 698 700 702</table>
 		<table name="#ench2EffectPoints">704 706 707 709 710 711 713 714 715 1 1 1 1 1 1</table>
@@ -1728,7 +1823,7 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="1" />
 				<param chance="5" />
@@ -1832,7 +1927,7 @@
 			<using kind="BOW" />
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="CallSkill">
 				<param skillId="23298" skillLevel="1" />
 			</effect>
@@ -1860,7 +1955,7 @@
 			<using kind="BOW" />
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="CallSkill">
 				<param skillId="23299" skillLevel="1" />
 			</effect>
@@ -1889,7 +1984,7 @@
 			<using kind="BOW" />
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="CallSkill">
 				<param skillId="23300" skillLevel="1" />
 			</effect>
@@ -1987,7 +2082,7 @@
 			</and>
 		</cond>
 		<for>
-			<effect name="EnergyAttack">
+			<effect name="EnergyDamage">
 				<param power="4500" />
 				<param criticalChance="20" />
 			</effect>
@@ -2020,7 +2115,7 @@
 			</and>
 		</cond>
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="778" levels="1" name="Golem Armor">
@@ -2163,7 +2258,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="1" />
 				<param chance="20" />
@@ -2174,7 +2269,7 @@
 		</for>
 	</skill>
 	<skill id="785" levels="1" name="Flame Icon">
-		<!-- Receives the will of the phoenix to drastically increase the fighting ability of party members. For 1 minute, increases Resistance to de-buff attacks by 40%, P. Def. by 50%, M. Def. by 50%, Atk. Spd. by 30%, Accuracy by 6, Speed by 30, and Resistance to buff canceling attacks by 40%. Decreases the effectiveness of received recovery magic by 80% . When a sword is equipped, increases Critical Rate by 100. When a blunt is equipped, increases Critical Damage by 100%. -->
+		<!-- Receives the will of the phoenix to drastically increase the fighting ability of party members. For 1 minute, increases Resistance to de-buff attacks by 40%, P. Def. by 50%, M. Def. by 50%, Atk. Spd. by 30%, Accuracy by 6, Speed by 30, and Resistance to buff canceling attacks by 40%. Decreases the effectiveness of received recovery magic by 80%. When a sword is equipped, increases Critical Rate by 100. When a blunt is equipped, increases Critical Damage by 100%. -->
 		<set name="abnormalLevel" val="3" />
 		<set name="abnormalTime" val="60" />
 		<set name="abnormalType" val="POSSESSION_SPECIAL" />
@@ -2225,7 +2320,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="1" />
 				<param chance="20" />
@@ -2286,7 +2381,7 @@
 		<set name="reuseDelay" val="15000" />
 		<set name="targetType" val="SELF" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="1" />
 				<param chance="20" />
@@ -2354,7 +2449,7 @@
 			<using kind="CROSSBOW" />
 		</cond>
 		<for>
-			<effect name="PhysicalSoulAttack" />
+			<effect name="PhysicalSoulDamage" />
 		</for>
 	</skill>
 	<skill id="791" levels="1" name="Lightning Shock">
@@ -2379,7 +2474,7 @@
 		<set name="soulMaxConsumeCount" val="5" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="MagicalSoulAttack" />
+			<effect name="MagicalSoulDamage" />
 			<effect name="Debuff">
 				<mul stat="pAtkSpd" val="0.5" />
 				<mul stat="runSpd" val="0.5" />
@@ -2415,7 +2510,7 @@
 		<set name="reuseDelay" val="11000" />
 		<set name="targetType" val="ONE" />
 		<for>
-			<effect name="TriggerSkillByDamage">
+			<effect name="TriggerSkillByDamageReceived">
 				<param attackerType="Creature" minAttackerLevel="1" maxAttackerLevel="99" />
 				<param minDamage="1" />
 				<param chance="10" />
@@ -2426,6 +2521,126 @@
 	</skill>
 	<skill id="793" levels="1" name="Rush Impact" enchantGroup1="6" enchantGroup2="6" enchantGroup3="6" enchantGroup4="6" enchantGroup5="6" enchantGroup6="6" enchantGroup7="6" enchantGroup8="6">
 		<!-- Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. -->
+		<!-- Level 101 (+1 Power): Rushes forward to attack the enemies in front with 4071 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 102 (+2 Power): Rushes forward to attack the enemies in front with 4102 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 103 (+3 Power): Rushes forward to attack the enemies in front with 4133 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 104 (+4 Power): Rushes forward to attack the enemies in front with 4164 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 105 (+5 Power): Rushes forward to attack the enemies in front with 4195 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 106 (+6 Power): Rushes forward to attack the enemies in front with 4226 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 107 (+7 Power): Rushes forward to attack the enemies in front with 4257 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 108 (+8 Power): Rushes forward to attack the enemies in front with 4289 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 109 (+9 Power): Rushes forward to attack the enemies in front with 4320 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 110 (+10 Power): Rushes forward to attack the enemies in front with 4351 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 111 (+11 Power): Rushes forward to attack the enemies in front with 4382 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 112 (+12 Power): Rushes forward to attack the enemies in front with 4413 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 113 (+13 Power): Rushes forward to attack the enemies in front with 4444 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 114 (+14 Power): Rushes forward to attack the enemies in front with 4475 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 115 (+15 Power): Rushes forward to attack the enemies in front with 4507 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Power: Increases Power. -->
+		<!-- Level 201 (+1 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 202 (+2 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 203 (+3 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 204 (+4 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 205 (+5 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 206 (+6 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 207 (+7 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 208 (+8 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 209 (+9 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 210 (+10 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 211 (+11 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 212 (+12 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 213 (+13 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 214 (+14 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 215 (+15 Cost): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Cost: MP consumption is increased. -->
+		<!-- Level 301 (+1 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 302 (+2 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 303 (+3 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 304 (+4 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 305 (+5 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 306 (+6 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 307 (+7 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 308 (+8 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 309 (+9 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 310 (+10 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 311 (+11 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 312 (+12 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 313 (+13 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 314 (+14 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 315 (+15 Chance): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant chance: Increases the success rate. -->
+		<!-- Level 401 (+1 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 4. -->
+		<!-- Level 402 (+2 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 7. -->
+		<!-- Level 403 (+3 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 10. -->
+		<!-- Level 404 (+4 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 14. -->
+		<!-- Level 405 (+5 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 17. -->
+		<!-- Level 406 (+6 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 20. -->
+		<!-- Level 407 (+7 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 24. -->
+		<!-- Level 408 (+8 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 27. -->
+		<!-- Level 409 (+9 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 30. -->
+		<!-- Level 410 (+10 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 34. -->
+		<!-- Level 411 (+11 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 37. -->
+		<!-- Level 412 (+12 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 40. -->
+		<!-- Level 413 (+13 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 43. -->
+		<!-- Level 414 (+14 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 47. -->
+		<!-- Level 415 (+15 Fire Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Fire Attack: Bestows Fire attribute by 50. -->
+		<!-- Level 501 (+1 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 4. -->
+		<!-- Level 502 (+2 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 7. -->
+		<!-- Level 503 (+3 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 10. -->
+		<!-- Level 504 (+4 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 14. -->
+		<!-- Level 505 (+5 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 17. -->
+		<!-- Level 506 (+6 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 20. -->
+		<!-- Level 507 (+7 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 24. -->
+		<!-- Level 508 (+8 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 27. -->
+		<!-- Level 509 (+9 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 30. -->
+		<!-- Level 510 (+10 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 34. -->
+		<!-- Level 511 (+11 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 37. -->
+		<!-- Level 512 (+12 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 40. -->
+		<!-- Level 513 (+13 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 43. -->
+		<!-- Level 514 (+14 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 47. -->
+		<!-- Level 515 (+15 Water Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Water Attack: Bestows Water attribute by 50. -->
+		<!-- Level 601 (+1 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 4. -->
+		<!-- Level 602 (+2 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 7. -->
+		<!-- Level 603 (+3 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 10. -->
+		<!-- Level 604 (+4 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 14. -->
+		<!-- Level 605 (+5 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 17. -->
+		<!-- Level 606 (+6 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 20. -->
+		<!-- Level 607 (+7 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 24. -->
+		<!-- Level 608 (+8 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 27. -->
+		<!-- Level 609 (+9 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 30. -->
+		<!-- Level 610 (+10 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 34. -->
+		<!-- Level 611 (+11 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 37. -->
+		<!-- Level 612 (+12 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 40. -->
+		<!-- Level 613 (+13 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 43. -->
+		<!-- Level 614 (+14 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 47. -->
+		<!-- Level 615 (+15 Wind Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Wind Attack: Bestowed Wind attribute by 50. -->
+		<!-- Level 701 (+1 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 4. -->
+		<!-- Level 702 (+2 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 7. -->
+		<!-- Level 703 (+3 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 10. -->
+		<!-- Level 704 (+4 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 14. -->
+		<!-- Level 705 (+5 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 17. -->
+		<!-- Level 706 (+6 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 20. -->
+		<!-- Level 707 (+7 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 24. -->
+		<!-- Level 708 (+8 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 27. -->
+		<!-- Level 709 (+9 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 30. -->
+		<!-- Level 710 (+10 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 34. -->
+		<!-- Level 711 (+11 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 37. -->
+		<!-- Level 712 (+12 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 40. -->
+		<!-- Level 713 (+13 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 43. -->
+		<!-- Level 714 (+14 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 47. -->
+		<!-- Level 715 (+15 Earth Attack): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant Earth Attack: Bestowed Earth attribute by 50. -->
+		<!-- Level 801 (+1 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4104 Power during PvP. -->
+		<!-- Level 802 (+2 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4168 Power during PvP. -->
+		<!-- Level 803 (+3 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4232 Power during PvP. -->
+		<!-- Level 804 (+4 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4297 Power during PvP. -->
+		<!-- Level 805 (+5 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4361 Power during PvP. -->
+		<!-- Level 806 (+6 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4425 Power during PvP. -->
+		<!-- Level 807 (+7 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4490 Power during PvP. -->
+		<!-- Level 808 (+8 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4554 Power during PvP. -->
+		<!-- Level 809 (+9 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4618 Power during PvP. -->
+		<!-- Level 810 (+10 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4683 Power during PvP. -->
+		<!-- Level 811 (+11 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4747 Power during PvP. -->
+		<!-- Level 812 (+12 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4811 Power during PvP. -->
+		<!-- Level 813 (+13 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4875 Power during PvP. -->
+		<!-- Level 814 (+14 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 4940 Power during PvP. -->
+		<!-- Level 815 (+15 Duel): Rushes forward to attack the enemies in front with 4040 Power added to P. Atk. and inflicts Shock for 9 seconds. Requires an Ancient Sword weapon to be equipped. Increases Power upon the consumption of up to 5 souls. Enchant duel: Attacks with 5004 Power during PvP. -->
 		<table name="#ench1Power">4071 4102 4133 4164 4195 4226 4257 4289 4320 4351 4382 4413 4444 4475 4507</table>
 		<table name="#ench2Cost">80 78 76 74 72 70 68 66 64 62 59 57 55 53 51</table>
 		<table name="#ench3ActivateRates">61 62 64 65 66 68 69 70 72 73 74 76 77 78 80</table>
@@ -2485,16 +2700,46 @@
 			</and>
 		</cond>
 		<for>
-			<effect name="PhysicalSoulAttack" />
+			<effect name="PhysicalSoulDamage" />
 			<effect name="Stun" />
 		</for>
 		<enchant3for>
-			<effect name="PhysicalSoulAttack" />
+			<effect name="PhysicalSoulDamage" />
 			<effect name="Stun" />
 		</enchant3for>
 	</skill>
 	<skill id="794" levels="1" name="Mass Disarm" enchantGroup1="6" enchantGroup2="6">
 		<!-- Disarms nearby enemies for 5 seconds. -->
+		<!-- Level 101 (+1 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 102 (+2 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 103 (+3 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 104 (+4 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 105 (+5 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 106 (+6 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 107 (+7 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 108 (+8 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 109 (+9 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 110 (+10 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 111 (+11 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 112 (+12 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 113 (+13 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 114 (+14 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 115 (+15 Chance): Disarms nearby enemies for 5 seconds. Enchant chance: Increases the success rate. -->
+		<!-- Level 201 (+1 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 202 (+2 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 203 (+3 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 204 (+4 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 205 (+5 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 206 (+6 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 207 (+7 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 208 (+8 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 209 (+9 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 210 (+10 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 211 (+11 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 212 (+12 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 213 (+13 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 214 (+14 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
+		<!-- Level 215 (+15 Recycle): Disarms nearby enemies for 5 seconds. Enchant Recycle: Reuse time decreases. -->
 		<table name="#ench1ActivateRates">71 72 73 74 75 76 77 78 79 80 81 82 83 84 85</table>
 		<table name="#ench2Reuse">145000 140000 135000 130000 125000 120000 115000 110000 105000 100000 95000 90000 85000 80000 75000</table>
 		<table name="#enchMagicLvl">81 81 81 82 82 82 83 83 83 84 84 84 85 85 85</table>
@@ -2545,7 +2790,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="796" levels="1" name="Divine Knight Explosion Attack">
@@ -2563,7 +2808,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="AURA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="797" levels="1" name="Divine Rogue Piercing Attack">
@@ -2585,7 +2830,7 @@
 		<set name="reuseDelay" val="3000" />
 		<set name="targetType" val="FRONT_AREA" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 		</for>
 	</skill>
 	<skill id="798" levels="1" name="Divine Warrior Assault Attack">
@@ -2613,14 +2858,14 @@
 		<set name="targetType" val="ONE" />
 		<set name="trait" val="POISON" />
 		<for>
-			<effect name="PhysicalAttack" />
+			<effect name="PhysicalDamage" />
 			<effect name="DamOverTime" ticks="5">
 				<param power="69" />
 			</effect>
 		</for>
 	</skill>
 	<skill id="799" levels="3" name="Master Ability - Defense">
-		<!-- Increases P. Def.. -->
+		<!-- Increases P. Def. -->
 		<table name="#pDefHeavy">59.5 119 178.5</table>
 		<table name="#pDefLight">44.625 89.25 133.875</table>
 		<table name="#pDefMagic">29.75 59.5 89.25</table>

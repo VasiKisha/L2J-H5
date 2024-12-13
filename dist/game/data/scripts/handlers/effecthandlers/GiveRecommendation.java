@@ -55,7 +55,7 @@ public class GiveRecommendation extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		final Player target = (effected != null) && effected.isPlayer() ? (Player) effected : null;
+		final Player target = (effected != null) && effected.isPlayer() ? effected.asPlayer() : null;
 		if (target != null)
 		{
 			int recommendationsGiven = _amount;
@@ -79,7 +79,7 @@ public class GiveRecommendation extends AbstractEffect
 			}
 			else
 			{
-				final Player player = (effector != null) && effector.isPlayer() ? (Player) effector : null;
+				final Player player = (effector != null) && effector.isPlayer() ? effector.asPlayer() : null;
 				if (player != null)
 				{
 					player.sendPacket(SystemMessageId.NOTHING_HAPPENED);

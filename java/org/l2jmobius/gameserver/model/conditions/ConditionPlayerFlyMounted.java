@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * The Class ConditionPlayerFlyMounted.
- * @author kerberos
+ * @author Kerberos
  */
 public class ConditionPlayerFlyMounted extends Condition
 {
@@ -40,6 +40,6 @@ public class ConditionPlayerFlyMounted extends Condition
 	@Override
 	public boolean testImpl(Creature effector, Creature effected, Skill skill, ItemTemplate item)
 	{
-		return (effector.getActingPlayer() == null) || (effector.getActingPlayer().isFlyingMounted() == _value);
+		return !effector.isPlayer() || (effector.asPlayer().isFlyingMounted() == _value);
 	}
 }

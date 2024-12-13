@@ -36,7 +36,7 @@ public class CommandChannel implements ITargetTypeHandler
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
 		final List<WorldObject> targetList = new LinkedList<>();
-		final Player player = creature.getActingPlayer();
+		final Player player = creature.asPlayer();
 		if (player == null)
 		{
 			return targetList;

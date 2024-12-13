@@ -40,11 +40,7 @@ public class NoRestartZone extends ZoneType
 	@Override
 	public void setParameter(String name, String value)
 	{
-		if (name.equalsIgnoreCase("default_enabled"))
-		{
-			_enabled = Boolean.parseBoolean(value);
-		}
-		else if (name.equalsIgnoreCase("restartAllowedTime"))
+		if (name.equalsIgnoreCase("restartAllowedTime"))
 		{
 			_restartAllowedTime = Integer.parseInt(value) * 1000;
 		}
@@ -65,11 +61,6 @@ public class NoRestartZone extends ZoneType
 	@Override
 	protected void onEnter(Creature creature)
 	{
-		if (!_enabled)
-		{
-			return;
-		}
-		
 		if (creature.isPlayer())
 		{
 			creature.setInsideZone(ZoneId.NO_RESTART, true);
@@ -79,11 +70,6 @@ public class NoRestartZone extends ZoneType
 	@Override
 	protected void onExit(Creature creature)
 	{
-		if (!_enabled)
-		{
-			return;
-		}
-		
 		if (creature.isPlayer())
 		{
 			creature.setInsideZone(ZoneId.NO_RESTART, false);
@@ -93,7 +79,7 @@ public class NoRestartZone extends ZoneType
 	@Override
 	public void onPlayerLoginInside(Player player)
 	{
-		if (!_enabled)
+		if (!isEnabled())
 		{
 			return;
 		}

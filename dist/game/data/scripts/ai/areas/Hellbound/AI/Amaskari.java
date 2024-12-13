@@ -76,8 +76,8 @@ public class Amaskari extends AbstractNpcAI
 		if (event.equalsIgnoreCase("stop_toggle"))
 		{
 			npc.broadcastSay(ChatType.NPC_GENERAL, AMASKARI_NPCSTRING_ID[2]);
-			((Monster) npc).clearAggroList();
-			((Monster) npc).getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			npc.asMonster().clearAggroList();
+			npc.asMonster().getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
 			npc.setInvul(false);
 			// npc.doCast(INVINCIBILITY.getSkill())
 		}
@@ -102,7 +102,7 @@ public class Amaskari extends AbstractNpcAI
 		if ((npc.getId() == AMASKARI) && (getRandom(1000) < 25))
 		{
 			npc.broadcastSay(ChatType.NPC_GENERAL, AMASKARI_NPCSTRING_ID[0]);
-			for (Monster minion : ((Monster) npc).getMinionList().getSpawnedMinions())
+			for (Monster minion : npc.asMonster().getMinionList().getSpawnedMinions())
 			{
 				if ((minion != null) && !minion.isDead() && (getRandom(10) == 0))
 				{
@@ -119,7 +119,7 @@ public class Amaskari extends AbstractNpcAI
 	{
 		if (npc.getId() == AMASKARI_PRISONER)
 		{
-			final Monster master = ((Monster) npc).getLeader();
+			final Monster master = npc.asMonster().getLeader();
 			if ((master != null) && !master.isDead())
 			{
 				master.broadcastSay(ChatType.NPC_GENERAL, AMASKARI_NPCSTRING_ID[1]);
@@ -152,7 +152,7 @@ public class Amaskari extends AbstractNpcAI
 		}
 		else if (npc.getId() == AMASKARI)
 		{
-			for (Monster minion : ((Monster) npc).getMinionList().getSpawnedMinions())
+			for (Monster minion : npc.asMonster().getMinionList().getSpawnedMinions())
 			{
 				if ((minion != null) && !minion.isDead())
 				{

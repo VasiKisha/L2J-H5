@@ -270,4 +270,15 @@ public class StringUtil
 		}
 		return sbString.toString();
 	}
+	
+	public static String enumToString(Enum<?> enumeration)
+	{
+		final String[] words = enumeration.name().toLowerCase().split("_");
+		final StringBuilder sb = new StringBuilder();
+		for (String word : words)
+		{
+			sb.append(Character.toUpperCase(word.charAt(0))).append(word.substring(1)).append(" ");
+		}
+		return sb.toString().trim();
+	}
 }

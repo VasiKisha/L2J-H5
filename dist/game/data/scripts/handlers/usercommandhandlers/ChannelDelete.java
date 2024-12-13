@@ -18,6 +18,7 @@ package handlers.usercommandhandlers;
 
 import org.l2jmobius.gameserver.handler.IUserCommandHandler;
 import org.l2jmobius.gameserver.model.CommandChannel;
+import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -41,9 +42,10 @@ public class ChannelDelete implements IUserCommandHandler
 			return false;
 		}
 		
-		if (player.isInParty() && player.getParty().isLeader(player) && player.getParty().isInCommandChannel() && player.getParty().getCommandChannel().getLeader().equals(player))
+		final Party party = player.getParty();
+		if ((party != null) && party.isLeader(player) && party.isInCommandChannel() && party.getCommandChannel().getLeader().equals(player))
 		{
-			final CommandChannel channel = player.getParty().getCommandChannel();
+			final CommandChannel channel = party.getCommandChannel();
 			channel.broadcastPacket(new SystemMessage(SystemMessageId.THE_COMMAND_CHANNEL_HAS_BEEN_DISBANDED));
 			channel.disbandChannel();
 			return true;

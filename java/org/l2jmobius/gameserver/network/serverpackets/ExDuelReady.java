@@ -21,8 +21,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * Duel Ready packet implementation.
- * @author KenM, Zoey76
+ * @author KenM
  */
 public class ExDuelReady extends ServerPacket
 {
@@ -31,9 +30,9 @@ public class ExDuelReady extends ServerPacket
 	
 	private final boolean _partyDuel;
 	
-	public ExDuelReady(boolean partyDuel)
+	public ExDuelReady(boolean isPartyDuel)
 	{
-		_partyDuel = partyDuel;
+		_partyDuel = isPartyDuel;
 	}
 	
 	@Override

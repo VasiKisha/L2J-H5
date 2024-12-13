@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.actionhandlers;
 
@@ -23,7 +27,6 @@ import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
-import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
@@ -55,12 +58,13 @@ public class NpcAction implements IActionHandler
 	@Override
 	public boolean action(Player player, WorldObject target, boolean interact)
 	{
-		if (!((Npc) target).canTarget(player))
+		final Npc npc = target.asNpc();
+		if (!npc.canTarget(player))
 		{
 			return false;
 		}
 		
-		player.setLastFolkNPC((Npc) target);
+		player.setLastFolkNPC(npc);
 		// Check if the Player already target the Npc
 		if (target != player.getTarget())
 		{
@@ -69,26 +73,31 @@ public class NpcAction implements IActionHandler
 			// Check if the player is attackable (without a forced attack)
 			if (target.isAutoAttackable(player))
 			{
-				((Npc) target).getAI(); // wake up ai
+				npc.getAI(); // wake up ai
 			}
 		}
 		else if (interact)
 		{
 			// Check if the player is attackable (without a forced attack) and isn't dead
-			if (target.isAutoAttackable(player) && !((Creature) target).isAlikeDead())
+			if (target.isAutoAttackable(player) && !target.asCreature().isAlikeDead())
 			{
 				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
 			}
 			else if (!target.isAutoAttackable(player))
 			{
 				// Calculate the distance between the Player and the Npc
-				if (!((Npc) target).canInteract(player))
+				if (!npc.canInteract(player))
 				{
 					player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
 				}
 				else
 				{
-					final Npc npc = (Npc) target;
+					// If player is moving and NPC is in interaction distance, change the intention to stop moving.
+					if (player.isMoving() && npc.isInsideRadius3D(player, Npc.INTERACTION_DISTANCE))
+					{
+						player.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+					}
+					
 					// Turn NPC to the player.
 					player.sendPacket(new MoveToPawn(player, npc, 100));
 					if (npc.hasRandomAnimation())
