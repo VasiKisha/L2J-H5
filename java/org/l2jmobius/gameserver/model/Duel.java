@@ -865,7 +865,7 @@ public class Duel
 	public DuelResult checkEndDuelCondition()
 	{
 		// one of the players might leave during duel
-		if ((_playerA == null) || (_playerB == null))
+		if ((_playerA == null) || (_playerB == null) || !_playerA.isOnline() || !_playerB.isOnline())
 		{
 			return DuelResult.CANCELED;
 		}
