@@ -79,7 +79,7 @@ public class DispelBySlotProbability extends AbstractEffect
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		if (_dispelAbnormals.isEmpty())
+		if (_dispelAbnormals.isEmpty() || (effected == null) || effected.isRaid())
 		{
 			return;
 		}
