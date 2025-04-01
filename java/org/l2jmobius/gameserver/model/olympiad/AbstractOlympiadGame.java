@@ -21,17 +21,18 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.PartyMessageType;
-import org.l2jmobius.gameserver.instancemanager.AntiFeedManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.AntiFeedManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.groups.PartyMessageType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
@@ -317,7 +318,7 @@ public abstract class AbstractOlympiadGame
 			player.setTarget(null);
 			player.abortAttack();
 			player.abortCast();
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			player.getAI().setIntention(Intention.IDLE);
 			
 			if (player.isDead())
 			{
@@ -337,7 +338,7 @@ public abstract class AbstractOlympiadGame
 				summon.setTarget(null);
 				summon.abortAttack();
 				summon.abortCast();
-				summon.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				summon.getAI().setIntention(Intention.IDLE);
 				summon.stopAllEffectsExceptThoseThatLastThroughDeath();
 			}
 			
@@ -448,7 +449,7 @@ public abstract class AbstractOlympiadGame
 					continue;
 				}
 				
-				item = player.getInventory().addItem("Olympiad", it[0], it[1], player, null);
+				item = player.getInventory().addItem(ItemProcessType.REWARD, it[0], it[1], player, null);
 				if (item == null)
 				{
 					continue;

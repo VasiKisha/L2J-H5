@@ -159,26 +159,26 @@ public enum BaseStat
 		factory.setValidating(false);
 		factory.setIgnoringComments(true);
 		final File file = new File(Config.DATAPACK_ROOT, "data/stats/statBonus.xml");
-		Document doc = null;
+		Document document = null;
 		
 		if (file.exists())
 		{
 			try
 			{
-				doc = factory.newDocumentBuilder().parse(file);
+				document = factory.newDocumentBuilder().parse(file);
 			}
 			catch (Exception e)
 			{
 				LOGGER.log(Level.WARNING, "[BaseStats] Could not parse file: " + e.getMessage(), e);
 			}
 			
-			if (doc != null)
+			if (document != null)
 			{
 				String statName;
 				int val;
 				double bonus;
 				NamedNodeMap attrs;
-				for (Node list = doc.getFirstChild(); list != null; list = list.getNextSibling())
+				for (Node list = document.getFirstChild(); list != null; list = list.getNextSibling())
 				{
 					if ("list".equalsIgnoreCase(list.getNodeName()))
 					{

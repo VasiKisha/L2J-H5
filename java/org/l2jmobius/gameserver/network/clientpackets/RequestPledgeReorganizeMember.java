@@ -18,8 +18,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
 
 /**
  * Format: (ch) dSdS
@@ -61,7 +61,7 @@ public class RequestPledgeReorganizeMember extends ClientPacket
 			return;
 		}
 		
-		if (!player.hasClanPrivilege(ClanPrivilege.CL_MANAGE_RANKS))
+		if (!player.hasAccess(ClanAccess.MODIFY_RANKS))
 		{
 			return;
 		}

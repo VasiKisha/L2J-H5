@@ -27,9 +27,6 @@ public class ExPutEnchantTargetItemResult extends ServerPacket
 {
 	private final int _result;
 	
-	/**
-	 * @param result
-	 */
 	public ExPutEnchantTargetItemResult(int result)
 	{
 		_result = result;

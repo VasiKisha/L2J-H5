@@ -16,14 +16,10 @@
  */
 package org.l2jmobius.gameserver.model.announce;
 
-import org.l2jmobius.gameserver.model.interfaces.IDeletable;
-import org.l2jmobius.gameserver.model.interfaces.IStorable;
-import org.l2jmobius.gameserver.model.interfaces.IUpdatable;
-
 /**
  * @author UnAfraid
  */
-public interface IAnnouncement extends IStorable, IUpdatable, IDeletable
+public interface IAnnouncement
 {
 	int getId();
 	
@@ -40,4 +36,10 @@ public interface IAnnouncement extends IStorable, IUpdatable, IDeletable
 	String getAuthor();
 	
 	void setAuthor(String author);
+	
+	boolean storeMe();
+	
+	boolean updateMe();
+	
+	boolean deleteMe();
 }

@@ -27,7 +27,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author UnAfraid
@@ -69,7 +69,7 @@ public class FrontArea implements ITargetTypeHandler
 		// Update heading towards the origin
 		if (creature != origin)
 		{
-			creature.setHeading(Util.calculateHeadingFrom(creature, origin));
+			creature.setHeading(LocationUtil.calculateHeadingFrom(creature, origin));
 		}
 		
 		final int maxTargets = skill.getAffectLimit();
@@ -85,7 +85,7 @@ public class FrontArea implements ITargetTypeHandler
 				return;
 			}
 			
-			if (Util.checkIfInRange(skill.getAffectRange(), origin, obj, true))
+			if (LocationUtil.checkIfInRange(skill.getAffectRange(), origin, obj, true))
 			{
 				if (!obj.isInFrontOf(creature))
 				{

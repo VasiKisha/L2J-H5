@@ -17,12 +17,12 @@
 package handlers.admincommandhandlers;
 
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.FormatUtil;
 
 /**
  * @author malyelfik
@@ -42,8 +42,8 @@ public class AdminManor implements IAdminCommandHandler
 		for (Castle c : CastleManager.getInstance().getCastles())
 		{
 			sb.append("<tr><td>Name:</td><td><font color=008000>" + c.getName() + "</font></td></tr>");
-			sb.append("<tr><td>Current period cost:</td><td><font color=FF9900>" + Util.formatAdena(manor.getManorCost(c.getResidenceId(), false)) + " Adena</font></td></tr>");
-			sb.append("<tr><td>Next period cost:</td><td><font color=FF9900>" + Util.formatAdena(manor.getManorCost(c.getResidenceId(), true)) + " Adena</font></td></tr>");
+			sb.append("<tr><td>Current period cost:</td><td><font color=FF9900>" + FormatUtil.formatAdena(manor.getManorCost(c.getResidenceId(), false)) + " Adena</font></td></tr>");
+			sb.append("<tr><td>Next period cost:</td><td><font color=FF9900>" + FormatUtil.formatAdena(manor.getManorCost(c.getResidenceId(), true)) + " Adena</font></td></tr>");
 			sb.append("<tr><td><font color=808080>--------------------------</font></td><td><font color=808080>--------------------------</font></td></tr>");
 		}
 		msg.replace("%castleInfo%", sb.toString());

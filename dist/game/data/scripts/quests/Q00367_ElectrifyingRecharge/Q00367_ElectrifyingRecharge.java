@@ -16,13 +16,13 @@
  */
 package quests.Q00367_ElectrifyingRecharge;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * Electrifying Recharge! (367)
@@ -90,17 +90,17 @@ public class Q00367_ElectrifyingRecharge extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.isScriptValue(367))
 		{
-			return super.onAttack(npc, attacker, damage, isSummon);
+			return;
 		}
 		
 		QuestState qs = getQuestState(attacker, false);
 		if ((qs == null) || !qs.isStarted())
 		{
-			return super.onAttack(npc, attacker, damage, isSummon);
+			return;
 		}
 		
 		npc.setScriptValue(367);
@@ -116,7 +116,7 @@ public class Q00367_ElectrifyingRecharge extends Quest
 		final Player luckyPlayer = getRandomPartyMember(attacker, npc);
 		if (luckyPlayer == null)
 		{
-			return super.onAttack(npc, attacker, damage, isSummon);
+			return;
 		}
 		qs = getQuestState(luckyPlayer, false);
 		if ((qs != null) && qs.isStarted() && !hasQuestItems(luckyPlayer, TITAN_LAMP5))
@@ -156,7 +156,6 @@ public class Q00367_ElectrifyingRecharge extends Quest
 				playSound(luckyPlayer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override

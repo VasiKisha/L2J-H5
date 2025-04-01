@@ -17,15 +17,16 @@
 package quests.Q00261_CollectorsDream;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
+
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Collector's Dream (261)
@@ -33,7 +34,7 @@ import org.l2jmobius.gameserver.util.Util;
  */
 public class Q00261_CollectorsDream extends Quest
 {
-	// Npc
+	// NPC
 	private static final int ALSHUPES = 30222;
 	// Monsters
 	private static final int[] MONSTERS = new int[]
@@ -47,8 +48,7 @@ public class Q00261_CollectorsDream extends Quest
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	private static final int MAX_LEG_COUNT = 8;
-	// Message
-	private static final ExShowScreenMessage MESSAGE = new ExShowScreenMessage(NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00261_CollectorsDream()
 	{
@@ -72,14 +72,13 @@ public class Q00261_CollectorsDream extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isCond(1) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true) && giveItemRandomly(killer, SPIDER_LEG, 1, MAX_LEG_COUNT, 1, true))
+		if ((qs != null) && qs.isCond(1) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true) && giveItemRandomly(killer, SPIDER_LEG, 1, MAX_LEG_COUNT, 1, true))
 		{
 			qs.setCond(2);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -107,7 +106,25 @@ public class Q00261_CollectorsDream extends Quest
 					{
 						if (getQuestItemsCount(player, SPIDER_LEG) >= MAX_LEG_COUNT)
 						{
-							giveNewbieReward(player);
+							// Newbie Guide.
+							final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+							if (newbieGuide != null)
+							{
+								final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+								if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, 100000);
+									showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+								else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 100000000) / 10000000) != 1)
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 10000000);
+									showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+							}
+							
 							giveAdena(player, 1000, true);
 							addExpAndSp(player, 2000, 0);
 							qs.exitQuest(true, true);
@@ -120,20 +137,5 @@ public class Q00261_CollectorsDream extends Quest
 			}
 		}
 		return htmltext;
-	}
-	
-	public static void giveNewbieReward(Player player)
-	{
-		final PlayerVariables vars = player.getVariables();
-		if (vars.getString("GUIDE_MISSION", null) == null)
-		{
-			vars.set("GUIDE_MISSION", 100000);
-			player.sendPacket(MESSAGE);
-		}
-		else if (((vars.getInt("GUIDE_MISSION") % 100000000) / 10000000) != 1)
-		{
-			vars.set("GUIDE_MISSION", vars.getInt("GUIDE_MISSION") + 10000000);
-			player.sendPacket(MESSAGE);
-		}
 	}
 }

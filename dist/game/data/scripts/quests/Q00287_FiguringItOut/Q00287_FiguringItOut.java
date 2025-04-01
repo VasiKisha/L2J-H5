@@ -19,11 +19,11 @@ package quests.Q00287_FiguringItOut;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -169,19 +169,18 @@ public class Q00287_FiguringItOut extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 1);
 		if (partyMember == null)
 		{
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
 		if (getRandom(1000) < MONSTERS.get(npc.getId()))
 		{
 			giveItems(player, VIAL_OF_TANTA_BLOOD, 1);
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

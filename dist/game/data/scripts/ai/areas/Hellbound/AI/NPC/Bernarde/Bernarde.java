@@ -18,6 +18,7 @@ package ai.areas.Hellbound.AI.NPC.Bernarde;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 
 import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
@@ -53,7 +54,7 @@ public class Bernarde extends AbstractNpcAI
 			{
 				if ((HellboundEngine.getInstance().getLevel() == 2) //
 					&& (player.getInventory().getInventoryItemCount(DARION_BADGE, -1, false) >= 5) //
-					&& player.exchangeItemsById("Quest", npc, DARION_BADGE, 5, HOLY_WATER, 1, true))
+					&& player.exchangeItemsById(ItemProcessType.QUEST, npc, DARION_BADGE, 5, HOLY_WATER, 1, true))
 				{
 					return "32300-02b.htm";
 				}

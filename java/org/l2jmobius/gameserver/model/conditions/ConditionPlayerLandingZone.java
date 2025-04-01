@@ -23,7 +23,7 @@ import org.l2jmobius.gameserver.model.zone.ZoneId;
 
 /**
  * The Class ConditionPlayerLandingZone.
- * @author kerberos
+ * @author Kerberos
  */
 public class ConditionPlayerLandingZone extends Condition
 {

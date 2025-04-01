@@ -16,15 +16,15 @@
  */
 package instances.NornilsGarden;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.quest.QuestState;
@@ -33,7 +33,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import instances.AbstractInstance;
 import quests.Q00179_IntoTheLargeCavern.Q00179_IntoTheLargeCavern;
@@ -403,7 +403,7 @@ public class NornilsGarden extends AbstractInstance
 				player.sendPacket(sm);
 				return "32330-07.html";
 			}
-			if (partyMember.getClassId().level() != 0)
+			if (partyMember.getPlayerClass().level() != 0)
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY);
 				sm.addPcName(partyMember);
@@ -442,7 +442,7 @@ public class NornilsGarden extends AbstractInstance
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer() && !creature.isDead() && !creature.isTeleporting() && creature.asPlayer().isOnline())
 		{
@@ -466,7 +466,6 @@ public class NornilsGarden extends AbstractInstance
 				}
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
@@ -497,13 +496,13 @@ public class NornilsGarden extends AbstractInstance
 				super.teleportPlayer(player, EXIT_PPL, 0);
 			}
 		}
-		else if (CommonUtil.contains(FINAL_GATES, npc.getId()))
+		else if (ArrayUtil.contains(FINAL_GATES, npc.getId()))
 		{
 			if (event.equalsIgnoreCase("32260-02.html") || event.equalsIgnoreCase("32261-02.html") || event.equalsIgnoreCase("32262-02.html"))
 			{
 				st.unset("correct");
 			}
-			else if (Util.isDigit(event))
+			else if (StringUtil.isNumeric(event))
 			{
 				int correct = st.getInt("correct");
 				correct++;
@@ -537,7 +536,7 @@ public class NornilsGarden extends AbstractInstance
 	@Override
 	public String onTalk(Npc npc, Player player)
 	{
-		if (CommonUtil.contains(FINAL_GATES, npc.getId()))
+		if (ArrayUtil.contains(FINAL_GATES, npc.getId()))
 		{
 			final QuestState cst = player.getQuestState(Q00179_IntoTheLargeCavern.class.getSimpleName());
 			if ((cst != null) && (cst.getState() == State.STARTED))
@@ -557,7 +556,7 @@ public class NornilsGarden extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if ((npc.getId() == HERB_JAR) && !npc.isDead())
 		{
@@ -569,16 +568,15 @@ public class NornilsGarden extends AbstractInstance
 		{
 			spawn1(npc);
 		}
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState st = getQuestState(player, false);
 		if (st == null)
 		{
-			return null;
+			return;
 		}
 		
 		for (int[] gk : GATEKEEPERS)
@@ -603,7 +601,6 @@ public class NornilsGarden extends AbstractInstance
 				spawn2(npc);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

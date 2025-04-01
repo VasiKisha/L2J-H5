@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
  * Community Board handler.
@@ -218,7 +218,7 @@ public class CommunityBoardHandler implements IHandler<IParseBoardHandler, Strin
 	 */
 	public static void separateAndSend(String html, Player player)
 	{
-		Util.sendCBHtml(player, html);
+		HtmlUtil.sendCBHtml(player, html);
 	}
 	
 	public static CommunityBoardHandler getInstance()

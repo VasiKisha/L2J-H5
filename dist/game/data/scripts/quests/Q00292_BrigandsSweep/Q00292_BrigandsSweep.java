@@ -20,14 +20,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Brigands Sweep (292)
@@ -109,10 +109,10 @@ public class Q00292_BrigandsSweep extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			final int chance = getRandom(10);
 			if (chance > 5)
@@ -138,7 +138,6 @@ public class Q00292_BrigandsSweep extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

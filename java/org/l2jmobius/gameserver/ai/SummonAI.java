@@ -20,10 +20,6 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_FOLLOW;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-
 import java.util.concurrent.Future;
 
 import org.l2jmobius.Config;
@@ -76,7 +72,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	{
 		if (_startFollow)
 		{
-			setIntention(AI_INTENTION_FOLLOW, _actor.asSummon().getOwner());
+			setIntention(Intention.FOLLOW, _actor.asSummon().getOwner());
 		}
 		else
 		{
@@ -85,12 +81,12 @@ public class SummonAI extends PlayableAI implements Runnable
 	}
 	
 	@Override
-	synchronized void changeIntention(CtrlIntention intention, Object arg0, Object arg1)
+	synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
 	{
 		switch (intention)
 		{
-			case AI_INTENTION_ACTIVE:
-			case AI_INTENTION_FOLLOW:
+			case ACTIVE:
+			case FOLLOW:
 			{
 				startAvoidTask();
 				break;
@@ -138,7 +134,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		clientStopMoving(null);
 		final Summon summon = _actor.asSummon();
 		summon.setFollowStatus(false);
-		setIntention(AI_INTENTION_IDLE);
+		setIntention(Intention.IDLE);
 		_startFollow = val;
 		_actor.doCast(_skill);
 	}
@@ -150,7 +146,7 @@ public class SummonAI extends PlayableAI implements Runnable
 			return;
 		}
 		
-		setIntention(AI_INTENTION_IDLE);
+		setIntention(Intention.IDLE);
 		_actor.asSummon().doPickupItem(getTarget());
 	}
 	
@@ -161,11 +157,11 @@ public class SummonAI extends PlayableAI implements Runnable
 			return;
 		}
 		
-		setIntention(AI_INTENTION_IDLE);
+		setIntention(Intention.IDLE);
 	}
 	
 	@Override
-	public void onEvtThink()
+	public void onActionThink()
 	{
 		if (_thinking || _actor.isCastingNow() || _actor.isAllSkillsDisabled())
 		{
@@ -178,22 +174,22 @@ public class SummonAI extends PlayableAI implements Runnable
 		{
 			switch (getIntention())
 			{
-				case AI_INTENTION_ATTACK:
+				case ATTACK:
 				{
 					thinkAttack();
 					break;
 				}
-				case AI_INTENTION_CAST:
+				case CAST:
 				{
 					thinkCast();
 					break;
 				}
-				case AI_INTENTION_PICK_UP:
+				case PICK_UP:
 				{
 					thinkPickUp();
 					break;
 				}
-				case AI_INTENTION_INTERACT:
+				case INTERACT:
 				{
 					thinkInteract();
 					break;
@@ -207,7 +203,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	}
 	
 	@Override
-	protected void onEvtFinishCasting()
+	protected void onActionFinishCasting()
 	{
 		if (_lastAttack == null)
 		{
@@ -215,23 +211,23 @@ public class SummonAI extends PlayableAI implements Runnable
 		}
 		else
 		{
-			setIntention(AI_INTENTION_ATTACK, _lastAttack);
+			setIntention(Intention.ATTACK, _lastAttack);
 			_lastAttack = null;
 		}
 	}
 	
 	@Override
-	protected void onEvtAttacked(Creature attacker)
+	protected void onActionAttacked(Creature attacker)
 	{
-		super.onEvtAttacked(attacker);
+		super.onActionAttacked(attacker);
 		
 		avoidAttack(attacker);
 	}
 	
 	@Override
-	protected void onEvtEvaded(Creature attacker)
+	protected void onActionEvaded(Creature attacker)
 	{
-		super.onEvtEvaded(attacker);
+		super.onActionEvaded(attacker);
 		
 		avoidAttack(attacker);
 	}
@@ -253,10 +249,12 @@ public class SummonAI extends PlayableAI implements Runnable
 			return;
 		}
 		_startAvoid = false;
-		if (_clientMoving || _actor.isDead() || _actor.isMovementDisabled())
+		
+		if (_actor.isMoving() || _actor.isDead() || _actor.isMovementDisabled())
 		{
 			return;
 		}
+		
 		final int ownerX = _actor.asSummon().getOwner().getX();
 		final int ownerY = _actor.asSummon().getOwner().getY();
 		final double angle = Math.toRadians(Rnd.get(-90, 90)) + Math.atan2(ownerY - _actor.getY(), ownerX - _actor.getX());
@@ -273,11 +271,11 @@ public class SummonAI extends PlayableAI implements Runnable
 		_startFollow = !_startFollow;
 		switch (getIntention())
 		{
-			case AI_INTENTION_ACTIVE:
-			case AI_INTENTION_FOLLOW:
-			case AI_INTENTION_IDLE:
-			case AI_INTENTION_MOVE_TO:
-			case AI_INTENTION_PICK_UP:
+			case ACTIVE:
+			case FOLLOW:
+			case IDLE:
+			case MOVE_TO:
+			case PICK_UP:
 			{
 				_actor.asSummon().setFollowStatus(_startFollow);
 			}
@@ -292,7 +290,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	@Override
 	protected void onIntentionCast(Skill skill, WorldObject target)
 	{
-		if (getIntention() == AI_INTENTION_ATTACK)
+		if (getIntention() == Intention.ATTACK)
 		{
 			_lastAttack = getAttackTarget();
 		}

@@ -16,15 +16,15 @@
  */
 package ai.areas.Hellbound.AI;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
@@ -77,7 +77,7 @@ public class Amaskari extends AbstractNpcAI
 		{
 			npc.broadcastSay(ChatType.NPC_GENERAL, AMASKARI_NPCSTRING_ID[2]);
 			npc.asMonster().clearAggroList();
-			npc.asMonster().getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			npc.asMonster().getAI().setIntention(Intention.ACTIVE);
 			npc.setInvul(false);
 			// npc.doCast(INVINCIBILITY.getSkill())
 		}
@@ -97,7 +97,7 @@ public class Amaskari extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if ((npc.getId() == AMASKARI) && (getRandom(1000) < 25))
 		{
@@ -111,11 +111,10 @@ public class Amaskari extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == AMASKARI_PRISONER)
 		{
@@ -131,7 +130,7 @@ public class Amaskari extends AbstractNpcAI
 				else
 				{
 					master.clearAggroList();
-					master.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+					master.getAI().setIntention(Intention.ACTIVE);
 					if (info == null)
 					{
 						master.doCast(BUFF[0].getSkill());
@@ -165,13 +164,11 @@ public class Amaskari extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("onspawn_msg", (getRandom(3) + 1) * 30000, npc, null);
-		return super.onSpawn(npc);
 	}
 }

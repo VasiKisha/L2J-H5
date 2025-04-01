@@ -21,9 +21,7 @@
 package org.l2jmobius.commons.util;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,14 +41,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.ErrorHandler;
 import org.xml.sax.SAXParseException;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.file.filter.XMLFilter;
-import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.holders.MinionHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 
 /**
  * Interface for XML parsers.
@@ -58,22 +51,19 @@ import org.l2jmobius.gameserver.model.holders.SkillHolder;
  */
 public interface IXmlReader
 {
-	Logger LOGGER = Logger.getLogger(IXmlReader.class.getName());
+	static final Logger LOGGER = Logger.getLogger(IXmlReader.class.getName());
 	
-	String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
-	String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
-	/** The default file filter, ".xml" files only. */
-	XMLFilter XML_FILTER = new XMLFilter();
+	static final String JAXP_SCHEMA_LANGUAGE = "http://java.sun.com/xml/jaxp/properties/schemaLanguage";
+	static final String W3C_XML_SCHEMA = "http://www.w3.org/2001/XMLSchema";
 	
 	/**
-	 * This method can be used to load/reload the data.<br>
-	 * It's highly recommended to clear the data storage, either the list or map.
+	 * Loads or reloads the data. It is recommended to clear the data storage (either a list or a map) before loading.
 	 */
 	void load();
 	
 	/**
-	 * Wrapper for {@link #parseFile(File)} method.
-	 * @param path the relative path to the datapack root of the XML file to parse.
+	 * Parses an XML file located within the datapack directory. This is a helper method for {@link #parseFile(File)}.
+	 * @param path the relative path of the XML file within the datapack directory.
 	 */
 	default void parseDatapackFile(String path)
 	{
@@ -81,73 +71,52 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a single XML file.<br>
-	 * If the file was successfully parsed, call {@link #parseDocument(Document, File)} for the parsed document.<br>
-	 * <b>Validation is enforced.</b>
-	 * @param f the XML file to parse.
+	 * Parses a single XML file. Calls {@link #parseDocument(Document, File)} if the file is successfully parsed. <b>Validation is enabled by default.</b>
+	 * @param file the XML file to parse.
 	 */
-	default void parseFile(File f)
+	default void parseFile(File file)
 	{
-		if (!getCurrentFileFilter().accept(f))
+		if (!isValidXmlFile(file))
 		{
-			LOGGER.warning("Could not parse " + f.getName() + " is not a file or it doesn't exist!");
+			LOGGER.warning("Cannot parse " + file.getName() + ": file does not exist or is not valid.");
 			return;
 		}
 		
-		final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-		dbf.setNamespaceAware(true);
-		dbf.setValidating(isValidating());
-		dbf.setIgnoringComments(isIgnoringComments());
+		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+		factory.setNamespaceAware(true);
+		factory.setValidating(isValidating());
+		factory.setIgnoringComments(true);
 		try
 		{
-			dbf.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
-			final DocumentBuilder db = dbf.newDocumentBuilder();
-			db.setErrorHandler(new XMLErrorHandler());
-			parseDocument(db.parse(f), f);
+			factory.setAttribute(JAXP_SCHEMA_LANGUAGE, W3C_XML_SCHEMA);
+			final DocumentBuilder builder = factory.newDocumentBuilder();
+			parseDocument(builder.parse(file), file);
 		}
 		catch (SAXParseException e)
 		{
-			LOGGER.log(Level.WARNING, "Could not parse file: " + f.getName() + " at line: " + e.getLineNumber() + ", column: " + e.getColumnNumber() + " :", e);
+			LOGGER.log(Level.WARNING, "Error parsing " + file.getName() + " at line " + e.getLineNumber() + ", column " + e.getColumnNumber() + ".", e);
 		}
 		catch (Exception e)
 		{
-			LOGGER.log(Level.WARNING, "Could not parse file: " + f.getName(), e);
+			LOGGER.log(Level.WARNING, "Error parsing " + file.getName(), e);
 		}
 	}
 	
 	/**
-	 * Checks if XML validation is enabled.
-	 * @return {@code true} if it Is enabled, {@code false} otherwise
+	 * Parses XML files in the specified directory. This is a helper method for {@link #parseDirectory(File, boolean)}.
+	 * @param directory the path to the directory with XML files.
+	 * @return {@code false} if the directory is not found, {@code true} otherwise.
 	 */
-	default boolean isValidating()
+	default boolean parseDirectory(File directory)
 	{
-		return true;
+		return parseDirectory(directory, false);
 	}
 	
 	/**
-	 * Checks if XML comments are ignored.
-	 * @return {@code true} if its comments are ignored, {@code false} otherwise
-	 */
-	default boolean isIgnoringComments()
-	{
-		return true;
-	}
-	
-	/**
-	 * Wrapper for {@link #parseDirectory(File, boolean)}.
-	 * @param file the path to the directory where the XML files are.
-	 * @return {@code false} if it fails to find the directory, {@code true} otherwise.
-	 */
-	default boolean parseDirectory(File file)
-	{
-		return parseDirectory(file, false);
-	}
-	
-	/**
-	 * Wrapper for {@link #parseDirectory(File, boolean)}.
-	 * @param path the path to the directory where the XML files are
-	 * @param recursive parses all sub folders if there is
-	 * @return {@code false} if it fails to find the directory, {@code true} otherwise
+	 * Parses XML files in a directory within the datapack. This is a helper method for {@link #parseDirectory(File, boolean)}.
+	 * @param path the path to the directory within the datapack.
+	 * @param recursive if {@code true}, parses files in all subdirectories.
+	 * @return {@code false} if the directory is not found, {@code true} otherwise.
 	 */
 	default boolean parseDatapackDirectory(String path, boolean recursive)
 	{
@@ -155,45 +124,46 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Loads all XML files from {@code path} and calls {@link #parseFile(File)} for each one of them.
-	 * @param dir the directory object to scan.
-	 * @param recursive parses all sub folders if there is.
-	 * @return {@code false} if it fails to find the directory, {@code true} otherwise.
+	 * Loads all XML files from the specified directory and parses each file.
+	 * @param directory the directory to scan for XML files.
+	 * @param recursive if {@code true}, parses files in all subdirectories.
+	 * @return {@code false} if the directory is not found, {@code true} otherwise.
 	 */
-	default boolean parseDirectory(File dir, boolean recursive)
+	default boolean parseDirectory(File directory, boolean recursive)
 	{
-		if (!dir.exists())
+		if (!directory.exists())
 		{
-			LOGGER.warning("Folder " + dir.getAbsolutePath() + " doesn't exist!");
+			LOGGER.warning("Directory not found: " + directory.getAbsolutePath());
 			return false;
 		}
 		
+		// If multithreading is enabled, use a thread pool to parse files.
 		if (Config.THREADS_FOR_LOADING)
 		{
 			final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
-			final List<Future<?>> futures = new ArrayList<>();
+			final List<Future<?>> tasks = new ArrayList<>();
 			
-			final File[] listOfFiles = dir.listFiles();
-			if (listOfFiles != null)
+			final File[] files = directory.listFiles();
+			if (files != null)
 			{
-				for (File file : listOfFiles)
+				for (File file : files)
 				{
 					if (recursive && file.isDirectory())
 					{
-						parseDirectory(file, recursive);
+						parseDirectory(file, true);
 					}
-					else if (getCurrentFileFilter().accept(file))
+					else if (isValidXmlFile(file))
 					{
-						futures.add(executorService.schedule(() -> parseFile(file), 0, TimeUnit.MILLISECONDS));
+						tasks.add(executorService.schedule(() -> parseFile(file), 0, TimeUnit.MILLISECONDS));
 					}
 				}
 			}
 			
-			for (Future<?> future : futures)
+			for (Future<?> task : tasks)
 			{
 				try
 				{
-					future.get();
+					task.get();
 				}
 				catch (Exception e)
 				{
@@ -209,21 +179,21 @@ public interface IXmlReader
 			catch (InterruptedException e)
 			{
 				Thread.currentThread().interrupt();
-				LOGGER.warning("Directory parsing interrupted: " + e.getMessage());
+				LOGGER.warning("Parsing process was interrupted: " + e.getMessage());
 			}
 		}
-		else
+		else // Parse files sequentially if multithreading is not enabled.
 		{
-			final File[] listOfFiles = dir.listFiles();
-			if (listOfFiles != null)
+			final File[] files = directory.listFiles();
+			if (files != null)
 			{
-				for (File file : listOfFiles)
+				for (File file : files)
 				{
 					if (recursive && file.isDirectory())
 					{
-						parseDirectory(file, recursive);
+						parseDirectory(file, true);
 					}
-					else if (getCurrentFileFilter().accept(file))
+					else if (isValidXmlFile(file))
 					{
 						parseFile(file);
 					}
@@ -235,18 +205,17 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Abstract method that when implemented will parse the current document.<br>
-	 * Is expected to be call from {@link #parseFile(File)}.
-	 * @param doc the current document to parse
-	 * @param f the current file
+	 * Abstract method for parsing the current document. Called from {@link #parseFile(File)}.
+	 * @param document the document to parse
+	 * @param file the file being processed
 	 */
-	void parseDocument(Document doc, File f);
+	void parseDocument(Document document, File file);
 	
 	/**
-	 * Parses a boolean value.
-	 * @param node the node to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * Parses a boolean value from the given node.
+	 * @param node the XML node to parse
+	 * @param defaultValue the default value to return if the node is null
+	 * @return the parsed boolean value, or the default value if the node is null
 	 */
 	default Boolean parseBoolean(Node node, Boolean defaultValue)
 	{
@@ -254,9 +223,9 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a boolean value.
-	 * @param node the node to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * Parses a boolean value from the given node.
+	 * @param node the XML node to parse
+	 * @return the parsed boolean value, or null if the node is null
 	 */
 	default Boolean parseBoolean(Node node)
 	{
@@ -264,33 +233,33 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a boolean value.
-	 * @param attrs the attributes
+	 * Parses a boolean value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * @return the parsed boolean value, or null if the attribute is not found
 	 */
-	default Boolean parseBoolean(NamedNodeMap attrs, String name)
+	default Boolean parseBoolean(NamedNodeMap attributes, String name)
 	{
-		return parseBoolean(attrs.getNamedItem(name));
+		return parseBoolean(attributes.getNamedItem(name));
 	}
 	
 	/**
-	 * Parses a boolean value.
-	 * @param attrs the attributes
+	 * Parses a boolean value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * @param defaultValue the default value to return if the attribute is not found
+	 * @return the parsed boolean value, or the default value if the attribute is not found
 	 */
-	default Boolean parseBoolean(NamedNodeMap attrs, String name, Boolean defaultValue)
+	default Boolean parseBoolean(NamedNodeMap attributes, String name, Boolean defaultValue)
 	{
-		return parseBoolean(attrs.getNamedItem(name), defaultValue);
+		return parseBoolean(attributes.getNamedItem(name), defaultValue);
 	}
 	
 	/**
-	 * Parses a byte value.
-	 * @param node the node to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * Parses a byte value from the given node.
+	 * @param node the XML node to parse
+	 * @param defaultValue the default value to return if the node is null
+	 * @return the parsed byte value, or the default value if the node is null
 	 */
 	default Byte parseByte(Node node, Byte defaultValue)
 	{
@@ -298,9 +267,9 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a byte value.
-	 * @param node the node to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * Parses a byte value from the given node.
+	 * @param node the XML node to parse
+	 * @return the parsed byte value, or null if the node is null
 	 */
 	default Byte parseByte(Node node)
 	{
@@ -308,33 +277,33 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a byte value.
-	 * @param attrs the attributes
+	 * Parses a byte value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * @return the parsed byte value, or null if the attribute is not found
 	 */
-	default Byte parseByte(NamedNodeMap attrs, String name)
+	default Byte parseByte(NamedNodeMap attributes, String name)
 	{
-		return parseByte(attrs.getNamedItem(name));
+		return parseByte(attributes.getNamedItem(name));
 	}
 	
 	/**
-	 * Parses a byte value.
-	 * @param attrs the attributes
+	 * Parses a byte value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * @param defaultValue the default value to return if the attribute is not found
+	 * @return the parsed byte value, or the default value if the attribute is not found
 	 */
-	default Byte parseByte(NamedNodeMap attrs, String name, Byte defaultValue)
+	default Byte parseByte(NamedNodeMap attributes, String name, Byte defaultValue)
 	{
-		return parseByte(attrs.getNamedItem(name), defaultValue);
+		return parseByte(attributes.getNamedItem(name), defaultValue);
 	}
 	
 	/**
-	 * Parses a short value.
-	 * @param node the node to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * Parses a short value from the given node.
+	 * @param node the XML node to parse
+	 * @param defaultValue the default value to return if the node is null
+	 * @return the parsed short value, or the default value if the node is null
 	 */
 	default Short parseShort(Node node, Short defaultValue)
 	{
@@ -342,9 +311,9 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a short value.
-	 * @param node the node to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * Parses a short value from the given node.
+	 * @param node the XML node to parse
+	 * @return the parsed short value, or null if the node is null
 	 */
 	default Short parseShort(Node node)
 	{
@@ -352,33 +321,33 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a short value.
-	 * @param attrs the attributes
+	 * Parses a short value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * @return the parsed short value, or null if the attribute is not found
 	 */
-	default Short parseShort(NamedNodeMap attrs, String name)
+	default Short parseShort(NamedNodeMap attributes, String name)
 	{
-		return parseShort(attrs.getNamedItem(name));
+		return parseShort(attributes.getNamedItem(name));
 	}
 	
 	/**
-	 * Parses a short value.
-	 * @param attrs the attributes
+	 * Parses a short value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * @param defaultValue the default value to return if the attribute is not found
+	 * @return the parsed short value, or the default value if the attribute is not found
 	 */
-	default Short parseShort(NamedNodeMap attrs, String name, Short defaultValue)
+	default Short parseShort(NamedNodeMap attributes, String name, Short defaultValue)
 	{
-		return parseShort(attrs.getNamedItem(name), defaultValue);
+		return parseShort(attributes.getNamedItem(name), defaultValue);
 	}
 	
 	/**
-	 * Parses an int value.
-	 * @param node the node to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * Parses an int value from the given node.
+	 * @param node the XML node to parse
+	 * @param defaultValue the default value to return if the node is null
+	 * @return the parsed int value, or the default value if the node is null
 	 */
 	default int parseInt(Node node, Integer defaultValue)
 	{
@@ -386,9 +355,9 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses an int value.
-	 * @param node the node to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * Parses an int value from the given node, using -1 as the default value.
+	 * @param node the XML node to parse
+	 * @return the parsed int value, or -1 if the node is null
 	 */
 	default int parseInt(Node node)
 	{
@@ -396,10 +365,10 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses an integer value.
-	 * @param node the node to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * Parses an Integer value from the given node.
+	 * @param node the XML node to parse
+	 * @param defaultValue the default value to return if the node is null
+	 * @return the parsed Integer value, or the default value if the node is null
 	 */
 	default Integer parseInteger(Node node, Integer defaultValue)
 	{
@@ -407,9 +376,9 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses an integer value.
-	 * @param node the node to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * Parses an Integer value from the given node.
+	 * @param node the XML node to parse
+	 * @return the parsed Integer value, or null if the node is null
 	 */
 	default Integer parseInteger(Node node)
 	{
@@ -417,33 +386,33 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses an integer value.
-	 * @param attrs the attributes
+	 * Parses an Integer value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * @return the parsed Integer value, or null if the attribute is not found
 	 */
-	default Integer parseInteger(NamedNodeMap attrs, String name)
+	default Integer parseInteger(NamedNodeMap attributes, String name)
 	{
-		return parseInteger(attrs.getNamedItem(name));
+		return parseInteger(attributes.getNamedItem(name));
 	}
 	
 	/**
-	 * Parses an integer value.
-	 * @param attrs the attributes
+	 * Parses an Integer value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * @param defaultValue the default value to return if the attribute is not found
+	 * @return the parsed Integer value, or the default value if the attribute is not found
 	 */
-	default Integer parseInteger(NamedNodeMap attrs, String name, Integer defaultValue)
+	default Integer parseInteger(NamedNodeMap attributes, String name, Integer defaultValue)
 	{
-		return parseInteger(attrs.getNamedItem(name), defaultValue);
+		return parseInteger(attributes.getNamedItem(name), defaultValue);
 	}
 	
 	/**
-	 * Parses a long value.
-	 * @param node the node to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * Parses a Long value from the given node.
+	 * @param node the XML node to parse
+	 * @param defaultValue the default value to return if the node is null
+	 * @return the parsed Long value, or the default value if the node is null
 	 */
 	default Long parseLong(Node node, Long defaultValue)
 	{
@@ -451,9 +420,9 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a long value.
-	 * @param node the node to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * Parses a Long value from the given node.
+	 * @param node the XML node to parse
+	 * @return the parsed Long value, or null if the node is null
 	 */
 	default Long parseLong(Node node)
 	{
@@ -461,33 +430,33 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a long value.
-	 * @param attrs the attributes
+	 * Parses a Long value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * @return the parsed Long value, or null if the attribute is not found
 	 */
-	default Long parseLong(NamedNodeMap attrs, String name)
+	default Long parseLong(NamedNodeMap attributes, String name)
 	{
-		return parseLong(attrs.getNamedItem(name));
+		return parseLong(attributes.getNamedItem(name));
 	}
 	
 	/**
-	 * Parses a long value.
-	 * @param attrs the attributes
+	 * Parses a Long value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * @param defaultValue the default value to return if the attribute is not found
+	 * @return the parsed Long value, or the default value if the attribute is not found
 	 */
-	default Long parseLong(NamedNodeMap attrs, String name, Long defaultValue)
+	default Long parseLong(NamedNodeMap attributes, String name, Long defaultValue)
 	{
-		return parseLong(attrs.getNamedItem(name), defaultValue);
+		return parseLong(attributes.getNamedItem(name), defaultValue);
 	}
 	
 	/**
-	 * Parses a float value.
-	 * @param node the node to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * Parses a float value from the given node.
+	 * @param node the XML node to parse
+	 * @param defaultValue the default value to return if the node is null
+	 * @return the parsed float value, or the default value if the node is null
 	 */
 	default Float parseFloat(Node node, Float defaultValue)
 	{
@@ -495,9 +464,9 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a float value.
-	 * @param node the node to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * Parses a float value from the given node.
+	 * @param node the XML node to parse
+	 * @return the parsed float value, or null if the node is null
 	 */
 	default Float parseFloat(Node node)
 	{
@@ -505,33 +474,33 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a float value.
-	 * @param attrs the attributes
+	 * Parses a float value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * @return the parsed float value, or null if the attribute is not found
 	 */
-	default Float parseFloat(NamedNodeMap attrs, String name)
+	default Float parseFloat(NamedNodeMap attributes, String name)
 	{
-		return parseFloat(attrs.getNamedItem(name));
+		return parseFloat(attributes.getNamedItem(name));
 	}
 	
 	/**
-	 * Parses a float value.
-	 * @param attrs the attributes
+	 * Parses a float value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * @param defaultValue the default value to return if the attribute is not found
+	 * @return the parsed float value, or the default value if the attribute is not found
 	 */
-	default Float parseFloat(NamedNodeMap attrs, String name, Float defaultValue)
+	default Float parseFloat(NamedNodeMap attributes, String name, Float defaultValue)
 	{
-		return parseFloat(attrs.getNamedItem(name), defaultValue);
+		return parseFloat(attributes.getNamedItem(name), defaultValue);
 	}
 	
 	/**
-	 * Parses a double value.
-	 * @param node the node to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * Parses a double value from the given node.
+	 * @param node the XML node to parse
+	 * @param defaultValue the default value to return if the node is null
+	 * @return the parsed double value, or the default value if the node is null
 	 */
 	default Double parseDouble(Node node, Double defaultValue)
 	{
@@ -539,9 +508,9 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a double value.
-	 * @param node the node to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * Parses a double value from the given node.
+	 * @param node the XML node to parse
+	 * @return the parsed double value, or null if the node is null
 	 */
 	default Double parseDouble(Node node)
 	{
@@ -549,33 +518,33 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a double value.
-	 * @param attrs the attributes
+	 * Parses a double value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * @return the parsed double value, or null if the attribute is not found
 	 */
-	default Double parseDouble(NamedNodeMap attrs, String name)
+	default Double parseDouble(NamedNodeMap attributes, String name)
 	{
-		return parseDouble(attrs.getNamedItem(name));
+		return parseDouble(attributes.getNamedItem(name));
 	}
 	
 	/**
-	 * Parses a double value.
-	 * @param attrs the attributes
+	 * Parses a double value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * @param defaultValue the default value to return if the attribute is not found
+	 * @return the parsed double value, or the default value if the attribute is not found
 	 */
-	default Double parseDouble(NamedNodeMap attrs, String name, Double defaultValue)
+	default Double parseDouble(NamedNodeMap attributes, String name, Double defaultValue)
 	{
-		return parseDouble(attrs.getNamedItem(name), defaultValue);
+		return parseDouble(attributes.getNamedItem(name), defaultValue);
 	}
 	
 	/**
-	 * Parses a string value.
-	 * @param node the node to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * Parses a String value from the given node.
+	 * @param node the XML node to parse
+	 * @param defaultValue the default value to return if the node is null
+	 * @return the parsed String value, or the default value if the node is null
 	 */
 	default String parseString(Node node, String defaultValue)
 	{
@@ -583,9 +552,9 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a string value.
-	 * @param node the node to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * Parses a String value from the given node.
+	 * @param node the XML node to parse
+	 * @return the parsed String value, or null if the node is null
 	 */
 	default String parseString(Node node)
 	{
@@ -593,47 +562,37 @@ public interface IXmlReader
 	}
 	
 	/**
-	 * Parses a string value.
-	 * @param attrs the attributes
+	 * Parses a String value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @return if the node is not null, the value of the parsed node, otherwise null
+	 * @return the parsed String value, or null if the attribute is not found
 	 */
-	default String parseString(NamedNodeMap attrs, String name)
+	default String parseString(NamedNodeMap attributes, String name)
 	{
-		return parseString(attrs.getNamedItem(name));
+		return parseString(attributes.getNamedItem(name));
 	}
 	
 	/**
-	 * Parses a string value.
-	 * @param attrs the attributes
+	 * Parses a String value from the specified attribute in the given attributes map.
+	 * @param attributes the attributes map
 	 * @param name the name of the attribute to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null, the value of the parsed node, otherwise the default value
+	 * @param defaultValue the default value to return if the attribute is not found
+	 * @return the parsed String value, or the default value if the attribute is not found
 	 */
-	default String parseString(NamedNodeMap attrs, String name, String defaultValue)
+	default String parseString(NamedNodeMap attributes, String name, String defaultValue)
 	{
-		return parseString(attrs.getNamedItem(name), defaultValue);
-	}
-	
-	default Location parseLocation(Node n)
-	{
-		final NamedNodeMap attrs = n.getAttributes();
-		final int x = parseInteger(attrs, "x");
-		final int y = parseInteger(attrs, "y");
-		final int z = parseInteger(attrs, "z");
-		final int heading = parseInteger(attrs, "heading", 0);
-		return new Location(x, y, z, heading);
+		return parseString(attributes.getNamedItem(name), defaultValue);
 	}
 	
 	/**
-	 * Parses an enumerated value.
-	 * @param <T> the enumerated type
-	 * @param node the node to parse
-	 * @param clazz the class of the enumerated
-	 * @param defaultValue the default value
-	 * @return if the node is not null and the node value is valid the parsed value, otherwise the default value
+	 * Parses an enum value from the given node.
+	 * @param <T> the enum type
+	 * @param node the XML node to parse
+	 * @param enumClass the class of the enum type
+	 * @param defaultValue the default value to return if parsing fails
+	 * @return the parsed enum value, or the default value if parsing fails
 	 */
-	default <T extends Enum<T>> T parseEnum(Node node, Class<T> clazz, T defaultValue)
+	default <T extends Enum<T>> T parseEnum(Node node, Class<T> enumClass, T defaultValue)
 	{
 		if (node == null)
 		{
@@ -642,209 +601,137 @@ public interface IXmlReader
 		
 		try
 		{
-			return Enum.valueOf(clazz, node.getNodeValue());
+			return Enum.valueOf(enumClass, node.getNodeValue());
 		}
 		catch (IllegalArgumentException e)
 		{
-			LOGGER.warning("Invalid value specified for node: " + node.getNodeName() + " specified value: " + node.getNodeValue() + " should be enum value of \"" + clazz.getSimpleName() + "\" using default value: " + defaultValue);
+			LOGGER.warning("Invalid value for node: " + node.getNodeName() + ", specified value: " + node.getNodeValue() + " should be an enum of type \"" + enumClass.getSimpleName() + "\". Using default value: " + defaultValue);
 			return defaultValue;
 		}
 	}
 	
 	/**
-	 * Parses an enumerated value.
-	 * @param <T> the enumerated type
-	 * @param node the node to parse
-	 * @param clazz the class of the enumerated
-	 * @return if the node is not null and the node value is valid the parsed value, otherwise null
+	 * Parses an enum value from the given node.
+	 * @param <T> the enum type
+	 * @param node the XML node to parse
+	 * @param enumClass the class of the enum type
+	 * @return the parsed enum value, or null if parsing fails
 	 */
-	default <T extends Enum<T>> T parseEnum(Node node, Class<T> clazz)
+	default <T extends Enum<T>> T parseEnum(Node node, Class<T> enumClass)
 	{
-		return parseEnum(node, clazz, null);
+		return parseEnum(node, enumClass, null);
 	}
 	
 	/**
-	 * Parses an enumerated value.
-	 * @param <T> the enumerated type
-	 * @param attrs the attributes
-	 * @param clazz the class of the enumerated
+	 * Parses an enum value from the specified attribute in the given attributes map.
+	 * @param <T> the enum type
+	 * @param attributes the attributes map
+	 * @param enumClass the class of the enum type
 	 * @param name the name of the attribute to parse
-	 * @return if the node is not null and the node value is valid the parsed value, otherwise null
+	 * @return the parsed enum value, or null if the attribute is not found or parsing fails
 	 */
-	default <T extends Enum<T>> T parseEnum(NamedNodeMap attrs, Class<T> clazz, String name)
+	default <T extends Enum<T>> T parseEnum(NamedNodeMap attributes, Class<T> enumClass, String name)
 	{
-		return parseEnum(attrs.getNamedItem(name), clazz);
+		return parseEnum(attributes.getNamedItem(name), enumClass);
 	}
 	
 	/**
-	 * Parses an enumerated value.
-	 * @param <T> the enumerated type
-	 * @param attrs the attributes
-	 * @param clazz the class of the enumerated
+	 * Parses an enum value from the specified attribute in the given attributes map.
+	 * @param <T> the enum type
+	 * @param attributes the attributes map
+	 * @param enumClass the class of the enum type
 	 * @param name the name of the attribute to parse
-	 * @param defaultValue the default value
-	 * @return if the node is not null and the node value is valid the parsed value, otherwise the default value
+	 * @param defaultValue the default value to return if parsing fails
+	 * @return the parsed enum value, or the default value if parsing fails
 	 */
-	default <T extends Enum<T>> T parseEnum(NamedNodeMap attrs, Class<T> clazz, String name, T defaultValue)
+	default <T extends Enum<T>> T parseEnum(NamedNodeMap attributes, Class<T> enumClass, String name, T defaultValue)
 	{
-		return parseEnum(attrs.getNamedItem(name), clazz, defaultValue);
+		return parseEnum(attributes.getNamedItem(name), enumClass, defaultValue);
 	}
 	
 	/**
-	 * @param node
-	 * @return parses all attributes to a Map
+	 * Parses all attributes from the given node into a map.
+	 * @param node the XML node to parse
+	 * @return a map containing all attributes of the node as key-value pairs
 	 */
 	default Map<String, Object> parseAttributes(Node node)
 	{
-		final NamedNodeMap attrs = node.getAttributes();
-		final Map<String, Object> map = new LinkedHashMap<>();
-		for (int i = 0; i < attrs.getLength(); i++)
+		final NamedNodeMap attributes = node.getAttributes();
+		final Map<String, Object> attributeMap = new LinkedHashMap<>();
+		for (int i = 0; i < attributes.getLength(); i++)
 		{
-			final Node att = attrs.item(i);
-			map.put(att.getNodeName(), att.getNodeValue());
+			final Node attribute = attributes.item(i);
+			attributeMap.put(attribute.getNodeName(), attribute.getNodeValue());
 		}
-		return map;
+		return attributeMap;
 	}
 	
 	/**
-	 * @param n
-	 * @return a map of parameters
-	 */
-	default Map<String, Object> parseParameters(Node n)
-	{
-		final Map<String, Object> parameters = new HashMap<>();
-		for (Node parameters_node = n.getFirstChild(); parameters_node != null; parameters_node = parameters_node.getNextSibling())
-		{
-			NamedNodeMap attrs = parameters_node.getAttributes();
-			switch (parameters_node.getNodeName().toLowerCase())
-			{
-				case "param":
-				{
-					parameters.put(parseString(attrs, "name"), parseString(attrs, "value"));
-					break;
-				}
-				case "skill":
-				{
-					parameters.put(parseString(attrs, "name"), new SkillHolder(parseInteger(attrs, "id"), parseInteger(attrs, "level")));
-					break;
-				}
-				case "location":
-				{
-					parameters.put(parseString(attrs, "name"), new Location(parseInteger(attrs, "x"), parseInteger(attrs, "y"), parseInteger(attrs, "z"), parseInteger(attrs, "heading", 0)));
-					break;
-				}
-				case "minions":
-				{
-					final List<MinionHolder> minions = new ArrayList<>(1);
-					for (Node minions_node = parameters_node.getFirstChild(); minions_node != null; minions_node = minions_node.getNextSibling())
-					{
-						if (minions_node.getNodeName().equalsIgnoreCase("npc"))
-						{
-							attrs = minions_node.getAttributes();
-							minions.add(new MinionHolder(parseInteger(attrs, "id"), parseInteger(attrs, "count"), parseInteger(attrs, "max", 0), parseInteger(attrs, "respawnTime"), parseInteger(attrs, "weightPoint", 0)));
-						}
-					}
-					
-					if (!minions.isEmpty())
-					{
-						parameters.put(parseString(parameters_node.getAttributes(), "name"), minions);
-					}
-					break;
-				}
-			}
-		}
-		return parameters;
-	}
-	
-	/**
-	 * Executes action for each child of node
-	 * @param node
-	 * @param action
+	 * Applies an action to each child node.
+	 * @param node the parent XML node
+	 * @param action the action to perform on each child node
 	 */
 	default void forEach(Node node, Consumer<Node> action)
 	{
-		forEach(node, a -> true, action);
+		forEach(node, _ -> true, action);
 	}
 	
 	/**
-	 * Executes action for each child that matches nodeName
-	 * @param node
-	 * @param nodeName
-	 * @param action
+	 * Applies an action to each child node with a matching name.
+	 * @param node the parent XML node
+	 * @param nodeName the name of the child nodes to match
+	 * @param action the action to perform on each matching child node
 	 */
 	default void forEach(Node node, String nodeName, Consumer<Node> action)
 	{
-		forEach(node, innerNode -> nodeName.equalsIgnoreCase(innerNode.getNodeName()), action);
+		forEach(node, child -> nodeName.equalsIgnoreCase(child.getNodeName()), action);
 	}
 	
 	/**
-	 * Executes action for each child of node if matches the filter specified
-	 * @param node
-	 * @param filter
-	 * @param action
+	 * Applies an action to each child node that meets a specified filter condition.
+	 * @param node the parent XML node
+	 * @param filter a filter to select specific child nodes
+	 * @param action the action to perform on each matching child node
 	 */
 	default void forEach(Node node, Predicate<Node> filter, Consumer<Node> action)
 	{
-		final NodeList list = node.getChildNodes();
-		for (int i = 0; i < list.getLength(); i++)
+		final NodeList children = node.getChildNodes();
+		for (int i = 0; i < children.getLength(); i++)
 		{
-			final Node targetNode = list.item(i);
-			if (filter.test(targetNode))
+			final Node childNode = children.item(i);
+			if (filter.test(childNode))
 			{
-				action.accept(targetNode);
+				action.accept(childNode);
 			}
 		}
 	}
 	
 	/**
-	 * @param node
-	 * @return {@code true} if the node is an element type, {@code false} otherwise
+	 * Checks if the specified file is a valid XML file.
+	 * @param file the file to check
+	 * @return true if the file is an XML file and exists, false otherwise
+	 */
+	default boolean isValidXmlFile(File file)
+	{
+		return (file != null) && file.isFile() && file.getName().toLowerCase().endsWith(".xml");
+	}
+	
+	/**
+	 * Checks if XML validation is enabled.
+	 * @return {@code true} if validation is enabled, {@code false} otherwise.
+	 */
+	default boolean isValidating()
+	{
+		return true;
+	}
+	
+	/**
+	 * Checks if a node is of element type.
+	 * @param node the XML node to check
+	 * @return {@code true} if the node is an element, {@code false} otherwise
 	 */
 	static boolean isNode(Node node)
 	{
 		return node.getNodeType() == Node.ELEMENT_NODE;
-	}
-	
-	/**
-	 * @param node
-	 * @return {@code true} if the node is an element type, {@code false} otherwise
-	 */
-	static boolean isText(Node node)
-	{
-		return node.getNodeType() == Node.TEXT_NODE;
-	}
-	
-	/**
-	 * Gets the current file filter.
-	 * @return the current file filter
-	 */
-	default FileFilter getCurrentFileFilter()
-	{
-		return XML_FILTER;
-	}
-	
-	/**
-	 * Simple XML error handler.
-	 * @author Zoey76
-	 */
-	class XMLErrorHandler implements ErrorHandler
-	{
-		@Override
-		public void warning(SAXParseException e) throws SAXParseException
-		{
-			throw e;
-		}
-		
-		@Override
-		public void error(SAXParseException e) throws SAXParseException
-		{
-			throw e;
-		}
-		
-		@Override
-		public void fatalError(SAXParseException e) throws SAXParseException
-		{
-			throw e;
-		}
 	}
 }

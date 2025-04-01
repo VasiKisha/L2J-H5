@@ -28,11 +28,11 @@ import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.data.SpawnTable;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.data.xml.SpawnData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
-import org.l2jmobius.gameserver.instancemanager.RaidBossSpawnManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
+import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
@@ -43,7 +43,6 @@ import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles following admin commands: - show_moves - show_teleport - teleport_to_character - move_to - teleport_character
@@ -88,12 +87,12 @@ public class AdminTeleport implements IAdminCommandHandler
 		}
 		if (command.equals("admin_instant_move"))
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Instant move ready. Click where you want to go.");
+			activeChar.sendSysMessage("Instant move ready. Click where you want to go.");
 			activeChar.setTeleMode(1);
 		}
 		if (command.equals("admin_teleto r"))
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Instant move ready. Click where you want to go.");
+			activeChar.sendSysMessage("Instant move ready. Click where you want to go.");
 			activeChar.setTeleMode(2);
 		}
 		if (command.equals("admin_teleto end"))
@@ -129,7 +128,7 @@ public class AdminTeleport implements IAdminCommandHandler
 				final int x = Integer.parseInt(st.nextToken());
 				final int y = Integer.parseInt(st.nextToken());
 				final int z = Integer.parseInt(st.nextToken());
-				activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(x, y, z, 0));
+				activeChar.getAI().setIntention(Intention.MOVE_TO, new Location(x, y, z, 0));
 			}
 			catch (Exception e)
 			{
@@ -150,7 +149,7 @@ public class AdminTeleport implements IAdminCommandHandler
 			}
 			catch (NumberFormatException nfe)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //move_to <x> <y> <z>");
+				activeChar.sendSysMessage("Usage: //move_to <x> <y> <z>");
 				AdminHtml.showAdminHtml(activeChar, "teleports.htm");
 			}
 		}
@@ -164,7 +163,7 @@ public class AdminTeleport implements IAdminCommandHandler
 			catch (StringIndexOutOfBoundsException e)
 			{
 				// Case of empty coordinates
-				BuilderUtil.sendSysMessage(activeChar, "Wrong or no Coordinates given.");
+				activeChar.sendSysMessage("Wrong or no Coordinates given.");
 				showTeleportCharWindow(activeChar); // back to character teleport
 			}
 		}
@@ -188,7 +187,7 @@ public class AdminTeleport implements IAdminCommandHandler
 				final String[] param = command.split(" ");
 				if (param.length != 2)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //recall <playername>");
+					activeChar.sendSysMessage("Usage: //recall <playername>");
 					return false;
 				}
 				final String targetName = param[1];
@@ -255,7 +254,7 @@ public class AdminTeleport implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //go<north|south|east|west|up|down> [offset] (default 150)");
+				activeChar.sendSysMessage("Usage: //go<north|south|east|west|up|down> [offset] (default 150)");
 			}
 		}
 		else if (command.startsWith("admin_sendhome"))
@@ -264,7 +263,7 @@ public class AdminTeleport implements IAdminCommandHandler
 			st.nextToken(); // Skip command.
 			if (st.countTokens() > 1)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //sendhome <playername>");
+				activeChar.sendSysMessage("Usage: //sendhome <playername>");
 			}
 			else if (st.countTokens() == 1)
 			{
@@ -356,13 +355,13 @@ public class AdminTeleport implements IAdminCommandHandler
 			final int y = Integer.parseInt(y1);
 			final String z1 = st.nextToken();
 			final int z = Integer.parseInt(z1);
-			activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			activeChar.getAI().setIntention(Intention.IDLE);
 			activeChar.teleToLocation(x, y, z);
-			BuilderUtil.sendSysMessage(activeChar, "You have been teleported to " + coords);
+			activeChar.sendSysMessage("You have been teleported to " + coords);
 		}
 		catch (NoSuchElementException nsee)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Wrong or no Coordinates given.");
+			activeChar.sendSysMessage("Wrong or no Coordinates given.");
 		}
 	}
 	
@@ -440,7 +439,7 @@ public class AdminTeleport implements IAdminCommandHandler
 			// Check for jail
 			if (player.isJailed())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Sorry, player " + player.getName() + " is in Jail.");
+				activeChar.sendSysMessage("Sorry, player " + player.getName() + " is in Jail.");
 			}
 			else
 			{
@@ -448,14 +447,14 @@ public class AdminTeleport implements IAdminCommandHandler
 				if ((activeChar != null) && (activeChar.getInstanceId() >= 0))
 				{
 					player.setInstanceId(activeChar.getInstanceId());
-					BuilderUtil.sendSysMessage(activeChar, "You have recalled " + player.getName());
+					activeChar.sendSysMessage("You have recalled " + player.getName());
 				}
 				else
 				{
 					player.setInstanceId(0);
 				}
 				player.sendMessage("Admin is teleporting you.");
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				player.getAI().setIntention(Intention.IDLE);
 				player.teleToLocation(loc, true);
 			}
 		}
@@ -492,9 +491,9 @@ public class AdminTeleport implements IAdminCommandHandler
 			final int x = player.getX();
 			final int y = player.getY();
 			final int z = player.getZ();
-			activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			activeChar.getAI().setIntention(Intention.IDLE);
 			activeChar.teleToLocation(new Location(x, y, z), true);
-			BuilderUtil.sendSysMessage(activeChar, "You have teleported to character " + player.getName() + ".");
+			activeChar.sendSysMessage("You have teleported to character " + player.getName() + ".");
 		}
 	}
 	
@@ -515,16 +514,16 @@ public class AdminTeleport implements IAdminCommandHandler
 			statement.close();
 			if (count == 0)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Character not found or position unaltered.");
+				activeChar.sendSysMessage("Character not found or position unaltered.");
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Player's [" + name + "] position is now set to (" + x + "," + y + "," + z + ").");
+				activeChar.sendSysMessage("Player's [" + name + "] position is now set to (" + x + "," + y + "," + z + ").");
 			}
 		}
 		catch (SQLException se)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "SQLException while changing offline character's position");
+			activeChar.sendSysMessage("SQLException while changing offline character's position");
 		}
 	}
 	
@@ -537,14 +536,14 @@ public class AdminTeleport implements IAdminCommandHandler
 			Spawn spawn = target.getSpawn();
 			if (spawn == null)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Incorrect monster spawn.");
+				activeChar.sendSysMessage("Incorrect monster spawn.");
 				LOGGER.warning("ERROR: NPC " + target.getObjectId() + " has a 'null' spawn.");
 				return;
 			}
 			final int respawnTime = spawn.getRespawnDelay() / 1000;
 			target.deleteMe();
 			spawn.stopRespawn();
-			SpawnTable.getInstance().deleteSpawn(spawn, true);
+			SpawnData.getInstance().deleteSpawn(spawn);
 			
 			try
 			{
@@ -561,18 +560,18 @@ public class AdminTeleport implements IAdminCommandHandler
 				{
 					spawn.setInstanceId(0);
 				}
-				SpawnTable.getInstance().addNewSpawn(spawn, true);
+				SpawnData.getInstance().addNewSpawn(spawn);
 				spawn.init();
 				if (respawnTime <= 0)
 				{
 					spawn.stopRespawn();
 				}
 				
-				BuilderUtil.sendSysMessage(activeChar, "Created " + target.getTemplate().getName() + " on " + target.getObjectId() + ".");
+				activeChar.sendSysMessage("Created " + target.getTemplate().getName() + " on " + target.getObjectId() + ".");
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Target is not in game.");
+				activeChar.sendSysMessage("Target is not in game.");
 			}
 		}
 		else if (obj instanceof RaidBoss)
@@ -583,7 +582,7 @@ public class AdminTeleport implements IAdminCommandHandler
 			final double curMP = target.getCurrentMp();
 			if (spawn == null)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Incorrect raid spawn.");
+				activeChar.sendSysMessage("Incorrect raid spawn.");
 				LOGGER.warning("ERROR: NPC Id" + target.getId() + " has a 'null' spawn.");
 				return;
 			}

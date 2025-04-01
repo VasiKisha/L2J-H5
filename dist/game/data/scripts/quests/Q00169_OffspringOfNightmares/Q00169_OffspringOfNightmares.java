@@ -16,14 +16,17 @@
  */
 package quests.Q00169_OffspringOfNightmares;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Offspring of Nightmares (169)
@@ -42,6 +45,7 @@ public class Q00169_OffspringOfNightmares extends Quest
 	private static final int PERFECT_SKULL = 1031;
 	// Misc
 	private static final int MIN_LEVEL = 15;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00169_OffspringOfNightmares()
 	{
@@ -71,13 +75,31 @@ public class Q00169_OffspringOfNightmares extends Quest
 				{
 					if (qs.isCond(2) && hasQuestItems(player, PERFECT_SKULL))
 					{
-						giveItems(player, BONE_GAITERS, 1);
-						addExpAndSp(player, 17475, 818);
-						giveAdena(player, 17030 + (10 * getQuestItemsCount(player, CRACKED_SKULL)), true);
-						qs.exitQuest(false, true);
-						showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000); // TODO: Newbie Guide
-						htmltext = event;
+						// Newbie Guide.
+						final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+						if (newbieGuide != null)
+						{
+							final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+							if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+							{
+								setNRMemo(newbieGuideQs, GUIDE_MISSION);
+								setNRMemoState(newbieGuideQs, GUIDE_MISSION, 100000);
+								showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+							}
+							else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 100000000) / 10000000) != 1)
+							{
+								setNRMemo(newbieGuideQs, GUIDE_MISSION);
+								setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 10000000);
+								showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+							}
+						}
 					}
+					
+					giveItems(player, BONE_GAITERS, 1);
+					addExpAndSp(player, 17475, 818);
+					giveAdena(player, 17030 + (10 * getQuestItemsCount(player, CRACKED_SKULL)), true);
+					qs.exitQuest(false, true);
+					htmltext = event;
 					break;
 				}
 			}
@@ -86,7 +108,7 @@ public class Q00169_OffspringOfNightmares extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isStarted())
@@ -102,7 +124,6 @@ public class Q00169_OffspringOfNightmares extends Quest
 				playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

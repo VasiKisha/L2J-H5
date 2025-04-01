@@ -20,7 +20,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
@@ -96,7 +96,7 @@ public class Relax extends AbstractEffect
 		}
 		else
 		{
-			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_REST);
+			effected.getAI().setIntention(Intention.REST);
 		}
 	}
 }

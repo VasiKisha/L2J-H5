@@ -19,8 +19,8 @@ package handlers.effecthandlers;
 import java.util.List;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -68,14 +68,14 @@ public class Confuse extends AbstractEffect
 	{
 		if (!effected.isPlayer())
 		{
-			effected.getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			effected.getAI().notifyAction(Action.THINK);
 		}
 	}
 	
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getAI().notifyEvent(CtrlEvent.EVT_CONFUSED);
+		effected.getAI().notifyAction(Action.CONFUSED);
 		
 		// Getting the possible targets.
 		final List<Creature> targetList = World.getInstance().getVisibleObjects(effected, Creature.class);
@@ -87,7 +87,7 @@ public class Confuse extends AbstractEffect
 			final Creature target = targetList.get(Rnd.get(targetList.size()));
 			// Attacking the target.
 			effected.setTarget(target);
-			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+			effected.getAI().setIntention(Intention.ATTACK, target);
 		}
 	}
 }

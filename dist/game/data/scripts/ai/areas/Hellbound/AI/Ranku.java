@@ -19,13 +19,13 @@ package ai.areas.Hellbound.AI;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.util.MinionList;
 
 import ai.AbstractNpcAI;
@@ -68,7 +68,7 @@ public class Ranku extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (npc.getId() == RANKU)
 		{
@@ -82,11 +82,10 @@ public class Ranku extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == MINION)
 		{
@@ -112,6 +111,5 @@ public class Ranku extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

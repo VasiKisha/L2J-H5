@@ -17,14 +17,14 @@
 package quests.Q00414_PathOfTheOrcRaider;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Path Of The Orc Raider (414)
@@ -78,7 +78,7 @@ public class Q00414_PathOfTheOrcRaider extends Quest
 		{
 			case "ACCEPT":
 			{
-				if (player.getClassId() == ClassId.ORC_FIGHTER)
+				if (player.getPlayerClass() == PlayerClass.ORC_FIGHTER)
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
@@ -101,7 +101,7 @@ public class Q00414_PathOfTheOrcRaider extends Quest
 						htmltext = "30570-02.htm";
 					}
 				}
-				else if (player.getClassId() == ClassId.ORC_RAIDER)
+				else if (player.getPlayerClass() == PlayerClass.ORC_RAIDER)
 				{
 					htmltext = "30570-02a.htm";
 				}
@@ -159,10 +159,10 @@ public class Q00414_PathOfTheOrcRaider extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -236,7 +236,6 @@ public class Q00414_PathOfTheOrcRaider extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

@@ -27,28 +27,29 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.RaidBossStatus;
-import org.l2jmobius.gameserver.instancemanager.RaidBossSpawnManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.npc.RaidBossStatus;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.LocationUtil;
 import org.l2jmobius.gameserver.util.MinionList;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 
@@ -539,11 +540,11 @@ public class TullyWorkshop extends AbstractNpcAI
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		final ClassId classId = player.getClassId();
+		final PlayerClass classId = player.getPlayerClass();
 		final int npcId = npc.getId();
 		if (TULLY_DOORLIST.containsKey(npcId))
 		{
-			if (classId.equalsOrChildOf(ClassId.MAESTRO))
+			if (classId.equalsOrChildOf(PlayerClass.MAESTRO))
 			{
 				return "doorman-01c.htm";
 			}
@@ -557,7 +558,7 @@ public class TullyWorkshop extends AbstractNpcAI
 			}
 			else if (!brokenContraptions.contains(npc.getObjectId()))
 			{
-				if (classId.equalsOrChildOf(ClassId.MAESTRO))
+				if (classId.equalsOrChildOf(PlayerClass.MAESTRO))
 				{
 					return "32371-01a.htm";
 				}
@@ -656,7 +657,7 @@ public class TullyWorkshop extends AbstractNpcAI
 				
 				for (int i = 0; i < REWARDS.length; i++)
 				{
-					if ((pl.getInventory().getInventoryItemCount(REWARDS[i], -1, false) > 0) && Util.checkIfInRange(300, pl, npc, true))
+					if ((pl.getInventory().getInventoryItemCount(REWARDS[i], -1, false) > 0) && LocationUtil.checkIfInRange(300, pl, npc, true))
 					{
 						haveItems[i] = true;
 						break;
@@ -684,7 +685,7 @@ public class TullyWorkshop extends AbstractNpcAI
 			
 			for (Player pl : party.getMembers())
 			{
-				if ((pl != null) && Util.checkIfInRange(6000, pl, npc, false))
+				if ((pl != null) && LocationUtil.checkIfInRange(6000, pl, npc, false))
 				{
 					pl.teleToLocation(26612, 248567, -2856);
 				}
@@ -747,7 +748,7 @@ public class TullyWorkshop extends AbstractNpcAI
 		}
 		else if (event.equalsIgnoreCase("despawn_servant") && !npc.isDead())
 		{
-			if ((npc.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK) && (npc.getAI().getIntention() != CtrlIntention.AI_INTENTION_CAST) && (npc.getCurrentHp() == npc.getMaxHp()))
+			if ((npc.getAI().getIntention() != Intention.ATTACK) && (npc.getAI().getIntention() != Intention.CAST) && (npc.getCurrentHp() == npc.getMaxHp()))
 			{
 				allowServantSpawn = true;
 				npc.deleteMe();
@@ -803,7 +804,7 @@ public class TullyWorkshop extends AbstractNpcAI
 			{
 				for (Player partyMember : party.getMembers())
 				{
-					if (!Util.checkIfInRange(300, partyMember, npc, true))
+					if (!LocationUtil.checkIfInRange(300, partyMember, npc, true))
 					{
 						return "32373-02.htm";
 					}
@@ -849,7 +850,7 @@ public class TullyWorkshop extends AbstractNpcAI
 			{
 				player.sendPacket(SystemMessageId.ONLY_A_PARTY_LEADER_CAN_MAKE_THE_REQUEST_TO_ENTER);
 			}
-			else if (!Util.checkIfInRange(4000, player, npc, true))
+			else if (!LocationUtil.checkIfInRange(4000, player, npc, true))
 			{
 				player.sendPacket(SystemMessageId.YOU_ARE_TOO_FAR_FROM_THE_NPC_FOR_THAT_TO_WORK);
 			}
@@ -858,7 +859,7 @@ public class TullyWorkshop extends AbstractNpcAI
 				final Location loc = TELE_COORDS.get(npcId)[direction];
 				for (Player partyMember : party.getMembers())
 				{
-					if (Util.checkIfInRange(4000, partyMember, npc, true))
+					if (LocationUtil.checkIfInRange(4000, partyMember, npc, true))
 					{
 						partyMember.teleToLocation(loc, true);
 					}
@@ -871,11 +872,11 @@ public class TullyWorkshop extends AbstractNpcAI
 			if (event.equalsIgnoreCase("touch_device"))
 			{
 				final int i0 = talkedContraptions.contains(npc.getObjectId()) ? 0 : 1;
-				final int i1 = player.getClassId().equalsOrChildOf(ClassId.MAESTRO) ? 6 : 3;
+				final int i1 = player.getPlayerClass().equalsOrChildOf(PlayerClass.MAESTRO) ? 6 : 3;
 				if (getRandom(1000) < ((i1 - i0) * 100))
 				{
 					talkedContraptions.add(npc.getObjectId());
-					htmltext = player.getClassId().equalsOrChildOf(ClassId.MAESTRO) ? "32371-03a.htm" : "32371-03.htm";
+					htmltext = player.getPlayerClass().equalsOrChildOf(PlayerClass.MAESTRO) ? "32371-03a.htm" : "32371-03.htm";
 				}
 				else
 				{
@@ -901,7 +902,7 @@ public class TullyWorkshop extends AbstractNpcAI
 					final int idx = postMortemSpawn.indexOf(npc);
 					if ((idx > -1) && (idx < 5))
 					{
-						player.addItem("Quest", REWARDS[idx], 1, npc, true);
+						player.addItem(ItemProcessType.QUEST, REWARDS[idx], 1, npc, true);
 						rewardedContraptions.add(npc.getObjectId());
 						if (idx != 0)
 						{
@@ -945,7 +946,7 @@ public class TullyWorkshop extends AbstractNpcAI
 					{
 						for (Player partyMember : party.getMembers())
 						{
-							if (Util.checkIfInRange(6000, partyMember, npc, true))
+							if (LocationUtil.checkIfInRange(6000, partyMember, npc, true))
 							{
 								partyMember.teleToLocation(-12501, 281397, -11936, true);
 							}
@@ -969,7 +970,7 @@ public class TullyWorkshop extends AbstractNpcAI
 				final Party party = player.getParty();
 				if (party == null)
 				{
-					if (!Util.checkIfInRange(400, player, npc, true))
+					if (!LocationUtil.checkIfInRange(400, player, npc, true))
 					{
 						htmltext = "32372-01b.htm";
 					}
@@ -983,7 +984,7 @@ public class TullyWorkshop extends AbstractNpcAI
 				{
 					for (Player partyMember : party.getMembers())
 					{
-						if (!Util.checkIfInRange(400, partyMember, npc, true))
+						if (!LocationUtil.checkIfInRange(400, partyMember, npc, true))
 						{
 							return "32372-01b.htm";
 						}
@@ -1015,7 +1016,7 @@ public class TullyWorkshop extends AbstractNpcAI
 						if ((target != null) && !target.isDead())
 						{
 							monster.addDamageHate(target, 0, 999);
-							monster.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target, null);
+							monster.getAI().setIntention(Intention.ATTACK, target, null);
 						}
 					}
 				}
@@ -1047,7 +1048,7 @@ public class TullyWorkshop extends AbstractNpcAI
 				
 				for (Player partyMember : party.getMembers())
 				{
-					if (!Util.checkIfInRange(3000, partyMember, npc, true))
+					if (!LocationUtil.checkIfInRange(3000, partyMember, npc, true))
 					{
 						return "32370-01f.htm";
 					}
@@ -1055,7 +1056,7 @@ public class TullyWorkshop extends AbstractNpcAI
 				
 				for (Player partyMember : party.getMembers())
 				{
-					if (Util.checkIfInRange(6000, partyMember, npc, true))
+					if (LocationUtil.checkIfInRange(6000, partyMember, npc, true))
 					{
 						partyMember.teleToLocation(-12176, 279696, -13596, true);
 					}
@@ -1073,7 +1074,7 @@ public class TullyWorkshop extends AbstractNpcAI
 				{
 					player.sendPacket(SystemMessageId.ONLY_A_PARTY_LEADER_CAN_MAKE_THE_REQUEST_TO_ENTER);
 				}
-				else if (!Util.checkIfInRange(3000, player, npc, true))
+				else if (!LocationUtil.checkIfInRange(3000, player, npc, true))
 				{
 					htmltext = "32467-04.htm";
 				}
@@ -1081,7 +1082,7 @@ public class TullyWorkshop extends AbstractNpcAI
 				{
 					for (Player partyMember : party.getMembers())
 					{
-						if (Util.checkIfInRange(6000, partyMember, npc, true))
+						if (LocationUtil.checkIfInRange(6000, partyMember, npc, true))
 						{
 							partyMember.teleToLocation(CUBE_68_TELEPORTS[tpId][0], CUBE_68_TELEPORTS[tpId][1], CUBE_68_TELEPORTS[tpId][2], true);
 						}
@@ -1097,7 +1098,7 @@ public class TullyWorkshop extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final int npcId = npc.getId();
 		if (Arrays.binarySearch(TELEPORTING_MONSTERS, npcId) >= 0)
@@ -1137,17 +1138,16 @@ public class TullyWorkshop extends AbstractNpcAI
 			if ((actor != null) && (victim != null) && !actor.isDead() && !victim.isDead() && (getRandom(1000) > 333))
 			{
 				actor.clearAggroList();
-				actor.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+				actor.getAI().setIntention(Intention.ACTIVE);
 				actor.setTarget(victim);
 				actor.doCast(SkillData.getInstance().getSkill(4065, 11));
 				victim.setCurrentHp(victim.getCurrentHp() + (victim.getMaxHp() * 0.03)); // FIXME: not retail, it should be done after spell is finished, but it cannot be tracked now
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
+	public void onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
 	{
 		final int npcId = npc.getId();
 		if ((npcId == TEMENIR) || (npcId == DRAXIUS) || (npcId == KIRETCENAH))
@@ -1170,11 +1170,10 @@ public class TullyWorkshop extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onFactionCall(npc, caller, attacker, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int npcId = npc.getId();
 		if ((npcId == TULLY) && npc.isInsideRadius2D(-12557, 273901, -9000, 1000))
@@ -1371,11 +1370,10 @@ public class TullyWorkshop extends AbstractNpcAI
 		{
 			addSpawn(DWARVEN_GHOST, npc.getX() + 30, npc.getY() - 30, npc.getZ(), 0, false, 900000, false);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if ((npc.getId() == TULLY) && npc.isInsideRadius3D(-12557, 273901, -9000, 1000))
 		{
@@ -1400,11 +1398,10 @@ public class TullyWorkshop extends AbstractNpcAI
 		{
 			npc.setInvul(RaidBossSpawnManager.getInstance().getRaidBossStatusId(DARION) == RaidBossStatus.ALIVE);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final int npcId = npc.getId();
 		final int skillId = skill.getId();
@@ -1426,7 +1423,6 @@ public class TullyWorkshop extends AbstractNpcAI
 			player.reduceCurrentHp(dmg, null, null);
 			npc.setCurrentHp((npc.getCurrentHp() + 10) - (npc.getId() - 22404));
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	private int[] getRoomData(Npc npc)

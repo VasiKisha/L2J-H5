@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.l2jmobius.commons.util.TimeUtil;
+import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.model.Location;
@@ -107,11 +107,11 @@ public class FortressOfResistance extends ClanHallSiegeEngine
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		if (!_hall.isInSiege())
 		{
-			return null;
+			return;
 		}
 		
 		final int clanId = player.getClanId();
@@ -121,15 +121,14 @@ public class FortressOfResistance extends ClanHallSiegeEngine
 			_damageToNurka.put(clanId, clanDmg);
 			
 		}
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (!_hall.isInSiege())
 		{
-			return null;
+			return;
 		}
 		
 		_missionAccomplished = true;
@@ -141,7 +140,6 @@ public class FortressOfResistance extends ClanHallSiegeEngine
 			cancelSiegeTask();
 			endSiege();
 		}
-		return null;
 	}
 	
 	@Override

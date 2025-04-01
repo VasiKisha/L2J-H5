@@ -36,7 +36,7 @@ import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * @author St3eT
@@ -100,7 +100,7 @@ public class AdminServerInfo implements IAdminCommandHandler
 	
 	private String getServerUpTime()
 	{
-		long time = System.currentTimeMillis() - GameServer.dateTimeServerStarted.getTimeInMillis();
+		long time = System.currentTimeMillis() - GameServer.getStartTime();
 		
 		final long days = TimeUnit.MILLISECONDS.toDays(time);
 		time -= TimeUnit.DAYS.toMillis(days);

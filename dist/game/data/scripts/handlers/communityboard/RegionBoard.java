@@ -30,15 +30,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
 import org.l2jmobius.gameserver.handler.IWriteBoardHandler;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.siege.Castle;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Region board.
@@ -114,7 +114,7 @@ public class RegionBoard implements IWriteBoardHandler
 			CommunityBoardHandler.getInstance().addBypass(player, "Region>", command);
 			
 			final String id = command.replace("_bbsloc;", "");
-			if (!Util.isDigit(id))
+			if (!StringUtil.isNumeric(id))
 			{
 				LOG.warning(RegionBoard.class.getSimpleName() + ": " + player + " sent an invalid region bypass " + command + "!");
 				return false;

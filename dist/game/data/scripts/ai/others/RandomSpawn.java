@@ -83,7 +83,7 @@ public class RandomSpawn extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Location[] spawnlist = SPAWN_POINTS.get(npc.getId());
 		final Location loc = spawnlist[getRandom(spawnlist.length)];
@@ -92,7 +92,6 @@ public class RandomSpawn extends AbstractNpcAI
 			npc.getSpawn().setLocation(loc);
 			ThreadPool.schedule(new Teleport(npc, loc), 100);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	private static class Teleport implements Runnable

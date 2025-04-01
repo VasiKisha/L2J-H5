@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -21,6 +25,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
@@ -28,22 +33,20 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.templates.PlayerTemplate;
 
 /**
- * Loads player's base stats.
- * @author Forsaiken, Zoey76, GKR
+ * @author Forsaiken, Mobius
  */
 public class PlayerTemplateData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(PlayerTemplateData.class.getName());
 	
-	private final Map<ClassId, PlayerTemplate> _playerTemplates = new ConcurrentHashMap<>();
-	
-	private int _dataCount = 0;
+	private final Map<PlayerClass, PlayerTemplate> _playerTemplates = new ConcurrentHashMap<>();
+	final AtomicInteger _levelUpGainCount = new AtomicInteger();
 	
 	protected PlayerTemplateData()
 	{
@@ -56,15 +59,17 @@ public class PlayerTemplateData implements IXmlReader
 		_playerTemplates.clear();
 		parseDatapackDirectory("data/stats/chars/baseStats", false);
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _playerTemplates.size() + " character templates.");
-		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _dataCount + " level up gain records.");
+		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _levelUpGainCount + " level up gain records.");
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		NamedNodeMap attrs;
+		final int maxLevel = ExperienceData.getInstance().getMaxLevel();
+		
+		NamedNodeMap attributes;
 		int classId = 0;
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -81,7 +86,7 @@ public class PlayerTemplateData implements IXmlReader
 						final List<Location> creationPoints = new ArrayList<>();
 						for (Node nd = d.getFirstChild(); nd != null; nd = nd.getNextSibling())
 						{
-							// Skip odd nodes
+							// Skip odd nodes.
 							if (nd.getNodeName().equals("#text"))
 							{
 								continue;
@@ -91,7 +96,7 @@ public class PlayerTemplateData implements IXmlReader
 							{
 								for (Node cnd = nd.getFirstChild(); cnd != null; cnd = cnd.getNextSibling())
 								{
-									// use CreatureTemplate(superclass) fields for male collision height and collision radius
+									// Use CreatureTemplate(superclass) fields for male collision height and collision radius.
 									if (nd.getNodeName().equalsIgnoreCase("collisionMale"))
 									{
 										if (cnd.getNodeName().equalsIgnoreCase("radius"))
@@ -105,8 +110,8 @@ public class PlayerTemplateData implements IXmlReader
 									}
 									if ("node".equalsIgnoreCase(cnd.getNodeName()))
 									{
-										attrs = cnd.getAttributes();
-										creationPoints.add(new Location(parseInteger(attrs, "x"), parseInteger(attrs, "y"), parseInteger(attrs, "z")));
+										attributes = cnd.getAttributes();
+										creationPoints.add(new Location(parseInteger(attributes, "x"), parseInteger(attributes, "y"), parseInteger(attributes, "z")));
 									}
 									else if ("walk".equalsIgnoreCase(cnd.getNodeName()))
 									{
@@ -135,26 +140,33 @@ public class PlayerTemplateData implements IXmlReader
 								set.set(nd.getNodeName(), nd.getTextContent());
 							}
 						}
-						// calculate total pdef and mdef from parts
+						
+						// Calculate total pdef and mdef from parts.
 						set.set("basePDef", set.getInt("basePDefchest", 0) + set.getInt("basePDeflegs", 0) + set.getInt("basePDefhead", 0) + set.getInt("basePDeffeet", 0) + set.getInt("basePDefgloves", 0) + set.getInt("basePDefunderwear", 0) + set.getInt("basePDefcloak", 0));
 						set.set("baseMDef", set.getInt("baseMDefrear", 0) + set.getInt("baseMDeflear", 0) + set.getInt("baseMDefrfinger", 0) + set.getInt("baseMDefrfinger", 0) + set.getInt("baseMDefneck", 0));
-						_playerTemplates.put(ClassId.getClassId(classId), new PlayerTemplate(set, creationPoints));
+						_playerTemplates.put(PlayerClass.getPlayerClass(classId), new PlayerTemplate(set, creationPoints));
 					}
 					else if ("lvlUpgainData".equalsIgnoreCase(d.getNodeName()))
 					{
+						final PlayerTemplate template = _playerTemplates.get(PlayerClass.getPlayerClass(classId));
 						for (Node lvlNode = d.getFirstChild(); lvlNode != null; lvlNode = lvlNode.getNextSibling())
 						{
 							if ("level".equalsIgnoreCase(lvlNode.getNodeName()))
 							{
-								attrs = lvlNode.getAttributes();
-								final int level = parseInteger(attrs, "val");
+								attributes = lvlNode.getAttributes();
+								final int level = parseInteger(attributes, "val");
+								if (level > (maxLevel - 1))
+								{
+									return;
+								}
+								
 								for (Node valNode = lvlNode.getFirstChild(); valNode != null; valNode = valNode.getNextSibling())
 								{
 									final String nodeName = valNode.getNodeName();
-									if ((nodeName.startsWith("hp") || nodeName.startsWith("mp") || nodeName.startsWith("cp")) && _playerTemplates.containsKey(ClassId.getClassId(classId)))
+									if (nodeName.startsWith("hp") || nodeName.startsWith("mp") || nodeName.startsWith("cp"))
 									{
-										_playerTemplates.get(ClassId.getClassId(classId)).setUpgainValue(nodeName, level, Double.parseDouble(valNode.getTextContent()));
-										_dataCount++;
+										template.setUpgainValue(nodeName, level, Double.parseDouble(valNode.getTextContent()));
+										_levelUpGainCount.incrementAndGet();
 									}
 								}
 							}
@@ -165,14 +177,24 @@ public class PlayerTemplateData implements IXmlReader
 		}
 	}
 	
-	public PlayerTemplate getTemplate(ClassId classId)
+	/**
+	 * Retrieves the {@link PlayerTemplate} associated with the specified {@link PlayerClass}.
+	 * @param classId the {@link PlayerClass} for which to retrieve the template.
+	 * @return the {@link PlayerTemplate} associated with the given {@link PlayerClass}, or {@code null} if no template is found.
+	 */
+	public PlayerTemplate getTemplate(PlayerClass classId)
 	{
 		return _playerTemplates.get(classId);
 	}
 	
+	/**
+	 * Retrieves the {@link PlayerTemplate} associated with the specified class ID.
+	 * @param classId the integer ID of the class for which to retrieve the template.
+	 * @return the {@link PlayerTemplate} associated with the given class ID, or {@code null} if no template is found.
+	 */
 	public PlayerTemplate getTemplate(int classId)
 	{
-		return _playerTemplates.get(ClassId.getClassId(classId));
+		return _playerTemplates.get(PlayerClass.getPlayerClass(classId));
 	}
 	
 	public static PlayerTemplateData getInstance()

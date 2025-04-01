@@ -18,12 +18,11 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Handler provides ability to override server's conditions for admin.
@@ -44,7 +43,6 @@ public class AdminPcCondOverride implements IAdminCommandHandler
 		if (st.hasMoreTokens())
 		{
 			switch (st.nextToken())
-			// command
 			{
 				case "admin_exceptions":
 				{
@@ -64,7 +62,7 @@ public class AdminPcCondOverride implements IAdminCommandHandler
 					if (st.hasMoreTokens())
 					{
 						final String token = st.nextToken();
-						if (Util.isDigit(token))
+						if (StringUtil.isNumeric(token))
 						{
 							final PlayerCondOverride ex = PlayerCondOverride.getCondOverride(Integer.parseInt(token));
 							if (ex != null)
@@ -72,12 +70,12 @@ public class AdminPcCondOverride implements IAdminCommandHandler
 								if (activeChar.canOverrideCond(ex))
 								{
 									activeChar.removeOverridedCond(ex);
-									BuilderUtil.sendSysMessage(activeChar, "You've disabled " + ex.getDescription());
+									activeChar.sendSysMessage("You've disabled " + ex.getDescription());
 								}
 								else
 								{
 									activeChar.addOverrideCond(ex);
-									BuilderUtil.sendSysMessage(activeChar, "You've enabled " + ex.getDescription());
+									activeChar.sendSysMessage("You've enabled " + ex.getDescription());
 								}
 							}
 						}
@@ -94,7 +92,7 @@ public class AdminPcCondOverride implements IAdminCommandHandler
 											activeChar.addOverrideCond(ex);
 										}
 									}
-									BuilderUtil.sendSysMessage(activeChar, "All condition exceptions have been enabled.");
+									activeChar.sendSysMessage("All condition exceptions have been enabled.");
 									break;
 								}
 								case "disable_all":
@@ -106,7 +104,7 @@ public class AdminPcCondOverride implements IAdminCommandHandler
 											activeChar.removeOverridedCond(ex);
 										}
 									}
-									BuilderUtil.sendSysMessage(activeChar, "All condition exceptions have been disabled.");
+									activeChar.sendSysMessage("All condition exceptions have been disabled.");
 									break;
 								}
 							}

@@ -25,14 +25,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -40,17 +37,20 @@ import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Hope within the Darkness (727)
@@ -250,7 +250,7 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 		{
 			for (Player pl : World.getInstance().getVisibleObjects(npc, Player.class))
 			{
-				if ((pl != null) && Util.checkIfInRange(75, npc, pl, false) && (NPC_BUFFS.get(npc.getId()) != null))
+				if ((pl != null) && LocationUtil.checkIfInRange(75, npc, pl, false) && (NPC_BUFFS.get(npc.getId()) != null))
 				{
 					npc.setTarget(pl);
 					npc.doCast(NPC_BUFFS.get(npc.getId()).getSkill());
@@ -261,14 +261,14 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 		}
 		else if (event.equalsIgnoreCase("check_for_foes"))
 		{
-			if (npc.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK)
+			if (npc.getAI().getIntention() != Intention.ATTACK)
 			{
 				for (Creature foe : World.getInstance().getVisibleObjectsInRange(npc, Creature.class, npc.getAggroRange()))
 				{
 					if (foe.isAttackable() && !(foe instanceof QuestGuard))
 					{
 						((QuestGuard) npc).addDamageHate(foe, 0, 999);
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, foe, null);
+						npc.getAI().setIntention(Intention.ATTACK, foe, null);
 					}
 				}
 			}
@@ -386,7 +386,7 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		if ((npc.getId() >= NPC_KNIGHT) && (npc.getId() <= NPC_WARRIOR))
 		{
@@ -398,7 +398,7 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 			{
 				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), STRINGID_INJURED[0]));
 			}
-			return null;
+			return;
 		}
 		
 		if (player != null)
@@ -424,11 +424,10 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		if ((npc.getId() >= NPC_KNIGHT) && (npc.getId() <= NPC_WARRIOR))
 		{
@@ -438,19 +437,18 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 			startQuestTimer("suicide", 1500, npc, null);
 			cancelQuestTimer("check_for_foes", npc, null);
 			cancelQuestTimer("buff", npc, null);
-			return null;
 		}
 		
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof CAUWorld)
 		{
 			final CAUWorld world = (CAUWorld) tmpworld;
-			if (CommonUtil.contains(BOSSES, npc.getId()))
+			if (ArrayUtil.contains(BOSSES, npc.getId()))
 			{
 				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), STRINGID_BOSS_DEATH));
 			}
 			
-			if ((tmpworld.getStatus() == 3) && (CommonUtil.contains(BOSSES, npc.getId()) || CommonUtil.contains(MONSTERS, npc.getId())))
+			if ((tmpworld.getStatus() == 3) && (ArrayUtil.contains(BOSSES, npc.getId()) || ArrayUtil.contains(MONSTERS, npc.getId())))
 			{
 				world.allMonstersDead = true;
 				final Instance inst = InstanceManager.getInstance().getInstance(tmpworld.getInstanceId());
@@ -458,7 +456,7 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 				{
 					for (Npc _npc : inst.getNpcs())
 					{
-						if ((_npc != null) && !_npc.isDead() && (CommonUtil.contains(BOSSES, _npc.getId()) || CommonUtil.contains(MONSTERS, _npc.getId())))
+						if ((_npc != null) && !_npc.isDead() && (ArrayUtil.contains(BOSSES, _npc.getId()) || ArrayUtil.contains(MONSTERS, _npc.getId())))
 						{
 							world.allMonstersDead = false;
 							break;
@@ -477,12 +475,10 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 				}
 			}
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		// Buff players every two minutes, check for foes in aggro range
 		if ((npc.getId() >= NPC_KNIGHT) && (npc.getId() <= NPC_WARRIOR))
@@ -498,7 +494,6 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 		{
 			npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), STRINGID_BOSS_SPAWN[Arrays.binarySearch(BOSSES, npc.getId())]));
 		}
-		return null;
 	}
 	
 	private String checkEnterConditions(Player player, Npc npc)
@@ -582,7 +577,7 @@ public class Q00727_HopeWithinTheDarkness extends Quest
 			}
 			
 			// Check if each party member not very far from leader
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				return getHtm(player, "CastleWarden-17.html").replace("%player%", partyMember.getName());
 			}

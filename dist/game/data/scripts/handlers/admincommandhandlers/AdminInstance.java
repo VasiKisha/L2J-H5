@@ -18,14 +18,13 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author evill33t, GodKratos
@@ -52,9 +51,9 @@ public class AdminInstance implements IAdminCommandHandler
 		if (command.startsWith("admin_createinstance"))
 		{
 			final String[] parts = command.split(" ");
-			if ((parts.length != 3) || !Util.isDigit(parts[2]))
+			if ((parts.length != 3) || !StringUtil.isNumeric(parts[2]))
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Example: //createinstance <id> <templateId> - ids => 300000 are reserved for dynamic instances");
+				activeChar.sendSysMessage("Example: //createinstance <id> <templateId> - ids => 300000 are reserved for dynamic instances");
 			}
 			else
 			{
@@ -63,17 +62,17 @@ public class AdminInstance implements IAdminCommandHandler
 					final int id = Integer.parseInt(parts[1]);
 					if ((id < 300000) && InstanceManager.getInstance().createInstanceFromTemplate(id, Integer.parseInt(parts[2])))
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Instance created.");
+						activeChar.sendSysMessage("Instance created.");
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Failed to create instance.");
+						activeChar.sendSysMessage("Failed to create instance.");
 					}
 					return true;
 				}
 				catch (Exception e)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Failed loading: " + parts[1] + " " + parts[2]);
+					activeChar.sendSysMessage("Failed loading: " + parts[1] + " " + parts[2]);
 					return false;
 				}
 			}
@@ -87,12 +86,12 @@ public class AdminInstance implements IAdminCommandHandler
 				if (world != null)
 				{
 					counter++;
-					BuilderUtil.sendSysMessage(activeChar, "Id: " + instance.getId() + " Name: " + InstanceManager.getInstance().getInstanceIdName(world.getTemplateId()));
+					activeChar.sendSysMessage("Id: " + instance.getId() + " Name: " + InstanceManager.getInstance().getInstanceIdName(world.getTemplateId()));
 				}
 			}
 			if (counter == 0)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "No active instances.");
+				activeChar.sendSysMessage("No active instances.");
 			}
 		}
 		else if (command.startsWith("admin_setinstance"))
@@ -102,14 +101,14 @@ public class AdminInstance implements IAdminCommandHandler
 				final int val = Integer.parseInt(st.nextToken());
 				if (InstanceManager.getInstance().getInstance(val) == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Instance " + val + " does not exist.");
+					activeChar.sendSysMessage("Instance " + val + " does not exist.");
 					return false;
 				}
 				
 				final WorldObject target = activeChar.getTarget();
 				if ((target == null) || target.isSummon()) // Don't separate summons from masters
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Incorrect target.");
+					activeChar.sendSysMessage("Incorrect target.");
 					return false;
 				}
 				target.setInstanceId(val);
@@ -119,12 +118,12 @@ public class AdminInstance implements IAdminCommandHandler
 					player.sendMessage("Admin set your instance to:" + val);
 					player.teleToLocation(player.getLocation());
 				}
-				BuilderUtil.sendSysMessage(activeChar, "Moved " + target.getName() + " to instance " + target.getInstanceId() + ".");
+				activeChar.sendSysMessage("Moved " + target.getName() + " to instance " + target.getInstanceId() + ".");
 				return true;
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Use //setinstance id");
+				activeChar.sendSysMessage("Use //setinstance id");
 			}
 		}
 		else if (command.startsWith("admin_destroyinstance"))
@@ -133,11 +132,11 @@ public class AdminInstance implements IAdminCommandHandler
 			{
 				final int val = Integer.parseInt(st.nextToken());
 				InstanceManager.getInstance().destroyInstance(val);
-				BuilderUtil.sendSysMessage(activeChar, "Instance destroyed");
+				activeChar.sendSysMessage("Instance destroyed");
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Use //destroyinstance id");
+				activeChar.sendSysMessage("Use //destroyinstance id");
 			}
 		}
 		return true;

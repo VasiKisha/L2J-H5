@@ -20,14 +20,14 @@
  */
 package handlers.actionhandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSummonTalk;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonTalk;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.PetStatusShow;
 
@@ -58,12 +58,12 @@ public class PetAction implements IActionHandler
 			// Check if the pet is attackable (without a forced attack) and isn't dead
 			if (target.isAutoAttackable(player) && !isOwner)
 			{
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+				player.getAI().setIntention(Intention.ATTACK, target);
 				player.onActionRequest();
 			}
 			else if (!target.asCreature().isInsideRadius2D(player, 150))
 			{
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
+				player.getAI().setIntention(Intention.INTERACT, target);
 				player.onActionRequest();
 			}
 			else

@@ -25,19 +25,20 @@ import java.util.Map;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManorManager;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.SeedProduction;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author l3x
@@ -132,7 +133,7 @@ public class RequestBuySeed extends ClientPacket
 			totalPrice += (sp.getPrice() * ih.getCount());
 			if (totalPrice > MAX_ADENA)
 			{
-				Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase over " + MAX_ADENA + " adena worth of goods.", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase over " + MAX_ADENA + " adena worth of goods.", Config.DEFAULT_PUNISH);
 				player.sendPacket(ActionFailed.STATIC_PACKET);
 				return;
 			}
@@ -176,7 +177,7 @@ public class RequestBuySeed extends ClientPacket
 			final long price = sp.getPrice() * i.getCount();
 			
 			// Take Adena and decrease seed amount
-			if (!sp.decreaseAmount(i.getCount()) || !player.reduceAdena("Buy", price, player, false))
+			if (!sp.decreaseAmount(i.getCount()) || !player.reduceAdena(ItemProcessType.BUY, price, player, false))
 			{
 				// failed buy, reduce total price
 				totalPrice -= price;
@@ -184,7 +185,7 @@ public class RequestBuySeed extends ClientPacket
 			}
 			
 			// Add item to player's inventory
-			player.addItem("Buy", i.getId(), i.getCount(), manager, true);
+			player.addItem(ItemProcessType.BUY, i.getId(), i.getCount(), manager, true);
 		}
 		
 		// Adding to treasury for Manor Castle

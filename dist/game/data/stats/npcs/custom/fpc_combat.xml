@@ -17,7 +17,8 @@
 				<run ground="132" />
 			</speed>
 		</stats>
-		<status fakePlayer="true" talkable="false" attackable="true" />
+		<status talkable="false" attackable="true" />
+		<fakePlayer classId="88" hair="0" hairColor="0" face="0" equipRHand="5706" equipHead="2419" equipGloves="5774" equipChest="2383" equipFeet="5786" />
 		<ai type="FIGHTER" clanHelpRange="1000" aggroRange="1000" isAggressive="true"> <!-- FIGHTER, ARCHER, BALANCED, MAGE, HEALER -->
 			<clanList>
 				<clan>FAKE_PLAYER</clan>
@@ -31,13 +32,13 @@
 			<skill name="Skill01_ID" id="261" level="22" />
 			<skill name="Skill02_ID" id="1" level="37" />
 			<skill name="Skill03_ID" id="6" level="37" />
-			<skill name="Skill04_ID" id="8" level="8" />
+			<skill name="Skill04_ID" id="8" level="7" />
 		</parameters>
 		<skillList>
 			<skill id="261" level="22" /> <!-- Triple Sonic Slash -->
 			<skill id="1" level="37" /> <!-- Triple Slash -->
 			<skill id="6" level="37" /> <!-- Sonic Blaster -->
-			<skill id="8" level="8" /> <!-- Sonic Focus -->
+			<skill id="8" level="7" /> <!-- Sonic Focus -->
 		</skillList>
 	</npc>
 </list>

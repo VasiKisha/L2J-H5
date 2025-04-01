@@ -16,14 +16,14 @@
  */
 package village_master.KamaelChange2;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q00064_CertifiedBerserker.Q00064_CertifiedBerserker;
@@ -115,7 +115,7 @@ public class KamaelChange2 extends AbstractNpcAI
 		{
 			if (player.isInCategory(CategoryType.KAMAEL_FIRST_CLASS_GROUP))
 			{
-				if (CommonUtil.contains(NPCS_MALE, npc.getId()))
+				if (ArrayUtil.contains(NPCS_MALE, npc.getId()))
 				{
 					htmltext = "32145-02.htm"; // master_all_kamael012b
 				}
@@ -126,7 +126,7 @@ public class KamaelChange2 extends AbstractNpcAI
 			}
 			else if (player.isInCategory(CategoryType.KAMAEL_THIRD_CLASS_GROUP))
 			{
-				if (CommonUtil.contains(NPCS_MALE, npc.getId()))
+				if (ArrayUtil.contains(NPCS_MALE, npc.getId()))
 				{
 					htmltext = "32145-16.htm"; // master_all_kamael005b
 				}
@@ -137,7 +137,7 @@ public class KamaelChange2 extends AbstractNpcAI
 			}
 			else if (player.isInCategory(CategoryType.KAMAEL_FOURTH_CLASS_GROUP))
 			{
-				if (CommonUtil.contains(NPCS_MALE, npc.getId()))
+				if (ArrayUtil.contains(NPCS_MALE, npc.getId()))
 				{
 					htmltext = "32145-18.htm"; // master_all_kamael100b
 				}
@@ -146,9 +146,9 @@ public class KamaelChange2 extends AbstractNpcAI
 					htmltext = "32145-19.htm"; // master_all_kamael100c
 				}
 			}
-			else if (player.getClassId() == ClassId.TROOPER)
+			else if (player.getPlayerClass() == PlayerClass.TROOPER)
 			{
-				if (CommonUtil.contains(NPCS_MALE, npc.getId()))
+				if (ArrayUtil.contains(NPCS_MALE, npc.getId()))
 				{
 					if (classId == 127)
 					{
@@ -171,7 +171,7 @@ public class KamaelChange2 extends AbstractNpcAI
 						else
 						{
 							takeItems(player, ORKURUS_RECOMMENDATION, -1);
-							player.setClassId(127);
+							player.setPlayerClass(127);
 							player.setBaseClass(127);
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
@@ -200,7 +200,7 @@ public class KamaelChange2 extends AbstractNpcAI
 						else
 						{
 							takeItems(player, SOUL_BREAKER_CERTIFICATE, -1);
-							player.setClassId(128);
+							player.setPlayerClass(128);
 							player.setBaseClass(128);
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
@@ -214,9 +214,9 @@ public class KamaelChange2 extends AbstractNpcAI
 					htmltext = "32145-10.htm"; // master_all_kamael002c
 				}
 			}
-			else if (player.getClassId() == ClassId.WARDER)
+			else if (player.getPlayerClass() == PlayerClass.WARDER)
 			{
-				if (CommonUtil.contains(NPCS_MALE, npc.getId()))
+				if (ArrayUtil.contains(NPCS_MALE, npc.getId()))
 				{
 					htmltext = "32145-04.htm"; // master_all_kamael002b
 				}
@@ -243,7 +243,7 @@ public class KamaelChange2 extends AbstractNpcAI
 						else
 						{
 							takeItems(player, SOUL_BREAKER_CERTIFICATE, -1);
-							player.setClassId(129);
+							player.setPlayerClass(129);
 							player.setBaseClass(129);
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
@@ -272,7 +272,7 @@ public class KamaelChange2 extends AbstractNpcAI
 						else
 						{
 							takeItems(player, KAMAEL_INQUISITOR_MARK, -1);
-							player.setClassId(130);
+							player.setPlayerClass(130);
 							player.setBaseClass(130);
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
@@ -296,18 +296,18 @@ public class KamaelChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.KAMAEL_FIRST_CLASS_GROUP))
 		{
-			if (player.getClassId() == ClassId.MALE_SOLDIER)
+			if (player.getPlayerClass() == PlayerClass.MALE_SOLDIER)
 			{
 				htmltext = "32145-02.htm"; // master_all_kamael012b
 			}
-			else if (player.getClassId() == ClassId.FEMALE_SOLDIER)
+			else if (player.getPlayerClass() == PlayerClass.FEMALE_SOLDIER)
 			{
 				htmltext = "32145-03.htm"; // master_all_kamael012c
 			}
 		}
 		else if (player.isInCategory(CategoryType.KAMAEL_SECOND_CLASS_GROUP))
 		{
-			if (CommonUtil.contains(NPCS_MALE, npc.getId()))
+			if (ArrayUtil.contains(NPCS_MALE, npc.getId()))
 			{
 				if (player.isInCategory(CategoryType.KAMAEL_FEMALE_MAIN_OCCUPATION))
 				{
@@ -315,11 +315,11 @@ public class KamaelChange2 extends AbstractNpcAI
 					return htmltext;
 				}
 				
-				if (player.getClassId() == ClassId.TROOPER)
+				if (player.getPlayerClass() == PlayerClass.TROOPER)
 				{
 					htmltext = "32145-05.htm"; // master_all_kamael003t
 				}
-				else if (player.getClassId() == ClassId.WARDER)
+				else if (player.getPlayerClass() == PlayerClass.WARDER)
 				{
 					htmltext = "32145-02.htm"; // master_all_kamael012b
 				}
@@ -332,11 +332,11 @@ public class KamaelChange2 extends AbstractNpcAI
 					return htmltext;
 				}
 				
-				if (player.getClassId() == ClassId.TROOPER)
+				if (player.getPlayerClass() == PlayerClass.TROOPER)
 				{
 					htmltext = "32145-03.htm"; // master_all_kamael012c
 				}
-				else if (player.getClassId() == ClassId.WARDER)
+				else if (player.getPlayerClass() == PlayerClass.WARDER)
 				{
 					htmltext = "32145-11.htm"; // master_all_kamael003w
 				}
@@ -344,7 +344,7 @@ public class KamaelChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.KAMAEL_THIRD_CLASS_GROUP))
 		{
-			if (CommonUtil.contains(NPCS_MALE, npc.getId()))
+			if (ArrayUtil.contains(NPCS_MALE, npc.getId()))
 			{
 				if (player.isInCategory(CategoryType.KAMAEL_MALE_MAIN_OCCUPATION))
 				{
@@ -369,7 +369,7 @@ public class KamaelChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.KAMAEL_FOURTH_CLASS_GROUP))
 		{
-			if (CommonUtil.contains(NPCS_MALE, npc.getId()))
+			if (ArrayUtil.contains(NPCS_MALE, npc.getId()))
 			{
 				if (player.isInCategory(CategoryType.KAMAEL_MALE_MAIN_OCCUPATION))
 				{

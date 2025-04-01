@@ -31,7 +31,7 @@ import java.util.logging.Level;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -106,6 +106,12 @@ public class QuestLink implements IBypassHandler
 		for (Quest quest : quests)
 		{
 			if (quest == null)
+			{
+				continue;
+			}
+			
+			// Skip tutorial links.
+			if (quest.getId() == 255)
 			{
 				continue;
 			}

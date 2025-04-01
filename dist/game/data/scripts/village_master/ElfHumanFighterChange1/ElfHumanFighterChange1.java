@@ -16,11 +16,11 @@
  */
 package village_master.ElfHumanFighterChange1;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -165,7 +165,7 @@ public class ElfHumanFighterChange1 extends AbstractNpcAI
 		{
 			htmltext = "30066-41.htm"; // fnYouAreFourthClass
 		}
-		else if ((classId == WARRIOR) && (player.getClassId() == ClassId.FIGHTER))
+		else if ((classId == WARRIOR) && (player.getPlayerClass() == PlayerClass.FIGHTER))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -181,7 +181,7 @@ public class ElfHumanFighterChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, MEDALLION_OF_WARRIOR))
 			{
 				takeItems(player, MEDALLION_OF_WARRIOR, -1);
-				player.setClassId(WARRIOR);
+				player.setPlayerClass(WARRIOR);
 				player.setBaseClass(WARRIOR);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -193,7 +193,7 @@ public class ElfHumanFighterChange1 extends AbstractNpcAI
 				htmltext = npc.getId() + "-24.htm"; // fnNoProof11
 			}
 		}
-		else if ((classId == KNIGHT) && (player.getClassId() == ClassId.FIGHTER))
+		else if ((classId == KNIGHT) && (player.getPlayerClass() == PlayerClass.FIGHTER))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -209,7 +209,7 @@ public class ElfHumanFighterChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, SWORD_OF_RITUAL))
 			{
 				takeItems(player, SWORD_OF_RITUAL, -1);
-				player.setClassId(KNIGHT);
+				player.setPlayerClass(KNIGHT);
 				player.setBaseClass(KNIGHT);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -221,7 +221,7 @@ public class ElfHumanFighterChange1 extends AbstractNpcAI
 				htmltext = npc.getId() + "-28.htm"; // fnNoProof12
 			}
 		}
-		else if ((classId == ROGUE) && (player.getClassId() == ClassId.FIGHTER))
+		else if ((classId == ROGUE) && (player.getPlayerClass() == PlayerClass.FIGHTER))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -237,7 +237,7 @@ public class ElfHumanFighterChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, BEZIQUES_RECOMMENDATION))
 			{
 				takeItems(player, BEZIQUES_RECOMMENDATION, -1);
-				player.setClassId(ROGUE);
+				player.setPlayerClass(ROGUE);
 				player.setBaseClass(ROGUE);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -249,7 +249,7 @@ public class ElfHumanFighterChange1 extends AbstractNpcAI
 				htmltext = npc.getId() + "-32.htm"; // fnNoProof13
 			}
 		}
-		else if ((classId == ELVEN_KNIGHT) && (player.getClassId() == ClassId.ELVEN_FIGHTER))
+		else if ((classId == ELVEN_KNIGHT) && (player.getPlayerClass() == PlayerClass.ELVEN_FIGHTER))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -265,7 +265,7 @@ public class ElfHumanFighterChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, ELVEN_KNIGHT_BROOCH))
 			{
 				takeItems(player, ELVEN_KNIGHT_BROOCH, -1);
-				player.setClassId(ELVEN_KNIGHT);
+				player.setPlayerClass(ELVEN_KNIGHT);
 				player.setBaseClass(ELVEN_KNIGHT);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -277,7 +277,7 @@ public class ElfHumanFighterChange1 extends AbstractNpcAI
 				htmltext = npc.getId() + "-36.htm"; // fnNoProof21
 			}
 		}
-		else if ((classId == ELVEN_SCOUT) && (player.getClassId() == ClassId.ELVEN_FIGHTER))
+		else if ((classId == ELVEN_SCOUT) && (player.getPlayerClass() == PlayerClass.ELVEN_FIGHTER))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -293,7 +293,7 @@ public class ElfHumanFighterChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, REISAS_RECOMMENDATION))
 			{
 				takeItems(player, REISAS_RECOMMENDATION, -1);
-				player.setClassId(ELVEN_SCOUT);
+				player.setPlayerClass(ELVEN_SCOUT);
 				player.setBaseClass(ELVEN_SCOUT);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();

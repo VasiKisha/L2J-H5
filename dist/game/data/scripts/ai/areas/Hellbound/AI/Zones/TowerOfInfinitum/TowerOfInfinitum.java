@@ -20,10 +20,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
@@ -114,7 +114,7 @@ public class TowerOfInfinitum extends AbstractNpcAI
 				{
 					for (Player partyMember : party.getMembers())
 					{
-						if (!Util.checkIfInRange(300, partyMember, npc, true) || !partyMember.isAffectedBySkill(PASS_SKILL))
+						if (!LocationUtil.checkIfInRange(300, partyMember, npc, true) || !partyMember.isAffectedBySkill(PASS_SKILL))
 						{
 							return "32302-02.htm";
 						}
@@ -151,7 +151,7 @@ public class TowerOfInfinitum extends AbstractNpcAI
 			{
 				for (Player partyMember : party.getMembers())
 				{
-					if (!Util.checkIfInRange(1000, partyMember, npc, false) || (Math.abs(partyMember.getZ() - npc.getZ()) > 100))
+					if (!LocationUtil.checkIfInRange(1000, partyMember, npc, false) || (Math.abs(partyMember.getZ() - npc.getZ()) > 100))
 					{
 						return "gk-noreq.htm";
 					}

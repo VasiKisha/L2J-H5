@@ -22,8 +22,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 public class RequestGiveNickName extends ClientPacket
@@ -57,7 +57,7 @@ public class RequestGiveNickName extends ClientPacket
 		else
 		{
 			// Can the player change/give a title?
-			if (!player.hasClanPrivilege(ClanPrivilege.CL_GIVE_TITLE))
+			if (!player.hasAccess(ClanAccess.ASSIGN_TITLE))
 			{
 				player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
 				return;

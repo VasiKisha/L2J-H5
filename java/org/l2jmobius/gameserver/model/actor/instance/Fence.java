@@ -17,17 +17,17 @@
 package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.gameserver.data.xml.FenceData;
-import org.l2jmobius.gameserver.enums.FenceState;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
+import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.FenceState;
 import org.l2jmobius.gameserver.network.serverpackets.DeleteObject;
 import org.l2jmobius.gameserver.network.serverpackets.ExColosseumFenceInfo;
 
 /**
- * @author HoridoJoho / FBIagent
+ * @author HorridoJoho
  */
 public class Fence extends WorldObject
 {

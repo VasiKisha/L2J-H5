@@ -19,10 +19,10 @@ package quests.Q00612_BattleAgainstKetraOrcs;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -116,7 +116,7 @@ public class Q00612_BattleAgainstKetraOrcs extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player member = getRandomPartyMember(killer, 1);
 		if ((member != null) && (getRandom(1000) < MOBS.get(npc.getId())))
@@ -124,7 +124,6 @@ public class Q00612_BattleAgainstKetraOrcs extends Quest
 			giveItems(member, MOLAR, 1);
 			playSound(member, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

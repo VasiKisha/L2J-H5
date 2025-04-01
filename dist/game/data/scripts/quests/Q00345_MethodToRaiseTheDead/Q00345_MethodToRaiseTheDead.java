@@ -17,13 +17,13 @@
 package quests.Q00345_MethodToRaiseTheDead;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Method to Raise the Dead (345)
@@ -191,12 +191,12 @@ public class Q00345_MethodToRaiseTheDead extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, 1, 3, npc);
-		if ((qs == null) || !Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs == null) || !LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
-			return null;
+			return;
 		}
 		
 		final int random = getRandom(100);
@@ -269,7 +269,6 @@ public class Q00345_MethodToRaiseTheDead extends Quest
 		{
 			giveItems(qs.getPlayer(), USELESS_BONE_PIECES, 1);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

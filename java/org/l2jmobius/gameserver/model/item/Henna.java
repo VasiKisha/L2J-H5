@@ -20,8 +20,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 /**
  * Class for the Henna object.
@@ -41,7 +41,7 @@ public class Henna
 	private final int _wearCount;
 	private final int _cancelFee;
 	private final int _cancelCount;
-	private final Set<ClassId> _wearClass;
+	private final Set<PlayerClass> _wearClass;
 	
 	public Henna(StatSet set)
 	{
@@ -159,7 +159,7 @@ public class Henna
 	/**
 	 * @return the list with the allowed classes to wear this dye.
 	 */
-	public Set<ClassId> getAllowedWearClass()
+	public Set<PlayerClass> getAllowedWearClass()
 	{
 		return _wearClass;
 	}
@@ -168,7 +168,7 @@ public class Henna
 	 * @param classId the class trying to wear this dye.
 	 * @return {@code true} if the player is allowed to wear this dye, {@code false} otherwise.
 	 */
-	public boolean isAllowedClass(ClassId classId)
+	public boolean isAllowedClass(PlayerClass classId)
 	{
 		return _wearClass.contains(classId);
 	}
@@ -176,7 +176,7 @@ public class Henna
 	/**
 	 * @param wearClassIds the list of classes that can wear this dye.
 	 */
-	public void setWearClassIds(List<ClassId> wearClassIds)
+	public void setWearClassIds(List<PlayerClass> wearClassIds)
 	{
 		_wearClass.addAll(wearClassIds);
 	}

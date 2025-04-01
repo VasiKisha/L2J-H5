@@ -23,6 +23,7 @@ package org.l2jmobius.gameserver.model.item;
 import java.util.Collections;
 import java.util.List;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -32,14 +33,13 @@ import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.conditions.ConditionGameChance;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSkillSee;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSkillSee;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * This class is dedicated to the management of weapons.
@@ -100,7 +100,7 @@ public class Weapon extends ItemTemplate
 		_mpConsume = set.getInt("mp_consume", 0);
 		_baseAttackRange = set.getInt("attack_range", 40);
 		final String[] damageRange = set.getString("damage_range", "").split(";"); // 0?;0?;fan sector;base attack angle
-		if ((damageRange.length > 1) && Util.isDigit(damageRange[2]) && Util.isDigit(damageRange[3]))
+		if ((damageRange.length > 1) && StringUtil.isNumeric(damageRange[2]) && StringUtil.isNumeric(damageRange[3]))
 		{
 			_baseAttackRadius = Integer.parseInt(damageRange[2]);
 			_baseAttackAngle = Integer.parseInt(damageRange[3]);

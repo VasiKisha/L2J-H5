@@ -21,12 +21,12 @@
 package handlers.admincommandhandlers;
 
 import org.l2jmobius.gameserver.data.xml.AdminData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 
 /**

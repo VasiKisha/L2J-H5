@@ -19,6 +19,7 @@ package handlers.itemhandlers;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.EtcStatusUpdate;
@@ -74,7 +75,7 @@ public class CharmOfCourage implements IItemHandler
 			return false;
 		}
 		
-		if (player.destroyItemWithoutTrace("Consume", item.getObjectId(), 1, null, false))
+		if (player.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false))
 		{
 			player.setCharmOfCourage(true);
 			player.sendPacket(new EtcStatusUpdate(player));

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests.Q00350_EnhanceYourWeapon;
 
@@ -23,18 +27,19 @@ import java.util.Map;
 import java.util.logging.Level;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.enums.AbsorbCrystalType;
+import org.l2jmobius.gameserver.data.holders.LevelingSoulCrystalInfo;
+import org.l2jmobius.gameserver.data.holders.SoulCrystal;
 import org.l2jmobius.gameserver.data.xml.LevelUpCrystalData;
-import org.l2jmobius.gameserver.enums.AbsorbCrystalType;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.AbsorberInfo;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.LevelingSoulCrystalInfo;
-import org.l2jmobius.gameserver.model.holders.SoulCrystal;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -45,7 +50,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 /**
  * Enhance Your Weapon (350)
- * @author Gigiikun
+ * @author Gigiikun, Skache
  */
 public class Q00350_EnhanceYourWeapon extends Quest
 {
@@ -115,32 +120,32 @@ public class Q00350_EnhanceYourWeapon extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.isAttackable() && LevelUpCrystalData.getInstance().getNpcsSoulInfo().containsKey(npc.getId()))
 		{
 			levelSoulCrystals(npc.asAttackable(), killer);
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		super.onSkillSee(npc, caster, skill, targets, isSummon);
 		
 		if ((skill == null) || (skill.getId() != 2096))
 		{
-			return null;
+			return;
 		}
-		else if ((caster == null) || caster.isDead())
+		
+		if ((caster == null) || caster.isDead())
 		{
-			return null;
+			return;
 		}
+		
 		if (!npc.isAttackable() || npc.isDead() || !LevelUpCrystalData.getInstance().getNpcsSoulInfo().containsKey(npc.getId()))
 		{
-			return null;
+			return;
 		}
 		
 		try
@@ -151,7 +156,6 @@ public class Q00350_EnhanceYourWeapon extends Quest
 		{
 			LOGGER.log(Level.SEVERE, "", e);
 		}
-		return null;
 	}
 	
 	@Override
@@ -195,18 +199,18 @@ public class Q00350_EnhanceYourWeapon extends Quest
 	
 	private static void exchangeCrystal(Player player, Attackable mob, int takeId, int giveId, boolean broke)
 	{
-		Item item = player.getInventory().destroyItemByItemId("SoulCrystal", takeId, 1, player, mob);
+		Item item = player.getInventory().destroyItemByItemId(ItemProcessType.FEE, takeId, 1, player, mob);
 		if (item != null)
 		{
-			// Prepare inventory update packet
+			// Prepare inventory update packet.
 			final InventoryUpdate playerIU = new InventoryUpdate();
 			playerIU.addRemovedItem(item);
 			
-			// Add new crystal to the killer's inventory
-			item = player.getInventory().addItem("SoulCrystal", giveId, 1, player, mob);
+			// Add new crystal to the killer's inventory.
+			item = player.getInventory().addItem(ItemProcessType.REWARD, giveId, 1, player, mob);
 			playerIU.addItem(item);
 			
-			// Send a sound event and text message to the player
+			// Send a sound event and text message to the player.
 			if (broke)
 			{
 				player.sendPacket(SystemMessageId.THE_SOUL_CRYSTAL_BROKE_BECAUSE_IT_WAS_NOT_ABLE_TO_ENDURE_THE_SOUL_ENERGY);
@@ -216,12 +220,12 @@ public class Q00350_EnhanceYourWeapon extends Quest
 				player.sendPacket(SystemMessageId.THE_SOUL_CRYSTAL_SUCCEEDED_IN_ABSORBING_A_SOUL);
 			}
 			
-			// Send system message
+			// Send system message.
 			final SystemMessage sms = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
 			sms.addItemName(giveId);
 			player.sendPacket(sms);
 			
-			// Send inventory update packet
+			// Send inventory update packet.
 			player.sendInventoryUpdate(playerIU);
 		}
 	}
@@ -271,7 +275,7 @@ public class Q00350_EnhanceYourWeapon extends Quest
 			return;
 		}
 		
-		// If the crystal level is way too high for this mob, say that we can't increase it
+		// If the crystal level is way too high for this mob, say that we can't increase it.
 		if (!LevelUpCrystalData.getInstance().getNpcsSoulInfo().get(mob.getId()).containsKey(sc.getLevel()))
 		{
 			player.sendPacket(SystemMessageId.THE_SOUL_CRYSTAL_IS_REFUSING_TO_ABSORB_THE_SOUL);
@@ -291,46 +295,41 @@ public class Q00350_EnhanceYourWeapon extends Quest
 	/**
 	 * Calculate the leveling chance of Soul Crystals based on the attacker that killed this Attackable
 	 * @param mob
-	 * @param killer The player that last killed this Attackable $ Rewrite 06.12.06 - Yesod $ Rewrite 08.01.10 - Gigiikun
+	 * @param killer The player that last killed this Attackable
 	 */
 	public static void levelSoulCrystals(Attackable mob, Player killer)
 	{
-		// Only Player can absorb a soul
+		// Only Players can absorb souls; reset if no killer is present.
 		if (killer == null)
 		{
 			mob.resetAbsorbList();
 			return;
 		}
 		
+		// Map to store players and their crystals.
 		final Map<Player, SoulCrystal> players = new HashMap<>();
 		int maxSCLevel = 0;
 		
-		// TODO: what if mob support last_hit + party?
+		// Gather eligible players and their Soul Crystals.
 		if (isPartyLevelingMonster(mob.getId()) && (killer.getParty() != null))
 		{
-			// firts get the list of players who has one Soul Cry and the quest
-			for (Player pl : killer.getParty().getMembers())
+			for (Player member : killer.getParty().getMembers())
 			{
-				if (pl == null)
+				if ((member == null) || (member.calculateDistance3D(killer) > Config.ALT_PARTY_RANGE))
 				{
-					continue;
+					continue; // Skip invalid or out-of-range members.
 				}
 				
-				if (pl.calculateDistance3D(killer) > Config.ALT_PARTY_RANGE)
-				{
-					continue;
-				}
-				
-				final SoulCrystal sc = getSCForPlayer(pl);
+				final SoulCrystal sc = getSCForPlayer(member);
 				if (sc == null)
 				{
-					continue;
+					continue; // Skip if no valid Soul Crystal is present.
 				}
 				
-				players.put(pl, sc);
-				if ((maxSCLevel < sc.getLevel()) && LevelUpCrystalData.getInstance().getNpcsSoulInfo().get(mob.getId()).containsKey(sc.getLevel()))
+				players.put(member, sc);
+				if ((sc.getLevel() > maxSCLevel) && LevelUpCrystalData.getInstance().getNpcsSoulInfo().get(mob.getId()).containsKey(sc.getLevel()))
 				{
-					maxSCLevel = sc.getLevel();
+					maxSCLevel = sc.getLevel(); // Track the highest-level Soul Crystal.
 				}
 			}
 		}
@@ -340,58 +339,48 @@ public class Q00350_EnhanceYourWeapon extends Quest
 			if (sc != null)
 			{
 				players.put(killer, sc);
-				if ((maxSCLevel < sc.getLevel()) && LevelUpCrystalData.getInstance().getNpcsSoulInfo().get(mob.getId()).containsKey(sc.getLevel()))
+				if ((sc.getLevel() > maxSCLevel) && LevelUpCrystalData.getInstance().getNpcsSoulInfo().get(mob.getId()).containsKey(sc.getLevel()))
 				{
 					maxSCLevel = sc.getLevel();
 				}
 			}
 		}
 		
-		// Init some useful vars
-		final LevelingSoulCrystalInfo mainlvlInfo = LevelUpCrystalData.getInstance().getNpcsSoulInfo().get(mob.getId()).get(maxSCLevel);
-		if (mainlvlInfo == null)
+		// No eligible players or crystals; exit early.
+		if (players.isEmpty())
 		{
 			return;
 		}
 		
-		// If this mob is not require skill, then skip some checkings
-		if (mainlvlInfo.isSkillNeeded())
+		// Get leveling info for the mob and highest-level crystal.
+		final LevelingSoulCrystalInfo levelInfo = LevelUpCrystalData.getInstance().getNpcsSoulInfo().get(mob.getId()).get(maxSCLevel);
+		if (levelInfo == null)
 		{
-			// Fail if this Attackable isn't absorbed or there's no one in its _absorbersList
-			if (!mob.isAbsorbed() /* || _absorbersList == null */)
+			return; // No leveling info available for this mob.
+		}
+		
+		// Handle special absorb skill checks.
+		if (levelInfo.isSkillNeeded())
+		{
+			if (!mob.isAbsorbed())
 			{
-				mob.resetAbsorbList();
+				mob.resetAbsorbList(); // Absorption not initialized.
 				return;
 			}
 			
-			// Fail if the killer isn't in the _absorbersList of this Attackable and mob is not boss
 			final AbsorberInfo ai = mob.getAbsorbersList().get(killer.getObjectId());
-			boolean isSuccess = true;
-			if ((ai == null) || (ai.getObjectId() != killer.getObjectId()))
+			if ((ai == null) || (ai.getObjectId() != killer.getObjectId()) || (ai.getAbsorbedHp() > (mob.getMaxHp() / 2.0)))
 			{
-				isSuccess = false;
-			}
-			
-			// Check if the soul crystal was used when HP of this Attackable wasn't higher than half of it
-			if ((ai != null) && (ai.getAbsorbedHp() > (mob.getMaxHp() / 2.0)))
-			{
-				isSuccess = false;
-			}
-			
-			if (!isSuccess)
-			{
-				mob.resetAbsorbList();
+				mob.resetAbsorbList(); // Absorption skill was misused.
 				return;
 			}
 		}
 		
-		switch (mainlvlInfo.getAbsorbCrystalType())
+		// Process leveling based on absorb type.
+		switch (levelInfo.getAbsorbCrystalType())
 		{
 			case PARTY_ONE_RANDOM:
 			{
-				// This is a naive method for selecting a random member. It gets any random party member and
-				// then checks if the member has a valid crystal. It does not select the random party member
-				// among those who have crystals, only. However, this might actually be correct (same as retail).
 				if (killer.getParty() != null)
 				{
 					final Player lucky = killer.getParty().getMembers().get(getRandom(killer.getParty().getMemberCount()));
@@ -407,11 +396,10 @@ public class Q00350_EnhanceYourWeapon extends Quest
 			{
 				if (killer.getParty() != null)
 				{
-					final List<Player> luckyParty = new ArrayList<>();
-					luckyParty.addAll(killer.getParty().getMembers());
-					while ((getRandom(100) < 33) && !luckyParty.isEmpty())
+					final List<Player> partyMembers = new ArrayList<>(killer.getParty().getMembers());
+					while ((getRandom(100) < 33) && !partyMembers.isEmpty())
 					{
-						final Player lucky = luckyParty.remove(getRandom(luckyParty.size()));
+						final Player lucky = partyMembers.remove(getRandom(partyMembers.size()));
 						if (players.containsKey(lucky))
 						{
 							levelCrystal(lucky, players.get(lucky), mob);
@@ -428,9 +416,9 @@ public class Q00350_EnhanceYourWeapon extends Quest
 			{
 				if (killer.getParty() != null)
 				{
-					for (Player pl : killer.getParty().getMembers())
+					for (Player member : killer.getParty().getMembers())
 					{
-						levelCrystal(pl, players.get(pl), mob);
+						levelCrystal(member, players.get(member), mob);
 					}
 				}
 				else
@@ -445,5 +433,8 @@ public class Q00350_EnhanceYourWeapon extends Quest
 				break;
 			}
 		}
+		
+		// Reset absorb state after processing.
+		mob.resetAbsorbList();
 	}
 }

@@ -16,10 +16,10 @@
  */
 package village_master.ElfHumanClericChange2;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -97,7 +97,7 @@ public class ElfHumanClericChange2 extends AbstractNpcAI
 		{
 			htmltext = "30120-15.htm"; // fnYouAreThirdClass
 		}
-		else if ((classId == BISHOP) && (player.getClassId() == ClassId.CLERIC))
+		else if ((classId == BISHOP) && (player.getPlayerClass() == PlayerClass.CLERIC))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -113,7 +113,7 @@ public class ElfHumanClericChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_PILGRIM, MARK_OF_TRUST, MARK_OF_HEALER))
 			{
 				takeItems(player, -1, MARK_OF_PILGRIM, MARK_OF_TRUST, MARK_OF_HEALER);
-				player.setClassId(BISHOP);
+				player.setPlayerClass(BISHOP);
 				player.setBaseClass(BISHOP);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -125,7 +125,7 @@ public class ElfHumanClericChange2 extends AbstractNpcAI
 				htmltext = "30120-19.htm"; // fnNoProof11
 			}
 		}
-		else if ((classId == PROPHET) && (player.getClassId() == ClassId.CLERIC))
+		else if ((classId == PROPHET) && (player.getPlayerClass() == PlayerClass.CLERIC))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -141,7 +141,7 @@ public class ElfHumanClericChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_PILGRIM, MARK_OF_TRUST, MARK_OF_REFORMER))
 			{
 				takeItems(player, -1, MARK_OF_PILGRIM, MARK_OF_TRUST, MARK_OF_REFORMER);
-				player.setClassId(PROPHET);
+				player.setPlayerClass(PROPHET);
 				player.setBaseClass(PROPHET);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -153,7 +153,7 @@ public class ElfHumanClericChange2 extends AbstractNpcAI
 				htmltext = "30120-23.htm"; // fnNoProof12
 			}
 		}
-		else if ((classId == ELDER) && (player.getClassId() == ClassId.ORACLE))
+		else if ((classId == ELDER) && (player.getPlayerClass() == PlayerClass.ORACLE))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -169,7 +169,7 @@ public class ElfHumanClericChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_PILGRIM, MARK_OF_LIFE, MARK_OF_HEALER))
 			{
 				takeItems(player, -1, MARK_OF_PILGRIM, MARK_OF_LIFE, MARK_OF_HEALER);
-				player.setClassId(ELDER);
+				player.setPlayerClass(ELDER);
 				player.setBaseClass(ELDER);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -194,12 +194,12 @@ public class ElfHumanClericChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.CLERIC_GROUP) && (player.isInCategory(CategoryType.HUMAN_CALL_CLASS) || player.isInCategory(CategoryType.ELF_CALL_CLASS)))
 		{
-			final ClassId classId = player.getClassId();
-			if ((classId == ClassId.CLERIC) || (classId == ClassId.BISHOP) || (classId == ClassId.PROPHET))
+			final PlayerClass classId = player.getPlayerClass();
+			if ((classId == PlayerClass.CLERIC) || (classId == PlayerClass.BISHOP) || (classId == PlayerClass.PROPHET))
 			{
 				htmltext = "30120-02.htm"; // fnClassList1
 			}
-			else if ((classId == ClassId.ORACLE) || (classId == ClassId.ELDER))
+			else if ((classId == PlayerClass.ORACLE) || (classId == PlayerClass.ELDER))
 			{
 				htmltext = "30120-09.htm"; // fnClassList2
 			}

@@ -18,7 +18,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.Map;
 
-import org.l2jmobius.gameserver.instancemanager.RaidBossPointsManager;
+import org.l2jmobius.gameserver.managers.RaidBossPointsManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.ExGetBossRecord;

@@ -21,15 +21,15 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
-import org.l2jmobius.gameserver.enums.IllegalActionPunishmentType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -94,16 +94,16 @@ public class SubClassSkills extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterWorld(Player player)
+	public void onEnterWorld(Player player)
 	{
 		if (!Config.SKILL_CHECK_ENABLE)
 		{
-			return null;
+			return;
 		}
 		
 		if (player.canOverrideCond(PlayerCondOverride.SKILL_CONDITIONS) && !Config.SKILL_CHECK_GM)
 		{
-			return null;
+			return;
 		}
 		
 		final List<Skill> certSkills = getCertSkills(player);
@@ -111,13 +111,13 @@ public class SubClassSkills extends AbstractNpcAI
 		{
 			for (Skill s : certSkills)
 			{
-				Util.handleIllegalPlayerAction(player, player + " has cert skill on subclass :" + s.getName() + "(" + s.getId() + "/" + s.getLevel() + "), class:" + ClassListData.getInstance().getClass(player.getClassId()).getClassName(), IllegalActionPunishmentType.NONE);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " has cert skill on subclass :" + s.getName() + "(" + s.getId() + "/" + s.getLevel() + "), class:" + ClassListData.getInstance().getClass(player.getPlayerClass()).getClassName(), IllegalActionPunishmentType.NONE);
 				if (Config.SKILL_CHECK_REMOVE)
 				{
 					player.removeSkill(s);
 				}
 			}
-			return null;
+			return;
 		}
 		
 		final int[][] cSkills = new int[certSkills.size()][2]; // skillId/skillLevel
@@ -181,25 +181,25 @@ public class SubClassSkills extends AbstractNpcAI
 							}
 							if (skill != null)
 							{
-								if (!CommonUtil.contains(_certSkillsByLevel[i], id))
+								if (!ArrayUtil.contains(_certSkillsByLevel[i], id))
 								{
 									// should remove this skill ?
-									Util.handleIllegalPlayerAction(player, "Invalid cert variable WITH skill:" + qName + "=" + qValue + " - skill does not match certificate level", IllegalActionPunishmentType.NONE);
+									PunishmentManager.handleIllegalPlayerAction(player, "Invalid cert variable WITH skill:" + qName + "=" + qValue + " - skill does not match certificate level", IllegalActionPunishmentType.NONE);
 								}
 							}
 							else
 							{
-								Util.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - skill not found", IllegalActionPunishmentType.NONE);
+								PunishmentManager.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - skill not found", IllegalActionPunishmentType.NONE);
 							}
 						}
 						else
 						{
-							Util.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - no certified skills found", IllegalActionPunishmentType.NONE);
+							PunishmentManager.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - no certified skills found", IllegalActionPunishmentType.NONE);
 						}
 					}
 					catch (NumberFormatException e)
 					{
-						Util.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - not a number", IllegalActionPunishmentType.NONE);
+						PunishmentManager.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - not a number", IllegalActionPunishmentType.NONE);
 					}
 				}
 				else
@@ -231,24 +231,24 @@ public class SubClassSkills extends AbstractNpcAI
 							}
 							if (item != null)
 							{
-								if (!CommonUtil.contains(_certItemsByLevel[i], item.getId()))
+								if (!ArrayUtil.contains(_certItemsByLevel[i], item.getId()))
 								{
-									Util.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - item found but does not match certificate level", IllegalActionPunishmentType.NONE);
+									PunishmentManager.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - item found but does not match certificate level", IllegalActionPunishmentType.NONE);
 								}
 							}
 							else
 							{
-								Util.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - item not found", IllegalActionPunishmentType.NONE);
+								PunishmentManager.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - item not found", IllegalActionPunishmentType.NONE);
 							}
 						}
 						else
 						{
-							Util.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - no cert item found in inventory", IllegalActionPunishmentType.NONE);
+							PunishmentManager.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - no cert item found in inventory", IllegalActionPunishmentType.NONE);
 						}
 					}
 					catch (NumberFormatException e)
 					{
-						Util.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - not a number", IllegalActionPunishmentType.NONE);
+						PunishmentManager.handleIllegalPlayerAction(player, "Invalid cert variable:" + qName + "=" + qValue + " - not a number", IllegalActionPunishmentType.NONE);
 					}
 				}
 			}
@@ -268,11 +268,11 @@ public class SubClassSkills extends AbstractNpcAI
 				{
 					if (cSkills[i][1] == skill.getLevel())
 					{
-						Util.handleIllegalPlayerAction(player, player + " has invalid cert skill :" + skill.getName() + "(" + skill.getId() + "/" + skill.getLevel() + ")", IllegalActionPunishmentType.NONE);
+						PunishmentManager.handleIllegalPlayerAction(player, player + " has invalid cert skill :" + skill.getName() + "(" + skill.getId() + "/" + skill.getLevel() + ")", IllegalActionPunishmentType.NONE);
 					}
 					else
 					{
-						Util.handleIllegalPlayerAction(player, player + " has invalid cert skill :" + skill.getName() + "(" + skill.getId() + "/" + skill.getLevel() + "), level too high", IllegalActionPunishmentType.NONE);
+						PunishmentManager.handleIllegalPlayerAction(player, player + " has invalid cert skill :" + skill.getName() + "(" + skill.getId() + "/" + skill.getLevel() + "), level too high", IllegalActionPunishmentType.NONE);
 					}
 					
 					if (Config.SKILL_CHECK_REMOVE)
@@ -282,7 +282,7 @@ public class SubClassSkills extends AbstractNpcAI
 				}
 				else
 				{
-					Util.handleIllegalPlayerAction(player, "Invalid cert skill :" + skill.getName() + "(" + skill.getId() + "/" + skill.getLevel() + "), level too low", IllegalActionPunishmentType.NONE);
+					PunishmentManager.handleIllegalPlayerAction(player, "Invalid cert skill :" + skill.getName() + "(" + skill.getId() + "/" + skill.getLevel() + "), level too low", IllegalActionPunishmentType.NONE);
 				}
 			}
 		}
@@ -297,11 +297,9 @@ public class SubClassSkills extends AbstractNpcAI
 				}
 				
 				final Item item = certItems.get(i);
-				Util.handleIllegalPlayerAction(player, "Invalid cert item without variable or with wrong count:" + item.getObjectId(), IllegalActionPunishmentType.NONE);
+				PunishmentManager.handleIllegalPlayerAction(player, "Invalid cert item without variable or with wrong count:" + item.getObjectId(), IllegalActionPunishmentType.NONE);
 			}
 		}
-		
-		return null;
 	}
 	
 	private List<Skill> getCertSkills(Player player)

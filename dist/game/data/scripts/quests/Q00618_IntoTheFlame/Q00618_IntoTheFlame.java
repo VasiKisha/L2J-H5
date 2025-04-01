@@ -19,10 +19,10 @@ package quests.Q00618_IntoTheFlame;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 
 /**
@@ -124,7 +124,7 @@ public class Q00618_IntoTheFlame extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final Player member = getRandomPartyMember(player, 2);
 		if (member != null)
@@ -143,7 +143,6 @@ public class Q00618_IntoTheFlame extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isPet);
 	}
 	
 	@Override

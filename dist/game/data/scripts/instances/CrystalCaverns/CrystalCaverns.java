@@ -27,35 +27,36 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.FlyType;
-import org.l2jmobius.gameserver.enums.InstanceReenterType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.enums.TrapAction;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.creature.TrapAction;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Trap;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
+import org.l2jmobius.gameserver.model.instancezone.InstanceReenterType;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.FlyType;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
@@ -64,7 +65,7 @@ import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import instances.AbstractInstance;
 import quests.Q00131_BirdInACage.Q00131_BirdInACage;
@@ -546,7 +547,7 @@ public class CrystalCaverns extends AbstractInstance
 				party.broadcastPacket(sm);
 				return false;
 			}
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED);
 				sm.addPcName(partyMember);
@@ -591,7 +592,7 @@ public class CrystalCaverns extends AbstractInstance
 				party.broadcastPacket(sm);
 				return false;
 			}
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED);
 				sm.addPcName(partyMember);
@@ -632,7 +633,7 @@ public class CrystalCaverns extends AbstractInstance
 				party.broadcastPacket(sm);
 				return false;
 			}
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED);
 				sm.addPcName(partyMember);
@@ -725,7 +726,7 @@ public class CrystalCaverns extends AbstractInstance
 		player.abortCast();
 		player.breakAttack();
 		player.breakCast();
-		player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		player.getAI().setIntention(Intention.IDLE);
 		final Summon pet = player.getSummon();
 		if (pet != null)
 		{
@@ -734,7 +735,7 @@ public class CrystalCaverns extends AbstractInstance
 			pet.abortCast();
 			pet.breakAttack();
 			pet.breakCast();
-			pet.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			pet.getAI().setIntention(Intention.IDLE);
 		}
 	}
 	
@@ -912,7 +913,7 @@ public class CrystalCaverns extends AbstractInstance
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		boolean doReturn = true;
 		for (WorldObject obj : targets)
@@ -924,7 +925,7 @@ public class CrystalCaverns extends AbstractInstance
 		}
 		if (doReturn)
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
 		
 		switch (skill.getId())
@@ -948,7 +949,7 @@ public class CrystalCaverns extends AbstractInstance
 		}
 		if (doReturn)
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
 		
 		if ((npc.getId() >= 32275) && (npc.getId() <= 32277) && (skill.getId() != 2360) && (skill.getId() != 2369))
@@ -970,8 +971,9 @@ public class CrystalCaverns extends AbstractInstance
 		{
 			if (caster.getParty() == null)
 			{
-				return super.onSkillSee(npc, caster, skill, targets, isSummon);
+				return;
 			}
+			
 			final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 			if (tmpworld instanceof CCWorld)
 			{
@@ -1005,7 +1007,7 @@ public class CrystalCaverns extends AbstractInstance
 				final Party party = caster.getParty();
 				if ((party == null) && !caster.isGM())
 				{
-					return super.onSkillSee(npc, caster, skill, targets, isSummon);
+					return;
 				}
 				else if (((world.dragonScaleStart + DRAGONSCALETIME) <= System.currentTimeMillis()) || (world.dragonScaleNeed <= 0))
 				{
@@ -1022,11 +1024,10 @@ public class CrystalCaverns extends AbstractInstance
 				}
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof CCWorld)
@@ -1040,7 +1041,7 @@ public class CrystalCaverns extends AbstractInstance
 			}
 			else if (world.tears != npc)
 			{
-				return null;
+				return;
 			}
 			else if (!world.copys.isEmpty())
 			{
@@ -1057,7 +1058,7 @@ public class CrystalCaverns extends AbstractInstance
 					}
 					world.copys.clear();
 				}
-				return null;
+				return;
 			}
 			
 			final int maxHp = npc.getMaxHp();
@@ -1083,7 +1084,7 @@ public class CrystalCaverns extends AbstractInstance
 					final Npc copy = addSpawn(TEARS_COPY, npc.getX(), npc.getY(), npc.getZ(), 0, false, 0, false, attacker.getInstanceId());
 					copy.setRunning();
 					copy.asAttackable().addDamageHate(target, 0, 99999);
-					copy.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+					copy.getAI().setIntention(Intention.ATTACK, target);
 					copy.setCurrentHp(nowHp);
 					world.copys.add(copy);
 				}
@@ -1094,11 +1095,10 @@ public class CrystalCaverns extends AbstractInstance
 				npc.setInvul(true);
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if ((npc.getId() == BAYLOR) && (skill.getId() == 5225))
 		{
@@ -1108,7 +1108,6 @@ public class CrystalCaverns extends AbstractInstance
 				((CCWorld) tmpworld)._raidStatus++;
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
@@ -1205,7 +1204,7 @@ public class CrystalCaverns extends AbstractInstance
 			}
 			else if (event.equalsIgnoreCase("baylorEffect0"))
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				npc.getAI().setIntention(Intention.IDLE);
 				npc.broadcastSocialAction(1);
 				startQuestTimer("baylorCamera0", 11000, npc, null);
 				startQuestTimer("baylorEffect1", 19000, npc, null);
@@ -1234,7 +1233,7 @@ public class CrystalCaverns extends AbstractInstance
 					final int x = (int) (radius * Math.cos(i * 0.618));
 					final int y = (int) (radius * Math.sin(i * 0.618));
 					final Npc mob = addSpawn(29104, 153571 + x, 142075 + y, -12737, 0, false, 0, false, world.getInstanceId());
-					mob.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+					mob.getAI().setIntention(Intention.IDLE);
 					world._animationMobs.add(mob);
 				}
 				startQuestTimer("baylorEffect0", 200, npc, null);
@@ -1389,10 +1388,10 @@ public class CrystalCaverns extends AbstractInstance
 			}
 			else if (event.equalsIgnoreCase("backFood"))
 			{
-				if (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ACTIVE)
+				if (npc.getAI().getIntention() == Intention.ACTIVE)
 				{
 					cancelQuestTimers("backFood");
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null);
+					npc.getAI().setIntention(Intention.IDLE, null);
 					world.crystalGolems.get(npc).foodItem = null;
 					startQuestTimer("autoFood", 2000, npc, null);
 				}
@@ -1404,16 +1403,16 @@ public class CrystalCaverns extends AbstractInstance
 				int dy;
 				if ((cryGolem.foodItem == null) || !cryGolem.foodItem.isSpawned())
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, cryGolem.oldLoc);
+					npc.getAI().setIntention(Intention.MOVE_TO, cryGolem.oldLoc);
 					cancelQuestTimers("reachFood");
 					startQuestTimer("backFood", 2000, npc, null, true);
 					return null;
 				}
-				else if (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ACTIVE)
+				else if (npc.getAI().getIntention() == Intention.ACTIVE)
 				{
 					World.getInstance().removeVisibleObject(cryGolem.foodItem, cryGolem.foodItem.getWorldRegion());
 					World.getInstance().removeObject(cryGolem.foodItem);
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null);
+					npc.getAI().setIntention(Intention.IDLE, null);
 					cryGolem.foodItem = null;
 					dx = npc.getX() - 142999;
 					dy = npc.getY() - 151671;
@@ -1445,7 +1444,7 @@ public class CrystalCaverns extends AbstractInstance
 				final CrystalGolem cryGolem = world.crystalGolems.get(npc);
 				final Location newLoc = new Location(cryGolem.foodItem.getX(), cryGolem.foodItem.getY(), cryGolem.foodItem.getZ(), 0);
 				cryGolem.oldLoc = new Location(npc.getX(), npc.getY(), npc.getZ(), npc.getHeading());
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, newLoc);
+				npc.getAI().setIntention(Intention.MOVE_TO, newLoc);
 				startQuestTimer("reachFood", 2000, npc, null, true);
 				cancelQuestTimers("getFood");
 			}
@@ -1498,7 +1497,7 @@ public class CrystalCaverns extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof CCWorld)
@@ -1511,7 +1510,7 @@ public class CrystalCaverns extends AbstractInstance
 				{
 					if (!isDead)
 					{
-						return null;
+						return;
 					}
 				}
 				world.setStatus(3);
@@ -1578,7 +1577,7 @@ public class CrystalCaverns extends AbstractInstance
 				}
 				else
 				{
-					return null;
+					return;
 				}
 			}
 			else if (world.getStatus() == 4)
@@ -1684,12 +1683,12 @@ public class CrystalCaverns extends AbstractInstance
 							world.openDoor(DOOR4);
 							final Npc kechi = addSpawn(KECHI, 154069, 149525, -12158, 51165, false, 0, false, world.getInstanceId());
 							startQuestTimer("checkKechiAttack", 1000, kechi, null);
-							return null;
+							return;
 						}
 						default:
 						{
 							LOGGER.warning("CrystalCavern-SteamCorridor: status " + world.getStatus() + " error. OracleOrder not found in " + world.getInstanceId());
-							return null;
+							return;
 						}
 					}
 					runSteamOracles(world, oracleOrder);
@@ -1713,7 +1712,7 @@ public class CrystalCaverns extends AbstractInstance
 				else
 				{
 					// something is wrong
-					return null;
+					return;
 				}
 				giveRewards(player, npc.getInstanceId(), bossCry, false);
 			}
@@ -1742,7 +1741,6 @@ public class CrystalCaverns extends AbstractInstance
 				giveRewards(player, npc.getInstanceId(), -1, true);
 			}
 		}
-		return null;
 	}
 	
 	@Override
@@ -1912,7 +1910,7 @@ public class CrystalCaverns extends AbstractInstance
 					{
 						for (Player partyMember : party.getMembers())
 						{
-							partyMember.destroyItemByItemId("Quest", RED_CORAL, 1, player, true);
+							partyMember.destroyItemByItemId(ItemProcessType.QUEST, RED_CORAL, 1, player, true);
 							teleportPlayer(partyMember, loc, npc.getInstanceId());
 						}
 					}
@@ -1937,7 +1935,7 @@ public class CrystalCaverns extends AbstractInstance
 						for (Player partyMember : party.getMembers())
 						{
 							// int rnd = getRandom(100);
-							// partyMember.destroyItemByItemId("Quest", (rnd < 33 ? BLUE_CRYSTAL:(rnd < 67 ? RED_CRYSTAL:CLEAR_CRYSTAL)), 1, partyMember, true); Crystals are no longer beign cunsumed while entering to Baylor Lair.
+							// partyMember.destroyItemByItemId(ItemProcessType.QUEST, (rnd < 33 ? BLUE_CRYSTAL:(rnd < 67 ? RED_CRYSTAL:CLEAR_CRYSTAL)), 1, partyMember, true); Crystals are no longer beign cunsumed while entering to Baylor Lair.
 							world._raiders.add(partyMember);
 						}
 					}
@@ -1981,7 +1979,7 @@ public class CrystalCaverns extends AbstractInstance
 	}
 	
 	@Override
-	public String onTrapAction(Trap trap, Creature trigger, TrapAction action)
+	public void onTrapAction(Trap trap, Creature trigger, TrapAction action)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(trap);
 		if (tmpworld instanceof CCWorld)
@@ -2000,11 +1998,10 @@ public class CrystalCaverns extends AbstractInstance
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -2038,22 +2035,24 @@ public class CrystalCaverns extends AbstractInstance
 						}
 						default:
 						{
-							return super.onEnterZone(creature, zone);
+							return;
 						}
 					}
+					
 					for (Door door : InstanceManager.getInstance().getInstance(world.getInstanceId()).getDoors())
 					{
 						if (door.getId() == (room + 24220000))
 						{
 							if (door.isOpen())
 							{
-								return null;
+								return;
 							}
 							
 							if (!hasQuestItems(creature.asPlayer(), SECRET_KEY))
 							{
-								return null;
+								return;
 							}
+							
 							if (world.roomsStatus[zone.getId() - 20104] == 0)
 							{
 								runEmeraldRooms(world, spawns, room);
@@ -2067,11 +2066,10 @@ public class CrystalCaverns extends AbstractInstance
 				}
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -2101,9 +2099,10 @@ public class CrystalCaverns extends AbstractInstance
 						}
 						default:
 						{
-							return super.onExitZone(creature, zone);
+							return;
 						}
 					}
+					
 					for (Door door : InstanceManager.getInstance().getInstance(world.getInstanceId()).getDoors())
 					{
 						if (door.getId() == doorId)
@@ -2119,7 +2118,6 @@ public class CrystalCaverns extends AbstractInstance
 				}
 			}
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	public static void main(String[] args)

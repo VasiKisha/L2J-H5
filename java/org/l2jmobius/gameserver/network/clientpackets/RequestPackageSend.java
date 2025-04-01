@@ -17,10 +17,12 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
@@ -29,11 +31,10 @@ import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author -Wooden-
- * @author UnAfraid Thanks mrTJO
+ * @author UnAfraid, mrTJO
  */
 public class RequestPackageSend extends ClientPacket
 {
@@ -91,7 +92,7 @@ public class RequestPackageSend extends ClientPacket
 		
 		if (player.getActiveEnchantItemId() != Player.ID_NONE)
 		{
-			Util.handleIllegalPlayerAction(player, player + " tried to use enchant Exploit!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to use enchant Exploit!", Config.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -153,7 +154,7 @@ public class RequestPackageSend extends ClientPacket
 		}
 		
 		// Check if enough adena and charge the fee
-		if ((currentAdena < fee) || !player.reduceAdena(warehouse.getName(), fee, manager, false))
+		if ((currentAdena < fee) || !player.reduceAdena(ItemProcessType.FEE, fee, manager, false))
 		{
 			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
 			warehouse.deleteMe();
@@ -173,7 +174,7 @@ public class RequestPackageSend extends ClientPacket
 				return;
 			}
 			
-			final Item newItem = player.getInventory().transferItem("Trade", i.getId(), i.getCount(), warehouse, player, null);
+			final Item newItem = player.getInventory().transferItem(ItemProcessType.TRANSFER, i.getId(), i.getCount(), warehouse, player, null);
 			if (newItem == null)
 			{
 				PacketLogger.warning("Error depositing a warehouse object for char " + player.getName() + " (newitem == null)");

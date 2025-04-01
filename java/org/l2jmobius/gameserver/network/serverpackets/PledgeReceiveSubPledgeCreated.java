@@ -31,10 +31,6 @@ public class PledgeReceiveSubPledgeCreated extends ServerPacket
 	private final SubPledge _subPledge;
 	private final Clan _clan;
 	
-	/**
-	 * @param subPledge
-	 * @param clan
-	 */
 	public PledgeReceiveSubPledgeCreated(SubPledge subPledge, Clan clan)
 	{
 		_subPledge = subPledge;

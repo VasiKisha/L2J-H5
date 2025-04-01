@@ -104,14 +104,13 @@ public class Q00269_InventionAmbition extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, -1, 3, npc);
 		if (qs != null)
 		{
 			giveItemRandomly(qs.getPlayer(), npc, ENERGY_ORE, 1, 0, MONSTERS.get(npc.getId()), true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

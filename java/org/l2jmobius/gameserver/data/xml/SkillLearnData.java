@@ -26,7 +26,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ClassId;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 /**
  * Holds all skill learn data for all NPCs.
@@ -34,7 +34,7 @@ import org.l2jmobius.gameserver.enums.ClassId;
  */
 public class SkillLearnData implements IXmlReader
 {
-	private final Map<Integer, List<ClassId>> _skillLearn = new HashMap<>();
+	private final Map<Integer, List<PlayerClass>> _skillLearn = new HashMap<>();
 	
 	protected SkillLearnData()
 	{
@@ -50,9 +50,9 @@ public class SkillLearnData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node node = doc.getFirstChild(); node != null; node = node.getNextSibling())
+		for (Node node = document.getFirstChild(); node != null; node = node.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(node.getNodeName()))
 			{
@@ -60,12 +60,12 @@ public class SkillLearnData implements IXmlReader
 				{
 					if ("npc".equalsIgnoreCase(list_node.getNodeName()))
 					{
-						final List<ClassId> classIds = new ArrayList<>();
+						final List<PlayerClass> classIds = new ArrayList<>();
 						for (Node c = list_node.getFirstChild(); c != null; c = c.getNextSibling())
 						{
 							if ("classId".equalsIgnoreCase(c.getNodeName()))
 							{
-								classIds.add(ClassId.getClassId(Integer.parseInt(c.getTextContent())));
+								classIds.add(PlayerClass.getPlayerClass(Integer.parseInt(c.getTextContent())));
 							}
 						}
 						_skillLearn.put(parseInteger(list_node.getAttributes(), "id"), classIds);
@@ -77,9 +77,9 @@ public class SkillLearnData implements IXmlReader
 	
 	/**
 	 * @param npcId
-	 * @return {@link List} of {@link ClassId}'s that this npcId can teach.
+	 * @return {@link List} of {@link PlayerClass}'s that this npcId can teach.
 	 */
-	public List<ClassId> getSkillLearnData(int npcId)
+	public List<PlayerClass> getSkillLearnData(int npcId)
 	{
 		return _skillLearn.get(npcId);
 	}

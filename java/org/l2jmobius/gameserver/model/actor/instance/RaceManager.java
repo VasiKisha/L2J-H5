@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
@@ -21,13 +25,14 @@ import java.util.Locale;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.games.MonsterRaceManager;
-import org.l2jmobius.gameserver.instancemanager.games.MonsterRaceManager.HistoryInfo;
-import org.l2jmobius.gameserver.instancemanager.games.MonsterRaceManager.RaceState;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.games.MonsterRaceManager;
+import org.l2jmobius.gameserver.managers.games.MonsterRaceManager.HistoryInfo;
+import org.l2jmobius.gameserver.managers.games.MonsterRaceManager.RaceState;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -155,7 +160,7 @@ public class RaceManager extends Npc
 				
 				int ticket = player.getRaceTicket(0);
 				int priceId = player.getRaceTicket(1);
-				if (!player.reduceAdena("Race", TICKET_PRICES[priceId - 1], this, true))
+				if (!player.reduceAdena(ItemProcessType.FEE, TICKET_PRICES[priceId - 1], this, true))
 				{
 					return;
 				}
@@ -167,7 +172,7 @@ public class RaceManager extends Npc
 				item.setEnchantLevel(MonsterRaceManager.getInstance().getRaceNumber());
 				item.setCustomType1(ticket);
 				item.setCustomType2(TICKET_PRICES[priceId - 1] / 100);
-				player.addItem("Race", item, player, false);
+				player.addItem(ItemProcessType.QUEST, item, player, false);
 				final SystemMessage msg = new SystemMessage(SystemMessageId.ACQUIRED_S1_S2);
 				msg.addInt(MonsterRaceManager.getInstance().getRaceNumber());
 				msg.addItemName(4443);
@@ -330,9 +335,9 @@ public class RaceManager extends Npc
 			}
 			
 			// Destroy the ticket.
-			if (player.destroyItem("MonsterTrack", ticket, this, true))
+			if (player.destroyItem(ItemProcessType.FEE, ticket, this, true))
 			{
-				player.addAdena("MonsterTrack", (int) (bet * ((lane == (info.getFirst() + 1)) ? info.getOddRate() : 0.01)), this, true);
+				player.addAdena(ItemProcessType.REWARD, (int) (bet * ((lane == (info.getFirst() + 1)) ? info.getOddRate() : 0.01)), this, true);
 			}
 			
 			super.onBypassFeedback(player, "Chat 0");

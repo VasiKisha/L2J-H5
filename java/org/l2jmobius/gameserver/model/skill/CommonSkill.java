@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.skill;
 
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * An Enum to hold some important references to commonly used skills

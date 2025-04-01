@@ -21,12 +21,13 @@
 package handlers.itemhandlers;
 
 import org.l2jmobius.gameserver.handler.IItemHandler;
-import org.l2jmobius.gameserver.instancemanager.HandysBlockCheckerManager;
+import org.l2jmobius.gameserver.managers.HandysBlockCheckerManager;
 import org.l2jmobius.gameserver.model.ArenaParticipantsHolder;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Block;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -67,14 +68,14 @@ public class EventItem implements IItemHandler
 		return used;
 	}
 	
-	private final boolean useBlockCheckerItem(Player castor, Item item)
+	private final boolean useBlockCheckerItem(Player caster, Item item)
 	{
-		final int blockCheckerArena = castor.getBlockCheckerArena();
+		final int blockCheckerArena = caster.getBlockCheckerArena();
 		if (blockCheckerArena == -1)
 		{
 			final SystemMessage msg = new SystemMessage(SystemMessageId.S1_CANNOT_BE_USED_DUE_TO_UNSUITABLE_TERMS);
 			msg.addItemName(item);
-			castor.sendPacket(msg);
+			caster.sendPacket(msg);
 			return false;
 		}
 		
@@ -84,27 +85,27 @@ public class EventItem implements IItemHandler
 			return false;
 		}
 		
-		if (!castor.destroyItem("Consume", item, 1, castor, true))
+		if (!caster.destroyItem(ItemProcessType.NONE, item, 1, caster, true))
 		{
 			return false;
 		}
 		
-		final Block block = (Block) castor.getTarget();
+		final Block block = (Block) caster.getTarget();
 		final ArenaParticipantsHolder holder = HandysBlockCheckerManager.getInstance().getHolder(blockCheckerArena);
 		if (holder != null)
 		{
-			final int team = holder.getPlayerTeam(castor);
+			final int team = holder.getPlayerTeam(caster);
 			World.getInstance().forEachVisibleObjectInRange(block, Player.class, sk.getEffectRange(), pc ->
 			{
 				final int enemyTeam = holder.getPlayerTeam(pc);
 				if ((enemyTeam != -1) && (enemyTeam != team))
 				{
-					sk.applyEffects(castor, pc);
+					sk.applyEffects(caster, pc);
 				}
 			});
 			return true;
 		}
-		LOGGER.warning("Char: " + castor.getName() + "[" + castor.getObjectId() + "] has unknown block checker arena");
+		LOGGER.warning("Char: " + caster.getName() + "[" + caster.getObjectId() + "] has unknown block checker arena");
 		return false;
 	}
 }

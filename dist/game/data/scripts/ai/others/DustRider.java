@@ -18,8 +18,8 @@ package ai.others;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -45,9 +45,9 @@ public class DustRider extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
-		if (Util.calculateDistance(npc, npc.getSpawn(), false, false) > MAX_CHASE_DIST)
+		if (LocationUtil.calculateDistance(npc, npc.getSpawn(), false, false) > MAX_CHASE_DIST)
 		{
 			npc.teleToLocation(npc.getSpawn().getX(), npc.getSpawn().getY(), npc.getSpawn().getZ());
 		}
@@ -57,7 +57,6 @@ public class DustRider extends AbstractNpcAI
 			npc.getVariables().set(CAST_FLAG, true);
 			addSkillCastDesire(npc, npc, NPC_HASTE_LEVEL_3, 99999);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	public static void main(String[] args)

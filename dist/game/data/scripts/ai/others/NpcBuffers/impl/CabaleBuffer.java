@@ -18,7 +18,6 @@ package ai.others.NpcBuffers.impl;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -26,6 +25,7 @@ import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -72,11 +72,10 @@ public class CabaleBuffer extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		ThreadPool.schedule(new CabaleAI(npc), 3000);
 		ThreadPool.schedule(new Talk(npc), 60000);
-		return super.onSpawn(npc);
 	}
 	
 	protected class Talk implements Runnable

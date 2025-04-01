@@ -19,10 +19,10 @@ package ai.areas.Gracia.AI.NPC.Nottingale;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.instancemanager.AirShipManager;
+import org.l2jmobius.gameserver.managers.AirShipManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.RadarControl;
 
@@ -69,7 +69,7 @@ public class Nottingale extends AbstractNpcAI
 			{
 				if (player.getClan() != null)
 				{
-					if (player.hasClanPrivilege(ClanPrivilege.CL_SUMMON_AIRSHIP) && AirShipManager.getInstance().hasAirShipLicense(player.getClanId()) && !AirShipManager.getInstance().hasAirShip(player.getClanId()))
+					if (player.hasAccess(ClanAccess.ACCESS_AIRSHIP) && AirShipManager.getInstance().hasAirShipLicense(player.getClanId()) && !AirShipManager.getInstance().hasAirShip(player.getClanId()))
 					{
 						htmltext = event;
 					}

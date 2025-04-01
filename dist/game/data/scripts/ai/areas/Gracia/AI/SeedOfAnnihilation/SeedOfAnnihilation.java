@@ -20,10 +20,9 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -31,6 +30,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.EffectZone;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -282,16 +282,15 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		for (SeedRegion element : _regionsData)
 		{
-			if (CommonUtil.contains(element.elite_mob_ids, npc.getId()))
+			if (ArrayUtil.contains(element.elite_mob_ids, npc.getId()))
 			{
 				spawnGroupOfMinion(npc.asMonster(), getRandomEntry(element.minion_lists));
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -336,14 +335,13 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (TELEPORT_ZONES.containsKey(zone.getId()))
 		{
 			final Location teleLoc = TELEPORT_ZONES.get(zone.getId());
 			creature.teleToLocation(teleLoc, false);
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	private static class SeedRegion

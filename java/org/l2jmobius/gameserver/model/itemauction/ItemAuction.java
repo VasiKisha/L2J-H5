@@ -31,6 +31,7 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.model.ItemInfo;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
@@ -501,7 +502,7 @@ public class ItemAuction
 	
 	private final boolean reduceItemCount(Player player, long count)
 	{
-		if (player.reduceAdena("ItemAuction", count, player, true))
+		if (player.reduceAdena(ItemProcessType.FEE, count, player, true))
 		{
 			return true;
 		}
@@ -511,7 +512,7 @@ public class ItemAuction
 	
 	private void increaseItemCount(Player player, long count)
 	{
-		player.addAdena("ItemAuction", count, player, true);
+		player.addAdena(ItemProcessType.REFUND, count, player, true);
 	}
 	
 	/**

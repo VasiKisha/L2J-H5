@@ -19,10 +19,10 @@ package quests.Q00140_ShadowFoxPart2;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -149,19 +149,19 @@ public class Q00140_ShadowFoxPart2 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player member = getRandomPartyMember(player, 3);
 		if (member == null)
 		{
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
+		
 		if (getRandom(100) < MOBS.get(npc.getId()))
 		{
 			giveItems(member, DARK_CRYSTAL, 1);
 			playSound(member, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

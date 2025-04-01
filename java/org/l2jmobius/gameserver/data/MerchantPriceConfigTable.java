@@ -31,8 +31,8 @@ import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
 import org.l2jmobius.gameserver.model.siege.Castle;
 
@@ -80,9 +80,9 @@ public class MerchantPriceConfigTable
 		if (file.exists())
 		{
 			int defaultPriceConfigId;
-			final Document doc = factory.newDocumentBuilder().parse(file);
+			final Document document = factory.newDocumentBuilder().parse(file);
 			
-			Node n = doc.getDocumentElement();
+			Node n = document.getDocumentElement();
 			final Node dpcNode = n.getAttributes().getNamedItem("defaultPriceConfig");
 			if (dpcNode == null)
 			{

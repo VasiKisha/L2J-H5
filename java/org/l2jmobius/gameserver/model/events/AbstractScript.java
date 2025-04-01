@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.events;
 
@@ -24,8 +28,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.PriorityBlockingQueue;
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.logging.Level;
@@ -33,19 +39,18 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
-import org.l2jmobius.gameserver.instancemanager.PcCafePointsManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.PcCafePointsManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Message;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Attackable;
@@ -53,6 +58,8 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.MovieHolder;
+import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.instance.Trap;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
@@ -65,40 +72,40 @@ import org.l2jmobius.gameserver.model.events.annotations.Range;
 import org.l2jmobius.gameserver.model.events.annotations.Ranges;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.IBaseEvent;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSee;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureZoneEnter;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureZoneExit;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcCanBeSeen;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcEventReceived;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcFirstTalk;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMoveFinished;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMoveNodeArrived;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMoveRouteFinished;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSkillFinished;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSkillSee;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSpawn;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcTeleport;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.attackable.OnAttackableAggroRangeEnter;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.attackable.OnAttackableAttack;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.attackable.OnAttackableFactionCall;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.attackable.OnAttackableHate;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.attackable.OnAttackableKill;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogout;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionCancel;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionChange;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSkillLearn;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSummonSpawn;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSummonTalk;
-import org.l2jmobius.gameserver.model.events.impl.creature.trap.OnTrapAction;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemBypassEvent;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemTalk;
-import org.l2jmobius.gameserver.model.events.impl.olympiad.OnOlympiadMatchResult;
-import org.l2jmobius.gameserver.model.events.impl.sieges.castle.OnCastleSiegeFinish;
-import org.l2jmobius.gameserver.model.events.impl.sieges.castle.OnCastleSiegeOwnerChange;
-import org.l2jmobius.gameserver.model.events.impl.sieges.castle.OnCastleSiegeStart;
+import org.l2jmobius.gameserver.model.events.holders.IBaseEvent;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSee;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureZoneEnter;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureZoneExit;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcCanBeSeen;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcEventReceived;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcFirstTalk;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMoveFinished;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMoveNodeArrived;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMoveRouteFinished;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSkillFinished;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSkillSee;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSpawn;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcTeleport;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.attackable.OnAttackableAggroRangeEnter;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.attackable.OnAttackableAttack;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.attackable.OnAttackableFactionCall;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.attackable.OnAttackableHate;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.attackable.OnAttackableKill;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionCancel;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionChange;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSkillLearn;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonSpawn;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonTalk;
+import org.l2jmobius.gameserver.model.events.holders.actor.trap.OnTrapAction;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemBypassEvent;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemTalk;
+import org.l2jmobius.gameserver.model.events.holders.olympiad.OnOlympiadMatchResult;
+import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeFinish;
+import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeOwnerChange;
+import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeStart;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 import org.l2jmobius.gameserver.model.events.listeners.AnnotationEventListener;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
@@ -110,13 +117,14 @@ import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.events.timers.IEventTimerCancel;
 import org.l2jmobius.gameserver.model.events.timers.IEventTimerEvent;
 import org.l2jmobius.gameserver.model.events.timers.TimerHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.MovieHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.interfaces.IPositionable;
 import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
@@ -124,30 +132,34 @@ import org.l2jmobius.gameserver.model.itemcontainer.PetInventory;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerWarehouse;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.scripting.ManagedScript;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 import org.l2jmobius.gameserver.util.MinionList;
 
 /**
- * @author UnAfraid
+ * @author UnAfraid, Mobius
  */
 public abstract class AbstractScript extends ManagedScript implements IEventTimerEvent<String>, IEventTimerCancel<String>
 {
 	public static final Logger LOGGER = Logger.getLogger(AbstractScript.class.getName());
+	
 	private final Map<ListenerRegisterType, Set<Integer>> _registeredIds = new ConcurrentHashMap<>();
-	private final Collection<AbstractEventListener> _listeners = ConcurrentHashMap.newKeySet();
+	private final Queue<AbstractEventListener> _listeners = new PriorityBlockingQueue<>();
 	private TimerExecutor<String> _timerExecutor;
 	
 	public AbstractScript()
@@ -1670,7 +1682,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 		return _registeredIds.containsKey(type) ? _registeredIds.get(type) : Collections.emptySet();
 	}
 	
-	public Collection<AbstractEventListener> getListeners()
+	public Queue<AbstractEventListener> getListeners()
 	{
 		return _listeners;
 	}
@@ -2353,7 +2365,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 		}
 		
 		// Add items to player's inventory
-		final Item itemInstance = player.getInventory().addItem("Quest", itemId, count, player, player.getTarget());
+		final Item itemInstance = player.getInventory().addItem(ItemProcessType.QUEST, itemId, count, player, player.getTarget());
 		if (itemInstance == null)
 		{
 			return;
@@ -2435,7 +2447,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 		}
 		
 		// Add items to player's inventory
-		final Item item = player.getInventory().addItem("Quest", itemId, count, player, player.getTarget());
+		final Item item = player.getInventory().addItem(ItemProcessType.QUEST, itemId, count, player, player.getTarget());
 		if (item == null)
 		{
 			return;
@@ -2465,7 +2477,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 		}
 		
 		// Add items to player's inventory
-		final Item item = player.getInventory().addItem("Quest", itemId, count, player, player.getTarget());
+		final Item item = player.getInventory().addItem(ItemProcessType.QUEST, itemId, count, player, player.getTarget());
 		if (item == null)
 		{
 			return;
@@ -2572,7 +2584,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 			}
 			
 			// Give the item to player
-			if (player.addItem("Quest", itemId, amountToGive, npc, true) != null)
+			if (player.addItem(ItemProcessType.QUEST, itemId, amountToGive, npc, true) != null)
 			{
 				// limit reached (if there is no limit, this block doesn't execute)
 				if ((currentCount + amountToGive) == limit)
@@ -2645,7 +2657,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 			player.sendInventoryUpdate(iu);
 			player.broadcastUserInfo();
 		}
-		return player.destroyItemByItemId("Quest", item.getId(), toDelete, player, true);
+		return player.destroyItemByItemId(ItemProcessType.QUEST, item.getId(), toDelete, player, true);
 	}
 	
 	/**
@@ -2858,7 +2870,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	}
 	
 	/**
-	 * @return the number of ticks from the {@link org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager}.
+	 * @return the number of ticks from the {@link org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager}.
 	 */
 	public static int getGameTicks()
 	{
@@ -2914,6 +2926,70 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	}
 	
 	/**
+	 * Open a door if it is present on the instance and it is not open.
+	 * @param doorId the ID of the door to open
+	 * @param instanceId the ID of the instance the door is in (0 if the door is not not inside an instance)
+	 */
+	public void openDoor(int doorId, int instanceId)
+	{
+		final Door door = getDoor(doorId, instanceId);
+		if (door == null)
+		{
+			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": called openDoor(" + doorId + ", " + instanceId + "); but door was not found!", new NullPointerException());
+		}
+		else if (!door.isOpen())
+		{
+			door.openMe();
+		}
+	}
+	
+	/**
+	 * Close a door if it is present in a specified the instance and it is open.
+	 * @param doorId the ID of the door to close
+	 * @param instanceId the ID of the instance the door is in (0 if the door is not not inside an instance)
+	 */
+	public void closeDoor(int doorId, int instanceId)
+	{
+		final Door door = getDoor(doorId, instanceId);
+		if (door == null)
+		{
+			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": called closeDoor(" + doorId + ", " + instanceId + "); but door was not found!", new NullPointerException());
+		}
+		else if (door.isOpen())
+		{
+			door.closeMe();
+		}
+	}
+	
+	/**
+	 * Retrieve a door from an instance or the real world.
+	 * @param doorId the ID of the door to get
+	 * @param instanceId the ID of the instance the door is in (0 if the door is not not inside an instance)
+	 * @return the found door or {@code null} if no door with that ID and instance ID was found
+	 */
+	public Door getDoor(int doorId, int instanceId)
+	{
+		final Door door;
+		if (instanceId == 0)
+		{
+			door = DoorData.getInstance().getDoor(doorId);
+		}
+		else
+		{
+			final Instance instance = InstanceManager.getInstance().getInstance(instanceId);
+			if (instance != null)
+			{
+				door = instance.getDoor(doorId);
+			}
+			else
+			{
+				door = DoorData.getInstance().getDoor(doorId);
+			}
+		}
+		return door;
+	}
+	
+	/**
 	 * Teleport a player into/out of an instance.
 	 * @param player the player to teleport
 	 * @param loc the {@link Location} object containing the destination coordinates
@@ -2959,7 +3035,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 			npc.asAttackable().addDamageHate(target, 0, desire);
 		}
 		npc.setRunning();
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+		npc.getAI().setIntention(Intention.ATTACK, target);
 	}
 	
 	/**
@@ -2970,7 +3046,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 	 */
 	protected void addMoveToDesire(Npc npc, Location loc, int desire)
 	{
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, loc);
+		npc.getAI().setIntention(Intention.MOVE_TO, loc);
 	}
 	
 	/**
@@ -3023,7 +3099,7 @@ public abstract class AbstractScript extends ManagedScript implements IEventTime
 			npc.asAttackable().addDamageHate(target, 0, desire);
 		}
 		npc.setTarget(target);
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, skill, target);
+		npc.getAI().setIntention(Intention.CAST, skill, target);
 	}
 	
 	/**

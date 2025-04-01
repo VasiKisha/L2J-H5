@@ -19,18 +19,19 @@ package features.SkillTransfer;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.IllegalActionPunishmentType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionCancel;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerProfessionChange;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionCancel;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionChange;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 
@@ -67,7 +68,7 @@ public class SkillTransfer extends AbstractNpcAI
 			return;
 		}
 		
-		final String name = HOLY_POMANDER + player.getClassId().getId();
+		final String name = HOLY_POMANDER + player.getPlayerClass().getId();
 		if (!player.getVariables().getBoolean(name, false))
 		{
 			player.getVariables().set(name, true);
@@ -78,7 +79,7 @@ public class SkillTransfer extends AbstractNpcAI
 	public void onProfessionCancel(OnPlayerProfessionCancel event)
 	{
 		final Player player = event.getPlayer();
-		final ClassId classId = ClassId.getClassId(event.getClassId());
+		final PlayerClass classId = PlayerClass.getPlayerClass(event.getClassId());
 		final int index = getTransferClassIndex(classId);
 		
 		// is a transfer class
@@ -92,7 +93,7 @@ public class SkillTransfer extends AbstractNpcAI
 		final PlayerInventory inv = player.getInventory();
 		for (Item itemI : inv.getAllItemsByItemId(pomanderId))
 		{
-			inv.destroyItem("[HolyPomander - remove]", itemI, player, null);
+			inv.destroyItem(ItemProcessType.DESTROY, itemI, player, null);
 		}
 		// remove holy pomander variable
 		final String name = HOLY_POMANDER + event.getClassId();
@@ -100,19 +101,20 @@ public class SkillTransfer extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterWorld(Player player)
+	public void onEnterWorld(Player player)
 	{
 		if (!player.canOverrideCond(PlayerCondOverride.SKILL_CONDITIONS) || Config.SKILL_CHECK_GM)
 		{
 			final int index = getTransferClassIndex(player);
 			if (index < 0)
 			{
-				return super.onEnterWorld(player);
+				return;
 			}
+			
 			long count = PORMANDERS[index].getCount() - player.getInventory().getInventoryItemCount(PORMANDERS[index].getId(), -1, false);
 			for (Skill sk : player.getAllSkills())
 			{
-				for (SkillLearn s : SkillTreeData.getInstance().getTransferSkillTree(player.getClassId()).values())
+				for (SkillLearn s : SkillTreeData.getInstance().getTransferSkillTree(player.getPlayerClass()).values())
 				{
 					if (s.getSkillId() == sk.getId())
 					{
@@ -125,8 +127,8 @@ public class SkillTransfer extends AbstractNpcAI
 						count--;
 						if (count < 0)
 						{
-							final String className = ClassListData.getInstance().getClass(player.getClassId()).getClassName();
-							Util.handleIllegalPlayerAction(player, player + " has too many transfered skills or items, skill:" + s.getName() + " (" + sk.getId() + "/" + sk.getLevel() + "), class:" + className, IllegalActionPunishmentType.BROADCAST);
+							final String className = ClassListData.getInstance().getClass(player.getPlayerClass()).getClassName();
+							PunishmentManager.handleIllegalPlayerAction(player, player + " has too many transfered skills or items, skill:" + s.getName() + " (" + sk.getId() + "/" + sk.getLevel() + "), class:" + className, IllegalActionPunishmentType.BROADCAST);
 							if (Config.SKILL_CHECK_REMOVE)
 							{
 								player.removeSkill(sk);
@@ -138,18 +140,17 @@ public class SkillTransfer extends AbstractNpcAI
 			// SkillTransfer or HolyPomander missing
 			if (count > 0)
 			{
-				player.getInventory().addItem("[HolyPomander - missing]", PORMANDERS[index].getId(), count, player, null);
+				player.getInventory().addItem(ItemProcessType.COMPENSATE, PORMANDERS[index].getId(), count, player, null);
 			}
 		}
-		return super.onEnterWorld(player);
 	}
 	
 	private static int getTransferClassIndex(Player player)
 	{
-		return getTransferClassIndex(player.getClassId());
+		return getTransferClassIndex(player.getPlayerClass());
 	}
 	
-	private static int getTransferClassIndex(ClassId classId)
+	private static int getTransferClassIndex(PlayerClass classId)
 	{
 		switch (classId)
 		{

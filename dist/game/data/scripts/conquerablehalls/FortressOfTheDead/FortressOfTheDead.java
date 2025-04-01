@@ -22,13 +22,13 @@ import java.util.Map.Entry;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * Fortress of the Dead clan hall siege script.
@@ -57,7 +57,7 @@ public class FortressOfTheDead extends ClanHallSiegeEngine
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == LIDIA)
 		{
@@ -71,15 +71,14 @@ public class FortressOfTheDead extends ClanHallSiegeEngine
 		{
 			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.ARISE_MY_FAITHFUL_SERVANTS_YOU_MY_PEOPLE_WHO_HAVE_INHERITED_THE_BLOOD_IT_IS_THE_CALLING_OF_MY_DAUGHTER_THE_FEAST_OF_BLOOD_WILL_NOW_BEGIN);
 		}
-		return null;
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (!_hall.isInSiege())
 		{
-			return null;
+			return;
 		}
 		
 		synchronized (this)
@@ -100,15 +99,14 @@ public class FortressOfTheDead extends ClanHallSiegeEngine
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (!_hall.isInSiege())
 		{
-			return null;
+			return;
 		}
 		
 		final int npcId = npc.getId();
@@ -126,8 +124,6 @@ public class FortressOfTheDead extends ClanHallSiegeEngine
 				endSiege();
 			}
 		}
-		
-		return null;
 	}
 	
 	@Override

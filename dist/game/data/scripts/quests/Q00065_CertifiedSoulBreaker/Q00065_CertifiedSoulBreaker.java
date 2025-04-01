@@ -17,19 +17,19 @@
 package quests.Q00065_CertifiedSoulBreaker;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Certified Soul Breaker (65)
@@ -292,10 +292,10 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -334,7 +334,6 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -721,14 +720,14 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == SUSPICIOUS_MAN)
 		{
 			startQuestTimer("DESPAWN_5", 5000, npc, null);
 			npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.DRATS_HOW_COULD_I_BE_SO_WRONG));
 			npc.setRunning();
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MOVE_TO);
+			npc.getAI().setIntention(Intention.MOVE_TO, MOVE_TO);
 		}
 		else if (npc.getId() == GUARDIAN_ANGEL)
 		{
@@ -739,6 +738,5 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 				npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.S1_STEP_BACK_FROM_THE_CONFOUNDED_BOX_I_WILL_TAKE_IT_MYSELF).addStringParameter(c0.getAppearance().getVisibleName()));
 			}
 		}
-		return super.onSpawn(npc);
 	}
 }

@@ -16,12 +16,12 @@
  */
 package ai.areas.GiantsCave;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -74,7 +74,7 @@ public class GiantsCave extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.isScriptValue(0))
 		{
@@ -82,11 +82,10 @@ public class GiantsCave extends AbstractNpcAI
 			startQuestTimer("ATTACK", 6000, npc, attacker);
 			startQuestTimer("CLEAR", 120000, npc, null);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		if (npc.isScriptValue(0))
 		{
@@ -102,7 +101,6 @@ public class GiantsCave extends AbstractNpcAI
 			startQuestTimer("ATTACK", 6000, npc, player);
 			startQuestTimer("CLEAR", 120000, npc, null);
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

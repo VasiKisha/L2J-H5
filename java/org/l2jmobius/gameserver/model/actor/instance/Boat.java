@@ -19,10 +19,10 @@ package org.l2jmobius.gameserver.model.actor.instance;
 import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.ai.BoatAI;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Vehicle;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
 import org.l2jmobius.gameserver.network.serverpackets.VehicleDeparture;
 import org.l2jmobius.gameserver.network.serverpackets.VehicleInfo;

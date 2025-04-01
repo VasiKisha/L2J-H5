@@ -22,18 +22,19 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.CHSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.CHSiegeManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.Event;
 import org.l2jmobius.gameserver.model.residences.ClanHall;
 import org.l2jmobius.gameserver.model.siege.Castle;
@@ -257,7 +258,7 @@ public class RequestRestartPoint extends ClientPacket
 					PacketLogger.warning("Player [" + player.getName() + "] called RestartPointPacket - Fixed and he isn't festival participant!");
 					return;
 				}
-				if (player.isGM() || player.destroyItemByItemId("Feather", 10649, 1, player, false) || player.destroyItemByItemId("Feather", 13300, 1, player, false) || player.destroyItemByItemId("Feather", 13128, 1, player, false))
+				if (player.isGM() || player.destroyItemByItemId(ItemProcessType.FEE, 10649, 1, player, false) || player.destroyItemByItemId(ItemProcessType.FEE, 13300, 1, player, false) || player.destroyItemByItemId(ItemProcessType.FEE, 13128, 1, player, false))
 				{
 					player.doRevive(100.00);
 				}

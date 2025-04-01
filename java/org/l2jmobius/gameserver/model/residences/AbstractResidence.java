@@ -23,14 +23,13 @@ import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.interfaces.INamable;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.type.ResidenceZone;
 
 /**
  * @author xban1x
  */
-public abstract class AbstractResidence extends ListenersContainer implements INamable
+public abstract class AbstractResidence extends ListenersContainer
 {
 	private final int _residenceId;
 	private String _name;
@@ -61,7 +60,6 @@ public abstract class AbstractResidence extends ListenersContainer implements IN
 		return _residenceId;
 	}
 	
-	@Override
 	public String getName()
 	{
 		return _name;

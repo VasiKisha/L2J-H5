@@ -20,40 +20,40 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.MountType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.model.CommandChannel;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
 import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.CommandChannel;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.variables.NpcVariables;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExChangeClientEffectInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.OnEventTrigger;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import instances.AbstractInstance;
 import quests.Q10286_ReunionWithSirra.Q10286_ReunionWithSirra;
@@ -311,7 +311,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						{
 							startQuestTimer("STAGE_2_FAILED", GLAKIAS_KILL_TIMER * 60 * 1000, controller, null);
 							manageTimer(world, 360, NpcStringId.BATTLE_END_LIMIT_TIME);
-							controller.getVariables().set("TIMER_END", System.currentTimeMillis() + GLAKIAS_KILL_TIMER * 60 * 1000);
+							controller.getVariables().set("TIMER_END", System.currentTimeMillis() + (GLAKIAS_KILL_TIMER * 60 * 1000));
 						}
 						break;
 					}
@@ -404,7 +404,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							if (!freya.isInCombat())
 							{
 								freya.setRunning();
-								freya.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MIDDLE_POINT);
+								freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
 							}
 						}
 						break;
@@ -629,7 +629,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						}
 						else
 						{
-							npc.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, freya);
+							npc.getAI().setIntention(Intention.FOLLOW, freya);
 							startQuestTimer("ATTACK_FREYA", 5000, npc, null);
 						}
 						break;
@@ -716,7 +716,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 										final Attackable breath = addSpawn(BREATH, npc.getLocation(), true, 0, false, world.getInstanceId()).asAttackable();
 										breath.setRunning();
 										breath.addDamageHate(mob.getMostHated(), 0, 999);
-										breath.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, mob.getMostHated());
+										breath.getAI().setIntention(Intention.ATTACK, mob.getMostHated());
 										startQuestTimer("BLIZZARD", 20000, breath, null);
 									}
 									break;
@@ -783,7 +783,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if (world != null)
@@ -802,7 +802,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						{
 							manageScreenMsg(world, NpcStringId.FREYA_HAS_STARTED_TO_MOVE);
 							freya.setRunning();
-							freya.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MIDDLE_POINT);
+							freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
 						}
 					}
 					
@@ -878,7 +878,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						if (!freya.isInCombat())
 						{
 							freya.setRunning();
-							freya.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MIDDLE_POINT);
+							freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
 						}
 					}
 					
@@ -1076,11 +1076,10 @@ public class IceQueensCastleBattle extends AbstractInstance
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if (world != null)
@@ -1098,7 +1097,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							{
 								breath.setRunning();
 								breath.addDamageHate(player, 0, 999);
-								breath.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+								breath.getAI().setIntention(Intention.ATTACK, player);
 							}
 							else
 							{
@@ -1120,11 +1119,10 @@ public class IceQueensCastleBattle extends AbstractInstance
 				}
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if (world != null)
@@ -1173,7 +1171,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						{
 							manageScreenMsg(world, NpcStringId.FREYA_HAS_STARTED_TO_MOVE);
 							freya.setRunning();
-							freya.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MIDDLE_POINT);
+							freya.getAI().setIntention(Intention.MOVE_TO, MIDDLE_POINT);
 						}
 					}
 					
@@ -1202,7 +1200,6 @@ public class IceQueensCastleBattle extends AbstractInstance
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -1302,7 +1299,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 				party.broadcastPacket(sm);
 				return false;
 			}
-			else if (!Util.checkIfInRange(1000, player, channelMember, true))
+			else if (!LocationUtil.checkIfInRange(1000, player, channelMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED);
 				sm.addPcName(channelMember);
@@ -1344,7 +1341,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 		{
 			mob.addDamageHate(target, 0, 999);
 			mob.setRunning();
-			mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+			mob.getAI().setIntention(Intention.ATTACK, target);
 		}
 		else
 		{

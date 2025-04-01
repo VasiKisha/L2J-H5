@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.TamedBeast;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author UnAfraid
@@ -64,7 +64,7 @@ public class NpcBufferAI implements Runnable
 				{
 					for (Player member : player.getParty().getMembers())
 					{
-						if (Util.checkIfInRange(skill.getAffectRange(), _npc, member, true) && !member.isDead())
+						if (LocationUtil.checkIfInRange(skill.getAffectRange(), _npc, member, true) && !member.isDead())
 						{
 							skill.applyEffects(player, member);
 						}
@@ -72,7 +72,7 @@ public class NpcBufferAI implements Runnable
 				}
 				else
 				{
-					if (Util.checkIfInRange(skill.getAffectRange(), _npc, player, true) && !player.isDead())
+					if (LocationUtil.checkIfInRange(skill.getAffectRange(), _npc, player, true) && !player.isDead())
 					{
 						skill.applyEffects(player, player);
 					}

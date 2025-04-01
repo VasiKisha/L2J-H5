@@ -24,7 +24,8 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
@@ -75,7 +76,7 @@ public class Sweeper extends AbstractEffect
 				}
 				else
 				{
-					player.addItem("Sweeper", item, effected, true);
+					player.addItem(ItemProcessType.SWEEP, item, effected, true);
 				}
 			}
 		}

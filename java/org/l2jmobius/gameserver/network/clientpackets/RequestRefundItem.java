@@ -24,19 +24,20 @@ import static org.l2jmobius.gameserver.model.actor.Npc.INTERACTION_DISTANCE;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.BuyListData;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
 import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExBuySellList;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * RequestRefundItem client packet class.
@@ -108,7 +109,7 @@ public class RequestRefundItem extends ClientPacket
 		final BuyListHolder buyList = BuyListData.getInstance().getBuyList(_listId);
 		if (buyList == null)
 		{
-			Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id " + _listId, Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id " + _listId, Config.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -129,7 +130,7 @@ public class RequestRefundItem extends ClientPacket
 			final int idx = _items[i];
 			if ((idx < 0) || (idx >= refund.length))
 			{
-				Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent invalid refund index", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent invalid refund index", Config.DEFAULT_PUNISH);
 				return;
 			}
 			
@@ -138,7 +139,7 @@ public class RequestRefundItem extends ClientPacket
 			{
 				if (idx == _items[j])
 				{
-					Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent duplicate refund index", Config.DEFAULT_PUNISH);
+					PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent duplicate refund index", Config.DEFAULT_PUNISH);
 					return;
 				}
 			}
@@ -152,7 +153,7 @@ public class RequestRefundItem extends ClientPacket
 			{
 				if (objectIds[i] == objectIds[j])
 				{
-					Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " has duplicate items in refund list", Config.DEFAULT_PUNISH);
+					PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " has duplicate items in refund list", Config.DEFAULT_PUNISH);
 					return;
 				}
 			}
@@ -184,7 +185,7 @@ public class RequestRefundItem extends ClientPacket
 			return;
 		}
 		
-		if (!Config.MERCHANT_ZERO_SELL_PRICE && ((adena < 0) || !player.reduceAdena("Refund", adena, player.getLastFolkNPC(), false)))
+		if (!Config.MERCHANT_ZERO_SELL_PRICE && ((adena < 0) || !player.reduceAdena(ItemProcessType.FEE, adena, player.getLastFolkNPC(), false)))
 		{
 			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
 			player.sendPacket(ActionFailed.STATIC_PACKET);
@@ -193,7 +194,7 @@ public class RequestRefundItem extends ClientPacket
 		
 		for (int i = 0; i < _items.length; i++)
 		{
-			final Item item = player.getRefund().transferItem("Refund", objectIds[i], Long.MAX_VALUE, player.getInventory(), player, player.getLastFolkNPC());
+			final Item item = player.getRefund().transferItem(ItemProcessType.TRANSFER, objectIds[i], Long.MAX_VALUE, player.getInventory(), player, player.getLastFolkNPC());
 			if (item == null)
 			{
 				PacketLogger.warning("Error refunding object for char " + player.getName() + " (newitem == null)");

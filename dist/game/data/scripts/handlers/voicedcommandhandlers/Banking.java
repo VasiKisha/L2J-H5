@@ -19,6 +19,7 @@ package handlers.voicedcommandhandlers;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 
 /**
  * This class trades Gold Bars for Adena and vice versa.
@@ -44,11 +45,11 @@ public class Banking implements IVoicedCommandHandler
 		{
 			if (activeChar.getInventory().getInventoryItemCount(57, 0) >= Config.BANKING_SYSTEM_ADENA)
 			{
-				if (!activeChar.reduceAdena("Goldbar", Config.BANKING_SYSTEM_ADENA, activeChar, false))
+				if (!activeChar.reduceAdena(ItemProcessType.BUY, Config.BANKING_SYSTEM_ADENA, activeChar, false))
 				{
 					return false;
 				}
-				activeChar.getInventory().addItem("Goldbar", 3470, Config.BANKING_SYSTEM_GOLDBARS, activeChar, null);
+				activeChar.getInventory().addItem(ItemProcessType.COMPENSATE, 3470, Config.BANKING_SYSTEM_GOLDBARS, activeChar, null);
 				activeChar.getInventory().updateDatabase();
 				activeChar.sendMessage("Thank you, you now have " + Config.BANKING_SYSTEM_GOLDBARS + " Goldbar(s), and " + Config.BANKING_SYSTEM_ADENA + " less adena.");
 			}
@@ -61,11 +62,11 @@ public class Banking implements IVoicedCommandHandler
 		{
 			if (activeChar.getInventory().getInventoryItemCount(3470, 0) >= Config.BANKING_SYSTEM_GOLDBARS)
 			{
-				if (!activeChar.destroyItemByItemId("Adena", 3470, Config.BANKING_SYSTEM_GOLDBARS, activeChar, false))
+				if (!activeChar.destroyItemByItemId(ItemProcessType.SELL, 3470, Config.BANKING_SYSTEM_GOLDBARS, activeChar, false))
 				{
 					return false;
 				}
-				activeChar.getInventory().addAdena("Adena", Config.BANKING_SYSTEM_ADENA, activeChar, null);
+				activeChar.getInventory().addAdena(ItemProcessType.COMPENSATE, Config.BANKING_SYSTEM_ADENA, activeChar, null);
 				activeChar.getInventory().updateDatabase();
 				activeChar.sendMessage("Thank you, you now have " + Config.BANKING_SYSTEM_ADENA + " Adena, and " + Config.BANKING_SYSTEM_GOLDBARS + " less Goldbar(s).");
 			}

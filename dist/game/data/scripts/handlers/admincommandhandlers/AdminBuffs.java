@@ -31,7 +31,6 @@ import java.util.StringTokenizer;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -43,10 +42,10 @@ import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SkillCoolTime;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 import org.l2jmobius.gameserver.util.GMAudit;
 
 /**
@@ -89,8 +88,8 @@ public class AdminBuffs implements IAdminCommandHandler
 			command = st.nextToken();
 			if (!st.hasMoreTokens())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Skill Id and level are not specified.");
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //buff <skillId> <skillLevel>");
+				activeChar.sendSysMessage("Skill Id and level are not specified.");
+				activeChar.sendSysMessage("Usage: //buff <skillId> <skillLevel>");
 				return false;
 			}
 			
@@ -102,18 +101,18 @@ public class AdminBuffs implements IAdminCommandHandler
 				final Skill skill = SkillData.getInstance().getSkill(skillId, skillLevel);
 				if (skill == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Skill with id: " + skillId + ", level: " + skillLevel + " not found.");
+					activeChar.sendSysMessage("Skill with id: " + skillId + ", level: " + skillLevel + " not found.");
 					return false;
 				}
 				
-				BuilderUtil.sendSysMessage(activeChar, "Admin buffing " + skill.getName() + " (" + skillId + "," + skillLevel + ")");
+				activeChar.sendSysMessage("Admin buffing " + skill.getName() + " (" + skillId + "," + skillLevel + ")");
 				skill.applyEffects(activeChar, target);
 				return true;
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Failed buffing: " + e.getMessage());
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //buff <skillId> <skillLevel>");
+				activeChar.sendSysMessage("Failed buffing: " + e.getMessage());
+				activeChar.sendSysMessage("Usage: //buff <skillId> <skillLevel>");
 				return false;
 			}
 		}
@@ -136,7 +135,7 @@ public class AdminBuffs implements IAdminCommandHandler
 					return true;
 				}
 				
-				BuilderUtil.sendSysMessage(activeChar, "The player " + playername + " is not online.");
+				activeChar.sendSysMessage("The player " + playername + " is not online.");
 				return false;
 			}
 			else if ((activeChar.getTarget() != null) && activeChar.getTarget().isCreature())
@@ -163,8 +162,8 @@ public class AdminBuffs implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Failed removing effect: " + e.getMessage());
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //stopbuff <objectId> <skillId>");
+				activeChar.sendSysMessage("Failed removing effect: " + e.getMessage());
+				activeChar.sendSysMessage("Usage: //stopbuff <objectId> <skillId>");
 				return false;
 			}
 		}
@@ -180,8 +179,8 @@ public class AdminBuffs implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Failed removing all effects: " + e.getMessage());
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //stopallbuffs <objectId>");
+				activeChar.sendSysMessage("Failed removing all effects: " + e.getMessage());
+				activeChar.sendSysMessage("Usage: //stopallbuffs <objectId>");
 				return false;
 			}
 		}
@@ -197,8 +196,8 @@ public class AdminBuffs implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Failed viewing blocked effects: " + e.getMessage());
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //viewblockedeffects <objectId>");
+				activeChar.sendSysMessage("Failed viewing blocked effects: " + e.getMessage());
+				activeChar.sendSysMessage("Usage: //viewblockedeffects <objectId>");
 				return false;
 			}
 		}
@@ -217,8 +216,8 @@ public class AdminBuffs implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Failed viewing skill effects: " + e.getMessage());
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //viewskilleffects <objectId skillId skillLevel>");
+				activeChar.sendSysMessage("Failed viewing skill effects: " + e.getMessage());
+				activeChar.sendSysMessage("Usage: //viewskilleffects <objectId skillId skillLevel>");
 				return false;
 			}
 		}
@@ -231,12 +230,12 @@ public class AdminBuffs implements IAdminCommandHandler
 			{
 				final int radius = Integer.parseInt(val);
 				World.getInstance().forEachVisibleObjectInRange(activeChar, Player.class, radius, Creature::stopAllEffects);
-				BuilderUtil.sendSysMessage(activeChar, "All effects canceled within radius " + radius);
+				activeChar.sendSysMessage("All effects canceled within radius " + radius);
 				return true;
 			}
 			catch (NumberFormatException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //areacancel <radius>");
+				activeChar.sendSysMessage("Usage: //areacancel <radius>");
 				return false;
 			}
 		}
@@ -260,7 +259,7 @@ public class AdminBuffs implements IAdminCommandHandler
 				
 				if (player == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "The player " + playername + " is not online.");
+					activeChar.sendSysMessage("The player " + playername + " is not online.");
 					return false;
 				}
 			}
@@ -279,7 +278,7 @@ public class AdminBuffs implements IAdminCommandHandler
 				player.resetTimeStamps();
 				player.resetDisabledSkills();
 				player.sendPacket(new SkillCoolTime(player));
-				BuilderUtil.sendSysMessage(activeChar, "Skill reuse was removed from " + player.getName() + ".");
+				activeChar.sendSysMessage("Skill reuse was removed from " + player.getName() + ".");
 				return true;
 			}
 			catch (NullPointerException e)
@@ -294,11 +293,11 @@ public class AdminBuffs implements IAdminCommandHandler
 				final boolean toAuraSkills = activeChar.getKnownSkill(7041) != null;
 				switchSkills(activeChar, toAuraSkills);
 				activeChar.sendSkillList();
-				BuilderUtil.sendSysMessage(activeChar, "You have succefully changed to target " + (toAuraSkills ? "aura" : "one") + " special skills.");
+				activeChar.sendSysMessage("You have succefully changed to target " + (toAuraSkills ? "aura" : "one") + " special skills.");
 				return true;
 			}
 			
-			BuilderUtil.sendSysMessage(activeChar, "There is nothing to switch.");
+			activeChar.sendSysMessage("There is nothing to switch.");
 			return false;
 		}
 		return true;
@@ -405,7 +404,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		
 		if (Config.GMAUDIT)
 		{
-			GMAudit.auditGMAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "getbuffs", target.getName() + " (" + target.getObjectId() + ")", "");
+			GMAudit.logAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "getbuffs", target.getName() + " (" + target.getObjectId() + ")", "");
 		}
 	}
 	
@@ -418,7 +417,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Target with object id " + objectId + " not found.");
+			activeChar.sendSysMessage("Target with object id " + objectId + " not found.");
 			return;
 		}
 		
@@ -514,13 +513,13 @@ public class AdminBuffs implements IAdminCommandHandler
 			if (target.isAffectedBySkill(skillId))
 			{
 				target.stopSkillEffects(SkillFinishType.REMOVED, skillId);
-				BuilderUtil.sendSysMessage(activeChar, "Removed skill ID: " + skillId + " effects from " + target.getName() + " (" + objId + ").");
+				activeChar.sendSysMessage("Removed skill ID: " + skillId + " effects from " + target.getName() + " (" + objId + ").");
 			}
 			
 			showBuffs(activeChar, target, 0, false);
 			if (Config.GMAUDIT)
 			{
-				GMAudit.auditGMAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "stopbuff", target.getName() + " (" + objId + ")", Integer.toString(skillId));
+				GMAudit.logAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "stopbuff", target.getName() + " (" + objId + ")", Integer.toString(skillId));
 			}
 		}
 	}
@@ -540,11 +539,11 @@ public class AdminBuffs implements IAdminCommandHandler
 		if (target != null)
 		{
 			target.stopAllEffects();
-			BuilderUtil.sendSysMessage(activeChar, "Removed all effects from " + target.getName() + " (" + objId + ")");
+			activeChar.sendSysMessage("Removed all effects from " + target.getName() + " (" + objId + ")");
 			showBuffs(activeChar, target, 0, false);
 			if (Config.GMAUDIT)
 			{
-				GMAudit.auditGMAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "stopallbuffs", target.getName() + " (" + objId + ")", "");
+				GMAudit.logAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "stopallbuffs", target.getName() + " (" + objId + ")", "");
 			}
 		}
 	}
@@ -558,7 +557,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Target with object id " + objId + " not found.");
+			activeChar.sendSysMessage("Target with object id " + objId + " not found.");
 			return;
 		}
 		
@@ -585,7 +584,7 @@ public class AdminBuffs implements IAdminCommandHandler
 			activeChar.sendPacket(new NpcHtmlMessage(html.toString()));
 			if (Config.GMAUDIT)
 			{
-				GMAudit.auditGMAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "viewblockedeffects", target.getName() + " (" + Integer.toString(target.getObjectId()) + ")", "");
+				GMAudit.logAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "viewblockedeffects", target.getName() + " (" + Integer.toString(target.getObjectId()) + ")", "");
 			}
 		}
 	}

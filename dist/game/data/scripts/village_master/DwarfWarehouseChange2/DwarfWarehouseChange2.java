@@ -16,10 +16,10 @@
  */
 package village_master.DwarfWarehouseChange2;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -85,7 +85,7 @@ public class DwarfWarehouseChange2 extends AbstractNpcAI
 		{
 			htmltext = "30511-08.htm"; // fnYouAreThirdClass
 		}
-		else if ((classId == BOUNTY_HUNTER) && (player.getClassId() == ClassId.SCAVENGER))
+		else if ((classId == BOUNTY_HUNTER) && (player.getPlayerClass() == PlayerClass.SCAVENGER))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -101,7 +101,7 @@ public class DwarfWarehouseChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_GUILDSMAN, MARK_OF_PROSPERITY, MARK_OF_SEARCHER))
 			{
 				takeItems(player, -1, MARK_OF_GUILDSMAN, MARK_OF_PROSPERITY, MARK_OF_SEARCHER);
-				player.setClassId(BOUNTY_HUNTER);
+				player.setPlayerClass(BOUNTY_HUNTER);
 				player.setBaseClass(BOUNTY_HUNTER);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -126,8 +126,8 @@ public class DwarfWarehouseChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.BOUNTY_HUNTER_GROUP))
 		{
-			final ClassId classId = player.getClassId();
-			if ((classId == ClassId.SCAVENGER) || (classId == ClassId.BOUNTY_HUNTER))
+			final PlayerClass classId = player.getPlayerClass();
+			if ((classId == PlayerClass.SCAVENGER) || (classId == PlayerClass.BOUNTY_HUNTER))
 			{
 				htmltext = "30511-02.htm"; // fnClassList1
 			}

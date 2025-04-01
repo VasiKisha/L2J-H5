@@ -31,7 +31,6 @@ import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles following admin commands: - admin|admin1/admin2/admin3/admin4/admin5 = slots for the 5 starting admin menus - gmliston/gmlistoff = includes/excludes active character from /gmlist results - silence = toggles private messages acceptance mode - diet = toggles weight penalty mode -
@@ -82,13 +81,13 @@ public class AdminAdmin implements IAdminCommandHandler
 		else if (command.startsWith("admin_gmliston"))
 		{
 			AdminData.getInstance().addGm(activeChar, false);
-			BuilderUtil.sendSysMessage(activeChar, "Registered into GM list.");
+			activeChar.sendSysMessage("Registered into GM list.");
 			AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");
 		}
 		else if (command.startsWith("admin_gmlistoff"))
 		{
 			AdminData.getInstance().addGm(activeChar, true);
-			BuilderUtil.sendSysMessage(activeChar, "Removed from GM list.");
+			activeChar.sendSysMessage("Removed from GM list.");
 			AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");
 		}
 		else if (command.startsWith("admin_silence"))
@@ -108,7 +107,7 @@ public class AdminAdmin implements IAdminCommandHandler
 		else if (command.startsWith("admin_saveolymp"))
 		{
 			Olympiad.getInstance().saveOlympiadStatus();
-			BuilderUtil.sendSysMessage(activeChar, "olympiad system saved.");
+			activeChar.sendSysMessage("olympiad system saved.");
 		}
 		else if (command.startsWith("admin_endolympiad"))
 		{
@@ -120,7 +119,7 @@ public class AdminAdmin implements IAdminCommandHandler
 			{
 				LOGGER.warning("An error occured while ending olympiad: " + e);
 			}
-			BuilderUtil.sendSysMessage(activeChar, "Heroes formed.");
+			activeChar.sendSysMessage("Heroes formed.");
 		}
 		else if (command.startsWith("admin_sethero"))
 		{
@@ -145,13 +144,13 @@ public class AdminAdmin implements IAdminCommandHandler
 			final Player target = activeChar.getTarget().isPlayer() ? activeChar.getTarget().asPlayer() : activeChar;
 			if (Hero.getInstance().isHero(target.getObjectId()))
 			{
-				BuilderUtil.sendSysMessage(activeChar, "This player has already claimed the hero status.");
+				activeChar.sendSysMessage("This player has already claimed the hero status.");
 				return false;
 			}
 			
 			if (!Hero.getInstance().isUnclaimedHero(target.getObjectId()))
 			{
-				BuilderUtil.sendSysMessage(activeChar, "This player cannot claim the hero status.");
+				activeChar.sendSysMessage("This player cannot claim the hero status.");
 				return false;
 			}
 			Hero.getInstance().claimHero(target);
@@ -165,12 +164,12 @@ public class AdminAdmin implements IAdminCommandHandler
 				if (st.nextToken().equalsIgnoreCase("on"))
 				{
 					activeChar.setDietMode(true);
-					BuilderUtil.sendSysMessage(activeChar, "Diet mode on");
+					activeChar.sendSysMessage("Diet mode on");
 				}
 				else if (st.nextToken().equalsIgnoreCase("off"))
 				{
 					activeChar.setDietMode(false);
-					BuilderUtil.sendSysMessage(activeChar, "Diet mode off");
+					activeChar.sendSysMessage("Diet mode off");
 				}
 			}
 			catch (Exception ex)
@@ -178,12 +177,12 @@ public class AdminAdmin implements IAdminCommandHandler
 				if (activeChar.getDietMode())
 				{
 					activeChar.setDietMode(false);
-					BuilderUtil.sendSysMessage(activeChar, "Diet mode off");
+					activeChar.sendSysMessage("Diet mode off");
 				}
 				else
 				{
 					activeChar.setDietMode(true);
-					BuilderUtil.sendSysMessage(activeChar, "Diet mode on");
+					activeChar.sendSysMessage("Diet mode on");
 				}
 			}
 			finally
@@ -200,12 +199,12 @@ public class AdminAdmin implements IAdminCommandHandler
 				if (mode.equalsIgnoreCase("on"))
 				{
 					activeChar.setTradeRefusal(true);
-					BuilderUtil.sendSysMessage(activeChar, "Trade refusal enabled");
+					activeChar.sendSysMessage("Trade refusal enabled");
 				}
 				else if (mode.equalsIgnoreCase("off"))
 				{
 					activeChar.setTradeRefusal(false);
-					BuilderUtil.sendSysMessage(activeChar, "Trade refusal disabled");
+					activeChar.sendSysMessage("Trade refusal disabled");
 				}
 			}
 			catch (Exception ex)
@@ -213,12 +212,12 @@ public class AdminAdmin implements IAdminCommandHandler
 				if (activeChar.getTradeRefusal())
 				{
 					activeChar.setTradeRefusal(false);
-					BuilderUtil.sendSysMessage(activeChar, "Trade refusal disabled");
+					activeChar.sendSysMessage("Trade refusal disabled");
 				}
 				else
 				{
 					activeChar.setTradeRefusal(true);
-					BuilderUtil.sendSysMessage(activeChar, "Trade refusal enabled");
+					activeChar.sendSysMessage("Trade refusal enabled");
 				}
 			}
 			AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");
@@ -233,7 +232,7 @@ public class AdminAdmin implements IAdminCommandHandler
 				final String pValue = st.nextToken();
 				if (Float.valueOf(pValue) == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Invalid parameter!");
+					activeChar.sendSysMessage("Invalid parameter!");
 					return false;
 				}
 				switch (pName)
@@ -274,11 +273,11 @@ public class AdminAdmin implements IAdminCommandHandler
 						break;
 					}
 				}
-				BuilderUtil.sendSysMessage(activeChar, "Config parameter " + pName + " set to " + pValue);
+				activeChar.sendSysMessage("Config parameter " + pName + " set to " + pValue);
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //setconfig <parameter> <value>");
+				activeChar.sendSysMessage("Usage: //setconfig <parameter> <value>");
 			}
 			finally
 			{

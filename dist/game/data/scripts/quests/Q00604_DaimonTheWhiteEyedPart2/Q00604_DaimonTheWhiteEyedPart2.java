@@ -17,18 +17,18 @@
 package quests.Q00604_DaimonTheWhiteEyedPart2;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Daimon the White-Eyed - Part 2 (604)
@@ -252,15 +252,14 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("DESPAWN", 1200000, npc, null);
 		npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.WHO_IS_CALLING_ME));
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		executeForEachPlayer(killer, npc, isSummon, true, false);
 		
@@ -268,15 +267,13 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 		final int respawnMaxDelay = (int) (129600000 * Config.RAID_MAX_RESPAWN_MULTIPLIER);
 		final int respawnDelay = getRandom(respawnMinDelay, respawnMaxDelay);
 		GlobalVariablesManager.getInstance().set(DAIMON_THE_WHITE_EYED_RESPAWN_TIME, System.currentTimeMillis() + respawnDelay);
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
 	public void actionForEachPlayer(Player player, Npc npc, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
-		if ((qs != null) && (qs.getMemoState() >= 11) && (qs.getMemoState() <= 21) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if ((qs != null) && (qs.getMemoState() >= 11) && (qs.getMemoState() <= 21) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
 		{
 			// if (hasQuestItems(player, ESSENCE_OF_DAIMON))
 			// {

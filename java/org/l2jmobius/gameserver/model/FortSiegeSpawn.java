@@ -16,13 +16,11 @@
  */
 package org.l2jmobius.gameserver.model;
 
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
-
 /**
  * Fort Siege Spawn.
  * @author xban1x
  */
-public class FortSiegeSpawn extends Location implements IIdentifiable
+public class FortSiegeSpawn extends Location
 {
 	private final int _npcId;
 	private final int _fortId;
@@ -45,7 +43,6 @@ public class FortSiegeSpawn extends Location implements IIdentifiable
 	 * Gets the NPC ID.
 	 * @return the NPC ID
 	 */
-	@Override
 	public int getId()
 	{
 		return _npcId;

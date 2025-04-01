@@ -21,7 +21,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * @author mrTJO & UnAfraid
+ * @author mrTJO, UnAfraid
  */
 public class ExConfirmAddingContact extends ServerPacket
 {

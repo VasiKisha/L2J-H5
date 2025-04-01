@@ -40,6 +40,7 @@ public class SnoopQuit extends ClientPacket
 		{
 			return;
 		}
+		
 		final Player player = getPlayer();
 		if (player == null)
 		{

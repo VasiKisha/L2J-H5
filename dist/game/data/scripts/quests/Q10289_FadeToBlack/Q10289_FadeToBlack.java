@@ -16,9 +16,9 @@
  */
 package quests.Q10289_FadeToBlack;
 
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 
@@ -248,7 +248,7 @@ public class Q10289_FadeToBlack extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc anays, Player killer, boolean isSummon)
+	public void onKill(Npc anays, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, -1, 3, anays);
 		if (qs != null)
@@ -272,7 +272,6 @@ public class Q10289_FadeToBlack extends Quest
 				rewardPlayer(qs, true);
 			}
 		}
-		return super.onKill(anays, killer, isSummon);
 	}
 	
 	@Override

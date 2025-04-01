@@ -21,13 +21,13 @@ import java.util.Map;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager.Territory;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager.TerritoryNPCSpawn;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager.Territory;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager.TerritoryNPCSpawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowDominionRegistry;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
@@ -208,7 +208,7 @@ public class MercenaryCaptain extends AbstractNpcAI
 	public String onFirstTalk(Npc npc, Player player)
 	{
 		final String htmltext;
-		if ((player.getLevel() < MIN_LEVEL) || (player.getClassId().level() < CLASS_LEVEL))
+		if ((player.getLevel() < MIN_LEVEL) || (player.getPlayerClass().level() < CLASS_LEVEL))
 		{
 			htmltext = "36481-08.html";
 		}

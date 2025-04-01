@@ -23,7 +23,7 @@ import java.util.logging.Formatter;
 import java.util.logging.LogRecord;
 
 /**
- * @author Nos
+ * @author NosBit
  */
 public abstract class AbstractFormatter extends Formatter
 {

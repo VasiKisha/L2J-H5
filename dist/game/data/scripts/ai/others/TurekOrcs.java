@@ -16,14 +16,14 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -55,7 +55,7 @@ public class TurekOrcs extends AbstractNpcAI
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
-		if (event.equalsIgnoreCase("checkState") && !npc.isDead() && (npc.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK))
+		if (event.equalsIgnoreCase("checkState") && !npc.isDead() && (npc.getAI().getIntention() != Intention.ATTACK))
 		{
 			if ((npc.getCurrentHp() > (npc.getMaxHp() * 0.7)) && (npc.getVariables().getInt("state") == 2))
 			{
@@ -71,7 +71,7 @@ public class TurekOrcs extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (!npc.getVariables().hasVariable("isHit"))
 		{
@@ -83,17 +83,16 @@ public class TurekOrcs extends AbstractNpcAI
 			npc.broadcastSay(ChatType.GENERAL, NpcStringId.getNpcStringId(getRandom(1000007, 1000027)));
 			npc.disableCoreAI(true); // to avoid attacking behaviour, while flee
 			npc.setRunning();
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(npc.getAIValue("fleeX"), npc.getAIValue("fleeY"), npc.getAIValue("fleeZ")));
+			npc.getAI().setIntention(Intention.MOVE_TO, new Location(npc.getAIValue("fleeX"), npc.getAIValue("fleeY"), npc.getAIValue("fleeZ")));
 			npc.getVariables().set("state", 1);
 			npc.getVariables().set("attacker", attacker.getObjectId());
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
 	public String onEventReceived(String eventName, Npc sender, Npc receiver, WorldObject reference)
 	{
-		if (eventName.equals("WARNING") && !receiver.isDead() && (receiver.getAI().getIntention() != CtrlIntention.AI_INTENTION_ATTACK) && (reference != null))
+		if (eventName.equals("WARNING") && !receiver.isDead() && (receiver.getAI().getIntention() != Intention.ATTACK) && (reference != null))
 		{
 			final Player player = reference.asPlayer();
 			if ((player != null) && !player.isDead())
@@ -101,7 +100,7 @@ public class TurekOrcs extends AbstractNpcAI
 				receiver.getVariables().set("state", 3);
 				receiver.setRunning();
 				receiver.asAttackable().addDamageHate(player, 0, 99999);
-				receiver.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+				receiver.getAI().setIntention(Intention.ATTACK, player);
 			}
 		}
 		return super.onEventReceived(eventName, sender, receiver, reference);
@@ -122,7 +121,7 @@ public class TurekOrcs extends AbstractNpcAI
 			}
 			else
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(npc.getAIValue("fleeX"), npc.getAIValue("fleeY"), npc.getAIValue("fleeZ")));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(npc.getAIValue("fleeX"), npc.getAIValue("fleeY"), npc.getAIValue("fleeZ")));
 			}
 		}
 		else if ((npc.getVariables().getInt("state") == 3) && npc.staysInSpawnLoc())

@@ -20,15 +20,15 @@ import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 /**
  * Devastated Castle clan hall siege script.
@@ -58,7 +58,7 @@ public class DevastatedCastle extends ClanHallSiegeEngine
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == MIKHAIL)
 		{
@@ -68,15 +68,14 @@ public class DevastatedCastle extends ClanHallSiegeEngine
 		{
 			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.SOLDIERS_OF_GUSTAV_GO_FORTH_AND_DESTROY_THE_INVADERS);
 		}
-		return null;
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (!_hall.isInSiege())
 		{
-			return null;
+			return;
 		}
 		
 		final Clan clan = attacker.getClan();
@@ -90,26 +89,22 @@ public class DevastatedCastle extends ClanHallSiegeEngine
 			if (!npc.isCastingNow() && (npc.getCurrentHp() < (npc.getMaxHp() / 12)))
 			{
 				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.THIS_IS_UNBELIEVABLE_HAVE_I_REALLY_BEEN_DEFEATED_I_SHALL_RETURN_AND_TAKE_YOUR_HEAD);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_CAST, SkillData.getInstance().getSkill(4235, 1), npc);
+				npc.getAI().setIntention(Intention.CAST, SkillData.getInstance().getSkill(4235, 1), npc);
 			}
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (!_hall.isInSiege())
 		{
-			return null;
+			return;
 		}
 		
 		_missionAccomplished = true;
 		cancelSiegeTask();
 		endSiege();
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -29,8 +33,8 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * @author Mobius
@@ -54,9 +58,9 @@ public class PetSkillData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -89,6 +93,12 @@ public class PetSkillData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Determines the highest available skill level for a specified skill ID based on the pet's level.
+	 * @param pet the {@link Summon} pet whose available skill level is being checked.
+	 * @param skillId the ID of the skill to retrieve the available level for.
+	 * @return the highest available level for the specified skill ID, or 0 if the pet has no skills assigned.
+	 */
 	public int getAvailableLevel(Summon pet, int skillId)
 	{
 		int level = 0;
@@ -136,6 +146,11 @@ public class PetSkillData implements IXmlReader
 		return level;
 	}
 	
+	/**
+	 * Retrieves a list of available skill IDs for a specified pet.
+	 * @param pet the {@link Summon} pet whose available skill IDs are being retrieved.
+	 * @return a {@link List} of skill IDs available for the given pet, or an empty list if no skills are assigned.
+	 */
 	public List<Integer> getAvailableSkills(Summon pet)
 	{
 		final List<Integer> skillIds = new ArrayList<>();
@@ -158,6 +173,11 @@ public class PetSkillData implements IXmlReader
 		return skillIds;
 	}
 	
+	/**
+	 * Retrieves a list of known skills for a specified pet.
+	 * @param pet the {@link Summon} pet whose known skills are being retrieved.
+	 * @return a {@link List} of {@link Skill} objects known by the given pet, or an empty list if the pet has no skills.
+	 */
 	public List<Skill> getKnownSkills(Summon pet)
 	{
 		final List<Skill> skills = new ArrayList<>();
@@ -180,6 +200,12 @@ public class PetSkillData implements IXmlReader
 		return skills;
 	}
 	
+	/**
+	 * Retrieves a specific known skill for a pet by skill ID.
+	 * @param pet the {@link Summon} pet whose known skill is being retrieved.
+	 * @param skillId the ID of the skill to retrieve.
+	 * @return the {@link Skill} object corresponding to the specified skill ID, or {@code null} if the skill is not known by the pet.
+	 */
 	public Skill getKnownSkill(Summon pet, int skillId)
 	{
 		if (!_skillTrees.containsKey(pet.getId()))

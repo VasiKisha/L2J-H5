@@ -20,21 +20,16 @@
  */
 package org.l2jmobius.gameserver.model.actor;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ACTIVE;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Future;
-import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.locks.StampedLock;
 import java.util.logging.Level;
@@ -42,48 +37,44 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.EmptyQueue;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.ai.AttackableAI;
 import org.l2jmobius.gameserver.ai.CreatureAI;
 import org.l2jmobius.gameserver.ai.CreatureAI.IntentionCommand;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.cache.RelationCache;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.FenceData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.SendMessageLocalisationData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.FlyType;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.ShotType;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.enums.Team;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.geoengine.pathfinding.AbstractNodeLoc;
+import org.l2jmobius.gameserver.geoengine.pathfinding.GeoLocation;
 import org.l2jmobius.gameserver.geoengine.pathfinding.PathFinding;
-import org.l2jmobius.gameserver.instancemanager.CaptchaManager;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.CaptchaManager;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.AccessLevel;
 import org.l2jmobius.gameserver.model.EffectList;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.TimeStamp;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.WorldRegion;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.model.actor.holders.creature.InvulSkillHolder;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
 import org.l2jmobius.gameserver.model.actor.stat.CreatureStat;
@@ -102,28 +93,27 @@ import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.events.Containers;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttack;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttackAvoid;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttacked;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDamageDealt;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDamageReceived;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureKilled;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSee;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureSkillUse;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureTeleported;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSkillSee;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.attackable.OnAttackableFactionCall;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttack;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttackAvoid;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDamageDealt;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDamageReceived;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureKilled;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSee;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureSkillUse;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureTeleported;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSkillSee;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.attackable.OnAttackableFactionCall;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
-import org.l2jmobius.gameserver.model.holders.InvulSkillHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.holders.SkillUseHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.interfaces.IDeletable;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
@@ -138,6 +128,10 @@ import org.l2jmobius.gameserver.model.skill.EffectScope;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.SkillChannelized;
 import org.l2jmobius.gameserver.model.skill.SkillChannelizer;
+import org.l2jmobius.gameserver.model.skill.enums.FlyType;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillUseHolder;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.model.stats.BaseStat;
 import org.l2jmobius.gameserver.model.stats.Calculator;
@@ -171,12 +165,12 @@ import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.StopMove;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.TeleportToLocation;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
-import org.l2jmobius.gameserver.taskmanager.CreatureSeeTaskManager;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
-import org.l2jmobius.gameserver.taskmanager.MovementTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.CreatureSeeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.MovementTaskManager;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Mother class of all character objects of the world (PC, NPC...)<br>
@@ -197,7 +191,7 @@ import org.l2jmobius.gameserver.util.Util;
  * This link is stored in {@link #_template}
  * @version $Revision: 1.53.2.45.2.34 $ $Date: 2005/04/11 10:06:08 $
  */
-public abstract class Creature extends WorldObject implements IDeletable
+public abstract class Creature extends WorldObject
 {
 	public static final Logger LOGGER = Logger.getLogger(Creature.class.getName());
 	
@@ -279,9 +273,6 @@ public abstract class Creature extends WorldObject implements IDeletable
 	/** Movement data of this Creature */
 	protected MoveData _move;
 	private boolean _cursorKeyMovement = false;
-	private boolean _suspendedMovement = false;
-	private int _blockedHeadingMin = -1;
-	private int _blockedHeadingMax = -1;
 	
 	/** This creature's target. */
 	private WorldObject _target;
@@ -410,14 +401,14 @@ public abstract class Creature extends WorldObject implements IDeletable
 		return null;
 	}
 	
-	public boolean destroyItemByItemId(String process, int itemId, long count, WorldObject reference, boolean sendMessage)
+	public boolean destroyItemByItemId(ItemProcessType process, int itemId, long count, WorldObject reference, boolean sendMessage)
 	{
 		// Default: NPCs consume virtual items for their skills
 		// TODO: should be logged if even happens.. should be false
 		return true;
 	}
 	
-	public boolean destroyItem(String process, int objectId, long count, WorldObject reference, boolean sendMessage)
+	public boolean destroyItem(ItemProcessType process, int objectId, long count, WorldObject reference, boolean sendMessage)
 	{
 		// Default: NPCs consume virtual items for their skills
 		// TODO: should be logged if even happens.. should be false
@@ -560,7 +551,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			if (Config.GRANDBOSS_SPAWN_ANNOUNCEMENTS && ((getInstanceId() == 0) || Config.GRANDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
 			{
 				final String name = NpcData.getInstance().getTemplate(getId()).getName();
-				if (name != null)
+				if ((name != null) && !Config.RAIDBOSSES_EXCLUDED_FROM_SPAWN_ANNOUNCEMENTS.contains(getId()))
 				{
 					Broadcast.toAllOnlinePlayers(name + " has spawned!");
 					Broadcast.toAllOnlinePlayersOnScreen(name + " has spawned!");
@@ -570,7 +561,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		else if (isRaid() && Config.RAIDBOSS_SPAWN_ANNOUNCEMENTS && ((getInstanceId() == 0) || Config.RAIDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
 		{
 			final String name = NpcData.getInstance().getTemplate(getId()).getName();
-			if ((name != null) && !Config.RAIDBOSSES_EXLUDED_FROM_ANNOUNCEMENTS.contains(getId()))
+			if ((name != null) && !Config.RAIDBOSSES_EXCLUDED_FROM_SPAWN_ANNOUNCEMENTS.contains(getId()))
 			{
 				Broadcast.toAllOnlinePlayers(name + " has spawned!");
 				Broadcast.toAllOnlinePlayersOnScreen(name + " has spawned!");
@@ -677,8 +668,8 @@ public abstract class Creature extends WorldObject implements IDeletable
 		else
 		{
 			final CreatureAI ai = hasAI() ? getAI() : null;
-			final CtrlIntention intention = ai != null ? ai.getIntention() : null;
-			final WorldObject target = ((intention == CtrlIntention.AI_INTENTION_ATTACK) || (intention == CtrlIntention.AI_INTENTION_FOLLOW)) ? _target : null;
+			final Intention intention = ai != null ? ai.getIntention() : null;
+			final WorldObject target = ((intention == Intention.ATTACK) || (intention == Intention.FOLLOW)) ? _target : null;
 			if (target != null)
 			{
 				if (target != this)
@@ -835,7 +826,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		
 		setTeleporting(true);
 		
-		getAI().setIntention(AI_INTENTION_ACTIVE);
+		getAI().setIntention(Intention.ACTIVE);
 		
 		// Remove the object from its old location.
 		decayMe();
@@ -955,7 +946,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			if (!checkAndEquipArrows())
 			{
 				// Cancel the action because the Player have no arrow
-				getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				getAI().setIntention(Intention.IDLE);
 				sendPacket(ActionFailed.STATIC_PACKET);
 				sendPacket(weaponItem.isBow() ? SystemMessageId.YOU_HAVE_RUN_OUT_OF_ARROWS : SystemMessageId.NOT_ENOUGH_BOLTS);
 				return false;
@@ -974,7 +965,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 				if (_status.getCurrentMp() < mpConsume)
 				{
 					// If Player doesn't have enough MP, stop the attack
-					ThreadPool.schedule(new NotifyAITask(this, CtrlEvent.EVT_READY_TO_ACT), 1000);
+					ThreadPool.schedule(new NotifyAITask(this, Action.READY_TO_ACT), 1000);
 					sendPacket(SystemMessageId.NOT_ENOUGH_MP);
 					sendPacket(ActionFailed.STATIC_PACKET);
 					return false;
@@ -992,7 +983,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			else
 			{
 				// Cancel the action because the bow can't be re-use at this moment
-				ThreadPool.schedule(new NotifyAITask(this, CtrlEvent.EVT_READY_TO_ACT), 1000);
+				ThreadPool.schedule(new NotifyAITask(this, Action.READY_TO_ACT), 1000);
 				sendPacket(ActionFailed.STATIC_PACKET);
 				return false;
 			}
@@ -1018,7 +1009,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 	 * <li>Get the Attack Speed of the Creature (delay (in milliseconds) before next attack)</li>
 	 * <li>Select the type of attack to start (Simple, Bow, Pole or Dual) and verify if SoulShot are charged then start calculation</li>
 	 * <li>If the Server->Client packet Attack contains at least 1 hit, send the Server->Client packet Attack to the Creature AND to all Player in the _KnownPlayers of the Creature</li>
-	 * <li>Notify AI with EVT_READY_TO_ACT</li>
+	 * <li>Notify AI with READY_TO_ACT</li>
 	 * </ul>
 	 * @param target The Creature targeted
 	 */
@@ -1048,7 +1039,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 				final TerminateReturn attackReturn = EventDispatcher.getInstance().notifyEvent(_onCreatureAttack, this, TerminateReturn.class);
 				if ((attackReturn != null) && attackReturn.terminate())
 				{
-					getAI().setIntention(AI_INTENTION_ACTIVE);
+					getAI().setIntention(Intention.ACTIVE);
 					sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
@@ -1064,7 +1055,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 				final TerminateReturn attackedReturn = EventDispatcher.getInstance().notifyEvent(_onCreatureAttacked, target, TerminateReturn.class);
 				if ((attackedReturn != null) && attackedReturn.terminate())
 				{
-					getAI().setIntention(AI_INTENTION_ACTIVE);
+					getAI().setIntention(Intention.ACTIVE);
 					sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
@@ -1074,7 +1065,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			{
 				if ((isNpc() && target.isAlikeDead()) || !isInSurroundingRegion(target))
 				{
-					getAI().setIntention(AI_INTENTION_ACTIVE);
+					getAI().setIntention(Intention.ACTIVE);
 					sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
@@ -1082,7 +1073,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 				{
 					if (target.isDead())
 					{
-						getAI().setIntention(AI_INTENTION_ACTIVE);
+						getAI().setIntention(Intention.ACTIVE);
 						sendPacket(ActionFailed.STATIC_PACKET);
 						return;
 					}
@@ -1139,14 +1130,14 @@ public abstract class Creature extends WorldObject implements IDeletable
 				// Checking if target has moved to peace zone
 				else if (target.isInsidePeaceZone(player))
 				{
-					getAI().setIntention(AI_INTENTION_ACTIVE);
+					getAI().setIntention(Intention.ACTIVE);
 					sendPacket(ActionFailed.STATIC_PACKET);
 					return;
 				}
 			}
 			else if (isInsidePeaceZone(this, target))
 			{
-				getAI().setIntention(AI_INTENTION_ACTIVE);
+				getAI().setIntention(Intention.ACTIVE);
 				sendPacket(ActionFailed.STATIC_PACKET);
 				return;
 			}
@@ -1157,7 +1148,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			if (!GeoEngine.getInstance().canSeeTarget(this, target))
 			{
 				sendPacket(SystemMessageId.CANNOT_SEE_TARGET);
-				getAI().setIntention(AI_INTENTION_ACTIVE);
+				getAI().setIntention(Intention.ACTIVE);
 				sendPacket(ActionFailed.STATIC_PACKET);
 				return;
 			}
@@ -1172,7 +1163,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			final int timeAtk = calculateTimeBetweenAttacks();
 			final int timeToHit = timeAtk / 2;
 			final Attack attack = new Attack(this, target, isChargedShot(ShotType.SOULSHOTS), (weaponItem != null) ? weaponItem.getCrystalTypePlus().getLevel() : 0);
-			setHeading(Util.calculateHeadingFrom(this, target));
+			setHeading(LocationUtil.calculateHeadingFrom(this, target));
 			final int reuse = calculateReuseTime(weaponItem);
 			final long currentTime = System.nanoTime();
 			boolean hitted = false;
@@ -1291,8 +1282,8 @@ public abstract class Creature extends WorldObject implements IDeletable
 				broadcastPacket(attack);
 			}
 			
-			// Notify AI with EVT_READY_TO_ACT
-			ThreadPool.schedule(new NotifyAITask(this, CtrlEvent.EVT_READY_TO_ACT), timeAtk + reuse);
+			// Notify AI with READY_TO_ACT
+			ThreadPool.schedule(new NotifyAITask(this, Action.READY_TO_ACT), timeAtk + reuse);
 		}
 		finally
 		{
@@ -1327,41 +1318,44 @@ public abstract class Creature extends WorldObject implements IDeletable
 		byte shld1 = 0;
 		boolean crit1 = false;
 		
-		// Calculate if hit is missed or not
+		// Calculate if hit is missed or not.
 		final boolean miss1 = Formulas.calcHitMiss(this, target);
 		
-		// Consume arrows
+		// Consume arrows.
 		reduceArrowCount(false);
 		
 		_move = null;
 		
-		// Check if hit isn't missed
+		// Check if hit isn't missed.
 		if (!miss1)
 		{
-			// Calculate if shield defense is efficient
+			// Calculate if shield defense is efficient.
 			shld1 = Formulas.calcShldUse(this, target);
 			
-			// Calculate if hit is critical
+			// Calculate if hit is critical.
 			crit1 = Formulas.calcCrit(this, target);
 			
-			// Calculate physical damages
+			// Calculate physical damages.
 			damage1 = (int) Formulas.calcPhysDam(this, target, null, shld1, crit1, attack.hasSoulshot());
 			
 			// Bows Ranged Damage Formula (Damage gradually decreases when 60% or lower than full hit range, and increases when 60% or higher).
-			// full hit range is 500 which is the base bow range, and the 60% of this is 800.
-			damage1 *= (calculateDistance3D(target) / 4000) + 0.8;
+			// Full hit range is 500 which is the base bow range, and the 60% of this is 800.
+			if (Config.CALCULATE_DISTANCE_BOW_DAMAGE)
+			{
+				damage1 *= (calculateDistance3D(target) / 4000) + 0.8;
+			}
 		}
 		
-		// Check if the Creature is a Player
+		// Check if the Creature is a Player.
 		if (isPlayer())
 		{
 			sendPacket(new SetupGauge(getObjectId(), SetupGauge.RED, sAtk + reuse));
 		}
 		
-		// Create a new hit task with Medium priority
+		// Create a new hit task with Medium priority.
 		ThreadPool.schedule(new HitTask(this, target, damage1, crit1, miss1, shld1, attack.hasSoulshot(), true), sAtk);
 		
-		// Calculate and set the disable delay of the bow in function of the Attack Speed
+		// Calculate and set the disable delay of the bow in function of the Attack Speed.
 		final int gameTime = GameTimeTaskManager.getInstance().getGameTicks();
 		_disableBowAttackEndTime = gameTime + ((sAtk + reuse) / GameTimeTaskManager.MILLIS_IN_TICK);
 		// Precaution. It happened in the past for _attackEndTime. Will not risk it.
@@ -1370,10 +1364,10 @@ public abstract class Creature extends WorldObject implements IDeletable
 			_disableBowAttackEndTime = Integer.MAX_VALUE;
 		}
 		
-		// Add this hit to the Server-Client packet Attack
+		// Add this hit to the Server-Client packet Attack.
 		attack.addHit(target, damage1, miss1, crit1, shld1);
 		
-		// Return true if hit isn't missed
+		// Return true if hit isn't missed.
 		return !miss1;
 	}
 	
@@ -1403,41 +1397,41 @@ public abstract class Creature extends WorldObject implements IDeletable
 		byte shld1 = 0;
 		boolean crit1 = false;
 		
-		// Calculate if hit is missed or not
+		// Calculate if hit is missed or not.
 		final boolean miss1 = Formulas.calcHitMiss(this, target);
 		
-		// Consume bolts
+		// Consume bolts.
 		reduceArrowCount(true);
 		
 		_move = null;
 		
-		// Check if hit isn't missed
+		// Check if hit isn't missed.
 		if (!miss1)
 		{
-			// Calculate if shield defense is efficient
+			// Calculate if shield defense is efficient.
 			shld1 = Formulas.calcShldUse(this, target);
 			
-			// Calculate if hit is critical
+			// Calculate if hit is critical.
 			crit1 = Formulas.calcCrit(this, target);
 			
-			// Calculate physical damages
+			// Calculate physical damages.
 			damage1 = (int) Formulas.calcPhysDam(this, target, null, shld1, crit1, attack.hasSoulshot());
 		}
 		
-		// Check if the Creature is a Player
+		// Check if the Creature is a Player.
 		if (isPlayer())
 		{
-			// Send a system message
+			// Send a system message.
 			sendPacket(SystemMessageId.YOUR_CROSSBOW_IS_PREPARING_TO_FIRE);
 			
-			// Send a Server->Client packet SetupGauge
+			// Send a Server->Client packet SetupGauge.
 			sendPacket(new SetupGauge(getObjectId(), SetupGauge.RED, sAtk + reuse));
 		}
 		
-		// Create a new hit task with Medium priority
+		// Create a new hit task with Medium priority.
 		ThreadPool.schedule(new HitTask(this, target, damage1, crit1, miss1, shld1, attack.hasSoulshot(), true), sAtk);
 		
-		// Calculate and set the disable delay of the bow in function of the Attack Speed
+		// Calculate and set the disable delay of the bow in function of the Attack Speed.
 		final int gameTime = GameTimeTaskManager.getInstance().getGameTicks();
 		_disableBowAttackEndTime = gameTime + ((sAtk + reuse) / GameTimeTaskManager.MILLIS_IN_TICK);
 		// Precaution. It happened in the past for _attackEndTime. Will not risk it.
@@ -1446,10 +1440,10 @@ public abstract class Creature extends WorldObject implements IDeletable
 			_disableBowAttackEndTime = Integer.MAX_VALUE;
 		}
 		
-		// Add this hit to the Server-Client packet Attack
+		// Add this hit to the Server-Client packet Attack.
 		attack.addHit(target, damage1, miss1, crit1, shld1);
 		
-		// Return true if hit isn't missed
+		// Return true if hit isn't missed.
 		return !miss1;
 	}
 	
@@ -1550,7 +1544,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			int attackCountMax = (int) _stat.calcStat(Stat.ATTACK_COUNT_MAX, 1, null, null);
 			if (attackCountMax > 1)
 			{
-				final double headingAngle = Util.convertHeadingToDegree(getHeading());
+				final double headingAngle = LocationUtil.convertHeadingToDegree(getHeading());
 				final int maxRadius = _stat.getPhysicalAttackRange();
 				final int physicalAttackAngle = _stat.getPhysicalAttackAngle();
 				double attackpercent = 85;
@@ -1747,7 +1741,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			}
 			if (isPlayer())
 			{
-				getAI().setIntention(AI_INTENTION_ACTIVE);
+				getAI().setIntention(Intention.ACTIVE);
 			}
 			return;
 		}
@@ -1814,7 +1808,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 					if (isPlayer())
 					{
 						sendPacket(ActionFailed.STATIC_PACKET);
-						getAI().setIntention(AI_INTENTION_ACTIVE);
+						getAI().setIntention(Intention.ACTIVE);
 					}
 					return;
 				}
@@ -1830,7 +1824,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 				}
 				else
 				{
-					target = _target.asCreature();
+					target = _target != null ? _target.asCreature() : null;
 				}
 			}
 		}
@@ -1853,7 +1847,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			if (isPlayer())
 			{
 				sendPacket(ActionFailed.STATIC_PACKET);
-				getAI().setIntention(AI_INTENTION_ACTIVE);
+				getAI().setIntention(Intention.ACTIVE);
 			}
 			return;
 		}
@@ -1883,7 +1877,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 				if (isPlayer())
 				{
 					sendPacket(ActionFailed.STATIC_PACKET);
-					getAI().setIntention(AI_INTENTION_ACTIVE);
+					getAI().setIntention(Intention.ACTIVE);
 				}
 				return;
 			}
@@ -1905,7 +1899,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			
 			if (isPlayer())
 			{
-				getAI().setIntention(AI_INTENTION_ACTIVE);
+				getAI().setIntention(Intention.ACTIVE);
 				sendPacket(ActionFailed.STATIC_PACKET);
 			}
 			return;
@@ -1985,14 +1979,6 @@ public abstract class Creature extends WorldObject implements IDeletable
 			reuseDelay = (int) (skill.getReuseDelay() * calcStat(Stat.DANCE_REUSE, 1, null, null));
 		}
 		
-		final boolean skillMastery = Formulas.calcSkillMastery(this, skill);
-		
-		// Skill reuse check
-		if ((reuseDelay > 30000) && !skillMastery)
-		{
-			addTimeStamp(skill, reuseDelay);
-		}
-		
 		// Check if this skill consume mp on start casting
 		final int initmpcons = _stat.getMpInitialConsume(skill);
 		if (initmpcons > 0)
@@ -2006,7 +1992,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		// Disable the skill during the re-use delay and create a task EnableSkill with Medium priority to enable it at the end of the re-use delay
 		if (reuseDelay > 10)
 		{
-			if (skillMastery)
+			if (Formulas.calcSkillMastery(this, skill))
 			{
 				reuseDelay = 100;
 				if (asPlayer() != null)
@@ -2015,19 +2001,26 @@ public abstract class Creature extends WorldObject implements IDeletable
 				}
 			}
 			
-			disableSkill(skill, reuseDelay);
+			if (reuseDelay > 1000)
+			{
+				addTimeStamp(skill, reuseDelay);
+			}
+			else
+			{
+				disableSkill(skill, reuseDelay);
+			}
 		}
 		
 		// Make sure that char is facing selected target
 		if (target != this)
 		{
-			setHeading(Util.calculateHeadingFrom(this, target));
+			setHeading(LocationUtil.calculateHeadingFrom(this, target));
 			broadcastPacket(new ExRotation(getObjectId(), getHeading()));
 		}
 		
 		if (isPlayable())
 		{
-			if ((skill.getItemConsumeId() > 0) && !destroyItemByItemId("Consume", skill.getItemConsumeId(), skill.getItemConsumeCount(), null, true))
+			if ((skill.getItemConsumeId() > 0) && !destroyItemByItemId(null, skill.getItemConsumeId(), skill.getItemConsumeCount(), null, true))
 			{
 				sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 				abortCast();
@@ -2632,7 +2625,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 							return;
 						}
 						// Don't call npcs who are already doing some action (e.g. attacking, casting).
-						if ((called.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE) && (called.getAI().getIntention() != CtrlIntention.AI_INTENTION_ACTIVE))
+						if ((called.getAI().getIntention() != Intention.IDLE) && (called.getAI().getIntention() != Intention.ACTIVE))
 						{
 							return;
 						}
@@ -2643,7 +2636,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 						}
 						
 						// By default, when a faction member calls for help, attack the caller's attacker.
-						called.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, killer, 1);
+						called.getAI().notifyAction(Action.AGGRESSION, killer, 1);
 						
 						if (EventDispatcher.getInstance().hasListener(EventType.ON_ATTACKABLE_FACTION_CALL, called))
 						{
@@ -2664,7 +2657,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		// Notify Creature AI
 		if (hasAI())
 		{
-			getAI().notifyEvent(CtrlEvent.EVT_DEAD);
+			getAI().notifyAction(Action.DEATH);
 		}
 		
 		ZoneManager.getInstance().getRegion(this).onDeath(this);
@@ -2682,7 +2675,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			if (Config.GRANDBOSS_DEFEAT_ANNOUNCEMENTS && ((getInstanceId() == 0) || Config.GRANDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
 			{
 				final String name = NpcData.getInstance().getTemplate(getId()).getName();
-				if (name != null)
+				if ((name != null) && !Config.RAIDBOSSES_EXCLUDED_FROM_DEFEAT_ANNOUNCEMENTS.contains(getId()))
 				{
 					Broadcast.toAllOnlinePlayers(name + " has been defeated!");
 					Broadcast.toAllOnlinePlayersOnScreen(name + " has been defeated!");
@@ -2692,7 +2685,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		else if (isRaid() && Config.RAIDBOSS_DEFEAT_ANNOUNCEMENTS && ((getInstanceId() == 0) || Config.RAIDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
 		{
 			final String name = NpcData.getInstance().getTemplate(getId()).getName();
-			if (name != null)
+			if ((name != null) && !Config.RAIDBOSSES_EXCLUDED_FROM_DEFEAT_ANNOUNCEMENTS.contains(getId()))
 			{
 				Broadcast.toAllOnlinePlayers(name + " has been defeated!");
 				Broadcast.toAllOnlinePlayersOnScreen(name + " has been defeated!");
@@ -2711,7 +2704,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			{
 				getAttackByList().clear();
 				asAttackable().clearAggroList();
-				getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				getAI().setIntention(Intention.IDLE);
 			}
 			getAI().stopAITask();
 		}
@@ -2729,7 +2722,6 @@ public abstract class Creature extends WorldObject implements IDeletable
 		return super.decayMe();
 	}
 	
-	@Override
 	public boolean deleteMe()
 	{
 		if (hasAI())
@@ -3394,7 +3386,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		abortAttack();
 		abortCast();
 		stopMove(null);
-		getAI().notifyEvent(CtrlEvent.EVT_FAKE_DEATH);
+		getAI().notifyAction(Action.FAKE_DEATH);
 		broadcastPacket(new ChangeWaitType(this, ChangeWaitType.WT_START_FAKEDEATH));
 		
 		// Remove target from those that have the untargetable creature on target.
@@ -3426,10 +3418,10 @@ public abstract class Creature extends WorldObject implements IDeletable
 		abortAttack();
 		abortCast();
 		stopMove(null);
-		getAI().notifyEvent(CtrlEvent.EVT_STUNNED);
+		getAI().notifyAction(Action.STUNNED);
 		if (!isSummon())
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			getAI().setIntention(Intention.IDLE);
 		}
 		updateAbnormalEffect();
 	}
@@ -3440,7 +3432,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		abortAttack();
 		abortCast();
 		stopMove(null);
-		getAI().notifyEvent(CtrlEvent.EVT_PARALYZED);
+		getAI().notifyAction(Action.PARALYZED);
 	}
 	
 	/**
@@ -3546,7 +3538,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		
 		if (!isPlayer())
 		{
-			getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			getAI().notifyAction(Action.THINK);
 		}
 		updateAbnormalEffect();
 	}
@@ -3577,7 +3569,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		
 		if (!isPlayer())
 		{
-			getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			getAI().notifyAction(Action.THINK);
 		}
 		updateAbnormalEffect();
 	}
@@ -3630,7 +3622,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		
 		public boolean disregardingGeodata;
 		public int onGeodataPathIndex;
-		public List<AbstractNodeLoc> geoPath;
+		public List<GeoLocation> geoPath;
 		public int geoPathAccurateTx;
 		public int geoPathAccurateTy;
 		public int geoPathGtx;
@@ -4077,12 +4069,12 @@ public abstract class Creature extends WorldObject implements IDeletable
 	}
 	
 	/**
-	 * This method returns a list of {@link AbstractNodeLoc} objects representing the movement path.<br>
+	 * This method returns a list of {@link GeoLocation} objects representing the movement path.<br>
 	 * If the move operation is defined (not null), it returns the path from the 'geoPath' field of the move.<br>
 	 * Otherwise, it returns null.
-	 * @return List of {@link AbstractNodeLoc} representing the movement path, or null if move is undefined.
+	 * @return List of {@link GeoLocation} representing the movement path, or null if move is undefined.
 	 */
-	public List<AbstractNodeLoc> getGeoPath()
+	public List<GeoLocation> getGeoPath()
 	{
 		final MoveData move = _move;
 		if (move != null)
@@ -4186,7 +4178,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			_castInterruptTime = 0;
 			if (isPlayer())
 			{
-				getAI().notifyEvent(CtrlEvent.EVT_FINISH_CASTING); // setting back previous intention
+				getAI().notifyAction(Action.FINISH_CASTING); // setting back previous intention
 			}
 			broadcastPacket(new MagicSkillCanceled(getObjectId())); // broadcast packet to stop animations client-side
 			sendPacket(ActionFailed.STATIC_PACKET); // send an "action failed" packet to the caster
@@ -4239,7 +4231,6 @@ public abstract class Creature extends WorldObject implements IDeletable
 			return false;
 		}
 		
-		_suspendedMovement = false;
 		final int xPrev = getX();
 		final int yPrev = getY();
 		final int zPrev = getZ(); // the z coordinate may be modified by coordinate synchronizations
@@ -4252,7 +4243,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			// In case of cursor movement, avoid moving through obstacles.
 			if (_cursorKeyMovement)
 			{
-				final double angle = Util.convertHeadingToDegree(getHeading());
+				final double angle = LocationUtil.convertHeadingToDegree(getHeading());
 				final double radian = Math.toRadians(angle);
 				final double course = Math.toRadians(180);
 				final double frontDistance = 10 * (_stat.getMoveSpeed() / 100);
@@ -4273,7 +4264,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 				final double distance = Math.hypot(dx, dy);
 				if (distance > 3000)
 				{
-					final double angle = Util.convertHeadingToDegree(getHeading());
+					final double angle = LocationUtil.convertHeadingToDegree(getHeading());
 					final double radian = Math.toRadians(angle);
 					final double course = Math.toRadians(180);
 					final double frontDistance = 10 * (_stat.getMoveSpeed() / 100);
@@ -4290,33 +4281,16 @@ public abstract class Creature extends WorldObject implements IDeletable
 							{
 								getAI().stopFollow();
 							}
-							getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+							getAI().setIntention(Intention.IDLE);
 						}
 						return true;
 					}
 				}
 				else // Check for nearby doors or fences.
 				{
-					if (move.disregardingGeodata) // When no move path was found, use direct movement. Tested at retail on October 21st 2024.
+					if (hasAI() && (getAI().getIntention() == Intention.ATTACK)) // Support for player attack with direct movement. Tested at retail on May 11th 2023.
 					{
-						final double angle = Util.convertHeadingToDegree(getHeading());
-						final double radian = Math.toRadians(angle);
-						final double course = Math.toRadians(180);
-						final double frontDistance = 12 * (_stat.getMoveSpeed() / 100);
-						final int x1 = (int) (Math.cos(Math.PI + radian + course) * frontDistance);
-						final int y1 = (int) (Math.sin(Math.PI + radian + course) * frontDistance);
-						final int x = xPrev + x1;
-						final int y = yPrev + y1;
-						if (!GeoEngine.getInstance().canMoveToTarget(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId()))
-						{
-							_suspendedMovement = true;
-							stopMove(getLocation());
-							return true;
-						}
-					}
-					else if (hasAI() && (getAI().getIntention() == CtrlIntention.AI_INTENTION_ATTACK)) // Support for player attack with direct movement. Tested at retail on May 11th 2023.
-					{
-						final double angle = Util.convertHeadingToDegree(getHeading());
+						final double angle = LocationUtil.convertHeadingToDegree(getHeading());
 						final double radian = Math.toRadians(angle);
 						final double course = Math.toRadians(180);
 						final double frontDistance = 10 * (_stat.getMoveSpeed() / 100);
@@ -4326,7 +4300,6 @@ public abstract class Creature extends WorldObject implements IDeletable
 						final int y = yPrev + y1;
 						if (!GeoEngine.getInstance().canMoveToTarget(xPrev, yPrev, zPrev, x, y, zPrev, getInstanceId()))
 						{
-							_suspendedMovement = true;
 							_move.onGeodataPathIndex = -1;
 							broadcastPacket(new StopMove(this));
 							return true;
@@ -4341,7 +4314,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 							final boolean hasFences = !region.getFences().isEmpty();
 							if (hasDoors || hasFences)
 							{
-								final double angle = Util.convertHeadingToDegree(getHeading());
+								final double angle = LocationUtil.convertHeadingToDegree(getHeading());
 								final double radian = Math.toRadians(angle);
 								final double course = Math.toRadians(180);
 								final double frontDistance = 10 * (_stat.getMoveSpeed() / 100);
@@ -4359,7 +4332,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 										{
 											getAI().stopFollow();
 										}
-										getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+										getAI().setIntention(Intention.IDLE);
 									}
 									stopMove(null);
 									return true;
@@ -4384,7 +4357,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		}
 		
 		// Prevent non playables teleporting to another ground layer while moving.
-		if (!isPlayable() && !isFloating && (Math.abs(move.zDestination - zPrev) > 300))
+		if (!isPlayer() && !isFloating && (Math.abs(move.zDestination - zPrev) > 300))
 		{
 			move.zDestination = zPrev;
 		}
@@ -4392,7 +4365,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		// Target collision should be subtracted from current distance.
 		final double collision;
 		final WorldObject target = _target;
-		if ((target != null) && target.isCreature() && hasAI() && (getAI().getIntention() == CtrlIntention.AI_INTENTION_ATTACK))
+		if ((target != null) && target.isCreature() && hasAI() && (getAI().getIntention() == Intention.ATTACK))
 		{
 			collision = target.asCreature().getTemplate().getCollisionRadius();
 		}
@@ -4476,17 +4449,18 @@ public abstract class Creature extends WorldObject implements IDeletable
 	 */
 	public void stopMove(Location loc)
 	{
-		// Delete movement data of the Creature
+		// Delete movement data of the Creature.
 		_move = null;
 		_cursorKeyMovement = false;
 		
-		// All data are contained in a Location object
+		// All data are contained in a Location object.
 		if (loc != null)
 		{
 			setXYZ(loc.getX(), loc.getY(), loc.getZ());
 			setHeading(loc.getHeading());
 			revalidateZone(true);
 		}
+		
 		broadcastPacket(new StopMove(this));
 	}
 	
@@ -4659,7 +4633,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			if ((distance < 1.79) || ((distance - offset) <= 0))
 			{
 				// Notify the AI that the Creature is arrived at destination
-				getAI().notifyEvent(CtrlEvent.EVT_ARRIVED);
+				getAI().notifyAction(Action.ARRIVED);
 				sendPacket(ActionFailed.STATIC_PACKET);
 				return;
 			}
@@ -4723,7 +4697,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 				
 				// Support for player attack with direct movement. Tested at retail on May 11th 2023.
 				boolean directMove = false;
-				if (isPlayer() && hasAI() && (asPlayer().getAI().getIntention() == CtrlIntention.AI_INTENTION_ATTACK))
+				if (isPlayer() && hasAI() && (asPlayer().getAI().getIntention() == Intention.ATTACK))
 				{
 					directMove = true;
 				}
@@ -4771,7 +4745,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 						int destinationY = 0;
 						double shortDistance = Double.MAX_VALUE;
 						double tempDistance;
-						List<AbstractNodeLoc> tempPath;
+						List<GeoLocation> tempPath;
 						for (int sX = xMin; sX < xMax; sX += 500)
 						{
 							for (int sY = yMin; sY < yMax; sY += 500)
@@ -4824,14 +4798,8 @@ public abstract class Creature extends WorldObject implements IDeletable
 						// sendPacket(ActionFailed.STATIC_PACKET);
 						// return;
 						// }
-						if (isPlayer() && _suspendedMovement && !_isFlying && !isInWater)
-						{
-							sendPacket(ActionFailed.STATIC_PACKET);
-							return;
-						}
 						
 						move.disregardingGeodata = true;
-						
 						x = originalX;
 						y = originalY;
 						z = originalZ;
@@ -4862,12 +4830,12 @@ public abstract class Creature extends WorldObject implements IDeletable
 					if (getAI().getFollowTarget() != asPlayer())
 					{
 						asSummon().setFollowStatus(false);
-						getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+						getAI().setIntention(Intention.IDLE);
 					}
 				}
 				else
 				{
-					getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+					getAI().setIntention(Intention.IDLE);
 				}
 				sendPacket(ActionFailed.STATIC_PACKET);
 				return;
@@ -4891,7 +4859,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		// Does not break heading on vertical movements
 		if (!verticalMovementOnly)
 		{
-			setHeading(Util.calculateHeadingFrom(cos, sin));
+			setHeading(LocationUtil.calculateHeadingFrom(cos, sin));
 		}
 		
 		move.moveStartTime = GameTimeTaskManager.getInstance().getGameTicks();
@@ -4906,9 +4874,9 @@ public abstract class Creature extends WorldObject implements IDeletable
 		// Create a task to notify the AI that Creature arrives at a check point of the movement
 		if ((ticksToMove * GameTimeTaskManager.MILLIS_IN_TICK) > 3000)
 		{
-			ThreadPool.schedule(new NotifyAITask(this, CtrlEvent.EVT_ARRIVED_REVALIDATE), 2000);
+			ThreadPool.schedule(new NotifyAITask(this, Action.ARRIVED_REVALIDATE), 2000);
 		}
-		// the CtrlEvent.EVT_ARRIVED will be sent when the character will actually arrive to destination by MovementTaskManager
+		// the Event.ARRIVED will be sent when the character will actually arrive to destination by MovementTaskManager
 	}
 	
 	/**
@@ -4970,7 +4938,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		final double distance = Math.hypot(newMove.xDestination - curX, newMove.yDestination - curY);
 		if (distance != 0)
 		{
-			setHeading(Util.calculateHeadingFrom(curX, curY, newMove.xDestination, newMove.yDestination));
+			setHeading(LocationUtil.calculateHeadingFrom(curX, curY, newMove.xDestination, newMove.yDestination));
 		}
 		
 		// Calculate the number of ticks between the current position and the destination.
@@ -4988,10 +4956,10 @@ public abstract class Creature extends WorldObject implements IDeletable
 		// Create a task to notify the AI that Creature arrives at a check point of the movement
 		if ((ticksToMove * GameTimeTaskManager.MILLIS_IN_TICK) > 3000)
 		{
-			ThreadPool.schedule(new NotifyAITask(this, CtrlEvent.EVT_ARRIVED_REVALIDATE), 2000);
+			ThreadPool.schedule(new NotifyAITask(this, Action.ARRIVED_REVALIDATE), 2000);
 		}
 		
-		// the CtrlEvent.EVT_ARRIVED will be sent when the character will actually arrive to destination by MovementTaskManager
+		// the Event.ARRIVED will be sent when the character will actually arrive to destination by MovementTaskManager
 		
 		// Send a Server->Client packet MoveToLocation to the actor and all Player in its _knownPlayers
 		broadcastMoveToLocation(true);
@@ -5042,7 +5010,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 	 */
 	public boolean isInsideRadius2D(int x, int y, int z, int radius)
 	{
-		return calculateDistanceSq2D(x, y, z) < (radius * radius);
+		return calculateDistance2D(x, y, z) < radius;
 	}
 	
 	/**
@@ -5066,7 +5034,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 	 */
 	public boolean isInsideRadius3D(int x, int y, int z, int radius)
 	{
-		return calculateDistanceSq3D(x, y, z) < (radius * radius);
+		return calculateDistance3D(x, y, z) < radius;
 	}
 	
 	/**
@@ -5136,7 +5104,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
-	 * <li>If the attacker/target is dead or use fake death, notify the AI with EVT_CANCEL and send a Server->Client packet ActionFailed (if attacker is a Player)</li>
+	 * <li>If the attacker/target is dead or use fake death, notify the AI with CANCEL and send a Server->Client packet ActionFailed (if attacker is a Player)</li>
 	 * <li>If attack isn't aborted, send a message system (critical hit, missed...) to attacker/target if they are Player</li>
 	 * <li>If attack isn't aborted and hit isn't missed, reduce HP of the target and calculate reflection damage to reduce HP of attacker if necessary</li>
 	 * <li>if attack isn't aborted and hit isn't missed, manage attack or cast break of the target (calculating rate, sending message...)</li>
@@ -5151,11 +5119,11 @@ public abstract class Creature extends WorldObject implements IDeletable
 	 */
 	public void onHitTimer(Creature target, int damageValue, boolean crit, boolean miss, byte shld, boolean soulshot, boolean rechargeShots)
 	{
-		// If the attacker/target is dead or use fake death, notify the AI with EVT_CANCEL
+		// If the attacker/target is dead or use fake death, notify the AI with CANCEL
 		// and send a Server->Client packet ActionFailed (if attacker is a Player)
 		if ((target == null) || isAlikeDead())
 		{
-			getAI().notifyEvent(CtrlEvent.EVT_CANCEL);
+			getAI().notifyAction(Action.CANCEL);
 			return;
 		}
 		
@@ -5167,14 +5135,14 @@ public abstract class Creature extends WorldObject implements IDeletable
 		
 		if ((isNpc() && target.isAlikeDead()) || target.isDead() || (!isInSurroundingRegion(target) && !isDoor()))
 		{
-			// getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE, null);
+			// getAI().setIntention(Intention.ACTIVE, null);
 			// Some times attack is processed but target die before the hit
 			// So we need to recharge shot for next attack
 			if (rechargeShots)
 			{
 				rechargeShots(true, false);
 			}
-			getAI().notifyEvent(CtrlEvent.EVT_CANCEL);
+			getAI().notifyAction(Action.CANCEL);
 			sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
@@ -5184,7 +5152,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			// Notify target AI
 			if (target.hasAI())
 			{
-				target.getAI().notifyEvent(CtrlEvent.EVT_EVADED, this);
+				target.getAI().notifyAction(Action.EVADED, this);
 			}
 			notifyAttackAvoid(target, false);
 		}
@@ -5206,7 +5174,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			{
 				abortAttack();
 				abortCast();
-				getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				getAI().setIntention(Intention.IDLE);
 				skill.applyEffects(target, this);
 			}
 			else
@@ -5292,10 +5260,10 @@ public abstract class Creature extends WorldObject implements IDeletable
 				}
 			}
 			
-			// Notify AI with EVT_ATTACKED
+			// Notify AI with ATTACKED
 			if (target.hasAI())
 			{
-				target.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, this);
+				target.getAI().notifyAction(Action.ATTACKED, this);
 			}
 			getAI().clientStartAutoAttack();
 			if (isSummon())
@@ -5395,7 +5363,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 	 * <li>If Creature or target is in a town area, send a system message TARGET_IN_PEACEZONE a Server->Client packet ActionFailed</li>
 	 * <li>If target is confused, send a Server->Client packet ActionFailed</li>
 	 * <li>If Creature is a Artefact, send a Server->Client packet ActionFailed</li>
-	 * <li>Send a Server->Client packet MyTargetSelected to start attack and Notify AI with AI_INTENTION_ATTACK</li>
+	 * <li>Send a Server->Client packet MyTargetSelected to start attack and Notify AI with ATTACK</li>
 	 * </ul>
 	 * @param player The Player to attack
 	 */
@@ -5451,8 +5419,8 @@ public abstract class Creature extends WorldObject implements IDeletable
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
-		// Notify AI with AI_INTENTION_ATTACK
-		player.getAI().setIntention(AI_INTENTION_ATTACK, this);
+		// Notify AI with ATTACK
+		player.getAI().setIntention(Intention.ATTACK, this);
 	}
 	
 	/**
@@ -5714,8 +5682,8 @@ public abstract class Creature extends WorldObject implements IDeletable
 	 * <li>Consumme MP, HP and Item if necessary</li>
 	 * <li>Send a Server->Client packet StatusUpdate with MP modification to the Player</li>
 	 * <li>Launch the magic skill in order to calculate its effects</li>
-	 * <li>If the skill type is PDAM, notify the AI of the target with AI_INTENTION_ATTACK</li>
-	 * <li>Notify the AI of the Creature with EVT_FINISH_CASTING</li>
+	 * <li>If the skill type is PDAM, notify the AI of the target with ATTACK</li>
+	 * <li>Notify the AI of the Creature with FINISH_CASTING</li>
 	 * </ul>
 	 * <font color=#FF0000><b><u>Caution</u>: A magic skill casting MUST BE in progress</b></font>
 	 * @param mut
@@ -5837,7 +5805,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 		if ((mut.isSimultaneous() && !_isCastingSimultaneouslyNow) || (!mut.isSimultaneous() && !_isCastingNow) || (isAlikeDead() && !skill.isStatic()))
 		{
 			// now cancels both, simultaneous and normal
-			getAI().notifyEvent(CtrlEvent.EVT_CANCEL);
+			getAI().notifyAction(Action.CANCEL);
 			return;
 		}
 		
@@ -6008,10 +5976,10 @@ public abstract class Creature extends WorldObject implements IDeletable
 		final WorldObject target = !mut.getTargets().isEmpty() ? mut.getTargets().get(0) : null;
 		
 		// Attack target after skill use
-		if ((skill.nextActionIsAttack()) && (_target != this) && (target != null) && (_target == target) && _target.isCreature() && target.canBeAttacked())
+		if (skill.nextActionIsAttack() && (_target != this) && (target != null) && (_target == target) && _target.isCreature() && target.canBeAttacked() && (!isPlayer() || !asPlayer().isAutoPlaying()))
 		{
 			final IntentionCommand nextIntention = getAI().getNextIntention();
-			if ((nextIntention == null) || (nextIntention.getCtrlIntention() != CtrlIntention.AI_INTENTION_MOVE_TO))
+			if ((nextIntention == null) || (nextIntention.getIntention() != Intention.MOVE_TO))
 			{
 				if (isPlayer())
 				{
@@ -6019,12 +5987,12 @@ public abstract class Creature extends WorldObject implements IDeletable
 					final SkillUseHolder currSkill = currPlayer.getCurrentSkill();
 					if ((currSkill == null) || !currSkill.isShiftPressed())
 					{
-						getAI().setIntention(AI_INTENTION_ATTACK, target);
+						getAI().setIntention(Intention.ATTACK, target);
 					}
 				}
 				else
 				{
-					getAI().setIntention(AI_INTENTION_ATTACK, target);
+					getAI().setIntention(Intention.ATTACK, target);
 				}
 			}
 		}
@@ -6034,8 +6002,8 @@ public abstract class Creature extends WorldObject implements IDeletable
 			getAI().clientStartAutoAttack();
 		}
 		
-		// Notify the AI of the Creature with EVT_FINISH_CASTING
-		getAI().notifyEvent(CtrlEvent.EVT_FINISH_CASTING);
+		// Notify the AI of the Creature with FINISH_CASTING
+		getAI().notifyAction(Action.FINISH_CASTING);
 		
 		// Notify DP Scripts
 		notifyQuestEventSkillFinished(skill, target);
@@ -6109,7 +6077,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 					{
 						abortAttack();
 						abortCast();
-						getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+						getAI().setIntention(Intention.IDLE);
 						curseSkill.applyEffects(target, this);
 					}
 					else
@@ -6156,7 +6124,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 			{
 				for (WorldObject target : targets)
 				{
-					// EVT_ATTACKED and PvPStatus
+					// ATTACKED and PvPStatus
 					if (target.isCreature())
 					{
 						if (skill.getEffectPoint() <= 0)
@@ -6205,9 +6173,9 @@ public abstract class Creature extends WorldObject implements IDeletable
 								}
 							}
 							// notify target AI about the attack
-							if (target.asCreature().hasAI() && !skill.hasEffectType(EffectType.HATE) && (skill.getAbnormalType() != AbnormalType.TURN_PASSIVE))
+							if (target.asCreature().hasAI() && skill.isBad() && !skill.hasEffectType(EffectType.HATE) && (skill.getAbnormalType() != AbnormalType.TURN_PASSIVE))
 							{
-								target.asCreature().getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, this);
+								target.asCreature().getAI().notifyAction(Action.ATTACKED, this);
 							}
 						}
 						else
@@ -6250,7 +6218,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 							skillEffectPoint = 0;
 						}
 						
-						if ((skillEffectPoint > 0) && attackable.hasAI() && (attackable.getAI().getIntention() == AI_INTENTION_ATTACK))
+						if ((skillEffectPoint > 0) && attackable.hasAI() && (attackable.getAI().getIntention() == Intention.ATTACK))
 						{
 							final WorldObject npcTarget = attackable.getTarget();
 							for (WorldObject skillTarget : targets)
@@ -6276,7 +6244,7 @@ public abstract class Creature extends WorldObject implements IDeletable
 						if (creature.hasAI())
 						{
 							// Notify target AI about the attack
-							creature.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, this);
+							creature.getAI().notifyAction(Action.ATTACKED, this);
 						}
 					}
 					
@@ -7146,16 +7114,16 @@ public abstract class Creature extends WorldObject implements IDeletable
 	}
 	
 	@Override
-	public Queue<AbstractEventListener> getListeners(EventType type)
+	public Collection<AbstractEventListener> getListeners(EventType type)
 	{
-		final Queue<AbstractEventListener> objectListeners = super.getListeners(type);
-		final Queue<AbstractEventListener> templateListeners = _template.getListeners(type);
-		final Queue<AbstractEventListener> globalListeners = isMonster() ? Containers.Monsters().getListeners(type) : isNpc() ? Containers.Npcs().getListeners(type) : isPlayer() ? Containers.Players().getListeners(type) : EmptyQueue.emptyQueue();
+		final Collection<AbstractEventListener> objectListeners = super.getListeners(type);
+		final Collection<AbstractEventListener> templateListeners = _template.getListeners(type);
+		final Collection<AbstractEventListener> globalListeners = isMonster() ? Containers.Monsters().getListeners(type) : isNpc() ? Containers.Npcs().getListeners(type) : isPlayer() ? Containers.Players().getListeners(type) : Collections.emptyList();
 		
-		// Avoid creating a new queue object.
+		// Avoid creating a new object.
 		if (objectListeners.isEmpty() && templateListeners.isEmpty() && globalListeners.isEmpty())
 		{
-			return EmptyQueue.emptyQueue();
+			return Collections.emptyList();
 		}
 		else if (!objectListeners.isEmpty() && templateListeners.isEmpty() && globalListeners.isEmpty())
 		{
@@ -7170,11 +7138,11 @@ public abstract class Creature extends WorldObject implements IDeletable
 			return globalListeners;
 		}
 		
-		final Queue<AbstractEventListener> both = new LinkedBlockingDeque<>(objectListeners.size() + templateListeners.size() + globalListeners.size());
-		both.addAll(objectListeners);
-		both.addAll(templateListeners);
-		both.addAll(globalListeners);
-		return both;
+		final Collection<AbstractEventListener> allListeners = new ArrayList<>(objectListeners.size() + templateListeners.size() + globalListeners.size());
+		allListeners.addAll(objectListeners);
+		allListeners.addAll(templateListeners);
+		allListeners.addAll(globalListeners);
+		return allListeners;
 	}
 	
 	public Race getRace()
@@ -7310,30 +7278,6 @@ public abstract class Creature extends WorldObject implements IDeletable
 	public void setCursorKeyMovement(boolean value)
 	{
 		_cursorKeyMovement = value;
-	}
-	
-	public boolean isMovementSuspended()
-	{
-		return _suspendedMovement;
-	}
-	
-	public void blockMovementToHeading(int heading)
-	{
-		_blockedHeadingMin = heading - 6000;
-		_blockedHeadingMax = heading + 6000;
-	}
-	
-	public void unblockMovementToHeading()
-	{
-		if (_blockedHeadingMax != -1)
-		{
-			_blockedHeadingMax = -1;
-		}
-	}
-	
-	public boolean isHeadingBlocked(int heading)
-	{
-		return (heading < _blockedHeadingMax) && (heading > _blockedHeadingMin);
 	}
 	
 	public List<Item> getFakePlayerDrops()

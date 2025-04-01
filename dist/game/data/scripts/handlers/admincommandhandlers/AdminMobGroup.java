@@ -28,7 +28,6 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SetupGauge;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * Admin commands handler for controllable mobs.
@@ -152,13 +151,13 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Incorrect command arguments.");
+			activeChar.sendSysMessage("Incorrect command arguments.");
 			return;
 		}
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		group.returnGroup(activeChar);
@@ -174,13 +173,13 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Incorrect command arguments.");
+			activeChar.sendSysMessage("Incorrect command arguments.");
 			return;
 		}
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		group.setIdleMode();
@@ -195,13 +194,13 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Incorrect command arguments.");
+			activeChar.sendSysMessage("Incorrect command arguments.");
 			return;
 		}
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		group.setAttackRandom();
@@ -216,13 +215,13 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Incorrect command arguments.");
+			activeChar.sendSysMessage("Incorrect command arguments.");
 			return;
 		}
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		group.setAttackTarget(target);
@@ -237,13 +236,13 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Incorrect command arguments.");
+			activeChar.sendSysMessage("Incorrect command arguments.");
 			return;
 		}
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		group.setFollowMode(target);
@@ -264,26 +263,26 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //mobgroup_create <group> <npcid> <count>");
+			activeChar.sendSysMessage("Usage: //mobgroup_create <group> <npcid> <count>");
 			return;
 		}
 		
 		if (MobGroupTable.getInstance().getGroup(groupId) != null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Mob group " + groupId + " already exists.");
+			activeChar.sendSysMessage("Mob group " + groupId + " already exists.");
 			return;
 		}
 		
 		final NpcTemplate template = NpcData.getInstance().getTemplate(templateId);
 		if (template == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid NPC ID specified.");
+			activeChar.sendSysMessage("Invalid NPC ID specified.");
 			return;
 		}
 		
 		final MobGroup group = new MobGroup(groupId, template, mobCount);
 		MobGroupTable.getInstance().addGroup(groupId, group);
-		BuilderUtil.sendSysMessage(activeChar, "Mob group " + groupId + " created.");
+		activeChar.sendSysMessage("Mob group " + groupId + " created.");
 	}
 	
 	private void removeGroup(String command, Player activeChar)
@@ -296,14 +295,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //mobgroup_remove <groupId>");
+			activeChar.sendSysMessage("Usage: //mobgroup_remove <groupId>");
 			return;
 		}
 		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		
@@ -312,7 +311,7 @@ public class AdminMobGroup implements IAdminCommandHandler
 		
 		if (MobGroupTable.getInstance().removeGroup(groupId))
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Mob group " + groupId + " unspawned and removed.");
+			activeChar.sendSysMessage("Mob group " + groupId + " unspawned and removed.");
 		}
 	}
 	
@@ -343,14 +342,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //mobgroup_spawn <group> [ x y z ]");
+			activeChar.sendSysMessage("Usage: //mobgroup_spawn <group> [ x y z ]");
 			return;
 		}
 		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		
@@ -365,7 +364,7 @@ public class AdminMobGroup implements IAdminCommandHandler
 			group.spawnGroup(activeChar);
 		}
 		
-		BuilderUtil.sendSysMessage(activeChar, "Mob group " + groupId + " spawned.");
+		activeChar.sendSysMessage("Mob group " + groupId + " spawned.");
 	}
 	
 	private void unspawnGroup(String command, Player activeChar)
@@ -378,21 +377,21 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //mobgroup_unspawn <groupId>");
+			activeChar.sendSysMessage("Usage: //mobgroup_unspawn <groupId>");
 			return;
 		}
 		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		
 		doAnimation(activeChar);
 		group.unspawnGroup();
 		
-		BuilderUtil.sendSysMessage(activeChar, "Mob group " + groupId + " unspawned.");
+		activeChar.sendSysMessage("Mob group " + groupId + " unspawned.");
 	}
 	
 	private void killGroup(String command, Player activeChar)
@@ -405,14 +404,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //mobgroup_kill <groupId>");
+			activeChar.sendSysMessage("Usage: //mobgroup_kill <groupId>");
 			return;
 		}
 		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		
@@ -430,14 +429,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //mobgroup_casting <groupId>");
+			activeChar.sendSysMessage("Usage: //mobgroup_casting <groupId>");
 			return;
 		}
 		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		
@@ -456,14 +455,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //mobgroup_nomove <groupId> <on|off>");
+			activeChar.sendSysMessage("Usage: //mobgroup_nomove <groupId> <on|off>");
 			return;
 		}
 		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		
@@ -477,7 +476,7 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		else
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Incorrect command arguments.");
+			activeChar.sendSysMessage("Incorrect command arguments.");
 		}
 	}
 	
@@ -499,21 +498,21 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //mobgroup_attackgrp <groupId> <TargetGroupId>");
+			activeChar.sendSysMessage("Usage: //mobgroup_attackgrp <groupId> <TargetGroupId>");
 			return;
 		}
 		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		
 		final MobGroup othGroup = MobGroupTable.getInstance().getGroup(othGroupId);
 		if (othGroup == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Incorrect target group.");
+			activeChar.sendSysMessage("Incorrect target group.");
 			return;
 		}
 		
@@ -532,14 +531,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //mobgroup_invul <groupId> <on|off>");
+			activeChar.sendSysMessage("Usage: //mobgroup_invul <groupId> <on|off>");
 			return;
 		}
 		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		
@@ -553,7 +552,7 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		else
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Incorrect command arguments.");
+			activeChar.sendSysMessage("Incorrect command arguments.");
 		}
 	}
 	
@@ -579,14 +578,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Usage: //mobgroup_teleport <groupId> [playerName]");
+			activeChar.sendSysMessage("Usage: //mobgroup_teleport <groupId> [playerName]");
 			return;
 		}
 		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Invalid group specified.");
+			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
 		
@@ -595,7 +594,7 @@ public class AdminMobGroup implements IAdminCommandHandler
 	
 	private void showGroupList(Player activeChar)
 	{
-		BuilderUtil.sendSysMessage(activeChar, "======= <Mob Groups> =======");
+		activeChar.sendSysMessage("======= <Mob Groups> =======");
 		for (MobGroup mobGroup : MobGroupTable.getInstance().getGroups())
 		{
 			activeChar.sendMessage(mobGroup.getGroupId() + ": " + mobGroup.getActiveMobCount() + " alive out of " + mobGroup.getMaxMobCount() + " of NPC ID " + mobGroup.getTemplate().getId() + " (" + mobGroup.getStatus() + ")");

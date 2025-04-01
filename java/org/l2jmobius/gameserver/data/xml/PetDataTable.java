@@ -25,23 +25,18 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.MountType;
 import org.l2jmobius.gameserver.model.PetData;
 import org.l2jmobius.gameserver.model.PetLevelData;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
 
 /**
- * This class parse and hold all pet parameters.<br>
- * TODO: load and use all pet parameters.
- * @author Zoey76 (rework)
+ * @author Zoey76
  */
 public class PetDataTable implements IXmlReader
 {
 	private final Map<Integer, PetData> _pets = new ConcurrentHashMap<>();
 	
-	/**
-	 * Instantiates a new pet data table.
-	 */
 	protected PetDataTable()
 	{
 		load();
@@ -56,10 +51,10 @@ public class PetDataTable implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		NamedNodeMap attrs;
-		for (Node d = doc.getFirstChild().getFirstChild(); d != null; d = d.getNextSibling())
+		for (Node d = document.getFirstChild().getFirstChild(); d != null; d = d.getNextSibling())
 		{
 			if (d.getNodeName().equals("pet"))
 			{
@@ -150,8 +145,9 @@ public class PetDataTable implements IXmlReader
 	}
 	
 	/**
-	 * @param itemId
-	 * @return
+	 * Retrieves pet data based on the item ID used to summon it.
+	 * @param itemId the item ID associated with the pet.
+	 * @return the {@link PetData} associated with the given item ID, or {@code null} if no matching data is found.
 	 */
 	public PetData getPetDataByItemId(int itemId)
 	{
@@ -166,10 +162,10 @@ public class PetDataTable implements IXmlReader
 	}
 	
 	/**
-	 * Gets the pet level data.
-	 * @param petId the pet Id.
-	 * @param petLevel the pet level.
-	 * @return the pet's parameters for the given Id and level.
+	 * Retrieves pet level data for a specified pet ID and level.
+	 * @param petId the unique identifier of the pet.
+	 * @param petLevel the level of the pet.
+	 * @return the {@link PetLevelData} containing the pet's parameters for the given ID and level, or the maximum level data if the requested level exceeds it.
 	 */
 	public PetLevelData getPetLevelData(int petId, int petLevel)
 	{
@@ -186,9 +182,9 @@ public class PetDataTable implements IXmlReader
 	}
 	
 	/**
-	 * Gets the pet data.
-	 * @param petId the pet Id.
-	 * @return the pet data
+	 * Retrieves the pet data for a specified pet ID.
+	 * @param petId the unique identifier of the pet.
+	 * @return the {@link PetData} associated with the given ID, or {@code null} if no data is available.
 	 */
 	public PetData getPetData(int petId)
 	{
@@ -200,9 +196,9 @@ public class PetDataTable implements IXmlReader
 	}
 	
 	/**
-	 * Gets the pet min level.
-	 * @param petId the pet Id.
-	 * @return the pet min level
+	 * Retrieves the minimum level for a specified pet ID.
+	 * @param petId the unique identifier of the pet.
+	 * @return the minimum level of the pet with the given ID.
 	 */
 	public int getPetMinLevel(int petId)
 	{
@@ -210,9 +206,9 @@ public class PetDataTable implements IXmlReader
 	}
 	
 	/**
-	 * Gets the pet items by npc.
-	 * @param npcId the NPC ID to get its summoning item
-	 * @return summoning item for the given NPC ID
+	 * Retrieves the summoning item ID for a pet based on its NPC ID.
+	 * @param npcId the NPC ID associated with the pet.
+	 * @return the item ID used to summon the pet associated with the given NPC ID.
 	 */
 	public int getPetItemsByNpc(int npcId)
 	{
@@ -220,19 +216,15 @@ public class PetDataTable implements IXmlReader
 	}
 	
 	/**
-	 * Checks if is mountable.
-	 * @param npcId the NPC Id to verify.
-	 * @return {@code true} if the given Id is from a mountable pet, {@code false} otherwise.
+	 * Checks if a pet with the given NPC ID is mountable.
+	 * @param npcId the NPC ID to verify.
+	 * @return {@code true} if the pet with the specified NPC ID is mountable, {@code false} otherwise.
 	 */
 	public static boolean isMountable(int npcId)
 	{
 		return MountType.findByNpcId(npcId) != MountType.NONE;
 	}
 	
-	/**
-	 * Gets the single instance of PetDataTable.
-	 * @return this class unique instance.
-	 */
 	public static PetDataTable getInstance()
 	{
 		return SingletonHolder.INSTANCE;

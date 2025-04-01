@@ -19,17 +19,17 @@ package ai.areas.KetraOrcOutpust.KetraOrcSupport;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 
 /**
  * Ketra Orc Support AI.<br>
- * Original Jython script by Emperorc and Kerberos_20.
+ * Original Jython script by Emperorc and Kerberos.
  * @authors Nyaran
  */
 public class KetraOrcSupport extends AbstractNpcAI
@@ -111,7 +111,7 @@ public class KetraOrcSupport extends AbstractNpcAI
 	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = null;
-		if (Util.isDigit(event) && BUFF.containsKey(Integer.parseInt(event)))
+		if (StringUtil.isNumeric(event) && BUFF.containsKey(Integer.parseInt(event)))
 		{
 			final BuffsData buff = BUFF.get(Integer.parseInt(event));
 			if (getQuestItemsCount(player, HORN) >= buff.getCost())

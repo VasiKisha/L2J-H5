@@ -17,14 +17,14 @@
 package quests.Q00412_PathOfTheDarkWizard;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Path Of The Dark Wizard (412)
@@ -82,7 +82,7 @@ public class Q00412_PathOfTheDarkWizard extends Quest
 		{
 			case "ACCEPT":
 			{
-				if (player.getClassId() == ClassId.DARK_MAGE)
+				if (player.getPlayerClass() == PlayerClass.DARK_MAGE)
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
@@ -102,7 +102,7 @@ public class Q00412_PathOfTheDarkWizard extends Quest
 						htmltext = "30421-02.htm";
 					}
 				}
-				else if (player.getClassId() == ClassId.DARK_WIZARD)
+				else if (player.getPlayerClass() == PlayerClass.DARK_WIZARD)
 				{
 					htmltext = "30421-02a.htm";
 				}
@@ -171,10 +171,10 @@ public class Q00412_PathOfTheDarkWizard extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -230,7 +230,6 @@ public class Q00412_PathOfTheDarkWizard extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

@@ -16,12 +16,12 @@
  */
 package quests.Q10292_SevenSignsGirlOfDoubt;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q00198_SevenSignsEmbryo.Q00198_SevenSignsEmbryo;
 
@@ -194,12 +194,12 @@ public class Q10292_SevenSignsGirlOfDoubt extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs != null)
 		{
-			if (CommonUtil.contains(MOBS, npc.getId()))
+			if (ArrayUtil.contains(MOBS, npc.getId()))
 			{
 				if (giveItemRandomly(qs.getPlayer(), npc, ELCADIAS_MARK.getId(), 1, ELCADIAS_MARK.getCount(), 0.7, true) && qs.isMemoState(3))
 				{
@@ -217,14 +217,12 @@ public class Q10292_SevenSignsGirlOfDoubt extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.getVariables().set(I_QUEST1, false);
-		return super.onSpawn(npc);
 	}
 	
 	@Override

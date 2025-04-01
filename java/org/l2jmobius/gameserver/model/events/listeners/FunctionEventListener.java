@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
-import org.l2jmobius.gameserver.model.events.impl.IBaseEvent;
+import org.l2jmobius.gameserver.model.events.holders.IBaseEvent;
 import org.l2jmobius.gameserver.model.events.returns.AbstractEventReturn;
 
 /**

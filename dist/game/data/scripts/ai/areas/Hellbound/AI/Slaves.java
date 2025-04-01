@@ -18,14 +18,14 @@ package ai.areas.Hellbound.AI;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
 
 import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
@@ -54,15 +54,14 @@ public class Slaves extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.asMonster().enableMinions(HellboundEngine.getInstance().getLevel() < 5);
 		npc.asMonster().setOnKillDelay(1000);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.asMonster().getMinionList() != null)
 		{
@@ -83,11 +82,10 @@ public class Slaves extends AbstractNpcAI
 					{
 						HellboundEngine.getInstance().updateTrust(TRUST_REWARD, false);
 					}
-					slave.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MOVE_TO);
+					slave.getAI().setIntention(Intention.MOVE_TO, MOVE_TO);
 					DecayTaskManager.getInstance().add(slave);
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

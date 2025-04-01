@@ -16,9 +16,8 @@
  */
 package quests.Q00710_PathToBecomingALordGiran;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -26,6 +25,7 @@ import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 /**
@@ -115,7 +115,7 @@ public class Q00710_PathToBecomingALordGiran extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = killer.getQuestState(getName());
 		if ((qs != null) && qs.isCond(7))
@@ -130,7 +130,6 @@ public class Q00710_PathToBecomingALordGiran extends Quest
 				qs.setCond(8);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

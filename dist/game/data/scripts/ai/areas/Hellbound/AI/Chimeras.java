@@ -69,7 +69,7 @@ public class Chimeras extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (HellboundEngine.getInstance().getLevel() == 7) // Have random spawn points only in 7 level
 		{
@@ -80,11 +80,10 @@ public class Chimeras extends AbstractNpcAI
 				ThreadPool.schedule(new Teleport(npc, loc), 100);
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (((skill.getId() == BOTTLE) && !npc.isDead()) //
 			&& ((!targets.isEmpty()) && (targets.get(0) == npc)) //
@@ -113,7 +112,6 @@ public class Chimeras extends AbstractNpcAI
 			}
 			npc.onDecay();
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	private static class Teleport implements Runnable

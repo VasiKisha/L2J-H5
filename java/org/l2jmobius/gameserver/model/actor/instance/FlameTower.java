@@ -18,10 +18,10 @@ package org.l2jmobius.gameserver.model.actor.instance;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Tower;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 

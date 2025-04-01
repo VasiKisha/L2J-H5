@@ -20,13 +20,13 @@ import java.util.Collections;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -168,20 +168,18 @@ public class Keltas extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		cancelQuestTimers("despawn");
 		despawnMinions();
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		_spawnedKeltas = npc.asMonster();
 		_spawnedKeltas.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.GUYS_SHOW_THEM_OUR_POWER);
 		spawnMinions();
 		startQuestTimer("despawn", 1800000, null, null);
-		return super.onSpawn(npc);
 	}
 }

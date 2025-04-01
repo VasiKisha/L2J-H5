@@ -16,11 +16,11 @@
  */
 package village_master.OrcChange1;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -119,7 +119,7 @@ public class OrcChange1 extends AbstractNpcAI
 		{
 			htmltext = "30500-24.htm"; // fnYouAreFourthClass
 		}
-		else if ((classId == 45) && (player.getClassId() == ClassId.ORC_FIGHTER))
+		else if ((classId == 45) && (player.getPlayerClass() == PlayerClass.ORC_FIGHTER))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -135,7 +135,7 @@ public class OrcChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_RAIDER))
 			{
 				takeItems(player, MARK_OF_RAIDER, -1);
-				player.setClassId(45);
+				player.setPlayerClass(45);
 				player.setBaseClass(45);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -147,7 +147,7 @@ public class OrcChange1 extends AbstractNpcAI
 				htmltext = npc.getId() + "-13.htm"; // fnNoProof11
 			}
 		}
-		else if ((classId == 47) && (player.getClassId() == ClassId.ORC_FIGHTER))
+		else if ((classId == 47) && (player.getPlayerClass() == PlayerClass.ORC_FIGHTER))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -163,7 +163,7 @@ public class OrcChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, KHAVATARI_TOTEM))
 			{
 				takeItems(player, KHAVATARI_TOTEM, -1);
-				player.setClassId(47);
+				player.setPlayerClass(47);
 				player.setBaseClass(47);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -175,7 +175,7 @@ public class OrcChange1 extends AbstractNpcAI
 				htmltext = npc.getId() + "-17.htm"; // fnNoProof12
 			}
 		}
-		else if ((classId == 50) && (player.getClassId() == ClassId.ORC_MAGE))
+		else if ((classId == 50) && (player.getPlayerClass() == PlayerClass.ORC_MAGE))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -191,7 +191,7 @@ public class OrcChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, MASK_OF_MEDIUM))
 			{
 				takeItems(player, MASK_OF_MEDIUM, -1);
-				player.setClassId(50);
+				player.setPlayerClass(50);
 				player.setBaseClass(50);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();

@@ -29,7 +29,6 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Boat;
 import org.l2jmobius.gameserver.network.serverpackets.AdminForgePacket;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles commands for GM to forge packets
@@ -187,13 +186,13 @@ public class AdminPForge implements IAdminCommandHandler
 	
 	private void showValuesUsage(Player activeChar)
 	{
-		BuilderUtil.sendSysMessage(activeChar, "Usage: //forge_values opcode1[ opcode2[ opcode3]] ;[ format]");
+		activeChar.sendSysMessage("Usage: //forge_values opcode1[ opcode2[ opcode3]] ;[ format]");
 		showMainPage(activeChar);
 	}
 	
 	private void showSendUsage(Player activeChar, String[] opCodes, String format)
 	{
-		BuilderUtil.sendSysMessage(activeChar, "Usage: //forge_send sc|sb|cs opcode1[;opcode2[;opcode3]][ format value1 ... valueN] ");
+		activeChar.sendSysMessage("Usage: //forge_send sc|sb|cs opcode1[;opcode2[;opcode3]][ format value1 ... valueN] ");
 		if (opCodes == null)
 		{
 			showMainPage(activeChar);
@@ -287,7 +286,7 @@ public class AdminPForge implements IAdminCommandHandler
 				final String[] opCodes = getOpCodes(st);
 				if (!validateOpCodes(opCodes))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Invalid op codes!");
+					activeChar.sendSysMessage("Invalid op codes!");
 					showValuesUsage(activeChar);
 					return false;
 				}
@@ -298,7 +297,7 @@ public class AdminPForge implements IAdminCommandHandler
 					format = st.nextToken();
 					if (!validateFormat(format))
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Format invalid!");
+						activeChar.sendSysMessage("Format invalid!");
 						showValuesUsage(activeChar);
 						return false;
 					}
@@ -327,7 +326,7 @@ public class AdminPForge implements IAdminCommandHandler
 				final String method = st.nextToken();
 				if (!validateMethod(method))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Invalid method!");
+					activeChar.sendSysMessage("Invalid method!");
 					showSendUsage(activeChar, null, null);
 					return false;
 				}
@@ -335,7 +334,7 @@ public class AdminPForge implements IAdminCommandHandler
 				final String[] opCodes = st.nextToken().split(";");
 				if (!validateOpCodes(opCodes))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Invalid op codes!");
+					activeChar.sendSysMessage("Invalid op codes!");
 					showSendUsage(activeChar, null, null);
 					return false;
 				}
@@ -346,7 +345,7 @@ public class AdminPForge implements IAdminCommandHandler
 					format = st.nextToken();
 					if (!validateFormat(format))
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Format invalid!");
+						activeChar.sendSysMessage("Format invalid!");
 						showSendUsage(activeChar, null, null);
 						return false;
 					}
@@ -393,7 +392,7 @@ public class AdminPForge implements IAdminCommandHandler
 					{
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Not enough values!");
+							activeChar.sendSysMessage("Not enough values!");
 							showSendUsage(activeChar, null, null);
 							return false;
 						}

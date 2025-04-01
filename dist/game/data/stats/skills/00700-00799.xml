@@ -1156,7 +1156,6 @@
 		<set name="element" val="5" /> <!-- Dark -->
 		<set name="elementPower" val="20" />
 		<set name="hitTime" val="1800" />
-		<set name="hitTime" val="1800" />
 		<set name="icon" val="icon.skill_transform_s_attack" />
 		<set name="isMagic" val="1" /> <!-- Magic Skill -->
 		<set name="magicLevel" val="#magicLevel" />

@@ -16,11 +16,11 @@
  */
 package village_master.ElfHumanWizardChange1;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -165,7 +165,7 @@ public class ElfHumanWizardChange1 extends AbstractNpcAI
 		{
 			htmltext = "30037-34.htm"; // fnYouAreFourthClass
 		}
-		else if ((classId == WIZARD) && (player.getClassId() == ClassId.MAGE))
+		else if ((classId == WIZARD) && (player.getPlayerClass() == PlayerClass.MAGE))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -181,7 +181,7 @@ public class ElfHumanWizardChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, BEAD_OF_SEASON))
 			{
 				takeItems(player, BEAD_OF_SEASON, -1);
-				player.setClassId(WIZARD);
+				player.setPlayerClass(WIZARD);
 				player.setBaseClass(WIZARD);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -193,7 +193,7 @@ public class ElfHumanWizardChange1 extends AbstractNpcAI
 				htmltext = npc.getId() + "-21.htm"; // fnNoProof11
 			}
 		}
-		else if ((classId == CLERIC) && (player.getClassId() == ClassId.MAGE))
+		else if ((classId == CLERIC) && (player.getPlayerClass() == PlayerClass.MAGE))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -209,7 +209,7 @@ public class ElfHumanWizardChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_FAITH))
 			{
 				takeItems(player, MARK_OF_FAITH, -1);
-				player.setClassId(CLERIC);
+				player.setPlayerClass(CLERIC);
 				player.setBaseClass(CLERIC);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -221,7 +221,7 @@ public class ElfHumanWizardChange1 extends AbstractNpcAI
 				htmltext = npc.getId() + "-25.htm"; // fnNoProof12
 			}
 		}
-		else if ((classId == ELVEN_WIZARD) && (player.getClassId() == ClassId.ELVEN_MAGE))
+		else if ((classId == ELVEN_WIZARD) && (player.getPlayerClass() == PlayerClass.ELVEN_MAGE))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -237,7 +237,7 @@ public class ElfHumanWizardChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, ETERNITY_DIAMOND))
 			{
 				takeItems(player, ETERNITY_DIAMOND, -1);
-				player.setClassId(ELVEN_WIZARD);
+				player.setPlayerClass(ELVEN_WIZARD);
 				player.setBaseClass(ELVEN_WIZARD);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -249,7 +249,7 @@ public class ElfHumanWizardChange1 extends AbstractNpcAI
 				htmltext = npc.getId() + "-29.htm"; // fnNoProof21
 			}
 		}
-		else if ((classId == ORACLE) && (player.getClassId() == ClassId.ELVEN_MAGE))
+		else if ((classId == ORACLE) && (player.getPlayerClass() == PlayerClass.ELVEN_MAGE))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -265,7 +265,7 @@ public class ElfHumanWizardChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, LEAF_OF_ORACLE))
 			{
 				takeItems(player, LEAF_OF_ORACLE, -1);
-				player.setClassId(ORACLE);
+				player.setPlayerClass(ORACLE);
 				player.setBaseClass(ORACLE);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();

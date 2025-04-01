@@ -21,7 +21,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * RequestBBSwrite client packet implementation.
- * @author -Wooden-, Zoey76
+ * @author -Wooden-
  */
 public class RequestBBSwrite extends ClientPacket
 {

@@ -23,7 +23,7 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.MathUtil;
 
 /**
  * An Elder Sows Seeds (370)
@@ -126,7 +126,7 @@ public class Q00370_AnElderSowsSeeds extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs != null)
@@ -148,8 +148,6 @@ public class Q00370_AnElderSowsSeeds extends Quest
 				giveItemRandomly(qs.getPlayer(), npc, SPELLBOOK_PAGE, 1, 0, MOBS2.get(npcId), true);
 			}
 		}
-		
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
@@ -174,7 +172,7 @@ public class Q00370_AnElderSowsSeeds extends Quest
 		final long earthChapters = getQuestItemsCount(player, CHAPTER_OF_EARTH);
 		final long windChapters = getQuestItemsCount(player, CHAPTER_OF_WIND);
 		final long fireChapters = getQuestItemsCount(player, CHAPTER_OF_FIRE);
-		final long minCount = Util.min(waterChapters, earthChapters, windChapters, fireChapters);
+		final long minCount = MathUtil.min(waterChapters, earthChapters, windChapters, fireChapters);
 		if (minCount > 0)
 		{
 			giveAdena(player, minCount * 3600, true);

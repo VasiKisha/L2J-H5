@@ -26,15 +26,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * @URL https://eu.4gameforum.com/threads/653089/
@@ -333,9 +333,9 @@ public class WatermelonNinja extends LongTimeEvent
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
-		if ((attacker.getActiveWeaponItem() != null) && CommonUtil.contains(CHRONO_LIST, attacker.getActiveWeaponItem().getId()))
+		if ((attacker.getActiveWeaponItem() != null) && ArrayUtil.contains(CHRONO_LIST, attacker.getActiveWeaponItem().getId()))
 		{
 			if (getRandom(100) < 20)
 			{
@@ -354,12 +354,10 @@ public class WatermelonNinja extends LongTimeEvent
 		{
 			npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(NOCHRONO_TEXT)));
 		}
-		
-		return super.onAttack(npc, attacker, damage, isPet);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if ((skill.getId() == NECTAR_SKILL) && (caster.getTarget() == npc))
 		{
@@ -377,22 +375,18 @@ public class WatermelonNinja extends LongTimeEvent
 				}
 			}
 		}
-		
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setImmobilized(true);
 		npc.disableCoreAI(true);
 		npc.setInvul(true);
-		
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		final int npcId = npc.getId();
 		if (DROPLIST.containsKey(npcId))
@@ -410,8 +404,6 @@ public class WatermelonNinja extends LongTimeEvent
 				}
 			}
 		}
-		
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	private void randomSpawn(int low, int medium, int high, Npc npc)

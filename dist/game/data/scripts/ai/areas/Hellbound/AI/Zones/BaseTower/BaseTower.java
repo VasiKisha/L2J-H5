@@ -20,11 +20,11 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -54,8 +54,8 @@ public class BaseTower extends AbstractNpcAI
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		final ClassId classId = player.getClassId();
-		if (classId.equalsOrChildOf(ClassId.HELL_KNIGHT) || classId.equalsOrChildOf(ClassId.SOULTAKER))
+		final PlayerClass classId = player.getPlayerClass();
+		if (classId.equalsOrChildOf(PlayerClass.HELL_KNIGHT) || classId.equalsOrChildOf(PlayerClass.SOULTAKER))
 		{
 			return "32301-02.htm";
 		}
@@ -73,7 +73,7 @@ public class BaseTower extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		if (!BODY_DESTROYER_TARGET_LIST.containsKey(npc.getObjectId()))
 		{
@@ -81,11 +81,10 @@ public class BaseTower extends AbstractNpcAI
 			npc.setTarget(player);
 			npc.doSimultaneousCast(DEATH_WORD.getSkill());
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -112,6 +111,5 @@ public class BaseTower extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

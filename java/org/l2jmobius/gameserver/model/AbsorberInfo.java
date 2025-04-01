@@ -16,12 +16,10 @@
  */
 package org.l2jmobius.gameserver.model;
 
-import org.l2jmobius.gameserver.model.interfaces.IUniqueId;
-
 /**
  * @author xban1x
  */
-public class AbsorberInfo implements IUniqueId
+public class AbsorberInfo
 {
 	private int _objectId;
 	private double _absorbedHp;
@@ -42,7 +40,6 @@ public class AbsorberInfo implements IUniqueId
 		_absorbedHp = absorbedHp;
 	}
 	
-	@Override
 	public int getObjectId()
 	{
 		return _objectId;

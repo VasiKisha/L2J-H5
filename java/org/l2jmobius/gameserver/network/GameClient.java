@@ -29,7 +29,7 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.network.Buffer;
 import org.l2jmobius.commons.network.Client;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.LoginServerThread;
 import org.l2jmobius.gameserver.LoginServerThread.SessionKey;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
@@ -39,7 +39,7 @@ import org.l2jmobius.gameserver.model.CharSelectInfoPackage;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.ClientHardwareInfoHolder;
+import org.l2jmobius.gameserver.network.holders.ClientHardwareInfoHolder;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -212,7 +212,7 @@ public class GameClient extends Client<org.l2jmobius.commons.network.Connection<
 		// Packet should never be null.
 		if (packet == null)
 		{
-			LOGGER.warning(CommonUtil.getStackTrace(new Exception()));
+			LOGGER.warning(TraceUtil.getStackTrace(new Exception()));
 			return;
 		}
 		

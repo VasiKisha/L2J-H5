@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.conditions;
 
@@ -25,7 +29,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * The Class ConditionUsingItemType.
- * @author mkizub
+ * @author mkizub, naker
  */
 public class ConditionUsingItemType extends Condition
 {
@@ -55,43 +59,39 @@ public class ConditionUsingItemType extends Condition
 			return !_armor && ((_mask & effector.getAttackType().mask()) != 0);
 		}
 		
-		// If ConditionUsingItemType is one between Light, Heavy or Magic.
 		final Inventory inv = effector.getInventory();
 		if (_armor)
 		{
-			// Get the itemMask of the weared chest (if exists).
 			final Item chest = inv.getPaperdollItem(Inventory.PAPERDOLL_CHEST);
-			if (chest == null)
-			{
-				return false;
-			}
-			
-			// If chest armor is different from the condition one return false.
-			final int chestMask = chest.getTemplate().getItemMask();
-			if ((_mask & chestMask) == 0)
-			{
-				return false;
-			}
-			
-			// So from here, chest armor matches conditions.
-			
-			// Return true if chest armor is a Full Armor.
-			final int chestBodyPart = chest.getTemplate().getBodyPart();
-			if (chestBodyPart == ItemTemplate.SLOT_FULL_ARMOR)
-			{
-				return true;
-			}
-			
-			// Check legs armor.
 			final Item legs = inv.getPaperdollItem(Inventory.PAPERDOLL_LEGS);
-			if (legs == null)
+			if ((chest == null) && (legs == null))
 			{
-				return false;
+				return (ArmorType.NONE.mask() & _mask) == ArmorType.NONE.mask();
 			}
 			
-			// Return true if legs armor matches too.
-			final int legMask = legs.getTemplate().getItemMask();
-			return (_mask & legMask) != 0;
+			if (chest != null)
+			{
+				if (legs == null)
+				{
+					final int chestBodyPart = chest.getTemplate().getBodyPart();
+					if (chestBodyPart == ItemTemplate.SLOT_FULL_ARMOR)
+					{
+						final int chestMask = chest.getTemplate().getItemMask();
+						return (_mask & chestMask) != 0;
+					}
+					
+					return (ArmorType.NONE.mask() & _mask) == ArmorType.NONE.mask();
+				}
+				
+				final int chestMask = chest.getTemplate().getItemMask();
+				final int legMask = legs.getTemplate().getItemMask();
+				if (chestMask == legMask)
+				{
+					return (_mask & chestMask) != 0;
+				}
+				
+				return (ArmorType.NONE.mask() & _mask) == ArmorType.NONE.mask();
+			}
 		}
 		
 		return (_mask & inv.getWearedMask()) != 0;

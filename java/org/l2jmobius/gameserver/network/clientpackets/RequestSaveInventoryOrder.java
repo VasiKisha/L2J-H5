@@ -19,8 +19,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 
@@ -61,7 +61,7 @@ public class RequestSaveInventoryOrder extends ClientPacket
 				final Item item = inventory.getItemByObjectId(order.objectID);
 				if ((item != null) && (item.getItemLocation() == ItemLocation.INVENTORY))
 				{
-					item.setItemLocation(ItemLocation.INVENTORY, order.order);
+					item.setItemLocation(ItemLocation.INVENTORY, order.order, false);
 				}
 			}
 		}

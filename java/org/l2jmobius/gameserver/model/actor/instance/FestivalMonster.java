@@ -16,11 +16,12 @@
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSignsFestival;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -100,7 +101,7 @@ public class FestivalMonster extends Monster
 		}
 		
 		final Player partyLeader = associatedParty.getLeader();
-		final Item addedOfferings = partyLeader.getInventory().addItem("Sign", SevenSignsFestival.FESTIVAL_OFFERING_ID, _bonusMultiplier, partyLeader, this);
+		final Item addedOfferings = partyLeader.getInventory().addItem(ItemProcessType.REWARD, SevenSignsFestival.FESTIVAL_OFFERING_ID, _bonusMultiplier, partyLeader, this);
 		final InventoryUpdate iu = new InventoryUpdate();
 		if (addedOfferings.getCount() != _bonusMultiplier)
 		{

@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ExConfirmAddingContact;
 
 /**
  * Format: (ch)S S: Character Name
- * @author UnAfraid & mrTJO
+ * @author UnAfraid, mrTJO
  */
 public class RequestExAddContactToContactList extends ClientPacket
 {

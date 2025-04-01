@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * The Ocean of Distant Stars (117)
@@ -195,19 +195,18 @@ public class Q00117_TheOceanOfDistantStars extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, 7, 3, npc);
-		if ((qs == null) || !Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs == null) || !LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
-			return null;
+			return;
 		}
 		
 		if (giveItemRandomly(killer, npc, BOOK_OF_GREY_STAR, 1, 1, MONSTER_DROP_CHANCES.get(npc.getId()), true))
 		{
 			qs.setCond(8);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

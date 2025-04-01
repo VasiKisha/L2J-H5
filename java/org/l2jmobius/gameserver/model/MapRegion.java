@@ -23,7 +23,7 @@ import java.util.Map;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 
 /**
  * @author Nyaran

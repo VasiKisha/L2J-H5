@@ -25,15 +25,15 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.quest.QuestState;
@@ -41,7 +41,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q00694_BreakThroughTheHallOfSuffering.Q00694_BreakThroughTheHallOfSuffering;
@@ -174,7 +174,7 @@ public class HallOfSufferingAttack extends AbstractNpcAI
 				return false;
 			}
 			
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED);
 				sm.addPcName(partyMember);
@@ -348,7 +348,7 @@ public class HallOfSufferingAttack extends AbstractNpcAI
 		boss.broadcastStatusUpdate();
 		
 		// Notify Creature AI
-		boss.getAI().notifyEvent(CtrlEvent.EVT_DEAD);
+		boss.getAI().notifyAction(Action.DEATH);
 		
 		// if (boss.getWorldRegion() != null)
 		// {
@@ -357,7 +357,7 @@ public class HallOfSufferingAttack extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (skill.hasEffectType(EffectType.REBALANCE_HP, EffectType.HEAL))
 		{
@@ -368,7 +368,6 @@ public class HallOfSufferingAttack extends AbstractNpcAI
 			}
 			npc.asAttackable().addDamageHate(caster, 0, hate);
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
@@ -396,7 +395,7 @@ public class HallOfSufferingAttack extends AbstractNpcAI
 			}
 			else if (event.equalsIgnoreCase("isTwinSeparated"))
 			{
-				if (Util.checkIfInRange(500, world.klanikus, world.klodekus, false))
+				if (LocationUtil.checkIfInRange(500, world.klanikus, world.klodekus, false))
 				{
 					world.klanikus.setInvul(false);
 					world.klodekus.setInvul(false);
@@ -420,7 +419,7 @@ public class HallOfSufferingAttack extends AbstractNpcAI
 				final Creature hated = aliveTwin.asMonster().getMostHated();
 				if (hated != null)
 				{
-					npc.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, hated, 1000);
+					npc.getAI().notifyAction(Action.AGGRESSION, hated, 1000);
 				}
 				
 				aliveTwin.setInvul(true); // make other boss invul
@@ -435,7 +434,7 @@ public class HallOfSufferingAttack extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HSAWorld)
@@ -486,11 +485,10 @@ public class HallOfSufferingAttack extends AbstractNpcAI
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HSAWorld)
@@ -584,7 +582,6 @@ public class HallOfSufferingAttack extends AbstractNpcAI
 				inst.setEmptyDestroyTime(0);
 			}
 		}
-		return "";
 	}
 	
 	@Override

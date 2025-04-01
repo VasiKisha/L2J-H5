@@ -25,7 +25,7 @@ import org.l2jmobius.gameserver.model.Location;
 
 /**
  * Abstract zone with spawn locations
- * @author DS, Nyaran (rework 10/07/2011)
+ * @author DS, Nyaran
  */
 public abstract class ZoneRespawn extends ZoneType
 {

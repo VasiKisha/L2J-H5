@@ -30,30 +30,32 @@ import java.util.logging.Level;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.PlayerAction;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerAction;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Priority;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerDlgAnswer;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMoveRequest;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerDlgAnswer;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMoveRequest;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.html.PageBuilder;
 import org.l2jmobius.gameserver.model.html.PageResult;
+import org.l2jmobius.gameserver.model.html.formatters.BypassParserFormatter;
+import org.l2jmobius.gameserver.model.html.pagehandlers.NextPrevPageHandler;
+import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.form.ZoneNPoly;
 import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
 import org.l2jmobius.gameserver.network.serverpackets.ExServerPrimitive;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowTerritory;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 
@@ -152,13 +154,13 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 					{
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Missing node index!");
+							activeChar.sendSysMessage("Missing node index!");
 							break;
 						}
 						final String indexToken = st.nextToken();
-						if (!Util.isDigit(indexToken))
+						if (!StringUtil.isNumeric(indexToken))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Node index should be int!");
+							activeChar.sendSysMessage("Node index should be int!");
 							break;
 						}
 						final int index = Integer.parseInt(indexToken);
@@ -169,13 +171,13 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 					{
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Missing node index!");
+							activeChar.sendSysMessage("Missing node index!");
 							break;
 						}
 						final String indexToken = st.nextToken();
-						if (!Util.isDigit(indexToken))
+						if (!StringUtil.isNumeric(indexToken))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Node index should be int!");
+							activeChar.sendSysMessage("Node index should be int!");
 							break;
 						}
 						final int index = Integer.parseInt(indexToken);
@@ -195,7 +197,21 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 					}
 					case "list":
 					{
-						final int page = Util.parseNextInt(st, 0);
+						int page = 0;
+						if (st.hasMoreTokens())
+						{
+							try
+							{
+								final String value = st.nextToken().trim().replace("page=", "");
+								if (StringUtil.isNumeric(value))
+								{
+									page = Integer.parseInt(value);
+								}
+							}
+							catch (NumberFormatException e)
+							{
+							}
+						}
 						buildHtmlWindow(activeChar, page);
 						return false;
 					}
@@ -233,7 +249,7 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 	 */
 	private void loadZone(Player activeChar, String zoneName)
 	{
-		BuilderUtil.sendSysMessage(activeChar, "Searching for zone: " + zoneName);
+		activeChar.sendSysMessage("Searching for zone: " + zoneName);
 		final List<ZoneType> zones = ZoneManager.getInstance().getZones(activeChar);
 		ZoneType zoneType = null;
 		for (ZoneType zone : zones)
@@ -241,7 +257,7 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 			if (zone.getName().equalsIgnoreCase(zoneName))
 			{
 				zoneType = zone;
-				BuilderUtil.sendSysMessage(activeChar, "Zone found: " + zone.getId());
+				activeChar.sendSysMessage("Zone found: " + zone.getId());
 				break;
 			}
 		}
@@ -270,7 +286,7 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 	{
 		if (name.contains("<") || name.contains(">") || name.contains("&") || name.contains("\\") || name.contains("\"") || name.contains("$"))
 		{
-			BuilderUtil.sendSysMessage(activeChar, "You cannot use symbols like: < > & \" $ \\");
+			activeChar.sendSysMessage("You cannot use symbols like: < > & \" $ \\");
 			return;
 		}
 		_zones.computeIfAbsent(activeChar.getObjectId(), key -> new ZoneNodeHolder()).setName(name);
@@ -284,11 +300,11 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 		if (!activeChar.hasAction(PlayerAction.ADMIN_POINT_PICKING))
 		{
 			activeChar.addAction(PlayerAction.ADMIN_POINT_PICKING);
-			BuilderUtil.sendSysMessage(activeChar, "Point picking mode activated!");
+			activeChar.sendSysMessage("Point picking mode activated!");
 		}
 		else
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Point picking mode is already activated!");
+			activeChar.sendSysMessage("Point picking mode is already activated!");
 		}
 	}
 	
@@ -299,11 +315,11 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 	{
 		if (activeChar.removeAction(PlayerAction.ADMIN_POINT_PICKING))
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Point picking mode deactivated!");
+			activeChar.sendSysMessage("Point picking mode deactivated!");
 		}
 		else
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Point picking mode was not activated!");
+			activeChar.sendSysMessage("Point picking mode was not activated!");
 		}
 	}
 	
@@ -317,7 +333,7 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 		{
 			if (holder.getNodes().size() < 3)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "In order to visualize this zone you must have at least 3 points.");
+				activeChar.sendSysMessage("In order to visualize this zone you must have at least 3 points.");
 				return;
 			}
 			final ExServerPrimitive exsp = new ExServerPrimitive("DebugPoint_" + activeChar.getObjectId(), activeChar.getX(), activeChar.getY(), activeChar.getZ());
@@ -370,10 +386,10 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 			if (loc != null)
 			{
 				holder.getNodes().remove(loc);
-				BuilderUtil.sendSysMessage(activeChar, "Node " + index + " has been removed!");
+				activeChar.sendSysMessage("Node " + index + " has been removed!");
 				if (holder.getNodes().isEmpty())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Since node list is empty destroying session!");
+					activeChar.sendSysMessage("Since node list is empty destroying session!");
 					_zones.remove(activeChar.getObjectId());
 				}
 			}
@@ -390,7 +406,7 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 		{
 			if (holder.getName().isEmpty())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Set name first!");
+				activeChar.sendSysMessage("Set name first!");
 				return;
 			}
 			
@@ -421,11 +437,11 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 					file.getParentFile().mkdirs();
 				}
 				Files.write(file.toPath(), sb.toString().getBytes(StandardCharsets.UTF_8));
-				BuilderUtil.sendSysMessage(activeChar, "Successfully written on: " + file.getAbsolutePath().replace(Config.DATAPACK_ROOT.getAbsolutePath(), ""));
+				activeChar.sendSysMessage("Successfully written on: " + file.getAbsolutePath().replace(Config.DATAPACK_ROOT.getAbsolutePath(), ""));
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Failed writing the dump: " + e.getMessage());
+				activeChar.sendSysMessage("Failed writing the dump: " + e.getMessage());
 				LOGGER.log(Level.WARNING, "Failed writing point picking dump for " + activeChar.getName() + ":" + e.getMessage(), e);
 			}
 		}
@@ -446,13 +462,13 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 			{
 				changeLog.setXYZ(newLocation);
 				holder.setChangingLoc(null);
-				BuilderUtil.sendSysMessage(player, "Location " + (holder.indexOf(changeLog) + 1) + " has been updated!");
+				player.sendSysMessage("Location " + (holder.indexOf(changeLog) + 1) + " has been updated!");
 				disablePicking(player);
 			}
 			else
 			{
 				holder.addNode(newLocation);
-				BuilderUtil.sendSysMessage(player, "Location " + (holder.indexOf(changeLog) + 1) + " has been added!");
+				player.sendSysMessage("Location " + (holder.indexOf(changeLog) + 1) + " has been added!");
 			}
 			// Auto visualization when nodes >= 3
 			if (holder.getNodes().size() >= 3)
@@ -479,7 +495,7 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 				final List<Location> list = holder.getNodes();
 				if (list.size() < 3)
 				{
-					BuilderUtil.sendSysMessage(player, "You must have at least 3 nodes to use this option!");
+					player.sendSysMessage("You must have at least 3 nodes to use this option!");
 					return;
 				}
 				
@@ -487,7 +503,7 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 				final ExShowTerritory exst = new ExShowTerritory(firstLoc.getZ() - 100, firstLoc.getZ() + 100);
 				list.forEach(exst::addVertice);
 				player.sendPacket(exst);
-				BuilderUtil.sendSysMessage(player, "In order to remove the debug you must restart your game client!");
+				player.sendSysMessage("In order to remove the debug you must restart your game client!");
 			}
 		}
 	}
@@ -505,7 +521,7 @@ public class AdminZones extends AbstractNpcAI implements IAdminCommandHandler
 		final ZoneNodeHolder holder = _zones.computeIfAbsent(activeChar.getObjectId(), key -> new ZoneNodeHolder());
 		final AtomicInteger position = new AtomicInteger(page * 20);
 		
-		final PageResult result = PageBuilder.newBuilder(holder.getNodes(), 20, "bypass -h admin_zones list").currentPage(page).bodyHandler((pages, loc, sb) ->
+		final PageResult result = PageBuilder.newBuilder(holder.getNodes(), 20, "bypass -h admin_zones list").currentPage(page).pageHandler(NextPrevPageHandler.INSTANCE).formatter(BypassParserFormatter.INSTANCE).style(ButtonsStyle.INSTANCE).bodyHandler((pages, loc, sb) ->
 		{
 			sb.append("<tr>");
 			sb.append("<td fixwidth=5></td>");

@@ -20,13 +20,12 @@
  */
 package handlers.admincommandhandlers;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.TransformData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Mobius
@@ -99,9 +98,9 @@ public class AdminTransform implements IAdminCommandHandler
 			}
 			
 			final String[] parts = command.split(" ");
-			if ((parts.length != 2) || !Util.isDigit(parts[1]))
+			if ((parts.length != 2) || !StringUtil.isNumeric(parts[1]))
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //transform <id>");
+				activeChar.sendSysMessage("Usage: //transform <id>");
 				return false;
 			}
 			

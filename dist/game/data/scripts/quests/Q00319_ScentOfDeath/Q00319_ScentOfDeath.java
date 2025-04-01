@@ -17,14 +17,14 @@
 package quests.Q00319_ScentOfDeath;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Scent of Death (319)
@@ -80,10 +80,10 @@ public class Q00319_ScentOfDeath extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, false) && (getQuestItemsCount(killer, ZOMBIES_SKIN) < REQUIRED_ITEM_COUNT) && (getRandom(10) > MIN_CHANCE))
+		if ((qs != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, false) && (getQuestItemsCount(killer, ZOMBIES_SKIN) < REQUIRED_ITEM_COUNT) && (getRandom(10) > MIN_CHANCE))
 		{
 			giveItems(killer, ZOMBIES_SKIN, 1);
 			if (getQuestItemsCount(killer, ZOMBIES_SKIN) < REQUIRED_ITEM_COUNT)
@@ -95,7 +95,6 @@ public class Q00319_ScentOfDeath extends Quest
 				qs.setCond(2, true);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

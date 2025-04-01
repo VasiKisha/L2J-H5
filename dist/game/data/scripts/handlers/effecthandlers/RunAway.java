@@ -17,8 +17,8 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.ai.AttackableAI;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
@@ -67,6 +67,6 @@ public class RunAway extends AbstractEffect
 		}
 		
 		((AttackableAI) effected.getAI()).setFearTime(_time);
-		effected.getAI().notifyEvent(CtrlEvent.EVT_AFRAID, effector, true);
+		effected.getAI().notifyAction(Action.AFRAID, effector, true);
 	}
 }

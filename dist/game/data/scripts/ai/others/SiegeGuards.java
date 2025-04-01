@@ -25,8 +25,8 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -38,8 +38,8 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.sieges.castle.OnCastleSiegeFinish;
-import org.l2jmobius.gameserver.model.events.impl.sieges.fort.OnFortSiegeFinish;
+import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeFinish;
+import org.l2jmobius.gameserver.model.events.holders.sieges.fort.OnFortSiegeFinish;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
@@ -220,30 +220,26 @@ public class SiegeGuards extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if ((attacker.getSiegeState() == 2) && !attacker.isRegisteredOnThisSiegeField(npc.getScriptValue()))
 		{
 			npc.asAttackable().stopHating(attacker);
-			return null;
 		}
-		
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int residenceId = npc.getScriptValue();
 		if (residenceId == 0)
 		{
 			RESIDENCE_GUARD_MAP[0].remove(npc);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomWalking(false);
 		if ((npc.getTemplate().getBaseAttackType() != WeaponType.SWORD) && (npc.getTemplate().getBaseAttackType() != WeaponType.POLE))
@@ -267,8 +263,6 @@ public class SiegeGuards extends AbstractNpcAI
 		{
 			RESIDENCE_GUARD_MAP[0].add(npc);
 		}
-		
-		return super.onSpawn(npc);
 	}
 	
 	@RegisterEvent(EventType.ON_CASTLE_SIEGE_FINISH)

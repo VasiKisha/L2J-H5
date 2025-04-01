@@ -16,11 +16,11 @@
  */
 package ai.areas.Hellbound.AI;
 
-import org.l2jmobius.gameserver.instancemanager.RaidBossSpawnManager;
+import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -59,16 +59,14 @@ public class Typhoon extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		npc.doSimultaneousCast(STORM.getSkill());
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("CAST", 5000, npc, null);
-		return super.onSpawn(npc);
 	}
 }

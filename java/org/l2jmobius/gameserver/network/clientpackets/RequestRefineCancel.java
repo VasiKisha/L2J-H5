@@ -17,12 +17,13 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExVariationCancelResult;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Format(ch) d
@@ -53,11 +54,13 @@ public class RequestRefineCancel extends ClientPacket
 			player.sendPacket(new ExVariationCancelResult(0));
 			return;
 		}
+		
 		if (targetItem.getOwnerId() != player.getObjectId())
 		{
-			Util.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tryied to augment item that doesn't own.", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tryied to augment item that doesn't own.", Config.DEFAULT_PUNISH);
 			return;
 		}
+		
 		// cannot remove augmentation from a not augmented item
 		if (!targetItem.isAugmented())
 		{
@@ -134,7 +137,7 @@ public class RequestRefineCancel extends ClientPacket
 		}
 		
 		// try to reduce the players adena
-		if (!player.reduceAdena("RequestRefineCancel", price, null, true))
+		if (!player.reduceAdena(ItemProcessType.FEE, price, null, true))
 		{
 			player.sendPacket(new ExVariationCancelResult(0));
 			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);

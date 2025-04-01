@@ -22,11 +22,11 @@ import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
 import org.l2jmobius.gameserver.handler.IParseBoardHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Favorite board.
@@ -117,7 +117,7 @@ public class FavoriteBoard implements IParseBoardHandler
 		else if (command.startsWith("_bbsdelfav_"))
 		{
 			final String favId = command.replace("_bbsdelfav_", "");
-			if (!Util.isDigit(favId))
+			if (!StringUtil.isNumeric(favId))
 			{
 				LOG.warning(FavoriteBoard.class.getSimpleName() + ": Couldn't delete favorite link, " + favId + " it's not a valid ID!");
 				return false;

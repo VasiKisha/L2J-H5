@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.quest;
 
@@ -42,30 +46,32 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.AnnouncementsTable;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.instancemanager.EventDropManager;
+import org.l2jmobius.gameserver.managers.EventDropManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.npc.EventDropHolder;
 import org.l2jmobius.gameserver.model.announce.EventAnnouncement;
 import org.l2jmobius.gameserver.model.events.Containers;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.OnServerStart;
+import org.l2jmobius.gameserver.model.events.holders.OnServerStart;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.holders.EventDropHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.script.DateRange;
 import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
  * Parent class for long time events.<br>
  * Maintains config reading, spawn of NPCs, adding of event's drop.
- * @author GKR
+ * @author GKR, Mobius
  */
 public class LongTimeEvent extends Quest
 {
 	protected String _eventName;
 	protected DateRange _eventPeriod = null;
+	protected boolean _initialized = false;
 	protected boolean _active = false;
 	
 	// Messages
@@ -121,6 +127,8 @@ public class LongTimeEvent extends Quest
 				LOGGER.info("Event " + _eventName + " has passed... Ignored ");
 			}
 		}
+		
+		_initialized = true;
 	}
 	
 	/**
@@ -131,16 +139,16 @@ public class LongTimeEvent extends Quest
 		final File configFile = new File("data/scripts/events/" + getName() + "/config.xml");
 		try
 		{
-			final DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-			final DocumentBuilder db = dbf.newDocumentBuilder();
-			final Document doc = db.parse(configFile);
-			if (!doc.getDocumentElement().getNodeName().equalsIgnoreCase("event"))
+			final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+			final DocumentBuilder builder = factory.newDocumentBuilder();
+			final Document document = builder.parse(configFile);
+			if (!document.getDocumentElement().getNodeName().equalsIgnoreCase("event"))
 			{
 				throw new NullPointerException("WARNING!!! " + getScriptName() + " event: bad config file!");
 			}
-			_eventName = doc.getDocumentElement().getAttributes().getNamedItem("name").getNodeValue();
+			_eventName = document.getDocumentElement().getAttributes().getNamedItem("name").getNodeValue();
 			final String currentYear = String.valueOf(Calendar.getInstance().get(Calendar.YEAR));
-			final String period = doc.getDocumentElement().getAttributes().getNamedItem("active").getNodeValue();
+			final String period = document.getDocumentElement().getAttributes().getNamedItem("active").getNodeValue();
 			if (period.length() == 21)
 			{
 				// dd MM yyyy-dd MM yyyy
@@ -164,7 +172,7 @@ public class LongTimeEvent extends Quest
 			
 			if (_eventPeriod.getStartDate().after(today) || _eventPeriod.isWithinRange(today))
 			{
-				for (Node n = doc.getDocumentElement().getFirstChild(); n != null; n = n.getNextSibling())
+				for (Node n = document.getDocumentElement().getFirstChild(); n != null; n = n.getNextSibling())
 				{
 					// Loading droplist
 					if (n.getNodeName().equalsIgnoreCase("droplist"))
@@ -283,7 +291,7 @@ public class LongTimeEvent extends Quest
 			}
 			
 			// Load destroy item list at all times.
-			for (Node n = doc.getDocumentElement().getFirstChild(); n != null; n = n.getNextSibling())
+			for (Node n = document.getDocumentElement().getFirstChild(); n != null; n = n.getNextSibling())
 			{
 				if (n.getNodeName().equalsIgnoreCase("destroyItemsOnEnd"))
 				{
@@ -333,10 +341,17 @@ public class LongTimeEvent extends Quest
 		// Add event drops.
 		EventDropManager.getInstance().addDrops(this, _dropList);
 		
-		// Add spawns on server start.
 		if (!_spawnList.isEmpty())
 		{
-			Containers.Global().addListener(new ConsumerEventListener(Containers.Global(), EventType.ON_SERVER_START, _spawnNpcs, this));
+			if (_initialized)
+			{
+				// Add spawns on event start.
+				spawnNpcs();
+			}
+			else // Add spawns on server start.
+			{
+				Containers.Global().addListener(new ConsumerEventListener(Containers.Global(), EventType.ON_SERVER_START, _spawnNpcs, this));
+			}
 		}
 		
 		// Event enter announcement.
@@ -359,7 +374,13 @@ public class LongTimeEvent extends Quest
 	/**
 	 * Event spawns must initialize after server loads scripts.
 	 */
-	private final Consumer<OnServerStart> _spawnNpcs = event ->
+	private final Consumer<OnServerStart> _spawnNpcs = _ ->
+	{
+		spawnNpcs();
+		Containers.Global().removeListenerIf(EventType.ON_SERVER_START, listener -> listener.getOwner() == this);
+	};
+	
+	protected void spawnNpcs()
 	{
 		final Long millisToEventEnd = _eventPeriod.getEndDate().getTime() - System.currentTimeMillis();
 		for (NpcSpawn npcSpawn : _spawnList)
@@ -373,9 +394,7 @@ public class LongTimeEvent extends Quest
 				ThreadPool.schedule(spawn::stopRespawn, millisToEventEnd - npcSpawn.respawnTime);
 			}
 		}
-		
-		Containers.Global().removeListenerIf(EventType.ON_SERVER_START, listener -> listener.getOwner() == this);
-	};
+	}
 	
 	protected class ScheduleEnd implements Runnable
 	{
@@ -421,7 +440,7 @@ public class LongTimeEvent extends Quest
 				{
 					if (player != null)
 					{
-						player.destroyItemByItemId(_eventName, itemId, -1, player, true);
+						player.destroyItemByItemId(ItemProcessType.DESTROY, itemId, -1, player, true);
 					}
 				}
 				// Update database.

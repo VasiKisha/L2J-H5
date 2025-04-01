@@ -18,18 +18,19 @@ package events.FreyaCelebration;
 
 import java.util.List;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Freya Celebration event AI.
@@ -113,14 +114,14 @@ public class FreyaCelebration extends LongTimeEvent
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if ((caster == null) || (npc == null))
 		{
-			return null;
+			return;
 		}
 		
-		if ((npc.getId() == FREYA) && targets.contains(npc) && CommonUtil.contains(SKILLS, skill.getId()))
+		if ((npc.getId() == FREYA) && targets.contains(npc) && ArrayUtil.contains(SKILLS, skill.getId()))
 		{
 			if (getRandom(100) < 5)
 			{
@@ -129,14 +130,13 @@ public class FreyaCelebration extends LongTimeEvent
 				
 				npc.broadcastPacket(cs);
 				
-				caster.addItem("FreyaCelebration", FREYA_GIFT, 1, npc, true);
+				caster.addItem(ItemProcessType.REWARD, FREYA_GIFT, 1, npc, true);
 			}
 			else if (getRandom(10) < 2)
 			{
 				npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, getRandomEntry(FREYA_TEXT)));
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override

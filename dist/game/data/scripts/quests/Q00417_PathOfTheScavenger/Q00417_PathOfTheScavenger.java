@@ -17,14 +17,14 @@
 package quests.Q00417_PathOfTheScavenger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Path Of The Scavenger (417)
@@ -98,7 +98,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 		{
 			case "ACCEPT":
 			{
-				if (player.getClassId() == ClassId.DWARVEN_FIGHTER)
+				if (player.getPlayerClass() == PlayerClass.DWARVEN_FIGHTER)
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
@@ -119,7 +119,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 						htmltext = "30524-02.htm";
 					}
 				}
-				else if (player.getClassId() == ClassId.SCAVENGER)
+				else if (player.getPlayerClass() == PlayerClass.SCAVENGER)
 				{
 					htmltext = "30524-02a.htm";
 				}
@@ -332,7 +332,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isStarted())
@@ -380,14 +380,13 @@ public class Q00417_PathOfTheScavenger extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true) && npc.isAttackable())
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true) && npc.isAttackable())
 		{
 			final boolean firstAttacker = (killer.getObjectId() == npc.getVariables().getInt(FIRST_ATTACKER));
 			switch (npc.getId())
@@ -428,7 +427,6 @@ public class Q00417_PathOfTheScavenger extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

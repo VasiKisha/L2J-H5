@@ -31,7 +31,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 
 /**
  * This class provides methods to schedule tasks with a delay or at a fixed rate, as well as immediate execution.
@@ -166,13 +166,13 @@ public class ThreadPool
 		if (delay < MIN_DELAY)
 		{
 			LOGGER.warning("ThreadPool found delay " + delay + "!");
-			LOGGER.warning(CommonUtil.getStackTrace(new Exception()));
+			LOGGER.warning(TraceUtil.getStackTrace(new Exception()));
 			return MIN_DELAY;
 		}
 		if (delay > MAX_DELAY)
 		{
 			LOGGER.warning("ThreadPool found delay " + delay + "!");
-			LOGGER.warning(CommonUtil.getStackTrace(new Exception()));
+			LOGGER.warning(TraceUtil.getStackTrace(new Exception()));
 			return MAX_DELAY;
 		}
 		return delay;

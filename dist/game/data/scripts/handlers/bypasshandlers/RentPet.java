@@ -27,6 +27,7 @@ import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SetupGauge;
 
@@ -128,7 +129,7 @@ public class RentPet implements IBypassHandler
 		
 		price *= cost[value - 1];
 		final int time = ridetime[value - 1];
-		if (!player.reduceAdena("Rent", (long) price, player.getLastFolkNPC(), true))
+		if (!player.reduceAdena(ItemProcessType.FEE, (long) price, player.getLastFolkNPC(), true))
 		{
 			return;
 		}

@@ -16,13 +16,13 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -55,9 +55,9 @@ public class BlackdaggerWing extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
-		if (Util.calculateDistance(npc, npc.getSpawn(), false, false) > MAX_CHASE_DIST)
+		if (LocationUtil.calculateDistance(npc, npc.getSpawn(), false, false) > MAX_CHASE_DIST)
 		{
 			npc.teleToLocation(npc.getSpawn().getX(), npc.getSpawn().getY(), npc.getSpawn().getZ());
 		}
@@ -67,11 +67,10 @@ public class BlackdaggerWing extends AbstractNpcAI
 			npc.getVariables().set(MID_HP_FLAG, true);
 			startQuestTimer(DAMAGE_TIMER, 10000, npc, attacker);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (npc.getVariables().getBoolean(MID_HP_FLAG, false))
 		{
@@ -81,11 +80,10 @@ public class BlackdaggerWing extends AbstractNpcAI
 				addSkillCastDesire(npc, creature, RANGE_MAGIC_ATTACK, 99999);
 			}
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if (skill.getId() == POWER_STRIKE.getSkillId())
 		{
@@ -96,7 +94,6 @@ public class BlackdaggerWing extends AbstractNpcAI
 				npc.getVariables().set(POWER_STRIKE_CAST_COUNT, 0);
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
@@ -104,7 +101,7 @@ public class BlackdaggerWing extends AbstractNpcAI
 	{
 		if (DAMAGE_TIMER.equals(event))
 		{
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK);
+			npc.getAI().setIntention(Intention.ATTACK);
 			startQuestTimer(DAMAGE_TIMER, 30000, npc, player);
 		}
 		return super.onEvent(event, npc, player);

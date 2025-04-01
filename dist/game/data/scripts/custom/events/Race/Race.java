@@ -28,18 +28,19 @@ import org.w3c.dom.Node;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.SchedulingPattern;
+import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.commons.util.TimeUtil;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.Event;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
@@ -132,14 +133,14 @@ public class Race extends Event
 			}
 			
 			@Override
-			public void parseDocument(Document doc, File f)
+			public void parseDocument(Document document, File file)
 			{
 				final AtomicInteger count = new AtomicInteger(0);
-				forEach(doc, "event", eventNode ->
+				forEach(document, "event", eventNode ->
 				{
 					final StatSet att = new StatSet(parseAttributes(eventNode));
 					final String name = att.getString("name");
-					for (Node node = doc.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
+					for (Node node = document.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
 					{
 						switch (node.getNodeName())
 						{
@@ -453,7 +454,7 @@ public class Race extends Event
 	private void winRace(Player player)
 	{
 		final int[] reward = _rewards[getRandom(_rewards.length - 1)];
-		player.addItem("eventModRace", reward[0], reward[1], _npc, true);
+		player.addItem(ItemProcessType.REWARD, reward[0], reward[1], _npc, true);
 		Broadcast.toAllOnlinePlayers(player.getName() + " is a winner!");
 		eventStop();
 	}

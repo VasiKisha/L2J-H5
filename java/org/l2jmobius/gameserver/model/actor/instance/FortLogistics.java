@@ -19,15 +19,16 @@ package org.l2jmobius.gameserver.model.actor.instance;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**
- * @author Vice, Zoey76
+ * @author Vice
  */
 public class FortLogistics extends Merchant
 {
@@ -99,7 +100,7 @@ public class FortLogistics extends Merchant
 				final int blood = clan.getBloodOathCount();
 				if (blood > 0)
 				{
-					player.addItem("Quest", 9910, blood, this, true);
+					player.addItem(ItemProcessType.QUEST, 9910, blood, this, true);
 					clan.resetBloodOathCount();
 					html.setFile(player, "data/html/fortress/logistics-blood.htm");
 				}

@@ -55,9 +55,9 @@ public class HellboundSpawns implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node node = doc.getFirstChild(); node != null; node = node.getNextSibling())
+		for (Node node = document.getFirstChild(); node != null; node = node.getNextSibling())
 		{
 			if ("list".equals(node.getNodeName()))
 			{
@@ -136,7 +136,7 @@ public class HellboundSpawns implements IXmlReader
 					minLevel,
 					maxLevel
 				});
-				SpawnTable.getInstance().addNewSpawn(spawn, false);
+				SpawnTable.getInstance().addSpawn(spawn);
 				_spawns.add(spawn);
 			}
 			catch (SecurityException | ClassNotFoundException | NoSuchMethodException e)

@@ -18,14 +18,14 @@ package ai.areas.DragonValley;
 
 import java.util.EnumMap;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -84,45 +84,45 @@ public class DragonValley extends AbstractNpcAI
 	private static final int MIN_MEMBERS = 3;
 	private static final int MIN_LEVEL = 80;
 	private static final int CLASS_LEVEL = 3;
-	private static final EnumMap<ClassId, Double> CLASS_POINTS = new EnumMap<>(ClassId.class);
+	private static final EnumMap<PlayerClass, Double> CLASS_POINTS = new EnumMap<>(PlayerClass.class);
 	static
 	{
-		CLASS_POINTS.put(ClassId.ADVENTURER, 0.2);
-		CLASS_POINTS.put(ClassId.ARCANA_LORD, 1.5);
-		CLASS_POINTS.put(ClassId.ARCHMAGE, 0.3);
-		CLASS_POINTS.put(ClassId.CARDINAL, -0.6);
-		CLASS_POINTS.put(ClassId.DOMINATOR, 0.2);
-		CLASS_POINTS.put(ClassId.DOOMBRINGER, 0.2);
-		CLASS_POINTS.put(ClassId.DOOMCRYER, 0.1);
-		CLASS_POINTS.put(ClassId.DREADNOUGHT, 0.7);
-		CLASS_POINTS.put(ClassId.DUELIST, 0.2);
-		CLASS_POINTS.put(ClassId.ELEMENTAL_MASTER, 1.4);
-		CLASS_POINTS.put(ClassId.EVA_SAINT, -0.6);
-		CLASS_POINTS.put(ClassId.EVA_TEMPLAR, 0.8);
-		CLASS_POINTS.put(ClassId.FEMALE_SOUL_HOUND, 0.4);
-		CLASS_POINTS.put(ClassId.FORTUNE_SEEKER, 0.9);
-		CLASS_POINTS.put(ClassId.GHOST_HUNTER, 0.2);
-		CLASS_POINTS.put(ClassId.GHOST_SENTINEL, 0.2);
-		CLASS_POINTS.put(ClassId.GRAND_KHAVATARI, 0.2);
-		CLASS_POINTS.put(ClassId.HELL_KNIGHT, 0.6);
-		CLASS_POINTS.put(ClassId.HIEROPHANT, 0.0);
-		CLASS_POINTS.put(ClassId.JUDICATOR, 0.1);
-		CLASS_POINTS.put(ClassId.MOONLIGHT_SENTINEL, 0.2);
-		CLASS_POINTS.put(ClassId.MAESTRO, 0.7);
-		CLASS_POINTS.put(ClassId.MALE_SOUL_HOUND, 0.4);
-		CLASS_POINTS.put(ClassId.MYSTIC_MUSE, 0.3);
-		CLASS_POINTS.put(ClassId.PHOENIX_KNIGHT, 0.6);
-		CLASS_POINTS.put(ClassId.SAGITTARIUS, 0.2);
-		CLASS_POINTS.put(ClassId.SHILLIEN_SAINT, -0.6);
-		CLASS_POINTS.put(ClassId.SHILLIEN_TEMPLAR, 0.8);
-		CLASS_POINTS.put(ClassId.SOULTAKER, 0.3);
-		CLASS_POINTS.put(ClassId.SPECTRAL_DANCER, 0.4);
-		CLASS_POINTS.put(ClassId.SPECTRAL_MASTER, 1.4);
-		CLASS_POINTS.put(ClassId.STORM_SCREAMER, 0.3);
-		CLASS_POINTS.put(ClassId.SWORD_MUSE, 0.4);
-		CLASS_POINTS.put(ClassId.TITAN, 0.3);
-		CLASS_POINTS.put(ClassId.TRICKSTER, 0.5);
-		CLASS_POINTS.put(ClassId.WIND_RIDER, 0.2);
+		CLASS_POINTS.put(PlayerClass.ADVENTURER, 0.2);
+		CLASS_POINTS.put(PlayerClass.ARCANA_LORD, 1.5);
+		CLASS_POINTS.put(PlayerClass.ARCHMAGE, 0.3);
+		CLASS_POINTS.put(PlayerClass.CARDINAL, -0.6);
+		CLASS_POINTS.put(PlayerClass.DOMINATOR, 0.2);
+		CLASS_POINTS.put(PlayerClass.DOOMBRINGER, 0.2);
+		CLASS_POINTS.put(PlayerClass.DOOMCRYER, 0.1);
+		CLASS_POINTS.put(PlayerClass.DREADNOUGHT, 0.7);
+		CLASS_POINTS.put(PlayerClass.DUELIST, 0.2);
+		CLASS_POINTS.put(PlayerClass.ELEMENTAL_MASTER, 1.4);
+		CLASS_POINTS.put(PlayerClass.EVA_SAINT, -0.6);
+		CLASS_POINTS.put(PlayerClass.EVA_TEMPLAR, 0.8);
+		CLASS_POINTS.put(PlayerClass.FEMALE_SOUL_HOUND, 0.4);
+		CLASS_POINTS.put(PlayerClass.FORTUNE_SEEKER, 0.9);
+		CLASS_POINTS.put(PlayerClass.GHOST_HUNTER, 0.2);
+		CLASS_POINTS.put(PlayerClass.GHOST_SENTINEL, 0.2);
+		CLASS_POINTS.put(PlayerClass.GRAND_KHAVATARI, 0.2);
+		CLASS_POINTS.put(PlayerClass.HELL_KNIGHT, 0.6);
+		CLASS_POINTS.put(PlayerClass.HIEROPHANT, 0.0);
+		CLASS_POINTS.put(PlayerClass.JUDICATOR, 0.1);
+		CLASS_POINTS.put(PlayerClass.MOONLIGHT_SENTINEL, 0.2);
+		CLASS_POINTS.put(PlayerClass.MAESTRO, 0.7);
+		CLASS_POINTS.put(PlayerClass.MALE_SOUL_HOUND, 0.4);
+		CLASS_POINTS.put(PlayerClass.MYSTIC_MUSE, 0.3);
+		CLASS_POINTS.put(PlayerClass.PHOENIX_KNIGHT, 0.6);
+		CLASS_POINTS.put(PlayerClass.SAGITTARIUS, 0.2);
+		CLASS_POINTS.put(PlayerClass.SHILLIEN_SAINT, -0.6);
+		CLASS_POINTS.put(PlayerClass.SHILLIEN_TEMPLAR, 0.8);
+		CLASS_POINTS.put(PlayerClass.SOULTAKER, 0.3);
+		CLASS_POINTS.put(PlayerClass.SPECTRAL_DANCER, 0.4);
+		CLASS_POINTS.put(PlayerClass.SPECTRAL_MASTER, 1.4);
+		CLASS_POINTS.put(PlayerClass.STORM_SCREAMER, 0.3);
+		CLASS_POINTS.put(PlayerClass.SWORD_MUSE, 0.4);
+		CLASS_POINTS.put(PlayerClass.TITAN, 0.3);
+		CLASS_POINTS.put(PlayerClass.TRICKSTER, 0.5);
+		CLASS_POINTS.put(PlayerClass.WIND_RIDER, 0.2);
 	}
 	
 	private DragonValley()
@@ -156,7 +156,7 @@ public class DragonValley extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.getId() == NECROMANCER_OF_THE_VALLEY)
 		{
@@ -176,11 +176,10 @@ public class DragonValley extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == NECROMANCER_OF_THE_VALLEY)
 		{
@@ -191,32 +190,29 @@ public class DragonValley extends AbstractNpcAI
 			npc.dropItem(killer, getRandom(GREATER_HERB_OF_MANA, SUPERIOR_HERB_OF_MANA), 1);
 			manageMoraleBoost(killer, npc);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.asAttackable().setOnKillDelay(0);
 		if (npc.getId() == EXPLODING_ORC_GHOST)
 		{
 			startQuestTimer("SELF_DESTRUCTION", 3000, npc, null);
 		}
-		else if (CommonUtil.contains(SPAWN_ANIMATION, npc.getId()))
+		else if (ArrayUtil.contains(SPAWN_ANIMATION, npc.getId()))
 		{
 			npc.setShowSummonAnimation(true);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if (skill == SELF_DESTRUCTION.getSkill())
 		{
 			npc.doDie(player);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	private void manageMoraleBoost(Player player, Npc npc)
@@ -228,9 +224,9 @@ public class DragonValley extends AbstractNpcAI
 		{
 			for (Player member : party.getMembers())
 			{
-				if ((member.getLevel() >= MIN_LEVEL) && (member.getClassId().level() >= CLASS_LEVEL) && (npc.calculateDistance3D(member) < MIN_DISTANCE))
+				if ((member.getLevel() >= MIN_LEVEL) && (member.getPlayerClass().level() >= CLASS_LEVEL) && (npc.calculateDistance3D(member) < MIN_DISTANCE))
 				{
-					points += CLASS_POINTS.get(member.getClassId());
+					points += CLASS_POINTS.get(member.getPlayerClass());
 				}
 			}
 			

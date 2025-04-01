@@ -21,22 +21,22 @@ import java.util.Map;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Expulsion of Evil Spirits (311)
@@ -122,7 +122,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				_altar = addSpawn(ALTAR, 74120, -101920, -960, 32760, false, 0);
 				_altar.setInvul(true);
 				GlobalVariablesManager.getInstance().set("VarangkaRespawn", 0);
-				if (Util.checkIfInRange(1200, npc, player, true))
+				if (LocationUtil.checkIfInRange(1200, npc, player, true))
 				{
 					ThreadPool.schedule(new zoneCheck(player), 1000);
 				}
@@ -138,7 +138,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				
 				final Player targetPlayer = _varangka.getTarget().asPlayer();
 				_varangkaMinion1.asAttackable().addDamageHate(targetPlayer, 1, 99999);
-				_varangkaMinion1.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, targetPlayer);
+				_varangkaMinion1.getAI().setIntention(Intention.ATTACK, targetPlayer);
 			}
 			return null;
 		}
@@ -151,7 +151,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				
 				final Player targetPlayer = _varangka.getTarget().asPlayer();
 				_varangkaMinion2.asAttackable().addDamageHate(targetPlayer, 1, 99999);
-				_varangkaMinion2.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, targetPlayer);
+				_varangkaMinion2.getAI().setIntention(Intention.ATTACK, targetPlayer);
 			}
 			return null;
 		}
@@ -214,7 +214,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, 1, 2, npc);
 		if (qs != null)
@@ -224,8 +224,9 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 			{
 				if (!qs.isCond(1))
 				{
-					return null;
+					return;
 				}
+				
 				_altar.doDie(killer);
 				_altar = null;
 				_varangka = null;
@@ -245,19 +246,19 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				GlobalVariablesManager.getInstance().set("VarangkaRespawn", System.currentTimeMillis() + respawn);
 				startQuestTimer("altarSpawn", respawn, null, null);
 				takeItems(member, PROTECTION_SOULS_PENDANT, 1);
-				return super.onKill(npc, killer, isSummon);
+				return;
 			}
 			else if (npc.getId() == (VARANGKA + 1))
 			{
 				_varangkaMinion1 = null;
 				startQuestTimer("minion1", Rnd.get(60000, 120000), npc, killer);
-				return super.onKill(npc, killer, isSummon);
+				return;
 			}
 			else if (npc.getId() == (VARANGKA + 2))
 			{
 				_varangkaMinion2 = null;
 				startQuestTimer("minion2", Rnd.get(60000, 120000), npc, killer);
-				return super.onKill(npc, killer, isSummon);
+				return;
 			}
 			
 			final int count = qs.getMemoStateEx(1) + 1;
@@ -277,7 +278,6 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				giveItems(member, RAGNA_ORCS_AMULET, 1);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -297,12 +297,12 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player player, int damage, boolean isPet)
 	{
 		QuestState qs = player.getQuestState(Q00311_ExpulsionOfEvilSpirits.class.getSimpleName());
 		if (qs == null)
 		{
-			return null;
+			return;
 		}
 		
 		if (hasQuestItems(player, PROTECTION_SOULS_PENDANT) && (Rnd.get(100) < 20))
@@ -325,7 +325,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 					{
 						creature.setRunning();
 						creature.asAttackable().addDamageHate(player, 1, 99999);
-						creature.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+						creature.getAI().setIntention(Intention.ATTACK, player);
 					}
 				}
 			}
@@ -334,17 +334,15 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 		{
 			ThreadPool.schedule(new zoneCheck(player), 1000);
 		}
-		return super.onAttack(npc, player, damage, isPet);
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
 			ThreadPool.schedule(new zoneCheck(creature.asPlayer()), 1000);
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	private class zoneCheck implements Runnable

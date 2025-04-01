@@ -40,7 +40,7 @@ public class FrozenLabyrinth extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		if (npc.isScriptValue(0) && (skill != null) && !skill.isMagic())
 		{
@@ -57,7 +57,6 @@ public class FrozenLabyrinth extends AbstractNpcAI
 			npc.setScriptValue(1);
 			npc.deleteMe();
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	public static void main(String[] args)

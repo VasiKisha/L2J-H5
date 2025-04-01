@@ -33,8 +33,9 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -116,17 +117,22 @@ public class RestorationRandom extends AbstractEffect
 				continue;
 			}
 			
-			final long itemCount = (long) (item.getCount() * Config.RATE_EXTRACTABLE);
 			final ItemTemplate template = ItemData.getInstance().getTemplate(item.getId());
+			if (template == null)
+			{
+				continue;
+			}
+			
+			final long itemCount = (long) (item.getCount() * Config.RATE_EXTRACTABLE);
 			if (template.isStackable())
 			{
-				player.addItem("Extract", item.getId(), itemCount, effector, true);
+				player.addItem(ItemProcessType.REWARD, item.getId(), itemCount, effector, true);
 			}
 			else
 			{
 				for (int i = 0; i < itemCount; i++)
 				{
-					player.addItem("Extract", item.getId(), 1, effector, true);
+					player.addItem(ItemProcessType.REWARD, item.getId(), 1, effector, true);
 				}
 			}
 		}

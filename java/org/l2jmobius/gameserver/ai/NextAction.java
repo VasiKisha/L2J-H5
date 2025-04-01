@@ -1,205 +1,82 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.ai;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
- * Class for AI action after some event.<br>
- * Has 2 array list for "work" and "break".
- * @author Yaroslav
+ * Represents a queued action that can be triggered by a specific {@link Action} and removed by a specific {@link Intention}.<br>
+ * When triggered, it executes a callback provided by the {@link Callback} interface.
+ * @author Mobius
  */
 public class NextAction
 {
-	public interface NextActionCallback
+	/**
+	 * A callback interface that defines the behavior to execute when the next action is triggered.
+	 */
+	public interface Callback
 	{
-		void doWork();
+		void doAction();
 	}
 	
-	private List<CtrlEvent> _events;
-	private List<CtrlIntention> _intentions;
-	private NextActionCallback _callback;
+	private final Action _action;
+	private final Intention _intention;
+	private final Callback _callback;
 	
 	/**
-	 * Main constructor.
-	 * @param events
-	 * @param intentions
-	 * @param callback
+	 * Constructs a new NextAction with the specified action, intention and callback.
+	 * @param action The {@link Action} that will trigger this next action.
+	 * @param intention The {@link Intention} that can remove this next action.
+	 * @param callback The {@link Callback} that will be executed when this next action is triggered.
 	 */
-	public NextAction(List<CtrlEvent> events, List<CtrlIntention> intentions, NextActionCallback callback)
+	public NextAction(Action action, Intention intention, Callback callback)
 	{
-		_events = events;
-		_intentions = intentions;
-		setCallback(callback);
-	}
-	
-	/**
-	 * Single constructor.
-	 * @param event
-	 * @param intention
-	 * @param callback
-	 */
-	public NextAction(CtrlEvent event, CtrlIntention intention, NextActionCallback callback)
-	{
-		if (_events == null)
-		{
-			_events = new ArrayList<>();
-		}
-		
-		if (_intentions == null)
-		{
-			_intentions = new ArrayList<>();
-		}
-		
-		if (event != null)
-		{
-			_events.add(event);
-		}
-		
-		if (intention != null)
-		{
-			_intentions.add(intention);
-		}
-		setCallback(callback);
-	}
-	
-	/**
-	 * Do action.
-	 */
-	public void doAction()
-	{
-		if (_callback != null)
-		{
-			_callback.doWork();
-		}
-	}
-	
-	/**
-	 * @return the _event
-	 */
-	public List<CtrlEvent> getEvents()
-	{
-		// If null return empty list.
-		if (_events == null)
-		{
-			_events = new ArrayList<>();
-		}
-		return _events;
-	}
-	
-	/**
-	 * @param event the event to set.
-	 */
-	public void setEvents(List<CtrlEvent> event)
-	{
-		_events = event;
-	}
-	
-	/**
-	 * @param event
-	 */
-	public void addEvent(CtrlEvent event)
-	{
-		if (_events == null)
-		{
-			_events = new ArrayList<>();
-		}
-		
-		if (event != null)
-		{
-			_events.add(event);
-		}
-	}
-	
-	/**
-	 * @param event
-	 */
-	public void removeEvent(CtrlEvent event)
-	{
-		if (_events == null)
-		{
-			return;
-		}
-		_events.remove(event);
-	}
-	
-	/**
-	 * @return the _callback
-	 */
-	public NextActionCallback getCallback()
-	{
-		return _callback;
-	}
-	
-	/**
-	 * @param callback the callback to set.
-	 */
-	public void setCallback(NextActionCallback callback)
-	{
+		_action = action;
+		_intention = intention;
 		_callback = callback;
 	}
 	
 	/**
-	 * @return the _intentions
+	 * Checks if this next action can be triggered by the specified {@link Action}.
+	 * @param action The {@link Action} to check.
+	 * @return if the provided action matches the action associated with this next action.
 	 */
-	public List<CtrlIntention> getIntentions()
+	public boolean isTriggeredBy(Action action)
 	{
-		// If null return empty list.
-		if (_intentions == null)
-		{
-			_intentions = new ArrayList<>();
-		}
-		return _intentions;
+		return _action == action;
 	}
 	
 	/**
-	 * @param intentions the intention to set.
+	 * Checks if this next action can be removed by the specified {@link Intention}.
+	 * @param intention The {@link Intention} to check.
+	 * @return if the provided intention matches the intention associated with this next action.
 	 */
-	public void setIntentions(List<CtrlIntention> intentions)
+	public boolean isRemovedBy(Intention intention)
 	{
-		_intentions = intentions;
+		return _intention == intention;
 	}
 	
 	/**
-	 * @param intention
+	 * Executes the next action by invoking the {@link Callback#doAction()} method.
 	 */
-	public void addIntention(CtrlIntention intention)
+	public void doAction()
 	{
-		if (_intentions == null)
-		{
-			_intentions = new ArrayList<>();
-		}
-		
-		if (intention != null)
-		{
-			_intentions.add(intention);
-		}
-	}
-	
-	/**
-	 * @param intention
-	 */
-	public void removeIntention(CtrlIntention intention)
-	{
-		if (_intentions == null)
-		{
-			return;
-		}
-		_intentions.remove(intention);
+		_callback.doAction();
 	}
 }

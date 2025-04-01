@@ -23,15 +23,15 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Basic instance zone data transfer object.
@@ -215,7 +215,7 @@ public class InstanceWorld
 		final List<Npc> result = new LinkedList<>();
 		for (Npc npc : _instance.getNpcs())
 		{
-			if (CommonUtil.contains(id, npc.getId()))
+			if (ArrayUtil.contains(id, npc.getId()))
 			{
 				result.add(npc);
 			}
@@ -237,7 +237,7 @@ public class InstanceWorld
 		final List<T> result = new LinkedList<>();
 		for (Npc npc : _instance.getNpcs())
 		{
-			if (((ids.length == 0) || CommonUtil.contains(ids, npc.getId())) && clazz.isInstance(npc))
+			if (((ids.length == 0) || ArrayUtil.contains(ids, npc.getId())) && clazz.isInstance(npc))
 			{
 				result.add((T) npc);
 			}
@@ -272,7 +272,7 @@ public class InstanceWorld
 		final List<Npc> result = new LinkedList<>();
 		for (Npc npc : _instance.getNpcs())
 		{
-			if ((npc.getCurrentHp() > 0) && CommonUtil.contains(id, npc.getId()))
+			if ((npc.getCurrentHp() > 0) && ArrayUtil.contains(id, npc.getId()))
 			{
 				result.add(npc);
 			}
@@ -294,7 +294,7 @@ public class InstanceWorld
 		final List<T> result = new LinkedList<>();
 		for (Npc npc : _instance.getNpcs())
 		{
-			if ((((ids.length == 0) || CommonUtil.contains(ids, npc.getId())) && (npc.getCurrentHp() > 0)) && clazz.isInstance(npc))
+			if ((((ids.length == 0) || ArrayUtil.contains(ids, npc.getId())) && (npc.getCurrentHp() > 0)) && clazz.isInstance(npc))
 			{
 				result.add((T) npc);
 			}

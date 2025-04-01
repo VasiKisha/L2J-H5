@@ -20,13 +20,10 @@
  */
 package instances.FinalEmperialTomb;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_FOLLOW;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-
 import java.util.ArrayList;
 import java.util.List;
 
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.World;
@@ -36,7 +33,7 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Decoy;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -85,26 +82,23 @@ public class ScarletVanHalisha extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		getSkillAI(npc);
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		startQuestTimer("random_Target", 5000, npc, null, true);
 		startQuestTimer("attack", 500, npc, null, true);
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		cancelQuestTimers("attack");
 		cancelQuestTimers("random_Target");
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private Skill getRndSkills(Npc npc)
@@ -194,9 +188,9 @@ public class ScarletVanHalisha extends AbstractNpcAI
 			return;
 		}
 		
-		if (Util.checkIfInRange(skill.getCastRange(), npc, target, true))
+		if (LocationUtil.checkIfInRange(skill.getCastRange(), npc, target, true))
 		{
-			npc.getAI().setIntention(AI_INTENTION_IDLE);
+			npc.getAI().setIntention(Intention.IDLE);
 			npc.setTarget(target);
 			npc.setCastingNow(true);
 			_target = null;
@@ -204,8 +198,8 @@ public class ScarletVanHalisha extends AbstractNpcAI
 		}
 		else
 		{
-			npc.getAI().setIntention(AI_INTENTION_FOLLOW, target, null);
-			npc.getAI().setIntention(AI_INTENTION_ATTACK, target, null);
+			npc.getAI().setIntention(Intention.FOLLOW, target, null);
+			npc.getAI().setIntention(Intention.ATTACK, target, null);
 			npc.setCastingNow(false);
 		}
 	}
@@ -258,7 +252,7 @@ public class ScarletVanHalisha extends AbstractNpcAI
 						}
 					}
 				}
-				if (Util.checkIfInRange(skillRange, npc, obj, true) && !obj.asCreature().isDead())
+				if (LocationUtil.checkIfInRange(skillRange, npc, obj, true) && !obj.asCreature().isDead())
 				{
 					result.add(obj.asCreature());
 				}

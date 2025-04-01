@@ -29,6 +29,7 @@ import org.l2jmobius.gameserver.model.Augmentation;
 import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
 import org.l2jmobius.gameserver.model.multisell.Entry;
@@ -283,7 +284,7 @@ public class MultiSellChoose extends ClientPacket
 							// if it's a stackable item, just reduce the amount from the first (only) instance that is found in the inventory
 							if (itemToTake.isStackable())
 							{
-								if (!player.destroyItem("Multisell", itemToTake.getObjectId(), (e.getItemCount() * _amount), player.getTarget(), true))
+								if (!player.destroyItem(ItemProcessType.FEE, itemToTake.getObjectId(), (e.getItemCount() * _amount), player.getTarget(), true))
 								{
 									player.setMultiSell(null);
 									return;
@@ -310,7 +311,7 @@ public class MultiSellChoose extends ClientPacket
 										{
 											elemental = inventoryContents.get(i).getElementals();
 										}
-										if (!player.destroyItem("Multisell", inventoryContents.get(i).getObjectId(), 1, player.getTarget(), true))
+										if (!player.destroyItem(ItemProcessType.FEE, inventoryContents.get(i).getObjectId(), 1, player.getTarget(), true))
 										{
 											player.setMultiSell(null);
 											return;
@@ -377,7 +378,7 @@ public class MultiSellChoose extends ClientPacket
 												}
 											}
 										}
-										if (!player.destroyItem("Multisell", itemToTake.getObjectId(), 1, player.getTarget(), true))
+										if (!player.destroyItem(ItemProcessType.FEE, itemToTake.getObjectId(), 1, player.getTarget(), true))
 										{
 											player.setMultiSell(null);
 											return;
@@ -400,14 +401,14 @@ public class MultiSellChoose extends ClientPacket
 					{
 						if (e.isStackable())
 						{
-							inv.addItem("Multisell", e.getItemId(), e.getItemCount() * _amount, player, player.getTarget());
+							inv.addItem(ItemProcessType.BUY, e.getItemId(), e.getItemCount() * _amount, player, player.getTarget());
 						}
 						else
 						{
 							Item product = null;
 							for (int i = 0; i < (e.getItemCount() * _amount); i++)
 							{
-								product = inv.addItem("Multisell", e.getItemId(), 1, player, player.getTarget());
+								product = inv.addItem(ItemProcessType.BUY, e.getItemId(), 1, player, player.getTarget());
 								if ((product != null) && (list.getMaintainEnchantment() || (e.getEnchantLevel() > 0)))
 								{
 									if (i < augmentation.size())

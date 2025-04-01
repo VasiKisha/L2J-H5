@@ -24,7 +24,7 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * This class load, holds and calculates the hit condition bonuses.
@@ -57,9 +57,9 @@ public class HitConditionBonusData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node d = doc.getFirstChild().getFirstChild(); d != null; d = d.getNextSibling())
+		for (Node d = document.getFirstChild().getFirstChild(); d != null; d = d.getNextSibling())
 		{
 			final NamedNodeMap attrs = d.getAttributes();
 			switch (d.getNodeName())

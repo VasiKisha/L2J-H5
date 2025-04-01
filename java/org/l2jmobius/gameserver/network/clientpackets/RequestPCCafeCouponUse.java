@@ -20,7 +20,7 @@ import org.l2jmobius.gameserver.network.PacketLogger;
 
 /**
  * Format: (ch) S
- * @author -Wooden- TODO: GodKratos: This packet is wrong in Gracia Final!!
+ * @author -Wooden-
  */
 public class RequestPCCafeCouponUse extends ClientPacket
 {

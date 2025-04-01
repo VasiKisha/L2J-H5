@@ -14,18 +14,16 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
- * Lets drink to code!
- * @author zabbix, HorridoJoho
+ * @author zabbix
  */
 public class RequestLinkHtml extends ClientPacket
 {
@@ -65,7 +63,7 @@ public class RequestLinkHtml extends ClientPacket
 			return;
 		}
 		
-		if ((htmlObjectId > 0) && !Util.isInsideRangeOfObjectId(player, htmlObjectId, Npc.INTERACTION_DISTANCE))
+		if ((htmlObjectId > 0) && !LocationUtil.isInsideRangeOfObjectId(player, htmlObjectId, Npc.INTERACTION_DISTANCE))
 		{
 			// No logging here, this could be a common case
 			return;

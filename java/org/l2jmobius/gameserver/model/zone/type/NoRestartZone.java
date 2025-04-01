@@ -17,9 +17,9 @@
 package org.l2jmobius.gameserver.model.zone.type;
 
 import org.l2jmobius.gameserver.GameServer;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 
@@ -84,7 +84,8 @@ public class NoRestartZone extends ZoneType
 			return;
 		}
 		
-		if (((System.currentTimeMillis() - player.getLastAccess()) > _restartTime) && ((System.currentTimeMillis() - GameServer.dateTimeServerStarted.getTimeInMillis()) > _restartAllowedTime))
+		final long currentTime = System.currentTimeMillis();
+		if (((currentTime - player.getLastAccess()) > _restartTime) && ((currentTime - GameServer.getStartTime()) > _restartAllowedTime))
 		{
 			player.teleToLocation(TeleportWhereType.TOWN);
 		}

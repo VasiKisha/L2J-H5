@@ -18,12 +18,13 @@ package handlers.itemhandlers;
 
 import java.util.logging.Level;
 
-import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.util.Broadcast;
@@ -83,7 +84,7 @@ public class BeastSoulShot implements IItemHandler
 		}
 		
 		// If the player doesn't have enough beast soulshot remaining, remove any auto soulshot task.
-		if (!activeOwner.destroyItemWithoutTrace("Consume", item.getObjectId(), shotConsumption, null, false))
+		if (!activeOwner.destroyItem(ItemProcessType.NONE, item.getObjectId(), shotConsumption, null, false))
 		{
 			if (!activeOwner.disableAutoShot(itemId))
 			{

@@ -1,30 +1,35 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.itemcontainer;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.clanwh.OnPlayerClanWHItemAdd;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.clanwh.OnPlayerClanWHItemDestroy;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.clanwh.OnPlayerClanWHItemTransfer;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.clanwh.OnPlayerClanWHItemAdd;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.clanwh.OnPlayerClanWHItemDestroy;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.clanwh.OnPlayerClanWHItemTransfer;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 
 public class ClanWarehouse extends Warehouse
@@ -81,52 +86,52 @@ public class ClanWarehouse extends Warehouse
 	}
 	
 	@Override
-	public Item addItem(String process, int itemId, long count, Player actor, Object reference)
+	public Item addItem(ItemProcessType process, int itemId, long count, Player actor, Object reference)
 	{
 		final Item item = super.addItem(process, itemId, count, actor, reference);
 		
 		// Notify to scripts
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_CLAN_WH_ITEM_ADD, item.getTemplate()))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemAdd(process, actor, item, this), item.getTemplate());
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemAdd(actor, item, this), item.getTemplate());
 		}
 		
 		return item;
 	}
 	
 	@Override
-	public Item addItem(String process, Item item, Player actor, Object reference)
+	public Item addItem(ItemProcessType process, Item item, Player actor, Object reference)
 	{
 		// Notify to scripts
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_CLAN_WH_ITEM_ADD, item.getTemplate()))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemAdd(process, actor, item, this), item.getTemplate());
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemAdd(actor, item, this), item.getTemplate());
 		}
 		
 		return super.addItem(process, item, actor, reference);
 	}
 	
 	@Override
-	public Item destroyItem(String process, Item item, long count, Player actor, Object reference)
+	public Item destroyItem(ItemProcessType process, Item item, long count, Player actor, Object reference)
 	{
 		// Notify to scripts
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_CLAN_WH_ITEM_DESTROY, item.getTemplate()))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemDestroy(process, actor, item, count, this), item.getTemplate());
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemDestroy(actor, item, count, this), item.getTemplate());
 		}
 		
 		return super.destroyItem(process, item, count, actor, reference);
 	}
 	
 	@Override
-	public Item transferItem(String process, int objectId, long count, ItemContainer target, Player actor, Object reference)
+	public Item transferItem(ItemProcessType process, int objectId, long count, ItemContainer target, Player actor, Object reference)
 	{
 		final Item item = getItemByObjectId(objectId);
 		
 		// Notify to scripts
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_CLAN_WH_ITEM_TRANSFER, item.getTemplate()))
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemTransfer(process, actor, item, count, target), item.getTemplate());
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerClanWHItemTransfer(actor, item, count, target), item.getTemplate());
 		}
 		
 		return super.transferItem(process, objectId, count, target, actor, reference);

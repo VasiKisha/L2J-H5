@@ -27,7 +27,7 @@ import ai.AbstractNpcAI;
 
 /**
  * Separated Soul teleport AI.
- * @author UnAfraid, improved by Adry_85
+ * @author Adry_85
  */
 public class SeparatedSoul extends AbstractNpcAI
 {

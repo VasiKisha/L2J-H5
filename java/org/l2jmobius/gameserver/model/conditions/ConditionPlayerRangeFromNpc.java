@@ -26,7 +26,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Exist NPC condition.
- * @author UnAfraid, Zoey76
+ * @author UnAfraid
  */
 public class ConditionPlayerRangeFromNpc extends Condition
 {

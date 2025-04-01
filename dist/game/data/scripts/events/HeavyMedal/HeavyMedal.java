@@ -16,10 +16,10 @@
  */
 package events.HeavyMedal;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 
 /**
  * Heavy Medals event AI.

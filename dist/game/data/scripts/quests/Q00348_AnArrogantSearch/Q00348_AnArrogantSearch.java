@@ -17,14 +17,14 @@
 package quests.Q00348_AnArrogantSearch;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 /**
@@ -324,7 +324,7 @@ public class Q00348_AnArrogantSearch extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -446,11 +446,10 @@ public class Q00348_AnArrogantSearch extends Quest
 				break;
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if ((qs != null) && npc.isInsideRadius3D(player, Config.ALT_PARTY_RANGE))
@@ -579,11 +578,10 @@ public class Q00348_AnArrogantSearch extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -607,7 +605,6 @@ public class Q00348_AnArrogantSearch extends Quest
 				startQuestTimer("DESPAWN", 600000, npc, null);
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -1419,9 +1416,9 @@ public class Q00348_AnArrogantSearch extends Quest
 	
 	private void getReward(Player player)
 	{
-		final ClassId playerClassId = player.getClassId();
+		final PlayerClass playerClassId = player.getPlayerClass();
 		final int playerLevel = player.getLevel();
-		if ((playerClassId == ClassId.TREASURE_HUNTER) || (playerClassId == ClassId.PLAINS_WALKER) || (playerClassId == ClassId.ABYSS_WALKER) || (playerClassId == ClassId.ADVENTURER) || (playerClassId == ClassId.WIND_RIDER) || (playerClassId == ClassId.GHOST_HUNTER) || (playerClassId == ClassId.MALE_SOULBREAKER) || (playerClassId == ClassId.FEMALE_SOULBREAKER) || (playerClassId == ClassId.MALE_SOUL_HOUND) || (playerClassId == ClassId.FEMALE_SOUL_HOUND) || (playerClassId == ClassId.INSPECTOR) || (playerClassId == ClassId.JUDICATOR))
+		if ((playerClassId == PlayerClass.TREASURE_HUNTER) || (playerClassId == PlayerClass.PLAINS_WALKER) || (playerClassId == PlayerClass.ABYSS_WALKER) || (playerClassId == PlayerClass.ADVENTURER) || (playerClassId == PlayerClass.WIND_RIDER) || (playerClassId == PlayerClass.GHOST_HUNTER) || (playerClassId == PlayerClass.MALE_SOULBREAKER) || (playerClassId == PlayerClass.FEMALE_SOULBREAKER) || (playerClassId == PlayerClass.MALE_SOUL_HOUND) || (playerClassId == PlayerClass.FEMALE_SOUL_HOUND) || (playerClassId == PlayerClass.INSPECTOR) || (playerClassId == PlayerClass.JUDICATOR))
 		{
 			if (playerLevel < 69)
 			{
@@ -1434,7 +1431,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				giveItems(player, COKES, 2);
 			}
 		}
-		else if ((playerClassId == ClassId.TYRANT) || (playerClassId == ClassId.GRAND_KHAVATARI))
+		else if ((playerClassId == PlayerClass.TYRANT) || (playerClassId == PlayerClass.GRAND_KHAVATARI))
 		{
 			if (playerLevel < 69)
 			{
@@ -1448,7 +1445,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				giveItems(player, ORIHARUKON_ORE, 2);
 			}
 		}
-		else if ((playerClassId == ClassId.PALADIN) || (playerClassId == ClassId.DARK_AVENGER) || (playerClassId == ClassId.PROPHET) || (playerClassId == ClassId.TEMPLE_KNIGHT) || (playerClassId == ClassId.SWORDSINGER) || (playerClassId == ClassId.SHILLIEN_KNIGHT) || (playerClassId == ClassId.BLADEDANCER) || (playerClassId == ClassId.SHILLIEN_ELDER) || (playerClassId == ClassId.PHOENIX_KNIGHT) || (playerClassId == ClassId.HELL_KNIGHT) || (playerClassId == ClassId.HIEROPHANT) || (playerClassId == ClassId.EVA_TEMPLAR) || (playerClassId == ClassId.SWORD_MUSE) || (playerClassId == ClassId.SHILLIEN_TEMPLAR) || (playerClassId == ClassId.SPECTRAL_DANCER) || (playerClassId == ClassId.SHILLIEN_SAINT))
+		else if ((playerClassId == PlayerClass.PALADIN) || (playerClassId == PlayerClass.DARK_AVENGER) || (playerClassId == PlayerClass.PROPHET) || (playerClassId == PlayerClass.TEMPLE_KNIGHT) || (playerClassId == PlayerClass.SWORDSINGER) || (playerClassId == PlayerClass.SHILLIEN_KNIGHT) || (playerClassId == PlayerClass.BLADEDANCER) || (playerClassId == PlayerClass.SHILLIEN_ELDER) || (playerClassId == PlayerClass.PHOENIX_KNIGHT) || (playerClassId == PlayerClass.HELL_KNIGHT) || (playerClassId == PlayerClass.HIEROPHANT) || (playerClassId == PlayerClass.EVA_TEMPLAR) || (playerClassId == PlayerClass.SWORD_MUSE) || (playerClassId == PlayerClass.SHILLIEN_TEMPLAR) || (playerClassId == PlayerClass.SPECTRAL_DANCER) || (playerClassId == PlayerClass.SHILLIEN_SAINT))
 		{
 			if (playerLevel < 69)
 			{
@@ -1461,7 +1458,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				giveItems(player, ORIHARUKON_ORE, 2);
 			}
 		}
-		else if ((playerClassId == ClassId.HAWKEYE) || (playerClassId == ClassId.SILVER_RANGER) || (playerClassId == ClassId.PHANTOM_RANGER) || (playerClassId == ClassId.SAGITTARIUS) || (playerClassId == ClassId.MOONLIGHT_SENTINEL) || (playerClassId == ClassId.GHOST_SENTINEL) || (playerClassId == ClassId.ARBALESTER) || (playerClassId == ClassId.TRICKSTER))
+		else if ((playerClassId == PlayerClass.HAWKEYE) || (playerClassId == PlayerClass.SILVER_RANGER) || (playerClassId == PlayerClass.PHANTOM_RANGER) || (playerClassId == PlayerClass.SAGITTARIUS) || (playerClassId == PlayerClass.MOONLIGHT_SENTINEL) || (playerClassId == PlayerClass.GHOST_SENTINEL) || (playerClassId == PlayerClass.ARBALESTER) || (playerClassId == PlayerClass.TRICKSTER))
 		{
 			if (playerLevel < 69)
 			{
@@ -1474,7 +1471,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				giveItems(player, COARSE_BONE_POWDER, 9);
 			}
 		}
-		else if ((playerClassId == ClassId.GLADIATOR) || (playerClassId == ClassId.BISHOP) || (playerClassId == ClassId.ELDER) || (playerClassId == ClassId.DUELIST) || (playerClassId == ClassId.CARDINAL) || (playerClassId == ClassId.EVA_SAINT))
+		else if ((playerClassId == PlayerClass.GLADIATOR) || (playerClassId == PlayerClass.BISHOP) || (playerClassId == PlayerClass.ELDER) || (playerClassId == PlayerClass.DUELIST) || (playerClassId == PlayerClass.CARDINAL) || (playerClassId == PlayerClass.EVA_SAINT))
 		{
 			if (playerLevel < 69)
 			{
@@ -1488,7 +1485,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				giveItems(player, ORIHARUKON_ORE, 2);
 			}
 		}
-		else if ((playerClassId == ClassId.WARLORD) || (playerClassId == ClassId.BOUNTY_HUNTER) || (playerClassId == ClassId.WARSMITH) || (playerClassId == ClassId.DREADNOUGHT) || (playerClassId == ClassId.FORTUNE_SEEKER) || (playerClassId == ClassId.MAESTRO))
+		else if ((playerClassId == PlayerClass.WARLORD) || (playerClassId == PlayerClass.BOUNTY_HUNTER) || (playerClassId == PlayerClass.WARSMITH) || (playerClassId == PlayerClass.DREADNOUGHT) || (playerClassId == PlayerClass.FORTUNE_SEEKER) || (playerClassId == PlayerClass.MAESTRO))
 		{
 			if (playerLevel < 63)
 			{
@@ -1502,7 +1499,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				giveItems(player, ORIHARUKON_ORE, 2);
 			}
 		}
-		else if ((playerClassId == ClassId.SORCERER) || (playerClassId == ClassId.SPELLSINGER) || (playerClassId == ClassId.OVERLORD) || (playerClassId == ClassId.ARCHMAGE) || (playerClassId == ClassId.MYSTIC_MUSE) || (playerClassId == ClassId.DOMINATOR))
+		else if ((playerClassId == PlayerClass.SORCERER) || (playerClassId == PlayerClass.SPELLSINGER) || (playerClassId == PlayerClass.OVERLORD) || (playerClassId == PlayerClass.ARCHMAGE) || (playerClassId == PlayerClass.MYSTIC_MUSE) || (playerClassId == PlayerClass.DOMINATOR))
 		{
 			if (playerLevel < 63)
 			{
@@ -1516,30 +1513,30 @@ public class Q00348_AnArrogantSearch extends Quest
 				giveItems(player, ANIMAL_BONE, 5);
 			}
 		}
-		else if ((playerClassId == ClassId.NECROMANCER) || (playerClassId == ClassId.SPELLHOWLER) || (playerClassId == ClassId.SOULTAKER) || (playerClassId == ClassId.STORM_SCREAMER))
+		else if ((playerClassId == PlayerClass.NECROMANCER) || (playerClassId == PlayerClass.SPELLHOWLER) || (playerClassId == PlayerClass.SOULTAKER) || (playerClassId == PlayerClass.STORM_SCREAMER))
 		{
 			giveItems(player, HELL_KNIFE_EDGE, 1);
 			giveItems(player, SYNTHETIC_COKES, 2);
 			giveItems(player, ANIMAL_BONE, 2);
 		}
-		else if ((playerClassId == ClassId.DESTROYER) || (playerClassId == ClassId.TITAN) || (playerClassId == ClassId.BERSERKER) || (playerClassId == ClassId.DOOMBRINGER))
+		else if ((playerClassId == PlayerClass.DESTROYER) || (playerClassId == PlayerClass.TITAN) || (playerClassId == PlayerClass.BERSERKER) || (playerClassId == PlayerClass.DOOMBRINGER))
 		{
 			giveItems(player, GREAT_SWORD_BLADE, 1);
 			giveItems(player, VARNISH_OF_PURITY, 2);
 			giveItems(player, SYNTHETIC_COKES, 2);
 		}
-		else if ((playerClassId == ClassId.ELEMENTAL_SUMMONER) || (playerClassId == ClassId.PHANTOM_SUMMONER) || (playerClassId == ClassId.ELEMENTAL_MASTER) || (playerClassId == ClassId.SPECTRAL_MASTER))
+		else if ((playerClassId == PlayerClass.ELEMENTAL_SUMMONER) || (playerClassId == PlayerClass.PHANTOM_SUMMONER) || (playerClassId == PlayerClass.ELEMENTAL_MASTER) || (playerClassId == PlayerClass.SPECTRAL_MASTER))
 		{
 			giveItems(player, SWORD_OF_DAMASCUS_BLADE, 1);
 			giveItems(player, ENRIA, 1);
 		}
-		else if ((playerClassId == ClassId.WARCRYER) || (playerClassId == ClassId.DOOMCRYER))
+		else if ((playerClassId == PlayerClass.WARCRYER) || (playerClassId == PlayerClass.DOOMCRYER))
 		{
 			giveItems(player, SWORD_OF_VALHALLA_BLADE, 1);
 			giveItems(player, ORIHARUKON_ORE, 1);
 			giveItems(player, VARNISH_OF_PURITY, 1);
 		}
-		else if ((playerClassId == ClassId.WARLOCK) || (playerClassId == ClassId.ARCANA_LORD))
+		else if ((playerClassId == PlayerClass.WARLOCK) || (playerClassId == PlayerClass.ARCANA_LORD))
 		{
 			giveItems(player, ART_OF_BATTLE_AXE_BLADE, 1);
 			giveItems(player, ENRIA, 1);

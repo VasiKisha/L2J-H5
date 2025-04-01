@@ -21,16 +21,16 @@
 package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcFirstTalk;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcFirstTalk;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
@@ -89,7 +89,7 @@ public class Guard extends Attackable
 		setRandomWalking(false);
 		super.onSpawn();
 		
-		getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+		getAI().setIntention(Intention.ACTIVE);
 		// check the region where this mob is, do not activate the AI if region is inactive.
 		// final WorldRegion region = World.getInstance().getRegion(this);
 		// if ((region != null) && (!region.isActive()))
@@ -131,14 +131,14 @@ public class Guard extends Attackable
 	 * <ul>
 	 * <li>Set the GuardInstance as target of the Player player (if necessary)</li>
 	 * <li>Send a Server->Client packet MyTargetSelected to the Player player (display the select window)</li>
-	 * <li>Set the Player Intention to AI_INTENTION_IDLE</li>
+	 * <li>Set the Player Intention to IDLE</li>
 	 * <li>Send a Server->Client packet ValidateLocation to correct the GuardInstance position and heading on the client</li>
 	 * </ul>
 	 * <br>
 	 * <b><u>Actions on second click on the GuardInstance (Attack it/Interact with it)</u>:</b>
 	 * <ul>
-	 * <li>If Player is in the _aggroList of the GuardInstance, set the Player Intention to AI_INTENTION_ATTACK</li>
-	 * <li>If Player is NOT in the _aggroList of the GuardInstance, set the Player Intention to AI_INTENTION_INTERACT (after a distance verification) and show message</li>
+	 * <li>If Player is in the _aggroList of the GuardInstance, set the Player Intention to ATTACK</li>
+	 * <li>If Player is NOT in the _aggroList of the GuardInstance, set the Player Intention to INTERACT (after a distance verification) and show message</li>
 	 * </ul>
 	 * <br>
 	 * <b><u>Example of use</u>:</b>
@@ -160,14 +160,14 @@ public class Guard extends Attackable
 		{
 			interact = false;
 			// TODO: Fix normal targeting
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+			player.getAI().setIntention(Intention.ATTACK, this);
 		}
 		
 		if (isFakePlayer() && isInCombat())
 		{
 			interact = false;
 			// TODO: Fix normal targeting
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+			player.getAI().setIntention(Intention.ATTACK, this);
 		}
 		
 		// Check if the Player already target the GuardInstance
@@ -181,16 +181,16 @@ public class Guard extends Attackable
 			// Check if the Player is in the _aggroList of the GuardInstance
 			if (isInAggroList(player))
 			{
-				// Set the Player Intention to AI_INTENTION_ATTACK
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+				// Set the Player Intention to ATTACK
+				player.getAI().setIntention(Intention.ATTACK, this);
 			}
 			else
 			{
 				// Calculate the distance between the Player and the Npc
 				if (!canInteract(player))
 				{
-					// Set the Player Intention to AI_INTENTION_INTERACT
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+					// Set the Player Intention to INTERACT
+					player.getAI().setIntention(Intention.INTERACT, this);
 				}
 				else
 				{

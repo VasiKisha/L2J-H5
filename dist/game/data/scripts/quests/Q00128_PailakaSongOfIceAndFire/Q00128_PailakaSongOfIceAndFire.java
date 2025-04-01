@@ -16,15 +16,15 @@
  */
 package quests.Q00128_PailakaSongOfIceAndFire;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * Pailaka - Song of Ice and Fire (128)
@@ -282,7 +282,7 @@ public class Q00128_PailakaSongOfIceAndFire extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && qs.isStarted())
@@ -352,6 +352,5 @@ public class Q00128_PailakaSongOfIceAndFire extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 }

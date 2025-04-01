@@ -20,12 +20,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Blade Under Foot (512)
@@ -98,7 +98,7 @@ public class Q00512_BladeUnderFoot extends Quest
 	public void actionForEachPlayer(Player player, Npc npc, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
-		if ((qs != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if ((qs != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
 		{
 			final int playerCount = player.getParty().getMemberCount();
 			int itemCount = RAID_BOSSES.get(npc.getId()).getSecondChance();
@@ -160,7 +160,7 @@ public class Q00512_BladeUnderFoot extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if (qs != null)
@@ -175,7 +175,6 @@ public class Q00512_BladeUnderFoot extends Quest
 				playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

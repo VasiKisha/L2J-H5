@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.actor.tasks.player;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
@@ -43,6 +43,6 @@ public class StandUpTask implements Runnable
 		_player.setParalyzed(false);
 		_player.setSitting(false);
 		_player.setSittingProgress(false);
-		_player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		_player.getAI().setIntention(Intention.IDLE);
 	}
 }

@@ -19,6 +19,7 @@ package handlers.admincommandhandlers;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.AnnouncementsTable;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
@@ -29,9 +30,11 @@ import org.l2jmobius.gameserver.model.announce.AutoAnnouncement;
 import org.l2jmobius.gameserver.model.announce.IAnnouncement;
 import org.l2jmobius.gameserver.model.html.PageBuilder;
 import org.l2jmobius.gameserver.model.html.PageResult;
+import org.l2jmobius.gameserver.model.html.formatters.BypassParserFormatter;
+import org.l2jmobius.gameserver.model.html.pagehandlers.NextPrevPageHandler;
+import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
  * @author UnAfraid
@@ -59,7 +62,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 			{
 				if (!st.hasMoreTokens())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Syntax: //announce <text to announce here>");
+					activeChar.sendSysMessage("Syntax: //announce <text to announce here>");
 					return false;
 				}
 				String announce = st.nextToken();
@@ -92,7 +95,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						if (!st.hasMoreTokens())
 						{
 							final String content = HtmCache.getInstance().getHtm(activeChar, "data/html/admin/announces-add.htm");
-							Util.sendCBHtml(activeChar, content);
+							HtmlUtil.sendCBHtml(activeChar, content);
 							break;
 						}
 						final String annType = st.nextToken();
@@ -100,44 +103,44 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						final String annInitDelay = st.nextToken();
-						if (!Util.isDigit(annInitDelay))
+						if (!StringUtil.isNumeric(annInitDelay))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						final int initDelay = Integer.parseInt(annInitDelay) * 1000;
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						final String annDelay = st.nextToken();
-						if (!Util.isDigit(annDelay))
+						if (!StringUtil.isNumeric(annDelay))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						final int delay = Integer.parseInt(annDelay) * 1000;
 						if ((delay < (10 * 1000)) && ((type == AnnouncementType.AUTO_NORMAL) || (type == AnnouncementType.AUTO_CRITICAL)))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Delay cannot be less then 10 seconds!");
+							activeChar.sendSysMessage("Delay cannot be less then 10 seconds!");
 							break;
 						}
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						final String annRepeat = st.nextToken();
-						if (!Util.isDigit(annRepeat))
+						if (!StringUtil.isNumeric(annRepeat))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						int repeat = Integer.parseInt(annRepeat);
@@ -148,7 +151,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						String content = st.nextToken();
@@ -167,27 +170,27 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							announce = new Announcement(type, content, activeChar.getName());
 						}
 						AnnouncementsTable.getInstance().addAnnouncement(announce);
-						BuilderUtil.sendSysMessage(activeChar, "Announcement has been successfully added!");
+						activeChar.sendSysMessage("Announcement has been successfully added!");
 						return useAdminCommand("admin_announces list", activeChar);
 					}
 					case "edit":
 					{
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces edit <id>");
+							activeChar.sendSysMessage("Syntax: //announces edit <id>");
 							break;
 						}
 						final String annId = st.nextToken();
-						if (!Util.isDigit(annId))
+						if (!StringUtil.isNumeric(annId))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces edit <id>");
+							activeChar.sendSysMessage("Syntax: //announces edit <id>");
 							break;
 						}
 						final int id = Integer.parseInt(annId);
 						final IAnnouncement announce = AnnouncementsTable.getInstance().getAnnounce(id);
 						if (announce == null)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Announcement does not exist!");
+							activeChar.sendSysMessage("Announcement does not exist!");
 							break;
 						}
 						if (!st.hasMoreTokens())
@@ -214,7 +217,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							content = content.replace("%repeat%", announcementRepeat);
 							content = content.replace("%author%", announcementAuthor);
 							content = content.replace("%content%", announcementContent);
-							Util.sendCBHtml(activeChar, content);
+							HtmlUtil.sendCBHtml(activeChar, content);
 							break;
 						}
 						final String annType = st.nextToken();
@@ -233,7 +236,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 									}
 									default:
 									{
-										BuilderUtil.sendSysMessage(activeChar, "Announce type can be changed only to AUTO_NORMAL or AUTO_CRITICAL!");
+										activeChar.sendSysMessage("Announce type can be changed only to AUTO_NORMAL or AUTO_CRITICAL!");
 										return false;
 									}
 								}
@@ -251,7 +254,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 									}
 									default:
 									{
-										BuilderUtil.sendSysMessage(activeChar, "Announce type can be changed only to NORMAL or CRITICAL!");
+										activeChar.sendSysMessage("Announce type can be changed only to NORMAL or CRITICAL!");
 										return false;
 									}
 								}
@@ -261,44 +264,44 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						final String annInitDelay = st.nextToken();
-						if (!Util.isDigit(annInitDelay))
+						if (!StringUtil.isNumeric(annInitDelay))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						final int initDelay = Integer.parseInt(annInitDelay);
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						final String annDelay = st.nextToken();
-						if (!Util.isDigit(annDelay))
+						if (!StringUtil.isNumeric(annDelay))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						final int delay = Integer.parseInt(annDelay);
 						if ((delay < 10) && ((type == AnnouncementType.AUTO_NORMAL) || (type == AnnouncementType.AUTO_CRITICAL)))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Delay cannot be less then 10 seconds!");
+							activeChar.sendSysMessage("Delay cannot be less then 10 seconds!");
 							break;
 						}
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						final String annRepeat = st.nextToken();
-						if (!Util.isDigit(annRepeat))
+						if (!StringUtil.isNumeric(annRepeat))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces add <type> <delay> <repeat> <text>");
+							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
 						int repeat = Integer.parseInt(annRepeat);
@@ -332,30 +335,30 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							autoAnnounce.setRepeat(repeat);
 						}
 						announce.updateMe();
-						BuilderUtil.sendSysMessage(activeChar, "Announcement has been successfully edited!");
+						activeChar.sendSysMessage("Announcement has been successfully edited!");
 						return useAdminCommand("admin_announces list", activeChar);
 					}
 					case "remove":
 					{
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces remove <announcement id>");
+							activeChar.sendSysMessage("Syntax: //announces remove <announcement id>");
 							break;
 						}
 						final String token = st.nextToken();
-						if (!Util.isDigit(token))
+						if (!StringUtil.isNumeric(token))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces remove <announcement id>");
+							activeChar.sendSysMessage("Syntax: //announces remove <announcement id>");
 							break;
 						}
 						final int id = Integer.parseInt(token);
 						if (AnnouncementsTable.getInstance().deleteAnnouncement(id))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Announcement has been successfully removed!");
+							activeChar.sendSysMessage("Announcement has been successfully removed!");
 						}
 						else
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Announcement does not exist!");
+							activeChar.sendSysMessage("Announcement does not exist!");
 						}
 						return useAdminCommand("admin_announces list", activeChar);
 					}
@@ -371,13 +374,13 @@ public class AdminAnnouncements implements IAdminCommandHandler
 									autoAnnounce.restartMe();
 								}
 							}
-							BuilderUtil.sendSysMessage(activeChar, "Auto announcements has been successfully restarted");
+							activeChar.sendSysMessage("Auto announcements has been successfully restarted");
 							break;
 						}
 						final String token = st.nextToken();
-						if (!Util.isDigit(token))
+						if (!StringUtil.isNumeric(token))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces show <announcement id>");
+							activeChar.sendSysMessage("Syntax: //announces show <announcement id>");
 							break;
 						}
 						final int id = Integer.parseInt(token);
@@ -388,16 +391,16 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							{
 								final AutoAnnouncement autoAnnounce = (AutoAnnouncement) announce;
 								autoAnnounce.restartMe();
-								BuilderUtil.sendSysMessage(activeChar, "Auto announcement has been successfully restarted");
+								activeChar.sendSysMessage("Auto announcement has been successfully restarted");
 							}
 							else
 							{
-								BuilderUtil.sendSysMessage(activeChar, "This option has effect only on auto announcements!");
+								activeChar.sendSysMessage("This option has effect only on auto announcements!");
 							}
 						}
 						else
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Announcement does not exist!");
+							activeChar.sendSysMessage("Announcement does not exist!");
 						}
 						break;
 					}
@@ -405,13 +408,13 @@ public class AdminAnnouncements implements IAdminCommandHandler
 					{
 						if (!st.hasMoreTokens())
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces show <announcement id>");
+							activeChar.sendSysMessage("Syntax: //announces show <announcement id>");
 							break;
 						}
 						final String token = st.nextToken();
-						if (!Util.isDigit(token))
+						if (!StringUtil.isNumeric(token))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Syntax: //announces show <announcement id>");
+							activeChar.sendSysMessage("Syntax: //announces show <announcement id>");
 							break;
 						}
 						final int id = Integer.parseInt(token);
@@ -440,10 +443,10 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							content = content.replace("%repeat%", announcementRepeat);
 							content = content.replace("%author%", announcementAuthor);
 							content = content.replace("%content%", announcementContent);
-							Util.sendCBHtml(activeChar, content);
+							HtmlUtil.sendCBHtml(activeChar, content);
 							break;
 						}
-						BuilderUtil.sendSysMessage(activeChar, "Announcement does not exist!");
+						activeChar.sendSysMessage("Announcement does not exist!");
 						return useAdminCommand("admin_announces list", activeChar);
 					}
 					case "list":
@@ -451,15 +454,15 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						int page = 0;
 						if (st.hasMoreTokens())
 						{
-							final String token = st.nextToken();
-							if (Util.isDigit(token))
+							final String token = st.nextToken().replace("page=", "");
+							if (StringUtil.isNumeric(token))
 							{
 								page = Integer.parseInt(token);
 							}
 						}
 						
 						String content = HtmCache.getInstance().getHtm(activeChar, "data/html/admin/announces-list.htm");
-						final PageResult result = PageBuilder.newBuilder(AnnouncementsTable.getInstance().getAllAnnouncements(), 8, "bypass admin_announces list").currentPage(page).bodyHandler((pages, announcement, sb) ->
+						final PageResult result = PageBuilder.newBuilder(AnnouncementsTable.getInstance().getAllAnnouncements(), 8, "bypass admin_announces list").currentPage(page).pageHandler(NextPrevPageHandler.INSTANCE).formatter(BypassParserFormatter.INSTANCE).style(ButtonsStyle.INSTANCE).bodyHandler((pages, announcement, sb) ->
 						{
 							sb.append("<tr>");
 							sb.append("<td width=5></td>");
@@ -491,7 +494,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						
 						content = content.replace("%pages%", result.getPagerTemplate().toString());
 						content = content.replace("%announcements%", result.getBodyTemplate().toString());
-						Util.sendCBHtml(activeChar, content);
+						HtmlUtil.sendCBHtml(activeChar, content);
 						break;
 					}
 				}

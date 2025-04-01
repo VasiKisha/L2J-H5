@@ -18,7 +18,7 @@ package org.l2jmobius.gameserver.model.conditions;
 
 import java.util.Set;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.skill.Skill;

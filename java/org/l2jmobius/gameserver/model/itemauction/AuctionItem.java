@@ -17,8 +17,10 @@
 package org.l2jmobius.gameserver.model.itemauction;
 
 import org.l2jmobius.gameserver.data.xml.ItemData;
+import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.model.Augmentation;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 
 /**
@@ -76,7 +78,7 @@ public class AuctionItem
 	
 	public Item createNewItemInstance()
 	{
-		final Item item = ItemData.getInstance().createItem("ItemAuction", _itemId, _itemCount, null, null);
+		final Item item = ItemManager.createItem(ItemProcessType.RESTORE, _itemId, _itemCount, null, null);
 		item.setEnchantLevel(item.getDefaultEnchantLevel());
 		
 		final int augmentationId = _itemExtra.getInt("augmentation_id", 0);

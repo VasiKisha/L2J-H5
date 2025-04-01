@@ -22,12 +22,12 @@ import java.util.Collections;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Warehouse Keeper's Pastime (384)
@@ -662,7 +662,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPlayerFromParty(killer, npc);
 		if (qs != null)
@@ -879,7 +879,6 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private QuestState getRandomPlayerFromParty(Player player, Npc npc)
@@ -897,7 +896,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = getQuestState(pm, false);
-				if ((qss != null) && qss.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
+				if ((qss != null) && qss.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
 				{
 					candidates.add(qss);
 				}

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.cache;
 
@@ -27,19 +31,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.file.filter.HTMLFilter;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.BuilderUtil;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 
 /**
- * @author Layane
- * @author Zoey76
+ * @author Layane, Mobius
  */
 public class HtmCache
 {
 	private static final Logger LOGGER = Logger.getLogger(HtmCache.class.getName());
-	
-	private static final HTMLFilter HTML_FILTER = new HTMLFilter();
 	
 	private static final Map<String, String> HTML_CACHE = Config.HTM_CACHE ? new HashMap<>() : new ConcurrentHashMap<>();
 	
@@ -56,12 +57,12 @@ public class HtmCache
 		reload(Config.DATAPACK_ROOT);
 	}
 	
-	public void reload(File f)
+	public void reload(File file)
 	{
 		if (Config.HTM_CACHE)
 		{
 			LOGGER.info("Html cache start...");
-			parseDir(f);
+			parseDir(file);
 			LOGGER.info("Cache[HTML]: " + String.format("%.3f", getMemoryUsage()) + " megabytes on " + _loadedFiles + " files loaded.");
 		}
 		else
@@ -73,9 +74,9 @@ public class HtmCache
 		}
 	}
 	
-	public void reloadPath(File f)
+	public void reloadPath(File file)
 	{
-		parseDir(f);
+		parseDir(file);
 		LOGGER.info("Cache[HTML]: Reloaded specified path.");
 	}
 	
@@ -110,7 +111,13 @@ public class HtmCache
 	
 	public String loadFile(File file)
 	{
-		if (!HTML_FILTER.accept(file))
+		if ((file == null) || !file.isFile())
+		{
+			return null;
+		}
+		
+		final String lowerCaseName = file.getName().toLowerCase();
+		if (!(lowerCaseName.endsWith(".htm") || lowerCaseName.endsWith(".html")))
 		{
 			return null;
 		}
@@ -182,7 +189,7 @@ public class HtmCache
 		
 		if ((player != null) && player.isGM() && Config.GM_DEBUG_HTML_PATHS)
 		{
-			BuilderUtil.sendHtmlMessage(player, newPath.substring(5));
+			player.sendPacket(new CreatureSay(null, ChatType.GENERAL, "HTML", newPath.substring(5)));
 		}
 		
 		return content;
@@ -191,15 +198,6 @@ public class HtmCache
 	public boolean contains(String path)
 	{
 		return HTML_CACHE.containsKey(path);
-	}
-	
-	/**
-	 * @param path The path to the HTM
-	 * @return {@code true} if the path targets a HTM or HTML file, {@code false} otherwise.
-	 */
-	public boolean isLoadable(String path)
-	{
-		return HTML_FILTER.accept(new File(Config.DATAPACK_ROOT, path));
 	}
 	
 	public static HtmCache getInstance()

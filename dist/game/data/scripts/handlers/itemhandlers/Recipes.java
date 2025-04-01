@@ -22,6 +22,7 @@ import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.RecipeList;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -110,7 +111,7 @@ public class Recipes implements IItemHandler
 			player.registerCommonRecipeList(rp, true);
 		}
 		
-		player.destroyItem("Consume", item.getObjectId(), 1, null, false);
+		player.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false);
 		final SystemMessage sm = new SystemMessage(SystemMessageId.S1_HAS_BEEN_ADDED);
 		sm.addItemName(item);
 		player.sendPacket(sm);

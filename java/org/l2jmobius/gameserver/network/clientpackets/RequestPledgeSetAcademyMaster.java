@@ -18,8 +18,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -51,7 +51,7 @@ public class RequestPledgeSetAcademyMaster extends ClientPacket
 			return;
 		}
 		
-		if (!player.hasClanPrivilege(ClanPrivilege.CL_APPRENTICE))
+		if (!player.hasAccess(ClanAccess.DISMISS_MENTEE))
 		{
 			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_THE_RIGHT_TO_DISMISS_AN_APPRENTICE);
 			return;

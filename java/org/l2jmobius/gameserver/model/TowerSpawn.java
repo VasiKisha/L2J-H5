@@ -18,12 +18,10 @@ package org.l2jmobius.gameserver.model;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
-
 /**
  * @author malyelfik
  */
-public class TowerSpawn implements IIdentifiable
+public class TowerSpawn
 {
 	private final int _npcId;
 	private final Location _location;
@@ -47,7 +45,6 @@ public class TowerSpawn implements IIdentifiable
 	 * Gets the NPC ID.
 	 * @return the NPC ID
 	 */
-	@Override
 	public int getId()
 	{
 		return _npcId;

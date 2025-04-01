@@ -17,11 +17,11 @@
 package ai.areas.Hellbound.AI.NPC.Natives;
 
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
@@ -176,12 +176,11 @@ public class Natives extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if ((npc.getId() == NATIVE) && (HellboundEngine.getInstance().getLevel() < 6))
 		{
 			startQuestTimer("hungry_death", 600000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 }

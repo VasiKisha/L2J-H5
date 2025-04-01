@@ -1370,7 +1370,6 @@
 		<set name="affectRange" val="150" />
 		<set name="castRange" val="500" />
 		<set name="coolTime" val="800" />
-		<set name="coolTime" val="800" />
 		<set name="effectPoint" val="-100" />
 		<set name="effectRange" val="1000" />
 		<set name="hitTime" val="3200" />

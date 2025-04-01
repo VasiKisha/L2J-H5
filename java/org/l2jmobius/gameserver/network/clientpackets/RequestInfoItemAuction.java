@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.instancemanager.ItemAuctionManager;
+import org.l2jmobius.gameserver.managers.ItemAuctionManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemauction.ItemAuction;
 import org.l2jmobius.gameserver.model.itemauction.ItemAuctionInstance;

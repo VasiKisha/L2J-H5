@@ -16,8 +16,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.FlyType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -25,9 +24,10 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.FlyType;
 import org.l2jmobius.gameserver.network.serverpackets.FlyToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Blink effect implementation.<br>
@@ -59,7 +59,7 @@ public class Blink extends AbstractEffect
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
 		final int radius = skill.getFlyRadius();
-		final double angle = Util.convertHeadingToDegree(effected.getHeading());
+		final double angle = LocationUtil.convertHeadingToDegree(effected.getHeading());
 		final double radian = Math.toRadians(angle);
 		final double course = Math.toRadians(skill.getFlyCourse());
 		final int x1 = (int) (Math.cos(Math.PI + radian + course) * radius);
@@ -68,7 +68,7 @@ public class Blink extends AbstractEffect
 		final int y = effected.getY() + y1;
 		final int z = effected.getZ();
 		final Location destination = GeoEngine.getInstance().getValidLocation(effected.getX(), effected.getY(), effected.getZ(), x, y, z, effected.getInstanceId());
-		effected.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		effected.getAI().setIntention(Intention.IDLE);
 		effected.broadcastPacket(new FlyToLocation(effected, destination, FlyType.DUMMY));
 		effected.abortAttack();
 		effected.abortCast();

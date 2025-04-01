@@ -22,11 +22,12 @@ import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
+import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.model.AccessLevel;
 import org.l2jmobius.gameserver.model.BlockList;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
@@ -132,6 +133,12 @@ public class RequestSendPost extends ClientPacket
 		}
 		
 		if (player.getActiveTradeList() != null)
+		{
+			player.sendPacket(SystemMessageId.YOU_CANNOT_FORWARD_DURING_AN_EXCHANGE);
+			return;
+		}
+		
+		if (player.isInventoryDisabled())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_FORWARD_DURING_AN_EXCHANGE);
 			return;
@@ -251,6 +258,8 @@ public class RequestSendPost extends ClientPacket
 		final Message msg = new Message(player.getObjectId(), receiverId, _isCod, _subject, _text, _reqAdena);
 		if (removeItems(player, msg))
 		{
+			player.setMultiSell(null); // Should not trade during mail.
+			
 			MailManager.getInstance().sendMessage(msg);
 			player.sendPacket(ExNoticePostSent.valueOf(true));
 			player.sendPacket(SystemMessageId.MAIL_SUCCESSFULLY_SENT);
@@ -282,7 +291,7 @@ public class RequestSendPost extends ClientPacket
 		}
 		
 		// Check if enough adena and charge the fee
-		if ((currentAdena < fee) || !player.reduceAdena("MailFee", fee, null, false))
+		if ((currentAdena < fee) || !player.reduceAdena(ItemProcessType.FEE, fee, null, false))
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_FORWARD_BECAUSE_YOU_DON_T_HAVE_ENOUGH_ADENA);
 			return false;
@@ -317,7 +326,7 @@ public class RequestSendPost extends ClientPacket
 				return false;
 			}
 			
-			final Item newItem = player.getInventory().transferItem("SendMail", i.getObjectId(), i.getCount(), attachments, player, receiver);
+			final Item newItem = player.getInventory().transferItem(ItemProcessType.TRANSFER, i.getObjectId(), i.getCount(), attachments, player, receiver);
 			if (newItem == null)
 			{
 				PacketLogger.warning("Error adding attachment for char " + player.getName() + " (newitem == null)");

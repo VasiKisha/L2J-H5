@@ -17,11 +17,11 @@
 package ai.areas.Hellbound.AI.NPC.Warpgate;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 
@@ -90,7 +90,7 @@ public class Warpgate extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -104,7 +104,6 @@ public class Warpgate extends AbstractNpcAI
 				player.setMinimapAllowed(true);
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 	
 	private static boolean canEnter(Player player)

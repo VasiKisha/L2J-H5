@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="4800" levels="1" name="Raid Boss - Level 53">
 		<!-- A powerful, mutant Monster Eye. Some scholars believe it has achieved the final stage of Monster Eye evolution. It is incredibly intelligent and arrogant. Years ago it ran away from Argos, the father of all Monster Eyes, to the south. It thinks and schemes, and plots to steal Argos's power someday. It believes that it grows stronger by eating the brains of other intelligent living beings, and so it feeds often. -->
@@ -470,7 +470,7 @@
 		<set name="targetType" val="SELF" />
 	</skill>
 	<skill id="4867" levels="1" name="Raid Boss - Level 50">
-		<!-- She was a beautiful lady of a respectable family from her birth, but she angered Einhasad by her arrogance and was turned into a Medusa. She could not adjust to her new state and became a brutal monster that takes her anger out on people near her. She even turned her fianc? who remained true to her into stone, and then smashed him to pieces. -->
+		<!-- She was a beautiful lady of a respectable family from her birth, but she angered Einhasad by her arrogance and was turned into a Medusa. She could not adjust to her new state and became a brutal monster that takes her anger out on people near her. She even turned her fiancé who remained true to her into stone, and then smashed him to pieces. -->
 		<set name="icon" val="icon.skillraid" />
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="P" />

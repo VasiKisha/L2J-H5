@@ -21,8 +21,8 @@ import java.util.Map;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -99,14 +99,13 @@ public class Selina extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final BuffHolder buff = BUFFS.get(Integer.toString(skill.getId()));
 		if (buff != null)
 		{
 			takeItems(player, GOLDEN_RAM_COIN, buff.getCost());
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	public static void main(String[] args)

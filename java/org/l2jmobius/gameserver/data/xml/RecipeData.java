@@ -27,11 +27,11 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.data.holders.RecipeHolder;
+import org.l2jmobius.gameserver.data.holders.RecipeStatHolder;
 import org.l2jmobius.gameserver.model.RecipeList;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.RecipeHolder;
-import org.l2jmobius.gameserver.model.holders.RecipeStatHolder;
 
 /**
  * The Class RecipeData.
@@ -58,13 +58,13 @@ public class RecipeData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		// TODO: Cleanup checks enforced by XSD.
 		final List<RecipeHolder> recipePartList = new ArrayList<>();
 		final List<RecipeStatHolder> recipeStatUseList = new ArrayList<>();
 		final List<RecipeStatHolder> recipeAltStatChangeList = new ArrayList<>();
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -261,18 +261,11 @@ public class RecipeData implements IXmlReader
 		return recipeList;
 	}
 	
-	/**
-	 * Gets the single instance of RecipeData.
-	 * @return single instance of RecipeData
-	 */
 	public static RecipeData getInstance()
 	{
 		return SingletonHolder.INSTANCE;
 	}
 	
-	/**
-	 * The Class SingletonHolder.
-	 */
 	private static class SingletonHolder
 	{
 		protected static final RecipeData INSTANCE = new RecipeData();

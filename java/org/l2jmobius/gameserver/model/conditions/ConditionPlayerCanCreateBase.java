@@ -16,10 +16,10 @@
  */
 package org.l2jmobius.gameserver.model.conditions;
 
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;

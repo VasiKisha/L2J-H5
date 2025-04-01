@@ -25,11 +25,11 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.instancemanager.AntiFeedManager;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.managers.AntiFeedManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;

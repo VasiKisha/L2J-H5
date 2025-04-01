@@ -19,15 +19,18 @@ package quests.Q00260_OrcHunting;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.network.NpcStringId;
 
-import quests.Q00281_HeadForTheHills.Q00281_HeadForTheHills;
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Orc Hunting (260)
@@ -40,6 +43,8 @@ public class Q00260_OrcHunting extends Quest
 	// Items
 	private static final int ORC_AMULET = 1114;
 	private static final int ORC_NECKLACE = 1115;
+	private static final ItemHolder SPIRITSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5790, 3000);
+	private static final ItemHolder SOULSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5789, 6000);
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -53,6 +58,7 @@ public class Q00260_OrcHunting extends Quest
 	}
 	// Misc
 	private static final int MIN_LEVEL = 6;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00260_OrcHunting()
 	{
@@ -97,7 +103,7 @@ public class Q00260_OrcHunting extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && (getRandom(10) > 4))
@@ -105,7 +111,6 @@ public class Q00260_OrcHunting extends Quest
 			giveItems(killer, MONSTERS.get(npc.getId()), 1);
 			playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -128,7 +133,42 @@ public class Q00260_OrcHunting extends Quest
 					final long necklaces = getQuestItemsCount(player, ORC_NECKLACE);
 					giveAdena(player, ((amulets * 12) + (necklaces * 30) + ((amulets + necklaces) >= 10 ? 1000 : 0)), true);
 					takeItems(player, -1, getRegisteredItemIds());
-					Q00281_HeadForTheHills.giveNewbieReward(player);
+					
+					if ((player.getLevel() < 25) && (getOneTimeQuestFlag(player, 57) == 0))
+					{
+						if (player.isMageClass())
+						{
+							giveItems(player, SPIRITSHOTS_NO_GRADE_FOR_ROOKIES);
+							playSound(player, "tutorial_voice_027");
+						}
+						else
+						{
+							giveItems(player, SOULSHOTS_NO_GRADE_FOR_ROOKIES);
+							playSound(player, "tutorial_voice_026");
+						}
+						
+						setOneTimeQuestFlag(player, 57, 1);
+					}
+					
+					// Newbie Guide.
+					final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+					if (newbieGuide != null)
+					{
+						final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+						if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, 1000);
+							showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_SOULSHOT_FOR_BEGINNERS_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+						}
+						else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 10000) / 1000) != 1)
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 1000);
+							showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_SOULSHOT_FOR_BEGINNERS_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+						}
+					}
+					
 					htmltext = "30221-06.html";
 				}
 				else

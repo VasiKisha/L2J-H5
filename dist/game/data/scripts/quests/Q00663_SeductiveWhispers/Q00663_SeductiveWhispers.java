@@ -22,14 +22,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Seductive Whispers (663)
@@ -723,7 +723,7 @@ public class Q00663_SeductiveWhispers extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final List<Player> players = new LinkedList<>();
 		final QuestState qs = getQuestState(killer, false);
@@ -748,7 +748,7 @@ public class Q00663_SeductiveWhispers extends Quest
 		if (!players.isEmpty())
 		{
 			final Player rewardedPlayer = players.get(getRandom(players.size()));
-			if (Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, rewardedPlayer, false))
+			if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, rewardedPlayer, false))
 			{
 				final int rnd = getRandom(1000);
 				if (npc.getId() == SPITEFUL_SOUL_LEADER)
@@ -769,7 +769,6 @@ public class Q00663_SeductiveWhispers extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private String getHtml(Player player, String htmlName, int card1pic, int card2pic, int winCount, int card1)

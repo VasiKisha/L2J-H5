@@ -20,15 +20,15 @@
  */
 package handlers.actionhandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.holders.creature.DoorRequestHolder;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.DoorRequestHolder;
 import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
 import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
 
@@ -52,14 +52,14 @@ public class DoorAction implements IActionHandler
 			{
 				if (Math.abs(player.getZ() - target.getZ()) < 400)
 				{
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+					player.getAI().setIntention(Intention.ATTACK, target);
 				}
 			}
 			else if ((clan != null) && (door.getClanHall() != null) && (player.getClanId() == door.getClanHall().getOwnerId()))
 			{
 				if (!door.isInsideRadius2D(player, Npc.INTERACTION_DISTANCE))
 				{
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
+					player.getAI().setIntention(Intention.INTERACT, target);
 				}
 				else if (!door.getClanHall().isSiegableHall() || !((SiegableHall) door.getClanHall()).isInSiege())
 				{
@@ -78,7 +78,7 @@ public class DoorAction implements IActionHandler
 			{
 				if (!target.asCreature().isInsideRadius2D(player, Npc.INTERACTION_DISTANCE))
 				{
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
+					player.getAI().setIntention(Intention.INTERACT, target);
 				}
 				else
 				{

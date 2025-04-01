@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.network.PacketLogger;

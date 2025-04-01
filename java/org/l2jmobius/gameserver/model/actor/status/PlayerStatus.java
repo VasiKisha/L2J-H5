@@ -22,23 +22,23 @@ package org.l2jmobius.gameserver.model.actor.status;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.NpcNameLocalisationData;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.instancemanager.DuelManager;
-import org.l2jmobius.gameserver.model.Duel;
+import org.l2jmobius.gameserver.managers.DuelManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Duel;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 public class PlayerStatus extends PlayableStatus
 {
@@ -143,7 +143,7 @@ public class PlayerStatus extends PlayableStatus
 			// Check and calculate transfered damage
 			final PlayerStat stat = player.getStat();
 			final Summon summon = player.getSummon();
-			if (player.hasServitor() && Util.checkIfInRange(1000, player, summon, true))
+			if (player.hasServitor() && LocationUtil.checkIfInRange(1000, player, summon, true))
 			{
 				tDmg = ((int) amount * (int) stat.calcStat(Stat.TRANSFER_DAMAGE_PERCENT, 0, null, null)) / 100;
 				
@@ -179,7 +179,7 @@ public class PlayerStatus extends PlayableStatus
 			}
 			
 			final Player caster = player.getTransferingDamageTo();
-			if ((caster != null) && (player.getParty() != null) && Util.checkIfInRange(1000, player, caster, true) && !caster.isDead() && (player != caster) && player.getParty().getMembers().contains(caster))
+			if ((caster != null) && (player.getParty() != null) && LocationUtil.checkIfInRange(1000, player, caster, true) && !caster.isDead() && (player != caster) && player.getParty().getMembers().contains(caster))
 			{
 				int transferDmg = Math.min((int) caster.getCurrentHp() - 1, ((int) amount * (int) stat.calcStat(Stat.TRANSFER_DAMAGE_TO_PLAYER, 0, null, null)) / 100);
 				if (transferDmg > 0)
@@ -187,7 +187,7 @@ public class PlayerStatus extends PlayableStatus
 					int membersInRange = 0;
 					for (Player member : caster.getParty().getMembers())
 					{
-						if (Util.checkIfInRange(1000, member, caster, false) && (member != caster))
+						if (LocationUtil.checkIfInRange(1000, member, caster, false) && (member != caster))
 						{
 							membersInRange++;
 						}
@@ -271,7 +271,7 @@ public class PlayerStatus extends PlayableStatus
 					stopHpMpRegeneration();
 					if (attacker != null)
 					{
-						attacker.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+						attacker.getAI().setIntention(Intention.ACTIVE);
 						attacker.sendPacket(ActionFailed.STATIC_PACKET);
 						attacker.setTarget(null);
 						attacker.abortAttack();
@@ -301,7 +301,7 @@ public class PlayerStatus extends PlayableStatus
 				player.setIsPendingRevive(true);
 				if (player.hasSummon())
 				{
-					player.getSummon().getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE, null);
+					player.getSummon().getAI().setIntention(Intention.IDLE, null);
 				}
 				return;
 			}

@@ -17,12 +17,13 @@
 package ai.others.TerritoryManagers;
 
 import org.l2jmobius.gameserver.data.xml.MultisellData;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
@@ -73,7 +74,7 @@ public class TerritoryManagers extends AbstractNpcAI
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		if ((player.getClassId().level() < 2) || (player.getLevel() < 40))
+		if ((player.getPlayerClass().level() < 2) || (player.getLevel() < 40))
 		{
 			// If the player does not have the second class transfer or is under level 40, it cannot continue.
 			return "36490-08.html";
@@ -144,9 +145,9 @@ public class TerritoryManagers extends AbstractNpcAI
 					processNoblesseQuest(player, 247, null);
 					
 					// Take the Territory Badges.
-					player.destroyItemByItemId(event, itemId, TerritoryWarManager.MINTWBADGEFORNOBLESS, npc, true);
+					player.destroyItemByItemId(ItemProcessType.FEE, itemId, TerritoryWarManager.MINTWBADGEFORNOBLESS, npc, true);
 					// Give Noblesse Tiara to the player.
-					player.addItem(event, 7694, 1, npc, true);
+					player.addItem(ItemProcessType.REWARD, 7694, 1, npc, true);
 					// Set Noblesse status to the player.
 					player.setNoble(true);
 					player.updateUserInfo();
@@ -167,15 +168,15 @@ public class TerritoryManagers extends AbstractNpcAI
 					}
 					// Remove the following items
 					// Caradine's Letter
-					deleteIfExist(player, 7678, event, npc);
+					deleteIfExist(player, 7678, npc);
 					// Caradine's Letter
-					deleteIfExist(player, 7679, event, npc);
+					deleteIfExist(player, 7679, npc);
 					// Star of Destiny
-					deleteIfExist(player, 5011, event, npc);
+					deleteIfExist(player, 5011, npc);
 					// Virgil's Letter
-					deleteIfExist(player, 1239, event, npc);
+					deleteIfExist(player, 1239, npc);
 					// Arkenia's Letter
-					deleteIfExist(player, 1246, event, npc);
+					deleteIfExist(player, 1246, npc);
 				}
 				break;
 			}
@@ -234,8 +235,8 @@ public class TerritoryManagers extends AbstractNpcAI
 				else
 				{
 					html.setFile(player, "data/scripts/ai/others/TerritoryManagers/reward-2.html");
-					player.addItem("ReceiveRewards", badgeId, reward[1], npc, true);
-					player.addAdena("ReceiveRewards", reward[1] * 5000, npc, true);
+					player.addItem(ItemProcessType.REWARD, badgeId, reward[1], npc, true);
+					player.addAdena(ItemProcessType.REWARD, reward[1] * 5000, npc, true);
 					TerritoryWarManager.getInstance().resetReward(player);
 				}
 				
@@ -293,15 +294,14 @@ public class TerritoryManagers extends AbstractNpcAI
 	 * Deletes the item if exists.
 	 * @param player the player owner of the item that must be deleted
 	 * @param itemId the item Id of the item that must be deleted
-	 * @param event the event leading to this deletion
 	 * @param npc the npc referencing this deletion
 	 */
-	private void deleteIfExist(Player player, int itemId, String event, Npc npc)
+	private void deleteIfExist(Player player, int itemId, Npc npc)
 	{
 		final Item item = player.getInventory().getItemByItemId(itemId);
 		if (item != null)
 		{
-			player.destroyItem(event, item, npc, true);
+			player.destroyItem(ItemProcessType.DESTROY, item, npc, true);
 		}
 	}
 	

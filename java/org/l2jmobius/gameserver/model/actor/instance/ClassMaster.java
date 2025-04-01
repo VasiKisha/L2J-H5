@@ -22,16 +22,17 @@ package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialCloseHtml;
@@ -176,7 +177,7 @@ public class ClassMaster extends Merchant
 			return;
 		}
 		
-		final ClassId classId = player.getClassId();
+		final PlayerClass classId = player.getPlayerClass();
 		if (getMinLevel(classId.level()) > player.getLevel())
 		{
 			return;
@@ -199,7 +200,7 @@ public class ClassMaster extends Merchant
 		}
 		else if (!Config.CLASS_MASTER_SETTINGS.isAllowed(level))
 		{
-			final int jobLevel = player.getClassId().level();
+			final int jobLevel = player.getPlayerClass().level();
 			final StringBuilder sb = new StringBuilder(100);
 			sb.append("<html><body>");
 			switch (jobLevel)
@@ -263,7 +264,7 @@ public class ClassMaster extends Merchant
 		}
 		else
 		{
-			final ClassId currentClassId = player.getClassId();
+			final PlayerClass currentClassId = player.getPlayerClass();
 			if (currentClassId.level() >= level)
 			{
 				html.setFile(player, "data/html/classmaster/nomore.htm");
@@ -274,9 +275,9 @@ public class ClassMaster extends Merchant
 				if ((player.getLevel() >= minLevel) || Config.ALLOW_ENTIRE_TREE)
 				{
 					final StringBuilder menu = new StringBuilder(100);
-					for (ClassId cid : ClassId.values())
+					for (PlayerClass cid : PlayerClass.values())
 					{
-						if ((cid == ClassId.INSPECTOR) && (player.getTotalSubClasses() < 2))
+						if ((cid == PlayerClass.INSPECTOR) && (player.getTotalSubClasses() < 2))
 						{
 							continue;
 						}
@@ -320,7 +321,7 @@ public class ClassMaster extends Merchant
 	
 	private static void showTutorialHtml(Player player)
 	{
-		final ClassId currentClassId = player.getClassId();
+		final PlayerClass currentClassId = player.getPlayerClass();
 		if ((getMinLevel(currentClassId.level()) > player.getLevel()) && !Config.ALLOW_ENTIRE_TREE)
 		{
 			return;
@@ -330,9 +331,9 @@ public class ClassMaster extends Merchant
 		msg = msg.replace("%name%", ClassListData.getInstance().getClass(currentClassId).getClassName()); // getEscapedClientCode());
 		
 		final StringBuilder menu = new StringBuilder(100);
-		for (ClassId cid : ClassId.values())
+		for (PlayerClass cid : PlayerClass.values())
 		{
-			if ((cid == ClassId.INSPECTOR) && (player.getTotalSubClasses() < 2))
+			if ((cid == PlayerClass.INSPECTOR) && (player.getTotalSubClasses() < 2))
 			{
 				continue;
 			}
@@ -349,7 +350,7 @@ public class ClassMaster extends Merchant
 	
 	private static boolean checkAndChangeClass(Player player, int value)
 	{
-		final ClassId currentClassId = player.getClassId();
+		final PlayerClass currentClassId = player.getPlayerClass();
 		if ((getMinLevel(currentClassId.level()) > player.getLevel()) && !Config.ALLOW_ENTIRE_TREE)
 		{
 			return false;
@@ -382,7 +383,7 @@ public class ClassMaster extends Merchant
 		// get all required items for class transfer
 		for (ItemHolder holder : Config.CLASS_MASTER_SETTINGS.getRequireItems(newJobLevel))
 		{
-			if (!player.destroyItemByItemId("ClassMaster", holder.getId(), holder.getCount(), player, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, holder.getId(), holder.getCount(), player, true))
 			{
 				return false;
 			}
@@ -391,14 +392,14 @@ public class ClassMaster extends Merchant
 		// reward player with items
 		for (ItemHolder holder : Config.CLASS_MASTER_SETTINGS.getRewardItems(newJobLevel))
 		{
-			player.addItem("ClassMaster", holder.getId(), holder.getCount(), player, true);
+			player.addItem(ItemProcessType.REWARD, holder.getId(), holder.getCount(), player, true);
 		}
 		
-		player.setClassId(value);
+		player.setPlayerClass(value);
 		
 		if (player.isSubClassActive())
 		{
-			player.getSubClasses().get(player.getClassIndex()).setClassId(player.getActiveClass());
+			player.getSubClasses().get(player.getClassIndex()).setPlayerClass(player.getActiveClass());
 		}
 		else
 		{
@@ -407,7 +408,7 @@ public class ClassMaster extends Merchant
 		
 		player.broadcastUserInfo();
 		
-		if (Config.CLASS_MASTER_SETTINGS.isAllowed(player.getClassId().level() + 1) && Config.ALTERNATE_CLASS_MASTER && (((player.getClassId().level() == 1) && (player.getLevel() >= 40)) || (CategoryData.getInstance().isInCategory(CategoryType.THIRD_CLASS_GROUP, player.getClassId().getId()) && (player.getLevel() >= 76))))
+		if (Config.CLASS_MASTER_SETTINGS.isAllowed(player.getPlayerClass().level() + 1) && Config.ALTERNATE_CLASS_MASTER && (((player.getPlayerClass().level() == 1) && (player.getLevel() >= 40)) || (CategoryData.getInstance().isInCategory(CategoryType.THIRD_CLASS_GROUP, player.getPlayerClass().getId()) && (player.getLevel() >= 76))))
 		{
 			showQuestionMark(player);
 		}
@@ -448,9 +449,9 @@ public class ClassMaster extends Merchant
 	 * @param value new class index
 	 * @return
 	 */
-	private static boolean validateClassId(ClassId oldCID, int value)
+	private static boolean validateClassId(PlayerClass oldCID, int value)
 	{
-		return validateClassId(oldCID, ClassId.getClassId(value));
+		return validateClassId(oldCID, PlayerClass.getPlayerClass(value));
 	}
 	
 	/**
@@ -459,7 +460,7 @@ public class ClassMaster extends Merchant
 	 * @param newCID new ClassId
 	 * @return true if class change is possible
 	 */
-	private static boolean validateClassId(ClassId oldCID, ClassId newCID)
+	private static boolean validateClassId(PlayerClass oldCID, PlayerClass newCID)
 	{
 		if ((newCID == null) || (newCID.getRace() == null))
 		{

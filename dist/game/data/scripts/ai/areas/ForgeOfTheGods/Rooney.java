@@ -16,12 +16,12 @@
  */
 package ai.areas.ForgeOfTheGods;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -125,7 +125,7 @@ public class Rooney extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer() && npc.isScriptValue(0))
 		{
@@ -133,7 +133,6 @@ public class Rooney extends AbstractNpcAI
 			startQuestTimer("teleport", 60000, npc, null);
 			npc.setScriptValue(1);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	public static void main(String[] args)

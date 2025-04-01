@@ -21,7 +21,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Servitor;
@@ -30,9 +29,10 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q00230_TestOfTheSummoner.Q00230_TestOfTheSummoner;
@@ -106,7 +106,7 @@ public class Servitors extends AbstractNpcAI
 	public void onCreatureKill(OnCreatureDeath event)
 	{
 		if (event.getAttacker().isNpc() && event.getTarget().isServitor() //
-			&& Util.checkIfInRange(1500, event.getAttacker(), event.getTarget(), true))
+			&& LocationUtil.checkIfInRange(1500, event.getAttacker(), event.getTarget(), true))
 		{
 			final Servitor target = event.getTarget().asServitor();
 			final Player master = target.getOwner();

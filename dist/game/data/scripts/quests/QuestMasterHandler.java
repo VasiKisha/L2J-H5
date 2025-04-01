@@ -1,24 +1,39 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import quests.Dummy.Q00057_NewbieShots;
+import quests.Dummy.Q00201_HumanFighterTutorial;
+import quests.Dummy.Q00202_HumanMageTutorial;
+import quests.Dummy.Q00203_ElfTutorial;
+import quests.Dummy.Q00204_DarkElfTutorial;
+import quests.Dummy.Q00205_OrcTutorial;
+import quests.Dummy.Q00206_DwarfTutorial;
+import quests.Dummy.Q00207_NewbieWeaponCoupon;
+import quests.Dummy.Q00208_NewbieAccessoryCoupon;
+import quests.Dummy.Q00209_KamaelTutorial;
+import quests.Dummy.Q00728_TerritoryWar;
 import quests.Q00001_LettersOfLove.Q00001_LettersOfLove;
 import quests.Q00002_WhatWomenWant.Q00002_WhatWomenWant;
 import quests.Q00003_WillTheSealBeBroken.Q00003_WillTheSealBeBroken;
@@ -462,6 +477,7 @@ import quests.Q00688_DefeatTheElrokianRaiders.Q00688_DefeatTheElrokianRaiders;
 import quests.Q00690_JudesRequest.Q00690_JudesRequest;
 import quests.Q00691_MatrasSuspiciousRequest.Q00691_MatrasSuspiciousRequest;
 import quests.Q00692_HowtoOpposeEvil.Q00692_HowtoOpposeEvil;
+import quests.Q00693_DefeatingDragonkinRemnants.Q00693_DefeatingDragonkinRemnants;
 import quests.Q00694_BreakThroughTheHallOfSuffering.Q00694_BreakThroughTheHallOfSuffering;
 import quests.Q00695_DefendTheHallOfSuffering.Q00695_DefendTheHallOfSuffering;
 import quests.Q00696_ConquerTheHallOfErosion.Q00696_ConquerTheHallOfErosion;
@@ -490,7 +506,6 @@ import quests.Q00905_RefinedDragonBlood.Q00905_RefinedDragonBlood;
 import quests.Q00906_TheCallOfValakas.Q00906_TheCallOfValakas;
 import quests.Q00907_DragonTrophyValakas.Q00907_DragonTrophyValakas;
 import quests.Q00998_FallenAngelSelect.Q00998_FallenAngelSelect;
-import quests.Q00999_T1Tutorial.Q00999_T1Tutorial;
 import quests.Q10267_JourneyToGracia.Q10267_JourneyToGracia;
 import quests.Q10268_ToTheSeedOfInfinity.Q10268_ToTheSeedOfInfinity;
 import quests.Q10269_ToTheSeedOfDestruction.Q10269_ToTheSeedOfDestruction;
@@ -528,7 +543,7 @@ import quests.Q10504_JewelOfAntharas.Q10504_JewelOfAntharas;
 import quests.Q10505_JewelOfValakas.Q10505_JewelOfValakas;
 
 /**
- * @author NosBit
+ * @author NosBit, Mobius
  */
 public class QuestMasterHandler
 {
@@ -588,6 +603,7 @@ public class QuestMasterHandler
 		Q00051_OFullesSpecialBait.class,
 		Q00052_WilliesSpecialBait.class,
 		Q00053_LinnaeusSpecialBait.class,
+		Q00057_NewbieShots.class,
 		Q00060_GoodWorksReward.class,
 		Q00061_LawEnforcement.class,
 		Q00062_PathOfTheTrooper.class,
@@ -718,6 +734,15 @@ public class QuestMasterHandler
 		Q00196_SevenSignsSealOfTheEmperor.class,
 		Q00197_SevenSignsTheSacredBookOfSeal.class,
 		Q00198_SevenSignsEmbryo.class,
+		Q00201_HumanFighterTutorial.class,
+		Q00202_HumanMageTutorial.class,
+		Q00203_ElfTutorial.class,
+		Q00204_DarkElfTutorial.class,
+		Q00205_OrcTutorial.class,
+		Q00206_DwarfTutorial.class,
+		Q00207_NewbieWeaponCoupon.class,
+		Q00208_NewbieAccessoryCoupon.class,
+		Q00209_KamaelTutorial.class,
 		Q00211_TrialOfTheChallenger.class,
 		Q00212_TrialOfDuty.class,
 		Q00213_TrialOfTheSeeker.class,
@@ -979,6 +1004,7 @@ public class QuestMasterHandler
 		Q00690_JudesRequest.class,
 		Q00691_MatrasSuspiciousRequest.class,
 		Q00692_HowtoOpposeEvil.class,
+		Q00693_DefeatingDragonkinRemnants.class,
 		Q00694_BreakThroughTheHallOfSuffering.class,
 		Q00695_DefendTheHallOfSuffering.class,
 		Q00696_ConquerTheHallOfErosion.class,
@@ -999,6 +1025,7 @@ public class QuestMasterHandler
 		Q00716_PathToBecomingALordRune.class,
 		Q00726_LightWithinTheDarkness.class,
 		Q00727_HopeWithinTheDarkness.class,
+		Q00728_TerritoryWar.class,
 		Q00901_HowLavasaurusesAreMade.class,
 		Q00902_ReclaimOurEra.class,
 		Q00903_TheCallOfAntharas.class,
@@ -1007,7 +1034,6 @@ public class QuestMasterHandler
 		Q00906_TheCallOfValakas.class,
 		Q00907_DragonTrophyValakas.class,
 		Q00998_FallenAngelSelect.class,
-		Q00999_T1Tutorial.class,
 		Q10267_JourneyToGracia.class,
 		Q10268_ToTheSeedOfInfinity.class,
 		Q10269_ToTheSeedOfDestruction.class,

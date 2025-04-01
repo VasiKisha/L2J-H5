@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * @author kerberos
+ * @author Kerberos
  */
 public class ExStopMoveAirShip extends ServerPacket
 {

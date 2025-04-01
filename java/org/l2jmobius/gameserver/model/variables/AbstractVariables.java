@@ -19,14 +19,11 @@ package org.l2jmobius.gameserver.model.variables;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.l2jmobius.gameserver.model.StatSet;
-import org.l2jmobius.gameserver.model.interfaces.IDeletable;
-import org.l2jmobius.gameserver.model.interfaces.IRestorable;
-import org.l2jmobius.gameserver.model.interfaces.IStorable;
 
 /**
  * @author UnAfraid
  */
-public abstract class AbstractVariables extends StatSet implements IRestorable, IStorable, IDeletable
+public abstract class AbstractVariables extends StatSet
 {
 	private final AtomicBoolean _hasChanges = new AtomicBoolean(false);
 	

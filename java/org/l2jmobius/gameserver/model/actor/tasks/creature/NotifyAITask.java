@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.actor.tasks.creature;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.actor.Creature;
 
 /**
@@ -26,12 +26,12 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 public class NotifyAITask implements Runnable
 {
 	private final Creature _creature;
-	private final CtrlEvent _event;
+	private final Action _action;
 	
-	public NotifyAITask(Creature creature, CtrlEvent event)
+	public NotifyAITask(Creature creature, Action action)
 	{
 		_creature = creature;
-		_event = event;
+		_action = action;
 	}
 	
 	@Override
@@ -39,7 +39,7 @@ public class NotifyAITask implements Runnable
 	{
 		if (_creature != null)
 		{
-			_creature.getAI().notifyEvent(_event);
+			_creature.getAI().notifyAction(_action);
 		}
 	}
 }

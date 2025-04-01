@@ -21,13 +21,14 @@ import java.util.List;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
+import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.model.CropProcure;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
-import org.l2jmobius.gameserver.model.holders.UniqueItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.UniqueItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -181,11 +182,11 @@ public class RequestProcureCropList extends ClientPacket
 			}
 			
 			final CropProcure cp = i.getCropProcure();
-			if (!cp.decreaseAmount(i.getCount()) || ((fee > 0) && !player.reduceAdena("Manor", fee, manager, true)) || !player.destroyItem("Manor", i.getObjectId(), i.getCount(), manager, true))
+			if (!cp.decreaseAmount(i.getCount()) || ((fee > 0) && !player.reduceAdena(ItemProcessType.FEE, fee, manager, true)) || !player.destroyItem(ItemProcessType.FEE, i.getObjectId(), i.getCount(), manager, true))
 			{
 				continue;
 			}
-			player.addItem("Manor", i.getRewardId(), rewardItemCount, manager, true);
+			player.addItem(ItemProcessType.REWARD, i.getRewardId(), rewardItemCount, manager, true);
 			if (Config.ALT_MANOR_SAVE_ALL_ACTIONS)
 			{
 				updateList.add(cp);

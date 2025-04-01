@@ -17,14 +17,14 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.SummonRequestHolder;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.SummonRequestHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
@@ -80,7 +80,7 @@ public class CallPc extends AbstractEffect
 						target.sendPacket(sm);
 						return;
 					}
-					target.getInventory().destroyItemByItemId("Consume", _itemId, _itemCount, player, target);
+					target.getInventory().destroyItemByItemId(null, _itemId, _itemCount, player, target);
 					final SystemMessage sm = new SystemMessage(SystemMessageId.S1_HAS_DISAPPEARED);
 					sm.addItemName(_itemId);
 					target.sendPacket(sm);

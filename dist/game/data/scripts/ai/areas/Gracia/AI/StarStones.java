@@ -21,6 +21,7 @@ import java.util.List;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -47,7 +48,7 @@ public class StarStones extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (skill.getId() == 932)
 		{
@@ -82,18 +83,18 @@ public class StarStones extends AbstractNpcAI
 				default:
 				{
 					// unknown npc!
-					return super.onSkillSee(npc, caster, skill, targets, isSummon);
+					return;
 				}
 			}
 			if (getRandom(100) < 33)
 			{
 				caster.sendPacket(SystemMessageId.YOUR_COLLECTION_HAS_SUCCEEDED);
-				caster.addItem("StarStone", itemId, getRandom(COLLECTION_RATE + 1, 2 * COLLECTION_RATE), null, true);
+				caster.addItem(ItemProcessType.REWARD, itemId, getRandom(COLLECTION_RATE + 1, 2 * COLLECTION_RATE), null, true);
 			}
 			else if (((skill.getLevel() == 1) && (getRandom(100) < 15)) || ((skill.getLevel() == 2) && (getRandom(100) < 50)) || ((skill.getLevel() == 3) && (getRandom(100) < 75)))
 			{
 				caster.sendPacket(SystemMessageId.YOUR_COLLECTION_HAS_SUCCEEDED);
-				caster.addItem("StarStone", itemId, getRandom(1, COLLECTION_RATE), null, true);
+				caster.addItem(ItemProcessType.REWARD, itemId, getRandom(1, COLLECTION_RATE), null, true);
 			}
 			else
 			{
@@ -101,6 +102,5 @@ public class StarStones extends AbstractNpcAI
 			}
 			npc.deleteMe();
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 }

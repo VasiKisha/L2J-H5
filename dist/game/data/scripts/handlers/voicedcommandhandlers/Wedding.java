@@ -25,16 +25,17 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.PlayerAction;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.CoupleManager;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
+import org.l2jmobius.gameserver.managers.CoupleManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerAction;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -42,7 +43,7 @@ import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SetupGauge;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
@@ -95,7 +96,7 @@ public class Wedding implements IVoicedCommandHandler
 		{
 			activeChar.sendMessage("You are now divorced.");
 			adenaAmount = (activeChar.getAdena() / 100) * Config.WEDDING_DIVORCE_COSTS;
-			activeChar.getInventory().reduceAdena("Wedding", adenaAmount, activeChar, null);
+			activeChar.getInventory().reduceAdena(ItemProcessType.FEE, adenaAmount, activeChar, null);
 		}
 		else
 		{
@@ -118,7 +119,7 @@ public class Wedding implements IVoicedCommandHandler
 			// give adena
 			if (adenaAmount > 0)
 			{
-				partner.addAdena("WEDDING", adenaAmount, null, false);
+				partner.addAdena(ItemProcessType.REFUND, adenaAmount, null, false);
 			}
 		}
 		CoupleManager.getInstance().deleteCouple(coupleId);
@@ -435,8 +436,8 @@ public class Wedding implements IVoicedCommandHandler
 		
 		final int teleportTimer = Config.WEDDING_TELEPORT_DURATION * 1000;
 		activeChar.sendMessage("After " + (teleportTimer / 60000) + " min. you will be teleported to your partner.");
-		activeChar.getInventory().reduceAdena("Wedding", Config.WEDDING_TELEPORT_PRICE, activeChar, null);
-		activeChar.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		activeChar.getInventory().reduceAdena(ItemProcessType.FEE, Config.WEDDING_TELEPORT_PRICE, activeChar, null);
+		activeChar.getAI().setIntention(Intention.IDLE);
 		// SoE Animation section
 		activeChar.setTarget(activeChar);
 		activeChar.disableAllSkills();

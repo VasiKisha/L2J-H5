@@ -23,11 +23,11 @@ import java.util.List;
 import java.util.Set;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.SocialClass;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.enums.player.SocialClass;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * @author Zoey76
@@ -281,7 +281,7 @@ public class SkillLearn
 	 * @param learningClass the skill learning player class Id.
 	 * @return the amount of SP required to acquire this skill, by calculating the cost for the alternative skill learn system.
 	 */
-	public int getCalculatedLevelUpSp(ClassId playerClass, ClassId learningClass)
+	public int getCalculatedLevelUpSp(PlayerClass playerClass, PlayerClass learningClass)
 	{
 		if ((playerClass == null) || (learningClass == null))
 		{

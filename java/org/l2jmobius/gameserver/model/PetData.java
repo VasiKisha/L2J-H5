@@ -24,7 +24,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * Class hold information about basic pet stats which are same on each level.

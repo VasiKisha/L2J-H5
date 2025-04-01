@@ -113,20 +113,13 @@ public class DatabaseFactory
 	}
 	
 	/**
-	 * Determines the appropriate maximum pool size based on configuration and server capacity. Caps the pool size to prevent database overload.
+	 * Determines the appropriate maximum pool size based on configuration and server capacity.
 	 * @param configuredMax The configured maximum pool size from Config.
 	 * @return Adjusted maximum pool size.
 	 */
 	private static int determineMaxPoolSize(int configuredMax)
 	{
-		// For high-load servers, a maxPoolSize between 100-200 is reasonable.
-		// Adjust based on actual database server capacity and application behavior.
-		int maxPoolSize = Math.min(configuredMax, 200); // Cap at 200 to prevent DB overload.
-		if (maxPoolSize < 10)
-		{
-			maxPoolSize = 10;
-		}
-		return maxPoolSize;
+		return Math.min(Math.max(configuredMax, 4), 1000);
 	}
 	
 	/**
@@ -136,9 +129,7 @@ public class DatabaseFactory
 	 */
 	private static int determineMinimumIdle(int configuredMax)
 	{
-		// Set minimumIdle to 10% of maxPoolSize or a minimum of 2.
-		final int calculatedMinIdle = Math.max(configuredMax / 10, 2);
-		return calculatedMinIdle;
+		return Math.max(determineMaxPoolSize(configuredMax) / 10, 2);
 	}
 	
 	/**

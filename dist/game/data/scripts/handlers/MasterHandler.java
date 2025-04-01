@@ -536,9 +536,9 @@ public class MasterHandler
 			SiegeStatus.class,
 		},
 		{
-			// TODO: Add configuration options for this voiced commands:
-			// CastleVCmd.class,
-			// SetVCmd.class,
+			// TODO: Add configuration options for this voiced commands.
+			// CastleHandler.class,
+			// ClanHandler.class,
 			Config.ALLOW_WEDDING ? Wedding.class : null,
 			Config.ENABLE_AUTO_PLAY ? AutoPlay.class : null,
 			Config.BANKING_SYSTEM_ENABLED ? Banking.class : null,

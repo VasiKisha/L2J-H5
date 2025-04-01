@@ -16,9 +16,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.enums.Movie;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.MovieHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.MovieHolder;
+import org.l2jmobius.gameserver.network.enums.Movie;
 
 /**
  * @author JIV

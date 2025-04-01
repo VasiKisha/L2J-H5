@@ -22,8 +22,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * ExBrExtraUserInfo server packet implementation.
- * @author Kerberos, Zoey76
+ * @author Kerberos
  */
 public class ExBrExtraUserInfo extends ServerPacket
 {

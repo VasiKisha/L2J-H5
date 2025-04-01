@@ -19,6 +19,7 @@ package handlers.itemhandlers;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -45,7 +46,7 @@ public class TeleportBookmark implements IItemHandler
 			return false;
 		}
 		
-		player.destroyItem("Consume", item.getObjectId(), 1, null, false);
+		player.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false);
 		player.setBookmarkSlot(player.getBookmarkSlot() + 3);
 		player.sendPacket(SystemMessageId.THE_NUMBER_OF_MY_TELEPORTS_SLOTS_HAS_BEEN_INCREASED);
 		

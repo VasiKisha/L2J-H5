@@ -24,11 +24,11 @@ import java.util.Map;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Grim Collector (325)
@@ -184,17 +184,17 @@ public class Q00325_GrimCollector extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs == null) || !qs.isStarted())
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
-		if (!Util.checkIfInRange(Config.ALT_PARTY_RANGE, killer, npc, true) || !hasQuestItems(killer, ANATOMY_DIAGRAM))
+		if (!LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, killer, npc, true) || !hasQuestItems(killer, ANATOMY_DIAGRAM))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		final int rnd = getRandom(100);
@@ -206,7 +206,6 @@ public class Q00325_GrimCollector extends Quest
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

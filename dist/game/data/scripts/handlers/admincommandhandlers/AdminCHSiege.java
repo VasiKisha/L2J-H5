@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.CHSiegeManager;
+import org.l2jmobius.gameserver.managers.CHSiegeManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -30,7 +30,6 @@ import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
 import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SiegeInfo;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * @author BiggBoss
@@ -65,23 +64,23 @@ public class AdminCHSiege implements IAdminCommandHandler
 		SiegableHall hall = null;
 		if (Config.ALT_DEV_NO_QUESTS)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "AltDevNoQuests = true; Clan Hall Sieges are disabled!");
+			activeChar.sendSysMessage("AltDevNoQuests = true; Clan Hall Sieges are disabled!");
 			return false;
 		}
 		if (split.length < 2)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "You have to specify the hall id at least");
+			activeChar.sendSysMessage("You have to specify the hall id at least");
 			return false;
 		}
 		hall = getHall(split[1], activeChar);
 		if (hall == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Could not find he desired siegable hall (" + split[1] + ")");
+			activeChar.sendSysMessage("Could not find he desired siegable hall (" + split[1] + ")");
 			return false;
 		}
 		if (hall.getSiege() == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "The given hall does not have any attached siege!");
+			activeChar.sendSysMessage("The given hall does not have any attached siege!");
 			return false;
 		}
 		
@@ -89,7 +88,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 		{
 			if (hall.isInSiege())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "The requested clan hall is alredy in siege!");
+				activeChar.sendSysMessage("The requested clan hall is alredy in siege!");
 			}
 			else
 			{
@@ -107,7 +106,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 		{
 			if (!hall.isInSiege())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "The requested clan hall is not in siege!");
+				activeChar.sendSysMessage("The requested clan hall is not in siege!");
 			}
 			else
 			{
@@ -118,18 +117,18 @@ public class AdminCHSiege implements IAdminCommandHandler
 		{
 			if (!hall.isRegistering())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Cannot change siege date while hall is in siege");
+				activeChar.sendSysMessage("Cannot change siege date while hall is in siege");
 			}
 			else if (split.length < 3)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "The date format is incorrect. Try again.");
+				activeChar.sendSysMessage("The date format is incorrect. Try again.");
 			}
 			else
 			{
 				final String[] rawDate = split[2].split(";");
 				if (rawDate.length < 2)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "You have to specify this format DD-MM-YYYY;HH:MM");
+					activeChar.sendSysMessage("You have to specify this format DD-MM-YYYY;HH:MM");
 				}
 				else
 				{
@@ -137,7 +136,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 					final String[] hour = rawDate[1].split(":");
 					if ((day.length < 3) || (hour.length < 2))
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Incomplete day, hour or both!");
+						activeChar.sendSysMessage("Incomplete day, hour or both!");
 					}
 					else
 					{
@@ -148,11 +147,11 @@ public class AdminCHSiege implements IAdminCommandHandler
 						final int min = parseInt(hour[1]);
 						if (((month == 2) && (d > 28)) || (d > 31) || (d <= 0) || (month <= 0) || (month > 12) || (year < Calendar.getInstance().get(Calendar.YEAR)))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Wrong day/month/year gave!");
+							activeChar.sendSysMessage("Wrong day/month/year gave!");
 						}
 						else if ((h <= 0) || (h > 24) || (min < 0) || (min >= 60))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Wrong hour/minutes gave!");
+							activeChar.sendSysMessage("Wrong hour/minutes gave!");
 						}
 						else
 						{
@@ -172,7 +171,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 							}
 							else
 							{
-								BuilderUtil.sendSysMessage(activeChar, "The given time is in the past!");
+								activeChar.sendSysMessage("The given time is in the past!");
 							}
 						}
 					}
@@ -183,7 +182,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 		{
 			if (hall.isInSiege())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "The clan hall is in siege, cannot add attackers now.");
+				activeChar.sendSysMessage("The clan hall is in siege, cannot add attackers now.");
 				return false;
 			}
 			
@@ -194,19 +193,19 @@ public class AdminCHSiege implements IAdminCommandHandler
 				Player target = null;
 				if (rawTarget == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "You must target a clan member of the attacker!");
+					activeChar.sendSysMessage("You must target a clan member of the attacker!");
 				}
 				else if (!rawTarget.isPlayer())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "You must target a player with clan!");
+					activeChar.sendSysMessage("You must target a player with clan!");
 				}
 				else if ((target = rawTarget.asPlayer()).getClan() == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Your target does not have any clan!");
+					activeChar.sendSysMessage("Your target does not have any clan!");
 				}
 				else if (hall.getSiege().checkIsAttacker(target.getClan()))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Your target's clan is alredy participating!");
+					activeChar.sendSysMessage("Your target's clan is alredy participating!");
 				}
 				else
 				{
@@ -218,11 +217,11 @@ public class AdminCHSiege implements IAdminCommandHandler
 				final Clan rawClan = ClanTable.getInstance().getClanByName(split[2]);
 				if (rawClan == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "The given clan does not exist!");
+					activeChar.sendSysMessage("The given clan does not exist!");
 				}
 				else if (hall.getSiege().checkIsAttacker(rawClan))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "The given clan is alredy participating!");
+					activeChar.sendSysMessage("The given clan is alredy participating!");
 				}
 				else
 				{
@@ -239,7 +238,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 		{
 			if (hall.isInSiege())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "The clan hall is in siege, cannot remove attackers now.");
+				activeChar.sendSysMessage("The clan hall is in siege, cannot remove attackers now.");
 				return false;
 			}
 			
@@ -249,19 +248,19 @@ public class AdminCHSiege implements IAdminCommandHandler
 				Player target = null;
 				if (rawTarget == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "You must target a clan member of the attacker!");
+					activeChar.sendSysMessage("You must target a clan member of the attacker!");
 				}
 				else if (!rawTarget.isPlayer())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "You must target a player with clan!");
+					activeChar.sendSysMessage("You must target a player with clan!");
 				}
 				else if ((target = rawTarget.asPlayer()).getClan() == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Your target does not have any clan!");
+					activeChar.sendSysMessage("Your target does not have any clan!");
 				}
 				else if (!hall.getSiege().checkIsAttacker(target.getClan()))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Your target's clan is not participating!");
+					activeChar.sendSysMessage("Your target's clan is not participating!");
 				}
 				else
 				{
@@ -273,11 +272,11 @@ public class AdminCHSiege implements IAdminCommandHandler
 				final Clan rawClan = ClanTable.getInstance().getClanByName(split[2]);
 				if (rawClan == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "The given clan does not exist!");
+					activeChar.sendSysMessage("The given clan does not exist!");
 				}
 				else if (!hall.getSiege().checkIsAttacker(rawClan))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "The given clan is not participating!");
+					activeChar.sendSysMessage("The given clan is not participating!");
 				}
 				else
 				{
@@ -289,7 +288,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 		{
 			if (hall.isInSiege())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "The requested hall is in siege right now, cannot clear attacker list!");
+				activeChar.sendSysMessage("The requested hall is in siege right now, cannot clear attacker list!");
 			}
 			else
 			{

@@ -20,19 +20,19 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Path Of The Rogue (403)
@@ -106,7 +106,7 @@ public class Q00403_PathOfTheRogue extends Quest
 		{
 			case "ACCEPT":
 			{
-				if (player.getClassId() == ClassId.FIGHTER)
+				if (player.getPlayerClass() == PlayerClass.FIGHTER)
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
@@ -124,7 +124,7 @@ public class Q00403_PathOfTheRogue extends Quest
 						htmltext = "30379-03.htm";
 					}
 				}
-				else if (player.getClassId() == ClassId.ROGUE)
+				else if (player.getPlayerClass() == PlayerClass.ROGUE)
 				{
 					htmltext = "30379-02a.htm";
 				}
@@ -171,7 +171,7 @@ public class Q00403_PathOfTheRogue extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isStarted())
@@ -209,14 +209,13 @@ public class Q00403_PathOfTheRogue extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && npc.isScriptValue(1) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && npc.isScriptValue(1) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			if (npc.getId() == CATS_EYE_BANDIT)
 			{
@@ -255,7 +254,6 @@ public class Q00403_PathOfTheRogue extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private boolean checkWeapon(Player player)

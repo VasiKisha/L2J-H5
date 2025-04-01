@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.model.interfaces;
 
-import org.l2jmobius.gameserver.enums.Position;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Position;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Object world location storage interface.
@@ -67,7 +67,7 @@ public interface ILocational
 	 */
 	default int calculateHeadingTo(ILocational to)
 	{
-		return Util.calculateHeadingFrom(getX(), getY(), to.getX(), to.getY());
+		return LocationUtil.calculateHeadingFrom(getX(), getY(), to.getX(), to.getY());
 	}
 	
 	/**

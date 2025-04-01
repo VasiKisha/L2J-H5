@@ -23,11 +23,11 @@ package org.l2jmobius.gameserver.model.actor.instance;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.instancemanager.games.UndergroundColiseumManager;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.managers.games.UndergroundColiseumManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.undergroundColiseum.UCArena;
 import org.l2jmobius.gameserver.model.undergroundColiseum.UCBestTeam;
@@ -120,7 +120,7 @@ public class UCManager extends Folk
 						continue;
 					}
 					
-					if (member.getClassId().level() < 2)
+					if (member.getPlayerClass().level() < 2)
 					{
 						final NpcHtmlMessage packet = new NpcHtmlMessage(getObjectId());
 						packet.setFile(member, "data/html/undergroundColiseum/wrongLevel.htm");

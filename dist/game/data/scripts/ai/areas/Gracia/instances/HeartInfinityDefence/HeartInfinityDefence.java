@@ -26,27 +26,28 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q00697_DefendTheHallOfErosion.Q00697_DefendTheHallOfErosion;
@@ -298,7 +299,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 				return false;
 			}
 			
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(2096);
 				sm.addPcName(partyMember);
@@ -479,7 +480,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 			}
 			else if (event.startsWith("reenterechmus"))
 			{
-				player.destroyItemByItemId("SOI", 13797, 3, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, 13797, 3, player, true);
 				for (Player partyMember : player.getParty().getMembers())
 				{
 					if (partyMember.isInsideRadius3D(player, 400))
@@ -497,7 +498,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 					world.deadTumors.add(victim);
 				}
 				
-				player.destroyItemByItemId("SOI", 13797, 1, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, 13797, 1, player, true);
 				final Location loc = world.deadTumors.get(getRandom(world.deadTumors.size())).getLocation();
 				if (loc != null)
 				{
@@ -533,7 +534,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HIDWorld)
@@ -549,13 +550,12 @@ public class HeartInfinityDefence extends AbstractNpcAI
 				npc.doDie(npc);
 			}
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		if (CommonUtil.contains(NOTMOVE, npc.getId()))
+		if (ArrayUtil.contains(NOTMOVE, npc.getId()))
 		{
 			npc.setRandomWalking(false);
 			npc.setImmobilized(true);
@@ -565,13 +565,12 @@ public class HeartInfinityDefence extends AbstractNpcAI
 		if ((tmpworld instanceof HIDWorld) && (npc.getId() == SOULWAGON))
 		{
 			// npc.asMonster().setPassive(true);
-			npc.asMonster().getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			npc.asMonster().getAI().setIntention(Intention.IDLE);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HIDWorld)
@@ -603,7 +602,6 @@ public class HeartInfinityDefence extends AbstractNpcAI
 				tumorRespawnTime += 5 * 1000;
 			}
 		}
-		return "";
 	}
 	
 	protected void notifyWagonArrived(Npc npc, HIDWorld world)
@@ -734,7 +732,7 @@ public class HeartInfinityDefence extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isAttackable())
 		{
@@ -750,7 +748,6 @@ public class HeartInfinityDefence extends AbstractNpcAI
 				}
 			}
 		}
-		return null;
 	}
 	
 	protected void broadCastPacket(HIDWorld world, ServerPacket packet)

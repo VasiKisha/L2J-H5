@@ -52,11 +52,11 @@ public class SecondaryAuthData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		try
 		{
-			for (Node node = doc.getFirstChild(); node != null; node = node.getNextSibling())
+			for (Node node = document.getFirstChild(); node != null; node = node.getNextSibling())
 			{
 				if ("list".equalsIgnoreCase(node.getNodeName()))
 				{
@@ -98,31 +98,56 @@ public class SecondaryAuthData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Checks if the secondary authentication feature is enabled.
+	 * @return {@code true} if secondary authentication is enabled; {@code false} otherwise
+	 */
 	public boolean isEnabled()
 	{
 		return _enabled;
 	}
 	
+	/**
+	 * Retrieves the maximum number of allowed authentication attempts.
+	 * @return the maximum number of failed attempts allowed before a ban occurs
+	 */
 	public int getMaxAttempts()
 	{
 		return _maxAttempts;
 	}
 	
+	/**
+	 * Retrieves the duration of the ban time in minutes.
+	 * @return the duration, in minutes, that a user is banned after exceeding the maximum failed attempts
+	 */
 	public int getBanTime()
 	{
 		return _banTime;
 	}
 	
+	/**
+	 * Retrieves the recovery link for password reset or account recovery.
+	 * @return the URL string for the recovery link
+	 */
 	public String getRecoveryLink()
 	{
 		return _recoveryLink;
 	}
 	
+	/**
+	 * Retrieves the set of forbidden passwords that users are not allowed to use.
+	 * @return a set of strings containing all forbidden passwords
+	 */
 	public Set<String> getForbiddenPasswords()
 	{
 		return _forbiddenPasswords;
 	}
 	
+	/**
+	 * Checks if a given password is in the list of forbidden passwords.
+	 * @param password the password to check
+	 * @return {@code true} if the password is forbidden; {@code false} otherwise
+	 */
 	public boolean isForbiddenPassword(String password)
 	{
 		return _forbiddenPasswords.contains(password);

@@ -22,13 +22,19 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
+import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
+import org.l2jmobius.gameserver.handler.IItemHandler;
+import org.l2jmobius.gameserver.handler.ItemHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
-import org.l2jmobius.gameserver.util.BuilderUtil;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.network.serverpackets.GMViewItemList;
 
 /**
  * This class handles following admin commands: - itemcreate = show menu - create_item <id> [num] = creates num items with respective id, if num is not specified, assumes 1.
@@ -42,7 +48,9 @@ public class AdminCreateItem implements IAdminCommandHandler
 		"admin_create_item",
 		"admin_create_coin",
 		"admin_give_item_target",
-		"admin_give_item_to_all"
+		"admin_give_item_to_all",
+		"admin_delete_item",
+		"admin_use_item"
 	};
 	
 	@Override
@@ -58,13 +66,22 @@ public class AdminCreateItem implements IAdminCommandHandler
 			{
 				final String val = command.substring(17);
 				final StringTokenizer st = new StringTokenizer(val);
-				if (st.countTokens() == 2)
+				if (st.countTokens() >= 2)
 				{
 					final String id = st.nextToken();
 					final int idval = Integer.parseInt(id);
 					final String num = st.nextToken();
 					final long numval = Long.parseLong(num);
-					createItem(activeChar, activeChar, idval, numval);
+					if (st.hasMoreTokens())
+					{
+						final String enchant = st.nextToken();
+						final int enchantval = Integer.parseInt(enchant);
+						createItem(activeChar, activeChar, idval, numval, enchantval);
+					}
+					else
+					{
+						createItem(activeChar, activeChar, idval, numval);
+					}
 				}
 				else if (st.countTokens() == 1)
 				{
@@ -75,11 +92,11 @@ public class AdminCreateItem implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //create_item <itemId> [amount]");
+				activeChar.sendSysMessage("Usage: //create_item <itemId> [amount]");
 			}
 			catch (NumberFormatException nfe)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Specify a valid number.");
+				activeChar.sendSysMessage("Specify a valid number.");
 			}
 			AdminHtml.showAdminHtml(activeChar, "itemcreation.htm");
 		}
@@ -109,11 +126,11 @@ public class AdminCreateItem implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //create_coin <name> [amount]");
+				activeChar.sendSysMessage("Usage: //create_coin <name> [amount]");
 			}
 			catch (NumberFormatException nfe)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Specify a valid number.");
+				activeChar.sendSysMessage("Specify a valid number.");
 			}
 			AdminHtml.showAdminHtml(activeChar, "itemcreation.htm");
 		}
@@ -124,7 +141,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 				final WorldObject target = activeChar.getTarget();
 				if ((target == null) || !target.isPlayer())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Invalid target.");
+					activeChar.sendSysMessage("Invalid target.");
 					return false;
 				}
 				
@@ -147,11 +164,11 @@ public class AdminCreateItem implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //give_item_target <itemId> [amount]");
+				activeChar.sendSysMessage("Usage: //give_item_target <itemId> [amount]");
 			}
 			catch (NumberFormatException nfe)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Specify a valid number.");
+				activeChar.sendSysMessage("Specify a valid number.");
 			}
 			AdminHtml.showAdminHtml(activeChar, "itemcreation.htm");
 		}
@@ -178,24 +195,105 @@ public class AdminCreateItem implements IAdminCommandHandler
 			final ItemTemplate template = ItemData.getInstance().getTemplate(idval);
 			if (template == null)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "This item doesn't exist.");
+				activeChar.sendSysMessage("This item doesn't exist.");
 				return false;
 			}
 			if ((numval > 10) && !template.isStackable())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "This item does not stack - Creation aborted.");
+				activeChar.sendSysMessage("This item does not stack - Creation aborted.");
 				return false;
 			}
 			for (Player onlinePlayer : World.getInstance().getPlayers())
 			{
 				if ((activeChar != onlinePlayer) && onlinePlayer.isOnline() && ((onlinePlayer.getClient() != null) && !onlinePlayer.getClient().isDetached()))
 				{
-					onlinePlayer.getInventory().addItem("Admin", idval, numval, onlinePlayer, activeChar);
+					onlinePlayer.getInventory().addItem(ItemProcessType.REWARD, idval, numval, onlinePlayer, activeChar);
 					onlinePlayer.sendMessage("Admin spawned " + numval + " " + template.getName() + " in your inventory.");
 					counter++;
 				}
 			}
 			activeChar.sendMessage(counter + " players rewarded with " + template.getName());
+		}
+		else if (command.startsWith("admin_delete_item"))
+		{
+			final String val = command.substring(18);
+			final StringTokenizer st = new StringTokenizer(val);
+			int idval = 0;
+			long numval = 0;
+			if (st.countTokens() == 2)
+			{
+				final String id = st.nextToken();
+				idval = Integer.parseInt(id);
+				final String num = st.nextToken();
+				numval = Long.parseLong(num);
+			}
+			else if (st.countTokens() == 1)
+			{
+				final String id = st.nextToken();
+				idval = Integer.parseInt(id);
+				numval = 1;
+			}
+			final Item item = (Item) World.getInstance().findObject(idval);
+			final int ownerId = item.getOwnerId();
+			if (ownerId > 0)
+			{
+				final Player player = World.getInstance().getPlayer(ownerId);
+				if (player == null)
+				{
+					activeChar.sendSysMessage("Player is not online.");
+					return false;
+				}
+				
+				if (numval == 0)
+				{
+					numval = item.getCount();
+				}
+				
+				player.getInventory().destroyItem(ItemProcessType.DESTROY, idval, numval, activeChar, null);
+				activeChar.sendPacket(new GMViewItemList(player));
+				activeChar.sendSysMessage("Item deleted.");
+			}
+			else
+			{
+				activeChar.sendSysMessage("Item doesn't have owner.");
+				return false;
+			}
+		}
+		else if (command.startsWith("admin_use_item"))
+		{
+			final String val = command.substring(15);
+			final int idval = Integer.parseInt(val);
+			final Item item = (Item) World.getInstance().findObject(idval);
+			final int ownerId = item.getOwnerId();
+			if (ownerId > 0)
+			{
+				final Player player = World.getInstance().getPlayer(ownerId);
+				if (player == null)
+				{
+					activeChar.sendSysMessage("Player is not online.");
+					return false;
+				}
+				
+				// equip
+				if (item.isEquipable())
+				{
+					player.useEquippableItem(item, false);
+				}
+				else
+				{
+					final IItemHandler ih = ItemHandler.getInstance().getHandler(item.getEtcItem());
+					if (ih != null)
+					{
+						ih.useItem(player, item, false);
+					}
+				}
+				activeChar.sendPacket(new GMViewItemList(player));
+			}
+			else
+			{
+				activeChar.sendSysMessage("Item doesn't have owner.");
+				return false;
+			}
 		}
 		return true;
 	}
@@ -211,21 +309,71 @@ public class AdminCreateItem implements IAdminCommandHandler
 		final ItemTemplate template = ItemData.getInstance().getTemplate(id);
 		if (template == null)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "This item doesn't exist.");
+			activeChar.sendSysMessage("This item doesn't exist.");
 			return;
 		}
 		if ((num > 10) && !template.isStackable())
 		{
-			BuilderUtil.sendSysMessage(activeChar, "This item does not stack - Creation aborted.");
+			activeChar.sendSysMessage("This item does not stack - Creation aborted.");
 			return;
 		}
 		
-		target.getInventory().addItem("Admin", id, num, target, activeChar);
+		target.getInventory().addItem(ItemProcessType.REWARD, id, num, target, activeChar);
 		if (activeChar != target)
 		{
 			target.sendMessage("Admin spawned " + num + " " + template.getName() + " in your inventory.");
 		}
-		BuilderUtil.sendSysMessage(activeChar, "You have spawned " + num + " " + template.getName() + "(" + id + ") in " + target.getName() + " inventory.");
+		target.sendItemList(false);
+		
+		activeChar.sendSysMessage("You have spawned " + num + " " + template.getName() + "(" + id + ") in " + target.getName() + " inventory.");
+	}
+	
+	private void createItem(Player activeChar, Player target, int id, long num, int enchant)
+	{
+		final ItemTemplate template = ItemData.getInstance().getTemplate(id);
+		if (template == null)
+		{
+			activeChar.sendSysMessage("This item doesn't exist.");
+			return;
+		}
+		if ((num > 10) && !template.isStackable())
+		{
+			activeChar.sendSysMessage("This item does not stack - Creation aborted.");
+			return;
+		}
+		
+		final Item item = target.getInventory().addItem(ItemProcessType.REWARD, id, num, target, activeChar);
+		if ((item != null) && item.isEnchantable() && (enchant > 0))
+		{
+			item.setEnchantLevel(Config.OVER_ENCHANT_PROTECTION ? Math.min(enchant, getMaxEnchant(item)) : enchant);
+		}
+		else
+		{
+			activeChar.sendMessage("This item is not enchantable, no enchant applied.");
+		}
+		if (activeChar != target)
+		{
+			target.sendMessage("Admin spawned " + num + " " + template.getName() + " in your inventory.");
+		}
+		target.sendItemList(false);
+		
+		activeChar.sendSysMessage("You have spawned " + num + " " + template.getName() + "(" + id + ") in " + target.getName() + " inventory.");
+	}
+	
+	public int getMaxEnchant(Item itemInstance)
+	{
+		if (itemInstance.isWeapon())
+		{
+			return EnchantItemGroupsData.getInstance().getMaxWeaponEnchant();
+		}
+		else if (itemInstance.getTemplate().getType2() == ItemTemplate.TYPE2_ACCESSORY)
+		{
+			return EnchantItemGroupsData.getInstance().getMaxAccessoryEnchant();
+		}
+		else
+		{
+			return EnchantItemGroupsData.getInstance().getMaxArmorEnchant();
+		}
 	}
 	
 	private int getCoinId(String name)

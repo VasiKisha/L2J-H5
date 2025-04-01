@@ -23,14 +23,15 @@ package handlers.itemhandlers;
 import java.util.logging.Level;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.util.Broadcast;
@@ -90,7 +91,7 @@ public class SoulShots implements IItemHandler
 			count = weaponItem.getReducedSoulShot();
 		}
 		
-		if (!player.destroyItemWithoutTrace("Consume", item.getObjectId(), count, null, false))
+		if (!player.destroyItem(ItemProcessType.NONE, item.getObjectId(), count, null, false))
 		{
 			if (!player.disableAutoShot(itemId))
 			{

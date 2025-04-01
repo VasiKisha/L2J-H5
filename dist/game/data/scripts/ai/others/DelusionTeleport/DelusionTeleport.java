@@ -19,7 +19,7 @@ package ai.others.DelusionTeleport;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.instancemanager.TownManager;
+import org.l2jmobius.gameserver.managers.TownManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;

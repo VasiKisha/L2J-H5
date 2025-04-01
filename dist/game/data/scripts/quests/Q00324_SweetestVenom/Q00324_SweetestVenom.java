@@ -19,10 +19,10 @@ package quests.Q00324_SweetestVenom;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -102,7 +102,7 @@ public class Q00324_SweetestVenom extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && qs.isCond(1))
@@ -121,6 +121,5 @@ public class Q00324_SweetestVenom extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isPet);
 	}
 }

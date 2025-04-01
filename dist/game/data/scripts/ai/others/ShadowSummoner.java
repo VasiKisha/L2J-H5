@@ -16,12 +16,12 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -57,9 +57,9 @@ public class ShadowSummoner extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
-		if (Util.calculateDistance(npc, npc.getSpawn(), false, false) > MAX_CHASE_DIST)
+		if (LocationUtil.calculateDistance(npc, npc.getSpawn(), false, false) > MAX_CHASE_DIST)
 		{
 			npc.teleToLocation(npc.getSpawn().getX(), npc.getSpawn().getY(), npc.getSpawn().getZ());
 		}
@@ -71,18 +71,16 @@ public class ShadowSummoner extends AbstractNpcAI
 			startQuestTimer(FEED_TIMER, 30000, npc, attacker);
 			startQuestTimer(LIMIT_TIMER, 600000, npc, attacker);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (!creature.isPlayer() && (creature.getId() == DEMONS_BANQUET_2))
 		{
 			npc.asAttackable().clearAggroList();
 			addAttackDesire(npc, creature, 99999);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
@@ -105,7 +103,7 @@ public class ShadowSummoner extends AbstractNpcAI
 		{
 			if (!npc.getVariables().getBoolean(LIMIT_FLAG, false))
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK);
+				npc.getAI().setIntention(Intention.ATTACK);
 				startQuestTimer(FEED_TIMER, 30000, npc, player);
 			}
 		}

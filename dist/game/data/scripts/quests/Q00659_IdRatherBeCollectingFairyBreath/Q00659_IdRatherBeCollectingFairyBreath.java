@@ -106,14 +106,13 @@ public class Q00659_IdRatherBeCollectingFairyBreath extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs != null)
 		{
 			giveItemRandomly(player, npc, FAIRY_BREATH, 1, 0, MOBS.get(npc.getId()), true);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

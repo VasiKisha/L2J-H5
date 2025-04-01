@@ -25,6 +25,7 @@ import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.EnchantSkillGroup.EnchantSkillHolder;
 import org.l2jmobius.gameserver.model.EnchantSkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -71,7 +72,7 @@ public class RequestExEnchantSkill extends ClientPacket
 			return;
 		}
 		
-		if (player.getClassId().level() < 3) // requires to have 3rd class quest completed
+		if (player.getPlayerClass().level() < 3) // requires to have 3rd class quest completed
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_USE_THE_SKILL_ENHANCING_FUNCTION_IN_THIS_CLASS_YOU_CAN_USE_CORRESPONDING_FUNCTION_WHEN_COMPLETING_THE_THIRD_CLASS_CHANGE);
 			return;
@@ -136,10 +137,10 @@ public class RequestExEnchantSkill extends ClientPacket
 			boolean check = player.getStat().removeExpAndSp(0, requiredSp, false);
 			if (Config.ES_SP_BOOK_NEEDED && usesBook)
 			{
-				check &= player.destroyItem("Consume", spb.getObjectId(), 1, player, true);
+				check &= player.destroyItem(ItemProcessType.NONE, spb.getObjectId(), 1, player, true);
 			}
 			
-			check &= player.destroyItemByItemId("Consume", Inventory.ADENA_ID, requiredAdena, player, true);
+			check &= player.destroyItemByItemId(null, Inventory.ADENA_ID, requiredAdena, player, true);
 			if (!check)
 			{
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ALL_OF_THE_ITEMS_NEEDED_TO_ENCHANT_THAT_SKILL);
@@ -181,7 +182,7 @@ public class RequestExEnchantSkill extends ClientPacket
 			final int afterEnchantSkillLevel = player.getSkillLevel(_skillId);
 			player.sendPacket(new ExEnchantSkillInfo(_skillId, afterEnchantSkillLevel));
 			player.sendPacket(new ExEnchantSkillInfoDetail(0, _skillId, afterEnchantSkillLevel + 1, player));
-			player.updateShortCuts(_skillId, afterEnchantSkillLevel);
+			player.updateShortcuts(_skillId, afterEnchantSkillLevel);
 		}
 		else
 		{

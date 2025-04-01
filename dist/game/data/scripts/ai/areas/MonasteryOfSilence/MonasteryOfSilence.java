@@ -18,17 +18,17 @@ package ai.areas.MonasteryOfSilence;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -103,7 +103,7 @@ public class MonasteryOfSilence extends AbstractNpcAI
 						{
 							character.setRunning();
 							character.asAttackable().addDamageHate(npc, 0, 100);
-							character.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, npc, null);
+							character.getAI().setIntention(Intention.ATTACK, npc, null);
 						}
 					}
 				});
@@ -135,7 +135,7 @@ public class MonasteryOfSilence extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		final Attackable mob = npc.asAttackable();
 		
@@ -193,7 +193,6 @@ public class MonasteryOfSilence extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
@@ -203,7 +202,7 @@ public class MonasteryOfSilence extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		if (player.getActiveWeaponInstance() != null)
 		{
@@ -257,11 +256,10 @@ public class MonasteryOfSilence extends AbstractNpcAI
 			
 			addAttackDesire(npc, player);
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (skill.hasEffectType(EffectType.AGGRESSION) && (!targets.isEmpty()))
 		{
@@ -275,17 +273,15 @@ public class MonasteryOfSilence extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setInvul(true);
 		npc.disableCoreAI(true);
 		cancelQuestTimer("TRAINING", npc, null);
 		startQuestTimer("TRAINING", 30000, npc, null, true);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

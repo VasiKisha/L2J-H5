@@ -33,33 +33,34 @@ import java.util.concurrent.Future;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.SiegeClanType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.siege.SiegeClan;
+import org.l2jmobius.gameserver.model.siege.SiegeClanType;
 import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
 import org.l2jmobius.gameserver.model.siege.clanhalls.SiegeStatus;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author LordWinter
@@ -279,7 +280,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 							{
 								final long count = warDecrees.getCount();
 								_warDecreesCount.put(clan.getId(), count);
-								player.destroyItem("Rainbow Springs Registration", warDecrees, npc, true);
+								player.destroyItem(ItemProcessType.DESTROY, warDecrees, npc, true);
 								registerClan(clan, count, true);
 								htmltext = "35604-06.htm";
 							}
@@ -317,7 +318,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 						{
 							if (_warDecreesCount.containsKey(clan.getId()))
 							{
-								player.addItem("Rainbow Spring unregister", WAR_DECREES, _warDecreesCount.get(clan.getId()) / 2, npc, true);
+								player.addItem(ItemProcessType.REFUND, WAR_DECREES, _warDecreesCount.get(clan.getId()) / 2, npc, true);
 								_warDecreesCount.remove(clan.getId());
 								htmltext = "35604-14.htm";
 							}
@@ -464,7 +465,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 				{
 					for (int[] itemInfo : word.getItems())
 					{
-						player.destroyItemByItemId("Rainbow Item", itemInfo[0], itemInfo[1], player, true);
+						player.destroyItemByItemId(ItemProcessType.DESTROY, itemInfo[0], itemInfo[1], player, true);
 					}
 					
 					final int rnd = Rnd.get(100);
@@ -561,7 +562,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 			html.setFile(player, "data/scripts/conquerablehalls/RainbowSpringsChateau/" + main);
 			player.sendPacket(html);
 		}
-		else if (CommonUtil.contains(YETIS, npcId))
+		else if (ArrayUtil.contains(YETIS, npcId))
 		{
 			final Clan clan = player.getClan();
 			if (_acceptedClans.contains(clan))
@@ -594,14 +595,14 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (targets.contains(npc))
 		{
 			final Clan clan = caster.getClan();
 			if ((clan == null) || !_acceptedClans.contains(clan))
 			{
-				return null;
+				return;
 			}
 			
 			final int index = _acceptedClans.indexOf(clan);
@@ -625,8 +626,9 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 						warIndex = rndEx(_acceptedClans.size(), index);
 						if (warIndex == Integer.MIN_VALUE)
 						{
-							return null;
+							return;
 						}
+						
 						increaseGourdHp(warIndex);
 						break;
 					}
@@ -635,8 +637,9 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 						warIndex = rndEx(_acceptedClans.size(), index);
 						if (warIndex == Integer.MIN_VALUE)
 						{
-							return null;
+							return;
 						}
+						
 						moveGourds(warIndex);
 						break;
 					}
@@ -645,25 +648,25 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 						warIndex = rndEx(_acceptedClans.size(), index);
 						if (warIndex == Integer.MIN_VALUE)
 						{
-							return null;
+							return;
 						}
+						
 						castDebuffsOnEnemies(caster, warIndex);
 						break;
 					}
 				}
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Clan clan = killer.getClan();
 		final int index = _acceptedClans.indexOf(clan);
 		if ((clan == null) || !_acceptedClans.contains(clan))
 		{
-			return null;
+			return;
 		}
 		
 		if (npc.getId() == CHEST)
@@ -781,23 +784,21 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 				}, 120 * 1000);
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public final String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == ENRAGED_YETI)
 		{
 			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.OOOH_WHO_POURED_NECTAR_ON_MY_HEAD_WHILE_I_WAS_SLEEPING);
 		}
 		
-		if (CommonUtil.contains(GOURDS, npc.getId()))
+		if (ArrayUtil.contains(GOURDS, npc.getId()))
 		{
 			npc.disableCoreAI(true);
 			npc.setImmobilized(true);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -1221,7 +1222,7 @@ public class RainbowSpringsChateau extends ClanHallSiegeEngine
 			final int region = MapRegionManager.getInstance().getMapRegionLocId(_npc.getX(), _npc.getY());
 			for (Player player : World.getInstance().getPlayers())
 			{
-				if ((region == MapRegionManager.getInstance().getMapRegionLocId(player.getX(), player.getY())) && Util.checkIfInRange(750, _npc, player, false))
+				if ((region == MapRegionManager.getInstance().getMapRegionLocId(player.getX(), player.getY())) && LocationUtil.checkIfInRange(750, _npc, player, false))
 				{
 					player.sendPacket(msg);
 				}

@@ -21,7 +21,6 @@ import java.util.StringTokenizer;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 import ai.areas.Hellbound.HellboundEngine;
 
@@ -64,12 +63,12 @@ public class AdminHellbound implements IAdminCommandHandler
 				}
 				
 				HellboundEngine.getInstance().setLevel(level);
-				BuilderUtil.sendSysMessage(activeChar, "Hellbound level set to " + level);
+				activeChar.sendSysMessage("Hellbound level set to " + level);
 				return true;
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //hellbound_setlevel 0-11");
+				activeChar.sendSysMessage("Usage: //hellbound_setlevel 0-11");
 				return false;
 			}
 		}

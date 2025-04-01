@@ -20,11 +20,11 @@
  */
 package handlers.actionhandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 
 public class ArtefactAction implements IActionHandler
 {
@@ -52,8 +52,8 @@ public class ArtefactAction implements IActionHandler
 		}
 		else if (interact && !target.asNpc().canInteract(player)) // Calculate the distance between the Player and the Npc
 		{
-			// Notify the Player AI with AI_INTENTION_INTERACT
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
+			// Notify the Player AI with INTERACT
+			player.getAI().setIntention(Intention.INTERACT, target);
 		}
 		return true;
 	}

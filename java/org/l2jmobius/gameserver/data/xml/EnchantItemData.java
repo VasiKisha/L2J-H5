@@ -33,7 +33,6 @@ import org.l2jmobius.gameserver.model.item.enchant.EnchantSupportItem;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 
 /**
- * Loads item enchant data.
  * @author UnAfraid
  */
 public class EnchantItemData implements IXmlReader
@@ -41,9 +40,6 @@ public class EnchantItemData implements IXmlReader
 	private final Map<Integer, EnchantScroll> _scrolls = new HashMap<>();
 	private final Map<Integer, EnchantSupportItem> _supports = new HashMap<>();
 	
-	/**
-	 * Instantiates a new enchant item data.
-	 */
 	public EnchantItemData()
 	{
 		load();
@@ -60,12 +56,12 @@ public class EnchantItemData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		StatSet set;
 		Node att;
 		NamedNodeMap attrs;
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -131,15 +127,19 @@ public class EnchantItemData implements IXmlReader
 		}
 	}
 	
+	/**
+	 * Retrieves all registered enchant scrolls.
+	 * @return a collection of all {@link EnchantScroll} instances currently stored.
+	 */
 	public Collection<EnchantScroll> getScrolls()
 	{
 		return _scrolls.values();
 	}
 	
 	/**
-	 * Gets the enchant scroll.
-	 * @param item the scroll item
-	 * @return enchant template for scroll
+	 * Retrieves the enchant scroll template associated with the specified item.
+	 * @param item the {@link Item} representing the scroll to retrieve.
+	 * @return the {@link EnchantScroll} template for the specified scroll item, or {@code null} if the item is not found.
 	 */
 	public EnchantScroll getEnchantScroll(Item item)
 	{
@@ -147,13 +147,14 @@ public class EnchantItemData implements IXmlReader
 		{
 			return null;
 		}
+		
 		return _scrolls.get(item.getId());
 	}
 	
 	/**
-	 * Gets the support item.
-	 * @param item the support item
-	 * @return enchant template for support item
+	 * Retrieves the support item template associated with the specified item.
+	 * @param item the {@link Item} representing the support item to retrieve.
+	 * @return the {@link EnchantSupportItem} template for the specified support item, or {@code null} if the item is not found.
 	 */
 	public EnchantSupportItem getSupportItem(Item item)
 	{
@@ -161,13 +162,10 @@ public class EnchantItemData implements IXmlReader
 		{
 			return null;
 		}
+		
 		return _supports.get(item.getId());
 	}
 	
-	/**
-	 * Gets the single instance of EnchantItemData.
-	 * @return single instance of EnchantItemData
-	 */
 	public static EnchantItemData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

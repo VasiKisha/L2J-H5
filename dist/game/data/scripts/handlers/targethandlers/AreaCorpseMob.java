@@ -27,7 +27,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author UnAfraid
@@ -54,7 +54,7 @@ public class AreaCorpseMob implements ITargetTypeHandler
 		final boolean srcInArena = creature.isInsideZone(ZoneId.PVP) && !creature.isInsideZone(ZoneId.SIEGE);
 		World.getInstance().forEachVisibleObject(creature, Creature.class, obj ->
 		{
-			if (!(obj.isAttackable() || obj.isPlayable()) || !Util.checkIfInRange(skill.getAffectRange(), target, obj, true))
+			if (!(obj.isAttackable() || obj.isPlayable()) || !LocationUtil.checkIfInRange(skill.getAffectRange(), target, obj, true))
 			{
 				return;
 			}

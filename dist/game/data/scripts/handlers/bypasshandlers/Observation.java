@@ -23,12 +23,13 @@ package handlers.bypasshandlers;
 import java.util.logging.Level;
 
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.BroadcastingTower;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
@@ -159,7 +160,7 @@ public class Observation implements IBypassHandler
 	
 	private void doObserve(Player player, Npc npc, Location pos, long cost)
 	{
-		if (player.reduceAdena("Broadcast", cost, npc, true))
+		if (player.reduceAdena(ItemProcessType.FEE, cost, npc, true))
 		{
 			// enter mode
 			player.enterObserverMode(pos);

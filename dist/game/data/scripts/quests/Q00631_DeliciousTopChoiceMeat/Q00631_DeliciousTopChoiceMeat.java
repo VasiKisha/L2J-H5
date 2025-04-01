@@ -179,14 +179,13 @@ public class Q00631_DeliciousTopChoiceMeat extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, 1, 3, npc);
 		if ((qs != null) && giveItemRandomly(qs.getPlayer(), npc, PRIME_MEAT, 1, PRIME_MEAT_COUNT, MOBS_MEAT.get(npc.getId()), true))
 		{
 			qs.setCond(2, true);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

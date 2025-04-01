@@ -19,11 +19,11 @@ package org.l2jmobius.gameserver.handler;
 import java.util.EnumMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 /**
  * This class handles all chat handlers
- * @author durgus, UnAfraid
+ * @author durgus
  */
 public class ChatHandler implements IHandler<IChatHandler, ChatType>
 {

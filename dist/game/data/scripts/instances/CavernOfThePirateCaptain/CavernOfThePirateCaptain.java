@@ -19,13 +19,13 @@ package instances.CavernOfThePirateCaptain;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -372,7 +372,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if (world != null)
@@ -410,7 +410,6 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 			}
 			finishInstance(world);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

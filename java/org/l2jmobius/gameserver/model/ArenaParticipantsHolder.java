@@ -19,8 +19,8 @@ package org.l2jmobius.gameserver.model;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.gameserver.instancemanager.HandysBlockCheckerManager;
-import org.l2jmobius.gameserver.instancemanager.games.BlockCheckerManager;
+import org.l2jmobius.gameserver.managers.HandysBlockCheckerManager;
+import org.l2jmobius.gameserver.managers.games.BlockCheckerManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;

@@ -24,11 +24,12 @@ import java.text.DateFormat;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.games.LotteryManager;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.games.LotteryManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -219,7 +220,7 @@ public class Loto implements IBypassHandler
 				player.sendPacket(sm);
 				return;
 			}
-			if (!player.reduceAdena("Loto", price, npc, true))
+			if (!player.reduceAdena(ItemProcessType.FEE, price, npc, true))
 			{
 				return;
 			}
@@ -234,7 +235,7 @@ public class Loto implements IBypassHandler
 			item.setCustomType1(lotonumber);
 			item.setEnchantLevel(enchant);
 			item.setCustomType2(type2);
-			player.getInventory().addItem("Loto", item, player, npc);
+			player.getInventory().addItem(ItemProcessType.QUEST, item, player, npc);
 			
 			final InventoryUpdate iu = new InventoryUpdate();
 			iu.addItem(item);
@@ -333,9 +334,9 @@ public class Loto implements IBypassHandler
 			final long adena = check[1];
 			if (adena > 0)
 			{
-				player.addAdena("Loto", adena, npc, true);
+				player.addAdena(ItemProcessType.REWARD, adena, npc, true);
 			}
-			player.destroyItem("Loto", item, npc, false);
+			player.destroyItem(ItemProcessType.FEE, item, npc, false);
 			return;
 		}
 		html.replace("%objectId%", String.valueOf(npc.getObjectId()));

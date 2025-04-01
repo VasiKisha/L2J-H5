@@ -18,15 +18,16 @@ package org.l2jmobius.gameserver.model.zone.type;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.MountType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.CHSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.CHSiegeManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.siege.FortSiege;
 import org.l2jmobius.gameserver.model.siege.Siegable;
@@ -242,7 +243,7 @@ public class SiegeZone extends ZoneType
 		{
 			final int slot = player.getInventory().getSlotFromItem(player.getInventory().getItemByItemId(9819));
 			player.getInventory().unEquipItemInBodySlot(slot);
-			player.destroyItem("CombatFlag", player.getInventory().getItemByItemId(9819), null, true);
+			player.destroyItem(ItemProcessType.DESTROY, player.getInventory().getItemByItemId(9819), null, true);
 		}
 		
 		final Summon summon = player.getSummon();

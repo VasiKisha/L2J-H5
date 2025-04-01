@@ -25,10 +25,10 @@ import java.util.concurrent.ScheduledFuture;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
-import org.l2jmobius.gameserver.enums.MessageSenderType;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.model.itemcontainer.Mail;
+import org.l2jmobius.gameserver.network.enums.MessageSenderType;
 
 /**
  * @author Migi, DS

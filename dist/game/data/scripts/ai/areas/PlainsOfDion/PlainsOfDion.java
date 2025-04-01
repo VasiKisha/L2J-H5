@@ -16,14 +16,14 @@
  */
 package ai.areas.PlainsOfDion;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -62,7 +62,7 @@ public class PlainsOfDion extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		if (npc.isScriptValue(0))
 		{
@@ -78,7 +78,7 @@ public class PlainsOfDion extends AbstractNpcAI
 			
 			World.getInstance().forEachVisibleObjectInRange(npc, Monster.class, npc.getTemplate().getClanHelpRange(), obj ->
 			{
-				if (CommonUtil.contains(DELU_LIZARDMEN, obj.getId()) && !obj.isAttackingNow() && !obj.isDead() && GeoEngine.getInstance().canSeeTarget(npc, obj))
+				if (ArrayUtil.contains(DELU_LIZARDMEN, obj.getId()) && !obj.isAttackingNow() && !obj.isDead() && GeoEngine.getInstance().canSeeTarget(npc, obj))
 				{
 					addAttackDesire(obj, player);
 					obj.broadcastSay(ChatType.NPC_GENERAL, MONSTERS_ASSIST_MSG[getRandom(3)]);
@@ -86,7 +86,6 @@ public class PlainsOfDion extends AbstractNpcAI
 			});
 			npc.setScriptValue(1);
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	public static void main(String[] args)

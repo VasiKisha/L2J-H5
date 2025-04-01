@@ -22,9 +22,10 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 
 /**
@@ -88,7 +89,7 @@ public class Mail extends ItemContainer
 			}
 			if (wh != null)
 			{
-				transferItem("Expire", item.getObjectId(), item.getCount(), wh, null, null);
+				transferItem(ItemProcessType.TRANSFER, item.getObjectId(), item.getCount(), wh, null, null);
 			}
 			else
 			{
@@ -136,7 +137,7 @@ public class Mail extends ItemContainer
 					// If stackable item is found just add to current quantity
 					if (item.isStackable() && (getItemByItemId(item.getId()) != null))
 					{
-						addItem("Restore", item, null, null);
+						addItem(ItemProcessType.RESTORE, item, null, null);
 					}
 					else
 					{

@@ -17,11 +17,13 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ItemLocation;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
@@ -30,7 +32,6 @@ import org.l2jmobius.gameserver.network.serverpackets.ExChangePostState;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Migi, DS
@@ -66,7 +67,7 @@ public class RequestCancelPostAttachment extends ClientPacket
 		}
 		if (msg.getSenderId() != player.getObjectId())
 		{
-			Util.handleIllegalPlayerAction(player, player + " tried to cancel not own post!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to cancel not own post!", Config.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -118,19 +119,19 @@ public class RequestCancelPostAttachment extends ClientPacket
 			
 			if (item.getOwnerId() != player.getObjectId())
 			{
-				Util.handleIllegalPlayerAction(player, player + " tried to get not own item from cancelled attachment!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get not own item from cancelled attachment!", Config.DEFAULT_PUNISH);
 				return;
 			}
 			
 			if (item.getItemLocation() != ItemLocation.MAIL)
 			{
-				Util.handleIllegalPlayerAction(player, player + " tried to get items not from mail !", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get items not from mail !", Config.DEFAULT_PUNISH);
 				return;
 			}
 			
 			if (item.getLocationSlot() != msg.getId())
 			{
-				Util.handleIllegalPlayerAction(player, player + " tried to get items from different attachment!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get items from different attachment!", Config.DEFAULT_PUNISH);
 				return;
 			}
 			
@@ -167,7 +168,7 @@ public class RequestCancelPostAttachment extends ClientPacket
 			}
 			
 			final long count = item.getCount();
-			final Item newItem = attachments.transferItem(attachments.getName(), item.getObjectId(), count, player.getInventory(), player, null);
+			final Item newItem = attachments.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), count, player.getInventory(), player, null);
 			if (newItem == null)
 			{
 				return;

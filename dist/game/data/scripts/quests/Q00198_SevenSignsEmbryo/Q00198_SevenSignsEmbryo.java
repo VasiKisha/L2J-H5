@@ -17,18 +17,18 @@
 package quests.Q00198_SevenSignsEmbryo;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import quests.Q00197_SevenSignsTheSacredBookOfSeal.Q00197_SevenSignsTheSacredBookOfSeal;
@@ -112,7 +112,7 @@ public class Q00198_SevenSignsEmbryo extends Quest
 					monster.broadcastPacket(new NpcSay(monster.getObjectId(), ChatType.NPC_GENERAL, monster.getId(), NpcStringId.YOU_ARE_NOT_THE_OWNER_OF_THAT_ITEM));
 					monster.setRunning();
 					monster.addDamageHate(player, 0, 999);
-					monster.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+					monster.getAI().setIntention(Intention.ATTACK, player);
 					startQuestTimer("despawn", 300000, monster, null);
 				}
 				break;
@@ -164,12 +164,12 @@ public class Q00198_SevenSignsEmbryo extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 1);
 		if (partyMember == null)
 		{
-			return null;
+			return;
 		}
 		
 		final QuestState qs = getQuestState(partyMember, false);
@@ -185,7 +185,6 @@ public class Q00198_SevenSignsEmbryo extends Quest
 		npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.S1_YOU_MAY_HAVE_WON_THIS_TIME_BUT_NEXT_TIME_I_WILL_SURELY_CAPTURE_YOU).addStringParameter(partyMember.getName()));
 		npc.deleteMe();
 		playMovie(partyMember, Movie.SSQ_EMBRYO);
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.voicedcommandhandlers;
 
@@ -23,36 +27,36 @@ import java.util.Set;
 import java.util.function.Consumer;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.OptionData;
 import org.l2jmobius.gameserver.data.xml.PetSkillData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.events.Containers;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogin;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.options.OptionSkillHolder;
 import org.l2jmobius.gameserver.model.options.Options;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.variables.PlayerVariables;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.taskmanager.AutoPlayTaskManager;
-import org.l2jmobius.gameserver.taskmanager.AutoUseTaskManager;
-import org.l2jmobius.gameserver.util.MathUtil;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.taskmanagers.AutoPlayTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AutoUseTaskManager;
+import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
  * @author Mobius
@@ -230,7 +234,7 @@ public class AutoPlay implements IVoicedCommandHandler
 						}
 						case "percent":
 						{
-							if ((paramArray.length > 1) && Util.isDigit(paramArray[1]))
+							if ((paramArray.length > 1) && StringUtil.isNumeric(paramArray[1]))
 							{
 								player.getAutoPlaySettings().setAutoPotionPercent(Math.max(0, Math.min(100, Integer.parseInt(paramArray[1]))));
 							}
@@ -426,7 +430,7 @@ public class AutoPlay implements IVoicedCommandHandler
 				}
 				
 				// Calculate page number.
-				final int max = MathUtil.countPagesNumber(skills.size(), PAGE_LIMIT);
+				final int max = HtmlUtil.countPageNumber(skills.size(), PAGE_LIMIT);
 				int page = params == null ? 1 : Integer.parseInt(paramArray[0]);
 				if (page > max)
 				{
@@ -528,7 +532,7 @@ public class AutoPlay implements IVoicedCommandHandler
 				}
 				
 				// Calculate page number.
-				final int max = MathUtil.countPagesNumber(items.size(), PAGE_LIMIT);
+				final int max = HtmlUtil.countPageNumber(items.size(), PAGE_LIMIT);
 				int page = params == null ? 1 : Integer.parseInt(paramArray[0]);
 				if (page > max)
 				{
@@ -630,7 +634,7 @@ public class AutoPlay implements IVoicedCommandHandler
 				}
 				
 				// Calculate page number.
-				final int max = MathUtil.countPagesNumber(items.size(), PAGE_LIMIT);
+				final int max = HtmlUtil.countPageNumber(items.size(), PAGE_LIMIT);
 				int page = params == null ? 1 : Integer.parseInt(paramArray[0]);
 				if (page > max)
 				{

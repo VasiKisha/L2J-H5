@@ -16,17 +16,18 @@
  */
 package ai.areas.Hellbound.Instances.DemonPrinceFloor;
 
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import instances.AbstractInstance;
 
@@ -93,7 +94,7 @@ public class DemonPrinceFloor extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int instanceId = npc.getInstanceId();
 		if (instanceId > 0)
@@ -105,7 +106,6 @@ public class DemonPrinceFloor extends AbstractInstance
 			finishInstance(world);
 			addSpawn(CUBE, -22144, 278744, -8239, 0, false, 0, false, instanceId);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -131,7 +131,7 @@ public class DemonPrinceFloor extends AbstractInstance
 				return false;
 			}
 			
-			if (!Util.checkIfInRange(500, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(500, player, partyMember, true))
 			{
 				party.broadcastPacket(new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED).addPcName(partyMember));
 				return false;
@@ -168,7 +168,7 @@ public class DemonPrinceFloor extends AbstractInstance
 			if (party == null)
 			{
 				teleportPlayer(player, ENTRY_POINT, world.getInstanceId());
-				player.destroyItemByItemId("Quest", SEAL_BREAKER_5, 1, null, true);
+				player.destroyItemByItemId(ItemProcessType.QUEST, SEAL_BREAKER_5, 1, null, true);
 				world.addAllowed(player);
 			}
 			else
@@ -176,7 +176,7 @@ public class DemonPrinceFloor extends AbstractInstance
 				for (Player partyMember : party.getMembers())
 				{
 					teleportPlayer(partyMember, ENTRY_POINT, world.getInstanceId());
-					partyMember.destroyItemByItemId("Quest", SEAL_BREAKER_5, 1, null, true);
+					partyMember.destroyItemByItemId(ItemProcessType.QUEST, SEAL_BREAKER_5, 1, null, true);
 					world.addAllowed(partyMember);
 				}
 			}

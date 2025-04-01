@@ -17,13 +17,13 @@
 package quests.Q00643_RiseAndFallOfTheElrokiTribe;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * Rise and Fall of the Elroki Tribe (643)
@@ -180,16 +180,16 @@ public class Q00643_RiseAndFallOfTheElrokiTribe extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 1);
 		if (partyMember == null)
 		{
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
 		
 		final int npcId = npc.getId();
-		if (CommonUtil.contains(MOBS1, npcId))
+		if (ArrayUtil.contains(MOBS1, npcId))
 		{
 			final float chance = CHANCE_MOBS1 * Config.RATE_QUEST_DROP;
 			if (getRandom(1000) < chance)
@@ -203,7 +203,7 @@ public class Q00643_RiseAndFallOfTheElrokiTribe extends Quest
 			playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
 		
-		if (CommonUtil.contains(MOBS2, npcId) && (getRandom(1000) < (CHANCE_MOBS2 * Config.RATE_QUEST_DROP)))
+		if (ArrayUtil.contains(MOBS2, npcId) && (getRandom(1000) < (CHANCE_MOBS2 * Config.RATE_QUEST_DROP)))
 		{
 			rewardItems(partyMember, BONES_OF_A_PLAINS_DINOSAUR, 1);
 			playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -214,7 +214,6 @@ public class Q00643_RiseAndFallOfTheElrokiTribe extends Quest
 			rewardItems(partyMember, BONES_OF_A_PLAINS_DINOSAUR, 1);
 			playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

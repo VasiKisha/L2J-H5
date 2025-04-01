@@ -32,24 +32,25 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.TradeItem;
 import org.l2jmobius.gameserver.model.TradeList;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.inventory.OnPlayerItemAdd;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.inventory.OnPlayerItemDestroy;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.inventory.OnPlayerItemDrop;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.inventory.OnPlayerItemTransfer;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.inventory.OnPlayerItemAdd;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.inventory.OnPlayerItemDestroy;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.inventory.OnPlayerItemDrop;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.inventory.OnPlayerItemTransfer;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.variables.ItemVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 public class PlayerInventory extends Inventory
 {
@@ -117,60 +118,56 @@ public class PlayerInventory extends Inventory
 	}
 	
 	/**
-	 * Returns the list of items in inventory available for transaction
-	 * @param allowAdena
-	 * @param allowAncientAdena
-	 * @return Item : items in inventory
+	 * Retrieves a collection of unique buyable items based on the specified conditions.
+	 * @param allowAdena {@code true} to include Adena in the results, {@code false} to exclude it.
+	 * @param allowAncientAdena {@code true} to include Ancient Adena in the results, {@code false} to exclude it.
+	 * @param onlyAvailable {@code true} to include only items that are currently available to the owner, {@code false} to include all items regardless of availability.
+	 * @param checkSellable {@code true} to check if items can be sold.
+	 * @return a collection of {@link Item} objects that match the specified criteria.
 	 */
-	public Collection<Item> getUniqueItems(boolean allowAdena, boolean allowAncientAdena)
+	public Collection<Item> getUniqueItems(boolean allowAdena, boolean allowAncientAdena, boolean onlyAvailable, boolean checkSellable)
 	{
-		return getUniqueItems(allowAdena, allowAncientAdena, true);
-	}
-	
-	public Collection<Item> getUniqueItems(boolean allowAdena, boolean allowAncientAdena, boolean onlyAvailable)
-	{
-		final List<Item> list = new LinkedList<>();
+		final List<Item> result = new LinkedList<>();
 		for (Item item : _items)
 		{
 			if (!allowAdena && (item.getId() == ADENA_ID))
 			{
 				continue;
 			}
+			
 			if (!allowAncientAdena && (item.getId() == ANCIENT_ADENA_ID))
 			{
 				continue;
 			}
+			
 			boolean isDuplicate = false;
-			for (Item litem : list)
+			for (Item addedItem : result)
 			{
-				if (litem.getId() == item.getId())
+				if (addedItem.getId() == item.getId())
 				{
 					isDuplicate = true;
 					break;
 				}
 			}
-			if (!isDuplicate && (!onlyAvailable || (item.isSellable() && item.isAvailable(_owner, false, false))))
+			
+			if (!isDuplicate && (!onlyAvailable || ((!checkSellable || item.isSellable()) && item.isAvailable(_owner, false, false))))
 			{
-				list.add(item);
+				result.add(item);
 			}
 		}
-		return list;
+		return result;
 	}
 	
 	/**
-	 * Returns the list of items in inventory available for transaction Allows an item to appear twice if and only if there is a difference in enchantment level.
-	 * @param allowAdena
-	 * @param allowAncientAdena
-	 * @return Item : items in inventory
+	 * Retrieves a collection of unique items based on their enchant level and the specified conditions.
+	 * @param allowAdena {@code true} to include Adena in the results, {@code false} to exclude it.
+	 * @param allowAncientAdena {@code true} to include Ancient Adena in the results, {@code false} to exclude it.
+	 * @param onlyAvailable {@code true} to include only items that are currently available to the owner, {@code false} to include all items regardless of availability.
+	 * @return a collection of {@link Item} objects that match the specified criteria and have unique IDs and enchant levels.
 	 */
-	public Collection<Item> getUniqueItemsByEnchantLevel(boolean allowAdena, boolean allowAncientAdena)
-	{
-		return getUniqueItemsByEnchantLevel(allowAdena, allowAncientAdena, true);
-	}
-	
 	public Collection<Item> getUniqueItemsByEnchantLevel(boolean allowAdena, boolean allowAncientAdena, boolean onlyAvailable)
 	{
-		final List<Item> list = new LinkedList<>();
+		final List<Item> result = new LinkedList<>();
 		for (Item item : _items)
 		{
 			if ((item == null) || (!allowAdena && (item.getId() == ADENA_ID)) || (!allowAncientAdena && (item.getId() == ANCIENT_ADENA_ID)))
@@ -179,9 +176,9 @@ public class PlayerInventory extends Inventory
 			}
 			
 			boolean isDuplicate = false;
-			for (Item litem : list)
+			for (Item addedItem : result)
 			{
-				if ((litem.getId() == item.getId()) && (litem.getEnchantLevel() == item.getEnchantLevel()))
+				if ((addedItem.getId() == item.getId()) && (addedItem.getEnchantLevel() == item.getEnchantLevel()))
 				{
 					isDuplicate = true;
 					break;
@@ -190,10 +187,10 @@ public class PlayerInventory extends Inventory
 			
 			if (!isDuplicate && (!onlyAvailable || (item.isSellable() && item.isAvailable(_owner, false, false))))
 			{
-				list.add(item);
+				result.add(item);
 			}
 		}
-		return list;
+		return result;
 	}
 	
 	/**
@@ -370,12 +367,12 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Adds adena to PcInventory
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param count : int Quantity of adena to be added
 	 * @param actor : Player Player requesting the item add
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 */
-	public void addAdena(String process, long count, Player actor, Object reference)
+	public void addAdena(ItemProcessType process, long count, Player actor, Object reference)
 	{
 		if (count > 0)
 		{
@@ -385,13 +382,13 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Removes adena to PcInventory
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param count : int Quantity of adena to be removed
 	 * @param actor : Player Player requesting the item add
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return boolean : true if adena was reduced
 	 */
-	public boolean reduceAdena(String process, long count, Player actor, Object reference)
+	public boolean reduceAdena(ItemProcessType process, long count, Player actor, Object reference)
 	{
 		if (count > 0)
 		{
@@ -402,12 +399,12 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Adds specified amount of ancient adena to player inventory.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param count : int Quantity of adena to be added
 	 * @param actor : Player Player requesting the item add
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 */
-	public void addAncientAdena(String process, long count, Player actor, Object reference)
+	public void addAncientAdena(ItemProcessType process, long count, Player actor, Object reference)
 	{
 		if (count > 0)
 		{
@@ -417,27 +414,27 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Removes specified amount of ancient adena from player inventory.
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param count : int Quantity of adena to be removed
 	 * @param actor : Player Player requesting the item add
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return boolean : true if adena was reduced
 	 */
-	public boolean reduceAncientAdena(String process, long count, Player actor, Object reference)
+	public boolean reduceAncientAdena(ItemProcessType process, long count, Player actor, Object reference)
 	{
 		return (count > 0) && (destroyItemByItemId(process, ANCIENT_ADENA_ID, count, actor, reference) != null);
 	}
 	
 	/**
 	 * Adds item in inventory and checks _adena and _ancientAdena
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be added
 	 * @param actor : Player Player requesting the item add
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the new item or the updated item in inventory
 	 */
 	@Override
-	public Item addItem(String process, Item item, Player actor, Object reference)
+	public Item addItem(ItemProcessType process, Item item, Player actor, Object reference)
 	{
 		final Item addedItem = super.addItem(process, item, actor, reference);
 		if (addedItem != null)
@@ -462,7 +459,7 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Adds item in inventory and checks _adena and _ancientAdena
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param itemId : int Item Identifier of the item to be added
 	 * @param count : int Quantity of items to be added
 	 * @param actor : Player Player requesting the item creation
@@ -470,7 +467,7 @@ public class PlayerInventory extends Inventory
 	 * @return Item corresponding to the new item or the updated item in inventory
 	 */
 	@Override
-	public Item addItem(String process, int itemId, long count, Player actor, Object reference)
+	public Item addItem(ItemProcessType process, int itemId, long count, Player actor, Object reference)
 	{
 		final Item item = super.addItem(process, itemId, count, actor, reference);
 		if (item != null)
@@ -515,7 +512,7 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Transfers item to another inventory and checks _adena and _ancientAdena
-	 * @param process string Identifier of process triggering this action
+	 * @param process ItemProcessType identifier of process triggering this action
 	 * @param objectId Item Identifier of the item to be transfered
 	 * @param count Quantity of items to be transfered
 	 * @param target the item container for the item to be transfered.
@@ -524,7 +521,7 @@ public class PlayerInventory extends Inventory
 	 * @return Item corresponding to the new item or the updated item in inventory
 	 */
 	@Override
-	public Item transferItem(String process, int objectId, long count, ItemContainer target, Player actor, Object reference)
+	public Item transferItem(ItemProcessType process, int objectId, long count, ItemContainer target, Player actor, Object reference)
 	{
 		final Item item = super.transferItem(process, objectId, count, target, actor, reference);
 		
@@ -549,28 +546,28 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Destroy item from inventory and checks _adena and _ancientAdena
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be destroyed
 	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
 	@Override
-	public Item destroyItem(String process, Item item, Player actor, Object reference)
+	public Item destroyItem(ItemProcessType process, Item item, Player actor, Object reference)
 	{
 		return destroyItem(process, item, item.getCount(), actor, reference);
 	}
 	
 	/**
 	 * Destroy item from inventory and checks _adena and _ancientAdena
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be destroyed
 	 * @param actor : Player requesting the item destroy
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
 	@Override
-	public Item destroyItem(String process, Item item, long count, Player actor, Object reference)
+	public Item destroyItem(ItemProcessType process, Item item, long count, Player actor, Object reference)
 	{
 		final Item destroyedItem = super.destroyItem(process, item, count, actor, reference);
 		
@@ -595,7 +592,7 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Destroys item from inventory and checks _adena and _ancientAdena
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param objectId : int Item Instance identifier of the item to be destroyed
 	 * @param count : int Quantity of items to be destroyed
 	 * @param actor : Player requesting the item destroy
@@ -603,7 +600,7 @@ public class PlayerInventory extends Inventory
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
 	@Override
-	public Item destroyItem(String process, int objectId, long count, Player actor, Object reference)
+	public Item destroyItem(ItemProcessType process, int objectId, long count, Player actor, Object reference)
 	{
 		final Item item = getItemByObjectId(objectId);
 		return item == null ? null : destroyItem(process, item, count, actor, reference);
@@ -611,7 +608,7 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Destroy item from inventory by using its <b>itemId</b> and checks _adena and _ancientAdena
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param itemId : int Item identifier of the item to be destroyed
 	 * @param count : int Quantity of items to be destroyed
 	 * @param actor : Player requesting the item destroy
@@ -619,7 +616,7 @@ public class PlayerInventory extends Inventory
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
 	@Override
-	public Item destroyItemByItemId(String process, int itemId, long count, Player actor, Object reference)
+	public Item destroyItemByItemId(ItemProcessType process, int itemId, long count, Player actor, Object reference)
 	{
 		// Attempt to find non equipped items.
 		Item destroyItem = null;
@@ -672,14 +669,14 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Drop item from inventory and checks _adena and _ancientAdena
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param item : Item to be dropped
 	 * @param actor : Player Player requesting the item drop
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
 	@Override
-	public Item dropItem(String process, Item item, Player actor, Object reference)
+	public Item dropItem(ItemProcessType process, Item item, Player actor, Object reference)
 	{
 		final Item droppedItem = super.dropItem(process, item, actor, reference);
 		
@@ -704,7 +701,7 @@ public class PlayerInventory extends Inventory
 	
 	/**
 	 * Drop item from inventory by using its <b>objectID</b> and checks _adena and _ancientAdena
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param objectId : int Item Instance identifier of the item to be dropped
 	 * @param count : int Quantity of items to be dropped
 	 * @param actor : Player Player requesting the item drop
@@ -712,7 +709,7 @@ public class PlayerInventory extends Inventory
 	 * @return Item corresponding to the destroyed item or the updated item in inventory
 	 */
 	@Override
-	public Item dropItem(String process, int objectId, long count, Player actor, Object reference)
+	public Item dropItem(ItemProcessType process, int objectId, long count, Player actor, Object reference)
 	{
 		final Item item = super.dropItem(process, objectId, count, actor, reference);
 		
@@ -758,7 +755,7 @@ public class PlayerInventory extends Inventory
 	protected boolean removeItem(Item item)
 	{
 		// Removes any reference to the item from Shortcut bar
-		_owner.removeItemFromShortCut(item.getObjectId());
+		_owner.removeItemFromShortcut(item.getObjectId());
 		
 		// Removes active Enchant Scroll
 		if (item.getObjectId() == _owner.getActiveEnchantItemId())
@@ -1014,7 +1011,7 @@ public class PlayerInventory extends Inventory
 	 */
 	public boolean canManipulateWithItemId(int itemId)
 	{
-		return ((_blockMode != 0) || !CommonUtil.contains(_blockItems, itemId)) && ((_blockMode != 1) || CommonUtil.contains(_blockItems, itemId));
+		return ((_blockMode != 0) || !ArrayUtil.contains(_blockItems, itemId)) && ((_blockMode != 1) || ArrayUtil.contains(_blockItems, itemId));
 	}
 	
 	@Override

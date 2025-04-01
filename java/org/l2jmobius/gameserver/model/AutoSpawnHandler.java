@@ -37,10 +37,9 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
@@ -433,7 +432,7 @@ public class AutoSpawnHandler
 				}
 				
 				// Add the new spawn information to the spawn table, but do not store it.
-				SpawnTable.getInstance().addNewSpawn(newSpawn, false);
+				SpawnTable.getInstance().addSpawn(newSpawn);
 				Npc npcInst = null;
 				if (spawnInst._spawnCount == 1)
 				{
@@ -520,7 +519,7 @@ public class AutoSpawnHandler
 					}
 					
 					npcInst.deleteMe();
-					SpawnTable.getInstance().deleteSpawn(npcInst.getSpawn(), false);
+					SpawnTable.getInstance().removeSpawn(npcInst.getSpawn());
 					spawnInst.removeNpc(npcInst);
 				}
 			}
@@ -536,7 +535,7 @@ public class AutoSpawnHandler
 	 * Stores information about a registered auto spawn.
 	 * @author Tempy
 	 */
-	public static class AutoSpawnInstance implements IIdentifiable
+	public static class AutoSpawnInstance
 	{
 		protected int _objectId;
 		
@@ -611,7 +610,6 @@ public class AutoSpawnHandler
 		 * Gets the NPC ID.
 		 * @return the NPC ID
 		 */
-		@Override
 		public int getId()
 		{
 			return _npcId;

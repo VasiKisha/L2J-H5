@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/zones.xsd">
 	<!-- No Restart Zones -->
-	<zone name="zaken_no_restart" type="NoRestartZone" shape="NPoly" minZ="-4815" maxZ="-315"> <!-- 21_24 -->
+	<zone name="zaken_no_restart" id="70053" type="NoRestartZone" shape="NPoly" minZ="-4815" maxZ="-315"> <!-- 21_24 -->
 		<stat name="restartTime" val="1800" />
 		<stat name="restartAllowedTime" val="600" />
 		<node X="50797" Y="213515" />
@@ -163,7 +163,7 @@
 		<node X="26846" Y="-8117" />
 		<node X="28231" Y="-8163" />
 	</zone>
-	<zone name="25_15_frintessa_Restart01" type="NoRestartZone" shape="NPoly" minZ="-5200" maxZ="-4680">
+	<zone name="25_15_frintessa_Restart01" id="70054" type="NoRestartZone" shape="NPoly" minZ="-5200" maxZ="-4680">
 		<stat name="restartTime" val="1800" />
 		<node X="172031" Y="-90127" />
 		<node X="176428" Y="-90089" />

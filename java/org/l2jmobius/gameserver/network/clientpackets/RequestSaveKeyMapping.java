@@ -27,8 +27,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.ConnectionState;
 
 /**
- * Request Save Key Mapping client
- * @author mrTJO, Zoey76
+ * @author mrTJO
  */
 public class RequestSaveKeyMapping extends ClientPacket
 {

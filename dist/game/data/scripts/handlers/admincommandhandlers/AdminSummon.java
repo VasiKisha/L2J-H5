@@ -19,7 +19,6 @@ package handlers.admincommandhandlers;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * @author poltomb
@@ -53,7 +52,7 @@ public class AdminSummon implements IAdminCommandHandler
 		}
 		catch (NumberFormatException nfe)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Incorrect format for command 'summon'");
+			activeChar.sendSysMessage("Incorrect format for command 'summon'");
 			return false;
 		}
 		
@@ -65,7 +64,7 @@ public class AdminSummon implements IAdminCommandHandler
 		else
 		{
 			subCommand = "admin_spawn_once";
-			BuilderUtil.sendSysMessage(activeChar, "This is only a temporary spawn.  The mob(s) will NOT respawn.");
+			activeChar.sendSysMessage("This is only a temporary spawn.  The mob(s) will NOT respawn.");
 			id -= 1000000;
 		}
 		

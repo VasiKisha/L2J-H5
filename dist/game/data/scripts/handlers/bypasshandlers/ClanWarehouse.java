@@ -23,16 +23,17 @@ package handlers.bypasshandlers;
 import java.util.logging.Level;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.WarehouseListType;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.ClanHallManager;
 import org.l2jmobius.gameserver.model.actor.instance.Warehouse;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.WarehouseListType;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SortedWareHouseWithdrawalList;
@@ -130,7 +131,7 @@ public class ClanWarehouse implements IBypassHandler
 	{
 		player.sendPacket(ActionFailed.STATIC_PACKET);
 		
-		if (!player.hasClanPrivilege(ClanPrivilege.CL_VIEW_WAREHOUSE))
+		if (!player.hasAccess(ClanAccess.ACCESS_WAREHOUSE))
 		{
 			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_THE_RIGHT_TO_USE_THE_CLAN_WAREHOUSE);
 			return;
@@ -148,7 +149,7 @@ public class ClanWarehouse implements IBypassHandler
 		{
 			if (i.isTimeLimitedItem() && (i.getRemainingTime() <= 0))
 			{
-				player.getActiveWarehouse().destroyItem("ItemInstance", i, player, null);
+				player.getActiveWarehouse().destroyItem(ItemProcessType.DESTROY, i, player, null);
 			}
 		}
 		if (itemtype != null)

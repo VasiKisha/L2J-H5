@@ -20,12 +20,12 @@
  */
 package handlers.bypasshandlers;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 public class SupportMagic implements IBypassHandler
 {
@@ -116,7 +116,7 @@ public class SupportMagic implements IBypassHandler
 			npc.showChatWindow(player, "data/html/default/SupportMagicLowLevel.htm");
 			return;
 		}
-		else if (player.getClassId().level() == 3)
+		else if (player.getPlayerClass().level() == 3)
 		{
 			player.sendMessage("Only adventurers who have not completed their 3rd class transfer may receive these buffs."); // Custom message
 			return;

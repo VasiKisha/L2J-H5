@@ -28,9 +28,6 @@ public class PledgeReceiveMemberInfo extends ServerPacket
 {
 	private final ClanMember _member;
 	
-	/**
-	 * @param member
-	 */
 	public PledgeReceiveMemberInfo(ClanMember member)
 	{
 		_member = member;

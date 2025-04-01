@@ -20,28 +20,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.commons.time.TimeUtil;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.MountType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.type.BossZone;
 import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -147,7 +148,7 @@ public class Valakas extends AbstractNpcAI
 				_valakas.setInvul(true);
 				_valakas.setRunning();
 				
-				_valakas.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				_valakas.getAI().setIntention(Intention.IDLE);
 			}
 		}
 		else
@@ -178,7 +179,7 @@ public class Valakas extends AbstractNpcAI
 			{
 				_valakas.teleToLocation(VALAKAS_HIDDEN_LOC);
 				_valakas.setInvul(true);
-				_valakas.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				_valakas.getAI().setIntention(Intention.IDLE);
 				
 				// Start timer to lock entry after 30 minutes
 				if (status == WAITING)
@@ -223,7 +224,7 @@ public class Valakas extends AbstractNpcAI
 				// Inactivity task - 15min
 				if ((GrandBossManager.getInstance().getStatus(VALAKAS) == FIGHTING) && ((_timeTracker + 900000) < System.currentTimeMillis()))
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+					npc.getAI().setIntention(Intention.IDLE);
 					npc.teleToLocation(VALAKAS_REGENERATION_LOC);
 					
 					GrandBossManager.getInstance().setStatus(VALAKAS, DORMANT);
@@ -371,7 +372,7 @@ public class Valakas extends AbstractNpcAI
 			_valakas.teleToLocation(VALAKAS_HIDDEN_LOC);
 			_valakas.setInvul(true);
 			_valakas.setRunning();
-			_valakas.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			_valakas.getAI().setIntention(Intention.IDLE);
 			GrandBossManager.getInstance().addBoss(_valakas);
 			GrandBossManager.getInstance().setStatus(VALAKAS, DORMANT);
 		}
@@ -383,32 +384,31 @@ public class Valakas extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.asAttackable().setCanReturnToSpawnPoint(false);
 		npc.setRandomWalking(false);
 		// npc.disableCoreAI(true);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (!BOSS_ZONE.isInsideZone(attacker))
 		{
 			attacker.doDie(attacker);
-			return null;
+			return;
 		}
 		
 		if (npc.isInvul())
 		{
-			return null;
+			return;
 		}
 		
 		if (GrandBossManager.getInstance().getStatus(VALAKAS) != FIGHTING)
 		{
 			attacker.teleToLocation(ATTACKER_REMOVE);
-			return null;
+			return;
 		}
 		
 		// Debuff strider-mounted players.
@@ -418,12 +418,10 @@ public class Valakas extends AbstractNpcAI
 			npc.doCast(SkillData.getInstance().getSkill(4258, 1));
 		}
 		_timeTracker = System.currentTimeMillis();
-		
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		// Cancel skill_task and regen_task.
 		cancelQuestTimer("regen_task", npc, null);
@@ -447,30 +445,31 @@ public class Valakas extends AbstractNpcAI
 		final long baseIntervalMillis = Config.VALAKAS_SPAWN_INTERVAL * 3600000;
 		final long randomRangeMillis = Config.VALAKAS_SPAWN_RANDOM * 3600000;
 		final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
+		
+		// Next respawn time.
+		final long nextRespawnTime = System.currentTimeMillis() + respawnTime;
+		LOGGER.info("Valakas will respawn at: " + TimeUtil.getDateTimeString(nextRespawnTime));
+		
 		startQuestTimer("valakas_unlock", respawnTime, null, null);
 		// also save the respawn time so that the info is maintained past reboots
 		final StatSet info = GrandBossManager.getInstance().getStatSet(VALAKAS);
 		info.set("respawn_time", System.currentTimeMillis() + respawnTime);
 		GrandBossManager.getInstance().setStatSet(VALAKAS, info);
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
-		return null;
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		startQuestTimer("skill_task", 1000, npc, null);
 		if (!GROUND_ZONE.isCharacterInZone(npc) && (_valakas != null))
 		{
 			_valakas.teleToLocation(VALAKAS_LAIR);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	private void callSkillAI(Npc npc)
@@ -500,7 +499,7 @@ public class Valakas extends AbstractNpcAI
 				
 				if (GeoEngine.getInstance().canMoveToTarget(x, y, z, posX, posY, z, npc.getInstanceId()))
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(posX, posY, z, 0));
+					npc.getAI().setIntention(Intention.MOVE_TO, new Location(posX, posY, z, 0));
 				}
 			}
 			return;
@@ -509,16 +508,16 @@ public class Valakas extends AbstractNpcAI
 		final Skill skill = getRandomSkill(npc).getSkill();
 		
 		// Cast the skill or follow the target.
-		if (Util.checkIfInRange((skill.getCastRange() < 600) ? 600 : skill.getCastRange(), npc, _actualVictim, true))
+		if (LocationUtil.checkIfInRange((skill.getCastRange() < 600) ? 600 : skill.getCastRange(), npc, _actualVictim, true))
 		{
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+			npc.getAI().setIntention(Intention.IDLE);
 			npc.setCastingNow(true);
 			npc.setTarget(_actualVictim);
 			npc.doCast(skill);
 		}
 		else
 		{
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, _actualVictim, null);
+			npc.getAI().setIntention(Intention.FOLLOW, _actualVictim, null);
 			npc.setCastingNow(false);
 		}
 	}

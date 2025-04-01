@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.util.MinionList;
@@ -100,7 +100,7 @@ public class Epidos extends AbstractNpcAI
 		}
 		else if (event.equalsIgnoreCase("check_idle"))
 		{
-			if (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ACTIVE)
+			if (npc.getAI().getIntention() == Intention.ACTIVE)
 			{
 				npc.deleteMe();
 			}
@@ -113,7 +113,7 @@ public class Epidos extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.isInsideRadius3D(-45474, 247450, -13994, 2000))
 		{
@@ -121,17 +121,14 @@ public class Epidos extends AbstractNpcAI
 		}
 		
 		_lastHp.remove(npc.getObjectId());
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("check_minions", 10000, npc, null);
 		startQuestTimer("check_idle", 600000, npc, null);
 		_lastHp.put(npc.getObjectId(), (double) npc.getMaxHp());
-		
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

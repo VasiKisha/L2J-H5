@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.log.formatter;
 
@@ -27,13 +31,14 @@ import org.l2jmobius.gameserver.network.GameClient;
 
 public class AccountingFormatter extends Formatter
 {
-	private final SimpleDateFormat dateFmt = new SimpleDateFormat("dd MMM H:mm:ss");
+	private final SimpleDateFormat _dateFormat = new SimpleDateFormat("dd MMM H:mm:ss");
 	
 	@Override
 	public String format(LogRecord record)
 	{
 		final Object[] params = record.getParameters();
-		final StringBuilder output = StringUtil.startAppend(30 + record.getMessage().length() + (params == null ? 0 : params.length * 10), "[", dateFmt.format(new Date(record.getMillis())), "] ", record.getMessage());
+		final StringBuilder output = new StringBuilder(30 + record.getMessage().length() + (params == null ? 0 : params.length * 10));
+		StringUtil.append(output, "[", _dateFormat.format(new Date(record.getMillis())), "] ", record.getMessage());
 		
 		if (params != null)
 		{
@@ -44,7 +49,7 @@ public class AccountingFormatter extends Formatter
 					continue;
 				}
 				
-				StringUtil.append(output, ", ");
+				output.append(", ");
 				
 				if (p instanceof GameClient)
 				{
@@ -69,8 +74,7 @@ public class AccountingFormatter extends Formatter
 						{
 							if (client.getPlayer() != null)
 							{
-								StringUtil.append(output, client.getPlayer().getName());
-								StringUtil.append(output, "(", String.valueOf(client.getPlayer().getObjectId()), ") ");
+								StringUtil.append(output, client.getPlayer().getName(), "(", String.valueOf(client.getPlayer().getObjectId()), ") ");
 							}
 							break;
 						}
@@ -86,7 +90,7 @@ public class AccountingFormatter extends Formatter
 						{
 							if (address != null)
 							{
-								StringUtil.append(output, address);
+								output.append(address);
 							}
 							break;
 						}
@@ -99,12 +103,11 @@ public class AccountingFormatter extends Formatter
 				else if (p instanceof Player)
 				{
 					final Player player = (Player) p;
-					StringUtil.append(output, player.getName());
-					StringUtil.append(output, "(", String.valueOf(player.getObjectId()), ")");
+					StringUtil.append(output, player.getName(), "(", String.valueOf(player.getObjectId()), ")");
 				}
 				else
 				{
-					StringUtil.append(output, p.toString());
+					output.append(p.toString());
 				}
 			}
 		}

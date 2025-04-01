@@ -17,13 +17,13 @@
 package quests.Q00645_GhostsOfBatur;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Ghosts of Batur (645)
@@ -96,10 +96,10 @@ public class Q00645_GhostsOfBatur extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player player = getRandomPartyMember(killer, 1);
-		if ((player != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false) && (getRandom(1000) < CHANCES[npc.getId() - CONTAMINATED_MOREK_WARRIOR]))
+		if ((player != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false) && (getRandom(1000) < CHANCES[npc.getId() - CONTAMINATED_MOREK_WARRIOR]))
 		{
 			final QuestState qs = getQuestState(player, false);
 			giveItems(killer, CURSED_BURIAL_ITEMS, 1);
@@ -112,7 +112,6 @@ public class Q00645_GhostsOfBatur extends Quest
 				playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

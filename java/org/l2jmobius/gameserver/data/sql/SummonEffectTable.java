@@ -125,7 +125,7 @@ public class SummonEffectTable
 	
 	public void addPetEffect(int controlObjectId, Skill skill, int effectCurTime)
 	{
-		_petEffects.computeIfAbsent(controlObjectId, k -> ConcurrentHashMap.newKeySet()).add(new SummonEffect(skill, effectCurTime));
+		_petEffects.computeIfAbsent(controlObjectId, _ -> ConcurrentHashMap.newKeySet()).add(new SummonEffect(skill, effectCurTime));
 	}
 	
 	public boolean containsPetId(int controlObjectId)

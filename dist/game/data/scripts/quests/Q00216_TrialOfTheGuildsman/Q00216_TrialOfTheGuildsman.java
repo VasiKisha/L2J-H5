@@ -17,15 +17,15 @@
 package quests.Q00216_TrialOfTheGuildsman;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Trial Of The Guildsman (216)
@@ -222,7 +222,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 			}
 			case "30298-04.html":
 			{
-				if (player.getClassId() == ClassId.SCAVENGER)
+				if (player.getPlayerClass() == PlayerClass.SCAVENGER)
 				{
 					if (hasQuestItems(player, ALLTRANS_2ND_RECOMMENDATION))
 					{
@@ -255,7 +255,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -267,12 +267,12 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 				if (qs != null)
 				{
 					int count = 0;
-					if ((qs.getPlayer().getClassId() == ClassId.SCAVENGER) && npc.isSweepActive())
+					if ((qs.getPlayer().getPlayerClass() == PlayerClass.SCAVENGER) && npc.isSweepActive())
 					{
 						count += 5;
 					}
 					
-					if (getRandomBoolean() && (qs.getPlayer().getClassId() == ClassId.ARTISAN))
+					if (getRandomBoolean() && (qs.getPlayer().getPlayerClass() == PlayerClass.ARTISAN))
 					{
 						giveItems(qs.getPlayer(), AMBER_LUMP, 1);
 						playSound(qs.getPlayer(), QuestSound.ITEMSOUND_QUEST_MIDDLE);
@@ -313,7 +313,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 			case MANDRAGORA_SPROUT2:
 			{
 				final QuestState qs = getQuestState(killer, false);
-				if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true) && hasQuestItems(killer, VALKONS_RECOMMENDATION) && !hasQuestItems(killer, MANDRAGORA_BERRY))
+				if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true) && hasQuestItems(killer, VALKONS_RECOMMENDATION) && !hasQuestItems(killer, MANDRAGORA_BERRY))
 				{
 					giveItems(killer, MANDRAGORA_BERRY, 1);
 					qs.setCond(4, true);
@@ -396,7 +396,6 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -408,7 +407,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 		{
 			if (npc.getId() == WAREHOUSE_KEEPER_VALKON)
 			{
-				if ((player.getClassId() == ClassId.ARTISAN) || (player.getClassId() == ClassId.SCAVENGER))
+				if ((player.getPlayerClass() == PlayerClass.ARTISAN) || (player.getPlayerClass() == PlayerClass.SCAVENGER))
 				{
 					if (player.getLevel() < MIN_LEVEL)
 					{

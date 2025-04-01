@@ -59,6 +59,7 @@ public class ResidenceTeleportZone extends ZoneRespawn
 		creature.setInsideZone(ZoneId.NO_SUMMON_FRIEND, false); // FIXME: Custom ?
 	}
 	
+	@Override
 	public void oustAllPlayers()
 	{
 		for (Player player : getPlayersInside())

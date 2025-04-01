@@ -18,7 +18,7 @@ package ai.areas.Hellbound;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -220,7 +220,7 @@ public class HellboundEngine extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int npcId = npc.getId();
 		final HellboundPointData hellboundPointData = HellboundPointData.getInstance();
@@ -236,7 +236,6 @@ public class HellboundEngine extends AbstractNpcAI
 				setLevel(5);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	/**

@@ -18,12 +18,12 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillInfo;
 
@@ -94,7 +94,7 @@ public class RequestAcquireSkillInfo extends ClientPacket
 			{
 				if (trainer.getTemplate().canTeach(player.getLearningClass()))
 				{
-					final int customSp = s.getCalculatedLevelUpSp(player.getClassId(), player.getLearningClass());
+					final int customSp = s.getCalculatedLevelUpSp(player.getPlayerClass(), player.getLearningClass());
 					player.sendPacket(new AcquireSkillInfo(_skillType, s, customSp));
 				}
 				break;
@@ -110,7 +110,7 @@ public class RequestAcquireSkillInfo extends ClientPacket
 			}
 			case SUBPLEDGE:
 			{
-				if (!player.isClanLeader() || !player.hasClanPrivilege(ClanPrivilege.CL_TROOPS_FAME))
+				if (!player.isClanLeader() || !player.hasAccess(ClanAccess.MEMBER_FAME))
 				{
 					return;
 				}

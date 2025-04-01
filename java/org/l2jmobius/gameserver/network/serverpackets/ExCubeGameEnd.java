@@ -21,7 +21,6 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * *
  * @author mrTJO
  */
 public class ExCubeGameEnd extends ServerPacket

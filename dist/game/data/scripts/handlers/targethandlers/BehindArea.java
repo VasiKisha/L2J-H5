@@ -27,7 +27,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.targets.TargetType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author UnAfraid
@@ -79,7 +79,7 @@ public class BehindArea implements ITargetTypeHandler
 				return;
 			}
 			
-			if (Util.checkIfInRange(skill.getAffectRange(), origin, obj, true))
+			if (LocationUtil.checkIfInRange(skill.getAffectRange(), origin, obj, true))
 			{
 				if (!obj.isBehind(creature))
 				{

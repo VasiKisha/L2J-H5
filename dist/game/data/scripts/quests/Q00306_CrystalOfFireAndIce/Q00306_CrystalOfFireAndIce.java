@@ -22,11 +22,11 @@ import java.util.Map;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Crystals of Fire and Ice (306)
@@ -99,7 +99,7 @@ public class Q00306_CrystalOfFireAndIce extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs;
 		if (npc.getId() == UNDINE_NOBLE) // Undine Noble gives quest drops only for the killer
@@ -118,7 +118,6 @@ public class Q00306_CrystalOfFireAndIce extends Quest
 				giveKillReward(qs.getPlayer(), npc);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -155,7 +154,7 @@ public class Q00306_CrystalOfFireAndIce extends Quest
 	
 	private void giveKillReward(Player player, Npc npc)
 	{
-		if (Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
 		{
 			final ItemHolder item = MONSTER_DROPS.get(npc.getId());
 			giveItemRandomly(player, npc, item.getId(), 1, 0, 1000.0 / item.getCount(), true);

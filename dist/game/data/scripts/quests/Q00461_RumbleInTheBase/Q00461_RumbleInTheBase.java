@@ -19,12 +19,12 @@ package quests.Q00461_RumbleInTheBase;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.QuestType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
 
 import quests.Q00252_ItSmellsDelicious.Q00252_ItSmellsDelicious;
@@ -85,12 +85,12 @@ public class Q00461_RumbleInTheBase extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		QuestState qs = null;
 		if (getRandom(1000) >= MONSTERS.get(npc.getId()))
 		{
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
 		
 		if (npc.getId() == 18908)
@@ -111,7 +111,7 @@ public class Q00461_RumbleInTheBase extends Quest
 			final Player member = getRandomPartyMember(player, 1);
 			if (member == null)
 			{
-				return super.onKill(npc, player, isSummon);
+				return;
 			}
 			
 			qs = getQuestState(member, false);
@@ -125,7 +125,6 @@ public class Q00461_RumbleInTheBase extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

@@ -16,9 +16,9 @@
  */
 package quests.Q00179_IntoTheLargeCavern;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -101,7 +101,7 @@ public class Q00179_IntoTheLargeCavern extends Quest
 					{
 						final QuestState prev = player.getQuestState(Q00178_IconicTrinity.class.getSimpleName());
 						final int level = player.getLevel();
-						if ((prev != null) && prev.isCompleted() && (level >= MIN_LEVEL) && (level <= MAX_LEVEL) && (player.getClassId().level() == 0))
+						if ((prev != null) && prev.isCompleted() && (level >= MIN_LEVEL) && (level <= MAX_LEVEL) && (player.getPlayerClass().level() == 0))
 						{
 							htmltext = "32138-01.htm";
 						}

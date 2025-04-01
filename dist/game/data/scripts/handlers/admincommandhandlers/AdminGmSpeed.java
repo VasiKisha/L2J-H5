@@ -19,13 +19,12 @@ package handlers.admincommandhandlers;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * A retail-like implementation of //gmspeed builder command.
@@ -47,7 +46,7 @@ public class AdminGmSpeed implements IAdminCommandHandler
 		{
 			if (!st.hasMoreTokens())
 			{
-				BuilderUtil.sendSysMessage(player, "//gmspeed [0...10]");
+				player.sendSysMessage("//gmspeed [0...10]");
 				return false;
 			}
 			final String token = st.nextToken();
@@ -59,16 +58,16 @@ public class AdminGmSpeed implements IAdminCommandHandler
 				return true;
 			}
 			
-			if (!Util.isDouble(token))
+			if (!StringUtil.isDouble(token))
 			{
-				BuilderUtil.sendSysMessage(player, "//gmspeed [0...10]");
+				player.sendSysMessage("//gmspeed [0...10]");
 				return false;
 			}
 			final double runSpeedBoost = Double.parseDouble(token);
 			if ((runSpeedBoost < 0) || (runSpeedBoost > 10))
 			{
 				// Custom limit according to SDW's request - real retail limit is unknown.
-				BuilderUtil.sendSysMessage(player, "//gmspeed [0...10]");
+				player.sendSysMessage("//gmspeed [0...10]");
 				return false;
 			}
 			
@@ -94,7 +93,7 @@ public class AdminGmSpeed implements IAdminCommandHandler
 				targetCharacter.broadcastInfo();
 			}
 			
-			BuilderUtil.sendSysMessage(player, "[" + targetCharacter.getName() + "] speed is [" + (runSpeedBoost * 100) + "0]% fast.");
+			player.sendSysMessage("[" + targetCharacter.getName() + "] speed is [" + (runSpeedBoost * 100) + "0]% fast.");
 		}
 		return true;
 	}

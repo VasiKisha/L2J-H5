@@ -20,15 +20,15 @@
  */
 package handlers.actionhandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSummonTalk;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSummonTalk;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.PetStatusShow;
@@ -65,7 +65,7 @@ public class SummonAction implements IActionHandler
 		{
 			if (target.isAutoAttackable(player))
 			{
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+				player.getAI().setIntention(Intention.ATTACK, target);
 				player.onActionRequest();
 			}
 			else
@@ -78,7 +78,7 @@ public class SummonAction implements IActionHandler
 				}
 				else if (GeoEngine.getInstance().canMoveToTarget(player, target))
 				{
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, target);
+					player.getAI().setIntention(Intention.FOLLOW, target);
 				}
 			}
 		}

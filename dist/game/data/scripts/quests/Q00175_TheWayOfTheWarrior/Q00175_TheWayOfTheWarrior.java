@@ -16,17 +16,18 @@
  */
 package quests.Q00175_TheWayOfTheWarrior;
 
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.variables.PlayerVariables;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
+
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * The Way of the Warrior (175)
@@ -40,10 +41,6 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 	// Items
 	private static final ItemHolder WOLF_TAIL = new ItemHolder(9807, 5);
 	private static final ItemHolder MUERTOS_CLAW = new ItemHolder(9808, 10);
-	// Message
-	private static final ExShowScreenMessage MESSAGE = new ExShowScreenMessage(NpcStringId.ACQUISITION_OF_RACE_SPECIFIC_WEAPON_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
-	// Misc
-	private static final int MIN_LEVEL = 10;
 	// Buff
 	private static final SkillHolder UNSEALED_ALTAR = new SkillHolder(4549, 1);
 	// Rewards
@@ -70,6 +67,9 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 		22245, // Muertos Lieutenant
 		22246, // Muertos Commander
 	};
+	// Misc
+	private static final int MIN_LEVEL = 10;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00175_TheWayOfTheWarrior()
 	{
@@ -119,14 +119,39 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 				if (hasItem(player, MUERTOS_CLAW))
 				{
 					takeItem(player, MUERTOS_CLAW);
+					giveItems(player, WARRIORS_SWORD, 1);
+					
+					if (player.getLevel() < 25)
+					{
+						playSound(player, "tutorial_voice_026");
+						giveItems(player, SOULSHOTS_NO_GRADE_FOR_ROOKIES);
+					}
+					
+					// Newbie Guide.
+					final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+					if (newbieGuide != null)
+					{
+						final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+						if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, 100000);
+							showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_RACE_SPECIFIC_WEAPON_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+						}
+						else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 1000000) / 100000) != 1)
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 100000);
+							showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_RACE_SPECIFIC_WEAPON_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+						}
+					}
+					
+					addExpAndSp(player, 20739, 1777);
 					giveAdena(player, 8799, true);
 					for (ItemHolder reward : REWARDS)
 					{
 						giveItems(player, reward);
 					}
-					giveNewbieReward(player);
-					giveItems(player, WARRIORS_SWORD, 1);
-					addExpAndSp(player, 20739, 1777);
 					qs.exitQuest(false, true);
 					player.sendPacket(new SocialAction(player.getObjectId(), 3));
 					htmltext = event;
@@ -147,7 +172,7 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		if (npc.getId() == MOUNTAIN_WEREWOLF)
 		{
@@ -165,7 +190,6 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 				qs.setCond(8, true);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
@@ -291,26 +315,5 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 			}
 		}
 		return htmltext;
-	}
-	
-	public static void giveNewbieReward(Player player)
-	{
-		final PlayerVariables vars = player.getVariables();
-		if ((player.getLevel() < 25) && !vars.getBoolean("NEWBIE_SHOTS", false))
-		{
-			playSound(player, "tutorial_voice_26");
-			giveItems(player, SOULSHOTS_NO_GRADE_FOR_ROOKIES);
-			vars.set("NEWBIE_SHOTS", true);
-		}
-		if (vars.getString("GUIDE_MISSION", null) == null)
-		{
-			vars.set("GUIDE_MISSION", 100000);
-			player.sendPacket(MESSAGE);
-		}
-		else if (((vars.getInt("GUIDE_MISSION") % 1000000) / 100000) != 1)
-		{
-			vars.set("GUIDE_MISSION", vars.getInt("GUIDE_MISSION") + 100000);
-			player.sendPacket(MESSAGE);
-		}
 	}
 }

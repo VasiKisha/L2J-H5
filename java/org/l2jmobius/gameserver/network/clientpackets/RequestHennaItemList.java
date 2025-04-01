@@ -20,7 +20,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.HennaEquipList;
 
 /**
- * @author Tempy, Zoey76
+ * @author Tempy
  */
 public class RequestHennaItemList extends ClientPacket
 {

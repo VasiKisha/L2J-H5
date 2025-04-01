@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ExShowContactList;
 
 /**
  * Format: (ch)
- * @author mrTJO & UnAfraid
+ * @author mrTJO, UnAfraid
  */
 public class RequestExShowContactList extends ClientPacket
 {

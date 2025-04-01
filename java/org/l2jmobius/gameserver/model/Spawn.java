@@ -26,20 +26,18 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.data.NpcPersonalAIData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
+import org.l2jmobius.gameserver.data.xml.NpcPersonalAIData;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
-import org.l2jmobius.gameserver.model.interfaces.INamable;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSignsFestival;
 import org.l2jmobius.gameserver.model.zone.type.NpcSpawnTerritory;
 import org.l2jmobius.gameserver.model.zone.type.WaterZone;
-import org.l2jmobius.gameserver.taskmanager.RespawnTaskManager;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.taskmanagers.RespawnTaskManager;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * This class manages the spawn and respawn of a group of Npcs that are in the same are and have the same type.<br>
@@ -48,7 +46,7 @@ import org.l2jmobius.gameserver.util.Util;
  * The heading of the Npc can be a random heading if not defined (value= -1) or an exact heading (ex : merchant...).
  * @author Nightmare
  */
-public class Spawn extends Location implements IIdentifiable, INamable
+public class Spawn extends Location
 {
 	protected static final Logger LOGGER = Logger.getLogger(Spawn.class.getName());
 	
@@ -141,7 +139,6 @@ public class Spawn extends Location implements IIdentifiable, INamable
 	/**
 	 * @return the String Identifier of this spawn.
 	 */
-	@Override
 	public String getName()
 	{
 		return _name;
@@ -168,7 +165,6 @@ public class Spawn extends Location implements IIdentifiable, INamable
 	 * Gets the NPC ID.
 	 * @return the NPC ID
 	 */
-	@Override
 	public int getId()
 	{
 		return _template.getId();
@@ -421,7 +417,7 @@ public class Spawn extends Location implements IIdentifiable, INamable
 		{
 			// Do not correct Z distances greater than 300.
 			final int geoZ = GeoEngine.getInstance().getHeight(newlocx, newlocy, newlocz);
-			if (Util.calculateDistance(newlocx, newlocy, newlocz, newlocx, newlocy, geoZ, true, true) < 300)
+			if (LocationUtil.calculateDistance(newlocx, newlocy, newlocz, newlocx, newlocy, geoZ, true, true) < 300)
 			{
 				newlocz = geoZ;
 			}

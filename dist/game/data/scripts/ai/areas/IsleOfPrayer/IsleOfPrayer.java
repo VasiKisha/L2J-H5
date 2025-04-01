@@ -21,7 +21,7 @@ import java.util.Map;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 
 import ai.AbstractNpcAI;
 
@@ -63,14 +63,13 @@ public class IsleOfPrayer extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final ItemChanceHolder holder = MONSTERS.get(npc.getId());
 		if (getRandom(10000) <= holder.getChance())
 		{
 			npc.dropItem(killer, holder);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

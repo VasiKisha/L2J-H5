@@ -17,12 +17,13 @@
 package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.instancemanager.games.BlockCheckerManager;
+import org.l2jmobius.gameserver.managers.ItemManager;
+import org.l2jmobius.gameserver.managers.games.BlockCheckerManager;
 import org.l2jmobius.gameserver.model.ArenaParticipantsHolder;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.serverpackets.AbstractNpcInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -156,7 +157,7 @@ public class Block extends Monster
 	
 	private void dropItem(int id, BlockCheckerManager eng, Player player)
 	{
-		final Item drop = ItemData.getInstance().createItem("Loot", id, 1, player, this);
+		final Item drop = ItemManager.createItem(ItemProcessType.LOOT, id, 1, player, this);
 		final int x = getX() + Rnd.get(50);
 		final int y = getY() + Rnd.get(50);
 		final int z = getZ();

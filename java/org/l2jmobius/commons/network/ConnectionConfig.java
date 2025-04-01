@@ -25,7 +25,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.l2jmobius.commons.network.internal.BufferPool;
-import org.l2jmobius.commons.util.PropertiesParser;
+import org.l2jmobius.commons.util.ConfigReader;
 
 /**
  * Configures and initializes connection parameters for the network layer.<br>
@@ -65,7 +65,7 @@ public class ConnectionConfig
 		resourcePool.addBufferPool(HEADER_SIZE, new BufferPool(100, HEADER_SIZE));
 		
 		// Read configuration properties.
-		final PropertiesParser networkConfig = new PropertiesParser("config/Network.ini");
+		final ConfigReader networkConfig = new ConfigReader("config/Network.ini");
 		shutdownWaitTime = networkConfig.getInt("ShutdownWaitTime", 5) * 1000L;
 		
 		// Configure thread pool based on processor count.

@@ -20,9 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.MercTicketManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.MercTicketManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
@@ -88,6 +88,6 @@ public class RequestPetGetItem extends ClientPacket
 			return;
 		}
 		
-		pet.getAI().setIntention(CtrlIntention.AI_INTENTION_PICK_UP, item);
+		pet.getAI().setIntention(Intention.PICK_UP, item);
 	}
 }

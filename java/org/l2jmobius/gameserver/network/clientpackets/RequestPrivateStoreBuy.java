@@ -27,15 +27,15 @@ import java.util.Set;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.sql.OfflineTraderTable;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.ItemRequest;
 import org.l2jmobius.gameserver.model.TradeList;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
-import org.l2jmobius.gameserver.util.Util;
 
 public class RequestPrivateStoreBuy extends ClientPacket
 {
@@ -134,7 +134,7 @@ public class RequestPrivateStoreBuy extends ClientPacket
 		if ((storePlayer.getPrivateStoreType() == PrivateStoreType.PACKAGE_SELL) && (storeList.getItemCount() > _items.size()))
 		{
 			final String msgErr = "[RequestPrivateStoreBuy] " + player + " tried to buy less items than sold by package-sell, ban this player for bot usage!";
-			Util.handleIllegalPlayerAction(player, msgErr, Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, msgErr, Config.DEFAULT_PUNISH);
 			return;
 		}
 		

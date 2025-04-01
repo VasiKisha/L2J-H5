@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/npcs.xsd">
 	<npc id="31400" level="80" type="Guard" name="Dummy - Sword Guard" title="For Test">
 		<!-- Confirmed CT2.5 -->
@@ -1754,7 +1754,7 @@
 			<height normal="17.5" />
 		</collision>
 	</npc>
-	<npc id="31452" level="70" type="SepulcherNpc" name="Ghost of Wigoth">
+	<npc id="31452" level="70" type="Folk" name="Ghost of Wigoth">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
@@ -1794,7 +1794,7 @@
 			<height normal="22.5" />
 		</collision>
 	</npc>
-	<npc id="31453" level="70" type="SepulcherNpc" name="Nameless Spirit">
+	<npc id="31453" level="70" type="Folk" name="Nameless Spirit">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
@@ -1834,7 +1834,7 @@
 			<height normal="21" />
 		</collision>
 	</npc>
-	<npc id="31454" level="70" type="SepulcherNpc" name="Ghost of Wigoth">
+	<npc id="31454" level="70" type="Folk" name="Ghost of Wigoth">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="MoveAroundSocial" value="0" />
@@ -1874,7 +1874,7 @@
 			<height normal="22.5" />
 		</collision>
 	</npc>
-	<npc id="31455" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31455" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -1912,7 +1912,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31456" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31456" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -1950,7 +1950,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31457" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31457" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -1988,7 +1988,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31458" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31458" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -2026,7 +2026,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31459" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31459" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -2064,7 +2064,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31460" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31460" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -2102,7 +2102,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31461" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31461" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -2140,7 +2140,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31462" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31462" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -2178,7 +2178,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31463" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31463" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -2216,7 +2216,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31464" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31464" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -2254,7 +2254,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31465" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31465" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -2292,7 +2292,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31466" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31466" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -2330,7 +2330,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31467" level="70" type="SepulcherNpc" name="Key Box">
+	<npc id="31467" level="70" type="Folk" name="Key Box">
 		<!-- Confirmed CT2.5 -->
 		<race>CONSTRUCT</race>
 		<sex>MALE</sex>
@@ -2368,7 +2368,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31468" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31468" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="1" />
@@ -2412,7 +2412,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31469" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31469" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="2" />
@@ -2455,7 +2455,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31470" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31470" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="3" />
@@ -2498,7 +2498,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31471" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31471" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="4" />
@@ -2542,7 +2542,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31472" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31472" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="5" />
@@ -2585,7 +2585,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31473" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31473" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="1" />
@@ -2629,7 +2629,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31474" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31474" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="2" />
@@ -2672,7 +2672,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31475" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31475" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="3" />
@@ -2715,7 +2715,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31476" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31476" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="4" />
@@ -2759,7 +2759,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31477" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31477" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="5" />
@@ -2802,7 +2802,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31478" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31478" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="1" />
@@ -2846,7 +2846,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31479" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31479" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="2" />
@@ -2889,7 +2889,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31480" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31480" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="3" />
@@ -2932,7 +2932,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31481" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31481" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="4" />
@@ -2976,7 +2976,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31482" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31482" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="5" />
@@ -3019,7 +3019,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31483" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31483" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="1" />
@@ -3063,7 +3063,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31484" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31484" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="2" />
@@ -3106,7 +3106,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31485" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31485" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="3" />
@@ -3149,7 +3149,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31486" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31486" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="4" />
@@ -3193,7 +3193,7 @@
 			<height normal="8.5" />
 		</collision>
 	</npc>
-	<npc id="31487" level="70" type="SepulcherNpc" name="Mysterious Box">
+	<npc id="31487" level="70" type="Folk" name="Mysterious Box">
 		<!-- Confirmed CT2.5 -->
 		<parameters>
 			<param name="RoomIDX" value="5" />

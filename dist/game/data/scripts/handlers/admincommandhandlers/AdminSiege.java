@@ -19,12 +19,13 @@ package handlers.admincommandhandlers;
 import java.util.Calendar;
 import java.util.StringTokenizer;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.CHSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.ClanHallAuctionManager;
+import org.l2jmobius.gameserver.managers.CHSiegeManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.ClanHallAuctionManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.residences.ClanHall;
@@ -34,8 +35,6 @@ import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
 import org.l2jmobius.gameserver.model.zone.type.ClanHallZone;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * This class handles all siege commands.
@@ -89,7 +88,7 @@ public class AdminSiege implements IAdminCommandHandler
 			String val = st.nextToken();
 			if (command.startsWith("admin_clanhall"))
 			{
-				if (Util.isDigit(val))
+				if (StringUtil.isNumeric(val))
 				{
 					clanhall = ClanHallTable.getInstance().getClanHallById(Integer.parseInt(val));
 					Clan clan = null;
@@ -104,13 +103,13 @@ public class AdminSiege implements IAdminCommandHandler
 							}
 							if (clanhall.getOwnerId() > 0)
 							{
-								BuilderUtil.sendSysMessage(activeChar, "This Clan Hall is not free!");
+								activeChar.sendSysMessage("This Clan Hall is not free!");
 								return false;
 							}
 							clan = player.getClan();
 							if (clan.getHideoutId() > 0)
 							{
-								BuilderUtil.sendSysMessage(activeChar, "You have already a Clan Hall!");
+								activeChar.sendSysMessage("You have already a Clan Hall!");
 								return false;
 							}
 							if (!clanhall.isSiegableHall())
@@ -139,7 +138,7 @@ public class AdminSiege implements IAdminCommandHandler
 								}
 								else
 								{
-									BuilderUtil.sendSysMessage(activeChar, "This Clan Hall is already free!");
+									activeChar.sendSysMessage("This Clan Hall is already free!");
 								}
 							}
 							else
@@ -226,14 +225,14 @@ public class AdminSiege implements IAdminCommandHandler
 						if (st.hasMoreTokens())
 						{
 							val = st.nextToken();
-							if (Util.isDigit(val))
+							if (StringUtil.isNumeric(val))
 							{
 								castle.getSiege().getSiegeGuardManager().addSiegeGuard(activeChar, Integer.parseInt(val));
 								break;
 							}
 						}
 						// If doesn't have more tokens or token is not a number.
-						BuilderUtil.sendSysMessage(activeChar, "Usage: //add_guard castle npcId");
+						activeChar.sendSysMessage("Usage: //add_guard castle npcId");
 						break;
 					}
 					case "admin_clear_siege_list":
@@ -253,7 +252,7 @@ public class AdminSiege implements IAdminCommandHandler
 					}
 					case "admin_move_defenders":
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Not implemented yet.");
+						activeChar.sendSysMessage("Not implemented yet.");
 						break;
 					}
 					case "admin_setcastle":
@@ -277,7 +276,7 @@ public class AdminSiege implements IAdminCommandHandler
 						}
 						else
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Unable to remove castle.");
+							activeChar.sendSysMessage("Unable to remove castle.");
 						}
 						break;
 					}
@@ -294,7 +293,7 @@ public class AdminSiege implements IAdminCommandHandler
 								final int month = calendar.get(Calendar.MONTH) + Integer.parseInt(st.nextToken());
 								if ((calendar.getActualMinimum(Calendar.MONTH) > month) || (calendar.getActualMaximum(Calendar.MONTH) < month))
 								{
-									BuilderUtil.sendSysMessage(activeChar, "Unable to change Siege Date - Incorrect month value only " + calendar.getActualMinimum(Calendar.MONTH) + "-" + calendar.getActualMaximum(Calendar.MONTH) + " is accepted!");
+									activeChar.sendSysMessage("Unable to change Siege Date - Incorrect month value only " + calendar.getActualMinimum(Calendar.MONTH) + "-" + calendar.getActualMaximum(Calendar.MONTH) + " is accepted!");
 									return false;
 								}
 								calendar.set(Calendar.MONTH, month);
@@ -304,7 +303,7 @@ public class AdminSiege implements IAdminCommandHandler
 								final int day = Integer.parseInt(st.nextToken());
 								if ((calendar.getActualMinimum(Calendar.DAY_OF_MONTH) > day) || (calendar.getActualMaximum(Calendar.DAY_OF_MONTH) < day))
 								{
-									BuilderUtil.sendSysMessage(activeChar, "Unable to change Siege Date - Incorrect day value only " + calendar.getActualMinimum(Calendar.DAY_OF_MONTH) + "-" + calendar.getActualMaximum(Calendar.DAY_OF_MONTH) + " is accepted!");
+									activeChar.sendSysMessage("Unable to change Siege Date - Incorrect day value only " + calendar.getActualMinimum(Calendar.DAY_OF_MONTH) + "-" + calendar.getActualMaximum(Calendar.DAY_OF_MONTH) + " is accepted!");
 									return false;
 								}
 								calendar.set(Calendar.DAY_OF_MONTH, day);
@@ -314,7 +313,7 @@ public class AdminSiege implements IAdminCommandHandler
 								final int hour = Integer.parseInt(st.nextToken());
 								if ((calendar.getActualMinimum(Calendar.HOUR_OF_DAY) > hour) || (calendar.getActualMaximum(Calendar.HOUR_OF_DAY) < hour))
 								{
-									BuilderUtil.sendSysMessage(activeChar, "Unable to change Siege Date - Incorrect hour value only " + calendar.getActualMinimum(Calendar.HOUR_OF_DAY) + "-" + calendar.getActualMaximum(Calendar.HOUR_OF_DAY) + " is accepted!");
+									activeChar.sendSysMessage("Unable to change Siege Date - Incorrect hour value only " + calendar.getActualMinimum(Calendar.HOUR_OF_DAY) + "-" + calendar.getActualMaximum(Calendar.HOUR_OF_DAY) + " is accepted!");
 									return false;
 								}
 								calendar.set(Calendar.HOUR_OF_DAY, hour);
@@ -324,20 +323,20 @@ public class AdminSiege implements IAdminCommandHandler
 								final int min = Integer.parseInt(st.nextToken());
 								if ((calendar.getActualMinimum(Calendar.MINUTE) > min) || (calendar.getActualMaximum(Calendar.MINUTE) < min))
 								{
-									BuilderUtil.sendSysMessage(activeChar, "Unable to change Siege Date - Incorrect minute value only " + calendar.getActualMinimum(Calendar.MINUTE) + "-" + calendar.getActualMaximum(Calendar.MINUTE) + " is accepted!");
+									activeChar.sendSysMessage("Unable to change Siege Date - Incorrect minute value only " + calendar.getActualMinimum(Calendar.MINUTE) + "-" + calendar.getActualMaximum(Calendar.MINUTE) + " is accepted!");
 									return false;
 								}
 								calendar.set(Calendar.MINUTE, min);
 							}
 							if (calendar.getTimeInMillis() < currentTime)
 							{
-								BuilderUtil.sendSysMessage(activeChar, "Unable to change Siege Date");
+								activeChar.sendSysMessage("Unable to change Siege Date");
 							}
 							else if (calendar.getTimeInMillis() != castle.getSiegeDate().getTimeInMillis())
 							{
 								castle.getSiegeDate().setTimeInMillis(calendar.getTimeInMillis());
 								castle.getSiege().saveSiegeDate();
-								BuilderUtil.sendSysMessage(activeChar, "Castle siege time for castle " + castle.getName() + " has been changed.");
+								activeChar.sendSysMessage("Castle siege time for castle " + castle.getName() + " has been changed.");
 							}
 						}
 						showSiegeTimePage(activeChar, castle);

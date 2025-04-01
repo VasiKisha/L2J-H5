@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -34,23 +38,23 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.AISkillScope;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.DropType;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.npc.AISkillScope;
+import org.l2jmobius.gameserver.model.actor.enums.npc.DropType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.holders.npc.DropGroupHolder;
+import org.l2jmobius.gameserver.model.actor.holders.npc.DropHolder;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionHolder;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.holders.DropGroupHolder;
-import org.l2jmobius.gameserver.model.holders.DropHolder;
-import org.l2jmobius.gameserver.model.holders.MinionHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * NPC data parser.
- * @author NosBit
+ * @author NosBit, Mobius
  */
 public class NpcData implements IXmlReader
 {
@@ -82,9 +86,9 @@ public class NpcData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node node = doc.getFirstChild(); node != null; node = node.getNextSibling())
+		for (Node node = document.getFirstChild(); node != null; node = node.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(node.getNodeName()))
 			{
@@ -339,8 +343,43 @@ public class NpcData implements IXmlReader
 									set.set("passableDoor", parseBoolean(attrs, "passableDoor"));
 									set.set("hasSummoner", parseBoolean(attrs, "hasSummoner"));
 									set.set("canBeSown", parseBoolean(attrs, "canBeSown"));
-									set.set("fakePlayer", parseBoolean(attrs, "fakePlayer"));
-									set.set("fakePlayerTalkable", parseBoolean(attrs, "fakePlayerTalkable"));
+									break;
+								}
+								case "fakeplayer":
+								{
+									set.set("fakePlayer", true);
+									set.set("classId", parseInteger(attrs, "classId", 1));
+									set.set("hair", parseInteger(attrs, "hair", 1));
+									set.set("hairColor", parseInteger(attrs, "hairColor", 1));
+									set.set("face", parseInteger(attrs, "face", 1));
+									set.set("nameColor", parseInteger(attrs, "nameColor", 0xFFFFFF));
+									set.set("titleColor", parseInteger(attrs, "titleColor", 0xECF9A2));
+									set.set("equipHead", parseInteger(attrs, "equipHead", 0));
+									set.set("equipRHand", parseInteger(attrs, "equipRHand", 0)); // Or dual hand.
+									set.set("equipLHand", parseInteger(attrs, "equipLHand", 0));
+									set.set("equipGloves", parseInteger(attrs, "equipGloves", 0));
+									set.set("equipChest", parseInteger(attrs, "equipChest", 0));
+									set.set("equipLegs", parseInteger(attrs, "equipLegs", 0));
+									set.set("equipFeet", parseInteger(attrs, "equipFeet", 0));
+									set.set("equipCloak", parseInteger(attrs, "equipCloak", 0));
+									set.set("equipHair", parseInteger(attrs, "equipHair", 0));
+									set.set("equipHair2", parseInteger(attrs, "equipHair2", 0));
+									set.set("agathionId", parseInteger(attrs, "agathionId", 0));
+									set.set("weaponEnchantLevel", parseInteger(attrs, "weaponEnchantLevel", 0));
+									set.set("armorEnchantLevel", parseInteger(attrs, "armorEnchantLevel", 0));
+									set.set("fishing", parseBoolean(attrs, "fishing", false));
+									set.set("baitLocationX", parseInteger(attrs, "baitLocationX", 0));
+									set.set("baitLocationY", parseInteger(attrs, "baitLocationY", 0));
+									set.set("baitLocationZ", parseInteger(attrs, "baitLocationZ", 0));
+									set.set("recommends", parseInteger(attrs, "recommends", 0));
+									set.set("nobleLevel", parseInteger(attrs, "nobleLevel", 0));
+									set.set("hero", parseBoolean(attrs, "hero", false));
+									set.set("clanId", parseInteger(attrs, "clanId", 0));
+									set.set("pledgeStatus", parseInteger(attrs, "pledgeStatus", 0));
+									set.set("sitting", parseBoolean(attrs, "sitting", false));
+									set.set("privateStoreType", parseInteger(attrs, "privateStoreType", 0));
+									set.set("privateStoreMessage", parseString(attrs, "privateStoreMessage", ""));
+									set.set("fakePlayerTalkable", parseBoolean(attrs, "fakePlayerTalkable", true));
 									break;
 								}
 								case "skilllist":
@@ -360,7 +399,7 @@ public class NpcData implements IXmlReader
 											}
 											else
 											{
-												LOGGER.warning("[" + f.getName() + "] skill not found. NPC ID: " + npcId + " Skill ID:" + skillId + " Skill Level: " + skillLevel);
+												LOGGER.warning("[" + file.getName() + "] skill not found. NPC ID: " + npcId + " Skill ID:" + skillId + " Skill Level: " + skillLevel);
 											}
 										}
 									}
@@ -541,6 +580,11 @@ public class NpcData implements IXmlReader
 									break;
 								}
 							}
+						}
+						
+						if (!Config.FAKE_PLAYERS_ENABLED && set.getBoolean("fakePlayer", false))
+						{
+							continue;
 						}
 						
 						NpcTemplate template = _npcs.get(npcId);
@@ -820,7 +864,7 @@ public class NpcData implements IXmlReader
 	 */
 	public List<NpcTemplate> getAllOfLevel(int... levels)
 	{
-		return getTemplates(template -> CommonUtil.contains(levels, template.getLevel()));
+		return getTemplates(template -> ArrayUtil.contains(levels, template.getLevel()));
 	}
 	
 	/**
@@ -830,7 +874,7 @@ public class NpcData implements IXmlReader
 	 */
 	public List<NpcTemplate> getAllMonstersOfLevel(int... levels)
 	{
-		return getTemplates(template -> CommonUtil.contains(levels, template.getLevel()) && template.isType("Monster"));
+		return getTemplates(template -> ArrayUtil.contains(levels, template.getLevel()) && template.isType("Monster"));
 	}
 	
 	/**
@@ -850,14 +894,14 @@ public class NpcData implements IXmlReader
 	 */
 	public List<NpcTemplate> getAllNpcOfClassType(String... classTypes)
 	{
-		return getTemplates(template -> CommonUtil.contains(classTypes, template.getType(), true));
+		return getTemplates(template -> ArrayUtil.contains(classTypes, template.getType(), true));
 	}
 	
 	public void loadNpcsSkillLearn()
 	{
 		_npcs.values().forEach(template ->
 		{
-			final List<ClassId> teachInfo = SkillLearnData.getInstance().getSkillLearnData(template.getId());
+			final List<PlayerClass> teachInfo = SkillLearnData.getInstance().getSkillLearnData(template.getId());
 			if (teachInfo != null)
 			{
 				template.addTeachInfo(teachInfo);

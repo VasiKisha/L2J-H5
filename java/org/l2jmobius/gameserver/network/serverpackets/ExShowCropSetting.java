@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
+import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.model.CropProcure;
 import org.l2jmobius.gameserver.model.Seed;
 import org.l2jmobius.gameserver.network.GameClient;

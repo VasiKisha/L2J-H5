@@ -16,7 +16,7 @@
  */
 package ai.areas.Gracia.AI.NPC.Lekon;
 
-import org.l2jmobius.gameserver.instancemanager.AirShipManager;
+import org.l2jmobius.gameserver.managers.AirShipManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;

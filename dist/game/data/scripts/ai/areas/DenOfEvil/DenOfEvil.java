@@ -17,9 +17,8 @@
 package ai.areas.DenOfEvil;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -29,6 +28,7 @@ import org.l2jmobius.gameserver.model.zone.type.EffectZone;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.scripting.annotations.Disabled;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -114,7 +114,7 @@ public class DenOfEvil extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.disableCoreAI(true);
 		npc.setImmobilized(true);
@@ -122,8 +122,9 @@ public class DenOfEvil extends AbstractNpcAI
 		if (zone == null)
 		{
 			LOGGER.warning("NPC " + npc + " spawned outside of EffectZone, check your zone coords! X:" + npc.getX() + " Y:" + npc.getY() + " Z:" + npc.getZ());
-			return null;
+			return;
 		}
+		
 		final int skillId = getSkillIdByNpcId(npc.getId());
 		final int skillLevel = zone.getSkillLevel(skillId);
 		zone.addSkill(skillId, skillLevel + 1);
@@ -136,23 +137,22 @@ public class DenOfEvil extends AbstractNpcAI
 		{
 			zone.broadcastPacket(new SystemMessage(SystemMessageId.I_CAN_FEEL_THAT_THE_ENERGY_BEING_FLOWN_IN_THE_KASHA_S_EYE_IS_GETTING_STRONGER_RAPIDLY));
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		ThreadPool.schedule(new RespawnNewEye(npc.getLocation()), 15000);
 		final EffectZone zone = ZoneManager.getInstance().getZone(npc, EffectZone.class);
 		if (zone == null)
 		{
 			LOGGER.warning("NPC " + npc + " killed outside of EffectZone, check your zone coords! X:" + npc.getX() + " Y:" + npc.getY() + " Z:" + npc.getZ());
-			return null;
+			return;
 		}
+		
 		final int skillId = getSkillIdByNpcId(npc.getId());
 		final int skillLevel = zone.getSkillLevel(skillId);
 		zone.addSkill(skillId, skillLevel - 1);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private class RespawnNewEye implements Runnable
@@ -215,7 +215,7 @@ public class DenOfEvil extends AbstractNpcAI
 						{
 							// respawn eye
 							final Npc npc = creature.asNpc();
-							if (CommonUtil.contains(EYE_IDS, npc.getId()))
+							if (ArrayUtil.contains(EYE_IDS, npc.getId()))
 							{
 								ThreadPool.schedule(new RespawnNewEye(npc.getLocation()), 15000);
 							}

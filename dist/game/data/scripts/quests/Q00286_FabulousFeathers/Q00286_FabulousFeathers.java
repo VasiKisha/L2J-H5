@@ -21,7 +21,7 @@ import java.util.Map;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 
@@ -94,14 +94,13 @@ public class Q00286_FabulousFeathers extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(killer, 1, 3, npc);
 		if ((qs != null) && giveItemRandomly(qs.getPlayer(), npc, COMMANDERS_FEATHER.getId(), 1, COMMANDERS_FEATHER.getCount(), MOB_DROP_CHANCES.get(npc.getId()), true))
 		{
 			qs.setCond(2);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

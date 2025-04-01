@@ -16,13 +16,13 @@
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.attackable.OnAttackableAttack;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.attackable.OnAttackableKill;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.attackable.OnAttackableAttack;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.attackable.OnAttackableKill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**

@@ -20,11 +20,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.CastleManorManager;
+import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.model.CropProcure;
 import org.l2jmobius.gameserver.model.Seed;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
 /**
@@ -89,7 +89,7 @@ public class RequestSetCrop extends ClientPacket
 		}
 		
 		// Check player privileges
-		if ((player.getClan() == null) || (player.getClan().getCastleId() != _manorId) || !player.hasClanPrivilege(ClanPrivilege.CS_MANOR_ADMIN) || !player.getLastFolkNPC().canInteract(player))
+		if ((player.getClan() == null) || (player.getClan().getCastleId() != _manorId) || !player.hasAccess(ClanAccess.CASTLE_MANOR) || !player.getLastFolkNPC().canInteract(player))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;

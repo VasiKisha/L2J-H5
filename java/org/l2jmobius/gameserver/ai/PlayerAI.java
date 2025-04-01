@@ -20,18 +20,10 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_CAST;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_INTERACT;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_MOVE_TO;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_PICK_UP;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_REST;
-
-import org.l2jmobius.gameserver.model.Duel;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.player.Duel;
 import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -50,7 +42,7 @@ public class PlayerAI extends PlayableAI
 		super(player);
 	}
 	
-	private void saveNextIntention(CtrlIntention intention, Object arg0, Object arg1)
+	private void saveNextIntention(Intention intention, Object arg0, Object arg1)
 	{
 		_nextIntention = new IntentionCommand(intention, arg0, arg1);
 	}
@@ -68,10 +60,10 @@ public class PlayerAI extends PlayableAI
 	 * @param arg1 The second parameter of the Intention
 	 */
 	@Override
-	protected synchronized void changeIntention(CtrlIntention intention, Object arg0, Object arg1)
+	protected synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
 	{
 		// Forget next if it's not cast or it's cast and skill is toggle.
-		if ((intention != AI_INTENTION_CAST) || ((arg0 != null) && !((Skill) arg0).isToggle()))
+		if ((intention != Intention.CAST) || ((arg0 != null) && !((Skill) arg0).isToggle()))
 		{
 			_nextIntention = null;
 			super.changeIntention(intention, arg0, arg1);
@@ -91,50 +83,50 @@ public class PlayerAI extends PlayableAI
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event ReadyToAct.<br>
+	 * Launch actions corresponding to the Action ReadyToAct.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
-	 * <li>Launch actions corresponding to the Event Think</li>
+	 * <li>Launch actions corresponding to the Action Think</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtReadyToAct()
+	protected void onActionReadyToAct()
 	{
-		// Launch actions corresponding to the Event Think
+		// Launch actions corresponding to the Action Think
 		if (_nextIntention != null)
 		{
-			setIntention(_nextIntention._crtlIntention, _nextIntention._arg0, _nextIntention._arg1);
+			setIntention(_nextIntention._intention, _nextIntention._arg0, _nextIntention._arg1);
 			_nextIntention = null;
 		}
-		super.onEvtReadyToAct();
+		super.onActionReadyToAct();
 	}
 	
 	@Override
-	protected void onEvtForgetObject(WorldObject object)
+	protected void onActionForgetObject(WorldObject object)
 	{
 		if (object.isPlayer())
 		{
 			getActor().getKnownRelations().remove(object.getObjectId());
 		}
 		
-		super.onEvtForgetObject(object);
+		super.onActionForgetObject(object);
 	}
 	
 	/**
-	 * Launch actions corresponding to the Event Cancel.<br>
+	 * Launch actions corresponding to the Action Cancel.<br>
 	 * <br>
 	 * <b><u>Actions</u>:</b>
 	 * <ul>
 	 * <li>Stop an AI Follow Task</li>
-	 * <li>Launch actions corresponding to the Event Think</li>
+	 * <li>Launch actions corresponding to the Action Think</li>
 	 * </ul>
 	 */
 	@Override
-	protected void onEvtCancel()
+	protected void onActionCancel()
 	{
 		_nextIntention = null;
-		super.onEvtCancel();
+		super.onActionCancel();
 	}
 	
 	/**
@@ -143,26 +135,26 @@ public class PlayerAI extends PlayableAI
 	 * Check if actual intention is set to CAST and, if so, retrieves latest intention before the actual CAST and set it as the current intention for the player.
 	 */
 	@Override
-	protected void onEvtFinishCasting()
+	protected void onActionFinishCasting()
 	{
-		if (getIntention() == AI_INTENTION_CAST)
+		if (getIntention() == Intention.CAST)
 		{
 			// run interrupted or next intention
 			if (_nextIntention != null)
 			{
-				if (_nextIntention._crtlIntention != AI_INTENTION_CAST)
+				if (_nextIntention._intention != Intention.CAST)
 				{
-					setIntention(_nextIntention._crtlIntention, _nextIntention._arg0, _nextIntention._arg1);
+					setIntention(_nextIntention._intention, _nextIntention._arg0, _nextIntention._arg1);
 				}
 				else
 				{
-					setIntention(AI_INTENTION_IDLE);
+					setIntention(Intention.IDLE);
 				}
 			}
 			else
 			{
 				// set intention to idle if skill doesn't change intention.
-				setIntention(AI_INTENTION_IDLE);
+				setIntention(Intention.IDLE);
 			}
 		}
 	}
@@ -170,12 +162,12 @@ public class PlayerAI extends PlayableAI
 	@Override
 	protected void onIntentionRest()
 	{
-		if (getIntention() == AI_INTENTION_REST)
+		if (getIntention() == Intention.REST)
 		{
 			return;
 		}
 		
-		changeIntention(AI_INTENTION_REST, null, null);
+		changeIntention(Intention.REST, null, null);
 		setTarget(null);
 		if (getAttackTarget() != null)
 		{
@@ -187,7 +179,7 @@ public class PlayerAI extends PlayableAI
 	@Override
 	protected void onIntentionActive()
 	{
-		setIntention(AI_INTENTION_IDLE);
+		setIntention(Intention.IDLE);
 	}
 	
 	/**
@@ -196,14 +188,14 @@ public class PlayerAI extends PlayableAI
 	 * <b><u>Actions</u> : </b>
 	 * <ul>
 	 * <li>Stop the actor auto-attack server side AND client side by sending Server->Client packet AutoAttackStop (broadcast)</li>
-	 * <li>Set the Intention of this AI to AI_INTENTION_MOVE_TO</li>
+	 * <li>Set the Intention of this AI to MOVE_TO</li>
 	 * <li>Move the actor to Location (x,y,z) server side AND client side by sending Server->Client packet MoveToLocation (broadcast)</li>
 	 * </ul>
 	 */
 	@Override
 	protected void onIntentionMoveTo(ILocational loc)
 	{
-		if (getIntention() == AI_INTENTION_REST)
+		if (getIntention() == Intention.REST)
 		{
 			// Cancel action client side by sending Server->Client packet ActionFailed to the Player actor
 			clientActionFailed();
@@ -221,12 +213,12 @@ public class PlayerAI extends PlayableAI
 		if (_actor.isAllSkillsDisabled() || _actor.isCastingNow() || _actor.isAttackingNow())
 		{
 			clientActionFailed();
-			saveNextIntention(AI_INTENTION_MOVE_TO, loc, null);
+			saveNextIntention(Intention.MOVE_TO, loc, null);
 			return;
 		}
 		
-		// Set the Intention of this AbstractAI to AI_INTENTION_MOVE_TO
-		changeIntention(AI_INTENTION_MOVE_TO, loc, null);
+		// Set the Intention of this AbstractAI to MOVE_TO
+		changeIntention(Intention.MOVE_TO, loc, null);
 		
 		// Stop the actor auto-attack client side by sending Server->Client packet AutoAttackStop (broadcast)
 		clientStopAutoAttack();
@@ -242,7 +234,6 @@ public class PlayerAI extends PlayableAI
 	protected void clientNotifyDead()
 	{
 		_clientMovingToPawnOffset = 0;
-		_clientMoving = false;
 		super.clientNotifyDead();
 	}
 	
@@ -331,7 +322,7 @@ public class PlayerAI extends PlayableAI
 			return;
 		}
 		
-		setIntention(AI_INTENTION_IDLE);
+		setIntention(Intention.IDLE);
 		_actor.asPlayer().doPickupItem(target);
 	}
 	
@@ -353,13 +344,13 @@ public class PlayerAI extends PlayableAI
 			_actor.asPlayer().doInteract(target.asCreature());
 		}
 		
-		setIntention(AI_INTENTION_IDLE);
+		setIntention(Intention.IDLE);
 	}
 	
 	@Override
-	public void onEvtThink()
+	public void onActionThink()
 	{
-		if (_thinking && (getIntention() != AI_INTENTION_CAST))
+		if (_thinking && (getIntention() != Intention.CAST))
 		{
 			return;
 		}
@@ -367,19 +358,19 @@ public class PlayerAI extends PlayableAI
 		_thinking = true;
 		try
 		{
-			if (getIntention() == AI_INTENTION_ATTACK)
+			if (getIntention() == Intention.ATTACK)
 			{
 				thinkAttack();
 			}
-			else if (getIntention() == AI_INTENTION_CAST)
+			else if (getIntention() == Intention.CAST)
 			{
 				thinkCast();
 			}
-			else if (getIntention() == AI_INTENTION_PICK_UP)
+			else if (getIntention() == Intention.PICK_UP)
 			{
 				thinkPickUp();
 			}
-			else if (getIntention() == AI_INTENTION_INTERACT)
+			else if (getIntention() == Intention.INTERACT)
 			{
 				thinkInteract();
 			}

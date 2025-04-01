@@ -18,11 +18,11 @@ package ai.others.CastleMercenaryManager;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -114,7 +114,7 @@ public class CastleMercenaryManager extends AbstractNpcAI
 	public String onFirstTalk(Npc npc, Player player)
 	{
 		final String htmltext;
-		if (player.canOverrideCond(PlayerCondOverride.CASTLE_CONDITIONS) || ((player.getClanId() == npc.getCastle().getOwnerId()) && player.hasClanPrivilege(ClanPrivilege.CS_MERCENARIES)))
+		if (player.canOverrideCond(PlayerCondOverride.CASTLE_CONDITIONS) || ((player.getClanId() == npc.getCastle().getOwnerId()) && player.hasAccess(ClanAccess.CASTLE_MERCENARIES)))
 		{
 			if (npc.getCastle().getSiege().isInProgress())
 			{

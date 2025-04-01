@@ -34,12 +34,11 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.time.SchedulingPattern;
+import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.commons.util.TimeUtil;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.instancemanager.AntiFeedManager;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.AntiFeedManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -49,17 +48,19 @@ import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerLogout;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogout;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.quest.Event;
 import org.l2jmobius.gameserver.model.quest.QuestTimer;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneForm;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
@@ -67,7 +68,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ExPVPMatchCCRecord;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.MapUtil;
 
 /**
  * Deathmatch event.
@@ -143,14 +144,14 @@ public class Deathmatch extends Event
 			}
 			
 			@Override
-			public void parseDocument(Document doc, File f)
+			public void parseDocument(Document document, File file)
 			{
 				final AtomicInteger count = new AtomicInteger(0);
-				forEach(doc, "event", eventNode ->
+				forEach(document, "event", eventNode ->
 				{
 					final StatSet att = new StatSet(parseAttributes(eventNode));
 					final String name = att.getString("name");
-					for (Node node = doc.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
+					for (Node node = document.getDocumentElement().getFirstChild(); node != null; node = node.getNextSibling())
 					{
 						switch (node.getNodeName())
 						{
@@ -358,7 +359,7 @@ public class Deathmatch extends Event
 				// BLUE_SCORE = 0;
 				// RED_SCORE = 0;
 				// Initialize scoreboard.
-				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.INITIALIZE, Util.sortByValue(PLAYER_SCORES, true)));
+				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.INITIALIZE, MapUtil.sortByValue(PLAYER_SCORES, true)));
 				// Schedule start.
 				startQuestTimer("5", (WAIT_TIME * 1000) - 5000, null, null);
 				startQuestTimer("4", (WAIT_TIME * 1000) - 4000, null, null);
@@ -431,7 +432,7 @@ public class Deathmatch extends Event
 				}
 				
 				Player winner = Collections.max(PLAYER_SCORES.entrySet(), Map.Entry.comparingByValue()).getKey();
-				winner.addItem("Deathmatch winner", REWARD, player, true);
+				winner.addItem(ItemProcessType.REWARD, REWARD, player, true);
 				
 				startQuestTimer("ScoreBoard", 3500, null, null);
 				startQuestTimer("TeleportOut", 7000, null, null);
@@ -439,7 +440,7 @@ public class Deathmatch extends Event
 			}
 			case "ScoreBoard":
 			{
-				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, Util.sortByValue(PLAYER_SCORES, true)));
+				PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, MapUtil.sortByValue(PLAYER_SCORES, true)));
 				break;
 			}
 			case "TeleportOut":
@@ -590,7 +591,7 @@ public class Deathmatch extends Event
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer())
 		{
@@ -607,7 +608,6 @@ public class Deathmatch extends Event
 				}
 			}
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	private boolean canRegister(Player player)
@@ -761,7 +761,7 @@ public class Deathmatch extends Event
 			final Player killer = event.getAttacker().asPlayer();
 			// Confirm player kill.
 			PLAYER_SCORES.put(killer, PLAYER_SCORES.get(killer) + 1);
-			PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.UPDATE, Util.sortByValue(PLAYER_SCORES, true)));
+			PVP_WORLD.broadcastPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.UPDATE, MapUtil.sortByValue(PLAYER_SCORES, true)));
 			// Auto release after 10 seconds.
 			startQuestTimer("ResurrectPlayer", 10000, null, killedPlayer);
 		}

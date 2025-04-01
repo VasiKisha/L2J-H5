@@ -31,7 +31,7 @@ public class SkillChannelized
 	
 	public void addChannelizer(int skillId, Creature channelizer)
 	{
-		_channelizers.computeIfAbsent(skillId, k -> new ConcurrentHashMap<>()).put(channelizer.getObjectId(), channelizer);
+		_channelizers.computeIfAbsent(skillId, _ -> new ConcurrentHashMap<>()).put(channelizer.getObjectId(), channelizer);
 	}
 	
 	public void removeChannelizer(int skillId, Creature channelizer)

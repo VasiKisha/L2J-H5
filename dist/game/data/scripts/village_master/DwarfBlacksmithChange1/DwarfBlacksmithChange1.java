@@ -16,10 +16,10 @@
  */
 package village_master.DwarfBlacksmithChange1;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -100,7 +100,7 @@ public class DwarfBlacksmithChange1 extends AbstractNpcAI
 		{
 			htmltext = "30499-12.htm"; // fnYouAreFourthClass
 		}
-		else if ((classId == ARTISAN) && (player.getClassId() == ClassId.DWARVEN_FIGHTER))
+		else if ((classId == ARTISAN) && (player.getPlayerClass() == PlayerClass.DWARVEN_FIGHTER))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -116,7 +116,7 @@ public class DwarfBlacksmithChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, FINAL_PASS_CERTIFICATE))
 			{
 				takeItems(player, FINAL_PASS_CERTIFICATE, -1);
-				player.setClassId(ARTISAN);
+				player.setPlayerClass(ARTISAN);
 				player.setBaseClass(ARTISAN);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();

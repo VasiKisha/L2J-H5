@@ -17,10 +17,10 @@
 package quests.Q00690_JudesRequest;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -121,12 +121,12 @@ public class Q00690_JudesRequest extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 1);
 		if (partyMember == null)
 		{
-			return null;
+			return;
 		}
 		
 		final int npcId = npc.getId();
@@ -148,7 +148,6 @@ public class Q00690_JudesRequest extends Quest
 			giveItems(player, EVIL_WEAPON, Math.max(chance / 1000, 1));
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
-		return null;
 	}
 	
 	@Override

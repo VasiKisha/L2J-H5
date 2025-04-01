@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Format:(ch) dddddc
@@ -77,7 +77,7 @@ public class RequestExMagicSkillUseGround extends ClientPacket
 			player.setCurrentSkillWorldPosition(new Location(_x, _y, _z));
 			
 			// normally magicskilluse packet turns char client side but for these skills, it doesn't (even with correct target)
-			player.setHeading(Util.calculateHeadingFrom(player.getX(), player.getY(), _x, _y));
+			player.setHeading(LocationUtil.calculateHeadingFrom(player.getX(), player.getY(), _x, _y));
 			Broadcast.toKnownPlayers(player, new ValidateLocation(player));
 			player.useMagic(skill, _ctrlPressed, _shiftPressed);
 		}

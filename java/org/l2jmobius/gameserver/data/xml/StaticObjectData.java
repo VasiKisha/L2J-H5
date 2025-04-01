@@ -31,16 +31,12 @@ import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
 import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
 
 /**
- * This class loads and holds all static object data.
  * @author UnAfraid
  */
 public class StaticObjectData implements IXmlReader
 {
 	private final Map<Integer, StaticObject> _staticObjects = new HashMap<>();
 	
-	/**
-	 * Instantiates a new static objects.
-	 */
 	protected StaticObjectData()
 	{
 		load();
@@ -55,9 +51,9 @@ public class StaticObjectData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -94,18 +90,14 @@ public class StaticObjectData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the static objects.
-	 * @return a collection of static objects.
+	 * Retrieves the collection of all initialized static objects.
+	 * @return a {@link Collection} of {@link StaticObject} instances representing the current static objects in the map.
 	 */
 	public Collection<StaticObject> getStaticObjects()
 	{
 		return _staticObjects.values();
 	}
 	
-	/**
-	 * Gets the single instance of StaticObjects.
-	 * @return single instance of StaticObjects
-	 */
 	public static StaticObjectData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

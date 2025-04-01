@@ -18,17 +18,18 @@ package handlers.effecthandlers;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.EtcItemType;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
@@ -39,7 +40,7 @@ import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.FishingZone;
 import org.l2jmobius.gameserver.model.zone.type.WaterZone;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Fishing effect implementation.
@@ -133,7 +134,7 @@ public class Fishing extends AbstractEffect
 		
 		// calculate a position in front of the player with a random distance
 		int distance = Rnd.get(MIN_BAIT_DISTANCE, MAX_BAIT_DISTANCE);
-		final double angle = Util.convertHeadingToDegree(player.getHeading());
+		final double angle = LocationUtil.convertHeadingToDegree(player.getHeading());
 		final double radian = Math.toRadians(angle);
 		final double sin = Math.sin(radian);
 		final double cos = Math.cos(radian);
@@ -202,7 +203,7 @@ public class Fishing extends AbstractEffect
 			}
 		}
 		
-		if (!player.destroyItem("Fishing", equipedLeftHand, 1, null, false))
+		if (!player.destroyItem(ItemProcessType.NONE, equipedLeftHand, 1, null, false))
 		{
 			player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_BAIT);
 			return;

@@ -39,7 +39,7 @@ public class PavelArchaic extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (getRandom(100) < 70)
 		{
@@ -49,7 +49,6 @@ public class PavelArchaic extends AbstractNpcAI
 			final Npc golem2 = addSpawn(PINCER_GOLEM3, npc.getX(), npc.getY(), npc.getZ() + 20, npc.getHeading(), false, 0, false);
 			addAttackDesire(golem2, killer);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -29,14 +29,13 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.network.serverpackets.ExServerPrimitive;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles following admin commands: - open1 = open coloseum door 24190001 - open2 = open coloseum door 24190002 - open3 = open coloseum door 24190003 - open4 = open coloseum door 24190004 - openall = open all coloseum door - close1 = close coloseum door 24190001 - close2 = close coloseum
@@ -138,7 +137,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Incorrect target.");
+					activeChar.sendSysMessage("Incorrect target.");
 				}
 			}
 			else if (command.equals("admin_close"))
@@ -150,7 +149,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Incorrect target.");
+					activeChar.sendSysMessage("Incorrect target.");
 				}
 			}
 			else if (command.contains("admin_showdoors"))
@@ -213,7 +212,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 						packet.addLine(color, door.getX(2), door.getY(2), door.getZMax(), door.getX(3), door.getY(3), door.getZMin());
 						activeChar.sendPacket(packet);
 						// send message
-						BuilderUtil.sendSysMessage(activeChar, "Found door " + door.getId());
+						activeChar.sendSysMessage("Found door " + door.getId());
 					});
 				}
 			}

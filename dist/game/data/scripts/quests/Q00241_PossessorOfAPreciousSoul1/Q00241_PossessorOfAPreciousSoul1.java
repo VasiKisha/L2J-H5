@@ -16,10 +16,10 @@
  */
 package quests.Q00241_PossessorOfAPreciousSoul1;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -225,7 +225,7 @@ public class Q00241_PossessorOfAPreciousSoul1 extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember;
 		final QuestState qs;
@@ -236,7 +236,7 @@ public class Q00241_PossessorOfAPreciousSoul1 extends Quest
 				partyMember = getRandomPartyMember(player, 3);
 				if (partyMember == null)
 				{
-					return null;
+					return;
 				}
 				
 				qs = getQuestState(partyMember, false);
@@ -252,8 +252,9 @@ public class Q00241_PossessorOfAPreciousSoul1 extends Quest
 				partyMember = getRandomPartyMember(player, 6);
 				if (partyMember == null)
 				{
-					return null;
+					return;
 				}
+				
 				qs = getQuestState(partyMember, false);
 				if ((MALRUK_SUCCUBUS_CLAW_CHANCE >= getRandom(100)) && (getQuestItemsCount(partyMember, MALRUK_SUCCUBUS_CLAW) < 10))
 				{
@@ -274,8 +275,9 @@ public class Q00241_PossessorOfAPreciousSoul1 extends Quest
 				partyMember = getRandomPartyMember(player, 14);
 				if (partyMember == null)
 				{
-					return null;
+					return;
 				}
+				
 				qs = getQuestState(partyMember, false);
 				if ((CRIMSON_MOSS_CHANCE >= getRandom(100)) && (getQuestItemsCount(partyMember, CRIMSON_MOSS) < 5))
 				{
@@ -292,7 +294,6 @@ public class Q00241_PossessorOfAPreciousSoul1 extends Quest
 				break;
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

@@ -29,7 +29,7 @@ import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import ai.AbstractNpcAI;
 
 /**
- * @author HorridoJoho, janiko, FinalDestination, lion
+ * @author HorridoJoho, Janiko, FinalDestination, lion
  */
 public class AltarsOfSacrifice extends AbstractNpcAI
 {

@@ -51,7 +51,7 @@ public class PledgeShowMemberListUpdate extends ServerPacket
 		}
 		_name = player.getName();
 		_level = player.getLevel();
-		_classId = player.getClassId().getId();
+		_classId = player.getPlayerClass().getId();
 		_race = player.getRace().ordinal();
 		_female = player.getAppearance().isFemale();
 		_objectId = player.getObjectId();

@@ -31,7 +31,6 @@ import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles following admin commands: - enchant_armor
@@ -141,7 +140,7 @@ public class AdminEnchant implements IAdminCommandHandler
 					// check value
 					if ((ench < 0) || (ench > 65535))
 					{
-						BuilderUtil.sendSysMessage(activeChar, "You must set the enchant level to be between 0-65535.");
+						activeChar.sendSysMessage("You must set the enchant level to be between 0-65535.");
 					}
 					else
 					{
@@ -154,7 +153,7 @@ public class AdminEnchant implements IAdminCommandHandler
 					{
 						LOGGER.warning("Set enchant error: " + e);
 					}
-					BuilderUtil.sendSysMessage(activeChar, "Please specify a new enchant value.");
+					activeChar.sendSysMessage("Please specify a new enchant value.");
 				}
 				catch (NumberFormatException e)
 				{
@@ -162,7 +161,7 @@ public class AdminEnchant implements IAdminCommandHandler
 					{
 						LOGGER.warning("Set enchant error: " + e);
 					}
-					BuilderUtil.sendSysMessage(activeChar, "Please specify a valid new enchant value.");
+					activeChar.sendSysMessage("Please specify a valid new enchant value.");
 				}
 			}
 			
@@ -205,7 +204,7 @@ public class AdminEnchant implements IAdminCommandHandler
 				{
 					if (enchant > EnchantItemGroupsData.getInstance().getMaxWeaponEnchant())
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Maximum enchantment for weapon items is " + EnchantItemGroupsData.getInstance().getMaxWeaponEnchant() + ".");
+						activeChar.sendSysMessage("Maximum enchantment for weapon items is " + EnchantItemGroupsData.getInstance().getMaxWeaponEnchant() + ".");
 						enchant = EnchantItemGroupsData.getInstance().getMaxWeaponEnchant();
 					}
 				}
@@ -213,13 +212,13 @@ public class AdminEnchant implements IAdminCommandHandler
 				{
 					if (enchant > EnchantItemGroupsData.getInstance().getMaxAccessoryEnchant())
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Maximum enchantment for accessory items is " + EnchantItemGroupsData.getInstance().getMaxAccessoryEnchant() + ".");
+						activeChar.sendSysMessage("Maximum enchantment for accessory items is " + EnchantItemGroupsData.getInstance().getMaxAccessoryEnchant() + ".");
 						enchant = EnchantItemGroupsData.getInstance().getMaxAccessoryEnchant();
 					}
 				}
 				else if (enchant > EnchantItemGroupsData.getInstance().getMaxArmorEnchant())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Maximum enchantment for armor items is " + EnchantItemGroupsData.getInstance().getMaxArmorEnchant() + ".");
+					activeChar.sendSysMessage("Maximum enchantment for armor items is " + EnchantItemGroupsData.getInstance().getMaxArmorEnchant() + ".");
 					enchant = EnchantItemGroupsData.getInstance().getMaxArmorEnchant();
 				}
 			}
@@ -234,7 +233,7 @@ public class AdminEnchant implements IAdminCommandHandler
 			player.broadcastUserInfo();
 			
 			// Information.
-			BuilderUtil.sendSysMessage(activeChar, "Changed enchantment of " + player.getName() + "'s " + itemInstance.getTemplate().getName() + " from " + curEnchant + " to " + enchant + ".");
+			activeChar.sendSysMessage("Changed enchantment of " + player.getName() + "'s " + itemInstance.getTemplate().getName() + " from " + curEnchant + " to " + enchant + ".");
 			player.sendMessage("Admin has changed the enchantment of your " + itemInstance.getTemplate().getName() + " from " + curEnchant + " to " + enchant + ".");
 		}
 	}

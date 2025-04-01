@@ -55,7 +55,6 @@ public class PlayerVariables extends AbstractVariables
 		restoreMe();
 	}
 	
-	@Override
 	public boolean restoreMe()
 	{
 		// Restore previous variables.
@@ -83,7 +82,6 @@ public class PlayerVariables extends AbstractVariables
 		return true;
 	}
 	
-	@Override
 	public boolean storeMe()
 	{
 		// No changes, nothing to store.
@@ -126,7 +124,6 @@ public class PlayerVariables extends AbstractVariables
 		return true;
 	}
 	
-	@Override
 	public boolean deleteMe()
 	{
 		try (Connection con = DatabaseFactory.getConnection())

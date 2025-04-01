@@ -19,9 +19,9 @@ package ai.others;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -54,9 +54,9 @@ public class EmeraldHorn extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
-		if (Util.calculateDistance(npc, npc.getSpawn(), false, false) > MAX_CHASE_DIST)
+		if (LocationUtil.calculateDistance(npc, npc.getSpawn(), false, false) > MAX_CHASE_DIST)
 		{
 			npc.teleToLocation(npc.getSpawn().getX(), npc.getSpawn().getY(), npc.getSpawn().getZ());
 		}
@@ -81,11 +81,10 @@ public class EmeraldHorn extends AbstractNpcAI
 			npc.getVariables().set(CAST_FLAG, false);
 			npc.getVariables().set(HIGH_DAMAGE_FLAG, true);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if (getRandom(5) < 1)
 		{
@@ -94,7 +93,6 @@ public class EmeraldHorn extends AbstractNpcAI
 			addSkillCastDesire(npc, npc, REFLECT_ATTACK, 99999);
 			startQuestTimer(DAMAGE_TIMER_15S, 15 * 1000, npc, player);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override

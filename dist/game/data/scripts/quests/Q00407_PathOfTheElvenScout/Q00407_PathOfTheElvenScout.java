@@ -17,14 +17,14 @@
 package quests.Q00407_PathOfTheElvenScout;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Path of the Elven Scout (407)
@@ -80,7 +80,7 @@ public class Q00407_PathOfTheElvenScout extends Quest
 		{
 			case "ACCEPT":
 			{
-				if (player.getClassId() == ClassId.ELVEN_FIGHTER)
+				if (player.getPlayerClass() == PlayerClass.ELVEN_FIGHTER)
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
@@ -101,7 +101,7 @@ public class Q00407_PathOfTheElvenScout extends Quest
 						htmltext = "30328-03.htm";
 					}
 				}
-				else if (player.getClassId() == ClassId.ELVEN_SCOUT)
+				else if (player.getPlayerClass() == PlayerClass.ELVEN_SCOUT)
 				{
 					htmltext = "30328-02a.htm";
 				}
@@ -132,25 +132,24 @@ public class Q00407_PathOfTheElvenScout extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isStarted())
 		{
 			npc.setScriptValue(attacker.getObjectId());
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		if (npc.isScriptValue(killer.getObjectId()) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, false))
+		if (npc.isScriptValue(killer.getObjectId()) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, false))
 		{
 			final QuestState qs = getQuestState(killer, false);
 			if (qs == null)
 			{
-				return null;
+				return;
 			}
 			
 			if (npc.getId() == OL_MAHUM_SENTRY)
@@ -188,7 +187,6 @@ public class Q00407_PathOfTheElvenScout extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void giveLetterAndCheckState(int letterId, QuestState qs)

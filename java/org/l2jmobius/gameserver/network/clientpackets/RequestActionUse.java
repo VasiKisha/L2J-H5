@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
@@ -20,33 +24,33 @@ import java.util.Arrays;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.NextAction;
 import org.l2jmobius.gameserver.ai.SummonAI;
 import org.l2jmobius.gameserver.data.BotReportTable;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.PetSkillData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.MountType;
-import org.l2jmobius.gameserver.enums.PrivateStoreType;
-import org.l2jmobius.gameserver.instancemanager.AirShipManager;
+import org.l2jmobius.gameserver.managers.AirShipManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
 import org.l2jmobius.gameserver.model.actor.instance.BabyPet;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
 import org.l2jmobius.gameserver.model.actor.instance.StaticObject;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ChairSit;
 import org.l2jmobius.gameserver.network.serverpackets.ExAskCoupleAction;
@@ -55,11 +59,10 @@ import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.RecipeShopManageList;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
 
 /**
- * This class manages the action use request
- * @author Zoey76
+ * @version $Revision: 1.11.2.7.2.9 $ $Date: 2005/04/06 16:13:48 $
  */
 public class RequestActionUse extends ClientPacket
 {
@@ -141,7 +144,7 @@ public class RequestActionUse extends ClientPacket
 				{
 					// Sit when arrive using next action.
 					// Creating next action class.
-					final NextAction nextAction = new NextAction(CtrlEvent.EVT_ARRIVED, CtrlIntention.AI_INTENTION_MOVE_TO, () -> useSit(player, target));
+					final NextAction nextAction = new NextAction(Action.ARRIVED, Intention.MOVE_TO, () -> useSit(player, target));
 					// Binding next action to AI.
 					player.getAI().setNextAction(nextAction);
 				}
@@ -375,7 +378,7 @@ public class RequestActionUse extends ClientPacket
 				if (validateSummon(player, summon, false) && (target != null) && (summon != target) && !summon.isMovementDisabled())
 				{
 					summon.setFollowStatus(false);
-					summon.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, target.getLocation());
+					summon.getAI().setIntention(Intention.MOVE_TO, target.getLocation());
 				}
 				break;
 			}
@@ -384,7 +387,7 @@ public class RequestActionUse extends ClientPacket
 				if (validateSummon(player, summon, true) && (target != null) && (summon != target) && !summon.isMovementDisabled())
 				{
 					summon.setFollowStatus(false);
-					summon.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, target.getLocation());
+					summon.getAI().setIntention(Intention.MOVE_TO, target.getLocation());
 				}
 				break;
 			}
@@ -1454,15 +1457,15 @@ public class RequestActionUse extends ClientPacket
 		sm.addPcName(partner);
 		player.sendPacket(sm);
 		
-		if ((player.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE) || (partner.getAI().getIntention() != CtrlIntention.AI_INTENTION_IDLE))
+		if ((player.getAI().getIntention() != Intention.IDLE) || (partner.getAI().getIntention() != Intention.IDLE))
 		{
-			player.getAI().setNextAction(new NextAction(CtrlEvent.EVT_ARRIVED, CtrlIntention.AI_INTENTION_MOVE_TO, () -> partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id))));
+			player.getAI().setNextAction(new NextAction(Action.ARRIVED, Intention.MOVE_TO, () -> partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id))));
 			return;
 		}
 		
 		if (player.isCastingNow() || player.isCastingSimultaneouslyNow())
 		{
-			player.getAI().setNextAction(new NextAction(CtrlEvent.EVT_FINISH_CASTING, CtrlIntention.AI_INTENTION_CAST, () -> partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id))));
+			player.getAI().setNextAction(new NextAction(Action.FINISH_CASTING, Intention.CAST, () -> partner.sendPacket(new ExAskCoupleAction(player.getObjectId(), id))));
 			return;
 		}
 		

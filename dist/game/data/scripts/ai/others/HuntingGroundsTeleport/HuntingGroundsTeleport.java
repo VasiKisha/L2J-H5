@@ -16,10 +16,10 @@
  */
 package ai.others.HuntingGroundsTeleport;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -58,7 +58,7 @@ public class HuntingGroundsTeleport extends AbstractNpcAI
 		final int playerCabal = ss.getPlayerCabal(player.getObjectId());
 		if (playerCabal == SevenSigns.CABAL_NULL)
 		{
-			return CommonUtil.contains(DAWN_NPCS, npc.getId()) ? "dawn_tele-no.htm" : "dusk_tele-no.htm";
+			return ArrayUtil.contains(DAWN_NPCS, npc.getId()) ? "dawn_tele-no.htm" : "dusk_tele-no.htm";
 		}
 		
 		String htmltext = "";

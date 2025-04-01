@@ -23,7 +23,6 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * Admin Command Handler for Mammon NPCs
@@ -56,7 +55,7 @@ public class AdminMammon implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //mammon_find [teleportIndex] (where 1 = Blacksmith, 2 = Merchant)");
+				activeChar.sendSysMessage("Usage: //mammon_find [teleportIndex] (where 1 = Blacksmith, 2 = Merchant)");
 				return false;
 			}
 			
@@ -71,7 +70,7 @@ public class AdminMammon implements IAdminCommandHandler
 				final Npc blackInst = blackSpawnInst.getNpcList().peek();
 				if (blackInst != null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Blacksmith of Mammon: " + blackInst.getX() + " " + blackInst.getY() + " " + blackInst.getZ());
+					activeChar.sendSysMessage("Blacksmith of Mammon: " + blackInst.getX() + " " + blackInst.getY() + " " + blackInst.getZ());
 					if (teleportIndex == 1)
 					{
 						activeChar.teleToLocation(blackInst.getLocation(), true);
@@ -80,7 +79,7 @@ public class AdminMammon implements IAdminCommandHandler
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Blacksmith of Mammon isn't registered for spawn.");
+				activeChar.sendSysMessage("Blacksmith of Mammon isn't registered for spawn.");
 			}
 			
 			if (merchSpawnInst != null)
@@ -88,7 +87,7 @@ public class AdminMammon implements IAdminCommandHandler
 				final Npc merchInst = merchSpawnInst.getNpcList().peek();
 				if (merchInst != null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Merchant of Mammon: " + merchInst.getX() + " " + merchInst.getY() + " " + merchInst.getZ());
+					activeChar.sendSysMessage("Merchant of Mammon: " + merchInst.getX() + " " + merchInst.getY() + " " + merchInst.getZ());
 					if (teleportIndex == 2)
 					{
 						activeChar.teleToLocation(merchInst.getLocation(), true);
@@ -97,7 +96,7 @@ public class AdminMammon implements IAdminCommandHandler
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Merchant of Mammon isn't registered for spawn.");
+				activeChar.sendSysMessage("Merchant of Mammon isn't registered for spawn.");
 			}
 		}
 		else if (command.startsWith("admin_mammon_respawn"))
@@ -111,21 +110,21 @@ public class AdminMammon implements IAdminCommandHandler
 			if (merchSpawnInst != null)
 			{
 				final long merchRespawn = AutoSpawnHandler.getInstance().getTimeToNextSpawn(merchSpawnInst);
-				BuilderUtil.sendSysMessage(activeChar, "The Merchant of Mammon will respawn in " + (merchRespawn / 60000) + " minute(s).");
+				activeChar.sendSysMessage("The Merchant of Mammon will respawn in " + (merchRespawn / 60000) + " minute(s).");
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Merchant of Mammon isn't registered for spawn.");
+				activeChar.sendSysMessage("Merchant of Mammon isn't registered for spawn.");
 			}
 			
 			if (blackSpawnInst != null)
 			{
 				final long blackRespawn = AutoSpawnHandler.getInstance().getTimeToNextSpawn(blackSpawnInst);
-				BuilderUtil.sendSysMessage(activeChar, "The Blacksmith of Mammon will respawn in " + (blackRespawn / 60000) + " minute(s).");
+				activeChar.sendSysMessage("The Blacksmith of Mammon will respawn in " + (blackRespawn / 60000) + " minute(s).");
 			}
 			else
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Blacksmith of Mammon isn't registered for spawn.");
+				activeChar.sendSysMessage("Blacksmith of Mammon isn't registered for spawn.");
 			}
 		}
 		return true;

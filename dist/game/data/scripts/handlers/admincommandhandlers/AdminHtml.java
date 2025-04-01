@@ -24,7 +24,6 @@ import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * @author NosBit
@@ -48,7 +47,7 @@ public class AdminHtml implements IAdminCommandHandler
 			{
 				if (!st.hasMoreTokens())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //html path");
+					activeChar.sendSysMessage("Usage: //html path");
 					return false;
 				}
 				
@@ -60,7 +59,7 @@ public class AdminHtml implements IAdminCommandHandler
 			{
 				if (!st.hasMoreTokens())
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //loadhtml path");
+					activeChar.sendSysMessage("Usage: //loadhtml path");
 					return false;
 				}
 				

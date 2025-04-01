@@ -106,9 +106,9 @@ public class DocumentSkill extends DocumentBase
 	}
 	
 	@Override
-	protected void parseDocument(Document doc)
+	protected void parseDocument(Document document)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{

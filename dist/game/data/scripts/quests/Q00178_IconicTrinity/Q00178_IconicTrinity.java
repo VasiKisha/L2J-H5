@@ -16,10 +16,10 @@
  */
 package quests.Q00178_IconicTrinity;
 
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 
@@ -80,7 +80,7 @@ public class Q00178_IconicTrinity extends Quest
 			}
 			case "32138-14.html":
 			{
-				if ((qs.isMemoState(10) && (player.getLevel() <= TWENTY_LEVEL) && (player.getClassId() == ClassId.MALE_SOLDIER)) || (player.getClassId() == ClassId.FEMALE_SOLDIER))
+				if ((qs.isMemoState(10) && (player.getLevel() <= TWENTY_LEVEL) && (player.getPlayerClass() == PlayerClass.MALE_SOLDIER)) || (player.getPlayerClass() == PlayerClass.FEMALE_SOLDIER))
 				{
 					giveItems(player, SCROLL_ENCHANT_ARMOR_D_GRADE, 1);
 					addExpAndSp(player, 20123, 976);
@@ -91,7 +91,7 @@ public class Q00178_IconicTrinity extends Quest
 			}
 			case "32138-17.html":
 			{
-				if ((qs.isMemoState(10) && (player.getLevel() > TWENTY_LEVEL) && (player.getClassId() != ClassId.MALE_SOLDIER)) || (player.getClassId() != ClassId.FEMALE_SOLDIER))
+				if ((qs.isMemoState(10) && (player.getLevel() > TWENTY_LEVEL) && (player.getPlayerClass() != PlayerClass.MALE_SOLDIER)) || (player.getPlayerClass() != PlayerClass.FEMALE_SOLDIER))
 				{
 					giveItems(player, SCROLL_ENCHANT_ARMOR_D_GRADE, 1);
 					qs.exitQuest(false, true);
@@ -436,7 +436,7 @@ public class Q00178_IconicTrinity extends Quest
 						}
 						case 10:
 						{
-							if (((player.getLevel() <= TWENTY_LEVEL) && (player.getClassId() == ClassId.MALE_SOLDIER)) || (player.getClassId() == ClassId.FEMALE_SOLDIER))
+							if (((player.getLevel() <= TWENTY_LEVEL) && (player.getPlayerClass() == PlayerClass.MALE_SOLDIER)) || (player.getPlayerClass() == PlayerClass.FEMALE_SOLDIER))
 							{
 								htmltext = "32138-12.html";
 							}

@@ -16,15 +16,18 @@
  */
 package quests.Q00293_TheHiddenVeins;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.network.NpcStringId;
 
-import quests.Q00281_HeadForTheHills.Q00281_HeadForTheHills;
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * The Hidden Veins (293)
@@ -35,10 +38,6 @@ public class Q00293_TheHiddenVeins extends Quest
 	// NPCs
 	private static final int FILAUR = 30535;
 	private static final int CHICHIRIN = 30539;
-	// Items
-	private static final int CHRYSOLITE_ORE = 1488;
-	private static final int TORN_MAP_FRAGMENT = 1489;
-	private static final int HIDDEN_ORE_MAP = 1490;
 	// Monsters
 	private static final int[] MONSTERS = new int[]
 	{
@@ -46,9 +45,15 @@ public class Q00293_TheHiddenVeins extends Quest
 		20447,
 		20448,
 	};
+	// Items
+	private static final int CHRYSOLITE_ORE = 1488;
+	private static final int TORN_MAP_FRAGMENT = 1489;
+	private static final int HIDDEN_ORE_MAP = 1490;
+	private static final ItemHolder SOULSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5789, 6000);
 	// Misc
 	private static final int MIN_LEVEL = 6;
 	private static final int REQUIRED_TORN_MAP_FRAGMENT = 4;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00293_TheHiddenVeins()
 	{
@@ -106,7 +111,7 @@ public class Q00293_TheHiddenVeins extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if (qs != null)
@@ -123,7 +128,6 @@ public class Q00293_TheHiddenVeins extends Quest
 				playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -150,7 +154,37 @@ public class Q00293_TheHiddenVeins extends Quest
 							final long maps = getQuestItemsCount(player, HIDDEN_ORE_MAP);
 							giveAdena(player, (ores * 5) + (maps * 500) + (((ores + maps) >= 10) ? 2000 : 0), true);
 							takeItems(player, -1, CHRYSOLITE_ORE, HIDDEN_ORE_MAP);
-							Q00281_HeadForTheHills.giveNewbieReward(player);
+							
+							if ((player.getLevel() < 25) && (getOneTimeQuestFlag(player, 57) == 0))
+							{
+								if (!player.isMageClass())
+								{
+									giveItems(player, SOULSHOTS_NO_GRADE_FOR_ROOKIES);
+									playSound(player, "tutorial_voice_026");
+								}
+								
+								setOneTimeQuestFlag(player, 57, 1);
+							}
+							
+							// Newbie Guide.
+							final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+							if (newbieGuide != null)
+							{
+								final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+								if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, 1000);
+									showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_SOULSHOT_FOR_BEGINNERS_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+								else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 10000) / 1000) != 1)
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 1000);
+									showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_SOULSHOT_FOR_BEGINNERS_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+							}
+							
 							htmltext = (ores > 0) ? (maps > 0) ? "30535-10.html" : "30535-06.html" : "30535-09.html";
 						}
 						else

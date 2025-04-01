@@ -18,7 +18,7 @@ package ai.others.SupportUnitCaptain;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.network.clientpackets.RequestAcquireSkill;
 
 import ai.AbstractNpcAI;
@@ -254,7 +254,7 @@ public class SupportUnitCaptain extends AbstractNpcAI
 			}
 			case "squadSkill":
 			{
-				if (player.isClanLeader() || player.hasClanPrivilege(ClanPrivilege.CL_TROOPS_FAME))
+				if (player.isClanLeader() || player.hasAccess(ClanAccess.MEMBER_FAME))
 				{
 					RequestAcquireSkill.showSubUnitSkillList(player);
 				}

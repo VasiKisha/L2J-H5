@@ -17,17 +17,17 @@
 package ai.areas.Hellbound.AI.NPC.Quarry;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
@@ -73,7 +73,7 @@ public class Quarry extends AbstractNpcAI
 		{
 			case "FollowMe":
 			{
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+				npc.getAI().setIntention(Intention.FOLLOW, player);
 				npc.setTarget(player);
 				npc.setAutoAttackable(true);
 				npc.setRHandId(9136);
@@ -93,7 +93,7 @@ public class Quarry extends AbstractNpcAI
 					if (zone.getId() == 40108)
 					{
 						npc.setTarget(null);
-						npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+						npc.getAI().setIntention(Intention.ACTIVE);
 						npc.setAutoAttackable(false);
 						npc.setRHandId(0);
 						npc.teleToLocation(npc.getSpawn().getLocation());
@@ -130,14 +130,13 @@ public class Quarry extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setAutoAttackable(false);
 		if (npc instanceof QuestGuard)
 		{
 			((QuestGuard) npc).setPassive(true);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -151,24 +150,22 @@ public class Quarry extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		npc.setAutoAttackable(false);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isAttackable())
 		{
 			final Attackable npc = creature.asAttackable();
-			if ((npc.getId() == SLAVE) && !npc.isDead() && !npc.isDecayed() && (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_FOLLOW) && (HellboundEngine.getInstance().getLevel() == 5))
+			if ((npc.getId() == SLAVE) && !npc.isDead() && !npc.isDecayed() && (npc.getAI().getIntention() == Intention.FOLLOW) && (HellboundEngine.getInstance().getLevel() == 5))
 			{
 				startQuestTimer("DECAY", 1000, npc, null);
 				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.THANK_YOU_FOR_THE_RESCUE_IT_S_A_SMALL_GIFT);
 			}
 		}
-		return super.onEnterZone(creature, zone);
 	}
 }

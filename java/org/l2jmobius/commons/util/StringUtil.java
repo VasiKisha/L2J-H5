@@ -1,284 +1,439 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.commons.util;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.StringJoiner;
+import java.util.StringTokenizer;
+
 /**
- * String utilities optimized for the best performance.<br>
- * <h1>How to Use It</h1>
- * <h2>concat() or append()</h2> If concatenating strings<br>
- * in single call, use StringUtil.concat(), otherwise use StringUtil.append()<br>
- * and its variants.<br>
- * <br>
- * <h2>Minimum Calls</h2><br>
- * Bad:
- * 
- * <pre>
- * final StringBuilder sbString = new StringBuilder();
- * StringUtil.append(sbString, &quot;text 1&quot;, String.valueOf(npcId));
- * StringUtil.append(&quot;text 2&quot;);
- * </pre>
- * 
- * Good:
- * 
- * <pre>
- * final StringBuilder sbString = new StringBuilder();
- * StringUtil.append(sbString, &quot;text 1&quot;, String.valueOf(npcId), &quot;text 2&quot;);
- * </pre>
- * 
- * Why?<br/>
- * Because the less calls you do, the less memory re-allocations have to be done<br>
- * so the whole text fits into the memory and less array copy tasks has to be<br>
- * performed. So if using less calls, less memory is used and string concatenation is faster.<br>
- * <br>
- * <h2>Size Hints for Loops</h2><br>
- * Bad:
- * 
- * <pre>
- * final StringBuilder sbString = new StringBuilder();
- * StringUtil.append(sbString, &quot;header start&quot;, someText, &quot;header end&quot;);
- * for (int i = 0; i &lt; 50; i++)
- * {
- * 	StringUtil.append(sbString, &quot;text 1&quot;, stringArray[i], &quot;text 2&quot;);
- * }
- * </pre>
- * 
- * Good:
- * 
- * <pre>
- * final StringBuilder sbString = StringUtil.startAppend(1300, &quot;header start&quot;, someText, &quot;header end&quot;);
- * for (int i = 0; i &lt; 50; i++)
- * {
- * 	StringUtil.append(sbString, &quot;text 1&quot;, stringArray[i], &quot;text 2&quot;);
- * }
- * </pre>
- * 
- * Why?<br/>
- * When using StringUtil.append(), memory is only allocated to fit in the strings in method argument. So on each loop new memory for the string has to be allocated and old string has to be copied to the new string. With size hint, even if the size hint is above the needed memory, memory is saved
- * because new memory has not to be allocated on each cycle. Also it is much faster if no string copy tasks has to be performed. So if concatenating strings in a loop, count approximately the size and set it as the hint for the string builder size. It's better to make the size hint little bit larger
- * rather than smaller.<br/>
- * In case there is no text appended before the cycle, just use <code>new
- * StringBuilder(1300)</code>.<br>
- * <br>
- * <h2>Concatenation and Constants</h2><br>
- * Bad:
- * 
- * <pre>
- * StringUtil.concat(&quot;text 1 &quot;, &quot;text 2&quot;, String.valueOf(npcId));
- * </pre>
- * 
- * Good:
- * 
- * <pre>
- * StringUtil.concat(&quot;text 1 &quot; + &quot;text 2&quot;, String.valueOf(npcId));
- * </pre>
- * 
- * or
- * 
- * <pre>
- * StringUtil.concat(&quot;text 1 text 2&quot;, String.valueOf(npcId));
- * </pre>
- * 
- * Why?<br/>
- * It saves some cycles when determining size of memory that needs to be allocated because less strings are passed to concat() method. But do not use + for concatenation of non-constant strings, that degrades performance and makes extra memory allocations needed.<br>
- * <h2>Concatenation and Constant Variables</h2> Bad:
- * 
- * <pre>
- * String glue = &quot;some glue&quot;;
- * StringUtil.concat(&quot;text 1&quot;, glue, &quot;text 2&quot;, glue, String.valueOf(npcId));
- * </pre>
- * 
- * Good:
- * 
- * <pre>
- * final String glue = &quot;some glue&quot;;
- * StringUtil.concat(&quot;text 1&quot; + glue + &quot;text2&quot; + glue, String.valueOf(npcId));
- * </pre>
- * 
- * Why? Because when using <code>final</code> keyword, the <code>glue</code> is marked as constant string and compiler treats it as a constant string so it is able to create string "text1some gluetext2some glue" during the compilation. But this only works in case the value is known at compilation
- * time, so this cannot be used for cases like <code>final String objectIdString =
- * String.valueOf(getObjectId)</code>.<br>
- * <br>
- * <h2>StringBuilder Reuse</h2><br>
- * Bad:
- * 
- * <pre>
- * final StringBuilder sbString1 = new StringBuilder();
- * StringUtil.append(sbString1, &quot;text 1&quot;, String.valueOf(npcId), &quot;text 2&quot;);
- * ... // output of sbString1, it is no more needed
- * final StringBuilder sbString2 = new StringBuilder();
- * StringUtil.append(sbString2, &quot;text 3&quot;, String.valueOf(npcId), &quot;text 4&quot;);
- * </pre>
- * 
- * Good:
- * 
- * <pre>
- * final StringBuilder sbString = new StringBuilder();
- * StringUtil.append(sbString, &quot;text 1&quot;, String.valueOf(npcId), &quot;text 2&quot;);
- * ... // output of sbString, it is no more needed
- * sbString.setLength(0);
- * StringUtil.append(sbString, &quot;text 3&quot;, String.valueOf(npcId), &quot;text 4&quot;);
- * </pre>
- * 
- * Why?</br>
- * In first case, new memory has to be allocated for the second string. In second case already allocated memory is reused, but only in case the new string is not longer than the previously allocated string. Anyway, the second way is better because the string either fits in the memory and some memory
- * is saved, or it does not fit in the memory, and in that case it works as in the first case.
- * <h2>Primitives to Strings</h2> To convert primitives to string, use String.valueOf().<br>
- * <br>
- * <h2>How much faster is it?</h2><br>
- * Here are some results of my tests. Count is number of strings concatenated. Don't take the numbers as 100% true as the numbers are affected by other programs running on my computer at the same time. Anyway, from the results it is obvious that using StringBuilder with predefined size is the
- * fastest (and also most memory efficient) solution. It is about 5 times faster when concatenating 7 strings, compared to TextBuilder. Also, with more strings concatenated, the difference between StringBuilder and TextBuilder gets larger. In code, there are many cases, where there are concatenated
- * 50+ strings so the time saving is even greater.<br>
- * 
- * <pre>
- * Count: 2
- * StringBuilder: 1893
- * StringBuilder with size: 1703
- * String: 1033
- * StringBuilder: 993
- * StringBuilder with size: 1024
- * Count: 3
- * StringBuilder: 1973
- * StringBuilder with size: 1872
- * String: 2583
- * StringBuilder: 1633
- * StringBuilder with size: 1156
- * Count: 4
- * StringBuilder: 2188
- * StringBuilder with size: 2229
- * String: 4207
- * StringBuilder: 1816
- * StringBuilder with size: 1444
- * Count: 5
- * StringBuilder: 9185
- * StringBuilder with size: 9464
- * String: 6937
- * StringBuilder: 2745
- * StringBuilder with size: 1882
- * Count: 6
- * StringBuilder: 9785
- * StringBuilder with size: 10082
- * String: 9471
- * StringBuilder: 2889
- * StringBuilder with size: 1857
- * Count: 7
- * StringBuilder: 10169
- * StringBuilder with size: 10528
- * String: 12746
- * StringBuilder: 3081
- * StringBuilder with size: 2139
- * </pre>
- * 
- * @author fordfrog
+ * Utility class for String operations, providing methods to efficiently build and format strings.
+ * @author Mobius
  */
 public class StringUtil
 {
-	private StringUtil()
+	/**
+	 * Appends a string to a given StringBuilder.<br>
+	 * This method avoids the unnecessary use of `public static void append(StringBuilder sb, String... args)`,<br>
+	 * which could introduce overhead due to varargs processing when only a single argument is appended.
+	 * @param sb the StringBuilder to append to
+	 * @param arg the string to append
+	 */
+	public static void append(StringBuilder sb, String arg)
 	{
+		sb.append(arg);
 	}
 	
 	/**
-	 * Concatenates strings.
-	 * @param strings strings to be concatenated
-	 * @return concatenated string
+	 * Appends multiple strings to a given StringBuilder.
+	 * @param sb the StringBuilder to append to
+	 * @param args the strings to append
 	 */
-	public static String concat(String... strings)
+	public static void append(StringBuilder sb, String... args)
 	{
-		final StringBuilder sbString = new StringBuilder();
-		for (String string : strings)
+		// Directly calculate the required capacity and ensure it in one step.
+		int totalLength = sb.length();
+		for (String arg : args)
 		{
-			sbString.append(string);
+			totalLength += (arg != null ? arg.length() : 4);
 		}
-		return sbString.toString();
+		sb.ensureCapacity(totalLength);
+		
+		// Append each argument.
+		for (String arg : args)
+		{
+			sb.append(arg);
+		}
 	}
 	
 	/**
-	 * Creates new string builder with size initializated to <code>sizeHint</code>, unless total length of strings is greater than <code>sizeHint</code>.
-	 * @param sizeHint hint for string builder size allocation
-	 * @param strings strings to be appended
-	 * @return created string builder
+	 * Appends multiple objects to a given StringBuilder.
+	 * @param sb the StringBuilder to append to
+	 * @param args the objects to append
 	 */
-	public static StringBuilder startAppend(int sizeHint, String... strings)
+	public static void append(StringBuilder sb, Object... args)
 	{
-		final int length = getLength(strings);
-		final StringBuilder sbString = new StringBuilder(sizeHint > length ? sizeHint : length);
+		// Calculate the total length and store converted strings.
+		int totalLength = sb.length();
+		final List<String> strings = new LinkedList<>();
+		for (Object arg : args)
+		{
+			final String objectAsString = String.valueOf(arg);
+			totalLength += objectAsString.length();
+			strings.add(objectAsString);
+		}
+		sb.ensureCapacity(totalLength);
+		
+		// Append each stored string.
 		for (String string : strings)
 		{
-			sbString.append(string);
+			sb.append(string);
 		}
-		return sbString;
 	}
 	
 	/**
-	 * Appends strings to existing string builder.
-	 * @param sbString string builder
-	 * @param strings strings to be appended
+	 * Concatenates multiple strings into a single string.
+	 * @param args the strings to concatenate
+	 * @return the concatenated string
 	 */
-	public static void append(StringBuilder sbString, String... strings)
+	public static String concat(String... args)
 	{
-		sbString.ensureCapacity(sbString.length() + getLength(strings));
-		for (String string : strings)
+		// Calculate the total length of all strings.
+		int totalLength = 0;
+		for (String arg : args)
 		{
-			sbString.append(string);
+			totalLength += (arg != null ? arg.length() : 4);
 		}
-	}
-	
-	public static int getLength(Iterable<String> strings)
-	{
-		int length = 0;
-		for (String string : strings)
+		
+		// Append each argument.
+		final StringBuilder sb = new StringBuilder(totalLength);
+		for (String arg : args)
 		{
-			length += (string == null) ? 4 : string.length();
+			sb.append(arg);
 		}
-		return length;
+		
+		return sb.toString();
 	}
 	
 	/**
-	 * Counts total length of all the strings.
-	 * @param strings array of strings
-	 * @return total length of all the strings
+	 * Concatenates multiple objects into a single string.
+	 * @param args the objects to concatenate
+	 * @return the concatenated string
 	 */
-	public static int getLength(String[] strings)
+	public static String concat(Object... args)
 	{
-		int length = 0;
+		// Calculate the total length and store converted strings.
+		int totalLength = 0;
+		final List<String> strings = new LinkedList<>();
+		for (Object arg : args)
+		{
+			final String objectAsString = String.valueOf(arg);
+			totalLength += objectAsString.length();
+			strings.add(objectAsString);
+		}
+		
+		// Append each stored string.
+		final StringBuilder sb = new StringBuilder(totalLength);
 		for (String string : strings)
 		{
-			length += (string == null) ? 4 : string.length();
+			sb.append(string);
 		}
-		return length;
+		
+		return sb.toString();
 	}
 	
-	public static String getTraceString(StackTraceElement[] trace)
+	/**
+	 * Concatenates elements in an Iterable into a single string with a specified delimiter.
+	 * @param <T> the type of elements in the iterable
+	 * @param items the iterable collection of elements to join
+	 * @param delimiter the delimiter to place between elements
+	 * @return a single string with each element separated by the delimiter
+	 */
+	public static <T> String implode(Iterable<T> items, String delimiter)
 	{
-		final StringBuilder sbString = new StringBuilder();
-		for (StackTraceElement element : trace)
+		final StringJoiner joiner = new StringJoiner(delimiter);
+		for (T item : items)
 		{
-			sbString.append(element.toString()).append(System.lineSeparator());
+			joiner.add(item.toString());
 		}
-		return sbString.toString();
+		return joiner.toString();
 	}
 	
+	/**
+	 * Concatenates elements in an array into a single string with a specified delimiter.
+	 * @param <T> the type of elements in the array
+	 * @param array the array of elements to join
+	 * @param delimiter the delimiter to place between elements
+	 * @return a single string with each element separated by the delimiter
+	 */
+	public static <T> String implode(T[] array, String delimiter)
+	{
+		final StringJoiner joiner = new StringJoiner(delimiter);
+		for (T element : array)
+		{
+			joiner.add(element.toString());
+		}
+		return joiner.toString();
+	}
+	
+	/**
+	 * Capitalizes the first letter of a given string and converts the rest to lowercase.
+	 * @param text the input string to be formatted
+	 * @return the formatted string with the first letter capitalized and the rest in lowercase, or the original string if it is null or empty
+	 */
+	public static String capitalizeFirst(String text)
+	{
+		// Return the original if it's null or empty.
+		if ((text == null) || text.isEmpty())
+		{
+			return text;
+		}
+		
+		// Capitalize the first letter and set the remaining letters to lowercase.
+		return Character.toUpperCase(text.charAt(0)) + text.substring(1).toLowerCase();
+	}
+	
+	/**
+	 * Splits a camelCase or PascalCase string into words separated by a space.
+	 * @param text the string to split into words
+	 * @return a string with words separated by a space, or the original text if null or empty
+	 */
+	public static String separateWords(String text)
+	{
+		if ((text == null) || text.isEmpty())
+		{
+			return text;
+		}
+		
+		final StringBuilder result = new StringBuilder();
+		final char[] chars = text.toCharArray();
+		for (int i = 0; i < chars.length; i++)
+		{
+			final char current = chars[i];
+			
+			// Check if the current character is uppercase and it's not the first character.
+			if (Character.isUpperCase(current) && (i > 0) && Character.isLowerCase(chars[i - 1]))
+			{
+				result.append(' ');
+			}
+			
+			result.append(current);
+		}
+		
+		return result.toString();
+	}
+	
+	/**
+	 * Converts an enum constant's name to a formatted string with proper casing.<br>
+	 * For example, an enum constant named "ENUM_CONSTANT_NAME" will be formatted as "Enum Constant Name".
+	 * @param enumeration the enum constant to format
+	 * @return a formatted string with each word capitalized
+	 */
 	public static String enumToString(Enum<?> enumeration)
 	{
-		final String[] words = enumeration.name().toLowerCase().split("_");
-		final StringBuilder sb = new StringBuilder();
-		for (String word : words)
+		final String name = enumeration.name().toLowerCase();
+		final StringBuilder sb = new StringBuilder(name.length());
+		
+		boolean capitalizeNext = true;
+		for (int i = 0; i < name.length(); i++)
 		{
-			sb.append(Character.toUpperCase(word.charAt(0))).append(word.substring(1)).append(" ");
+			char c = name.charAt(i);
+			if (c == '_')
+			{
+				sb.append(" ");
+				capitalizeNext = true;
+			}
+			else if (capitalizeNext)
+			{
+				sb.append(Character.toUpperCase(c));
+				capitalizeNext = false;
+			}
+			else
+			{
+				sb.append(c);
+			}
 		}
-		return sb.toString().trim();
+		
+		return sb.toString();
+	}
+	
+	/**
+	 * Parses a string as an integer, returning a default value if parsing fails.
+	 * @param text the string to parse
+	 * @param defaultValue the value to return if parsing fails
+	 * @return the parsed integer, or the default value if parsing fails
+	 */
+	public static int parseInt(String text, int defaultValue)
+	{
+		try
+		{
+			return Integer.parseInt(text);
+		}
+		catch (NumberFormatException e)
+		{
+			return defaultValue;
+		}
+	}
+	
+	/**
+	 * Parses the next token from a StringTokenizer as an integer, returning a default value if parsing fails or if there are no more tokens.
+	 * @param tokenizer the StringTokenizer containing tokens
+	 * @param defaultValue the value to return if parsing fails or if there are no more tokens
+	 * @return the parsed integer, or the default value if parsing fails or if there are no tokens
+	 */
+	public static int parseNextInt(StringTokenizer tokenizer, int defaultValue)
+	{
+		if (tokenizer.hasMoreTokens())
+		{
+			try
+			{
+				final String value = tokenizer.nextToken().trim();
+				return Integer.parseInt(value);
+			}
+			catch (NumberFormatException e)
+			{
+				// Parsing failed, fall back to default.
+			}
+		}
+		return defaultValue;
+	}
+	
+	/**
+	 * Checks if the given text contains only letters and/or numbers.
+	 * @param text the text to check
+	 * @return {@code true} if {@code text} contains only alphanumeric characters, {@code false} otherwise
+	 */
+	public static boolean isAlphaNumeric(String text)
+	{
+		if ((text == null) || text.isEmpty())
+		{
+			return false;
+		}
+		
+		for (int i = 0; i < text.length(); i++)
+		{
+			if (!Character.isLetterOrDigit(text.charAt(i)))
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Checks if the given text contains only digits.
+	 * @param text the text to check
+	 * @return {@code true} if {@code text} contains only numbers, {@code false} otherwise
+	 */
+	public static boolean isNumeric(String text)
+	{
+		if ((text == null) || text.isEmpty())
+		{
+			return false;
+		}
+		
+		for (int i = 0; i < text.length(); i++)
+		{
+			if (!Character.isDigit(text.charAt(i)))
+			{
+				return false;
+			}
+		}
+		
+		return true;
+	}
+	
+	/**
+	 * Checks if the given text represents a valid integer.
+	 * @param text the text to check
+	 * @return {@code true} if {@code text} is an integer, {@code false} otherwise
+	 */
+	public static boolean isInteger(String text)
+	{
+		if ((text == null) || text.isEmpty())
+		{
+			return false;
+		}
+		
+		try
+		{
+			Integer.parseInt(text);
+			return true;
+		}
+		catch (NumberFormatException e)
+		{
+			return false;
+		}
+	}
+	
+	/**
+	 * Checks if the given text represents a valid float.
+	 * @param text the text to check
+	 * @return {@code true} if {@code text} is a float, {@code false} otherwise
+	 */
+	public static boolean isFloat(String text)
+	{
+		if ((text == null) || text.isEmpty())
+		{
+			return false;
+		}
+		
+		try
+		{
+			Float.parseFloat(text);
+			return true;
+		}
+		catch (NumberFormatException e)
+		{
+			return false;
+		}
+	}
+	
+	/**
+	 * Checks if the given text represents a valid double.
+	 * @param text the text to check
+	 * @return {@code true} if {@code text} is a double, {@code false} otherwise
+	 */
+	public static boolean isDouble(String text)
+	{
+		if ((text == null) || text.isEmpty())
+		{
+			return false;
+		}
+		
+		try
+		{
+			Double.parseDouble(text);
+			return true;
+		}
+		catch (NumberFormatException e)
+		{
+			return false;
+		}
+	}
+	
+	/**
+	 * Checks if the given text matches any constant in the specified enum type.
+	 * @param name the text to check
+	 * @param enumType the class of the enum
+	 * @param <T> the type of the enum
+	 * @return {@code true} if {@code text} is a valid enum constant, {@code false} otherwise
+	 */
+	public static <T extends Enum<T>> boolean isEnum(String name, Class<T> enumType)
+	{
+		if ((name == null) || name.isEmpty())
+		{
+			return false;
+		}
+		
+		try
+		{
+			Enum.valueOf(enumType, name);
+			return true;
+		}
+		catch (IllegalArgumentException e)
+		{
+			return false;
+		}
 	}
 }

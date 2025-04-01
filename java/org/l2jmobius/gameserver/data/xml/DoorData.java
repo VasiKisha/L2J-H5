@@ -28,7 +28,7 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -61,9 +61,9 @@ public class DoorData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node a = doc.getFirstChild(); a != null; a = a.getNextSibling())
+		for (Node a = document.getFirstChild(); a != null; a = a.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(a.getNodeName()))
 			{

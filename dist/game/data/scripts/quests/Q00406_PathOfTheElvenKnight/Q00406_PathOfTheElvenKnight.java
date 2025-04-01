@@ -20,15 +20,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Path Of The Elven Knight (406)
@@ -86,9 +86,9 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 		{
 			case "ACCEPT":
 			{
-				if (player.getClassId() != ClassId.ELVEN_FIGHTER)
+				if (player.getPlayerClass() != PlayerClass.ELVEN_FIGHTER)
 				{
-					if (player.getClassId() == ClassId.ELVEN_KNIGHT)
+					if (player.getPlayerClass() == PlayerClass.ELVEN_KNIGHT)
 					{
 						htmltext = "30327-02a.htm";
 					}
@@ -133,7 +133,7 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		final ItemChanceHolder reward = MONSTER_DROPS.get(npc.getId());
@@ -147,7 +147,7 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 			check = hasQuestItems(killer, requiredItemId);
 		}
 		
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, false) && check && (getQuestItemsCount(killer, reward.getId()) < 20) && (getRandom(100) < reward.getChance()))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, false) && check && (getQuestItemsCount(killer, reward.getId()) < 20) && (getRandom(100) < reward.getChance()))
 		{
 			giveItems(killer, reward);
 			if (getQuestItemsCount(killer, reward.getId()) == 20)
@@ -159,7 +159,6 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 				playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

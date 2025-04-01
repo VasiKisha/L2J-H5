@@ -18,11 +18,11 @@ package ai.others.BlackMarketeerOfMammon;
 
 import java.util.Calendar;
 
-import org.l2jmobius.gameserver.enums.QuestType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
 
 import ai.AbstractNpcAI;

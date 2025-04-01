@@ -22,16 +22,16 @@ package handlers.actionhandlers;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcFirstTalk;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcFirstTalk;
 import org.l2jmobius.gameserver.network.serverpackets.MoveToPawn;
 
 public class NpcAction implements IActionHandler
@@ -47,8 +47,8 @@ public class NpcAction implements IActionHandler
 	 * <br>
 	 * <b><u>Actions on second click on the Npc (Attack it/Intercat with it)</u>:</b><br>
 	 * <li>Send a Server->Client packet MyTargetSelected to the Player player (display the select window)</li>
-	 * <li>If Npc is autoAttackable, notify the Player AI with AI_INTENTION_ATTACK (after a height verification)</li>
-	 * <li>If Npc is NOT autoAttackable, notify the Player AI with AI_INTENTION_INTERACT (after a distance verification) and show message</li><br>
+	 * <li>If Npc is autoAttackable, notify the Player AI with ATTACK (after a height verification)</li>
+	 * <li>If Npc is NOT autoAttackable, notify the Player AI with INTERACT (after a distance verification) and show message</li><br>
 	 * <font color=#FF0000><b><u>Caution</u>: Each group of Server->Client packet must be terminated by a ActionFailed packet in order to avoid that client wait an other packet</b></font><br>
 	 * <br>
 	 * <b><u>Example of use</u>:</b><br>
@@ -81,21 +81,21 @@ public class NpcAction implements IActionHandler
 			// Check if the player is attackable (without a forced attack) and isn't dead
 			if (target.isAutoAttackable(player) && !target.asCreature().isAlikeDead())
 			{
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+				player.getAI().setIntention(Intention.ATTACK, target);
 			}
 			else if (!target.isAutoAttackable(player))
 			{
 				// Calculate the distance between the Player and the Npc
 				if (!npc.canInteract(player))
 				{
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
+					player.getAI().setIntention(Intention.INTERACT, target);
 				}
 				else
 				{
 					// If player is moving and NPC is in interaction distance, change the intention to stop moving.
 					if (player.isMoving() && npc.isInsideRadius3D(player, Npc.INTERACTION_DISTANCE))
 					{
-						player.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+						player.getAI().setIntention(Intention.ACTIVE);
 					}
 					
 					// Turn NPC to the player.
@@ -131,7 +131,7 @@ public class NpcAction implements IActionHandler
 					}
 					if (npc.isFakePlayer() && GeoEngine.getInstance().canSeeTarget(player, npc))
 					{
-						player.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, npc);
+						player.getAI().setIntention(Intention.FOLLOW, npc);
 					}
 				}
 			}

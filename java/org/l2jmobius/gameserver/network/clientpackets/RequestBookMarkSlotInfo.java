@@ -20,7 +20,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExGetBookMarkInfoPacket;
 
 /**
- * @author ShanSoft Packets Structure: chddd
+ * @author ShanSoft
  */
 public class RequestBookMarkSlotInfo extends ClientPacket
 {

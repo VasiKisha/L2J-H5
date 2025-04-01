@@ -22,18 +22,15 @@ import java.util.List;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.AdditionalItemHolder;
-import org.l2jmobius.gameserver.model.holders.AdditionalSkillHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.network.serverpackets.ExBasicActionList;
 
 /**
  * @author UnAfraid
  */
-public class Transform implements IIdentifiable
+public class Transform
 {
 	private final int _id;
 	private final int _displayId;
@@ -63,7 +60,6 @@ public class Transform implements IIdentifiable
 	 * Gets the transformation ID.
 	 * @return the transformation ID
 	 */
-	@Override
 	public int getId()
 	{
 		return _id;

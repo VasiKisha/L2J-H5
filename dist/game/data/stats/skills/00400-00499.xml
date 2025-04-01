@@ -2702,7 +2702,6 @@
 		<set name="castRange" val="400" />
 		<set name="channelingSkillId" val="5105" />
 		<set name="effectPoint" val="1" />
-		<set name="effectPoint" val="1" />
 		<set name="effectRange" val="600" />
 		<set name="hitTime" val="15000" />
 		<set name="icon" val="icon.skill0427" />

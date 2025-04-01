@@ -99,7 +99,7 @@ public class GatekeeperSpirit extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -114,7 +114,6 @@ public class GatekeeperSpirit extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

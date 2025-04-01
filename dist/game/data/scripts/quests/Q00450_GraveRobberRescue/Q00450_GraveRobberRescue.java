@@ -16,18 +16,18 @@
  */
 package quests.Q00450_GraveRobberRescue;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.QuestType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 /**
@@ -144,7 +144,7 @@ public class Q00450_GraveRobberRescue extends Quest
 			{
 				giveItems(player, EVIDENCE_OF_MIGRATION, 1);
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(npc.getX() + 100, npc.getY() + 100, npc.getZ(), 0));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(npc.getX() + 100, npc.getY() + 100, npc.getZ(), 0));
 				npc.setBusy(true);
 				
 				startQuestTimer("despawn", 3000, npc, player);
@@ -170,7 +170,7 @@ public class Q00450_GraveRobberRescue extends Quest
 				final Attackable monster = addSpawn(WARRIOR_MON, npc.getX(), npc.getY(), npc.getZ(), npc.getHeading(), true, 600000).asAttackable();
 				monster.setRunning();
 				monster.addDamageHate(player, 0, 999);
-				monster.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+				monster.getAI().setIntention(Intention.ATTACK, player);
 				showOnScreenMsg(player, NpcStringId.THE_GRAVE_ROBBER_WARRIOR_HAS_BEEN_FILLED_WITH_DARK_ENERGY_AND_IS_ATTACKING_YOU, 5, 5000);
 			}
 		}

@@ -18,13 +18,12 @@ package org.l2jmobius.gameserver.model.actor.templates;
 
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 
 /**
  * Doors template.
  * @author JIV
  */
-public class DoorTemplate extends CreatureTemplate implements IIdentifiable
+public class DoorTemplate extends CreatureTemplate
 {
 	private final int _doorId;
 	private final int[] _nodeX;
@@ -110,7 +109,6 @@ public class DoorTemplate extends CreatureTemplate implements IIdentifiable
 	 * Gets the door ID.
 	 * @return the door ID
 	 */
-	@Override
 	public int getId()
 	{
 		return _doorId;

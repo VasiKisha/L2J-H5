@@ -16,10 +16,10 @@
  */
 package village_master.ElfHumanWizardChange2;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -110,7 +110,7 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 		{
 			htmltext = "30115-21.htm"; // fnYouAreThirdClass
 		}
-		else if ((classId == SORCERER) && (player.getClassId() == ClassId.WIZARD))
+		else if ((classId == SORCERER) && (player.getPlayerClass() == PlayerClass.WIZARD))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -126,7 +126,7 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_SCHOLAR, MARK_OF_TRUST, MARK_OF_MAGUS))
 			{
 				takeItems(player, -1, MARK_OF_SCHOLAR, MARK_OF_TRUST, MARK_OF_MAGUS);
-				player.setClassId(SORCERER);
+				player.setPlayerClass(SORCERER);
 				player.setBaseClass(SORCERER);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -138,7 +138,7 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 				htmltext = "30115-25.htm"; // fnNoProof11
 			}
 		}
-		else if ((classId == NECROMANCER) && (player.getClassId() == ClassId.WIZARD))
+		else if ((classId == NECROMANCER) && (player.getPlayerClass() == PlayerClass.WIZARD))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -154,7 +154,7 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_SCHOLAR, MARK_OF_TRUST, MARK_OF_WITCHCRAFT))
 			{
 				takeItems(player, -1, MARK_OF_SCHOLAR, MARK_OF_TRUST, MARK_OF_WITCHCRAFT);
-				player.setClassId(NECROMANCER);
+				player.setPlayerClass(NECROMANCER);
 				player.setBaseClass(NECROMANCER);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -166,7 +166,7 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 				htmltext = "30115-29.htm"; // fnNoProof12
 			}
 		}
-		else if ((classId == WARLOCK) && (player.getClassId() == ClassId.WIZARD))
+		else if ((classId == WARLOCK) && (player.getPlayerClass() == PlayerClass.WIZARD))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -182,7 +182,7 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_SCHOLAR, MARK_OF_TRUST, MARK_OF_SUMMONER))
 			{
 				takeItems(player, -1, MARK_OF_SCHOLAR, MARK_OF_TRUST, MARK_OF_SUMMONER);
-				player.setClassId(WARLOCK);
+				player.setPlayerClass(WARLOCK);
 				player.setBaseClass(WARLOCK);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -194,7 +194,7 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 				htmltext = "30115-33.htm"; // fnNoProof13
 			}
 		}
-		else if ((classId == SPELLSINGER) && (player.getClassId() == ClassId.ELVEN_WIZARD))
+		else if ((classId == SPELLSINGER) && (player.getPlayerClass() == PlayerClass.ELVEN_WIZARD))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -210,7 +210,7 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_SCHOLAR, MARK_OF_LIFE, MARK_OF_MAGUS))
 			{
 				takeItems(player, -1, MARK_OF_SCHOLAR, MARK_OF_LIFE, MARK_OF_MAGUS);
-				player.setClassId(SPELLSINGER);
+				player.setPlayerClass(SPELLSINGER);
 				player.setBaseClass(SPELLSINGER);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -222,7 +222,7 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 				htmltext = "30115-37.htm"; // fnNoProof21
 			}
 		}
-		else if ((classId == ELEMENTAL_SUMMONER) && (player.getClassId() == ClassId.ELVEN_WIZARD))
+		else if ((classId == ELEMENTAL_SUMMONER) && (player.getPlayerClass() == PlayerClass.ELVEN_WIZARD))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -238,7 +238,7 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_SCHOLAR, MARK_OF_LIFE, MARK_OF_SUMMONER))
 			{
 				takeItems(player, -1, MARK_OF_SCHOLAR, MARK_OF_LIFE, MARK_OF_SUMMONER);
-				player.setClassId(ELEMENTAL_SUMMONER);
+				player.setPlayerClass(ELEMENTAL_SUMMONER);
 				player.setBaseClass(ELEMENTAL_SUMMONER);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -263,12 +263,12 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.WIZARD_GROUP) && (player.isInCategory(CategoryType.HUMAN_MALL_CLASS) || player.isInCategory(CategoryType.ELF_MALL_CLASS)))
 		{
-			final ClassId classId = player.getClassId();
-			if ((classId == ClassId.WIZARD) || (classId == ClassId.SORCERER) || (classId == ClassId.NECROMANCER) || (classId == ClassId.WARLOCK))
+			final PlayerClass classId = player.getPlayerClass();
+			if ((classId == PlayerClass.WIZARD) || (classId == PlayerClass.SORCERER) || (classId == PlayerClass.NECROMANCER) || (classId == PlayerClass.WARLOCK))
 			{
 				htmltext = "30115-02.htm"; // fnClassList1
 			}
-			else if ((classId == ClassId.ELVEN_WIZARD) || (classId == ClassId.SPELLSINGER) || (classId == ClassId.ELEMENTAL_SUMMONER))
+			else if ((classId == PlayerClass.ELVEN_WIZARD) || (classId == PlayerClass.SPELLSINGER) || (classId == PlayerClass.ELEMENTAL_SUMMONER))
 			{
 				htmltext = "30115-12.htm"; // fnClassList2
 			}

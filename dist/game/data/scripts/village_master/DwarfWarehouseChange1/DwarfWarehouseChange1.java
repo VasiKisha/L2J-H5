@@ -16,10 +16,10 @@
  */
 package village_master.DwarfWarehouseChange1;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -100,7 +100,7 @@ public class DwarfWarehouseChange1 extends AbstractNpcAI
 		{
 			htmltext = "30498-12.htm"; // fnYouAreFourthClass
 		}
-		else if ((classId == SCAVENGER) && (player.getClassId() == ClassId.DWARVEN_FIGHTER))
+		else if ((classId == SCAVENGER) && (player.getPlayerClass() == PlayerClass.DWARVEN_FIGHTER))
 		{
 			if (player.getLevel() < 20)
 			{
@@ -116,7 +116,7 @@ public class DwarfWarehouseChange1 extends AbstractNpcAI
 			else if (hasQuestItems(player, RING_OF_RAVEN))
 			{
 				takeItems(player, RING_OF_RAVEN, -1);
-				player.setClassId(SCAVENGER);
+				player.setPlayerClass(SCAVENGER);
 				player.setBaseClass(SCAVENGER);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();

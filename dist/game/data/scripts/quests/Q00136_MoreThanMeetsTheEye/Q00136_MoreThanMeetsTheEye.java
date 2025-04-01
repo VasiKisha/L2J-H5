@@ -16,10 +16,10 @@
  */
 package quests.Q00136_MoreThanMeetsTheEye;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -156,12 +156,12 @@ public class Q00136_MoreThanMeetsTheEye extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if (qs == null)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		final int npcId = npc.getId();
@@ -179,7 +179,6 @@ public class Q00136_MoreThanMeetsTheEye extends Quest
 		{
 			giveItem(qs, GLASS_JAGUAR_CRYSTAL, 1, CRYSTAL_COUNT, 8);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

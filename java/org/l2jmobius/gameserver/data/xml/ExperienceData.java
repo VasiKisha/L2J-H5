@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -23,14 +27,20 @@ import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
 
 /**
  * This class holds the Experience points for each level for players and pets.
- * @author mrTJO
+ * <p>
+ * It provides functionality to load experience data from an XML file and retrieve the experience points required for a given level. It also maintains the maximum levels for players and pets.
+ * </p>
+ * <p>
+ * <strong>XML Structure:</strong>
+ * </p>
+ * The XML file must have a root element containing the `maxLevel` and `maxPetLevel` attributes, along with nested `experience` elements that define the experience points for each level.
+ * @author Mobius
  */
 public class ExperienceData implements IXmlReader
 {
@@ -38,12 +48,9 @@ public class ExperienceData implements IXmlReader
 	
 	private final Map<Integer, Long> _expTable = new HashMap<>();
 	
-	private byte MAX_LEVEL;
-	private byte MAX_PET_LEVEL;
+	private byte _maxLevel;
+	private byte _maxPetLevel;
 	
-	/**
-	 * Instantiates a new experience table.
-	 */
 	protected ExperienceData()
 	{
 		load();
@@ -55,46 +62,45 @@ public class ExperienceData implements IXmlReader
 		_expTable.clear();
 		parseDatapackFile("data/stats/experience.xml");
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _expTable.size() + " levels.");
-		LOGGER.info(getClass().getSimpleName() + ": Max Player Level is " + (MAX_LEVEL - 1) + ".");
-		LOGGER.info(getClass().getSimpleName() + ": Max Pet Level is " + (MAX_PET_LEVEL - 1) + ".");
+		LOGGER.info(getClass().getSimpleName() + ": Max Player Level is " + (_maxLevel - 1) + ".");
+		LOGGER.info(getClass().getSimpleName() + ": Max Pet Level is " + (_maxPetLevel - 1) + ".");
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		final Node table = doc.getFirstChild();
-		final NamedNodeMap tableAttr = table.getAttributes();
-		MAX_LEVEL = (byte) (Byte.parseByte(tableAttr.getNamedItem("maxLevel").getNodeValue()) + 1);
-		MAX_PET_LEVEL = (byte) (Byte.parseByte(tableAttr.getNamedItem("maxPetLevel").getNodeValue()) + 1);
-		if (MAX_LEVEL > Config.PLAYER_MAXIMUM_LEVEL)
+		forEach(document, tableNode ->
 		{
-			MAX_LEVEL = Config.PLAYER_MAXIMUM_LEVEL;
-		}
-		if (MAX_PET_LEVEL > (MAX_LEVEL + 1))
-		{
-			MAX_PET_LEVEL = (byte) (MAX_LEVEL + 1); // Pet level should not exceed owner level.
-		}
-		
-		int maxLevel = 0;
-		for (Node n = table.getFirstChild(); n != null; n = n.getNextSibling())
-		{
-			if ("experience".equals(n.getNodeName()))
+			final NamedNodeMap tableAttr = tableNode.getAttributes();
+			_maxLevel = (byte) (Byte.parseByte(tableAttr.getNamedItem("maxLevel").getNodeValue()) + 1);
+			_maxPetLevel = (byte) (Byte.parseByte(tableAttr.getNamedItem("maxPetLevel").getNodeValue()) + 1);
+			if (_maxLevel > Config.PLAYER_MAXIMUM_LEVEL)
 			{
-				final NamedNodeMap attrs = n.getAttributes();
-				maxLevel = parseInteger(attrs, "level");
-				if (maxLevel > Config.PLAYER_MAXIMUM_LEVEL)
-				{
-					break;
-				}
-				_expTable.put(maxLevel, parseLong(attrs, "tolevel"));
+				_maxLevel = Config.PLAYER_MAXIMUM_LEVEL;
 			}
-		}
+			if (_maxPetLevel > (_maxLevel + 1))
+			{
+				_maxPetLevel = (byte) (_maxLevel + 1); // Pet level should not exceed owner level.
+			}
+			
+			forEach(tableNode, "experience", experienceNode ->
+			{
+				final NamedNodeMap attrs = experienceNode.getAttributes();
+				final int level = parseInteger(attrs, "level");
+				if ((level > Config.PLAYER_MAXIMUM_LEVEL) || (level > _maxLevel))
+				{
+					return;
+				}
+				
+				_expTable.put(level, parseLong(attrs, "tolevel"));
+			});
+		});
 	}
 	
 	/**
-	 * Gets the exp for level.
-	 * @param level the level required.
-	 * @return the experience points required to reach the given level.
+	 * Retrieves the experience points required to reach the specified level.
+	 * @param level the level for which experience points are required
+	 * @return the experience points needed to reach the specified level; if the specified level exceeds {@code Config.PLAYER_MAXIMUM_LEVEL}, returns the experience points for {@code Config.PLAYER_MAXIMUM_LEVEL}
 	 */
 	public long getExpForLevel(int level)
 	{
@@ -102,31 +108,28 @@ public class ExperienceData implements IXmlReader
 		{
 			return _expTable.get((int) Config.PLAYER_MAXIMUM_LEVEL);
 		}
+		
 		return _expTable.get(level);
 	}
 	
 	/**
-	 * Gets the max level.
-	 * @return the maximum level acquirable by a player.
+	 * Returns the maximum level acquirable by a player in the game.
+	 * @return the maximum player level as an integer
 	 */
 	public byte getMaxLevel()
 	{
-		return MAX_LEVEL;
+		return _maxLevel;
 	}
 	
 	/**
-	 * Gets the max pet level.
-	 * @return the maximum level acquirable by a pet.
+	 * Returns the maximum level acquirable by a pet in the game.
+	 * @return the maximum pet level as an integer, limited by the player level
 	 */
 	public byte getMaxPetLevel()
 	{
-		return MAX_PET_LEVEL;
+		return _maxPetLevel;
 	}
 	
-	/**
-	 * Gets the single instance of ExperienceTable.
-	 * @return single instance of ExperienceTable
-	 */
 	public static ExperienceData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

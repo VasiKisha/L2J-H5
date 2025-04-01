@@ -27,28 +27,29 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.SoIManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -278,7 +279,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				return false;
 			}
 			
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(2096);
 				sm.addPcName(partyMember);
@@ -433,7 +434,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			}
 			else if (event.startsWith("reenterechmus"))
 			{
-				player.destroyItemByItemId("SOI", 13797, 3, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, 13797, 3, player, true);
 				notifyEkimusRoomEntrance(world);
 				for (Player partyMember : player.getParty().getMembers())
 				{
@@ -452,7 +453,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 					world.deadTumors.add(victim);
 				}
 				
-				player.destroyItemByItemId("SOI", 13797, 1, player, true);
+				player.destroyItemByItemId(ItemProcessType.FEE, 13797, 1, player, true);
 				final Location loc = world.deadTumors.get(getRandom(world.deadTumors.size())).getLocation();
 				if (loc != null)
 				{
@@ -488,7 +489,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HIAWorld)
@@ -504,11 +505,10 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				npc.doDie(npc);
 			}
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HIAWorld)
@@ -542,17 +542,16 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				{
 					mob.asMonster().addDamageHate(attacker, 0, 500);
 					mob.setRunning();
-					mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, attacker);
+					mob.getAI().setIntention(Intention.ATTACK, attacker);
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		if (CommonUtil.contains(NOTMOVE, npc.getId()))
+		if (ArrayUtil.contains(NOTMOVE, npc.getId()))
 		{
 			npc.setRandomWalking(false);
 			npc.setImmobilized(true);
@@ -580,11 +579,10 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				world.setParameter("tag", tag + 1);
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof HIAWorld)
@@ -627,7 +625,6 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				tumorRespawnTime += 8 * 1000;
 			}
 		}
-		return "";
 	}
 	
 	private class TumorRevival implements Runnable

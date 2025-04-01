@@ -21,7 +21,6 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.AbstractScript;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * Camera commands.
@@ -53,7 +52,7 @@ public class AdminCamera implements IAdminCommandHandler
 			{
 				if (com.length != 12)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //cam force angle1 angle2 time range duration relYaw relPitch isWide relAngle");
+					activeChar.sendSysMessage("Usage: //cam force angle1 angle2 time range duration relYaw relPitch isWide relAngle");
 					return false;
 				}
 				AbstractScript.specialCamera(activeChar, target, Integer.parseInt(com[1]), Integer.parseInt(com[2]), Integer.parseInt(com[3]), Integer.parseInt(com[4]), Integer.parseInt(com[5]), Integer.parseInt(com[6]), Integer.parseInt(com[7]), Integer.parseInt(com[8]), Integer.parseInt(com[9]), Integer.parseInt(com[10]));
@@ -63,7 +62,7 @@ public class AdminCamera implements IAdminCommandHandler
 			{
 				if (com.length != 10)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //camex force angle1 angle2 time duration relYaw relPitch isWide relAngle");
+					activeChar.sendSysMessage("Usage: //camex force angle1 angle2 time duration relYaw relPitch isWide relAngle");
 					return false;
 				}
 				AbstractScript.specialCameraEx(activeChar, target, Integer.parseInt(com[1]), Integer.parseInt(com[2]), Integer.parseInt(com[3]), Integer.parseInt(com[4]), Integer.parseInt(com[5]), Integer.parseInt(com[6]), Integer.parseInt(com[7]), Integer.parseInt(com[8]), Integer.parseInt(com[9]));
@@ -73,7 +72,7 @@ public class AdminCamera implements IAdminCommandHandler
 			{
 				if (com.length != 12)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //cam3 force angle1 angle2 time range duration relYaw relPitch isWide relAngle unk");
+					activeChar.sendSysMessage("Usage: //cam3 force angle1 angle2 time range duration relYaw relPitch isWide relAngle unk");
 					return false;
 				}
 				AbstractScript.specialCamera3(activeChar, target, Integer.parseInt(com[1]), Integer.parseInt(com[2]), Integer.parseInt(com[3]), Integer.parseInt(com[4]), Integer.parseInt(com[5]), Integer.parseInt(com[6]), Integer.parseInt(com[7]), Integer.parseInt(com[8]), Integer.parseInt(com[9]), Integer.parseInt(com[10]), Integer.parseInt(com[11]));

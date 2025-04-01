@@ -39,7 +39,7 @@ public class ExDuelUpdateUserInfo extends ServerPacket
 		ServerPackets.EX_DUEL_UPDATE_USER_INFO.writeId(this, buffer);
 		buffer.writeString(_player.getName());
 		buffer.writeInt(_player.getObjectId());
-		buffer.writeInt(_player.getClassId().getId());
+		buffer.writeInt(_player.getPlayerClass().getId());
 		buffer.writeInt(_player.getLevel());
 		buffer.writeInt((int) _player.getCurrentHp());
 		buffer.writeInt(_player.getMaxHp());

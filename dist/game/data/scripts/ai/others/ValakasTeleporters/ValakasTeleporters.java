@@ -18,8 +18,8 @@ package ai.others.ValakasTeleporters;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;

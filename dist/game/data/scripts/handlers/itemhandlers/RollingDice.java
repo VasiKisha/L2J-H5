@@ -32,7 +32,7 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.Dice;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 public class RollingDice implements IItemHandler
 {
@@ -61,7 +61,7 @@ public class RollingDice implements IItemHandler
 		}
 		
 		// Mobius: Retail dice position land calculation.
-		final double angle = Util.convertHeadingToDegree(player.getHeading());
+		final double angle = LocationUtil.convertHeadingToDegree(player.getHeading());
 		final double radian = Math.toRadians(angle);
 		final double course = Math.toRadians(180);
 		final int x1 = (int) (Math.cos(Math.PI + radian + course) * 40);

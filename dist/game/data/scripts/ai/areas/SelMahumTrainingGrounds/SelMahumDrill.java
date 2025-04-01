@@ -16,16 +16,16 @@
  */
 package ai.areas.SelMahumTrainingGrounds;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -139,9 +139,9 @@ public class SelMahumDrill extends AbstractNpcAI
 			{
 				if ((npc != null) && !npc.isDead())
 				{
-					if (CommonUtil.contains(MAHUM_CHIEFS, npc.getId()))
+					if (ArrayUtil.contains(MAHUM_CHIEFS, npc.getId()))
 					{
-						if ((npc.getVariables().getInt("BUSY_STATE") == 0) && (npc.getAI().getIntention() == CtrlIntention.AI_INTENTION_ACTIVE) && npc.staysInSpawnLoc())
+						if ((npc.getVariables().getInt("BUSY_STATE") == 0) && (npc.getAI().getIntention() == Intention.ACTIVE) && npc.staysInSpawnLoc())
 						{
 							final int idx = getRandom(6);
 							if (idx <= (CHIEF_SOCIAL_ACTIONS.length - 1))
@@ -154,7 +154,7 @@ public class SelMahumDrill extends AbstractNpcAI
 						
 						startQuestTimer("do_social_action", 15000, npc, null);
 					}
-					else if (CommonUtil.contains(MAHUM_SOLDIERS, npc.getId()))
+					else if (ArrayUtil.contains(MAHUM_SOLDIERS, npc.getId()))
 					{
 						handleSocialAction(npc, SOLDIER_SOCIAL_ACTIONS[npc.getVariables().getInt("SOCIAL_ACTION_NEXT_INDEX")], false);
 					}
@@ -177,7 +177,7 @@ public class SelMahumDrill extends AbstractNpcAI
 					for (Spawn npcSpawn : SpawnTable.getInstance().getSpawns(npcId))
 					{
 						final Npc soldier = npcSpawn.getLastSpawn();
-						if ((soldier != null) && !soldier.isDead() && (npcSpawn.getName() != null) && npcSpawn.getName().startsWith("smtg_drill_group") && !soldier.staysInSpawnLoc() && ((soldier.getAI().getIntention() == CtrlIntention.AI_INTENTION_ACTIVE) || (soldier.getAI().getIntention() == CtrlIntention.AI_INTENTION_IDLE)))
+						if ((soldier != null) && !soldier.isDead() && (npcSpawn.getName() != null) && npcSpawn.getName().startsWith("smtg_drill_group") && !soldier.staysInSpawnLoc() && ((soldier.getAI().getIntention() == Intention.ACTIVE) || (soldier.getAI().getIntention() == Intention.IDLE)))
 						{
 							soldier.setHeading(npcSpawn.getHeading());
 							soldier.teleToLocation(npcSpawn.getLocation(), false);
@@ -191,13 +191,12 @@ public class SelMahumDrill extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
-		if ((getRandom(10) < 1) && (CommonUtil.contains(MAHUM_SOLDIERS, npc.getId())))
+		if ((getRandom(10) < 1) && (ArrayUtil.contains(MAHUM_SOLDIERS, npc.getId())))
 		{
 			npc.broadcastEvent("ATTACKED", 1000, null);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
@@ -209,7 +208,7 @@ public class SelMahumDrill extends AbstractNpcAI
 			{
 				case "do_social_action":
 				{
-					if (CommonUtil.contains(MAHUM_SOLDIERS, receiver.getId()))
+					if (ArrayUtil.contains(MAHUM_SOLDIERS, receiver.getId()))
 					{
 						final int actionIndex = sender.getVariables().getInt("SOCIAL_ACTION_NEXT_INDEX");
 						receiver.getVariables().set("SOCIAL_ACTION_NEXT_INDEX", actionIndex);
@@ -223,7 +222,7 @@ public class SelMahumDrill extends AbstractNpcAI
 					{
 						return null;
 					}
-					if (CommonUtil.contains(MAHUM_SOLDIERS, receiver.getId()))
+					if (ArrayUtil.contains(MAHUM_SOLDIERS, receiver.getId()))
 					{
 						if (getRandom(4) < 1)
 						{
@@ -236,14 +235,14 @@ public class SelMahumDrill extends AbstractNpcAI
 						receiver.disableCoreAI(true);
 						receiver.getVariables().set("BUSY_STATE", 1);
 						receiver.setRunning();
-						receiver.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location((receiver.getX() + getRandom(-800, 800)), (receiver.getY() + getRandom(-800, 800)), receiver.getZ(), receiver.getHeading()));
+						receiver.getAI().setIntention(Intention.MOVE_TO, new Location((receiver.getX() + getRandom(-800, 800)), (receiver.getY() + getRandom(-800, 800)), receiver.getZ(), receiver.getHeading()));
 						startQuestTimer("reset_busy_state", 5000, receiver, null);
 					}
 					break;
 				}
 				case "ATTACKED":
 				{
-					if (CommonUtil.contains(MAHUM_CHIEFS, receiver.getId()))
+					if (ArrayUtil.contains(MAHUM_CHIEFS, receiver.getId()))
 					{
 						receiver.broadcastSay(ChatType.NPC_GENERAL, CHIEF_FSTRINGS[getRandom(2)]);
 					}
@@ -255,34 +254,32 @@ public class SelMahumDrill extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		npc.broadcastEvent("CHIEF_DIED", TRAINING_RANGE, null);
-		return null;
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		if (CommonUtil.contains(MAHUM_CHIEFS, npc.getId()))
+		if (ArrayUtil.contains(MAHUM_CHIEFS, npc.getId()))
 		{
 			cancelQuestTimer("do_social_action", npc, null);
 			startQuestTimer("do_social_action", 15000, npc, null);
 		}
 		
-		else if ((getRandom(18) < 1) && CommonUtil.contains(MAHUM_SOLDIERS, npc.getId()))
+		else if ((getRandom(18) < 1) && ArrayUtil.contains(MAHUM_SOLDIERS, npc.getId()))
 		{
 			npc.getVariables().set("SOCIAL_ACTION_ALT_BEHAVIOR", 1);
 		}
 		
 		// Restore AI handling by core
 		npc.disableCoreAI(false);
-		return super.onSpawn(npc);
 	}
 	
 	private void handleSocialAction(Npc npc, Actions action, boolean firstCall)
 	{
-		if ((npc.getVariables().getInt("BUSY_STATE") != 0) || (npc.getAI().getIntention() != CtrlIntention.AI_INTENTION_ACTIVE) || !npc.staysInSpawnLoc())
+		if ((npc.getVariables().getInt("BUSY_STATE") != 0) || (npc.getAI().getIntention() != Intention.ACTIVE) || !npc.staysInSpawnLoc())
 		{
 			return;
 		}

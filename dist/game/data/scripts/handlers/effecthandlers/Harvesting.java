@@ -23,7 +23,8 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -67,7 +68,7 @@ public class Harvesting extends AbstractEffect
 				if (item != null)
 				{
 					// Add item
-					player.getInventory().addItem("Harvesting", item.getId(), item.getCount(), player, monster);
+					player.getInventory().addItem(ItemProcessType.REWARD, item.getId(), item.getCount(), player, monster);
 					
 					// Send system msg
 					SystemMessage sm = null;

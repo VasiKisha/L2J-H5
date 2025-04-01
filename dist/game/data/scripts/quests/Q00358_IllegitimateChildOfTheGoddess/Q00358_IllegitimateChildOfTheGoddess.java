@@ -95,14 +95,13 @@ public class Q00358_IllegitimateChildOfTheGoddess extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, 1, 3, npc);
 		if ((qs != null) && giveItemRandomly(player, npc, SNAKE_SCALE, 1, SNAKE_SCALE_COUNT, MOBS.get(npc.getId()), true))
 		{
 			qs.setCond(2, true);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

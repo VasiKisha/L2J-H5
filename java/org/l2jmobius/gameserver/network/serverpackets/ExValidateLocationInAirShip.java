@@ -23,7 +23,7 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
  * update 27.8.10
- * @author kerberos JIV
+ * @author Kerberos, JIV
  */
 public class ExValidateLocationInAirShip extends ServerPacket
 {

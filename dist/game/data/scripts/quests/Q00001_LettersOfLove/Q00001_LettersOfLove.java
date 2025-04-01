@@ -16,12 +16,15 @@
  */
 package quests.Q00001_LettersOfLove;
 
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Letters of Love (1)
@@ -41,6 +44,7 @@ public class Q00001_LettersOfLove extends Quest
 	private static final int NECKLACE_OF_KNOWLEDGE = 906;
 	// Misc
 	private static final int MIN_LEVEL = 2;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00001_LettersOfLove()
 	{
@@ -192,8 +196,25 @@ public class Q00001_LettersOfLove extends Quest
 						{
 							case DARIN:
 							{
-								// TODO: Beside this message something should be set for the Newbie Guide.
-								showOnScreenMsg(player, NpcStringId.DELIVERY_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								// Newbie Guide.
+								final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+								if (newbieGuide != null)
+								{
+									final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+									if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+									{
+										setNRMemo(newbieGuideQs, GUIDE_MISSION);
+										setNRMemoState(newbieGuideQs, GUIDE_MISSION, 1);
+										showOnScreenMsg(player, NpcStringId.DELIVERY_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+									}
+									else if ((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 10) != 1)
+									{
+										setNRMemo(newbieGuideQs, GUIDE_MISSION);
+										setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 1);
+										showOnScreenMsg(player, NpcStringId.DELIVERY_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+									}
+								}
+								
 								giveItems(player, NECKLACE_OF_KNOWLEDGE, 1);
 								addExpAndSp(player, 5672, 446);
 								giveAdena(player, 2466, false);

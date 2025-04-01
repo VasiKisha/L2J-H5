@@ -22,25 +22,25 @@ import java.util.logging.Level;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import instances.AbstractInstance;
 
@@ -140,7 +140,7 @@ public abstract class Chamber extends AbstractInstance
 				return false;
 			}
 			
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED);
 				sm.addPcName(partyMember);
@@ -228,7 +228,7 @@ public abstract class Chamber extends AbstractInstance
 		{
 			if (world.getInstanceId() == partyMember.getInstanceId())
 			{
-				partyMember.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				partyMember.getAI().setIntention(Intention.IDLE);
 				teleportPlayer(partyMember, ROOM_ENTER_POINTS[newRoom], world.getInstanceId());
 			}
 		}
@@ -425,7 +425,7 @@ public abstract class Chamber extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet, Skill skill)
 	{
 		if (!npc.isBusy() && (npc.getCurrentHp() < (npc.getMaxHp() / 10)))
 		{
@@ -457,8 +457,6 @@ public abstract class Chamber extends AbstractInstance
 				npc.broadcastEvent("SCE_DREAM_FIRE_IN_THE_HOLE", 2000, null);
 			}
 		}
-		
-		return super.onAttack(npc, attacker, damage, isPet, skill);
 	}
 	
 	@Override
@@ -483,7 +481,7 @@ public abstract class Chamber extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
 		if (world != null)
@@ -506,18 +504,15 @@ public abstract class Chamber extends AbstractInstance
 			
 			instance.spawnGroup("boxes");
 		}
-		
-		return super.onKill(npc, player, isPet);
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if ((npc.getId() == BOX) && ((skill.getId() == 5376) || (skill.getId() == 5758)) && !npc.isDead())
 		{
 			npc.doDie(player);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override

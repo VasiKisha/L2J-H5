@@ -18,14 +18,15 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.HennaData;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.item.Henna;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Zoey76
@@ -70,10 +71,10 @@ public class RequestHennaEquip extends ClientPacket
 		}
 		
 		final long count = player.getInventory().getInventoryItemCount(henna.getDyeItemId(), -1);
-		if (henna.isAllowedClass(player.getClassId()) && (count >= henna.getWearCount()) && (player.getAdena() >= henna.getWearFee()) && player.addHenna(henna))
+		if (henna.isAllowedClass(player.getPlayerClass()) && (count >= henna.getWearCount()) && (player.getAdena() >= henna.getWearFee()) && player.addHenna(henna))
 		{
-			player.destroyItemByItemId("Henna", henna.getDyeItemId(), henna.getWearCount(), player, true);
-			player.getInventory().reduceAdena("Henna", henna.getWearFee(), player, player.getLastFolkNPC());
+			player.destroyItemByItemId(ItemProcessType.FEE, henna.getDyeItemId(), henna.getWearCount(), player, true);
+			player.getInventory().reduceAdena(ItemProcessType.FEE, henna.getWearFee(), player, player.getLastFolkNPC());
 			final InventoryUpdate iu = new InventoryUpdate();
 			iu.addModifiedItem(player.getInventory().getAdenaInstance());
 			player.sendInventoryUpdate(iu);
@@ -82,9 +83,9 @@ public class RequestHennaEquip extends ClientPacket
 		else
 		{
 			player.sendPacket(SystemMessageId.THE_SYMBOL_CANNOT_BE_DRAWN);
-			if (!player.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && !henna.isAllowedClass(player.getClassId()))
+			if (!player.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && !henna.isAllowedClass(player.getPlayerClass()))
 			{
-				Util.handleIllegalPlayerAction(player, "Exploit attempt: " + player + " tryed to add a forbidden henna.", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Exploit attempt: " + player + " tryed to add a forbidden henna.", Config.DEFAULT_PUNISH);
 			}
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 		}

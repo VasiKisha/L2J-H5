@@ -19,13 +19,16 @@ package quests.Q00166_MassOfDarkness;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Mass of Darkness (166)
@@ -44,14 +47,15 @@ public class Q00166_MassOfDarkness extends Quest
 	private static final int DREVIANT_WINE = 1090;
 	private static final int GARMIELS_SCRIPTURE = 1091;
 	// Misc
-	private static final int MIN_LEVEL = 2;
-	private static final Map<Integer, Integer> NPCs = new HashMap<>();
+	private static final Map<Integer, Integer> NPC_ITEMS = new HashMap<>();
 	static
 	{
-		NPCs.put(IRIA, CEREMONIAL_DAGGER);
-		NPCs.put(DORANKUS, DREVIANT_WINE);
-		NPCs.put(TRUDY, GARMIELS_SCRIPTURE);
+		NPC_ITEMS.put(IRIA, CEREMONIAL_DAGGER);
+		NPC_ITEMS.put(DORANKUS, DREVIANT_WINE);
+		NPC_ITEMS.put(TRUDY, GARMIELS_SCRIPTURE);
 	}
+	private static final int MIN_LEVEL = 2;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00166_MassOfDarkness()
 	{
@@ -94,7 +98,25 @@ public class Q00166_MassOfDarkness extends Quest
 					{
 						if (qs.isCond(2) && hasQuestItems(player, UNDRIAS_LETTER, CEREMONIAL_DAGGER, DREVIANT_WINE, GARMIELS_SCRIPTURE))
 						{
-							showOnScreenMsg(player, NpcStringId.DELIVERY_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000); // TODO: Newbie Guide
+							// Newbie Guide.
+							final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+							if (newbieGuide != null)
+							{
+								final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+								if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, 1);
+									showOnScreenMsg(player, NpcStringId.DELIVERY_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+								else if ((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 10) != 1)
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 1);
+									showOnScreenMsg(player, NpcStringId.DELIVERY_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+							}
+							
 							addExpAndSp(player, 5672, 466);
 							giveAdena(player, 2966, true);
 							qs.exitQuest(false, true);
@@ -121,7 +143,7 @@ public class Q00166_MassOfDarkness extends Quest
 				if (qs.isStarted())
 				{
 					final int npcId = npc.getId();
-					final int itemId = NPCs.get(npcId);
+					final int itemId = NPC_ITEMS.get(npcId);
 					if (qs.isCond(1) && !hasQuestItems(player, itemId))
 					{
 						giveItems(player, itemId, 1);
@@ -135,8 +157,8 @@ public class Q00166_MassOfDarkness extends Quest
 					{
 						htmltext = npcId + "-02.html";
 					}
-					break;
 				}
+				break;
 			}
 		}
 		return htmltext;

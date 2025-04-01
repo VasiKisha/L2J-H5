@@ -19,7 +19,6 @@ package org.l2jmobius.gameserver.model.stats.functions;
 import java.lang.reflect.Constructor;
 import java.util.logging.Logger;
 
-import org.l2jmobius.gameserver.enums.StatFunction;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.item.instance.Item;

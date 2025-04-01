@@ -16,11 +16,11 @@
  */
 package quests.Q00307_ControlDeviceOfTheGiants;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.instancemanager.GlobalVariablesManager;
+import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.RadarControl;
@@ -128,12 +128,12 @@ public class Q00307_ControlDeviceOfTheGiants extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(player, 1);
 		if (partyMember == null)
 		{
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
 		
 		switch (npc.getId())
@@ -173,7 +173,6 @@ public class Q00307_ControlDeviceOfTheGiants extends Quest
 				break;
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

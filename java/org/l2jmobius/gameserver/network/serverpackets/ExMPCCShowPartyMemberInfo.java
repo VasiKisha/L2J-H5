@@ -17,8 +17,8 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
@@ -43,7 +43,7 @@ public class ExMPCCShowPartyMemberInfo extends ServerPacket
 		{
 			buffer.writeString(pc.getName());
 			buffer.writeInt(pc.getObjectId());
-			buffer.writeInt(pc.getClassId().getId());
+			buffer.writeInt(pc.getPlayerClass().getId());
 		}
 	}
 }

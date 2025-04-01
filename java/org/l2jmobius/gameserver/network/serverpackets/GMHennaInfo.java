@@ -27,7 +27,7 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
  * This server packet sends the player's henna information using the Game Master's UI.
- * @author KenM, Zoey76
+ * @author KenM
  */
 public class GMHennaInfo extends ServerPacket
 {

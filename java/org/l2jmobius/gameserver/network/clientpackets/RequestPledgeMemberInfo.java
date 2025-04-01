@@ -48,17 +48,20 @@ public class RequestPledgeMemberInfo extends ClientPacket
 		{
 			return;
 		}
+		
 		// do we need powers to do that??
 		final Clan clan = player.getClan();
 		if (clan == null)
 		{
 			return;
 		}
+		
 		final ClanMember member = clan.getClanMember(_player);
 		if (member == null)
 		{
 			return;
 		}
+		
 		player.sendPacket(new PledgeReceiveMemberInfo(member));
 	}
 }

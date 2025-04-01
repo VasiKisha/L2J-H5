@@ -16,7 +16,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
@@ -53,7 +53,7 @@ public class Root extends AbstractEffect
 	{
 		if (!effected.isPlayer())
 		{
-			effected.getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			effected.getAI().notifyAction(Action.THINK);
 		}
 	}
 	
@@ -61,6 +61,6 @@ public class Root extends AbstractEffect
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
 		effected.stopMove(null);
-		effected.getAI().notifyEvent(CtrlEvent.EVT_ROOTED);
+		effected.getAI().notifyAction(Action.ROOTED);
 	}
 }

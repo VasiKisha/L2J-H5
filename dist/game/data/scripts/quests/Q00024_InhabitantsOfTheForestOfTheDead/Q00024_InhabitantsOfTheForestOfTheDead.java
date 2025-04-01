@@ -16,10 +16,10 @@
  */
 package quests.Q00024_InhabitantsOfTheForestOfTheDead;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -243,7 +243,7 @@ public class Q00024_InhabitantsOfTheForestOfTheDead extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState st = getQuestState(player, false);
 		if ((st != null) && st.isCond(9) && (getRandom(100) < 10))
@@ -251,7 +251,6 @@ public class Q00024_InhabitantsOfTheForestOfTheDead extends Quest
 			giveItems(player, SUSPICIOUS_TOTEM_DOLL, 1);
 			st.setCond(10, true);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

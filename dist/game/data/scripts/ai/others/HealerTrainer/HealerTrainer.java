@@ -21,12 +21,13 @@ import java.util.Collection;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 
@@ -79,13 +80,13 @@ public class HealerTrainer extends AbstractNpcAI
 			}
 			case "SkillTransferLearn":
 			{
-				if (!npc.getTemplate().canTeach(player.getClassId()))
+				if (!npc.getTemplate().canTeach(player.getPlayerClass()))
 				{
 					htmltext = npc.getId() + "-noteach.html";
 					break;
 				}
 				
-				if ((player.getLevel() < MIN_LEVEL) || (player.getClassId().level() < MIN_CLASS_LEVEL))
+				if ((player.getLevel() < MIN_LEVEL) || (player.getPlayerClass().level() < MIN_CLASS_LEVEL))
 				{
 					htmltext = "learn-lowlevel.html";
 					break;
@@ -114,13 +115,13 @@ public class HealerTrainer extends AbstractNpcAI
 			}
 			case "SkillTransferCleanse":
 			{
-				if (!npc.getTemplate().canTeach(player.getClassId()))
+				if (!npc.getTemplate().canTeach(player.getPlayerClass()))
 				{
 					htmltext = "cleanse-no.html";
 					break;
 				}
 				
-				if ((player.getLevel() < MIN_LEVEL) || (player.getClassId().level() < MIN_CLASS_LEVEL))
+				if ((player.getLevel() < MIN_LEVEL) || (player.getPlayerClass().level() < MIN_CLASS_LEVEL))
 				{
 					htmltext = "cleanse-no.html";
 					break;
@@ -140,7 +141,7 @@ public class HealerTrainer extends AbstractNpcAI
 				else
 				{
 					boolean hasSkills = false;
-					final Collection<SkillLearn> skills = SkillTreeData.getInstance().getTransferSkillTree(player.getClassId()).values();
+					final Collection<SkillLearn> skills = SkillTreeData.getInstance().getTransferSkillTree(player.getPlayerClass()).values();
 					for (SkillLearn skillLearn : skills)
 					{
 						final Skill skill = player.getKnownSkill(skillLearn.getSkillId());
@@ -149,7 +150,7 @@ public class HealerTrainer extends AbstractNpcAI
 							player.removeSkill(skill);
 							for (ItemHolder item : skillLearn.getRequiredItems())
 							{
-								player.addItem("Cleanse", item.getId(), item.getCount(), npc, true);
+								player.addItem(ItemProcessType.REFUND, item.getId(), item.getCount(), npc, true);
 							}
 							hasSkills = true;
 						}
@@ -158,7 +159,7 @@ public class HealerTrainer extends AbstractNpcAI
 					// Adena gets reduced once.
 					if (hasSkills)
 					{
-						player.reduceAdena("Cleanse", Config.FEE_DELETE_TRANSFER_SKILLS, npc, true);
+						player.reduceAdena(ItemProcessType.FEE, Config.FEE_DELETE_TRANSFER_SKILLS, npc, true);
 					}
 				}
 				break;
@@ -175,7 +176,7 @@ public class HealerTrainer extends AbstractNpcAI
 	private static boolean hasTransferSkillItems(Player player)
 	{
 		int itemId;
-		switch (player.getClassId())
+		switch (player.getPlayerClass())
 		{
 			case CARDINAL:
 			{

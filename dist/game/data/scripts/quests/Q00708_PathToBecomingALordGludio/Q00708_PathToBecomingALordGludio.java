@@ -16,9 +16,8 @@
  */
 package quests.Q00708_PathToBecomingALordGludio;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -28,6 +27,7 @@ import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 /**
@@ -86,6 +86,7 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 			case "35100-03.html":
 			{
 				qs.startQuest();
+				qs.set("FlagJournal", String.valueOf(1));
 				break;
 			}
 			case "35100-05.html":
@@ -163,7 +164,7 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = killer.getQuestState(getName());
 		if ((qs != null) && qs.isCond(6))
@@ -178,7 +179,6 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 				qs.setCond(7);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

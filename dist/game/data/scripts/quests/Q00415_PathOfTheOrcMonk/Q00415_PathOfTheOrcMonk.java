@@ -17,16 +17,16 @@
 package quests.Q00415_PathOfTheOrcMonk;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Path Of The Orc Monk (415)
@@ -105,7 +105,7 @@ public class Q00415_PathOfTheOrcMonk extends Quest
 		{
 			case "ACCEPT":
 			{
-				if (player.getClassId() == ClassId.ORC_FIGHTER)
+				if (player.getPlayerClass() == PlayerClass.ORC_FIGHTER)
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
@@ -123,7 +123,7 @@ public class Q00415_PathOfTheOrcMonk extends Quest
 						htmltext = "30587-03.htm";
 					}
 				}
-				else if (player.getClassId() == ClassId.ORC_MONK)
+				else if (player.getPlayerClass() == PlayerClass.ORC_MONK)
 				{
 					htmltext = "30587-02a.htm";
 				}
@@ -238,7 +238,7 @@ public class Q00415_PathOfTheOrcMonk extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isStarted())
@@ -268,14 +268,13 @@ public class Q00415_PathOfTheOrcMonk extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && npc.isScriptValue(1) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && npc.isScriptValue(1) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			final long ItemCount = getQuestItemsCount(killer, RATMAN_FANG, LANGK_LIZARDMAN_TOOTH, FELIM_LIZARDMAN_TOOTH, VUKU_ORK_TUSK);
 			switch (npc.getId())
@@ -464,7 +463,6 @@ public class Q00415_PathOfTheOrcMonk extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

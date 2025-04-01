@@ -29,7 +29,6 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * @version $Revision: 1.2 $ $Date: 2004/06/27 08:12:59 $
@@ -55,7 +54,7 @@ public class AdminTest implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Command format is //skill_test <ID>");
+				activeChar.sendSysMessage("Command format is //skill_test <ID>");
 			}
 		}
 		return true;

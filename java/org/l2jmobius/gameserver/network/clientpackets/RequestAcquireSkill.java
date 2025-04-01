@@ -19,29 +19,32 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.List;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.AcquireSkillType;
-import org.l2jmobius.gameserver.enums.IllegalActionPunishmentType;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
 import org.l2jmobius.gameserver.model.actor.instance.Fisherman;
 import org.l2jmobius.gameserver.model.actor.instance.Folk;
 import org.l2jmobius.gameserver.model.actor.instance.VillageMaster;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerSkillLearn;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSkillLearn;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillDone;
@@ -50,7 +53,6 @@ import org.l2jmobius.gameserver.network.serverpackets.ExStorageMaxCount;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * Request Acquire Skill client packet implementation.
@@ -100,7 +102,7 @@ public class RequestAcquireSkill extends ClientPacket
 		
 		if ((_level < 1) || (_level > 1000) || (_id < 1))
 		{
-			Util.handleIllegalPlayerAction(player, "Wrong Packet Data in Aquired Skill", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "Wrong Packet Data in Aquired Skill", Config.DEFAULT_PUNISH);
 			PacketLogger.warning("Recived Wrong Packet Data in Aquired Skill - id: " + _id + " level: " + _level + " for " + player);
 			return;
 		}
@@ -130,7 +132,7 @@ public class RequestAcquireSkill extends ClientPacket
 			{
 				// The previous level skill has not been learned.
 				player.sendPacket(SystemMessageId.THE_PREVIOUS_LEVEL_SKILL_HAS_NOT_BEEN_LEARNED);
-				Util.handleIllegalPlayerAction(player, player + " is requesting skill Id: " + _id + " level " + _level + " without knowing it's previous level!", IllegalActionPunishmentType.NONE);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " is requesting skill Id: " + _id + " level " + _level + " without knowing it's previous level!", IllegalActionPunishmentType.NONE);
 				return;
 			}
 		}
@@ -157,7 +159,7 @@ public class RequestAcquireSkill extends ClientPacket
 				if (!canTransform(player))
 				{
 					player.sendPacket(SystemMessageId.YOU_HAVE_NOT_COMPLETED_THE_NECESSARY_QUEST_FOR_SKILL_ACQUISITION);
-					Util.handleIllegalPlayerAction(player, player + " is requesting skill Id: " + _id + " level " + _level + " without required quests!", IllegalActionPunishmentType.NONE);
+					PunishmentManager.handleIllegalPlayerAction(player, player + " is requesting skill Id: " + _id + " level " + _level + " without required quests!", IllegalActionPunishmentType.NONE);
 					return;
 				}
 				
@@ -190,7 +192,7 @@ public class RequestAcquireSkill extends ClientPacket
 					{
 						for (ItemHolder item : s.getRequiredItems())
 						{
-							if (!player.destroyItemByItemId("Consume", item.getId(), item.getCount(), trainer, false))
+							if (!player.destroyItemByItemId(null, item.getId(), item.getCount(), trainer, false))
 							{
 								// Doesn't have required item.
 								player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_THE_NECESSARY_MATERIALS_OR_PREREQUISITES_TO_LEARN_THIS_SKILL);
@@ -226,7 +228,7 @@ public class RequestAcquireSkill extends ClientPacket
 			}
 			case SUBPLEDGE:
 			{
-				if (!player.isClanLeader() || !player.hasClanPrivilege(ClanPrivilege.CL_TROOPS_FAME))
+				if (!player.isClanLeader() || !player.hasAccess(ClanAccess.MEMBER_FAME))
 				{
 					return;
 				}
@@ -241,7 +243,7 @@ public class RequestAcquireSkill extends ClientPacket
 				if (!clan.isLearnableSubPledgeSkill(skill, _subType))
 				{
 					player.sendPacket(SystemMessageId.THIS_SQUAD_SKILL_HAS_ALREADY_BEEN_ACQUIRED);
-					Util.handleIllegalPlayerAction(player, player + " is requesting skill Id: " + _id + " level " + _level + " without knowing it's previous level!", IllegalActionPunishmentType.NONE);
+					PunishmentManager.handleIllegalPlayerAction(player, player + " is requesting skill Id: " + _id + " level " + _level + " without knowing it's previous level!", IllegalActionPunishmentType.NONE);
 					return;
 				}
 				
@@ -254,7 +256,7 @@ public class RequestAcquireSkill extends ClientPacket
 				
 				for (ItemHolder item : s.getRequiredItems())
 				{
-					if (!player.destroyItemByItemId("SubSkills", item.getId(), item.getCount(), trainer, false))
+					if (!player.destroyItemByItemId(ItemProcessType.FEE, item.getId(), item.getCount(), trainer, false))
 					{
 						player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_THE_NECESSARY_MATERIALS_OR_PREREQUISITES_TO_LEARN_THIS_SKILL);
 						return;
@@ -294,7 +296,7 @@ public class RequestAcquireSkill extends ClientPacket
 				if (player.isSubClassActive())
 				{
 					player.sendPacket(SystemMessageId.THIS_SKILL_CANNOT_BE_LEARNED_WHILE_IN_THE_SUB_CLASS_STATE_PLEASE_TRY_AGAIN_AFTER_CHANGING_TO_THE_MAIN_CLASS);
-					Util.handleIllegalPlayerAction(player, player + " is requesting skill Id: " + _id + " level " + _level + " while Sub-Class is active!", IllegalActionPunishmentType.NONE);
+					PunishmentManager.handleIllegalPlayerAction(player, player + " is requesting skill Id: " + _id + " level " + _level + " while Sub-Class is active!", IllegalActionPunishmentType.NONE);
 					return;
 				}
 				
@@ -303,7 +305,7 @@ public class RequestAcquireSkill extends ClientPacket
 				{
 					// The previous level skill has not been learned.
 					player.sendPacket(SystemMessageId.THE_PREVIOUS_LEVEL_SKILL_HAS_NOT_BEEN_LEARNED);
-					Util.handleIllegalPlayerAction(player, player + " is requesting skill Id: " + _id + " level " + _level + " without knowing it's previous level!", IllegalActionPunishmentType.NONE);
+					PunishmentManager.handleIllegalPlayerAction(player, player + " is requesting skill Id: " + _id + " level " + _level + " without knowing it's previous level!", IllegalActionPunishmentType.NONE);
 					return;
 				}
 				
@@ -329,7 +331,7 @@ public class RequestAcquireSkill extends ClientPacket
 						final String itemOID = player.getVariables().getString(varName + i, "");
 						if (!itemOID.isEmpty() && !itemOID.endsWith(";") && !itemOID.equals("0"))
 						{
-							if (Util.isDigit(itemOID))
+							if (StringUtil.isNumeric(itemOID))
 							{
 								final int itemObjId = Integer.parseInt(itemOID);
 								final Item item = player.getInventory().getItemByObjectId(itemObjId);
@@ -424,12 +426,12 @@ public class RequestAcquireSkill extends ClientPacket
 			if (skillLearn.getGetLevel() > player.getLevel())
 			{
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_MEET_THE_SKILL_LEVEL_REQUIREMENTS);
-				Util.handleIllegalPlayerAction(player, player + ", level " + player.getLevel() + " is requesting skill Id: " + _id + " level " + _level + " without having minimum required level, " + skillLearn.getGetLevel() + "!", IllegalActionPunishmentType.NONE);
+				PunishmentManager.handleIllegalPlayerAction(player, player + ", level " + player.getLevel() + " is requesting skill Id: " + _id + " level " + _level + " without having minimum required level, " + skillLearn.getGetLevel() + "!", IllegalActionPunishmentType.NONE);
 				return false;
 			}
 			
 			// First it checks that the skill require SP and the player has enough SP to learn it.
-			final int levelUpSp = skillLearn.getCalculatedLevelUpSp(player.getClassId(), player.getLearningClass());
+			final int levelUpSp = skillLearn.getCalculatedLevelUpSp(player.getPlayerClass(), player.getLearningClass());
 			if ((levelUpSp > 0) && (levelUpSp > player.getSp()))
 			{
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_SP_TO_LEARN_THIS_SKILL);
@@ -481,9 +483,9 @@ public class RequestAcquireSkill extends ClientPacket
 				// If the player has all required items, they are consumed.
 				for (ItemHolder itemIdCount : skillLearn.getRequiredItems())
 				{
-					if (!player.destroyItemByItemId("SkillLearn", itemIdCount.getId(), itemIdCount.getCount(), trainer, true))
+					if (!player.destroyItemByItemId(ItemProcessType.FEE, itemIdCount.getId(), itemIdCount.getCount(), trainer, true))
 					{
-						Util.handleIllegalPlayerAction(player, "Somehow " + player + ", level " + player.getLevel() + " lose required item Id: " + itemIdCount.getId() + " to learn skill while learning skill Id: " + _id + " level " + _level + "!", IllegalActionPunishmentType.NONE);
+						PunishmentManager.handleIllegalPlayerAction(player, "Somehow " + player + ", level " + player.getLevel() + " lose required item Id: " + itemIdCount.getId() + " to learn skill while learning skill Id: " + _id + " level " + _level + "!", IllegalActionPunishmentType.NONE);
 					}
 				}
 			}
@@ -517,7 +519,7 @@ public class RequestAcquireSkill extends ClientPacket
 		player.addSkill(skill, true);
 		player.sendSkillList();
 		
-		player.updateShortCuts(_id, _level);
+		player.updateShortcuts(_id, _level);
 		showSkillList(trainer, player);
 		
 		// If skill is expand type then sends packet:

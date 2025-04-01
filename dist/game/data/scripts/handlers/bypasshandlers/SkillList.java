@@ -25,10 +25,10 @@ import java.util.logging.Level;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.instance.Folk;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -55,16 +55,16 @@ public class SkillList implements IBypassHandler
 				final String id = command.substring(9).trim();
 				if (id.length() != 0)
 				{
-					Folk.showSkillList(player, target.asNpc(), ClassId.getClassId(Integer.parseInt(id)));
+					Folk.showSkillList(player, target.asNpc(), PlayerClass.getPlayerClass(Integer.parseInt(id)));
 				}
 				else
 				{
 					boolean ownClass = false;
 					
-					final List<ClassId> classesToTeach = ((Folk) target).getClassesToTeach();
-					for (ClassId cid : classesToTeach)
+					final List<PlayerClass> classesToTeach = ((Folk) target).getClassesToTeach();
+					for (PlayerClass cid : classesToTeach)
 					{
-						if (cid.equalsOrChildOf(player.getClassId()))
+						if (cid.equalsOrChildOf(player.getPlayerClass()))
 						{
 							ownClass = true;
 							break;
@@ -74,7 +74,7 @@ public class SkillList implements IBypassHandler
 					String text = "<html><body><center>Skill learning:</center><br>";
 					if (!ownClass)
 					{
-						final String charType = player.getClassId().isMage() ? "fighter" : "mage";
+						final String charType = player.getPlayerClass().isMage() ? "fighter" : "mage";
 						text += "Skills of your class are the easiest to learn.<br>Skills of another class of your race are a little harder.<br>Skills for classes of another race are extremely difficult.<br>But the hardest of all to learn are the  " + charType + "skills!<br>";
 					}
 					
@@ -82,11 +82,11 @@ public class SkillList implements IBypassHandler
 					if (!classesToTeach.isEmpty())
 					{
 						int count = 0;
-						ClassId classCheck = player.getClassId();
+						PlayerClass classCheck = player.getPlayerClass();
 						
 						while ((count == 0) && (classCheck != null))
 						{
-							for (ClassId cid : classesToTeach)
+							for (PlayerClass cid : classesToTeach)
 							{
 								if (cid.level() > classCheck.level())
 								{
@@ -126,7 +126,7 @@ public class SkillList implements IBypassHandler
 		}
 		else
 		{
-			Folk.showSkillList(player, target.asNpc(), player.getClassId());
+			Folk.showSkillList(player, target.asNpc(), player.getPlayerClass());
 		}
 		return true;
 	}

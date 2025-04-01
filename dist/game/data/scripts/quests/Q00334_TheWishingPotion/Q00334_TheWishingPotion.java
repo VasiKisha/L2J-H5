@@ -20,15 +20,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * The Wishing Potion (334)
@@ -320,7 +320,7 @@ public class Q00334_TheWishingPotion extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -373,7 +373,6 @@ public class Q00334_TheWishingPotion extends Quest
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -702,7 +701,7 @@ public class Q00334_TheWishingPotion extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getRandomPlayerFromParty(killer, npc);
 		if (qs != null)
@@ -1021,7 +1020,6 @@ public class Q00334_TheWishingPotion extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private QuestState getRandomPlayerFromParty(Player player, Npc npc)
@@ -1039,7 +1037,7 @@ public class Q00334_TheWishingPotion extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = pm.getQuestState(getName());
-				if ((qss != null) && qss.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
+				if ((qss != null) && qss.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
 				{
 					candidates.add(qss);
 				}

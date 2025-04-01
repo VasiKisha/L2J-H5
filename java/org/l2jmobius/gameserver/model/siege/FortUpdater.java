@@ -21,11 +21,12 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 
 /**
  * Class managing periodical events with castle
- * @author Vice - 2008
+ * @author Vice
  */
 public class FortUpdater implements Runnable
 {
@@ -65,7 +66,7 @@ public class FortUpdater implements Runnable
 					{
 						if (_clan.getWarehouse().getAdena() >= Config.FS_FEE_FOR_CASTLE)
 						{
-							_clan.getWarehouse().destroyItemByItemId("FS_fee_for_Castle", Inventory.ADENA_ID, Config.FS_FEE_FOR_CASTLE, null, null);
+							_clan.getWarehouse().destroyItemByItemId(ItemProcessType.FEE, Inventory.ADENA_ID, Config.FS_FEE_FOR_CASTLE, null, null);
 							_fort.getContractedCastle().addToTreasuryNoTax(Config.FS_FEE_FOR_CASTLE);
 							_fort.raiseSupplyLeveL();
 						}

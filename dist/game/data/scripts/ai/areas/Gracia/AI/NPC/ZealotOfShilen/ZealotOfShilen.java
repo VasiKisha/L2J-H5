@@ -20,7 +20,7 @@
  */
 package ai.areas.Gracia.AI.NPC.ZealotOfShilen;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -74,7 +74,7 @@ public class ZealotOfShilen extends AbstractNpcAI
 			{
 				npc.setRunning();
 				npc.asAttackable().addDamageHate(nearby, 0, 999);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, nearby, null);
+				npc.getAI().setIntention(Intention.ATTACK, nearby, null);
 			}
 		}
 		
@@ -88,7 +88,7 @@ public class ZealotOfShilen extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == ZEALOT)
 		{
@@ -101,6 +101,5 @@ public class ZealotOfShilen extends AbstractNpcAI
 			cancelQuestTimer("WATCHING", npc, null);
 			startQuestTimer("WATCHING", 10000, npc, null, true);
 		}
-		return super.onSpawn(npc);
 	}
 }

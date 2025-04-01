@@ -27,12 +27,18 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 public class ExPrivateStoreSetWholeMsg extends ServerPacket
 {
 	private final int _objectId;
-	private final String _msg;
+	private final String _message;
 	
 	public ExPrivateStoreSetWholeMsg(Player player, String msg)
 	{
 		_objectId = player.getObjectId();
-		_msg = msg;
+		_message = msg;
+	}
+	
+	public ExPrivateStoreSetWholeMsg(int objectId, String message)
+	{
+		_objectId = objectId;
+		_message = message;
 	}
 	
 	public ExPrivateStoreSetWholeMsg(Player player)
@@ -45,6 +51,6 @@ public class ExPrivateStoreSetWholeMsg extends ServerPacket
 	{
 		ServerPackets.EX_PRIVATE_STORE_PACKAGE_MSG.writeId(this, buffer);
 		buffer.writeInt(_objectId);
-		buffer.writeString(_msg);
+		buffer.writeString(_message);
 	}
 }

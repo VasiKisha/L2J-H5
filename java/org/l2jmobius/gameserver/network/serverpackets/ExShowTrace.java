@@ -26,8 +26,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * This packet shows the mouse click particle for 30 seconds on every location.
- * @author NosBit
+ * @author KenM
  */
 public class ExShowTrace extends ServerPacket
 {

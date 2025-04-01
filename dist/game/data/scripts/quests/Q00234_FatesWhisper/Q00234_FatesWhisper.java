@@ -20,15 +20,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Fate's Whisper (234)
@@ -155,7 +155,7 @@ public class Q00234_FatesWhisper extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -180,7 +180,6 @@ public class Q00234_FatesWhisper extends Quest
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
@@ -1120,31 +1119,32 @@ public class Q00234_FatesWhisper extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
 			case DOMB_DEATH_CABRIO:
 			{
 				addSpawn(COFFER_OF_THE_DEAD, npc.getLocation());
-				return super.onKill(npc, killer, isSummon);
+				return;
 			}
 			case KERNON:
 			{
 				addSpawn(CHEST_OF_KERNON, npc.getLocation());
-				return super.onKill(npc, killer, isSummon);
+				return;
 			}
 			case GOLKONDA_LONGHORN:
 			{
 				addSpawn(CHEST_OF_GOLKONDA, npc.getLocation());
-				return super.onKill(npc, killer, isSummon);
+				return;
 			}
 			case HALLATE_THE_DEATH_LORD:
 			{
 				addSpawn(CHEST_OF_HALLATE, npc.getLocation());
-				return super.onKill(npc, killer, isSummon);
+				return;
 			}
 		}
+		
 		final QuestState qs = getRandomPlayerFromParty(killer, npc, 8);
 		if (qs != null)
 		{
@@ -1178,11 +1178,10 @@ public class Q00234_FatesWhisper extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && (attacker.getActiveWeaponItem() != null) && (attacker.getActiveWeaponItem().getId() == Q_PIPETTE_KNIFE))
@@ -1192,7 +1191,6 @@ public class Q00234_FatesWhisper extends Quest
 			playSound(attacker, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.GENERAL, npc.getId(), NpcStringId.WHO_DARES_TO_TRY_AND_STEAL_MY_NOBLE_BLOOD));
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	private QuestState getRandomPlayerFromParty(Player player, Npc npc, int memoState)
@@ -1208,7 +1206,7 @@ public class Q00234_FatesWhisper extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qs2 = getQuestState(pm, false);
-				if ((qs2 != null) && qs2.isStarted() && (qs2.getMemoState() == memoState) && hasQuestItems(player, Q_WHITE_FABRIC_Q0234) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
+				if ((qs2 != null) && qs2.isStarted() && (qs2.getMemoState() == memoState) && hasQuestItems(player, Q_WHITE_FABRIC_Q0234) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
 				{
 					candidates.add(qs2);
 				}

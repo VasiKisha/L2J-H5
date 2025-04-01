@@ -19,17 +19,19 @@ package quests.Q00104_SpiritOfMirrors;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.network.NpcStringId;
 
-import quests.Q00281_HeadForTheHills.Q00281_HeadForTheHills;
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Spirit of Mirrors (104)
@@ -66,8 +68,12 @@ public class Q00104_SpiritOfMirrors extends Quest
 		new ItemHolder(4416, 10), // Echo Crystal - Theme of Celebration
 		new ItemHolder(747, 1), // Wand of Adept
 	};
+	private static final ItemHolder SPIRITSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5790, 3000);
+	private static final ItemHolder SOULSHOTS_NO_GRADE = new ItemHolder(1835, 1000);
+	private static final ItemHolder SPIRITSHOTS_NO_GRADE = new ItemHolder(2509, 500);
 	// Misc
 	private static final int MIN_LEVEL = 10;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00104_SpiritOfMirrors()
 	{
@@ -82,7 +88,7 @@ public class Q00104_SpiritOfMirrors extends Quest
 	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
-		if ((qs != null) && event.equalsIgnoreCase("30017-04.htm"))
+		if ((qs != null) && event.equals("30017-04.htm"))
 		{
 			qs.startQuest();
 			giveItems(player, GALLINTS_OAK_WAND, 3);
@@ -92,7 +98,7 @@ public class Q00104_SpiritOfMirrors extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && (qs.isCond(1) || qs.isCond(2)) && (getItemEquipped(killer, Inventory.PAPERDOLL_RHAND) == GALLINTS_OAK_WAND) && !hasQuestItems(killer, MONSTERS.get(npc.getId())))
@@ -108,7 +114,6 @@ public class Q00104_SpiritOfMirrors extends Quest
 				playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -131,11 +136,44 @@ public class Q00104_SpiritOfMirrors extends Quest
 					{
 						if (qs.isCond(3) && hasQuestItems(player, SPIRITBOUND_WAND1, SPIRITBOUND_WAND2, SPIRITBOUND_WAND3))
 						{
-							Q00281_HeadForTheHills.giveNewbieReward(player);
+							if ((player.getLevel() < 25) && player.isMageClass())
+							{
+								giveItems(player, SPIRITSHOTS_NO_GRADE_FOR_ROOKIES);
+								playSound(player, "tutorial_voice_027");
+							}
+							if (!player.isMageClass())
+							{
+								giveItems(player, SOULSHOTS_NO_GRADE);
+							}
+							else
+							{
+								giveItems(player, SPIRITSHOTS_NO_GRADE);
+							}
+							
 							for (ItemHolder reward : REWARDS)
 							{
 								giveItems(player, reward);
 							}
+							
+							// Newbie Guide.
+							final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+							if (newbieGuide != null)
+							{
+								final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+								if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, 100000);
+									showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_RACE_SPECIFIC_WEAPON_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+								else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 1000000) / 100000) != 1)
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 100000);
+									showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_RACE_SPECIFIC_WEAPON_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+							}
+							
 							addExpAndSp(player, 39750, 3407);
 							giveAdena(player, 16866, true);
 							qs.exitQuest(false, true);

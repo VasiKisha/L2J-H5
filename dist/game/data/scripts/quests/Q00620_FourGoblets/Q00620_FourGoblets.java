@@ -20,14 +20,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.FourSepulchersManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Four Goblets (620)
@@ -234,7 +233,7 @@ public class Q00620_FourGoblets extends Quest
 	public void actionForEachPlayer(Player player, Npc npc, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
-		if ((qs != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if ((qs != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
 		{
 			switch (npc.getId())
 			{
@@ -429,18 +428,48 @@ public class Q00620_FourGoblets extends Quest
 				}
 				break;
 			}
-			case "ENTER":
+			// Ghost Chamberlain of Elmoreden: Teleport to 4s.
+			case "go_to_4s":
 			{
-				// TODO (Adry_85): Need rework
-				FourSepulchersManager.getInstance().tryEntry(npc, player);
-				return "";
+				if (hasQuestItems(player, ANTIQUE_BROOCH))
+				{
+					player.teleToLocation(178298, -84574, -7216);
+					return null;
+				}
+				
+				if (hasQuestItems(player, USED_GRAVE_PASS))
+				{
+					takeItems(player, USED_GRAVE_PASS, 1);
+					player.teleToLocation(178298, -84574, -7216);
+					return null;
+				}
+				
+				htmltext = npc.getId() + "-00.html";
+			}
+			// Ghost Chamberlain of Elmoreden: Teleport to Imperial Tomb Entrance.
+			case "go_to_it":
+			{
+				if (hasQuestItems(player, ANTIQUE_BROOCH))
+				{
+					player.teleToLocation(186942, -75602, -2834);
+					return null;
+				}
+				
+				if (hasQuestItems(player, USED_GRAVE_PASS))
+				{
+					takeItems(player, USED_GRAVE_PASS, 1);
+					player.teleToLocation(186942, -75602, -2834);
+					return null;
+				}
+				
+				htmltext = npc.getId() + "-00.html";
 			}
 		}
 		return htmltext;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -476,7 +505,6 @@ public class Q00620_FourGoblets extends Quest
 				break;
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

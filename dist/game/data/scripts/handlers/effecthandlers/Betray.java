@@ -16,7 +16,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
@@ -57,12 +57,12 @@ public class Betray extends AbstractEffect
 	@Override
 	public void onExit(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		effected.getAI().setIntention(Intention.IDLE);
 	}
 	
 	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, effected.asPlayer());
+		effected.getAI().setIntention(Intention.ATTACK, effected.asPlayer());
 	}
 }

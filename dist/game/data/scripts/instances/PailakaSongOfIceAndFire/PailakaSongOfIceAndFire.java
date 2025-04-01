@@ -16,8 +16,7 @@
  */
 package instances.PailakaSongOfIceAndFire;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -25,6 +24,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import instances.AbstractInstance;
 
@@ -116,7 +116,7 @@ public class PailakaSongOfIceAndFire extends AbstractInstance
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		if ((damage > 0) && npc.isScriptValue(0))
 		{
@@ -154,18 +154,16 @@ public class PailakaSongOfIceAndFire extends AbstractInstance
 			npc.setScriptValue(1);
 			startQuestTimer("DELETE", 3000, npc, null);
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		npc.dropItem(player, getRandomBoolean() ? SHIELD_POTION : HEAL_POTION, getRandom(1, 7));
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if ((creature.isPlayer()) && !creature.isDead() && !creature.isTeleporting() && creature.asPlayer().isOnline())
 		{
@@ -175,26 +173,23 @@ public class PailakaSongOfIceAndFire extends AbstractInstance
 				startQuestTimer("TELEPORT", 1000, null, creature.asPlayer());
 			}
 		}
-		return super.onExitZone(creature, zone);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer() && npc.isScriptValue(0))
 		{
 			npc.setScriptValue(1);
 			startQuestTimer("GARGOS_LAUGH", 1000, npc, creature.asPlayer());
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setInvisible(true);
 		startQuestTimer("BLOOM_TIMER", 1000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

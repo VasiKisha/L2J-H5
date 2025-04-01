@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.model.actor.status;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -64,7 +64,7 @@ public class PetStatus extends SummonStatus
 			sm.addInt((int) value);
 			pet.sendPacket(sm);
 		}
-		pet.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, attacker);
+		pet.getAI().notifyAction(Action.ATTACKED, attacker);
 	}
 	
 	public int getCurrentFed()

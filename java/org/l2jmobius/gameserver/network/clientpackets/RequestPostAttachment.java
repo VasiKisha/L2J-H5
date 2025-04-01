@@ -19,12 +19,14 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.ADENA_ID;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ItemLocation;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
+import org.l2jmobius.gameserver.managers.ItemManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.ItemContainer;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
@@ -34,7 +36,6 @@ import org.l2jmobius.gameserver.network.serverpackets.ExShowReceivedPostList;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Migi, DS
@@ -106,7 +107,7 @@ public class RequestPostAttachment extends ClientPacket
 		
 		if (msg.getReceiverId() != player.getObjectId())
 		{
-			Util.handleIllegalPlayerAction(player, player + " tried to get not own attachment!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get not own attachment!", Config.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -133,19 +134,19 @@ public class RequestPostAttachment extends ClientPacket
 			// Calculate needed slots
 			if (item.getOwnerId() != msg.getSenderId())
 			{
-				Util.handleIllegalPlayerAction(player, player + " tried to get wrong item (ownerId != senderId) from attachment!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get wrong item (ownerId != senderId) from attachment!", Config.DEFAULT_PUNISH);
 				return;
 			}
 			
 			if (item.getItemLocation() != ItemLocation.MAIL)
 			{
-				Util.handleIllegalPlayerAction(player, player + " tried to get wrong item (Location != MAIL) from attachment!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get wrong item (Location != MAIL) from attachment!", Config.DEFAULT_PUNISH);
 				return;
 			}
 			
 			if (item.getLocationSlot() != msg.getId())
 			{
-				Util.handleIllegalPlayerAction(player, player + " tried to get items from different attachment!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get items from different attachment!", Config.DEFAULT_PUNISH);
 				return;
 			}
 			
@@ -175,7 +176,7 @@ public class RequestPostAttachment extends ClientPacket
 		}
 		
 		final long adena = msg.getReqAdena();
-		if ((adena > 0) && !player.reduceAdena("PayMail", adena, null, true))
+		if ((adena > 0) && !player.reduceAdena(ItemProcessType.FEE, adena, null, true))
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_RECEIVE_BECAUSE_YOU_DON_T_HAVE_ENOUGH_ADENA);
 			return;
@@ -192,12 +193,12 @@ public class RequestPostAttachment extends ClientPacket
 			
 			if (item.getOwnerId() != msg.getSenderId())
 			{
-				Util.handleIllegalPlayerAction(player, player + " tried to get items with owner != sender !", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get items with owner != sender !", Config.DEFAULT_PUNISH);
 				return;
 			}
 			
 			final long count = item.getCount();
-			final Item newItem = attachments.transferItem(attachments.getName(), item.getObjectId(), item.getCount(), player.getInventory(), player, null);
+			final Item newItem = attachments.transferItem(ItemProcessType.TRANSFER, item.getObjectId(), item.getCount(), player.getInventory(), player, null);
 			if (newItem == null)
 			{
 				return;
@@ -237,7 +238,7 @@ public class RequestPostAttachment extends ClientPacket
 		{
 			if (sender != null)
 			{
-				sender.addAdena("PayMail", adena, player, false);
+				sender.addAdena(ItemProcessType.TRANSFER, adena, player, false);
 				sm = new SystemMessage(SystemMessageId.S2_HAS_MADE_A_PAYMENT_OF_S1_ADENA_PER_YOUR_PAYMENT_REQUEST_MAIL);
 				sm.addLong(adena);
 				sm.addString(player.getName());
@@ -245,7 +246,7 @@ public class RequestPostAttachment extends ClientPacket
 			}
 			else
 			{
-				final Item paidAdena = ItemData.getInstance().createItem("PayMail", ADENA_ID, adena, player, null);
+				final Item paidAdena = ItemManager.createItem(ItemProcessType.FEE, ADENA_ID, adena, player, null);
 				paidAdena.setOwnerId(msg.getSenderId());
 				paidAdena.setItemLocation(ItemLocation.INVENTORY);
 				paidAdena.updateDatabase(true);

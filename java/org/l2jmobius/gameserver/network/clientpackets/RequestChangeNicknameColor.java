@@ -17,6 +17,7 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 
 /**
@@ -70,7 +71,7 @@ public class RequestChangeNicknameColor extends ClientPacket
 			return;
 		}
 		
-		if (player.destroyItem("Consume", item, 1, null, true))
+		if (player.destroyItem(ItemProcessType.NONE, item, 1, null, true))
 		{
 			player.setTitle(_title);
 			player.getAppearance().setTitleColor(COLORS[_colorNum]);

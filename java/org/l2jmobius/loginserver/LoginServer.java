@@ -35,7 +35,7 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.enums.ServerMode;
 import org.l2jmobius.commons.network.ConnectionManager;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.PropertiesParser;
+import org.l2jmobius.commons.util.ConfigReader;
 import org.l2jmobius.gameserver.network.loginserverpackets.game.ServerStatus;
 import org.l2jmobius.loginserver.network.LoginClient;
 import org.l2jmobius.loginserver.network.LoginPacketHandler;
@@ -49,24 +49,15 @@ public class LoginServer
 	public static final Logger LOGGER = Logger.getLogger(LoginServer.class.getName());
 	
 	public static final int PROTOCOL_REV = 0x0106;
-	private static LoginServer INSTANCE;
+	
+	private static LoginServer _instance;
 	private GameServerListener _gameServerListener;
 	private static int _loginStatus = ServerStatus.STATUS_NORMAL;
-	
-	public static void main(String[] args) throws Exception
-	{
-		INSTANCE = new LoginServer();
-	}
-	
-	public static LoginServer getInstance()
-	{
-		return INSTANCE;
-	}
 	
 	private LoginServer() throws Exception
 	{
 		// GUI.
-		final PropertiesParser interfaceConfig = new PropertiesParser(Config.INTERFACE_CONFIG_FILE);
+		final ConfigReader interfaceConfig = new ConfigReader(Config.INTERFACE_CONFIG_FILE);
 		Config.ENABLE_GUI = interfaceConfig.getBoolean("EnableGUI", true);
 		if (Config.ENABLE_GUI && !GraphicsEnvironment.isHeadless())
 		{
@@ -208,5 +199,15 @@ public class LoginServer
 	public void setStatus(int status)
 	{
 		_loginStatus = status;
+	}
+	
+	public static LoginServer getInstance()
+	{
+		return _instance;
+	}
+	
+	public static void main(String[] args) throws Exception
+	{
+		_instance = new LoginServer();
 	}
 }

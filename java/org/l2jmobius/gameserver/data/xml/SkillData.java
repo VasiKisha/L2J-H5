@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -28,19 +32,20 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.file.filter.XMLFilter;
+import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.util.DocumentSkill;
 
 /**
- * Skill data.
+ * The {@code SkillData} class is responsible for parsing, loading, and managing skill data within the game server.
  */
 public class SkillData
 {
 	private static final Logger LOGGER = Logger.getLogger(SkillData.class.getName());
 	
-	private final Map<Integer, Skill> _skills = new ConcurrentHashMap<>();
-	private final Map<Integer, Integer> _skillMaxLevel = new ConcurrentHashMap<>();
+	private final Map<Integer, Skill> _skillsByHash = new ConcurrentHashMap<>();
+	private final Map<Integer, Integer> _maxSkillLevels = new ConcurrentHashMap<>();
 	private final Set<Integer> _enchantable = ConcurrentHashMap.newKeySet();
 	private final List<File> _skillFiles = new ArrayList<>();
 	private static int count = 0;
@@ -61,13 +66,52 @@ public class SkillData
 		final File dir = new File(Config.DATAPACK_ROOT, dirName);
 		if (!dir.exists())
 		{
-			LOGGER.warning("Dir " + dir.getAbsolutePath() + " does not exist.");
+			LOGGER.warning("Directory " + dir.getAbsolutePath() + " does not exist.");
 			return;
 		}
-		final File[] files = dir.listFiles(new XMLFilter());
-		for (File file : files)
+		
+		final File[] files = dir.listFiles();
+		if (files != null)
 		{
-			list.add(file);
+			for (File file : files)
+			{
+				if (file.isFile() && file.getName().toLowerCase().endsWith(".xml"))
+				{
+					list.add(file);
+				}
+			}
+		}
+	}
+	
+	private void load()
+	{
+		final Map<Integer, Skill> temp = new ConcurrentHashMap<>();
+		loadAllSkills(temp);
+		
+		_skillsByHash.clear();
+		_skillsByHash.putAll(temp);
+		
+		_maxSkillLevels.clear();
+		_enchantable.clear();
+		for (Skill skill : _skillsByHash.values())
+		{
+			final int skillId = skill.getId();
+			final int skillLevel = skill.getLevel();
+			if (skillLevel > 99)
+			{
+				if (!_enchantable.contains(skillId))
+				{
+					_enchantable.add(skillId);
+				}
+				continue;
+			}
+			
+			// Only non-enchanted skills.
+			final int maxLevel = getMaxLevel(skillId);
+			if (skillLevel > maxLevel)
+			{
+				_maxSkillLevels.put(skillId, skillLevel);
+			}
 		}
 	}
 	
@@ -78,6 +122,7 @@ public class SkillData
 			LOGGER.warning("Skill file not found.");
 			return null;
 		}
+		
 		final DocumentSkill doc = new DocumentSkill(file);
 		doc.parse();
 		return doc.getSkills();
@@ -97,6 +142,7 @@ public class SkillData
 					{
 						return;
 					}
+					
 					for (Skill skill : skills)
 					{
 						allSkills.put(SkillData.getSkillHashCode(skill), skill);
@@ -104,6 +150,7 @@ public class SkillData
 					}
 				}, 0));
 			}
+			
 			while (!jobs.isEmpty())
 			{
 				for (ScheduledFuture<?> job : jobs)
@@ -135,49 +182,18 @@ public class SkillData
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + count + " Skill templates from XML files.");
 	}
 	
-	private void load()
-	{
-		final Map<Integer, Skill> temp = new ConcurrentHashMap<>();
-		loadAllSkills(temp);
-		
-		_skills.clear();
-		_skills.putAll(temp);
-		
-		_skillMaxLevel.clear();
-		_enchantable.clear();
-		for (Skill skill : _skills.values())
-		{
-			final int skillId = skill.getId();
-			final int skillLevel = skill.getLevel();
-			if (skillLevel > 99)
-			{
-				if (!_enchantable.contains(skillId))
-				{
-					_enchantable.add(skillId);
-				}
-				continue;
-			}
-			
-			// only non-enchanted skills
-			final int maxLevel = getMaxLevel(skillId);
-			if (skillLevel > maxLevel)
-			{
-				_skillMaxLevel.put(skillId, skillLevel);
-			}
-		}
-	}
-	
 	public void reload()
 	{
 		load();
+		
 		// Reload Skill Tree as well.
 		SkillTreeData.getInstance().load();
 	}
 	
 	/**
-	 * Provides the skill hash
-	 * @param skill The Skill to be hashed
-	 * @return getSkillHashCode(skill.getId(), skill.getLevel())
+	 * Generates a unique hash code for a skill based on its ID and level.
+	 * @param skill The {@link Skill} instance to be hashed.
+	 * @return A unique hash code combining skill ID and level.
 	 */
 	public static int getSkillHashCode(Skill skill)
 	{
@@ -185,39 +201,51 @@ public class SkillData
 	}
 	
 	/**
-	 * Centralized method for easier change of the hashing sys
-	 * @param skillId The Skill Id
-	 * @param skillLevel The Skill Level
-	 * @return The Skill hash number
+	 * Generates a unique hash code for a skill based on its ID and level.
+	 * @param skillId The ID of the skill.
+	 * @param skillLevel The level of the skill.
+	 * @return A unique hash code combining skill ID and level.
 	 */
 	public static int getSkillHashCode(int skillId, int skillLevel)
 	{
 		return (skillId * 1021) + skillLevel;
 	}
 	
+	/**
+	 * Retrieves a skill based on its ID and level.
+	 * @param skillId The ID of the skill.
+	 * @param level The level of the skill.
+	 * @return The {@link Skill} object if found, or null if not found.
+	 */
 	public Skill getSkill(int skillId, int level)
 	{
-		final Skill result = _skills.get(getSkillHashCode(skillId, level));
+		final Skill result = _skillsByHash.get(getSkillHashCode(skillId, level));
 		if (result != null)
 		{
 			return result;
 		}
 		
-		// skill/level not found, fix for transformation scripts
+		// Skill/level not found, fix for transformation scripts.
 		final int maxLevel = getMaxLevel(skillId);
-		// requested level too high
+		// Requested level too high.
 		if ((maxLevel > 0) && (level > maxLevel))
 		{
-			return _skills.get(getSkillHashCode(skillId, maxLevel));
+			LOGGER.warning(StringUtil.concat(getClass().getSimpleName(), ": Call to unexisting skill level id: ", String.valueOf(skillId), " requested level: ", String.valueOf(level), " max level: ", String.valueOf(maxLevel), ".", System.lineSeparator(), TraceUtil.getStackTrace(new Exception())));
+			return _skillsByHash.get(getSkillHashCode(skillId, maxLevel));
 		}
 		
-		LOGGER.warning(getClass().getSimpleName() + ": No skill info found for skill id " + skillId + " and skill level " + level + ".");
+		LOGGER.warning(StringUtil.concat(getClass().getSimpleName(), ": No skill info found for skill id ", String.valueOf(skillId), " and skill level ", String.valueOf(level), ".", System.lineSeparator(), TraceUtil.getStackTrace(new Exception())));
 		return null;
 	}
 	
+	/**
+	 * Retrieves the maximum level available for a skill based on its ID.
+	 * @param skillId The ID of the skill.
+	 * @return The maximum level for the specified skill ID, or 0 if the skill ID is not found.
+	 */
 	public int getMaxLevel(int skillId)
 	{
-		final Integer maxLevel = _skillMaxLevel.get(skillId);
+		final Integer maxLevel = _maxSkillLevels.get(skillId);
 		return maxLevel != null ? maxLevel : 0;
 	}
 	
@@ -232,26 +260,30 @@ public class SkillData
 	}
 	
 	/**
-	 * @param addNoble
-	 * @param hasCastle
-	 * @return an array with siege skills. If addNoble == true, will add also Advanced headquarters.
+	 * Retrieves an array of siege-related skills based on certain conditions.
+	 * <p>
+	 * If {@code addNoble} is true, the list will include the Advanced Headquarters skill. If {@code hasCastle} is true, additional castle-specific skills such as Outpost Construction and Outpost Demolition are added.
+	 * </p>
+	 * @param addNoble Whether to include Advanced Headquarters skill.
+	 * @param hasCastle Whether to include castle-related skills.
+	 * @return A {@link List} of siege-related {@link Skill} objects.
 	 */
 	public Skill[] getSiegeSkills(boolean addNoble, boolean hasCastle)
 	{
-		final Skill[] temp = new Skill[2 + (addNoble ? 1 : 0) + (hasCastle ? 2 : 0)];
+		final Skill[] result = new Skill[2 + (addNoble ? 1 : 0) + (hasCastle ? 2 : 0)];
 		int i = 0;
-		temp[i++] = _skills.get(getSkillHashCode(246, 1));
-		temp[i++] = _skills.get(getSkillHashCode(247, 1));
+		result[i++] = _skillsByHash.get(getSkillHashCode(246, 1));
+		result[i++] = _skillsByHash.get(getSkillHashCode(247, 1));
 		if (addNoble)
 		{
-			temp[i++] = _skills.get(getSkillHashCode(326, 1));
+			result[i++] = _skillsByHash.get(getSkillHashCode(326, 1));
 		}
 		if (hasCastle)
 		{
-			temp[i++] = _skills.get(getSkillHashCode(844, 1));
-			temp[i++] = _skills.get(getSkillHashCode(845, 1));
+			result[i++] = _skillsByHash.get(getSkillHashCode(844, 1));
+			result[i++] = _skillsByHash.get(getSkillHashCode(845, 1));
 		}
-		return temp;
+		return result;
 	}
 	
 	public static SkillData getInstance()

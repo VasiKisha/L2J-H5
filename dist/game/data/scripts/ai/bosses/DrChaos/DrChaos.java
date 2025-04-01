@@ -16,15 +16,15 @@
  */
 package ai.bosses.DrChaos;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
@@ -154,7 +154,7 @@ public class DrChaos extends AbstractNpcAI
 			case "4":
 			{
 				npc.broadcastPacket(new SpecialCamera(npc, 1, -150, 10, 3500, 1000, 5000, 0, 0, 0, 0, 0));
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(95928, -110671, -3340, 0));
+				npc.getAI().setIntention(Intention.MOVE_TO, new Location(95928, -110671, -3340, 0));
 				break;
 			}
 			case "5":
@@ -203,7 +203,7 @@ public class DrChaos extends AbstractNpcAI
 				if (npc.calculateDistance2D(CHAOS_X, CHAOS_Y, CHAOS_Z) > 2000)
 				{
 					npc.asAttackable().clearAggroList();
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(CHAOS_X, CHAOS_Y, CHAOS_Z, 0));
+					npc.getAI().setIntention(Intention.MOVE_TO, new Location(CHAOS_X, CHAOS_Y, CHAOS_Z, 0));
 				}
 				break;
 			}
@@ -216,7 +216,7 @@ public class DrChaos extends AbstractNpcAI
 				else if (npc.calculateDistance2D(npc.getSpawn()) > 10000)
 				{
 					npc.asAttackable().clearAggroList();
-					// npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(CHAOS_X, CHAOS_Y, CHAOS_Z, 0));
+					// npc.getAI().setIntention(Intention.MOVE_TO, new Location(CHAOS_X, CHAOS_Y, CHAOS_Z, 0));
 					npc.teleToLocation(npc.getSpawn(), false);
 				}
 				break;
@@ -253,7 +253,7 @@ public class DrChaos extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		// 30 seconds timer at initialization.
 		_pissedOffTimer = 30;
@@ -263,12 +263,10 @@ public class DrChaos extends AbstractNpcAI
 		
 		cancelQuestTimer("DISTANCE_CHECK", npc, null);
 		startQuestTimer("DISTANCE_CHECK", 10000, npc, null, true);
-		
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isPet)
+	public void onKill(Npc npc, Player player, boolean isPet)
 	{
 		cancelQuestTimer("golem_despawn", npc, null);
 		npc.broadcastSay(ChatType.NPC_GENERAL, "Urggh! You will pay dearly for this insult.");
@@ -285,12 +283,10 @@ public class DrChaos extends AbstractNpcAI
 		
 		// Stop distance check task.
 		cancelQuestTimers("DISTANCE_CHECK");
-		
-		return null;
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player victim, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player victim, int damage, boolean isPet)
 	{
 		final int chance = getRandom(300);
 		
@@ -320,7 +316,6 @@ public class DrChaos extends AbstractNpcAI
 			// Make him speak.
 			npc.broadcastSay(ChatType.NPC_GENERAL, message);
 		}
-		return null;
 	}
 	
 	/**
@@ -338,7 +333,7 @@ public class DrChaos extends AbstractNpcAI
 			cancelQuestTimer("paranoia_activity", npc, null);
 			
 			// Makes the NPC moves near the Strange Box speaking.
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(96323, -110914, -3328, 0));
+			npc.getAI().setIntention(Intention.MOVE_TO, new Location(96323, -110914, -3328, 0));
 			npc.broadcastSay(ChatType.NPC_GENERAL, "Fools! Why haven't you fled yet? Prepare to learn a lesson!");
 			
 			// Delayed animation timers.

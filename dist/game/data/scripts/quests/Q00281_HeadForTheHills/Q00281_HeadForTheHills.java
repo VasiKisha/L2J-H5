@@ -19,16 +19,17 @@ package quests.Q00281_HeadForTheHills;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
+
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Head for the Hills! (281)
@@ -36,14 +37,10 @@ import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
  */
 public class Q00281_HeadForTheHills extends Quest
 {
-	// Item
-	private static final int CLAWS = 9796;
 	// NPC
 	private static final int MERCELA = 32173;
-	// Message
-	private static final ExShowScreenMessage MESSAGE = new ExShowScreenMessage(NpcStringId.ACQUISITION_OF_SOULSHOT_FOR_BEGINNERS_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
-	// Misc
-	private static final int MIN_LEVEL = 6;
+	// Item
+	private static final int CLAWS = 9796;
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	// Rewards
@@ -71,6 +68,9 @@ public class Q00281_HeadForTheHills extends Quest
 		MONSTERS.put(22238, 920); // Mountain Werewolf Chief
 		MONSTERS.put(22239, 990); // Muertos Guard
 	}
+	// Misc
+	private static final int MIN_LEVEL = 6;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00281_HeadForTheHills()
 	{
@@ -106,7 +106,42 @@ public class Q00281_HeadForTheHills extends Quest
 					final long claws = getQuestItemsCount(player, CLAWS);
 					giveAdena(player, ((claws * 23) + (claws >= 10 ? 400 : 0)), true);
 					takeItems(player, CLAWS, -1);
-					giveNewbieReward(player);
+					
+					if ((player.getLevel() < 25) && (getOneTimeQuestFlag(player, 57) == 0))
+					{
+						if (player.isMageClass())
+						{
+							giveItems(player, SPIRITSHOTS_NO_GRADE_FOR_ROOKIES);
+							playSound(player, "tutorial_voice_027");
+						}
+						else
+						{
+							giveItems(player, SOULSHOTS_NO_GRADE_FOR_ROOKIES);
+							playSound(player, "tutorial_voice_026");
+						}
+						
+						setOneTimeQuestFlag(player, 57, 1);
+					}
+					
+					// Newbie Guide.
+					final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+					if (newbieGuide != null)
+					{
+						final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+						if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, 1000);
+							showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_SOULSHOT_FOR_BEGINNERS_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+						}
+						else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 10000) / 1000) != 1)
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 1000);
+							showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_SOULSHOT_FOR_BEGINNERS_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+						}
+					}
+					
 					htmltext = event;
 				}
 				else
@@ -139,7 +174,42 @@ public class Q00281_HeadForTheHills extends Quest
 						giveItems(player, REWARDS[9], 1);
 					}
 					takeItems(player, CLAWS, 50);
-					giveNewbieReward(player);
+					
+					if ((player.getLevel() < 25) && (getOneTimeQuestFlag(player, 57) == 0))
+					{
+						if (player.isMageClass())
+						{
+							giveItems(player, SPIRITSHOTS_NO_GRADE_FOR_ROOKIES);
+							playSound(player, "tutorial_voice_027");
+						}
+						else
+						{
+							giveItems(player, SOULSHOTS_NO_GRADE_FOR_ROOKIES);
+							playSound(player, "tutorial_voice_026");
+						}
+						
+						setOneTimeQuestFlag(player, 57, 1);
+					}
+					
+					// Newbie Guide.
+					final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+					if (newbieGuide != null)
+					{
+						final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+						if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, 1000);
+							showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_SOULSHOT_FOR_BEGINNERS_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+						}
+						else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 10000) / 1000) != 1)
+						{
+							setNRMemo(newbieGuideQs, GUIDE_MISSION);
+							setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 1000);
+							showOnScreenMsg(player, NpcStringId.ACQUISITION_OF_SOULSHOT_FOR_BEGINNERS_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+						}
+					}
+					
 					htmltext = event;
 				}
 				else
@@ -153,7 +223,7 @@ public class Q00281_HeadForTheHills extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && (getRandom(1000) <= MONSTERS.get(npc.getId())))
@@ -161,7 +231,6 @@ public class Q00281_HeadForTheHills extends Quest
 			giveItems(killer, CLAWS, 1);
 			playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -183,38 +252,5 @@ public class Q00281_HeadForTheHills extends Quest
 			}
 		}
 		return htmltext;
-	}
-	
-	/**
-	 * Give basic newbie reward.
-	 * @param player the player to reward
-	 */
-	public static void giveNewbieReward(Player player)
-	{
-		final PlayerVariables vars = player.getVariables();
-		if ((player.getLevel() < 25) && !vars.getBoolean("NEWBIE_SHOTS", false))
-		{
-			if (player.isMageClass())
-			{
-				giveItems(player, SPIRITSHOTS_NO_GRADE_FOR_ROOKIES);
-				playSound(player, "tutorial_voice_27");
-			}
-			else
-			{
-				giveItems(player, SOULSHOTS_NO_GRADE_FOR_ROOKIES);
-				playSound(player, "tutorial_voice_26");
-			}
-			vars.set("NEWBIE_SHOTS", true);
-		}
-		if (vars.getString("GUIDE_MISSION", null) == null)
-		{
-			vars.set("GUIDE_MISSION", 1000);
-			player.sendPacket(MESSAGE);
-		}
-		else if (((vars.getInt("GUIDE_MISSION") % 10000) / 1000) != 1)
-		{
-			vars.set("GUIDE_MISSION", vars.getInt("GUIDE_MISSION") + 1000);
-			player.sendPacket(MESSAGE);
-		}
 	}
 }

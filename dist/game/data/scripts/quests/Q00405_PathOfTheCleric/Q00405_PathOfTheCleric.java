@@ -17,14 +17,14 @@
 package quests.Q00405_PathOfTheCleric;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Path Of The Cleric (405)
@@ -81,7 +81,7 @@ public class Q00405_PathOfTheCleric extends Quest
 		{
 			case "ACCEPT":
 			{
-				if (player.getClassId() == ClassId.MAGE)
+				if (player.getPlayerClass() == PlayerClass.MAGE)
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
@@ -101,7 +101,7 @@ public class Q00405_PathOfTheCleric extends Quest
 						htmltext = "30022-03.htm";
 					}
 				}
-				else if (player.getClassId() == ClassId.CLERIC)
+				else if (player.getPlayerClass() == PlayerClass.CLERIC)
 				{
 					htmltext = "30022-02a.htm";
 				}
@@ -116,15 +116,14 @@ public class Q00405_PathOfTheCleric extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true) && hasQuestItems(killer, NECKLACE_OF_MOTHER) && !hasQuestItems(killer, PENDANT_OF_MOTHER))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true) && hasQuestItems(killer, NECKLACE_OF_MOTHER) && !hasQuestItems(killer, PENDANT_OF_MOTHER))
 		{
 			giveItems(killer, PENDANT_OF_MOTHER, 1);
 			playSound(qs.getPlayer(), QuestSound.ITEMSOUND_QUEST_MIDDLE);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

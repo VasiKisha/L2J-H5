@@ -23,16 +23,16 @@ package handlers.actionshifthandlers;
 import java.util.Set;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.data.SpawnTable;
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.data.xml.SpawnData;
 import org.l2jmobius.gameserver.handler.IActionShiftHandler;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 import handlers.bypasshandlers.NpcViewMod;
 
@@ -64,7 +64,7 @@ public class NpcActionShift implements IActionShiftHandler
 			html.setFile(player, "data/html/admin/npcinfo.htm");
 			
 			html.replace("%objid%", String.valueOf(target.getObjectId()));
-			html.replace("%class%", target.getClass().getSimpleName());
+			html.replace("%class%", (target.isFakePlayer() ? "Fake Player - " : "") + target.getClass().getSimpleName());
 			html.replace("%race%", target.asNpc().getTemplate().getRace().toString());
 			html.replace("%id%", String.valueOf(target.asNpc().getTemplate().getId()));
 			html.replace("%lvl%", String.valueOf(target.asNpc().getTemplate().getLevel()));
@@ -139,7 +139,7 @@ public class NpcActionShift implements IActionShiftHandler
 					html.replace("%resp%", (target.asNpc().getSpawn().getRespawnMinDelay() / 1000) + " sec");
 				}
 				
-				final String spawnFile = SpawnTable.getInstance().getSpawnFile(target.asNpc().getSpawn().getNpcSpawnTemplateId());
+				final String spawnFile = SpawnData.getInstance().getSpawnFile(target.asNpc().getSpawn().getNpcSpawnTemplateId());
 				html.replace("%spawnfile%", spawnFile.substring(spawnFile.lastIndexOf('\\') + 1));
 			}
 			else
@@ -155,8 +155,8 @@ public class NpcActionShift implements IActionShiftHandler
 			{
 				final Set<Integer> clans = target.asNpc().getTemplate().getClans();
 				final Set<Integer> ignoreClanNpcIds = target.asNpc().getTemplate().getIgnoreClanNpcIds();
-				final String clansString = clans != null ? Util.implode(clans.toArray(), ", ") : "";
-				final String ignoreClanNpcIdsString = ignoreClanNpcIds != null ? Util.implode(ignoreClanNpcIds.toArray(), ", ") : "";
+				final String clansString = clans != null ? StringUtil.implode(clans.toArray(), ", ") : "";
+				final String ignoreClanNpcIdsString = ignoreClanNpcIds != null ? StringUtil.implode(ignoreClanNpcIds.toArray(), ", ") : "";
 				
 				html.replace("%ai_intention%", "<tr><td><table width=270 border=0 bgcolor=131210><tr><td width=100><font color=FFAA00>Intention:</font></td><td align=right width=170>" + target.asNpc().getAI().getIntention().name() + "</td></tr></table></td></tr>");
 				html.replace("%ai%", "<tr><td><table width=270 border=0><tr><td width=100><font color=FFAA00>AI</font></td><td align=right width=170>" + target.asNpc().getAI().getClass().getSimpleName() + "</td></tr></table></td></tr>");

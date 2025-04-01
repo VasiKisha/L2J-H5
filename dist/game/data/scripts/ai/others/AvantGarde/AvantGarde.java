@@ -19,22 +19,23 @@ package ai.others.AvantGarde;
 import java.util.List;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.AcquireSkillType;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.RequestAcquireSkill;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 import custom.Validators.SubClassSkills;
@@ -74,7 +75,7 @@ public class AvantGarde extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAcquireSkill(Npc npc, Player player, Skill skill, AcquireSkillType type)
+	public void onAcquireSkill(Npc npc, Player player, Skill skill, AcquireSkillType type)
 	{
 		switch (type)
 		{
@@ -89,7 +90,6 @@ public class AvantGarde extends AbstractNpcAI
 				break;
 			}
 		}
-		return null;
 	}
 	
 	@Override
@@ -216,7 +216,7 @@ public class AvantGarde extends AbstractNpcAI
 								if (qvar.endsWith(";"))
 								{
 									final String skillIdVar = qvar.replace(";", "");
-									if (Util.isDigit(skillIdVar))
+									if (StringUtil.isNumeric(skillIdVar))
 									{
 										final int skillId = Integer.parseInt(skillIdVar);
 										final Skill sk = SkillData.getInstance().getSkill(skillId, 1);
@@ -233,13 +233,13 @@ public class AvantGarde extends AbstractNpcAI
 								}
 								else if (!qvar.isEmpty() && !qvar.equals("0"))
 								{
-									if (Util.isDigit(qvar))
+									if (StringUtil.isNumeric(qvar))
 									{
 										final int itemObjId = Integer.parseInt(qvar);
 										Item itemInstance = player.getInventory().getItemByObjectId(itemObjId);
 										if (itemInstance != null)
 										{
-											player.destroyItem("CancelCertification", itemObjId, 1, player, false);
+											player.destroyItem(ItemProcessType.DESTROY, itemObjId, 1, player, false);
 										}
 										else
 										{
@@ -247,7 +247,7 @@ public class AvantGarde extends AbstractNpcAI
 											if (itemInstance != null)
 											{
 												LOGGER.warning("Somehow " + player.getName() + " put a certification book into warehouse!");
-												player.getWarehouse().destroyItem("CancelCertification", itemInstance, 1, player, false);
+												player.getWarehouse().destroyItem(ItemProcessType.DESTROY, itemInstance, 1, player, false);
 											}
 											else
 											{
@@ -264,7 +264,7 @@ public class AvantGarde extends AbstractNpcAI
 							}
 						}
 						
-						player.reduceAdena("Cleanse", Config.FEE_DELETE_SUBCLASS_SKILLS, npc, true);
+						player.reduceAdena(ItemProcessType.FEE, Config.FEE_DELETE_SUBCLASS_SKILLS, npc, true);
 						htmltext = "32323-09no.html";
 						player.sendSkillList();
 					}
@@ -276,7 +276,7 @@ public class AvantGarde extends AbstractNpcAI
 						if (item != null)
 						{
 							LOGGER.warning(getClass().getName() + ": " + player + " had 'extra' certification skill books while cancelling sub-class certifications!");
-							player.destroyItem("CancelCertificationExtraBooks", item, npc, false);
+							player.destroyItem(ItemProcessType.DESTROY, item, npc, false);
 						}
 					}
 				}

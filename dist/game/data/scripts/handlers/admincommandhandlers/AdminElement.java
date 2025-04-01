@@ -28,7 +28,6 @@ import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles following admin commands: - delete = deletes target
@@ -89,7 +88,7 @@ public class AdminElement implements IAdminCommandHandler
 				final int value = Integer.parseInt(args[2]);
 				if ((element < -1) || (element > 5) || (value < 0) || (value > 450))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //setlh/setlc/setlg/setlb/setll/setlw/setls <element> <value>[0-450]");
+					activeChar.sendSysMessage("Usage: //setlh/setlc/setlg/setlb/setll/setlw/setls <element> <value>[0-450]");
 					return false;
 				}
 				
@@ -97,7 +96,7 @@ public class AdminElement implements IAdminCommandHandler
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //setlh/setlc/setlg/setlb/setll/setlw/setls <element>[0-5] <value>[0-450]");
+				activeChar.sendSysMessage("Usage: //setlh/setlc/setlg/setlb/setll/setlw/setls <element>[0-5] <value>[0-450]");
 				return false;
 			}
 		}
@@ -180,7 +179,7 @@ public class AdminElement implements IAdminCommandHandler
 			player.sendInventoryUpdate(iu);
 			
 			// informations
-			BuilderUtil.sendSysMessage(activeChar, "Changed elemental power of " + player.getName() + "'s " + itemInstance.getTemplate().getName() + " from " + old + " to " + current + ".");
+			activeChar.sendSysMessage("Changed elemental power of " + player.getName() + "'s " + itemInstance.getTemplate().getName() + " from " + old + " to " + current + ".");
 			if (player != activeChar)
 			{
 				player.sendMessage(activeChar.getName() + " has changed the elemental power of your " + itemInstance.getTemplate().getName() + " from " + old + " to " + current + ".");

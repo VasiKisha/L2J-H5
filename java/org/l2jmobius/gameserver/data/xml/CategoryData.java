@@ -29,10 +29,9 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.CategoryType;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 
 /**
- * Loads the category data with Class or NPC IDs.
  * @author NosBit, xban1x
  */
 public class CategoryData implements IXmlReader
@@ -55,9 +54,9 @@ public class CategoryData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node node = doc.getFirstChild(); node != null; node = node.getNextSibling())
+		for (Node node = document.getFirstChild(); node != null; node = node.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(node.getNodeName()))
 			{
@@ -89,10 +88,10 @@ public class CategoryData implements IXmlReader
 	}
 	
 	/**
-	 * Checks if ID is in category.
-	 * @param type The category type
-	 * @param id The id to be checked
-	 * @return {@code true} if id is in category, {@code false} if id is not in category or category was not found
+	 * Checks if a specified ID is present in a given category type.
+	 * @param type the category type to check
+	 * @param id the ID to be checked within the category
+	 * @return {@code true} if the ID is in the specified category, {@code false} if the ID is not in the category or if the category was not found
 	 */
 	public boolean isInCategory(CategoryType type, int id)
 	{
@@ -106,9 +105,9 @@ public class CategoryData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the category by category type.
-	 * @param type The category type
-	 * @return A {@code Set} containing all the IDs in category if category is found, {@code null} if category was not found
+	 * Retrieves the category set associated with the specified category type.
+	 * @param type the category type to retrieve
+	 * @return a {@code Set} containing all IDs within the specified category, or {@code null} if the category does not exist
 	 */
 	public Set<Integer> getCategoryByType(CategoryType type)
 	{

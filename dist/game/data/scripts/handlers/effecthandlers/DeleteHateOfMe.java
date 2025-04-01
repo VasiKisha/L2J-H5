@@ -16,7 +16,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -70,6 +70,6 @@ public class DeleteHateOfMe extends AbstractEffect
 		final Attackable target = effected.asAttackable();
 		target.stopHating(effector);
 		target.setWalking();
-		target.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+		target.getAI().setIntention(Intention.ACTIVE);
 	}
 }

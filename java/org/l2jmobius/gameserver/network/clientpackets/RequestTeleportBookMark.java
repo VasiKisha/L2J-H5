@@ -19,7 +19,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
- * @author ShanSoft Packets Structure: chdd
+ * @author ShanSoft
  */
 public class RequestTeleportBookMark extends ClientPacket
 {

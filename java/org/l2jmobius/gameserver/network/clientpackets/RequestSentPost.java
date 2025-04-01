@@ -17,13 +17,13 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExReplySentPost;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Migi, DS
@@ -61,7 +61,7 @@ public class RequestSentPost extends ClientPacket
 		
 		if (msg.getSenderId() != player.getObjectId())
 		{
-			Util.handleIllegalPlayerAction(player, player + " tried to read not own post!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to read not own post!", Config.DEFAULT_PUNISH);
 			return;
 		}
 		

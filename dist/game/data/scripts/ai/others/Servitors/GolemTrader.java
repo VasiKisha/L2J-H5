@@ -35,10 +35,9 @@ public class GolemTrader extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.scheduleDespawn(180000);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

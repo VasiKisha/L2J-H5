@@ -22,13 +22,13 @@ import java.util.List;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q00117_TheOceanOfDistantStars.Q00117_TheOceanOfDistantStars;
 
@@ -134,7 +134,7 @@ public class Q00650_ABrokenDream extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final List<Player> randomList = new ArrayList<>();
 		final QuestState qs = getQuestState(killer, false);
@@ -160,12 +160,11 @@ public class Q00650_ABrokenDream extends Quest
 		if (!randomList.isEmpty())
 		{
 			final Player player = randomList.get(getRandom(randomList.size()));
-			if ((getRandom(1000) < monsterChance) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, true))
+			if ((getRandom(1000) < monsterChance) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, true))
 			{
 				giveItems(player, REMNANTS_OF_OLD_DWARVES_DREAMS, 1);
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

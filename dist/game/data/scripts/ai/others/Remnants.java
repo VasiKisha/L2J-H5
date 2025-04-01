@@ -50,14 +50,13 @@ public class Remnants extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setMortal(false);
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if ((skill.getId() == SKILL_HOLY_WATER) && !npc.isDead() && !targets.isEmpty() && (targets.get(0) == npc) && (npc.getCurrentHp() < (npc.getMaxHp() * 0.02)))
 		{
@@ -73,7 +72,6 @@ public class Remnants extends AbstractNpcAI
 			}*/
 			//@formatter:on
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	public static void main(String[] args)

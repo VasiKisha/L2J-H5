@@ -33,9 +33,6 @@ public class VehicleDeparture extends ServerPacket
 	private final int _moveSpeed;
 	private final int _rotationSpeed;
 	
-	/**
-	 * @param boat
-	 */
 	public VehicleDeparture(Boat boat)
 	{
 		_objId = boat.getObjectId();

@@ -20,12 +20,12 @@
  */
 package org.l2jmobius.gameserver.model.actor.status;
 
-import org.l2jmobius.gameserver.model.Duel;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.holders.player.Duel;
 import org.l2jmobius.gameserver.model.stats.Stat;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 public class SummonStatus extends PlayableStatus
 {
@@ -59,7 +59,7 @@ public class SummonStatus extends PlayableStatus
 		final Player caster = summon.getTransferingDamageTo();
 		if (summon.getOwner().getParty() != null)
 		{
-			if ((caster != null) && Util.checkIfInRange(1000, summon, caster, true) && !caster.isDead() && summon.getParty().getMembers().contains(caster))
+			if ((caster != null) && LocationUtil.checkIfInRange(1000, summon, caster, true) && !caster.isDead() && summon.getParty().getMembers().contains(caster))
 			{
 				int transferDmg = Math.min((int) caster.getCurrentHp() - 1, ((int) value * (int) summon.getStat().calcStat(Stat.TRANSFER_DAMAGE_TO_PLAYER, 0, null, null)) / 100);
 				if (transferDmg > 0)
@@ -67,7 +67,7 @@ public class SummonStatus extends PlayableStatus
 					int membersInRange = 0;
 					for (Player member : caster.getParty().getMembers())
 					{
-						if (Util.checkIfInRange(1000, member, caster, false) && (member != caster))
+						if (LocationUtil.checkIfInRange(1000, member, caster, false) && (member != caster))
 						{
 							membersInRange++;
 						}
@@ -92,7 +92,7 @@ public class SummonStatus extends PlayableStatus
 				}
 			}
 		}
-		else if ((caster != null) && (caster == summon.getOwner()) && Util.checkIfInRange(1000, summon, caster, true) && !caster.isDead()) // when no party, transfer only to owner (caster)
+		else if ((caster != null) && (caster == summon.getOwner()) && LocationUtil.checkIfInRange(1000, summon, caster, true) && !caster.isDead()) // when no party, transfer only to owner (caster)
 		{
 			int transferDmg = Math.min((int) caster.getCurrentHp() - 1, ((int) value * (int) summon.getStat().calcStat(Stat.TRANSFER_DAMAGE_TO_PLAYER, 0, null, null)) / 100);
 			if (transferDmg > 0)

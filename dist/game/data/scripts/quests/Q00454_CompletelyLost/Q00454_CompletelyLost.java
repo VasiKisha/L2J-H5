@@ -20,9 +20,7 @@
  */
 package quests.Q00454_CompletelyLost;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -34,15 +32,17 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
-import org.l2jmobius.gameserver.model.events.impl.creature.OnCreatureAttacked;
+import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureAttacked;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.util.Broadcast;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Completely Lost (454)
@@ -88,7 +88,7 @@ public class Q00454_CompletelyLost extends Quest
 				final Player leader = npc.getVariables().getObject("leader", Player.class);
 				if (leader != null)
 				{
-					final double dist = Util.calculateDistance(npc, leader, false, false);
+					final double dist = LocationUtil.calculateDistance(npc, leader, false, false);
 					if (dist > 1000)
 					{
 						if (((dist > 5000) && (dist < 6900)) || ((dist > 31000) && (dist < 32000)))
@@ -293,7 +293,7 @@ public class Q00454_CompletelyLost extends Quest
 				if (leader != null)
 				{
 					receiver.setTarget(leader);
-					receiver.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, leader);
+					receiver.getAI().setIntention(Intention.FOLLOW, leader);
 				}
 				
 				startQuestTimer("CHECK_TIMER", 1000, receiver, null);
@@ -391,10 +391,10 @@ public class Q00454_CompletelyLost extends Quest
 				if (nearby.getId() == ERMIAN)
 				{
 					npc.setScriptValue(3);
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+					npc.getAI().setIntention(Intention.IDLE);
 					addMoveToDesire(npc, MOVE_TO, 10000000);
 					npc.sendScriptEvent("SCE_A_SEED_ESCORT_QUEST_SUCCESS", npc, null);
-					npc.setHeading(Util.calculateHeadingFrom(npc, nearby));
+					npc.setHeading(LocationUtil.calculateHeadingFrom(npc, nearby));
 					startQuestTimer("SAY_TIMER2", 2000, npc, null);
 					break;
 				}
@@ -403,13 +403,12 @@ public class Q00454_CompletelyLost extends Quest
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer() && npc.isScriptValue(0))
 		{
 			addAttackDesire(npc, creature.asPlayer(), 10);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
@@ -754,8 +753,8 @@ public class Q00454_CompletelyLost extends Quest
 	{
 		final Npc npc = event.getTarget().asNpc();
 		npc.setScriptValue(1);
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+		npc.getAI().setIntention(Intention.IDLE);
+		npc.getAI().setIntention(Intention.ACTIVE);
 		startQuestTimer("SAY_TIMER1", 2000, npc, null);
 		return new TerminateReturn(true, false, false);
 	}

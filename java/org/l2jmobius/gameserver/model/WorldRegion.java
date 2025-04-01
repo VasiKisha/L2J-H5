@@ -30,12 +30,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Fence;
-import org.l2jmobius.gameserver.taskmanager.RandomAnimationTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.RandomAnimationTaskManager;
 
 public class WorldRegion
 {
@@ -96,7 +96,7 @@ public class WorldRegion
 					// Stop the AI tasks.
 					if (mob.hasAI())
 					{
-						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+						mob.getAI().setIntention(Intention.IDLE);
 						mob.getAI().stopAITask();
 					}
 					

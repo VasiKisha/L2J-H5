@@ -19,8 +19,8 @@ package org.l2jmobius.gameserver.network.serverpackets;
 import java.util.List;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager.Territory;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager.Territory;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.network.GameClient;

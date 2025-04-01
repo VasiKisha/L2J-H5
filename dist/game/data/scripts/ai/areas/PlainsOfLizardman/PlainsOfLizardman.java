@@ -16,14 +16,14 @@
  */
 package ai.areas.PlainsOfLizardman;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 
@@ -112,7 +112,7 @@ public class PlainsOfLizardman extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -153,7 +153,7 @@ public class PlainsOfLizardman extends AbstractNpcAI
 						if ((monster.getId() == TANTA_MAGICIAN) || (monster.getId() == TANTA_SCOUT))
 						{
 							monster.setRunning();
-							monster.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(npc.getX(), npc.getY(), npc.getZ(), 0));
+							monster.getAI().setIntention(Intention.MOVE_TO, new Location(npc.getX(), npc.getY(), npc.getZ(), 0));
 						}
 					});
 					startQuestTimer("fantasy_mushroom", 4000, npc, attacker);
@@ -161,11 +161,10 @@ public class PlainsOfLizardman extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		// Tanta Guard
 		if (getRandom(1000) == 0)
@@ -214,7 +213,6 @@ public class PlainsOfLizardman extends AbstractNpcAI
 				buffer.doCast(BUFFS[5].getSkill());
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void castRandomBuff(Npc npc, int chance1, int chance2, SkillHolder... buffs)

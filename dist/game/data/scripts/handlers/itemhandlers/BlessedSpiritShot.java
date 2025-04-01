@@ -22,14 +22,16 @@ package handlers.itemhandlers;
 
 import java.util.logging.Level;
 
-import org.l2jmobius.gameserver.enums.ShotType;
+import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.util.Broadcast;
@@ -53,6 +55,13 @@ public class BlessedSpiritShot implements IItemHandler
 		if (skills == null)
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": is missing skills!");
+			return false;
+		}
+		
+		// Disable Blessed SpiritShots in Olympiad.
+		if (player.isInOlympiadMode() && Config.OLYMPIAD_DISABLE_BLESSED_SPIRITSHOTS)
+		{
+			player.sendPacket(SystemMessageId.YOU_CANNOT_USE_THAT_ITEM_IN_A_GRAND_OLYMPIAD_MATCH);
 			return false;
 		}
 		
@@ -85,7 +94,7 @@ public class BlessedSpiritShot implements IItemHandler
 		}
 		
 		// Consume Blessed SpiritShot if player has enough of them
-		if (!player.destroyItemWithoutTrace("Consume", item.getObjectId(), weaponItem.getSpiritShotCount(), null, false))
+		if (!player.destroyItem(ItemProcessType.NONE, item.getObjectId(), weaponItem.getSpiritShotCount(), null, false))
 		{
 			if (!player.disableAutoShot(itemId))
 			{

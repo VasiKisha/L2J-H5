@@ -18,7 +18,7 @@ package org.l2jmobius.gameserver.model.announce;
 
 import java.util.Date;
 
-import org.l2jmobius.gameserver.instancemanager.IdManager;
+import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.script.DateRange;
 
 /**

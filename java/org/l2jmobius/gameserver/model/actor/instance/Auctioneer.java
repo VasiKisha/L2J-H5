@@ -30,14 +30,14 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.instancemanager.ClanHallAuctionManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
+import org.l2jmobius.gameserver.managers.ClanHallAuctionManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.residences.ClanHallAuction;
 import org.l2jmobius.gameserver.model.residences.ClanHallAuction.Bidder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -516,7 +516,7 @@ public class Auctioneer extends Npc
 			}
 			else if (actualCommand.equalsIgnoreCase("cancelAuction"))
 			{
-				if (!player.hasClanPrivilege(ClanPrivilege.CH_AUCTION))
+				if (!player.hasAccess(ClanAccess.HALL_AUCTION))
 				{
 					final String filename = "data/html/auction/not_authorized.htm";
 					final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -525,6 +525,7 @@ public class Auctioneer extends Npc
 					player.sendPacket(html);
 					return;
 				}
+				
 				final String filename = "data/html/auction/AgitSaleCancel.htm";
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 				html.setFile(player, filename);
@@ -556,7 +557,7 @@ public class Auctioneer extends Npc
 			}
 			else if (actualCommand.equalsIgnoreCase("sale"))
 			{
-				if (!player.hasClanPrivilege(ClanPrivilege.CH_AUCTION))
+				if (!player.hasAccess(ClanAccess.HALL_AUCTION))
 				{
 					final String filename = "data/html/auction/not_authorized.htm";
 					final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -565,6 +566,7 @@ public class Auctioneer extends Npc
 					player.sendPacket(html);
 					return;
 				}
+				
 				final String filename = "data/html/auction/AgitSale1.htm";
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 				html.setFile(player, filename);
@@ -578,7 +580,7 @@ public class Auctioneer extends Npc
 			else if (actualCommand.equalsIgnoreCase("rebid"))
 			{
 				final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-				if (!player.hasClanPrivilege(ClanPrivilege.CH_AUCTION))
+				if (!player.hasAccess(ClanAccess.HALL_AUCTION))
 				{
 					final String filename = "data/html/auction/not_authorized.htm";
 					final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());

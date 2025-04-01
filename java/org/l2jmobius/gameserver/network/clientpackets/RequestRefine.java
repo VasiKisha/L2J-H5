@@ -19,6 +19,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.data.AugmentationData;
 import org.l2jmobius.gameserver.model.Augmentation;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExVariationResult;
@@ -104,13 +105,13 @@ public class RequestRefine extends AbstractRefinePacket
 		}
 		
 		// consume the life stone
-		if (!player.destroyItem("RequestRefine", refinerItem, 1, null, false))
+		if (!player.destroyItem(ItemProcessType.FEE, refinerItem, 1, null, false))
 		{
 			return;
 		}
 		
 		// consume the gemstones
-		if (!player.destroyItem("RequestRefine", gemStoneItem, _gemStoneCount, null, false))
+		if (!player.destroyItem(ItemProcessType.FEE, gemStoneItem, _gemStoneCount, null, false))
 		{
 			return;
 		}

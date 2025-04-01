@@ -1,38 +1,44 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package quests.Q00107_MercilessPunishment;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
-import quests.Q00281_HeadForTheHills.Q00281_HeadForTheHills;
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Merciless Punishment (107)
- * @author janiko
+ * @author Janiko
  */
 public class Q00107_MercilessPunishment extends Quest
 {
@@ -59,8 +65,10 @@ public class Q00107_MercilessPunishment extends Quest
 		new ItemHolder(4415, 10), // Echo Crystal - Theme of Feast
 		new ItemHolder(4416, 10), // Echo Crystal - Theme of Celebration
 	};
+	private static final ItemHolder SOULSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5789, 7000);
 	// Misc
 	private static final int MIN_LEVEL = 10;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00107_MercilessPunishment()
 	{
@@ -202,7 +210,32 @@ public class Q00107_MercilessPunishment extends Quest
 							{
 								if (hasQuestItems(talker, HATOSS_ORDER_3, LETTER_TO_HUMAN, LETTER_TO_DARK_ELF, LETTER_TO_ELF))
 								{
-									Q00281_HeadForTheHills.giveNewbieReward(talker);
+									if (talker.getLevel() < 25)
+									{
+										giveItems(talker, SOULSHOTS_NO_GRADE_FOR_ROOKIES);
+										playSound(talker, "tutorial_voice_026");
+									}
+									
+									// Newbie Guide.
+									final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+									if (newbieGuide != null)
+									{
+										final QuestState newbieGuideQs = newbieGuide.getQuestState(talker, true);
+										if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+										{
+											setNRMemo(newbieGuideQs, GUIDE_MISSION);
+											setNRMemoState(newbieGuideQs, GUIDE_MISSION, 100000);
+											
+											showOnScreenMsg(talker, NpcStringId.ACQUISITION_OF_RACE_SPECIFIC_WEAPON_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+										}
+										else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 1000000) / 100000) != 1)
+										{
+											setNRMemo(newbieGuideQs, GUIDE_MISSION);
+											setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 100000);
+											showOnScreenMsg(talker, NpcStringId.ACQUISITION_OF_RACE_SPECIFIC_WEAPON_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+										}
+									}
+									
 									addExpAndSp(talker, 34565, 2962);
 									giveAdena(talker, 14666, true);
 									for (ItemHolder reward : REWARDS)
@@ -241,10 +274,10 @@ public class Q00107_MercilessPunishment extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (qs.getCond())
 			{
@@ -277,6 +310,5 @@ public class Q00107_MercilessPunishment extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 }

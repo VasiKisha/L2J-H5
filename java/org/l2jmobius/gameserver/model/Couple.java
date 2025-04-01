@@ -24,7 +24,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
+import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 
 /**

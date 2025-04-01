@@ -40,13 +40,10 @@ import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.EnchantItemOptionsData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.OptionData;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.ItemLocation;
-import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.ItemsOnGroundManager;
-import org.l2jmobius.gameserver.instancemanager.MercTicketManager;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
+import org.l2jmobius.gameserver.managers.MercTicketManager;
 import org.l2jmobius.gameserver.model.Augmentation;
 import org.l2jmobius.gameserver.model.DropProtection;
 import org.l2jmobius.gameserver.model.Elementals;
@@ -56,24 +53,27 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.WorldRegion;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerAugment;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.inventory.OnPlayerItemDrop;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.inventory.OnPlayerItemPickup;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemBypassEvent;
-import org.l2jmobius.gameserver.model.events.impl.item.OnItemTalk;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerAugment;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.inventory.OnPlayerItemDrop;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.inventory.OnPlayerItemPickup;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemBypassEvent;
+import org.l2jmobius.gameserver.model.events.holders.item.OnItemTalk;
 import org.l2jmobius.gameserver.model.item.Armor;
 import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.type.EtcItemType;
 import org.l2jmobius.gameserver.model.item.type.ItemType;
 import org.l2jmobius.gameserver.model.options.EnchantOptions;
 import org.l2jmobius.gameserver.model.options.Options;
-import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.stats.functions.AbstractFunction;
 import org.l2jmobius.gameserver.model.variables.ItemVariables;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -83,8 +83,8 @@ import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SpawnItem;
 import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.taskmanager.ItemLifeTimeTaskManager;
-import org.l2jmobius.gameserver.taskmanager.ItemManaTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.ItemLifeTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.ItemManaTaskManager;
 import org.l2jmobius.gameserver.util.GMAudit;
 
 /**
@@ -264,40 +264,33 @@ public class Item extends WorldObject
 			ItemsOnGroundManager.getInstance().removeObject(this);
 		}
 		
-		if (!Config.DISABLE_TUTORIAL && ((_itemId == ADENA_ID) || (_itemId == 6353)))
-		{
-			// Note from UnAfraid:
-			// Unhardcode this?
-			final Player actor = creature.asPlayer();
-			if (actor != null)
-			{
-				final QuestState qs = actor.getQuestState("Q00255_Tutorial");
-				if ((qs != null) && (qs.getQuest() != null))
-				{
-					qs.getQuest().notifyEvent("CE" + _itemId, null, actor);
-				}
-			}
-		}
 		// outside of synchronized to avoid deadlocks
 		// Remove the Item from the world
 		World.getInstance().removeVisibleObject(this, oldregion);
 		setWorldRegion(null);
 		
 		// Notify to scripts
-		if (creature.isPlayer() && EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_ITEM_PICKUP, getTemplate()))
+		if (creature.isPlayer())
 		{
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerItemPickup(creature.asPlayer(), this), getTemplate());
+			if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_ITEM_PICKUP, getTemplate()))
+			{
+				EventDispatcher.getInstance().notifyEventAsync(new OnPlayerItemPickup(creature.asPlayer(), this), getTemplate());
+			}
+			else if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_ITEM_PICKUP, creature.asPlayer()))
+			{
+				EventDispatcher.getInstance().notifyEventAsync(new OnPlayerItemPickup(creature.asPlayer(), this), creature.asPlayer());
+			}
 		}
 	}
 	
 	/**
 	 * Sets the ownerID of the item
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param ownerId : int designating the ID of the owner
 	 * @param creator : Player Player requesting the item creation
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 */
-	public void setOwnerId(String process, int ownerId, Player creator, Object reference)
+	public void setOwnerId(ItemProcessType process, int ownerId, Player creator, Object reference)
 	{
 		setOwnerId(ownerId);
 		
@@ -305,54 +298,17 @@ public class Item extends WorldObject
 		{
 			if (_enchantLevel > 0)
 			{
-				final StringBuilder sb = new StringBuilder();
-				sb.append("SETOWNER:");
-				sb.append(process);
-				sb.append(", item ");
-				sb.append(getObjectId());
-				sb.append(":+");
-				sb.append(_enchantLevel);
-				sb.append(" ");
-				sb.append(_itemTemplate.getName());
-				sb.append("(");
-				sb.append(_count);
-				sb.append("), ");
-				sb.append(creator);
-				sb.append(", ");
-				sb.append(reference);
-				LOG_ITEMS.info(sb.toString());
+				LOG_ITEMS.info(StringUtil.concat("SETOWNER:", String.valueOf(process), ", item ", String.valueOf(getObjectId()), ":+", String.valueOf(_enchantLevel), " ", _itemTemplate.getName(), "(", String.valueOf(_count), "), ", String.valueOf(creator), ", ", String.valueOf(reference)));
 			}
 			else
 			{
-				final StringBuilder sb = new StringBuilder();
-				sb.append("SETOWNER:");
-				sb.append(process);
-				sb.append(", item ");
-				sb.append(getObjectId());
-				sb.append(":");
-				sb.append(_itemTemplate.getName());
-				sb.append("(");
-				sb.append(_count);
-				sb.append("), ");
-				sb.append(creator);
-				sb.append(", ");
-				sb.append(reference);
-				LOG_ITEMS.info(sb.toString());
+				LOG_ITEMS.info(StringUtil.concat("SETOWNER:", String.valueOf(process), ", item ", String.valueOf(getObjectId()), ":", _itemTemplate.getName(), "(", String.valueOf(_count), "), ", String.valueOf(creator), ", ", String.valueOf(reference)));
 			}
 		}
 		
 		if ((creator != null) && creator.isGM() && Config.GMAUDIT)
 		{
-			final StringBuilder sb = new StringBuilder();
-			sb.append(process);
-			sb.append("(id: ");
-			sb.append(_itemId);
-			sb.append(" name: ");
-			sb.append(getName());
-			sb.append(")");
-			
 			final String targetName = (creator.getTarget() != null ? creator.getTarget().getName() : "no-target");
-			
 			String referenceName = "no-reference";
 			if (reference instanceof WorldObject)
 			{
@@ -363,7 +319,7 @@ public class Item extends WorldObject
 				referenceName = (String) reference;
 			}
 			
-			GMAudit.auditGMAction(creator.toString(), sb.toString(), targetName, StringUtil.concat("Object referencing this action is: ", referenceName));
+			GMAudit.logAction(creator.toString(), StringUtil.concat(String.valueOf(process), "(id: ", String.valueOf(_itemId), " name: ", getName(), ")"), targetName, StringUtil.concat("Object referencing this action is: ", referenceName));
 		}
 	}
 	
@@ -405,7 +361,17 @@ public class Item extends WorldObject
 	 */
 	public void setItemLocation(ItemLocation loc)
 	{
-		setItemLocation(loc, 0);
+		setItemLocation(loc, 0, true);
+	}
+	
+	/**
+	 * Sets the location of the item
+	 * @param loc : ItemLocation (enumeration)
+	 * @param locData : int designating the slot where the item is stored or the village for freights
+	 */
+	public void setItemLocation(ItemLocation loc, int locData)
+	{
+		setItemLocation(loc, locData, true);
 	}
 	
 	/**
@@ -413,24 +379,31 @@ public class Item extends WorldObject
 	 * <u><i>Remark :</i></u> If loc and loc_data different from database, say datas not up-to-date
 	 * @param loc : ItemLocation (enumeration)
 	 * @param locData : int designating the slot where the item is stored or the village for freights
+	 * @param checkSkills : boolean used to remove or give skills to owner.
 	 */
-	public void setItemLocation(ItemLocation loc, int locData)
+	public void setItemLocation(ItemLocation loc, int locData, boolean checkSkills)
 	{
 		if ((loc == _loc) && (locData == _locData))
 		{
 			return;
 		}
 		
-		// Remove any inventory skills from the old owner.
-		removeSkillsFromOwner();
+		if (checkSkills)
+		{
+			// Remove any inventory skills from the old owner.
+			removeSkillsFromOwner();
+		}
 		
 		_loc = loc;
 		_locData = locData;
 		_storedInDb = false;
 		
-		// Give any inventory skills to the new owner only if the item is in inventory
-		// else the skills will be given when location is set to inventory.
-		giveSkillsToOwner();
+		if (checkSkills)
+		{
+			// Give any inventory skills to the new owner only if the item is in inventory
+			// else the skills will be given when location is set to inventory.
+			giveSkillsToOwner();
+		}
 	}
 	
 	public ItemLocation getItemLocation()
@@ -464,20 +437,20 @@ public class Item extends WorldObject
 	/**
 	 * Sets the quantity of the item.<br>
 	 * <u><i>Remark :</i></u> If loc and loc_data different from database, say datas not up-to-date
-	 * @param process : String Identifier of process triggering this action
+	 * @param process : ItemProcessType identifier of process triggering this action
 	 * @param count : int
 	 * @param creator : Player Player requesting the item creation
 	 * @param reference : Object Object referencing current action like NPC selling item or previous item in transformation
 	 */
-	public void changeCount(String process, long count, Player creator, Object reference)
+	public void changeCount(ItemProcessType process, long count, Player creator, Object reference)
 	{
 		if (count == 0)
 		{
 			return;
 		}
+		
 		final long old = _count;
 		final long max = _itemId == ADENA_ID ? MAX_ADENA : Long.MAX_VALUE;
-		
 		if ((count > 0) && (_count > (max - count)))
 		{
 			setCount(max);
@@ -494,84 +467,36 @@ public class Item extends WorldObject
 		
 		_storedInDb = false;
 		
-		if ((Config.LOG_ITEMS && (process != null) && ((!Config.LOG_ITEMS_SMALL_LOG) && (!Config.LOG_ITEMS_IDS_ONLY))) || (Config.LOG_ITEMS_SMALL_LOG && (_itemTemplate.isEquipable() || (_itemTemplate.getId() == ADENA_ID))) || (Config.LOG_ITEMS_IDS_ONLY && Config.LOG_ITEMS_IDS_LIST.contains(_itemTemplate.getId())))
+		if ((process != null) && (process != ItemProcessType.NONE))
 		{
-			if (_enchantLevel > 0)
+			if ((Config.LOG_ITEMS && ((!Config.LOG_ITEMS_SMALL_LOG) && (!Config.LOG_ITEMS_IDS_ONLY))) || (Config.LOG_ITEMS_SMALL_LOG && (_itemTemplate.isEquipable() || (_itemTemplate.getId() == ADENA_ID))) || (Config.LOG_ITEMS_IDS_ONLY && Config.LOG_ITEMS_IDS_LIST.contains(_itemTemplate.getId())))
 			{
-				final StringBuilder sb = new StringBuilder();
-				sb.append("CHANGE:");
-				sb.append(process);
-				sb.append(", item ");
-				sb.append(getObjectId());
-				sb.append(":+");
-				sb.append(_enchantLevel);
-				sb.append(" ");
-				sb.append(_itemTemplate.getName());
-				sb.append("(");
-				sb.append(_count);
-				sb.append("), PrevCount(");
-				sb.append(old);
-				sb.append("), ");
-				sb.append(creator);
-				sb.append(", ");
-				sb.append(reference);
-				LOG_ITEMS.info(sb.toString());
+				if (_enchantLevel > 0)
+				{
+					LOG_ITEMS.info(StringUtil.concat("CHANGE:", String.valueOf(process), ", item ", String.valueOf(getObjectId()), ":+", String.valueOf(_enchantLevel), " ", _itemTemplate.getName(), "(", String.valueOf(_count), "), PrevCount(", String.valueOf(old), "), ", String.valueOf(creator), ", ", String.valueOf(reference)));
+				}
+				else
+				{
+					LOG_ITEMS.info(StringUtil.concat("CHANGE:", String.valueOf(process), ", item ", String.valueOf(getObjectId()), ":", _itemTemplate.getName(), "(", String.valueOf(_count), "), PrevCount(", String.valueOf(old), "), ", String.valueOf(creator), ", ", String.valueOf(reference)));
+				}
 			}
-			else
+			
+			if ((creator != null) && creator.isGM() && Config.GMAUDIT)
 			{
-				final StringBuilder sb = new StringBuilder();
-				sb.append("CHANGE:");
-				sb.append(process);
-				sb.append(", item ");
-				sb.append(getObjectId());
-				sb.append(":");
-				sb.append(_itemTemplate.getName());
-				sb.append("(");
-				sb.append(_count);
-				sb.append("), PrevCount(");
-				sb.append(old);
-				sb.append("), ");
-				sb.append(creator);
-				sb.append(", ");
-				sb.append(reference);
-				LOG_ITEMS.info(sb.toString());
+				final String targetName = (creator.getTarget() != null ? creator.getTarget().getName() : "no-target");
+				String referenceName = "no-reference";
+				if (reference instanceof WorldObject)
+				{
+					referenceName = ((WorldObject) reference).getName() != null ? ((WorldObject) reference).getName() : "no-name";
+				}
+				else if (reference instanceof String)
+				{
+					referenceName = (String) reference;
+				}
+				
+				GMAudit.logAction(creator.toString(), StringUtil.concat(String.valueOf(process), "(id: ", String.valueOf(_itemId), " objId: ", String.valueOf(getObjectId()), " name: ", getName(), " count: ", String.valueOf(count), ")"), targetName, StringUtil.concat("Object referencing this action is: ", referenceName));
 			}
 		}
-		
-		if ((creator != null) && creator.isGM() && Config.GMAUDIT)
-		{
-			final StringBuilder sb = new StringBuilder();
-			sb.append(process);
-			sb.append("(id: ");
-			sb.append(_itemId);
-			sb.append(" objId: ");
-			sb.append(getObjectId());
-			sb.append(" name: ");
-			sb.append(getName());
-			sb.append(" count: ");
-			sb.append(count);
-			sb.append(")");
-			
-			final String targetName = (creator.getTarget() != null ? creator.getTarget().getName() : "no-target");
-			
-			String referenceName = "no-reference";
-			if (reference instanceof WorldObject)
-			{
-				referenceName = ((WorldObject) reference).getName() != null ? ((WorldObject) reference).getName() : "no-name";
-			}
-			else if (reference instanceof String)
-			{
-				referenceName = (String) reference;
-			}
-			
-			GMAudit.auditGMAction(creator.toString(), sb.toString(), targetName, StringUtil.concat("Object referencing this action is: ", referenceName));
-		}
-	}
-	
-	// No logging (function designed for shots only)
-	public void changeCountWithoutTrace(int count, Player creator, Object reference)
-	{
-		changeCount(null, count, creator, reference);
 	}
 	
 	/**
@@ -1448,7 +1373,7 @@ public class Item extends WorldObject
 			if (_loc != ItemLocation.WAREHOUSE)
 			{
 				// Destroy.
-				player.getInventory().destroyItem("Item", this, player, null);
+				player.getInventory().destroyItem(ItemProcessType.DESTROY, this, player, null);
 				
 				// Send update.
 				final InventoryUpdate iu = new InventoryUpdate();
@@ -1461,7 +1386,7 @@ public class Item extends WorldObject
 			}
 			else
 			{
-				player.getWarehouse().destroyItem("Item", this, player, null);
+				player.getWarehouse().destroyItem(ItemProcessType.DESTROY, this, player, null);
 			}
 			
 			// Delete from world.
@@ -1918,7 +1843,7 @@ public class Item extends WorldObject
 		if (_loc != ItemLocation.WAREHOUSE)
 		{
 			// Destroy.
-			player.getInventory().destroyItem("Item", this, player, null);
+			player.getInventory().destroyItem(ItemProcessType.DESTROY, this, player, null);
 			
 			// Send update.
 			final InventoryUpdate iu = new InventoryUpdate();
@@ -1931,7 +1856,7 @@ public class Item extends WorldObject
 		}
 		else
 		{
-			player.getWarehouse().destroyItem("Item", this, player, null);
+			player.getWarehouse().destroyItem(ItemProcessType.DESTROY, this, player, null);
 		}
 		player.sendPacket(SystemMessageId.THE_LIMITED_TIME_ITEM_HAS_DISAPPEARED_BECAUSE_THE_REMAINING_TIME_RAN_OUT);
 		

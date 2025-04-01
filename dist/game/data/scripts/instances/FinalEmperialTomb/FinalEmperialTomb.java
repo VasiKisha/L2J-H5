@@ -30,25 +30,25 @@ import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.model.CommandChannel;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.Territory;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.CommandChannel;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
@@ -59,7 +59,8 @@ import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import instances.AbstractInstance;
 
@@ -230,9 +231,9 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		final Node first = doc.getFirstChild();
+		final Node first = document.getFirstChild();
 		if ((first != null) && "list".equalsIgnoreCase(first.getNodeName()))
 		{
 			for (Node n = first.getFirstChild(); n != null; n = n.getNextSibling())
@@ -472,7 +473,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				party.broadcastPacket(new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY).addPcName(channelMember));
 				return false;
 			}
-			if (!Util.checkIfInRange(1000, player, channelMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, channelMember, true))
 			{
 				party.broadcastPacket(new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED).addPcName(channelMember));
 				return false;
@@ -499,7 +500,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 			{
 				if (player.getInventory().getInventoryItemCount(DEWDROP_OF_DESTRUCTION_ITEM_ID, -1) > 0)
 				{
-					player.destroyItemByItemId(getName(), DEWDROP_OF_DESTRUCTION_ITEM_ID, player.getInventory().getInventoryItemCount(DEWDROP_OF_DESTRUCTION_ITEM_ID, -1), null, true);
+					player.destroyItemByItemId(ItemProcessType.FEE, DEWDROP_OF_DESTRUCTION_ITEM_ID, player.getInventory().getInventoryItemCount(DEWDROP_OF_DESTRUCTION_ITEM_ID, -1), null, true);
 				}
 				world.addAllowed(player);
 				teleportPlayer(player, ENTER_TELEPORT, world.getInstanceId(), false);
@@ -510,7 +511,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					if (player.getInventory().getInventoryItemCount(DEWDROP_OF_DESTRUCTION_ITEM_ID, -1) > 0)
 					{
-						channelMember.destroyItemByItemId(getName(), DEWDROP_OF_DESTRUCTION_ITEM_ID, channelMember.getInventory().getInventoryItemCount(DEWDROP_OF_DESTRUCTION_ITEM_ID, -1), null, true);
+						channelMember.destroyItemByItemId(ItemProcessType.FEE, DEWDROP_OF_DESTRUCTION_ITEM_ID, channelMember.getInventory().getInventoryItemCount(DEWDROP_OF_DESTRUCTION_ITEM_ID, -1), null, true);
 					}
 					world.addAllowed(channelMember);
 					teleportPlayer(channelMember, ENTER_TELEPORT, world.getInstanceId(), false);
@@ -685,7 +686,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 		{
 			npc.asAttackable().setSeeThroughSilentMove(true);
 		}
-		if (CommonUtil.contains(AI_DISABLED_MOBS, npcId))
+		if (ArrayUtil.contains(AI_DISABLED_MOBS, npcId))
 		{
 			npc.disableCoreAI(true);
 		}
@@ -1287,7 +1288,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 					player.setTarget(null);
 					player.stopMove(null);
 					player.setImmobilized(true);
-					player.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+					player.getAI().setIntention(Intention.IDLE);
 				}
 			}
 		}
@@ -1400,11 +1401,11 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				if (target != null)
 				{
 					mob.asMonster().addDamageHate(target, 0, 500);
-					mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+					mob.getAI().setIntention(Intention.ATTACK, target);
 				}
 				else
 				{
-					mob.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MOVE_TO_CENTER);
+					mob.getAI().setIntention(Intention.MOVE_TO, MOVE_TO_CENTER);
 				}
 			}
 		}
@@ -1422,7 +1423,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if (world != null)
@@ -1436,17 +1437,16 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				controlStatus(world);
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if ((world != null) && (skill != null))
 		{
 			// When Dewdrop of Destruction is used on Portraits they suicide.
-			if (CommonUtil.contains(PORTRAITS, npc.getId()) && (skill.getId() == DEWDROP_OF_DESTRUCTION_SKILL_ID))
+			if (ArrayUtil.contains(PORTRAITS, npc.getId()) && (skill.getId() == DEWDROP_OF_DESTRUCTION_SKILL_ID))
 			{
 				npc.doDie(caster);
 			}
@@ -1454,24 +1454,22 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 			{
 				npc.setScriptValue(1);
 				npc.setTarget(null);
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				npc.getAI().setIntention(Intention.IDLE);
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if (skill.isSuicideAttack())
 		{
-			return onKill(npc, null, false);
+			onKill(npc, null, false);
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if (world != null)
@@ -1513,20 +1511,19 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 					controlStatus(world);
 				}
 			}
-			else if (CommonUtil.contains(DEMONS, npc.getId()))
+			else if (ArrayUtil.contains(DEMONS, npc.getId()))
 			{
 				final List<Monster> demons = world.getParameters().getList("demons", Monster.class);
 				demons.remove(npc);
 				world.setParameter("demons", demons);
 			}
-			else if (CommonUtil.contains(PORTRAITS, npc.getId()))
+			else if (ArrayUtil.contains(PORTRAITS, npc.getId()))
 			{
 				final Map<Npc, Integer> portraits = world.getParameters().getMap("portraits", Npc.class, Integer.class);
 				portraits.remove(npc);
 				world.setParameter("portraits", portraits);
 			}
 		}
-		return "";
 	}
 	
 	@Override

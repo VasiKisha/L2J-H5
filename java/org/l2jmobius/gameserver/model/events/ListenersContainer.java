@@ -20,13 +20,14 @@
  */
 package org.l2jmobius.gameserver.model.events;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.PriorityBlockingQueue;
 import java.util.function.Predicate;
 
-import org.l2jmobius.commons.util.EmptyQueue;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 
@@ -49,7 +50,7 @@ public class ListenersContainer
 			throw new NullPointerException("Listener cannot be null!");
 		}
 		
-		getListeners().computeIfAbsent(listener.getType(), k -> new PriorityBlockingQueue<>()).add(listener);
+		getListeners().computeIfAbsent(listener.getType(), _ -> new PriorityBlockingQueue<>()).add(listener);
 		return listener;
 	}
 	
@@ -157,18 +158,18 @@ public class ListenersContainer
 	 * @param type
 	 * @return {@code List} of {@link AbstractEventListener} by the specified type
 	 */
-	public Queue<AbstractEventListener> getListeners(EventType type)
+	public Collection<AbstractEventListener> getListeners(EventType type)
 	{
 		if (_listeners != null)
 		{
-			final Queue<AbstractEventListener> eventListenerQueue = _listeners.get(type);
+			final Collection<AbstractEventListener> eventListenerQueue = _listeners.get(type);
 			if (eventListenerQueue != null)
 			{
 				return eventListenerQueue;
 			}
 		}
 		
-		return EmptyQueue.emptyQueue();
+		return Collections.emptyList();
 	}
 	
 	/**

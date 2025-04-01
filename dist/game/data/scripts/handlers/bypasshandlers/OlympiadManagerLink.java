@@ -21,21 +21,22 @@ import java.util.List;
 import java.util.logging.Level;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.OlympiadManager;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.olympiad.CompetitionType;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.ExHeroList;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author DS
@@ -100,7 +101,7 @@ public class OlympiadManagerLink implements IBypassHandler
 					player.sendPacket(html);
 					return false;
 				}
-				if (!player.isNoble() || (player.getClassId().level() < 3))
+				if (!player.isNoble() || (player.getPlayerClass().level() < 3))
 				{
 					html.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "noble_thirdclass.htm");
 					html.replace("%objectId%", String.valueOf(target.getObjectId()));
@@ -228,7 +229,7 @@ public class OlympiadManagerLink implements IBypassHandler
 						if (passes > 0)
 						{
 							player.getVariables().remove(Olympiad.UNCLAIMED_OLYMPIAD_PASSES_VAR);
-							player.addItem("Olympiad", GATE_PASS, passes * Config.OLYMPIAD_GP_PER_POINT, player, true);
+							player.addItem(ItemProcessType.REWARD, GATE_PASS, passes * Config.OLYMPIAD_GP_PER_POINT, player, true);
 						}
 						break;
 					}
@@ -254,7 +255,7 @@ public class OlympiadManagerLink implements IBypassHandler
 				
 				final NpcHtmlMessage html = new NpcHtmlMessage(target.getObjectId());
 				final String[] params = command.split(" ");
-				if (!Util.isDigit(params[1]))
+				if (!StringUtil.isNumeric(params[1]))
 				{
 					LOGGER.warning("Olympiad Buffer Warning: npcId = " + target.getId() + " has invalid buffGroup set in the bypass for the buff selected: " + params[1]);
 					return false;

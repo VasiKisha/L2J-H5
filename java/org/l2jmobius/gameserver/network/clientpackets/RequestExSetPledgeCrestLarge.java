@@ -17,11 +17,11 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.data.sql.CrestTable;
-import org.l2jmobius.gameserver.enums.CrestType;
 import org.l2jmobius.gameserver.model.Crest;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.model.clan.enums.CrestType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -77,7 +77,7 @@ public class RequestExSetPledgeCrestLarge extends ClientPacket
 			return;
 		}
 		
-		if (!player.hasClanPrivilege(ClanPrivilege.CL_REGISTER_CREST))
+		if (!player.hasAccess(ClanAccess.CHANGE_CREST))
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
 			return;

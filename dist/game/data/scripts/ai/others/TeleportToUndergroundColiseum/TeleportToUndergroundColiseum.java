@@ -16,11 +16,11 @@
  */
 package ai.others.TeleportToUndergroundColiseum;
 
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 
@@ -103,7 +103,7 @@ public class TeleportToUndergroundColiseum extends AbstractNpcAI
 		{
 			player.teleToLocation(getRandomEntry(RETURN_LOCS), false);
 		}
-		else if (Util.isDigit(event))
+		else if (StringUtil.isNumeric(event))
 		{
 			final int val = Integer.parseInt(event) - 1;
 			player.teleToLocation(getRandomEntry(MANAGERS_LOCS[val]), false);
@@ -114,7 +114,7 @@ public class TeleportToUndergroundColiseum extends AbstractNpcAI
 	@Override
 	public String onTalk(Npc npc, Player player)
 	{
-		if (CommonUtil.contains(MANAGERS, npc.getId()))
+		if (ArrayUtil.contains(MANAGERS, npc.getId()))
 		{
 			player.teleToLocation(getRandomEntry(RETURN_LOCS), false);
 		}

@@ -18,16 +18,17 @@ package handlers.itemhandlers;
 
 import java.util.logging.Level;
 
-import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.util.Broadcast;
@@ -80,7 +81,7 @@ public class FishShots implements IItemHandler
 		}
 		
 		player.setChargedShot(ShotType.FISH_SOULSHOTS, true);
-		player.destroyItemWithoutTrace("Consume", item.getObjectId(), 1, null, false);
+		player.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false);
 		final WorldObject oldTarget = player.getTarget();
 		player.setTarget(player);
 		

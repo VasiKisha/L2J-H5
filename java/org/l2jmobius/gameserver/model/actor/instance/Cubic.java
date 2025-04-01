@@ -29,10 +29,9 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlEvent;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.instancemanager.DuelManager;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.managers.DuelManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -42,14 +41,14 @@ import org.l2jmobius.gameserver.model.actor.tasks.cubics.CubicAction;
 import org.l2jmobius.gameserver.model.actor.tasks.cubics.CubicDisappear;
 import org.l2jmobius.gameserver.model.actor.tasks.cubics.CubicHeal;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.model.stats.Stat;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
-public class Cubic implements IIdentifiable
+public class Cubic
 {
 	private static final Logger LOGGER = Logger.getLogger(Cubic.class.getName());
 	
@@ -225,7 +224,6 @@ public class Cubic implements IIdentifiable
 		}
 	}
 	
-	@Override
 	public int getId()
 	{
 		return _cubicId;
@@ -621,7 +619,7 @@ public class Cubic implements IIdentifiable
 			{
 				if (target.isAttackable())
 				{
-					target.getAI().notifyEvent(CtrlEvent.EVT_AGGRESSION, _owner, (int) ((150 * skill.getPower()) / (target.getLevel() + 7)));
+					target.getAI().notifyAction(Action.AGGRESSION, _owner, (int) ((150 * skill.getPower()) / (target.getLevel() + 7)));
 				}
 				
 				// Apply effects

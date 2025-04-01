@@ -19,14 +19,14 @@ package handlers.admincommandhandlers;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 
 /**
  * The classical custom L2J implementation of the old //gmspeed GM command.
- * @author lord_rex (No, it wasn't me at all. Eclipse added my name there.)
+ * @author lord_rex
  */
 public class AdminSuperHaste implements IAdminCommandHandler
 {

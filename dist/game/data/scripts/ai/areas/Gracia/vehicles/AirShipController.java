@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.Gracia.vehicles;
 
@@ -21,10 +25,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.AirShipManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.AirShipManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -32,11 +34,14 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.AirShip;
 import org.l2jmobius.gameserver.model.actor.instance.ControllableAirShip;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.ScriptZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -134,7 +139,7 @@ public abstract class AirShipController extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.ANOTHER_AIRSHIP_HAS_ALREADY_BEEN_SUMMONED_PLEASE_TRY_AGAIN_LATER);
 				return null;
 			}
-			if (!player.hasClanPrivilege(ClanPrivilege.CL_SUMMON_AIRSHIP))
+			if (!player.hasAccess(ClanAccess.ACCESS_AIRSHIP))
 			{
 				player.sendPacket(SystemMessageId.AIRSHIP_SUMMON_LICENSE_REGISTRATION_CAN_ONLY_BE_DONE_BY_THE_CLAN_LEADER);
 				return null;
@@ -150,7 +155,7 @@ public abstract class AirShipController extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.YOUR_CLAN_S_AIRSHIP_IS_ALREADY_BEING_USED_BY_ANOTHER_CLAN_MEMBER);
 				return null;
 			}
-			if (!player.destroyItemByItemId("AirShipSummon", STARSTONE, SUMMON_COST, npc, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, STARSTONE, SUMMON_COST, npc, true))
 			{
 				player.sendPacket(SM_NEED_MORE);
 				return null;
@@ -267,7 +272,7 @@ public abstract class AirShipController extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.THE_AIRSHIP_SUMMON_LICENSE_HAS_ALREADY_BEEN_ACQUIRED);
 				return null;
 			}
-			if (!player.destroyItemByItemId("AirShipLicense", LICENSE, 1, npc, true))
+			if (!player.destroyItemByItemId(ItemProcessType.FEE, LICENSE, 1, npc, true))
 			{
 				player.sendPacket(SM_NEED_MORE);
 				return null;
@@ -284,7 +289,7 @@ public abstract class AirShipController extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if ((creature instanceof ControllableAirShip) && (_dockedShip == null))
 		{
@@ -307,11 +312,10 @@ public abstract class AirShipController extends AbstractNpcAI
 				_departSchedule = ThreadPool.schedule(_departTask, DEPART_INTERVAL);
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onExitZone(Creature creature, ZoneType zone)
+	public void onExitZone(Creature creature, ZoneType zone)
 	{
 		if ((creature instanceof ControllableAirShip) && creature.equals(_dockedShip))
 		{
@@ -325,7 +329,6 @@ public abstract class AirShipController extends AbstractNpcAI
 			_dockedShip = null;
 			_isBusy = false;
 		}
-		return null;
 	}
 	
 	@Override

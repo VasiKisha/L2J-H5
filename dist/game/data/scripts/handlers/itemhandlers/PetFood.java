@@ -25,9 +25,10 @@ import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -65,7 +66,7 @@ public class PetFood implements IItemHandler
 			if (activeChar.isPet())
 			{
 				final Pet pet = activeChar.asPet();
-				if (pet.destroyItem("Consume", item.getObjectId(), 1, null, false))
+				if (pet.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false))
 				{
 					pet.broadcastPacket(new MagicSkillUse(pet, pet, skillId, skillLevel, 0, 0));
 					pet.setCurrentFed(pet.getCurrentFed() + (skill.getFeed() * Config.PET_FOOD_RATE));
@@ -83,7 +84,7 @@ public class PetFood implements IItemHandler
 				if (player.isMounted())
 				{
 					final Set<Integer> foodIds = PetDataTable.getInstance().getPetData(player.getMountNpcId()).getFood();
-					if (foodIds.contains(item.getId()) && player.destroyItem("Consume", item.getObjectId(), 1, null, false))
+					if (foodIds.contains(item.getId()) && player.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false))
 					{
 						player.broadcastPacket(new MagicSkillUse(player, player, skillId, skillLevel, 0, 0));
 						player.setCurrentFeed(player.getCurrentFeed() + skill.getFeed());

@@ -19,15 +19,15 @@ package quests.Q00416_PathOfTheOrcShaman;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 
@@ -104,9 +104,9 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 		{
 			case "START":
 			{
-				if (player.getClassId() != ClassId.ORC_MAGE)
+				if (player.getPlayerClass() != PlayerClass.ORC_MAGE)
 				{
-					if (player.getClassId() == ClassId.ORC_SHAMAN)
+					if (player.getPlayerClass() == PlayerClass.ORC_SHAMAN)
 					{
 						htmltext = "30585-02.htm";
 					}
@@ -274,12 +274,12 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs == null)
 		{
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
 		
 		if (npc.getId() == BLACK_LEOPARD)
@@ -318,7 +318,7 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 					break;
 				}
 			}
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
 		
 		final ItemChanceHolder item = MOBS.get(npc.getId());
@@ -369,7 +369,6 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

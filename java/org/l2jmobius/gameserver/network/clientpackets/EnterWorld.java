@@ -33,41 +33,39 @@ import org.l2jmobius.gameserver.data.sql.OfflineTraderTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.IllegalActionPunishmentType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.AntiFeedManager;
-import org.l2jmobius.gameserver.instancemanager.CHSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.CoupleManager;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
-import org.l2jmobius.gameserver.instancemanager.DimensionalRiftManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
-import org.l2jmobius.gameserver.instancemanager.MailManager;
-import org.l2jmobius.gameserver.instancemanager.PcCafePointsManager;
-import org.l2jmobius.gameserver.instancemanager.PetitionManager;
-import org.l2jmobius.gameserver.instancemanager.PunishmentManager;
-import org.l2jmobius.gameserver.instancemanager.ServerRestartManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.AntiFeedManager;
+import org.l2jmobius.gameserver.managers.CHSiegeManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.CoupleManager;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.DimensionalRiftManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.managers.PcCafePointsManager;
+import org.l2jmobius.gameserver.managers.PetitionManager;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
+import org.l2jmobius.gameserver.managers.ServerRestartManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.Couple;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.ClassMaster;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.ClientHardwareInfoHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
 import org.l2jmobius.gameserver.model.punishment.PunishmentType;
 import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.residences.AuctionableHall;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.siege.Castle;
@@ -84,6 +82,8 @@ import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.holders.ClientHardwareInfoHolder;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.Die;
@@ -107,14 +107,12 @@ import org.l2jmobius.gameserver.network.serverpackets.PledgeShowMemberListUpdate
 import org.l2jmobius.gameserver.network.serverpackets.PledgeSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeStatusChanged;
 import org.l2jmobius.gameserver.network.serverpackets.QuestList;
-import org.l2jmobius.gameserver.network.serverpackets.ShortCutInit;
+import org.l2jmobius.gameserver.network.serverpackets.ShortcutInit;
 import org.l2jmobius.gameserver.network.serverpackets.SkillCoolTime;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.UserInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * Enter World Packet Handler
@@ -201,10 +199,10 @@ public class EnterWorld extends ClientPacket
 			{
 				if (Config.GM_STARTUP_BUILDER_HIDE && AdminData.getInstance().hasAccess("admin_hide", player.getAccessLevel()))
 				{
-					BuilderUtil.setHiding(player, true);
-					BuilderUtil.sendSysMessage(player, "hide is default for builder.");
-					BuilderUtil.sendSysMessage(player, "FriendAddOff is default for builder.");
-					BuilderUtil.sendSysMessage(player, "whisperoff is default for builder.");
+					player.setHiding(true);
+					player.sendSysMessage("hide is default for builder.");
+					player.sendSysMessage("FriendAddOff is default for builder.");
+					player.sendSysMessage("whisperoff is default for builder.");
 					
 					// It isn't recommend to use the below custom L2J GMStartup functions together with retail-like GMStartupBuilderHide, so breaking the process at that stage.
 					break gmStartupProcess;
@@ -410,7 +408,7 @@ public class EnterWorld extends ClientPacket
 		player.sendPacket(new ExGetBookMarkInfoPacket(player));
 		
 		// Send Shortcuts
-		player.sendPacket(new ShortCutInit(player));
+		player.sendPacket(new ShortcutInit(player));
 		
 		// Send Action list
 		player.sendPacket(ExBasicActionList.STATIC_PACKET);
@@ -439,11 +437,6 @@ public class EnterWorld extends ClientPacket
 				player.sendPacket(new ExShowScreenMessage("Welcome " + player.getName() + ", you are fighting for the " + Config.FACTION_EVIL_TEAM_NAME + " faction.", 10000));
 				player.updateUserInfo(); // for seeing self name color
 			}
-		}
-		
-		if (!Config.DISABLE_TUTORIAL)
-		{
-			loadTutorial(player);
 		}
 		
 		player.sendPacket(new QuestList(player));
@@ -580,7 +573,7 @@ public class EnterWorld extends ClientPacket
 			{
 				final int slot = player.getInventory().getSlotFromItem(player.getInventory().getItemByItemId(9819));
 				player.getInventory().unEquipItemInBodySlot(slot);
-				player.destroyItem("CombatFlag", player.getInventory().getItemByItemId(9819), null, true);
+				player.destroyItem(ItemProcessType.DESTROY, player.getInventory().getItemByItemId(9819), null, true);
 			}
 		}
 		
@@ -603,7 +596,7 @@ public class EnterWorld extends ClientPacket
 						|| (item.isArmor() && (item.getTemplate().getType2() != ItemTemplate.TYPE2_ACCESSORY) && (item.getEnchantLevel() > EnchantItemGroupsData.getInstance().getMaxArmorEnchant()))))
 				{
 					PacketLogger.info("Over-enchanted (+" + item.getEnchantLevel() + ") " + item + " has been removed from " + player);
-					player.getInventory().destroyItem("Over-enchant protection", item, player, null);
+					player.getInventory().destroyItem(ItemProcessType.DESTROY, item, player, null);
 					punish = true;
 				}
 			}
@@ -612,18 +605,18 @@ public class EnterWorld extends ClientPacket
 				player.sendMessage("[Server]: You have over-enchanted items!");
 				player.sendMessage("[Server]: Respect our server rules.");
 				player.sendPacket(new ExShowScreenMessage("You have over-enchanted items!", 6000));
-				Util.handleIllegalPlayerAction(player, player.getName() + " has over-enchanted items.", Config.OVER_ENCHANT_PUNISHMENT);
+				PunishmentManager.handleIllegalPlayerAction(player, player.getName() + " has over-enchanted items.", Config.OVER_ENCHANT_PUNISHMENT);
 			}
 		}
 		
 		// Remove demonic weapon if character is not cursed weapon equipped.
 		if ((player.getInventory().getItemByItemId(8190) != null) && !player.isCursedWeaponEquipped())
 		{
-			player.destroyItem("Zariche", player.getInventory().getItemByItemId(8190), null, true);
+			player.destroyItem(ItemProcessType.DESTROY, player.getInventory().getItemByItemId(8190), null, true);
 		}
 		if ((player.getInventory().getItemByItemId(8689) != null) && !player.isCursedWeaponEquipped())
 		{
-			player.destroyItem("Akamanah", player.getInventory().getItemByItemId(8689), null, true);
+			player.destroyItem(ItemProcessType.DESTROY, player.getInventory().getItemByItemId(8689), null, true);
 		}
 		
 		if (Config.ALLOW_MAIL && MailManager.getInstance().hasUnreadPost(player))
@@ -859,15 +852,6 @@ public class EnterWorld extends ClientPacket
 				msg.addString(player.getName());
 				apprentice.sendPacket(msg);
 			}
-		}
-	}
-	
-	private void loadTutorial(Player player)
-	{
-		final QuestState qs = player.getQuestState("Q00255_Tutorial");
-		if (qs != null)
-		{
-			qs.getQuest().notifyEvent("UC", null, player);
 		}
 	}
 }

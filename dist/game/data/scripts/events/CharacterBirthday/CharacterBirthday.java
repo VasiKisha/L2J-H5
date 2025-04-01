@@ -18,7 +18,7 @@ package events.CharacterBirthday;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -102,7 +102,7 @@ public class CharacterBirthday extends AbstractNpcAI
 			return "busy.htm";
 		}
 		
-		if (!Util.checkIfInRange(10, npc, player, true))
+		if (!LocationUtil.checkIfInRange(10, npc, player, true))
 		{
 			final Npc spawned = addSpawn(32600, player.getX() + 10, player.getY() + 10, player.getZ() + 20, 0, false, 0, true);
 			startQuestTimer("despawn_npc", 180000, spawned, player);

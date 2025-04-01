@@ -24,13 +24,13 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillLaunched;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Skill Channelizer implementation.
@@ -179,7 +179,7 @@ public class SkillChannelizer implements Runnable
 				
 				for (Creature creature : _channelized)
 				{
-					if (!Util.checkIfInRange(skill.getEffectRange(), _channelizer, creature, true))
+					if (!LocationUtil.checkIfInRange(skill.getEffectRange(), _channelizer, creature, true))
 					{
 						continue;
 					}

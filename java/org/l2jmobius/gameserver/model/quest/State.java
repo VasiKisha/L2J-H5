@@ -26,7 +26,7 @@ package org.l2jmobius.gameserver.model.quest;
  * In addition, this class defines two functions for lookup and inverse lookup of the state given a name.<br>
  * This is useful only for saving the state values into the database with a more readable form and then being able to read the string back and remap them to their correct states.<br>
  * All quests have these and only these states.
- * @author Luis Arias; version 2 by Fulminus
+ * @author Luis Arias, Fulminus
  */
 public class State
 {

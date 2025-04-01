@@ -16,9 +16,7 @@
  */
 package ai.areas.PrimevalIsle;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.handler.ItemHandler;
@@ -29,11 +27,13 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -120,7 +120,7 @@ public class PrimevalIsle extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if (skill.getId() == CREW_SKILL.getSkillId())
 		{
@@ -145,7 +145,7 @@ public class PrimevalIsle extends AbstractNpcAI
 						npc.setTarget(target);
 						mob.setRunning();
 						mob.addDamageHate(target, 0, 555);
-						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+						mob.getAI().setIntention(Intention.ATTACK, target);
 					}
 				}
 			}
@@ -159,7 +159,7 @@ public class PrimevalIsle extends AbstractNpcAI
 						npc.setTarget(target);
 						mob.setRunning();
 						mob.addDamageHate(target, 0, 555);
-						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+						mob.getAI().setIntention(Intention.ATTACK, target);
 					}
 				}
 				else if (skill.getId() == SELFBUFF2.getSkillId())
@@ -170,12 +170,11 @@ public class PrimevalIsle extends AbstractNpcAI
 						npc.setTarget(target);
 						mob.setRunning();
 						mob.addDamageHate(target, 0, 555);
-						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+						mob.getAI().setIntention(Intention.ATTACK, target);
 					}
 				}
 			}
 		}
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
@@ -243,9 +242,9 @@ public class PrimevalIsle extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
-		if (CommonUtil.contains(MONSTERS, npc.getId()))
+		if (ArrayUtil.contains(MONSTERS, npc.getId()))
 		{
 			if (creature.isPlayer())
 			{
@@ -263,15 +262,15 @@ public class PrimevalIsle extends AbstractNpcAI
 					npc.setRunning();
 					
 					final int distance = 3000;
-					final int heading = Util.calculateHeadingFrom(creature, npc);
-					final double angle = Util.convertHeadingToDegree(heading);
+					final int heading = LocationUtil.calculateHeadingFrom(creature, npc);
+					final double angle = LocationUtil.convertHeadingToDegree(heading);
 					final double radian = Math.toRadians(angle);
 					final double sin = Math.sin(radian);
 					final double cos = Math.cos(radian);
 					final int newX = (int) (npc.getX() + (cos * distance));
 					final int newY = (int) (npc.getY() + (sin * distance));
 					final Location loc = GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), newX, newY, npc.getZ(), npc.getInstanceId());
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, loc, 0);
+					npc.getAI().setIntention(Intention.MOVE_TO, loc, 0);
 				}
 				else if (ag_type == 1)
 				{
@@ -291,18 +290,17 @@ public class PrimevalIsle extends AbstractNpcAI
 				}
 			}
 		}
-		else if (CommonUtil.contains(VEGETABLE, creature.getId()))
+		else if (ArrayUtil.contains(VEGETABLE, creature.getId()))
 		{
 			npc.setTarget(creature);
 			npc.doCast(CREW_SKILL.getSkill());
 			npc.setRunning();
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, creature);
+			npc.getAI().setIntention(Intention.ATTACK, creature);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		if (npc.isScriptValue(0))
 		{
@@ -311,11 +309,10 @@ public class PrimevalIsle extends AbstractNpcAI
 			npc.asAttackable().clearAggroList();
 			startQuestTimer("TREX_ATTACK", 6000, npc, player);
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.getId() == EGG)
 		{
@@ -332,7 +329,7 @@ public class PrimevalIsle extends AbstractNpcAI
 				});
 			}
 		}
-		else if (CommonUtil.contains(TREX, npc.getId()))
+		else if (ArrayUtil.contains(TREX, npc.getId()))
 		{
 			final Attackable mob = npc.asAttackable();
 			final Creature target = mob.getMostHated();
@@ -356,7 +353,7 @@ public class PrimevalIsle extends AbstractNpcAI
 				npc.doCast(SELFBUFF1.getSkill());
 			}
 			
-			if (Util.calculateDistance(npc, attacker, true, false) > 100)
+			if (LocationUtil.calculateDistance(npc, attacker, true, false) > 100)
 			{
 				if (!npc.isSkillDisabled(LONGRANGEDMAGIC1.getSkill()) && (getRandom(100) <= (10 * npc.getScriptValue())))
 				{
@@ -416,7 +413,7 @@ public class PrimevalIsle extends AbstractNpcAI
 					npc.getVariables().set("SELFBUFF_USED", 1);
 					npc.doCast(selfRangeBuff1.getSkill());
 					npc.setRunning();
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+					npc.getAI().setIntention(Intention.ATTACK, target);
 				}
 			}
 			
@@ -434,16 +431,16 @@ public class PrimevalIsle extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if ((npc.getId() == DEINO) || ((npc.getId() == ORNIT) && !npc.isScriptValue(1)))
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
+		
 		if ((npc.getId() == SAILREN) || (getRandom(100) < 3))
 		{
 			final Player player = npc.getId() == SAILREN ? getRandomPartyMember(killer) : killer;
@@ -463,18 +460,17 @@ public class PrimevalIsle extends AbstractNpcAI
 				showOnScreenMsg(player, NpcStringId.WHEN_INVENTORY_WEIGHT_NUMBER_ARE_MORE_THAN_80_THE_LIFE_STONE_FROM_THE_BEGINNING_CANNOT_BE_ACQUIRED, 2, 6000);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		if (CommonUtil.contains(SPRIGNANT, npc.getId()))
+		if (ArrayUtil.contains(SPRIGNANT, npc.getId()))
 		{
 			cancelQuestTimer("USE_SKILL", npc, null);
 			startQuestTimer("USE_SKILL", 15000, npc, null);
 		}
-		else if (CommonUtil.contains(TREX, npc.getId()))
+		else if (ArrayUtil.contains(TREX, npc.getId()))
 		{
 			final int collectGhost = npc.getTemplate().getParameters().getInt("CollectGhost", 0);
 			final int collectDespawn = npc.getTemplate().getParameters().getInt("CollectGhostDespawnTime", 30);
@@ -490,7 +486,6 @@ public class PrimevalIsle extends AbstractNpcAI
 			npc.getVariables().set("SELFBUFF_USED", 0);
 			npc.getVariables().set("SKILL_MULTIPLER", 1);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

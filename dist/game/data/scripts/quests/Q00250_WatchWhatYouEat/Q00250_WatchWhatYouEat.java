@@ -16,10 +16,10 @@
  */
 package quests.Q00250_WatchWhatYouEat;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -103,13 +103,14 @@ public class Q00250_WatchWhatYouEat extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if (qs == null)
 		{
-			return null;
+			return;
 		}
+		
 		if (qs.isStarted() && qs.isCond(1))
 		{
 			for (int[] mob : MOBS)
@@ -125,7 +126,6 @@ public class Q00250_WatchWhatYouEat extends Quest
 				qs.setCond(2, true);
 			}
 		}
-		return null;
 	}
 	
 	@Override

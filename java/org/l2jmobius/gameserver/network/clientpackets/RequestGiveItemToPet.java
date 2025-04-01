@@ -21,13 +21,14 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.EnchantResult;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @version $Revision: 1.3.2.1.2.5 $ $Date: 2005/03/29 23:15:33 $
@@ -86,7 +87,7 @@ public class RequestGiveItemToPet extends ClientPacket
 		
 		if (_amount > item.getCount())
 		{
-			Util.handleIllegalPlayerAction(player, getClass().getSimpleName() + ": Character " + player.getName() + " of account " + player.getAccountName() + " tried to get item with oid " + _objectId + " from pet but has invalid count " + _amount + " item count: " + item.getCount(), Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, getClass().getSimpleName() + ": Character " + player.getName() + " of account " + player.getAccountName() + " tried to get item with oid " + _objectId + " from pet but has invalid count " + _amount + " item count: " + item.getCount(), Config.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -120,7 +121,7 @@ public class RequestGiveItemToPet extends ClientPacket
 			return;
 		}
 		
-		if (player.transferItem("Transfer", _objectId, _amount, pet.getInventory(), pet) == null)
+		if (player.transferItem(ItemProcessType.TRANSFER, _objectId, _amount, pet.getInventory(), pet) == null)
 		{
 			PacketLogger.warning("Invalid item transfer request: " + pet.getName() + "(pet) --> " + player.getName());
 		}

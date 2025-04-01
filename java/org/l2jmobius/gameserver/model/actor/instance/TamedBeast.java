@@ -1,22 +1,24 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.actor.instance;
-
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -25,15 +27,16 @@ import java.util.concurrent.Future;
 
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.AbstractNpcInfo;
@@ -98,7 +101,7 @@ public class TamedBeast extends FeedableBeast
 		setOwner(owner);
 		if (isFreyaBeast)
 		{
-			getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, _owner);
+			getAI().setIntention(Intention.FOLLOW, _owner);
 		}
 	}
 	
@@ -240,7 +243,7 @@ public class TamedBeast extends FeedableBeast
 		{
 			if (_skill == null)
 			{
-				getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, _owner);
+				getAI().setIntention(Intention.FOLLOW, _owner);
 			}
 			else
 			{
@@ -402,11 +405,11 @@ public class TamedBeast extends FeedableBeast
 	{
 		stopMove(null);
 		broadcastPacket(new StopMove(this));
-		getAI().setIntention(AI_INTENTION_IDLE);
+		getAI().setIntention(Intention.IDLE);
 		
 		setTarget(target);
 		doCast(skill);
-		getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, _owner);
+		getAI().setIntention(Intention.FOLLOW, _owner);
 	}
 	
 	private static class CheckDuration implements Runnable
@@ -429,7 +432,7 @@ public class TamedBeast extends FeedableBeast
 				item = owner.getInventory().getItemByItemId(foodTypeSkillId);
 				if ((item != null) && (item.getCount() >= 1))
 				{
-					owner.destroyItem("BeastMob", item, 1, _tamedBeast, true);
+					owner.destroyItem(ItemProcessType.DESTROY, item, 1, _tamedBeast, true);
 					_tamedBeast.broadcastPacket(new SocialAction(_tamedBeast.getObjectId(), 3));
 				}
 				else
@@ -548,7 +551,7 @@ public class TamedBeast extends FeedableBeast
 			{
 				_tamedBeast.sitCastAndFollow(buffToGive, owner);
 			}
-			getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, _tamedBeast.getOwner());
+			getAI().setIntention(Intention.FOLLOW, _tamedBeast.getOwner());
 		}
 	}
 	
@@ -570,7 +573,7 @@ public class TamedBeast extends FeedableBeast
 		{
 			if (isAutoAttackable(player) && (Math.abs(player.getZ() - getZ()) < 100))
 			{
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+				player.getAI().setIntention(Intention.ATTACK, this);
 			}
 			else
 			{

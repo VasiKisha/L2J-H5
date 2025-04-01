@@ -19,7 +19,7 @@ package org.l2jmobius.gameserver.handler;
 import java.util.EnumMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 
 /**
  * @author UnAfraid

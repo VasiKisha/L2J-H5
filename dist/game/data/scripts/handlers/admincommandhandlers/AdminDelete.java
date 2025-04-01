@@ -20,18 +20,17 @@
  */
 package handlers.admincommandhandlers;
 
-import org.l2jmobius.gameserver.data.SpawnTable;
+import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.data.xml.SpawnData;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.RaidBossSpawnManager;
+import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.zone.type.NpcSpawnTerritory;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Mobius
@@ -54,7 +53,7 @@ public class AdminDelete implements IAdminCommandHandler
 		else if (command.startsWith("admin_delete"))
 		{
 			final String[] split = command.split(" ");
-			handleDelete(activeChar, (split.length > 1) && Util.isDigit(split[1]) ? Integer.parseInt(split[1]) : 0);
+			handleDelete(activeChar, (split.length > 1) && StringUtil.isNumeric(split[1]) ? Integer.parseInt(split[1]) : 0);
 		}
 		return true;
 	}
@@ -74,7 +73,7 @@ public class AdminDelete implements IAdminCommandHandler
 		}
 		else
 		{
-			BuilderUtil.sendSysMessage(player, "Incorrect target.");
+			player.sendSysMessage("Incorrect target.");
 		}
 	}
 	
@@ -87,7 +86,7 @@ public class AdminDelete implements IAdminCommandHandler
 		}
 		else
 		{
-			BuilderUtil.sendSysMessage(player, "Incorrect target.");
+			player.sendSysMessage("Incorrect target.");
 		}
 	}
 	
@@ -107,9 +106,9 @@ public class AdminDelete implements IAdminCommandHandler
 				}
 				else
 				{
-					SpawnTable.getInstance().deleteSpawn(spawn, true);
+					SpawnData.getInstance().deleteSpawn(spawn);
 				}
-				BuilderUtil.sendSysMessage(player, "Deleted " + target.getName() + " from " + target.getObjectId() + ".");
+				player.sendSysMessage("Deleted " + target.getName() + " from " + target.getObjectId() + ".");
 			}
 			else
 			{
@@ -126,7 +125,7 @@ public class AdminDelete implements IAdminCommandHandler
 			final NpcSpawnTerritory npcSpawnTerritory = spawn.getSpawnTerritory();
 			if (npcSpawnTerritory == null)
 			{
-				BuilderUtil.sendSysMessage(player, "Incorrect target.");
+				player.sendSysMessage("Incorrect target.");
 			}
 			else
 			{
@@ -138,7 +137,7 @@ public class AdminDelete implements IAdminCommandHandler
 				}
 				else
 				{
-					SpawnTable.getInstance().deleteSpawn(spawn, true);
+					SpawnData.getInstance().deleteSpawn(spawn);
 				}
 				
 				for (WorldObject wo : World.getInstance().getVisibleObjects())
@@ -160,7 +159,7 @@ public class AdminDelete implements IAdminCommandHandler
 					}
 				}
 				
-				BuilderUtil.sendSysMessage(player, "Deleted " + target.getName() + " group from " + target.getObjectId() + ".");
+				player.sendSysMessage("Deleted " + target.getName() + " group from " + target.getObjectId() + ".");
 			}
 		}
 	}

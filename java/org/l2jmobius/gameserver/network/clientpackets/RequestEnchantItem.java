@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
@@ -20,12 +24,14 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.EnchantItemData;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantResultType;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantScroll;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantSupportItem;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -34,7 +40,6 @@ import org.l2jmobius.gameserver.network.serverpackets.EnchantResult;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
 
 public class RequestEnchantItem extends ClientPacket
 {
@@ -116,18 +121,18 @@ public class RequestEnchantItem extends ClientPacket
 		// fast auto-enchant cheat check
 		if ((player.getActiveEnchantTimestamp() == 0) || ((System.currentTimeMillis() - player.getActiveEnchantTimestamp()) < 2000))
 		{
-			Util.handleIllegalPlayerAction(player, player + " use autoenchant program ", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " use autoenchant program ", Config.DEFAULT_PUNISH);
 			player.setActiveEnchantItemId(Player.ID_NONE);
 			player.sendPacket(new EnchantResult(2, 0, 0));
 			return;
 		}
 		
 		// attempting to destroy scroll
-		scroll = player.getInventory().destroyItem("Enchant", scroll.getObjectId(), 1, player, item);
+		scroll = player.getInventory().destroyItem(ItemProcessType.FEE, scroll.getObjectId(), 1, player, item);
 		if (scroll == null)
 		{
 			player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
-			Util.handleIllegalPlayerAction(player, player + " tried to enchant with a scroll he doesn't have", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to enchant with a scroll he doesn't have", Config.DEFAULT_PUNISH);
 			player.setActiveEnchantItemId(Player.ID_NONE);
 			player.sendPacket(new EnchantResult(2, 0, 0));
 			return;
@@ -136,11 +141,11 @@ public class RequestEnchantItem extends ClientPacket
 		// attempting to destroy support if exist
 		if (support != null)
 		{
-			support = player.getInventory().destroyItem("Enchant", support.getObjectId(), 1, player, item);
+			support = player.getInventory().destroyItem(ItemProcessType.FEE, support.getObjectId(), 1, player, item);
 			if (support == null)
 			{
 				player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
-				Util.handleIllegalPlayerAction(player, player + " tried to enchant with a support item he doesn't have", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to enchant with a support item he doesn't have", Config.DEFAULT_PUNISH);
 				player.setActiveEnchantItemId(Player.ID_NONE);
 				player.sendPacket(new EnchantResult(2, 0, 0));
 				return;
@@ -328,10 +333,10 @@ public class RequestEnchantItem extends ClientPacket
 						else
 						{
 							// enchant failed, destroy item
-							if (player.getInventory().destroyItem("Enchant", item, player, null) == null)
+							if (player.getInventory().destroyItem(ItemProcessType.DESTROY, item, player, null) == null)
 							{
 								// unable to destroy item, cheater ?
-								Util.handleIllegalPlayerAction(player, "Unable to delete item on enchant failure from " + player + ", possible cheater !", Config.DEFAULT_PUNISH);
+								PunishmentManager.handleIllegalPlayerAction(player, "Unable to delete item on enchant failure from " + player + ", possible cheater !", Config.DEFAULT_PUNISH);
 								player.setActiveEnchantItemId(Player.ID_NONE);
 								player.sendPacket(new EnchantResult(2, 0, 0));
 								if (Config.LOG_ITEM_ENCHANTS)
@@ -367,7 +372,7 @@ public class RequestEnchantItem extends ClientPacket
 							{
 								int count = item.getCrystalCount() - ((item.getTemplate().getCrystalCount() + 1) / 2);
 								count = count < 1 ? 1 : count;
-								player.getInventory().addItem("Enchant", crystalId, count, player, item);
+								player.getInventory().addItem(ItemProcessType.COMPENSATE, crystalId, count, player, item);
 								
 								final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S2_S1_S);
 								sm.addItemName(crystalId);

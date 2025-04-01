@@ -17,11 +17,11 @@
 package quests.Q00510_AClansPrestige;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -80,12 +80,12 @@ public class Q00510_AClansPrestige extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final Clan clan = player.getClan();
 		if (clan == null)
 		{
-			return null;
+			return;
 		}
 		
 		QuestState qs = null;
@@ -107,7 +107,6 @@ public class Q00510_AClansPrestige extends Quest
 			rewardItems(player, TYRANNOSAURUS_CLAW, 1);
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
-		return null;
 	}
 	
 	@Override

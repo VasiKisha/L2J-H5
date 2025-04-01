@@ -23,7 +23,7 @@ package handlers.effecthandlers;
 import java.util.Set;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Attackable;
@@ -72,7 +72,7 @@ public class GetAgro extends AbstractEffect
 	{
 		if ((effected != null) && effected.isAttackable())
 		{
-			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, effector);
+			effected.getAI().setIntention(Intention.ATTACK, effector);
 			
 			// Monsters from the same clan should assist.
 			final NpcTemplate template = effected.asAttackable().getTemplate();
@@ -84,7 +84,7 @@ public class GetAgro extends AbstractEffect
 					if (!nearby.isMovementDisabled() && nearby.getTemplate().isClan(clans))
 					{
 						nearby.addDamageHate(effector, 1, 200);
-						nearby.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, effector);
+						nearby.getAI().setIntention(Intention.ATTACK, effector);
 						nearby.setRunning();
 					}
 				});

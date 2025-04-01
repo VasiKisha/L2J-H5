@@ -63,10 +63,10 @@ public class TarBeetleSpawn implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		int i = 0;
-		for (Node d = doc.getFirstChild(); d != null; d = d.getNextSibling())
+		for (Node d = document.getFirstChild(); d != null; d = d.getNextSibling())
 		{
 			if (d.getNodeName().equals("list"))
 			{

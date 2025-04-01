@@ -20,13 +20,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.RadarControl;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q00238_SuccessFailureOfBusiness.Q00238_SuccessFailureOfBusiness;
 import quests.Q00309_ForAGoodCause.Q00309_ForAGoodCause;
@@ -211,7 +211,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 		String htmltext;
 		if (canGiveItem(player, quanty))
 		{
-			if (CommonUtil.contains(MOIRAI_PIECES, item))
+			if (ArrayUtil.contains(MOIRAI_PIECES, item))
 			{
 				giveItems(player, item, getRandom(1, 4));
 			}
@@ -230,7 +230,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(killer, 1);
 		if (partyMember != null)
@@ -249,7 +249,6 @@ public class Q00308_ReedFieldMaintenance extends Quest
 				playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

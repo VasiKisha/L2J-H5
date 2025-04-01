@@ -30,6 +30,7 @@ import org.l2jmobius.gameserver.model.ExtractableProduct;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.EtcItem;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -58,7 +59,7 @@ public class ExtractableItems implements IItemHandler
 		}
 		
 		// destroy item
-		if (!player.destroyItem("Extract", item.getObjectId(), 1, player, true))
+		if (!player.destroyItem(ItemProcessType.FEE, item.getObjectId(), 1, player, true))
 		{
 			return false;
 		}
@@ -78,13 +79,13 @@ public class ExtractableItems implements IItemHandler
 				
 				if (ItemData.getInstance().getTemplate(expi.getId()).isStackable() || (createItemAmount == 1))
 				{
-					player.addItem("Extract", expi.getId(), createItemAmount, player, true);
+					player.addItem(ItemProcessType.REWARD, expi.getId(), createItemAmount, player, true);
 				}
 				else
 				{
 					while (createItemAmount > 0)
 					{
-						player.addItem("Extract", expi.getId(), 1, player, true);
+						player.addItem(ItemProcessType.REWARD, expi.getId(), 1, player, true);
 						createItemAmount--;
 					}
 				}

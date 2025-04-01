@@ -17,10 +17,10 @@
 package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.gameserver.ai.CreatureAI;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.stat.StaticObjectStat;
 import org.l2jmobius.gameserver.model.actor.status.StaticObjectStatus;
 import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;

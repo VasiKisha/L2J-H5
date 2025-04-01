@@ -99,7 +99,7 @@ public class Q00252_ItSmellsDelicious extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs;
 		if (npc.getId() == CHEF) // only the killer gets quest items from the chef
@@ -118,7 +118,6 @@ public class Q00252_ItSmellsDelicious extends Quest
 				qs.setCond(2, true);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

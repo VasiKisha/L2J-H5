@@ -1,53 +1,61 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.admincommandhandlers;
 
-import java.text.SimpleDateFormat;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
+import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 import ai.bosses.Antharas.Antharas;
 import ai.bosses.Baium.Baium;
 
 /**
- * @author St3eT
+ * @author St3eT, Skache
  */
 public class AdminGrandBoss implements IAdminCommandHandler
 {
 	private static final int ANTHARAS = 29068; // Antharas
 	private static final int ANTHARAS_ZONE = 70050; // Antharas Nest
 	private static final int VALAKAS = 29028; // Valakas
+	private static final int VALAKAS_ZONE = 70052; // Valakas Nest
 	private static final int BAIUM = 29020; // Baium
 	private static final int BAIUM_ZONE = 70051; // Baium Nest
 	private static final int QUEENANT = 29001; // Queen Ant
 	private static final int ORFEN = 29014; // Orfen
 	private static final int CORE = 29006; // Core
+	private static final int ZAKEN = 29022; // Zaken
+	private static final int ZAKEN_ZONE = 70053; // Zaken Ship
+	private static final int FRINTEZZA = 29045; // Frintezza
+	private static final int FRINTEZZA_ZONE = 70054; // Frintezza Hall
 	
 	private static final String[] ADMIN_COMMANDS =
 	{
@@ -93,12 +101,12 @@ public class AdminGrandBoss implements IAdminCommandHandler
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Wrong ID!");
+						activeChar.sendSysMessage("Wrong ID!");
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //grandboss_skip Id");
+					activeChar.sendSysMessage("Usage: //grandboss_skip Id");
 				}
 				break;
 			}
@@ -124,13 +132,13 @@ public class AdminGrandBoss implements IAdminCommandHandler
 						}
 						default:
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Wrong ID!");
+							activeChar.sendSysMessage("Wrong ID!");
 						}
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //grandboss_respawn Id");
+					activeChar.sendSysMessage("Usage: //grandboss_respawn Id");
 				}
 				break;
 			}
@@ -154,13 +162,13 @@ public class AdminGrandBoss implements IAdminCommandHandler
 						}
 						default:
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Wrong ID!");
+							activeChar.sendSysMessage("Wrong ID!");
 						}
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //grandboss_minions Id");
+					activeChar.sendSysMessage("Usage: //grandboss_minions Id");
 				}
 				break;
 			}
@@ -186,13 +194,13 @@ public class AdminGrandBoss implements IAdminCommandHandler
 						}
 						default:
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Wrong ID!");
+							activeChar.sendSysMessage("Wrong ID!");
 						}
 					}
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Usage: //grandboss_abort Id");
+					activeChar.sendSysMessage("Usage: //grandboss_abort Id");
 				}
 			}
 				break;
@@ -202,7 +210,7 @@ public class AdminGrandBoss implements IAdminCommandHandler
 	
 	private void manageHtml(Player activeChar, int grandBossId)
 	{
-		if (Arrays.asList(ANTHARAS, VALAKAS, BAIUM, QUEENANT, ORFEN, CORE).contains(grandBossId))
+		if (Arrays.asList(ANTHARAS, VALAKAS, BAIUM, QUEENANT, ORFEN, CORE, ZAKEN, FRINTEZZA).contains(grandBossId))
 		{
 			final int bossStatus = GrandBossManager.getInstance().getStatus(grandBossId);
 			NoRestartZone bossZone = null;
@@ -221,6 +229,7 @@ public class AdminGrandBoss implements IAdminCommandHandler
 				}
 				case VALAKAS:
 				{
+					bossZone = ZoneManager.getInstance().getZoneById(VALAKAS_ZONE, NoRestartZone.class);
 					htmlPatch = "data/html/admin/grandboss/grandboss_valakas.htm";
 					break;
 				}
@@ -245,9 +254,20 @@ public class AdminGrandBoss implements IAdminCommandHandler
 					htmlPatch = "data/html/admin/grandboss/grandboss_core.htm";
 					break;
 				}
+				case ZAKEN:
+				{
+					bossZone = ZoneManager.getInstance().getZoneById(ZAKEN_ZONE, NoRestartZone.class);
+					htmlPatch = "data/html/admin/grandboss/grandboss_zaken.htm";
+					break;
+				}
+				case FRINTEZZA:
+				{
+					bossZone = ZoneManager.getInstance().getZoneById(FRINTEZZA_ZONE, NoRestartZone.class);
+					htmlPatch = "data/html/admin/grandboss/grandboss_frintezza.htm";
+				}
 			}
 			
-			if (Arrays.asList(ANTHARAS, VALAKAS, BAIUM).contains(grandBossId))
+			if (Arrays.asList(ANTHARAS, VALAKAS, BAIUM, FRINTEZZA).contains(grandBossId))
 			{
 				deadStatus = 3;
 				switch (bossStatus)
@@ -299,7 +319,7 @@ public class AdminGrandBoss implements IAdminCommandHandler
 			}
 			
 			final StatSet info = GrandBossManager.getInstance().getStatSet(grandBossId);
-			final String bossRespawn = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(info.getLong("respawn_time"));
+			final String bossRespawn = TimeUtil.getDateTimeString(info.getLong("respawn_time"));
 			final NpcHtmlMessage html = new NpcHtmlMessage(0, 1);
 			html.setHtml(HtmCache.getInstance().getHtm(activeChar, htmlPatch));
 			html.replace("%bossStatus%", text);
@@ -310,7 +330,7 @@ public class AdminGrandBoss implements IAdminCommandHandler
 		}
 		else
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Wrong ID!");
+			activeChar.sendSysMessage("Wrong ID!");
 		}
 	}
 	

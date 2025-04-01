@@ -31,24 +31,6 @@ public class NpcVariables extends AbstractVariables
 		return super.getInt(key, 0);
 	}
 	
-	@Override
-	public boolean restoreMe()
-	{
-		return true;
-	}
-	
-	@Override
-	public boolean storeMe()
-	{
-		return true;
-	}
-	
-	@Override
-	public boolean deleteMe()
-	{
-		return true;
-	}
-	
 	/**
 	 * Gets the stored player.
 	 * @param name the name of the variable

@@ -34,12 +34,13 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.PlayerState;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerState;
+import org.l2jmobius.gameserver.model.actor.templates.DoorTemplate;
+import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.conditions.ConditionCategoryType;
 import org.l2jmobius.gameserver.model.conditions.ConditionChangeWeapon;
@@ -122,7 +123,6 @@ import org.l2jmobius.gameserver.model.conditions.ConditionUsingSkill;
 import org.l2jmobius.gameserver.model.conditions.ConditionUsingSlotType;
 import org.l2jmobius.gameserver.model.conditions.ConditionWithSkill;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.type.ArmorType;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
@@ -149,23 +149,23 @@ public abstract class DocumentBase
 	
 	public Document parse()
 	{
-		Document doc = null;
+		Document document = null;
 		try
 		{
 			final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			factory.setValidating(false);
 			factory.setIgnoringComments(true);
-			doc = factory.newDocumentBuilder().parse(_file);
-			parseDocument(doc);
+			document = factory.newDocumentBuilder().parse(_file);
+			parseDocument(document);
 		}
 		catch (Exception e)
 		{
 			LOGGER.log(Level.SEVERE, "Error loading file " + _file, e);
 		}
-		return doc;
+		return document;
 	}
 	
-	protected abstract void parseDocument(Document doc);
+	protected abstract void parseDocument(Document document);
 	
 	protected abstract StatSet getStatSet();
 	
@@ -301,9 +301,17 @@ public abstract class DocumentBase
 		
 		final StatSet parameters = parseParameters(n.getFirstChild(), template);
 		final Condition applyCond = parseCondition(n.getFirstChild(), template);
-		if (template instanceof IIdentifiable)
+		if (template instanceof ItemTemplate)
 		{
-			set.set("id", ((IIdentifiable) template).getId());
+			set.set("id", ((ItemTemplate) template).getId());
+		}
+		else if (template instanceof NpcTemplate)
+		{
+			set.set("id", ((NpcTemplate) template).getId());
+		}
+		else if (template instanceof DoorTemplate)
+		{
+			set.set("id", ((DoorTemplate) template).getId());
 		}
 		
 		final AbstractEffect effect = AbstractEffect.createEffect(attachCond, applyCond, set, parameters);
@@ -1161,9 +1169,9 @@ public abstract class DocumentBase
 					{
 						final int old = mask;
 						final String item = st.nextToken().trim();
-						if (ItemData.SLOTS.containsKey(item))
+						if (ItemTemplate.SLOTS.containsKey(item))
 						{
-							mask |= ItemData.SLOTS.get(item);
+							mask |= ItemTemplate.SLOTS.get(item);
 						}
 						
 						if (old == mask)

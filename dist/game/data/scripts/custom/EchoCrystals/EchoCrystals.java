@@ -19,10 +19,10 @@ package custom.EchoCrystals;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
 
 import ai.AbstractNpcAI;
 
@@ -103,7 +103,7 @@ public class EchoCrystals extends AbstractNpcAI
 	{
 		String htmltext = "";
 		final QuestState qs = player.getQuestState(EchoCrystals.class.getSimpleName());
-		if ((qs != null) && Util.isDigit(event))
+		if ((qs != null) && StringUtil.isNumeric(event))
 		{
 			final int score = Integer.parseInt(event);
 			if (SCORES.containsKey(score))

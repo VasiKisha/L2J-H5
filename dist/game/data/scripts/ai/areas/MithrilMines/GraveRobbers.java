@@ -39,10 +39,9 @@ public class GraveRobbers extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		spawnMinions(npc, "Privates" + getRandom(1, 2));
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

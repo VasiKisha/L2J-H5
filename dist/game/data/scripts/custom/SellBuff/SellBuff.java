@@ -20,21 +20,22 @@ import java.util.Collections;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.data.holders.SellBuffHolder;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.handler.BypassHandler;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.handler.VoicedCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.SellBuffsManager;
+import org.l2jmobius.gameserver.managers.SellBuffsManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.AbstractScript;
-import org.l2jmobius.gameserver.model.holders.SellBuffHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.skill.Skill;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Sell Buffs voice command
@@ -162,7 +163,7 @@ public class SellBuff implements IVoicedCommandHandler, IBypassHandler
 				if (!player.isSellingBuffs())
 				{
 					int index = 0;
-					if ((params != null) && !params.isEmpty() && Util.isDigit(params))
+					if ((params != null) && !params.isEmpty() && StringUtil.isNumeric(params))
 					{
 						index = Integer.parseInt(params);
 					}
@@ -388,7 +389,7 @@ public class SellBuff implements IVoicedCommandHandler, IBypassHandler
 					}
 					
 					final Skill skillToBuy = seller.getKnownSkill(skillId);
-					if (!seller.isSellingBuffs() || !Util.checkIfInRange(Npc.INTERACTION_DISTANCE, player, seller, true) || (skillToBuy == null))
+					if (!seller.isSellingBuffs() || !LocationUtil.checkIfInRange(Npc.INTERACTION_DISTANCE, player, seller, true) || (skillToBuy == null))
 					{
 						return false;
 					}

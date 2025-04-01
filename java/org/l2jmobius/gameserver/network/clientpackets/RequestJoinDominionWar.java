@@ -14,13 +14,12 @@
  * You should have received a copy of the GNU General Public License
  * along with this program. If not, see <http://www.gnu.org/licenses/>.
  */
-
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowDominionRegistry;
 
@@ -64,7 +63,7 @@ public class RequestJoinDominionWar extends ClientPacket
 		
 		if (_isClan == 0x01)
 		{
-			if (!player.hasClanPrivilege(ClanPrivilege.CS_MANAGE_SIEGE))
+			if (!player.hasAccess(ClanAccess.CASTLE_SIEGE))
 			{
 				player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
 				return;
@@ -96,7 +95,7 @@ public class RequestJoinDominionWar extends ClientPacket
 		}
 		else
 		{
-			if ((player.getLevel() < 40) || (player.getClassId().level() < 2))
+			if ((player.getLevel() < 40) || (player.getPlayerClass().level() < 2))
 			{
 				// TODO: punish player
 				return;

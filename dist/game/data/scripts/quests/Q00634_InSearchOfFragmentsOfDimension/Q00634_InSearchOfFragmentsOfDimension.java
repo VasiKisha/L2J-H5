@@ -153,7 +153,7 @@ public class Q00634_InSearchOfFragmentsOfDimension extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs != null)
@@ -164,7 +164,6 @@ public class Q00634_InSearchOfFragmentsOfDimension extends Quest
 				giveItemRandomly(qs.getPlayer(), npc, DIMENSIONAL_FRAGMENT, i0, 0, 1, true);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

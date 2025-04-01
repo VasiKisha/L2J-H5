@@ -21,7 +21,6 @@
 package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
@@ -34,7 +33,6 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.commons.util.file.filter.NumericNameFilter;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -58,8 +56,6 @@ public class MultisellData implements IXmlReader
 	public static final int PC_CAFE_POINTS = -100;
 	public static final int CLAN_REPUTATION = -200;
 	public static final int FAME = -300;
-	// Misc
-	private static final FileFilter NUMERIC_FILTER = new NumericNameFilter();
 	
 	protected MultisellData()
 	{
@@ -81,15 +77,15 @@ public class MultisellData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		try
 		{
-			final int id = Integer.parseInt(f.getName().replaceAll(".xml", ""));
+			final int id = Integer.parseInt(file.getName().replaceAll(".xml", ""));
 			int entryId = 1;
 			Node att;
 			final ListContainer list = new ListContainer(id);
-			for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+			for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 			{
 				if ("list".equalsIgnoreCase(n.getNodeName()))
 				{
@@ -114,13 +110,13 @@ public class MultisellData implements IXmlReader
 							}
 							catch (Exception e1)
 							{
-								LOGGER.warning(e1.getMessage() + doc.getLocalName());
+								LOGGER.warning(e1.getMessage() + document.getLocalName());
 								list.setUseRate(1.0);
 							}
 						}
 						catch (DOMException e)
 						{
-							LOGGER.warning(e.getMessage() + doc.getLocalName());
+							LOGGER.warning(e.getMessage() + document.getLocalName());
 						}
 					}
 					
@@ -150,14 +146,14 @@ public class MultisellData implements IXmlReader
 		}
 		catch (Exception e)
 		{
-			LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Error in file " + f, e);
+			LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Error in file " + file, e);
 		}
 	}
 	
 	@Override
-	public FileFilter getCurrentFileFilter()
+	public boolean isValidXmlFile(File file)
 	{
-		return NUMERIC_FILTER;
+		return (file != null) && file.isFile() && file.getName().toLowerCase().matches("\\d+\\.xml");
 	}
 	
 	private final Entry parseEntry(Node node, int entryId, ListContainer list)

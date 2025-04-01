@@ -34,10 +34,9 @@ public class RagnaOrcHero extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		spawnMinions(npc, getRandom(100) < 70 ? "Privates1" : "Privates2");
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

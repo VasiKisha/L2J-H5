@@ -17,12 +17,12 @@
 package handlers.chathandlers;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.handler.IChatHandler;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 
 /**

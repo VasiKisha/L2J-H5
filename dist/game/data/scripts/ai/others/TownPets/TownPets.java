@@ -1,35 +1,41 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.others.TownPets;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.Location;
+import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 
 import ai.AbstractNpcAI;
 
 /**
- * Town Pets AI
- * @author malyelfik
+ * Town Pet AI
+ * @author Mobius
  */
 public class TownPets extends AbstractNpcAI
 {
-	// Pet IDs
+	// NPCs
 	private static final int[] PETS =
 	{
 		31202, // Maximus
@@ -45,6 +51,8 @@ public class TownPets extends AbstractNpcAI
 		31758, // Rafi
 		31955, // Ruby
 	};
+	// Misc
+	private static final int MOVE_INTERVAL = 5000;
 	
 	private TownPets()
 	{
@@ -54,22 +62,33 @@ public class TownPets extends AbstractNpcAI
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
-		if (event.equalsIgnoreCase("move"))
+		if ((npc != null) && npc.isSpawned() && event.equals("move"))
 		{
-			final int locX = (npc.getSpawn().getX() - 50) + getRandom(100);
-			final int locY = (npc.getSpawn().getY() - 50) + getRandom(100);
-			npc.setRunning();
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(locX, locY, npc.getZ(), 0));
-			startQuestTimer("move", 5000, npc, null);
+			if (npc.getWorldRegion().isActive())
+			{
+				final Spawn spawn = npc.getSpawn();
+				final int locX = spawn.getX() + getRandom(-50, 50);
+				final int locY = spawn.getY() + getRandom(-50, 50);
+				final Location moveLocation = GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), locX, locY, npc.getZ(), 0);
+				if (npc.calculateDistance3D(moveLocation) > 20)
+				{
+					npc.getAI().setIntention(Intention.MOVE_TO, moveLocation);
+				}
+				startQuestTimer("move", MOVE_INTERVAL, npc, null);
+			}
+			else
+			{
+				startQuestTimer("move", MOVE_INTERVAL * 3, npc, null);
+			}
 		}
 		return null;
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		startQuestTimer("move", 3000, npc, null);
-		return super.onSpawn(npc);
+		npc.setRunning();
+		startQuestTimer("move", MOVE_INTERVAL, npc, null);
 	}
 	
 	public static void main(String[] args)

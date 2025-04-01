@@ -21,9 +21,10 @@
 package handlers.itemhandlers;
 
 import org.l2jmobius.gameserver.handler.IItemHandler;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
@@ -52,7 +53,7 @@ public class Disguise implements IItemHandler
 			}
 			TerritoryWarManager.getInstance().addDisguisedPlayer(player.getObjectId());
 			player.broadcastUserInfo();
-			playable.destroyItem("Consume", item.getObjectId(), 1, null, false);
+			playable.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false);
 			return true;
 		}
 		else if (regId > 0)

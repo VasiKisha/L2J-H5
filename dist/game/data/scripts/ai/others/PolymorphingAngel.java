@@ -50,11 +50,10 @@ public class PolymorphingAngel extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Attackable newNpc = addSpawn(ANGELSPAWNS.get(npc.getId()), npc).asAttackable();
 		newNpc.setRunning();
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

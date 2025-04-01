@@ -16,14 +16,14 @@
  */
 package quests.Q00194_SevenSignsMammonsContract;
 
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.network.enums.Movie;
 
 import quests.Q00193_SevenSignsDyingMessage.Q00193_SevenSignsDyingMessage;
 

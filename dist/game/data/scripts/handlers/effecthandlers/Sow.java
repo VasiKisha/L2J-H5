@@ -17,8 +17,7 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Seed;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -26,6 +25,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -64,7 +64,7 @@ public class Sow extends AbstractEffect
 		
 		// Consuming used seed
 		final Seed seed = target.getSeed();
-		if (!player.destroyItemByItemId("Consume", seed.getSeedId(), 1, target, false))
+		if (!player.destroyItemByItemId(null, seed.getSeedId(), 1, target, false))
 		{
 			return;
 		}
@@ -91,7 +91,7 @@ public class Sow extends AbstractEffect
 		}
 		
 		// TODO: Mob should not aggro on player, this way doesn't work really nice
-		target.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		target.getAI().setIntention(Intention.IDLE);
 	}
 	
 	private static boolean calcSuccess(Creature creature, Creature target, Seed seed)

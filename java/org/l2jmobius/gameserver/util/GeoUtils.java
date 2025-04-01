@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.util;
 
@@ -20,49 +24,67 @@ import java.awt.Color;
 
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.geoengine.geodata.Cell;
+import org.l2jmobius.gameserver.geoengine.util.GridLineIterator2D;
+import org.l2jmobius.gameserver.geoengine.util.GridLineIterator3D;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExServerPrimitive;
 
 /**
- * @author HorridoJoho
+ * @author HorridoJoho, Mobius
  */
 public class GeoUtils
 {
+	/**
+	 * Draws a 2D line between two points in the world.
+	 * @param player The player to send the debug line to.
+	 * @param x The x coordinate of the starting point.
+	 * @param y The y coordinate of the starting point.
+	 * @param tx The x coordinate of the ending point.
+	 * @param ty The y coordinate of the ending point.
+	 * @param z The z coordinate of the line.
+	 */
 	public static void debug2DLine(Player player, int x, int y, int tx, int ty, int z)
 	{
 		final int gx = GeoEngine.getInstance().getGeoX(x);
 		final int gy = GeoEngine.getInstance().getGeoY(y);
-		
 		final int tgx = GeoEngine.getInstance().getGeoX(tx);
 		final int tgy = GeoEngine.getInstance().getGeoY(ty);
 		
 		final ExServerPrimitive prim = new ExServerPrimitive("Debug2DLine", x, y, z);
 		prim.addLine(Color.BLUE, GeoEngine.getInstance().getWorldX(gx), GeoEngine.getInstance().getWorldY(gy), z, GeoEngine.getInstance().getWorldX(tgx), GeoEngine.getInstance().getWorldY(tgy), z);
 		
-		final LinePointIterator iter = new LinePointIterator(gx, gy, tgx, tgy);
-		
+		final GridLineIterator2D iter = new GridLineIterator2D(gx, gy, tgx, tgy);
 		while (iter.next())
 		{
 			final int wx = GeoEngine.getInstance().getWorldX(iter.x());
 			final int wy = GeoEngine.getInstance().getWorldY(iter.y());
-			
 			prim.addPoint(Color.RED, wx, wy, z);
 		}
+		
 		player.sendPacket(prim);
 	}
 	
+	/**
+	 * Draws a 3D line between two points in the world.
+	 * @param player The player to send the debug line to.
+	 * @param x The x coordinate of the starting point.
+	 * @param y The y coordinate of the starting point.
+	 * @param z The z coordinate of the starting point.
+	 * @param tx The x coordinate of the ending point.
+	 * @param ty The y coordinate of the ending point.
+	 * @param tz The z coordinate of the ending point.
+	 */
 	public static void debug3DLine(Player player, int x, int y, int z, int tx, int ty, int tz)
 	{
 		final int gx = GeoEngine.getInstance().getGeoX(x);
 		final int gy = GeoEngine.getInstance().getGeoY(y);
-		
 		final int tgx = GeoEngine.getInstance().getGeoX(tx);
 		final int tgy = GeoEngine.getInstance().getGeoY(ty);
 		
 		final ExServerPrimitive prim = new ExServerPrimitive("Debug3DLine", x, y, z);
 		prim.addLine(Color.BLUE, GeoEngine.getInstance().getWorldX(gx), GeoEngine.getInstance().getWorldY(gy), z, GeoEngine.getInstance().getWorldX(tgx), GeoEngine.getInstance().getWorldY(tgy), tz);
 		
-		final LinePointIterator3D iter = new LinePointIterator3D(gx, gy, z, tgx, tgy, tz);
+		final GridLineIterator3D iter = new GridLineIterator3D(gx, gy, z, tgx, tgy, tz);
 		iter.next();
 		int prevX = iter.x();
 		int prevY = iter.y();
@@ -88,18 +110,32 @@ public class GeoUtils
 				prevY = curY;
 			}
 		}
+		
 		player.sendPacket(prim);
 	}
 	
+	/**
+	 * Gets the color to use for a direction arrow based on whether the direction is valid.
+	 * @param x The x coordinate of the cell.
+	 * @param y The y coordinate of the cell.
+	 * @param z The z coordinate of the cell.
+	 * @param nswe The direction to check.
+	 * @return Green if the direction is valid, red otherwise.
+	 */
 	private static Color getDirectionColor(int x, int y, int z, int nswe)
 	{
 		if (GeoEngine.getInstance().checkNearestNswe(x, y, z, nswe))
 		{
 			return Color.GREEN;
 		}
+		
 		return Color.RED;
 	}
 	
+	/**
+	 * Draws a debug grid around the player.
+	 * @param player The player to send the debug grid to.
+	 */
 	public static void debugGrid(Player player)
 	{
 		final int geoRadius = 20;
@@ -173,6 +209,10 @@ public class GeoUtils
 		player.sendPacket(exsp);
 	}
 	
+	/**
+	 * Hides the debug grid around the player.
+	 * @param player The player to hide the debug grid from.
+	 */
 	public static void hideDebugGrid(Player player)
 	{
 		final int geoRadius = 20;
@@ -221,13 +261,12 @@ public class GeoUtils
 	}
 	
 	/**
-	 * difference between x values: never above 1<br>
-	 * difference between y values: never above 1
-	 * @param lastX
-	 * @param lastY
-	 * @param x
-	 * @param y
-	 * @return
+	 * Computes the NSWE direction based on the difference between two points.
+	 * @param lastX The x coordinate of the previous point.
+	 * @param lastY The y coordinate of the previous point.
+	 * @param x The x coordinate of the current point.
+	 * @param y The y coordinate of the current point.
+	 * @return The NSWE direction.
 	 */
 	public static int computeNswe(int lastX, int lastY, int x, int y)
 	{

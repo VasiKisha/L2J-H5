@@ -17,8 +17,8 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoom;
-import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoomList;
+import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoom;
+import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoomList;
 
 /**
  * @author Gnacik

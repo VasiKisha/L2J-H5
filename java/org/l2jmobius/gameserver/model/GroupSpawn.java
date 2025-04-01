@@ -24,7 +24,8 @@ import org.l2jmobius.gameserver.model.actor.instance.ControllableMob;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 
 /**
- * @author littlecrow A special spawn implementation to spawn controllable mob
+ * A special spawn implementation to spawn controllable mob.
+ * @author littlecrow
  */
 public class GroupSpawn extends Spawn
 {

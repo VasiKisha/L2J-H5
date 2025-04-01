@@ -16,9 +16,9 @@
  */
 package quests.Q00061_LawEnforcement;
 
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 
@@ -140,7 +140,7 @@ public class Q00061_LawEnforcement extends Quest
 			{
 				if (qs.isMemoState(5))
 				{
-					player.setClassId(136);
+					player.setPlayerClass(136);
 					// SystemMessage and cast skill is done by setClassId
 					player.broadcastUserInfo();
 					giveAdena(player, 26000, true);
@@ -166,7 +166,7 @@ public class Q00061_LawEnforcement extends Quest
 		{
 			if (player.getLevel() >= MIN_LEVEL)
 			{
-				if (player.getClassId() == ClassId.INSPECTOR)
+				if (player.getPlayerClass() == PlayerClass.INSPECTOR)
 				{
 					return getHtm(player, "32222-01.htm").replace("%name%", player.getName());
 				}

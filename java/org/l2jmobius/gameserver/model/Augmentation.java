@@ -27,7 +27,7 @@ import org.l2jmobius.gameserver.model.options.Options;
 
 /**
  * Used to store an augmentation and its bonuses.
- * @author durgus, UnAfraid
+ * @author durgus
  */
 public class Augmentation
 {

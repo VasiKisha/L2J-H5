@@ -18,16 +18,16 @@ package ai.areas.Gracia.AI;
 
 import java.util.List;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 
 import ai.AbstractNpcAI;
@@ -98,7 +98,7 @@ public class Maguen extends AbstractNpcAI
 				maguen.getVariables().set("SUMMON_PLAYER", player);
 				maguen.setTitle(player.getName());
 				maguen.setRunning();
-				maguen.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+				maguen.getAI().setIntention(Intention.FOLLOW, player);
 				maguen.broadcastStatusUpdate();
 				showOnScreenMsg(player, NpcStringId.MAGUEN_APPEARANCE, 2, 4000);
 				startQuestTimer("DIST_CHECK_TIMER", 1000, maguen, player);
@@ -172,7 +172,7 @@ public class Maguen extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		final BuffInfo infoB = player.getEffectList().getBuffInfoByAbnormalType(B_PLASMA1.getSkill().getAbnormalType());
 		final BuffInfo infoC = player.getEffectList().getBuffInfoByAbnormalType(C_PLASMA1.getSkill().getAbnormalType());
@@ -256,11 +256,10 @@ public class Maguen extends AbstractNpcAI
 			startQuestTimer("END_TIMER", 1000, npc, player);
 		}
 		npc.setDisplayEffect(4);
-		return super.onSpellFinished(npc, player, skill);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (((skill == MACHINE.getSkill()) && (caster == npc.getVariables().getObject("SUMMON_PLAYER", Player.class))) //
 			&& ((npc.getVariables().getInt("NPC_EFFECT") != 0) && (npc.getVariables().getInt("BLOCKED_SKILLSEE") == 0)))
@@ -356,11 +355,10 @@ public class Maguen extends AbstractNpcAI
 				npc.doCast(skillToCast.getSkill());
 			}
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (killer.isInParty())
 		{
@@ -371,7 +369,6 @@ public class Maguen extends AbstractNpcAI
 				notifyEvent("SPAWN_MAGUEN", npc, partyMember);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void maguenPetChance(Player player)

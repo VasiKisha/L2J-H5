@@ -20,10 +20,6 @@
  */
 package org.l2jmobius.gameserver.ai;
 
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_ATTACK;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_FOLLOW;
-import static org.l2jmobius.gameserver.ai.CtrlIntention.AI_INTENTION_IDLE;
-
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.WorldRegion;
@@ -39,30 +35,27 @@ import org.l2jmobius.gameserver.network.serverpackets.Die;
 import org.l2jmobius.gameserver.network.serverpackets.MoveToLocation;
 import org.l2jmobius.gameserver.network.serverpackets.MoveToPawn;
 import org.l2jmobius.gameserver.network.serverpackets.StopMove;
-import org.l2jmobius.gameserver.network.serverpackets.StopRotation;
-import org.l2jmobius.gameserver.taskmanager.AttackStanceTaskManager;
-import org.l2jmobius.gameserver.taskmanager.CreatureFollowTaskManager;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.AttackStanceTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.CreatureFollowTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * Mother class of all objects AI in the world.<br>
  * AbastractAI:<br>
  * <li>CreatureAI</li>
  */
-public abstract class AbstractAI implements Ctrl
+public abstract class AbstractAI
 {
 	/** The creature that this AI manages */
 	protected final Creature _actor;
 	
 	/** Current long-term intention */
-	protected CtrlIntention _intention = AI_INTENTION_IDLE;
+	protected Intention _intention = Intention.IDLE;
 	/** Current long-term intention parameter */
 	protected Object _intentionArg0 = null;
 	/** Current long-term intention parameter */
 	protected Object _intentionArg1 = null;
 	
-	/** Flags about client's state, in order to know which messages to send */
-	protected volatile boolean _clientMoving;
 	/** Flags about client's state, in order to know which messages to send */
 	protected volatile boolean _clientAutoAttacking;
 	/** Flags about client's state, in order to know which messages to send */
@@ -106,7 +99,6 @@ public abstract class AbstractAI implements Ctrl
 	/**
 	 * @return the Creature managed by this Accessor AI.
 	 */
-	@Override
 	public Creature getActor()
 	{
 		return _actor;
@@ -115,8 +107,7 @@ public abstract class AbstractAI implements Ctrl
 	/**
 	 * @return the current Intention.
 	 */
-	@Override
-	public CtrlIntention getIntention()
+	public Intention getIntention()
 	{
 		return _intention;
 	}
@@ -131,7 +122,7 @@ public abstract class AbstractAI implements Ctrl
 	 * @param arg0 The first parameter of the Intention
 	 * @param arg1 The second parameter of the Intention
 	 */
-	synchronized void changeIntention(CtrlIntention intention, Object arg0, Object arg1)
+	synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
 	{
 		_intention = intention;
 		_intentionArg0 = arg0;
@@ -143,8 +134,7 @@ public abstract class AbstractAI implements Ctrl
 	 * <font color=#FF0000><b><u>Caution</u>: Stop the FOLLOW mode if necessary</b></font>
 	 * @param intention The new Intention to set to the AI
 	 */
-	@Override
-	public void setIntention(CtrlIntention intention)
+	public void setIntention(Intention intention)
 	{
 		setIntention(intention, null, null);
 	}
@@ -155,8 +145,7 @@ public abstract class AbstractAI implements Ctrl
 	 * @param intention The new Intention to set to the AI
 	 * @param arg0 The first parameter of the Intention (optional target)
 	 */
-	@Override
-	public void setIntention(CtrlIntention intention, Object arg0)
+	public void setIntention(Intention intention, Object arg0)
 	{
 		setIntention(intention, arg0, null);
 	}
@@ -168,11 +157,10 @@ public abstract class AbstractAI implements Ctrl
 	 * @param arg0 The first parameter of the Intention (optional target)
 	 * @param arg1 The second parameter of the Intention (optional target)
 	 */
-	@Override
-	public void setIntention(CtrlIntention intention, Object arg0, Object arg1)
+	public void setIntention(Intention intention, Object arg0, Object arg1)
 	{
 		// Stop the follow mode if necessary
-		if ((intention != AI_INTENTION_FOLLOW) && (intention != AI_INTENTION_ATTACK))
+		if ((intention != Intention.FOLLOW) && (intention != Intention.ATTACK))
 		{
 			stopFollow();
 		}
@@ -180,47 +168,47 @@ public abstract class AbstractAI implements Ctrl
 		// Launch the onIntention method of the CreatureAI corresponding to the new Intention
 		switch (intention)
 		{
-			case AI_INTENTION_IDLE:
+			case IDLE:
 			{
 				onIntentionIdle();
 				break;
 			}
-			case AI_INTENTION_ACTIVE:
+			case ACTIVE:
 			{
 				onIntentionActive();
 				break;
 			}
-			case AI_INTENTION_REST:
+			case REST:
 			{
 				onIntentionRest();
 				break;
 			}
-			case AI_INTENTION_ATTACK:
+			case ATTACK:
 			{
 				onIntentionAttack((Creature) arg0);
 				break;
 			}
-			case AI_INTENTION_CAST:
+			case CAST:
 			{
 				onIntentionCast((Skill) arg0, (WorldObject) arg1);
 				break;
 			}
-			case AI_INTENTION_MOVE_TO:
+			case MOVE_TO:
 			{
 				onIntentionMoveTo((ILocational) arg0);
 				break;
 			}
-			case AI_INTENTION_FOLLOW:
+			case FOLLOW:
 			{
 				onIntentionFollow((Creature) arg0);
 				break;
 			}
-			case AI_INTENTION_PICK_UP:
+			case PICK_UP:
 			{
 				onIntentionPickUp((WorldObject) arg0);
 				break;
 			}
-			case AI_INTENTION_INTERACT:
+			case INTERACT:
 			{
 				onIntentionInteract((WorldObject) arg0);
 				break;
@@ -228,175 +216,174 @@ public abstract class AbstractAI implements Ctrl
 		}
 		
 		// If do move or follow intention drop next action.
-		if ((_nextAction != null) && _nextAction.getIntentions().contains(intention))
+		final NextAction nextAction = _nextAction;
+		if ((nextAction != null) && nextAction.isRemovedBy(intention))
 		{
 			_nextAction = null;
 		}
 	}
 	
 	/**
-	 * Launch the CreatureAI onEvt method corresponding to the Event.<br>
+	 * Launch the CreatureAI onAction method corresponding to the Action.<br>
 	 * <font color=#FF0000><b><u>Caution</u>: The current general intention won't be change (ex : If the character attack and is stunned, he will attack again after the stunned period)</b></font>
-	 * @param evt The event whose the AI must be notified
+	 * @param action The action whose the AI must be notified
 	 */
-	@Override
-	public void notifyEvent(CtrlEvent evt)
+	public void notifyAction(Action action)
 	{
-		notifyEvent(evt, null, null);
+		notifyAction(action, null, null);
 	}
 	
 	/**
-	 * Launch the CreatureAI onEvt method corresponding to the Event.<br>
+	 * Launch the CreatureAI onAction method corresponding to the Action.<br>
 	 * <font color=#FF0000><b><u>Caution</u>: The current general intention won't be change (ex : If the character attack and is stunned, he will attack again after the stunned periode)</b></font>
-	 * @param evt The event whose the AI must be notified
-	 * @param arg0 The first parameter of the Event (optional target)
+	 * @param action The action whose the AI must be notified
+	 * @param arg0 The first parameter of the Action (optional target)
 	 */
-	@Override
-	public void notifyEvent(CtrlEvent evt, Object arg0)
+	public void notifyAction(Action action, Object arg0)
 	{
-		notifyEvent(evt, arg0, null);
+		notifyAction(action, arg0, null);
 	}
 	
 	/**
-	 * Launch the CreatureAI onEvt method corresponding to the Event.<br>
+	 * Launch the CreatureAI onAction method corresponding to the Action.<br>
 	 * <font color=#FF0000><b><u>Caution</u>: The current general intention won't be change (ex : If the character attack and is stunned, he will attack again after the stunned periode)</b></font>
-	 * @param evt The event whose the AI must be notified
-	 * @param args The arguments of the Event
+	 * @param action The action whose the AI must be notified
+	 * @param args The arguments of the Action
 	 */
-	@Override
-	public void notifyEvent(CtrlEvent evt, Object... args)
+	public void notifyAction(Action action, Object... args)
 	{
 		if ((!_actor.isSpawned() && !_actor.isTeleporting()) || !_actor.hasAI())
 		{
 			return;
 		}
 		
-		switch (evt)
+		switch (action)
 		{
-			case EVT_THINK:
+			case THINK:
 			{
-				onEvtThink();
+				onActionThink();
 				break;
 			}
-			case EVT_ATTACKED:
+			case ATTACKED:
 			{
-				onEvtAttacked((Creature) args[0]);
+				onActionAttacked((Creature) args[0]);
 				break;
 			}
-			case EVT_AGGRESSION:
+			case AGGRESSION:
 			{
-				onEvtAggression((Creature) args[0], ((Number) args[1]).intValue());
+				onActionAggression((Creature) args[0], ((Number) args[1]).intValue());
 				break;
 			}
-			case EVT_STUNNED:
+			case STUNNED:
 			{
-				onEvtStunned((Creature) args[0]);
+				onActionStunned((Creature) args[0]);
 				break;
 			}
-			case EVT_PARALYZED:
+			case PARALYZED:
 			{
-				onEvtParalyzed((Creature) args[0]);
+				onActionParalyzed((Creature) args[0]);
 				break;
 			}
-			case EVT_SLEEPING:
+			case SLEEPING:
 			{
-				onEvtSleeping((Creature) args[0]);
+				onActionSleeping((Creature) args[0]);
 				break;
 			}
-			case EVT_ROOTED:
+			case ROOTED:
 			{
-				onEvtRooted((Creature) args[0]);
+				onActionRooted((Creature) args[0]);
 				break;
 			}
-			case EVT_CONFUSED:
+			case CONFUSED:
 			{
-				onEvtConfused((Creature) args[0]);
+				onActionConfused((Creature) args[0]);
 				break;
 			}
-			case EVT_MUTED:
+			case MUTED:
 			{
-				onEvtMuted((Creature) args[0]);
+				onActionMuted((Creature) args[0]);
 				break;
 			}
-			case EVT_EVADED:
+			case EVADED:
 			{
-				onEvtEvaded((Creature) args[0]);
+				onActionEvaded((Creature) args[0]);
 				break;
 			}
-			case EVT_READY_TO_ACT:
+			case READY_TO_ACT:
 			{
 				if (!_actor.isCastingNow() && !_actor.isCastingSimultaneouslyNow())
 				{
-					onEvtReadyToAct();
+					onActionReadyToAct();
 				}
 				break;
 			}
-			case EVT_USER_CMD:
+			case USER_CMD:
 			{
-				onEvtUserCmd(args[0], args[1]);
+				onActionUserCmd(args[0], args[1]);
 				break;
 			}
-			case EVT_ARRIVED:
+			case ARRIVED:
 			{
 				// happens e.g. from stopmove but we don't process it if we're casting
 				if (!_actor.isCastingNow() && !_actor.isCastingSimultaneouslyNow())
 				{
-					onEvtArrived();
+					onActionArrived();
 				}
 				break;
 			}
-			case EVT_ARRIVED_REVALIDATE:
+			case ARRIVED_REVALIDATE:
 			{
 				// this is disregarded if the char is not moving any more
 				if (_actor.isMoving())
 				{
-					onEvtArrivedRevalidate();
+					onActionArrivedRevalidate();
 				}
 				break;
 			}
-			case EVT_ARRIVED_BLOCKED:
+			case ARRIVED_BLOCKED:
 			{
-				onEvtArrivedBlocked((Location) args[0]);
+				onActionArrivedBlocked((Location) args[0]);
 				break;
 			}
-			case EVT_FORGET_OBJECT:
+			case FORGET_OBJECT:
 			{
 				final WorldObject worldObject = (WorldObject) args[0];
 				_actor.removeSeenCreature(worldObject);
-				onEvtForgetObject(worldObject);
+				onActionForgetObject(worldObject);
 				break;
 			}
-			case EVT_CANCEL:
+			case CANCEL:
 			{
-				onEvtCancel();
+				onActionCancel();
 				break;
 			}
-			case EVT_DEAD:
+			case DEATH:
 			{
-				onEvtDead();
+				onActionDeath();
 				break;
 			}
-			case EVT_FAKE_DEATH:
+			case FAKE_DEATH:
 			{
-				onEvtFakeDeath();
+				onActionFakeDeath();
 				break;
 			}
-			case EVT_FINISH_CASTING:
+			case FINISH_CASTING:
 			{
-				onEvtFinishCasting();
+				onActionFinishCasting();
 				break;
 			}
-			case EVT_AFRAID:
+			case AFRAID:
 			{
-				onEvtAfraid((Creature) args[0], (Boolean) args[1]);
+				onActionAfraid((Creature) args[0], (Boolean) args[1]);
 				break;
 			}
 		}
 		
 		// Do next action.
-		if ((_nextAction != null) && _nextAction.getEvents().contains(evt))
+		final NextAction nextAction = _nextAction;
+		if ((nextAction != null) && nextAction.isTriggeredBy(action))
 		{
-			_nextAction.doAction();
+			nextAction.doAction();
 		}
 	}
 	
@@ -418,47 +405,47 @@ public abstract class AbstractAI implements Ctrl
 	
 	protected abstract void onIntentionInteract(WorldObject object);
 	
-	protected abstract void onEvtThink();
+	protected abstract void onActionThink();
 	
-	protected abstract void onEvtAttacked(Creature attacker);
+	protected abstract void onActionAttacked(Creature attacker);
 	
-	protected abstract void onEvtAggression(Creature target, int aggro);
+	protected abstract void onActionAggression(Creature target, int aggro);
 	
-	protected abstract void onEvtStunned(Creature attacker);
+	protected abstract void onActionStunned(Creature attacker);
 	
-	protected abstract void onEvtParalyzed(Creature attacker);
+	protected abstract void onActionParalyzed(Creature attacker);
 	
-	protected abstract void onEvtSleeping(Creature attacker);
+	protected abstract void onActionSleeping(Creature attacker);
 	
-	protected abstract void onEvtRooted(Creature attacker);
+	protected abstract void onActionRooted(Creature attacker);
 	
-	protected abstract void onEvtConfused(Creature attacker);
+	protected abstract void onActionConfused(Creature attacker);
 	
-	protected abstract void onEvtMuted(Creature attacker);
+	protected abstract void onActionMuted(Creature attacker);
 	
-	protected abstract void onEvtEvaded(Creature attacker);
+	protected abstract void onActionEvaded(Creature attacker);
 	
-	protected abstract void onEvtReadyToAct();
+	protected abstract void onActionReadyToAct();
 	
-	protected abstract void onEvtUserCmd(Object arg0, Object arg1);
+	protected abstract void onActionUserCmd(Object arg0, Object arg1);
 	
-	protected abstract void onEvtArrived();
+	protected abstract void onActionArrived();
 	
-	protected abstract void onEvtArrivedRevalidate();
+	protected abstract void onActionArrivedRevalidate();
 	
-	protected abstract void onEvtArrivedBlocked(Location location);
+	protected abstract void onActionArrivedBlocked(Location location);
 	
-	protected abstract void onEvtForgetObject(WorldObject object);
+	protected abstract void onActionForgetObject(WorldObject object);
 	
-	protected abstract void onEvtCancel();
+	protected abstract void onActionCancel();
 	
-	protected abstract void onEvtDead();
+	protected abstract void onActionDeath();
 	
-	protected abstract void onEvtFakeDeath();
+	protected abstract void onActionFakeDeath();
 	
-	protected abstract void onEvtFinishCasting();
+	protected abstract void onActionFinishCasting();
 	
-	protected abstract void onEvtAfraid(Creature effector, boolean start);
+	protected abstract void onActionAfraid(Creature effector, boolean start);
 	
 	/**
 	 * Cancel action client side by sending Server->Client packet ActionFailed to the Player actor.<br>
@@ -480,8 +467,8 @@ public abstract class AbstractAI implements Ctrl
 	 */
 	public void moveToPawn(WorldObject pawn, int offsetValue)
 	{
-		// Check if actor can move
-		if (!_actor.isMovementDisabled())
+		// Check if actor can move.
+		if (!_actor.isMovementDisabled() && !_actor.isAttackingNow() && !_actor.isCastingNow())
 		{
 			int offset = offsetValue;
 			if (offset < 10)
@@ -489,31 +476,28 @@ public abstract class AbstractAI implements Ctrl
 				offset = 10;
 			}
 			
-			// prevent possible extra calls to this function (there is none?),
-			// also don't send movetopawn packets too often
-			boolean sendPacket = true;
-			if (_clientMoving && (_target == pawn))
+			// Prevent possible extra calls to this function (there is none?), also don't send movetopawn packets too often.
+			final int gameTime = GameTimeTaskManager.getInstance().getGameTicks();
+			if (_actor.isMoving() && (_target == pawn))
 			{
 				if (_clientMovingToPawnOffset == offset)
 				{
-					if (GameTimeTaskManager.getInstance().getGameTicks() < _moveToPawnTimeout)
+					if (gameTime < _moveToPawnTimeout)
 					{
 						return;
 					}
-					
-					sendPacket = false;
 				}
-				else if (_actor.isOnGeodataPath() && (GameTimeTaskManager.getInstance().getGameTicks() < (_moveToPawnTimeout + 10)))
+				// Minimum time to calculate new route is 2 seconds.
+				else if (_actor.isOnGeodataPath() && (gameTime < (_moveToPawnTimeout + 10)))
 				{
 					return;
 				}
 			}
 			
 			// Set AI movement data
-			_clientMoving = true;
 			_clientMovingToPawnOffset = offset;
 			_target = pawn;
-			_moveToPawnTimeout = GameTimeTaskManager.getInstance().getGameTicks();
+			_moveToPawnTimeout = gameTime;
 			_moveToPawnTimeout += 1000 / GameTimeTaskManager.MILLIS_IN_TICK;
 			
 			if (pawn == null)
@@ -539,10 +523,10 @@ public abstract class AbstractAI implements Ctrl
 					_actor.broadcastMoveToLocation();
 					_clientMovingToPawnOffset = 0;
 				}
-				else if (sendPacket)
+				else
 				{
 					final WorldRegion region = _actor.getWorldRegion();
-					if ((region != null) && region.isActive() && !_actor.isMovementSuspended())
+					if ((region != null) && region.isActive())
 					{
 						_actor.broadcastPacket(new MoveToPawn(_actor, pawn, offset));
 					}
@@ -577,7 +561,6 @@ public abstract class AbstractAI implements Ctrl
 		if (!_actor.isMovementDisabled())
 		{
 			// Set AI movement data
-			_clientMoving = true;
 			_clientMovingToPawnOffset = 0;
 			
 			// Calculate movement data for a move to location action and add the actor to movingObjects of GameTimeTaskManager
@@ -597,7 +580,7 @@ public abstract class AbstractAI implements Ctrl
 	 * <font color=#FF0000><b><u>Caution</u>: Low level function, used by AI subclasses</b></font>
 	 * @param loc
 	 */
-	protected void clientStopMoving(Location loc)
+	public void clientStopMoving(Location loc)
 	{
 		// Stop movement of the Creature
 		if (_actor.isMoving())
@@ -606,22 +589,6 @@ public abstract class AbstractAI implements Ctrl
 		}
 		
 		_clientMovingToPawnOffset = 0;
-		
-		if (!_clientMoving && (loc == null))
-		{
-			return;
-		}
-		
-		_clientMoving = false;
-		
-		// Send a Server->Client packet StopMove to the actor and all Player in its _knownPlayers
-		_actor.broadcastPacket(new StopMove(_actor));
-		
-		if (loc != null)
-		{
-			// Send a Server->Client packet StopRotation to the actor and all Player in its _knownPlayers
-			_actor.broadcastPacket(new StopRotation(_actor.getObjectId(), loc.getHeading(), 0));
-		}
 	}
 	
 	/**
@@ -634,7 +601,6 @@ public abstract class AbstractAI implements Ctrl
 			_clientMovingToPawnOffset = 0;
 			_actor.broadcastPacket(new StopMove(_actor));
 		}
-		_clientMoving = false;
 	}
 	
 	public boolean isAutoAttacking()
@@ -662,6 +628,12 @@ public abstract class AbstractAI implements Ctrl
 	 */
 	public void clientStartAutoAttack()
 	{
+		// Non attackable NPCs should not get in combat.
+		if (_actor.isNpc() && (!_actor.isAttackable() || _actor.isCoreAIDisabled()))
+		{
+			return;
+		}
+		
 		if (_actor.isSummon())
 		{
 			final Summon summon = _actor.asSummon();
@@ -707,6 +679,7 @@ public abstract class AbstractAI implements Ctrl
 			}
 			return;
 		}
+		
 		if (_actor.isPlayer())
 		{
 			if (!AttackStanceTaskManager.getInstance().hasAttackStanceTask(_actor) && isAutoAttacking())
@@ -736,7 +709,7 @@ public abstract class AbstractAI implements Ctrl
 		_actor.broadcastPacket(new Die(_actor));
 		
 		// Init AI
-		_intention = AI_INTENTION_IDLE;
+		_intention = Intention.IDLE;
 		_target = null;
 		_castTarget = null;
 		_attackTarget = null;
@@ -752,7 +725,7 @@ public abstract class AbstractAI implements Ctrl
 	 */
 	public void describeStateToPlayer(Player player)
 	{
-		if (_actor.isVisibleFor(player) && _clientMoving)
+		if (_actor.isVisibleFor(player) && _actor.isMoving())
 		{
 			if ((_clientMovingToPawnOffset != 0) && isFollowing())
 			{
@@ -769,7 +742,7 @@ public abstract class AbstractAI implements Ctrl
 	
 	public boolean isFollowing()
 	{
-		return (_followTarget != null) && ((_intention == AI_INTENTION_FOLLOW) || CreatureFollowTaskManager.getInstance().isFollowing(_actor));
+		return (_followTarget != null) && _followTarget.isCreature() && ((_intention == Intention.FOLLOW) || CreatureFollowTaskManager.getInstance().isFollowing(_actor));
 	}
 	
 	/**
@@ -839,7 +812,6 @@ public abstract class AbstractAI implements Ctrl
 		_attackTarget = target;
 	}
 	
-	@Override
 	public Creature getAttackTarget()
 	{
 		return _attackTarget;

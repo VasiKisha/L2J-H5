@@ -20,6 +20,7 @@
  */
 package org.l2jmobius.gameserver.model.actor;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,30 +34,30 @@ import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.data.NpcPersonalAIData;
 import org.l2jmobius.gameserver.data.xml.DynamicExpRateData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.enums.AISkillScope;
-import org.l2jmobius.gameserver.enums.AIType;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.Race;
-import org.l2jmobius.gameserver.enums.ShotType;
-import org.l2jmobius.gameserver.enums.Team;
+import org.l2jmobius.gameserver.data.xml.NpcPersonalAIData;
 import org.l2jmobius.gameserver.handler.BypassHandler;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.instancemanager.CHSiegeManager;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.RaidBossSpawnManager;
-import org.l2jmobius.gameserver.instancemanager.TownManager;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.CHSiegeManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.ItemManager;
+import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
+import org.l2jmobius.gameserver.managers.TownManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
+import org.l2jmobius.gameserver.model.actor.enums.npc.AISkillScope;
+import org.l2jmobius.gameserver.model.actor.enums.npc.AIType;
+import org.l2jmobius.gameserver.model.actor.holders.npc.FakePlayerHolder;
 import org.l2jmobius.gameserver.model.actor.instance.ClanHallManager;
 import org.l2jmobius.gameserver.model.actor.instance.Doorman;
 import org.l2jmobius.gameserver.model.actor.instance.Fisherman;
@@ -69,16 +70,18 @@ import org.l2jmobius.gameserver.model.actor.status.NpcStatus;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcCanBeSeen;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcEventReceived;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSkillFinished;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcSpawn;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcTeleport;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcCanBeSeen;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcEventReceived;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSkillFinished;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcSpawn;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcTeleport;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.events.timers.TimerHolder;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 import org.l2jmobius.gameserver.model.quest.QuestTimer;
@@ -94,17 +97,22 @@ import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.model.zone.type.TownZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.AbstractNpcInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.ExChangeNpcState;
+import org.l2jmobius.gameserver.network.serverpackets.ExPrivateStoreSetWholeMsg;
 import org.l2jmobius.gameserver.network.serverpackets.FakePlayerInfo;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
+import org.l2jmobius.gameserver.network.serverpackets.PrivateStoreMsgBuy;
+import org.l2jmobius.gameserver.network.serverpackets.PrivateStoreMsgSell;
+import org.l2jmobius.gameserver.network.serverpackets.RecipeShopMsg;
 import org.l2jmobius.gameserver.network.serverpackets.ServerObjectInfo;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
-import org.l2jmobius.gameserver.taskmanager.ItemsAutoDestroyTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.ItemsAutoDestroyTaskManager;
 import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
@@ -797,9 +805,17 @@ public class Npc extends Creature
 				return temp;
 			}
 		}
-		else if (HtmCache.getInstance().isLoadable(temp))
+		else
 		{
-			return temp;
+			final File file = new File(Config.DATAPACK_ROOT, temp);
+			if (file.isFile())
+			{
+				final String lowerCaseName = file.getName().toLowerCase();
+				if (lowerCaseName.endsWith(".htm") || lowerCaseName.endsWith(".html"))
+				{
+					return temp;
+				}
+			}
 		}
 		
 		// If the file is not found, the standard message "I have nothing to say to you" is returned
@@ -1200,7 +1216,7 @@ public class Npc extends Creature
 						if (!(Config.DISABLE_REWARDS_IN_INSTANCES && (getInstanceId() != 0)) && //
 							!(Config.DISABLE_REWARDS_IN_PVP_ZONES && isInsideZone(ZoneId.PVP)))
 						{
-							player.addItem("PK Item Reward", Config.REWARD_PK_ITEM_ID, Config.REWARD_PK_ITEM_AMOUNT, this, Config.REWARD_PK_ITEM_MESSAGE);
+							player.addItem(ItemProcessType.REWARD, Config.REWARD_PK_ITEM_ID, Config.REWARD_PK_ITEM_AMOUNT, this, Config.REWARD_PK_ITEM_MESSAGE);
 						}
 					}
 					// announce pk
@@ -1230,7 +1246,7 @@ public class Npc extends Creature
 					if (!(Config.DISABLE_REWARDS_IN_INSTANCES && (getInstanceId() != 0)) && //
 						!(Config.DISABLE_REWARDS_IN_PVP_ZONES && isInsideZone(ZoneId.PVP)))
 					{
-						player.addItem("PvP Item Reward", Config.REWARD_PVP_ITEM_ID, Config.REWARD_PVP_ITEM_AMOUNT, this, Config.REWARD_PVP_ITEM_MESSAGE);
+						player.addItem(ItemProcessType.REWARD, Config.REWARD_PVP_ITEM_ID, Config.REWARD_PVP_ITEM_AMOUNT, this, Config.REWARD_PVP_ITEM_MESSAGE);
 					}
 				}
 				// announce pvp
@@ -1479,6 +1495,40 @@ public class Npc extends Creature
 			if (_isFakePlayer)
 			{
 				player.sendPacket(new FakePlayerInfo(this));
+				
+				// Private store message support.
+				final FakePlayerHolder fakePlayerInfo = getTemplate().getFakePlayerInfo();
+				final int storeType = fakePlayerInfo.getPrivateStoreType();
+				if (storeType > 0)
+				{
+					final String message = fakePlayerInfo.getPrivateStoreMessage();
+					if (!message.isEmpty())
+					{
+						switch (storeType)
+						{
+							case 1: // Sell
+							{
+								player.sendPacket(new PrivateStoreMsgSell(getObjectId(), message));
+								break;
+							}
+							case 3: // Buy
+							{
+								player.sendPacket(new PrivateStoreMsgBuy(getObjectId(), message));
+								break;
+							}
+							case 5: // Manufacture
+							{
+								player.sendPacket(new RecipeShopMsg(getObjectId(), message));
+								break;
+							}
+							case 8: // Package Sell
+							{
+								player.sendPacket(new ExPrivateStoreSetWholeMsg(getObjectId(), message));
+								break;
+							}
+						}
+					}
+				}
 			}
 			else if (getRunSpeed() == 0)
 			{
@@ -1821,7 +1871,7 @@ public class Npc extends Creature
 				return null;
 			}
 			
-			item = ItemData.getInstance().createItem("Loot", itemId, itemCount, creature, this);
+			item = ItemManager.createItem(ItemProcessType.LOOT, itemId, itemCount, creature, this);
 			if (item == null)
 			{
 				return null;

@@ -25,6 +25,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.PetItemList;
@@ -69,12 +70,12 @@ public class Restoration extends AbstractEffect
 		
 		if (effected.isPlayer())
 		{
-			effected.asPlayer().addItem("Skill", _itemId, _itemCount, effector, true);
+			effected.asPlayer().addItem(ItemProcessType.REWARD, _itemId, _itemCount, effector, true);
 		}
 		else if (effected.isPet())
 		{
 			final Player player = effected.asPlayer();
-			effected.getInventory().addItem("Skill", _itemId, _itemCount, player, effector);
+			effected.getInventory().addItem(ItemProcessType.REWARD, _itemId, _itemCount, player, effector);
 			player.sendPacket(new PetItemList(effected.getInventory().getItems()));
 		}
 	}

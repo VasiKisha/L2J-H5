@@ -17,10 +17,10 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.enums.HtmlActionScope;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.PacketLogger;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.network.enums.HtmlActionScope;
+import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
  * @author HorridoJoho
@@ -144,7 +144,7 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 		}
 		if (player != null)
 		{
-			Util.buildHtmlActionCache(player, getScope(), _npcObjId, _html);
+			HtmlUtil.buildHtmlActionCache(player, getScope(), _npcObjId, _html);
 		}
 	}
 	

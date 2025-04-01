@@ -18,9 +18,9 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoom;
-import org.l2jmobius.gameserver.model.partymatching.PartyMatchRoomList;
-import org.l2jmobius.gameserver.model.partymatching.PartyMatchWaitingList;
+import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoom;
+import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoomList;
+import org.l2jmobius.gameserver.model.groups.matching.PartyMatchWaitingList;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExClosePartyRoom;
 import org.l2jmobius.gameserver.network.serverpackets.ListPartyWating;

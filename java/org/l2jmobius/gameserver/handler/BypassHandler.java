@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author nBd, UnAfraid
+ * @author nBd
  */
 public class BypassHandler implements IHandler<IBypassHandler, String>
 {

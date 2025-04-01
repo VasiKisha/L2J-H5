@@ -36,12 +36,9 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.data.holders.InstanceReenterTimeHolder;
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.InstanceReenterType;
-import org.l2jmobius.gameserver.enums.InstanceRemoveBuffType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -49,10 +46,11 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldRegion;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.templates.DoorTemplate;
-import org.l2jmobius.gameserver.model.holders.InstanceReenterTimeHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
@@ -458,15 +456,15 @@ public class Instance
 	public void loadInstanceTemplate(int templateId)
 	{
 		// TODO: Cache templates.
-		Document doc = null;
+		Document document = null;
 		final File xml = new File("." + File.separator + "data" + File.separator + "instances" + File.separator + InstanceManager.getInstance().getInstanceTemplateFileName(templateId));
 		try
 		{
 			final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 			factory.setValidating(false);
 			factory.setIgnoringComments(true);
-			doc = factory.newDocumentBuilder().parse(xml);
-			for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+			document = factory.newDocumentBuilder().parse(xml);
+			for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 			{
 				if ("instance".equalsIgnoreCase(n.getNodeName()))
 				{

@@ -17,13 +17,13 @@
 package quests.Q10504_JewelOfAntharas;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Jewel of Antharas (10504)
@@ -56,7 +56,7 @@ public class Q10504_JewelOfAntharas extends Quest
 	public void actionForEachPlayer(Player player, Npc npc, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
-		if ((qs != null) && qs.isCond(1) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if ((qs != null) && qs.isCond(1) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
 		{
 			takeItems(player, CLEAR_CRYSTAL, -1);
 			giveItems(player, FILLED_CRYSTAL_ANTHARAS_ENERGY, 1);
@@ -98,10 +98,9 @@ public class Q10504_JewelOfAntharas extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		executeForEachPlayer(killer, npc, isSummon, true, true);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

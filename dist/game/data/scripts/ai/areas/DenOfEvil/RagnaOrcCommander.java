@@ -34,11 +34,10 @@ public class RagnaOrcCommander extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		spawnMinions(npc, "Privates1");
 		spawnMinions(npc, getRandomBoolean() ? "Privates2" : "Privates3");
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

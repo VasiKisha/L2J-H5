@@ -17,7 +17,7 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 /**
- * @author ShanSoft Packets Structure: chddd
+ * @author ShanSoft
  */
 public class RequestChangeBookMarkSlot extends ClientPacket
 {

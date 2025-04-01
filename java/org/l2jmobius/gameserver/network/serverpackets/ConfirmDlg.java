@@ -23,7 +23,6 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage.SMParam;
 
 /**
- * ConfirmDlg server packet implementation.
  * @author kombat
  */
 public class ConfirmDlg extends ServerPacket

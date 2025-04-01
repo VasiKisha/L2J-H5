@@ -16,10 +16,10 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.instance.Defender;
 import org.l2jmobius.gameserver.model.actor.instance.FortCommander;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
@@ -69,7 +69,7 @@ public class Fear extends AbstractEffect
 	@Override
 	public boolean onActionTime(Creature effector, Creature effected, Skill skill)
 	{
-		effected.getAI().notifyEvent(CtrlEvent.EVT_AFRAID, effector, false);
+		effected.getAI().notifyAction(Action.AFRAID, effector, false);
 		return false;
 	}
 	
@@ -81,6 +81,6 @@ public class Fear extends AbstractEffect
 			effected.abortCast();
 		}
 		
-		effected.getAI().notifyEvent(CtrlEvent.EVT_AFRAID, effector, true);
+		effected.getAI().notifyAction(Action.AFRAID, effector, true);
 	}
 }

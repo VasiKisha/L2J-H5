@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.model.conditions;
 
 import java.util.Set;
 
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;

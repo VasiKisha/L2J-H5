@@ -1,28 +1,31 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.data.xml.FakePlayerData;
-import org.l2jmobius.gameserver.enums.Sex;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.actor.enums.player.Sex;
+import org.l2jmobius.gameserver.model.actor.holders.npc.FakePlayerHolder;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.holders.FakePlayerHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -69,7 +72,7 @@ public class FakePlayerInfo extends ServerPacket
 		_swimWalkSpd = (int) Math.round(npc.getSwimWalkSpeed() / _moveMultiplier);
 		_flyRunSpd = npc.isFlying() ? _runSpd : 0;
 		_flyWalkSpd = npc.isFlying() ? _walkSpd : 0;
-		_fpcHolder = FakePlayerData.getInstance().getInfo(npc.getId());
+		_fpcHolder = npc.getTemplate().getFakePlayerInfo();
 		_clan = ClanTable.getInstance().getClan(_fpcHolder.getClanId());
 	}
 	
@@ -85,7 +88,7 @@ public class FakePlayerInfo extends ServerPacket
 		buffer.writeString(_npc.getName());
 		buffer.writeInt(_npc.getRace().ordinal());
 		buffer.writeInt(_npc.getTemplate().getSex() == Sex.FEMALE);
-		buffer.writeInt(_fpcHolder.getClassId());
+		buffer.writeInt(_fpcHolder.getPlayerClass().getId());
 		buffer.writeInt(0); // Inventory.PAPERDOLL_UNDER
 		buffer.writeInt(_fpcHolder.getEquipHead());
 		buffer.writeInt(_fpcHolder.getEquipRHand());
@@ -148,13 +151,13 @@ public class FakePlayerInfo extends ServerPacket
 			buffer.writeInt(0);
 			buffer.writeInt(0);
 		}
-		buffer.writeByte(1); // !isSitting() (at some initial tests it worked)
+		buffer.writeByte(!_fpcHolder.isSitting());
 		buffer.writeByte(_npc.isRunning());
 		buffer.writeByte(_npc.isInCombat());
 		buffer.writeByte(_npc.isAlikeDead());
 		buffer.writeByte(_npc.isInvisible());
 		buffer.writeByte(0); // 1-on Strider, 2-on Wyvern, 3-on Great Wolf, 0-no mount
-		buffer.writeByte(0); // getPrivateStoreType().getId()
+		buffer.writeByte(_fpcHolder.getPrivateStoreType());
 		buffer.writeShort(0); // getCubics().size()
 		// getCubics().keySet().forEach(packet::writeH);
 		buffer.writeByte(0); // isInPartyMatchRoom
@@ -162,7 +165,7 @@ public class FakePlayerInfo extends ServerPacket
 		buffer.writeByte(_npc.isInsideZone(ZoneId.WATER));
 		buffer.writeShort(_fpcHolder.getRecommends()); // Blue value for name (0 = white, 255 = pure blue)
 		buffer.writeInt(0); // getMountNpcId() == 0 ? 0 : getMountNpcId() + 1000000
-		buffer.writeInt(_fpcHolder.getClassId());
+		buffer.writeInt(_fpcHolder.getPlayerClass().getId());
 		buffer.writeInt(0); // ?
 		buffer.writeByte(_fpcHolder.getWeaponEnchantLevel()); // isMounted() ? 0 : _enchantLevel
 		buffer.writeByte(_npc.getTeam().getId());

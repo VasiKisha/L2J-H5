@@ -16,13 +16,12 @@
  */
 package org.l2jmobius.gameserver.model;
 
-import org.l2jmobius.gameserver.enums.CrestType;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
+import org.l2jmobius.gameserver.model.clan.enums.CrestType;
 
 /**
  * @author NosBit
  */
-public class Crest implements IIdentifiable
+public class Crest
 {
 	private final int _id;
 	private final byte[] _data;
@@ -35,7 +34,6 @@ public class Crest implements IIdentifiable
 		_type = type;
 	}
 	
-	@Override
 	public int getId()
 	{
 		return _id;

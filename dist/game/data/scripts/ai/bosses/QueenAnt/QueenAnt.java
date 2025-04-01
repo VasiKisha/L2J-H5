@@ -20,8 +20,9 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
+import org.l2jmobius.commons.time.TimeUtil;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -29,9 +30,9 @@ import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.type.BossZone;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
@@ -161,7 +162,7 @@ public class QueenAnt extends AbstractNpcAI
 						continue;
 					}
 					
-					notCasting = nurse.getAI().getIntention() != CtrlIntention.AI_INTENTION_CAST;
+					notCasting = nurse.getAI().getIntention() != Intention.CAST;
 					if (larvaNeedHeal)
 					{
 						if ((nurse.getTarget() != _larva) || notCasting)
@@ -224,7 +225,7 @@ public class QueenAnt extends AbstractNpcAI
 				else if (_queen.calculateDistance2D(QUEEN_X, QUEEN_Y, QUEEN_Z) > 2000)
 				{
 					_queen.clearAggroList();
-					_queen.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(QUEEN_X, QUEEN_Y, QUEEN_Z, 0));
+					_queen.getAI().setIntention(Intention.MOVE_TO, new Location(QUEEN_X, QUEEN_Y, QUEEN_Z, 0));
 				}
 				break;
 			}
@@ -233,7 +234,7 @@ public class QueenAnt extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		final Monster mob = npc.asMonster();
 		switch (npc.getId())
@@ -265,31 +266,29 @@ public class QueenAnt extends AbstractNpcAI
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
+	public void onFactionCall(Npc npc, Npc caller, Player attacker, boolean isSummon)
 	{
 		if ((caller == null) || (npc == null))
 		{
-			return super.onFactionCall(npc, caller, attacker, isSummon);
+			return;
 		}
 		
-		if (!npc.isCastingNow() && (npc.getAI().getIntention() != CtrlIntention.AI_INTENTION_CAST) && (caller.getCurrentHp() < caller.getMaxHp()))
+		if (!npc.isCastingNow() && (npc.getAI().getIntention() != Intention.CAST) && (caller.getCurrentHp() < caller.getMaxHp()))
 		{
 			npc.setTarget(caller);
 			npc.asAttackable().useMagic(HEAL1.getSkill());
 		}
-		return null;
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		if ((npc == null) || (player.isGM() && player.isInvisible()))
 		{
-			return null;
+			return;
 		}
 		
 		final boolean isMage;
@@ -307,7 +306,7 @@ public class QueenAnt extends AbstractNpcAI
 		
 		if (character == null)
 		{
-			return null;
+			return;
 		}
 		
 		if (!Config.RAID_DISABLE_CURSE && ((character.getLevel() - npc.getLevel()) > 8))
@@ -332,14 +331,11 @@ public class QueenAnt extends AbstractNpcAI
 			}
 			
 			npc.asAttackable().stopHating(character); // for calling again
-			return null;
 		}
-		
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final int npcId = npc.getId();
 		if (npcId == QUEEN)
@@ -350,6 +346,11 @@ public class QueenAnt extends AbstractNpcAI
 			final long baseIntervalMillis = Config.QUEEN_ANT_SPAWN_INTERVAL * 3600000;
 			final long randomRangeMillis = Config.QUEEN_ANT_SPAWN_RANDOM * 3600000;
 			final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
+			
+			// Next respawn time.
+			final long nextRespawnTime = System.currentTimeMillis() + respawnTime;
+			LOGGER.info("Queen Ant will respawn at: " + TimeUtil.getDateTimeString(nextRespawnTime));
+			
 			startQuestTimer("queen_unlock", respawnTime, null, null);
 			cancelQuestTimer("action", npc, null);
 			cancelQuestTimer("heal", null, null);
@@ -386,7 +387,6 @@ public class QueenAnt extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	public static void main(String[] args)

@@ -19,6 +19,7 @@ package quests.Q00636_TruthBeyond;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -68,18 +69,17 @@ public class Q00636_TruthBeyond extends Quest
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		// QuestState already null on enter because quest is finished.
 		if (creature.isPlayer())
 		{
 			final Player player = creature.asPlayer();
-			if (player.destroyItemByItemId("Mark", VISITOR_MARK, 1, player, false))
+			if (player.destroyItemByItemId(ItemProcessType.FEE, VISITOR_MARK, 1, player, false))
 			{
-				player.addItem("Mark", FADED_MARK, 1, player, true);
+				player.addItem(ItemProcessType.QUEST, FADED_MARK, 1, player, true);
 			}
 		}
-		return null;
 	}
 	
 	@Override

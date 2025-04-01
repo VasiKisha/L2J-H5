@@ -1,23 +1,32 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.geoengine;
 
+import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.nio.ByteOrder;
+import java.nio.channels.FileChannel.MapMode;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.concurrent.atomic.AtomicReferenceArray;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,20 +34,30 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.FenceData;
 import org.l2jmobius.gameserver.geoengine.geodata.Cell;
-import org.l2jmobius.gameserver.geoengine.geodata.GeoData;
 import org.l2jmobius.gameserver.geoengine.geodata.IRegion;
+import org.l2jmobius.gameserver.geoengine.geodata.regions.NullRegion;
 import org.l2jmobius.gameserver.geoengine.geodata.regions.Region;
+import org.l2jmobius.gameserver.geoengine.util.GridLineIterator2D;
+import org.l2jmobius.gameserver.geoengine.util.GridLineIterator3D;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import org.l2jmobius.gameserver.util.GeoUtils;
-import org.l2jmobius.gameserver.util.LinePointIterator;
-import org.l2jmobius.gameserver.util.LinePointIterator3D;
 
 /**
- * GeoEngine.
- * @author -Nemesiss-, HorridoJoho
+ * The {@code GeoEngine} class is responsible for managing geospatial data used in the game.<br>
+ * It handles geodata loading, movement validation, line-of-sight (LOS) checks and other spatial calculations related to the game's 3D world.
+ * <p>
+ * Key functionalities include:
+ * <ul>
+ * <li>Loading geodata files for specific regions.</li>
+ * <li>Converting between world and geodata coordinates.</li>
+ * <li>Validating movement paths and detecting obstacles.</li>
+ * <li>Checking line-of-sight (LOS) between two positions.</li>
+ * <li>Retrieving terrain height and handling elevation-related calculations.</li>
+ * </ul>
+ * @author -Nemesiss-, HorridoJoho, Mobius
  */
 public class GeoEngine
 {
@@ -50,10 +69,21 @@ public class GeoEngine
 	private static final int MAX_SEE_OVER_HEIGHT = 48;
 	private static final int SPAWN_Z_DELTA_LIMIT = 100;
 	
-	private final GeoData _geodata = new GeoData();
+	private static final int WORLD_MIN_X = -655360;
+	private static final int WORLD_MIN_Y = -589824;
+	private static final int GEO_REGIONS_X = 32;
+	private static final int GEO_REGIONS_Y = 32;
+	private static final int GEO_REGIONS = GEO_REGIONS_X * GEO_REGIONS_Y;
+	private static final AtomicReferenceArray<IRegion> REGIONS = new AtomicReferenceArray<>(GEO_REGIONS);
 	
 	protected GeoEngine()
 	{
+		// Initially set all regions to NullRegion.
+		for (int i = 0; i < GEO_REGIONS; i++)
+		{
+			REGIONS.set(i, NullRegion.INSTANCE);
+		}
+		
 		int loadedRegions = 0;
 		try
 		{
@@ -67,7 +97,7 @@ public class GeoEngine
 						try
 						{
 							// LOGGER.info(getClass().getSimpleName() + ": Loading " + geoFilePath.getFileName() + "...");
-							_geodata.loadRegion(geoFilePath, regionX, regionY);
+							loadRegion(geoFilePath, regionX, regionY);
 							loadedRegions++;
 						}
 						catch (Exception e)
@@ -94,99 +124,203 @@ public class GeoEngine
 		}
 	}
 	
+	/**
+	 * Loads geodata for a specific region from the provided file path.
+	 * @param filePath the path to the geodata file.
+	 * @param regionX the X coordinate of the region.
+	 * @param regionY the Y coordinate of the region.
+	 * @throws IOException if an error occurs while reading the file.
+	 */
+	private void loadRegion(Path filePath, int regionX, int regionY) throws IOException
+	{
+		final int regionOffset = (regionX * GEO_REGIONS_Y) + regionY;
+		try (RandomAccessFile raf = new RandomAccessFile(filePath.toFile(), "r"))
+		{
+			REGIONS.set(regionOffset, new Region(raf.getChannel().map(MapMode.READ_ONLY, 0, raf.length()).order(ByteOrder.LITTLE_ENDIAN)));
+		}
+	}
+	
+	/**
+	 * Sets a geodata region at the specified coordinates.
+	 * @param regionX the X coordinate of the region.
+	 * @param regionY the Y coordinate of the region.
+	 * @param region the geodata region to set.
+	 */
+	public void setRegion(int regionX, int regionY, Region region)
+	{
+		final int regionOffset = (regionX * GEO_REGIONS_Y) + regionY;
+		REGIONS.set(regionOffset, region);
+	}
+	
+	/**
+	 * Retrieves the geodata region for the specified coordinates.
+	 * @param geoX the geodata X coordinate.
+	 * @param geoY the geodata Y coordinate.
+	 * @return the geodata region.
+	 */
+	public IRegion getRegion(int geoX, int geoY)
+	{
+		return REGIONS.get(((geoX / IRegion.REGION_CELLS_X) * GEO_REGIONS_Y) + (geoY / IRegion.REGION_CELLS_Y));
+	}
+	
+	/**
+	 * Checks if geodata is available at the specified coordinates.
+	 * @param geoX the geodata X coordinate.
+	 * @param geoY the geodata Y coordinate.
+	 * @return {@code true} if geodata is available, {@code false} otherwise.
+	 */
 	public boolean hasGeoPos(int geoX, int geoY)
 	{
-		return _geodata.hasGeoPos(geoX, geoY);
+		return getRegion(geoX, geoY).hasGeo();
 	}
 	
+	/**
+	 * Checks if movement is possible in the specified direction (NSWE) from the given geodata coordinates and height.
+	 * @param geoX the geodata X coordinate.
+	 * @param geoY the geodata Y coordinate.
+	 * @param worldZ the world Z coordinate.
+	 * @param nswe the direction to check.
+	 * @return {@code true} if movement is possible, {@code false} otherwise.
+	 */
 	public boolean checkNearestNswe(int geoX, int geoY, int worldZ, int nswe)
 	{
-		return _geodata.checkNearestNswe(geoX, geoY, worldZ, nswe);
+		return getRegion(geoX, geoY).checkNearestNswe(geoX, geoY, worldZ, nswe);
 	}
 	
+	/**
+	 * Checks if movement is possible in the specified direction (NSWE) from the given geodata coordinates and height, considering anti-corner-cut logic.
+	 * @param geoX the geodata X coordinate.
+	 * @param geoY the geodata Y coordinate.
+	 * @param worldZ the world Z coordinate.
+	 * @param nswe the direction to check.
+	 * @return {@code true} if movement is possible, {@code false} otherwise.
+	 */
 	public boolean checkNearestNsweAntiCornerCut(int geoX, int geoY, int worldZ, int nswe)
 	{
 		boolean can = true;
+		
+		final IRegion region = getRegion(geoX, geoY);
 		if ((nswe & Cell.NSWE_NORTH_EAST) == Cell.NSWE_NORTH_EAST)
 		{
-			// can = canEnterNeighbors(prevX, prevY - 1, prevGeoZ, Direction.EAST) && canEnterNeighbors(prevX + 1, prevY, prevGeoZ, Direction.NORTH);
-			can = checkNearestNswe(geoX, geoY - 1, worldZ, Cell.NSWE_EAST) && checkNearestNswe(geoX + 1, geoY, worldZ, Cell.NSWE_NORTH);
+			can = region.checkNearestNswe(geoX, geoY - 1, worldZ, Cell.NSWE_EAST) && region.checkNearestNswe(geoX + 1, geoY, worldZ, Cell.NSWE_NORTH);
 		}
 		
 		if (can && ((nswe & Cell.NSWE_NORTH_WEST) == Cell.NSWE_NORTH_WEST))
 		{
-			// can = canEnterNeighbors(prevX, prevY - 1, prevGeoZ, Direction.WEST) && canEnterNeighbors(prevX - 1, prevY, prevGeoZ, Direction.NORTH);
-			can = checkNearestNswe(geoX, geoY - 1, worldZ, Cell.NSWE_WEST) && checkNearestNswe(geoX, geoY - 1, worldZ, Cell.NSWE_NORTH);
+			can = region.checkNearestNswe(geoX, geoY - 1, worldZ, Cell.NSWE_WEST) && region.checkNearestNswe(geoX - 1, geoY, worldZ, Cell.NSWE_NORTH);
 		}
 		
 		if (can && ((nswe & Cell.NSWE_SOUTH_EAST) == Cell.NSWE_SOUTH_EAST))
 		{
-			// can = canEnterNeighbors(prevX, prevY + 1, prevGeoZ, Direction.EAST) && canEnterNeighbors(prevX + 1, prevY, prevGeoZ, Direction.SOUTH);
-			can = checkNearestNswe(geoX, geoY + 1, worldZ, Cell.NSWE_EAST) && checkNearestNswe(geoX + 1, geoY, worldZ, Cell.NSWE_SOUTH);
+			can = region.checkNearestNswe(geoX, geoY + 1, worldZ, Cell.NSWE_EAST) && region.checkNearestNswe(geoX + 1, geoY, worldZ, Cell.NSWE_SOUTH);
 		}
 		
 		if (can && ((nswe & Cell.NSWE_SOUTH_WEST) == Cell.NSWE_SOUTH_WEST))
 		{
-			// can = canEnterNeighbors(prevX, prevY + 1, prevGeoZ, Direction.WEST) && canEnterNeighbors(prevX - 1, prevY, prevGeoZ, Direction.SOUTH);
-			can = checkNearestNswe(geoX, geoY + 1, worldZ, Cell.NSWE_WEST) && checkNearestNswe(geoX - 1, geoY, worldZ, Cell.NSWE_SOUTH);
+			can = region.checkNearestNswe(geoX, geoY + 1, worldZ, Cell.NSWE_WEST) && region.checkNearestNswe(geoX - 1, geoY, worldZ, Cell.NSWE_SOUTH);
 		}
 		
-		return can && checkNearestNswe(geoX, geoY, worldZ, nswe);
+		return can && region.checkNearestNswe(geoX, geoY, worldZ, nswe);
 	}
 	
+	/**
+	 * Sets the nearest NSWE data at the specified coordinates and height.
+	 * @param geoX the geodata X coordinate.
+	 * @param geoY the geodata Y coordinate.
+	 * @param worldZ the world Z coordinate.
+	 * @param nswe the direction data to set.
+	 */
 	public void setNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
 	{
-		_geodata.setNearestNswe(geoX, geoY, worldZ, nswe);
+		getRegion(geoX, geoY).setNearestNswe(geoX, geoY, worldZ, nswe);
 	}
 	
+	/**
+	 * Removes the nearest NSWE data at the specified coordinates and height.
+	 * @param geoX the geodata X coordinate.
+	 * @param geoY the geodata Y coordinate.
+	 * @param worldZ the world Z coordinate.
+	 * @param nswe the direction data to remove.
+	 */
 	public void unsetNearestNswe(int geoX, int geoY, int worldZ, byte nswe)
 	{
-		_geodata.unsetNearestNswe(geoX, geoY, worldZ, nswe);
+		getRegion(geoX, geoY).unsetNearestNswe(geoX, geoY, worldZ, nswe);
 	}
 	
+	/**
+	 * Retrieves the nearest Z coordinate at the specified geodata coordinates and height.
+	 * @param geoX the geodata X coordinate.
+	 * @param geoY the geodata Y coordinate.
+	 * @param worldZ the world Z coordinate.
+	 * @return the nearest Z coordinate.
+	 */
 	public int getNearestZ(int geoX, int geoY, int worldZ)
 	{
-		return _geodata.getNearestZ(geoX, geoY, worldZ);
+		return getRegion(geoX, geoY).getNearestZ(geoX, geoY, worldZ);
 	}
 	
+	/**
+	 * Retrieves the next lower Z coordinate at the specified geodata coordinates and height.
+	 * @param geoX the geodata X coordinate.
+	 * @param geoY the geodata Y coordinate.
+	 * @param worldZ the world Z coordinate.
+	 * @return the next lower Z coordinate.
+	 */
 	public int getNextLowerZ(int geoX, int geoY, int worldZ)
 	{
-		return _geodata.getNextLowerZ(geoX, geoY, worldZ);
+		return getRegion(geoX, geoY).getNextLowerZ(geoX, geoY, worldZ);
 	}
 	
+	/**
+	 * Retrieves the next higher Z coordinate at the specified geodata coordinates and height.
+	 * @param geoX the geodata X coordinate.
+	 * @param geoY the geodata Y coordinate.
+	 * @param worldZ the world Z coordinate.
+	 * @return the next higher Z coordinate.
+	 */
 	public int getNextHigherZ(int geoX, int geoY, int worldZ)
 	{
-		return _geodata.getNextHigherZ(geoX, geoY, worldZ);
+		return getRegion(geoX, geoY).getNextHigherZ(geoX, geoY, worldZ);
 	}
 	
+	/**
+	 * Converts a world X coordinate to a geodata X coordinate.
+	 * @param worldX the world X coordinate.
+	 * @return the corresponding geodata X coordinate.
+	 */
 	public int getGeoX(int worldX)
 	{
-		return _geodata.getGeoX(worldX);
+		return (worldX - WORLD_MIN_X) / 16;
 	}
 	
+	/**
+	 * Converts a world Y coordinate to a geodata Y coordinate.
+	 * @param worldY the world Y coordinate.
+	 * @return the corresponding geodata Y coordinate.
+	 */
 	public int getGeoY(int worldY)
 	{
-		return _geodata.getGeoY(worldY);
+		return (worldY - WORLD_MIN_Y) / 16;
 	}
 	
+	/**
+	 * Converts a geodata X coordinate to a world X coordinate.
+	 * @param geoX the geodata X coordinate.
+	 * @return the corresponding world X coordinate.
+	 */
 	public int getWorldX(int geoX)
 	{
-		return _geodata.getWorldX(geoX);
+		return (geoX * 16) + WORLD_MIN_X + 8;
 	}
 	
+	/**
+	 * Converts a geodata Y coordinate to a world Y coordinate.
+	 * @param geoY the geodata Y coordinate.
+	 * @return the corresponding world Y coordinate.
+	 */
 	public int getWorldY(int geoY)
 	{
-		return _geodata.getWorldY(geoY);
-	}
-	
-	public IRegion getRegion(int geoX, int geoY)
-	{
-		return _geodata.getRegion(geoX, geoY);
-	}
-	
-	public void setRegion(int regionX, int regionY, Region region)
-	{
-		_geodata.setRegion(regionX, regionY, region);
+		return (geoY * 16) + WORLD_MIN_Y + 8;
 	}
 	
 	/**
@@ -361,7 +495,7 @@ public class GeoEngine
 			geoY = tmp;
 		}
 		
-		final LinePointIterator3D pointIter = new LinePointIterator3D(geoX, geoY, nearestFromZ, tGeoX, tGeoY, nearestToZ);
+		final GridLineIterator3D pointIter = new GridLineIterator3D(geoX, geoY, nearestFromZ, tGeoX, tGeoY, nearestToZ);
 		// First point is guaranteed to be available, skip it, we can always see our own position.
 		pointIter.next();
 		int prevX = pointIter.x();
@@ -479,7 +613,7 @@ public class GeoEngine
 			return new Location(x, y, getHeight(x, y, nearestFromZ));
 		}
 		
-		final LinePointIterator pointIter = new LinePointIterator(geoX, geoY, tGeoX, tGeoY);
+		final GridLineIterator2D pointIter = new GridLineIterator2D(geoX, geoY, tGeoX, tGeoY);
 		// first point is guaranteed to be available
 		pointIter.next();
 		int prevX = pointIter.x();
@@ -491,11 +625,27 @@ public class GeoEngine
 			final int curX = pointIter.x();
 			final int curY = pointIter.y();
 			final int curZ = getNearestZ(curX, curY, prevZ);
-			if (hasGeoPos(prevX, prevY) && !checkNearestNsweAntiCornerCut(prevX, prevY, prevZ, GeoUtils.computeNswe(prevX, prevY, curX, curY)))
+			if ((curZ - prevZ) > 40) // Check for sudden height increase.
 			{
 				// Can't move, return previous location.
 				return new Location(getWorldX(prevX), getWorldY(prevY), prevZ);
 			}
+			
+			if (hasGeoPos(prevX, prevY))
+			{
+				if (Config.AVOID_ABSTRUCTED_PATH_NODES && !checkNearestNswe(curX, curY, curZ, Cell.NSWE_ALL))
+				{
+					// Can't move, return previous location.
+					return new Location(getWorldX(prevX), getWorldY(prevY), prevZ);
+				}
+				
+				if (!checkNearestNsweAntiCornerCut(prevX, prevY, prevZ, GeoUtils.computeNswe(prevX, prevY, curX, curY)))
+				{
+					// Can't move, return previous location.
+					return new Location(getWorldX(prevX), getWorldY(prevY), prevZ);
+				}
+			}
+			
 			prevX = curX;
 			prevY = curY;
 			prevZ = curZ;
@@ -535,7 +685,7 @@ public class GeoEngine
 			return false;
 		}
 		
-		final LinePointIterator pointIter = new LinePointIterator(geoX, geoY, tGeoX, tGeoY);
+		final GridLineIterator2D pointIter = new GridLineIterator2D(geoX, geoY, tGeoX, tGeoY);
 		// First point is guaranteed to be available.
 		pointIter.next();
 		int prevX = pointIter.x();
@@ -547,36 +697,29 @@ public class GeoEngine
 			final int curX = pointIter.x();
 			final int curY = pointIter.y();
 			final int curZ = getNearestZ(curX, curY, prevZ);
-			if (hasGeoPos(prevX, prevY) && !checkNearestNsweAntiCornerCut(prevX, prevY, prevZ, GeoUtils.computeNswe(prevX, prevY, curX, curY)))
+			if ((curZ - prevZ) > 40) // Check for sudden height increase.
 			{
 				return false;
 			}
+			
+			if (hasGeoPos(prevX, prevY))
+			{
+				if (Config.AVOID_ABSTRUCTED_PATH_NODES && !checkNearestNswe(curX, curY, curZ, Cell.NSWE_ALL))
+				{
+					return false;
+				}
+				
+				if (!checkNearestNsweAntiCornerCut(prevX, prevY, prevZ, GeoUtils.computeNswe(prevX, prevY, curX, curY)))
+				{
+					return false;
+				}
+			}
+			
 			prevX = curX;
 			prevY = curY;
 			prevZ = curZ;
 		}
 		return !hasGeoPos(prevX, prevY) || (prevZ == nearestToZ);
-	}
-	
-	public int traceTerrainZ(int x, int y, int z1, int tx, int ty)
-	{
-		final int geoX = getGeoX(x);
-		final int geoY = getGeoY(y);
-		final int nearestFromZ = getNearestZ(geoX, geoY, z1);
-		final int tGeoX = getGeoX(tx);
-		final int tGeoY = getGeoY(ty);
-		
-		final LinePointIterator pointIter = new LinePointIterator(geoX, geoY, tGeoX, tGeoY);
-		// First point is guaranteed to be available.
-		pointIter.next();
-		int prevZ = nearestFromZ;
-		
-		while (pointIter.next())
-		{
-			prevZ = getNearestZ(pointIter.x(), pointIter.y(), prevZ);
-		}
-		
-		return prevZ;
 	}
 	
 	/**
@@ -616,11 +759,11 @@ public class GeoEngine
 	
 	public static GeoEngine getInstance()
 	{
-		return SingletonHolder._instance;
+		return SingletonHolder.INSTANCE;
 	}
 	
 	private static class SingletonHolder
 	{
-		protected static final GeoEngine _instance = new GeoEngine();
+		protected static final GeoEngine INSTANCE = new GeoEngine();
 	}
 }

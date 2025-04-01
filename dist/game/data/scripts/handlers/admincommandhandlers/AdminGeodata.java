@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.admincommandhandlers;
 
@@ -34,9 +38,8 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 import org.l2jmobius.gameserver.util.GeoUtils;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.HtmlUtil;
 
 /**
  * @author Mobius, -Nemesiss-, HorridoJoho
@@ -90,11 +93,11 @@ public class AdminGeodata implements IAdminCommandHandler
 				final int geoY = GeoEngine.getInstance().getGeoY(worldY);
 				if (GeoEngine.getInstance().hasGeoPos(geoX, geoY))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "WorldX: " + worldX + ", WorldY: " + worldY + ", WorldZ: " + worldZ + ", GeoX: " + geoX + ", GeoY: " + geoY + ", GeoZ: " + GeoEngine.getInstance().getHeight(worldX, worldY, worldZ));
+					activeChar.sendSysMessage("WorldX: " + worldX + ", WorldY: " + worldY + ", WorldZ: " + worldZ + ", GeoX: " + geoX + ", GeoY: " + geoY + ", GeoZ: " + GeoEngine.getInstance().getHeight(worldX, worldY, worldZ));
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "There is no geodata at this position.");
+					activeChar.sendSysMessage("There is no geodata at this position.");
 				}
 				break;
 			}
@@ -107,11 +110,11 @@ public class AdminGeodata implements IAdminCommandHandler
 				final int geoY = GeoEngine.getInstance().getGeoY(worldY);
 				if (GeoEngine.getInstance().hasGeoPos(geoX, geoY))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "WorldX: " + worldX + ", WorldY: " + worldY + ", WorldZ: " + worldZ + ", GeoX: " + geoX + ", GeoY: " + geoY + ", GeoZ: " + GeoEngine.getInstance().getHeight(worldX, worldY, worldZ));
+					activeChar.sendSysMessage("WorldX: " + worldX + ", WorldY: " + worldY + ", WorldZ: " + worldZ + ", GeoX: " + geoX + ", GeoY: " + geoY + ", GeoZ: " + GeoEngine.getInstance().getHeight(worldX, worldY, worldZ));
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "There is no geodata at this position.");
+					activeChar.sendSysMessage("There is no geodata at this position.");
 				}
 				break;
 			}
@@ -122,11 +125,11 @@ public class AdminGeodata implements IAdminCommandHandler
 				{
 					if (GeoEngine.getInstance().canSeeTarget(activeChar, target))
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Can move beeline.");
+						activeChar.sendSysMessage("Can move beeline.");
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Can not move beeline!");
+						activeChar.sendSysMessage("Can not move beeline!");
 					}
 				}
 				else
@@ -142,7 +145,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				{
 					if (GeoEngine.getInstance().canSeeTarget(activeChar, target))
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Can see target.");
+						activeChar.sendSysMessage("Can see target.");
 					}
 					else
 					{
@@ -171,7 +174,7 @@ public class AdminGeodata implements IAdminCommandHandler
 			{
 				final int x = ((activeChar.getX() - World.WORLD_X_MIN) >> 15) + World.TILE_X_MIN;
 				final int y = ((activeChar.getY() - World.WORLD_Y_MIN) >> 15) + World.TILE_Y_MIN;
-				BuilderUtil.sendSysMessage(activeChar, "GeoMap: " + x + "_" + y + " (" + ((x - World.TILE_ZERO_COORD_X) * World.TILE_SIZE) + "," + ((y - World.TILE_ZERO_COORD_Y) * World.TILE_SIZE) + " to " + ((((x - World.TILE_ZERO_COORD_X) * World.TILE_SIZE) + World.TILE_SIZE) - 1) + "," + ((((y - World.TILE_ZERO_COORD_Y) * World.TILE_SIZE) + World.TILE_SIZE) - 1) + ")");
+				activeChar.sendSysMessage("GeoMap: " + x + "_" + y + " (" + ((x - World.TILE_ZERO_COORD_X) * World.TILE_SIZE) + "," + ((y - World.TILE_ZERO_COORD_Y) * World.TILE_SIZE) + " to " + ((((x - World.TILE_ZERO_COORD_X) * World.TILE_SIZE) + World.TILE_SIZE) - 1) + "," + ((((y - World.TILE_ZERO_COORD_Y) * World.TILE_SIZE) + World.TILE_SIZE) - 1) + ")");
 				break;
 			}
 			case "admin_geocell":
@@ -181,7 +184,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				final int geoZ = GeoEngine.getInstance().getNearestZ(geoX, geoY, activeChar.getZ());
 				final int worldX = GeoEngine.getInstance().getWorldX(geoX);
 				final int worldY = GeoEngine.getInstance().getWorldY(geoY);
-				BuilderUtil.sendSysMessage(activeChar, "GeoCell: " + geoX + ", " + geoY + ". XYZ (" + worldX + ", " + worldY + ", " + geoZ + ")");
+				activeChar.sendSysMessage("GeoCell: " + geoX + ", " + geoY + ". XYZ (" + worldX + ", " + worldY + ", " + geoZ + ")");
 				break;
 			}
 			case "admin_geosave":
@@ -194,7 +197,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				}
 				catch (IOException e)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Could not create output directory.");
+					activeChar.sendSysMessage("Could not create output directory.");
 					return false;
 				}
 				
@@ -204,15 +207,15 @@ public class AdminGeodata implements IAdminCommandHandler
 				final IRegion region = GeoEngine.getInstance().getRegion(GeoEngine.getInstance().getGeoX(activeChar.getX()), GeoEngine.getInstance().getGeoY(activeChar.getY()));
 				if (region instanceof NullRegion)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Could not find region: " + x + "_" + y);
+					activeChar.sendSysMessage("Could not find region: " + x + "_" + y);
 				}
 				else if (region.saveToFile(fileName))
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Saved region " + x + "_" + y + " at " + fileName);
+					activeChar.sendSysMessage("Saved region " + x + "_" + y + " at " + fileName);
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Could not save region " + x + "_" + y);
+					activeChar.sendSysMessage("Could not save region " + x + "_" + y);
 				}
 				break;
 			}
@@ -226,7 +229,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				}
 				catch (IOException e)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Could not create output directory.");
+					activeChar.sendSysMessage("Could not create output directory.");
 					return false;
 				}
 				
@@ -247,12 +250,12 @@ public class AdminGeodata implements IAdminCommandHandler
 							final String fileName = String.format(GeoEngine.FILE_NAME_FORMAT, x, y);
 							if (region.saveToFile(fileName))
 							{
-								BuilderUtil.sendSysMessage(activeChar, "Saved region " + x + "_" + y + " at " + fileName);
+								activeChar.sendSysMessage("Saved region " + x + "_" + y + " at " + fileName);
 								count++;
 							}
 							else
 							{
-								BuilderUtil.sendSysMessage(activeChar, "Could not save region " + x + "_" + y);
+								activeChar.sendSysMessage("Could not save region " + x + "_" + y);
 							}
 						}
 						worldY += World.TILE_SIZE;
@@ -260,7 +263,7 @@ public class AdminGeodata implements IAdminCommandHandler
 					worldX += World.TILE_SIZE;
 					worldY = -262144;
 				}
-				BuilderUtil.sendSysMessage(activeChar, "Saved " + count + " regions.");
+				activeChar.sendSysMessage("Saved " + count + " regions.");
 				break;
 			}
 			case "admin_geoenablenorth":
@@ -278,7 +281,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "There is no geodata at this position.");
+					activeChar.sendSysMessage("There is no geodata at this position.");
 				}
 				break;
 			}
@@ -297,7 +300,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "There is no geodata at this position.");
+					activeChar.sendSysMessage("There is no geodata at this position.");
 				}
 				break;
 			}
@@ -316,7 +319,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "There is no geodata at this position.");
+					activeChar.sendSysMessage("There is no geodata at this position.");
 				}
 				break;
 			}
@@ -335,7 +338,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "There is no geodata at this position.");
+					activeChar.sendSysMessage("There is no geodata at this position.");
 				}
 				break;
 			}
@@ -354,7 +357,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "There is no geodata at this position.");
+					activeChar.sendSysMessage("There is no geodata at this position.");
 				}
 				break;
 			}
@@ -373,7 +376,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "There is no geodata at this position.");
+					activeChar.sendSysMessage("There is no geodata at this position.");
 				}
 				break;
 			}
@@ -392,7 +395,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "There is no geodata at this position.");
+					activeChar.sendSysMessage("There is no geodata at this position.");
 				}
 				break;
 			}
@@ -411,7 +414,7 @@ public class AdminGeodata implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "There is no geodata at this position.");
+					activeChar.sendSysMessage("There is no geodata at this position.");
 				}
 				break;
 			}
@@ -508,7 +511,7 @@ public class AdminGeodata implements IAdminCommandHandler
 					}
 				}
 				
-				Util.sendCBHtml(activeChar, content);
+				HtmlUtil.sendCBHtml(activeChar, content);
 				break;
 			}
 			case "admin_ge":
@@ -624,7 +627,7 @@ public class AdminGeodata implements IAdminCommandHandler
 					content = content.replace("cmd_w", "ew " + gx + " " + gy);
 				}
 				
-				Util.sendCBHtml(activeChar, content);
+				HtmlUtil.sendCBHtml(activeChar, content);
 				break;
 			}
 		}

@@ -16,18 +16,18 @@
  */
 package instances.SSQMonasteryOfSilence;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 
 import instances.AbstractInstance;
 import quests.Q10294_SevenSignsToTheMonasteryOfSilence.Q10294_SevenSignsToTheMonasteryOfSilence;
@@ -391,7 +391,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 						final Attackable mob = addSpawn(TRAINEE_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
 						mob.setRunning();
 						mob.addDamageHate(player, 0, 999);
-						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+						mob.getAI().setIntention(Intention.ATTACK, player);
 					}
 					
 					addSpawn(GUARDIAN_OF_THE_TOMB_2, GUARDIAN_OF_THE_TOMB_2_LOC, false, 0, false, world.getInstanceId());
@@ -400,7 +400,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 						final Attackable mob = addSpawn(TRAINEE_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
 						mob.setRunning();
 						mob.addDamageHate(player, 0, 999);
-						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+						mob.getAI().setIntention(Intention.ATTACK, player);
 					}
 					
 					addSpawn(GUARDIAN_OF_THE_TOMB_3, GUARDIAN_OF_THE_TOMB_3_LOC, false, 0, false, world.getInstanceId());
@@ -409,7 +409,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 						final Attackable mob = addSpawn(SUPPLICANT_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
 						mob.setRunning();
 						mob.addDamageHate(player, 0, 999);
-						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+						mob.getAI().setIntention(Intention.ATTACK, player);
 					}
 					
 					addSpawn(GUARDIAN_OF_THE_TOMB_4, GUARDIAN_OF_THE_TOMB_4_LOC, false, 0, false, world.getInstanceId());
@@ -418,7 +418,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 						final Attackable mob = addSpawn(SUPPLICANT_OF_REST, LOC, false, 0, false, world.getInstanceId()).asAttackable();
 						mob.setRunning();
 						mob.addDamageHate(player, 0, 999);
-						mob.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+						mob.getAI().setIntention(Intention.ATTACK, player);
 					}
 					return "32843-01.html";
 				}
@@ -447,7 +447,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if (world != null)
@@ -504,11 +504,10 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -523,7 +522,6 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override

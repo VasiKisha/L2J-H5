@@ -21,7 +21,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
  * Format: (ch)S S: Character Name
- * @author UnAfraid & mrTJO
+ * @author UnAfraid, mrTJO
  */
 public class RequestExDeleteContactFromContactList extends ClientPacket
 {

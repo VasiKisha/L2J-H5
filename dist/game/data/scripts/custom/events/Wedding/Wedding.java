@@ -17,11 +17,12 @@
 package custom.events.Wedding;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.CoupleManager;
+import org.l2jmobius.gameserver.managers.CoupleManager;
 import org.l2jmobius.gameserver.model.Couple;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -121,8 +122,8 @@ public class Wedding extends AbstractNpcAI
 				}
 				else
 				{
-					player.reduceAdena("Wedding", Config.WEDDING_PRICE, player.getLastFolkNPC(), true);
-					partner.reduceAdena("Wedding", Config.WEDDING_PRICE, player.getLastFolkNPC(), true);
+					player.reduceAdena(ItemProcessType.FEE, Config.WEDDING_PRICE, player.getLastFolkNPC(), true);
+					partner.reduceAdena(ItemProcessType.FEE, Config.WEDDING_PRICE, player.getLastFolkNPC(), true);
 					
 					// Accept the wedding request
 					player.setMarryAccepted(true);

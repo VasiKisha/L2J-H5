@@ -17,11 +17,12 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.PremiumItem;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExGetPremiumItemList;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author Gnacik
@@ -54,12 +55,12 @@ public class RequestWithDrawPremiumItem extends ClientPacket
 		}
 		else if (player.getObjectId() != _charId)
 		{
-			Util.handleIllegalPlayerAction(player, "[RequestWithDrawPremiumItem] Incorrect owner, Player: " + player.getName(), Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "[RequestWithDrawPremiumItem] Incorrect owner, Player: " + player.getName(), Config.DEFAULT_PUNISH);
 			return;
 		}
 		else if (player.getPremiumItemList().isEmpty())
 		{
-			Util.handleIllegalPlayerAction(player, "[RequestWithDrawPremiumItem] Player: " + player.getName() + " try to get item with empty list!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "[RequestWithDrawPremiumItem] Player: " + player.getName() + " try to get item with empty list!", Config.DEFAULT_PUNISH);
 			return;
 		}
 		else if ((player.getWeightPenalty() >= 3) || !player.isInventoryUnder90(false))
@@ -84,7 +85,7 @@ public class RequestWithDrawPremiumItem extends ClientPacket
 		}
 		
 		final long itemsLeft = (item.getCount() - _itemCount);
-		player.addItem("PremiumItem", item.getItemId(), _itemCount, player.getTarget(), true);
+		player.addItem(ItemProcessType.TRANSFER, item.getItemId(), _itemCount, player.getTarget(), true);
 		if (itemsLeft > 0)
 		{
 			item.updateCount(itemsLeft);

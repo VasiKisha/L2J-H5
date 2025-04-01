@@ -19,11 +19,12 @@ package ai.others.SubclassCertification;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
-import org.l2jmobius.gameserver.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.VillageMaster;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
@@ -249,7 +250,7 @@ public class SubclassCertification extends AbstractNpcAI
 		else
 		{
 			// Add items to player's inventory
-			final Item item = player.getInventory().addItem("Quest", itemId, 1, player, player.getTarget());
+			final Item item = player.getInventory().addItem(ItemProcessType.QUEST, itemId, 1, player, player.getTarget());
 			if (item == null)
 			{
 				return null;

@@ -28,8 +28,8 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.item.PlayerItemTemplate;
 
 /**
@@ -39,7 +39,7 @@ import org.l2jmobius.gameserver.model.item.PlayerItemTemplate;
  */
 public class InitialEquipmentData implements IXmlReader
 {
-	private final Map<ClassId, List<PlayerItemTemplate>> _initialEquipmentList = new EnumMap<>(ClassId.class);
+	private final Map<PlayerClass, List<PlayerItemTemplate>> _initialEquipmentList = new EnumMap<>(PlayerClass.class);
 	
 	private static final String NORMAL = "data/stats/initialEquipment.xml";
 	private static final String EVENT = "data/stats/initialEquipmentEvent.xml";
@@ -61,9 +61,9 @@ public class InitialEquipmentData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -85,7 +85,7 @@ public class InitialEquipmentData implements IXmlReader
 	private void parseEquipment(Node d)
 	{
 		NamedNodeMap attrs = d.getAttributes();
-		final ClassId classId = ClassId.getClassId(Integer.parseInt(attrs.getNamedItem("classId").getNodeValue()));
+		final PlayerClass classId = PlayerClass.getPlayerClass(Integer.parseInt(attrs.getNamedItem("classId").getNodeValue()));
 		final List<PlayerItemTemplate> equipList = new ArrayList<>();
 		for (Node c = d.getFirstChild(); c != null; c = c.getNextSibling())
 		{
@@ -109,7 +109,7 @@ public class InitialEquipmentData implements IXmlReader
 	 * @param cId the class Id for the required initial equipment.
 	 * @return the initial equipment for the given class Id.
 	 */
-	public List<PlayerItemTemplate> getEquipmentList(ClassId cId)
+	public List<PlayerItemTemplate> getEquipmentList(PlayerClass cId)
 	{
 		return _initialEquipmentList.get(cId);
 	}
@@ -121,7 +121,7 @@ public class InitialEquipmentData implements IXmlReader
 	 */
 	public List<PlayerItemTemplate> getEquipmentList(int cId)
 	{
-		return _initialEquipmentList.get(ClassId.getClassId(cId));
+		return _initialEquipmentList.get(PlayerClass.getPlayerClass(cId));
 	}
 	
 	/**

@@ -20,12 +20,13 @@
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -143,7 +144,7 @@ public class TerritoryWard extends Attackable
 			final Player player = killer.asPlayer();
 			if ((player.getSiegeSide() > 0) && !player.isCombatFlagEquipped())
 			{
-				player.addItem("Pickup", getId() - 23012, 1, null, false);
+				player.addItem(ItemProcessType.PICKUP, getId() - 23012, 1, null, false);
 			}
 			else
 			{
@@ -186,7 +187,7 @@ public class TerritoryWard extends Attackable
 		{
 			if (isAutoAttackable(player) && (Math.abs(player.getZ() - getZ()) < 100))
 			{
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+				player.getAI().setIntention(Intention.ATTACK, this);
 			}
 			else
 			{

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.ui;
 
@@ -38,49 +42,50 @@ import org.l2jmobius.Config;
  */
 public class frmAbout
 {
-	private JFrame frmAbout;
 	private static final String URL = "www.l2jmobius.org";
-	final URI uri;
+	
+	private final URI _uri;
+	private JFrame _frmAbout;
 	
 	public frmAbout()
 	{
 		initialize();
-		uri = createURI(URL);
-		frmAbout.setVisible(true);
+		_uri = createURI(URL);
+		_frmAbout.setVisible(true);
 	}
 	
 	private void initialize()
 	{
-		frmAbout = new JFrame();
-		frmAbout.setResizable(false);
-		frmAbout.setTitle("About");
-		frmAbout.setBounds(100, 100, 297, 197);
-		frmAbout.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
-		frmAbout.setType(Type.UTILITY);
-		frmAbout.getContentPane().setLayout(null);
+		_frmAbout = new JFrame();
+		_frmAbout.setResizable(false);
+		_frmAbout.setTitle("About");
+		_frmAbout.setBounds(100, 100, 297, 197);
+		_frmAbout.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
+		_frmAbout.setType(Type.UTILITY);
+		_frmAbout.getContentPane().setLayout(null);
 		
 		final JLabel lblLjmobius = new JLabel("L2jMobius");
 		lblLjmobius.setFont(new Font("Tahoma", Font.PLAIN, 32));
 		lblLjmobius.setHorizontalAlignment(SwingConstants.CENTER);
 		lblLjmobius.setBounds(10, 11, 271, 39);
-		frmAbout.getContentPane().add(lblLjmobius);
+		_frmAbout.getContentPane().add(lblLjmobius);
 		
 		final JLabel lblData = new JLabel("2013-" + Calendar.getInstance().get(Calendar.YEAR));
 		lblData.setHorizontalAlignment(SwingConstants.CENTER);
 		lblData.setBounds(10, 44, 271, 14);
-		frmAbout.getContentPane().add(lblData);
+		_frmAbout.getContentPane().add(lblData);
 		
 		final JLabel lblSupports = new JLabel("Server Protocol");
 		lblSupports.setHorizontalAlignment(SwingConstants.CENTER);
 		lblSupports.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblSupports.setBounds(10, 78, 271, 23);
-		frmAbout.getContentPane().add(lblSupports);
+		_frmAbout.getContentPane().add(lblSupports);
 		
 		final JLabel lblProtocols = new JLabel("Protocol Number");
 		lblProtocols.setHorizontalAlignment(SwingConstants.CENTER);
 		lblProtocols.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblProtocols.setBounds(10, 92, 271, 23);
-		frmAbout.getContentPane().add(lblProtocols);
+		_frmAbout.getContentPane().add(lblProtocols);
 		
 		final JLabel site = new JLabel(URL);
 		site.setText("<html><font color=\"#000099\"><u>" + URL + "</u></font></html>");
@@ -95,7 +100,7 @@ public class frmAbout
 				{
 					try
 					{
-						Desktop.getDesktop().browse(uri);
+						Desktop.getDesktop().browse(_uri);
 					}
 					catch (IOException e)
 					{
@@ -103,7 +108,7 @@ public class frmAbout
 				}
 			}
 		});
-		frmAbout.getContentPane().add(site);
+		_frmAbout.getContentPane().add(site);
 		
 		// Generate protocols text.
 		String protocols = "";
@@ -126,7 +131,7 @@ public class frmAbout
 		lblProtocols.setText(protocols);
 		
 		// Center frame to screen.
-		frmAbout.setLocationRelativeTo(null);
+		_frmAbout.setLocationRelativeTo(null);
 	}
 	
 	private static URI createURI(String str)

@@ -21,13 +21,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 
 import ai.AbstractNpcAI;
@@ -87,7 +87,7 @@ public class PolymorphingOnAttack extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.isSpawned() && !npc.isDead())
 		{
@@ -104,10 +104,9 @@ public class PolymorphingOnAttack extends AbstractNpcAI
 				final Creature originalAttacker = isSummon ? attacker.getSummon() : attacker;
 				newNpc.setRunning();
 				newNpc.addDamageHate(originalAttacker, 0, 500);
-				newNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, originalAttacker);
+				newNpc.getAI().setIntention(Intention.ATTACK, originalAttacker);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	public static void main(String[] args)

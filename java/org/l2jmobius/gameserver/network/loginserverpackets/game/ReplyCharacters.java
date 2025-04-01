@@ -21,7 +21,7 @@ import java.util.List;
 import org.l2jmobius.commons.network.base.BaseWritablePacket;
 
 /**
- * @author mrTJO Thanks to mochitto
+ * @author mrTJO, mochitto
  */
 public class ReplyCharacters extends BaseWritablePacket
 {

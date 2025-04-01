@@ -27,12 +27,12 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.model.holders.RangeChanceHolder;
+import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.data.holders.RangeChanceHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantItemGroup;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantRateItem;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantScrollGroup;
-import org.l2jmobius.gameserver.util.Util;
 
 /**
  * @author UnAfraid
@@ -68,9 +68,9 @@ public class EnchantItemGroupsData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -91,13 +91,13 @@ public class EnchantItemGroupsData implements IXmlReader
 								if (range.contains("-"))
 								{
 									final String[] split = range.split("-");
-									if ((split.length == 2) && Util.isDigit(split[0]) && Util.isDigit(split[1]))
+									if ((split.length == 2) && StringUtil.isNumeric(split[0]) && StringUtil.isNumeric(split[1]))
 									{
 										min = Integer.parseInt(split[0]);
 										max = Integer.parseInt(split[1]);
 									}
 								}
-								else if (Util.isDigit(range))
+								else if (StringUtil.isNumeric(range))
 								{
 									min = Integer.parseInt(range);
 									max = min;
@@ -149,7 +149,7 @@ public class EnchantItemGroupsData implements IXmlReader
 										final NamedNodeMap attrs = z.getAttributes();
 										if (attrs.getNamedItem("slot") != null)
 										{
-											rateGroup.addSlot(ItemData.SLOTS.get(parseString(attrs, "slot")));
+											rateGroup.addSlot(ItemTemplate.SLOTS.get(parseString(attrs, "slot")));
 										}
 										if (attrs.getNamedItem("magicWeapon") != null)
 										{
@@ -182,6 +182,12 @@ public class EnchantItemGroupsData implements IXmlReader
 		_maxAccessoryEnchant += 1;
 	}
 	
+	/**
+	 * Retrieves the enchant item group associated with the specified item template and scroll group.
+	 * @param item the {@link ItemTemplate} representing the item for which the enchant group is requested.
+	 * @param scrollGroup the scroll group ID to match with the item's group.
+	 * @return the {@link EnchantItemGroup} associated with the item and scroll group, or {@code null} if not found.
+	 */
 	public EnchantItemGroup getItemGroup(ItemTemplate item, int scrollGroup)
 	{
 		final EnchantScrollGroup group = _scrollGroups.get(scrollGroup);
@@ -189,26 +195,48 @@ public class EnchantItemGroupsData implements IXmlReader
 		return rateGroup != null ? _itemGroups.get(rateGroup.getName()) : null;
 	}
 	
+	/**
+	 * Retrieves the enchant item group by its name.
+	 * @param name the name of the enchant item group.
+	 * @return the {@link EnchantItemGroup} associated with the specified name, or {@code null} if not found.
+	 */
 	public EnchantItemGroup getItemGroup(String name)
 	{
 		return _itemGroups.get(name);
 	}
 	
+	/**
+	 * Retrieves the enchant scroll group by its ID.
+	 * @param id the ID of the scroll group.
+	 * @return the {@link EnchantScrollGroup} associated with the specified ID, or {@code null} if not found.
+	 */
 	public EnchantScrollGroup getScrollGroup(int id)
 	{
 		return _scrollGroups.get(id);
 	}
 	
+	/**
+	 * Gets the maximum weapon enchant level allowed.
+	 * @return the maximum weapon enchant level.
+	 */
 	public int getMaxWeaponEnchant()
 	{
 		return _maxWeaponEnchant;
 	}
 	
+	/**
+	 * Gets the maximum armor enchant level allowed.
+	 * @return the maximum armor enchant level.
+	 */
 	public int getMaxArmorEnchant()
 	{
 		return _maxArmorEnchant;
 	}
 	
+	/**
+	 * Gets the maximum accessory enchant level allowed.
+	 * @return the maximum accessory enchant level.
+	 */
 	public int getMaxAccessoryEnchant()
 	{
 		return _maxAccessoryEnchant;

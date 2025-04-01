@@ -22,14 +22,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.l2jmobius.gameserver.GameServer;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.zone.AbstractZoneSettings;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 
@@ -162,7 +162,7 @@ public class BossZone extends ZoneType
 				// with legal entries, do nothing.
 				if (expirationTime == null) // legal null expirationTime entries
 				{
-					if (GameServer.dateTimeServerStarted.getTimeInMillis() > (System.currentTimeMillis() - _timeInvade))
+					if (GameServer.getStartTime() > (System.currentTimeMillis() - _timeInvade))
 					{
 						return;
 					}
@@ -354,6 +354,7 @@ public class BossZone extends ZoneType
 	 * Occasionally, all players need to be sent out of the zone (for example, if the players are just running around without fighting for too long, or if all players die, etc). This call sends all online players to town and marks offline players to be teleported (by clearing their relog expiration
 	 * times) when they log back in (no real need for off-line teleport).
 	 */
+	@Override
 	public void oustAllPlayers()
 	{
 		if (getCharactersInside().isEmpty())

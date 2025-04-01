@@ -16,12 +16,15 @@
  */
 package quests.Q00151_CureForFever;
 
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Cure for Fever (151)
@@ -46,6 +49,7 @@ public class Q00151_CureForFever extends Quest
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	private static final int CHANCE = 0;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00151_CureForFever()
 	{
@@ -69,7 +73,7 @@ public class Q00151_CureForFever extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isCond(1) && (getRandom(5) == CHANCE))
@@ -77,7 +81,6 @@ public class Q00151_CureForFever extends Quest
 			giveItems(killer, POISON_SAC, 1);
 			qs.setCond(2, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -100,10 +103,28 @@ public class Q00151_CureForFever extends Quest
 					{
 						if (qs.isCond(3) && hasQuestItems(player, FEVER_MEDICINE))
 						{
+							// Newbie Guide.
+							final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+							if (newbieGuide != null)
+							{
+								final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+								if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, 100000);
+									showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+								else if (((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 100000000) / 10000000) != 1)
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 10000000);
+									showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+							}
+							
 							giveItems(player, ROUND_SHIELD, 1);
 							addExpAndSp(player, 13106, 613);
 							qs.exitQuest(false, true);
-							showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000); // TODO: Newbie Guide
 							htmltext = "30050-06.html";
 						}
 						else if (qs.isCond(2) && hasQuestItems(player, POISON_SAC))

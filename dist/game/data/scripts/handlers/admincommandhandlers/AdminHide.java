@@ -20,7 +20,6 @@ import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * @author lord_rex
@@ -45,36 +44,36 @@ public class AdminHide implements IAdminCommandHandler
 			{
 				case "on":
 				{
-					if (!BuilderUtil.setHiding(player, true))
+					if (!player.setHiding(true))
 					{
-						BuilderUtil.sendSysMessage(player, "Currently, you cannot be seen.");
+						player.sendSysMessage("Currently, you cannot be seen.");
 						return true;
 					}
 					
-					BuilderUtil.sendSysMessage(player, "Now, you cannot be seen.");
+					player.sendSysMessage("Now, you cannot be seen.");
 					return true;
 				}
 				case "off":
 				{
-					if (!BuilderUtil.setHiding(player, false))
+					if (!player.setHiding(false))
 					{
-						BuilderUtil.sendSysMessage(player, "Currently, you can be seen.");
+						player.sendSysMessage("Currently, you can be seen.");
 						return true;
 					}
 					
-					BuilderUtil.sendSysMessage(player, "Now, you can be seen.");
+					player.sendSysMessage("Now, you can be seen.");
 					return true;
 				}
 				default:
 				{
-					BuilderUtil.sendSysMessage(player, "//hide [on|off]");
+					player.sendSysMessage("//hide [on|off]");
 					return false;
 				}
 			}
 		}
 		catch (Exception e)
 		{
-			BuilderUtil.sendSysMessage(player, "//hide [on|off]");
+			player.sendSysMessage("//hide [on|off]");
 			return false;
 		}
 	}

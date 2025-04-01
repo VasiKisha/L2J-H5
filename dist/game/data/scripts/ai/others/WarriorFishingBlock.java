@@ -16,12 +16,12 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.enums.ChatType;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -90,7 +90,7 @@ public class WarriorFishingBlock extends AbstractNpcAI
 					final Player target = obj.asPlayer();
 					npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(NPC_STRINGS_ON_SPAWN), target.getName());
 					npc.asAttackable().addDamageHate(target, 0, 2000);
-					npc.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, target);
+					npc.getAI().notifyAction(Action.ATTACKED, target);
 					npc.addAttackerToAttackByList(target);
 					
 					startQuestTimer("DESPAWN", DESPAWN_TIME * 1000, npc, target);
@@ -107,30 +107,27 @@ public class WarriorFishingBlock extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (getRandom(100) < CHANCE_TO_SHOUT_ON_ATTACK)
 		{
 			npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(NPC_STRINGS_ON_ATTACK));
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(NPC_STRINGS_ON_KILL));
 		cancelQuestTimer("DESPAWN", npc, killer);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		cancelQuestTimer("SPAWN", npc, null);
 		cancelQuestTimer("DESPAWN", npc, null);
 		startQuestTimer("SPAWN", 2000, npc, null);
-		return super.onSpawn(npc);
 	}
 	
 	public static void main(String[] args)

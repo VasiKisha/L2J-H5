@@ -16,10 +16,10 @@
  */
 package village_master.DwarfBlacksmithChange2;
 
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 import ai.AbstractNpcAI;
 
@@ -85,7 +85,7 @@ public class DwarfBlacksmithChange2 extends AbstractNpcAI
 		{
 			htmltext = "30512-08.htm"; // fnYouAreThirdClass
 		}
-		else if ((classId == WARSMITH) && (player.getClassId() == ClassId.ARTISAN))
+		else if ((classId == WARSMITH) && (player.getPlayerClass() == PlayerClass.ARTISAN))
 		{
 			if (player.getLevel() < 40)
 			{
@@ -101,7 +101,7 @@ public class DwarfBlacksmithChange2 extends AbstractNpcAI
 			else if (hasQuestItems(player, MARK_OF_GUILDSMAN, MARK_OF_PROSPERITY, MARK_OF_MAESTRO))
 			{
 				takeItems(player, -1, MARK_OF_GUILDSMAN, MARK_OF_PROSPERITY, MARK_OF_MAESTRO);
-				player.setClassId(WARSMITH);
+				player.setPlayerClass(WARSMITH);
 				player.setBaseClass(WARSMITH);
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
@@ -126,8 +126,8 @@ public class DwarfBlacksmithChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.WARSMITH_GROUP))
 		{
-			final ClassId classId = player.getClassId();
-			if ((classId == ClassId.ARTISAN) || (classId == ClassId.WARSMITH))
+			final PlayerClass classId = player.getPlayerClass();
+			if ((classId == PlayerClass.ARTISAN) || (classId == PlayerClass.WARSMITH))
 			{
 				htmltext = "30512-02.htm"; // fnClassList1
 			}

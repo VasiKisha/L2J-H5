@@ -16,8 +16,8 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
@@ -54,11 +54,11 @@ public class Sleep extends AbstractEffect
 	{
 		if (effected.isPlayer())
 		{
-			effected.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+			effected.getAI().setIntention(Intention.ACTIVE);
 		}
 		else
 		{
-			effected.getAI().notifyEvent(CtrlEvent.EVT_THINK);
+			effected.getAI().notifyAction(Action.THINK);
 		}
 	}
 	
@@ -68,6 +68,6 @@ public class Sleep extends AbstractEffect
 		effected.abortAttack();
 		effected.abortCast();
 		effected.stopMove(null);
-		effected.getAI().notifyEvent(CtrlEvent.EVT_SLEEPING);
+		effected.getAI().notifyAction(Action.SLEEPING);
 	}
 }

@@ -17,7 +17,7 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.instancemanager.FishingChampionshipManager;
+import org.l2jmobius.gameserver.managers.FishingChampionshipManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 
 /**

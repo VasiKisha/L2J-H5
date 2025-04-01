@@ -17,22 +17,22 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.PlayerAction;
+import org.l2jmobius.gameserver.data.sql.OfflineTraderTable;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerAction;
+import org.l2jmobius.gameserver.model.actor.holders.creature.DoorRequestHolder;
+import org.l2jmobius.gameserver.model.actor.holders.player.SummonRequestHolder;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerDlgAnswer;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerDlgAnswer;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
-import org.l2jmobius.gameserver.model.holders.DoorRequestHolder;
-import org.l2jmobius.gameserver.model.holders.SummonRequestHolder;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
-import org.l2jmobius.gameserver.util.OfflineTradeUtil;
 
 /**
  * @author Dezmond_snz
@@ -160,7 +160,7 @@ public class DlgAnswer extends ClientPacket
 				OlympiadManager.getInstance().unRegisterNoble(player);
 			}
 			
-			if (!OfflineTradeUtil.enteredOfflineMode(player))
+			if (!OfflineTraderTable.getInstance().enteredOfflineMode(player))
 			{
 				Disconnection.of(getClient(), player).defaultSequence(LeaveWorld.STATIC_PACKET);
 			}

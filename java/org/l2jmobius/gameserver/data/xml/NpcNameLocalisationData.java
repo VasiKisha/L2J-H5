@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -75,9 +79,9 @@ public class NpcNameLocalisationData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "localisation", localisationNode ->
+		forEach(document, "list", listNode -> forEach(listNode, "localisation", localisationNode ->
 		{
 			final StatSet set = new StatSet(parseAttributes(localisationNode));
 			NPC_NAME_LOCALISATIONS.get(_lang).put(set.getInt("id"), new String[]
@@ -89,9 +93,10 @@ public class NpcNameLocalisationData implements IXmlReader
 	}
 	
 	/**
-	 * @param lang
-	 * @param id
-	 * @return a String Array[] that contains NPC name and title or Null if is does not exist.
+	 * Retrieves the localization data for a specified NPC in a given language.
+	 * @param lang the language code for localization (e.g., "en", "fr").
+	 * @param id the unique identifier of the NPC.
+	 * @return a {@code String[]} array containing the NPC's name and title, or {@code null} if the localization data does not exist for the given language and ID.
 	 */
 	public String[] getLocalisation(String lang, int id)
 	{
@@ -103,6 +108,11 @@ public class NpcNameLocalisationData implements IXmlReader
 		return null;
 	}
 	
+	/**
+	 * Checks if localization data exists for a specified NPC ID across all available languages.
+	 * @param id the unique identifier of the NPC.
+	 * @return {@code true} if localization data exists for the specified NPC ID in any language, {@code false} otherwise.
+	 */
 	public boolean hasLocalisation(int id)
 	{
 		for (Map<Integer, String[]> data : NPC_NAME_LOCALISATIONS.values())

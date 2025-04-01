@@ -16,13 +16,13 @@
  */
 package quests.Q00251_NoSecrets;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * No Secrets (251)
@@ -77,13 +77,13 @@ public class Q00251_NoSecrets extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && qs.isStarted() && qs.isCond(1))
 		{
 			final int npcId = npc.getId();
-			if (CommonUtil.contains(MOBS, npcId) && (getRandom(100) < 10) && (getQuestItemsCount(player, DIARY) < 10))
+			if (ArrayUtil.contains(MOBS, npcId) && (getRandom(100) < 10) && (getQuestItemsCount(player, DIARY) < 10))
 			{
 				giveItems(player, DIARY, 1);
 				if ((getQuestItemsCount(player, DIARY) >= 10) && (getQuestItemsCount(player, TABLE) >= 5))
@@ -95,7 +95,7 @@ public class Q00251_NoSecrets extends Quest
 					playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 			}
-			else if (CommonUtil.contains(MOBS2, npcId) && (getRandom(100) < 5) && (getQuestItemsCount(player, TABLE) < 5))
+			else if (ArrayUtil.contains(MOBS2, npcId) && (getRandom(100) < 5) && (getQuestItemsCount(player, TABLE) < 5))
 			{
 				giveItems(player, TABLE, 1);
 				if ((getQuestItemsCount(player, DIARY) >= 10) && (getQuestItemsCount(player, TABLE) >= 5))
@@ -108,7 +108,6 @@ public class Q00251_NoSecrets extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

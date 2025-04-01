@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
+import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -32,7 +32,6 @@ import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * This class handles all siege commands: Todo: change the class name, and neaten it up
@@ -114,7 +113,7 @@ public class AdminFortSiege implements IAdminCommandHandler
 			}
 			else if (command.equalsIgnoreCase("admin_list_fortsiege_clans"))
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Not implemented yet.");
+				activeChar.sendSysMessage("Not implemented yet.");
 			}
 			else if (command.equalsIgnoreCase("admin_setfort"))
 			{
@@ -136,7 +135,7 @@ public class AdminFortSiege implements IAdminCommandHandler
 				}
 				else
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Unable to remove fort");
+					activeChar.sendSysMessage("Unable to remove fort");
 				}
 			}
 			else if (command.equalsIgnoreCase("admin_spawn_fortdoors"))

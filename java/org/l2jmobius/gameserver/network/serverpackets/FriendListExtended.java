@@ -91,7 +91,7 @@ public class FriendListExtended extends ServerPacket
 			{
 				online = true;
 			}
-			classid = player1.getClassId().getId();
+			classid = player1.getPlayerClass().getId();
 			level = player1.getLevel();
 			_info.add(new FriendInfo(objId, name, online, classid, level));
 		}

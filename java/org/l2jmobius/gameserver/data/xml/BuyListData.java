@@ -17,7 +17,6 @@
 package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
-import java.io.FileFilter;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -33,7 +32,6 @@ import org.w3c.dom.Node;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.commons.util.file.filter.NumericNameFilter;
 import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
 import org.l2jmobius.gameserver.model.buylist.Product;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -47,7 +45,6 @@ public class BuyListData implements IXmlReader
 	private static final Logger LOGGER = Logger.getLogger(BuyListData.class.getName());
 	
 	private final Map<Integer, BuyListHolder> _buyLists = new ConcurrentHashMap<>();
-	private static final FileFilter NUMERIC_FILTER = new NumericNameFilter();
 	
 	protected BuyListData()
 	{
@@ -102,12 +99,12 @@ public class BuyListData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
 		try
 		{
-			final int buyListId = Integer.parseInt(f.getName().replaceAll(".xml", ""));
-			for (Node node = doc.getFirstChild(); node != null; node = node.getNextSibling())
+			final int buyListId = Integer.parseInt(file.getName().replaceAll(".xml", ""));
+			for (Node node = document.getFirstChild(); node != null; node = node.getNextSibling())
 			{
 				if ("list".equalsIgnoreCase(node.getNodeName()))
 				{
@@ -154,7 +151,7 @@ public class BuyListData implements IXmlReader
 							}
 							else
 							{
-								LOGGER.warning("Item not found. BuyList:" + buyList.getListId() + " ItemID:" + itemId + " File:" + f.getName());
+								LOGGER.warning("Item not found. BuyList:" + buyList.getListId() + " ItemID:" + itemId + " File:" + file.getName());
 							}
 						}
 						else if ("npcs".equalsIgnoreCase(list_node.getNodeName()))
@@ -174,14 +171,14 @@ public class BuyListData implements IXmlReader
 		}
 		catch (Exception e)
 		{
-			LOGGER.log(Level.WARNING, "Failed to load buyList data from xml File:" + f.getName(), e);
+			LOGGER.log(Level.WARNING, "Failed to load buyList data from xml File:" + file.getName(), e);
 		}
 	}
 	
 	@Override
-	public FileFilter getCurrentFileFilter()
+	public boolean isValidXmlFile(File file)
 	{
-		return NUMERIC_FILTER;
+		return (file != null) && file.isFile() && file.getName().toLowerCase().matches("\\d+\\.xml");
 	}
 	
 	public BuyListHolder getBuyList(int listId)

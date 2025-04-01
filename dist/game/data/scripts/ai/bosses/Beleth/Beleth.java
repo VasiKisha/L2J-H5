@@ -20,13 +20,12 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.GrandBossManager;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.GrandBossManager;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
@@ -34,12 +33,13 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.serverpackets.DoorStatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
@@ -47,7 +47,7 @@ import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
 import org.l2jmobius.gameserver.network.serverpackets.StaticObjectInfo;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 
@@ -140,7 +140,7 @@ public class Beleth extends AbstractNpcAI
 			{
 				if (!npc.isDead() && !npc.isCastingNow())
 				{
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+					npc.getAI().setIntention(Intention.ACTIVE);
 					npc.doCast(FIREBALL.getSkill());
 				}
 				break;
@@ -540,7 +540,7 @@ public class Beleth extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEnterZone(Creature creature, ZoneType zone)
+	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.isPlayer() && (GrandBossManager.getInstance().getStatus(REAL_BELETH) == INIT))
 		{
@@ -556,39 +556,36 @@ public class Beleth extends AbstractNpcAI
 			GrandBossManager.getInstance().setStatus(REAL_BELETH, FIGHT);
 			startQuestTimer("SPAWN1", 300000, null, null);
 		}
-		
-		return super.onEnterZone(creature, zone);
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player player, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player player, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		if (!npc.isDead() && (npc.getId() == REAL_BELETH) && !npc.isCastingNow() && skill.hasEffectType(EffectType.HEAL) && (getRandom(100) < 80))
 		{
 			npc.setTarget(player);
 			npc.doCast(HORN_OF_RISING.getSkill());
 		}
-		return null;
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		if (!npc.isDead() && !npc.isCastingNow())
 		{
 			if ((getRandom(100) < 40) && !World.getInstance().getVisibleObjectsInRange(npc, Player.class, 200).isEmpty())
 			{
 				npc.doCast(BLEED.getSkill());
-				return null;
+				return;
 			}
+			
 			npc.setTarget(player);
 			npc.doCast(FIREBALL.getSkill());
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSpellFinished(Npc npc, Player player, Skill skill)
+	public void onSpellFinished(Npc npc, Player player, Skill skill)
 	{
 		if (!npc.isDead() && !npc.isCastingNow())
 		{
@@ -598,7 +595,7 @@ public class Beleth extends AbstractNpcAI
 				if ((distance2 > 890) && !npc.isMovementDisabled())
 				{
 					npc.setTarget(player);
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+					npc.getAI().setIntention(Intention.FOLLOW, player);
 					startQuestTimer("CAST", (int) (((distance2 - 890) / (npc.isRunning() ? npc.getRunSpeed() : npc.getWalkSpeed())) * 1000), npc, null);
 				}
 				else if (distance2 < 890)
@@ -606,26 +603,28 @@ public class Beleth extends AbstractNpcAI
 					npc.setTarget(player);
 					npc.doCast(FIREBALL.getSkill());
 				}
-				return null;
+				return;
 			}
+			
 			if ((getRandom(100) < 40) && !World.getInstance().getVisibleObjectsInRange(npc, Player.class, 200).isEmpty())
 			{
 				npc.doCast(LIGHTENING.getSkill());
-				return null;
+				return;
 			}
+			
 			for (Player plr : World.getInstance().getVisibleObjectsInRange(npc, Player.class, 950))
 			{
 				npc.setTarget(plr);
 				npc.doCast(FIREBALL.getSkill());
-				return null;
+				return;
 			}
+			
 			npc.asAttackable().clearAggroList();
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRunning();
 		if (!World.getInstance().getVisibleObjectsInRange(npc, Player.class, 300).isEmpty() && (getRandom(100) < 60))
@@ -636,7 +635,6 @@ public class Beleth extends AbstractNpcAI
 		{
 			npc.getSpawn().setRespawnDelay(0);
 		}
-		return null;
 	}
 	
 	@Override
@@ -663,11 +661,11 @@ public class Beleth extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (getRandom(100) < 40)
 		{
-			return null;
+			return;
 		}
 		
 		final double distance = npc.calculateDistance2D(attacker);
@@ -675,13 +673,13 @@ public class Beleth extends AbstractNpcAI
 		{
 			for (Npc beleth : _minions)
 			{
-				if ((beleth != null) && !beleth.isDead() && Util.checkIfInRange(900, beleth, attacker, false) && !beleth.isCastingNow())
+				if ((beleth != null) && !beleth.isDead() && LocationUtil.checkIfInRange(900, beleth, attacker, false) && !beleth.isCastingNow())
 				{
 					beleth.setTarget(attacker);
 					beleth.doCast(FIREBALL.getSkill());
 				}
 			}
-			if ((_beleth != null) && !_beleth.isDead() && Util.checkIfInRange(900, _beleth, attacker, false) && !_beleth.isCastingNow())
+			if ((_beleth != null) && !_beleth.isDead() && LocationUtil.checkIfInRange(900, _beleth, attacker, false) && !_beleth.isCastingNow())
 			{
 				_beleth.setTarget(attacker);
 				_beleth.doCast(FIREBALL.getSkill());
@@ -692,16 +690,15 @@ public class Beleth extends AbstractNpcAI
 			if (!World.getInstance().getVisibleObjectsInRange(npc, Player.class, 200).isEmpty())
 			{
 				npc.doCast(LIGHTENING.getSkill());
-				return null;
+				return;
 			}
+			
 			npc.asAttackable().clearAggroList();
 		}
-		
-		return null;
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (npc.getId() == REAL_BELETH)
 		{
@@ -755,8 +752,6 @@ public class Beleth extends AbstractNpcAI
 				startQuestTimer("SPAWN25", 60000, null, null);
 			}
 		}
-		
-		return null;
 	}
 	
 	private void setBelethKiller(Player killer)
@@ -786,7 +781,7 @@ public class Beleth extends AbstractNpcAI
 			{
 				minion.abortCast();
 				minion.setTarget(null);
-				minion.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+				minion.getAI().setIntention(Intention.IDLE);
 				minion.deleteMe();
 			}
 		}

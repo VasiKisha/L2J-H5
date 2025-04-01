@@ -23,10 +23,10 @@ package handlers.bypasshandlers;
 import java.util.logging.Level;
 
 import org.l2jmobius.gameserver.handler.IBypassHandler;
-import org.l2jmobius.gameserver.instancemanager.DimensionalRiftManager;
-import org.l2jmobius.gameserver.model.Party;
+import org.l2jmobius.gameserver.managers.DimensionalRiftManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.Party;
 
 public class Rift implements IBypassHandler
 {

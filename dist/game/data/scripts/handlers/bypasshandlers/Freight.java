@@ -19,6 +19,7 @@ package handlers.bypasshandlers;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerFreight;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -56,7 +57,7 @@ public class Freight implements IBypassHandler
 					{
 						if (i.isTimeLimitedItem() && (i.getRemainingTime() <= 0))
 						{
-							player.getActiveWarehouse().destroyItem("ItemInstance", i, player, null);
+							player.getActiveWarehouse().destroyItem(ItemProcessType.DESTROY, i, player, null);
 						}
 					}
 					player.sendPacket(new WareHouseWithdrawalList(player, WareHouseWithdrawalList.FREIGHT));

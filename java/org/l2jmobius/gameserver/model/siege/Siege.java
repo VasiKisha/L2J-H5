@@ -40,14 +40,10 @@ import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SiegeScheduleData;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.SiegeClanType;
-import org.l2jmobius.gameserver.enums.SiegeTeleportWhoType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.MercTicketManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeGuardManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.MercTicketManager;
+import org.l2jmobius.gameserver.managers.SiegeGuardManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
 import org.l2jmobius.gameserver.model.SiegeScheduleDate;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.TowerSpawn;
@@ -55,15 +51,17 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.ControlTower;
 import org.l2jmobius.gameserver.model.actor.instance.FlameTower;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.sieges.castle.OnCastleSiegeFinish;
-import org.l2jmobius.gameserver.model.events.impl.sieges.castle.OnCastleSiegeOwnerChange;
-import org.l2jmobius.gameserver.model.events.impl.sieges.castle.OnCastleSiegeStart;
+import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeFinish;
+import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeOwnerChange;
+import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeStart;
 import org.l2jmobius.gameserver.model.olympiad.Hero;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
@@ -1532,7 +1530,7 @@ public class Siege implements Siegable
 					continue;
 				}
 				
-				final double distance = ct.calculateDistanceSq3D(spawn);
+				final double distance = ct.calculateDistance3D(spawn);
 				if (distance < distanceClosest)
 				{
 					closestCt = ct;

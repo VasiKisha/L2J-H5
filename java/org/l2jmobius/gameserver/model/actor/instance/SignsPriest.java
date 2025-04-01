@@ -21,11 +21,12 @@ import java.util.logging.Level;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.enums.InstanceType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -109,12 +110,12 @@ public class SignsPriest extends Npc
 						break;
 					}
 					
-					if (!player.reduceAdena("SevenSigns", SevenSigns.RECORD_SEVEN_SIGNS_COST, this, true))
+					if (!player.reduceAdena(ItemProcessType.FEE, SevenSigns.RECORD_SEVEN_SIGNS_COST, this, true))
 					{
 						player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
 						break;
 					}
-					player.getInventory().addItem("SevenSigns", SevenSigns.RECORD_SEVEN_SIGNS_ID, 1, player, this);
+					player.getInventory().addItem(ItemProcessType.REWARD, SevenSigns.RECORD_SEVEN_SIGNS_ID, 1, player, this);
 					sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
 					sm.addItemName(SevenSigns.RECORD_SEVEN_SIGNS_ID);
 					player.sendPacket(sm);
@@ -144,7 +145,7 @@ public class SignsPriest extends Npc
 						}
 						return;
 					}
-					else if (player.getClassId().level() == 0)
+					else if (player.getPlayerClass().level() == 0)
 					{
 						if (this instanceof DawnPriest)
 						{
@@ -189,7 +190,7 @@ public class SignsPriest extends Npc
 				}
 				case 34: // Pay the participation fee request
 				{
-					if ((player.getClassId().level() > 0) && ((player.getAdena() >= Config.SSQ_JOIN_DAWN_ADENA_FEE) || (player.getInventory().getInventoryItemCount(Config.SSQ_MANORS_AGREEMENT_ID, -1) > 0)))
+					if ((player.getPlayerClass().level() > 0) && ((player.getAdena() >= Config.SSQ_JOIN_DAWN_ADENA_FEE) || (player.getInventory().getInventoryItemCount(Config.SSQ_MANORS_AGREEMENT_ID, -1) > 0)))
 					{
 						showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "signs_33_dawn.htm");
 					}
@@ -208,7 +209,7 @@ public class SignsPriest extends Npc
 				case 4: // Join a Cabal - SevenSigns 4 [0]1 x
 				{
 					final int newSeal = Integer.parseInt(command.substring(15));
-					if (player.getClassId().level() >= 1)
+					if (player.getPlayerClass().level() >= 1)
 					{
 						// even if in htmls is said that ally can have castle too, but it is not
 						final Clan clan = player.getClan();
@@ -225,11 +226,11 @@ public class SignsPriest extends Npc
 							{
 								allowJoinDawn = true;
 							}
-							else if (player.destroyItemByItemId("SevenSigns", Config.SSQ_MANORS_AGREEMENT_ID, 1, this, true))
+							else if (player.destroyItemByItemId(ItemProcessType.FEE, Config.SSQ_MANORS_AGREEMENT_ID, 1, this, true))
 							{
 								allowJoinDawn = true;
 							}
-							else if (player.reduceAdena("SevenSigns", Config.SSQ_JOIN_DAWN_ADENA_FEE, this, true))
+							else if (player.reduceAdena(ItemProcessType.FEE, Config.SSQ_JOIN_DAWN_ADENA_FEE, this, true))
 							{
 								allowJoinDawn = true;
 							}
@@ -364,7 +365,7 @@ public class SignsPriest extends Npc
 						}
 					}
 					
-					if ((redContrib > 0) && player.destroyItemByItemId("SevenSigns", SevenSigns.SEAL_STONE_RED_ID, redContrib, this, false))
+					if ((redContrib > 0) && player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_RED_ID, redContrib, this, false))
 					{
 						contribStonesFound = true;
 						final SystemMessage msg = new SystemMessage(SystemMessageId.S2_S1_HAS_DISAPPEARED);
@@ -372,7 +373,7 @@ public class SignsPriest extends Npc
 						msg.addLong(redContrib);
 						player.sendPacket(msg);
 					}
-					if ((greenContrib > 0) && player.destroyItemByItemId("SevenSigns", SevenSigns.SEAL_STONE_GREEN_ID, greenContrib, this, false))
+					if ((greenContrib > 0) && player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_GREEN_ID, greenContrib, this, false))
 					{
 						contribStonesFound = true;
 						final SystemMessage msg = new SystemMessage(SystemMessageId.S2_S1_HAS_DISAPPEARED);
@@ -380,7 +381,7 @@ public class SignsPriest extends Npc
 						msg.addLong(greenContrib);
 						player.sendPacket(msg);
 					}
-					if ((blueContrib > 0) && player.destroyItemByItemId("SevenSigns", SevenSigns.SEAL_STONE_BLUE_ID, blueContrib, this, false))
+					if ((blueContrib > 0) && player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_BLUE_ID, blueContrib, this, false))
 					{
 						contribStonesFound = true;
 						final SystemMessage msg = new SystemMessage(SystemMessageId.S2_S1_HAS_DISAPPEARED);
@@ -493,7 +494,7 @@ public class SignsPriest extends Npc
 									blueContribCount = blueStoneCount;
 								}
 								
-								if ((redContribCount > 0) && player.destroyItemByItemId("SevenSigns", SevenSigns.SEAL_STONE_RED_ID, redContribCount, this, false))
+								if ((redContribCount > 0) && player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_RED_ID, redContribCount, this, false))
 								{
 									stonesFound = true;
 									final SystemMessage msg = new SystemMessage(SystemMessageId.S2_S1_HAS_DISAPPEARED);
@@ -501,7 +502,7 @@ public class SignsPriest extends Npc
 									msg.addLong(redContribCount);
 									player.sendPacket(msg);
 								}
-								if ((greenContribCount > 0) && player.destroyItemByItemId("SevenSigns", SevenSigns.SEAL_STONE_GREEN_ID, greenContribCount, this, false))
+								if ((greenContribCount > 0) && player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_GREEN_ID, greenContribCount, this, false))
 								{
 									stonesFound = true;
 									final SystemMessage msg = new SystemMessage(SystemMessageId.S2_S1_HAS_DISAPPEARED);
@@ -509,7 +510,7 @@ public class SignsPriest extends Npc
 									msg.addLong(greenContribCount);
 									player.sendPacket(msg);
 								}
-								if ((blueContribCount > 0) && player.destroyItemByItemId("SevenSigns", SevenSigns.SEAL_STONE_BLUE_ID, blueContribCount, this, false))
+								if ((blueContribCount > 0) && player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_BLUE_ID, blueContribCount, this, false))
 								{
 									stonesFound = true;
 									final SystemMessage msg = new SystemMessage(SystemMessageId.S2_S1_HAS_DISAPPEARED);
@@ -608,8 +609,8 @@ public class SignsPriest extends Npc
 						break;
 					}
 					
-					player.reduceAncientAdena("SevenSigns", ancientAdenaConvert, this, true);
-					player.addAdena("SevenSigns", ancientAdenaConvert, this, true);
+					player.reduceAncientAdena(ItemProcessType.SELL, ancientAdenaConvert, this, true);
+					player.addAdena(ItemProcessType.BUY, ancientAdenaConvert, this, true);
 					showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "blkmrkt_5.htm");
 					break;
 				}
@@ -633,7 +634,7 @@ public class SignsPriest extends Npc
 							break;
 						}
 						
-						player.addAncientAdena("SevenSigns", ancientAdenaReward, this, true);
+						player.addAncientAdena(ItemProcessType.REWARD, ancientAdenaReward, this, true);
 						if (this instanceof DawnPriest)
 						{
 							showChatWindow(player, 9, "dawn_a", false);
@@ -655,7 +656,7 @@ public class SignsPriest extends Npc
 						final int y = Integer.parseInt(st.nextToken());
 						final int z = Integer.parseInt(st.nextToken());
 						final long ancientAdenaCost = Long.parseLong(st.nextToken());
-						if ((ancientAdenaCost > 0) && !player.reduceAncientAdena("SevenSigns", ancientAdenaCost, this, true))
+						if ((ancientAdenaCost > 0) && !player.reduceAncientAdena(ItemProcessType.FEE, ancientAdenaCost, this, true))
 						{
 							break;
 						}
@@ -736,18 +737,18 @@ public class SignsPriest extends Npc
 							
 							if (blueStoneCountAll > 0)
 							{
-								player.destroyItemByItemId("SevenSigns", SevenSigns.SEAL_STONE_BLUE_ID, blueStoneCountAll, this, true);
+								player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_BLUE_ID, blueStoneCountAll, this, true);
 							}
 							if (greenStoneCountAll > 0)
 							{
-								player.destroyItemByItemId("SevenSigns", SevenSigns.SEAL_STONE_GREEN_ID, greenStoneCountAll, this, true);
+								player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_GREEN_ID, greenStoneCountAll, this, true);
 							}
 							if (redStoneCountAll > 0)
 							{
-								player.destroyItemByItemId("SevenSigns", SevenSigns.SEAL_STONE_RED_ID, redStoneCountAll, this, true);
+								player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_RED_ID, redStoneCountAll, this, true);
 							}
 							
-							player.addAncientAdena("SevenSigns", ancientAdenaRewardAll, this, true);
+							player.addAncientAdena(ItemProcessType.REWARD, ancientAdenaRewardAll, this, true);
 							if (this instanceof DawnPriest)
 							{
 								showChatWindow(player, 18, "dawn", false);
@@ -842,9 +843,9 @@ public class SignsPriest extends Npc
 								}
 							}
 							
-							if (player.destroyItemByItemId("SevenSigns", convertStoneId, convertCount, this, true))
+							if (player.destroyItemByItemId(ItemProcessType.FEE, convertStoneId, convertCount, this, true))
 							{
-								player.addAncientAdena("SevenSigns", ancientAdenaReward, this, true);
+								player.addAncientAdena(ItemProcessType.REWARD, ancientAdenaReward, this, true);
 								if (this instanceof DawnPriest)
 								{
 									showChatWindow(player, 18, "dawn", false);

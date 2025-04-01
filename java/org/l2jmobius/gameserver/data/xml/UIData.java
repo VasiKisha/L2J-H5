@@ -55,9 +55,9 @@ public class UIData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -152,7 +152,7 @@ public class UIData implements IXmlReader
 	 */
 	public static void addCategory(Map<Integer, List<Integer>> map, int cat, int cmd)
 	{
-		map.computeIfAbsent(cat, k -> new ArrayList<>()).add(cmd);
+		map.computeIfAbsent(cat, _ -> new ArrayList<>()).add(cmd);
 	}
 	
 	/**
@@ -163,7 +163,7 @@ public class UIData implements IXmlReader
 	 */
 	public static void addKey(Map<Integer, List<ActionKey>> map, int cat, ActionKey akey)
 	{
-		map.computeIfAbsent(cat, k -> new ArrayList<>()).add(akey);
+		map.computeIfAbsent(cat, _ -> new ArrayList<>()).add(akey);
 	}
 	
 	/**

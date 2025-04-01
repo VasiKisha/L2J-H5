@@ -48,9 +48,9 @@ public class KarmaData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		for (Node n = doc.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("pcKarmaIncrease".equalsIgnoreCase(n.getNodeName()))
 			{
@@ -67,18 +67,16 @@ public class KarmaData implements IXmlReader
 	}
 	
 	/**
-	 * @param level
-	 * @return {@code double} modifier used to calculate karma lost upon death.
+	 * Retrieves the karma multiplier for a given level.<br>
+	 * This multiplier is used to calculate the amount of karma lost upon death for players at the specified level.
+	 * @param level the level for which the karma multiplier is requested
+	 * @return the {@code double} multiplier associated with the specified level, used to calculate karma loss
 	 */
 	public double getMultiplier(int level)
 	{
 		return _karmaTable.get(level);
 	}
 	
-	/**
-	 * Gets the single instance of KarmaData.
-	 * @return single instance of KarmaData
-	 */
 	public static KarmaData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

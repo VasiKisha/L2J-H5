@@ -23,9 +23,8 @@ package ai.bosses.SeerUgoros;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Attackable;
@@ -35,6 +34,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
 import ai.AbstractNpcAI;
@@ -220,11 +220,11 @@ public class SeerUgoros extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isPet)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
 		if (npc.isDead())
 		{
-			return null;
+			return;
 		}
 		
 		if ((_ugoros != null) && (_weed != null) && npc.equals(_weed))
@@ -246,12 +246,10 @@ public class SeerUgoros extends AbstractNpcAI
 			_thinkTask = ThreadPool.scheduleAtFixedRate(new ThinkTask(), 500, 3000);
 		}
 		npc.doDie(attacker);
-		
-		return super.onAttack(npc, attacker, damage, isPet);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (_thinkTask != null)
 		{
@@ -283,8 +281,6 @@ public class SeerUgoros extends AbstractNpcAI
 			}
 			qs.unset("drop");
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void broadcastInRegion(Npc npc, NpcStringId npcString)
@@ -355,7 +351,7 @@ public class SeerUgoros extends AbstractNpcAI
 	
 	protected void changeAttackTarget(Creature attacker)
 	{
-		_ugoros.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+		_ugoros.getAI().setIntention(Intention.IDLE);
 		_ugoros.clearAggroList();
 		_ugoros.setTarget(attacker);
 		
@@ -373,7 +369,7 @@ public class SeerUgoros extends AbstractNpcAI
 			_ugoros.setWalking();
 		}
 		
-		_ugoros.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, attacker);
+		_ugoros.getAI().setIntention(Intention.ATTACK, attacker);
 	}
 	
 	public static void main(String[] args)

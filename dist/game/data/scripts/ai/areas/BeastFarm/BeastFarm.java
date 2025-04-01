@@ -22,17 +22,17 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.TamedBeast;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.AbstractNpcInfo;
+import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q00020_BringUpWithLove.Q00020_BringUpWithLove;
@@ -245,7 +245,7 @@ public class BeastFarm extends AbstractNpcAI
 		
 		// if this is finally a trained mob, then despawn any other trained mobs that the
 		// player might have and initialize the Tamed Beast.
-		if (CommonUtil.contains(TAMED_BEASTS, nextNpcId))
+		if (ArrayUtil.contains(TAMED_BEASTS, nextNpcId))
 		{
 			final TamedBeast nextNpc = new TamedBeast(nextNpcId, player, food, npc.getX(), npc.getY(), npc.getZ(), true);
 			final TamedBeastSkillHolder beast = getRandomEntry(TAMED_BEAST_DATA);
@@ -296,27 +296,28 @@ public class BeastFarm extends AbstractNpcAI
 			FEED_INFO.put(nextNpc.getObjectId(), player.getObjectId());
 			nextNpc.setRunning();
 			nextNpc.addDamageHate(player, 0, 99999);
-			nextNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+			nextNpc.getAI().setIntention(Intention.ATTACK, player);
 			player.setTarget(nextNpc);
 		}
 	}
 	
 	@Override
-	public String onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
 		// this behavior is only run when the target of skill is the passed npc (chest)
 		// i.e. when the player is attempting to open the chest using a skill
 		if (!targets.contains(npc))
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
+		
 		// gather some values on local variables
 		final int npcId = npc.getId();
 		final int skillId = skill.getId();
 		// check if the npc and skills used are valid for this script. Exit if invalid.
-		if (!CommonUtil.contains(FEEDABLE_BEASTS, npcId) || ((skillId != SKILL_GOLDEN_SPICE) && (skillId != SKILL_CRYSTAL_SPICE) && (skillId != SKILL_BLESSED_GOLDEN_SPICE) && (skillId != SKILL_BLESSED_CRYSTAL_SPICE) && (skillId != SKILL_SGRADE_GOLDEN_SPICE) && (skillId != SKILL_SGRADE_CRYSTAL_SPICE)))
+		if (!ArrayUtil.contains(FEEDABLE_BEASTS, npcId) || ((skillId != SKILL_GOLDEN_SPICE) && (skillId != SKILL_CRYSTAL_SPICE) && (skillId != SKILL_BLESSED_GOLDEN_SPICE) && (skillId != SKILL_BLESSED_CRYSTAL_SPICE) && (skillId != SKILL_SGRADE_GOLDEN_SPICE) && (skillId != SKILL_SGRADE_CRYSTAL_SPICE)))
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
 		
 		// first gather some values on local variables
@@ -331,7 +332,7 @@ public class BeastFarm extends AbstractNpcAI
 		// If the mob is at 0th level (when it still listens to all feeders) lock it to the first feeder!
 		if ((growthLevel == 0) && FEED_INFO.containsKey(objectId))
 		{
-			return super.onSkillSee(npc, caster, skill, targets, isSummon);
+			return;
 		}
 		
 		FEED_INFO.put(objectId, caster.getObjectId());
@@ -361,15 +362,15 @@ public class BeastFarm extends AbstractNpcAI
 					FEED_INFO.remove(objectId);
 					npc.setRunning();
 					npc.asAttackable().addDamageHate(caster, 0, 1);
-					npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, caster);
+					npc.getAI().setIntention(Intention.ATTACK, caster);
 				}
-				return super.onSkillSee(npc, caster, skill, targets, isSummon);
+				return;
 			}
 			else if ((growthLevel > 0) && (FEED_INFO.get(objectId) != caster.getObjectId()))
 			{
 				// check if this is the same player as the one who raised it from growth 0.
 				// if no, then do not allow a chance to raise the pet (food gets consumed but has no effect).
-				return super.onSkillSee(npc, caster, skill, targets, isSummon);
+				return;
 			}
 			spawnNext(npc, caster, newNpcId, food);
 		}
@@ -378,18 +379,16 @@ public class BeastFarm extends AbstractNpcAI
 			caster.sendMessage("The beast spit out the feed instead of eating it.");
 			npc.dropItem(caster, food, 1);
 		}
-		return super.onSkillSee(npc, caster, skill, targets, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		// remove the feedinfo of the mob that got killed, if any
 		if (FEED_INFO.containsKey(npc.getObjectId()))
 		{
 			FEED_INFO.remove(npc.getObjectId());
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	// all mobs that grow by eating

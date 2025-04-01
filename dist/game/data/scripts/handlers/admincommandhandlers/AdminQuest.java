@@ -28,8 +28,9 @@ import java.util.TreeSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventType;
@@ -39,8 +40,6 @@ import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestTimer;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.scripting.ScriptEngineManager;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
 
 public class AdminQuest implements IAdminCommandHandler
 {
@@ -57,7 +56,7 @@ public class AdminQuest implements IAdminCommandHandler
 	
 	private static Quest findScript(String script)
 	{
-		if (Util.isDigit(script))
+		if (StringUtil.isNumeric(script))
 		{
 			return QuestManager.getInstance().getQuest(Integer.parseInt(script));
 		}
@@ -73,7 +72,7 @@ public class AdminQuest implements IAdminCommandHandler
 			st.nextToken(); // skip command token
 			if (!st.hasMoreTokens())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //quest_reload <questName> or <questId>");
+				activeChar.sendSysMessage("Usage: //quest_reload <questName> or <questId>");
 				return false;
 			}
 			
@@ -81,17 +80,17 @@ public class AdminQuest implements IAdminCommandHandler
 			final Quest quest = findScript(script);
 			if (quest == null)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "The script " + script + " couldn't be found!");
+				activeChar.sendSysMessage("The script " + script + " couldn't be found!");
 				return false;
 			}
 			
 			if (!quest.reload())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Failed to reload " + script + "!");
+				activeChar.sendSysMessage("Failed to reload " + script + "!");
 				return false;
 			}
 			
-			BuilderUtil.sendSysMessage(activeChar, "Script successful reloaded.");
+			activeChar.sendSysMessage("Script successful reloaded.");
 		}
 		else if (command.startsWith("admin_script_load"))
 		{
@@ -99,7 +98,7 @@ public class AdminQuest implements IAdminCommandHandler
 			st.nextToken(); // skip command token
 			if (!st.hasMoreTokens())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //script_load path/to/script.java");
+				activeChar.sendSysMessage("Usage: //script_load path/to/script.java");
 				return false;
 			}
 			
@@ -107,11 +106,11 @@ public class AdminQuest implements IAdminCommandHandler
 			try
 			{
 				ScriptEngineManager.getInstance().executeScript(Paths.get(script));
-				BuilderUtil.sendSysMessage(activeChar, "Script loaded seccessful!");
+				activeChar.sendSysMessage("Script loaded seccessful!");
 			}
 			catch (Exception e)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Failed to load script!");
+				activeChar.sendSysMessage("Failed to load script!");
 				LOGGER.log(Level.WARNING, "Failed to load script " + script + "!", e);
 			}
 		}
@@ -121,7 +120,7 @@ public class AdminQuest implements IAdminCommandHandler
 			st.nextToken(); // skip command token
 			if (!st.hasMoreTokens())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Usage: //script_load path/to/script.java");
+				activeChar.sendSysMessage("Usage: //script_load path/to/script.java");
 				return false;
 			}
 			
@@ -129,22 +128,22 @@ public class AdminQuest implements IAdminCommandHandler
 			final Quest quest = findScript(script);
 			if (quest == null)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "The script " + script + " couldn't be found!");
+				activeChar.sendSysMessage("The script " + script + " couldn't be found!");
 				return false;
 			}
 			
 			quest.unload();
-			BuilderUtil.sendSysMessage(activeChar, "Script successful unloaded!");
+			activeChar.sendSysMessage("Script successful unloaded!");
 		}
 		else if (command.startsWith("admin_show_quests"))
 		{
 			if (activeChar.getTarget() == null)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Get a target first.");
+				activeChar.sendSysMessage("Get a target first.");
 			}
 			else if (!activeChar.getTarget().isCreature())
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Invalid Target.");
+				activeChar.sendSysMessage("Invalid Target.");
 			}
 			else
 			{
@@ -186,7 +185,7 @@ public class AdminQuest implements IAdminCommandHandler
 			int counter = 0;
 			if (quest == null)
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Couldn't find quest or script with name " + questName + " !");
+				activeChar.sendSysMessage("Couldn't find quest or script with name " + questName + " !");
 				return false;
 			}
 			

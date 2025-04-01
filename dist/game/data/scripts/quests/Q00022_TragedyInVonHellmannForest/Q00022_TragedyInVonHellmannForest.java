@@ -17,18 +17,18 @@
 package quests.Q00022_TragedyInVonHellmannForest;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.QuestTimer;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q00021_HiddenTruth.Q00021_HiddenTruth;
 
@@ -271,7 +271,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 					_soulWellNpc = addSpawn(SOUL_OF_WELL, SOUL_WELL_LOC, true, 0);
 					startQuestTimer("activateSoulOfWell", 90000, _soulWellNpc, player);
 					startQuestTimer("despawnSoulOfWell", 120000, _soulWellNpc, player);
-					_soulWellNpc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+					_soulWellNpc.getAI().setIntention(Intention.ATTACK, player);
 					playSound(player, QuestSound.SKILLSOUND_ANTARAS_FEAR);
 					htmltext = event;
 				}
@@ -331,7 +331,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isCond(10) && hasQuestItems(attacker, JEWEL_OF_ADVENTURER_1))
@@ -347,13 +347,12 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 				qs.setCond(11, true);
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		if (Util.checkIfInRange(Config.ALT_PARTY_RANGE, killer, npc, true))
+		if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, killer, npc, true))
 		{
 			if (npc.getId() == SOUL_OF_WELL)
 			{
@@ -369,7 +368,6 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

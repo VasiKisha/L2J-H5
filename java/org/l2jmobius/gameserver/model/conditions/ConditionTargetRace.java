@@ -16,14 +16,14 @@
  */
 package org.l2jmobius.gameserver.model.conditions;
 
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * The Class ConditionTargetRace.
- * @author Zealar
+ * @author mkizub
  */
 public class ConditionTargetRace extends Condition
 {

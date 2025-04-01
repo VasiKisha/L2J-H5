@@ -27,8 +27,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.ControllableMob;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.taskmanager.DecayTaskManager;
-import org.l2jmobius.gameserver.util.BuilderUtil;
+import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
 
 /**
  * This class handles following admin commands: - res = resurrects target Creature
@@ -93,12 +92,12 @@ public class AdminRes implements IAdminCommandHandler
 				{
 					final int radius = Integer.parseInt(resParam);
 					World.getInstance().forEachVisibleObjectInRange(activeChar, Player.class, radius, this::doResurrect);
-					BuilderUtil.sendSysMessage(activeChar, "Resurrected all players within a " + radius + " unit radius.");
+					activeChar.sendSysMessage("Resurrected all players within a " + radius + " unit radius.");
 					return;
 				}
 				catch (NumberFormatException e)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Enter a valid player name or radius.");
+					activeChar.sendSysMessage("Enter a valid player name or radius.");
 					return;
 				}
 			}
@@ -141,12 +140,12 @@ public class AdminRes implements IAdminCommandHandler
 					}
 				});
 				
-				BuilderUtil.sendSysMessage(activeChar, "Resurrected all non-players within a " + radius + " unit radius.");
+				activeChar.sendSysMessage("Resurrected all non-players within a " + radius + " unit radius.");
 			}
 		}
 		catch (NumberFormatException e)
 		{
-			BuilderUtil.sendSysMessage(activeChar, "Enter a valid radius.");
+			activeChar.sendSysMessage("Enter a valid radius.");
 			return;
 		}
 		

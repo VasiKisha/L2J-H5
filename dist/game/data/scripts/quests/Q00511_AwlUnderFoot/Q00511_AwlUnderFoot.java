@@ -20,24 +20,24 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.CommonUtil;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.siege.Fort;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Awl Under Foot (511)
@@ -212,7 +212,7 @@ public class Q00511_AwlUnderFoot extends Quest
 			{
 				return getHtm(player, "FortressWarden-05.htm").replace("%player%", partyMember.getName());
 			}
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				return getHtm(player, "FortressWarden-06.htm").replace("%player%", partyMember.getName());
 			}
@@ -345,7 +345,7 @@ public class Q00511_AwlUnderFoot extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		final Playable attacker = (isSummon ? player.getSummon() : player);
 		if ((attacker.getLevel() - npc.getLevel()) >= 9)
@@ -367,17 +367,16 @@ public class Q00511_AwlUnderFoot extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld tmpworld = InstanceManager.getInstance().getWorld(npc);
 		if (tmpworld instanceof FAUWorld)
 		{
 			final FAUWorld world = (FAUWorld) tmpworld;
-			if (CommonUtil.contains(RAIDS3, npc.getId()))
+			if (ArrayUtil.contains(RAIDS3, npc.getId()))
 			{
 				final Party party = player.getParty();
 				if (party != null)
@@ -402,7 +401,6 @@ public class Q00511_AwlUnderFoot extends Quest
 				ThreadPool.schedule(new spawnRaid(world), RAID_SPAWN_DELAY);
 			}
 		}
-		return null;
 	}
 	
 	@Override

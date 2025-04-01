@@ -84,11 +84,11 @@ public class PageBuilder<T>
 	{
 		Objects.requireNonNull(_bodyHandler, "Body was not set!");
 		
-		final int pages = (_elements.size() / _elementsPerPage) + ((_elements.size() % _elementsPerPage) > 0 ? 1 : 0);
 		final StringBuilder pagerTemplate = new StringBuilder();
+		final int pages = (_elements.size() / _elementsPerPage) + ((_elements.size() % _elementsPerPage) > 0 ? 1 : 0);
 		if (pages > 1)
 		{
-			_pageHandler.apply(_bypass, _currentPage, pages, pagerTemplate, _formatter, _style);
+			_pageHandler.apply(_bypass, _currentPage, pages - 1, pagerTemplate, _formatter, _style);
 		}
 		
 		if (_currentPage > pages)
@@ -96,9 +96,10 @@ public class PageBuilder<T>
 			_currentPage = pages - 1;
 		}
 		
-		final int start = Math.max(_elementsPerPage * _currentPage, 0);
 		final StringBuilder sb = new StringBuilder();
+		final int start = Math.max(_elementsPerPage * _currentPage, 0);
 		_bodyHandler.create(_elements, pages, start, _elementsPerPage, sb);
+		
 		return new PageResult(pages, pagerTemplate, sb);
 	}
 	

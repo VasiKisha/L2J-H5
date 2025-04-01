@@ -23,21 +23,21 @@ package org.l2jmobius.gameserver.model.item;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ItemGrade;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
+import org.l2jmobius.gameserver.model.item.enums.ItemGrade;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
@@ -45,6 +45,7 @@ import org.l2jmobius.gameserver.model.item.type.EtcItemType;
 import org.l2jmobius.gameserver.model.item.type.ItemType;
 import org.l2jmobius.gameserver.model.item.type.MaterialType;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.stats.functions.AbstractFunction;
 import org.l2jmobius.gameserver.model.stats.functions.FuncTemplate;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -59,7 +60,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
  * <li>Weapon</li>
  * </ul>
  */
-public abstract class ItemTemplate extends ListenersContainer implements IIdentifiable
+public abstract class ItemTemplate extends ListenersContainer
 {
 	protected static final Logger LOGGER = Logger.getLogger(ItemTemplate.class.getName());
 	
@@ -108,6 +109,47 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 	public static final int SLOT_GREATWOLF = -104;
 	
 	public static final int SLOT_MULTI_ALLWEAPON = SLOT_LR_HAND | SLOT_R_HAND;
+	
+	public static final Map<String, Integer> SLOTS = new HashMap<>();
+	static
+	{
+		SLOTS.put("shirt", SLOT_UNDERWEAR);
+		SLOTS.put("lbracelet", SLOT_L_BRACELET);
+		SLOTS.put("rbracelet", SLOT_R_BRACELET);
+		SLOTS.put("talisman", SLOT_DECO);
+		SLOTS.put("chest", SLOT_CHEST);
+		SLOTS.put("fullarmor", SLOT_FULL_ARMOR);
+		SLOTS.put("head", SLOT_HEAD);
+		SLOTS.put("hair", SLOT_HAIR);
+		SLOTS.put("hairall", SLOT_HAIRALL);
+		SLOTS.put("underwear", SLOT_UNDERWEAR);
+		SLOTS.put("back", SLOT_BACK);
+		SLOTS.put("neck", SLOT_NECK);
+		SLOTS.put("legs", SLOT_LEGS);
+		SLOTS.put("feet", SLOT_FEET);
+		SLOTS.put("gloves", SLOT_GLOVES);
+		SLOTS.put("chest,legs", SLOT_CHEST | SLOT_LEGS);
+		SLOTS.put("belt", SLOT_BELT);
+		SLOTS.put("rhand", SLOT_R_HAND);
+		SLOTS.put("lhand", SLOT_L_HAND);
+		SLOTS.put("lrhand", SLOT_LR_HAND);
+		SLOTS.put("rear;lear", SLOT_R_EAR | SLOT_L_EAR);
+		SLOTS.put("rfinger;lfinger", SLOT_R_FINGER | SLOT_L_FINGER);
+		SLOTS.put("wolf", SLOT_WOLF);
+		SLOTS.put("greatwolf", SLOT_GREATWOLF);
+		SLOTS.put("hatchling", SLOT_HATCHLING);
+		SLOTS.put("strider", SLOT_STRIDER);
+		SLOTS.put("babypet", SLOT_BABYPET);
+		SLOTS.put("none", SLOT_NONE);
+		
+		// Retail compatibility.
+		SLOTS.put("onepiece", SLOT_FULL_ARMOR);
+		SLOTS.put("hair2", SLOT_HAIR2);
+		SLOTS.put("dhair", SLOT_HAIRALL);
+		SLOTS.put("alldress", SLOT_ALLDRESS);
+		SLOTS.put("deco1", SLOT_DECO);
+		SLOTS.put("waist", SLOT_BELT);
+	}
 	
 	private int _itemId;
 	private int _displayId;
@@ -177,7 +219,7 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 		_duration = set.getInt("duration", -1);
 		_time = set.getInt("time", -1);
 		_autoDestroyTime = set.getInt("auto_destroy_time", -1) * 1000;
-		_bodyPart = ItemData.SLOTS.get(set.getString("bodypart", "none"));
+		_bodyPart = SLOTS.get(set.getString("bodypart", "none"));
 		_referencePrice = set.getInt("price", 0);
 		_crystalType = set.getEnum("crystal_type", CrystalType.class, CrystalType.NONE);
 		_crystalCount = set.getInt("crystal_count", 0);
@@ -354,7 +396,6 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 	 * Returns the ID of the item
 	 * @return int
 	 */
-	@Override
 	public int getId()
 	{
 		return _itemId;
@@ -994,11 +1035,6 @@ public abstract class ItemTemplate extends ListenersContainer implements IIdenti
 	@Override
 	public String toString()
 	{
-		final StringBuilder sb = new StringBuilder();
-		sb.append(_name);
-		sb.append("(");
-		sb.append(_itemId);
-		sb.append(")");
-		return sb.toString();
+		return StringUtil.concat(_name, "(", String.valueOf(_itemId), ")");
 	}
 }

@@ -16,7 +16,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlEvent;
+import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
@@ -67,6 +67,6 @@ public class Spoil extends AbstractEffect
 		
 		target.setSpoilerObjectId(effector.getObjectId());
 		effector.sendPacket(SystemMessageId.THE_SPOIL_CONDITION_HAS_BEEN_ACTIVATED);
-		target.getAI().notifyEvent(CtrlEvent.EVT_ATTACKED, effector);
+		target.getAI().notifyAction(Action.ATTACKED, effector);
 	}
 }

@@ -34,11 +34,11 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.AbsorbCrystalType;
+import org.l2jmobius.gameserver.data.enums.AbsorbCrystalType;
+import org.l2jmobius.gameserver.data.holders.LevelingSoulCrystalInfo;
+import org.l2jmobius.gameserver.data.holders.SoulCrystal;
+import org.l2jmobius.gameserver.data.holders.SoulCrystalDisplay;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.holders.LevelingSoulCrystalInfo;
-import org.l2jmobius.gameserver.model.holders.SoulCrystal;
-import org.l2jmobius.gameserver.model.holders.SoulCrystalDisplay;
 
 /**
  * Loads item enchant data.
@@ -115,15 +115,15 @@ public class LevelUpCrystalData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		if (!f.exists())
+		if (!file.exists())
 		{
 			LOGGER.log(Level.WARNING, "Missing LevelUpCrystalData.xml. The quest wont work without it!");
 			return;
 		}
 		
-		Node first = doc.getFirstChild();
+		Node first = document.getFirstChild();
 		if ((first != null) && "list".equalsIgnoreCase(first.getNodeName()))
 		{
 			for (Node n = first.getFirstChild(); n != null; n = n.getNextSibling())

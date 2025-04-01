@@ -1,28 +1,33 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import org.l2jmobius.gameserver.enums.MacroType;
-import org.l2jmobius.gameserver.model.Macro;
-import org.l2jmobius.gameserver.model.MacroCmd;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MacroType;
+import org.l2jmobius.gameserver.model.actor.holders.player.Macro;
+import org.l2jmobius.gameserver.model.actor.holders.player.MacroCmd;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 public class RequestMakeMacro extends ClientPacket
@@ -68,30 +73,43 @@ public class RequestMakeMacro extends ClientPacket
 		{
 			return;
 		}
-		if (_commandsLength > 255)
-		{
-			// Invalid macro. Refer to the Help file for instructions.
-			player.sendPacket(SystemMessageId.INVALID_MACRO_REFER_TO_THE_HELP_FILE_FOR_INSTRUCTIONS);
-			return;
-		}
-		if (player.getMacros().getAllMacroses().size() > 48)
-		{
-			// You may create up to 48 macros.
-			player.sendPacket(SystemMessageId.YOU_MAY_CREATE_UP_TO_48_MACROS);
-			return;
-		}
+		
+		// Enter the name of the macro.
 		if (_macro.getName().isEmpty())
 		{
-			// Enter the name of the macro.
 			player.sendPacket(SystemMessageId.ENTER_THE_NAME_OF_THE_MACRO);
 			return;
 		}
+		
+		// Invalid macro. Refer to the Help file for instructions.
+		if (_commandsLength > 255)
+		{
+			player.sendPacket(SystemMessageId.INVALID_MACRO_REFER_TO_THE_HELP_FILE_FOR_INSTRUCTIONS);
+			return;
+		}
+		
+		// You may create up to 48 macros.
+		final Collection<Macro> macros = player.getMacros().getAllMacroses().values();
+		if (macros.size() > 48)
+		{
+			player.sendPacket(SystemMessageId.YOU_MAY_CREATE_UP_TO_48_MACROS);
+			return;
+		}
+		
+		// That name is already assigned to another macro.
+		if (macros.stream().anyMatch(m -> m.getName().equalsIgnoreCase(_macro.getName()) && (m.getId() != _macro.getId())))
+		{
+			player.sendPacket(SystemMessageId.ENTER_THE_NAME_OF_THE_MACRO);
+			return;
+		}
+		
+		// Macro descriptions may contain up to 32 characters.
 		if (_macro.getDescr().length() > 32)
 		{
-			// Macro descriptions may contain up to 32 characters.
 			player.sendPacket(SystemMessageId.MACRO_DESCRIPTIONS_MAY_CONTAIN_UP_TO_32_CHARACTERS);
 			return;
 		}
+		
 		player.registerMacro(_macro);
 	}
 }

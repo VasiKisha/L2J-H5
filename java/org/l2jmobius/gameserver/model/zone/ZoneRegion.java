@@ -24,7 +24,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.type.PeaceZone;
 
 /**
- * @author Nos
+ * @author NosBit
  */
 public class ZoneRegion
 {

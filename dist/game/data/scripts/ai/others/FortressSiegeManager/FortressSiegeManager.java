@@ -16,11 +16,11 @@
  */
 package ai.others.FortressSiegeManager;
 
-import org.l2jmobius.gameserver.instancemanager.FortSiegeManager;
+import org.l2jmobius.gameserver.managers.FortSiegeManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.clan.ClanPrivilege;
+import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -100,7 +100,7 @@ public class FortressSiegeManager extends AbstractNpcAI
 						html.replace("%clanName%", fortress.getOwnerClan().getName());
 						return html.getHtml();
 					}
-					else if (!player.hasClanPrivilege(ClanPrivilege.CS_MANAGE_SIEGE))
+					else if (!player.hasAccess(ClanAccess.CASTLE_SIEGE))
 					{
 						htmltext = "FortressSiegeManager-10.html";
 					}
@@ -169,7 +169,7 @@ public class FortressSiegeManager extends AbstractNpcAI
 						html.replace("%clanName%", fortress.getOwnerClan().getName());
 						return html.getHtml();
 					}
-					else if (!player.hasClanPrivilege(ClanPrivilege.CS_MANAGE_SIEGE))
+					else if (!player.hasAccess(ClanAccess.CASTLE_SIEGE))
 					{
 						htmltext = "FortressSiegeManager-10.html";
 					}

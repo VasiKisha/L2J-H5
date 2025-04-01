@@ -20,12 +20,12 @@
  */
 package handlers.actionhandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.InstanceType;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
@@ -42,9 +42,9 @@ public class PlayerAction implements IActionHandler
 	 * <br>
 	 * <b><u>Actions on second click on the Player (Follow it/Attack it/Intercat with it)</u>:</b><br>
 	 * <li>Send a Server->Client packet MyTargetSelected to the player (display the select window)</li>
-	 * <li>If target Player has a Private Store, notify the player AI with AI_INTENTION_INTERACT</li>
-	 * <li>If target Player is autoAttackable, notify the player AI with AI_INTENTION_ATTACK</li>
-	 * <li>If target Player is NOT autoAttackable, notify the player AI with AI_INTENTION_FOLLOW</li><br>
+	 * <li>If target Player has a Private Store, notify the player AI with INTERACT</li>
+	 * <li>If target Player is autoAttackable, notify the player AI with ATTACK</li>
+	 * <li>If target Player is NOT autoAttackable, notify the player AI with FOLLOW</li><br>
 	 * <br>
 	 * <b><u>Example of use</u>:</b><br>
 	 * <li>Client packet : Action, AttackRequest</li><br>
@@ -78,7 +78,7 @@ public class PlayerAction implements IActionHandler
 			final Player targetPlayer = target.asPlayer();
 			if (targetPlayer.isInStoreMode())
 			{
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, target);
+				player.getAI().setIntention(Intention.INTERACT, target);
 			}
 			else
 			{
@@ -94,7 +94,7 @@ public class PlayerAction implements IActionHandler
 					}
 					else
 					{
-						player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, target);
+						player.getAI().setIntention(Intention.ATTACK, target);
 						player.onActionRequest();
 					}
 				}
@@ -104,7 +104,7 @@ public class PlayerAction implements IActionHandler
 					player.sendPacket(ActionFailed.STATIC_PACKET);
 					if (GeoEngine.getInstance().canMoveToTarget(player, target))
 					{
-						player.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, target);
+						player.getAI().setIntention(Intention.FOLLOW, target);
 					}
 				}
 			}

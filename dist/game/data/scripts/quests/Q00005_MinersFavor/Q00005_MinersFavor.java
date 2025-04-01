@@ -16,13 +16,16 @@
  */
 package quests.Q00005_MinersFavor;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+
+import ai.others.NewbieGuide.NewbieGuide;
 
 /**
  * Miner's Favor (5)
@@ -46,6 +49,7 @@ public class Q00005_MinersFavor extends Quest
 	private static final int NECKLACE = 906;
 	// Misc
 	private static final int MIN_LEVEL = 2;
+	private static final int GUIDE_MISSION = 41;
 	
 	public Q00005_MinersFavor()
 	{
@@ -122,12 +126,30 @@ public class Q00005_MinersFavor extends Quest
 						}
 						else
 						{
-							giveAdena(player, 2466, true);
-							addExpAndSp(player, 5672, 446);
 							giveItems(player, NECKLACE, 1);
+							addExpAndSp(player, 5672, 446);
+							giveAdena(player, 2466, true);
 							qs.exitQuest(false, true);
-							// Newbie Guide
-							showOnScreenMsg(player, NpcStringId.DELIVERY_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+							
+							// Newbie Guide.
+							final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+							if (newbieGuide != null)
+							{
+								final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
+								if (!haveNRMemo(newbieGuideQs, GUIDE_MISSION))
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, 1);
+									showOnScreenMsg(player, NpcStringId.DELIVERY_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+								else if ((getNRMemoState(newbieGuideQs, GUIDE_MISSION) % 10) != 1)
+								{
+									setNRMemo(newbieGuideQs, GUIDE_MISSION);
+									setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 1);
+									showOnScreenMsg(player, NpcStringId.DELIVERY_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
+								}
+							}
+							
 							htmltext = "30554-06.html";
 						}
 						break;

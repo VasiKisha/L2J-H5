@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.admincommandhandlers;
 
@@ -20,17 +24,16 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.data.xml.FenceData;
-import org.l2jmobius.gameserver.enums.FenceState;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.FenceState;
 import org.l2jmobius.gameserver.model.actor.instance.Fence;
 import org.l2jmobius.gameserver.model.html.PageBuilder;
 import org.l2jmobius.gameserver.model.html.PageResult;
 import org.l2jmobius.gameserver.model.html.styles.ButtonsStyle;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * @author Sahar, Nik64
@@ -62,21 +65,21 @@ public class AdminFence implements IAdminCommandHandler
 					final int height = Integer.parseInt(st.nextToken());
 					if ((width < 1) || (length < 1))
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Width and length values must be positive numbers.");
+						activeChar.sendSysMessage("Width and length values must be positive numbers.");
 						return false;
 					}
 					if ((height < 1) || (height > 3))
 					{
-						BuilderUtil.sendSysMessage(activeChar, "The range for height can only be 1-3.");
+						activeChar.sendSysMessage("The range for height can only be 1-3.");
 						return false;
 					}
 					
 					FenceData.getInstance().spawnFence(activeChar.getX(), activeChar.getY(), activeChar.getZ(), width, length, height, activeChar.getInstanceId(), FenceState.CLOSED);
-					BuilderUtil.sendSysMessage(activeChar, "Fence added succesfully.");
+					activeChar.sendSysMessage("Fence added succesfully.");
 				}
 				catch (NoSuchElementException | NumberFormatException e)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Format must be: //addfence <width> <length> <height>");
+					activeChar.sendSysMessage("Format must be: //addfence <width> <length> <height>");
 				}
 				break;
 			}
@@ -88,7 +91,7 @@ public class AdminFence implements IAdminCommandHandler
 					final int fenceTypeOrdinal = Integer.parseInt(st.nextToken());
 					if ((fenceTypeOrdinal < 0) || (fenceTypeOrdinal >= FenceState.values().length))
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Specified FenceType is out of range. Only 0-" + (FenceState.values().length - 1) + " are permitted.");
+						activeChar.sendSysMessage("Specified FenceType is out of range. Only 0-" + (FenceState.values().length - 1) + " are permitted.");
 					}
 					else
 					{
@@ -98,17 +101,17 @@ public class AdminFence implements IAdminCommandHandler
 							final Fence fence = (Fence) obj;
 							final FenceState state = FenceState.values()[fenceTypeOrdinal];
 							fence.setState(state);
-							BuilderUtil.sendSysMessage(activeChar, "Fence " + fence.getName() + "[" + fence.getId() + "]'s state has been changed to " + state.toString());
+							activeChar.sendSysMessage("Fence " + fence.getName() + "[" + fence.getId() + "]'s state has been changed to " + state.toString());
 						}
 						else
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Target is not a fence.");
+							activeChar.sendSysMessage("Target is not a fence.");
 						}
 					}
 				}
 				catch (NoSuchElementException | NumberFormatException e)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Format mustr be: //setfencestate <fenceObjectId> <fenceState>");
+					activeChar.sendSysMessage("Format mustr be: //setfencestate <fenceObjectId> <fenceState>");
 				}
 				break;
 			}
@@ -121,16 +124,16 @@ public class AdminFence implements IAdminCommandHandler
 					if (obj instanceof Fence)
 					{
 						((Fence) obj).deleteMe();
-						BuilderUtil.sendSysMessage(activeChar, "Fence removed succesfully.");
+						activeChar.sendSysMessage("Fence removed succesfully.");
 					}
 					else
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Target is not a fence.");
+						activeChar.sendSysMessage("Target is not a fence.");
 					}
 				}
 				catch (Exception e)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Invalid object ID or target was not found.");
+					activeChar.sendSysMessage("Invalid object ID or target was not found.");
 				}
 				sendHtml(activeChar, 0);
 				break;
@@ -158,7 +161,7 @@ public class AdminFence implements IAdminCommandHandler
 				}
 				catch (Exception e)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Invalid object ID or target was not found.");
+					activeChar.sendSysMessage("Invalid object ID or target was not found.");
 				}
 				break;
 			}

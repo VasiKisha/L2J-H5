@@ -28,9 +28,6 @@ public class VehicleCheckLocation extends ServerPacket
 {
 	private final Creature _boat;
 	
-	/**
-	 * @param boat
-	 */
 	public VehicleCheckLocation(Creature boat)
 	{
 		_boat = boat;

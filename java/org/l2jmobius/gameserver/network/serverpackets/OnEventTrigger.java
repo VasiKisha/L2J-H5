@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * @author Gnacik, UnAfraid
+ * @author Gnacik
  */
 public class OnEventTrigger extends ServerPacket
 {

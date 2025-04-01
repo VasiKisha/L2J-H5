@@ -16,11 +16,11 @@
  */
 package ai.others;
 
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 
 import ai.AbstractNpcAI;
 
@@ -73,7 +73,7 @@ public class CrimsonHatuOtis extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
 	{
 		if (npc.isScriptValue(0))
 		{
@@ -86,15 +86,13 @@ public class CrimsonHatuOtis extends AbstractNpcAI
 			npc.setScriptValue(2);
 			startQuestTimer("BUFF", 1000, npc, null);
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		cancelQuestTimer("SKILL", npc, null);
 		cancelQuestTimer("BUFF", npc, null);
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	public static void main(String[] args)

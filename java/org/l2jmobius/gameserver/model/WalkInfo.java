@@ -19,11 +19,11 @@ package org.l2jmobius.gameserver.model;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.util.Rnd;
-import org.l2jmobius.gameserver.instancemanager.WalkingManager;
+import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.npc.OnNpcMoveRouteFinished;
+import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcMoveRouteFinished;
 
 /**
  * Holds info about current walk progress.

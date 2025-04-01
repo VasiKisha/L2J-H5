@@ -24,16 +24,16 @@ import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.EffectList;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectTaskInfo;
 import org.l2jmobius.gameserver.model.effects.EffectTickTask;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
  * Buff Info.<br>
@@ -265,7 +265,7 @@ public class BuffInfo
 			effect.onStart(_effector, _effected, _skill);
 			
 			// Do not add continuous effect if target just died from the initial effect, otherwise they'll be ticked forever.
-			if (_effected.isDead())
+			if (_effected.isDead() && !_skill.isPassive())
 			{
 				continue;
 			}

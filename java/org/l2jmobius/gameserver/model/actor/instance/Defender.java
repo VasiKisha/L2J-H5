@@ -21,17 +21,17 @@
 package org.l2jmobius.gameserver.model.actor.instance;
 
 import org.l2jmobius.gameserver.ai.CreatureAI;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
 import org.l2jmobius.gameserver.ai.FortSiegeGuardAI;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.SiegeGuardAI;
 import org.l2jmobius.gameserver.ai.SpecialSiegeGuardAI;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.FortManager;
-import org.l2jmobius.gameserver.instancemanager.TerritoryWarManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.FortManager;
+import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
@@ -123,7 +123,7 @@ public class Defender extends Attackable
 			
 			if (hasAI())
 			{
-				getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, getSpawn().getLocation());
+				getAI().setIntention(Intention.MOVE_TO, getSpawn().getLocation());
 			}
 		}
 	}
@@ -165,12 +165,12 @@ public class Defender extends Attackable
 			// this max heigth difference might need some tweaking
 			if (isAutoAttackable(player) && !isAlikeDead() && (Math.abs(player.getZ() - getZ()) < 600))
 			{
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+				player.getAI().setIntention(Intention.ATTACK, this);
 			}
-			// Notify the Player AI with AI_INTENTION_INTERACT
+			// Notify the Player AI with INTERACT
 			if (!isAutoAttackable(player) && !canInteract(player))
 			{
-				player.getAI().setIntention(CtrlIntention.AI_INTENTION_INTERACT, this);
+				player.getAI().setIntention(Intention.INTERACT, this);
 			}
 		}
 		// Send a Server->Client ActionFailed to the Player in order to avoid that the client wait another packet

@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.actor;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -62,8 +62,8 @@ public abstract class Tower extends Npc
 		}
 		else if (interact && isAutoAttackable(player) && (Math.abs(player.getZ() - getZ()) < 100) && GeoEngine.getInstance().canSeeTarget(player, this))
 		{
-			// Notify the Player AI with AI_INTENTION_INTERACT
-			player.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, this);
+			// Notify the Player AI with INTERACT
+			player.getAI().setIntention(Intention.ATTACK, this);
 		}
 		// Send a Server->Client ActionFailed to the Player in order to avoid that the client wait another packet
 		player.sendPacket(ActionFailed.STATIC_PACKET);

@@ -46,7 +46,7 @@ public class OutpostCaptain extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Door door = DoorData.getInstance().getDoor(20250001);
 		if (door != null)
@@ -57,11 +57,10 @@ public class OutpostCaptain extends AbstractNpcAI
 		{
 			HellboundEngine.getInstance().setLevel(9);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setRandomWalking(false);
 		
@@ -82,6 +81,5 @@ public class OutpostCaptain extends AbstractNpcAI
 				}
 			}
 		}
-		return super.onSpawn(npc);
 	}
 }

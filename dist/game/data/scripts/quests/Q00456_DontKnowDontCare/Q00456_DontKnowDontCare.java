@@ -22,22 +22,22 @@ import java.util.Map;
 import java.util.Set;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.QuestType;
 import org.l2jmobius.gameserver.model.AggroInfo;
-import org.l2jmobius.gameserver.model.CommandChannel;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.groups.CommandChannel;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Don't Know, Don't Care (456)
@@ -182,7 +182,7 @@ public class Q00456_DontKnowDontCare extends Quest
 	{
 		final QuestState qs = getQuestState(player, true);
 		String htmltext = getNoQuestMsg(player);
-		if (CommonUtil.contains(SEPARATED_SOUL, npc.getId()))
+		if (ArrayUtil.contains(SEPARATED_SOUL, npc.getId()))
 		{
 			switch (qs.getState())
 			{
@@ -265,18 +265,18 @@ public class Q00456_DontKnowDontCare extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (!killer.isInParty() || !killer.getParty().isInCommandChannel())
 		{
 			// only the killing cc gets the quest
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		final CommandChannel cc = killer.getParty().getCommandChannel();
 		if (cc.getMemberCount() < MIN_PLAYERS)
 		{
-			return super.onKill(npc, killer, isSummon);
+			return;
 		}
 		
 		final Set<Integer> allowedPlayers = new HashSet<>();
@@ -291,7 +291,7 @@ public class Q00456_DontKnowDontCare extends Quest
 			if (attacker.isInParty() //
 				&& attacker.getParty().isInCommandChannel() //
 				&& attacker.getParty().getCommandChannel().equals(cc) // only players from the same cc are allowed
-				&& Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, attacker, true))
+				&& LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, attacker, true))
 			{
 				allowedPlayers.add(attacker.getObjectId());
 			}
@@ -304,8 +304,6 @@ public class Q00456_DontKnowDontCare extends Quest
 			allowedPlayerMap.put(spawned.getObjectId(), allowedPlayers);
 			startQuestTimer("unspawnRaidCorpse", 300000, npc, null);
 		}
-		
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	private void rewardPlayer(Player player, Npc npc)

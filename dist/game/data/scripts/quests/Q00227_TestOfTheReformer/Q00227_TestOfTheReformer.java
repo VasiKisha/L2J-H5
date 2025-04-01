@@ -20,20 +20,20 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.QuestSound;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Test Of The Reformer (227)
@@ -199,7 +199,7 @@ public class Q00227_TestOfTheReformer extends Quest
 					final Npc pilgrim = addSpawn(OL_MAHUM_PILGRIM, -9282, -89975, -2331, 0, false, 0);
 					final Npc wolf = addSpawn(CRIMSON_WEREWOLF, -9382, -89852, -2333, 0, false, 0);
 					wolf.asAttackable().addDamageHate(pilgrim, 99999, 99999);
-					wolf.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, pilgrim);
+					wolf.getAI().setIntention(Intention.ATTACK, pilgrim);
 				}
 				htmltext = event;
 				break;
@@ -212,7 +212,7 @@ public class Q00227_TestOfTheReformer extends Quest
 					final Npc pilgrim = addSpawn(OL_MAHUM_PILGRIM, 125947, -180049, -1778, 0, false, 0);
 					final Npc lizard = addSpawn(KRUDEL_LIZARDMAN, 126019, -179983, -1781, 0, false, 0);
 					lizard.asAttackable().addDamageHate(pilgrim, 99999, 99999);
-					lizard.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, pilgrim);
+					lizard.getAI().setIntention(Intention.ATTACK, pilgrim);
 				}
 				htmltext = event;
 				break;
@@ -222,7 +222,7 @@ public class Q00227_TestOfTheReformer extends Quest
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final QuestState qs = getQuestState(attacker, false);
 		if ((qs != null) && qs.isStarted())
@@ -259,14 +259,13 @@ public class Q00227_TestOfTheReformer extends Quest
 				}
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isStarted() && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			switch (npc.getId())
 			{
@@ -410,7 +409,6 @@ public class Q00227_TestOfTheReformer extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -423,7 +421,7 @@ public class Q00227_TestOfTheReformer extends Quest
 		{
 			if (npc.getId() == PRIESTESS_PUPINA)
 			{
-				if ((player.getClassId() == ClassId.CLERIC) || (player.getClassId() == ClassId.SHILLIEN_ORACLE))
+				if ((player.getPlayerClass() == PlayerClass.CLERIC) || (player.getPlayerClass() == PlayerClass.SHILLIEN_ORACLE))
 				{
 					if (player.getLevel() >= MIN_LEVEL)
 					{
@@ -566,7 +564,7 @@ public class Q00227_TestOfTheReformer extends Quest
 							final Npc pilgrim = addSpawn(OL_MAHUM_PILGRIM, -4015, 40141, -3664, 0, false, 0);
 							final Npc inspector = addSpawn(OL_MAHUM_INSPECTOR, -4034, 40201, -3665, 0, false, 0);
 							inspector.asAttackable().addDamageHate(pilgrim, 99999, 99999);
-							inspector.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, pilgrim);
+							inspector.getAI().setIntention(Intention.ATTACK, pilgrim);
 						}
 						htmltext = "30668-01.html";
 					}
@@ -667,7 +665,7 @@ public class Q00227_TestOfTheReformer extends Quest
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		switch (npc.getId())
 		{
@@ -684,11 +682,10 @@ public class Q00227_TestOfTheReformer extends Quest
 			{
 				startQuestTimer("DESPAWN", 5000, npc, null, true);
 				npc.setRunning();
-				npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, MOVE_TO);
+				npc.getAI().setIntention(Intention.MOVE_TO, MOVE_TO);
 				npc.getVariables().set("SPAWNED", 0);
 				break;
 			}
 		}
-		return super.onSpawn(npc);
 	}
 }

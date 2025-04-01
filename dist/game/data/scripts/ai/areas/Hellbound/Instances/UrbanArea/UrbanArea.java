@@ -19,24 +19,25 @@ package ai.areas.Hellbound.Instances.UrbanArea;
 import java.util.concurrent.ScheduledFuture;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.SkillFinishType;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
-import org.l2jmobius.gameserver.model.Party;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.areas.Hellbound.HellboundEngine;
 import instances.AbstractInstance;
@@ -143,13 +144,13 @@ public class UrbanArea extends AbstractInstance
 				{
 					for (Player partyMember : party.getMembers())
 					{
-						if (!Util.checkIfInRange(300, npc, partyMember, true))
+						if (!LocationUtil.checkIfInRange(300, npc, partyMember, true))
 						{
 							return "32343-02b.htm";
 						}
 					}
 					
-					if (player.destroyItemByItemId("Quest", KEY, 1, npc, true))
+					if (player.destroyItemByItemId(ItemProcessType.QUEST, KEY, 1, npc, true))
 					{
 						npc.setBusy(true);
 						// destroy instance after 5 min
@@ -200,7 +201,7 @@ public class UrbanArea extends AbstractInstance
 					npc.scheduleDespawn(3000);
 					// Try to call Amaskari
 					final Npc spawnedAmaskari = world.getParameters().getObject("spawnedAmaskari", Npc.class);
-					if ((spawnedAmaskari != null) && !spawnedAmaskari.isDead() && (getRandom(1000) < 25) && Util.checkIfInRange(5000, npc, spawnedAmaskari, false))
+					if ((spawnedAmaskari != null) && !spawnedAmaskari.isDead() && (getRandom(1000) < 25) && LocationUtil.checkIfInRange(5000, npc, spawnedAmaskari, false))
 					{
 						final ScheduledFuture<?> activeAmaskariCall = world.getParameters().getObject("activeAmaskariCall", ScheduledFuture.class);
 						if (activeAmaskariCall != null)
@@ -216,7 +217,7 @@ public class UrbanArea extends AbstractInstance
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == DOWNTOWN_NATIVE)
 		{
@@ -230,11 +231,10 @@ public class UrbanArea extends AbstractInstance
 			npc.setBusy(false);
 			npc.setBusyMessage("");
 		}
-		return super.onSpawn(npc);
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if ((world != null) && !npc.isBusy())
@@ -243,7 +243,7 @@ public class UrbanArea extends AbstractInstance
 			npc.setBusy(true);
 			
 			final Npc spawnedAmaskari = world.getParameters().getObject("spawnedAmaskari", Npc.class);
-			if ((spawnedAmaskari != null) && !spawnedAmaskari.isDead() && (getRandom(1000) < 25) && Util.checkIfInRange(1000, npc, spawnedAmaskari, false))
+			if ((spawnedAmaskari != null) && !spawnedAmaskari.isDead() && (getRandom(1000) < 25) && LocationUtil.checkIfInRange(1000, npc, spawnedAmaskari, false))
 			{
 				final ScheduledFuture<?> activeAmaskariCall = world.getParameters().getObject("activeAmaskariCall", ScheduledFuture.class);
 				if (activeAmaskariCall != null)
@@ -253,11 +253,10 @@ public class UrbanArea extends AbstractInstance
 				world.setParameter("activeAmaskariCall", ThreadPool.schedule(new CallAmaskari(npc), 25000));
 			}
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon, Skill skill)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if ((world != null) && !world.getParameters().getBoolean("isAmaskariDead", false) && !(npc.getBusyMessage().equalsIgnoreCase("atk") || npc.isBusy()))
@@ -292,7 +291,7 @@ public class UrbanArea extends AbstractInstance
 			npc.setBusyMessage("atk");
 			
 			final Npc spawnedAmaskari = world.getParameters().getObject("spawnedAmaskari", Npc.class);
-			if ((spawnedAmaskari != null) && !spawnedAmaskari.isDead() && (getRandom(1000) < 25) && Util.checkIfInRange(range, npc, spawnedAmaskari, false))
+			if ((spawnedAmaskari != null) && !spawnedAmaskari.isDead() && (getRandom(1000) < 25) && LocationUtil.checkIfInRange(range, npc, spawnedAmaskari, false))
 			{
 				final ScheduledFuture<?> activeAmaskariCall = world.getParameters().getObject("activeAmaskariCall", ScheduledFuture.class);
 				if (activeAmaskariCall != null)
@@ -302,18 +301,16 @@ public class UrbanArea extends AbstractInstance
 				world.setParameter("activeAmaskariCall", ThreadPool.schedule(new CallAmaskari(npc), 25000));
 			}
 		}
-		return super.onAttack(npc, attacker, damage, isSummon, skill);
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if (world != null)
 		{
 			world.setParameter("isAmaskariDead", true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -339,7 +336,7 @@ public class UrbanArea extends AbstractInstance
 				return false;
 			}
 			
-			if (!Util.checkIfInRange(1000, player, partyMember, true))
+			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				party.broadcastPacket(new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED).addPcName(partyMember));
 				return false;

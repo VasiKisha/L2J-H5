@@ -21,7 +21,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExUISetting;
 
 /**
- * @author KenM / mrTJO
+ * @author mrTJO
  */
 public class RequestKeyMapping extends ClientPacket
 {

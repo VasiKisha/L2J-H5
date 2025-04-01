@@ -21,10 +21,11 @@
 package handlers.itemhandlers;
 
 import org.l2jmobius.gameserver.handler.IItemHandler;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.MercTicketManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.MercTicketManager;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.siege.Castle;
@@ -126,7 +127,7 @@ public class MercTicket implements IItemHandler
 		}
 		
 		MercTicketManager.getInstance().addTicket(item.getId(), player);
-		player.destroyItem("Consume", item.getObjectId(), 1, null, false); // Remove item from char's inventory
+		player.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false); // Remove item from char's inventory
 		final SystemMessage sm = new SystemMessage(SystemMessageId.PLACE_S1_IN_THE_CURRENT_LOCATION_AND_DIRECTION_DO_YOU_WISH_TO_CONTINUE);
 		sm.addItemName(item.getId());
 		player.sendPacket(sm);

@@ -30,7 +30,6 @@ import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.GMViewPledgeInfo;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
 
 /**
  * <b>Pledge Manipulation:</b><br>
@@ -87,7 +86,7 @@ public class AdminPledge implements IAdminCommandHandler
 				
 				if (action == null)
 				{
-					BuilderUtil.sendSysMessage(activeChar, "Not allowed Action on Clan");
+					activeChar.sendSysMessage("Not allowed Action on Clan");
 					showMainPage(activeChar);
 					return false;
 				}
@@ -110,7 +109,7 @@ public class AdminPledge implements IAdminCommandHandler
 					{
 						if ((parameter == null) || (parameter.length() == 0))
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Please, enter clan name.");
+							activeChar.sendSysMessage("Please, enter clan name.");
 							showMainPage(activeChar);
 							return false;
 						}
@@ -120,12 +119,12 @@ public class AdminPledge implements IAdminCommandHandler
 						final Clan clan = ClanTable.getInstance().createClan(player, parameter);
 						if (clan != null)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Clan " + parameter + " created. Leader: " + player.getName());
+							activeChar.sendSysMessage("Clan " + parameter + " created. Leader: " + player.getName());
 							return true;
 						}
 						
 						player.setClanCreateExpiryTime(cet);
-						BuilderUtil.sendSysMessage(activeChar, "There was a problem while creating the clan.");
+						activeChar.sendSysMessage("There was a problem while creating the clan.");
 						showMainPage(activeChar);
 						return false;
 					}
@@ -135,11 +134,11 @@ public class AdminPledge implements IAdminCommandHandler
 						final Clan clan = player.getClan();
 						if (clan == null)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Clan disbanded.");
+							activeChar.sendSysMessage("Clan disbanded.");
 							return true;
 						}
 						
-						BuilderUtil.sendSysMessage(activeChar, "There was a problem while destroying the clan.");
+						activeChar.sendSysMessage("There was a problem while destroying the clan.");
 						showMainPage(activeChar);
 						return false;
 					}
@@ -161,7 +160,7 @@ public class AdminPledge implements IAdminCommandHandler
 					{
 						if (parameter == null)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Usage: //pledge <setlevel|rep> <number>");
+							activeChar.sendSysMessage("Usage: //pledge <setlevel|rep> <number>");
 							showMainPage(activeChar);
 							return false;
 						}
@@ -174,8 +173,8 @@ public class AdminPledge implements IAdminCommandHandler
 						}
 						catch (NumberFormatException nfe)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Level incorrect.");
-							BuilderUtil.sendSysMessage(activeChar, "Usage: //pledge <setlevel|rep> <number>");
+							activeChar.sendSysMessage("Level incorrect.");
+							activeChar.sendSysMessage("Usage: //pledge <setlevel|rep> <number>");
 							showMainPage(activeChar);
 							return false;
 						}
@@ -183,12 +182,12 @@ public class AdminPledge implements IAdminCommandHandler
 						if ((level >= 0) && (level <= MAX_CLAN_LEVEL))
 						{
 							clan.changeLevel(level);
-							BuilderUtil.sendSysMessage(activeChar, "You set level " + level + " for clan " + clan.getName());
+							activeChar.sendSysMessage("You set level " + level + " for clan " + clan.getName());
 							return true;
 						}
 						
-						BuilderUtil.sendSysMessage(activeChar, "Level incorrect.");
-						BuilderUtil.sendSysMessage(activeChar, "Usage: //pledge <setlevel|rep> <number>");
+						activeChar.sendSysMessage("Level incorrect.");
+						activeChar.sendSysMessage("Usage: //pledge <setlevel|rep> <number>");
 						showMainPage(activeChar);
 						return false;
 					}
@@ -196,7 +195,7 @@ public class AdminPledge implements IAdminCommandHandler
 					{
 						if (parameter == null)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Usage: //pledge <setlevel|rep> <number>");
+							activeChar.sendSysMessage("Usage: //pledge <setlevel|rep> <number>");
 							showMainPage(activeChar);
 							return false;
 						}
@@ -209,15 +208,15 @@ public class AdminPledge implements IAdminCommandHandler
 						}
 						catch (NumberFormatException nfe)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Points incorrect.");
-							BuilderUtil.sendSysMessage(activeChar, "Usage: //pledge <setlevel|rep> <number>");
+							activeChar.sendSysMessage("Points incorrect.");
+							activeChar.sendSysMessage("Usage: //pledge <setlevel|rep> <number>");
 							showMainPage(activeChar);
 							return false;
 						}
 						
 						if (clan.getLevel() < REP_POINTS_REWARD_LEVEL)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Only clans of level 5 or above may receive reputation points.");
+							activeChar.sendSysMessage("Only clans of level 5 or above may receive reputation points.");
 							showMainPage(activeChar);
 							return false;
 						}
@@ -225,19 +224,19 @@ public class AdminPledge implements IAdminCommandHandler
 						try
 						{
 							clan.addReputationScore(points);
-							BuilderUtil.sendSysMessage(activeChar, "You " + (points > 0 ? "add " : "remove ") + Math.abs(points) + " points " + (points > 0 ? "to " : "from ") + clan.getName() + "'s reputation. Their current score is " + clan.getReputationScore());
+							activeChar.sendSysMessage("You " + (points > 0 ? "add " : "remove ") + Math.abs(points) + " points " + (points > 0 ? "to " : "from ") + clan.getName() + "'s reputation. Their current score is " + clan.getReputationScore());
 							showMainPage(activeChar);
 							return false;
 						}
 						catch (Exception e)
 						{
-							BuilderUtil.sendSysMessage(activeChar, "Usage: //pledge <rep> <number>");
+							activeChar.sendSysMessage("Usage: //pledge <rep> <number>");
 						}
 						break;
 					}
 					default:
 					{
-						BuilderUtil.sendSysMessage(activeChar, "Clan action not allowed.");
+						activeChar.sendSysMessage("Clan action not allowed.");
 						showMainPage(activeChar);
 						return false;
 					}
@@ -245,7 +244,7 @@ public class AdminPledge implements IAdminCommandHandler
 			}
 			default:
 			{
-				BuilderUtil.sendSysMessage(activeChar, "Clan command not allowed.");
+				activeChar.sendSysMessage("Clan command not allowed.");
 				showMainPage(activeChar);
 			}
 		}

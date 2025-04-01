@@ -28,20 +28,20 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
 
-import org.l2jmobius.commons.util.TimeUtil;
-import org.l2jmobius.gameserver.model.holders.MinionHolder;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
-import org.l2jmobius.gameserver.model.interfaces.IParserAdvUtils;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.commons.time.TimeUtil;
+import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * This class is meant to hold a set of (key,value) pairs.<br>
  * They are stored as object but can be retrieved in any type wanted. As long as cast is available.<br>
  * @author mkizub
  */
-public class StatSet implements IParserAdvUtils
+public class StatSet
 {
 	private static final Logger LOGGER = Logger.getLogger(StatSet.class.getName());
+	
 	/** Static empty immutable map, used to avoid multiple null checks over the source. */
 	public static final StatSet EMPTY_STATSET = new StatSet(Collections.emptyMap());
 	
@@ -95,7 +95,6 @@ public class StatSet implements IParserAdvUtils
 	 * @return boolean : value associated to the key
 	 * @throws IllegalArgumentException : If value is not set or value is not boolean
 	 */
-	@Override
 	public boolean getBoolean(String key)
 	{
 		final Object val = _set.get(key);
@@ -121,9 +120,9 @@ public class StatSet implements IParserAdvUtils
 	 * Return the boolean value associated with key.<br>
 	 * If no value is associated with key, or type of value is wrong, returns defaultValue.
 	 * @param key : String designating the key in the entry set
+	 * @param defaultValue
 	 * @return boolean : value associated to the key
 	 */
-	@Override
 	public boolean getBoolean(String key, boolean defaultValue)
 	{
 		final Object val = _set.get(key);
@@ -145,7 +144,6 @@ public class StatSet implements IParserAdvUtils
 		}
 	}
 	
-	@Override
 	public byte getByte(String key)
 	{
 		final Object val = _set.get(key);
@@ -167,7 +165,6 @@ public class StatSet implements IParserAdvUtils
 		}
 	}
 	
-	@Override
 	public byte getByte(String key, byte defaultValue)
 	{
 		final Object val = _set.get(key);
@@ -244,7 +241,6 @@ public class StatSet implements IParserAdvUtils
 		return result;
 	}
 	
-	@Override
 	public short getShort(String key)
 	{
 		final Object val = _set.get(key);
@@ -266,7 +262,6 @@ public class StatSet implements IParserAdvUtils
 		}
 	}
 	
-	@Override
 	public short getShort(String key, short defaultValue)
 	{
 		final Object val = _set.get(key);
@@ -302,7 +297,6 @@ public class StatSet implements IParserAdvUtils
 		return newValue;
 	}
 	
-	@Override
 	public int getInt(String key)
 	{
 		final Object val = _set.get(key);
@@ -326,7 +320,6 @@ public class StatSet implements IParserAdvUtils
 		}
 	}
 	
-	@Override
 	public int getInt(String key, int defaultValue)
 	{
 		final Object val = _set.get(key);
@@ -484,7 +477,6 @@ public class StatSet implements IParserAdvUtils
 		set(key, sb.toString());
 	}
 	
-	@Override
 	public long getLong(String key)
 	{
 		final Object val = _set.get(key);
@@ -506,7 +498,6 @@ public class StatSet implements IParserAdvUtils
 		}
 	}
 	
-	@Override
 	public long getLong(String key, long defaultValue)
 	{
 		final Object val = _set.get(key);
@@ -542,7 +533,6 @@ public class StatSet implements IParserAdvUtils
 		return newValue;
 	}
 	
-	@Override
 	public float getFloat(String key)
 	{
 		final Object val = _set.get(key);
@@ -564,7 +554,6 @@ public class StatSet implements IParserAdvUtils
 		}
 	}
 	
-	@Override
 	public float getFloat(String key, float defaultValue)
 	{
 		final Object val = _set.get(key);
@@ -600,7 +589,6 @@ public class StatSet implements IParserAdvUtils
 		return newValue;
 	}
 	
-	@Override
 	public double getDouble(String key)
 	{
 		final Object val = _set.get(key);
@@ -622,7 +610,6 @@ public class StatSet implements IParserAdvUtils
 		}
 	}
 	
-	@Override
 	public double getDouble(String key, double defaultValue)
 	{
 		final Object val = _set.get(key);
@@ -658,7 +645,6 @@ public class StatSet implements IParserAdvUtils
 		return newValue;
 	}
 	
-	@Override
 	public String getString(String key)
 	{
 		final Object val = _set.get(key);
@@ -669,7 +655,6 @@ public class StatSet implements IParserAdvUtils
 		return String.valueOf(val);
 	}
 	
-	@Override
 	public String getString(String key, String defaultValue)
 	{
 		final Object val = _set.get(key);
@@ -680,7 +665,6 @@ public class StatSet implements IParserAdvUtils
 		return String.valueOf(val);
 	}
 	
-	@Override
 	public Duration getDuration(String key)
 	{
 		final Object val = _set.get(key);
@@ -691,7 +675,6 @@ public class StatSet implements IParserAdvUtils
 		return TimeUtil.parseDuration(String.valueOf(val));
 	}
 	
-	@Override
 	public Duration getDuration(String key, Duration defaultValue)
 	{
 		final Object val = _set.get(key);
@@ -702,7 +685,6 @@ public class StatSet implements IParserAdvUtils
 		return TimeUtil.parseDuration(String.valueOf(val));
 	}
 	
-	@Override
 	@SuppressWarnings("unchecked")
 	public <T extends Enum<T>> T getEnum(String key, Class<T> enumClass)
 	{
@@ -725,7 +707,6 @@ public class StatSet implements IParserAdvUtils
 		}
 	}
 	
-	@Override
 	@SuppressWarnings("unchecked")
 	public <T extends Enum<T>> T getEnum(String key, Class<T> enumClass, T defaultValue)
 	{
@@ -849,7 +830,7 @@ public class StatSet implements IParserAdvUtils
 		}
 		
 		final List<Object> originalList = (List<Object>) obj;
-		if (!originalList.isEmpty() && (obj.getClass().getGenericInterfaces()[0] != clazz) && originalList.stream().allMatch(name -> Util.isEnum(name.toString(), clazz)))
+		if (!originalList.isEmpty() && (obj.getClass().getGenericInterfaces()[0] != clazz) && originalList.stream().allMatch(name -> StringUtil.isEnum(name.toString(), clazz)))
 		{
 			final List<T> convertedList = originalList.stream().map(Object::toString).map(name -> Enum.valueOf(clazz, name)).map(clazz::cast).collect(Collectors.toList());
 			
@@ -870,21 +851,21 @@ public class StatSet implements IParserAdvUtils
 	{
 		if (clazz == Integer.class)
 		{
-			if (originalList.stream().map(Object::toString).allMatch(Util::isInteger))
+			if (originalList.stream().map(Object::toString).allMatch(StringUtil::isInteger))
 			{
 				return originalList.stream().map(Object::toString).map(Integer::valueOf).map(clazz::cast).collect(Collectors.toList());
 			}
 		}
 		else if (clazz == Float.class)
 		{
-			if (originalList.stream().map(Object::toString).allMatch(Util::isFloat))
+			if (originalList.stream().map(Object::toString).allMatch(StringUtil::isFloat))
 			{
 				return originalList.stream().map(Object::toString).map(Float::valueOf).map(clazz::cast).collect(Collectors.toList());
 			}
 		}
 		else if (clazz == Double.class)
 		{
-			if (originalList.stream().map(Object::toString).allMatch(Util::isDouble))
+			if (originalList.stream().map(Object::toString).allMatch(StringUtil::isDouble))
 			{
 				return originalList.stream().map(Object::toString).map(Double::valueOf).map(clazz::cast).collect(Collectors.toList());
 			}

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="2100" levels="1" name="Escape: 1 second">
 		<set name="blockedInOlympiad" val="true" />
@@ -800,7 +800,12 @@
 		</for>
 	</skill>
 	<skill id="2168" levels="6" name="Raid Blessing">
-		<!-- Blessing which grants an exemption from the death penalty if you are killed by Boss/Raid Monsters. Effect 1. -->
+		<!-- Level 1: Blessing which grants an exemption from the death penalty if you are killed by Boss/Raid Monsters. Effect 1. -->
+		<!-- Level 2: Blessing which grants an exemption from the death penalty if you are killed by Boss/Raid Monsters. Effect 2. -->
+		<!-- Level 3: Blessing which grants an exemption from the death penalty if you are killed by Boss/Raid Monsters. Effect 3. -->
+		<!-- Level 4: Blessing which grants an exemption from the death penalty if you are killed by Boss/Raid Monsters. Effect 4. -->
+		<!-- Level 5: Blessing which grants an exemption from the death penalty if you are killed by Boss/Raid Monsters. Effect 5. -->
+		<!-- Level 6: Blessing which grants an exemption from the death penalty if you are killed by Boss/Raid Monsters. Effect 6. -->
 		<table name="#abnormalLevels">1 2 3 4 5 6</table>
 		<table name="#itemConsumeId">5703 5803 5804 5805 5806 5807</table>
 		<set name="abnormalLevel" val="#abnormalLevels" />
@@ -822,7 +827,8 @@
 		</for>
 	</skill>
 	<skill id="2169" levels="2" name="Magic Haste Potion">
-		<!-- Increases Casting Spd. Effect 2. -->
+		<!-- Level 1: Increases Casting Spd. Effect 2. -->
+		<!-- Level 2: Increases Casting Spd. Effect 3. -->
 		<table name="#abnormalLevels">2 3</table>
 		<table name="#icons">icon.etc_potion_of_acumen2_i00 icon.etc_potion_of_acumen3_i00</table>
 		<table name="#magicLevel">35 48</table>
@@ -864,7 +870,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="5916" />
+		<set name="itemConsumeId" val="5916" /> <!-- Spellbook Page -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -885,7 +891,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="5944" />
+		<set name="itemConsumeId" val="5944" /> <!-- Ancient Parchment -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />
@@ -908,7 +914,7 @@
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="5955" />
+		<set name="itemConsumeId" val="5955" /> <!-- Ancient Titan Book -->
 		<set name="operateType" val="A1" />
 		<set name="targetType" val="SELF" />
 		<cond msgId="129">
@@ -951,7 +957,7 @@
 		</table>
 		<set name="capsuled_items_skill" val="#extractableItems" />
 		<set name="itemConsumeCount" val="1" />
-		<set name="itemConsumeId" val="6010" />
+		<set name="itemConsumeId" val="6010" /> <!-- Reagent Box -->
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
 		<set name="operateType" val="A1" />

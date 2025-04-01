@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.FormatUtil;
 
 import ai.AbstractNpcAI;
 
@@ -169,7 +169,7 @@ public class PriestOfBlessing extends AbstractNpcAI
 	public String onFirstTalk(Npc npc, Player player)
 	{
 		String content = getHtm(player, "32783.htm");
-		content = content.replace("%donate%", Util.formatAdena(PRICE_HOURGLASS[getHGIndex(player.getLevel())]));
+		content = content.replace("%donate%", FormatUtil.formatAdena(PRICE_HOURGLASS[getHGIndex(player.getLevel())]));
 		return content;
 	}
 	

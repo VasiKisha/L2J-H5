@@ -16,12 +16,12 @@
  */
 package ai.others;
 
-import org.l2jmobius.commons.util.CommonUtil;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.ArrayUtil;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.AbstractNpcAI;
 import quests.Q00605_AllianceWithKetraOrcs.Q00605_AllianceWithKetraOrcs;
@@ -148,14 +148,14 @@ public class VarkaKetra extends AbstractNpcAI
 	@Override
 	public void actionForEachPlayer(Player player, Npc npc, boolean isSummon)
 	{
-		if (Util.checkIfInRange(1500, player, npc, false))
+		if (LocationUtil.checkIfInRange(1500, player, npc, false))
 		{
-			if (CommonUtil.contains(KETRA, npc.getId()) && hasAtLeastOneQuestItem(player, KETRA_MARKS))
+			if (ArrayUtil.contains(KETRA, npc.getId()) && hasAtLeastOneQuestItem(player, KETRA_MARKS))
 			{
 				decreaseAlliance(player, KETRA_MARKS);
 				exitQuests(player, KETRA_QUESTS);
 			}
-			else if (CommonUtil.contains(VARKA, npc.getId()) && hasAtLeastOneQuestItem(player, VARKA_MARKS))
+			else if (ArrayUtil.contains(VARKA, npc.getId()) && hasAtLeastOneQuestItem(player, VARKA_MARKS))
 			{
 				decreaseAlliance(player, VARKA_MARKS);
 				exitQuests(player, VARKA_QUESTS);
@@ -192,16 +192,15 @@ public class VarkaKetra extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		executeForEachPlayer(killer, npc, isSummon, true, false);
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
 	public boolean onNpcHate(Attackable mob, Player player, boolean isSummon)
 	{
-		if (CommonUtil.contains(KETRA, mob.getId()))
+		if (ArrayUtil.contains(KETRA, mob.getId()))
 		{
 			return !hasAtLeastOneQuestItem(player, KETRA_MARKS);
 		}

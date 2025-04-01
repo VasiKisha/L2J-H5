@@ -21,11 +21,11 @@
 package custom.FactionSystem;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.ChatType;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 import ai.AbstractNpcAI;
@@ -145,13 +145,12 @@ public class FactionSystem extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == MANAGER)
 		{
 			startQuestTimer("SPEAK", 10000, npc, null, true);
 		}
-		return super.onSpawn(npc);
 	}
 	
 	private void broadcastMessageToFaction(String factionName, String message)

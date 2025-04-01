@@ -24,6 +24,7 @@ import java.util.Collection;
 import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.l2jmobius.commons.network.internal.InternalWritableBuffer;
 
@@ -42,9 +43,9 @@ public abstract class Client<T extends Connection<?>>
 	private final Queue<WritablePacket<? extends Client<T>>> _packetsToWrite = new ConcurrentLinkedQueue<>();
 	private final AtomicBoolean _writing = new AtomicBoolean();
 	private final AtomicBoolean _disconnecting = new AtomicBoolean();
-	private int _estimateQueueSize = 0;
-	private int _dataSentSize;
-	private volatile boolean _isClosing;
+	private final AtomicBoolean _closing = new AtomicBoolean();
+	private final AtomicInteger _estimateQueueSize = new AtomicInteger();
+	private final AtomicInteger _dataSentSize = new AtomicInteger();
 	private boolean _readingPayload;
 	private int _expectedReadSize;
 	
@@ -57,7 +58,7 @@ public abstract class Client<T extends Connection<?>>
 	{
 		if ((connection == null) || !connection.isOpen())
 		{
-			throw new IllegalArgumentException("The Connection is null or closed");
+			throw new IllegalArgumentException("The connection is null or closed.");
 		}
 		
 		_connection = connection;
@@ -75,7 +76,7 @@ public abstract class Client<T extends Connection<?>>
 			return;
 		}
 		
-		_estimateQueueSize++;
+		_estimateQueueSize.incrementAndGet();
 		_packetsToWrite.add(packet);
 		writeFairPacket();
 	}
@@ -92,7 +93,7 @@ public abstract class Client<T extends Connection<?>>
 	})
 	private boolean packetCanBeDropped(WritablePacket packet)
 	{
-		return _connection.dropPackets() && (_estimateQueueSize > _connection.dropPacketThreshold()) && packet.canBeDropped(this);
+		return _connection.dropPackets() && (_estimateQueueSize.get() > _connection.dropPacketThreshold()) && packet.canBeDropped(this);
 	}
 	
 	/**
@@ -106,7 +107,7 @@ public abstract class Client<T extends Connection<?>>
 			return;
 		}
 		
-		_estimateQueueSize += packets.size();
+		_estimateQueueSize.addAndGet(packets.size());
 		_packetsToWrite.addAll(packets);
 		writeFairPacket();
 	}
@@ -133,14 +134,14 @@ public abstract class Client<T extends Connection<?>>
 		if (packet == null)
 		{
 			releaseWritingResource();
-			if (_isClosing)
+			if (_closing.get())
 			{
 				disconnect();
 			}
 		}
 		else
 		{
-			_estimateQueueSize--;
+			_estimateQueueSize.decrementAndGet();
 			write(packet);
 		}
 	}
@@ -186,14 +187,14 @@ public abstract class Client<T extends Connection<?>>
 			
 			if (encrypt(buffer, ConnectionConfig.HEADER_SIZE, payloadSize))
 			{
-				_dataSentSize = buffer.limit();
-				
-				if (_dataSentSize <= ConnectionConfig.HEADER_SIZE)
+				final int bufferLimit = buffer.limit();
+				_dataSentSize.set(bufferLimit);
+				if (bufferLimit <= ConnectionConfig.HEADER_SIZE)
 				{
 					return;
 				}
 				
-				packet.writeHeader(buffer, _dataSentSize);
+				packet.writeHeader(buffer, bufferLimit);
 				written = _connection.write(buffer.toByteBuffers());
 			}
 		}
@@ -274,7 +275,7 @@ public abstract class Client<T extends Connection<?>>
 		{
 			_packetsToWrite.add(packet);
 		}
-		_isClosing = true;
+		_closing.set(true);
 		
 		writeFairPacket();
 	}
@@ -283,9 +284,9 @@ public abstract class Client<T extends Connection<?>>
 	 * Resumes sending data after a specified amount has been successfully sent.
 	 * @param result The number of bytes sent.
 	 */
-	public void resumeSend(long result)
+	public void resumeSend(int result)
 	{
-		_dataSentSize -= result;
+		_dataSentSize.addAndGet(-result);
 		_connection.write();
 	}
 	
@@ -335,7 +336,7 @@ public abstract class Client<T extends Connection<?>>
 	
 	public int getDataSentSize()
 	{
-		return _dataSentSize;
+		return _dataSentSize.get();
 	}
 	
 	/**
@@ -353,7 +354,7 @@ public abstract class Client<T extends Connection<?>>
 	 */
 	public boolean isConnected()
 	{
-		return _connection.isOpen() && !_isClosing;
+		return _connection.isOpen() && !_closing.get();
 	}
 	
 	/**
@@ -362,7 +363,7 @@ public abstract class Client<T extends Connection<?>>
 	 */
 	public int getEstimateQueueSize()
 	{
-		return _estimateQueueSize;
+		return _estimateQueueSize.get();
 	}
 	
 	/**

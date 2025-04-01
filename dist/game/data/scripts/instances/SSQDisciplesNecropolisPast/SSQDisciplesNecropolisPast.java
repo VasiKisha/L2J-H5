@@ -22,19 +22,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.l2jmobius.gameserver.enums.ChatType;
-import org.l2jmobius.gameserver.enums.Movie;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.enums.ChatType;
+import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import instances.AbstractInstance;
 import quests.Q00196_SevenSignsSealOfTheEmperor.Q00196_SevenSignsSealOfTheEmperor;
@@ -252,7 +252,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 							if (caster.isScriptValue(0))
 							{
 								caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), NpcStringId.FOR_THE_ETERNITY_OF_EINHASAD));
-								if (Util.checkIfInRange(2000, caster, player, true))
+								if (LocationUtil.checkIfInRange(2000, caster, player, true))
 								{
 									player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), NpcStringId.MY_POWER_S_WEAKENING_HURRY_AND_TURN_ON_THE_SEALING_DEVICE));
 								}
@@ -265,7 +265,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 									case 0:
 									{
 										caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), NpcStringId.DEAR_SHILLIEN_S_OFFSPRINGS_YOU_ARE_NOT_CAPABLE_OF_CONFRONTING_US));
-										if (Util.checkIfInRange(2000, caster, player, true))
+										if (LocationUtil.checkIfInRange(2000, caster, player, true))
 										{
 											player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), NpcStringId.ALL_4_SEALING_DEVICES_MUST_BE_TURNED_ON));
 										}
@@ -274,7 +274,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 									case 1:
 									{
 										caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), NpcStringId.I_LL_SHOW_YOU_THE_REAL_POWER_OF_EINHASAD));
-										if (Util.checkIfInRange(2000, caster, player, true))
+										if (LocationUtil.checkIfInRange(2000, caster, player, true))
 										{
 											player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), NpcStringId.LILITH_S_ATTACK_IS_GETTING_STRONGER_GO_AHEAD_AND_TURN_IT_ON));
 										}
@@ -283,7 +283,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 									case 2:
 									{
 										caster.broadcastPacket(new NpcSay(caster.getObjectId(), ChatType.NPC_SHOUT, caster.getId(), NpcStringId.DEAR_MILITARY_FORCE_OF_LIGHT_GO_DESTROY_THE_OFFSPRINGS_OF_SHILLIEN));
-										if (Util.checkIfInRange(2000, caster, player, true))
+										if (LocationUtil.checkIfInRange(2000, caster, player, true))
 										{
 											player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), NpcStringId.DEAR_S1_GIVE_ME_MORE_STRENGTH).addStringParameter(player.getName()));
 										}
@@ -302,7 +302,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 	}
 	
 	@Override
-	public String onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
+	public void onAggroRangeEnter(Npc npc, Player player, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -346,11 +346,10 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 				break;
 			}
 		}
-		return super.onAggroRangeEnter(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onAttack(Npc npc, Player player, int damage, boolean isSummon)
+	public void onAttack(Npc npc, Player player, int damage, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
 		if (world != null)
@@ -368,7 +367,6 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 				npc.doCast(SEAL_ISOLATION.getSkill());
 			}
 		}
-		return super.onAttack(npc, player, damage, isSummon);
 	}
 	
 	@Override
@@ -378,7 +376,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
 		if (world != null)
@@ -407,14 +405,12 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 				break;
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		npc.setMortal(false);
-		return super.onSpawn(npc);
 	}
 	
 	@Override

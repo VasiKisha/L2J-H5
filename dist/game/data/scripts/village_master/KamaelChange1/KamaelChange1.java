@@ -16,12 +16,12 @@
  */
 package village_master.KamaelChange1;
 
+import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
-import org.l2jmobius.gameserver.enums.CategoryType;
-import org.l2jmobius.gameserver.enums.ClassId;
-import org.l2jmobius.gameserver.enums.Race;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 
 import ai.AbstractNpcAI;
@@ -100,7 +100,7 @@ public class KamaelChange1 extends AbstractNpcAI
 			{
 				htmltext = "32191-12.htm"; // master_all_kamael100a
 			}
-			else if ((classId == 125) && (player.getClassId() == ClassId.MALE_SOLDIER))
+			else if ((classId == 125) && (player.getPlayerClass() == PlayerClass.MALE_SOLDIER))
 			{
 				final QuestState qs = player.getQuestState(Q00062_PathOfTheTrooper.class.getSimpleName());
 				if (player.getLevel() < 20)
@@ -121,7 +121,7 @@ public class KamaelChange1 extends AbstractNpcAI
 				else
 				{
 					takeItems(player, GWAINS_RECOMMENDATION, -1);
-					player.setClassId(125);
+					player.setPlayerClass(125);
 					player.setBaseClass(125);
 					// SystemMessage and cast skill is done by setClassId
 					player.broadcastUserInfo();
@@ -129,7 +129,7 @@ public class KamaelChange1 extends AbstractNpcAI
 					htmltext = "32191-16.htm"; // master_all_kamael011ma
 				}
 			}
-			else if ((classId == 126) && (player.getClassId() == ClassId.FEMALE_SOLDIER))
+			else if ((classId == 126) && (player.getPlayerClass() == PlayerClass.FEMALE_SOLDIER))
 			{
 				final QuestState qs = player.getQuestState(Q00063_PathOfTheWarder.class.getSimpleName());
 				if (player.getLevel() < 20)
@@ -150,7 +150,7 @@ public class KamaelChange1 extends AbstractNpcAI
 				else
 				{
 					takeItems(player, STEELRAZOR_EVALUATION, -1);
-					player.setClassId(126);
+					player.setPlayerClass(126);
 					player.setBaseClass(126);
 					// SystemMessage and cast skill is done by setClassId
 					player.broadcastUserInfo();
@@ -172,11 +172,11 @@ public class KamaelChange1 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.KAMAEL_FIRST_CLASS_GROUP))
 		{
-			if (player.getClassId() == ClassId.MALE_SOLDIER)
+			if (player.getPlayerClass() == PlayerClass.MALE_SOLDIER)
 			{
 				htmltext = "32191-02.htm"; // master_all_kamael003m
 			}
-			else if (player.getClassId() == ClassId.FEMALE_SOLDIER)
+			else if (player.getPlayerClass() == PlayerClass.FEMALE_SOLDIER)
 			{
 				htmltext = "32191-06.htm"; // master_all_kamael003f
 			}

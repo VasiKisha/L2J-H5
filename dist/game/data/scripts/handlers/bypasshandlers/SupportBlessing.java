@@ -44,7 +44,7 @@ public class SupportBlessing implements IBypassHandler
 		final Npc npc = target.asNpc();
 		
 		// If the player is too high level, display a message and return
-		if ((player.getLevel() > 39) || (player.getClassId().level() >= 2))
+		if ((player.getLevel() > 39) || (player.getPlayerClass().level() >= 2))
 		{
 			npc.showChatWindow(player, "data/html/default/SupportBlessingHighLevel.htm");
 			return true;

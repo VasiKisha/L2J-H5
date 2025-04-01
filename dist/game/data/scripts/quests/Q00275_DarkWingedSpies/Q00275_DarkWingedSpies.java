@@ -17,15 +17,15 @@
 package quests.Q00275_DarkWingedSpies;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.Race;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Dark Winged Spies (275)
@@ -69,10 +69,10 @@ public class Q00275_DarkWingedSpies extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isCond(1) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs != null) && qs.isCond(1) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			final long count = getQuestItemsCount(killer, DARKWING_BAT_FANG);
 			
@@ -105,19 +105,17 @@ public class Q00275_DarkWingedSpies extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
-	public String onCreatureSee(Npc npc, Creature creature)
+	public void onCreatureSee(Npc npc, Creature creature)
 	{
 		if (creature.isPlayer())
 		{
 			npc.setRunning();
 			npc.asAttackable().addDamageHate(creature, 0, 1);
-			npc.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, creature);
+			npc.getAI().setIntention(Intention.ATTACK, creature);
 		}
-		return super.onCreatureSee(npc, creature);
 	}
 	
 	@Override

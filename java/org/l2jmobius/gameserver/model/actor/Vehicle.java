@@ -22,26 +22,27 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.MapRegionManager;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.MapRegionManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.World;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.stat.VehicleStat;
 import org.l2jmobius.gameserver.model.actor.templates.CreatureTemplate;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.zone.ZoneRegion;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
-import org.l2jmobius.gameserver.taskmanager.MovementTaskManager;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.MovementTaskManager;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author DS
@@ -113,10 +114,10 @@ public abstract class Vehicle extends Creature
 				getStat().setRotationSpeed(point.getRotationSpeed());
 			}
 			
-			getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(point.getX(), point.getY(), point.getZ(), 0));
+			getAI().setIntention(Intention.MOVE_TO, new Location(point.getX(), point.getY(), point.getZ(), 0));
 			return;
 		}
-		getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+		getAI().setIntention(Intention.ACTIVE);
 	}
 	
 	@Override
@@ -164,7 +165,7 @@ public abstract class Vehicle extends Creature
 						final double distance = Math.hypot(point.getX() - getX(), point.getY() - getY());
 						if (distance > 1)
 						{
-							setHeading(Util.calculateHeadingFrom(getX(), getY(), point.getX(), point.getY()));
+							setHeading(LocationUtil.calculateHeadingFrom(getX(), getY(), point.getX(), point.getY()));
 						}
 						
 						m.moveStartTime = GameTimeTaskManager.getInstance().getGameTicks();
@@ -328,7 +329,7 @@ public abstract class Vehicle extends Creature
 				if (itemId > 0)
 				{
 					final Item ticket = player.getInventory().getItemByItemId(itemId);
-					if ((ticket == null) || (player.getInventory().destroyItem("Boat", ticket, count, player, this) == null))
+					if ((ticket == null) || (player.getInventory().destroyItem(ItemProcessType.FEE, ticket, count, player, this) == null))
 					{
 						player.sendPacket(SystemMessageId.YOU_DO_NOT_POSSESS_THE_CORRECT_TICKET_TO_BOARD_THE_BOAT);
 						player.teleToLocation(new Location(oustX, oustY, oustZ), true);
@@ -369,7 +370,7 @@ public abstract class Vehicle extends Creature
 		
 		setTeleporting(true);
 		
-		getAI().setIntention(CtrlIntention.AI_INTENTION_ACTIVE);
+		getAI().setIntention(Intention.ACTIVE);
 		
 		for (Player player : _passengers)
 		{

@@ -23,7 +23,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q00118_ToLeadAndBeLed.Q00118_ToLeadAndBeLed;
 
@@ -85,7 +85,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 			{
 				case "sponsor":
 				{
-					if (!Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, apprentice, true))
+					if (!LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, apprentice, true))
 					{
 						htmltext = "31961-09.html";
 					}
@@ -108,7 +108,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 				}
 				case "31961-10.html":
 				{
-					if (Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, apprentice, true) && (q123 != null) && q123.isMemoState(2))
+					if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, apprentice, true) && (q123 != null) && q123.isMemoState(2))
 					{
 						switch (q123.getMemoStateEx(1))
 						{
@@ -218,7 +218,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isStarted())
@@ -238,7 +238,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 					if (qs.isMemoState(4) && (killer.getSponsor() > 0))
 					{
 						final Player c0 = World.getInstance().getPlayer(killer.getSponsor());
-						if ((c0 != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, c0, true) && giveItemRandomly(killer, npc, PICOT_ARANEIDS_LEG, 1, 8, 7, true))
+						if ((c0 != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, c0, true) && giveItemRandomly(killer, npc, PICOT_ARANEIDS_LEG, 1, 8, 7, true))
 						{
 							qs.setCond(8);
 						}
@@ -247,7 +247,6 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 				}
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -311,7 +310,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 					else
 					{
 						final Player c0 = World.getInstance().getPlayer(player.getSponsor());
-						if ((c0 != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, c0, true))
+						if ((c0 != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, c0, true))
 						{
 							htmltext = "31961-07.html";
 						}

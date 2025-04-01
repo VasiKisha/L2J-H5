@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package conquerablehalls.BanditStronghold;
 
@@ -28,23 +32,24 @@ import java.util.Map.Entry;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.SpecialSiegeGuardAI;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.enums.SiegeClanType;
-import org.l2jmobius.gameserver.enums.TeleportWhereType;
-import org.l2jmobius.gameserver.instancemanager.ZoneManager;
+import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.siege.SiegeClan;
+import org.l2jmobius.gameserver.model.siege.SiegeClanType;
 import org.l2jmobius.gameserver.model.siege.clanhalls.ClanHallSiegeEngine;
 import org.l2jmobius.gameserver.model.siege.clanhalls.SiegeStatus;
 import org.l2jmobius.gameserver.model.zone.type.ResidenceHallTeleportZone;
@@ -201,7 +206,7 @@ public class BanditStronghold extends ClanHallSiegeEngine
 				{
 					if (arg[1].equals("wQuest"))
 					{
-						if (player.destroyItemByItemId("Bandit Strong Hall Siege", QUEST_REWARD, 1, player, true))
+						if (player.destroyItemByItemId(ItemProcessType.QUEST, QUEST_REWARD, 1, player, true))
 						{
 							registerClan(clan);
 							htmltext = getFlagHtml(_data.get(clan.getId()).flag);
@@ -213,7 +218,7 @@ public class BanditStronghold extends ClanHallSiegeEngine
 					}
 					else if (arg[1].equals("wFee") && canPayRegistration())
 					{
-						if (player.reduceAdena(getClass().getSimpleName() + " Siege", 200000, player, true))
+						if (player.reduceAdena(ItemProcessType.FEE, 200000, player, true))
 						{
 							registerClan(clan);
 							htmltext = getFlagHtml(_data.get(clan.getId()).flag);
@@ -419,7 +424,7 @@ public class BanditStronghold extends ClanHallSiegeEngine
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		if (_hall.isInSiege())
 		{
@@ -483,14 +488,12 @@ public class BanditStronghold extends ClanHallSiegeEngine
 				}
 			}
 		}
-		return null;
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
-		npc.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, CENTER, 0);
-		return null;
+		npc.getAI().setIntention(Intention.MOVE_TO, CENTER, 0);
 	}
 	
 	@Override

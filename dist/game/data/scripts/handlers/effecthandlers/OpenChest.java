@@ -16,7 +16,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -68,7 +68,7 @@ public class OpenChest extends AbstractEffect
 		{
 			player.broadcastSocialAction(13);
 			chest.addDamageHate(player, 0, 1);
-			chest.getAI().setIntention(CtrlIntention.AI_INTENTION_ATTACK, player);
+			chest.getAI().setIntention(Intention.ATTACK, player);
 		}
 	}
 }

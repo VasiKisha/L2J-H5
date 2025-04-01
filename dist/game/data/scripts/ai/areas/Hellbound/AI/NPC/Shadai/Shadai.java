@@ -19,7 +19,7 @@ package ai.areas.Hellbound.AI.NPC.Shadai;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.taskmanager.GameTimeTaskManager;
+import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 import ai.AbstractNpcAI;
 
@@ -67,9 +67,8 @@ public class Shadai extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		startQuestTimer("VALIDATE_POS", 60000, npc, null, true);
-		return super.onSpawn(npc);
 	}
 }

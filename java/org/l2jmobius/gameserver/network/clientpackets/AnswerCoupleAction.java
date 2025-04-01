@@ -22,7 +22,7 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExRotation;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * @author JIV
@@ -69,10 +69,10 @@ public class AnswerCoupleAction extends ClientPacket
 				target.sendPacket(SystemMessageId.THE_REQUEST_CANNOT_BE_COMPLETED_BECAUSE_THE_TARGET_DOES_NOT_MEET_LOCATION_REQUIREMENTS);
 				return;
 			}
-			int heading = Util.calculateHeadingFrom(player, target);
+			int heading = LocationUtil.calculateHeadingFrom(player, target);
 			player.broadcastPacket(new ExRotation(player.getObjectId(), heading));
 			player.setHeading(heading);
-			heading = Util.calculateHeadingFrom(target, player);
+			heading = LocationUtil.calculateHeadingFrom(target, player);
 			target.setHeading(heading);
 			target.broadcastPacket(new ExRotation(target.getObjectId(), heading));
 			player.broadcastPacket(new SocialAction(player.getObjectId(), _actionId));

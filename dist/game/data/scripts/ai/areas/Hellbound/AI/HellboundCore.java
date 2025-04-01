@@ -20,7 +20,7 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
@@ -61,7 +61,7 @@ public class HellboundCore extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onSpawn(Npc npc)
+	public void onSpawn(Npc npc)
 	{
 		if (npc.getId() == NAIA)
 		{
@@ -71,6 +71,5 @@ public class HellboundCore extends AbstractNpcAI
 		{
 			startQuestTimer("cast", 10000, npc, null);
 		}
-		return super.onSpawn(npc);
 	}
 }

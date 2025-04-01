@@ -22,9 +22,9 @@ import java.util.Map;
 
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
-import org.l2jmobius.gameserver.enums.ClassId;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 
 /**
@@ -32,7 +32,7 @@ import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
  */
 public class PlayerTemplate extends CreatureTemplate
 {
-	private final ClassId _classId;
+	private final PlayerClass _playerClass;
 	
 	private final float[] _baseHp;
 	private final float[] _baseMp;
@@ -53,8 +53,8 @@ public class PlayerTemplate extends CreatureTemplate
 	public PlayerTemplate(StatSet set, List<Location> creationPoints)
 	{
 		super(set);
-		_classId = ClassId.getClassId(set.getInt("classId"));
-		setRace(_classId.getRace());
+		_playerClass = PlayerClass.getPlayerClass(set.getInt("classId"));
+		setRace(_playerClass.getRace());
 		_baseHp = new float[ExperienceData.getInstance().getMaxLevel()];
 		_baseMp = new float[ExperienceData.getInstance().getMaxLevel()];
 		_baseCp = new float[ExperienceData.getInstance().getMaxLevel()];
@@ -82,11 +82,11 @@ public class PlayerTemplate extends CreatureTemplate
 	}
 	
 	/**
-	 * @return the template class Id.
+	 * @return the template PlayerClass.
 	 */
-	public ClassId getClassId()
+	public PlayerClass getPlayerClass()
 	{
-		return _classId;
+		return _playerClass;
 	}
 	
 	/**

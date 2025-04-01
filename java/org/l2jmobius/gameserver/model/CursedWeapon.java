@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model;
 
@@ -28,13 +32,13 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.TransformData;
-import org.l2jmobius.gameserver.enums.PartyMessageType;
-import org.l2jmobius.gameserver.instancemanager.CursedWeaponsManager;
+import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.interfaces.INamable;
+import org.l2jmobius.gameserver.model.groups.PartyMessageType;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -45,7 +49,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
 
-public class CursedWeapon implements INamable
+public class CursedWeapon
 {
 	private static final Logger LOGGER = Logger.getLogger(CursedWeapon.class.getName());
 	
@@ -106,7 +110,7 @@ public class CursedWeapon implements INamable
 				_player.storeMe();
 				
 				// Destroy
-				_player.getInventory().destroyItemByItemId("", _itemId, 1, _player, null);
+				_player.getInventory().destroyItemByItemId(ItemProcessType.NONE, _itemId, 1, _player, null);
 				_player.sendItemList(true);
 				_player.broadcastUserInfo();
 			}
@@ -147,7 +151,7 @@ public class CursedWeapon implements INamable
 		else if ((_player != null) && (_player.getInventory().getItemByItemId(_itemId) != null))
 		{
 			// Destroy
-			_player.getInventory().destroyItemByItemId("", _itemId, 1, _player, null);
+			_player.getInventory().destroyItemByItemId(ItemProcessType.NONE, _itemId, 1, _player, null);
 			_player.sendItemList(true);
 			_player.broadcastUserInfo();
 		}
@@ -226,7 +230,7 @@ public class CursedWeapon implements INamable
 		else
 		{
 			_item = _player.getInventory().getItemByItemId(_itemId);
-			_player.dropItem("DieDrop", _item, killer, true);
+			_player.dropItem(ItemProcessType.DEATH, _item, killer, true);
 			_player.setKarma(_playerKarma);
 			_player.setPkKills(_playerPkKills);
 			_player.setCursedWeaponEquippedId(0);
@@ -363,7 +367,7 @@ public class CursedWeapon implements INamable
 		{
 			// TODO: Verify the following system message, may still be custom.
 			player.sendPacket(SystemMessageId.YOU_HAVE_FAILED_TO_PICK_UP_S1);
-			player.dropItem("InvDrop", item, null, true);
+			player.dropItem(ItemProcessType.DROP, item, null, true);
 			return;
 		}
 		
@@ -408,8 +412,7 @@ public class CursedWeapon implements INamable
 		// Refresh player stats
 		_player.broadcastUserInfo();
 		
-		final SocialAction atk = new SocialAction(_player.getObjectId(), 17);
-		_player.broadcastPacket(atk);
+		ThreadPool.schedule(() -> _player.broadcastPacket(new SocialAction(_player.getObjectId(), 17)), 300);
 		
 		sm = new SystemMessage(SystemMessageId.THE_OWNER_OF_S2_HAS_APPEARED_IN_THE_S1_REGION);
 		sm.addZoneName(_player.getX(), _player.getY(), _player.getZ()); // Region Name
@@ -570,7 +573,6 @@ public class CursedWeapon implements INamable
 		return _endTime;
 	}
 	
-	@Override
 	public String getName()
 	{
 		return _name;

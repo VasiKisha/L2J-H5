@@ -23,46 +23,41 @@ package org.l2jmobius.gameserver.model;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.enums.PlayerCondOverride;
-import org.l2jmobius.gameserver.enums.ShotType;
 import org.l2jmobius.gameserver.handler.ActionHandler;
 import org.l2jmobius.gameserver.handler.ActionShiftHandler;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.handler.IActionShiftHandler;
-import org.l2jmobius.gameserver.instancemanager.IdManager;
-import org.l2jmobius.gameserver.instancemanager.InstanceManager;
+import org.l2jmobius.gameserver.managers.IdManager;
+import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.instance.Servitor;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.interfaces.IDecayable;
-import org.l2jmobius.gameserver.model.interfaces.IIdentifiable;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
-import org.l2jmobius.gameserver.model.interfaces.INamable;
 import org.l2jmobius.gameserver.model.interfaces.IPositionable;
-import org.l2jmobius.gameserver.model.interfaces.ISpawnable;
-import org.l2jmobius.gameserver.model.interfaces.IUniqueId;
+import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.DeleteObject;
 import org.l2jmobius.gameserver.network.serverpackets.ExSendUIEvent;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Base class for all interactive objects.
  */
-public abstract class WorldObject extends ListenersContainer implements IIdentifiable, INamable, ISpawnable, IUniqueId, IDecayable, IPositionable
+public abstract class WorldObject extends ListenersContainer implements IPositionable
 {
 	/** Name */
 	private String _name;
@@ -148,7 +143,6 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	{
 	}
 	
-	@Override
 	public boolean decayMe()
 	{
 		_isSpawned = false;
@@ -164,7 +158,6 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 		_objectId = IdManager.getInstance().getNextId();
 	}
 	
-	@Override
 	public boolean spawnMe()
 	{
 		synchronized (this)
@@ -242,7 +235,6 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 		_isSpawned = value;
 	}
 	
-	@Override
 	public String getName()
 	{
 		return _name;
@@ -253,7 +245,11 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 		_name = value;
 	}
 	
-	@Override
+	public int getId()
+	{
+		return 0;
+	}
+	
 	public int getObjectId()
 	{
 		return _objectId;
@@ -922,50 +918,6 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	}
 	
 	/**
-	 * Calculates the non squared 2D distance between this WorldObject and given x, y, z.
-	 * @param x the X coordinate
-	 * @param y the Y coordinate
-	 * @param z the Z coordinate
-	 * @return distance between object and given x, y, z.
-	 */
-	public double calculateDistanceSq2D(int x, int y, int z)
-	{
-		return Math.pow(x - getX(), 2) + Math.pow(y - getY(), 2);
-	}
-	
-	/**
-	 * Calculates the non squared 2D distance between this WorldObject and given location.
-	 * @param loc the location object
-	 * @return distance between object and given location.
-	 */
-	public double calculateDistanceSq2D(ILocational loc)
-	{
-		return calculateDistanceSq2D(loc.getX(), loc.getY(), loc.getZ());
-	}
-	
-	/**
-	 * Calculates the non squared 3D distance between this WorldObject and given x, y, z.
-	 * @param x the X coordinate
-	 * @param y the Y coordinate
-	 * @param z the Z coordinate
-	 * @return distance between object and given x, y, z.
-	 */
-	public double calculateDistanceSq3D(int x, int y, int z)
-	{
-		return Math.pow(x - getX(), 2) + Math.pow(y - getY(), 2) + Math.pow(z - getZ(), 2);
-	}
-	
-	/**
-	 * Calculates the non squared 3D distance between this WorldObject and given location.
-	 * @param loc the location object
-	 * @return distance between object and given location.
-	 */
-	public double calculateDistanceSq3D(ILocational loc)
-	{
-		return calculateDistanceSq3D(loc.getX(), loc.getY(), loc.getZ());
-	}
-	
-	/**
 	 * Calculates the angle in degrees from this object to the given object.<br>
 	 * The return value can be described as how much this object has to turn<br>
 	 * to have the given object directly in front of it.
@@ -974,7 +926,7 @@ public abstract class WorldObject extends ListenersContainer implements IIdentif
 	 */
 	public double calculateDirectionTo(ILocational target)
 	{
-		return Util.calculateAngleFrom(this, target);
+		return LocationUtil.calculateAngleFrom(this, target);
 	}
 	
 	/**

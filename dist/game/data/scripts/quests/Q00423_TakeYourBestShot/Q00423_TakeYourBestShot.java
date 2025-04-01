@@ -102,14 +102,13 @@ public class Q00423_TakeYourBestShot extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
 		if ((qs != null) && qs.isCond(1))
 		{
 			qs.setCond(2, true);
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

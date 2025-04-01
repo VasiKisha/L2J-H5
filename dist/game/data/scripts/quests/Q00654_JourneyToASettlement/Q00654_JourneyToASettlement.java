@@ -100,14 +100,13 @@ public class Q00654_JourneyToASettlement extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, 2, 3, npc);
 		if ((qs != null) && giveItemRandomly(qs.getPlayer(), npc, ANTELOPE_SKIN, 1, 1, MOBS_SKIN.get(npc.getId()), true))
 		{
 			qs.setCond(3);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

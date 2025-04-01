@@ -25,7 +25,7 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
 
 /**
- * @author Advi, UnAfraid
+ * @author Advi
  */
 public class InventoryUpdate extends AbstractInventoryUpdate
 {

@@ -17,13 +17,13 @@
 package quests.Q00270_TheOneWhoEndsSilence;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q10288_SecretMission.Q10288_SecretMission;
 
@@ -271,7 +271,7 @@ public class Q00270_TheOneWhoEndsSilence extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		switch (npc.getId())
 		{
@@ -326,7 +326,6 @@ public class Q00270_TheOneWhoEndsSilence extends Quest
 				break;
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override
@@ -441,7 +440,7 @@ public class Q00270_TheOneWhoEndsSilence extends Quest
 	 */
 	private void giveItem(Player player, Npc npc, int chance, boolean atLeastOne)
 	{
-		if ((player != null) && Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if ((player != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
 		{
 			final int count = ((getRandom(1000) < chance) ? 1 : 0) + (atLeastOne ? 1 : 0);
 			if (count > 0)

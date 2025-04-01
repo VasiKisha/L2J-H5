@@ -16,13 +16,13 @@
  */
 package quests.Q00458_PerfectForm;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.QuestType;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.QuestType;
 import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.serverpackets.ExQuestNpcLogList;
 
@@ -221,7 +221,7 @@ public class Q00458_PerfectForm extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if ((qs != null) && qs.isCond(1))
@@ -279,7 +279,6 @@ public class Q00458_PerfectForm extends Quest
 				player.sendPacket(log);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

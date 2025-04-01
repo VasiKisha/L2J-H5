@@ -1203,7 +1203,6 @@
 		<set name="icon" val="icon.skill0283" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="63" />
-		<set name="magicLevel" val="63" />
 		<set name="mpConsume" val="117" />
 		<set name="operateType" val="A1" />
 		<set name="reuseDelay" val="20000" />

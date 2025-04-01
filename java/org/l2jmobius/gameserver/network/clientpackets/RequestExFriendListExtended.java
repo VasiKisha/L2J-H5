@@ -21,7 +21,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.FriendListExtended;
 
 /**
- * @author mrTJO & UnAfraid
+ * @author mrTJO, UnAfraid
  */
 public class RequestExFriendListExtended extends ClientPacket
 {

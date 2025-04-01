@@ -20,13 +20,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
  * Plunder Supplies (360)
@@ -94,12 +94,12 @@ public class Q00360_PlunderTheirSupplies extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isPet)
+	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs == null) || !Util.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, false))
+		if ((qs == null) || !LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, false))
 		{
-			return super.onKill(npc, killer, isPet);
+			return;
 		}
 		
 		if (getRandom(100) < MONSTER_DROP_CHANCES.get(npc.getId()))
@@ -121,7 +121,6 @@ public class Q00360_PlunderTheirSupplies extends Quest
 			}
 			playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
-		return super.onKill(npc, killer, isPet);
 	}
 	
 	@Override

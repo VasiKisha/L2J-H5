@@ -31,8 +31,7 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExPCCafePointInfo;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.util.BuilderUtil;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.FormatUtil;
 
 /**
  * Admin PC Points manage admin commands.
@@ -68,7 +67,7 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 				catch (Exception e)
 				{
 					showMenuHtml(activeChar);
-					BuilderUtil.sendSysMessage(activeChar, "Invalid Value!");
+					activeChar.sendSysMessage("Invalid Value!");
 					return false;
 				}
 				
@@ -79,7 +78,7 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 						if (value > Config.PC_CAFE_MAX_POINTS)
 						{
 							showMenuHtml(activeChar);
-							BuilderUtil.sendSysMessage(activeChar, "You cannot set more than " + Config.PC_CAFE_MAX_POINTS + " PC points!");
+							activeChar.sendSysMessage("You cannot set more than " + Config.PC_CAFE_MAX_POINTS + " PC points!");
 							return false;
 						}
 						if (value < 0)
@@ -89,7 +88,7 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 						
 						target.setPcCafePoints(value);
 						target.sendMessage("Admin set your PC Cafe point(s) to " + value + "!");
-						BuilderUtil.sendSysMessage(activeChar, "You set " + value + " PC Cafe point(s) to player " + target.getName());
+						activeChar.sendSysMessage("You set " + value + " PC Cafe point(s) to player " + target.getName());
 						target.sendPacket(new ExPCCafePointInfo(value, value, 0));
 						break;
 					}
@@ -109,7 +108,7 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 						}
 						target.setPcCafePoints(pcCafeCount);
 						target.sendMessage("Admin increased your PC Cafe point(s) by " + value + "!");
-						BuilderUtil.sendSysMessage(activeChar, "You increased PC Cafe point(s) of " + target.getName() + " by " + value);
+						activeChar.sendSysMessage("You increased PC Cafe point(s) of " + target.getName() + " by " + value);
 						target.sendPacket(new ExPCCafePointInfo(pcCafeCount, value, 0));
 						break;
 					}
@@ -125,7 +124,7 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 						final int pcCafeCount = Math.max(target.getPcCafePoints() - value, 0);
 						target.setPcCafePoints(pcCafeCount);
 						target.sendMessage("Admin decreased your PC Cafe point(s) by " + value + "!");
-						BuilderUtil.sendSysMessage(activeChar, "You decreased PC Cafe point(s) of " + target.getName() + " by " + value);
+						activeChar.sendSysMessage("You decreased PC Cafe point(s) of " + target.getName() + " by " + value);
 						target.sendPacket(new ExPCCafePointInfo(target.getPcCafePoints(), -value, 0));
 						break;
 					}
@@ -143,12 +142,12 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 						if (range <= 0)
 						{
 							final int count = increaseForAll(World.getInstance().getPlayers(), value);
-							BuilderUtil.sendSysMessage(activeChar, "You increased PC Cafe point(s) of all online players (" + count + ") by " + value + ".");
+							activeChar.sendSysMessage("You increased PC Cafe point(s) of all online players (" + count + ") by " + value + ".");
 						}
 						else if (range > 0)
 						{
 							final int count = increaseForAll(World.getInstance().getVisibleObjectsInRange(activeChar, Player.class, range), value);
-							BuilderUtil.sendSysMessage(activeChar, "You increased PC Cafe point(s) of all players (" + count + ") in range " + range + " by " + value + ".");
+							activeChar.sendSysMessage("You increased PC Cafe point(s) of all players (" + count + ") in range " + range + " by " + value + ".");
 						}
 						break;
 					}
@@ -198,7 +197,7 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 		final Player target = getTarget(activeChar);
 		final int points = target.getPcCafePoints();
 		html.setHtml(HtmCache.getInstance().getHtm(activeChar, "data/html/admin/pccafe.htm"));
-		html.replace("%points%", Util.formatAdena(points));
+		html.replace("%points%", FormatUtil.formatAdena(points));
 		html.replace("%targetName%", target.getName());
 		activeChar.sendPacket(html);
 	}

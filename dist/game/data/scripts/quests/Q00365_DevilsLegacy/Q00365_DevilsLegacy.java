@@ -21,10 +21,10 @@ import java.util.Map;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
 /**
  * Devil's Legacy (365)
@@ -197,14 +197,13 @@ public class Q00365_DevilsLegacy extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
 		if (qs != null)
 		{
 			giveItemRandomly(qs.getPlayer(), npc, PIRATES_TREASURE_CHEST, 1, 0, MOBS.get(npc.getId()), true);
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

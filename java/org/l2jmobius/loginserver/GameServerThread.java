@@ -29,7 +29,7 @@ import java.util.logging.Logger;
 
 import org.l2jmobius.commons.crypt.NewCrypt;
 import org.l2jmobius.commons.network.base.BaseWritablePacket;
-import org.l2jmobius.commons.util.CommonUtil;
+import org.l2jmobius.commons.util.TraceUtil;
 import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
 import org.l2jmobius.loginserver.network.GameServerPacketHandler;
 import org.l2jmobius.loginserver.network.GameServerPacketHandler.GameServerState;
@@ -271,7 +271,7 @@ public class GameServerThread extends Thread
 		catch (IOException e)
 		{
 			LOGGER.severe("GameServerThread: IOException while sending packet " + packet.getClass().getSimpleName());
-			LOGGER.severe(CommonUtil.getStackTrace(e));
+			LOGGER.severe(TraceUtil.getStackTrace(e));
 		}
 	}
 	

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.quest;
 
@@ -22,23 +26,16 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.enums.QuestSound;
-import org.l2jmobius.gameserver.enums.QuestType;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowQuestMark;
-import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.QuestList;
-import org.l2jmobius.gameserver.network.serverpackets.TutorialCloseHtml;
-import org.l2jmobius.gameserver.network.serverpackets.TutorialEnableClientEvent;
-import org.l2jmobius.gameserver.network.serverpackets.TutorialShowHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialShowQuestionMark;
 
 /**
  * Quest state class.
- * @author Luis Arias
+ * @author Luis Arias, Mobius
  */
 public class QuestState
 {
@@ -722,12 +719,6 @@ public class QuestState
 		_player.sendPacket(new TutorialShowQuestionMark(number));
 	}
 	
-	// TODO: make tutorial voices the same as quest sounds
-	public void playTutorialVoice(String voice)
-	{
-		_player.sendPacket(new PlaySound(2, voice, 0, 0, _player.getX(), _player.getY(), _player.getZ()));
-	}
-	
 	/**
 	 * Set the restart time for the daily quests.<br>
 	 * The time is hardcoded at {@link Quest#getResetHour()} hours, {@link Quest#getResetMinutes()} minutes of the following day.<br>
@@ -753,37 +744,5 @@ public class QuestState
 	{
 		final String val = get(RESTART_VAR);
 		return (val != null) && (Long.parseLong(val) <= System.currentTimeMillis());
-	}
-	
-	/**
-	 * Used only in 255_Tutorial
-	 * @param html
-	 */
-	public void showTutorialHTML(String html)
-	{
-		String text = HtmCache.getInstance().getHtm(_player, "data/scripts/quests/Q00255_Tutorial/" + html);
-		if (text == null)
-		{
-			LOGGER.warning("missing html page data/scripts/quests/Q00255_Tutorial/" + html);
-			text = "<html><body>File data/scripts/quests/Q00255_Tutorial/" + html + " not found or file is empty.</body></html>";
-		}
-		_player.sendPacket(new TutorialShowHtml(text));
-	}
-	
-	/**
-	 * Used only in 255_Tutorial
-	 */
-	public void closeTutorialHtml()
-	{
-		_player.sendPacket(TutorialCloseHtml.STATIC_PACKET);
-	}
-	
-	/**
-	 * Used only in 255_Tutorial
-	 * @param number
-	 */
-	public void onTutorialClientEvent(int number)
-	{
-		_player.sendPacket(new TutorialEnableClientEvent(number));
 	}
 }

@@ -69,7 +69,7 @@ public class FameManager extends AbstractNpcAI
 			{
 				if (player.getPkKills() > 0)
 				{
-					if ((player.getFame() >= DECREASE_COST) && (player.getLevel() >= MIN_LEVEL) && (player.getClassId().level() >= CLASS_LEVEL))
+					if ((player.getFame() >= DECREASE_COST) && (player.getLevel() >= MIN_LEVEL) && (player.getPlayerClass().level() >= CLASS_LEVEL))
 					{
 						player.setFame(player.getFame() - DECREASE_COST);
 						player.setPkKills(player.getPkKills() - 1);
@@ -92,7 +92,7 @@ public class FameManager extends AbstractNpcAI
 				final Clan clan = player.getClan();
 				if ((clan != null) && (clan.getLevel() >= MIN_CLAN_LEVEL))
 				{
-					if ((player.getFame() >= REPUTATION_COST) && (player.getLevel() >= MIN_LEVEL) && (player.getClassId().level() >= CLASS_LEVEL))
+					if ((player.getFame() >= REPUTATION_COST) && (player.getLevel() >= MIN_LEVEL) && (player.getPlayerClass().level() >= CLASS_LEVEL))
 					{
 						player.setFame(player.getFame() - REPUTATION_COST);
 						clan.addReputationScore(50);
@@ -118,7 +118,7 @@ public class FameManager extends AbstractNpcAI
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		return ((player.getFame() > 0) && (player.getLevel() >= MIN_LEVEL) && (player.getClassId().level() >= CLASS_LEVEL)) ? npc.getId() + ".html" : npc.getId() + "-01.html";
+		return ((player.getFame() > 0) && (player.getLevel() >= MIN_LEVEL) && (player.getPlayerClass().level() >= CLASS_LEVEL)) ? npc.getId() + ".html" : npc.getId() + "-01.html";
 	}
 	
 	public static void main(String[] args)

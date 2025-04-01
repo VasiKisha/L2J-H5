@@ -19,10 +19,10 @@ package quests.Q00611_AllianceWithVarkaSilenos;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -286,7 +286,7 @@ public class Q00611_AllianceWithVarkaSilenos extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player killer, boolean isSummon)
+	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player member = getRandomPartyMemberState(killer, State.STARTED);
 		if (member != null)
@@ -298,7 +298,6 @@ public class Q00611_AllianceWithVarkaSilenos extends Quest
 				giveItems(member, info.getItemId(), 1);
 			}
 		}
-		return super.onKill(npc, killer, isSummon);
 	}
 	
 	@Override

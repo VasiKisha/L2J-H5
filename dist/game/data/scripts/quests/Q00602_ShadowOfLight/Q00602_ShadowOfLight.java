@@ -16,10 +16,10 @@
  */
 package quests.Q00602_ShadowOfLight;
 
-import org.l2jmobius.gameserver.enums.QuestSound;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.quest.QuestSound;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.quest.State;
 
@@ -122,12 +122,12 @@ public class Q00602_ShadowOfLight extends Quest
 	}
 	
 	@Override
-	public String onKill(Npc npc, Player player, boolean isSummon)
+	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
 		if (qs == null)
 		{
-			return super.onKill(npc, player, isSummon);
+			return;
 		}
 		
 		final int chance = (npc.getId() == MOBS[0]) ? 560 : 800;
@@ -143,7 +143,6 @@ public class Q00602_ShadowOfLight extends Quest
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
-		return super.onKill(npc, player, isSummon);
 	}
 	
 	@Override

@@ -16,8 +16,8 @@
  */
 package ai.areas.Gracia.AI.NPC.Nemo;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
-import org.l2jmobius.gameserver.instancemanager.QuestManager;
+import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -86,7 +86,7 @@ public class Nemo extends AbstractNpcAI
 					player.getVariables().set("TEST_MAGUEN", 1);
 					maguen.setTitle(player.getName());
 					maguen.setRunning();
-					maguen.getAI().setIntention(CtrlIntention.AI_INTENTION_FOLLOW, player);
+					maguen.getAI().setIntention(Intention.FOLLOW, player);
 					maguen.broadcastStatusUpdate();
 					showOnScreenMsg(player, NpcStringId.MAGUEN_APPEARANCE, 2, 4000);
 					maguenAi().startQuestTimer("DIST_CHECK_TIMER", 1000, maguen, player);

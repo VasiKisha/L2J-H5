@@ -16,12 +16,13 @@
  */
 package handlers.itemhandlers;
 
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.model.actor.Playable;
-import org.l2jmobius.gameserver.model.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -117,7 +118,7 @@ public class ItemSkillsTemplate implements IItemHandler
 				}
 				else
 				{
-					playable.getAI().setIntention(CtrlIntention.AI_INTENTION_IDLE);
+					playable.getAI().setIntention(Intention.IDLE);
 					if (!playable.useMagic(itemSkill, forceUse, false))
 					{
 						return false;
@@ -131,7 +132,7 @@ public class ItemSkillsTemplate implements IItemHandler
 			}
 		}
 		
-		if (checkConsume(item, hasConsumeSkill) && !playable.destroyItem("Consume", item.getObjectId(), 1, playable, false))
+		if (checkConsume(item, hasConsumeSkill) && !playable.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, playable, false))
 		{
 			playable.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 			return false;

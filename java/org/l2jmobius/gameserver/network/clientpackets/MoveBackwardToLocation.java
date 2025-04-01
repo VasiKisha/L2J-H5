@@ -20,23 +20,18 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import java.util.List;
-
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.ai.CtrlIntention;
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.geoengine.GeoEngine;
-import org.l2jmobius.gameserver.geoengine.pathfinding.AbstractNodeLoc;
-import org.l2jmobius.gameserver.geoengine.pathfinding.PathFinding;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
-import org.l2jmobius.gameserver.model.events.impl.creature.player.OnPlayerMoveRequest;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerMoveRequest;
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
-import org.l2jmobius.gameserver.util.Util;
+import org.l2jmobius.gameserver.util.LocationUtil;
 
 public class MoveBackwardToLocation extends ClientPacket
 {
@@ -102,17 +97,6 @@ public class MoveBackwardToLocation extends ClientPacket
 		{
 			player.setCursorKeyMovement(false);
 			
-			// If movement was suspended, do not move when no path, or too complex path found. Tested at retail on October 21st 2024.
-			if (player.isMovementSuspended())
-			{
-				final List<AbstractNodeLoc> path = PathFinding.getInstance().findPath(player.getX(), player.getY(), player.getZ(), _targetX, _targetY, _targetZ, player.getInstanceId(), true);
-				if ((path == null) || (path.size() > 4))
-				{
-					player.sendPacket(ActionFailed.STATIC_PACKET);
-					return;
-				}
-			}
-			
 			if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_MOVE_REQUEST, player))
 			{
 				final TerminateReturn terminate = EventDispatcher.getInstance().notifyEvent(new OnPlayerMoveRequest(player, new Location(_targetX, _targetY, _targetZ)), player, TerminateReturn.class);
@@ -130,50 +114,9 @@ public class MoveBackwardToLocation extends ClientPacket
 				return;
 			}
 			
-			// Check is heading is already blocked.
-			final int heading = Util.calculateHeadingFrom(_originX, _originY, _targetX, _targetY);
-			if (player.isHeadingBlocked(heading))
-			{
-				player.blockMovementToHeading(heading);
-				player.sendPacket(ActionFailed.STATIC_PACKET);
-				return;
-			}
-			
-			final int playerX = player.getX();
-			final int playerY = player.getY();
-			final int playerZ = player.getZ();
-			final double angle = Util.convertHeadingToDegree(heading);
-			final double radian = Math.toRadians(angle);
-			final double course = Math.toRadians(180);
-			final double frontDistance = 10 * (player.getMoveSpeed() / 100);
-			final int x1 = (int) (Math.cos(Math.PI + radian + course) * frontDistance);
-			final int y1 = (int) (Math.sin(Math.PI + radian + course) * frontDistance);
-			final int x = _originX + x1;
-			final int y = _originY + y1;
-			if (!GeoEngine.getInstance().canSeeTarget(playerX, playerY, playerZ, x, y, playerZ, player.getInstanceId()))
-			{
-				player.blockMovementToHeading(heading);
-				player.stopMove(player.getLocation());
-				player.sendPacket(ActionFailed.STATIC_PACKET);
-				return;
-			}
-			
-			final Location destination = GeoEngine.getInstance().getValidLocation(playerX, playerY, playerZ, x, y, playerZ, player.getInstanceId());
-			_targetX = destination.getX();
-			_targetY = destination.getY();
-			_targetZ = destination.getZ();
-			
 			player.setCursorKeyMovement(true);
-			player.setLastServerPosition(playerX, playerY, playerZ);
+			player.setLastServerPosition(player.getX(), player.getY(), player.getZ());
 		}
-		
-		// Release existing heading block.
-		player.unblockMovementToHeading();
-		
-		// Correcting targetZ from floor level to head level.
-		// Client is giving floor level as targetZ, but that floor level doesn't match our current geodata and teleport coordinates as good as head level!
-		// L2J uses floor, not head level as char coordinates. This is some sort of incompatibility fix. Validate position packets sends head level.
-		_targetZ += player.getTemplate().getCollisionHeight();
 		
 		final int teleMode = player.getTeleMode();
 		if (teleMode > 0)
@@ -204,13 +147,13 @@ public class MoveBackwardToLocation extends ClientPacket
 		}
 		
 		// Prevent moving to same location. Geodata cell size is 16.
-		if (player.isMoving() && (Util.calculateDistance(player.getXdestination(), player.getYdestination(), player.getZdestination(), _targetX, _targetY, _targetZ, true, false) < 33))
+		if (player.isMoving() && (LocationUtil.calculateDistance(player.getXdestination(), player.getYdestination(), player.getZdestination(), _targetX, _targetY, _targetZ, true, false) < 17))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
 		
-		player.getAI().setIntention(CtrlIntention.AI_INTENTION_MOVE_TO, new Location(_targetX, _targetY, _targetZ));
+		player.getAI().setIntention(Intention.MOVE_TO, new Location(_targetX, _targetY, _targetZ));
 		
 		// Mobius: Check spawn protections.
 		player.onActionRequest();

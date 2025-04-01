@@ -16,20 +16,21 @@
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
+import java.io.File;
 import java.util.Calendar;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.data.sql.TeleportLocationTable;
-import org.l2jmobius.gameserver.enums.InstanceType;
-import org.l2jmobius.gameserver.instancemanager.CastleManager;
-import org.l2jmobius.gameserver.instancemanager.SiegeManager;
-import org.l2jmobius.gameserver.instancemanager.TownManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
+import org.l2jmobius.gameserver.managers.SiegeManager;
+import org.l2jmobius.gameserver.managers.TownManager;
 import org.l2jmobius.gameserver.model.TeleportLocation;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
@@ -177,13 +178,14 @@ public class Teleporter extends Npc
 		}
 		
 		final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
-		String filename = "data/html/teleporter/free/" + getTemplate().getId() + ".htm";
-		if (!HtmCache.getInstance().isLoadable(filename))
+		String fileName = "data/html/teleporter/free/" + getTemplate().getId() + ".htm";
+		final File file = new File(Config.DATAPACK_ROOT, fileName);
+		if (!file.isFile())
 		{
-			filename = "data/html/teleporter/" + getTemplate().getId() + "-1.htm";
+			fileName = "data/html/teleporter/" + getTemplate().getId() + "-1.htm";
 		}
 		
-		html.setFile(player, filename);
+		html.setFile(player, fileName);
 		html.replace("%objectId%", String.valueOf(getObjectId()));
 		html.replace("%npcname%", getName());
 		player.sendPacket(html);
@@ -197,13 +199,14 @@ public class Teleporter extends Npc
 		}
 		
 		final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
-		String filename = "data/html/teleporter/half/" + getId() + ".htm";
-		if (!HtmCache.getInstance().isLoadable(filename))
+		String fileName = "data/html/teleporter/half/" + getId() + ".htm";
+		final File file = new File(Config.DATAPACK_ROOT, fileName);
+		if (!file.isFile())
 		{
-			filename = "data/html/teleporter/" + getId() + "-1.htm";
+			fileName = "data/html/teleporter/" + getId() + "-1.htm";
 		}
 		
-		html.setFile(player, filename);
+		html.setFile(player, fileName);
 		html.replace("%objectId%", String.valueOf(getObjectId()));
 		html.replace("%npcname%", getName());
 		player.sendPacket(html);
@@ -294,7 +297,7 @@ public class Teleporter extends Npc
 				}
 			}
 			
-			if (Config.FREE_TELEPORTING || player.destroyItemByItemId("Teleport " + (list.isForNoble() ? " nobless" : ""), list.getItemId(), price, this, true))
+			if (Config.FREE_TELEPORTING || player.destroyItemByItemId(ItemProcessType.FEE, list.getItemId(), price, this, true))
 			{
 				player.teleToLocation(list.getLocX(), list.getLocY(), list.getLocZ(), player.getHeading(), -1);
 			}

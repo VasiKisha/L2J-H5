@@ -26,14 +26,14 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
-import org.l2jmobius.gameserver.enums.FenceState;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldRegion;
+import org.l2jmobius.gameserver.model.actor.enums.creature.FenceState;
 import org.l2jmobius.gameserver.model.actor.instance.Fence;
 
 /**
- * @author HoridoJoho / FBIagent
+ * @author HorridoJoho
  */
 public class FenceData implements IXmlReader
 {
@@ -62,9 +62,9 @@ public class FenceData implements IXmlReader
 	}
 	
 	@Override
-	public void parseDocument(Document doc, File f)
+	public void parseDocument(Document document, File file)
 	{
-		forEach(doc, "list", listNode -> forEach(listNode, "fence", this::spawnFence));
+		forEach(document, "list", listNode -> forEach(listNode, "fence", this::spawnFence));
 	}
 	
 	public int getLoadedElementsCount()
