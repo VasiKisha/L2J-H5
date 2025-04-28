@@ -314,7 +314,7 @@ public class Q00255_Tutorial extends Quest
 			}
 			else if (event.startsWith("TL:"))
 			{
-				int pass = Integer.parseInt(event.substring(5));
+				int pass = Integer.parseInt(event.substring(event.contains("_close_") ? 18 : 5));
 				if (pass < 302)
 				{
 					pass = -pass;
