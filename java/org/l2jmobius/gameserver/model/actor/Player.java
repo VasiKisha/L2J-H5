@@ -10331,6 +10331,20 @@ public class Player extends Playable
 	 */
 	public boolean modifySubClass(int classIndex, int newClassId)
 	{
+		final SubClassHolder subClass = getSubClasses().get(classIndex);
+		if (subClass == null)
+		{
+			return false;
+		}
+		
+		// Notify to scripts before class is removed.
+		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_PROFESSION_CANCEL, this))
+		{
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerProfessionCancel(this, subClass.getId()), this);
+		}
+		
+		getSubClasses().remove(classIndex);
+		
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement deleteHennas = con.prepareStatement(DELETE_CHAR_HENNA);
 			PreparedStatement deleteShortcuts = con.prepareStatement(DELETE_CHAR_SHORTCUTS);
@@ -10374,20 +10388,8 @@ public class Player extends Playable
 		catch (Exception e)
 		{
 			LOGGER.log(Level.WARNING, "Could not modify sub class for " + getName() + " to class index " + classIndex + ": " + e.getMessage(), e);
-			
-			// This must be done in order to maintain data consistency.
-			getSubClasses().remove(classIndex);
 			return false;
 		}
-		
-		// Notify to scripts before class is removed.
-		if (!getSubClasses().isEmpty() && EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_PROFESSION_CANCEL, this))
-		{
-			final int classId = getSubClasses().get(classIndex).getId();
-			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerProfessionCancel(this, classId), this);
-		}
-		
-		getSubClasses().remove(classIndex);
 		
 		return addSubClass(newClassId, classIndex);
 	}
