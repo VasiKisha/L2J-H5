@@ -301,8 +301,15 @@ public class AntiFeedManager
 		int limit = max;
 		if (Config.DUALBOX_CHECK_WHITELIST.containsKey(addrHash))
 		{
-			limit += Config.DUALBOX_CHECK_WHITELIST.get(addrHash);
+			int whiteListLimit = Config.DUALBOX_CHECK_WHITELIST.get(addrHash);
+			if (whiteListLimit < 1) // DualboxCheckWhitelist takes 0 or negative value for unlimited number of connections.
+			{
+				return Integer.MAX_VALUE;
+			}
+			
+			limit += whiteListLimit;
 		}
+		
 		return limit;
 	}
 	
