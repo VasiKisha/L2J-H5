@@ -679,6 +679,11 @@ public class NpcTemplate extends CreatureTemplate
 			if (_dropGroups != null)
 			{
 				groupDrops = calculateGroupDrops(victim, killer);
+				
+				if ((groupDrops != null) && victim.isMonster() && victim.asMonster().isSeeded())
+				{
+					groupDrops.removeIf(i -> (i.getId() != 57 /* Adena */) && (i.getId() != 6361 /* Green Seal Stone */) && (i.getId() != 6362 /* Red Seal Stone */) && (i.getId() != 6360 /* Blue Seal Stone */));
+				}
 			}
 			
 			// calculate ungrouped drops
@@ -686,6 +691,11 @@ public class NpcTemplate extends CreatureTemplate
 			if (_dropListDeath != null)
 			{
 				ungroupedDrops = calculateUngroupedDrops(dropType, victim, killer);
+				
+				if ((ungroupedDrops != null) && victim.isMonster() && victim.asMonster().isSeeded())
+				{
+					ungroupedDrops.removeIf(i -> (i.getId() != 57 /* Adena */) && (i.getId() != 6361 /* Green Seal Stone */) && (i.getId() != 6362 /* Red Seal Stone */) && (i.getId() != 6360 /* Blue Seal Stone */));
+				}
 			}
 			
 			// return results
