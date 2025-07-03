@@ -33,6 +33,7 @@ import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 
@@ -382,6 +383,9 @@ public final class NewbieGuide extends AbstractNpcAI
 									htmltext = "newbie-guide-002.htm";
 									setNRMemoState(qs, GUIDE_MISSION, getNRMemoState(qs, GUIDE_MISSION) + 100);
 									showOnScreenMsg(talker, NpcStringId.ACQUISITION_OF_WEAPON_EXCHANGE_COUPON_FOR_BEGINNERS_COMPLETE_N_GO_SPEAK_WITH_THE_NEWBIE_GUIDE, 2, 5000, "");
+									
+									// Needed for retrieving NewbieGuide quest after playerEnter.
+									qs.setState(State.STARTED);
 								}
 								else
 								{

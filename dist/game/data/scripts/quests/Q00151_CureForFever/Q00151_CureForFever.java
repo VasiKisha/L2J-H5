@@ -120,6 +120,7 @@ public class Q00151_CureForFever extends Quest
 									setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 10000000);
 									showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
 								}
+								newbieGuideQs.setState(State.COMPLETED);
 							}
 							
 							giveItems(player, ROUND_SHIELD, 1);
