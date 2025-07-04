@@ -2551,6 +2551,8 @@
 				<param mDef="1.25" />
 				<param maxHp="1.1" />
 				<param maxMp="1.1" />
+				<mul stat="maxRecoverableHp" val="1.1" />
+				<mul stat="maxRecoverableMp" val="1.1" />
 				<param pAtkSpd="1.1" />
 				<param mAtkSpd="1.03" />
 				<param critRate="1.2" />
