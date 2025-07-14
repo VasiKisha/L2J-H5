@@ -611,26 +611,23 @@ public class Party extends AbstractPlayerGroup
 		
 		final Player target = getActualLooter(player, item.getId(), false, player);
 		target.addItem(ItemProcessType.LOOT, item, player, true);
-		if (item.getCount() <= 0)
-		{
-			return;
-		}
 		
-		final SystemMessage msg;
+		// Send messages to other party members about reward
 		if (item.getCount() > 1)
 		{
-			msg = new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S3_S2);
+			final SystemMessage msg = new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S3_S2);
 			msg.addString(target.getName());
 			msg.addItemName(item);
 			msg.addLong(item.getCount());
+			broadcastToPartyMembers(target, msg);
 		}
 		else
 		{
-			msg = new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S2);
+			final SystemMessage msg = new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S2);
 			msg.addString(target.getName());
 			msg.addItemName(item);
+			broadcastToPartyMembers(target, msg);
 		}
-		broadcastToPartyMembers(target, msg);
 	}
 	
 	/**
@@ -651,26 +648,23 @@ public class Party extends AbstractPlayerGroup
 		
 		final Player looter = getActualLooter(player, itemId, spoil, target);
 		looter.addItem(spoil ? ItemProcessType.SWEEP : ItemProcessType.LOOT, itemId, itemCount, target, true);
-		if (itemCount <= 0)
-		{
-			return;
-		}
 		
-		final SystemMessage msg;
+		// Send messages to other party members about reward
 		if (itemCount > 1)
 		{
-			msg = spoil ? new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S3_S2_BY_USING_SWEEPER) : new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S3_S2);
+			final SystemMessage msg = spoil ? new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S3_S2_BY_USING_SWEEPER) : new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S3_S2);
 			msg.addString(looter.getName());
 			msg.addItemName(itemId);
 			msg.addLong(itemCount);
+			broadcastToPartyMembers(looter, msg);
 		}
 		else
 		{
-			msg = spoil ? new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S2_BY_USING_SWEEPER) : new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S2);
+			final SystemMessage msg = spoil ? new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S2_BY_USING_SWEEPER) : new SystemMessage(SystemMessageId.C1_HAS_OBTAINED_S2);
 			msg.addString(looter.getName());
 			msg.addItemName(itemId);
+			broadcastToPartyMembers(looter, msg);
 		}
-		broadcastToPartyMembers(looter, msg);
 	}
 	
 	/**
