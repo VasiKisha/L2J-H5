@@ -85,7 +85,7 @@ public class AreaFriendly implements ITargetTypeHandler
 	
 	private boolean checkTarget(Player player, Creature target)
 	{
-		if ((target == null) || target.isAlikeDead() || target.isDoor() || (target instanceof SiegeFlag) || target.isMonster())
+		if ((target == null) || target.isAlikeDead() || target.isDoor() || (target instanceof SiegeFlag) || target.isNpc())
 		{
 			return false;
 		}
@@ -109,6 +109,11 @@ public class AreaFriendly implements ITargetTypeHandler
 			}
 			
 			if (player.isInDuelWith(target))
+			{
+				return false;
+			}
+			
+			if (player.isAtWarWith(target))
 			{
 				return false;
 			}
