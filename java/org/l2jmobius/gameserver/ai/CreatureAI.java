@@ -882,6 +882,11 @@ public class CreatureAI extends AbstractAI
 		// Stop an AI Tasks
 		stopAITask();
 		
+		if (_actor.isNpc())
+		{
+			_actor.asNpc().setDisplayEffect(0);
+		}
+		
 		// Kill the actor client side by sending Server->Client packet AutoAttackStop, StopMove/StopRotation, Die (broadcast)
 		clientNotifyDead();
 		
