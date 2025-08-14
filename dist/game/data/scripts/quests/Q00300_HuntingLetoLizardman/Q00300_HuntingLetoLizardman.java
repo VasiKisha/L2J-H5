@@ -36,14 +36,17 @@ public class Q00300_HuntingLetoLizardman extends Quest
 {
 	// NPCs
 	private static final int RATH = 30126;
+	
 	// Items
 	private static final int BRACELET_OF_LIZARDMAN = 7139;
 	private static final ItemHolder REWARD_ADENA = new ItemHolder(Inventory.ADENA_ID, 30000);
 	private static final ItemHolder REWARD_ANIMAL_BONE = new ItemHolder(1872, 50);
 	private static final ItemHolder REWARD_ANIMAL_SKIN = new ItemHolder(1867, 50);
+	
 	// Misc
 	private static final int MIN_LEVEL = 34;
 	private static final int REQUIRED_BRACELET_COUNT = 60;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS_SAC = new HashMap<>();
 	static
@@ -72,6 +75,7 @@ public class Q00300_HuntingLetoLizardman extends Quest
 		{
 			return null;
 		}
+		
 		String htmltext = null;
 		switch (event)
 		{
@@ -102,6 +106,7 @@ public class Q00300_HuntingLetoLizardman extends Quest
 					{
 						giveItems(player, REWARD_ANIMAL_BONE);
 					}
+					
 					qs.exitQuest(true, true);
 					htmltext = event;
 				}
@@ -112,6 +117,7 @@ public class Q00300_HuntingLetoLizardman extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -170,6 +176,7 @@ public class Q00300_HuntingLetoLizardman extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

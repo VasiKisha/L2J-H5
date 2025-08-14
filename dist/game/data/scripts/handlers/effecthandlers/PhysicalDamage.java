@@ -85,6 +85,7 @@ public class PhysicalDamage extends AbstractEffect
 		int damage = 0;
 		final boolean ss = skill.isPhysical() && effector.isChargedShot(ShotType.SOULSHOTS);
 		final byte shld = Formulas.calcShldUse(effector, effected, skill);
+		
 		// Physical damage critical rate is only affected by STR.
 		boolean crit = false;
 		if (skill.getBaseCritRate() > 0)

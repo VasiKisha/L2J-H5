@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="2900" type="EtcItem" name="Hermodt's Thigh Bone">
 		<!-- The thigh bones of Hermodt, an ancient Orc hero. Take this, along with the additional 4 remains, to Seer Manakia. -->
@@ -200,12 +200,12 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="2916" type="EtcItem" name="Broken Teleport Device">
 		<!-- The teleport device given by Master Toma. Take this back to Master Toma. -->

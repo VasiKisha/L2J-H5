@@ -70,6 +70,7 @@ public class GiantsCave extends AbstractNpcAI
 		{
 			npc.setScriptValue(0);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -98,6 +99,7 @@ public class GiantsCave extends AbstractNpcAI
 			{
 				npc.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.WHAT_KIND_OF_CREATURES_ARE_YOU);
 			}
+			
 			startQuestTimer("ATTACK", 6000, npc, player);
 			startQuestTimer("CLEAR", 120000, npc, null);
 		}

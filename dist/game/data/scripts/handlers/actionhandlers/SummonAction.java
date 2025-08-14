@@ -21,7 +21,6 @@
 package handlers.actionhandlers;
 
 import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -36,7 +35,7 @@ import org.l2jmobius.gameserver.network.serverpackets.PetStatusShow;
 public class SummonAction implements IActionHandler
 {
 	@Override
-	public boolean action(Player player, WorldObject target, boolean interact)
+	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
 		// Aggression target lock effect
 		if (player.isLockedTarget() && (player.getLockedTarget() != target))
@@ -76,12 +75,14 @@ public class SummonAction implements IActionHandler
 				{
 					player.updateNotMoveUntil();
 				}
-				else if (GeoEngine.getInstance().canMoveToTarget(player, target))
-				{
-					player.getAI().setIntention(Intention.FOLLOW, target);
-				}
+				
+				// else if (GeoEngine.getInstance().canMoveToTarget(player, target))
+				// {
+				player.getAI().setIntention(Intention.FOLLOW, target);
+				// }
 			}
 		}
+		
 		return true;
 	}
 	

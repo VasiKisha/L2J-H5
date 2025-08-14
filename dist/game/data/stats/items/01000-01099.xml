@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="1000" type="Armor" name="Book of Aklantoth - Part 3">
 		<set name="icon" val="icon.item_normal07" />
@@ -8,9 +8,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="60" />
 		<set name="price" val="28" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="9" />
-		</for>
+		</stats>
 	</item>
 	<item id="1001" type="EtcItem" name="Book of Aklantoth - Part 4">
 		<set name="icon" val="icon.item_normal07" />
@@ -689,9 +689,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2031-1" /> <!-- Lesser Healing Potion -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="1061" type="EtcItem" name="Greater Healing Potion">
 		<!-- A magical potion that slowly restores HP. High endurance. -->
@@ -708,9 +708,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2032-1" /> <!-- Healing Potion -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="1062" type="EtcItem" name="Haste Potion">
 		<!-- A magical potion that increases speed. -->

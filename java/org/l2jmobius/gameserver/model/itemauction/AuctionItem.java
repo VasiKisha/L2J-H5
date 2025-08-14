@@ -86,6 +86,7 @@ public class AuctionItem
 		{
 			item.setAugmentation(new Augmentation(augmentationId));
 		}
+		
 		return item;
 	}
 }

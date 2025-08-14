@@ -37,6 +37,7 @@ public class TeleportToRaceTrack extends AbstractNpcAI
 {
 	// NPC
 	private static final int RACE_MANAGER = 30995;
+	
 	// Locations
 	private static final Location RACE_TRACK_TELEPORT = new Location(12661, 181687, -3540);
 	private static final Map<Integer, Location> TELEPORTER_LOCATIONS = new HashMap<>();
@@ -55,6 +56,7 @@ public class TeleportToRaceTrack extends AbstractNpcAI
 		TELEPORTER_LOCATIONS.put(31964, new Location(87386, -143246, -1293)); // Bilia
 		TELEPORTER_LOCATIONS.put(31210, new Location(12882, 181053, -3560)); // Race Track Gatekeeper
 	}
+	
 	// Other
 	private static final String MONSTER_RETURN = "MONSTER_RETURN";
 	
@@ -67,27 +69,33 @@ public class TeleportToRaceTrack extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onTalk(Npc npc, Player player)
+	public String onEvent(String event, Npc npc, Player player)
 	{
-		if (npc.getId() == RACE_MANAGER)
+		if (event.equalsIgnoreCase("TELEPORT"))
 		{
-			final int returnId = player.getVariables().getInt(MONSTER_RETURN, -1);
-			if (returnId > 30000) // Old script compatibility.
+			if (npc.getId() == RACE_MANAGER)
 			{
-				player.teleToLocation(TELEPORTER_LOCATIONS.get(returnId));
-				player.getVariables().remove(MONSTER_RETURN);
+				final int returnId = player.getVariables().getInt(MONSTER_RETURN, -1);
+				if (returnId > 30000)
+				{
+					player.teleToLocation(TELEPORTER_LOCATIONS.get(returnId));
+					player.getVariables().remove(MONSTER_RETURN);
+				}
+				else
+				{
+					player.teleToLocation(TELEPORTER_LOCATIONS.get(30059)); // Default to Dion
+				}
 			}
 			else
 			{
-				player.teleToLocation(TELEPORTER_LOCATIONS.get(30059)); // Dion
+				player.teleToLocation(RACE_TRACK_TELEPORT);
+				player.getVariables().set(MONSTER_RETURN, npc.getId());
 			}
+			
+			return null;
 		}
-		else
-		{
-			player.teleToLocation(RACE_TRACK_TELEPORT);
-			player.getVariables().set(MONSTER_RETURN, npc.getId());
-		}
-		return super.onTalk(npc, player);
+		
+		return super.onEvent(event, npc, player);
 	}
 	
 	public static void main(String[] args)

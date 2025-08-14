@@ -36,10 +36,13 @@ public class Q00649_ALooterAndARailroadMan extends Quest
 {
 	// Npc
 	private static final int RAILMAN_OBI = 32052;
+	
 	// Item
 	private static final int THIEF_GUILD_MARK = 8099;
+	
 	// Misc
 	private static final int MIN_LEVEL = 30;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -94,6 +97,7 @@ public class Q00649_ALooterAndARailroadMan extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -115,6 +119,7 @@ public class Q00649_ALooterAndARailroadMan extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

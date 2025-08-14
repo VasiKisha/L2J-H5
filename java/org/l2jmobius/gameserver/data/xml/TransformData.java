@@ -74,6 +74,7 @@ public class TransformData implements IXmlReader
 							final Node att = attrs.item(i);
 							set.set(att.getNodeName(), att.getNodeValue());
 						}
+						
 						final Transform transform = new Transform(set);
 						for (Node cd = d.getFirstChild(); cd != null; cd = cd.getNextSibling())
 						{
@@ -108,6 +109,7 @@ public class TransformData implements IXmlReader
 													}
 												}
 											}
+											
 											templateData = new TransformTemplate(set);
 											transform.setTemplate(isMale, templateData);
 											break;
@@ -119,6 +121,7 @@ public class TransformData implements IXmlReader
 												templateData = new TransformTemplate(set);
 												transform.setTemplate(isMale, templateData);
 											}
+											
 											for (Node s = z.getFirstChild(); s != null; s = s.getNextSibling())
 											{
 												if ("skill".equals(s.getNodeName()))
@@ -138,6 +141,7 @@ public class TransformData implements IXmlReader
 												templateData = new TransformTemplate(set);
 												transform.setTemplate(isMale, templateData);
 											}
+											
 											set.set("actions", z.getTextContent());
 											final int[] actions = set.getIntArray("actions", " ");
 											templateData.setBasicActionList(new ExBasicActionList(actions));
@@ -150,6 +154,7 @@ public class TransformData implements IXmlReader
 												templateData = new TransformTemplate(set);
 												transform.setTemplate(isMale, templateData);
 											}
+											
 											for (Node s = z.getFirstChild(); s != null; s = s.getNextSibling())
 											{
 												if ("skill".equals(s.getNodeName()))
@@ -170,6 +175,7 @@ public class TransformData implements IXmlReader
 												templateData = new TransformTemplate(set);
 												transform.setTemplate(isMale, templateData);
 											}
+											
 											for (Node s = z.getFirstChild(); s != null; s = s.getNextSibling())
 											{
 												if ("item".equals(s.getNodeName()))
@@ -203,6 +209,7 @@ public class TransformData implements IXmlReader
 													}
 												}
 											}
+											
 											templateData.addLevelData(new TransformLevelData(levelsSet));
 											break;
 										}
@@ -210,6 +217,7 @@ public class TransformData implements IXmlReader
 								}
 							}
 						}
+						
 						_transformData.put(transform.getId(), transform);
 					}
 				}
@@ -229,6 +237,7 @@ public class TransformData implements IXmlReader
 		{
 			player.transform(transform);
 		}
+		
 		return transform != null;
 	}
 	

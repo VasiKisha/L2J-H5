@@ -62,12 +62,15 @@ public class Q00619_RelicsOfTheOldEmpire extends Quest
 	
 	// NPC
 	private static final int GHOST_OF_ADVENTURER = 31538;
+	
 	// Items
 	private static final int ENTRANCE_PASS_TO_THE_SEPULCHER = 7075;
 	private static final int BROKEN_RELIC_PART = 7254;
+	
 	// Misc
 	private static final int MIN_LEVEL = 74;
 	private static final int REQUIRED_RELIC_COUNT = 1000;
+	
 	// Reward
 	private static final int[] RECIPES =
 	{
@@ -82,6 +85,7 @@ public class Q00619_RelicsOfTheOldEmpire extends Quest
 		6899, // Recipe: Arcana Mace (60%)
 		7580, // Recipe: Draconic Bow (60%)
 	};
+	
 	// Mobs
 	private static final Map<Integer, DropInfo> MOBS = new HashMap<>();
 	static
@@ -261,6 +265,7 @@ public class Q00619_RelicsOfTheOldEmpire extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -311,6 +316,7 @@ public class Q00619_RelicsOfTheOldEmpire extends Quest
 		{
 			htmltext = ((getQuestItemsCount(player, BROKEN_RELIC_PART) >= REQUIRED_RELIC_COUNT) ? "31538-04.html" : "31538-07.html");
 		}
+		
 		return htmltext;
 	}
 }

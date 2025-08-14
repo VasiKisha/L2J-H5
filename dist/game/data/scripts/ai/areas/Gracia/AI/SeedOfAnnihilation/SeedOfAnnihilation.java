@@ -60,7 +60,7 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 		6442
 	};
 	
-	//@formatter:off
+	// @formatter:off
 	private static final int[][] ZONE_BUFFS_LIST =
 	{
 		{1, 2, 3},
@@ -70,7 +70,7 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 		{3, 2, 1},
 		{3, 1, 2}
 	};
-	//@formatter:on
+	// @formatter:on
 	
 	// 0: Bistakon, 1: Reptilikon, 2: Cokrakon
 	private final SeedRegion[] _regionsData = new SeedRegion[3];
@@ -83,6 +83,7 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 		{
 			addEnterZoneId(i);
 		}
+		
 		for (SeedRegion element : _regionsData)
 		{
 			for (int elite_mob_id : element.elite_mob_ids)
@@ -90,6 +91,7 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 				addSpawnId(elite_mob_id);
 			}
 		}
+		
 		addStartNpc(32739);
 		addTalkId(32739);
 		startEffectZonesControl();
@@ -239,6 +241,7 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 			_seedsNextStatusChange = var;
 			buffsNow = GlobalVariablesManager.getInstance().getInt("SeedBuffsList", 0);
 		}
+		
 		for (int i = 0; i < _regionsData.length; i++)
 		{
 			_regionsData[i].activeBuff = ZONE_BUFFS_LIST[buffsNow][i];
@@ -256,6 +259,7 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 		{
 			reenter.add(Calendar.DAY_OF_MONTH, 7);
 		}
+		
 		return reenter.getTimeInMillis();
 	}
 	
@@ -268,8 +272,10 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 				a_regionsData.af_npcs[j] = addSpawn(ANNIHILATION_FURNACE, a_regionsData.af_spawns[j][0], a_regionsData.af_spawns[j][1], a_regionsData.af_spawns[j][2], a_regionsData.af_spawns[j][3], false, 0);
 				a_regionsData.af_npcs[j].setDisplayEffect(a_regionsData.activeBuff);
 			}
+			
 			ZoneManager.getInstance().getZoneById(a_regionsData.buff_zone, EffectZone.class).addSkill(ZONE_BUFFS[a_regionsData.activeBuff], 1);
 		}
+		
 		startQuestTimer("ChangeSeedsStatus", _seedsNextStatusChange - System.currentTimeMillis(), null, null);
 	}
 	
@@ -315,6 +321,7 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 				zone.clearSkills();
 				zone.addSkill(ZONE_BUFFS[_regionsData[i].activeBuff], 1);
 			}
+			
 			startQuestTimer("ChangeSeedsStatus", _seedsNextStatusChange - System.currentTimeMillis(), null, null);
 		}
 		else if (event.equalsIgnoreCase("transform"))
@@ -331,6 +338,7 @@ public class SeedOfAnnihilation extends AbstractNpcAI
 				npc.showChatWindow(player, 1);
 			}
 		}
+		
 		return null;
 	}
 	

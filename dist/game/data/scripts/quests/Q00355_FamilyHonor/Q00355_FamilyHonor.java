@@ -57,6 +57,7 @@ public class Q00355_FamilyHonor extends Quest
 	// NPCs
 	private static final int GALIBREDO = 30181;
 	private static final int PATRIN = 30929;
+	
 	// Items
 	private static final int GALFREDO_ROMERS_BUST = 4252;
 	private static final int SCULPTOR_BERONA = 4350;
@@ -64,6 +65,7 @@ public class Q00355_FamilyHonor extends Quest
 	private static final int ANCIENT_STATUE_ORIGINAL = 4352;
 	private static final int ANCIENT_STATUE_REPLICA = 4353;
 	private static final int ANCIENT_STATUE_FORGERY = 4354;
+	
 	// Misc
 	private static final int MIN_LEVEL = 36;
 	
@@ -184,6 +186,7 @@ public class Q00355_FamilyHonor extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -235,6 +238,7 @@ public class Q00355_FamilyHonor extends Quest
 				htmltext = "30929-01.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

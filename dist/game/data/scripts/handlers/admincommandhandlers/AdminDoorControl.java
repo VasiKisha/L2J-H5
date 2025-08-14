@@ -58,7 +58,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		try
 		{
@@ -106,6 +106,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 				{
 					door.closeMe();
 				}
+				
 				for (Castle castle : CastleManager.getInstance().getCastles())
 				{
 					for (Door door : castle.getDoors())
@@ -120,6 +121,7 @@ public class AdminDoorControl implements IAdminCommandHandler
 				{
 					door.openMe();
 				}
+				
 				for (Castle castle : CastleManager.getInstance().getCastles())
 				{
 					for (Door door : castle.getDoors())
@@ -191,26 +193,31 @@ public class AdminDoorControl implements IAdminCommandHandler
 						{
 							return;
 						}
+						
 						doorIds.add(door.getId());
 						
 						final ExServerPrimitive packet = new ExServerPrimitive("Door" + door.getId(), activeChar.getX(), activeChar.getY(), -16000);
 						final Color color = door.isOpen() ? Color.GREEN : Color.RED;
+						
 						// box 1
 						packet.addLine(color, door.getX(0), door.getY(0), door.getZMin(), door.getX(1), door.getY(1), door.getZMin());
 						packet.addLine(color, door.getX(1), door.getY(1), door.getZMin(), door.getX(2), door.getY(2), door.getZMax());
 						packet.addLine(color, door.getX(2), door.getY(2), door.getZMax(), door.getX(3), door.getY(3), door.getZMax());
 						packet.addLine(color, door.getX(3), door.getY(3), door.getZMax(), door.getX(0), door.getY(0), door.getZMin());
+						
 						// box 2
 						packet.addLine(color, door.getX(0), door.getY(0), door.getZMax(), door.getX(1), door.getY(1), door.getZMax());
 						packet.addLine(color, door.getX(1), door.getY(1), door.getZMax(), door.getX(2), door.getY(2), door.getZMin());
 						packet.addLine(color, door.getX(2), door.getY(2), door.getZMin(), door.getX(3), door.getY(3), door.getZMin());
 						packet.addLine(color, door.getX(3), door.getY(3), door.getZMin(), door.getX(0), door.getY(0), door.getZMax());
+						
 						// diagonals
 						packet.addLine(color, door.getX(0), door.getY(0), door.getZMin(), door.getX(1), door.getY(1), door.getZMax());
 						packet.addLine(color, door.getX(2), door.getY(2), door.getZMin(), door.getX(3), door.getY(3), door.getZMax());
 						packet.addLine(color, door.getX(0), door.getY(0), door.getZMax(), door.getX(1), door.getY(1), door.getZMin());
 						packet.addLine(color, door.getX(2), door.getY(2), door.getZMax(), door.getX(3), door.getY(3), door.getZMin());
 						activeChar.sendPacket(packet);
+						
 						// send message
 						activeChar.sendSysMessage("Found door " + door.getId());
 					});
@@ -221,11 +228,12 @@ public class AdminDoorControl implements IAdminCommandHandler
 		{
 			LOGGER.warning("Problem with AdminDoorControl: " + e.getMessage());
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

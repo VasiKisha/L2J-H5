@@ -41,6 +41,7 @@ public class Q10281_MutatedKaneusRune extends Quest
 	private static final int MATHIAS = 31340;
 	private static final int KAYAN = 31335;
 	private static final int WHITE_ALLOSCE = 18577;
+	
 	// Item
 	private static final int TISSUE_WA = 13840;
 	
@@ -76,6 +77,7 @@ public class Q10281_MutatedKaneusRune extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -162,6 +164,7 @@ public class Q10281_MutatedKaneusRune extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

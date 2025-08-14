@@ -35,8 +35,10 @@ public class Q00601_WatchingEyes extends Quest
 {
 	// NPC
 	private static final int EYE_OF_ARGOS = 31683;
+	
 	// Item
 	private static final int PROOF_OF_AVENGER = 7188;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
 	static
@@ -101,12 +103,14 @@ public class Q00601_WatchingEyes extends Quest
 				{
 					return "31683-06.html";
 				}
+				
 				final int i = getRandom(4);
 				if (i < 3)
 				{
 					giveItems(player, REWARD[i][0], 5);
 					addExpAndSp(player, 120000, 10000);
 				}
+				
 				giveAdena(player, REWARD[i][1], true);
 				qs.exitQuest(true, true);
 				break;
@@ -117,6 +121,7 @@ public class Q00601_WatchingEyes extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -156,6 +161,7 @@ public class Q00601_WatchingEyes extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -39,7 +39,7 @@ import org.l2jmobius.gameserver.util.Broadcast;
 public class SoulShots implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{
@@ -65,6 +65,7 @@ public class SoulShots implements IItemHandler
 			{
 				player.sendPacket(SystemMessageId.CANNOT_USE_SOULSHOTS);
 			}
+			
 			return false;
 		}
 		
@@ -75,6 +76,7 @@ public class SoulShots implements IItemHandler
 			{
 				player.sendPacket(SystemMessageId.THE_SOULSHOT_YOU_ARE_ATTEMPTING_TO_USE_DOES_NOT_MATCH_THE_GRADE_OF_YOUR_EQUIPPED_WEAPON);
 			}
+			
 			return false;
 		}
 		
@@ -97,6 +99,7 @@ public class SoulShots implements IItemHandler
 			{
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_SOULSHOTS_FOR_THAT);
 			}
+			
 			return false;
 		}
 		

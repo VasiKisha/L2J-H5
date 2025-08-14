@@ -67,6 +67,7 @@ public class CubicHeal implements Runnable
 					break;
 				}
 			}
+			
 			if (skill == null)
 			{
 				return;

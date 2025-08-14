@@ -70,6 +70,7 @@ public class MailManager
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Error loading from database:", e);
 		}
+		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + count + " messages.");
 	}
 	
@@ -93,6 +94,7 @@ public class MailManager
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -106,6 +108,7 @@ public class MailManager
 				size++;
 			}
 		}
+		
 		return size;
 	}
 	
@@ -119,6 +122,7 @@ public class MailManager
 				size++;
 			}
 		}
+		
 		return size;
 	}
 	
@@ -132,6 +136,7 @@ public class MailManager
 				inbox.add(msg);
 			}
 		}
+		
 		return inbox;
 	}
 	
@@ -145,6 +150,7 @@ public class MailManager
 				outbox.add(msg);
 			}
 		}
+		
 		return outbox;
 	}
 	

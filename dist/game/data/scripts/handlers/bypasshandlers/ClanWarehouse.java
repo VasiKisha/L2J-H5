@@ -50,7 +50,7 @@ public class ClanWarehouse implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if (!(target instanceof Warehouse) && !(target instanceof ClanHallManager))
 		{
@@ -90,6 +90,7 @@ public class ClanWarehouse implements IBypassHandler
 				{
 					showWithdrawWindow(player, null, (byte) 0);
 				}
+				
 				return true;
 			}
 			else if (command.toLowerCase().startsWith(COMMANDS[1])) // WithdrawSortedC
@@ -107,6 +108,7 @@ public class ClanWarehouse implements IBypassHandler
 				{
 					showWithdrawWindow(player, WarehouseListType.ALL, SortedWareHouseWithdrawalList.A2Z);
 				}
+				
 				return true;
 			}
 			else if (command.toLowerCase().startsWith(COMMANDS[2])) // DepositC
@@ -124,6 +126,7 @@ public class ClanWarehouse implements IBypassHandler
 		{
 			LOGGER.log(Level.WARNING, "Exception in " + getClass().getSimpleName(), e);
 		}
+		
 		return false;
 	}
 	
@@ -152,6 +155,7 @@ public class ClanWarehouse implements IBypassHandler
 				player.getActiveWarehouse().destroyItem(ItemProcessType.DESTROY, i, player, null);
 			}
 		}
+		
 		if (itemtype != null)
 		{
 			player.sendPacket(new SortedWareHouseWithdrawalList(player, WareHouseWithdrawalList.CLAN, itemtype, sortorder));
@@ -163,7 +167,7 @@ public class ClanWarehouse implements IBypassHandler
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

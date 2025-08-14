@@ -99,6 +99,7 @@ public enum Stat
 	POWER_ATTACK_RANGE("pAtkRange"),
 	MAGIC_ATTACK_RANGE("mAtkRange"),
 	ATTACK_COUNT_MAX("atkCountMax"),
+	
 	// Run speed, walk & escape speed are calculated proportionally, magic speed is a buff
 	MOVE_SPEED("runSpd"),
 	
@@ -131,6 +132,7 @@ public enum Stat
 	HOLY_RES("holyRes"),
 	DARK_RES("darkRes"),
 	MAGIC_SUCCESS_RES("magicSuccRes"),
+	
 	// BUFF_IMMUNITY("buffImmunity"), //TODO: Implement me
 	DEBUFF_IMMUNITY("debuffImmunity"),
 	

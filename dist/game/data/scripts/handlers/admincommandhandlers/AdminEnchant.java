@@ -20,8 +20,6 @@
  */
 package handlers.admincommandhandlers;
 
-import java.util.logging.Logger;
-
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
@@ -38,8 +36,6 @@ import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
  */
 public class AdminEnchant implements IAdminCommandHandler
 {
-	private static final Logger LOGGER = Logger.getLogger(AdminEnchant.class.getName());
-	
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_seteh", // 6
@@ -61,7 +57,7 @@ public class AdminEnchant implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_enchant"))
 		{
@@ -149,18 +145,10 @@ public class AdminEnchant implements IAdminCommandHandler
 				}
 				catch (StringIndexOutOfBoundsException e)
 				{
-					if (Config.DEVELOPER)
-					{
-						LOGGER.warning("Set enchant error: " + e);
-					}
 					activeChar.sendSysMessage("Please specify a new enchant value.");
 				}
 				catch (NumberFormatException e)
 				{
-					if (Config.DEVELOPER)
-					{
-						LOGGER.warning("Set enchant error: " + e);
-					}
 					activeChar.sendSysMessage("Please specify a valid new enchant value.");
 				}
 			}
@@ -222,6 +210,7 @@ public class AdminEnchant implements IAdminCommandHandler
 					enchant = EnchantItemGroupsData.getInstance().getMaxArmorEnchant();
 				}
 			}
+			
 			player.getInventory().unEquipItemInSlot(slot);
 			itemInstance.setEnchantLevel(enchant);
 			player.getInventory().equipItem(itemInstance);
@@ -244,7 +233,7 @@ public class AdminEnchant implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

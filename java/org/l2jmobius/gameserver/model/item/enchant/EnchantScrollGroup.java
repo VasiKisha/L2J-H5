@@ -53,6 +53,7 @@ public class EnchantScrollGroup
 		{
 			_rateGroups = new ArrayList<>();
 		}
+		
 		_rateGroups.add(group);
 	}
 	
@@ -77,6 +78,7 @@ public class EnchantScrollGroup
 				return group;
 			}
 		}
+		
 		return null;
 	}
 }

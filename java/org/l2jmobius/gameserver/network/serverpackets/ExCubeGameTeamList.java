@@ -31,6 +31,7 @@ public class ExCubeGameTeamList extends ServerPacket
 	// Players Lists
 	private final List<Player> _bluePlayers;
 	private final List<Player> _redPlayers;
+	
 	// Common Values
 	private final int _roomNumber;
 	
@@ -60,6 +61,7 @@ public class ExCubeGameTeamList extends ServerPacket
 			buffer.writeInt(player.getObjectId());
 			buffer.writeString(player.getName());
 		}
+		
 		buffer.writeInt(_redPlayers.size());
 		for (Player player : _redPlayers)
 		{

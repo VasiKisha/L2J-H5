@@ -97,6 +97,7 @@ public class TradeDone extends ClientPacket
 				player.cancelActiveTrade();
 				return;
 			}
+			
 			trade.confirm();
 		}
 		else

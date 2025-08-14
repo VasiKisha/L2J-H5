@@ -49,6 +49,7 @@ public class Pumping extends AbstractEffect
 		{
 			throw new IllegalArgumentException(getClass().getSimpleName() + ": effect without power!");
 		}
+		
 		_power = params.getDouble("power");
 	}
 	
@@ -81,21 +82,25 @@ public class Pumping extends AbstractEffect
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}
+		
 		final Weapon weaponItem = player.getActiveWeaponItem();
 		final Item weaponInst = effector.getActiveWeaponInstance();
 		if ((weaponInst == null) || (weaponItem == null))
 		{
 			return;
 		}
+		
 		int ss = 1;
 		int pen = 0;
 		if (effector.isChargedShot(ShotType.FISH_SOULSHOTS))
 		{
 			ss = 2;
 		}
+		
 		final FishingRod fishingRod = FishingRodsData.getInstance().getFishingRod(weaponItem.getId());
 		final double gradeBonus = fishingRod.getFishingRodLevel() * 0.1; // TODO: Check this formula (is guessed)
 		int dmg = (int) ((fishingRod.getFishingRodDamage() + player.calcStat(Stat.FISHING_EXPERTISE, 1, null, null) + _power) * gradeBonus * ss);
+		
 		// Penalty 5% less damage dealt
 		if (player.getSkillLevel(1315) <= (skill.getLevel() - 2)) // 1315 - Fish Expertise
 		{
@@ -103,6 +108,7 @@ public class Pumping extends AbstractEffect
 			pen = (int) (dmg * 0.05);
 			dmg -= pen;
 		}
+		
 		if (ss > 1)
 		{
 			weaponInst.setChargedShot(ShotType.FISH_SOULSHOTS, false);

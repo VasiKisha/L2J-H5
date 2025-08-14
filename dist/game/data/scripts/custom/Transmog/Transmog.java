@@ -114,6 +114,7 @@ public class Transmog extends AbstractNpcAI
 						item.removeTransmog();
 						player.sendMessage("You have removed your " + ItemData.getInstance().getTemplate(transmogId).getName() + " transmog.");
 					}
+					
 					player.getInventory().equipItem(item);
 					player.broadcastInfo();
 				}
@@ -122,6 +123,7 @@ public class Transmog extends AbstractNpcAI
 					player.sendMessage("No item equipped in this slot.");
 				}
 			}
+			
 			onEvent(slot + "!" + page, npc, player);
 		}
 		else if (event.startsWith("set"))
@@ -160,6 +162,7 @@ public class Transmog extends AbstractNpcAI
 							player.sendMessage("You have set your item transmog to " + itemTemplate.getName() + ".");
 						}
 					}
+					
 					player.getInventory().equipItem(item);
 					player.broadcastInfo();
 				}
@@ -168,6 +171,7 @@ public class Transmog extends AbstractNpcAI
 					player.sendMessage("No item equipped in this slot.");
 				}
 			}
+			
 			onEvent(slot + "!" + page, npc, player);
 		}
 		else
@@ -205,10 +209,12 @@ public class Transmog extends AbstractNpcAI
 					content = content.replace("%" + counter + "%", "<center><img src=\"" + itemTemplate.getIcon() + "\" width=32 height=32><br><a action=\"bypass Quest Transmog set!" + slot + "!" + page + "!" + itemTemplate.getDisplayId() + "\">" + itemName + "</a></center>");
 				}
 			}
+			
 			for (int i = 1; i < 17; i++)
 			{
 				content = content.replace("%" + i + "%", "");
 			}
+			
 			content = content.replace("%title%", "Transmog (" + page + " of " + pages + ")");
 			content = content.replace("%previous%", "<a action=\"bypass Quest Transmog " + slot + "!" + Math.max(1, (page - 1)) + "\">Previous</a>");
 			content = content.replace("%next%", "<a action=\"bypass Quest Transmog " + slot + "!" + Math.min(pages, (page + 1)) + "\">Next</a>");
@@ -306,6 +312,7 @@ public class Transmog extends AbstractNpcAI
 					statement.addBatch();
 				}
 			}
+			
 			statement.executeBatch();
 		}
 		catch (SQLException e)

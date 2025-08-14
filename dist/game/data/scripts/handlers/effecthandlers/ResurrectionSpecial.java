@@ -71,6 +71,7 @@ public class ResurrectionSpecial extends AbstractEffect
 		{
 			player.reviveRequest(caster, false, _power);
 		}
+		
 		if (effected.isPet())
 		{
 			player.reviveRequest(player, true, _power);

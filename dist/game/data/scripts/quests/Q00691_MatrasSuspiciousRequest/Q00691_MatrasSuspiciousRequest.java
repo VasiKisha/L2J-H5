@@ -19,7 +19,6 @@ package quests.Q00691_MatrasSuspiciousRequest;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -35,9 +34,11 @@ public class Q00691_MatrasSuspiciousRequest extends Quest
 {
 	// NPC
 	private static final int MATRAS = 32245;
+	
 	// Items
 	private static final int RED_GEM = 10372;
 	private static final int DYNASTY_SOUL_II = 10413;
+	
 	// Reward
 	private static final Map<Integer, Integer> REWARD_CHANCES = new HashMap<>();
 	static
@@ -53,6 +54,7 @@ public class Q00691_MatrasSuspiciousRequest extends Quest
 		REWARD_CHANCES.put(22371, 257);
 		REWARD_CHANCES.put(22372, 656);
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 76;
 	
@@ -130,6 +132,7 @@ public class Q00691_MatrasSuspiciousRequest extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -142,7 +145,7 @@ public class Q00691_MatrasSuspiciousRequest extends Quest
 			return;
 		}
 		
-		int chance = (int) (Config.RATE_QUEST_DROP * REWARD_CHANCES.get(npc.getId()));
+		int chance = REWARD_CHANCES.get(npc.getId());
 		final int numItems = Math.max((chance / 1000), 1);
 		chance = chance % 1000;
 		if (getRandom(1000) <= chance)
@@ -181,6 +184,7 @@ public class Q00691_MatrasSuspiciousRequest extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

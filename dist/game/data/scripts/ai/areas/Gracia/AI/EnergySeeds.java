@@ -23,7 +23,6 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.DoorData;
@@ -70,7 +69,7 @@ public class EnergySeeds extends AbstractNpcAI
 	private static List<Npc> soiabyssgaze2List = new ArrayList<>();
 	
 	private static final int TEMPORARY_TELEPORTER = 32602;
-	//@formatter:off
+	// @formatter:off
 	private static final int[] SEED_IDS =
 	{
 		18678, 18679, 18680, 18681, 18682, 18683
@@ -265,7 +264,7 @@ public class EnergySeeds extends AbstractNpcAI
 	{
 		{32540, -183295, 205861, -12896, 16384, 0, 1}
 	};
-	//@formatter:on
+	// @formatter:on
 	
 	private enum GraciaSeeds
 	{
@@ -306,6 +305,7 @@ public class EnergySeeds extends AbstractNpcAI
 				return true;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -365,6 +365,7 @@ public class EnergySeeds extends AbstractNpcAI
 						return;
 					}
 				}
+				
 				if (getRandom(100) < 33)
 				{
 					caster.sendPacket(SystemMessageId.YOUR_COLLECTION_HAS_SUCCEEDED);
@@ -375,6 +376,7 @@ public class EnergySeeds extends AbstractNpcAI
 					caster.sendPacket(SystemMessageId.YOUR_COLLECTION_HAS_SUCCEEDED);
 					caster.addItem(ItemProcessType.REWARD, itemId, getRandom(1, RATE), null, true);
 				}
+				
 				seedCollectEvent(caster, npc, spawn._seedId);
 			}
 		}
@@ -393,6 +395,7 @@ public class EnergySeeds extends AbstractNpcAI
 					doorInstance.openMe();
 				}
 			}
+			
 			startAI(GraciaSeeds.DESTRUCTION);
 		}
 		else if (event.equalsIgnoreCase("StopSoDAi"))
@@ -405,6 +408,7 @@ public class EnergySeeds extends AbstractNpcAI
 					doorInstance.closeMe();
 				}
 			}
+			
 			for (Player ch : ZoneManager.getInstance().getZoneById(SOD_ZONE).getPlayersInside())
 			{
 				if (ch != null)
@@ -412,6 +416,7 @@ public class EnergySeeds extends AbstractNpcAI
 					ch.teleToLocation(SOD_EXIT_POINT);
 				}
 			}
+			
 			stopAI(GraciaSeeds.DESTRUCTION);
 		}
 		else if (event.equalsIgnoreCase("DeSpawnTask"))
@@ -425,6 +430,7 @@ public class EnergySeeds extends AbstractNpcAI
 				npc.deleteMe();
 			}
 		}
+		
 		return null;
 	}
 	
@@ -435,6 +441,7 @@ public class EnergySeeds extends AbstractNpcAI
 		{
 			player.teleToLocation(SOD_EXIT_POINT);
 		}
+		
 		player.sendPacket(ActionFailed.STATIC_PACKET);
 		return null;
 	}
@@ -522,6 +529,7 @@ public class EnergySeeds extends AbstractNpcAI
 		{
 			return;
 		}
+		
 		final QuestState qs = player.getQuestState(Q00692_HowtoOpposeEvil.class.getSimpleName());
 		switch (seedType)
 		{
@@ -547,6 +555,7 @@ public class EnergySeeds extends AbstractNpcAI
 				{
 					handleQuestDrop(player, 15535);
 				}
+				
 				if (getRandom(100) < 50)
 				{
 					final Monster mob = spawnSupriseMob(seedEnergy, ANNIHILATION_SUPRISE_MOB_IDS[0][getRandom(ANNIHILATION_SUPRISE_MOB_IDS[0].length)]);
@@ -562,6 +571,7 @@ public class EnergySeeds extends AbstractNpcAI
 				{
 					handleQuestDrop(player, 15535);
 				}
+				
 				if (getRandom(100) < 50)
 				{
 					final Monster mob = spawnSupriseMob(seedEnergy, ANNIHILATION_SUPRISE_MOB_IDS[1][getRandom(ANNIHILATION_SUPRISE_MOB_IDS[1].length)]);
@@ -577,6 +587,7 @@ public class EnergySeeds extends AbstractNpcAI
 				{
 					handleQuestDrop(player, 15535);
 				}
+				
 				if (getRandom(100) < 50)
 				{
 					final Monster mob = spawnSupriseMob(seedEnergy, ANNIHILATION_SUPRISE_MOB_IDS[2][getRandom(ANNIHILATION_SUPRISE_MOB_IDS[2].length)]);
@@ -604,13 +615,14 @@ public class EnergySeeds extends AbstractNpcAI
 	
 	private void handleQuestDrop(Player player, int itemId)
 	{
-		double chance = HOW_TO_OPPOSE_EVIL_CHANCE * Config.RATE_QUEST_DROP;
+		double chance = HOW_TO_OPPOSE_EVIL_CHANCE;
 		int numItems = (int) (chance / 100);
 		chance = chance % 100;
 		if (getRandom(100) < chance)
 		{
 			numItems++;
 		}
+		
 		if (numItems > 0)
 		{
 			giveItems(player, itemId, numItems);
@@ -622,10 +634,11 @@ public class EnergySeeds extends AbstractNpcAI
 	{
 		// Seed of Destruction
 		// Temporary Teleporters
-		//@formatter:off
+		// @formatter:off
 		SPAWNS.put(1, new ESSpawn(1, GraciaSeeds.DESTRUCTION, new Location(-245790,220320,-12104), new int[]{TEMPORARY_TELEPORTER}));
 		SPAWNS.put(2, new ESSpawn(2, GraciaSeeds.DESTRUCTION, new Location(-249770,207300,-11952), new int[]{TEMPORARY_TELEPORTER}));
-		//Energy Seeds
+		
+		// Energy Seeds
 		SPAWNS.put(3, new ESSpawn(3, GraciaSeeds.DESTRUCTION, new Location(-248360,219272,-12448), new int[]{18678,18679,18680}));
 		SPAWNS.put(4, new ESSpawn(4, GraciaSeeds.DESTRUCTION, new Location(-249448,219256,-12448), new int[]{18678,18679,18680}));
 		SPAWNS.put(5, new ESSpawn(5, GraciaSeeds.DESTRUCTION, new Location(-249432,220872,-12448), new int[]{18678,18679,18680}));
@@ -953,7 +966,7 @@ public class EnergySeeds extends AbstractNpcAI
 		SPAWNS.put(299, new ESSpawn(299, GraciaSeeds.ANNIHILATION_COKRAKON, new Location(-219079,175021,-11336), new int[]{ 18678, 18679, 18680, 18681, 18682, 18683 }));
 		SPAWNS.put(300, new ESSpawn(300, GraciaSeeds.ANNIHILATION_COKRAKON, new Location(-218812,174229,-11344), new int[]{ 18678, 18679, 18680, 18681, 18682, 18683 }));
 		SPAWNS.put(301, new ESSpawn(301, GraciaSeeds.ANNIHILATION_COKRAKON, new Location(-218723,174669,-11336), new int[]{ 18678, 18679, 18680, 18681, 18682, 18683 }));
-		//@formatter:on
+		// @formatter:on
 	}
 	
 	private class ESSpawn
@@ -1003,6 +1016,7 @@ public class EnergySeeds extends AbstractNpcAI
 				{
 					npc.getSpawn().stopRespawn();
 				}
+				
 				soiList.add(npc);
 			}
 		}
@@ -1020,6 +1034,7 @@ public class EnergySeeds extends AbstractNpcAI
 				}
 			}
 		}
+		
 		soiList.clear();
 	}
 	
@@ -1047,6 +1062,7 @@ public class EnergySeeds extends AbstractNpcAI
 				}
 			}
 		}
+		
 		soiclosemouthList.clear();
 	}
 	
@@ -1074,6 +1090,7 @@ public class EnergySeeds extends AbstractNpcAI
 				}
 			}
 		}
+		
 		soimouthList.clear();
 	}
 	
@@ -1101,6 +1118,7 @@ public class EnergySeeds extends AbstractNpcAI
 				}
 			}
 		}
+		
 		soiabyssgaze2List.clear();
 	}
 	
@@ -1128,6 +1146,7 @@ public class EnergySeeds extends AbstractNpcAI
 				}
 			}
 		}
+		
 		soiabyssgaze1List.clear();
 	}
 }

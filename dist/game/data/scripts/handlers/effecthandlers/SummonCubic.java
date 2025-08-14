@@ -49,6 +49,7 @@ public class SummonCubic extends AbstractEffect
 		super(attachCond, applyCond, set, params);
 		
 		_cubicId = params.getInt("cubicId", -1);
+		
 		// Custom AI data.
 		_cubicPower = params.getInt("cubicPower", 0);
 		_cubicDuration = params.getInt("cubicDuration", 0);
@@ -108,6 +109,7 @@ public class SummonCubic extends AbstractEffect
 			// Players with no mastery can have only one cubic.
 			final int allowedCubicCount = player.getStat().getMaxCubicCount();
 			final int currentCubicCount = player.getCubics().size();
+			
 			// Extra cubics are removed, one by one, randomly.
 			for (int i = 0; i <= (currentCubicCount - allowedCubicCount); i++)
 			{
@@ -118,6 +120,7 @@ public class SummonCubic extends AbstractEffect
 				player.getCubics().remove(removedCubic.getId());
 			}
 		}
+		
 		// Adding a new cubic.
 		player.addCubic(_cubicId, cubicSkillLevel, _cubicPower, _cubicDelay, _cubicSkillChance, _cubicMaxCount, _cubicDuration, effected != effector);
 		player.broadcastUserInfo();

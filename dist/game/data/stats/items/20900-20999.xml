@@ -110,9 +110,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20909" type="EtcItem" name="Hyum Rose Necklace (Event) - Summon duration - 3 hours">
 		<!-- Summons the Rose Spirit Hyum. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -128,9 +128,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20910" type="EtcItem" name="Rekang Rose Necklace (Event) - Summon duration - 3 hours">
 		<!-- Summons the Rose Spirit Rekang. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -146,9 +146,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20911" type="EtcItem" name="Lilias Rose Necklace (Event) - Summon duration - 3 hours">
 		<!-- Summons the Rose Spirit Lilias. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -164,9 +164,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20912" type="EtcItem" name="Lapham Rose Necklace (Event) - Summon duration - 3 hours">
 		<!-- Summons the Rose Spirit Lapham. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -182,9 +182,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20913" type="EtcItem" name="Mafum Rose Necklace (Event) - Summon duration - 3 hours">
 		<!-- Summons the Rose Spirit Mafum. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -200,9 +200,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20914" type="EtcItem" name="Improved Rose Spirit Exchange Ticket - 5 hours">
 		<!-- Coupon that can be exchanged for a necklace (5 hour) that summons an Improved Rose Spirit. Can be exchanged through the Dimensional Merchant. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -234,9 +234,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20916" type="EtcItem" name="Improved Hyum Rose Necklace (Event) - Summon duration - 5 hours">
 		<!-- Summons the Improved Rose Spirit Hyum. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -254,9 +254,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20917" type="EtcItem" name="Improved Rekang Rose Necklace (Event) - Summon duration - 5 hours">
 		<!-- Summons the Improved Rose Spirit Rekang. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -274,9 +274,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20918" type="EtcItem" name="Improved Lilias Rose Necklace (Event) - Summon duration - 5 hours">
 		<!-- Summons the Improved Rose Spirit Lilias. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -294,9 +294,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20919" type="EtcItem" name="Improved Lapham Rose Necklace (Event) - Summon duration - 5 hours">
 		<!-- Summons the Improved Rose Spirit Lapham. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -314,9 +314,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20920" type="EtcItem" name="Improved Mafum Rose Necklace (Event) - Summon duration - 5 hours">
 		<!-- Summons the Improved Rose Spirit Mafum. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -334,9 +334,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20921" type="EtcItem" name="Rose Spirit Test Report - 24-hour limited period">
 		<!-- Report in which you can record your findings while testing the Rose Spirit. You can only return it 24 hours after receiving it. It cannot be destroyed. -->
@@ -1146,12 +1146,12 @@
 		<set name="is_freightable" val="true" />
 		<set name="unequip_skill" val="839-1" />
 		<set name="item_skill" val="21195-1" /> <!-- Blessed Child Transformation Skill - Trejuo -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="20972" type="Weapon" name="Sujin Transformation Stick - Blessed Child Transformation">
 		<!-- Stick that transforms you into the Blessed Child Sujin. The transformation ends when you de-equip the item. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. Special skill reuse delay is 4 hour. -->
@@ -1173,12 +1173,12 @@
 		<set name="is_freightable" val="true" />
 		<set name="unequip_skill" val="839-1" />
 		<set name="item_skill" val="21196-1" /> <!-- Blessed Child Transformation Skill - Sujin -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="20973" type="Armor" name="Opera Mask - Liu Bei - Buff of Virtue, Age of the Three Kingdoms">
 		<!-- Mask worn by the actor playing the Liu Bei role in the opera. Can use the Buff of Virtue and the Age of the Three Kingdoms. Cannot be exchanged, dropped, or sold. Uses 2 hair accessory slots. Can be stored in a private warehouse. -->

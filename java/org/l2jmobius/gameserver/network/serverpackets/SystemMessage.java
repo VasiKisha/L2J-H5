@@ -92,6 +92,7 @@ public class SystemMessage extends ServerPacket
 	public static final byte TYPE_DOOR_NAME = 11;
 	public static final byte TYPE_INSTANCE_NAME = 10;
 	public static final byte TYPE_ELEMENT_NAME = 9;
+	
 	// id 8 - same as 3
 	public static final byte TYPE_ZONE_NAME = 7;
 	public static final byte TYPE_LONG_NUMBER = 6;
@@ -118,6 +119,7 @@ public class SystemMessage extends ServerPacket
 		{
 			throw new NullPointerException("SystemMessageId cannot be null!");
 		}
+		
 		_smId = smId;
 		_params = smId.getParamCount() > 0 ? new SMParam[smId.getParamCount()] : EMPTY_PARAM_ARRAY;
 	}
@@ -128,6 +130,7 @@ public class SystemMessage extends ServerPacket
 		{
 			throw new NullPointerException();
 		}
+		
 		_smId = SystemMessageId.getSystemMessageId(SystemMessageId.S1_2.getId());
 		_params = new SMParam[1];
 		addString(text);
@@ -151,6 +154,7 @@ public class SystemMessage extends ServerPacket
 			_smId.setParamCount(_paramIndex + 1);
 			PacketLogger.info("Wrong parameter count '" + (_paramIndex + 1) + "' for SystemMessageId: " + _smId);
 		}
+		
 		_params[_paramIndex++] = param;
 	}
 	
@@ -230,6 +234,7 @@ public class SystemMessage extends ServerPacket
 		{
 			return addString(template.getName());
 		}
+		
 		return addNpcName(template.getId());
 	}
 	
@@ -256,6 +261,7 @@ public class SystemMessage extends ServerPacket
 		{
 			return addString(item.getName());
 		}
+		
 		append(new SMParam(TYPE_ITEM_NAME, id));
 		return this;
 	}
@@ -277,6 +283,7 @@ public class SystemMessage extends ServerPacket
 		{
 			return addString(skill.getName());
 		}
+		
 		return addSkillName(skill.getId(), skill.getLevel());
 	}
 	
@@ -355,6 +362,7 @@ public class SystemMessage extends ServerPacket
 						{
 							params[i] = _params[i].getValue();
 						}
+						
 						buffer.writeInt(SystemMessageId.S1_2.getId());
 						buffer.writeInt(1);
 						buffer.writeInt(TYPE_TEXT);
@@ -374,6 +382,7 @@ public class SystemMessage extends ServerPacket
 				PacketLogger.warning("Found null parameter for SystemMessageId " + _smId);
 				continue;
 			}
+			
 			buffer.writeInt(param.getType());
 			switch (param.getType())
 			{

@@ -37,11 +37,13 @@ public class Q00363_SorrowfulSoundOfFlute extends Quest
 	private static final int OPIX = 30595;
 	private static final int NANARIN = 30956;
 	private static final int BARBADO = 30959;
+	
 	// Items
 	private static final int EVENT_CLOTHES = 4318;
 	private static final int NANARINS_FLUTE = 4319;
 	private static final int SABRINS_BLACK_BEER = 4320;
 	private static final int THEME_OF_SOLITUDE = 4420;
+	
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	
@@ -104,6 +106,7 @@ public class Q00363_SorrowfulSoundOfFlute extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -181,6 +184,7 @@ public class Q00363_SorrowfulSoundOfFlute extends Quest
 									break;
 								}
 							}
+							
 							qs.setCond(2, true);
 						}
 						else if ((qs.getMemoState() >= 2) && ((qs.getInt("ex") % 100) >= 10))
@@ -213,6 +217,7 @@ public class Q00363_SorrowfulSoundOfFlute extends Quest
 									break;
 								}
 							}
+							
 							qs.setCond(2, true);
 						}
 						else if ((qs.getMemoState() >= 2) && ((qs.getInt("ex") % 10000) >= 1000))
@@ -245,6 +250,7 @@ public class Q00363_SorrowfulSoundOfFlute extends Quest
 									break;
 								}
 							}
+							
 							qs.setCond(2, true);
 						}
 						else if ((qs.getMemoState() >= 2) && ((qs.getInt("ex") % 100000) >= 10000))
@@ -277,6 +283,7 @@ public class Q00363_SorrowfulSoundOfFlute extends Quest
 									break;
 								}
 							}
+							
 							qs.setCond(2, true);
 						}
 						else if ((qs.getMemoState() >= 2) && ((qs.getInt("ex") % 1000) >= 100))
@@ -309,6 +316,7 @@ public class Q00363_SorrowfulSoundOfFlute extends Quest
 									break;
 								}
 							}
+							
 							qs.setCond(2, true);
 						}
 						else if ((qs.getMemoState() >= 2) && (qs.getInt("ex") >= 100000))
@@ -336,6 +344,7 @@ public class Q00363_SorrowfulSoundOfFlute extends Quest
 								{
 									takeItems(player, SABRINS_BLACK_BEER, -1);
 								}
+								
 								qs.setMemoState(5);
 								qs.setCond(4, true);
 								htmltext = "30959-01.html";
@@ -357,6 +366,7 @@ public class Q00363_SorrowfulSoundOfFlute extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

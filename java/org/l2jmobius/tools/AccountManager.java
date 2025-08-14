@@ -144,6 +144,7 @@ public class AccountManager extends JFrame
 			{
 				DarkTheme.activate();
 			}
+			
 			gui();
 		}
 		else
@@ -749,6 +750,7 @@ public class AccountManager extends JFrame
 		{
 			JOptionPane.showMessageDialog(null, "Error while retrieving total accounts count: " + e.getMessage(), "Database Error", JOptionPane.ERROR_MESSAGE);
 		}
+		
 		return -1;
 	}
 	
@@ -1183,6 +1185,7 @@ public class AccountManager extends JFrame
 		{
 			e.printStackTrace();
 		}
+		
 		return false; // Failed connection.
 	}
 	
@@ -1248,6 +1251,7 @@ public class AccountManager extends JFrame
 						{
 							// Who dares interrupt my dramatic exit?!
 						}
+						
 						System.exit(0);
 						break;
 					}
@@ -1265,6 +1269,7 @@ public class AccountManager extends JFrame
 		{
 			// Cleanup resources when exiting console mode
 			System.out.println("[INFO] Cleaning up resources...");
+			
 			// Close any open resources, like database connections
 			DatabaseFactory.close();
 		}
@@ -1575,6 +1580,7 @@ public class AccountManager extends JFrame
 					sqlBuilder.append("password = ?, ");
 					params.add(hashBase64);
 				}
+				
 				if (newAccessLevel != null)
 				{
 					sqlBuilder.append("accessLevel = ?, ");

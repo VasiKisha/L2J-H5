@@ -35,6 +35,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 {
 	// NPC
 	private static final int DUELIST_KAIEN = 30623;
+	
 	// Items
 	private static final int ORDER_GLUDIO = 2763;
 	private static final int ORDER_DION = 2764;
@@ -57,9 +58,11 @@ public class Q00222_TestOfTheDuelist extends Quest
 	private static final int GRANDIS_SKIN = 2781;
 	private static final int TIMAK_ORCS_BELT = 2782;
 	private static final int LAKINS_MACE = 2783;
+	
 	// Reward
 	private static final int MARK_OF_DUELIST = 2762;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monster
 	private static final int PUNCHER = 20085;
 	private static final int NOBLE_ANT_LEADER = 20090;
@@ -76,6 +79,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 	private static final int TAMLIN_ORC = 20601;
 	private static final int TAMLIN_ORC_ARCHER = 20602;
 	private static final int LAKIN = 20604;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	
@@ -122,6 +126,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 						{
 							giveItems(player, DIMENSIONAL_DIAMOND, 72);
 						}
+						
 						player.getVariables().set("2ND_CLASS_DIAMOND_REWARD", 1);
 						htmltext = "30623-07a.htm";
 					}
@@ -185,6 +190,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -208,6 +214,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(3);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -225,6 +232,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(3);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -242,6 +250,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(3);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -259,6 +268,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(5);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -276,6 +286,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(5);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -293,6 +304,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(3);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -310,6 +322,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(3);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -327,6 +340,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(3);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -344,6 +358,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(5);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -361,6 +376,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(3);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -378,6 +394,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(3);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -395,6 +412,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(5);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -412,6 +430,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(3);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -429,6 +448,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(3);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -446,6 +466,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 							{
 								qs.setCond(5);
 							}
+							
 							qs.setMemoStateEx(1, 0);
 						}
 					}
@@ -512,6 +533,7 @@ public class Q00222_TestOfTheDuelist extends Quest
 		{
 			htmltext = getAlreadyCompletedMsg(player);
 		}
+		
 		return htmltext;
 	}
 }

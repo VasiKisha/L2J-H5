@@ -116,6 +116,7 @@ public class ConfirmDlg extends ServerPacket
 				}
 			}
 		}
+		
 		buffer.writeInt(_time);
 		buffer.writeInt(_requesterId);
 	}

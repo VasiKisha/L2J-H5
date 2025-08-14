@@ -1,44 +1,47 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
-import java.util.EnumMap;
 import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.holders.player.ClassInfoHolder;
 
 /**
- * Loads the the list of classes and it's info.
- * @author Zoey76
+ * Loads and manages the list of player classes and their associated information.
+ * @author Zoey76, Mobius
  */
 public class ClassListData implements IXmlReader
 {
-	private final Map<PlayerClass, ClassInfoHolder> _classData = new EnumMap<>(PlayerClass.class);
+	private static final Logger LOGGER = Logger.getLogger(ClassListData.class.getName());
 	
-	/**
-	 * Instantiates a new class list data.
-	 */
+	private final Map<PlayerClass, ClassInfoHolder> _classData = new ConcurrentHashMap<>();
+	
 	protected ClassListData()
 	{
 		load();
@@ -55,31 +58,19 @@ public class ClassListData implements IXmlReader
 	@Override
 	public void parseDocument(Document document, File file)
 	{
-		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
+		forEach(document, "list", listNode -> forEach(listNode, "class", classNode ->
 		{
-			if ("list".equals(n.getNodeName()))
-			{
-				for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling())
-				{
-					final NamedNodeMap attrs = d.getAttributes();
-					if ("class".equals(d.getNodeName()))
-					{
-						Node attr = attrs.getNamedItem("classId");
-						final PlayerClass classId = PlayerClass.getPlayerClass(parseInteger(attr));
-						attr = attrs.getNamedItem("name");
-						final String className = attr.getNodeValue();
-						attr = attrs.getNamedItem("parentClassId");
-						final PlayerClass parentClassId = (attr != null) ? PlayerClass.getPlayerClass(parseInteger(attr)) : null;
-						_classData.put(classId, new ClassInfoHolder(classId, className, parentClassId));
-					}
-				}
-			}
-		}
+			final NamedNodeMap attrs = classNode.getAttributes();
+			final PlayerClass classId = PlayerClass.getPlayerClass(parseInteger(attrs, "classId"));
+			final PlayerClass parentClassId = parseInteger(attrs, "parentClassId", -1) > 0 ? PlayerClass.getPlayerClass(parseInteger(attrs, "parentClassId")) : null;
+			final String className = parseString(attrs, "name");
+			_classData.put(classId, new ClassInfoHolder(classId, parentClassId, className));
+		}));
 	}
 	
 	/**
-	 * Gets the class list.
-	 * @return the complete class list
+	 * Gets the complete map of all player classes and their associated information.
+	 * @return an unmodifiable map containing all class data, where keys are {@link PlayerClass} enum values and values are their corresponding {@link ClassInfoHolder} objects
 	 */
 	public Map<PlayerClass, ClassInfoHolder> getClassList()
 	{
@@ -87,9 +78,9 @@ public class ClassListData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the class info.
-	 * @param classId the class ID
-	 * @return the class info related to the given {@code classId}
+	 * Gets the class information for a specific {@link PlayerClass}.
+	 * @param classId the class identifier as a {@link PlayerClass} enum value
+	 * @return the {@link ClassInfoHolder} containing information about the specified class, or {@code null} if the class is not found
 	 */
 	public ClassInfoHolder getClass(PlayerClass classId)
 	{
@@ -97,9 +88,9 @@ public class ClassListData implements IXmlReader
 	}
 	
 	/**
-	 * Gets the class info.
-	 * @param classId the class Id as integer
-	 * @return the class info related to the given {@code classId}
+	 * Gets the class information for a specific class ID.
+	 * @param classId the numeric identifier of the class
+	 * @return the {@link ClassInfoHolder} containing information about the specified class, or {@code null} if the class ID is invalid or not found
 	 */
 	public ClassInfoHolder getClass(int classId)
 	{
@@ -107,10 +98,6 @@ public class ClassListData implements IXmlReader
 		return (id != null) ? _classData.get(id) : null;
 	}
 	
-	/**
-	 * Gets the single instance of ClassListData.
-	 * @return single instance of ClassListData
-	 */
 	public static ClassListData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

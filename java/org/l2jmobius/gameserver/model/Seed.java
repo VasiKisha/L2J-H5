@@ -51,6 +51,7 @@ public class Seed
 		_isAlternative = set.getBoolean("alternative");
 		_limitCrops = set.getInt("limit_crops");
 		_limitSeeds = set.getInt("limit_seed");
+		
 		// Set prices
 		ItemTemplate item = ItemData.getInstance().getTemplate(_cropId);
 		_cropReferencePrice = (item != null) ? item.getReferencePrice() : 1;

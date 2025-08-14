@@ -39,11 +39,13 @@ public class Q00380_BringOutTheFlavorOfIngredients extends Quest
 {
 	// NPC
 	private static final int ROLLAND = 30069;
+	
 	// Items
 	private static final int ANTIDOTE = 1831;
 	private static final int RITRON_FRUIT = 5895;
 	private static final int MOON_FLOWER = 5896;
 	private static final int LEECH_FLUIDS = 5897;
+	
 	// Monsters
 	private static final Map<Integer, ItemChanceHolder> MONSTER_CHANCES = new HashMap<>();
 	static
@@ -52,9 +54,11 @@ public class Q00380_BringOutTheFlavorOfIngredients extends Quest
 		MONSTER_CHANCES.put(20206, new ItemChanceHolder(MOON_FLOWER, 0.5, 20)); // Kadif Werewolf
 		MONSTER_CHANCES.put(20225, new ItemChanceHolder(LEECH_FLUIDS, 0.5, 10)); // Giant Mist Leech
 	}
+	
 	// Rewards
 	private static final int RITRON_RECIPE = 5959;
 	private static final int RITRON_DESSERT = 5960;
+	
 	// Misc
 	private static final int MIN_LEVEL = 24;
 	
@@ -104,6 +108,7 @@ public class Q00380_BringOutTheFlavorOfIngredients extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -188,6 +193,7 @@ public class Q00380_BringOutTheFlavorOfIngredients extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

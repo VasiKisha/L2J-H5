@@ -32,13 +32,16 @@ public class Q00359_ForASleeplessDeadman extends Quest
 {
 	// NPC
 	private static final int ORVEN = 30857;
+	
 	// Item
 	private static final int REMAINS_OF_ADEN_RESIDENTS = 5869;
+	
 	// Misc
 	private static final int MIN_LEVEL = 60;
 	private static final int REMAINS_COUNT = 60;
+	
 	// Rewards
-	private static final int[] REWARDS = new int[]
+	private static final int[] REWARDS =
 	{
 		5494, // Sealed Dark Crystal Shield Fragment
 		5495, // Sealed Shield of Nightmare Fragment
@@ -49,6 +52,7 @@ public class Q00359_ForASleeplessDeadman extends Quest
 		6345, // Sealed Phoenix Ring Gemstone
 		6346, // Sealed Majestic Ring Gemstone
 	};
+	
 	// Mobs
 	private static final Map<Integer, Double> MOBS = new HashMap<>();
 	static
@@ -101,6 +105,7 @@ public class Q00359_ForASleeplessDeadman extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -144,6 +149,7 @@ public class Q00359_ForASleeplessDeadman extends Quest
 				htmltext = "30857-09.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

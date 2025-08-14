@@ -23,7 +23,6 @@ package quests.Q00309_ForAGoodCause;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -44,6 +43,7 @@ public class Q00309_ForAGoodCause extends Quest
 {
 	// NPC
 	private static final int ATRA = 32647;
+	
 	// Mobs
 	private static final int CORRUPTED_MUCROKIAN = 22654;
 	private static final Map<Integer, Integer> MUCROKIANS = new HashMap<>();
@@ -60,6 +60,7 @@ public class Q00309_ForAGoodCause extends Quest
 	// Items
 	private static final int MUCROKIAN_HIDE = 14873;
 	private static final int FALLEN_MUCROKIAN_HIDE = 14874;
+	
 	// Rewards
 	private static final int REC_DYNASTY_EARRINGS_70 = 9985;
 	private static final int REC_DYNASTY_NECKLACE_70 = 9986;
@@ -126,6 +127,7 @@ public class Q00309_ForAGoodCause extends Quest
 			takeItems(player, MUCROKIAN_HIDE, quanty);
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -209,6 +211,7 @@ public class Q00309_ForAGoodCause extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -225,6 +228,7 @@ public class Q00309_ForAGoodCause extends Quest
 			{
 				giveItems(player, item, 1);
 			}
+			
 			playSound(player, QuestSound.ITEMSOUND_QUEST_FINISH);
 			htmltext = "32646-16.htm";
 		}
@@ -232,6 +236,7 @@ public class Q00309_ForAGoodCause extends Quest
 		{
 			htmltext = "32646-15.htm";
 		}
+		
 		return htmltext;
 	}
 	
@@ -241,8 +246,7 @@ public class Q00309_ForAGoodCause extends Quest
 		final Player partyMember = getRandomPartyMember(killer, 1);
 		if (partyMember != null)
 		{
-			final float chance = (MUCROKIANS.get(npc.getId()) * Config.RATE_QUEST_DROP);
-			if (getRandom(1000) < chance)
+			if (getRandom(1000) < MUCROKIANS.get(npc.getId()))
 			{
 				if (npc.getId() == CORRUPTED_MUCROKIAN)
 				{
@@ -253,6 +257,7 @@ public class Q00309_ForAGoodCause extends Quest
 				{
 					giveItems(partyMember, MUCROKIAN_HIDE, 1);
 				}
+				
 				playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
@@ -276,6 +281,7 @@ public class Q00309_ForAGoodCause extends Quest
 		{
 			htmltext = (talker.getLevel() >= MIN_LEVEL) ? "32647-01.htm" : "32647-00.html";
 		}
+		
 		return htmltext;
 	}
 }

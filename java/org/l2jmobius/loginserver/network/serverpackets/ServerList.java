@@ -108,6 +108,7 @@ public class ServerList extends LoginServerPacket
 			_maxPlayers = gsi.getMaxPlayers();
 			_ageLimit = 0;
 			_brackets = gsi.isShowingBrackets();
+			
 			// If server GM-only - show status only to GMs
 			_status = (client.getAccessLevel() < 0) || ((gsi.getStatus() == ServerStatus.STATUS_GM_ONLY) && (client.getAccessLevel() <= 0)) ? ServerStatus.STATUS_DOWN : gsi.getStatus();
 			_serverId = gsi.getId();
@@ -134,6 +135,7 @@ public class ServerList extends LoginServerPacket
 			catch (InterruptedException ignored)
 			{
 			}
+			
 			_charsOnServers = client.getCharsOnServ();
 			_charsToDelete = client.getCharsWaitingDelOnServ();
 		}
@@ -163,6 +165,7 @@ public class ServerList extends LoginServerPacket
 			buffer.writeInt(server._serverType); // 1: Normal, 2: Relax, 4: Public Test, 8: No Label, 16: Character Creation Restricted, 32: Event, 64: Free.
 			buffer.writeByte(server._brackets ? 1 : 0);
 		}
+		
 		buffer.writeShort(0x00); // Unknown.
 		if (_charsOnServers != null)
 		{

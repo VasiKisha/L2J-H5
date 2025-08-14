@@ -35,6 +35,7 @@ public class Q00183_RelicExploration extends Quest
 	private static final int HEAD_BLACKSMITH_KUSTO = 30512;
 	private static final int MAESTRO_NIKOLA = 30621;
 	private static final int RESEARCHER_LORAIN = 30673;
+	
 	// Misc
 	private static final int MIN_LEVEL = 40;
 	private static final int MAX_LEVEL_FOR_EXP_SP = 46;
@@ -79,6 +80,7 @@ public class Q00183_RelicExploration extends Quest
 					{
 						addExpAndSp(player, 60000, 3000);
 					}
+					
 					qs.exitQuest(false, true);
 					htmltext = event;
 				}
@@ -140,6 +142,7 @@ public class Q00183_RelicExploration extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -190,6 +193,7 @@ public class Q00183_RelicExploration extends Quest
 		{
 			htmltext = getAlreadyCompletedMsg(player);
 		}
+		
 		return htmltext;
 	}
 }

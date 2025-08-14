@@ -34,8 +34,10 @@ public class Q00289_NoMoreSoupForYou extends Quest
 {
 	// NPC
 	public static final int STAN = 30200;
+	
 	// Item
 	public static final int SOUP = 15712;
+	
 	// Misc
 	public static final int RATE = 5;
 	
@@ -173,6 +175,7 @@ public class Q00289_NoMoreSoupForYou extends Quest
 		{
 			return htmltext;
 		}
+		
 		final int b = getRandom(18);
 		final int c = getRandom(7);
 		if (npc.getId() == STAN)
@@ -210,6 +213,7 @@ public class Q00289_NoMoreSoupForYou extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -255,6 +259,7 @@ public class Q00289_NoMoreSoupForYou extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

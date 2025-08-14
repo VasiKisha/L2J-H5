@@ -117,6 +117,7 @@ public class CreatureStatus
 		{
 			_statusListener = ConcurrentHashMap.newKeySet();
 		}
+		
 		return _statusListener;
 	}
 	

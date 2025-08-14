@@ -120,6 +120,7 @@ public class Q00711_PathToBecomingALordInnadril extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -253,6 +254,7 @@ public class Q00711_PathToBecomingALordInnadril extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -265,6 +267,7 @@ public class Q00711_PathToBecomingALordInnadril extends Quest
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	

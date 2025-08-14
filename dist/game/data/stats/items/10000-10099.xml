@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="10000" type="EtcItem" name="Wind Potion">
 		<!-- Increases Resistance to wind attacks by 30 for 10 minutes. -->
@@ -62,10 +62,10 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3426-1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="46" />
 			<set stat="mAtk" val="32" />
 			<set stat="critRate" val="10" />
@@ -73,7 +73,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10004" type="Weapon" name="Dynasty Dual Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more than that of a two-handed sword, blunt or fist weapon. When enchanted by 4 or more charges, Critical Rate will increase by 109, and MaxHP will increase by 10%. Enhances damage done to the target during PvP. -->
@@ -96,14 +96,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3411-1" />
 		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10005" type="Weapon" name="Shadow Item: Fleuret">
 		<!-- A Shadow Item with the power of a Fleuret. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -125,10 +125,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="90" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="46" />
 			<set stat="mAtk" val="32" />
 			<set stat="critRate" val="10" />
@@ -136,7 +136,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10006" type="Weapon" name="Shadow Item: Military Talwar">
 		<!-- A Shadow Item with the power of a Military Talwar. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -157,10 +157,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="90" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="55" />
 			<set stat="mAtk" val="32" />
 			<set stat="critRate" val="8" />
@@ -168,7 +168,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10007" type="Weapon" name="Shadow Item: Hand Crossbow">
 		<!-- A Shadow Item with the power of a Hand Crossbow. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -190,10 +190,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="90" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="64" />
 			<set stat="mAtk" val="32" />
 			<set stat="critRate" val="10" />
@@ -201,7 +201,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10008" type="Weapon" name="Shadow Item: Blinzlasher">
 		<!-- A Shadow Item with the power of a Blinzlasher. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -223,10 +223,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="126" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="10" />
@@ -234,7 +234,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10009" type="Weapon" name="Shadow Item: Immortal Edge">
 		<!-- A Shadow Item with the power of an Immortal Edge. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -255,10 +255,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="151" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
@@ -266,7 +266,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10010" type="Weapon" name="Shadow Item: Tathlum">
 		<!-- A Shadow Item with the power of a Tathlum. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -288,10 +288,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="176" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="10" />
@@ -299,7 +299,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10011" type="Weapon" name="Shadow Item - War Axe">
 		<!-- A Shadow Item with the power of a War Axe. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -320,7 +320,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="4" />
@@ -328,7 +328,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10012" type="EtcItem" name="Scorpion Poison Stinger">
 		<!-- Poison stinger from a scorpion. A good item for bartering with caravans. -->
@@ -402,9 +402,9 @@
 		<set name="unequip_skill" val="3267-1" />
 		<set name="item_skill" val="5458-1;3361-1;3267-1" /> <!-- Performing Agathion - Fortress -->
 		<set name="equip_condition" val="{{ec_fortress;1}}" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player fort="-1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10019" type="Armor" name="Ring Mail Breastplate">
 		<!-- Cannot be exchanged, dropped, crystallized, or enchanted. -->
@@ -421,12 +421,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="77" />
-		</for>
+		</stats>
 	</item>
 	<item id="10020" type="Armor" name="Iron Plate Gaiters">
 		<!-- Cannot be exchanged, dropped, crystallized, or enchanted. -->
@@ -443,12 +443,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="48" />
-		</for>
+		</stats>
 	</item>
 	<item id="10021" type="Armor" name="Puma Skin Shirt">
 		<!-- Cannot be exchanged, dropped, crystallized, or enchanted. -->
@@ -465,9 +465,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="58" />
-		</for>
+		</stats>
 	</item>
 	<item id="10022" type="Armor" name="Puma Skin Gaiters">
 		<!-- Cannot be exchanged, dropped, crystallized, or enchanted. -->
@@ -484,9 +484,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="36" />
-		</for>
+		</stats>
 	</item>
 	<item id="10023" type="Armor" name="Cursed Tunic">
 		<!-- Cannot be exchanged, dropped, crystallized, or enchanted. -->
@@ -503,13 +503,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="39" />
 			<add stat="maxMp" val="106" />
-		</for>
+		</stats>
 	</item>
 	<item id="10024" type="Armor" name="Cursed Stockings">
 		<!-- Cannot be exchanged, dropped, crystallized, or enchanted. -->
@@ -526,13 +526,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="24" />
 			<add stat="maxMp" val="66" />
-		</for>
+		</stats>
 	</item>
 	<item id="10025" type="EtcItem" name="Battle Manual - Fallen Arrow">
 		<!-- Battle Manual needed to learn Fallen Arrow. Used by Kamael soldiers. Required level: 5 -->

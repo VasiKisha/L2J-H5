@@ -85,6 +85,7 @@ public class QuestTimer
 			_scheduler.cancel(false);
 			_scheduler = null;
 		}
+		
 		_quest.removeQuestTimer(this);
 	}
 	

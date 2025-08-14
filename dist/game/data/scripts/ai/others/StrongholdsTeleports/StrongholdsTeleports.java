@@ -49,6 +49,7 @@ public class StrongholdsTeleports extends AbstractNpcAI
 		{
 			return npc.getId() + ".htm";
 		}
+		
 		return npc.getId() + "-no.htm";
 	}
 	

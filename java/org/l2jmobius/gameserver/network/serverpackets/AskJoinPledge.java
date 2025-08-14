@@ -48,10 +48,12 @@ public class AskJoinPledge extends ServerPacket
 		{
 			buffer.writeString(_pledgeType > 0 ? _subPledgeName : _pledgeName);
 		}
+		
 		if (_pledgeType != 0)
 		{
 			buffer.writeInt(_pledgeType);
 		}
+		
 		buffer.writeString(_pledgeName);
 	}
 }

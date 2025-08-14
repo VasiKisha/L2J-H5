@@ -44,6 +44,7 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 		{
 			throw new IllegalArgumentException();
 		}
+		
 		_npcObjId = npcObjId;
 	}
 	
@@ -59,6 +60,7 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 		{
 			throw new IllegalArgumentException();
 		}
+		
 		_npcObjId = npcObjId;
 		setHtml(html);
 	}
@@ -97,6 +99,7 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 			PacketLogger.warning(getClass().getSimpleName() + ": Missing html page " + path);
 			return false;
 		}
+		
 		setHtml(content);
 		return true;
 	}
@@ -138,10 +141,12 @@ public abstract class AbstractHtmlPacket extends ServerPacket
 		{
 			player.clearHtmlActions(getScope());
 		}
+		
 		if (_disabledValidation)
 		{
 			return;
 		}
+		
 		if (player != null)
 		{
 			HtmlUtil.buildHtmlActionCache(player, getScope(), _npcObjId, _html);

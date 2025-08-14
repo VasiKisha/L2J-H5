@@ -34,7 +34,6 @@ import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
 import org.l2jmobius.gameserver.model.item.enums.ItemGrade;
@@ -304,6 +303,7 @@ public abstract class ItemTemplate extends ListenersContainer
 					// Incorrect syntax, don't add new skill
 					LOGGER.info("Could not parse " + skills + " in weapon unequip skills! item " + this);
 				}
+				
 				if ((id > 0) && (level > 0))
 				{
 					_unequipSkill = new SkillHolder(id, level);
@@ -527,10 +527,12 @@ public abstract class ItemTemplate extends ListenersContainer
 				}
 			}
 		}
+		
 		if (enchantLevel <= 0)
 		{
 			return _crystalCount;
 		}
+		
 		switch (_type2)
 		{
 			case TYPE2_SHIELD_ARMOR:
@@ -574,6 +576,7 @@ public abstract class ItemTemplate extends ListenersContainer
 				return elm;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -767,6 +770,7 @@ public abstract class ItemTemplate extends ListenersContainer
 				funcs.add(f);
 			}
 		}
+		
 		return funcs;
 	}
 	
@@ -820,6 +824,7 @@ public abstract class ItemTemplate extends ListenersContainer
 		{
 			_funcTemplates = new ArrayList<>(1);
 		}
+		
 		_funcTemplates.add(f);
 	}
 	
@@ -829,6 +834,7 @@ public abstract class ItemTemplate extends ListenersContainer
 		{
 			_preConditions = new ArrayList<>(1);
 		}
+		
 		if (!_preConditions.contains(c))
 		{
 			_preConditions.add(c);
@@ -859,7 +865,7 @@ public abstract class ItemTemplate extends ListenersContainer
 	
 	public boolean checkCondition(Creature creature, WorldObject object, boolean sendMessage)
 	{
-		if (creature.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && !Config.GM_ITEM_RESTRICTION)
+		if (creature.isGM() && !Config.GM_ITEM_RESTRICTION)
 		{
 			return true;
 		}
@@ -875,6 +881,7 @@ public abstract class ItemTemplate extends ListenersContainer
 			{
 				creature.sendPacket(SystemMessageId.YOU_CANNOT_USE_THAT_ITEM_IN_A_GRAND_OLYMPIAD_MATCH);
 			}
+			
 			return false;
 		}
 		
@@ -914,12 +921,15 @@ public abstract class ItemTemplate extends ListenersContainer
 						{
 							sm.addItemName(_itemId);
 						}
+						
 						creature.sendPacket(sm);
 					}
 				}
+				
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	

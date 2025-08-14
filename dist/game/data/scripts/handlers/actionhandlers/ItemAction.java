@@ -30,7 +30,7 @@ import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 public class ItemAction implements IActionHandler
 {
 	@Override
-	public boolean action(Player player, WorldObject target, boolean interact)
+	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
 		// this causes the validate position handler to do the pickup if the location is reached.
 		// mercenary tickets can only be picked up by the castle owner.

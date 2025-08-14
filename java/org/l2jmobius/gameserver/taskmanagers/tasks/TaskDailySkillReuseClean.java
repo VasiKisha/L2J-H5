@@ -61,6 +61,7 @@ public class TaskDailySkillReuseClean extends PersistentTask
 		{
 			LOGGER.severe(getClass().getSimpleName() + ": Could not reset daily skill reuse: " + e);
 		}
+		
 		LOGGER.info("Daily skill reuse cleaned.");
 	}
 	

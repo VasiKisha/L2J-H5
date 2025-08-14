@@ -34,9 +34,11 @@ public class Q00654_JourneyToASettlement extends Quest
 {
 	// NPC
 	private static final int NAMELESS_SPIRIT = 31453;
+	
 	// Items
 	private static final int ANTELOPE_SKIN = 8072;
 	private static final int FRINTEZZAS_SCROLL = 8073;
+	
 	// Misc
 	private static final int MIN_LEVEL = 74;
 	
@@ -96,6 +98,7 @@ public class Q00654_JourneyToASettlement extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -132,6 +135,7 @@ public class Q00654_JourneyToASettlement extends Quest
 				htmltext = (hasQuestItems(player, ANTELOPE_SKIN) ? "31453-06.html" : "31453-05.html");
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -45,14 +45,17 @@ public class Q00106_ForgottenTruth extends Quest
 	// NPCs
 	private static final int THIFIELL = 30358;
 	private static final int KARTA = 30133;
+	
 	// Monster
 	private static final int TUMRAN_ORC_BRIGAND = 27070;
+	
 	// Items
 	private static final int ONYX_TALISMAN1 = 984;
 	private static final int ONYX_TALISMAN2 = 985;
 	private static final int ANCIENT_SCROLL = 986;
 	private static final int ANCIENT_CLAY_TABLET = 987;
 	private static final int KARTAS_TRANSLATION = 988;
+	
 	// Rewards
 	private static final int ELDRITCH_DAGGER = 989;
 	private static final int ELDRITCH_STAFF = 2373;
@@ -68,6 +71,7 @@ public class Q00106_ForgottenTruth extends Quest
 	private static final ItemHolder SPIRITSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5790, 3000);
 	private static final ItemHolder SOULSHOTS_NO_GRADE = new ItemHolder(1835, 1000);
 	private static final ItemHolder SPIRITSHOTS_NO_GRADE = new ItemHolder(2509, 500);
+	
 	// Misc
 	private static final int MIN_LEVEL = 10;
 	private static final int GUIDE_MISSION = 41;
@@ -90,6 +94,7 @@ public class Q00106_ForgottenTruth extends Quest
 		{
 			return htmltext;
 		}
+		
 		switch (event)
 		{
 			case "30358-04.htm":
@@ -108,6 +113,7 @@ public class Q00106_ForgottenTruth extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -167,6 +173,7 @@ public class Q00106_ForgottenTruth extends Quest
 								giveItems(talker, SPIRITSHOTS_NO_GRADE_FOR_ROOKIES);
 								playSound(talker, "tutorial_voice_027");
 							}
+							
 							if (!talker.isMageClass())
 							{
 								giveItems(talker, SOULSHOTS_NO_GRADE);
@@ -266,6 +273,7 @@ public class Q00106_ForgottenTruth extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

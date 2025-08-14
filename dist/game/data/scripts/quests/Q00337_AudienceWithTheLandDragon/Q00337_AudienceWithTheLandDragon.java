@@ -40,6 +40,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 	private static final int ANTHARAS_WATCHMAN_THEODRIC = 30755;
 	private static final int MASTER_KENDRA = 30851;
 	private static final int HIGH_PRIEST_ORVEN = 30857;
+	
 	// Items
 	private static final int FEATHER_OF_GABRIELLE = 3852;
 	private static final int MARSH_STALKER_HORN = 3853;
@@ -55,8 +56,10 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 	private static final int MUSFEL_FANG = 3863;
 	private static final int MARK_OF_WATCHMAN = 3864;
 	private static final int HERALD_OF_SLAYER = 3890;
+	
 	// Reward
 	private static final int PORTAL_STONE = 3865;
+	
 	// Monster
 	private static final int BLOOD_QUEEN = 18001;
 	private static final int CAVE_MAIDEN = 20134;
@@ -69,6 +72,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 	private static final int KRANROT = 20650;
 	private static final int MARSH_STALKER = 20679;
 	private static final int MARSH_DRAKE = 20680;
+	
 	// Quest Monster
 	private static final int ABYSSAL_JEWEL_1 = 27165;
 	private static final int ABYSSAL_JEWEL_2 = 27166;
@@ -78,6 +82,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 	private static final int JEWEL_GUARDIAN_PYTON = 27170;
 	private static final int GHOST_OF_OFFERING = 27171;
 	private static final int HARIT_LIZARDMAN_ZEALOT = 27172;
+	
 	// Misc
 	private static final int MIN_LEVEL = 50;
 	
@@ -161,6 +166,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -182,6 +188,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 							{
 								addAttackDesire(addSpawn(JEWEL_GUARDIAN_MARA, npc, true, 180000), attacker);
 							}
+							
 							npc.getVariables().set("i_quest0", 1);
 							startQuestTimer("DESPAWN", 900000, npc, attacker);
 						}
@@ -210,6 +217,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 							{
 								addAttackDesire(addSpawn(JEWEL_GUARDIAN_MUSFEL, npc, true, 180000), attacker);
 							}
+							
 							npc.getVariables().set("i_quest0", 1);
 							startQuestTimer("DESPAWN", 900000, npc, attacker);
 						}
@@ -584,6 +592,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 							{
 								qs.setMemoState(40010);
 							}
+							
 							htmltext = "30498-03.html";
 						}
 						else
@@ -618,6 +627,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 							{
 								qs.setMemoState(40001);
 							}
+							
 							htmltext = "30678-02.html";
 						}
 						else
@@ -661,6 +671,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 								{
 									qs.setMemoState(qs.getMemoState() + 10);
 								}
+								
 								htmltext = "30705-02.html";
 							}
 							else
@@ -681,6 +692,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 							break;
 						}
 					}
+					
 					if (memoState >= 30000)
 					{
 						htmltext = "30705-04.html";
@@ -713,6 +725,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 								{
 									qs.setMemoState(qs.getMemoState() + 1000);
 								}
+								
 								htmltext = "30720-02.html";
 							}
 							else
@@ -733,6 +746,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 							break;
 						}
 					}
+					
 					if (memoState >= 30000)
 					{
 						htmltext = "30720-04.html";
@@ -814,6 +828,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 								{
 									qs.setMemoState(qs.getMemoState() + 1);
 								}
+								
 								htmltext = "30851-02.html";
 							}
 							break;
@@ -830,6 +845,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 							break;
 						}
 					}
+					
 					if (memoState >= 30000)
 					{
 						htmltext = "30851-04.html";
@@ -865,6 +881,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 								{
 									qs.setMemoState(qs.getMemoState() + 100);
 								}
+								
 								htmltext = "30857-02.html";
 							}
 							break;
@@ -881,6 +898,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 							break;
 						}
 					}
+					
 					if (memoState >= 30000)
 					{
 						htmltext = "30857-04.html";
@@ -889,6 +907,7 @@ public class Q00337_AudienceWithTheLandDragon extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

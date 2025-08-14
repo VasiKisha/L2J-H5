@@ -88,6 +88,7 @@ public class Q00715_PathToBecomingALordGoddard extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -185,6 +186,7 @@ public class Q00715_PathToBecomingALordGoddard extends Quest
 		{
 			htmltext = "35363-07.html";
 		}
+		
 		return htmltext;
 	}
 	
@@ -197,6 +199,7 @@ public class Q00715_PathToBecomingALordGoddard extends Quest
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

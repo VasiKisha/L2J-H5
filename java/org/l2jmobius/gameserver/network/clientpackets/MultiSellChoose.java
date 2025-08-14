@@ -168,6 +168,7 @@ public class MultiSellChoose extends ClientPacket
 					{
 						slots++;
 					}
+					
 					weight += e.getItemCount() * _amount * e.getWeight();
 				}
 				
@@ -184,17 +185,20 @@ public class MultiSellChoose extends ClientPacket
 				}
 				
 				final List<Ingredient> ingredientsList = new ArrayList<>(entry.getIngredients().size());
+				
 				// Generate a list of distinct ingredients and counts in order to check if the correct item-counts
 				// are possessed by the player
 				boolean newIng;
 				for (Ingredient e : entry.getIngredients())
 				{
 					newIng = true;
+					
 					// at this point, the template has already been modified so that enchantments are properly included
 					// whenever they need to be applied. Uniqueness of items is thus judged by item id AND enchantment level
 					for (int i = ingredientsList.size(); --i >= 0;)
 					{
 						final Ingredient ex = ingredientsList.get(i);
+						
 						// if the item was already added in the list, merely increment the count
 						// this happens if 1 list entry has the same ingredient twice (example 2 swords = 1 dual)
 						if ((ex.getItemId() == e.getItemId()) && (ex.getEnchantLevel() == e.getEnchantLevel()))
@@ -204,6 +208,7 @@ public class MultiSellChoose extends ClientPacket
 								player.sendPacket(SystemMessageId.YOU_HAVE_EXCEEDED_THE_QUANTITY_THAT_CAN_BE_INPUTTED);
 								return;
 							}
+							
 							// two same ingredients, merge into one and replace old
 							final Ingredient ing = ex.getCopy();
 							ing.setItemCount(ex.getItemCount() + e.getItemCount());
@@ -212,6 +217,7 @@ public class MultiSellChoose extends ClientPacket
 							break;
 						}
 					}
+					
 					if (newIng)
 					{
 						// if it's a new ingredient, just store its info directly (item id, count, enchantment)
@@ -227,6 +233,7 @@ public class MultiSellChoose extends ClientPacket
 						player.sendPacket(SystemMessageId.YOU_HAVE_EXCEEDED_THE_QUANTITY_THAT_CAN_BE_INPUTTED);
 						return;
 					}
+					
 					if (e.getItemId() < 0)
 					{
 						if (!MultisellData.hasSpecialIngredient(e.getItemId(), e.getItemCount() * _amount, player))
@@ -279,6 +286,7 @@ public class MultiSellChoose extends ClientPacket
 						// player.setMultiSell(null);
 						// return;
 						// }
+						
 						if (Config.ALT_BLACKSMITH_USE_RECIPES || !e.getMaintainIngredient())
 						{
 							// if it's a stackable item, just reduce the amount from the first (only) instance that is found in the inventory
@@ -307,10 +315,12 @@ public class MultiSellChoose extends ClientPacket
 										{
 											augmentation.add(inventoryContents.get(i).getAugmentation());
 										}
+										
 										if (inventoryContents.get(i).getElementals() != null)
 										{
 											elemental = inventoryContents.get(i).getElementals();
 										}
+										
 										if (!player.destroyItem(ItemProcessType.FEE, inventoryContents.get(i).getObjectId(), 1, player.getTarget(), true))
 										{
 											player.setMultiSell(null);
@@ -360,6 +370,7 @@ public class MultiSellChoose extends ClientPacket
 									{
 										final List<Item> inventoryContents = inv.getAllItemsByItemId(e.getItemId(), false);
 										itemToTake = inventoryContents.get(0);
+										
 										// get item with the LOWEST enchantment level from the inventory...
 										// +0 is lowest by default...
 										if (itemToTake.getEnchantLevel() > 0)
@@ -369,6 +380,7 @@ public class MultiSellChoose extends ClientPacket
 												if (item.getEnchantLevel() < itemToTake.getEnchantLevel())
 												{
 													itemToTake = item;
+													
 													// nothing will have enchantment less than 0. If a zero-enchanted
 													// item is found, just take it
 													if (itemToTake.getEnchantLevel() == 0)
@@ -378,6 +390,7 @@ public class MultiSellChoose extends ClientPacket
 												}
 											}
 										}
+										
 										if (!player.destroyItem(ItemProcessType.FEE, itemToTake.getObjectId(), 1, player.getTarget(), true))
 										{
 											player.setMultiSell(null);
@@ -415,6 +428,7 @@ public class MultiSellChoose extends ClientPacket
 									{
 										product.setAugmentation(new Augmentation(augmentation.get(i).getAugmentationId()));
 									}
+									
 									if (elemental != null)
 									{
 										for (Elementals elm : elemental)
@@ -422,11 +436,13 @@ public class MultiSellChoose extends ClientPacket
 											product.setElementAttr(elm.getElement(), elm.getValue());
 										}
 									}
+									
 									product.setEnchantLevel(e.getEnchantLevel());
 									product.updateDatabase();
 								}
 							}
 						}
+						
 						// msg part
 						SystemMessage sm;
 						if ((e.getItemCount() * _amount) > 1)
@@ -449,10 +465,12 @@ public class MultiSellChoose extends ClientPacket
 								sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
 								sm.addItemName(e.getItemId());
 							}
+							
 							player.sendPacket(sm);
 						}
 					}
 				}
+				
 				player.sendItemList(false);
 				
 				final StatusUpdate su = new StatusUpdate(player);

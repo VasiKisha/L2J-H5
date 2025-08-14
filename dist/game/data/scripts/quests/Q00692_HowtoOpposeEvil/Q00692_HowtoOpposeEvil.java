@@ -19,7 +19,6 @@ package quests.Q00692_HowtoOpposeEvil;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
@@ -116,6 +115,7 @@ public class Q00692_HowtoOpposeEvil extends Quest
 		{
 			return getNoQuestMsg(player);
 		}
+		
 		switch (event)
 		{
 			case "32549-03.htm":
@@ -177,6 +177,7 @@ public class Q00692_HowtoOpposeEvil extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -193,13 +194,14 @@ public class Q00692_HowtoOpposeEvil extends Quest
 		final int npcId = npc.getId();
 		if ((qs != null) && QUEST_MOBS.containsKey(npcId))
 		{
-			int chance = (int) (QUEST_MOBS.get(npcId).getCount() * Config.RATE_QUEST_DROP);
+			int chance = (int) QUEST_MOBS.get(npcId).getCount();
 			int numItems = chance / 1000;
 			chance = chance % 1000;
 			if (getRandom(1000) < chance)
 			{
 				numItems++;
 			}
+			
 			if (numItems > 0)
 			{
 				giveItems(player, QUEST_MOBS.get(npcId).getId(), numItems);
@@ -247,10 +249,12 @@ public class Q00692_HowtoOpposeEvil extends Quest
 							return "32550-05.htm";
 						}
 					}
+					
 					htmltext = "32550-04.htm";
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

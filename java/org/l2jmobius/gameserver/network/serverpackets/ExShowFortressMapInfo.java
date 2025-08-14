@@ -79,6 +79,7 @@ public class ExShowFortressMapInfo extends ServerPacket
 						{
 							buffer.writeInt(1); // TODO: control room emulated
 						}
+						
 						if (isSpawned(spawn.getId()))
 						{
 							buffer.writeInt(0);
@@ -112,6 +113,7 @@ public class ExShowFortressMapInfo extends ServerPacket
 				break;
 			}
 		}
+		
 		return ret;
 	}
 }

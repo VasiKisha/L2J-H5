@@ -113,6 +113,7 @@ public class RequestExEnchantSkillUntrain extends ClientPacket
 		final int requiredSp = esd.getSpCost();
 		final int requireditems = esd.getAdenaCost();
 		final Item spb = player.getInventory().getItemByItemId(reqItemId);
+		
 		// does not have spellbook
 		if (Config.ES_SP_BOOK_NEEDED && (spb == null))
 		{
@@ -161,6 +162,7 @@ public class RequestExEnchantSkillUntrain extends ClientPacket
 			sm.addSkillName(_skillId);
 			player.sendPacket(sm);
 		}
+		
 		player.sendSkillList();
 		final int afterUntrainSkillLevel = player.getSkillLevel(_skillId);
 		player.sendPacket(new ExEnchantSkillInfo(_skillId, afterUntrainSkillLevel));

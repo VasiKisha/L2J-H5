@@ -31,6 +31,7 @@ public class Shadai extends AbstractNpcAI
 {
 	// NPCs
 	private static final int SHADAI = 32347;
+	
 	// Locations
 	private static final Location DAY_COORDS = new Location(16882, 238952, 9776);
 	private static final Location NIGHT_COORDS = new Location(9064, 253037, -1928);
@@ -63,6 +64,7 @@ public class Shadai extends AbstractNpcAI
 				npc.teleToLocation(coords);
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

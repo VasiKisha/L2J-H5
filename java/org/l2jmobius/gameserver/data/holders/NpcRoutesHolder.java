@@ -57,6 +57,7 @@ public class NpcRoutesHolder
 			final String key = getUniqueKey(npc.getSpawn().getLocation());
 			return _correspondences.containsKey(key) ? _correspondences.get(key) : "";
 		}
+		
 		return "";
 	}
 	

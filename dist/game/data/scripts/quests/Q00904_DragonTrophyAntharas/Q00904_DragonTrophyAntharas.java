@@ -34,11 +34,14 @@ public class Q00904_DragonTrophyAntharas extends Quest
 {
 	// NPC
 	private static final int THEODRIC = 30755;
+	
 	// Monster
 	private static final int ANTHARAS = 29068;
+	
 	// Items
 	private static final int MEDAL_OF_GLORY = 21874;
 	private static final int PORTAL_STONE = 3865;
+	
 	// Misc
 	private static final int MIN_LEVEL = 84;
 	
@@ -88,6 +91,7 @@ public class Q00904_DragonTrophyAntharas extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -165,6 +169,7 @@ public class Q00904_DragonTrophyAntharas extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

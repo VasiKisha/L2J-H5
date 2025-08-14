@@ -73,6 +73,7 @@ public class Buron extends AbstractNpcAI
 					{
 						player.addItem(ItemProcessType.QUEST, PANTS, 1, npc, true);
 					}
+					
 					htmltext = null;
 				}
 				else
@@ -81,6 +82,7 @@ public class Buron extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

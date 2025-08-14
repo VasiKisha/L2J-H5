@@ -39,6 +39,7 @@ public class Q00422_RepentYourSins extends Quest
 	private static final int KATARI = 30668;
 	private static final int MAGISTER_JOAN = 30718;
 	private static final int BLACK_JUDGE = 30981;
+	
 	// Items
 	private static final int RATMAN_SCAVENGERS_SKULL = 4326;
 	private static final int TUREK_WAR_HOUNDS_TAIL = 4327;
@@ -47,14 +48,17 @@ public class Q00422_RepentYourSins extends Quest
 	private static final int PENITENTS_MANACLES1 = 4330;
 	private static final int MANUAL_OF_MANACLES = 4331;
 	private static final int PENITENTS_MANACLES = 4425;
+	
 	// Reward
 	private static final int MANACLES_OF_PENITENT = 4426;
+	
 	// Materials
 	private static final int SILVER_NUGGET = 1873;
 	private static final int ADAMANTITE_NUGGET = 1877;
 	private static final int COKES = 1879;
 	private static final int STEEL = 1880;
 	private static final int BLACKSMITHS_FRAME = 1892;
+	
 	// Monster
 	private static final int SCAVENGER_WERERAT = 20039;
 	private static final int TYRANT_KINGPIN = 20193;
@@ -126,6 +130,7 @@ public class Q00422_RepentYourSins extends Quest
 					{
 						takeItems(player, MANACLES_OF_PENITENT, 1);
 					}
+					
 					qs.setMemoStateEx(1, player.getLevel());
 					giveItems(player, PENITENTS_MANACLES, 1);
 					qs.setCond(16);
@@ -178,6 +183,7 @@ public class Q00422_RepentYourSins extends Quest
 							{
 								takeItems(player, PENITENTS_MANACLES, -1);
 							}
+							
 							htmltext = "30981-15.html";
 							player.setPkKills(0);
 							qs.exitQuest(true, true);
@@ -189,6 +195,7 @@ public class Q00422_RepentYourSins extends Quest
 							{
 								takeItems(player, PENITENTS_MANACLES, -1);
 							}
+							
 							htmltext = "30981-16.html";
 							player.setPkKills(player.getPkKills() - i0);
 							qs.setMemoStateEx(1, 0);
@@ -207,6 +214,7 @@ public class Q00422_RepentYourSins extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -497,6 +505,7 @@ public class Q00422_RepentYourSins extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

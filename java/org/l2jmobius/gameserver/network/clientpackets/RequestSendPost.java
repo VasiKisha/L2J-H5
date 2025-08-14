@@ -88,6 +88,7 @@ public class RequestSendPost extends ClientPacket
 					_items = null;
 					return;
 				}
+				
 				_items[i] = new AttachmentItem(objectId, count);
 			}
 		}
@@ -193,6 +194,7 @@ public class RequestSendPost extends ClientPacket
 				player.sendPacket(SystemMessageId.WHEN_NOT_ENTERING_THE_AMOUNT_FOR_THE_PAYMENT_REQUEST_YOU_CANNOT_SEND_ANY_MAIL);
 				return;
 			}
+			
 			if ((_items == null) || (_items.length == 0))
 			{
 				player.sendPacket(SystemMessageId.IT_S_A_PAYMENT_REQUEST_TRANSACTION_PLEASE_ATTACH_THE_ITEM);
@@ -332,6 +334,7 @@ public class RequestSendPost extends ClientPacket
 				PacketLogger.warning("Error adding attachment for char " + player.getName() + " (newitem == null)");
 				continue;
 			}
+			
 			newItem.setItemLocation(newItem.getItemLocation(), msg.getId());
 			
 			if ((oldItem.getCount() > 0) && (oldItem != newItem))

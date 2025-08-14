@@ -25,16 +25,16 @@ import org.l2jmobius.gameserver.model.actor.Player;
 public interface IAdminCommandHandler
 {
 	/**
-	 * this is the worker method that is called when someone uses an admin command.
+	 * This is the worker method that is called when someone uses a command.
 	 * @param player
 	 * @param command
 	 * @return command success
 	 */
-	boolean useAdminCommand(String command, Player player);
+	boolean onCommand(String command, Player player);
 	
 	/**
-	 * this method is called at initialization to register all the item ids automatically
-	 * @return all known itemIds
+	 * This method is called at initialization to register all commands automatically.
+	 * @return all known commands
 	 */
-	String[] getAdminCommandList();
+	String[] getCommandList();
 }

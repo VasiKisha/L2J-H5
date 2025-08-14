@@ -109,12 +109,15 @@ public class TarBeetleSpawn implements IXmlReader
 												bannedZone.add(x, y, bMinZ, bMaxZ, 0);
 											}
 										}
+										
 										zone.addBannedZone(bannedZone);
 									}
 								}
+								
 								sp.addZone(zone);
 							}
 						}
+						
 						zones.add(i++, sp);
 					}
 				}
@@ -128,10 +131,12 @@ public class TarBeetleSpawn implements IXmlReader
 		{
 			spawnTask.cancel(false);
 		}
+		
 		if (shotTask != null)
 		{
 			shotTask.cancel(false);
 		}
+		
 		zones.forEach(SpawnZone::unload);
 		zones.clear();
 	}
@@ -159,6 +164,7 @@ public class TarBeetleSpawn implements IXmlReader
 			{
 				location = super.getRandomPoint();
 			}
+			
 			return location;
 		}
 		
@@ -168,6 +174,7 @@ public class TarBeetleSpawn implements IXmlReader
 			{
 				_bannedZones = new ArrayList<>();
 			}
+			
 			_bannedZones.add(bZone);
 		}
 		
@@ -183,6 +190,7 @@ public class TarBeetleSpawn implements IXmlReader
 					}
 				}
 			}
+			
 			return false;
 		}
 	}

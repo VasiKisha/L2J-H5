@@ -98,6 +98,7 @@ public class UCRunningTask implements Runnable
 					_arena.getWaitingList().remove(tm);
 				}
 			}
+			
 			removeList.clear();
 			_arena.prepareStart();
 			return;

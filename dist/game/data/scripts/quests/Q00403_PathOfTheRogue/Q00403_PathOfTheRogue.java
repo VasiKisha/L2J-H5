@@ -43,6 +43,7 @@ public class Q00403_PathOfTheRogue extends Quest
 	// NPCs
 	private static final int CAPTAIN_BEZIQUE = 30379;
 	private static final int NETI = 30425;
+	
 	// Items
 	private static final int BEZIQUES_LETTER = 1180;
 	private static final int NETIS_BOW = 1181;
@@ -61,13 +62,17 @@ public class Q00403_PathOfTheRogue extends Quest
 		STOLEN_RING,
 		STOLEN_NECKLACE
 	};
+	
 	// Reward
 	private static final int BEZIQUES_RECOMMENDATION = 1190;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	private static final int REQUIRED_ITEM_COUNT = 10;
+	
 	// Quest Monster
 	private static final int CATS_EYE_BANDIT = 27038;
+	
 	// Monster
 	private static final Map<Integer, ItemChanceHolder> MONSTER_DROPS = new HashMap<>();
 	static
@@ -157,16 +162,20 @@ public class Q00403_PathOfTheRogue extends Quest
 					{
 						giveItems(player, NETIS_BOW, 1);
 					}
+					
 					if (!hasQuestItems(player, NETIS_DAGGER))
 					{
 						giveItems(player, NETIS_DAGGER, 1);
 					}
+					
 					qs.setCond(2, true);
 				}
+				
 				htmltext = event;
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -191,6 +200,7 @@ public class Q00403_PathOfTheRogue extends Quest
 						{
 							attacker.sendPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.YOU_CHILDISH_FOOL_DO_YOU_THINK_YOU_CAN_CATCH_ME));
 						}
+						
 						npc.setScriptValue(1);
 					}
 					break;
@@ -304,6 +314,7 @@ public class Q00403_PathOfTheRogue extends Quest
 						{
 							addExpAndSp(player, 591724, 33628);
 						}
+						
 						qs.exitQuest(false, true);
 						player.sendPacket(new SocialAction(player.getObjectId(), 3));
 						htmltext = "30379-09.html";
@@ -361,6 +372,7 @@ public class Q00403_PathOfTheRogue extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

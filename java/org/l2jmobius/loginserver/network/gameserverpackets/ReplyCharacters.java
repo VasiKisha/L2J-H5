@@ -39,6 +39,7 @@ public class ReplyCharacters extends BaseReadablePacket
 		{
 			charsList[i] = readLong();
 		}
+		
 		LoginController.getInstance().setCharactersOnServer(account, chars, charsList, server.getServerId());
 	}
 }

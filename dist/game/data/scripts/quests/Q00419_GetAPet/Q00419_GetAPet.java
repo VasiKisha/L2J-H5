@@ -39,6 +39,7 @@ public class Q00419_GetAPet extends Quest
 	private static final int ACCESSORY_MERCHANT_ELICE = 30091;
 	private static final int GATEKEEPER_BELLA = 30256;
 	private static final int PET_MENAGER_MARTIN = 30731;
+	
 	// Items
 	private static final int ANIMAL_LOVERS_LIST = 3417;
 	private static final int ANIMAL_SLAYERS_1ST_LIST = 3418;
@@ -53,8 +54,10 @@ public class Q00419_GetAPet extends Quest
 	private static final int BLOODY_TARANTULA_NAIL = 3427;
 	private static final int ANIMAL_SLAYERS_LIST = 10164;
 	private static final int BLOODY_RED_CLAW = 10165;
+	
 	// Reward
 	private static final int WOLF_COLLAR = 2375;
+	
 	// Monster
 	private static final int LESSER_DARK_HORROR = 20025;
 	private static final int PROWLER = 20034;
@@ -71,8 +74,10 @@ public class Q00419_GetAPet extends Quest
 	private static final int KASHA_BLADE_SPIDER = 20478;
 	private static final int PLUNDER_TARANTULA = 20508;
 	private static final int CRIMSON_SPIDER2 = 22244;
+	
 	// Misc
 	private static final int MIN_LEVEL = 15;
+	
 	// Links
 	private static final Map<Integer, String> LINKS = new HashMap<>();
 	static
@@ -273,6 +278,7 @@ public class Q00419_GetAPet extends Quest
 						giveItems(player, ANIMAL_LOVERS_LIST, 1);
 					}
 				}
+				
 				qs.setMemoState(0);
 				htmltext = event;
 				break;
@@ -342,6 +348,7 @@ public class Q00419_GetAPet extends Quest
 							{
 								replyOffset4 = randomReplyOffset;
 							}
+							
 							linkCount++;
 							i8 = i8 | i7;
 						}
@@ -363,6 +370,7 @@ public class Q00419_GetAPet extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -794,6 +802,7 @@ public class Q00419_GetAPet extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

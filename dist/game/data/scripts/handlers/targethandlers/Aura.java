@@ -58,7 +58,7 @@ public class Aura implements ITargetTypeHandler
 					continue;
 				}
 				
-				if (creature.isPlayable() && obj.isAttackable() && !skill.isBad())
+				if (creature.isPlayable() && obj.isAttackable() && !skill.hasNegativeEffect())
 				{
 					continue;
 				}

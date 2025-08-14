@@ -46,6 +46,7 @@ public class CreatureSeeTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		for (Creature creature : CREATURES)

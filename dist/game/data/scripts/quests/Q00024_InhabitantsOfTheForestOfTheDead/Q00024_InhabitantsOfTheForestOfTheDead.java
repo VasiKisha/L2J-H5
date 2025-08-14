@@ -37,6 +37,7 @@ public class Q00024_InhabitantsOfTheForestOfTheDead extends Quest
 	private static final int MYSTERIOUS_WIZARD = 31522;
 	private static final int TOMBSTONE = 31531;
 	private static final int LIDIA_MAID = 31532;
+	
 	// Items
 	private static final int LIDIA_LETTER = 7065;
 	private static final int LIDIA_HAIRPIN = 7148;
@@ -45,6 +46,7 @@ public class Q00024_InhabitantsOfTheForestOfTheDead extends Quest
 	private static final int SILVER_CROSS_OF_EINHASAD = 7153;
 	private static final int BROKEN_SILVER_CROSS_OF_EINHASAD = 7154;
 	private static final int TOTEM = 7156;
+	
 	// Monsters
 	// @formatter:off
 	private static final int[] MOBS = { 21557, 21558, 21560, 21563, 21564, 21565, 21566, 21567 };
@@ -106,6 +108,7 @@ public class Q00024_InhabitantsOfTheForestOfTheDead extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				takeItems(player, BROKEN_SILVER_CROSS_OF_EINHASAD, -1);
 				st.setCond(5, true);
 				break;
@@ -135,6 +138,7 @@ public class Q00024_InhabitantsOfTheForestOfTheDead extends Quest
 					{
 						return getNoQuestMsg(player);
 					}
+					
 					takeItems(player, LIDIA_HAIRPIN, -1);
 					takeItems(player, LIDIA_LETTER, -1);
 					st.set("var", "1");
@@ -184,6 +188,7 @@ public class Q00024_InhabitantsOfTheForestOfTheDead extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				takeItems(player, SUSPICIOUS_TOTEM_DOLL, 1);
 				st.set("var", "1");
 				break;
@@ -229,6 +234,7 @@ public class Q00024_InhabitantsOfTheForestOfTheDead extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				takeItems(player, FLOWER_BOUQUET, -1);
 				st.setCond(2, true);
 				break;
@@ -239,6 +245,7 @@ public class Q00024_InhabitantsOfTheForestOfTheDead extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -420,6 +427,7 @@ public class Q00024_InhabitantsOfTheForestOfTheDead extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

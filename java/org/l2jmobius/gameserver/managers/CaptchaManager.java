@@ -125,6 +125,7 @@ public class CaptchaManager
 			{
 				MONSTER_COUNTER.put(killer.getObjectId(), 0);
 			}
+			
 			LAST_KILL_TIME.put(killer.getObjectId(), currentTime);
 		}
 		
@@ -218,6 +219,7 @@ public class CaptchaManager
 			CaptchaManager.USED_ID = 0;
 			ThreadPool.schedule(() -> IMAGES = Captcha.getInstance().createImageList(), 100);
 		}
+		
 		VALIDATION.put(player.getObjectId(), data);
 		
 		final Future<?> newTask = ThreadPool.schedule(new ReportCheckTask(player), Config.VALIDATION_TIME * 1000);
@@ -252,7 +254,7 @@ public class CaptchaManager
 			{
 				if (player.isOnline())
 				{
-					Disconnection.of(null, player).defaultSequence(LeaveWorld.STATIC_PACKET);
+					Disconnection.of(player).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 					AdminData.getInstance().broadcastToGMs(new CreatureSay(null, ChatType.ALLIANCE, "Punishment", player.getName() + " has been kicked."));
 					PacketLogger.warning(player + "[KICK] Wrong Captcha maybe boting?");
 					return;
@@ -393,6 +395,7 @@ public class CaptchaManager
 			{
 				player.sendMessage("Incorrect code. You have " + (Config.CAPTCHA_ATTEMPTS - retries) + " more attempt(s) left.");
 				validationWindow(player); // Provide another chance.
+				
 				// Play sound when doesn't match.
 				player.sendPacket(QuestSound.ITEMSOUND_BROKEN_KEY.getPacket());
 			}
@@ -403,6 +406,7 @@ public class CaptchaManager
 			VALIDATION.remove(player.getObjectId());
 			BEGIN_VALIDATION.get(player.getObjectId()).cancel(true);
 			BEGIN_VALIDATION.remove(player.getObjectId());
+			
 			// Play sound when code matches.
 			player.sendPacket(QuestSound.ITEMSOUND_SOW_SUCCESS.getPacket());
 		}
@@ -455,6 +459,7 @@ public class CaptchaManager
 						break;
 					}
 				}
+				
 				if ((_time > 1) && VALIDATION.containsKey(_player.getObjectId()))
 				{
 					ThreadPool.schedule(new countdown(_player, _time - 1), 1000);

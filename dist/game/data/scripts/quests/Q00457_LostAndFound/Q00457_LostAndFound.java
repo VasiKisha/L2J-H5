@@ -52,6 +52,7 @@ public class Q00457_LostAndFound extends Quest
 		22791, // Savior Solina
 		22793, // Ascetic Solina
 	};
+	
 	// Misc
 	private static final int PACKAGED_BOOK = 15716;
 	private static final int CHANCE_SPAWN = 1; // 1%
@@ -141,6 +142,7 @@ public class Q00457_LostAndFound extends Quest
 						qs.exitQuest(QuestType.DAILY);
 					}
 				}
+				
 				for (Spawn escortSpawn : _escortCheckers)
 				{
 					final Npc escort = escortSpawn.getLastSpawn();
@@ -180,6 +182,7 @@ public class Q00457_LostAndFound extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -190,6 +193,7 @@ public class Q00457_LostAndFound extends Quest
 		{
 			return npc.getTarget().equals(player) ? "32759-08.html" : "32759-01a.html";
 		}
+		
 		return "32759.html";
 	}
 	
@@ -230,6 +234,7 @@ public class Q00457_LostAndFound extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

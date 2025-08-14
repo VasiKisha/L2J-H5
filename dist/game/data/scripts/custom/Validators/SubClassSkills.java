@@ -25,7 +25,6 @@ import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -101,7 +100,7 @@ public class SubClassSkills extends AbstractNpcAI
 			return;
 		}
 		
-		if (player.canOverrideCond(PlayerCondOverride.SKILL_CONDITIONS) && !Config.SKILL_CHECK_GM)
+		if (player.isGM() && !Config.SKILL_CHECK_GM)
 		{
 			return;
 		}
@@ -179,6 +178,7 @@ public class SubClassSkills extends AbstractNpcAI
 									}
 								}
 							}
+							
 							if (skill != null)
 							{
 								if (!ArrayUtil.contains(_certSkillsByLevel[i], id))
@@ -229,6 +229,7 @@ public class SubClassSkills extends AbstractNpcAI
 									}
 								}
 							}
+							
 							if (item != null)
 							{
 								if (!ArrayUtil.contains(_certItemsByLevel[i], item.getId()))
@@ -312,6 +313,7 @@ public class SubClassSkills extends AbstractNpcAI
 				tmp.add(s);
 			}
 		}
+		
 		return tmp;
 	}
 	
@@ -325,6 +327,7 @@ public class SubClassSkills extends AbstractNpcAI
 				tmp.add(i);
 			}
 		}
+		
 		return tmp;
 	}
 	

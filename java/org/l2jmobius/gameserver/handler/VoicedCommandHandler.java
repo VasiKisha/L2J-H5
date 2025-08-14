@@ -35,7 +35,7 @@ public class VoicedCommandHandler implements IHandler<IVoicedCommandHandler, Str
 	@Override
 	public void registerHandler(IVoicedCommandHandler handler)
 	{
-		for (String id : handler.getVoicedCommandList())
+		for (String id : handler.getCommandList())
 		{
 			_datatable.put(id, handler);
 		}
@@ -44,7 +44,7 @@ public class VoicedCommandHandler implements IHandler<IVoicedCommandHandler, Str
 	@Override
 	public synchronized void removeHandler(IVoicedCommandHandler handler)
 	{
-		for (String id : handler.getVoicedCommandList())
+		for (String id : handler.getCommandList())
 		{
 			_datatable.remove(id);
 		}

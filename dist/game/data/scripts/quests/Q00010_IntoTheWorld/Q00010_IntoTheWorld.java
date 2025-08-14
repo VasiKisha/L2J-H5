@@ -33,10 +33,12 @@ public class Q00010_IntoTheWorld extends Quest
 	private static final int REED = 30520;
 	private static final int BALANKI = 30533;
 	private static final int GERALD = 30650;
+	
 	// Items
 	private static final int VERY_EXPENSIVE_NECKLACE = 7574;
 	private static final int SCROLL_OF_ESCAPE_GIRAN = 7559;
 	private static final int MARK_OF_TRAVELER = 7570;
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	
@@ -89,6 +91,7 @@ public class Q00010_IntoTheWorld extends Quest
 				{
 					return "30650-03.html";
 				}
+				
 				takeItems(player, VERY_EXPENSIVE_NECKLACE, -1);
 				qs.setCond(3, true);
 				break;
@@ -99,6 +102,7 @@ public class Q00010_IntoTheWorld extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -184,6 +188,7 @@ public class Q00010_IntoTheWorld extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

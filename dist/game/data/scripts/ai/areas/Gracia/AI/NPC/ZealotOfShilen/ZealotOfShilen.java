@@ -70,6 +70,7 @@ public class ZealotOfShilen extends AbstractNpcAI
 					nearby = obj;
 				}
 			}
+			
 			if (nearby != null)
 			{
 				npc.setRunning();

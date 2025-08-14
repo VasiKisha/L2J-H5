@@ -50,6 +50,7 @@ public class AvantGarde extends AbstractNpcAI
 {
 	// NPC
 	private static final int AVANT_GARDE = 32323;
+	
 	// Items
 	// @formatter:off
 	private static final int[] ITEMS =
@@ -57,6 +58,7 @@ public class AvantGarde extends AbstractNpcAI
 		10280, 10281, 10282, 10283, 10284, 10285, 10286, 10287, 10288, 10289, 10290, 10291, 10292, 10293, 10294, 10612
 	};
 	// @formatter:on
+	
 	// Misc
 	private static final String[] QUEST_VAR_NAMES =
 	{
@@ -141,6 +143,7 @@ public class AvantGarde extends AbstractNpcAI
 				{
 					htmltext = "32323-04.html";
 				}
+				
 				if (player.isSubClassActive())
 				{
 					htmltext = "32323-08.html";
@@ -156,6 +159,7 @@ public class AvantGarde extends AbstractNpcAI
 							break;
 						}
 					}
+					
 					if (hasItems)
 					{
 						showSubClassSkillList(player);
@@ -201,6 +205,7 @@ public class AvantGarde extends AbstractNpcAI
 							}
 						}
 					}
+					
 					if (activeCertifications == 0)
 					{
 						htmltext = "32323-10no.html";
@@ -254,6 +259,7 @@ public class AvantGarde extends AbstractNpcAI
 												LOGGER.warning("Somehow " + player.getName() + " deleted a certification book!");
 											}
 										}
+										
 										player.getVariables().set(qvarName, "0");
 									}
 									else
@@ -283,6 +289,7 @@ public class AvantGarde extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -316,6 +323,7 @@ public class AvantGarde extends AbstractNpcAI
 				asl.addSkill(s.getSkillId(), s.getSkillLevel(), s.getSkillLevel(), 0, 0);
 			}
 		}
+		
 		if (count > 0)
 		{
 			player.sendPacket(asl);

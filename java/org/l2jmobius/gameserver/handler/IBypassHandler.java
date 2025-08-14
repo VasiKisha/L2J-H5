@@ -29,17 +29,17 @@ public interface IBypassHandler
 	Logger LOGGER = Logger.getLogger(IBypassHandler.class.getName());
 	
 	/**
-	 * This is the worker method that is called when someone uses an bypass command.
+	 * This is the worker method that is called when someone uses a command.
 	 * @param command
 	 * @param player
 	 * @param bypassOrigin
 	 * @return success
 	 */
-	boolean useBypass(String command, Player player, Creature bypassOrigin);
+	boolean onCommand(String command, Player player, Creature bypassOrigin);
 	
 	/**
-	 * This method is called at initialization to register all bypasses automatically.
-	 * @return all known bypasses
+	 * This method is called at initialization to register all commands automatically.
+	 * @return all known commands
 	 */
-	String[] getBypassList();
+	String[] getCommandList();
 }

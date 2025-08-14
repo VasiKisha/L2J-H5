@@ -40,6 +40,7 @@ public class Ranku extends AbstractNpcAI
 	private static final int RANKU = 25542;
 	private static final int MINION = 32305;
 	private static final int MINION_2 = 25543;
+	
 	// Misc
 	private static final Set<Integer> MY_TRACKING_SET = ConcurrentHashMap.newKeySet();
 	
@@ -62,8 +63,10 @@ public class Ranku extends AbstractNpcAI
 					minion.reduceCurrentHp(minion.getMaxHp() / 100, killer, null);
 				}
 			}
+			
 			startQuestTimer("checkup", 1000, npc, null);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

@@ -90,6 +90,7 @@ public class CustomMailManager
 								itemHolders.add(new ItemEnchantHolder(Integer.parseInt(str), 1));
 							}
 						}
+						
 						if (!itemHolders.isEmpty())
 						{
 							final Mail attachments = msg.createAttachments();

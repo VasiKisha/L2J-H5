@@ -68,6 +68,7 @@ public class CursedWeapon
 	
 	// this should be false unless if the cursed weapon is dropped, in that case it would be true.
 	private boolean _isDropped = false;
+	
 	// this sets the cursed weapon status to true only if a player has the cursed weapon, otherwise this should be false.
 	private boolean _isActivated = false;
 	private ScheduledFuture<?> _removeTask;
@@ -146,6 +147,7 @@ public class CursedWeapon
 				}
 			}
 		}
+		
 		// either this cursed weapon is in the inventory of someone who has another cursed weapon equipped,
 		// OR this cursed weapon is on the ground.
 		else if ((_player != null) && (_player.getInventory().getItemByItemId(_itemId) != null))
@@ -236,10 +238,12 @@ public class CursedWeapon
 			_player.setCursedWeaponEquippedId(0);
 			removeSkill();
 			_player.abortAttack();
+			
 			// Item item = _player.getInventory().getItemByItemId(_itemId);
 			// _player.getInventory().dropItem("DieDrop", item, _player, null);
 			// _player.getInventory().getItemByItemId(_itemId).dropMe(_player, _player.getX(), _player.getY(), _player.getZ());
 		}
+		
 		_isDropped = true;
 		final SystemMessage sm = new SystemMessage(SystemMessageId.S2_WAS_DROPPED_IN_THE_S1_REGION);
 		if (player != null)
@@ -254,6 +258,7 @@ public class CursedWeapon
 		{
 			sm.addZoneName(killer.getX(), killer.getY(), killer.getZ()); // Region Name
 		}
+		
 		sm.addItemName(_itemId);
 		CursedWeaponsManager.announce(sm); // in the Hot Spring region
 	}
@@ -356,6 +361,7 @@ public class CursedWeapon
 			_removeTask = ThreadPool.scheduleAtFixedRate(new RemoveTask(), _durationLost * 12000, _durationLost * 12000);
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -392,6 +398,7 @@ public class CursedWeapon
 		// Disable All Skills
 		// Do Transform
 		doTransform();
+		
 		// Add skill
 		giveSkill();
 		
@@ -458,6 +465,7 @@ public class CursedWeapon
 		{
 			// Unequip & Drop
 			dropIt(null, null, killer, false);
+			
 			// Reset player stats
 			_player.setKarma(_playerKarma);
 			_player.setPkKills(_playerPkKills);
@@ -483,6 +491,7 @@ public class CursedWeapon
 				giveSkill();
 			}
 		}
+		
 		// Reduce time-to-live
 		_endTime -= _durationLost * 60000;
 		saveData();
@@ -629,6 +638,7 @@ public class CursedWeapon
 		{
 			return _skillMaxLevel;
 		}
+		
 		return (_nbKills / _stageKills);
 	}
 	

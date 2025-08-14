@@ -54,6 +54,7 @@ public class DarkCloudMansion extends AbstractInstance
 	private static int SOTruth = 32291; // Symbol of Truth
 	private static int BSM = 32324; // Black Stone Monolith
 	private static int SC = 22402; // Shadow Column
+	
 	// Mobs
 	private static int[] CCG =
 	{
@@ -103,6 +104,7 @@ public class DarkCloudMansion extends AbstractInstance
 	
 	// Items
 	private static int CC = 9690; // Contaminated Crystal
+	
 	// Misc
 	private static final int TEMPLATE_ID = 9;
 	private static int D1 = 24230001; // Starting Room
@@ -165,6 +167,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{3, 2, 4, 5, 1, 6},
 		{5, 4, 3, 1, 6, 2},
 	};
+	
 	// Second room - golem spawn locatons - random
 	private static int[][] GolemSpawn = new int[][]
 	{
@@ -241,16 +244,19 @@ public class DarkCloudMansion extends AbstractInstance
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_CURRENTLY_IN_A_PARTY_SO_YOU_CANNOT_ENTER);
 			return false;
 		}
+		
 		if (party.getLeader() != player)
 		{
 			player.sendPacket(SystemMessageId.ONLY_A_PARTY_LEADER_CAN_MAKE_THE_REQUEST_TO_ENTER);
 			return false;
 		}
+		
 		if (party.getMemberCount() > 2)
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_ENTER_DUE_TO_THE_PARTY_HAVING_EXCEEDED_THE_LIMIT);
 			return false;
 		}
+		
 		for (Player partyMember : party.getMembers())
 		{
 			if (partyMember.getLevel() < 78)
@@ -260,6 +266,7 @@ public class DarkCloudMansion extends AbstractInstance
 				player.sendPacket(sm);
 				return false;
 			}
+			
 			if (!partyMember.isInsideRadius3D(player, 1000))
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED);
@@ -268,6 +275,7 @@ public class DarkCloudMansion extends AbstractInstance
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -286,6 +294,7 @@ public class DarkCloudMansion extends AbstractInstance
 					{
 						newQuestState(partyMember);
 					}
+					
 					world.addAllowed(partyMember);
 					teleportPlayer(partyMember, new Location(146534, 180464, -6117), world.getInstanceId());
 				}
@@ -317,6 +326,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		world.setParameter("StartRoom", startRoom);
 	}
 	
@@ -331,6 +341,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		hall.npcList.add(thisNpc);
 		
 		thisNpc = new DMCNpc();
@@ -339,6 +350,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		hall.npcList.add(thisNpc);
 		
 		thisNpc = new DMCNpc();
@@ -347,6 +359,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		hall.npcList.add(thisNpc);
 		
 		thisNpc = new DMCNpc();
@@ -355,6 +368,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		hall.npcList.add(thisNpc);
 		
 		thisNpc = new DMCNpc();
@@ -363,6 +377,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		hall.npcList.add(thisNpc);
 		
 		thisNpc = new DMCNpc();
@@ -371,6 +386,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		hall.npcList.add(thisNpc);
 		
 		thisNpc = new DMCNpc();
@@ -379,6 +395,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		hall.npcList.add(thisNpc);
 		
 		thisNpc = new DMCNpc();
@@ -387,6 +404,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		hall.npcList.add(thisNpc);
 		
 		world.setParameter("Hall", hall);
@@ -409,6 +427,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		firstRoom.npcList.add(thisNpc);
 		
 		thisNpc = new DMCNpc();
@@ -417,6 +436,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		firstRoom.npcList.add(thisNpc);
 		
 		thisNpc = new DMCNpc();
@@ -425,6 +445,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		firstRoom.npcList.add(thisNpc);
 		
 		thisNpc = new DMCNpc();
@@ -433,6 +454,7 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		firstRoom.npcList.add(thisNpc);
 		
 		world.setParameter("FirstRoom", firstRoom);
@@ -513,36 +535,42 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		thisNpc.npc = addSpawn(BM[2], 148865, 180190, -6117, 0, false, 0, false, world.getInstanceId());
 		if (noRndWalk)
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		thisNpc.npc = addSpawn(BM[1], 148995, 180190, -6117, 0, false, 0, false, world.getInstanceId());
 		if (noRndWalk)
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		thisNpc.npc = addSpawn(BM[0], 149090, 180450, -6117, 0, false, 0, false, world.getInstanceId());
 		if (noRndWalk)
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		thisNpc.npc = addSpawn(BM[1], 148995, 180705, -6117, 0, false, 0, false, world.getInstanceId());
 		if (noRndWalk)
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		thisNpc.npc = addSpawn(BM[2], 148865, 180705, -6117, 0, false, 0, false, world.getInstanceId());
 		if (noRndWalk)
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		world.setParameter("ThirdRoom", thirdRoom);
 		world.setStatus(6);
@@ -560,36 +588,42 @@ public class DarkCloudMansion extends AbstractInstance
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		thisNpc.npc = addSpawn(BM[2], 148865, 180190, -6117, 0, false, 0, false, world.getInstanceId());
 		if (noRndWalk)
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		thisNpc.npc = addSpawn(BM[1], 148995, 180190, -6117, 0, false, 0, false, world.getInstanceId());
 		if (noRndWalk)
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		thisNpc.npc = addSpawn(BM[0], 149090, 180450, -6117, 0, false, 0, false, world.getInstanceId());
 		if (noRndWalk)
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		thisNpc.npc = addSpawn(BM[1], 148995, 180705, -6117, 0, false, 0, false, world.getInstanceId());
 		if (noRndWalk)
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		thisNpc.npc = addSpawn(BM[2], 148865, 180705, -6117, 0, false, 0, false, world.getInstanceId());
 		if (noRndWalk)
 		{
 			thisNpc.npc.setRandomWalking(false);
 		}
+		
 		thirdRoom.npcList.add(thisNpc);
 		world.setParameter("ThirdRoom2", thirdRoom);
 		world.setStatus(8);
@@ -626,8 +660,10 @@ public class DarkCloudMansion extends AbstractInstance
 				forthRoom.npcList.add(thisNpc);
 				yy++;
 			}
+			
 			xx++;
 		}
+		
 		// TODO: unify this into previous loop
 		for (DMCNpc npc : forthRoom.npcList)
 		{
@@ -675,6 +711,7 @@ public class DarkCloudMansion extends AbstractInstance
 			{
 				thisNpc.npc.broadcastPacket(new NpcSay(thisNpc.npc.getObjectId(), ChatType.GENERAL, thisNpc.npc.getId(), _spawnChat[getRandom(_spawnChat.length)]));
 			}
+			
 			idx++;
 		}
 		
@@ -690,11 +727,13 @@ public class DarkCloudMansion extends AbstractInstance
 			{
 				npcobj.isDead = true;
 			}
+			
 			if (!npcobj.isDead)
 			{
 				cont = false;
 			}
 		}
+		
 		return cont;
 	}
 	
@@ -812,6 +851,7 @@ public class DarkCloudMansion extends AbstractInstance
 					mob.count = 2;
 				}
 			}
+			
 			if (decayedSamples == 7)
 			{
 				startQuestTimer("respawnFifth", 6000, npc, null);
@@ -825,6 +865,7 @@ public class DarkCloudMansion extends AbstractInstance
 				{
 					mob.npc.decayMe();
 				}
+				
 				endInstance(world);
 			}
 		}
@@ -839,8 +880,10 @@ public class DarkCloudMansion extends AbstractInstance
 			{
 				continue;
 			}
+			
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -903,6 +946,7 @@ public class DarkCloudMansion extends AbstractInstance
 						mob.count = 2;
 					}
 				}
+				
 				if ((fifthRoom.reset == 0) && (fifthRoom.founded == 3))
 				{
 					endInstance(world);
@@ -951,6 +995,7 @@ public class DarkCloudMansion extends AbstractInstance
 					runHall(world);
 				}
 			}
+			
 			if (world.getStatus() == 1)
 			{
 				if (checkKillProgress(npc, world.getParameters().getObject("Hall", DMCRoom.class)))
@@ -958,6 +1003,7 @@ public class DarkCloudMansion extends AbstractInstance
 					runFirstRoom(world);
 				}
 			}
+			
 			if (world.getStatus() == 2)
 			{
 				if (checkKillProgress(npc, world.getParameters().getObject("FirstRoom", DMCRoom.class)))
@@ -965,6 +1011,7 @@ public class DarkCloudMansion extends AbstractInstance
 					runHall2(world);
 				}
 			}
+			
 			if (world.getStatus() == 3)
 			{
 				if (checkKillProgress(npc, world.getParameters().getObject("Hall", DMCRoom.class)))
@@ -972,6 +1019,7 @@ public class DarkCloudMansion extends AbstractInstance
 					runSecondRoom(world);
 				}
 			}
+			
 			if (world.getStatus() == 4)
 			{
 				final DMCRoom secondRoom = world.getParameters().getObject("SecondRoom", DMCRoom.class);
@@ -983,6 +1031,7 @@ public class DarkCloudMansion extends AbstractInstance
 					}
 				}
 			}
+			
 			if (world.getStatus() == 5)
 			{
 				if (checkKillProgress(npc, world.getParameters().getObject("Hall", DMCRoom.class)))
@@ -990,6 +1039,7 @@ public class DarkCloudMansion extends AbstractInstance
 					runThirdRoom(world);
 				}
 			}
+			
 			if (world.getStatus() == 6)
 			{
 				if (checkKillProgress(npc, world.getParameters().getObject("ThirdRoom", DMCRoom.class)))
@@ -997,10 +1047,12 @@ public class DarkCloudMansion extends AbstractInstance
 					runForthRoom(world);
 				}
 			}
+			
 			if (world.getStatus() == 7)
 			{
 				chkShadowColumn(world, npc);
 			}
+			
 			if (world.getStatus() == 8)
 			{
 				if (checkKillProgress(npc, world.getParameters().getObject("ThirdRoom2", DMCRoom.class)))
@@ -1008,6 +1060,7 @@ public class DarkCloudMansion extends AbstractInstance
 					runFifthRoom(world);
 				}
 			}
+			
 			if (world.getStatus() == 9)
 			{
 				killedBelethSample(world, npc);
@@ -1033,6 +1086,7 @@ public class DarkCloudMansion extends AbstractInstance
 							mob.npc.disableCoreAI(false);
 							mob.npc.getAI().setIntention(Intention.ATTACK, attacker);
 						}
+						
 						if (mob.npc.isInvul() && (getRandom(100) < 12))
 						{
 							addSpawn(BM[getRandom(BM.length)], attacker.getX(), attacker.getY(), attacker.getZ(), 0, false, 0, false, world.getInstanceId());
@@ -1040,6 +1094,7 @@ public class DarkCloudMansion extends AbstractInstance
 					}
 				}
 			}
+			
 			if (world.getStatus() == 9)
 			{
 				checkBelethSample(world, npc, attacker);
@@ -1107,6 +1162,7 @@ public class DarkCloudMansion extends AbstractInstance
 				{
 					world.removeAllowed(player);
 				}
+				
 				teleportPlayer(player, new Location(139968, 150367, -3111), 0);
 				final int instanceId = npc.getInstanceId();
 				final Instance instance = InstanceManager.getInstance().getInstance(instanceId);
@@ -1114,9 +1170,11 @@ public class DarkCloudMansion extends AbstractInstance
 				{
 					InstanceManager.getInstance().destroyInstance(instanceId);
 				}
+				
 				return "";
 			}
 		}
+		
 		return "";
 	}
 	

@@ -128,6 +128,7 @@ public class EchoCrystals extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

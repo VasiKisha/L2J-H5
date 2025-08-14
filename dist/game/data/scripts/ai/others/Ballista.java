@@ -59,6 +59,7 @@ public class Ballista extends AbstractNpcAI
 		36351, // Demon Fortress
 		36389, // Monastic Fortress
 	};
+	
 	// Skill
 	private static final SkillHolder BOMB = new SkillHolder(2342, 1); // Ballista Bomb
 	// Misc
@@ -80,6 +81,7 @@ public class Ballista extends AbstractNpcAI
 				caster.getClan().addReputationScore(Config.BALLISTA_POINTS);
 				caster.sendPacket(SystemMessageId.THE_BALLISTA_HAS_BEEN_SUCCESSFULLY_DESTROYED_THE_CLAN_S_REPUTATION_WILL_BE_INCREASED);
 			}
+			
 			npc.doDie(caster);
 		}
 	}

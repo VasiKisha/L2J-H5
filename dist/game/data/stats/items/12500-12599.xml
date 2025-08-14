@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="12500" type="EtcItem" name="Foundation Zubei's Helmet">
 		<!-- A rare Zubei's Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -8,9 +8,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="590" />
 		<set name="price" val="598600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="62" />
-		</for>
+		</stats>
 	</item>
 	<item id="12501" type="EtcItem" name="Foundation Zubei's Breastplate">
 		<!-- A rare Zubei's Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -21,12 +21,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="7970" />
 		<set name="price" val="1596000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="157" />
-		</for>
+		</stats>
 	</item>
 	<item id="12502" type="EtcItem" name="Foundation Avadon Gloves">
 		<!-- A rare Avadon Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -36,12 +36,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="590" />
 		<set name="price" val="399100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12503" type="EtcItem" name="Foundation Avadon Gloves">
 		<!-- A rare Avadon Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -51,9 +51,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="590" />
 		<set name="price" val="399100" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12504" type="EtcItem" name="Foundation Avadon Gloves">
 		<!-- A rare Avadon Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -63,12 +63,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="590" />
 		<set name="price" val="399100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12505" type="EtcItem" name="Foundation Avadon Leather Armor">
 		<!-- A rare Avadon Leather Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -79,9 +79,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="5600" />
 		<set name="price" val="1946000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="191" />
-		</for>
+		</stats>
 	</item>
 	<item id="12506" type="EtcItem" name="Foundation Avadon Robe">
 		<!-- A rare Avadon Robe that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -92,13 +92,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="2540" />
 		<set name="price" val="1197000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="78" />
 			<add stat="maxMp" val="345" />
-		</for>
+		</stats>
 	</item>
 	<item id="12507" type="EtcItem" name="Foundation Avadon Boots">
 		<!-- A rare Avadon Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -108,12 +108,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1180" />
 		<set name="price" val="399100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12508" type="EtcItem" name="Foundation Avadon Boots">
 		<!-- A rare Avadon Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -123,9 +123,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1180" />
 		<set name="price" val="399100" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12509" type="EtcItem" name="Foundation Avadon Boots">
 		<!-- A rare Avadon Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -135,12 +135,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1180" />
 		<set name="price" val="399100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12510" type="EtcItem" name="Foundation Avadon Circlet">
 		<!-- A rare Avadon Circlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -150,9 +150,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="590" />
 		<set name="price" val="598600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="62" />
-		</for>
+		</stats>
 	</item>
 	<item id="12511" type="EtcItem" name="Foundation Avadon Shield">
 		<!-- A rare Avadon Shield that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -162,14 +162,14 @@
 		<set name="material" val="DAMASCUS" />
 		<set name="weight" val="1210" />
 		<set name="price" val="419000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="216" />
-		</for>
+		</stats>
 	</item>
 	<item id="12512" type="EtcItem" name="Foundation Avadon Gaiters">
 		<!-- A rare Avadon Gaiters that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -180,12 +180,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="3520" />
 		<set name="price" val="997700" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="98" />
-		</for>
+		</stats>
 	</item>
 	<item id="12513" type="EtcItem" name="Foundation Avadon Breastplate">
 		<!-- A rare Avadon Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -196,12 +196,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="7920" />
 		<set name="price" val="1596000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="157" />
-		</for>
+		</stats>
 	</item>
 	<item id="12514" type="EtcItem" name="Foundation Tunic of Zubei">
 		<!-- A rare Tunic of Zubei that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -212,13 +212,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1960" />
 		<set name="price" val="1197000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="78" />
 			<add stat="maxMp" val="345" />
-		</for>
+		</stats>
 	</item>
 	<item id="12515" type="EtcItem" name="Foundation Stockings of Zubei">
 		<!-- A rare Stockings of Zubei that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -229,13 +229,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="940" />
 		<set name="price" val="748300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
 			<add stat="maxMp" val="216" />
-		</for>
+		</stats>
 	</item>
 	<item id="12516" type="EtcItem" name="Foundation Doom Gloves">
 		<!-- A rare Doom Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -245,12 +245,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="618800" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12517" type="EtcItem" name="Foundation Doom Gloves">
 		<!-- A rare Doom Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -260,9 +260,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="618800" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12518" type="EtcItem" name="Foundation Doom Gloves">
 		<!-- A rare Doom Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -272,12 +272,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="618800" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12519" type="EtcItem" name="Foundation Doom Boots">
 		<!-- A rare Doom Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -287,12 +287,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1130" />
 		<set name="price" val="618800" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12520" type="EtcItem" name="Foundation Doom Boots">
 		<!-- A rare Doom Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -302,9 +302,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1130" />
 		<set name="price" val="618800" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12521" type="EtcItem" name="Foundation Doom Boots">
 		<!-- A rare Doom Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -314,12 +314,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1130" />
 		<set name="price" val="618800" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12522" type="EtcItem" name="Foundation Doom Shield">
 		<!-- A rare Doom Shield that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -329,14 +329,14 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="1200" />
 		<set name="price" val="649800" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="230" />
-		</for>
+		</stats>
 	</item>
 	<item id="12523" type="EtcItem" name="Foundation Doom Plate Armor">
 		<!-- A rare Doom Plate Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -347,12 +347,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="9980" />
 		<set name="price" val="4022000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="270" />
-		</for>
+		</stats>
 	</item>
 	<item id="12524" type="EtcItem" name="Foundation Doom Helmet">
 		<!-- A rare Doom Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -362,9 +362,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="928300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="66" />
-		</for>
+		</stats>
 	</item>
 	<item id="12525" type="EtcItem" name="Foundation Leather Armor of Doom">
 		<!-- A rare Leather Armor of Doom that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -375,9 +375,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="5500" />
 		<set name="price" val="3017000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="202" />
-		</for>
+		</stats>
 	</item>
 	<item id="12526" type="EtcItem" name="Foundation Sealed Doom Gloves">
 		<!-- A rare Sealed Doom Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -387,9 +387,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="618800" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12527" type="EtcItem" name="Foundation Sealed Doom Boots">
 		<!-- A rare Sealed Doom Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -399,9 +399,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1130" />
 		<set name="price" val="618800" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12528" type="EtcItem" name="Foundation Sealed Blue Wolf Boots">
 		<!-- A rare Sealed Blue Wolf Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -411,9 +411,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1130" />
 		<set name="price" val="618800" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12529" type="EtcItem" name="Foundation Sealed Blue Wolf Gloves">
 		<!-- A rare Sealed Blue Wolf Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -423,9 +423,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="590" />
 		<set name="price" val="618800" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12530" type="EtcItem" name="Foundation Tunic of Doom">
 		<!-- A rare Tunic of Doom that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -436,13 +436,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1900" />
 		<set name="price" val="1857000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="83" />
 			<add stat="maxMp" val="377" />
-		</for>
+		</stats>
 	</item>
 	<item id="12531" type="EtcItem" name="Foundation Blue Wolf Gaiters">
 		<!-- A rare Blue Wolf Gaiters that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -453,12 +453,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="3370" />
 		<set name="price" val="1547100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="104" />
-		</for>
+		</stats>
 	</item>
 	<item id="12532" type="EtcItem" name="Foundation Blue Wolf Leather Armor">
 		<!-- A rare Blue Wolf Leather Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -469,9 +469,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="5500" />
 		<set name="price" val="3017000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="202" />
-		</for>
+		</stats>
 	</item>
 	<item id="12533" type="EtcItem" name="Foundation Blue Wolf Boots">
 		<!-- A rare Blue Wolf Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -481,12 +481,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1130" />
 		<set name="price" val="618800" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12534" type="EtcItem" name="Foundation Blue Wolf Boots">
 		<!-- A rare Blue Wolf Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -496,9 +496,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1130" />
 		<set name="price" val="618800" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12535" type="EtcItem" name="Foundation Blue Wolf Boots">
 		<!-- A rare Blue Wolf Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -508,12 +508,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1130" />
 		<set name="price" val="618800" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12536" type="EtcItem" name="Foundation Blue Wolf Gloves">
 		<!-- A rare Blue Wolf Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -523,12 +523,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="590" />
 		<set name="price" val="618800" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12537" type="EtcItem" name="Foundation Blue Wolf Gloves">
 		<!-- A rare Blue Wolf Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -538,9 +538,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="590" />
 		<set name="price" val="618800" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12538" type="EtcItem" name="Foundation Blue Wolf Gloves">
 		<!-- A rare Blue Wolf Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -550,12 +550,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="590" />
 		<set name="price" val="618800" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12539" type="EtcItem" name="Foundation Blue Wolf Tunic">
 		<!-- A rare Blue Wolf Tunic that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -566,13 +566,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1920" />
 		<set name="price" val="1857000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="83" />
 			<add stat="maxMp" val="377" />
-		</for>
+		</stats>
 	</item>
 	<item id="12540" type="EtcItem" name="Foundation Blue Wolf Helmet">
 		<!-- A rare Blue Wolf Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -582,9 +582,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="928300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="66" />
-		</for>
+		</stats>
 	</item>
 	<item id="12541" type="EtcItem" name="Foundation Blue Wolf Stockings">
 		<!-- A rare Blue Wolf Stockings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -595,13 +595,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="920" />
 		<set name="price" val="1160300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="52" />
 			<add stat="maxMp" val="236" />
-		</for>
+		</stats>
 	</item>
 	<item id="12542" type="EtcItem" name="Foundation Blue Wolf Breastplate">
 		<!-- A rare Blue Wolf Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -612,12 +612,12 @@
 		<set name="material" val="ORIHARUKON" />
 		<set name="weight" val="7820" />
 		<set name="price" val="2475000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="166" />
-		</for>
+		</stats>
 	</item>
 	<item id="12543" type="EtcItem" name="Foundation Stockings of Doom">
 		<!-- A rare Stockings of Doom that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -628,13 +628,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="910" />
 		<set name="price" val="1160300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="52" />
 			<add stat="maxMp" val="236" />
-		</for>
+		</stats>
 	</item>
 	<item id="12544" type="EtcItem" name="Foundation Dark Crystal Gaiters">
 		<!-- A rare Dark Crystal Gaiters that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -645,12 +645,12 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="3320" />
 		<set name="price" val="3562000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="171" />
-		</for>
+		</stats>
 	</item>
 	<item id="12545" type="EtcItem" name="Foundation Dark Crystal Gloves">
 		<!-- A rare Dark Crystal Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -660,12 +660,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="890000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12546" type="EtcItem" name="Foundation Dark Crystal Gloves">
 		<!-- A rare Dark Crystal Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -675,9 +675,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="890000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12547" type="EtcItem" name="Foundation Dark Crystal Gloves">
 		<!-- A rare Dark Crystal Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -687,12 +687,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="890000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12548" type="EtcItem" name="Foundation Dark Crystal Leather Armor">
 		<!-- A rare Dark Crystal Leather Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -703,9 +703,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="4300" />
 		<set name="price" val="2671000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="128" />
-		</for>
+		</stats>
 	</item>
 	<item id="12549" type="EtcItem" name="Foundation Dark Crystal Robe">
 		<!-- A rare Dark Crystal Robe that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -716,13 +716,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="2450" />
 		<set name="price" val="4341000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="139" />
 			<add stat="maxMp" val="665" />
-		</for>
+		</stats>
 	</item>
 	<item id="12550" type="EtcItem" name="Foundation Dark Crystal Boots">
 		<!-- A rare Dark Crystal Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -732,12 +732,12 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="1110" />
 		<set name="price" val="890000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12551" type="EtcItem" name="Foundation Dark Crystal Boots">
 		<!-- A rare Dark Crystal Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -747,9 +747,9 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="1110" />
 		<set name="price" val="890000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12552" type="EtcItem" name="Foundation Dark Crystal Boots">
 		<!-- A rare Dark Crystal Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -759,12 +759,12 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="1110" />
 		<set name="price" val="890000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12553" type="EtcItem" name="Foundation Dark Crystal Shield">
 		<!-- A rare Dark Crystal Shield that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -774,12 +774,12 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="1190" />
 		<set name="price" val="1336000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="69" />
-		</for>
+		</stats>
 	</item>
 	<item id="12554" type="EtcItem" name="Foundation Dark Crystal Helmet">
 		<!-- A rare Dark Crystal Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -789,9 +789,9 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="570" />
 		<set name="price" val="1336000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="69" />
-		</for>
+		</stats>
 	</item>
 	<item id="12555" type="EtcItem" name="Foundation Dark Crystal Breastplate">
 		<!-- A rare Dark Crystal Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -802,12 +802,12 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="7700" />
 		<set name="price" val="3562000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="171" />
-		</for>
+		</stats>
 	</item>
 	<item id="12556" type="EtcItem" name="Foundation Dark Crystal Leggings">
 		<!-- A rare Dark Crystal Leggings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -818,9 +818,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1480" />
 		<set name="price" val="1670000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="80" />
-		</for>
+		</stats>
 	</item>
 	<item id="12557" type="EtcItem" name="Foundation Sealed Dark Crystal Gaiters">
 		<!-- A rare Sealed Dark Crystal Gaiters that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -831,12 +831,12 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="3320" />
 		<set name="price" val="2226000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="107" />
-		</for>
+		</stats>
 	</item>
 	<item id="12558" type="EtcItem" name="Foundation Sealed Dark Crystal Gloves">
 		<!-- A rare Sealed Dark Crystal Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -846,9 +846,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="890000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12559" type="EtcItem" name="Foundation Sealed Dark Crystal Leather Armor">
 		<!-- A rare Sealed Dark Crystal Leather Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -859,9 +859,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="4300" />
 		<set name="price" val="2671000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="128" />
-		</for>
+		</stats>
 	</item>
 	<item id="12560" type="EtcItem" name="Foundation Sealed Dark Crystal Robe">
 		<!-- A rare Sealed Dark Crystal Robe that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -872,13 +872,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="2450" />
 		<set name="price" val="4341000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="139" />
 			<add stat="maxMp" val="665" />
-		</for>
+		</stats>
 	</item>
 	<item id="12561" type="EtcItem" name="Foundation Sealed Dark Crystal Boots">
 		<!-- A rare Sealed Dark Crystal Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -888,9 +888,9 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="1110" />
 		<set name="price" val="890000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12562" type="EtcItem" name="Foundation Sealed Dark Crystal Shield">
 		<!-- A rare Sealed Dark Crystal Shield that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -900,14 +900,14 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="1190" />
 		<set name="price" val="935000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="243" />
-		</for>
+		</stats>
 	</item>
 	<item id="12563" type="EtcItem" name="Foundation Sealed Dark Crystal Helmet">
 		<!-- A rare Sealed Dark Crystal Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -917,9 +917,9 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="570" />
 		<set name="price" val="1336000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="69" />
-		</for>
+		</stats>
 	</item>
 	<item id="12564" type="EtcItem" name="Foundation Sealed Dark Crystal Breastplate">
 		<!-- A rare Sealed Dark Crystal Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -930,12 +930,12 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="7700" />
 		<set name="price" val="3562000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="171" />
-		</for>
+		</stats>
 	</item>
 	<item id="12565" type="EtcItem" name="Foundation Sealed Dark Crystal Leggings">
 		<!-- A rare Sealed Dark Crystal Leggings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -946,9 +946,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1480" />
 		<set name="price" val="2671000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="128" />
-		</for>
+		</stats>
 	</item>
 	<item id="12566" type="EtcItem" name="Foundation Sealed Tallum Gloves">
 		<!-- A rare Sealed Tallum Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -958,9 +958,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="890000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12567" type="EtcItem" name="Foundation Sealed Tallum Leather Armor">
 		<!-- A rare Sealed Tallum Leather Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -971,9 +971,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="5400" />
 		<set name="price" val="4341000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="209" />
-		</for>
+		</stats>
 	</item>
 	<item id="12568" type="EtcItem" name="Foundation Sealed Tallum Boots">
 		<!-- A rare Sealed Tallum Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -983,9 +983,9 @@
 		<set name="material" val="BLOOD_STEEL" />
 		<set name="weight" val="1130" />
 		<set name="price" val="890000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12569" type="EtcItem" name="Foundation Sealed Tallum Tunic">
 		<!-- A rare Sealed Tallum Tunic that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -996,13 +996,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1860" />
 		<set name="price" val="2671000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="86" />
 			<add stat="maxMp" val="409" />
-		</for>
+		</stats>
 	</item>
 	<item id="12570" type="EtcItem" name="Foundation Sealed Tallum Plate Armor">
 		<!-- A rare Sealed Tallum Plate Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1013,12 +1013,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="9780" />
 		<set name="price" val="5788000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="278" />
-		</for>
+		</stats>
 	</item>
 	<item id="12571" type="EtcItem" name="Foundation Sealed Tallum Helmet">
 		<!-- A rare Sealed Tallum Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1028,9 +1028,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="570" />
 		<set name="price" val="1336000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="69" />
-		</for>
+		</stats>
 	</item>
 	<item id="12572" type="EtcItem" name="Foundation Sealed Tallum Stockings">
 		<!-- A rare Sealed Tallum Stockings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1041,13 +1041,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="920" />
 		<set name="price" val="1670000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="53" />
 			<add stat="maxMp" val="256" />
-		</for>
+		</stats>
 	</item>
 	<item id="12573" type="EtcItem" name="(Not In Use) Chaotic Holy Spirit's Cloak">
 		<!-- A rare Holy Spirit's Cloak that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1057,9 +1057,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="220" />
 		<set name="price" val="1160000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="18" />
-		</for>
+		</stats>
 	</item>
 	<item id="12574" type="EtcItem" name="Foundation Tallum Gloves">
 		<!-- A rare Tallum Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1069,12 +1069,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="890000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12575" type="EtcItem" name="Foundation Tallum Gloves">
 		<!-- A rare Tallum Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1084,9 +1084,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="890000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12576" type="EtcItem" name="Foundation Tallum Gloves">
 		<!-- A rare Tallum Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1096,12 +1096,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="580" />
 		<set name="price" val="890000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12577" type="EtcItem" name="Foundation Tallum Leather Armor">
 		<!-- A rare Tallum Leather Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1112,9 +1112,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="5400" />
 		<set name="price" val="4341000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="209" />
-		</for>
+		</stats>
 	</item>
 	<item id="12578" type="EtcItem" name="Foundation Tallum Boots">
 		<!-- A rare Tallum Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1124,12 +1124,12 @@
 		<set name="material" val="BLOOD_STEEL" />
 		<set name="weight" val="1130" />
 		<set name="price" val="890000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12579" type="EtcItem" name="Foundation Tallum Boots">
 		<!-- A rare Tallum Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1139,9 +1139,9 @@
 		<set name="material" val="BLOOD_STEEL" />
 		<set name="weight" val="1130" />
 		<set name="price" val="890000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12580" type="EtcItem" name="Foundation Tallum Boots">
 		<!-- A rare Tallum Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1151,12 +1151,12 @@
 		<set name="material" val="BLOOD_STEEL" />
 		<set name="weight" val="1130" />
 		<set name="price" val="890000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12581" type="EtcItem" name="Foundation Tallum Tunic">
 		<!-- A rare Tallum Tunic that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1167,13 +1167,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1860" />
 		<set name="price" val="2671000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="86" />
 			<add stat="maxMp" val="409" />
-		</for>
+		</stats>
 	</item>
 	<item id="12582" type="EtcItem" name="Foundation Tallum Plate Armor">
 		<!-- A rare Tallum Plate Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1184,12 +1184,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="9780" />
 		<set name="price" val="5788000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="278" />
-		</for>
+		</stats>
 	</item>
 	<item id="12583" type="EtcItem" name="Foundation Tallum Helmet">
 		<!-- A rare Tallum Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1199,9 +1199,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="570" />
 		<set name="price" val="1336000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="69" />
-		</for>
+		</stats>
 	</item>
 	<item id="12584" type="EtcItem" name="Foundation Tallum Stockings">
 		<!-- A rare Tallum Stockings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1212,13 +1212,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="920" />
 		<set name="price" val="1670000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="53" />
 			<add stat="maxMp" val="256" />
-		</for>
+		</stats>
 	</item>
 	<item id="12585" type="EtcItem" name="Foundation Majestic Gauntlet">
 		<!-- A rare Majestic Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1228,12 +1228,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="540" />
 		<set name="price" val="1355000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
-		</for>
+		</stats>
 	</item>
 	<item id="12586" type="EtcItem" name="Foundation Majestic Gauntlet">
 		<!-- A rare Majestic Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1243,9 +1243,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="540" />
 		<set name="price" val="1355000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
-		</for>
+		</stats>
 	</item>
 	<item id="12587" type="EtcItem" name="Foundation Majestic Gauntlet">
 		<!-- A rare Majestic Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1255,12 +1255,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="540" />
 		<set name="price" val="1355000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
-		</for>
+		</stats>
 	</item>
 	<item id="12588" type="EtcItem" name="Foundation Majestic Leather Armor">
 		<!-- A rare Majestic Leather Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1271,9 +1271,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="5350" />
 		<set name="price" val="6603000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="220" />
-		</for>
+		</stats>
 	</item>
 	<item id="12589" type="EtcItem" name="Foundation Majestic Robe">
 		<!-- A rare Majestic Robe that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1284,13 +1284,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="2330" />
 		<set name="price" val="6603000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="147" />
 			<add stat="maxMp" val="718" />
-		</for>
+		</stats>
 	</item>
 	<item id="12590" type="EtcItem" name="Foundation Majestic Boots">
 		<!-- A rare Majestic Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1300,12 +1300,12 @@
 		<set name="material" val="BLOOD_STEEL" />
 		<set name="weight" val="1110" />
 		<set name="price" val="1355000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
-		</for>
+		</stats>
 	</item>
 	<item id="12591" type="EtcItem" name="Foundation Majestic Boots">
 		<!-- A rare Majestic Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1315,9 +1315,9 @@
 		<set name="material" val="BLOOD_STEEL" />
 		<set name="weight" val="1110" />
 		<set name="price" val="1355000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
-		</for>
+		</stats>
 	</item>
 	<item id="12592" type="EtcItem" name="Foundation Majestic Boots">
 		<!-- A rare Majestic Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1327,12 +1327,12 @@
 		<set name="material" val="BLOOD_STEEL" />
 		<set name="weight" val="1110" />
 		<set name="price" val="1355000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
-		</for>
+		</stats>
 	</item>
 	<item id="12593" type="EtcItem" name="Foundation Majestic Circlet">
 		<!-- A rare Majestic Circlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1342,9 +1342,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="550" />
 		<set name="price" val="2032000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="73" />
-		</for>
+		</stats>
 	</item>
 	<item id="12594" type="EtcItem" name="Foundation Majestic Plate Armor">
 		<!-- A rare Majestic Plate Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1355,12 +1355,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="9200" />
 		<set name="price" val="8804000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="12595" type="EtcItem" name="Foundation Sealed Majestic Gauntlet">
 		<!-- A rare Sealed Majestic Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1370,9 +1370,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="540" />
 		<set name="price" val="1355000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
-		</for>
+		</stats>
 	</item>
 	<item id="12596" type="EtcItem" name="Foundation Sealed Majestic Leather Armor">
 		<!-- A rare Sealed Majestic Leather Armor that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1383,9 +1383,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="5350" />
 		<set name="price" val="6603000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="220" />
-		</for>
+		</stats>
 	</item>
 	<item id="12597" type="EtcItem" name="Foundation Sealed Majestic Robe">
 		<!-- A rare Sealed Majestic Robe that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1396,13 +1396,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="2330" />
 		<set name="price" val="6603000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="147" />
 			<add stat="maxMp" val="718" />
-		</for>
+		</stats>
 	</item>
 	<item id="12598" type="EtcItem" name="Foundation Sealed Majestic Boots">
 		<!-- A rare Sealed Majestic Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1412,9 +1412,9 @@
 		<set name="material" val="BLOOD_STEEL" />
 		<set name="weight" val="1110" />
 		<set name="price" val="1355000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
-		</for>
+		</stats>
 	</item>
 	<item id="12599" type="EtcItem" name="Foundation Sealed Majestic Circlet">
 		<!-- A rare Sealed Majestic Circlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1424,8 +1424,8 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="550" />
 		<set name="price" val="2032000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="73" />
-		</for>
+		</stats>
 	</item>
 </list>

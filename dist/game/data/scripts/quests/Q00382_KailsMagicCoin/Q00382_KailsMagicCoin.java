@@ -35,16 +35,19 @@ public class Q00382_KailsMagicCoin extends Quest
 {
 	// NPCs
 	private static final int VERGARA = 30687;
+	
 	// Monsters
 	private static final int FALLEN_ORC = 21017;
 	private static final int FALLEN_ORC_ARCHER = 21019;
 	private static final int FALLEN_ORC_SHAMAN = 21020;
 	private static final int FALLEN_ORC_CAPTAIN = 21022;
+	
 	// Items
 	private static final int ROYAL_MEMBERSHIP = 5898;
 	private static final int KAILS_SILVER_BASILISK = 5961;
 	private static final int KAILS_GOLD_GOLEM = 5962;
 	private static final int KAILS_BLOOD_DRAGON = 5963;
+	
 	// Drops
 	private static final double ORC_CAPTAIN_DROP_CHANCE = 0.069;
 	private static final Map<Integer, ItemChanceHolder> MONSTER_DROPS = new HashMap<>();
@@ -97,6 +100,7 @@ public class Q00382_KailsMagicCoin extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -113,6 +117,7 @@ public class Q00382_KailsMagicCoin extends Quest
 		{
 			htmltext = "30687-04.htm";
 		}
+		
 		return htmltext;
 	}
 	

@@ -32,10 +32,13 @@ public class Q00366_SilverHairedShaman extends Quest
 {
 	// NPC
 	private static final int DIETER = 30111;
+	
 	// Item
 	private static final int SAIRONS_SILVER_HAIR = 5874;
+	
 	// Misc
 	private static final int MIN_LEVEL = 48;
+	
 	// Mobs
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
 	static
@@ -91,6 +94,7 @@ public class Q00366_SilverHairedShaman extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -117,6 +121,7 @@ public class Q00366_SilverHairedShaman extends Quest
 				htmltext = "30111-07.html";
 			}
 		}
+		
 		return htmltext;
 	}
 	

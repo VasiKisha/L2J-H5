@@ -23,13 +23,14 @@ package org.l2jmobius.gameserver.model.actor.instance;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
-import org.l2jmobius.gameserver.data.sql.TeleportLocationTable;
-import org.l2jmobius.gameserver.model.TeleportLocation;
+import org.l2jmobius.gameserver.data.xml.TeleporterData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
+import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -93,6 +94,7 @@ public class DungeonGatekeeper extends Npc
 					}
 				}
 			}
+			
 			if (!canPort)
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -140,6 +142,7 @@ public class DungeonGatekeeper extends Npc
 					}
 				}
 			}
+			
 			if (!canPort)
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -170,15 +173,10 @@ public class DungeonGatekeeper extends Npc
 	
 	private void doTeleport(Player player, int value)
 	{
-		final TeleportLocation list = TeleportLocationTable.getInstance().getTemplate(value);
-		if (list != null)
+		final TeleportHolder holder = TeleporterData.getInstance().getHolder(getId(), TeleportType.OTHER.name());
+		if (holder != null)
 		{
-			if (player.isAlikeDead())
-			{
-				return;
-			}
-			
-			player.teleToLocation(list.getLocX(), list.getLocY(), list.getLocZ(), true);
+			holder.doTeleport(player, this, value);
 		}
 		else
 		{
@@ -200,6 +198,7 @@ public class DungeonGatekeeper extends Npc
 		{
 			pom = npcId + "-" + value;
 		}
+		
 		return "data/html/teleporter/" + pom + ".htm";
 	}
 }

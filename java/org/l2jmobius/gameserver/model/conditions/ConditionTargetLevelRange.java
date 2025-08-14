@@ -43,6 +43,7 @@ public class ConditionTargetLevelRange extends Condition
 		{
 			return false;
 		}
+		
 		final int level = effected.getLevel();
 		return (level >= _levels[0]) && (level <= _levels[1]);
 	}

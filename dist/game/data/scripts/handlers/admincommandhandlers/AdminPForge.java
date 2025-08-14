@@ -58,6 +58,7 @@ public class AdminPForge implements IAdminCommandHandler
 			{
 				opCodes = new LinkedList<>();
 			}
+			
 			opCodes.add(token);
 		}
 		
@@ -167,6 +168,7 @@ public class AdminPForge implements IAdminCommandHandler
 				}
 			}
 		}
+		
 		return true;
 	}
 	
@@ -181,6 +183,7 @@ public class AdminPForge implements IAdminCommandHandler
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -265,7 +268,7 @@ public class AdminPForge implements IAdminCommandHandler
 	}
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_forge"))
 		{
@@ -368,12 +371,14 @@ public class AdminPForge implements IAdminCommandHandler
 					{
 						type = 'd';
 					}
+					
 					if (method.equals("sc") || method.equals("sb"))
 					{
 						if (afp == null)
 						{
 							afp = new AdminForgePacket();
 						}
+						
 						afp.addPart((byte) type, opCodes[i]);
 					}
 					else
@@ -382,6 +387,7 @@ public class AdminPForge implements IAdminCommandHandler
 						{
 							bb = ByteBuffer.allocate(32767);
 						}
+						
 						write((byte) type, opCodes[i], bb);
 					}
 				}
@@ -633,6 +639,7 @@ public class AdminPForge implements IAdminCommandHandler
 			{
 				buf.putChar(string.charAt(i));
 			}
+			
 			buf.putChar('\000');
 			return true;
 		}
@@ -646,11 +653,12 @@ public class AdminPForge implements IAdminCommandHandler
 			buf.putLong(Long.decode(string));
 			return true;
 		}
+		
 		return false;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

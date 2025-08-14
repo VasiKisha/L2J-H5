@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.scripting.ScriptEngineManager;
+import org.l2jmobius.gameserver.scripting.ScriptManager;
 
 public class QuestManager
 {
@@ -43,29 +43,26 @@ public class QuestManager
 	{
 	}
 	
-	public boolean reload(String questFolder)
+	public void reload(String questFolder)
 	{
 		final Quest q = getQuest(questFolder);
-		if (q == null)
+		if (q != null)
 		{
-			return false;
+			q.reload();
 		}
-		return q.reload();
 	}
 	
 	/**
 	 * Reloads a the quest by ID.
 	 * @param questId the ID of the quest to be reloaded
-	 * @return {@code true} if reload was successful, {@code false} otherwise
 	 */
-	public boolean reload(int questId)
+	public void reload(int questId)
 	{
 		final Quest q = getQuest(questId);
-		if (q == null)
+		if (q != null)
 		{
-			return false;
+			q.reload();
 		}
-		return q.reload();
 	}
 	
 	/**
@@ -79,7 +76,7 @@ public class QuestManager
 		
 		try
 		{
-			ScriptEngineManager.getInstance().executeScriptList();
+			ScriptManager.getInstance().executeScriptList();
 		}
 		catch (Exception e)
 		{
@@ -104,7 +101,9 @@ public class QuestManager
 				quest.unload(false);
 			}
 		}
+		
 		_quests.clear();
+		
 		// Unload scripts.
 		for (Quest script : _scripts.values())
 		{
@@ -113,6 +112,7 @@ public class QuestManager
 				script.unload(false);
 			}
 		}
+		
 		_scripts.clear();
 	}
 	
@@ -155,6 +155,7 @@ public class QuestManager
 		{
 			return _quests.get(name);
 		}
+		
 		return _scripts.get(name);
 	}
 	
@@ -172,6 +173,7 @@ public class QuestManager
 				return q;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -202,7 +204,7 @@ public class QuestManager
 			LOGGER.info("Replaced quest " + old.getName() + " (" + old.getId() + ") with a new version!");
 		}
 		
-		if (Config.ALT_DEV_SHOW_QUESTS_LOAD_IN_LOGS)
+		if (Config.SHOW_QUEST_LOAD_IN_LOGS)
 		{
 			final String questName = quest.getName().contains("_") ? quest.getName().substring(quest.getName().indexOf('_') + 1) : quest.getName();
 			LOGGER.info("Loaded quest " + StringUtil.separateWords(questName) + ".");
@@ -226,6 +228,7 @@ public class QuestManager
 			_scripts.remove(script.getName());
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -262,7 +265,7 @@ public class QuestManager
 			LOGGER.info("Replaced script " + old.getName() + " with a new version!");
 		}
 		
-		if (Config.ALT_DEV_SHOW_SCRIPTS_LOAD_IN_LOGS)
+		if (Config.SHOW_SCRIPT_LOAD_IN_LOGS)
 		{
 			LOGGER.info("Loaded script " + StringUtil.separateWords(script.getClass().getSimpleName()) + ".");
 		}

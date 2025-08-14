@@ -44,10 +44,12 @@ public class AnomicFoundry extends AbstractNpcAI
 	private static int FOREMAN = 22397;
 	private static int LESSER_EVIL = 22398;
 	private static int GREATER_EVIL = 22399;
+	
 	// Misc
 	private final Map<Integer, Integer> _atkIndex = new ConcurrentHashMap<>();
+	
 	// npcId, x, y, z, heading, max count
-	//@formatter:off
+	// @formatter:off
 	private static int[][] SPAWNS =
 	{
 		{LESSER_EVIL, 27883, 248613, -3209, -13248, 5},
@@ -56,11 +58,11 @@ public class AnomicFoundry extends AbstractNpcAI
 		{LESSER_EVIL, 28486, 245913, -3698, 0, 10},
 		{GREATER_EVIL, 28684, 244118, -3700, -22560, 10},
 	};
-	//@formatter:on
+	// @formatter:on
 	
 	private int respawnTime = 60000;
-	private final static int respawnMin = 20000;
-	private final static int respawnMax = 300000;
+	private static final int respawnMin = 20000;
+	private static final int respawnMax = 300000;
 	
 	private final int[] _spawned =
 	{
@@ -94,6 +96,7 @@ public class AnomicFoundry extends AbstractNpcAI
 					addSpawn(SPAWNS[idx][0], SPAWNS[idx][1], SPAWNS[idx][2], SPAWNS[idx][3], SPAWNS[idx][4], false, 0, false);
 					respawnTime += 10000;
 				}
+				
 				startQuestTimer("make_spawn_1", respawnTime, null, null);
 			}
 		}
@@ -115,6 +118,7 @@ public class AnomicFoundry extends AbstractNpcAI
 		{
 			respawnTime = 60000;
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -184,6 +188,7 @@ public class AnomicFoundry extends AbstractNpcAI
 					startQuestTimer("reset_respawn_time", 600000, null, null);
 				}
 			}
+			
 			_atkIndex.remove(npc.getObjectId());
 		}
 	}
@@ -237,6 +242,7 @@ public class AnomicFoundry extends AbstractNpcAI
 				return i;
 			}
 		}
+		
 		return -1;
 	}
 	

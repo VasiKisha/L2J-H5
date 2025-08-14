@@ -174,6 +174,7 @@ public class WalkingManager implements IXmlReader
 								}
 							}
 						}
+						
 						list.add(new NpcWalkerNode(x, y, z, delay, run, npcString, chatString));
 					}
 					
@@ -208,6 +209,7 @@ public class WalkingManager implements IXmlReader
 						}
 					}
 				}
+				
 				_routes.put(routeName, new WalkRoute(routeName, list, repeat, repeatType));
 			}
 		}
@@ -308,6 +310,7 @@ public class WalkingManager implements IXmlReader
 					{
 						npc.setWalking();
 					}
+					
 					npc.getAI().setIntention(Intention.MOVE_TO, node);
 					
 					final ScheduledFuture<?> task = _repeatMoveTasks.get(npc);
@@ -356,6 +359,7 @@ public class WalkingManager implements IXmlReader
 					{
 						npc.setWalking();
 					}
+					
 					npc.getAI().setIntention(Intention.MOVE_TO, node);
 					walk.setBlocked(false);
 					walk.setStoppedByAttack(false);
@@ -447,6 +451,7 @@ public class WalkingManager implements IXmlReader
 		}
 		
 		final WalkInfo walk = _activeRoutes.get(npc.getObjectId());
+		
 		// Opposite should not happen... but happens sometime
 		if ((walk.getCurrentNodeId() < 0) || (walk.getCurrentNodeId() >= walk.getRoute().getNodesCount()))
 		{

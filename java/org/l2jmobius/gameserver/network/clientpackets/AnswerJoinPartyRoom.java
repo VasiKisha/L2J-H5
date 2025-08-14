@@ -94,6 +94,7 @@ public class AnswerJoinPartyRoom extends ClientPacket
 					member.sendPacket(new ExManagePartyRoomMember(player, room, 0));
 					member.sendPacket(new SystemMessage(SystemMessageId.C1_HAS_ENTERED_THE_PARTY_ROOM).addPcName(player));
 				}
+				
 				room.addMember(player);
 				
 				// Info Broadcast

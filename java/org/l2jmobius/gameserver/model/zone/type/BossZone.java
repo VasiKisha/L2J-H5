@@ -28,7 +28,6 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.zone.AbstractZoneSettings;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
@@ -97,6 +96,7 @@ public class BossZone extends ZoneType
 		{
 			settings = new Settings();
 		}
+		
 		setSettings(settings);
 		GrandBossManager.getInstance().addZone(this);
 	}
@@ -147,10 +147,11 @@ public class BossZone extends ZoneType
 		if (creature.isPlayer())
 		{
 			final Player player = creature.asPlayer();
-			if (player.canOverrideCond(PlayerCondOverride.ZONE_CONDITIONS))
+			if (player.isGM())
 			{
 				return;
 			}
+			
 			// if player has been (previously) cleared by npc/ai for entry and the zone is
 			// set to receive players (aka not waiting for boss to respawn)
 			if (getSettings().getPlayersAllowed().contains(player.getObjectId()))
@@ -176,8 +177,10 @@ public class BossZone extends ZoneType
 						return;
 					}
 				}
+				
 				getSettings().getPlayersAllowed().remove(getSettings().getPlayersAllowed().indexOf(player.getObjectId()));
 			}
+			
 			// teleport out all players who attempt "illegal" (re-)entry
 			if ((_oustLoc[0] != 0) && (_oustLoc[1] != 0) && (_oustLoc[2] != 0))
 			{
@@ -193,7 +196,7 @@ public class BossZone extends ZoneType
 			final Player player = creature.asPlayer();
 			if (player != null)
 			{
-				if (getSettings().getPlayersAllowed().contains(player.getObjectId()) || player.canOverrideCond(PlayerCondOverride.ZONE_CONDITIONS))
+				if (getSettings().getPlayersAllowed().contains(player.getObjectId()) || player.isGM())
 				{
 					return;
 				}
@@ -209,6 +212,7 @@ public class BossZone extends ZoneType
 					player.teleToLocation(TeleportWhereType.TOWN);
 				}
 			}
+			
 			creature.asSummon().unSummon(player);
 		}
 	}
@@ -219,7 +223,7 @@ public class BossZone extends ZoneType
 		if (creature.isPlayer())
 		{
 			final Player player = creature.asPlayer();
-			if (player.canOverrideCond(PlayerCondOverride.ZONE_CONDITIONS))
+			if (player.isGM())
 			{
 				return;
 			}
@@ -237,6 +241,7 @@ public class BossZone extends ZoneType
 				{
 					getSettings().getPlayersAllowed().remove(getSettings().getPlayersAllowed().indexOf(player.getObjectId()));
 				}
+				
 				getSettings().getPlayerAllowedReEntryTimes().remove(player.getObjectId());
 			}
 		}
@@ -251,6 +256,7 @@ public class BossZone extends ZoneType
 				{
 					continue;
 				}
+				
 				if (obj.isPlayable())
 				{
 					count++;
@@ -271,6 +277,7 @@ public class BossZone extends ZoneType
 					{
 						continue;
 					}
+					
 					if (!raid.isInsideRadius2D(raid.getSpawn(), 150))
 					{
 						raid.returnHome();
@@ -292,6 +299,7 @@ public class BossZone extends ZoneType
 		{
 			oustAllPlayers();
 		}
+		
 		super.setEnabled(flag);
 	}
 	
@@ -316,10 +324,11 @@ public class BossZone extends ZoneType
 	
 	public boolean isPlayerAllowed(Player player)
 	{
-		if (player.canOverrideCond(PlayerCondOverride.ZONE_CONDITIONS) || getSettings().getPlayersAllowed().contains(player.getObjectId()))
+		if (player.isGM() || getSettings().getPlayersAllowed().contains(player.getObjectId()))
 		{
 			return true;
 		}
+		
 		if ((_oustLoc[0] != 0) && (_oustLoc[1] != 0) && (_oustLoc[2] != 0))
 		{
 			player.teleToLocation(_oustLoc[0], _oustLoc[1], _oustLoc[2]);
@@ -328,6 +337,7 @@ public class BossZone extends ZoneType
 		{
 			player.teleToLocation(TeleportWhereType.TOWN);
 		}
+		
 		return false;
 	}
 	
@@ -380,6 +390,7 @@ public class BossZone extends ZoneType
 				}
 			}
 		}
+		
 		getSettings().getPlayerAllowedReEntryTimes().clear();
 		getSettings().getPlayersAllowed().clear();
 	}
@@ -391,23 +402,26 @@ public class BossZone extends ZoneType
 	 */
 	public void allowPlayerEntry(Player player, int durationInSec)
 	{
-		if (player.canOverrideCond(PlayerCondOverride.ZONE_CONDITIONS))
+		if (player.isGM())
 		{
 			return;
 		}
+		
 		if (!getSettings().getPlayersAllowed().contains(player.getObjectId()))
 		{
 			getSettings().getPlayersAllowed().add(player.getObjectId());
 		}
+		
 		getSettings().getPlayerAllowedReEntryTimes().put(player.getObjectId(), System.currentTimeMillis() + (durationInSec * 1000));
 	}
 	
 	public void removePlayer(Player player)
 	{
-		if (player.canOverrideCond(PlayerCondOverride.ZONE_CONDITIONS))
+		if (player.isGM())
 		{
 			return;
 		}
+		
 		getSettings().getPlayersAllowed().remove(Integer.valueOf(player.getObjectId()));
 		getSettings().getPlayerAllowedReEntryTimes().remove(player.getObjectId());
 	}

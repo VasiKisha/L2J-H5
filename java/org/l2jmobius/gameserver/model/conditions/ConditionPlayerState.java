@@ -54,6 +54,7 @@ public class ConditionPlayerState extends Condition
 				{
 					return (player.isSitting() == _required);
 				}
+				
 				return !_required;
 			}
 			case MOVING:
@@ -70,6 +71,7 @@ public class ConditionPlayerState extends Condition
 				{
 					return (_required != (player.isSitting() || player.isMoving()));
 				}
+				
 				return (_required != effector.isMoving());
 			}
 			case FLYING:
@@ -90,6 +92,7 @@ public class ConditionPlayerState extends Condition
 				{
 					return ((player.getKarma() > 0) == _required);
 				}
+				
 				return !_required;
 			}
 			case OLYMPIAD:
@@ -98,9 +101,11 @@ public class ConditionPlayerState extends Condition
 				{
 					return (player.isInOlympiadMode() == _required);
 				}
+				
 				return !_required;
 			}
 		}
+		
 		return !_required;
 	}
 }

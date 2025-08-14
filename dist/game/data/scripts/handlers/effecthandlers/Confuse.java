@@ -85,6 +85,7 @@ public class Confuse extends AbstractEffect
 		{
 			// Choosing randomly a new target.
 			final Creature target = targetList.get(Rnd.get(targetList.size()));
+			
 			// Attacking the target.
 			effected.setTarget(target);
 			effected.getAI().setIntention(Intention.ATTACK, target);

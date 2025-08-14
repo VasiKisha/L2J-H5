@@ -46,11 +46,13 @@ public class ConditionTargetAggro extends Condition
 			{
 				return effected.asMonster().isAggressive() == _isAggro;
 			}
+			
 			if (effected.isPlayer())
 			{
 				return effected.asPlayer().getKarma() > 0;
 			}
 		}
+		
 		return false;
 	}
 }

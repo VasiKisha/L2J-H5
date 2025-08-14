@@ -215,6 +215,7 @@ public class Transform
 		{
 			player.getAppearance().setVisibleName(_name);
 		}
+		
 		if (_title != null)
 		{
 			player.getAppearance().setVisibleTitle(_title);
@@ -244,6 +245,7 @@ public class Transform
 				{
 					items[i] = allowed.get(i);
 				}
+				
 				player.getInventory().setInventoryBlock(items, 1);
 			}
 			
@@ -254,6 +256,7 @@ public class Transform
 				{
 					items[i] = notAllowed.get(i);
 				}
+				
 				player.getInventory().setInventoryBlock(items, 2);
 			}
 		}
@@ -283,6 +286,7 @@ public class Transform
 		{
 			player.getAppearance().setVisibleName(null);
 		}
+		
 		if (_title != null)
 		{
 			player.getAppearance().setVisibleTitle(null);
@@ -329,6 +333,7 @@ public class Transform
 	public void onLevelUp(Player player)
 	{
 		final TransformTemplate template = getTemplate(player);
+		
 		// Add skills depending on level.
 		if ((template != null) && !template.getAdditionalSkills().isEmpty())
 		{
@@ -356,6 +361,7 @@ public class Transform
 				val = data.getStats(stat);
 			}
 		}
+		
 		return val;
 	}
 	
@@ -386,6 +392,7 @@ public class Transform
 				val = data.getLevelMod();
 			}
 		}
+		
 		return val;
 	}
 }

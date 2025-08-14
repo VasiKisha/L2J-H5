@@ -74,6 +74,7 @@ public class MonRaceInfo extends ServerPacket
 					buffer.writeByte(0);
 				}
 			}
+			
 			buffer.writeInt(0);
 			buffer.writeInt(0); // CT2.3 special effect
 		}

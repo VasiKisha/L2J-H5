@@ -35,7 +35,7 @@ public class ChannelDelete implements IUserCommandHandler
 	};
 	
 	@Override
-	public boolean useUserCommand(int id, Player player)
+	public boolean onCommand(int id, Player player)
 	{
 		if (id != COMMAND_IDS[0])
 		{
@@ -55,7 +55,7 @@ public class ChannelDelete implements IUserCommandHandler
 	}
 	
 	@Override
-	public int[] getUserCommandList()
+	public int[] getCommandList()
 	{
 		return COMMAND_IDS;
 	}

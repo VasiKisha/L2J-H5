@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="10500" type="Armor" name="Mithril Shirt - HP">
 		<!-- Increases Max HP by 224 when strengthened by 4 or more. -->
@@ -13,10 +13,10 @@
 		<set name="price" val="1800000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3457-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="28" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10501" type="Armor" name="Mithril Shirt - MP">
 		<!-- Increases Max MP by 111 when strengthened by 4 or more. -->
@@ -31,10 +31,10 @@
 		<set name="price" val="1800000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3458-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="28" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10502" type="Armor" name="Mithril Shirt - CP">
 		<!-- Increases Max CP by 672 when strengthened by 4 or more. -->
@@ -49,10 +49,10 @@
 		<set name="price" val="1800000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3459-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="28" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10503" type="Armor" name="Striped Silk Shirt - HP">
 		<!-- Increases Max HP by 135 when strengthened by 4 or more. -->
@@ -67,10 +67,10 @@
 		<set name="price" val="180000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3463-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="19" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10504" type="Armor" name="Striped Silk Shirt - MP">
 		<!-- Increases Max MP by 66 when strengthened by 4 or more. -->
@@ -85,10 +85,10 @@
 		<set name="price" val="180000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3464-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="19" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10505" type="Armor" name="Striped Silk Shirt - CP">
 		<!-- Increases Max CP by 405 when strengthened by 4 or more. -->
@@ -103,10 +103,10 @@
 		<set name="price" val="180000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3465-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="19" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10506" type="Armor" name="Thin Striped Leather Shirt - HP">
 		<!-- Increases Max HP by 160 when strengthened by 4 or more. -->
@@ -121,10 +121,10 @@
 		<set name="price" val="400000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3469-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="22" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10507" type="Armor" name="Thin Striped Leather Shirt - MP">
 		<!-- Increases Max MP by 78 when strengthened by 4 or more. -->
@@ -139,10 +139,10 @@
 		<set name="price" val="400000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3470-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="22" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10508" type="Armor" name="Thin Striped Leather Shirt - CP">
 		<!-- Increases Max CP by 480 when strengthened by 4 or more. -->
@@ -157,10 +157,10 @@
 		<set name="price" val="400000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3471-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="22" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10509" type="Armor" name="Striped Scale Shirt - HP">
 		<!-- Increases Max HP by 186 when strengthened by 4 or more. -->
@@ -175,10 +175,10 @@
 		<set name="price" val="880000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3475-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="26" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10510" type="Armor" name="Striped Scale Shirt - MP">
 		<!-- Increases Max MP by 92 when strengthened by 4 or more. -->
@@ -193,10 +193,10 @@
 		<set name="price" val="880000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3476-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="26" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10511" type="Armor" name="Striped Scale Shirt - CP">
 		<!-- Increases Max CP by 564 when strengthened by 4 or more. -->
@@ -211,10 +211,10 @@
 		<set name="price" val="880000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3477-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="26" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10512" type="Armor" name="Striped Mithril Shirt - HP">
 		<!-- Increases Max HP by 246 when strengthened by 4 or more. -->
@@ -229,10 +229,10 @@
 		<set name="price" val="2540000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3481-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="30" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10513" type="Armor" name="Striped Mithril Shirt - MP">
 		<!-- Increases Max MP by 122 when strengthened by 4 or more. -->
@@ -247,10 +247,10 @@
 		<set name="price" val="2540000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3482-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="30" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10514" type="Armor" name="Striped Mithril Shirt - CP">
 		<!-- Increases Max CP by 744 when strengthened by 4 or more. -->
@@ -265,10 +265,10 @@
 		<set name="price" val="2540000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3483-1" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="30" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10515" type="EtcItem" name="Beast Soulshot Compressed Pack">
 		<!-- A small capsule of compressed Beast Soulshot. Changes into 500 Beast Soulshots when used. -->
@@ -467,7 +467,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3014-2" /> <!-- Special Ability: Mana Up -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="325" />
 			<set stat="mAtk" val="222" />
 			<set stat="critRate" val="4" />
@@ -475,7 +475,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10528" type="Weapon" name="Dynasty Staff - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. -->
@@ -498,7 +498,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3048-2" /> <!-- Special Ability: Conversion -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="325" />
 			<set stat="mAtk" val="222" />
 			<set stat="critRate" val="4" />
@@ -506,7 +506,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10529" type="Weapon" name="Dynasty Staff - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. -->
@@ -529,7 +529,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3047-2" /> <!-- Special Ability: Acumen -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="325" />
 			<set stat="mAtk" val="222" />
 			<set stat="critRate" val="4" />
@@ -537,7 +537,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10530" type="Weapon" name="Dynasty Crusher - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases HP by 15% while increasing P. Atk. by 78 during a critical attack. Increases damage inflicted during PvP. -->
@@ -559,7 +559,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3057-4" /> <!-- Special Ability: Anger -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
@@ -567,7 +567,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10531" type="Weapon" name="Dynasty Crusher - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. -->
@@ -589,7 +589,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
@@ -597,7 +597,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10532" type="Weapon" name="Dynasty Crusher - Rsk. Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 164 when HP drops to 60% or lower. Increases damage inflicted during PvP. -->
@@ -619,7 +619,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3027-7" /> <!-- Special Ability: Rsk. Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
@@ -627,7 +627,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10533" type="Armor" name="Blue Talisman - P. Atk.">
 		<!-- Increases P. Atk. when used. Effect does not stack with additional Talismans of the same type. A Shadow Item which cannot be exchanged or dropped. -->
@@ -851,11 +851,11 @@
 		<set name="weight" val="1430" />
 		<set name="price" val="39" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="47" />
-		</for>
+		</stats>
 	</item>
 	<item id="10549" type="EtcItem" name="Forgotten Scroll - Protection of Rune">
 		<!-- Forgotten Scroll to learn the Protection of Rune. Can be acquired by level 82. -->

@@ -53,6 +53,6 @@ public class SendBypassBuildCmd extends ClientPacket
 			return;
 		}
 		
-		AdminCommandHandler.getInstance().useAdminCommand(player, "admin_" + _command, true);
+		AdminCommandHandler.getInstance().onCommand(player, "admin_" + _command, true);
 	}
 }

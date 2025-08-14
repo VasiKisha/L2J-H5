@@ -36,16 +36,20 @@ public class ShadowSummoner extends AbstractNpcAI
 	private static final int SHADOW_SUMMONER = 25722;
 	private static final int DEMONS_BANQUET_1 = 25730;
 	private static final int DEMONS_BANQUET_2 = 25731;
+	
 	// Skills
 	private static final SkillHolder SUMMON_SKELETON = new SkillHolder(6835, 1);
+	
 	// Variables
 	private static final String LOW_HP_FLAG = "LOW_HP_FLAG";
 	private static final String LIMIT_FLAG = "LIMIT_FLAG";
+	
 	// Timers
 	private static final String SUMMON_TIMER = "SUMMON_TIMER";
 	private static final String FEED_TIMER = "FEED_TIMER";
 	private static final String LIMIT_TIMER = "LIMIT_TIMER";
 	private static final String DELAY_TIMER = "DELAY_TIMER";
+	
 	// Misc
 	private static final int MAX_CHASE_DIST = 2500;
 	private static final double MIN_HP_PERCENTAGE = 0.25;
@@ -117,6 +121,7 @@ public class ShadowSummoner extends AbstractNpcAI
 			final Npc demonsBanquet = addSpawn(getRandom(2) < 1 ? DEMONS_BANQUET_1 : DEMONS_BANQUET_2, npc.getX() + 150, npc.getY() + 150, npc.getZ(), npc.getHeading(), false, 0);
 			addAttackDesire(demonsBanquet, player, 10000);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

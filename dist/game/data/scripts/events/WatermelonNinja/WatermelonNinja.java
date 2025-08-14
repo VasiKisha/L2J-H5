@@ -348,6 +348,7 @@ public class WatermelonNinja extends LongTimeEvent
 			{
 				npc.doDie(attacker);
 			}
+			
 			npc.setInvul(true);
 		}
 		else if (getRandom(100) < 20)

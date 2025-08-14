@@ -51,6 +51,7 @@ public class TownPets extends AbstractNpcAI
 		31758, // Rafi
 		31955, // Ruby
 	};
+	
 	// Misc
 	private static final int MOVE_INTERVAL = 5000;
 	
@@ -74,6 +75,7 @@ public class TownPets extends AbstractNpcAI
 				{
 					npc.getAI().setIntention(Intention.MOVE_TO, moveLocation);
 				}
+				
 				startQuestTimer("move", MOVE_INTERVAL, npc, null);
 			}
 			else
@@ -81,6 +83,7 @@ public class TownPets extends AbstractNpcAI
 				startQuestTimer("move", MOVE_INTERVAL * 3, npc, null);
 			}
 		}
+		
 		return null;
 	}
 	

@@ -105,6 +105,7 @@ public class RequestSetCastleSiegeTime extends ClientPacket
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -117,6 +118,7 @@ public class RequestSetCastleSiegeTime extends ClientPacket
 				return false;
 			}
 		}
+		
 		return true;
 	}
 }

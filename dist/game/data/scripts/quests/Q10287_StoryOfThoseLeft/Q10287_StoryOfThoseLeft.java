@@ -37,8 +37,10 @@ public class Q10287_StoryOfThoseLeft extends Quest
 	private static final int RAFFORTY = 32020;
 	private static final int JINIA = 32760;
 	private static final int KEGOR = 32761;
+	
 	// Misc
 	private static final int MIN_LEVEL = 82;
+	
 	// Location
 	private static final Location EXIT_LOC = new Location(113793, -109342, -845, 0);
 	
@@ -138,6 +140,7 @@ public class Q10287_StoryOfThoseLeft extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -234,6 +237,7 @@ public class Q10287_StoryOfThoseLeft extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -36,6 +36,7 @@ public class Q00345_MethodToRaiseTheDead extends Quest
 	private static final int DOROTHY = 30970;
 	private static final int ORPHEUS = 30971;
 	private static final int MEDIUM_JAR = 30973;
+	
 	// Items
 	private static final int IMPERIAL_DIAMOND = 3456;
 	private static final int VICTIMS_ARM_BONE = 4274;
@@ -46,8 +47,10 @@ public class Q00345_MethodToRaiseTheDead extends Quest
 	private static final int USELESS_BONE_PIECES = 4280;
 	private static final int POWDER_TO_SUMMON_DEAD_SOULS = 4281;
 	private static final int BILL_OF_IASON_HEINE = 4407;
+	
 	// Misc
 	private static final int MIN_LEVEL = 35;
+	
 	// Monsters
 	private static final int CROKIAN = 20789;
 	private static final int CROKIAN_WARRIOR = 20791;
@@ -187,6 +190,7 @@ public class Q00345_MethodToRaiseTheDead extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -418,6 +422,7 @@ public class Q00345_MethodToRaiseTheDead extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

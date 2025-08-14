@@ -52,32 +52,35 @@ public class AdminCHSiege implements IAdminCommandHandler
 	};
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final String[] split = command.split(" ");
 		SiegableHall hall = null;
-		if (Config.ALT_DEV_NO_QUESTS)
+		if (Config.NO_QUESTS)
 		{
 			activeChar.sendSysMessage("AltDevNoQuests = true; Clan Hall Sieges are disabled!");
 			return false;
 		}
+		
 		if (split.length < 2)
 		{
 			activeChar.sendSysMessage("You have to specify the hall id at least");
 			return false;
 		}
+		
 		hall = getHall(split[1], activeChar);
 		if (hall == null)
 		{
 			activeChar.sendSysMessage("Could not find he desired siegable hall (" + split[1] + ")");
 			return false;
 		}
+		
 		if (hall.getSiege() == null)
 		{
 			activeChar.sendSysMessage("The given hall does not have any attached siege!");
@@ -99,6 +102,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 					owner.setHideoutId(0);
 					hall.addAttacker(owner);
 				}
+				
 				hall.getSiege().startSiege();
 			}
 		}
@@ -356,6 +360,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 		{
 			LOGGER.warning("Problem with AdminCHSiege: " + e.getMessage());
 		}
+		
 		return val;
 	}
 	
@@ -381,6 +386,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 		{
 			msg.replace("%clanhallOwner%", "No Owner");
 		}
+		
 		activeChar.sendPacket(msg);
 	}
 }

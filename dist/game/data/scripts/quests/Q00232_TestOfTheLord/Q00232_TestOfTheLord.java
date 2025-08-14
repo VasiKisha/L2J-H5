@@ -47,6 +47,7 @@ public class Q00232_TestOfTheLord extends Quest
 	private static final int GANDI_CHIEF_CHIANTA = 30642;
 	private static final int FIRST_ORC = 30643;
 	private static final int ANCESTOR_MARTANKUS = 30649;
+	
 	// Items
 	private static final int ADENA = 57;
 	private static final int BONE_ARROW = 1341;
@@ -76,9 +77,11 @@ public class Q00232_TestOfTheLord extends Quest
 	private static final int RAGNA_ORC_HEAD = 3414;
 	private static final int RAGNA_CHIEF_NOTICE = 3415;
 	private static final int IMMORTAL_FLAME = 3416;
+	
 	// Reward
 	private static final int MARK_OF_LORD = 3390;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monster
 	private static final int MARSH_SPIDER = 20233;
 	private static final int BREKA_ORC_SHAMAN = 20269;
@@ -92,8 +95,10 @@ public class Q00232_TestOfTheLord extends Quest
 	private static final int TIMAK_ORC_OVERLORD = 20588;
 	private static final int RAGNA_ORC_OVERLORD = 20778;
 	private static final int RAGNA_ORC_SEER = 20779;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
+	
 	// Locations
 	private static final Location FIRST_ORC_SPAWN = new Location(21036, -107690, -3038);
 	
@@ -220,10 +225,12 @@ public class Q00232_TestOfTheLord extends Quest
 				{
 					addSpawn(npc, FIRST_ORC, FIRST_ORC_SPAWN, false, 10000);
 				}
+				
 				htmltext = event;
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -517,6 +524,7 @@ public class Q00232_TestOfTheLord extends Quest
 						{
 							qs.setCond(2, true);
 						}
+						
 						htmltext = "30566-04.html";
 					}
 					else if (hasQuestItems(player, ORDEAL_NECKLACE, HUGE_ORC_FANG) && !hasQuestItems(player, VARKEES_CHARM))
@@ -547,6 +555,7 @@ public class Q00232_TestOfTheLord extends Quest
 							{
 								qs.setCond(2, true);
 							}
+							
 							htmltext = "30567-04.html";
 						}
 					}
@@ -574,6 +583,7 @@ public class Q00232_TestOfTheLord extends Quest
 							{
 								qs.setCond(2, true);
 							}
+							
 							htmltext = "30568-04.html";
 						}
 						else
@@ -605,6 +615,7 @@ public class Q00232_TestOfTheLord extends Quest
 							{
 								qs.setCond(2, true);
 							}
+							
 							htmltext = "30641-04.html";
 						}
 						else
@@ -639,6 +650,7 @@ public class Q00232_TestOfTheLord extends Quest
 							{
 								qs.setCond(2, true);
 							}
+							
 							htmltext = "30642-04.html";
 						}
 					}
@@ -682,6 +694,7 @@ public class Q00232_TestOfTheLord extends Quest
 						{
 							addSpawn(npc, FIRST_ORC, FIRST_ORC_SPAWN, false, 10000);
 						}
+						
 						htmltext = "30649-08.html";
 					}
 					break;
@@ -695,6 +708,7 @@ public class Q00232_TestOfTheLord extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

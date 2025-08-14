@@ -31,6 +31,14 @@
 			<socialClass>BARON</socialClass>
 			<item id="9818" count="10" />
 		</skill>
+		<skill skillName="Clan Soul" skillId="372" skillLevel="2" getLevel="10" levelUpSp="12000">
+			<socialClass>BARON</socialClass>
+			<item id="9818" count="10" />
+		</skill>
+		<skill skillName="Clan Soul" skillId="372" skillLevel="3" getLevel="11" levelUpSp="13200">
+			<socialClass>BARON</socialClass>
+			<item id="9818" count="10" />
+		</skill>
 		<skill skillName="Clan Regeneration" skillId="373" skillLevel="1" getLevel="5" levelUpSp="1500">
 			<socialClass>APPRENTICE</socialClass>
 			<item id="9816" count="10" />
@@ -51,7 +59,19 @@
 			<socialClass>KNIGHT</socialClass>
 			<item id="9817" count="10" />
 		</skill>
+		<skill skillName="Clan Morale" skillId="374" skillLevel="3" getLevel="11" levelUpSp="13200">
+			<socialClass>KNIGHT</socialClass>
+			<item id="9817" count="10" />
+		</skill>
 		<skill skillName="Clan Clarity" skillId="375" skillLevel="1" getLevel="8" levelUpSp="12000">
+			<socialClass>BARON</socialClass>
+			<item id="9818" count="10" />
+		</skill>
+		<skill skillName="Clan Clarity" skillId="375" skillLevel="2" getLevel="10" levelUpSp="12000">
+			<socialClass>BARON</socialClass>
+			<item id="9818" count="10" />
+		</skill>
+		<skill skillName="Clan Clarity" skillId="375" skillLevel="3" getLevel="11" levelUpSp="13200">
 			<socialClass>BARON</socialClass>
 			<item id="9818" count="10" />
 		</skill>
@@ -83,6 +103,14 @@
 			<socialClass>BARON</socialClass>
 			<item id="9818" count="10" />
 		</skill>
+		<skill skillName="Clan Empower" skillId="378" skillLevel="2" getLevel="10" levelUpSp="12000">
+			<socialClass>BARON</socialClass>
+			<item id="9818" count="10" />
+		</skill>
+		<skill skillName="Clan Empower" skillId="378" skillLevel="3" getLevel="11" levelUpSp="13200">
+			<socialClass>BARON</socialClass>
+			<item id="9818" count="10" />
+		</skill>
 		<skill skillName="Clan M. Def." skillId="379" skillLevel="1" getLevel="5" levelUpSp="1500">
 			<socialClass>APPRENTICE</socialClass>
 			<item id="9818" count="10" />
@@ -103,7 +131,19 @@
 			<socialClass>ELDER</socialClass>
 			<item id="9814" count="10" />
 		</skill>
+		<skill skillName="Clan Guidance" skillId="380" skillLevel="3" getLevel="11" levelUpSp="13200">
+			<socialClass>ELDER</socialClass>
+			<item id="9814" count="10" />
+		</skill>
 		<skill skillName="Clan Agility" skillId="381" skillLevel="1" getLevel="8" levelUpSp="12000">
+			<socialClass>ELDER</socialClass>
+			<item id="9814" count="10" />
+		</skill>
+		<skill skillName="Clan Agility" skillId="381" skillLevel="2" getLevel="10" levelUpSp="12000">
+			<socialClass>ELDER</socialClass>
+			<item id="9814" count="10" />
+		</skill>
+		<skill skillName="Clan Agility" skillId="381" skillLevel="3" getLevel="11" levelUpSp="13200">
 			<socialClass>ELDER</socialClass>
 			<item id="9814" count="10" />
 		</skill>
@@ -115,11 +155,19 @@
 			<socialClass>BARON</socialClass>
 			<item id="9814" count="10" />
 		</skill>
+		<skill skillName="Clan Shield Defense" skillId="382" skillLevel="3" getLevel="11" levelUpSp="13200">
+			<socialClass>BARON</socialClass>
+			<item id="9814" count="10" />
+		</skill>
 		<skill skillName="Clan Shield Block" skillId="383" skillLevel="1" getLevel="6" levelUpSp="2100">
 			<socialClass>ELDER</socialClass>
 			<item id="9815" count="10" />
 		</skill>
 		<skill skillName="Clan Shield Block" skillId="383" skillLevel="2" getLevel="8" levelUpSp="12000">
+			<socialClass>ELDER</socialClass>
+			<item id="9815" count="10" />
+		</skill>
+		<skill skillName="Clan Shield Block" skillId="383" skillLevel="3" getLevel="11" levelUpSp="13200">
 			<socialClass>ELDER</socialClass>
 			<item id="9815" count="10" />
 		</skill>
@@ -131,11 +179,19 @@
 			<socialClass>BARON</socialClass>
 			<item id="8176" count="1" />
 		</skill>
+		<skill skillName="Clan Cyclonic Resistance" skillId="384" skillLevel="3" getLevel="11" levelUpSp="13200">
+			<socialClass>BARON</socialClass>
+			<item id="8176" count="1" />
+		</skill>
 		<skill skillName="Clan Magmatic Resistance" skillId="385" skillLevel="1" getLevel="7" levelUpSp="5100">
 			<socialClass>BARON</socialClass>
 			<item id="8176" count="1" />
 		</skill>
 		<skill skillName="Clan Magmatic Resistance" skillId="385" skillLevel="2" getLevel="8" levelUpSp="12000">
+			<socialClass>BARON</socialClass>
+			<item id="8176" count="1" />
+		</skill>
+		<skill skillName="Clan Magmatic Resistance" skillId="385" skillLevel="3" getLevel="11" levelUpSp="13200">
 			<socialClass>BARON</socialClass>
 			<item id="8176" count="1" />
 		</skill>
@@ -147,11 +203,19 @@
 			<socialClass>BARON</socialClass>
 			<item id="8176" count="1" />
 		</skill>
+		<skill skillName="Clan Resist Shock" skillId="386" skillLevel="3" getLevel="11" levelUpSp="13200">
+			<socialClass>BARON</socialClass>
+			<item id="8176" count="1" />
+		</skill>
 		<skill skillName="Clan Resist Hold" skillId="387" skillLevel="1" getLevel="7" levelUpSp="5100">
 			<socialClass>BARON</socialClass>
 			<item id="8176" count="1" />
 		</skill>
 		<skill skillName="Clan Resist Hold" skillId="387" skillLevel="2" getLevel="8" levelUpSp="12000">
+			<socialClass>BARON</socialClass>
+			<item id="8176" count="1" />
+		</skill>
+		<skill skillName="Clan Resist Hold" skillId="387" skillLevel="3" getLevel="11" levelUpSp="13200">
 			<socialClass>BARON</socialClass>
 			<item id="8176" count="1" />
 		</skill>
@@ -163,7 +227,19 @@
 			<socialClass>BARON</socialClass>
 			<item id="8176" count="1" />
 		</skill>
+		<skill skillName="Clan Resist Sleep" skillId="388" skillLevel="3" getLevel="11" levelUpSp="13200">
+			<socialClass>BARON</socialClass>
+			<item id="8176" count="1" />
+		</skill>
 		<skill skillName="Clan Wind Walk" skillId="389" skillLevel="1" getLevel="8" levelUpSp="11000">
+			<socialClass>VISCOUNT</socialClass>
+			<item id="8175" count="1" />
+		</skill>
+		<skill skillName="Clan Wind Walk" skillId="389" skillLevel="2" getLevel="10" levelUpSp="12000">
+			<socialClass>VISCOUNT</socialClass>
+			<item id="8175" count="1" />
+		</skill>
+		<skill skillName="Clan Wind Walk" skillId="389" skillLevel="3" getLevel="11" levelUpSp="13200">
 			<socialClass>VISCOUNT</socialClass>
 			<item id="8175" count="1" />
 		</skill>
@@ -172,6 +248,10 @@
 			<item id="8175" count="1" />
 		</skill>
 		<skill skillName="Clan Luck" skillId="390" skillLevel="2" getLevel="8" levelUpSp="14000">
+			<socialClass>APPRENTICE</socialClass>
+			<item id="8175" count="1" />
+		</skill>
+		<skill skillName="Clan Luck" skillId="390" skillLevel="3" getLevel="11" levelUpSp="14000">
 			<socialClass>APPRENTICE</socialClass>
 			<item id="8175" count="1" />
 		</skill>

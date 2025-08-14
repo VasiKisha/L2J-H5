@@ -45,7 +45,7 @@ public class Loto implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if (!target.isNpc())
 		{
@@ -70,6 +70,7 @@ public class Loto implements IBypassHandler
 				player.setLoto(i, 0);
 			}
 		}
+		
 		showLotoWindow(player, target.asNpc(), val);
 		
 		return false;
@@ -113,6 +114,7 @@ public class Loto implements IBypassHandler
 				player.sendPacket(SystemMessageId.LOTTERY_TICKETS_ARE_NOT_CURRENTLY_BEING_SOLD);
 				return;
 			}
+			
 			if (!LotteryManager.getInstance().isSellableTickets())
 			{
 				// tickets can't be sold
@@ -125,6 +127,7 @@ public class Loto implements IBypassHandler
 			
 			int count = 0;
 			int found = 0;
+			
 			// counting buttons and unsetting button if found
 			for (int i = 0; i < 5; i++)
 			{
@@ -165,6 +168,7 @@ public class Loto implements IBypassHandler
 					{
 						button = "0" + button;
 					}
+					
 					final String search = "fore=\"L2UI.lottoNum" + button + "\" back=\"L2UI.lottoNum" + button + "a_check\"";
 					final String replace = "fore=\"L2UI.lottoNum" + button + "a_check\" back=\"L2UI.lottoNum" + button + "\"";
 					html.replace(search, replace);
@@ -186,6 +190,7 @@ public class Loto implements IBypassHandler
 				player.sendPacket(SystemMessageId.LOTTERY_TICKETS_ARE_NOT_CURRENTLY_BEING_SOLD);
 				return;
 			}
+			
 			if (!LotteryManager.getInstance().isSellableTickets())
 			{
 				// tickets can't be sold
@@ -214,16 +219,19 @@ public class Loto implements IBypassHandler
 					type2 += Math.pow(2, player.getLoto(i) - 17);
 				}
 			}
+			
 			if (player.getAdena() < price)
 			{
 				sm = new SystemMessage(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
 				player.sendPacket(sm);
 				return;
 			}
+			
 			if (!player.reduceAdena(ItemProcessType.FEE, price, npc, true))
 			{
 				return;
 			}
+			
 			LotteryManager.getInstance().increasePrize(price);
 			
 			sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
@@ -244,6 +252,7 @@ public class Loto implements IBypassHandler
 			{
 				iu.addModifiedItem(adenaupdate);
 			}
+			
 			player.sendInventoryUpdate(iu);
 			
 			filename = (npc.getHtmlPath(npcId, 6));
@@ -267,6 +276,7 @@ public class Loto implements IBypassHandler
 				{
 					continue;
 				}
+				
 				if ((item.getId() == 4442) && (item.getCustomType1() < lotonumber))
 				{
 					message = message + "<a action=\"bypass -h npc_%objectId%_Loto " + item.getObjectId() + "\">" + item.getCustomType1() + " Event Number ";
@@ -275,6 +285,7 @@ public class Loto implements IBypassHandler
 					{
 						message += numbers[i] + " ";
 					}
+					
 					final long[] check = LotteryManager.getInstance().checkTicket(item);
 					if (check[0] > 0)
 					{
@@ -301,15 +312,19 @@ public class Loto implements IBypassHandler
 								break;
 							}
 						}
+						
 						message += " " + check[1] + "a.";
 					}
+					
 					message += "</a><br>";
 				}
 			}
+			
 			if (message.isEmpty())
 			{
 				message += "There has been no winning lottery ticket.<br>";
 			}
+			
 			html.replace("%result%", message);
 		}
 		else if (value == 25) // 25 - lottery instructions
@@ -325,6 +340,7 @@ public class Loto implements IBypassHandler
 			{
 				return;
 			}
+			
 			final long[] check = LotteryManager.getInstance().checkTicket(item);
 			
 			sm = new SystemMessage(SystemMessageId.S1_HAS_DISAPPEARED);
@@ -336,9 +352,11 @@ public class Loto implements IBypassHandler
 			{
 				player.addAdena(ItemProcessType.REWARD, adena, npc, true);
 			}
+			
 			player.destroyItem(ItemProcessType.FEE, item, npc, false);
 			return;
 		}
+		
 		html.replace("%objectId%", String.valueOf(npc.getObjectId()));
 		html.replace("%race%", Integer.toString(LotteryManager.getInstance().getId()));
 		html.replace("%adena%", Long.toString(LotteryManager.getInstance().getPrize()));
@@ -355,7 +373,7 @@ public class Loto implements IBypassHandler
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

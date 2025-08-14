@@ -114,6 +114,7 @@ public abstract class Playable extends Creature
 			{
 				return false;
 			}
+			
 			// now reset currentHp to zero
 			setCurrentHp(0);
 			setDead(true);
@@ -134,6 +135,7 @@ public abstract class Playable extends Creature
 			stopEffects(EffectType.NOBLESSE_BLESSING);
 			deleteBuffs = false;
 		}
+		
 		if (isResurrectSpecialAffected())
 		{
 			stopEffects(EffectType.RESURRECTION_SPECIAL);
@@ -147,6 +149,7 @@ public abstract class Playable extends Creature
 			{
 				player.reviveRequest(player, false, 0);
 			}
+			
 			player.setCharmOfCourage(false);
 			player.sendPacket(new EtcStatusUpdate(player));
 		}

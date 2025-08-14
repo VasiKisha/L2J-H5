@@ -32,6 +32,7 @@ public class Typhoon extends AbstractNpcAI
 {
 	// NPCs
 	private static final int TYPHOON = 25539;
+	
 	// Skills
 	private static final SkillHolder STORM = new SkillHolder(5434, 1); // Gust
 	
@@ -55,6 +56,7 @@ public class Typhoon extends AbstractNpcAI
 			npc.doSimultaneousCast(STORM.getSkill());
 			startQuestTimer("CAST", 5000, npc, null);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

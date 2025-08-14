@@ -36,7 +36,7 @@ public class Online implements IVoicedCommandHandler
 	};
 	
 	@Override
-	public boolean useVoicedCommand(String command, Player player, String target)
+	public boolean onCommand(String command, Player player, String target)
 	{
 		if (command.equals("online") && Config.ENABLE_ONLINE_COMMAND)
 		{
@@ -50,11 +50,12 @@ public class Online implements IVoicedCommandHandler
 				player.sendMessage("There is 1 player online!");
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getVoicedCommandList()
+	public String[] getCommandList()
 	{
 		return VOICED_COMMANDS;
 	}

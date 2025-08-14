@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.skill;
 
@@ -38,7 +42,7 @@ import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 /**
  * Buff Info.<br>
  * Complex DTO that holds all the information for a given buff (or debuff or dance/song) set of effects issued by an skill.
- * @author Zoey76
+ * @author Zoey76, Mobius
  */
 public class BuffInfo
 {
@@ -49,14 +53,17 @@ public class BuffInfo
 	private final Skill _skill;
 	/** The effects. */
 	private final List<AbstractEffect> _effects = new ArrayList<>(1);
+	
 	// Tasks
 	/** Effect tasks for ticks. */
 	private final Map<AbstractEffect, EffectTaskInfo> _tasks = new ConcurrentHashMap<>();
+	
 	// Time and ticks
 	/** Abnormal time. */
 	private int _abnormalTime;
 	/** The game ticks at the start of this effect. */
 	private final int _periodStartTicks;
+	
 	// Misc
 	/** If {@code true} then this effect has been cancelled. */
 	private volatile SkillFinishType _finishType = SkillFinishType.NORMAL;
@@ -299,6 +306,7 @@ public class BuffInfo
 	public void onTick(AbstractEffect effect)
 	{
 		boolean continueForever = false;
+		
 		// If the effect is in use, allow it to affect the effected.
 		if (_isInUse)
 		{
@@ -316,6 +324,7 @@ public class BuffInfo
 				{
 					schedule.cancel(true); // Don't allow to finish current run.
 				}
+				
 				_effected.getEffectList().stopSkillEffects(SkillFinishType.REMOVED, _skill); // Remove the buff from the effect list.
 			}
 		}
@@ -332,8 +341,10 @@ public class BuffInfo
 				schedule.cancel(true); // Don't allow to finish current run.
 			}
 		}
+		
 		// Remove stats
 		removeStats();
+		
 		// Notify on exit.
 		for (AbstractEffect effect : _effects)
 		{
@@ -343,8 +354,10 @@ public class BuffInfo
 				effect.onExit(_effector, _effected, _skill);
 			}
 		}
+		
 		// Remove abnormal visual effects.
 		removeAbnormalVisualEffects(broadcast);
+		
 		// Set the proper system message.
 		if (!(_effected.isSummon() && !_effected.asSummon().getOwner().hasSummon()))
 		{
@@ -373,6 +386,7 @@ public class BuffInfo
 				_effected.sendPacket(sm);
 			}
 		}
+		
 		// Remove short buff.
 		if (this == _effected.getEffectList().getShortBuff())
 		{

@@ -35,6 +35,7 @@ public class Q00165_ShilensHunt extends Quest
 {
 	// NPC
 	private static final int NELSYA = 30348;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -44,9 +45,11 @@ public class Q00165_ShilensHunt extends Quest
 		MONSTERS.put(20532, 1); // Brown Keltir
 		MONSTERS.put(20536, 2); // Elder Brown Keltir
 	}
+	
 	// Items
 	private static final int LESSER_HEALING_POTION = 1060;
 	private static final int DARK_BEZOAR = 1160;
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	private static final int REQUIRED_COUNT = 13;
@@ -69,6 +72,7 @@ public class Q00165_ShilensHunt extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -123,6 +127,7 @@ public class Q00165_ShilensHunt extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

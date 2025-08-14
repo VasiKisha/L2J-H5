@@ -71,6 +71,7 @@ public class Q00182_NewRecruits extends Quest
 				qs.exitQuest(false, true);
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -121,6 +122,7 @@ public class Q00182_NewRecruits extends Quest
 		{
 			htmltext = "32258-01.html";
 		}
+		
 		return htmltext;
 	}
 }

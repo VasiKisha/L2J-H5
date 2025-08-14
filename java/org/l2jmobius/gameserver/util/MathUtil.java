@@ -279,6 +279,7 @@ public class MathUtil
 				minIndex = i;
 			}
 		}
+		
 		return minIndex;
 	}
 	
@@ -297,6 +298,7 @@ public class MathUtil
 				maxIndex = i;
 			}
 		}
+		
 		return maxIndex;
 	}
 	
@@ -315,6 +317,7 @@ public class MathUtil
 				minValue = value;
 			}
 		}
+		
 		return minValue;
 	}
 	
@@ -333,6 +336,7 @@ public class MathUtil
 				maxValue = value;
 			}
 		}
+		
 		return maxValue;
 	}
 	
@@ -351,6 +355,7 @@ public class MathUtil
 				minValue = value;
 			}
 		}
+		
 		return minValue;
 	}
 	
@@ -369,6 +374,7 @@ public class MathUtil
 				maxValue = value;
 			}
 		}
+		
 		return maxValue;
 	}
 	
@@ -387,6 +393,7 @@ public class MathUtil
 				minValue = value;
 			}
 		}
+		
 		return minValue;
 	}
 	
@@ -405,6 +412,7 @@ public class MathUtil
 				maxValue = value;
 			}
 		}
+		
 		return maxValue;
 	}
 }

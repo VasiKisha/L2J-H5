@@ -34,10 +34,13 @@ public class Q00164_BloodFiend extends Quest
 {
 	// NPC
 	private static final int CREAMEES = 30149;
+	
 	// Monster
 	private static final int KIRUNAK = 27021;
+	
 	// Item
 	private static final int KIRUNAK_SKULL = 1044;
+	
 	// Misc
 	private static final int MIN_LEVEL = 21;
 	
@@ -59,6 +62,7 @@ public class Q00164_BloodFiend extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -107,6 +111,7 @@ public class Q00164_BloodFiend extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -48,6 +48,7 @@ public class FriendlyMob extends Attackable
 		{
 			return attacker.asPlayer().getKarma() > 0;
 		}
+		
 		return false;
 	}
 	

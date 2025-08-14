@@ -65,6 +65,7 @@ public class NevitsHerald extends AbstractNpcAI
 		NpcStringId.SHOUT_TO_CELEBRATE_THE_VICTORY_OF_THE_HEROES,
 		NpcStringId.PRAISE_THE_ACHIEVEMENT_OF_THE_HEROES_AND_RECEIVE_NEVIT_S_BLESSING
 	};
+	
 	// Skill
 	private static final SkillHolder FALL_OF_THE_DRAGON = new SkillHolder(23312, 1);
 	
@@ -93,6 +94,7 @@ public class NevitsHerald extends AbstractNpcAI
 				{
 					return "4326-1.htm";
 				}
+				
 				npc.setTarget(player);
 				npc.doCast(FALL_OF_THE_DRAGON.getSkill());
 			}
@@ -109,8 +111,10 @@ public class NevitsHerald extends AbstractNpcAI
 				cancelQuestTimer("text_spam", spawn, null);
 				spawn.deleteMe();
 			}
+			
 			SPAWNS.clear();
 		}
+		
 		return null;
 	}
 	
@@ -133,6 +137,7 @@ public class NevitsHerald extends AbstractNpcAI
 			{
 				continue;
 			}
+			
 			onlinePlayer.sendPacket(message);
 		}
 		
@@ -144,6 +149,7 @@ public class NevitsHerald extends AbstractNpcAI
 				startQuestTimer("text_spam", 3000, herald, null);
 				SPAWNS.add(herald);
 			}
+			
 			startQuestTimer("despawn", 14400000, null, null);
 		}
 	}

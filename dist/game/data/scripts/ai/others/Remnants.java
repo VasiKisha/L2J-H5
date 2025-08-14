@@ -61,7 +61,7 @@ public class Remnants extends AbstractNpcAI
 		if ((skill.getId() == SKILL_HOLY_WATER) && !npc.isDead() && !targets.isEmpty() && (targets.get(0) == npc) && (npc.getCurrentHp() < (npc.getMaxHp() * 0.02)))
 		{
 			npc.doDie(caster);
-			//@formatter:off
+			// @formatter:off
 			/*if (npc.getNpcId() == DEREK)
 			{
 				caster.sendMessage(MSG_DEREK);
@@ -70,7 +70,7 @@ public class Remnants extends AbstractNpcAI
 			{
 				caster.sendMessage(MSG);
 			}*/
-			//@formatter:on
+			// @formatter:on
 		}
 	}
 	

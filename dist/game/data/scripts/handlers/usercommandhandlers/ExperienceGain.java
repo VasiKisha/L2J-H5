@@ -28,14 +28,14 @@ import org.l2jmobius.gameserver.model.actor.Player;
  */
 public class ExperienceGain implements IVoicedCommandHandler
 {
-	private static final String[] COMMANDS = new String[]
+	private static final String[] COMMANDS =
 	{
 		"expoff",
 		"expon",
 	};
 	
 	@Override
-	public boolean useVoicedCommand(String command, Player player, String params)
+	public boolean onCommand(String command, Player player, String params)
 	{
 		if (command.equals("expoff"))
 		{
@@ -55,11 +55,12 @@ public class ExperienceGain implements IVoicedCommandHandler
 				player.sendMessage("Experience gain is enabled.");
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getVoicedCommandList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

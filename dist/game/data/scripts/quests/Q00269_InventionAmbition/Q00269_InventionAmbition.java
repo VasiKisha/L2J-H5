@@ -32,8 +32,10 @@ public class Q00269_InventionAmbition extends Quest
 {
 	// NPC
 	private static final int INVENTOR_MARU = 32486;
+	
 	// Items
 	private static final int ENERGY_ORE = 10866;
+	
 	// Monsters
 	private static final Map<Integer, Double> MONSTERS = new HashMap<>();
 	static
@@ -47,6 +49,7 @@ public class Q00269_InventionAmbition extends Quest
 		MONSTERS.put(21130, 0.76); // Northern Goblin Leader
 		MONSTERS.put(21131, 0.78); // Enchanted Spine Golem
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -100,6 +103,7 @@ public class Q00269_InventionAmbition extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -136,6 +140,7 @@ public class Q00269_InventionAmbition extends Quest
 				htmltext = "32486-05.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -36,9 +36,11 @@ public class Q00701_ProofOfExistence extends Quest
 {
 	// NPC
 	private static final int ARTIUS = 32559;
+	
 	// Items
 	private static final int DEADMANS_REMAINS = 13875;
 	private static final int BANSHEE_QUEENS_EYE = 13876;
+	
 	// Monsters
 	private static final int ENIRA = 25625;
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
@@ -51,6 +53,7 @@ public class Q00701_ProofOfExistence extends Quest
 		MOBS.put(25629, 735); // Floating Skull (Enira's Evil Spirit)
 		MOBS.put(25630, 391); // Floating Zombie (Enira's Evil Spirit)
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 78;
 	
@@ -72,6 +75,7 @@ public class Q00701_ProofOfExistence extends Quest
 		{
 			return null;
 		}
+		
 		String htmltext = event;
 		switch (event)
 		{
@@ -96,6 +100,7 @@ public class Q00701_ProofOfExistence extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -132,6 +137,7 @@ public class Q00701_ProofOfExistence extends Quest
 			{
 				count = getRandom(5) + 14;
 			}
+			
 			giveItems(player, BANSHEE_QUEENS_EYE, count);
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
@@ -177,6 +183,7 @@ public class Q00701_ProofOfExistence extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

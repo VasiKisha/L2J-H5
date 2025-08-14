@@ -35,6 +35,7 @@ public enum PunishmentAffect
 				return type;
 			}
 		}
+		
 		return null;
 	}
 }

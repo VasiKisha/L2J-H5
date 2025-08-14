@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="15400" type="Armor" name="Vitality Belt (Event) - 60-day limited period">
 		<!-- Vitality Belt. Can be enchanted using the Vitality Belt Enchant Scroll. When enchanted, increases vitality maintenance effect, and decreases vitality maintenance re-use time. -->
@@ -74,12 +74,12 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15404" type="EtcItem" name="6th Anniversary Party Gift Box (2003) - Event">
 		<!-- Contains the 6th Anniversary Party Cube, a 30-day limited time item. It automatically disappears at the end of the 6th anniversary cube event. Cannot be exchanged or dropped. -->
@@ -464,10 +464,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="8361-1" /> <!-- Sixth Anniversary Party Earring -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="31" />
-		</for>
+		</stats>
 	</item>
 	<item id="15429" type="Armor" name="6th Anniversary Party Belt (Event) - 7-day limited period">
 		<!-- 7-day limited-time Item. Energy is maintained for 30 minutes. Reuse Delay is 23 hours. Cannot be exchanged, dropped, or destroyed. -->
@@ -591,11 +591,11 @@
 		<set name="unequip_skill" val="839-1" />
 		<set name="item_skill" val="8246-1" /> <!-- Transform Pumpkin Ghost -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="15437" type="EtcItem" name="Transformation Scroll Box">
 		<!-- Gives a chance to acquire one of the following transformation scrolls: Omen Beast, Death Blader, and Grail Apostle. Cannot be exchanged, dropped, or destroyed. -->
@@ -1337,9 +1337,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="15489" type="EtcItem" name="Elite Maguen Pet Collar">
 		<!-- Necklace that summons an Elite Maguen. The summoned Maguen can eat wolf-type feed, and it takes away some of the experience points the Pet Master earns. No exchange, drop, sale, or mail available. -->
@@ -1355,9 +1355,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="15490" type="EtcItem" name="Maguen Collection Box">
 		<!-- Its contents are a mystery. The only way to find out what is inside is to open it. -->
@@ -1401,9 +1401,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9074-1" /> <!-- Salmon Soup -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="15493" type="EtcItem" name="Fantasy Mushroom Pouch">
 		<!-- Pouch containing the spores of Fantasy Mushrooms, which grow in the Plains of the Lizardmen. Detailed information can be obtained from Investigator Sally on the Plains of the Lizardmen. -->

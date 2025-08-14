@@ -72,10 +72,13 @@ public class Q00512_BladeUnderFoot extends Quest
 	
 	// Misc
 	private static final int MIN_LEVEL = 70;
+	
 	// Item
 	private static final int FRAGMENT_OF_THE_DUNGEON_LEADER_MARK = 9798;
+	
 	// Reward
 	private static final int KNIGHTS_EPAULETTE = 9912;
+	
 	// Raid Bosses
 	private static final Map<Integer, DropInfo> RAID_BOSSES = new HashMap<>();
 	static
@@ -156,6 +159,7 @@ public class Q00512_BladeUnderFoot extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -206,6 +210,7 @@ public class Q00512_BladeUnderFoot extends Quest
 				htmltext = "36403-12.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

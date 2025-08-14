@@ -81,6 +81,7 @@ public class SwampZone extends ZoneType
 		{
 			_castle = CastleManager.getInstance().getCastleById(_castleId);
 		}
+		
 		return _castle;
 	}
 	
@@ -110,6 +111,7 @@ public class SwampZone extends ZoneType
 			{
 				creature.sendPacket(new OnEventTrigger(_eventId, true));
 			}
+			
 			creature.asPlayer().broadcastUserInfo();
 		}
 	}
@@ -127,6 +129,7 @@ public class SwampZone extends ZoneType
 				{
 					creature.sendPacket(new OnEventTrigger(_eventId, false));
 				}
+				
 				if (!creature.isTeleporting())
 				{
 					creature.asPlayer().broadcastUserInfo();

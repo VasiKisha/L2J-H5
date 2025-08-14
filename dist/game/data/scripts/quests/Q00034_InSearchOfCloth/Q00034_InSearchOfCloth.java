@@ -33,18 +33,21 @@ public class Q00034_InSearchOfCloth extends Quest
 	private static final int RADIA = 30088;
 	private static final int RALFORD = 30165;
 	private static final int VARAN = 30294;
+	
 	// Monsters
 	private static final int[] MOBS =
 	{
 		20560, // Trisalim Spider
 		20561, // Trisalim Tarantula
 	};
+	
 	// Items
 	private static final int SUEDE = 1866;
 	private static final int THREAD = 1868;
 	private static final int MYSTERIOUS_CLOTH = 7076;
 	private static final int SKEIN_OF_YARN = 7161;
 	private static final int SPINNERET = 7528;
+	
 	// Misc
 	private static final int MIN_LEVEL = 60;
 	private static final int SPINNERET_COUNT = 10;
@@ -98,6 +101,7 @@ public class Q00034_InSearchOfCloth extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				takeItems(player, SPINNERET, SPINNERET_COUNT);
 				giveItems(player, SKEIN_OF_YARN, 1);
 				qs.setCond(6, true);
@@ -125,6 +129,7 @@ public class Q00034_InSearchOfCloth extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -249,6 +254,7 @@ public class Q00034_InSearchOfCloth extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

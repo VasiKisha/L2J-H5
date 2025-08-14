@@ -104,6 +104,7 @@ public class AutoSpawnHandler
 				sf.cancel(true);
 			}
 		}
+		
 		// unregister all registered spawns
 		for (AutoSpawnInstance asi : _registeredSpawns.values())
 		{
@@ -264,8 +265,10 @@ public class AutoSpawnHandler
 			{
 				spawnTask.cancel(false);
 			}
+			
 			ThreadPool.schedule(rd, 0);
 		}
+		
 		spawnInst.setSpawnActive(isActive);
 	}
 	
@@ -325,6 +328,7 @@ public class AutoSpawnHandler
 				}
 			}
 		}
+		
 		return null;
 	}
 	
@@ -338,6 +342,7 @@ public class AutoSpawnHandler
 				result.add(spawnInst);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -425,6 +430,7 @@ public class AutoSpawnHandler
 				{
 					newSpawn.setHeading(heading);
 				}
+				
 				newSpawn.setAmount(spawnInst.getSpawnCount());
 				if (spawnInst._desDelay == 0)
 				{
@@ -453,6 +459,7 @@ public class AutoSpawnHandler
 						spawnInst.addNpc(npcInst);
 					}
 				}
+				
 				newSpawn.stopRespawn();
 				
 				if (npcInst != null)
@@ -637,6 +644,7 @@ public class AutoSpawnHandler
 			{
 				npcSpawns.add(npcInst.getSpawn());
 			}
+			
 			return npcSpawns;
 		}
 		

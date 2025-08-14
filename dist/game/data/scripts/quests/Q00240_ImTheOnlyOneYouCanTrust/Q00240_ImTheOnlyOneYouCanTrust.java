@@ -31,6 +31,7 @@ public class Q00240_ImTheOnlyOneYouCanTrust extends Quest
 {
 	// NPC
 	private static final int KINTAIJIN = 32640;
+	
 	// Monster
 	private static final int[] MOBS =
 	{
@@ -52,6 +53,7 @@ public class Q00240_ImTheOnlyOneYouCanTrust extends Quest
 		22632,
 		22633
 	};
+	
 	// Item
 	private static final int STAKATO_FANG = 14879;
 	
@@ -77,6 +79,7 @@ public class Q00240_ImTheOnlyOneYouCanTrust extends Quest
 		{
 			qs.startQuest();
 		}
+		
 		return event;
 	}
 	
@@ -143,6 +146,7 @@ public class Q00240_ImTheOnlyOneYouCanTrust extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

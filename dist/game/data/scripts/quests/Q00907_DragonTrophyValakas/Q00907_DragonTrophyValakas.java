@@ -34,11 +34,14 @@ public class Q00907_DragonTrophyValakas extends Quest
 {
 	// NPC
 	private static final int KLEIN = 31540;
+	
 	// Monster
 	private static final int VALAKAS = 29028;
+	
 	// Items
 	private static final int MEDAL_OF_GLORY = 21874;
 	private static final int VACUALITE_FLOATING_STONE = 7267;
+	
 	// Misc
 	private static final int MIN_LEVEL = 84;
 	
@@ -88,6 +91,7 @@ public class Q00907_DragonTrophyValakas extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -165,6 +169,7 @@ public class Q00907_DragonTrophyValakas extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

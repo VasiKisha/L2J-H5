@@ -44,6 +44,7 @@ public class Q00148_PathtoBecominganExaltedMercenary extends Quest
 		36488,
 		36489
 	};
+	
 	// Items
 	private static final int ELITE_CERTIFICATE = 13767;
 	private static final int TOP_ELITE_CERTIFICATE = 13768;
@@ -73,6 +74,7 @@ public class Q00148_PathtoBecominganExaltedMercenary extends Quest
 		{
 			qs.startQuest();
 		}
+		
 		return htmltext;
 	}
 	
@@ -128,6 +130,7 @@ public class Q00148_PathtoBecominganExaltedMercenary extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -33,8 +33,10 @@ public class Q10288_SecretMission extends Quest
 	private static final int DOMINIC = 31350;
 	private static final int AQUILANI = 32780;
 	private static final int GREYMORE = 32757;
+	
 	// Item
 	private static final int LETTER = 15529;
+	
 	// Location
 	private static final Location TELEPORT = new Location(118833, -80589, -2688);
 	
@@ -55,6 +57,7 @@ public class Q10288_SecretMission extends Quest
 		{
 			return getNoQuestMsg(player);
 		}
+		
 		String htmltext = event;
 		
 		switch (event)
@@ -101,6 +104,7 @@ public class Q10288_SecretMission extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -108,11 +112,13 @@ public class Q10288_SecretMission extends Quest
 	public String onFirstTalk(Npc npc, Player player)
 	{
 		final QuestState qs = getQuestState(player, false);
+		
 		// dialog only changes when you talk to Aquilani after quest completion
 		if ((qs != null) && qs.isCompleted())
 		{
 			return "32780-05.html";
 		}
+		
 		return "32780.html";
 	}
 	
@@ -172,6 +178,7 @@ public class Q10288_SecretMission extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

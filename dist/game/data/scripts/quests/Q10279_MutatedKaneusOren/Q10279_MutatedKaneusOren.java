@@ -42,6 +42,7 @@ public class Q10279_MutatedKaneusOren extends Quest
 	private static final int ROVIA = 30189;
 	private static final int KAIM_ABIGORE = 18566;
 	private static final int KNIGHT_MONTAGNAR = 18568;
+	
 	// Items
 	private static final int TISSUE_KA = 13836;
 	private static final int TISSUE_KM = 13837;
@@ -78,6 +79,7 @@ public class Q10279_MutatedKaneusOren extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -165,6 +167,7 @@ public class Q10279_MutatedKaneusOren extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

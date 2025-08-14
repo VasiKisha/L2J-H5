@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="8900" type="EtcItem" name="Ancient Spellbook: Cyclone">
 		<!-- Ancient Spellbook needed to learn Cyclone. Can be used by a Storm Screamer. -->
@@ -120,9 +120,9 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="10" />
 		<set name="price" val="500000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8913" type="Armor" name="Butterfly Hairpin">
 		<!-- Hairpin in the shape of a butterfly. This is a female-only hair accessory. -->
@@ -133,9 +133,9 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="10" />
 		<set name="price" val="500000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8914" type="Armor" name="Luxurious Gold Circlet">
 		<!-- Luxurious Gold Circlet. It uses 2 hair accessory slots. -->
@@ -176,9 +176,9 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="10" />
 		<set name="price" val="500000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8918" type="Armor" name="Leather Cap">
 		<!-- A medieval-era hat made of leather. It uses 2 hair accessory slots. -->
@@ -241,9 +241,9 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="10" />
 		<set name="price" val="500000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="0" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8924" type="EtcItem" name="Boat Ticket: Primeval Isle to Rune.">
 		<!-- Boat Ticket from Primeval Isle to Rune. -->
@@ -282,12 +282,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8927" type="Weapon" name="Shadow Item: Poleaxe">
 		<!-- This Shadow Item contains the mirrored power of a Poleaxe. It cannot be traded, dropped or given other functions. -->
@@ -309,13 +309,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8928" type="Weapon" name="Shadow Item: Stick of Eternity">
 		<!-- This Shadow Item contains the mirrored power of a Stick of Eternity. It cannot be traded, dropped or given other functions. -->
@@ -337,13 +337,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="101" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8929" type="Weapon" name="Shadow Item: Inferno Staff">
 		<!-- This Shadow Item contains the mirrored power of an Inferno Staff. It cannot be traded, dropped or given other functions. -->
@@ -365,13 +365,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="135" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8930" type="Weapon" name="Shadow Item: Pa'agrian Hammer">
 		<!-- This Shadow Item contains the mirrored power of a Pa'agrian Hammer. It cannot be traded, dropped or given other functions. -->
@@ -393,13 +393,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="135" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8931" type="Weapon" name="Shadow Item: Dark Screamer">
 		<!-- This Shadow Item contains the mirrored power of a Dark Screamer. It cannot be traded, dropped or given other functions. -->
@@ -420,13 +420,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="8932" type="Weapon" name="Shadow Item: Akat Long Bow">
 		<!-- This Shadow Item contains the mirrored power of an Akat Long Bow. It cannot be traded, dropped or given other functions. -->
@@ -449,13 +449,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="316" />
 			<set stat="mAtk" val="84" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="227" />
-		</for>
+		</stats>
 	</item>
 	<item id="8933" type="Weapon" name="Shadow Item: Pa'agrian Sword">
 		<!-- This Shadow Item contains the mirrored power of a Pa'agrian Sword. It cannot be traded, dropped or given other functions. -->
@@ -476,12 +476,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8934" type="Weapon" name="Shadow Item: Fisted Blade">
 		<!-- This Shadow Item contains the mirrored power of a Fisted Blade. It cannot be traded, dropped or given other functions. -->
@@ -502,13 +502,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8935" type="Weapon" name="Test Rapier">
 		<!-- Test -->
@@ -527,12 +527,12 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="156" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8936" type="Armor" name="Santa's Antlers">
 		<!-- Santa's Horn Hat, which is made to celebrate the holy day. -->
@@ -563,12 +563,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="120" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="175" />
 			<set stat="mAtk" val="78" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8938" type="Weapon" name="Damascus * Tallum Blade">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of a one-handed or fist weapon. When enchanted to 4 or more, Atk. Spd. will increase by 8%. Inflicts additional damage to target during PvP. -->
@@ -590,14 +590,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3045-17" />
 		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8939" type="EtcItem" name="Dominic's Mark">
 		<!-- Dominic's Mark. Used in carrying out a secret mission. -->
@@ -1009,13 +1009,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8973" type="Weapon" name="Shadow Item: Falchion">
 		<!-- This Shadow Item contains the mirrored power of a Falchion. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1035,12 +1035,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8974" type="Weapon" name="Shadow Item: Iron Hammer">
 		<!-- This Shadow Item contains the mirrored power of an Iron Hammer. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1060,13 +1060,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8975" type="Weapon" name="Shadow Item: Voodoo Doll">
 		<!-- This Shadow Item contains the mirrored power of a Voodoo Doll. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1087,12 +1087,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="25" />
 			<set stat="mAtk" val="28" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8976" type="Weapon" name="Shadow Item: Flanged Mace">
 		<!-- This Shadow Item contains the mirrored power of a Flanged Mace. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1112,13 +1112,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8977" type="Weapon" name="Shadow Item: Mage Staff">
 		<!-- This Shadow Item contains the mirrored power of a Mage Staff. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1139,13 +1139,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="30" />
 			<set stat="mAtk" val="31" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8978" type="Weapon" name="Shadow Item: Sword Breaker">
 		<!-- This Shadow Item contains the mirrored power of a Sword Breaker. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1165,13 +1165,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="27" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="8979" type="Weapon" name="Shadow Item: Viper Fang">
 		<!-- This Shadow Item contains the mirrored power of a Viper Fang. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1191,13 +1191,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="38" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8980" type="Weapon" name="Shadow Item: Composite Bow">
 		<!-- This Shadow Item contains the mirrored power of a Composite Bow. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1219,13 +1219,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="64" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="8981" type="Weapon" name="Shadow Item: Crucifix of Blessing">
 		<!-- This Shadow Item contains the mirrored power of a Crucifix of Blessing. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1246,12 +1246,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="25" />
 			<set stat="mAtk" val="28" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8982" type="Weapon" name="Shadow Item: Two Handed Sword">
 		<!-- This Shadow Item contains the mirrored power of a Two Handed Sword. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1272,12 +1272,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="78" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8983" type="Weapon" name="Shadow Item: Crimson Sword">
 		<!-- This Shadow Item contains the mirrored power of a Crimson Sword. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1298,12 +1298,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="64" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8984" type="Weapon" name="Shadow Item: Spiked Club">
 		<!-- This Shadow Item contains the mirrored power of a Spiked Club. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1324,13 +1324,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="64" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8985" type="Weapon" name="Shadow Item: Staff of Magic">
 		<!-- This Shadow Item contains the mirrored power of a Staff of Magic. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1352,13 +1352,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="62" />
 			<set stat="mAtk" val="57" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8986" type="Weapon" name="Shadow Item: Kukuri">
 		<!-- This Shadow Item contains the mirrored power of a Kukuri. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1379,13 +1379,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="56" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="8987" type="Weapon" name="Shadow Item: Dagger of Mana">
 		<!-- This Shadow Item contains the mirrored power of a Dagger of Mana. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1407,13 +1407,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="45" />
 			<set stat="mAtk" val="52" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="8988" type="Weapon" name="Shadow Item: Triple-Edged Jamadhr">
 		<!-- This Shadow Item contains the mirrored power of a Triple-Edged Jamadhr. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1434,13 +1434,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="78" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8989" type="Weapon" name="Shadow Item: Gastraphetes">
 		<!-- This Shadow Item contains the mirrored power of a Gastraphetes. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1463,13 +1463,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="132" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="8990" type="Weapon" name="Shadow Item: War Hammer">
 		<!-- This Shadow Item contains the mirrored power of a War Hammer. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1491,13 +1491,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="64" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8991" type="Weapon" name="Shadow Item: Sword of Delusion">
 		<!-- This Shadow Item contains the mirrored power of a Sword of Delusion. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1518,12 +1518,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8992" type="Weapon" name="Shadow Item: Poleaxe">
 		<!-- This Shadow Item contains the mirrored power of a Poleaxe. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1545,13 +1545,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8993" type="Weapon" name="Shadow Item: Stick of Eternity">
 		<!-- This Shadow Item contains the mirrored power of a Stick of Eternity. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1573,13 +1573,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="101" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8994" type="Weapon" name="Shadow Item: Inferno Staff">
 		<!-- This Shadow Item contains the mirrored power of an Inferno Staff. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1601,13 +1601,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="135" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8995" type="Weapon" name="Shadow Item: Pa'agrian Hammer">
 		<!-- This Shadow Item contains the mirrored power of a Pa'agrian Hammer. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1629,13 +1629,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="135" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8996" type="Weapon" name="Shadow Item: Dark Screamer">
 		<!-- This Shadow Item contains the mirrored power of a Dark Screamer. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1656,13 +1656,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="8997" type="Weapon" name="Shadow Item: Akat Long Bow">
 		<!-- This Shadow Item contains the mirrored power of an Akat Long Bow. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1685,13 +1685,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="316" />
 			<set stat="mAtk" val="84" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="227" />
-		</for>
+		</stats>
 	</item>
 	<item id="8998" type="Weapon" name="Shadow Item: Pa'agrian Sword">
 		<!-- This Shadow Item contains the mirrored power of a Pa'agrian Sword. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1712,12 +1712,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8999" type="Weapon" name="Shadow Item: Fisted Blade">
 		<!-- This Shadow Item contains the mirrored power of a Fisted Blade. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -1738,12 +1738,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 </list>

@@ -21,7 +21,6 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 
@@ -46,11 +45,14 @@ public class Warpgate extends AbstractNpcAI
 		32318,
 		32319,
 	};
+	
 	// Locations
 	private static final Location ENTER_LOC = new Location(-11272, 236464, -3248);
 	private static final Location REMOVE_LOC = new Location(-16555, 209375, -3670);
+	
 	// Item
 	private static final int MAP = 9994;
+	
 	// Misc
 	private static final int ZONE = 40101;
 	
@@ -80,6 +82,7 @@ public class Warpgate extends AbstractNpcAI
 		{
 			player.teleToLocation(REMOVE_LOC, true);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -95,7 +98,7 @@ public class Warpgate extends AbstractNpcAI
 		if (creature.isPlayer())
 		{
 			final Player player = creature.asPlayer();
-			if (!canEnter(player) && !player.canOverrideCond(PlayerCondOverride.ZONE_CONDITIONS) && !player.isOnEvent())
+			if (!canEnter(player) && !player.isGM() && !player.isOnEvent())
 			{
 				startQuestTimer("TELEPORT", 1000, null, player);
 			}

@@ -62,6 +62,7 @@ public class BufferPool
 		{
 			_buffers.offer(ByteBuffer.allocateDirect(_bufferSize).order(ByteOrder.LITTLE_ENDIAN));
 		}
+		
 		_estimateSize.set(amount);
 	}
 	
@@ -77,6 +78,7 @@ public class BufferPool
 		{
 			_estimateSize.decrementAndGet();
 		}
+		
 		return buffer;
 	}
 	
@@ -94,6 +96,7 @@ public class BufferPool
 			_buffers.offer(buffer.clear());
 			_estimateSize.incrementAndGet();
 		}
+		
 		return recycle;
 	}
 	
@@ -117,6 +120,7 @@ public class BufferPool
 			{
 				_buffers.offer(ByteBuffer.allocateDirect(_bufferSize).order(ByteOrder.LITTLE_ENDIAN));
 			}
+			
 			_maxSize.set(maxSize + amount);
 			_estimateSize.addAndGet(amount);
 		}

@@ -40,6 +40,7 @@ public class AgitDecoInfo extends ServerPacket
 	{
 		ServerPackets.AGIT_DECO_INFO.writeId(this, buffer);
 		buffer.writeInt(_clanHall.getId());
+		
 		// Fireplace
 		ClanHallFunction function = _clanHall.getFunction(ClanHall.FUNC_RESTORE_HP);
 		if ((function == null) || (function.getLevel() == 0))
@@ -54,6 +55,7 @@ public class AgitDecoInfo extends ServerPacket
 		{
 			buffer.writeByte(2);
 		}
+		
 		// Carpet - Statue
 		function = _clanHall.getFunction(ClanHall.FUNC_RESTORE_MP);
 		if ((function == null) || (function.getLevel() == 0))
@@ -71,6 +73,7 @@ public class AgitDecoInfo extends ServerPacket
 			buffer.writeByte(2);
 			buffer.writeByte(2);
 		}
+		
 		// Chandelier
 		function = _clanHall.getFunction(ClanHall.FUNC_RESTORE_EXP);
 		if ((function == null) || (function.getLevel() == 0))
@@ -85,6 +88,7 @@ public class AgitDecoInfo extends ServerPacket
 		{
 			buffer.writeByte(2);
 		}
+		
 		// Mirror
 		function = _clanHall.getFunction(ClanHall.FUNC_TELEPORT);
 		if ((function == null) || (function.getLevel() == 0))
@@ -99,8 +103,10 @@ public class AgitDecoInfo extends ServerPacket
 		{
 			buffer.writeByte(2);
 		}
+		
 		// Crystal
 		buffer.writeByte(0);
+		
 		// Curtain
 		function = _clanHall.getFunction(ClanHall.FUNC_DECO_CURTAINS);
 		if ((function == null) || (function.getLevel() == 0))
@@ -115,6 +121,7 @@ public class AgitDecoInfo extends ServerPacket
 		{
 			buffer.writeByte(2);
 		}
+		
 		// Magic Curtain
 		function = _clanHall.getFunction(ClanHall.FUNC_ITEM_CREATE);
 		if ((function == null) || (function.getLevel() == 0))
@@ -129,6 +136,7 @@ public class AgitDecoInfo extends ServerPacket
 		{
 			buffer.writeByte(2);
 		}
+		
 		// Support? - Flag
 		function = _clanHall.getFunction(ClanHall.FUNC_SUPPORT);
 		if ((function == null) || (function.getLevel() == 0))
@@ -146,6 +154,7 @@ public class AgitDecoInfo extends ServerPacket
 			buffer.writeByte(2);
 			buffer.writeByte(2);
 		}
+		
 		// Front platform
 		function = _clanHall.getFunction(ClanHall.FUNC_DECO_FRONTPLATEFORM);
 		if ((function == null) || (function.getLevel() == 0))
@@ -160,6 +169,7 @@ public class AgitDecoInfo extends ServerPacket
 		{
 			buffer.writeByte(2);
 		}
+		
 		// Item create?
 		function = _clanHall.getFunction(ClanHall.FUNC_ITEM_CREATE);
 		if ((function == null) || (function.getLevel() == 0))

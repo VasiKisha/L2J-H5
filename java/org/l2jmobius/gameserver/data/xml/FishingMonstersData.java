@@ -97,6 +97,7 @@ public class FishingMonstersData implements IXmlReader
 				return fishingMonster;
 			}
 		}
+		
 		return null;
 	}
 	

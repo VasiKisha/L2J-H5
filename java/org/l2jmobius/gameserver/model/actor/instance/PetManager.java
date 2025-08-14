@@ -70,6 +70,7 @@ public class PetManager extends Merchant
 		{
 			pom = npcId + "-" + value;
 		}
+		
 		return "data/html/petmanager/" + pom + ".htm";
 	}
 	
@@ -88,6 +89,7 @@ public class PetManager extends Merchant
 		{
 			html.replace("_Quest", "_RentPet\">Rent Pet</a><br><a action=\"bypass -h npc_%objectId%_Quest");
 		}
+		
 		html.replace("%objectId%", String.valueOf(getObjectId()));
 		html.replace("%npcname%", getName());
 		player.sendPacket(html);
@@ -154,6 +156,7 @@ public class PetManager extends Merchant
 					break;
 				}
 			}
+			
 			if (!ok)
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -195,6 +198,7 @@ public class PetManager extends Merchant
 					break;
 				}
 			}
+			
 			if (!ok)
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -307,6 +311,7 @@ public class PetManager extends Merchant
 		
 		player.sendPacket(new MagicSkillUse(npc, 2046, 1, 1000, 600000));
 		player.sendPacket(SystemMessageId.SUMMONING_YOUR_PET);
+		
 		// World.getInstance().storeObject(petSummon);
 		petSummon.spawnMe(oldX, oldY, oldZ);
 		petSummon.startFeed();
@@ -388,6 +393,7 @@ public class PetManager extends Merchant
 		
 		player.sendPacket(new MagicSkillUse(npc, 2046, 1, 1000, 600000));
 		player.sendPacket(SystemMessageId.SUMMONING_YOUR_PET);
+		
 		// World.getInstance().storeObject(petSummon);
 		petSummon.spawnMe(player.getX(), player.getY(), player.getZ());
 		petSummon.startFeed();
@@ -428,6 +434,7 @@ public class PetManager extends Merchant
 		{
 			// Ignore.
 		}
+		
 		return true;
 	}
 	

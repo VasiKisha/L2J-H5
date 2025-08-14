@@ -40,6 +40,7 @@ public class Q00273_InvadersOfTheHolyLand extends Quest
 {
 	// NPC
 	private static final int VARKEES = 30566;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -48,10 +49,12 @@ public class Q00273_InvadersOfTheHolyLand extends Quest
 		MONSTERS.put(20312, 87); // Rakeclaw Imp Hunter
 		MONSTERS.put(20313, 77); // Rakeclaw Imp Chieftain
 	}
+	
 	// Items
 	private static final int BLACK_SOULSTONE = 1475;
 	private static final int RED_SOULSTONE = 1476;
 	private static final ItemHolder SOULSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5789, 6000);
+	
 	// Misc
 	private static final int MIN_LEVEL = 6;
 	private static final int GUIDE_MISSION = 41;
@@ -93,6 +96,7 @@ public class Q00273_InvadersOfTheHolyLand extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -110,6 +114,7 @@ public class Q00273_InvadersOfTheHolyLand extends Quest
 			{
 				giveItems(killer, RED_SOULSTONE, 1);
 			}
+			
 			playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
 	}
@@ -170,6 +175,7 @@ public class Q00273_InvadersOfTheHolyLand extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

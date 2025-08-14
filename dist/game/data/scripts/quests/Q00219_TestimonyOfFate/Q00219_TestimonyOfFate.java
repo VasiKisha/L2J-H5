@@ -44,6 +44,7 @@ public class Q00219_TestimonyOfFate extends Quest
 	private static final int BROTHER_METHEUS = 30614;
 	private static final int BLOODY_PIXY = 31845;
 	private static final int BLIGHT_TREANT = 31850;
+	
 	// Items
 	private static final int KAIRAS_LETTER = 3173;
 	private static final int METHEUSS_FUNERAL_JAR = 3174;
@@ -75,9 +76,11 @@ public class Q00219_TestimonyOfFate extends Quest
 	private static final int BLACK_WILLOW_LEAF = 3200;
 	private static final int BLIGHT_TREANT_SAP = 3201;
 	private static final int ARKENIAS_LETTER = 3202;
+	
 	// Reward
 	private static final int MARK_OF_FATE = 3172;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monster
 	private static final int HANGMAN_TREE = 20144;
 	private static final int MARSH_STAKATO = 20157;
@@ -93,8 +96,10 @@ public class Q00219_TestimonyOfFate extends Quest
 	private static final int GRANDIS = 20554;
 	private static final int LETO_LIZARDMAN_OVERLORD = 20582;
 	private static final int KARUL_BUGBEAR = 20600;
+	
 	// Quest Monster
 	private static final int BLACK_WILLOW_LURKER = 27079;
+	
 	// Misc
 	private static final int MIN_LEVEL = 37;
 	
@@ -208,6 +213,7 @@ public class Q00219_TestimonyOfFate extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -704,6 +710,7 @@ public class Q00219_TestimonyOfFate extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

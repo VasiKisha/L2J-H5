@@ -49,6 +49,7 @@ public class ButtonsStyle implements IHtmlStyle
 		{
 			return String.format(DEFAULT_PAGE_TEXT_FORMAT, name);
 		}
+		
 		return String.format(DEFAULT_PAGE_LINK_FORMAT, bypass, name, _width, _height, _back, _fore);
 	}
 	

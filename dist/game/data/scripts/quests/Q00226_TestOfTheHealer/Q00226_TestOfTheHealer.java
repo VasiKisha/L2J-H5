@@ -47,6 +47,7 @@ public class Q00226_TestOfTheHealer extends Quest
 	private static final int CAIN_FLYING_KNIFE = 30664;
 	private static final int SAINT_KRISTINA = 30665;
 	private static final int DAURIN_HAMMERCRUSH = 30674;
+	
 	// Items
 	private static final int ADENA = 57;
 	private static final int REPORT_OF_PERRIN = 2810;
@@ -59,9 +60,11 @@ public class Q00226_TestOfTheHealer extends Quest
 	private static final int SECRET_LETTER2 = 2817;
 	private static final int SECRET_LETTER3 = 2818;
 	private static final int SECRET_LETTER4 = 2819;
+	
 	// Reward
 	private static final int MARK_OF_HEALER = 2820;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Quest Monster
 	private static final int LERO_LIZARDMAN_AGENT = 27122;
 	private static final int LERO_LIZARDMAN_LEADER = 27123;
@@ -70,6 +73,7 @@ public class Q00226_TestOfTheHealer extends Quest
 	private static final int LERO_LIZARDMAN_WIZARD = 27126;
 	private static final int LERO_LIZARDMAN_LORD = 27127;
 	private static final int TATOMA = 27134;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	
@@ -120,6 +124,7 @@ public class Q00226_TestOfTheHealer extends Quest
 						{
 							giveItems(player, DIMENSIONAL_DIAMOND, 72);
 						}
+						
 						player.getVariables().set("2ND_CLASS_DIAMOND_REWARD", 1);
 						htmltext = "30473-04a.htm";
 					}
@@ -161,6 +166,7 @@ public class Q00226_TestOfTheHealer extends Quest
 						addAttackDesire(addSpawn(npc, TATOMA, npc, true, 200000), player);
 					}
 				}
+				
 				htmltext = event;
 				break;
 			}
@@ -246,6 +252,7 @@ public class Q00226_TestOfTheHealer extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -513,6 +520,7 @@ public class Q00226_TestOfTheHealer extends Quest
 								addSpawn(npc, LERO_LIZARDMAN_ASSASSIN, npc, true, 200000);
 								playSound(player, QuestSound.ITEMSOUND_QUEST_BEFORE_BATTLE);
 							}
+							
 							qs.setCond(14);
 							npc.deleteMe();
 							htmltext = "30661-01.html";
@@ -526,6 +534,7 @@ public class Q00226_TestOfTheHealer extends Quest
 								addSpawn(npc, LERO_LIZARDMAN_SNIPER, npc, true, 200000);
 								playSound(player, QuestSound.ITEMSOUND_QUEST_BEFORE_BATTLE);
 							}
+							
 							qs.setCond(16);
 							npc.deleteMe();
 							htmltext = "30661-02.html";
@@ -539,6 +548,7 @@ public class Q00226_TestOfTheHealer extends Quest
 								addSpawn(npc, LERO_LIZARDMAN_LORD, npc, true, 200000);
 								playSound(player, QuestSound.ITEMSOUND_QUEST_BEFORE_BATTLE);
 							}
+							
 							qs.setCond(18);
 							npc.deleteMe();
 							htmltext = "30661-03.html";
@@ -645,6 +655,7 @@ public class Q00226_TestOfTheHealer extends Quest
 								addSpawn(npc, LERO_LIZARDMAN_AGENT, npc, true, 200000);
 								addSpawn(npc, LERO_LIZARDMAN_LEADER, npc, true, 200000);
 							}
+							
 							htmltext = "30674-02a.html";
 						}
 						else if (hasQuestItems(player, SECRET_LETTER1))
@@ -669,6 +680,7 @@ public class Q00226_TestOfTheHealer extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

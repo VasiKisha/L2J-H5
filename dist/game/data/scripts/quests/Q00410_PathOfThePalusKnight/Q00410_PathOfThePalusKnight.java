@@ -35,6 +35,7 @@ public class Q00410_PathOfThePalusKnight extends Quest
 	// NPCs
 	private static final int MASTER_VIRGIL = 30329;
 	private static final int KALINTA = 30422;
+	
 	// Items
 	private static final int PALLUS_TALISMAN = 1237;
 	private static final int LYCANTHROPE_SKULL = 1238;
@@ -43,12 +44,15 @@ public class Q00410_PathOfThePalusKnight extends Quest
 	private static final int VENOMOUS_SPIDERS_CARAPACE = 1241;
 	private static final int ARACHNID_TRACKER_SILK = 1242;
 	private static final int COFFIN_OF_ETERNAL_REST = 1243;
+	
 	// Reward
 	private static final int GAZE_OF_ABYSS = 1244;
+	
 	// Monster
 	private static final int VENOMOUS_SPIDER = 20038;
 	private static final int ARACHNID_TRACKER = 20043;
 	private static final int LYCANTHROPE = 20049;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -147,6 +151,7 @@ public class Q00410_PathOfThePalusKnight extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -259,6 +264,7 @@ public class Q00410_PathOfThePalusKnight extends Quest
 						{
 							addExpAndSp(player, 591724, 39608);
 						}
+						
 						qs.exitQuest(false, true);
 						player.sendPacket(new SocialAction(player.getObjectId(), 3));
 						htmltext = "30329-11.html";
@@ -302,6 +308,7 @@ public class Q00410_PathOfThePalusKnight extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

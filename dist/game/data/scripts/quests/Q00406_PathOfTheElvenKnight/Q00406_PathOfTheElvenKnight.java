@@ -39,16 +39,20 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 	// NPCs
 	private static final int BLACKSMITH_KLUTO = 30317;
 	private static final int MASTER_SORIUS = 30327;
+	
 	// Items
 	private static final int SORIUS_LETTER = 1202;
 	private static final int KLUTO_BOX = 1203;
 	private static final int TOPAZ_PIECE = 1205;
 	private static final int EMERALD_PIECE = 1206;
 	private static final int KLUTO_MEMO = 1276;
+	
 	// Reward
 	private static final int ELVEN_KNIGHT_BROOCH = 1204;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
+	
 	// Mobs
 	private static final int OL_MAHUM_NOVICE = 20782;
 	private static final Map<Integer, ItemChanceHolder> MONSTER_DROPS = new HashMap<>();
@@ -124,11 +128,13 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 				{
 					giveItems(player, KLUTO_MEMO, 1);
 				}
+				
 				qs.setCond(4, true);
 				htmltext = event;
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -195,6 +201,7 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 							{
 								giveItems(player, SORIUS_LETTER, 1);
 							}
+							
 							qs.setCond(3, true);
 							htmltext = "30327-09.html";
 						}
@@ -210,6 +217,7 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 						{
 							giveItems(player, ELVEN_KNIGHT_BROOCH, 1);
 						}
+						
 						final int level = player.getLevel();
 						if (level >= 20)
 						{
@@ -223,6 +231,7 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 						{
 							addExpAndSp(player, 591724, 33328);
 						}
+						
 						qs.exitQuest(false, true);
 						player.sendPacket(new SocialAction(player.getObjectId(), 3));
 						htmltext = "30327-10.html";
@@ -251,6 +260,7 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 							{
 								giveItems(player, KLUTO_BOX, 1);
 							}
+							
 							takeItems(player, TOPAZ_PIECE, -1);
 							takeItems(player, EMERALD_PIECE, -1);
 							takeItems(player, KLUTO_MEMO, 1);
@@ -266,6 +276,7 @@ public class Q00406_PathOfTheElvenKnight extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

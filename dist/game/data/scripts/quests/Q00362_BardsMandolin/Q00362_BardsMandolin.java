@@ -33,10 +33,12 @@ public class Q00362_BardsMandolin extends Quest
 	private static final int NANARIN = 30956;
 	private static final int SWAN = 30957;
 	private static final int GALION = 30958;
+	
 	// Items
 	private static final int SWANS_FLUTE = 4316;
 	private static final int SWANS_LETTER = 4317;
 	private static final int THEME_OF_JOURNEY = 4410;
+	
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	
@@ -80,6 +82,7 @@ public class Q00362_BardsMandolin extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -186,6 +189,7 @@ public class Q00362_BardsMandolin extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -43,6 +43,7 @@ public class SiegeFlagStatus extends NpcStatus
 		{
 			super.reduceHp(value / 2, attacker, awake, isDOT, isHpConsumption);
 		}
+		
 		super.reduceHp(value, attacker, awake, isDOT, isHpConsumption);
 	}
 	

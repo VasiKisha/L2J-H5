@@ -31,8 +31,10 @@ public class Q00651_RunawayYouth extends Quest
 	// NPCs
 	private static final int BATIDAE = 31989;
 	private static final int IVAN = 32014;
+	
 	// Item
 	private static final int SOE = 736;
+	
 	// Misc
 	private static final int MIN_LEVEL = 26;
 	
@@ -63,11 +65,13 @@ public class Q00651_RunawayYouth extends Quest
 			{
 				return "32014-05.htm";
 			}
+			
 			qs.startQuest();
 			takeItems(player, SOE, 1);
 			npc.deleteMe();
 			htmltext = event;
 		}
+		
 		return htmltext;
 	}
 	
@@ -106,6 +110,7 @@ public class Q00651_RunawayYouth extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -170,6 +170,7 @@ public class AuctionableHall extends ClanHall
 					{
 						_paidUntil = _time + CH_RATE;
 					}
+					
 					ClanTable.getInstance().getClan(getOwnerId()).getWarehouse().destroyItemByItemId(ItemProcessType.FEE, Inventory.ADENA_ID, getLease(), null, null);
 					ThreadPool.schedule(new FeeTask(), _paidUntil - _time);
 					_paid = true;

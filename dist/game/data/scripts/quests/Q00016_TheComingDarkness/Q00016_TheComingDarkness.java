@@ -43,6 +43,7 @@ public class Q00016_TheComingDarkness extends Quest
 	private static final int EVIL_ALTAR_3 = 31514;
 	private static final int EVIL_ALTAR_4 = 31515;
 	private static final int EVIL_ALTAR_5 = 31516;
+	
 	// Item
 	private static final int CRYSTAL_OF_SEAL = 7167;
 	
@@ -88,6 +89,7 @@ public class Q00016_TheComingDarkness extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -141,6 +143,7 @@ public class Q00016_TheComingDarkness extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

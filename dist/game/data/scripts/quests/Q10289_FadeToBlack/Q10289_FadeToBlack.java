@@ -32,9 +32,11 @@ public class Q10289_FadeToBlack extends Quest
 {
 	// NPC
 	private static final int GREYMORE = 32757;
+	
 	// Items
 	private static final int MARK_OF_SPLENDOR = 15527;
 	private static final int MARK_OF_DARKNESS = 15528;
+	
 	// Monster
 	private static final int ANAYS = 25701;
 	
@@ -238,12 +240,14 @@ public class Q10289_FadeToBlack extends Quest
 					{
 						addExpAndSp(player, 55983 * marksOfDarkness, 136500 * (int) marksOfDarkness);
 					}
+					
 					qs.exitQuest(false, true);
 					htmltext = "32757-09.html";
 				}
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -318,6 +322,7 @@ public class Q10289_FadeToBlack extends Quest
 		{
 			htmltext = "32757-10.html";
 		}
+		
 		return htmltext;
 	}
 	

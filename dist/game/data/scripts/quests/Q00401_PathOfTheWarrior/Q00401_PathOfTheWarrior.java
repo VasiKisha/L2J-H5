@@ -36,6 +36,7 @@ public class Q00401_PathOfTheWarrior extends Quest
 	// NPCs
 	private static final int MASTER_AURON = 30010;
 	private static final int TRADER_SIMPLON = 30253;
+	
 	// Items
 	private static final int AURONS_LETTER = 1138;
 	private static final int WARRIOR_GUILD_MARK = 1139;
@@ -44,13 +45,16 @@ public class Q00401_PathOfTheWarrior extends Quest
 	private static final int RUSTED_BRONZE_SWORD3 = 1142;
 	private static final int SIMPLONS_LETTER = 1143;
 	private static final int VENOMOUS_SPIDERS_LEG = 1144;
+	
 	// Reward
 	private static final int MEDALLION_OF_WARRIOR = 1145;
+	
 	// Monster
 	private static final int TRACKER_SKELETON = 20035;
 	private static final int VENOMOUS_SPIDERS = 20038;
 	private static final int TRACKER_SKELETON_LIDER = 20042;
 	private static final int ARACHNID_TRACKER = 20043;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -145,6 +149,7 @@ public class Q00401_PathOfTheWarrior extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -284,6 +289,7 @@ public class Q00401_PathOfTheWarrior extends Quest
 							{
 								addExpAndSp(player, 160267, 34408);
 							}
+							
 							qs.exitQuest(false, true);
 							player.sendPacket(new SocialAction(player.getObjectId(), 3));
 							htmltext = "30010-13.html";
@@ -325,6 +331,7 @@ public class Q00401_PathOfTheWarrior extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

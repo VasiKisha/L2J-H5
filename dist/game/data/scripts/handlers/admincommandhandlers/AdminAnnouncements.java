@@ -50,7 +50,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final StringTokenizer st = new StringTokenizer(command);
 		final String cmd = st.hasMoreTokens() ? st.nextToken() : "";
@@ -65,11 +65,13 @@ public class AdminAnnouncements implements IAdminCommandHandler
 					activeChar.sendSysMessage("Syntax: //announce <text to announce here>");
 					return false;
 				}
+				
 				String announce = st.nextToken();
 				while (st.hasMoreTokens())
 				{
 					announce += " " + st.nextToken();
 				}
+				
 				if (cmd.equals("admin_announce_screen"))
 				{
 					Broadcast.toAllOnlinePlayersOnScreen(announce);
@@ -80,8 +82,10 @@ public class AdminAnnouncements implements IAdminCommandHandler
 					{
 						announce = announce + " [" + activeChar.getName() + "]";
 					}
+					
 					Broadcast.toAllOnlinePlayers(announce, cmd.equals("admin_announce_crit"));
 				}
+				
 				AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");
 				break;
 			}
@@ -98,67 +102,80 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							HtmlUtil.sendCBHtml(activeChar, content);
 							break;
 						}
+						
 						final String annType = st.nextToken();
 						final AnnouncementType type = AnnouncementType.findByName(annType);
+						
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						final String annInitDelay = st.nextToken();
 						if (!StringUtil.isNumeric(annInitDelay))
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						final int initDelay = Integer.parseInt(annInitDelay) * 1000;
+						
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						final String annDelay = st.nextToken();
 						if (!StringUtil.isNumeric(annDelay))
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						final int delay = Integer.parseInt(annDelay) * 1000;
 						if ((delay < (10 * 1000)) && ((type == AnnouncementType.AUTO_NORMAL) || (type == AnnouncementType.AUTO_CRITICAL)))
 						{
 							activeChar.sendSysMessage("Delay cannot be less then 10 seconds!");
 							break;
 						}
+						
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						final String annRepeat = st.nextToken();
 						if (!StringUtil.isNumeric(annRepeat))
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						int repeat = Integer.parseInt(annRepeat);
 						if (repeat == 0)
 						{
 							repeat = -1;
 						}
+						
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						String content = st.nextToken();
 						while (st.hasMoreTokens())
 						{
 							content += " " + st.nextToken();
 						}
+						
 						// ************************************
 						final IAnnouncement announce;
 						if ((type == AnnouncementType.AUTO_CRITICAL) || (type == AnnouncementType.AUTO_NORMAL))
@@ -169,9 +186,10 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						{
 							announce = new Announcement(type, content, activeChar.getName());
 						}
+						
 						AnnouncementsTable.getInstance().addAnnouncement(announce);
 						activeChar.sendSysMessage("Announcement has been successfully added!");
-						return useAdminCommand("admin_announces list", activeChar);
+						return onCommand("admin_announces list", activeChar);
 					}
 					case "edit":
 					{
@@ -180,12 +198,14 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							activeChar.sendSysMessage("Syntax: //announces edit <id>");
 							break;
 						}
+						
 						final String annId = st.nextToken();
 						if (!StringUtil.isNumeric(annId))
 						{
 							activeChar.sendSysMessage("Syntax: //announces edit <id>");
 							break;
 						}
+						
 						final int id = Integer.parseInt(annId);
 						final IAnnouncement announce = AnnouncementsTable.getInstance().getAnnounce(id);
 						if (announce == null)
@@ -193,6 +213,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							activeChar.sendSysMessage("Announcement does not exist!");
 							break;
 						}
+						
 						if (!st.hasMoreTokens())
 						{
 							String content = HtmCache.getInstance().getHtm(activeChar, "data/html/admin/announces-edit.htm");
@@ -210,6 +231,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 								announcementDelay = Long.toString(autoAnnounce.getDelay() / 1000);
 								announcementRepeat = Integer.toString(autoAnnounce.getRepeat());
 							}
+							
 							content = content.replace("%id%", announcementId);
 							content = content.replace("%type%", announcementType);
 							content = content.replace("%initial%", announcementInital);
@@ -220,6 +242,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							HtmlUtil.sendCBHtml(activeChar, content);
 							break;
 						}
+						
 						final String annType = st.nextToken();
 						final AnnouncementType type = AnnouncementType.findByName(annType);
 						switch (announce.getType())
@@ -261,54 +284,64 @@ public class AdminAnnouncements implements IAdminCommandHandler
 								break;
 							}
 						}
+						
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						final String annInitDelay = st.nextToken();
 						if (!StringUtil.isNumeric(annInitDelay))
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						final int initDelay = Integer.parseInt(annInitDelay);
+						
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						final String annDelay = st.nextToken();
 						if (!StringUtil.isNumeric(annDelay))
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						final int delay = Integer.parseInt(annDelay);
 						if ((delay < 10) && ((type == AnnouncementType.AUTO_NORMAL) || (type == AnnouncementType.AUTO_CRITICAL)))
 						{
 							activeChar.sendSysMessage("Delay cannot be less then 10 seconds!");
 							break;
 						}
+						
 						// ************************************
 						if (!st.hasMoreTokens())
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						final String annRepeat = st.nextToken();
 						if (!StringUtil.isNumeric(annRepeat))
 						{
 							activeChar.sendSysMessage("Syntax: //announces add <type> <delay> <repeat> <text>");
 							break;
 						}
+						
 						int repeat = Integer.parseInt(annRepeat);
 						if (repeat == 0)
 						{
 							repeat = -1;
 						}
+						
 						// ************************************
 						String content = "";
 						if (st.hasMoreTokens())
@@ -319,10 +352,12 @@ public class AdminAnnouncements implements IAdminCommandHandler
 								content += " " + st.nextToken();
 							}
 						}
+						
 						if (content.isEmpty())
 						{
 							content = announce.getContent();
 						}
+						
 						// ************************************
 						announce.setType(type);
 						announce.setContent(content);
@@ -334,9 +369,10 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							autoAnnounce.setDelay(delay * 1000);
 							autoAnnounce.setRepeat(repeat);
 						}
+						
 						announce.updateMe();
 						activeChar.sendSysMessage("Announcement has been successfully edited!");
-						return useAdminCommand("admin_announces list", activeChar);
+						return onCommand("admin_announces list", activeChar);
 					}
 					case "remove":
 					{
@@ -345,12 +381,14 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							activeChar.sendSysMessage("Syntax: //announces remove <announcement id>");
 							break;
 						}
+						
 						final String token = st.nextToken();
 						if (!StringUtil.isNumeric(token))
 						{
 							activeChar.sendSysMessage("Syntax: //announces remove <announcement id>");
 							break;
 						}
+						
 						final int id = Integer.parseInt(token);
 						if (AnnouncementsTable.getInstance().deleteAnnouncement(id))
 						{
@@ -360,7 +398,8 @@ public class AdminAnnouncements implements IAdminCommandHandler
 						{
 							activeChar.sendSysMessage("Announcement does not exist!");
 						}
-						return useAdminCommand("admin_announces list", activeChar);
+						
+						return onCommand("admin_announces list", activeChar);
 					}
 					case "restart":
 					{
@@ -374,15 +413,18 @@ public class AdminAnnouncements implements IAdminCommandHandler
 									autoAnnounce.restartMe();
 								}
 							}
+							
 							activeChar.sendSysMessage("Auto announcements has been successfully restarted");
 							break;
 						}
+						
 						final String token = st.nextToken();
 						if (!StringUtil.isNumeric(token))
 						{
 							activeChar.sendSysMessage("Syntax: //announces show <announcement id>");
 							break;
 						}
+						
 						final int id = Integer.parseInt(token);
 						final IAnnouncement announce = AnnouncementsTable.getInstance().getAnnounce(id);
 						if (announce != null)
@@ -411,12 +453,14 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							activeChar.sendSysMessage("Syntax: //announces show <announcement id>");
 							break;
 						}
+						
 						final String token = st.nextToken();
 						if (!StringUtil.isNumeric(token))
 						{
 							activeChar.sendSysMessage("Syntax: //announces show <announcement id>");
 							break;
 						}
+						
 						final int id = Integer.parseInt(token);
 						final IAnnouncement announce = AnnouncementsTable.getInstance().getAnnounce(id);
 						if (announce != null)
@@ -436,6 +480,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 								announcementDelay = Long.toString(autoAnnounce.getDelay() / 1000);
 								announcementRepeat = Integer.toString(autoAnnounce.getRepeat());
 							}
+							
 							content = content.replace("%id%", announcementId);
 							content = content.replace("%type%", announcementType);
 							content = content.replace("%initial%", announcementInital);
@@ -446,8 +491,9 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							HtmlUtil.sendCBHtml(activeChar, content);
 							break;
 						}
+						
 						activeChar.sendSysMessage("Announcement does not exist!");
-						return useAdminCommand("admin_announces list", activeChar);
+						return onCommand("admin_announces list", activeChar);
 					}
 					case "list":
 					{
@@ -477,6 +523,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 							{
 								sb.append("<td width=60><button action=\"\" value=\"\" width=\"60\" height=\"21\" back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
 							}
+							
 							if (announcement.getType() == AnnouncementType.EVENT)
 							{
 								sb.append("<td width=60><button action=\"bypass -h admin_announces show " + announcement.getId() + "\" value=\"Show\" width=\"60\" height=\"21\" back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"></td>");
@@ -500,11 +547,12 @@ public class AdminAnnouncements implements IAdminCommandHandler
 				}
 			}
 		}
+		
 		return false;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

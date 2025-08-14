@@ -106,6 +106,7 @@ public class ForumsBBSManager extends BaseBBSManager
 				return forum;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -148,6 +149,7 @@ public class ForumsBBSManager extends BaseBBSManager
 				return f;
 			}
 		}
+		
 		return null;
 	}
 	

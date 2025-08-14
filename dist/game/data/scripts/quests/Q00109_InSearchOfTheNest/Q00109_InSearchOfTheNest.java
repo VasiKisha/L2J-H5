@@ -32,6 +32,7 @@ public class Q00109_InSearchOfTheNest extends Quest
 	private static final int PIERCE = 31553;
 	private static final int SCOUTS_CORPSE = 32015;
 	private static final int KAHMAN = 31554;
+	
 	// Items
 	private static final int SCOUTS_NOTE = 14858;
 	
@@ -79,6 +80,7 @@ public class Q00109_InSearchOfTheNest extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -152,6 +154,7 @@ public class Q00109_InSearchOfTheNest extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -48,8 +48,10 @@ public class Q00634_InSearchOfFragmentsOfDimension extends Quest
 	
 	// Item
 	private static final int DIMENSIONAL_FRAGMENT = 7079;
+	
 	// Misc
 	private static final int MIN_LEVEL = 20;
+	
 	// Monsters
 	private static final int[] MOBS =
 	{
@@ -149,6 +151,7 @@ public class Q00634_InSearchOfFragmentsOfDimension extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -179,6 +182,7 @@ public class Q00634_InSearchOfFragmentsOfDimension extends Quest
 		{
 			htmltext = "31494-04.html";
 		}
+		
 		return htmltext;
 	}
 }

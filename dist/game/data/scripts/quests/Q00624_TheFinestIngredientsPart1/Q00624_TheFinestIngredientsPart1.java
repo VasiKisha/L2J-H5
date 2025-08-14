@@ -35,13 +35,16 @@ public class Q00624_TheFinestIngredientsPart1 extends Quest
 {
 	// NPC
 	private static final int JEREMY = 31521;
+	
 	// Items
 	private static final int TRUNK_OF_NEPENTHES = 7202;
 	private static final int FOOT_OF_BANDERSNATCHLING = 7203;
 	private static final int SECRET_SPICE = 7204;
+	
 	// Rewards
 	private static final int ICE_CRYSTAL = 7080;
 	private static final int SOY_SAUCE_JAR = 7205;
+	
 	// Misc
 	private static final int MIN_LEVEL = 73;
 	private static final Map<Integer, Integer> MONSTER_DROPS = new HashMap<>();
@@ -94,6 +97,7 @@ public class Q00624_TheFinestIngredientsPart1 extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -112,6 +116,7 @@ public class Q00624_TheFinestIngredientsPart1 extends Quest
 					giveItems(partyMember, item, 50 - count);
 					playSound(partyMember, QuestSound.ITEMSOUND_QUEST_FANFARE_MIDDLE);
 				}
+				
 				if (getQuestItemsCount(partyMember, getRegisteredItemIds()) == 150)
 				{
 					getQuestState(partyMember, false).setCond(2, true);
@@ -155,6 +160,7 @@ public class Q00624_TheFinestIngredientsPart1 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -75,6 +75,7 @@ public class Q00338_AlligatorHunter extends Quest
 				{
 					return "30892-05.html";
 				}
+				
 				int amount = (getQuestItemsCount(player, ALLIGATOR_LEATHER) >= 10) ? 3430 : 0;
 				amount += 60 * getQuestItemsCount(player, ALLIGATOR_LEATHER);
 				giveAdena(player, amount, true);
@@ -98,6 +99,7 @@ public class Q00338_AlligatorHunter extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -112,6 +114,7 @@ public class Q00338_AlligatorHunter extends Quest
 			{
 				giveItems(player, ALLIGATOR_LEATHER, 1);
 			}
+			
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
 	}
@@ -134,6 +137,7 @@ public class Q00338_AlligatorHunter extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

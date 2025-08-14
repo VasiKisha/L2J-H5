@@ -37,6 +37,7 @@ public class FactionSystem extends AbstractNpcAI
 {
 	// NPCs
 	private static final int MANAGER = 500;
+	
 	// Other
 	private static final String[] TEXTS =
 	{
@@ -76,10 +77,12 @@ public class FactionSystem extends AbstractNpcAI
 					player.sendPacket(packet);
 					return htmltext;
 				}
+				
 				if (Config.FACTION_AUTO_NOBLESS)
 				{
 					player.setNoble(true);
 				}
+				
 				player.setGood();
 				final PlayerAppearance appearance = player.getAppearance();
 				appearance.setNameColor(Config.FACTION_GOOD_NAME_COLOR);
@@ -104,10 +107,12 @@ public class FactionSystem extends AbstractNpcAI
 					player.sendPacket(packet);
 					return htmltext;
 				}
+				
 				if (Config.FACTION_AUTO_NOBLESS)
 				{
 					player.setNoble(true);
 				}
+				
 				player.setEvil();
 				final PlayerAppearance appearance = player.getAppearance();
 				appearance.setNameColor(Config.FACTION_EVIL_NAME_COLOR);
@@ -128,6 +133,7 @@ public class FactionSystem extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

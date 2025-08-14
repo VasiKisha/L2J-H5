@@ -49,16 +49,19 @@ public class RequestConfirmGemStone extends AbstractRefinePacket
 		{
 			return;
 		}
+		
 		final Item targetItem = player.getInventory().getItemByObjectId(_targetItemObjId);
 		if (targetItem == null)
 		{
 			return;
 		}
+		
 		final Item refinerItem = player.getInventory().getItemByObjectId(_refinerItemObjId);
 		if (refinerItem == null)
 		{
 			return;
 		}
+		
 		final Item gemStoneItem = player.getInventory().getItemByObjectId(_gemstoneItemObjId);
 		if (gemStoneItem == null)
 		{

@@ -49,11 +49,13 @@ public class Rabbits extends Event
 	// NPCs
 	private static final int NPC_MANAGER = 900101;
 	private static final int CHEST = 900102;
+	
 	// Skills
 	private static final SkillHolder RABBIT_MAGIC_EYE = new SkillHolder(629, 1);
 	private static final SkillHolder RABBIT_TORNADO = new SkillHolder(630, 1);
 	private static final SkillHolder RABBIT_TRANSFORMATION = new SkillHolder(2428, 1);
 	private static final SkillHolder RAID_CURSE = new SkillHolder(4515, 1);
+	
 	// Misc
 	private static final int EVENT_TIME = 10;
 	private static final int TOTAL_CHEST_COUNT = 75;
@@ -171,6 +173,7 @@ public class Rabbits extends Event
 		
 		// Spawn Manager
 		recordSpawn(_npcs, NPC_MANAGER, -59227, -56939, -2039, 64106, false, 0);
+		
 		// Spawn Chests
 		for (int i = 0; i <= TOTAL_CHEST_COUNT; i++)
 		{
@@ -182,6 +185,7 @@ public class Rabbits extends Event
 		Broadcast.toAllOnlinePlayers("Rabbits Event: Go to Fantasy Isle and grab some rewards!");
 		Broadcast.toAllOnlinePlayers("Rabbits Event: You have " + EVENT_TIME + " minutes!");
 		Broadcast.toAllOnlinePlayers("Rabbits Event: After that time all chests will disappear...");
+		
 		// Schedule event end
 		startQuestTimer("END_RABBITS_EVENT", EVENT_TIME * 60000, null, eventMaker);
 		return true;
@@ -207,6 +211,7 @@ public class Rabbits extends Event
 		{
 			npc.deleteMe();
 		}
+		
 		_npcs.clear();
 		
 		for (Player player : _players)
@@ -216,6 +221,7 @@ public class Rabbits extends Event
 				player.untransform();
 			}
 		}
+		
 		_players.clear();
 		
 		// Announce event end
@@ -252,6 +258,7 @@ public class Rabbits extends Event
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -316,6 +323,7 @@ public class Rabbits extends Event
 			npc.disableCoreAI(true);
 			npc.setInvisible(true);
 		}
+		
 		npcs.add(npc);
 	}
 	

@@ -39,6 +39,7 @@ public class ArenaZone extends ZoneType
 		{
 			creature.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_A_COMBAT_ZONE);
 		}
+		
 		creature.setInsideZone(ZoneId.PVP, true);
 	}
 	

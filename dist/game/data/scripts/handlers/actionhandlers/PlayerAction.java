@@ -21,7 +21,6 @@
 package handlers.actionhandlers;
 
 import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -51,7 +50,7 @@ public class PlayerAction implements IActionHandler
 	 * @param player The player that start an action on target Player
 	 */
 	@Override
-	public boolean action(Player player, WorldObject target, boolean interact)
+	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
 		// Check if the Player is confused
 		if (player.isOutOfControl())
@@ -102,13 +101,15 @@ public class PlayerAction implements IActionHandler
 				{
 					// This Action Failed packet avoids player getting stuck when clicking three or more times
 					player.sendPacket(ActionFailed.STATIC_PACKET);
-					if (GeoEngine.getInstance().canMoveToTarget(player, target))
-					{
-						player.getAI().setIntention(Intention.FOLLOW, target);
-					}
+					
+					// if (GeoEngine.getInstance().canMoveToTarget(player, target))
+					// {
+					player.getAI().setIntention(Intention.FOLLOW, target);
+					// }
 				}
 			}
 		}
+		
 		return true;
 	}
 	

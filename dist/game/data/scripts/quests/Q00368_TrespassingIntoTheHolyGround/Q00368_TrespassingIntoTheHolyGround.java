@@ -32,10 +32,13 @@ public class Q00368_TrespassingIntoTheHolyGround extends Quest
 {
 	// NPC
 	private static final int RESTINA = 30926;
+	
 	// Item
 	private static final int BLADE_STAKATO_FANG = 5881;
+	
 	// Misc
 	private static final int MIN_LEVEL = 36;
+	
 	// Mobs
 	private static final Map<Integer, Double> MOBS = new HashMap<>();
 	static
@@ -85,6 +88,7 @@ public class Q00368_TrespassingIntoTheHolyGround extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -138,6 +142,7 @@ public class Q00368_TrespassingIntoTheHolyGround extends Quest
 				htmltext = "30926-07.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

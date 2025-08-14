@@ -38,6 +38,7 @@ public class RequestPetUseItem extends ClientPacket
 	protected void readImpl()
 	{
 		_objectId = readInt();
+		
 		// TODO: implement me properly
 		// readLong();
 		// readInt();
@@ -131,13 +132,14 @@ public class RequestPetUseItem extends ClientPacket
 			final IItemHandler handler = ItemHandler.getInstance().getHandler(item.getEtcItem());
 			if (handler != null)
 			{
-				if (handler.useItem(pet, item, false))
+				if (handler.onItemUse(pet, item, false))
 				{
 					final int reuseDelay = item.getReuseDelay();
 					if (reuseDelay > 0)
 					{
 						player.addTimeStampItem(item, reuseDelay);
 					}
+					
 					pet.updateAndBroadcastStatus(1);
 				}
 			}

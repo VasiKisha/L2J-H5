@@ -168,6 +168,7 @@ public class NpcTemplate extends CreatureTemplate
 				LOGGER.info(getClass().getSimpleName() + ": Fake player id [" + _id + "] conflict. A real player with name [" + _name + "] already exists.");
 			}
 		}
+		
 		_canMove = (set.getDouble("baseWalkSpd", 1d) <= 0.1) || set.getBoolean("canMove", true);
 		_noSleepMode = set.getBoolean("noSleepMode", false);
 		_passableDoor = set.getBoolean("passableDoor", false);
@@ -643,6 +644,7 @@ public class NpcTemplate extends CreatureTemplate
 		{
 			_dropListDeath = new ArrayList<>(1);
 		}
+		
 		_dropListDeath.add(dropHolder);
 	}
 	
@@ -652,6 +654,7 @@ public class NpcTemplate extends CreatureTemplate
 		{
 			_dropListSpoil = new ArrayList<>(1);
 		}
+		
 		_dropListSpoil.add(dropHolder);
 	}
 	
@@ -705,10 +708,12 @@ public class NpcTemplate extends CreatureTemplate
 				ungroupedDrops.clear();
 				return groupDrops;
 			}
+			
 			if (groupDrops != null)
 			{
 				return groupDrops;
 			}
+			
 			if (ungroupedDrops != null)
 			{
 				return ungroupedDrops;
@@ -756,6 +761,7 @@ public class NpcTemplate extends CreatureTemplate
 						{
 							rateChance *= Config.CHAMPION_ADENAS_REWARDS_CHANCE;
 						}
+						
 						if ((itemId == Inventory.ADENA_ID) && (rateChance > 100))
 						{
 							rateChance = 100;
@@ -810,6 +816,7 @@ public class NpcTemplate extends CreatureTemplate
 					{
 						totalChance = dropItem.getChance();
 					}
+					
 					final double groupItemChance = totalChance * (group.getChance() / 100) * rateChance;
 					
 					// check if maximum drop occurrences have been reached
@@ -822,6 +829,7 @@ public class NpcTemplate extends CreatureTemplate
 							cachedItem = randomDrops.remove(0);
 							calculatedDrops.remove(cachedItem);
 						}
+						
 						dropOccurrenceCounter = 1;
 					}
 					
@@ -843,6 +851,7 @@ public class NpcTemplate extends CreatureTemplate
 					{
 						randomDrops = new ArrayList<>(dropOccurrenceCounter);
 					}
+					
 					if (calculatedDrops == null)
 					{
 						calculatedDrops = new ArrayList<>(dropOccurrenceCounter);
@@ -869,6 +878,7 @@ public class NpcTemplate extends CreatureTemplate
 							randomDrops.add(drop);
 						}
 					}
+					
 					calculatedDrops.add(drop);
 					
 					// no more drops from this group, only use on x1, custom rates break this logic because total chance is more than 100%
@@ -884,6 +894,7 @@ public class NpcTemplate extends CreatureTemplate
 			{
 				calculatedDrops.add(cachedItem);
 			}
+			
 			// clear random drops
 			if (randomDrops != null)
 			{
@@ -898,6 +909,7 @@ public class NpcTemplate extends CreatureTemplate
 				{
 					return calculatedDrops;
 				}
+				
 				if ((victim.getLevel() > killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_HIGHER_LEVEL_ITEM_CHANCE))
 				{
 					return calculatedDrops;
@@ -964,6 +976,7 @@ public class NpcTemplate extends CreatureTemplate
 				{
 					randomDrops = new ArrayList<>(dropOccurrenceCounter);
 				}
+				
 				if (calculatedDrops == null)
 				{
 					calculatedDrops = new ArrayList<>(dropOccurrenceCounter);
@@ -984,14 +997,17 @@ public class NpcTemplate extends CreatureTemplate
 					dropOccurrenceCounter--;
 					randomDrops.add(drop);
 				}
+				
 				calculatedDrops.add(drop);
 			}
 		}
+		
 		// add temporarily removed item when not replaced
 		if ((dropOccurrenceCounter > 0) && (cachedItem != null) && (calculatedDrops != null))
 		{
 			calculatedDrops.add(cachedItem);
 		}
+		
 		// clear random drops
 		if (randomDrops != null)
 		{
@@ -1006,6 +1022,7 @@ public class NpcTemplate extends CreatureTemplate
 			{
 				return calculatedDrops;
 			}
+			
 			if ((victim.getLevel() > killer.getLevel()) && (Rnd.get(100) < Config.CHAMPION_REWARD_HIGHER_LEVEL_ITEM_CHANCE))
 			{
 				return calculatedDrops;
@@ -1131,6 +1148,7 @@ public class NpcTemplate extends CreatureTemplate
 					{
 						rateChance *= Config.CHAMPION_ADENAS_REWARDS_CHANCE;
 					}
+					
 					if ((itemId == Inventory.ADENA_ID) && (rateChance > 100))
 					{
 						rateChance = 100;
@@ -1244,6 +1262,7 @@ public class NpcTemplate extends CreatureTemplate
 			{
 				// chance
 				double rateChance = Config.RATE_SPOIL_DROP_CHANCE_MULTIPLIER;
+				
 				// premium chance
 				final Player player = killer.asPlayer();
 				if (player != null)
@@ -1262,6 +1281,7 @@ public class NpcTemplate extends CreatureTemplate
 				{
 					// amount is calculated after chance returned success
 					double rateAmount = Config.RATE_SPOIL_DROP_AMOUNT_MULTIPLIER;
+					
 					// premium amount
 					if (Config.PREMIUM_SYSTEM_ENABLED && (player != null) && player.hasPremiumStatus())
 					{
@@ -1274,6 +1294,7 @@ public class NpcTemplate extends CreatureTemplate
 				break;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -1310,10 +1331,12 @@ public class NpcTemplate extends CreatureTemplate
 				{
 					return true;
 				}
+				
 				sub = sub.getSuperclass();
 			}
 			while (sub != null);
 		}
+		
 		return false;
 	}
 	
@@ -1336,6 +1359,7 @@ public class NpcTemplate extends CreatureTemplate
 		{
 			return _teachInfo.contains(classId.getParent());
 		}
+		
 		return _teachInfo.contains(classId);
 	}
 	

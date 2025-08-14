@@ -50,6 +50,7 @@ public class MinionList
 		{
 			throw new NullPointerException("MinionList: Master is null!");
 		}
+		
 		_master = master;
 	}
 	
@@ -121,6 +122,7 @@ public class MinionList
 						minion.deleteMe();
 					}
 				}
+				
 				_spawnedMinions.clear();
 			}
 			
@@ -133,6 +135,7 @@ public class MinionList
 						task.cancel(true);
 					}
 				}
+				
 				_respawnTasks.clear();
 			}
 		}
@@ -150,6 +153,7 @@ public class MinionList
 		{
 			minion.setLeader(null);
 		}
+		
 		_spawnedMinions.remove(minion);
 		
 		final int time = respawnTime < 0 ? _master.isRaid() ? (int) Config.RAID_MINION_RESPAWN_TIMER : 0 : respawnTime;
@@ -214,6 +218,7 @@ public class MinionList
 				{
 					newX = (_master.getX() - newX) + minRadius;
 				}
+				
 				if (newY > (offset + minRadius))
 				{
 					newY = (_master.getY() + newY) - offset;
@@ -234,6 +239,7 @@ public class MinionList
 		{
 			return;
 		}
+		
 		spawnMinion(_master, minionId);
 	}
 	
@@ -286,6 +292,7 @@ public class MinionList
 		{
 			return null;
 		}
+		
 		return initializeNpc(master, new Monster(minionTemplate));
 	}
 	
@@ -319,6 +326,7 @@ public class MinionList
 		{
 			newX = (master.getX() - newX) + minRadius;
 		}
+		
 		if (newY > (offset + minRadius))
 		{
 			newY = (master.getY() + newY) - offset;
@@ -351,6 +359,7 @@ public class MinionList
 				count++;
 			}
 		}
+		
 		return count;
 	}
 	

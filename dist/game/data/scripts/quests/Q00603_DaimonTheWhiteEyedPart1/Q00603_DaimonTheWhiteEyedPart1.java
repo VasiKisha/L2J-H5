@@ -42,9 +42,11 @@ public class Q00603_DaimonTheWhiteEyedPart1 extends Quest
 	private static final int TABLET_3 = 31550;
 	private static final int TABLET_4 = 31551;
 	private static final int TABLET_5 = 31552;
+	
 	// Items
 	private static final int SPIRIT_OF_DARKNESS = 7190;
 	private static final int BROKEN_CRYSTAL = 7191;
+	
 	// Monsters
 	private static final Map<Integer, Double> MONSTER_CHANCES = new HashMap<>();
 	static
@@ -53,8 +55,10 @@ public class Q00603_DaimonTheWhiteEyedPart1 extends Quest
 		MONSTER_CHANCES.put(21299, 0.519); // Buffalo Slave
 		MONSTER_CHANCES.put(21304, 0.673); // Grendel Slave
 	}
+	
 	// Reward
 	private static final int UNFINISHED_CRYSTAL = 7192;
+	
 	// Misc
 	private static final int MIN_LEVEL = 73;
 	
@@ -137,6 +141,7 @@ public class Q00603_DaimonTheWhiteEyedPart1 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -203,6 +208,7 @@ public class Q00603_DaimonTheWhiteEyedPart1 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

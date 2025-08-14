@@ -35,6 +35,7 @@ public enum PunishmentType
 				return type;
 			}
 		}
+		
 		return null;
 	}
 }

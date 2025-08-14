@@ -62,6 +62,7 @@ public class UserInfo extends ServerPacket
 				_relation |= 0x1000;
 			}
 		}
+		
 		if (_player.getSiegeState() == 2)
 		{
 			_relation |= 0x80;
@@ -75,6 +76,7 @@ public class UserInfo extends ServerPacket
 		{
 			_airShipHelm = 0;
 		}
+		
 		_moveMultiplier = player.getMovementSpeedMultiplier();
 		_runSpd = (int) Math.round(player.getRunSpeed() / _moveMultiplier);
 		_walkSpd = (int) Math.round(player.getWalkSpeed() / _moveMultiplier);
@@ -167,12 +169,14 @@ public class UserInfo extends ServerPacket
 		{
 			title = "[Invisible]";
 		}
+		
 		buffer.writeString(title);
 		
 		buffer.writeInt(_player.getClanId());
 		buffer.writeInt(_player.getClanCrestId());
 		buffer.writeInt(_player.getAllyId());
 		buffer.writeInt(_player.getAllyCrestId()); // ally crest id
+		
 		// 0x40 leader rights
 		// siege flags: attacker - 0x180 sword over name, defender - 0x80 shield, 0xC0 crown (|leader), 0x1C0 flag (|leader)
 		buffer.writeInt(_relation);
@@ -212,12 +216,14 @@ public class UserInfo extends ServerPacket
 		buffer.writeInt(_player.getFishZ()); // fishing z
 		
 		buffer.writeInt(appearance.getNameColor());
+		
 		// new c5
 		buffer.writeByte(_player.isRunning()); // changes the Speed display on Status Window
 		buffer.writeInt(_player.getPledgeClass()); // changes the text above CP on Status Window
 		buffer.writeInt(_player.getPledgeType());
 		buffer.writeInt(appearance.getTitleColor());
 		buffer.writeInt(_player.isCursedWeaponEquipped() ? CursedWeaponsManager.getInstance().getLevel(_player.getCursedWeaponEquippedId()) : 0);
+		
 		// T1 Starts
 		buffer.writeInt(_player.getTransformationDisplayId());
 		final byte attackAttribute = _player.getAttackElement();
@@ -230,6 +236,7 @@ public class UserInfo extends ServerPacket
 		buffer.writeShort(_player.getDefenseElementValue(Elementals.HOLY));
 		buffer.writeShort(_player.getDefenseElementValue(Elementals.DARK));
 		buffer.writeInt(_player.getAgathionId());
+		
 		// T2 Starts
 		buffer.writeInt(_player.getFame()); // Fame
 		buffer.writeInt(_player.isMinimapAllowed()); // Minimap on Hellbound

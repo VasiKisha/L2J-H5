@@ -76,6 +76,7 @@ public class Door extends Creature
 	private boolean _isAttackableDoor = false;
 	private boolean _isTargetable;
 	private int _meshindex = 1;
+	
 	// used for autoclose on open
 	private Future<?> _autoCloseTask;
 	
@@ -127,6 +128,7 @@ public class Door extends Creature
 		{
 			delay += Rnd.get(getTemplate().getRandomTime());
 		}
+		
 		ThreadPool.schedule(new TimerOpen(), delay * 1000);
 	}
 	
@@ -266,10 +268,12 @@ public class Door extends Creature
 		{
 			return 6;
 		}
+		
 		if (dmg < 0)
 		{
 			return 0;
 		}
+		
 		return dmg;
 	}
 	
@@ -280,10 +284,12 @@ public class Door extends Creature
 		{
 			_castleIndex = CastleManager.getInstance().getCastleIndex(this);
 		}
+		
 		if (_castleIndex < 0)
 		{
 			return null;
 		}
+		
 		return CastleManager.getInstance().getCastles().get(_castleIndex);
 	}
 	
@@ -294,10 +300,12 @@ public class Door extends Creature
 		{
 			_fortIndex = FortManager.getInstance().getFortIndex(this);
 		}
+		
 		if (_fortIndex < 0)
 		{
 			return null;
 		}
+		
 		return FortManager.getInstance().getForts().get(_fortIndex);
 	}
 	
@@ -317,14 +325,17 @@ public class Door extends Creature
 		{
 			return true;
 		}
+		
 		if ((getFort() != null) && (getFort().getResidenceId() > 0) && getFort().getZone().isActive() && isShowHp())
 		{
 			return true;
 		}
+		
 		if ((_clanHall != null) && _clanHall.isSiegableHall() && ((SiegableHall) _clanHall).getSiegeZone().isActive() && isShowHp())
 		{
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -341,6 +352,7 @@ public class Door extends Creature
 		{
 			return true;
 		}
+		
 		if (!isShowHp())
 		{
 			return false;
@@ -354,8 +366,10 @@ public class Door extends Creature
 			{
 				return false;
 			}
+			
 			return hall.isInSiege() && hall.getSiege().doorIsAutoAttackable() && hall.getSiege().checkIsAttacker(actingPlayer.getClan());
 		}
+		
 		// Attackable only during siege by everyone (not owner)
 		final boolean isCastle = ((getCastle() != null) && (getCastle().getResidenceId() > 0) && getCastle().getZone().isActive());
 		final boolean isFort = ((getFort() != null) && (getFort().getResidenceId() > 0) && getFort().getZone().isActive());
@@ -380,6 +394,7 @@ public class Door extends Creature
 				return false;
 			}
 		}
+		
 		return (isCastle || isFort);
 	}
 	
@@ -430,7 +445,7 @@ public class Door extends Creature
 		OnEventTrigger oe = null;
 		if (getEmitter() > 0)
 		{
-			oe = new OnEventTrigger(this, _open);
+			oe = new OnEventTrigger(this, !_open);
 		}
 		
 		for (Player player : knownPlayers)
@@ -482,6 +497,7 @@ public class Door extends Creature
 			_autoCloseTask = null;
 			oldTask.cancel(false);
 		}
+		
 		if (getGroupName() != null)
 		{
 			manageGroupOpen(false, getGroupName());
@@ -513,6 +529,7 @@ public class Door extends Creature
 				door.broadcastStatusUpdate();
 			}
 		}
+		
 		if ((first != null) && open)
 		{
 			first.startAutoCloseTask(); // only one from group
@@ -664,7 +681,7 @@ public class Door extends Creature
 			player.sendPacket(new DoorStatusUpdate(this));
 			if (getEmitter() > 0)
 			{
-				player.sendPacket(new OnEventTrigger(this, _open));
+				player.sendPacket(new OnEventTrigger(this, !_open));
 			}
 		}
 	}
@@ -762,6 +779,7 @@ public class Door extends Creature
 			{
 				delay += Rnd.get(getTemplate().getRandomTime());
 			}
+			
 			ThreadPool.schedule(this, delay * 1000);
 		}
 	}

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20100" type="Armor" name="Saving Santa Hat - 24-hour limited period">
 		<!-- This festive holiday hat allows you to participate in a "Rock-Paper-Scissors" contest with Thomas D. Turkey. Requires 2 hair accessory slots. It cannot be exchanged, dropped or sold. -->
@@ -143,14 +143,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21017-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20110" type="Weapon" name="Titan Sword (Event) - 4-hour limited period">
 		<!-- Titan Sword for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -173,14 +173,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21018-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20111" type="Weapon" name="Maingauche (Event) - 4-hour limited period">
 		<!-- Maingauche for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -203,7 +203,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21019-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="69" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="12" />
@@ -211,7 +211,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20112" type="Weapon" name="Tarbar (Event) - 4-hour limited period">
 		<!-- Tarbar for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -234,7 +234,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21020-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
@@ -242,7 +242,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20113" type="Weapon" name="Titan Hammer (Event) - 4-hour limited period">
 		<!-- Titan Hammer for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -265,7 +265,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21021-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
@@ -273,7 +273,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20114" type="Weapon" name="Priest Mace (Event) - 4-hour limited period">
 		<!-- Priest Mace for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -296,7 +296,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21022-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="63" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="4" />
@@ -304,7 +304,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20115" type="Weapon" name="Goat Head Staff (Event) - 4-hour limited period">
 		<!-- Goat Head Staff for events. No exchange/drop/sale/warehouse available. No enchantment/storing souls/smelting possible. -->
@@ -327,7 +327,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21023-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="77" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="4" />
@@ -335,7 +335,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20116" type="Weapon" name="Bich'Hwa (Event) - 4-hour limited period">
 		<!-- Bich'Hwa for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -358,7 +358,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21024-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
@@ -366,7 +366,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20117" type="Weapon" name="Strengthened Long Bow (Event) - 4-hour limited period">
 		<!-- Strengthened Long Bow for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -391,7 +391,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21025-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="179" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="12" />
@@ -399,7 +399,7 @@
 			<set stat="pAtkSpd" val="227" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20118" type="Weapon" name="Winged Spear (Event) - 4-hour limited period">
 		<!-- Winged Spear for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -422,7 +422,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21026-1;3599-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
@@ -430,7 +430,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20119" type="Weapon" name="Artisan's Sword*Artisan's Sword (Event) - 4-hour limited period">
 		<!-- Artisan's Sword*Artisan's Sword for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -453,14 +453,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21027-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20120" type="Weapon" name="Epee (Event) - 4-hour limited period">
 		<!-- Epee for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -484,10 +484,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21028-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="72" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="10" />
@@ -495,7 +495,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20121" type="Weapon" name="Katzbalger (Event) - 4-hour limited period">
 		<!-- Katzbalger for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -518,10 +518,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21029-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="86" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
@@ -529,7 +529,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20122" type="Weapon" name="Arm Breaker (Event) - 4-hour limited period">
 		<!-- Arm Breaker for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -553,10 +553,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21030-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="100" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="10" />
@@ -564,7 +564,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20123" type="Weapon" name="Samurai Longsword (Event) - 4-hour limited period">
 		<!-- Samurai Longsword for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -587,14 +587,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21017-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="156" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20124" type="Weapon" name="Berserker Blade (Event) - 4-hour limited period">
 		<!-- Berserker Blade for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -617,14 +617,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21018-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20125" type="Weapon" name="Crystal Dagger (Event) - 4-hour limited period">
 		<!-- Crystal Dagger for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -647,7 +647,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21019-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="12" />
@@ -655,7 +655,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20126" type="Weapon" name="Yaksa Mace (Event) - 4-hour limited period">
 		<!-- Yaksa Mace for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -678,7 +678,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21020-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="156" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="4" />
@@ -686,7 +686,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20127" type="Weapon" name="Dwarven Hammer (Event) - 4-hour limited period">
 		<!-- Dwarven Hammer for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -709,7 +709,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21021-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="4" />
@@ -717,7 +717,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20128" type="Weapon" name="Ecliptic Axe (Event) - 4-hour limited period">
 		<!-- Ecliptic Axe for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -740,7 +740,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21022-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="125" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
@@ -748,7 +748,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20129" type="Weapon" name="Demon's Staff (Event) - 4-hour limited period">
 		<!-- Demon's Staff for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -771,7 +771,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21023-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="152" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
@@ -779,7 +779,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20130" type="Weapon" name="Great Pata (Event) - 4-hour limited period">
 		<!-- Great Pata for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -802,7 +802,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21024-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="4" />
@@ -810,7 +810,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20131" type="Weapon" name="Eminence Bow (Event) - 4-hour limited period">
 		<!-- Eminence Bow for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -835,7 +835,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21025-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="323" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="12" />
@@ -843,7 +843,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20132" type="Weapon" name="Orcish Poleaxe (Event) - 4-hour limited period">
 		<!-- Orcish Poleaxe for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -866,7 +866,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21026-1;3599-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="156" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
@@ -874,7 +874,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20133" type="Weapon" name="Katana*Katana (Event) - 4-hour limited period">
 		<!-- Katana*Katana for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -898,14 +898,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21027-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20134" type="Weapon" name="Admiral's Estoc (Event) - 4-hour limited period">
 		<!-- Admiral's Estoc for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -929,10 +929,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21028-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="141" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="10" />
@@ -940,7 +940,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20135" type="Weapon" name="Saber Tooth (Event) - 4-hour limited period">
 		<!-- Saber Tooth for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -963,10 +963,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21029-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
@@ -974,7 +974,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20136" type="Weapon" name="Sharpshooter (Event) - 4-hour limited period">
 		<!-- Sharpshooter for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -998,10 +998,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21030-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="198" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="10" />
@@ -1009,7 +1009,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20137" type="Weapon" name="Sword of Damascus (Event) - 4-hour limited period">
 		<!-- Sword of Damascus for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1032,14 +1032,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21017-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20138" type="Weapon" name="Guardian Sword (Event) - 4-hour limited period">
 		<!-- Guardian Sword for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1062,14 +1062,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21018-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20139" type="Weapon" name="Demon's Dagger (Event) - 4-hour limited period">
 		<!-- Demon's Dagger for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1092,7 +1092,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21019-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="170" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="12" />
@@ -1100,7 +1100,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20140" type="Weapon" name="Art of Battle Axe (Event) - 4-hour limited period">
 		<!-- Art of Battle Axe for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1123,7 +1123,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21020-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
@@ -1131,7 +1131,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20141" type="Weapon" name="Star Buster (Event) - 4-hour limited period">
 		<!-- Star Buster for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1154,7 +1154,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21021-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
@@ -1162,7 +1162,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20142" type="Weapon" name="Kaim Vanul's Bones (Event) - 4-hour limited period">
 		<!-- Kaim Vanul's Bones for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1185,7 +1185,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21022-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
@@ -1193,7 +1193,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20143" type="Weapon" name="Staff of Evil Spirits (Event) - 4-hour limited period">
 		<!-- Staff of Evil Spirits for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1216,7 +1216,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21023-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="189" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
@@ -1224,7 +1224,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20144" type="Weapon" name="Bellion Cestus (Event) - 4-hour limited period">
 		<!-- Bellion Cestus for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1247,7 +1247,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21024-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
@@ -1255,7 +1255,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20145" type="Weapon" name="Bow of Peril (Event) - 4-hour limited period">
 		<!-- Bow of Peril for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1280,7 +1280,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21025-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="400" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="12" />
@@ -1288,7 +1288,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20146" type="Weapon" name="Lance (Event) - 4-hour limited period">
 		<!-- Lance for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1311,7 +1311,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21026-1;3599-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
@@ -1319,7 +1319,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20147" type="Weapon" name="Samurai Long Sword*Samurai Long Sword (Event) - 4-hour limited period">
 		<!-- Samurai Longsword*Samurai Long Sword for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1343,14 +1343,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21027-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20148" type="Weapon" name="Colichemarde (Event) - 4-hour limited period">
 		<!-- Colichemarde for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1374,10 +1374,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21028-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="176" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="10" />
@@ -1385,7 +1385,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20149" type="Weapon" name="Dismantler (Event) - 4-hour limited period">
 		<!-- Dismantler for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1408,10 +1408,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21029-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="210" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
@@ -1419,7 +1419,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20150" type="Weapon" name="Hell Hound (Event) - 4-hour limited period">
 		<!-- Hell Hound for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1443,10 +1443,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21030-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="245" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="10" />
@@ -1454,7 +1454,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20151" type="Weapon" name="Dark Legion's Edge (Event) - 4-hour limited period">
 		<!-- Dark Legion's Edge for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1477,14 +1477,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21017-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20152" type="Weapon" name="Dragon Slayer (Event) - 4-hour limited period">
 		<!-- Dragon Slayer for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1507,14 +1507,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21018-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="282" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20153" type="Weapon" name="Soul Separator (Event) - 4-hour limited period">
 		<!-- Soul Separator for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1537,7 +1537,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21019-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="203" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="12" />
@@ -1545,7 +1545,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20154" type="Weapon" name="Elysian (Event) - 4-hour limited period">
 		<!-- Elysian for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1568,7 +1568,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21020-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
@@ -1576,7 +1576,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20155" type="Weapon" name="Doom Crusher (Event) - 4-hour limited period">
 		<!-- Doom Crusher for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1599,7 +1599,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21021-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="282" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
@@ -1607,7 +1607,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20156" type="Weapon" name="Flaming Dragon Skull (Event) - 4-hour limited period">
 		<!-- Flaming Dragon Skull for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1630,7 +1630,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21022-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="186" />
 			<set stat="mAtk" val="152" />
 			<set stat="critRate" val="4" />
@@ -1638,7 +1638,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20157" type="Weapon" name="Branch of the Mother Tree (Event) - 4-hour limited period">
 		<!-- Branch of the Mother Tree for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1661,7 +1661,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21023-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="226" />
 			<set stat="mAtk" val="152" />
 			<set stat="critRate" val="4" />
@@ -1669,7 +1669,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20158" type="Weapon" name="Dragon Grinder (Event) - 4-hour limited period">
 		<!-- Dragon Grinder for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1692,7 +1692,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21024-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="282" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
@@ -1700,7 +1700,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20159" type="Weapon" name="Soul Bow (Event) - 4-hour limited period">
 		<!-- Soul Bow for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1725,7 +1725,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21025-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="528" />
 			<set stat="mAtk" val="125" />
 			<set stat="critRate" val="12" />
@@ -1733,7 +1733,7 @@
 			<set stat="pAtkSpd" val="227" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20160" type="Weapon" name="Tallum Glaive (Event) - 4-hour limited period">
 		<!-- Tallum Glaive for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1756,7 +1756,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21026-1;3552-1;3599-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
@@ -1764,7 +1764,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20161" type="Weapon" name="Damascus*Damascus (Event) - 4-hour limited period">
 		<!-- Damascus*Damascus for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1788,14 +1788,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21027-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="282" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20162" type="Weapon" name="Lacerator (Event) - 4-hour limited period">
 		<!-- Lacerator for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1819,10 +1819,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21028-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="210" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="10" />
@@ -1830,7 +1830,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20163" type="Weapon" name="Undertaker (Event) - 4-hour limited period">
 		<!-- Undertaker for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1853,10 +1853,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21029-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
@@ -1864,7 +1864,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20164" type="Weapon" name="Reaper (Event) - 4-hour limited period">
 		<!-- Reaper for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1888,10 +1888,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21030-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="294" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="10" />
@@ -1899,7 +1899,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20165" type="Weapon" name="Forgotten Blade (Event) - 4-hour limited period">
 		<!-- Forgotten Blade for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1922,14 +1922,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21017-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20166" type="Weapon" name="Heaven's Divider (Event) - 4-hour limited period">
 		<!-- Heaven's Divider for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1952,14 +1952,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21018-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="342" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20167" type="Weapon" name="Angel Slayer (Event) - 4-hour limited period">
 		<!-- Angel Slayer for events No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -1982,7 +1982,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21019-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="246" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="12" />
@@ -1990,7 +1990,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20168" type="Weapon" name="Basalt Battlehammer (Event) - 4-hour limited period">
 		<!-- Basalt Battlehammer for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2013,7 +2013,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21020-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
@@ -2021,7 +2021,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20169" type="Weapon" name="Dragon Hunter Axe (Event) - 4-hour limited period">
 		<!-- Dragon Hunter Axe for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2044,7 +2044,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21021-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="342" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
@@ -2052,7 +2052,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20170" type="Weapon" name="Arcana Mace (Event) - 4-hour limited period">
 		<!-- Arcana Mace for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2075,7 +2075,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21022-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="225" />
 			<set stat="mAtk" val="175" />
 			<set stat="critRate" val="4" />
@@ -2083,7 +2083,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20171" type="Weapon" name="Imperial Staff (Event) - 4-hour limited period">
 		<!-- Imperial Staff for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2106,7 +2106,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21023-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="274" />
 			<set stat="mAtk" val="175" />
 			<set stat="critRate" val="4" />
@@ -2114,7 +2114,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20172" type="Weapon" name="Demon Splinter (Event) - 4-hour limited period">
 		<!-- Demon Splinter for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2137,7 +2137,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21024-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="342" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
@@ -2145,7 +2145,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20173" type="Weapon" name="Draconic Bow (Event) - 4-hour limited period">
 		<!-- Draconic Bow for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2170,7 +2170,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21025-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="581" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="12" />
@@ -2178,7 +2178,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20174" type="Weapon" name="Saint Spear (Event) - 4-hour limited period">
 		<!-- Saint Spear for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2201,7 +2201,7 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21026-1;3552-1;3599-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
@@ -2209,7 +2209,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20175" type="Weapon" name="Tallum Blade*Dark Legion's Edge (Event) - 4-hour limited period">
 		<!-- Tallum Blade*Dark Legion's Edge for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2233,14 +2233,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21027-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="342" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20176" type="Weapon" name="Laevateinn (Event) - 4-hour limited period">
 		<!-- Laevateinn for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2264,10 +2264,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21028-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="255" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="10" />
@@ -2275,7 +2275,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20177" type="Weapon" name="Gram (Event) - 4-hour limited period">
 		<!-- Gram for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2298,10 +2298,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21029-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="304" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
@@ -2309,7 +2309,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20178" type="Weapon" name="Sarunga (Event) - 4-hour limited period">
 		<!-- Sarunga for events. No exchange/drop/sale/storage available. No enchantment/SA/augmentation possible. -->
@@ -2333,10 +2333,10 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21030-1;3552-1" /> <!-- Christmas Dream Weapon -->
 		<set name="time" val="240" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="356" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="10" />
@@ -2344,7 +2344,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="20179" type="EtcItem" name="Extra Entrance Pass - Near Kamaloka 5 Sheet Pack">
 		<!-- Wrapped pack containing an extra entrance pass that lets you enter Near Kamaloka. -->

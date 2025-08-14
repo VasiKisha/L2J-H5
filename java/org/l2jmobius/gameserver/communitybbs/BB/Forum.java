@@ -44,6 +44,7 @@ public class Forum
 	public static final int CLAN = 2;
 	public static final int MEMO = 3;
 	public static final int MAIL = 4;
+	
 	// perm
 	public static final int INVISIBLE = 0;
 	public static final int ALL = 1;
@@ -215,6 +216,7 @@ public class Forum
 				return forum;
 			}
 		}
+		
 		return null;
 	}
 	

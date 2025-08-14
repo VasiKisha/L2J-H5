@@ -57,9 +57,11 @@ public class PreparedEntry extends Entry
 				{
 					adenaAmount += ing.getItemCount();
 				}
+				
 				// do not yet add this adena amount to the list as non-taxIngredient adena might be entered later (order not guaranteed)
 				continue;
 			}
+			
 			if (maintainEnchantment && (item != null) && ing.isArmorOrWeapon())
 			{
 				info = new ItemInfo(item);
@@ -99,6 +101,7 @@ public class PreparedEntry extends Entry
 				info = new ItemInfo(ing.getTemplate().getDefaultEnchantLevel());
 				newProduct.setItemInfo(info);
 			}
+			
 			_products.add(newProduct);
 		}
 	}

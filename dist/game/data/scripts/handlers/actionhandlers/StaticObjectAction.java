@@ -33,7 +33,7 @@ import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 public class StaticObjectAction implements IActionHandler
 {
 	@Override
-	public boolean action(Player player, WorldObject target, boolean interact)
+	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
 		final StaticObject staticObject = (StaticObject) target;
 		if (staticObject.getType() < 0)
@@ -80,6 +80,7 @@ public class StaticObjectAction implements IActionHandler
 				}
 			}
 		}
+		
 		return true;
 	}
 	

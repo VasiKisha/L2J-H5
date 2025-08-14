@@ -55,6 +55,7 @@ public class MaxCp extends AbstractEffect
 				_power = 1 + (params.getInt("power", 0) / 100.0);
 			}
 		}
+		
 		_heal = params.getBoolean("heal", false);
 		if (params.isEmpty())
 		{
@@ -95,6 +96,7 @@ public class MaxCp extends AbstractEffect
 				}
 			}
 		}
+		
 		if (_heal)
 		{
 			if ((effector != null) && (effector != effected))

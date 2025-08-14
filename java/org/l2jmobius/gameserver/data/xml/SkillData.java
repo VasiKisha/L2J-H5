@@ -171,6 +171,7 @@ public class SkillData
 				{
 					return;
 				}
+				
 				for (Skill skill : skills)
 				{
 					allSkills.put(SkillData.getSkillHashCode(skill), skill);
@@ -227,6 +228,7 @@ public class SkillData
 		
 		// Skill/level not found, fix for transformation scripts.
 		final int maxLevel = getMaxLevel(skillId);
+		
 		// Requested level too high.
 		if ((maxLevel > 0) && (level > maxLevel))
 		{
@@ -278,11 +280,13 @@ public class SkillData
 		{
 			result[i++] = _skillsByHash.get(getSkillHashCode(326, 1));
 		}
+		
 		if (hasCastle)
 		{
 			result[i++] = _skillsByHash.get(getSkillHashCode(844, 1));
 			result[i++] = _skillsByHash.get(getSkillHashCode(845, 1));
 		}
+		
 		return result;
 	}
 	

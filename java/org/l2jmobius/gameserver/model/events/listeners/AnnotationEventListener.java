@@ -56,6 +56,7 @@ public class AnnotationEventListener extends AbstractEventListener
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Error while invoking " + _callback.getName() + " on " + getOwner(), e);
 		}
+		
 		return null;
 	}
 }

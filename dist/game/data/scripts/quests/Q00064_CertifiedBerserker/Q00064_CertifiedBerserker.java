@@ -42,6 +42,7 @@ public class Q00064_CertifiedBerserker extends Quest
 	private static final int MASTER_TENAIN = 32215;
 	private static final int CARAVANER_GORT = 32252;
 	private static final int HARKILGAMED = 32253;
+	
 	// Items
 	private static final int BREKA_ORC_HEAD = 9754;
 	private static final int MESSAGE_PLATE = 9755;
@@ -49,9 +50,11 @@ public class Q00064_CertifiedBerserker extends Quest
 	private static final int REPORT_NORTH = 9757;
 	private static final int HARKILGAMEDS_LETTER = 9758;
 	private static final int TENAINS_RECOMMENDATION = 9759;
+	
 	// Reward
 	private static final int DIMENSIONAL_DIAMOND = 7562;
 	private static final int ORKURUS_RECOMMENDATION = 9760;
+	
 	// Monster
 	private static final int DEAD_SEEKER = 20202;
 	private static final int MARSH_STAKATO_DRONE = 20234;
@@ -61,8 +64,10 @@ public class Q00064_CertifiedBerserker extends Quest
 	private static final int BREKA_ORC_OVERLORD = 20270;
 	private static final int BREKA_ORC_WARRIOR = 20271;
 	private static final int ROAD_SCAVENGER = 20551;
+	
 	// Quest Monster
 	private static final int DIVINE_EMISSARY = 27323;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	
@@ -192,6 +197,7 @@ public class Q00064_CertifiedBerserker extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -462,6 +468,7 @@ public class Q00064_CertifiedBerserker extends Quest
 				htmltext = "32207-05.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

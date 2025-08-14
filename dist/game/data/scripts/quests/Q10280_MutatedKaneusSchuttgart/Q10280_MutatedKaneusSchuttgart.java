@@ -42,6 +42,7 @@ public class Q10280_MutatedKaneusSchuttgart extends Quest
 	private static final int ATRAXIA = 31972;
 	private static final int VENOMOUS_STORACE = 18571;
 	private static final int KEL_BILETTE = 18573;
+	
 	// Items
 	private static final int TISSUE_VS = 13838;
 	private static final int TISSUE_KB = 13839;
@@ -78,6 +79,7 @@ public class Q10280_MutatedKaneusSchuttgart extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -165,6 +167,7 @@ public class Q10280_MutatedKaneusSchuttgart extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

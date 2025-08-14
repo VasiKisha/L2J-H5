@@ -32,9 +32,11 @@ public class Lekon extends AbstractNpcAI
 {
 	// NPCs
 	private static final int LEKON = 32557;
+	
 	// Items
 	private static final int LICENCE = 13559; // Airship Summon License
 	private static final int STONE = 13277; // Energy Star Stone
+	
 	// Misc
 	private static final int MIN_CLAN_LV = 5;
 	private static final int STONE_COUNT = 10;
@@ -84,6 +86,7 @@ public class Lekon extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

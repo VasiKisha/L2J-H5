@@ -35,8 +35,10 @@ public class Q00278_HomeSecurity extends Quest
 		18906,
 		18907
 	};
+	
 	// Item
 	private static final int SEL_MAHUM_MANE = 15531;
+	
 	// Misc
 	private static final int SEL_MAHUM_MANE_COUNT = 300;
 	
@@ -132,6 +134,7 @@ public class Q00278_HomeSecurity extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -185,6 +188,7 @@ public class Q00278_HomeSecurity extends Quest
 				htmltext = "31537-05.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

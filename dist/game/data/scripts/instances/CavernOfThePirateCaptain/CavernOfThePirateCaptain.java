@@ -24,7 +24,6 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -53,12 +52,14 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 	private static final int PIRATES_ZOMBIE_83 = 29185; // Pirate Zombie
 	private static final int PIRATES_ZOMBIE_CAPTAIN_60 = 29026; // Pirate Zombie Captain
 	private static final int PIRATES_ZOMBIE_CAPTAIN_83 = 29184; // Pirate Zombie Captain
+	
 	// Items
 	private static final int VORPAL_RING = 15763; // Sealed Vorpal Ring
 	private static final int VORPAL_EARRING = 15764; // Sealed Vorpal Earring
 	private static final int FIRE = 15280; // Transparent 1HS (for NPC)
 	private static final int RED = 15281; // Transparent 1HS (for NPC)
 	private static final int BLUE = 15302; // Transparent Bow (for NPC)
+	
 	// Locations
 	private static final Location[] ENTER_LOC =
 	{
@@ -108,6 +109,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 		new Location(57215, 220133, -2954),
 		new Location(57215, 218079, -2954),
 	};
+	
 	// Misc
 	private static final int MIN_LV_60 = 55;
 	private static final int MIN_LV_83 = 78;
@@ -120,7 +122,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 	private static final int TEMPLATE_ID_60 = 133;
 	private static final int TEMPLATE_ID_60_NIGHT = 114;
 	private static final int TEMPLATE_ID_83 = 135;
-	//@formatter:off
+	// @formatter:off
 	private static final int[][] ROOM_DATA =
 	{
 		// Floor 1
@@ -142,7 +144,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 		{56289, 220133, -2954, 32, 35, 30, 33},
 		{56289, 218073, -2954, 34, 36, 31, 33}
 	};
-	//@formatter:on
+	// @formatter:on
 	
 	private CavernOfThePirateCaptain()
 	{
@@ -184,6 +186,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 					managePlayerEnter(member, world);
 				}
 			}
+			
 			world.setParameter("playersInside", playersInside);
 			manageNpcSpawn(world);
 		}
@@ -201,7 +204,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 	
 	private boolean checkConditions(Player player, int templateId)
 	{
-		if (player.canOverrideCond(PlayerCondOverride.INSTANCE_CONDITIONS))
+		if (player.isGM())
 		{
 			return true;
 		}
@@ -251,6 +254,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -358,6 +362,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 						{
 							manageScreenMsg(world, NpcStringId.WHO_DARES_AWAKEN_THE_MIGHTY_ZAKEN);
 						}
+						
 						world.getParameters().getObject("zaken", Npc.class).setInvisible(false);
 						world.getParameters().getObject("zaken", Npc.class).setParalyzed(false);
 						spawnNpc(world.getParameters().getBoolean("is83", false) ? DOLL_BLADER_83 : DOLL_BLADER_60, world.getParameters().getInt("zakenRoom", 0), player, world);
@@ -368,6 +373,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 				}
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -408,6 +414,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 					}
 				}
 			}
+			
 			finishInstance(world);
 		}
 	}
@@ -432,9 +439,11 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 				{
 					startQuestTimer("BURN_RED", 500, npc, player);
 				}
+				
 				npc.setScriptValue(1);
 			}
 		}
+		
 		return null;
 	}
 	
@@ -461,6 +470,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 		{
 			return 13;
 		}
+		
 		return 0;
 	}
 	
@@ -483,6 +493,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 			addAttackDesire(mob, player);
 			return mob;
 		}
+		
 		return addSpawn(npcId, ROOM_DATA[roomId - 1][0], ROOM_DATA[roomId - 1][1], ROOM_DATA[roomId - 1][2], 0, false, 0, false, world.getInstanceId()).asAttackable();
 	}
 	
@@ -501,6 +512,7 @@ public class CavernOfThePirateCaptain extends AbstractInstance
 		{
 			candles.get(ROOM_DATA[world.getParameters().getInt("zakenRoom", 0) - 1][i] - 1).getVariables().set("isBlue", 1);
 		}
+		
 		final Npc zaken = spawnNpc(world.getParameters().getBoolean("is83", false) ? ZAKEN_83 : world.getParameters().getBoolean("isNight", false) ? ZAKEN_60_NIGHT : ZAKEN_60, world.getParameters().getInt("zakenRoom", 0), null, world);
 		zaken.setInvisible(true);
 		zaken.setParalyzed(true);

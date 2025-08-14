@@ -93,6 +93,7 @@ public class EnchantRateItem
 		{
 			return false;
 		}
+		
 		return true;
 	}
 }

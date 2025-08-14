@@ -31,7 +31,7 @@ public class Dismount implements IUserCommandHandler
 	};
 	
 	@Override
-	public synchronized boolean useUserCommand(int id, Player player)
+	public synchronized boolean onCommand(int id, Player player)
 	{
 		if (id != COMMAND_IDS[0])
 		{
@@ -46,11 +46,12 @@ public class Dismount implements IUserCommandHandler
 		{
 			player.dismount();
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public int[] getUserCommandList()
+	public int[] getCommandList()
 	{
 		return COMMAND_IDS;
 	}

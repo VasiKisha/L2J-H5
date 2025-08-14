@@ -30,8 +30,10 @@ public class EvasGiftBox extends AbstractNpcAI
 {
 	// NPC
 	private static final int BOX = 32342; // Eva's Gift Box
+	
 	// Skill
 	private static final int BUFF = 1073; // Kiss of Eva
+	
 	// Items
 	private static final ItemHolder CORAL = new ItemHolder(9692, 1); // Red Coral
 	private static final ItemHolder CRYSTAL = new ItemHolder(9693, 1); // Crystal Fragment

@@ -47,7 +47,7 @@ public class AdminZone implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (activeChar == null)
 		{
@@ -59,6 +59,7 @@ public class AdminZone implements IAdminCommandHandler
 		
 		// String val = "";
 		// if (st.countTokens() >= 1) {val = st.nextToken();}
+		
 		if (actualCommand.equalsIgnoreCase("admin_zone_check"))
 		{
 			showHtml(activeChar);
@@ -89,10 +90,12 @@ public class AdminZone implements IAdminCommandHandler
 				{
 					zone.visualizeZone(activeChar.getZ());
 				}
+				
 				for (NpcSpawnTerritory territory : ZoneManager.getInstance().getSpawnTerritories(activeChar))
 				{
 					territory.visualizeZone(activeChar.getZ());
 				}
+				
 				showHtml(activeChar);
 			}
 			else
@@ -106,6 +109,7 @@ public class AdminZone implements IAdminCommandHandler
 			ZoneManager.getInstance().clearDebugItems();
 			showHtml(activeChar);
 		}
+		
 		return true;
 	}
 	
@@ -151,11 +155,13 @@ public class AdminZone implements IAdminCommandHandler
 			}
 			zones.append(" ");
 		}
+		
 		for (NpcSpawnTerritory territory : ZoneManager.getInstance().getSpawnTerritories(activeChar))
 		{
 			zones.append(territory.getName());
 			zones.append("<br1>");
 		}
+		
 		adminReply.replace("%ZLIST%", zones.toString());
 		activeChar.sendPacket(adminReply);
 	}
@@ -170,7 +176,7 @@ public class AdminZone implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

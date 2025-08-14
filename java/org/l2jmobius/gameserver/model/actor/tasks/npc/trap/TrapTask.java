@@ -52,6 +52,7 @@ public class TrapTask implements Runnable
 					{
 						_trap.broadcastPacket(new SocialAction(_trap.getObjectId(), 2));
 					}
+					
 					if (_trap.getRemainingTime() <= 0)
 					{
 						switch (_trap.getSkill().getTargetType())

@@ -38,14 +38,18 @@ public class Q00299_GatherIngredientsForPie extends Quest
 	private static final int LARS = 30063;
 	private static final int BRIGHT = 30466;
 	private static final int EMILLY = 30620;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS_CHANCES = new HashMap<>(2);
+	
 	// Items
 	private static final int FRUIT_BASKET = 7136;
 	private static final int AVELLAN_SPICE = 7137;
 	private static final int HONEY_POUCH = 7138;
+	
 	// Rewards
 	private static final List<ItemChanceHolder> REWARDS = new ArrayList<>(5);
+	
 	// Misc
 	private static final int MIN_LEVEL = 34;
 	static
@@ -77,6 +81,7 @@ public class Q00299_GatherIngredientsForPie extends Quest
 		{
 			return html;
 		}
+		
 		switch (event)
 		{
 			case "30063-02.html":
@@ -150,6 +155,7 @@ public class Q00299_GatherIngredientsForPie extends Quest
 							break;
 						}
 					}
+					
 					qs.exitQuest(true, true);
 					html = event;
 				}
@@ -160,6 +166,7 @@ public class Q00299_GatherIngredientsForPie extends Quest
 				break;
 			}
 		}
+		
 		return html;
 	}
 	
@@ -273,6 +280,7 @@ public class Q00299_GatherIngredientsForPie extends Quest
 				break;
 			}
 		}
+		
 		return html;
 	}
 }

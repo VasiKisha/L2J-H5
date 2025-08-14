@@ -76,8 +76,10 @@ public class SiegeScheduleData implements IXmlReader
 								{
 									val = Integer.toString(getValueForField(val));
 								}
+								
 								set.set(key, val);
 							}
+							
 							_scheduleData.put(set.getInt("castleId"), new SiegeScheduleDate(set));
 							break;
 						}

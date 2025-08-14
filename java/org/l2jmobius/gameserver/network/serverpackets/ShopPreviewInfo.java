@@ -40,6 +40,7 @@ public class ShopPreviewInfo extends ServerPacket
 	{
 		ServerPackets.SHOP_PREVIEW_INFO.writeId(this, buffer);
 		buffer.writeInt(Inventory.PAPERDOLL_TOTALSLOTS);
+		
 		// Slots
 		buffer.writeInt(getFromList(Inventory.PAPERDOLL_UNDER));
 		buffer.writeInt(getFromList(Inventory.PAPERDOLL_REAR));

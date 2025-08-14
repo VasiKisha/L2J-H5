@@ -44,6 +44,7 @@ public class Chimeras extends AbstractNpcAI
 		22352, // Chimera of Fire
 	};
 	private static final int CELTUS = 22353;
+	
 	// Locations
 	private static final Location[] LOCATIONS =
 	{
@@ -52,12 +53,15 @@ public class Chimeras extends AbstractNpcAI
 		new Location(7222, 240617, -2033),
 		new Location(9969, 235570, -1993)
 	};
+	
 	// Skills
 	private static final int BOTTLE = 2359; // Magic Bottle
+	
 	// Items
 	private static final int DIM_LIFE_FORCE = 9680;
 	private static final int LIFE_FORCE = 9681;
 	private static final int CONTAINED_LIFE_FORCE = 9682;
+	
 	// Misc
 	private static final int CONTAINED_LIFE_FORCE_AMOUNT = Config.RATE_DEATH_DROP_AMOUNT_MULTIPLIER > 1 ? (int) Config.RATE_DEATH_DROP_AMOUNT_MULTIPLIER : 1; // Retail value is 1
 	
@@ -110,6 +114,7 @@ public class Chimeras extends AbstractNpcAI
 					npc.dropItem(caster, LIFE_FORCE, 1);
 				}
 			}
+			
 			npc.onDecay();
 		}
 	}

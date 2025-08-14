@@ -36,6 +36,7 @@ public class Q00998_FallenAngelSelect extends Quest
 {
 	// NPCs
 	private static final int NATOOLS = 30894;
+	
 	// Misc
 	private static final int MIN_LEVEL = 38;
 	
@@ -75,6 +76,7 @@ public class Q00998_FallenAngelSelect extends Quest
 				break;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -98,6 +100,7 @@ public class Q00998_FallenAngelSelect extends Quest
 		{
 			return getNoQuestMsg(player);
 		}
+		
 		return ((player.getLevel() >= MIN_LEVEL) && qs.isCompleted()) ? "30894-01.html" : "30894-00.html";
 	}
 }

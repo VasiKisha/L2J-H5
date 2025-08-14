@@ -33,16 +33,19 @@ public class Q00307_ControlDeviceOfTheGiants extends Quest
 {
 	// NPC
 	private static final int DROPH = 32711;
+	
 	// RB
 	private static final int GORGOLOS = 25681;
 	private static final int LAST_TITAN_UTENUS = 25684;
 	private static final int GIANT_MARPANAK = 25680;
 	private static final int HEKATON_PRIME = 25687;
+	
 	// Items
 	private static final int SUPPORT_ITEMS = 14850;
 	private static final int CET_1_SHEET = 14851;
 	private static final int CET_2_SHEET = 14852;
 	private static final int CET_3_SHEET = 14853;
+	
 	// Misc
 	private static final int RESPAWN_DELAY = 3600000; // 1 hour
 	private static Npc hekaton;
@@ -97,14 +100,17 @@ public class Q00307_ControlDeviceOfTheGiants extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				if ((hekaton != null) && !hekaton.isDead())
 				{
 					return "32711-09.html";
 				}
+				
 				if ((GlobalVariablesManager.getInstance().getLong("GiantsControlDeviceRespawn", 0) - System.currentTimeMillis()) > 0)
 				{
 					return "32711-09a.html";
 				}
+				
 				takeItems(player, CET_1_SHEET, 1);
 				takeItems(player, CET_2_SHEET, 1);
 				takeItems(player, CET_3_SHEET, 1);
@@ -124,6 +130,7 @@ public class Q00307_ControlDeviceOfTheGiants extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -168,6 +175,7 @@ public class Q00307_ControlDeviceOfTheGiants extends Quest
 							qst.setCond(2, true);
 						}
 					}
+					
 					GlobalVariablesManager.getInstance().set("GiantsControlDeviceRespawn", Long.toString(System.currentTimeMillis() + RESPAWN_DELAY));
 				}
 				break;
@@ -206,6 +214,7 @@ public class Q00307_ControlDeviceOfTheGiants extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

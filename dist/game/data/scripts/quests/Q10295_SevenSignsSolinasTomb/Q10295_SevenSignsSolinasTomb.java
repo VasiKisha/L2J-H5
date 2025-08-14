@@ -50,11 +50,13 @@ public class Q10295_SevenSignsSolinasTomb extends Quest
 	private static final int ALTAR_OF_HALLOWS_2 = 32858;
 	private static final int ALTAR_OF_HALLOWS_3 = 32859;
 	private static final int ALTAR_OF_HALLOWS_4 = 32860;
+	
 	// Items
 	private static final int SCROLL_OF_ABSTINENCE = 17228;
 	private static final int SHIELD_OF_SACRIFICE = 17229;
 	private static final int SWORD_OF_HOLY_SPIRIT = 17230;
 	private static final int STAFF_OF_BLESSING = 17231;
+	
 	// Misc
 	private static final int MIN_LEVEL = 81;
 	
@@ -275,6 +277,7 @@ public class Q10295_SevenSignsSolinasTomb extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -554,6 +557,7 @@ public class Q10295_SevenSignsSolinasTomb extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -34,7 +34,7 @@ import org.l2jmobius.gameserver.network.serverpackets.PetStatusShow;
 public class PetAction implements IActionHandler
 {
 	@Override
-	public boolean action(Player player, WorldObject target, boolean interact)
+	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
 		// Aggression target lock effect
 		if (player.isLockedTarget() && (player.getLockedTarget() != target))
@@ -48,6 +48,7 @@ public class PetAction implements IActionHandler
 		{
 			target.asPet().updateRefOwner(player);
 		}
+		
 		if (player.getTarget() != target)
 		{
 			// Set the target of the Player player
@@ -78,9 +79,11 @@ public class PetAction implements IActionHandler
 						EventDispatcher.getInstance().notifyEventAsync(new OnPlayerSummonTalk(target.asSummon()), target);
 					}
 				}
+				
 				player.updateNotMoveUntil();
 			}
 		}
+		
 		return true;
 	}
 	

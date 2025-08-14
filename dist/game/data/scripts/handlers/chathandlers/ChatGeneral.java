@@ -25,7 +25,6 @@ import org.l2jmobius.gameserver.handler.VoicedCommandHandler;
 import org.l2jmobius.gameserver.model.BlockList;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
@@ -42,7 +41,7 @@ public class ChatGeneral implements IChatHandler
 	};
 	
 	@Override
-	public void handleChat(ChatType type, Player activeChar, String paramsValue, String text)
+	public void onChat(ChatType type, Player activeChar, String paramsValue, String text)
 	{
 		boolean vcdUsed = false;
 		if (text.startsWith("."))
@@ -60,10 +59,11 @@ public class ChatGeneral implements IChatHandler
 			{
 				command = text.substring(1);
 			}
+			
 			vch = VoicedCommandHandler.getInstance().getHandler(command);
 			if (vch != null)
 			{
-				vch.useVoicedCommand(command, activeChar, params);
+				vch.onCommand(command, activeChar, params);
 				vcdUsed = true;
 			}
 			else
@@ -80,7 +80,7 @@ public class ChatGeneral implements IChatHandler
 				return;
 			}
 			
-			if ((activeChar.getLevel() < Config.MINIMUM_CHAT_LEVEL) && !activeChar.canOverrideCond(PlayerCondOverride.CHAT_CONDITIONS))
+			if ((activeChar.getLevel() < Config.MINIMUM_CHAT_LEVEL) && !activeChar.isGM())
 			{
 				activeChar.sendMessage("Players can use general chat after Lv. " + Config.MINIMUM_CHAT_LEVEL + ".");
 				return;

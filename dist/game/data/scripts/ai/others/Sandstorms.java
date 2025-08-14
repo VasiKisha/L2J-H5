@@ -30,6 +30,7 @@ public class Sandstorms extends AbstractNpcAI
 {
 	// NPCs
 	private static final int SANDSTORM = 32350;
+	
 	// Skills
 	private static final SkillHolder GUST = new SkillHolder(5435, 1); // Gust
 	

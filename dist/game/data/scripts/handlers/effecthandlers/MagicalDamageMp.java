@@ -45,12 +45,14 @@ public class MagicalDamageMp extends AbstractEffect
 		{
 			return false;
 		}
+		
 		if (!Formulas.calcMagicAffected(effector, effected, skill))
 		{
 			if (effector.isPlayer())
 			{
 				effector.sendPacket(SystemMessageId.YOUR_ATTACK_HAS_FAILED);
 			}
+			
 			if (effected.isPlayer())
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_RESISTED_C2_S_MAGIC);
@@ -58,8 +60,10 @@ public class MagicalDamageMp extends AbstractEffect
 				sm.addString(effector.getName());
 				effected.sendPacket(sm);
 			}
+			
 			return false;
 		}
+		
 		return true;
 	}
 	

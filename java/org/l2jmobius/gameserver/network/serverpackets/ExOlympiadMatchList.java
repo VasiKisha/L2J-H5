@@ -48,6 +48,7 @@ public class ExOlympiadMatchList extends ServerPacket
 				{
 					continue; // initial or finished state not shown
 				}
+				
 				_games.add(task);
 			}
 		}
@@ -82,6 +83,7 @@ public class ExOlympiadMatchList extends ServerPacket
 				{
 					buffer.writeInt(0);
 				}
+				
 				buffer.writeInt(curGame.isRunning() ? 2 : 1); // (1 = Standby, 2 = Playing)
 				buffer.writeString(game.getPlayerNames()[0]); // Player 1 Name
 				buffer.writeString(game.getPlayerNames()[1]); // Player 2 Name

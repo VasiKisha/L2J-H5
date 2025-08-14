@@ -202,6 +202,7 @@ public abstract class ZoneType extends ListenersContainer
 				return false;
 			}
 		}
+		
 		if (!isEnabled())
 		{
 			return false;
@@ -275,6 +276,7 @@ public abstract class ZoneType extends ListenersContainer
 				}
 			}
 		}
+		
 		return true;
 	}
 	
@@ -288,6 +290,7 @@ public abstract class ZoneType extends ListenersContainer
 		{
 			throw new IllegalStateException("Zone already set");
 		}
+		
 		_zone = zone;
 	}
 	
@@ -470,6 +473,7 @@ public abstract class ZoneType extends ListenersContainer
 		{
 			_settings.clear();
 		}
+		
 		_settings = settings;
 	}
 	
@@ -508,6 +512,7 @@ public abstract class ZoneType extends ListenersContainer
 				players.add(ch.asPlayer());
 			}
 		}
+		
 		return players;
 	}
 	

@@ -127,6 +127,7 @@ public class IdManager
 			{
 				nextFree = _freeIds.nextClearBit(0);
 			}
+			
 			if (nextFree < 0)
 			{
 				if (_freeIds.size() < TOTAL_ID_COUNT)
@@ -139,6 +140,7 @@ public class IdManager
 					throw new NullPointerException("IdManager: Ran out of valid ids.");
 				}
 			}
+			
 			_nextFreeId = nextFree;
 			
 			return newId + Config.FIRST_OBJECT_ID;

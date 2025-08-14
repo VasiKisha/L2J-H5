@@ -69,6 +69,7 @@ public class ExReplySentPost extends AbstractItemPacket
 				writeItem(item, buffer);
 				buffer.writeInt(item.getObjectId());
 			}
+			
 			buffer.writeLong(_msg.getReqAdena());
 			buffer.writeInt(_msg.getSendBySystem());
 		}

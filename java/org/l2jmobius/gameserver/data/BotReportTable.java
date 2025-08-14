@@ -129,6 +129,7 @@ public class BotReportTable
 				{
 					calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) - 1);
 				}
+				
 				lastResetTime = calendar.getTimeInMillis();
 			}
 			catch (Exception e)
@@ -307,11 +308,13 @@ public class BotReportTable
 				rcd = new ReportedCharData();
 				_reports.put(bot.getObjectId(), rcd);
 			}
+			
 			rcd.addReporter(reporterId, curTime);
 			if (rcdRep == null)
 			{
 				rcdRep = new ReporterCharData();
 			}
+			
 			rcdRep.registerReport(curTime);
 			
 			_ipRegistry.put(ip, curTime);
@@ -424,6 +427,7 @@ public class BotReportTable
 			{
 				calendar.add(Calendar.DAY_OF_YEAR, 1);
 			}
+			
 			ThreadPool.schedule(new ResetPointTask(), calendar.getTimeInMillis() - currentTime);
 		}
 		catch (Exception e)
@@ -452,6 +456,7 @@ public class BotReportTable
 		{
 			rawIp[i] = Integer.parseInt(rawByte[i]);
 		}
+		
 		return rawIp[0] | (rawIp[1] << 8) | (rawIp[2] << 16) | (rawIp[3] << 24);
 	}
 	
@@ -467,6 +472,7 @@ public class BotReportTable
 		{
 			return (System.currentTimeMillis() - map.get(objectId)) > Config.BOTREPORT_REPORT_DELAY;
 		}
+		
 		return true;
 	}
 	

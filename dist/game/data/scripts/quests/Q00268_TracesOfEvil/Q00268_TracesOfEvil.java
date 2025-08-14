@@ -31,15 +31,18 @@ public class Q00268_TracesOfEvil extends Quest
 {
 	// NPC
 	private static final int KUNAI = 30559;
+	
 	// Item
 	private static final int CONTAMINATED_KASHA_SPIDER_VENOM = 10869;
+	
 	// Monsters
-	private static final int[] MONSTERS = new int[]
+	private static final int[] MONSTERS =
 	{
 		20474, // Kasha Spider
 		20476, // Kasha Fang Spider
 		20478, // Kasha Blade Spider
 	};
+	
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	
@@ -61,6 +64,7 @@ public class Q00268_TracesOfEvil extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -118,6 +122,7 @@ public class Q00268_TracesOfEvil extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

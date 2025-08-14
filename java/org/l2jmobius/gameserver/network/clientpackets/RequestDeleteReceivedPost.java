@@ -72,6 +72,7 @@ public class RequestDeleteReceivedPost extends ClientPacket
 			{
 				continue;
 			}
+			
 			if (msg.getReceiverId() != player.getObjectId())
 			{
 				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to delete not own post!", Config.DEFAULT_PUNISH);
@@ -85,6 +86,7 @@ public class RequestDeleteReceivedPost extends ClientPacket
 			
 			msg.setDeletedByReceiver();
 		}
+		
 		player.sendPacket(new ExChangePostState(true, _msgIds, Message.DELETED));
 	}
 }

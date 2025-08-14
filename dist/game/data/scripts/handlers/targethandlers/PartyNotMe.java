@@ -52,6 +52,7 @@ public class PartyNotMe implements ITargetTypeHandler
 				}
 			}
 		}
+		
 		return targetList;
 	}
 	

@@ -36,10 +36,11 @@ public class Q00700_CursedLife extends Quest
 {
 	// NPC
 	private static final int ORBYU = 32560;
+	
 	// Monsters
 	private static final int ROK = 25624;
 	private static final Map<Integer, Integer[]> MONSTERS = new HashMap<>();
-	//@formatter:off
+	// @formatter:off
 	static
 	{
 		MONSTERS.put(22602, new Integer[] { 15, 139, 965}); // Mutant Bird lvl 1
@@ -49,11 +50,13 @@ public class Q00700_CursedLife extends Quest
 		MONSTERS.put(22605, new Integer[] { 5, 99, 993}); // Dra Hawk lvl 2
 		MONSTERS.put(25628, new Integer[] { 3, 73, 991}); // Dra Hawk lvl 3
 	}
-	//@formatter:on
+	// @formatter:on
+	
 	// Items
 	private static final int SWALLOWED_BONES = 13874;
 	private static final int SWALLOWED_STERNUM = 13873;
 	private static final int SWALLOWED_SKULL = 13872;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
 	private static final int SWALLOWED_BONES_ADENA = 500;
@@ -106,6 +109,7 @@ public class Q00700_CursedLife extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -140,6 +144,7 @@ public class Q00700_CursedLife extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -189,6 +194,7 @@ public class Q00700_CursedLife extends Quest
 				{
 					amount = getRandom(49) + 76;
 				}
+				
 				giveItems(player, SWALLOWED_BONES, amount);
 				chance = getRandom(1000);
 				if (chance < 520)
@@ -215,6 +221,7 @@ public class Q00700_CursedLife extends Quest
 				{
 					amount = getRandom(8) + 6;
 				}
+				
 				giveItems(player, SWALLOWED_STERNUM, amount);
 				chance = getRandom(1000);
 				if (chance < 185)
@@ -237,6 +244,7 @@ public class Q00700_CursedLife extends Quest
 				{
 					amount = getRandom(6) + 17;
 				}
+				
 				giveItems(player, SWALLOWED_SKULL, amount);
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}

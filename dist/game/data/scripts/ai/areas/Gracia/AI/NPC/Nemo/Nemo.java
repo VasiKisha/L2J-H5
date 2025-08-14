@@ -35,8 +35,10 @@ public class Nemo extends AbstractNpcAI
 	// NPC
 	private static final int NEMO = 32735; // Nemo
 	private static final int MAGUEN = 18839; // Wild Maguen
+	
 	// Items
 	private static final int COLLECTOR = 15487; // Maguen Plasma Collector
+	
 	// Misc
 	private static final int MAXIMUM_MAGUEN = 18; // Maximum maguens in one time
 	
@@ -109,6 +111,7 @@ public class Nemo extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

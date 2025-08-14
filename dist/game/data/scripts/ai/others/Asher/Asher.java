@@ -32,8 +32,10 @@ public class Asher extends AbstractNpcAI
 {
 	// NPC
 	private static final int ASHER = 32714;
+	
 	// Location
 	private static final Location LOCATION = new Location(43835, -47749, -792);
+	
 	// Misc
 	private static final int ADENA = 50000;
 	
@@ -62,6 +64,7 @@ public class Asher extends AbstractNpcAI
 		{
 			return event;
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

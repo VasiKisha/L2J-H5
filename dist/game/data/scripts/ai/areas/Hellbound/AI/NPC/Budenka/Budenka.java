@@ -29,6 +29,7 @@ public class Budenka extends AbstractNpcAI
 {
 	// NPCs
 	private static final int BUDENKA = 32294;
+	
 	// Items
 	private static final int STANDART_CERT = 9851;
 	private static final int PREMIUM_CERT = 9852;
@@ -55,6 +56,7 @@ public class Budenka extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -74,6 +76,7 @@ public class Budenka extends AbstractNpcAI
 		{
 			htmltext = "Budenka-01.html";
 		}
+		
 		return htmltext;
 	}
 }

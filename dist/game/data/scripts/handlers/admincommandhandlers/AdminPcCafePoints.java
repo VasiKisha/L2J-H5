@@ -44,7 +44,7 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final StringTokenizer st = new StringTokenizer(command, " ");
 		final String actualCommand = st.nextToken();
@@ -81,6 +81,7 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 							activeChar.sendSysMessage("You cannot set more than " + Config.PC_CAFE_MAX_POINTS + " PC points!");
 							return false;
 						}
+						
 						if (value < 0)
 						{
 							value = 0;
@@ -106,6 +107,7 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 						{
 							pcCafeCount = Config.PC_CAFE_MAX_POINTS;
 						}
+						
 						target.setPcCafePoints(pcCafeCount);
 						target.sendMessage("Admin increased your PC Cafe point(s) by " + value + "!");
 						activeChar.sendSysMessage("You increased PC Cafe point(s) of " + target.getName() + " by " + value);
@@ -153,8 +155,10 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 					}
 				}
 			}
+			
 			showMenuHtml(activeChar);
 		}
+		
 		return true;
 	}
 	
@@ -175,12 +179,14 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 				{
 					pcCafeCount = Integer.MAX_VALUE;
 				}
+				
 				temp.setPcCafePoints(pcCafeCount);
 				temp.sendMessage("Admin increased your PC Cafe point(s) by " + value + "!");
 				temp.sendPacket(new ExPCCafePointInfo(pcCafeCount, value, 0));
 				counter++;
 			}
 		}
+		
 		return counter;
 	}
 	
@@ -203,7 +209,7 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

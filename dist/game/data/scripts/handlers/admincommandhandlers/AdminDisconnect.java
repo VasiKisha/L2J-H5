@@ -38,17 +38,18 @@ public class AdminDisconnect implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_character_disconnect"))
 		{
 			disconnectCharacter(activeChar);
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
@@ -73,7 +74,7 @@ public class AdminDisconnect implements IAdminCommandHandler
 		else
 		{
 			activeChar.sendSysMessage("Character " + player.getName() + " disconnected from server.");
-			Disconnection.of(player).defaultSequence(LeaveWorld.STATIC_PACKET);
+			Disconnection.of(player).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 		}
 	}
 }

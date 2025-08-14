@@ -77,26 +77,32 @@ public class Territory
 		{
 			_xMin = x;
 		}
+		
 		if (y < _yMin)
 		{
 			_yMin = y;
 		}
+		
 		if (x > _xMax)
 		{
 			_xMax = x;
 		}
+		
 		if (y > _yMax)
 		{
 			_yMax = y;
 		}
+		
 		if (zmin < _zMin)
 		{
 			_zMin = zmin;
 		}
+		
 		if (zmax > _zMax)
 		{
 			_zMax = zmax;
 		}
+		
 		_procMax += proc;
 	}
 	
@@ -137,6 +143,7 @@ public class Territory
 				intersectCount++;
 			}
 		}
+		
 		return (intersectCount % 2) == 1;
 	}
 	
@@ -155,6 +162,7 @@ public class Territory
 				}
 			}
 		}
+		
 		for (int i = 0; i < 100; i++)
 		{
 			final int x = Rnd.get(_xMin, _xMax);
@@ -172,9 +180,11 @@ public class Territory
 						zmin = p1._zmin;
 					}
 				}
+				
 				return new Location(x, y, Rnd.get(zmin, _zMax));
 			}
 		}
+		
 		LOGGER.warning("Can't make point for territory " + _terr);
 		return null;
 	}

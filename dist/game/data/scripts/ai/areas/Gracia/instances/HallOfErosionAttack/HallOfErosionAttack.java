@@ -102,7 +102,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 		22524
 	};
 	
-	//@formatter:off
+	// @formatter:off
 	private static final int[][] ROOMS_MOBS =
 	{
 		{22516, -180364, 211944, -12019, 0, 60, 1},
@@ -202,7 +202,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 		{25634, -180906, 206635, -12032, 0, 0, -1},
 		{25634, -178492, 206426, -12023, 0, 0, -1}
 	};
-	//@formatter:on
+	// @formatter:on
 	
 	public HallOfErosionAttack()
 	{
@@ -306,6 +306,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -319,6 +320,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_ANOTHER_INSTANCE_ZONE_THEREFORE_YOU_CANNOT_ENTER_CORRESPONDING_DUNGEON);
 				return;
 			}
+			
 			teleportPlayer(player, coords, world.getInstanceId());
 			return;
 		}
@@ -343,6 +345,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 				teleportPlayer(player, coords, world.getInstanceId());
 				world.addAllowed(player);
 			}
+			
 			runTumors((HEAWorld) world);
 		}
 	}
@@ -382,9 +385,11 @@ public class HallOfErosionAttack extends AbstractNpcAI
 				{
 					npc.getSpawn().stopRespawn();
 				}
+				
 				world.npcList.add(npc);
 			}
 		}
+		
 		broadCastPacket(world, new ExShowScreenMessage(NpcStringId.YOU_CAN_HEAR_THE_UNDEAD_OF_EKIMUS_RUSHING_TOWARD_YOU_S1_S2_IT_HAS_NOW_BEGUN, 2, 8000));
 	}
 	
@@ -400,6 +405,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 				}
 			}
 		}
+		
 		world.npcList.clear();
 	}
 	
@@ -434,6 +440,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return "";
 	}
 	
@@ -445,6 +452,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 			enterInstance(player, ENTER_TELEPORT);
 			return "";
 		}
+		
 		return "";
 	}
 	
@@ -461,6 +469,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 				{
 					addSpawn(mobs[getRandom(mobs.length)], npc.getLocation(), world.getInstanceId());
 				}
+				
 				npc.doDie(npc);
 			}
 		}
@@ -559,6 +568,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 					world.cohemenes = n;
 				}
 			}
+			
 			if (npc.getId() == COHEMENES)
 			{
 				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.SHOUT, npc.getId(), NpcStringId.KEU_I_WILL_LEAVE_FOR_NOW_BUT_DON_T_THINK_THIS_IS_OVER_THE_SEED_OF_INFINITY_CAN_NEVER_DIE));
@@ -573,6 +583,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 						}
 					}
 				}
+				
 				broadCastPacket(world, new ExShowScreenMessage(NpcStringId.CONGRATULATIONS_YOU_HAVE_SUCCEEDED_AT_S1_S2_THE_INSTANCE_WILL_SHORTLY_EXPIRE, 2, 8000));
 				world.cohemenes = null;
 				conquestEnded = true;
@@ -598,6 +609,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 			{
 				reenter.add(Calendar.DATE, 1);
 			}
+			
 			reenter.set(Calendar.HOUR_OF_DAY, 6);
 			
 			final SystemMessage sm = new SystemMessage(SystemMessageId.INSTANT_ZONE_S1_S_ENTRY_HAS_BEEN_RESTRICTED_YOU_CAN_CHECK_THE_NEXT_POSSIBLE_ENTRY_TIME_BY_USING_THE_COMMAND_INSTANCEZONE);
@@ -614,6 +626,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 					}
 				}
 			}
+			
 			final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
 			inst.setDuration(5 * 60000);
 			inst.setEmptyDestroyTime(0);
@@ -665,6 +678,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 			{
 				return;
 			}
+			
 			for (int i = 0; i < 4; i++)
 			{
 				final Npc worm = addSpawn(18710, _deadTumor.getLocation(), _world.getInstanceId());

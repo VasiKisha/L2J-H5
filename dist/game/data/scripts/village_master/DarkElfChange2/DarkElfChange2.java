@@ -49,6 +49,7 @@ public class DarkElfChange2 extends AbstractNpcAI
 		31974, // Drizzit
 		32096, // Helminter
 	};
+	
 	// Items
 	private static int MARK_OF_CHALLENGER = 2627;
 	private static int MARK_OF_DUTY = 2633;
@@ -116,9 +117,11 @@ public class DarkElfChange2 extends AbstractNpcAI
 						player.broadcastUserInfo();
 					}
 				}
+				
 				return "30474-" + suffix + ".html";
 			}
 		}
+		
 		return event;
 	}
 	
@@ -179,6 +182,7 @@ public class DarkElfChange2 extends AbstractNpcAI
 		{
 			htmltext = "30474-56.html"; // other races
 		}
+		
 		return htmltext;
 	}
 	

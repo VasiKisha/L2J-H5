@@ -43,7 +43,7 @@ public class AdminTerritoryWar implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String commandValue, Player activeChar)
+	public boolean onCommand(String commandValue, Player activeChar)
 	{
 		String command = commandValue;
 		final StringTokenizer st = new StringTokenizer(command);
@@ -69,6 +69,7 @@ public class AdminTerritoryWar implements IAdminCommandHandler
 						activeChar.sendSysMessage("Unable to change Siege Date - Incorrect month value only " + cal.getActualMinimum(Calendar.MONTH) + "-" + cal.getActualMaximum(Calendar.MONTH) + " is accepted!");
 						return false;
 					}
+					
 					cal.set(Calendar.MONTH, month);
 				}
 				else if ("day".equals(val))
@@ -79,6 +80,7 @@ public class AdminTerritoryWar implements IAdminCommandHandler
 						activeChar.sendSysMessage("Unable to change Siege Date - Incorrect day value only " + cal.getActualMinimum(Calendar.DAY_OF_MONTH) + "-" + cal.getActualMaximum(Calendar.DAY_OF_MONTH) + " is accepted!");
 						return false;
 					}
+					
 					cal.set(Calendar.DAY_OF_MONTH, day);
 				}
 				else if ("hour".equals(val))
@@ -89,6 +91,7 @@ public class AdminTerritoryWar implements IAdminCommandHandler
 						activeChar.sendSysMessage("Unable to change Siege Date - Incorrect hour value only " + cal.getActualMinimum(Calendar.HOUR_OF_DAY) + "-" + cal.getActualMaximum(Calendar.HOUR_OF_DAY) + " is accepted!");
 						return false;
 					}
+					
 					cal.set(Calendar.HOUR_OF_DAY, hour);
 				}
 				else if ("min".equals(val))
@@ -99,6 +102,7 @@ public class AdminTerritoryWar implements IAdminCommandHandler
 						activeChar.sendSysMessage("Unable to change Siege Date - Incorrect minute value only " + cal.getActualMinimum(Calendar.MINUTE) + "-" + cal.getActualMaximum(Calendar.MINUTE) + " is accepted!");
 						return false;
 					}
+					
 					cal.set(Calendar.MINUTE, min);
 				}
 				
@@ -112,6 +116,7 @@ public class AdminTerritoryWar implements IAdminCommandHandler
 					GlobalVariablesManager.getInstance().set(TerritoryWarManager.GLOBAL_VARIABLE, cal.getTimeInMillis());
 				}
 			}
+			
 			showSiegeTimePage(activeChar);
 		}
 		else if (command.equalsIgnoreCase("admin_territory_war_start"))
@@ -150,6 +155,7 @@ public class AdminTerritoryWar implements IAdminCommandHandler
 						sb.append("</tr></table>");
 					}
 				}
+				
 				sb.append("<br><center><button value=\"Back\" action=\"bypass -h admin_territory_war\" width=50 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></center></body></html>");
 				npcHtmlMessage.setHtml(sb.toString());
 				activeChar.sendPacket(npcHtmlMessage);
@@ -162,11 +168,12 @@ public class AdminTerritoryWar implements IAdminCommandHandler
 				activeChar.sendPacket(npcHtmlMessage);
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return _adminCommands;
 	}

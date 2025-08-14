@@ -33,13 +33,16 @@ public class Q10504_JewelOfAntharas extends Quest
 {
 	// NPC
 	private static final int THEODRIC = 30755;
+	
 	// Monster
 	private static final int ANTHARAS = 29068;
+	
 	// Items
 	private static final int CLEAR_CRYSTAL = 21905;
 	private static final int FILLED_CRYSTAL_ANTHARAS_ENERGY = 21907;
 	private static final int JEWEL_OF_ANTHARAS = 21898;
 	private static final int PORTAL_STONE = 3865;
+	
 	// Misc
 	private static final int MIN_LEVEL = 84;
 	
@@ -94,6 +97,7 @@ public class Q10504_JewelOfAntharas extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -160,6 +164,7 @@ public class Q10504_JewelOfAntharas extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -38,6 +38,9 @@ public class DeadlockWatcher extends Thread
 {
 	private static final Logger LOGGER = Logger.getLogger(DeadlockWatcher.class.getName());
 	
+	private static final int MAX_STACK_DEPTH = 30; // Max stack trace elements to log.
+	private static final int MAX_DEADLOCK_THREADS = 20; // Max threads to process in full report.
+	
 	private final Duration _checkInterval;
 	private final Runnable _deadlockCallback;
 	private final ThreadMXBean _threadMXBean;
@@ -66,51 +69,14 @@ public class DeadlockWatcher extends Thread
 					LOGGER.warning("DeadlockWatcher: Deadlock detected!");
 					
 					// Build detailed deadlock report.
-					final ThreadInfo[] deadlockedThreadsInfo = _threadMXBean.getThreadInfo(deadlockedThreadIds, true, true);
-					final StringBuilder report = new StringBuilder("DeadlockWatcher: Deadlock detected among the following threads:").append(System.lineSeparator());
-					for (ThreadInfo threadInfo : deadlockedThreadsInfo)
+					if (deadlockedThreadIds.length > MAX_DEADLOCK_THREADS)
 					{
-						// Append basic details of the thread.
-						report.append("Thread Name: ").append(threadInfo.getThreadName()).append(System.lineSeparator()).append("Thread State: ").append(threadInfo.getThreadState()).append(System.lineSeparator()).append("Locked Resource: ").append(threadInfo.getLockName()).append(System.lineSeparator());
-						
-						// Append locked resources.
-						if (threadInfo.getLockedSynchronizers().length > 0)
-						{
-							report.append("Locked Synchronizers:").append(System.lineSeparator());
-							for (LockInfo lock : threadInfo.getLockedSynchronizers())
-							{
-								report.append("\t- ").append(lock).append(System.lineSeparator());
-							}
-						}
-						
-						if (threadInfo.getLockedMonitors().length > 0)
-						{
-							report.append("Locked Monitors:").append(System.lineSeparator());
-							for (MonitorInfo monitor : threadInfo.getLockedMonitors())
-							{
-								report.append("\t- Locked on monitor: ").append(monitor.getClassName()).append(" at ").append(monitor.getLockedStackFrame()).append(System.lineSeparator());
-							}
-						}
-						
-						// Append the chain of deadlocked threads.
-						ThreadInfo current = threadInfo;
-						report.append("Deadlock Chain:").append(System.lineSeparator());
-						while (current != null)
-						{
-							report.append("\t- ").append(current.getThreadName()).append(" is waiting to lock ").append(current.getLockInfo()).append(" held by ").append(current.getLockOwnerName()).append(System.lineSeparator());
-							
-							if (current.getLockOwnerId() == -1)
-							{
-								break; // End of deadlock chain.
-							}
-							
-							current = _threadMXBean.getThreadInfo(current.getLockOwnerId());
-						}
-						
-						report.append(System.lineSeparator());
+						generateMinimalDeadlockReport(deadlockedThreadIds);
 					}
-					
-					LOGGER.warning(report.toString());
+					else
+					{
+						generateDeadlockReport(deadlockedThreadIds);
+					}
 					
 					// Invoke callback if set.
 					if (_deadlockCallback != null)
@@ -131,7 +97,7 @@ public class DeadlockWatcher extends Thread
 			catch (InterruptedException e)
 			{
 				LOGGER.info("DeadlockWatcher: Thread interrupted and will exit.");
-				Thread.currentThread().interrupt(); // Set the interrupt flag.
+				Thread.currentThread().interrupt();
 				break;
 			}
 			catch (Exception e)
@@ -141,5 +107,89 @@ public class DeadlockWatcher extends Thread
 		}
 		
 		LOGGER.info("DeadlockWatcher: Thread terminated.");
+	}
+	
+	private void generateDeadlockReport(long[] deadlockedThreadIds)
+	{
+		LOGGER.warning("========== DEADLOCK REPORT ==========");
+		
+		for (ThreadInfo info : _threadMXBean.getThreadInfo(deadlockedThreadIds, true, true))
+		{
+			if (info == null)
+			{
+				continue;
+			}
+			
+			LOGGER.warning("Thread: " + info.getThreadName() + " (ID: " + info.getThreadId() + ")");
+			LOGGER.warning("State: " + info.getThreadState());
+			final String lockName = info.getLockName();
+			if (lockName != null)
+			{
+				LOGGER.warning("Waiting for lock: " + lockName);
+				LOGGER.warning("Lock owner: " + info.getLockOwnerName() + " (ID: " + info.getLockOwnerId() + ")");
+			}
+			
+			LOGGER.warning("Stack trace:");
+			final StackTraceElement[] stack = info.getStackTrace();
+			for (int i = 0; i < Math.min(stack.length, MAX_STACK_DEPTH); i++)
+			{
+				LOGGER.warning("\tat " + stack[i]);
+			}
+			
+			if (stack.length > MAX_STACK_DEPTH)
+			{
+				LOGGER.warning("\t... (stack trace truncated)");
+			}
+			
+			final MonitorInfo[] lockedMonitors = info.getLockedMonitors();
+			if (lockedMonitors.length > 0)
+			{
+				LOGGER.warning("Locked monitors:");
+				for (MonitorInfo monitor : lockedMonitors)
+				{
+					LOGGER.warning("\t- " + monitor.getClassName() + " at line " + monitor.getLockedStackFrame().getLineNumber());
+				}
+			}
+			
+			final LockInfo[] lockedSynchronizers = info.getLockedSynchronizers();
+			if (lockedSynchronizers.length > 0)
+			{
+				LOGGER.warning("Locked synchronizers:");
+				for (LockInfo lock : lockedSynchronizers)
+				{
+					LOGGER.warning("\t- " + lock.getClassName());
+				}
+			}
+		}
+		
+		LOGGER.warning("========== END DEADLOCK REPORT ==========");
+	}
+	
+	private void generateMinimalDeadlockReport(long[] deadlockedThreadIds)
+	{
+		LOGGER.warning("========== MINIMAL DEADLOCK REPORT ==========");
+		
+		for (long id : deadlockedThreadIds)
+		{
+			final ThreadInfo info = _threadMXBean.getThreadInfo(id, 10);
+			if (info != null)
+			{
+				LOGGER.warning("Thread: " + info.getThreadName() + " (State: " + info.getThreadState() + ")");
+				final String lockName = info.getLockName();
+				if (lockName != null)
+				{
+					LOGGER.warning("\tWaiting for: " + lockName);
+				}
+				
+				final StackTraceElement[] stack = info.getStackTrace();
+				final int frames = Math.min(5, stack.length);
+				for (int i = 0; i < frames; i++)
+				{
+					LOGGER.warning("\tat " + stack[i]);
+				}
+			}
+		}
+		
+		LOGGER.warning("========== END MINIMAL REPORT ==========");
 	}
 }

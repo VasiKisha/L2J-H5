@@ -76,6 +76,7 @@ public class TaskBirthday extends PersistentTask
 		{
 			LOGGER.warning("Error checking birthdays: " + e.getMessage());
 		}
+		
 		return birthdayGiftCount;
 	}
 	

@@ -34,8 +34,10 @@ public class PriestOfBlessing extends AbstractNpcAI
 {
 	// NPC
 	private static final int PRIEST = 32783;
+	
 	// Spawn state
 	private static boolean SPAWNED = false;
+	
 	// Items
 	private static final int NEVIT_VOICE = 17094;
 	// @formatter:off
@@ -50,6 +52,7 @@ public class PriestOfBlessing extends AbstractNpcAI
 		{ 17125, 17126, 17127, 17128, 17129 }
 	};
 	// @formatter:on
+	
 	// Prices
 	private static final int PRICE_VOICE = 100000;
 	private static final int[] PRICE_HOURGLASS =
@@ -62,6 +65,7 @@ public class PriestOfBlessing extends AbstractNpcAI
 		2160000,
 		5000000
 	};
+	
 	// Locations
 	private static final Location[] SPAWNS =
 	{
@@ -96,6 +100,7 @@ public class PriestOfBlessing extends AbstractNpcAI
 			{
 				addSpawn(PRIEST, spawn, false, 0);
 			}
+			
 			SPAWNED = true;
 		}
 	}
@@ -127,8 +132,10 @@ public class PriestOfBlessing extends AbstractNpcAI
 					sm.addInt(minutes);
 					player.sendPacket(sm);
 				}
+				
 				return null;
 			}
+			
 			htmltext = "32783-adena.htm";
 		}
 		else if (event.equalsIgnoreCase("buy_hourglass"))
@@ -158,10 +165,13 @@ public class PriestOfBlessing extends AbstractNpcAI
 					sm.addInt(minutes);
 					player.sendPacket(sm);
 				}
+				
 				return null;
 			}
+			
 			htmltext = "32783-adena.htm";
 		}
+		
 		return htmltext;
 	}
 	
@@ -204,6 +214,7 @@ public class PriestOfBlessing extends AbstractNpcAI
 		{
 			index = 6;
 		}
+		
 		return index;
 	}
 	

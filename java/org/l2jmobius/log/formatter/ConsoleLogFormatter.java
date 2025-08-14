@@ -49,6 +49,7 @@ public class ConsoleLogFormatter extends Formatter
 				// Ignore.
 			}
 		}
+		
 		return output.toString();
 	}
 }

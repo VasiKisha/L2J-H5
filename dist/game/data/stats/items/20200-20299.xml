@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20200" type="Armor" name="Agathion of Love - 3-day limited period">
 		<!-- This bracelet summons an Agathion of Love. Cannot be exchanged, dropped or sold. Agathion skill reuse delay is 12 hours. -->
@@ -79,11 +79,11 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="3562-1" /> <!-- Ring of Ant Queen -->
 		<set name="time" val="4320" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="48" />
 			<add stat="maxMp" val="21" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="20205" type="Armor" name="Queen Ant's Ring (Event) - 7-day limited period">
 		<!-- Event Queen Ant's Ring. MP+21, Resistance to Poison +30%, poison attack rate +30%, accuracy increase, critical damage increase, hold tolerance +20%, and hold attack rate +20%. Only one effect is applied even when the two identical rings are worn. Cannot be exchanged, dropped, or sold. -->
@@ -100,11 +100,11 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="3562-1" /> <!-- Ring of Ant Queen -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="48" />
 			<add stat="maxMp" val="21" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="20206" type="Armor" name="Queen Ant's Ring (Event) - 15-day limited period">
 		<!-- Event Queen Ant's Ring. MP+21, Resistance to Poison +30%, poison attack rate +30%, accuracy increase, critical damage increase, hold tolerance +20%, and hold attack rate +20%. Only one effect is applied even when the two identical rings are worn. Cannot be exchanged, dropped, or sold. -->
@@ -121,11 +121,11 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="3562-1" /> <!-- Ring of Ant Queen -->
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="48" />
 			<add stat="maxMp" val="21" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="20207" type="Armor" name="Earring of Zaken (Event) - 3-day limited period">
 		<!-- Event Earring of Zaken. MP+31, Resistance to Bleed +30%, Bleed attack rate +30%, heal amount increase, vampiric rage effect, Resistance to Shock/Metal attacks +20%, and Shock/Mental attack rate +20%. Only one effect is applied even when the two identical earrings are worn. Cannot be exchanged, dropped, or sold. -->
@@ -142,11 +142,11 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="3559-1" /> <!-- Earring of Zaken -->
 		<set name="time" val="4320" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="71" />
 			<add stat="maxMp" val="31" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="20208" type="Armor" name="Earring of Zaken (Event) - 7-day limited period">
 		<!-- Event Earring of Zaken. MP+31, Resistance to Bleed +30%, Bleed attack rate +30%, heal amount increase, vampiric rage effect, Resistance to Shock/Metal attacks +20%, and Shock/Mental attack rate +20%. Only one effect is applied even when the two identical earrings are worn. Cannot be exchanged, dropped, or sold. -->
@@ -163,11 +163,11 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="3559-1" /> <!-- Earring of Zaken -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="71" />
 			<add stat="maxMp" val="31" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="20209" type="Armor" name="Earring of Zaken (Event) - 15-day limited period">
 		<!-- Event Earring of Zaken. MP+31, Resistance to Bleed +30%, Bleed attack rate +30%, heal amount increase, vampiric rage effect, Resistance to Shock/Metal attacks +20%, and Shock/Mental attack rate +20%. Only one effect is applied even when the two identical earrings are worn. Cannot be exchanged, dropped, or sold. -->
@@ -184,11 +184,11 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="3559-1" /> <!-- Earring of Zaken -->
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="71" />
 			<add stat="maxMp" val="31" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="20210" type="EtcItem" name="Charming Valentine Gift Set">
 		<!-- A wrapped gift box containing a Charming Cupid Agathion and some scrumptious Chocolate Cookies. Cannot be exchanged, dropped or sold. -->
@@ -939,12 +939,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="20256" type="Weapon" name="Baguette Dagger - 7-day limited period">
 		<!-- Dagger made of bread. Fills you with the tears of a moldy Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -967,13 +967,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="20257" type="Weapon" name="Baguette Dual Sword - 7-day limited period">
 		<!-- Dual sword made of bread. Fills you with the passion of a cinnamon Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -996,12 +996,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="20258" type="Weapon" name="Baguette Mace - 7-day limited period">
 		<!-- Mace made of bread. Fills you with the pain of a spicy Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1024,13 +1024,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="20259" type="Weapon" name="Baguette Heavy Hammer - 7-day limited period">
 		<!-- Hammer made of bread. Fills you with the melancholy of a half-eaten Baguette.Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1053,13 +1053,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="20260" type="Weapon" name="Baguette Spear - 7-day limited period">
 		<!-- Spear made of bread. Fills you with the solitude of an uneaten Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1082,13 +1082,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1;3599-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="20261" type="Weapon" name="Baguette Bow - 7-day limited period">
 		<!-- Bow made of bread. Fills you with the lively energy of a fresh baked Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1113,13 +1113,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="3" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="227" />
-		</for>
+		</stats>
 	</item>
 	<item id="20262" type="Weapon" name="Baguette Fist - 7-day limited period">
 		<!-- Fist weapon made of bread. Fills you with the tenacious nature of a three-day-old Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1142,13 +1142,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="20263" type="Weapon" name="Baguette Magic Sword - 7-day limited period">
 		<!-- Magic sword made of bread. Fills you with the madness of a burnt Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1171,12 +1171,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="20264" type="Weapon" name="Baguette Staff - 7-day limited period">
 		<!-- Staff made of bread. Fills you with the wisdom of a health-conscious Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1199,13 +1199,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="20265" type="Weapon" name="Baguette Great Staff - 7-day limited period">
 		<!-- Two-handed staff made of bread. Fills you with the tears of a soggy Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1228,13 +1228,13 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="20266" type="Armor" name="Baguette Shield - 7-day limited period">
 		<!-- Shield made of bread. Fills you with the sorrow of a wasted Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1252,14 +1252,14 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="5" />
-		</for>
+		</stats>
 	</item>
 	<item id="20267" type="Weapon" name="Baguette Rapier - 7-day limited period">
 		<!-- Rapier made of bread. Fills you with the relief of a toasty Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1283,16 +1283,16 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="3" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="20268" type="Weapon" name="Baguette Ancient Sword - 7-day limited period">
 		<!-- Ancient Sword made of bread. Fills you with the regret of eating too many Baguettes. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1315,16 +1315,16 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="3" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="20269" type="Weapon" name="Baguette Crossbow - 7-day limited period">
 		<!-- Crossbow made of bread. Fills you with the rage of not having enough Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1348,16 +1348,16 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="3" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="20270" type="Weapon" name="Baguette's Dualsword - 7-day limited period">
 		<!-- Dualsword containing the great power of Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -1380,12 +1380,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21042-1" /> <!-- Blessing of Baguette -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="2" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="20271" type="EtcItem" name="Baguette Legacy">
 		<!-- Binds the intense emotions of Baguette. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->

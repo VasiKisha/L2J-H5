@@ -112,6 +112,7 @@ public class TerritoryWard
 		{
 			dropIt();
 		}
+		
 		if ((_npc != null) && !_npc.isDecayed())
 		{
 			_npc.deleteMe();
@@ -150,6 +151,7 @@ public class TerritoryWard
 		{
 			_item = item;
 		}
+		
 		_player.getInventory().equipItem(_item);
 		final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_EQUIPPED_YOUR_S1);
 		sm.addItemName(_item);

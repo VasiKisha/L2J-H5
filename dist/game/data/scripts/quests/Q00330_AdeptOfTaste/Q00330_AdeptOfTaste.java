@@ -38,6 +38,7 @@ public class Q00330_AdeptOfTaste extends Quest
 	private static final int GROCER_PANO = 30078;
 	private static final int MAGISTER_MIRIEN = 30461;
 	private static final int JONAS = 30469;
+	
 	// Items
 	private static final int INGREDIENT_LIST = 1420;
 	private static final int SONIAS_BOTANY_BOOK = 1421;
@@ -71,10 +72,12 @@ public class Q00330_AdeptOfTaste extends Quest
 	private static final int MIRIENS_REVIEW_3 = 1449;
 	private static final int MIRIENS_REVIEW_4 = 1450;
 	private static final int MIRIENS_REVIEW_5 = 1451;
+	
 	// Reward
 	private static final int JONASS_SALAD_RECIPE = 1455;
 	private static final int JONASS_SAUCE_RECIPE = 1456;
 	private static final int JONASS_STEAK_RECIPE = 1457;
+	
 	// Monster
 	private static final int HOBGOBLIN = 20147;
 	private static final int MANDRAGORA_SPROUT1 = 20154;
@@ -87,6 +90,7 @@ public class Q00330_AdeptOfTaste extends Quest
 	private static final int STINGER_WASP = 20229;
 	private static final int MONSTER_EYE_SEARCHER = 20265;
 	private static final int MONSTER_EYE_GAZER = 20266;
+	
 	// Misc
 	private static final int MIN_LEVEL = 24;
 	
@@ -171,6 +175,7 @@ public class Q00330_AdeptOfTaste extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -986,6 +991,7 @@ public class Q00330_AdeptOfTaste extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

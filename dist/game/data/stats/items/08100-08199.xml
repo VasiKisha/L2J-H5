@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="8100" type="EtcItem" name="Destroyed Golem Shards">
 		<!-- Shards obtained from hunting the Golem. -->
@@ -43,14 +43,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3010-3" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8103" type="Weapon" name="Pa'agrian Sword - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. -->
@@ -72,14 +72,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-1" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8104" type="Weapon" name="Pa'agrian Sword - Critical Drain">
 		<!-- <Soul Crystal Enhancement>. Absorbs 9 HP from a target when one makes a critical attack. -->
@@ -102,14 +102,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="oncrit_chance" val="35" />
 		<set name="oncrit_skill" val="3022-3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8105" type="Weapon" name="Guardian Sword - Critical Drain">
 		<!-- <Soul Crystal Enhancement>. Absorbs 8 HP from a target on a critical attack. -->
@@ -132,14 +132,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="oncrit_chance" val="35" />
 		<set name="oncrit_skill" val="3022-6" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8106" type="Weapon" name="Guardian Sword - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. -->
@@ -161,14 +161,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-1" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8107" type="Weapon" name="Guardian Sword - Critical Bleed">
 		<!-- <Soul Crystal Enhancement>. Inflicts Bleed on the target with a 24% chance during a general critical attack. -->
@@ -191,14 +191,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="oncrit_chance" val="24" />
 		<set name="oncrit_skill" val="3055-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8108" type="Weapon" name="Infernal Master - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 6%. Increases damage inflicted on one's opponent during PvP. -->
@@ -220,14 +220,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3068-2" /> <!-- Special Ability: Haste -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="259" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8109" type="Weapon" name="Infernal Master - Critical Damage">
 		<!-- <Soul Crystal Enhancement>. Inflicts additional damage on a critical attack by 297. Increases damage inflicted on one's opponent during PvP. -->
@@ -249,14 +249,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3067-1" /> <!-- Special Ability: Critical Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="259" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8110" type="Weapon" name="Infernal Master - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical Rate by 61. Increases damage inflicted during PvP. -->
@@ -278,14 +278,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3050-1" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="259" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8111" type="Weapon" name="Mysterious Sword - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. -->
@@ -307,14 +307,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3047-1" /> <!-- Special Ability: Acumen -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="85" />
 			<set stat="mAtk" val="81" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8112" type="Weapon" name="Mysterious Sword - M. Atk.">
 		<!-- <Soul Crystal Enhancement>. When using magic, increases MP Consumption by 15% and M. Atk. by 75. -->
@@ -336,14 +336,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3077-1" /> <!-- Special Ability: M. Atk. -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="85" />
 			<set stat="mAtk" val="81" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8113" type="Weapon" name="Mysterious Sword - Magic Weakness">
 		<!-- <Soul Crystal Enhancement>. Has a 8% chance of casting Curse: Weakness when using a magic skill on the target. -->
@@ -366,14 +366,14 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="8" />
 		<set name="onmagic_skill" val="1164-7" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="85" />
 			<set stat="mAtk" val="81" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8114" type="Weapon" name="Ecliptic Sword - Empower">
 		<!-- <Soul Crystal Enhancement>. Increases M. Atk. by 26. -->
@@ -395,14 +395,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3076-4" /> <!-- Special Ability: Empower -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="125" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8115" type="Weapon" name="Ecliptic Sword - M. Atk.">
 		<!-- <Soul Crystal Enhancement>. When using magic, increases MP Consumption by 15% and M. Atk. by 112. -->
@@ -424,14 +424,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3077-4" /> <!-- Special Ability: M. Atk. -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="125" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8116" type="Weapon" name="Ecliptic Sword - Magic Silence">
 		<!-- <Soul Crystal Enhancement>. Has a 10% chance of casting Silence when using a magic skill on the target. -->
@@ -454,14 +454,14 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="10" />
 		<set name="onmagic_skill" val="3078-4" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="125" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8117" type="Weapon" name="Wizard's Tear - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. -->
@@ -483,14 +483,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3047-1" /> <!-- Special Ability: Acumen -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8118" type="Weapon" name="Wizard's Tear - M. Atk.">
 		<!-- <Soul Crystal Enhancement>. When using magic, increases MP Consumption by 15% and M. Atk. by 139. -->
@@ -512,14 +512,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3077-6" /> <!-- Special Ability: M. Atk. -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8119" type="Weapon" name="Wizard's Tear - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. -->
@@ -541,14 +541,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3048-1" /> <!-- Special Ability: Conversion -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8120" type="Weapon" name="Dwarven Hammer - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. -->
@@ -569,7 +569,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-1" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="4" />
@@ -577,7 +577,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8121" type="Weapon" name="Dwarven Hammer - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases Max HP by 15% and increases P. Atk. by 26. -->
@@ -598,7 +598,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3012-4" /> <!-- Special Ability: Anger -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="4" />
@@ -606,7 +606,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8122" type="Weapon" name="Dwarven Hammer - Critical Bleed">
 		<!-- <Soul Crystal Enhancement>. Inflicts Bleed on the target with a 42% chance during a general critical attack. -->
@@ -628,7 +628,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="oncrit_chance" val="42" />
 		<set name="oncrit_skill" val="3021-4" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="4" />
@@ -636,7 +636,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8123" type="Weapon" name="Karik Horn - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical Rate by 77. -->
@@ -657,7 +657,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3010-3" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="4" />
@@ -665,7 +665,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8124" type="Weapon" name="Karik Horn - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 7%. -->
@@ -686,7 +686,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3036-3" /> <!-- Special Ability: Haste -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="4" />
@@ -694,7 +694,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8125" type="Weapon" name="Karik Horn - Critical Drain">
 		<!-- <Soul Crystal Enhancement>. Absorbs 9 HP from a target when one makes a critical attack. -->
@@ -716,7 +716,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="oncrit_chance" val="10" />
 		<set name="oncrit_skill" val="3039-3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="4" />
@@ -724,7 +724,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8126" type="Weapon" name="Destroyer Hammer - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted on one's opponent during PvP. -->
@@ -745,7 +745,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="259" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="4" />
@@ -753,7 +753,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8127" type="Weapon" name="Destroyer Hammer - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Sp.d by 6%. Increases damage inflicted during PvP. -->
@@ -774,7 +774,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3068-2" /> <!-- Special Ability: Haste -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="259" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="4" />
@@ -782,7 +782,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8128" type="Weapon" name="Destroyer Hammer - Critical Drain">
 		<!-- <Soul Crystal Enhancement>. Absorbs 18 HP from a target on a critical attack. Increases the amount of damage one inflicts during PvP. -->
@@ -805,7 +805,7 @@
 		<set name="oncrit_chance" val="24" />
 		<set name="oncrit_skill" val="3059-1" />
 		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="259" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="4" />
@@ -813,7 +813,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8129" type="Weapon" name="Ice Storm Hammer - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical Rate by 68. -->
@@ -834,7 +834,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3010-5" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="4" />
@@ -842,7 +842,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8130" type="Weapon" name="Ice Storm Hammer - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases Max HP 15% and increases P. Atk. by 28. -->
@@ -863,7 +863,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3012-5" /> <!-- Special Ability: Anger -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="4" />
@@ -871,7 +871,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8131" type="Weapon" name="Ice Storm Hammer - Critical Bleed">
 		<!-- <Soul Crystal Enhancement>. Inflicts Bleed on the target with a 41% chance during a general critical attack. -->
@@ -893,7 +893,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="oncrit_chance" val="41" />
 		<set name="oncrit_skill" val="3021-5" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="4" />
@@ -901,7 +901,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8132" type="Weapon" name="Star Buster - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. -->
@@ -922,7 +922,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-1" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
@@ -930,7 +930,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8133" type="Weapon" name="Star Buster - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 6%. -->
@@ -951,7 +951,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3036-6" /> <!-- Special Ability: Haste -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
@@ -959,7 +959,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8134" type="Weapon" name="Star Buster - Rsk. Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical Rate by 99 when the character's HP falls to 60% or below. -->
@@ -980,7 +980,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3027-6" /> <!-- Special Ability: Rsk. Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
@@ -988,7 +988,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8135" type="Weapon" name="Doom Crusher - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted on one's opponent during PvP. -->
@@ -1009,7 +1009,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="282" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
@@ -1017,7 +1017,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8136" type="Weapon" name="Doom Crusher - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases Max HP by 15% and increases P. Atk. by 11% and damage inflicted during PvP. -->
@@ -1038,7 +1038,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3057-2" /> <!-- Special Ability: Anger -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="282" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
@@ -1046,7 +1046,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8137" type="Weapon" name="Doom Crusher - Rsk. Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by 11% when HP drops to 60% or lower. Increases damage inflicted on one's opponent during PvP. -->
@@ -1067,7 +1067,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3056-2" /> <!-- Special Ability: Rsk. Haste -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="282" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
@@ -1075,7 +1075,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8138" type="Weapon" name="Ecliptic Axe - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. -->
@@ -1097,7 +1097,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3048-1" /> <!-- Special Ability: Conversion -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="125" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
@@ -1105,7 +1105,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8139" type="Weapon" name="Ecliptic Axe - M. Atk.">
 		<!-- <Soul Crystal Enhancement>. When using magic, increases MP Consumption by 15%, and M. Atk. by 112. -->
@@ -1127,7 +1127,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3077-4" /> <!-- Special Ability: M. Atk. -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="125" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
@@ -1135,7 +1135,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8140" type="Weapon" name="Ecliptic Axe - Magic Hold">
 		<!-- <Soul Crystal Enhancement>. Has a 10% chance of casting Dryad Root when using a magic skill on the target. -->
@@ -1158,7 +1158,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="10" />
 		<set name="onmagic_skill" val="1201-23" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="125" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
@@ -1166,7 +1166,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8141" type="Weapon" name="Spell Breaker - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. -->
@@ -1188,7 +1188,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3047-1" /> <!-- Special Ability: Acumen -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="140" />
 			<set stat="mAtk" val="122" />
 			<set stat="critRate" val="4" />
@@ -1196,7 +1196,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8142" type="Weapon" name="Spell Breaker - Mental Shield">
 		<!-- <Soul Crystal Enhancement>. Has a 50% chance of casting Mental Shield when using a magic skill on the target. -->
@@ -1219,7 +1219,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="50" />
 		<set name="onmagic_skill" val="1035-4" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="140" />
 			<set stat="mAtk" val="122" />
 			<set stat="critRate" val="4" />
@@ -1227,7 +1227,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8143" type="Weapon" name="Spell Breaker - Magic Hold">
 		<!-- <Soul Crystal Enhancement>. Has a 10% chance of casting Dryad Root when using a magic skill on the target. -->
@@ -1250,7 +1250,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="10" />
 		<set name="onmagic_skill" val="1201-25" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="140" />
 			<set stat="mAtk" val="122" />
 			<set stat="critRate" val="4" />
@@ -1258,7 +1258,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8144" type="Weapon" name="Kaim Vanul's Bones - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 30%. -->
@@ -1280,7 +1280,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3014-1" /> <!-- Special Ability: Mana Up -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
@@ -1288,7 +1288,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8145" type="Weapon" name="Kaim Vanul's Bones - Magic Silence">
 		<!-- <Soul Crystal Enhancement>. Has a 10% chance of casting Silence when using a magic skill on the target. -->
@@ -1311,7 +1311,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="10" />
 		<set name="onmagic_skill" val="3078-6" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
@@ -1319,7 +1319,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8146" type="Weapon" name="Kaim Vanul's Bones - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. -->
@@ -1341,7 +1341,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3048-1" /> <!-- Special Ability: Conversion -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
@@ -1349,7 +1349,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8147" type="Weapon" name="Spiritual Eye - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 30%. Increases damage inflicted on one's opponent during PvP. -->
@@ -1371,7 +1371,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3014-2" /> <!-- Special Ability: Mana Up -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="170" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="4" />
@@ -1379,7 +1379,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8148" type="Weapon" name="Spiritual Eye - Magic Poison">
 		<!-- <Soul Crystal Enhancement>. Has a 8% chance of casting Curse: Poison when using a magic skill on the target. Increases damage inflicted during PvP. -->
@@ -1403,7 +1403,7 @@
 		<set name="onmagic_chance" val="8" />
 		<set name="onmagic_skill" val="1168-6" />
 		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="170" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="4" />
@@ -1411,7 +1411,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8149" type="Weapon" name="Spiritual Eye - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted on one's opponent during PvP. -->
@@ -1433,7 +1433,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3047-2" /> <!-- Special Ability: Acumen -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="170" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="4" />
@@ -1441,7 +1441,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8150" type="Weapon" name="Flaming Dragon Skull - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted on one's opponent during PvP. -->
@@ -1463,7 +1463,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3047-2" /> <!-- Special Ability: Acumen -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="186" />
 			<set stat="mAtk" val="152" />
 			<set stat="critRate" val="4" />
@@ -1471,7 +1471,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8151" type="Weapon" name="Flaming Dragon Skull - M. Atk.">
 		<!-- <Soul Crystal Enhancement>. Increases MP Consumption by 15%, M. Atk. by 167 and damage inflicted during PvP. -->
@@ -1493,7 +1493,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3073-2" /> <!-- Special Ability: M. Atk. -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="186" />
 			<set stat="mAtk" val="152" />
 			<set stat="critRate" val="4" />
@@ -1501,7 +1501,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8152" type="Weapon" name="Flaming Dragon Skull - Magic Silence">
 		<!-- <Soul Crystal Enhancement>. Has a 10% chance of casting Silence when using a magic skill on the target. Increases damage inflicted during PvP. -->
@@ -1525,7 +1525,7 @@
 		<set name="onmagic_chance" val="10" />
 		<set name="onmagic_skill" val="3074-2" />
 		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="186" />
 			<set stat="mAtk" val="152" />
 			<set stat="critRate" val="4" />
@@ -1533,7 +1533,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8153" type="EtcItem" name="Adventurer's Guide Book">
 		<!-- An essential read for adventurers. -->
@@ -1797,12 +1797,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3633-2" /> <!-- Residential Shock Immunity -->
 		<set name="equip_condition" val="{{ec_castle;1};{ec_castle_num;{8}}}" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player castle="8" />
 				<player pledgeClass="2" /> <!-- Heir -->
 			</and>
-		</cond>
+		</conditions>
 	</item>
 	<item id="8183" type="Armor" name="Circlet of Schuttgart">
 		<!-- Hammer and Torch Circlet. Can be worn by the lord of Schuttgart Castle and clan members but not by allies. Allows use of Residential Skills when equipped. Cannot be exchanged or dropped. -->
@@ -1818,12 +1818,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3633-1" /> <!-- Residential Shock Immunity -->
 		<set name="equip_condition" val="{{ec_castle;1};{ec_castle_num;{9}}}" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player castle="9" />
 				<player pledgeClass="2" /> <!-- Heir -->
 			</and>
-		</cond>
+		</conditions>
 	</item>
 	<item id="8184" type="Armor" name="Party Hat">
 		<!-- A funky hair accessory which uses 2 hair accessory slots. -->
@@ -1903,14 +1903,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="item_skill" val="3603-1" /> <!-- Demon Sword Zariche -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="361" />
 			<set stat="mAtk" val="137" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8191" type="Armor" name="Necklace of Frintezza">
 		<!-- MP +42, increase Resistance to sleep/paralysis/stun by 15%, increase sleep/paralysis/stun attack chance by 15%, increase Resistance to poison/bleed by 25%, increase poison/bleed attack chance by 25%, decrease in skill re-use delay, increase Damage Shield effect, and increase Resistance to Dark attacks. -->
@@ -1925,11 +1925,11 @@
 		<set name="price" val="3450000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3604-1" /> <!-- Frintezza's Necklace -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="95" />
 			<add stat="maxMp" val="42" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="8192" type="EtcItem" name="Soul Breaking Arrow">
 		<!-- Double-clicking the arrow temporarily pauses Frintezza's musical performance. It cannot be dropped and is deleted upon entering the Last Imperial Tomb. -->

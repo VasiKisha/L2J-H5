@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="17100" type="EtcItem" name="Nevit's Hourglass - 1 hour - 20~39">
 		<!-- Hourglass that increases Nevit's blessing time by 1 hour. Can only be used at levels 20~39. Cannot be exchanged or dropped. -->
@@ -14,9 +14,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9120-1" /> <!-- Nevit's Hourglass - 1 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="20;39" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17101" type="EtcItem" name="Nevit's Hourglass - 1.5 hour - 20~39">
 		<!-- Hourglass that increases Nevit's blessing time by 1.5 hour. Can only be used at levels 20~39. Cannot be exchanged or dropped. -->
@@ -32,9 +32,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9121-1" /> <!-- Nevit's Hourglass - 1.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="20;39" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17102" type="EtcItem" name="Nevit's Hourglass - 2 hour - 20~39">
 		<!-- Hourglass that increases Nevit's blessing time by 2 hour. Can only be used at levels 20~39. Cannot be exchanged or dropped. -->
@@ -50,9 +50,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9122-1" /> <!-- Nevit's Hourglass - 2 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="20;39" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17103" type="EtcItem" name="Nevit's Hourglass - 2.5 hour - 20~39">
 		<!-- Hourglass that increases Nevit's blessing time by 2.5 hour. Can only be used at levels 20~39. Cannot be exchanged or dropped. -->
@@ -68,9 +68,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9123-1" /> <!-- Nevit's Hourglass - 2.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="20;39" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17104" type="EtcItem" name="Nevit's Hourglass - 3 hour - 20~39">
 		<!-- Hourglass that increases Nevit's blessing time by 3 hour. Can only be used at levels 20~39. Cannot be exchanged or dropped. -->
@@ -86,9 +86,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9124-1" /> <!-- Nevit's Hourglass - 3 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="20;39" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17105" type="EtcItem" name="Nevit's Hourglass - 1 hour - 40~51">
 		<!-- Hourglass that increases Nevit's blessing time by 1 hour. Can only be used at levels 40~51. Cannot be exchanged or dropped. -->
@@ -104,9 +104,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9125-1" /> <!-- Nevit's Hourglass - 1 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="40;51" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17106" type="EtcItem" name="Nevit's Hourglass - 1.5 hour - 40~51">
 		<!-- Hourglass that increases Nevit's blessing time by 1.5 hour. Can only be used at levels 40~51. Cannot be exchanged or dropped. -->
@@ -122,9 +122,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9126-1" /> <!-- Nevit's Hourglass - 1.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="40;51" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17107" type="EtcItem" name="Nevit's Hourglass - 2 hour - 40~51">
 		<!-- Hourglass that increases Nevit's blessing time by 2 hour. Can only be used at levels 40~51. Cannot be exchanged or dropped. -->
@@ -140,9 +140,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9127-1" /> <!-- Nevit's Hourglass - 2 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="40;51" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17108" type="EtcItem" name="Nevit's Hourglass - 2.5 hour - 40~51">
 		<!-- Hourglass that increases Nevit's blessing time by 2.5 hour. Can only be used at levels 40~51. Cannot be exchanged or dropped. -->
@@ -158,9 +158,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9128-1" /> <!-- Nevit's Hourglass - 2.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="40;51" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17109" type="EtcItem" name="Nevit's Hourglass - 3 hour - 40~51">
 		<!-- Hourglass that increases Nevit's blessing time by 3 hour. Can only be used at levels 40~51. Cannot be exchanged or dropped. -->
@@ -176,9 +176,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9129-1" /> <!-- Nevit's Hourglass - 3 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="40;51" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17110" type="EtcItem" name="Nevit's Hourglass - 1 hour - 52~60">
 		<!-- Hourglass that increases Nevit's blessing time by 1 hour. Can only be used at levels 52~60. Cannot be exchanged or dropped. -->
@@ -194,9 +194,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9130-1" /> <!-- Nevit's Hourglass - 1 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="52;60" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17111" type="EtcItem" name="Nevit's Hourglass - 1.5 hour - 52~60">
 		<!-- Hourglass that increases Nevit's blessing time by 1.5 hour. Can only be used at levels 52~60. Cannot be exchanged or dropped. -->
@@ -212,9 +212,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9131-1" /> <!-- Nevit's Hourglass - 1.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="52;60" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17112" type="EtcItem" name="Nevit's Hourglass - 2 hour - 52~60">
 		<!-- Hourglass that increases Nevit's blessing time by 2 hour. Can only be used at levels 52~60. Cannot be exchanged or dropped. -->
@@ -230,9 +230,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9132-1" /> <!-- Nevit's Hourglass - 2 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="52;60" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17113" type="EtcItem" name="Nevit's Hourglass - 2.5 hour - 52~60">
 		<!-- Hourglass that increases Nevit's blessing time by 2.5 hour. Can only be used at levels 52~60. Cannot be exchanged or dropped. -->
@@ -248,9 +248,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9133-1" /> <!-- Nevit's Hourglass - 2.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="52;60" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17114" type="EtcItem" name="Nevit's Hourglass - 3 hour - 52~60">
 		<!-- Hourglass that increases Nevit's blessing time by 3 hour. Can only be used at levels 52~60. Cannot be exchanged or dropped. -->
@@ -266,9 +266,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9134-1" /> <!-- Nevit's Hourglass - 3 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="52;60" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17115" type="EtcItem" name="Nevit's Hourglass - 1 hour - 61~75">
 		<!-- Hourglass that increases Nevit's blessing time by 1 hour. Can only be used at levels 61~75. Cannot be exchanged or dropped. -->
@@ -284,9 +284,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9135-1" /> <!-- Nevit's Hourglass - 1 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="61;75" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17116" type="EtcItem" name="Nevit's Hourglass - 1.5 hour - 61~75">
 		<!-- Hourglass that increases Nevit's blessing time by 1.5 hour. Can only be used at levels 61~75. Cannot be exchanged or dropped. -->
@@ -302,9 +302,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9136-1" /> <!-- Nevit's Hourglass - 1.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="61;75" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17117" type="EtcItem" name="Nevit's Hourglass - 2 hour - 61~75">
 		<!-- Hourglass that increases Nevit's blessing time by 2 hour. Can only be used at levels 61~75. Cannot be exchanged or dropped. -->
@@ -320,9 +320,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9137-1" /> <!-- Nevit's Hourglass - 2 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="61;75" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17118" type="EtcItem" name="Nevit's Hourglass - 2.5 hour - 61~75">
 		<!-- Hourglass that increases Nevit's blessing time by 2.5 hour. Can only be used at levels 61~75. Cannot be exchanged or dropped. -->
@@ -338,9 +338,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9138-1" /> <!-- Nevit's Hourglass - 2.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="61;75" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17119" type="EtcItem" name="Nevit's Hourglass - 3 hour - 61~75">
 		<!-- Hourglass that increases Nevit's blessing time by 3 hour. Can only be used at levels 61~75. Cannot be exchanged or dropped. -->
@@ -356,9 +356,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9139-1" /> <!-- Nevit's Hourglass - 3 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="61;75" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17120" type="EtcItem" name="Nevit's Hourglass - 1 hour - 76~79">
 		<!-- Hourglass that increases Nevit's blessing time by 1 hour. Can only be used at levels 76~79. Cannot be exchanged or dropped. -->
@@ -374,9 +374,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9140-1" /> <!-- Nevit's Hourglass - 1 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="76;79" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17121" type="EtcItem" name="Nevit's Hourglass - 1.5 hour - 76~79">
 		<!-- Hourglass that increases Nevit's blessing time by 1.5 hour. Can only be used at levels 76~79. Cannot be exchanged or dropped. -->
@@ -392,9 +392,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9141-1" /> <!-- Nevit's Hourglass - 1.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="76;79" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17122" type="EtcItem" name="Nevit's Hourglass - 2 hour - 76~79">
 		<!-- Hourglass that increases Nevit's blessing time by 2 hour. Can only be used at levels 76~79. Cannot be exchanged or dropped. -->
@@ -410,9 +410,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9142-1" /> <!-- Nevit's Hourglass - 2 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="76;79" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17123" type="EtcItem" name="Nevit's Hourglass - 2.5 hour - 76~79">
 		<!-- Hourglass that increases Nevit's blessing time by 2.5 hour. Can only be used at levels 76~79. Cannot be exchanged or dropped. -->
@@ -428,9 +428,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9143-1" /> <!-- Nevit's Hourglass - 2.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="76;79" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17124" type="EtcItem" name="Nevit's Hourglass - 3 hour - 76~79">
 		<!-- Hourglass that increases Nevit's blessing time by 3 hour. Can only be used at levels 76~79. Cannot be exchanged or dropped. -->
@@ -446,9 +446,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9144-1" /> <!-- Nevit's Hourglass - 3 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="76;79" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17125" type="EtcItem" name="Nevit's Hourglass - 1 hour - 80~85">
 		<!-- Hourglass that increases Nevit's blessing time by 1 hour. Can only be used at levels 80~85. Cannot be exchanged or dropped. -->
@@ -464,9 +464,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9145-1" /> <!-- Nevit's Hourglass - 1 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="80;85" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17126" type="EtcItem" name="Nevit's Hourglass - 1.5 hour - 80~85">
 		<!-- Hourglass that increases Nevit's blessing time by 1.5 hour. Can only be used at levels 80~85. Cannot be exchanged or dropped. -->
@@ -482,9 +482,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9146-1" /> <!-- Nevit's Hourglass - 1.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="80;85" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17127" type="EtcItem" name="Nevit's Hourglass - 2 hour - 80~85">
 		<!-- Hourglass that increases Nevit's blessing time by 2 hour. Can only be used at levels 80~85. Cannot be exchanged or dropped. -->
@@ -500,9 +500,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9147-1" /> <!-- Nevit's Hourglass - 2 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="80;85" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17128" type="EtcItem" name="Nevit's Hourglass - 2.5 hour - 80~85">
 		<!-- Hourglass that increases Nevit's blessing time by 2.5 hour. Can only be used at levels 80~85. Cannot be exchanged or dropped. -->
@@ -518,9 +518,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9148-1" /> <!-- Nevit's Hourglass - 2.5 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="80;85" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17129" type="EtcItem" name="Nevit's Hourglass - 3 hour - 80~85">
 		<!-- Hourglass that increases Nevit's blessing time by 3 hour. Can only be used at levels 80~85. Cannot be exchanged or dropped. -->
@@ -536,9 +536,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="9149-1" /> <!-- Nevit's Hourglass - 3 hour -->
-		<cond msgId="1902">
+		<conditions msgId="1902">
 			<player levelRange="80;85" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17130" type="EtcItem" name="Freesia Bouquet (Event)">
 		<!-- A bouquet of freesias which implies innocent naivety. If used against a chaotic character or a character whose name is purple, your name will turn purple. Can also be used on Event Manager Freya in town. -->
@@ -676,9 +676,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="17142" type="Armor" name="Refined Wizard Hat - Promotion">
 		<!-- Refined Wizard Hat. Uses 2 hair accessory slots. Cannot be exchanged or dropped. Cannot use a private store. Can be stored in a private warehouse. -->
@@ -1085,12 +1085,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="17176" type="Weapon" name="Balloon Stick of Cheers - Orange">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged or dropped. Cannot use a private store. Can be stored in a private warehouse. -->
@@ -1103,12 +1103,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="17177" type="Weapon" name="Balloon Stick of Cheers - Yellow">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged or dropped. Cannot use a private store. Can be stored in a private warehouse. -->
@@ -1121,12 +1121,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="17178" type="Weapon" name="Balloon Stick of Cheers - Green">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged or dropped. Cannot use a private store. Can be stored in a private warehouse. -->
@@ -1139,12 +1139,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="17179" type="Weapon" name="Balloon Stick of Cheers - Blue">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged or dropped. Cannot use a private store. Can be stored in a private warehouse. -->
@@ -1157,12 +1157,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="17180" type="Weapon" name="Balloon Stick of Cheers - Indigo Blue">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged or dropped. Cannot use a private store. Can be stored in a private warehouse. -->
@@ -1175,12 +1175,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="17181" type="Weapon" name="Balloon Stick of Cheers - Purple">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged or dropped. Cannot use a private store. Can be stored in a private warehouse. -->
@@ -1193,12 +1193,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="17182" type="Weapon" name="Balloon Stick of Cheers - Black">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged or dropped. Cannot use a private store. Can be stored in a private warehouse. -->
@@ -1211,12 +1211,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="17183" type="Weapon" name="Balloon Stick of Cheers - White">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged or dropped. Cannot use a private store. Can be stored in a private warehouse. -->
@@ -1229,12 +1229,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="17184" type="EtcItem" name="500,000 SP scroll">
 		<!-- Scroll that replenishes 500,000 SP. -->
@@ -1270,10 +1270,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="4320" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="48" />
 			<add stat="maxMp" val="21" />
-		</for>
+		</stats>
 	</item>
 	<item id="17187" type="Armor" name="National Representative Warrior's Necklace - 3-day limited period">
 		<!-- National Representative Warrior's Necklace. Limited time item available for 3 days. MP+ 42, Sleep/Paralysis/Shock Resistance increase by 15%. Sleep/Paralysis/Shock attack rate increase by 15%. Decreased skill reuse delay and damage shield effects. Cannot be exchanged or dropped. -->
@@ -1285,10 +1285,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="4320" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="95" />
 			<add stat="maxMp" val="42" />
-		</for>
+		</stats>
 	</item>
 	<item id="17188" type="Armor" name="National Representative Warrior's Earring - 3-day limited period">
 		<!-- National Representative Warrior's Earring. Limited-time item that can be worn for 3 days. It has effects of MP +31, shock/mind attack resistance +20%, Shock/Mental attack rate +20% and Vampiric Rage. When equipped with two identical earrings, the effect of only one earring will be applied. Cannot be exchanged or dropped. -->
@@ -1300,10 +1300,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="4320" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="71" />
 			<add stat="maxMp" val="31" />
-		</for>
+		</stats>
 	</item>
 	<item id="17189" type="Armor" name="National Representative Warrior's Ring - 7-day limited period">
 		<!-- National Representative Warrior's Ring. Limited time item available for 7 days. MP+ 21 -->
@@ -1315,10 +1315,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="48" />
 			<add stat="maxMp" val="21" />
-		</for>
+		</stats>
 	</item>
 	<item id="17190" type="Armor" name="National Representative Warrior's Necklace - 7-day limited period">
 		<!-- National Representative Warrior's Necklace. Limited time item available for 7 days. MP+ 42, Sleep/Paralysis/Shock Resistance increase by 15%. Sleep/Paralysis/Shock attack rate increase by 15%. Decreased skill reuse delay and damage shield effects. Cannot be exchanged or dropped. -->
@@ -1330,10 +1330,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="95" />
 			<add stat="maxMp" val="42" />
-		</for>
+		</stats>
 	</item>
 	<item id="17191" type="Armor" name="National Representative Warrior's Earring - 7-day limited period">
 		<!-- National Representative Warrior's Earring. Limited-time item that can be worn for 7 days. It has effects of MP +31, shock/mind attack resistance +20%, Shock/Mental attack rate +20% and Vampiric Rage. When equipped with two identical earrings, the effect of only one earring will be applied. Cannot be exchanged or dropped. -->
@@ -1345,10 +1345,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="71" />
 			<add stat="maxMp" val="31" />
-		</for>
+		</stats>
 	</item>
 	<item id="17192" type="Armor" name="National Representative Warrior's Ring - 10-day limited period">
 		<!-- National Representative Warrior's Ring. Limited time item available for 10 days. MP+ 21 -->
@@ -1360,10 +1360,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="14400" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="48" />
 			<add stat="maxMp" val="21" />
-		</for>
+		</stats>
 	</item>
 	<item id="17193" type="Armor" name="National Representative Warrior's Necklace - 10-day limited period">
 		<!-- National Representative Warrior's Necklace. Limited time item available for 10 days. MP+ 42, Sleep/Paralysis/Shock Resistance increase by 15%. Sleep/Paralysis/Shock attack rate increase by 15%. Decreased skill reuse delay and damage shield effects. Cannot be exchanged or dropped. -->
@@ -1375,10 +1375,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="14400" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="95" />
 			<add stat="maxMp" val="42" />
-		</for>
+		</stats>
 	</item>
 	<item id="17194" type="Armor" name="National Representative Warrior's Earring - 10-day limited period">
 		<!-- National Representative Warrior's Earring. Limited-time item that can be worn for 10 days. It has effects of MP +31, shock/mind attack resistance +20%, Shock/Mental attack rate +20% and Vampiric Rage. When equipped with two identical earrings, the effect of only one earring will be applied. Cannot be exchanged or dropped. -->
@@ -1390,10 +1390,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="14400" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="71" />
 			<add stat="maxMp" val="31" />
-		</for>
+		</stats>
 	</item>
 	<item id="17195" type="Armor" name="National Representative Warrior's Ring - 30-day limited period">
 		<!-- National Representative Warrior's Ring. Limited time item available for 30 days. MP+ 21 -->
@@ -1405,10 +1405,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="48" />
 			<add stat="maxMp" val="21" />
-		</for>
+		</stats>
 	</item>
 	<item id="17196" type="Armor" name="National Representative Warrior's Necklace - 30-day limited period">
 		<!-- National Representative Warrior's Necklace. Limited time item available for 30 days. MP+ 42, Sleep/Paralysis/Shock Resistance increase by 15%. Sleep/Paralysis/Shock attack rate increase by 15%. Decreased skill reuse delay and damage shield effects. Cannot be exchanged or dropped. -->
@@ -1420,10 +1420,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="95" />
 			<add stat="maxMp" val="42" />
-		</for>
+		</stats>
 	</item>
 	<item id="17197" type="Armor" name="National Representative Warrior's Earring - 30-day limited period">
 		<!-- National Representative Warrior's Earring. Limited-time item that can be worn for 30 days. It has effects of MP +31, shock/mind attack resistance +20%, Shock/Mental attack rate +20% and Vampiric Rage. When equipped with two identical earrings, the effect of only one earring will be applied. Cannot be exchanged or dropped. -->
@@ -1435,10 +1435,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="71" />
 			<add stat="maxMp" val="31" />
-		</for>
+		</stats>
 	</item>
 	<item id="17198" type="Armor" name="National Representative Warrior's Ring">
 		<!-- National Representative Warrior's Ring. MP+ 21 -->
@@ -1449,10 +1449,10 @@
 		<set name="weight" val="150" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="48" />
 			<add stat="maxMp" val="21" />
-		</for>
+		</stats>
 	</item>
 	<item id="17199" type="Armor" name="National Representative Warrior's Necklace">
 		<!-- National Representative Warrior's Necklace. MP+ 42, Sleep/Paralysis/Shock Resistance increase by 15%. Sleep/Paralysis/Shock attack rate increase by 15%. Decreased skill reuse delay and damage shield effects. Cannot be exchanged or dropped. -->
@@ -1463,9 +1463,9 @@
 		<set name="weight" val="150" />
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="95" />
 			<add stat="maxMp" val="42" />
-		</for>
+		</stats>
 	</item>
 </list>

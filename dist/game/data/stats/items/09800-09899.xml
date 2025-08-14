@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="9800" type="EtcItem" name="Ranku's Blueprint">
 		<!-- This is a blueprint belonging to Ranku that Matras requested. -->
@@ -161,14 +161,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-11" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9814" type="EtcItem" name="Memento Mori">
 		<!-- Obtained by attacking a Raid Boss, you can assemble this Crystal of Life and trade it for something useful. -->
@@ -231,9 +231,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="9820" type="Armor" name="Shadow Item: Clan Oath Helm">
 		<!-- This Shadow Item contains the mirrored power of a Clan Oath Helm. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -249,9 +249,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="37" />
-		</for>
+		</stats>
 	</item>
 	<item id="9821" type="Armor" name="Shadow Item: Clan Oath Armor">
 		<!-- This Shadow Item contains the mirrored power of a Clan Oath Armor. It cannot be exchanged, dropped, crystallized, or given other functions. Full body armor. It can only be used by one belonging to the Academy or its graduates. -->
@@ -268,15 +268,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="1" /> <!-- Vassal (Academy) -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="158" />
-		</for>
+		</stats>
 	</item>
 	<item id="9822" type="Armor" name="Shadow Item: Clan Oath Gauntlets - Heavy Armor">
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Gauntlets. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -292,15 +292,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="1" /> <!-- Vassal (Academy) -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="24" />
-		</for>
+		</stats>
 	</item>
 	<item id="9823" type="Armor" name="Shadow Item: Clan Oath Sabaton - Heavy Armor">
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Sabaton. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -316,15 +316,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="1" /> <!-- Vassal (Academy) -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="24" />
-		</for>
+		</stats>
 	</item>
 	<item id="9824" type="Armor" name="Shadow Item: Clan Oath Brigandine">
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Brigandine. It cannot be exchanged, dropped, crystallized, or given other functions. Full body armor. It can only be used by one belonging to the Academy or its graduates. -->
@@ -341,9 +341,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="119" />
-		</for>
+		</stats>
 	</item>
 	<item id="9825" type="Armor" name="Shadow Item: Clan Oath Leather Gloves - Light Armor">
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Leather Gloves. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -359,9 +359,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="24" />
-		</for>
+		</stats>
 	</item>
 	<item id="9826" type="Armor" name="Shadow Item: Clan Oath Boots - Light Armor">
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Booths. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -377,9 +377,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="24" />
-		</for>
+		</stats>
 	</item>
 	<item id="9827" type="Armor" name="Shadow Item: Clan Oath Aketon">
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Aketon. It cannot be exchanged, dropped, crystallized, or given other functions. Full body armor. It can only be used by one belonging to the Academy or its graduates. -->
@@ -396,16 +396,16 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="1" /> <!-- Vassal (Academy) -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="79" />
 			<add stat="maxMp" val="239" />
-		</for>
+		</stats>
 	</item>
 	<item id="9828" type="Armor" name="Shadow Item: Clan Oath Padded Gloves - Robe">
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Padded Gloves. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -421,15 +421,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="1" /> <!-- Vassal (Academy) -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="24" />
-		</for>
+		</stats>
 	</item>
 	<item id="9829" type="Armor" name="Shadow Item: Clan Oath Sandals - Robe">
 		<!-- This Shadow Item contains the mirrored power of Clan Oath Sandals. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -445,15 +445,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
 		<set name="equip_condition" val="{{ec_academy;1}}" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="1" /> <!-- Vassal (Academy) -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="24" />
-		</for>
+		</stats>
 	</item>
 	<item id="9830" type="Armor" name="Improved Apella Helm">
 		<!-- Can be worn by a Baron or higher-level Aristocrat. -->
@@ -466,13 +466,13 @@
 		<set name="weight" val="570" />
 		<set name="price" val="2032000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player pledgeClass="5" /> <!-- Baron -->
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="73" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9831" type="Armor" name="Improved Apella Plate Armor">
 		<!-- This full body armor used by clan members can be worn by a Baron or higher-level Aristocrat. -->
@@ -486,16 +486,16 @@
 		<set name="weight" val="9780" />
 		<set name="price" val="8804000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="5" /> <!-- Baron -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="293" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9832" type="Armor" name="Improved Apella Gauntlet - Heavy Armor">
 		<!-- Can be worn by a Baron or a higher-level Aristocrat. -->
@@ -508,16 +508,16 @@
 		<set name="weight" val="580" />
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="5" /> <!-- Baron -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9833" type="Armor" name="Improved Apella Solleret - Heavy Armor">
 		<!-- Can be worn by a Baron or a higher-level Aristocrat. -->
@@ -530,16 +530,16 @@
 		<set name="weight" val="1130" />
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="5" /> <!-- Baron -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9834" type="Armor" name="Improved Apella Brigandine">
 		<!-- Can be worn by a Baron or a higher-level Aristocrat. -->
@@ -553,13 +553,13 @@
 		<set name="weight" val="5400" />
 		<set name="price" val="6603000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player pledgeClass="5" /> <!-- Baron -->
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="220" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9835" type="Armor" name="Improved Apella Leather Gloves - Light Armor">
 		<!-- Can be worn by a Baron or a higher-level Aristocrat. -->
@@ -572,13 +572,13 @@
 		<set name="weight" val="580" />
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player pledgeClass="5" /> <!-- Baron -->
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9836" type="Armor" name="Improved Apella Boots - Light Armor">
 		<!-- Can be worn by a Baron or a higher-level Aristocrat. -->
@@ -591,13 +591,13 @@
 		<set name="weight" val="1130" />
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player pledgeClass="5" /> <!-- Baron -->
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9837" type="Armor" name="Improved Apella Doublet">
 		<!-- This full body armor used by clan members can be worn by a Baron or higher-level Aristocrat. -->
@@ -611,17 +611,17 @@
 		<set name="weight" val="2450" />
 		<set name="price" val="6603000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="5" /> <!-- Baron -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="147" />
 			<add stat="maxMp" val="718" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9838" type="Armor" name="Improved Apella Silk Gloves - Robe">
 		<!-- Can be worn by a Baron or higher-level Aristocrat. -->
@@ -634,16 +634,16 @@
 		<set name="weight" val="580" />
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="5" /> <!-- Baron -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9839" type="Armor" name="Improved Apella Sandals - Robe">
 		<!-- Can be worn by a Baron or higher-level Aristocrat. -->
@@ -656,16 +656,16 @@
 		<set name="weight" val="1130" />
 		<set name="price" val="1355000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player pledgeClass="5" /> <!-- Baron -->
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9840" type="Weapon" name="Shadow Item: Chevalier Rapier">
 		<!-- This Shadow Item has the power of a Chevalier Rapier. It cannot be exchanged, dropped, crystallized or possess additional functions. -->
@@ -686,10 +686,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="10" />
@@ -697,7 +697,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9841" type="Weapon" name="Shadow Item: Riter Schlager">
 		<!-- This Shadow Item has the power of a Riter Schlager. It cannot be exchanged, dropped, crystallized or possess additional functions. -->
@@ -718,10 +718,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="132" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
@@ -729,7 +729,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9842" type="Weapon" name="Shadow Item: Ballista">
 		<!-- This Shadow Item has the power of a Ballista. It cannot be exchanged, dropped, crystallized or possess additional functions. -->
@@ -751,10 +751,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="10" />
@@ -762,7 +762,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9843" type="Weapon" name="Shadow Item: Blinzlasher">
 		<!-- This Shadow Item has the power of a Blinzlasher. It cannot be exchanged, dropped, crystallized or possess additional functions. -->
@@ -783,10 +783,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="126" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="10" />
@@ -794,7 +794,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9844" type="Weapon" name="Shadow Item: Immortal Edge">
 		<!-- This Shadow Item has the power of an Immortal Edge. It cannot be exchanged, dropped, crystallized or possess additional functions. -->
@@ -815,10 +815,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="151" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
@@ -826,7 +826,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9845" type="Weapon" name="Shadow Item: Tathlum">
 		<!-- This Shadow Item has the power of a Tathlum. It cannot be exchanged, dropped, crystallized or possess additional functions. -->
@@ -848,10 +848,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="176" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="10" />
@@ -859,7 +859,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9846" type="Weapon" name="Shadow Item: Military Fleuret">
 		<!-- This Shadow Item has the power of a Military Fleuret. It cannot be exchanged, dropped, crystallized or possess additional functions. -->
@@ -880,10 +880,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="159" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="10" />
@@ -891,7 +891,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9847" type="Weapon" name="Shadow Item: Innominate Victory">
 		<!-- This Shadow Item has the power of an Innominate Victory. It cannot be exchanged, dropped, crystallized or possess additional functions. -->
@@ -912,10 +912,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="8" />
@@ -923,7 +923,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9848" type="Weapon" name="Shadow Item: Peacemaker">
 		<!-- This Shadow Item has the power of a Peacemaker. It cannot be exchanged, dropped, crystallized or possess additional functions. -->
@@ -945,10 +945,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="221" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="10" />
@@ -956,7 +956,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9849" type="EtcItem" name="Fiery Demon Blood">
 		<set name="icon" val="icon.etc_lesser_potion_red_i00" />
@@ -1023,14 +1023,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3566-2" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9855" type="Weapon" name="Dynasty Sword - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. -->
@@ -1053,14 +1053,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9856" type="Weapon" name="Dynasty Sword - Light">
 		<!-- <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. -->
@@ -1083,14 +1083,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3552-1;3498-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9857" type="Weapon" name="Dynasty Blade - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 111. Increases damage inflicted during PvP. -->
@@ -1113,14 +1113,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3566-2" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9858" type="Weapon" name="Dynasty Blade - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. -->
@@ -1143,14 +1143,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9859" type="Weapon" name="Dynasty Blade - Light">
 		<!-- <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. -->
@@ -1173,14 +1173,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3552-1;3498-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9860" type="Weapon" name="Dynasty Phantom - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. -->
@@ -1203,14 +1203,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3047-2" /> <!-- Special Ability: Acumen -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="267" />
 			<set stat="mAtk" val="202" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9861" type="Weapon" name="Dynasty Phantom - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 30%. Increases damage inflicted during PvP. -->
@@ -1233,14 +1233,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3014-2" /> <!-- Special Ability: Mana Up -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="267" />
 			<set stat="mAtk" val="202" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9862" type="Weapon" name="Dynasty Phantom - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. -->
@@ -1263,14 +1263,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3048-2" /> <!-- Special Ability: Conversion -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="267" />
 			<set stat="mAtk" val="202" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9863" type="Weapon" name="Dynasty Bow - Cheap Shot">
 		<!-- <Soul Crystal Enhancement>. Decreases MP Consumption 4% during a skill attack. Increases damage inflicted during PvP. -->
@@ -1295,7 +1295,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
 		<set name="item_skill" val="3552-1;8312-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="654" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="12" />
@@ -1303,7 +1303,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9864" type="Weapon" name="Dynasty Bow - Guidance">
 		<!-- <Soul Crystal Enhancement>. Increases Accuracy by 5.32. Increases damage inflicted during PvP. -->
@@ -1328,7 +1328,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
 		<set name="item_skill" val="3573-2" /> <!-- Special Ability: Guidance -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="654" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="12" />
@@ -1336,7 +1336,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9865" type="Weapon" name="Dynasty Bow - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 116. Increases damage inflicted during PvP. -->
@@ -1361,7 +1361,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
 		<set name="item_skill" val="3567-2" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="654" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="12" />
@@ -1369,7 +1369,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9866" type="Weapon" name="Dynasty Knife - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 116. Increases damage inflicted during PvP. -->
@@ -1391,7 +1391,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3567-2" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="291" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="12" />
@@ -1399,7 +1399,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9867" type="Weapon" name="Dynasty Knife - Evasion">
 		<!-- <Soul Crystal Enhancement>. Increases Evasion by 5. Increases damage inflicted during PvP. -->
@@ -1421,7 +1421,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3009-8;3552-1" /> <!-- Special Ability: Evasion -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="291" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="12" />
@@ -1429,7 +1429,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9868" type="Weapon" name="Dynasty Knife - Critical Damage">
 		<!-- <Soul Crystal Enhancement>. Increases P. Atk. by 559 on a critical attack. Increases damage inflicted during PvP. -->
@@ -1451,7 +1451,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3066-4" /> <!-- Special Ability: Critical Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="291" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="12" />
@@ -1459,7 +1459,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9869" type="Weapon" name="Dynasty Halberd - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases your HP by 15% and increases P. Atk. by 78. Increases damage inflicted during PvP. -->
@@ -1481,7 +1481,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3600-10" /> <!-- Special Ability: Anger -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
@@ -1489,7 +1489,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9870" type="Weapon" name="Dynasty Halberd - Critical Stun">
 		<!-- <Soul Crystal Enhancement>. There is a 48% chance that Stun effect is applied on a critical attack. Increases damage inflicted during PvP. -->
@@ -1513,7 +1513,7 @@
 		<set name="oncrit_chance" val="48" />
 		<set name="oncrit_skill" val="3070-4" />
 		<set name="item_skill" val="3552-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
@@ -1521,7 +1521,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9871" type="Weapon" name="Dynasty Halberd - Light">
 		<!-- <Soul Crystal Enhancement>. Increases weight gauge by 20%. Increases damage inflicted during PvP. -->
@@ -1543,7 +1543,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3552-2;3498-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
@@ -1551,7 +1551,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9872" type="Weapon" name="Dynasty Cudgel - Anger">
 		<!-- <Soul Crystal Enhancement>. Decreases your HP by 15% and increases P. Atk. by 78. Increases damage inflicted during PvP. -->
@@ -1573,7 +1573,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3057-4" /> <!-- Special Ability: Anger -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
@@ -1581,7 +1581,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9873" type="Weapon" name="Dynasty Cudgel - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. -->
@@ -1603,7 +1603,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
@@ -1611,7 +1611,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9874" type="Weapon" name="Dynasty Cudgel - Rsk. Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 164 when HP drops to 60% or lower. Increases damage inflicted during PvP. -->
@@ -1633,7 +1633,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3027-7" /> <!-- Special Ability: Rsk. Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
@@ -1641,7 +1641,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9875" type="Weapon" name="Dynasty Mace - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 30%. Increases damage inflicted during PvP. -->
@@ -1664,7 +1664,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3014-2" /> <!-- Special Ability: Mana Up -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="267" />
 			<set stat="mAtk" val="202" />
 			<set stat="critRate" val="4" />
@@ -1672,7 +1672,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9876" type="Weapon" name="Dynasty Mace - Conversion">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. -->
@@ -1695,7 +1695,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3048-2" /> <!-- Special Ability: Conversion -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="267" />
 			<set stat="mAtk" val="202" />
 			<set stat="critRate" val="4" />
@@ -1703,7 +1703,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9877" type="Weapon" name="Dynasty Mace - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. -->
@@ -1726,7 +1726,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3047-2" /> <!-- Special Ability: Acumen -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="267" />
 			<set stat="mAtk" val="202" />
 			<set stat="critRate" val="4" />
@@ -1734,7 +1734,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9878" type="Weapon" name="Dynasty Bagh-Nakh - Rsk. Evasion">
 		<!-- <Soul Crystal Enhancement>. Increases Evasion by 6.8 when HP drops to 60% or lower. Increases damage inflicted during PvP. -->
@@ -1756,7 +1756,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3069-1;3552-1" /> <!-- Special Ability: Rsk. Evasion -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
@@ -1764,7 +1764,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9879" type="Weapon" name="Dynasty Bagh-Nakh - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases critical attack by 106. Increases damage inflicted during PvP. -->
@@ -1786,7 +1786,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3565-2" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
@@ -1794,7 +1794,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9880" type="Weapon" name="Dynasty Bagh-Nakh - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by 10%. Increases damage inflicted during PvP. -->
@@ -1816,7 +1816,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3564-2" /> <!-- Special Ability: Haste -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
@@ -1824,7 +1824,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="9881" type="EtcItem" name="Diploma">
 		<!-- Take this Diploma to Second Hierarch Perwan. -->
@@ -1850,9 +1850,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="9883" type="Armor" name="Teddy Bear Hat - Big Head">
 		<!-- This fun, bear-shaped hair accessory makes your head bigger while allowing you to use active skills. Requires 2 hair accessory slots. -->
@@ -2030,8 +2030,8 @@
 		<set name="weight" val="150" />
 		<set name="price" val="25" />
 		<set name="item_skill" val="3406-1" /> <!-- Weight Decrease Ring -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="24" />
-		</for>
+		</stats>
 	</item>
 </list>

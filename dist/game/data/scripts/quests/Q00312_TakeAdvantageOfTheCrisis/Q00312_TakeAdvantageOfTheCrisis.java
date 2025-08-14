@@ -34,6 +34,7 @@ public class Q00312_TakeAdvantageOfTheCrisis extends Quest
 {
 	// NPC
 	private static final int FILAUR = 30535;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
 	static
@@ -52,8 +53,10 @@ public class Q00312_TakeAdvantageOfTheCrisis extends Quest
 		MOBS.put(22689, 212); // Mine Bug
 		MOBS.put(22690, 748); // Earthworm's Descendant
 	}
+	
 	// Item
 	private static final int MINERAL_FRAGMENT = 14875;
+	
 	// Misc
 	private static final int MIN_LEVEL = 80;
 	
@@ -103,6 +106,7 @@ public class Q00312_TakeAdvantageOfTheCrisis extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -135,6 +139,7 @@ public class Q00312_TakeAdvantageOfTheCrisis extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

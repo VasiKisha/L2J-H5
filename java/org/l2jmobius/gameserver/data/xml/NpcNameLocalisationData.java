@@ -105,6 +105,7 @@ public class NpcNameLocalisationData implements IXmlReader
 		{
 			return localisations.get(id);
 		}
+		
 		return null;
 	}
 	
@@ -122,6 +123,7 @@ public class NpcNameLocalisationData implements IXmlReader
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	

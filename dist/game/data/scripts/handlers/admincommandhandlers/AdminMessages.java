@@ -36,7 +36,7 @@ public class AdminMessages implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_msg "))
 		{
@@ -102,13 +102,15 @@ public class AdminMessages implements IAdminCommandHandler
 					activeChar.sendSysMessage("Exception: " + e.getMessage());
 				}
 			}
+			
 			activeChar.sendPacket(sm);
 		}
+		
 		return false;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

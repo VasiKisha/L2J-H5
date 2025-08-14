@@ -35,8 +35,10 @@ public class Q00365_DevilsLegacy extends Quest
 	// NPCs
 	private static final int COLLOB = 30092;
 	private static final int RANDOLF = 30095;
+	
 	// Item
 	private static final int PIRATES_TREASURE_CHEST = 5873;
+	
 	// Rewards
 	private static final int ENCHANT_WEAPON_C = 951;
 	private static final int ENCHANT_ARMOR_C = 952;
@@ -49,10 +51,13 @@ public class Q00365_DevilsLegacy extends Quest
 	private static final int COARSE_BONE_POWDER = 1881;
 	private static final int LEATHER = 1882;
 	private static final int CORD = 1884;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
+	
 	// Skill
 	private static final SkillHolder POISON = new SkillHolder(4035, 2);
+	
 	// Mobs
 	private static final Map<Integer, Double> MOBS = new HashMap<>();
 	static
@@ -143,6 +148,7 @@ public class Q00365_DevilsLegacy extends Quest
 						{
 							itemId = ANIMAL_BONE;
 						}
+						
 						htmltext = "30092-05.html";
 					}
 					else
@@ -180,12 +186,14 @@ public class Q00365_DevilsLegacy extends Quest
 						{
 							itemId = COARSE_BONE_POWDER;
 						}
+						
 						npc.setTarget(player);
 						npc.doCast(POISON.getSkill());
 						npc.setCurrentMp(npc.getMaxMp());
 						qs.setMemoState(2);
 						htmltext = "30092-06.html";
 					}
+					
 					takeItems(player, PIRATES_TREASURE_CHEST, 1);
 					takeItems(player, Inventory.ADENA_ID, 600);
 					rewardItems(player, itemId, 1);
@@ -193,6 +201,7 @@ public class Q00365_DevilsLegacy extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -244,6 +253,7 @@ public class Q00365_DevilsLegacy extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

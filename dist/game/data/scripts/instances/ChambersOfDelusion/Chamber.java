@@ -20,7 +20,6 @@ import java.util.Calendar;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.managers.InstanceManager;
@@ -79,6 +78,7 @@ public abstract class Chamber extends AbstractInstance
 	private final int INSTANCEID;
 	
 	protected Location[] ROOM_ENTER_POINTS;
+	
 	// Misc
 	private static final String RETURN = Chamber.class.getSimpleName() + "_return";
 	
@@ -98,6 +98,7 @@ public abstract class Chamber extends AbstractInstance
 			addStartNpc(i);
 			addTalkId(i);
 		}
+		
 		addKillId(AENKINEL);
 		addAttackId(BOX);
 		addSpellFinishedId(BOX);
@@ -176,8 +177,10 @@ public abstract class Chamber extends AbstractInstance
 			{
 				reenter.add(Calendar.DAY_OF_WEEK, 1);
 			}
+			
 			final SystemMessage sm = new SystemMessage(SystemMessageId.INSTANT_ZONE_S1_S_ENTRY_HAS_BEEN_RESTRICTED_YOU_CAN_CHECK_THE_NEXT_POSSIBLE_ENTRY_TIME_BY_USING_THE_COMMAND_INSTANCEZONE);
 			sm.addString(InstanceManager.getInstance().getInstanceIdName(world.getTemplateId()));
+			
 			// set instance reenter time for all allowed players
 			for (Player player : world.getAllowed())
 			{
@@ -434,19 +437,22 @@ public abstract class Chamber extends AbstractInstance
 			{
 				if (getRandom(100) < 33)
 				{
-					npc.dropItem(attacker, ENRIA, (int) (3 * Config.RATE_QUEST_DROP));
+					npc.dropItem(attacker, ENRIA, 3);
 				}
+				
 				if (getRandom(100) < 50)
 				{
-					npc.dropItem(attacker, THONS, (int) (4 * Config.RATE_QUEST_DROP));
+					npc.dropItem(attacker, THONS, 4);
 				}
+				
 				if (getRandom(100) < 50)
 				{
-					npc.dropItem(attacker, ASOFE, (int) (4 * Config.RATE_QUEST_DROP));
+					npc.dropItem(attacker, ASOFE, 4);
 				}
+				
 				if (getRandom(100) < 16)
 				{
-					npc.dropItem(attacker, LEONARD, (int) (2 * Config.RATE_QUEST_DROP));
+					npc.dropItem(attacker, LEONARD, 2);
 				}
 				
 				npc.broadcastEvent("SCE_LUCKY", 2000, null);
@@ -477,6 +483,7 @@ public abstract class Chamber extends AbstractInstance
 				break;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -525,6 +532,7 @@ public abstract class Chamber extends AbstractInstance
 		{
 			enterInstance(player, INSTANCEID);
 		}
+		
 		return "";
 	}
 	

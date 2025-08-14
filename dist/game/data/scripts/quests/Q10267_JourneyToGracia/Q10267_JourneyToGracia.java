@@ -37,6 +37,7 @@ public class Q10267_JourneyToGracia extends Quest
 	private static final int ORVEN = 30857;
 	private static final int KEUCEREUS = 32548;
 	private static final int PAPIKU = 32564;
+	
 	// Item
 	private static final int LETTER = 13810;
 	
@@ -78,6 +79,7 @@ public class Q10267_JourneyToGracia extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -131,6 +133,7 @@ public class Q10267_JourneyToGracia extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

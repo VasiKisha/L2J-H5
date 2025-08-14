@@ -51,8 +51,10 @@ public class Jude extends AbstractNpcAI
 				giveItems(player, RING_OF_WIND_MASTERY, 1);
 				return "32356-02.htm";
 			}
+			
 			return "32356-02a.htm";
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

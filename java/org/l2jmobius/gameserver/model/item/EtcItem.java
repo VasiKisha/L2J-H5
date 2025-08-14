@@ -94,12 +94,14 @@ public class EtcItem extends ItemTemplate
 				{
 					continue;
 				}
+				
 				final String[] data = part.split(",");
 				if (data.length != 4)
 				{
 					LOGGER.info("> Could not parse " + part + " in capsuled_items! item " + this);
 					continue;
 				}
+				
 				final int itemId = Integer.parseInt(data[0]);
 				final int min = Integer.parseInt(data[1]);
 				final int max = Integer.parseInt(data[2]);
@@ -109,9 +111,11 @@ public class EtcItem extends ItemTemplate
 					LOGGER.info("> Max amount < Min amount in " + part + ", item " + this);
 					continue;
 				}
+				
 				final ExtractableProduct product = new ExtractableProduct(itemId, min, max, chance);
 				_extractableItems.add(product);
 			}
+			
 			((ArrayList<?>) _extractableItems).trimToSize();
 			
 			// check for handler

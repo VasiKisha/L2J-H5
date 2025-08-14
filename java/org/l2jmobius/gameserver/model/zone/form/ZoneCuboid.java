@@ -125,6 +125,7 @@ public class ZoneCuboid extends ZoneForm
 			dropDebugItem(Inventory.ADENA_ID, 1, x, _y1, z);
 			dropDebugItem(Inventory.ADENA_ID, 1, x, _y2, z);
 		}
+		
 		// y1->y2
 		for (int y = _y1; y < _y2; y += STEP)
 		{

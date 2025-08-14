@@ -97,6 +97,7 @@ public class SevenSignsFestival
 	public static final int FESTIVAL_LEVEL_MAX_53 = 2;
 	public static final int FESTIVAL_LEVEL_MAX_64 = 3;
 	public static final int FESTIVAL_LEVEL_MAX_NONE = 4;
+	
 	// 500 maximum possible score
 	public static final int[] FESTIVAL_LEVEL_SCORES =
 	{
@@ -841,6 +842,7 @@ public class SevenSignsFestival
 				break;
 			}
 		}
+		
 		return festivalName;
 	}
 	
@@ -876,6 +878,7 @@ public class SevenSignsFestival
 				break;
 			}
 		}
+		
 		return maxLevel;
 	}
 	
@@ -915,6 +918,7 @@ public class SevenSignsFestival
 		{
 			startFestivalManager();
 		}
+		
 		return _managerScheduledTask;
 	}
 	
@@ -1023,6 +1027,7 @@ public class SevenSignsFestival
 					psInsert.addBatch();
 				}
 			}
+			
 			psInsert.executeBatch();
 		}
 		catch (Exception e)
@@ -1244,6 +1249,7 @@ public class SevenSignsFestival
 		{
 			return -1;
 		}
+		
 		return (_nextFestivalCycleStart - System.currentTimeMillis()) / 60000;
 	}
 	
@@ -1253,6 +1259,7 @@ public class SevenSignsFestival
 		{
 			return -1;
 		}
+		
 		return (int) (((_nextFestivalStart - System.currentTimeMillis()) / 60000) + 1);
 	}
 	
@@ -1262,6 +1269,7 @@ public class SevenSignsFestival
 		{
 			return "<font color=\"FF0000\">This is the Seal Validation period. Festivals will resume next week.</font>";
 		}
+		
 		return "<font color=\"FF0000\">The next festival will begin in " + getMinsToNextFestival() + " minute(s).</font>";
 	}
 	
@@ -1343,6 +1351,7 @@ public class SevenSignsFestival
 		{
 			return _dawnFestivalParticipants.get(festivalId);
 		}
+		
 		return _duskFestivalParticipants.get(festivalId);
 	}
 	
@@ -1352,6 +1361,7 @@ public class SevenSignsFestival
 		{
 			return _dawnPreviousParticipants.get(festivalId);
 		}
+		
 		return _duskPreviousParticipants.get(festivalId);
 	}
 	
@@ -1367,6 +1377,7 @@ public class SevenSignsFestival
 				{
 					continue;
 				}
+				
 				participants.add(player.getObjectId());
 			}
 		}
@@ -1432,6 +1443,7 @@ public class SevenSignsFestival
 		{
 			return _dawnFestivalScores.get(festivalId);
 		}
+		
 		return _duskFestivalScores.get(festivalId);
 	}
 	
@@ -1585,6 +1597,7 @@ public class SevenSignsFestival
 		{
 			totalAccumBonus += accumBonus;
 		}
+		
 		return totalAccumBonus;
 	}
 	
@@ -2314,6 +2327,7 @@ public class SevenSignsFestival
 					_duskPreviousParticipants.put(_levelRange, _participants);
 				}
 			}
+			
 			_participants = null;
 			unspawnMobs();
 		}

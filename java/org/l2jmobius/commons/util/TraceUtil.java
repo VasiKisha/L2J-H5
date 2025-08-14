@@ -54,6 +54,7 @@ public class TraceUtil
 		{
 			joiner.add(stackTraceElement.toString());
 		}
+		
 		return joiner.toString();
 	}
 }

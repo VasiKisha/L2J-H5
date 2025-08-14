@@ -102,6 +102,7 @@ public class EnchantItemGroupsData implements IXmlReader
 									min = Integer.parseInt(range);
 									max = min;
 								}
+								
 								if ((min > -1) && (max > -1))
 								{
 									group.addChance(new RangeChanceHolder(min, max, chance));
@@ -131,6 +132,7 @@ public class EnchantItemGroupsData implements IXmlReader
 								}
 							}
 						}
+						
 						_itemGroups.put(name, group);
 					}
 					else if ("enchantScrollGroup".equals(d.getNodeName()))
@@ -151,19 +153,23 @@ public class EnchantItemGroupsData implements IXmlReader
 										{
 											rateGroup.addSlot(ItemTemplate.SLOTS.get(parseString(attrs, "slot")));
 										}
+										
 										if (attrs.getNamedItem("magicWeapon") != null)
 										{
 											rateGroup.setMagicWeapon(parseBoolean(attrs, "magicWeapon"));
 										}
+										
 										if (attrs.getNamedItem("itemId") != null)
 										{
 											rateGroup.addItemId(parseInteger(attrs, "itemId"));
 										}
 									}
 								}
+								
 								group.addRateGroup(rateGroup);
 							}
 						}
+						
 						_scrollGroups.put(id, group);
 					}
 				}

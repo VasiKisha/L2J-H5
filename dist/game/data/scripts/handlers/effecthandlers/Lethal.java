@@ -67,6 +67,7 @@ public class Lethal extends AbstractEffect
 		}
 		
 		final double chanceMultiplier = Formulas.calcAttributeBonus(effector, effected, skill) * Formulas.calcGeneralTraitBonus(effector, effected, skill.getTraitType(), false);
+		
 		// Lethal Strike
 		if (Rnd.get(100) < (_fullLethal * chanceMultiplier))
 		{
@@ -84,6 +85,7 @@ public class Lethal extends AbstractEffect
 				effected.notifyDamageReceived(effected.getCurrentHp() - 1, effector, skill, true, false);
 				effected.setCurrentHp(1);
 			}
+			
 			effector.sendPacket(SystemMessageId.YOUR_LETHAL_STRIKE_WAS_SUCCESSFUL);
 		}
 		// Half-Kill
@@ -102,6 +104,7 @@ public class Lethal extends AbstractEffect
 				effected.notifyDamageReceived(effected.getCurrentHp() * 0.5, effector, skill, true, false);
 				effected.setCurrentHp(effected.getCurrentHp() * 0.5);
 			}
+			
 			effector.sendPacket(SystemMessageId.HALF_KILL);
 		}
 	}

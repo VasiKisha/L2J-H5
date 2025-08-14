@@ -35,16 +35,20 @@ public class Q00154_SacrificeToTheSea extends Quest
 	private static final int ROCKSWELL = 30312;
 	private static final int CRISTEL = 30051;
 	private static final int ROLLFNAN = 30055;
+	
 	// Items
 	private static final int FOX_FUR = 1032;
 	private static final int FOX_FUR_YAM = 1033;
 	private static final int MAIDEN_DOLL = 1034;
+	
 	// Monsters
 	private static final int ELDER_KELTIR = 20544;
 	private static final int YOUNG_KELTIR = 20545;
 	private static final int KELTIR = 20481;
+	
 	// Reward
 	private static final int MAGE_EARING = 113;
+	
 	// Misc
 	private static final int MIN_LEVEL = 2;
 	
@@ -66,6 +70,7 @@ public class Q00154_SacrificeToTheSea extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -176,6 +181,7 @@ public class Q00154_SacrificeToTheSea extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

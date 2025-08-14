@@ -117,6 +117,7 @@ public class Q00716_PathToBecomingALordRune extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -283,6 +284,7 @@ public class Q00716_PathToBecomingALordRune extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -324,6 +326,7 @@ public class Q00716_PathToBecomingALordRune extends Quest
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

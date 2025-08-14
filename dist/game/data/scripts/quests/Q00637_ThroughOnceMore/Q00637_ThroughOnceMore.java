@@ -16,7 +16,6 @@
  */
 package quests.Q00637_ThroughOnceMore;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -71,6 +70,7 @@ public class Q00637_ThroughOnceMore extends Quest
 		{
 			qs.exitQuest(true);
 		}
+		
 		return event;
 	}
 	
@@ -83,13 +83,14 @@ public class Q00637_ThroughOnceMore extends Quest
 			final long count = getQuestItemsCount(player, NECRO_HEART);
 			if (count < 10)
 			{
-				int chance = (int) (Config.RATE_QUEST_DROP * DROP_CHANCE);
+				int chance = (int) DROP_CHANCE;
 				int numItems = chance / 100;
 				chance = chance % 100;
 				if (getRandom(100) < chance)
 				{
 					numItems++;
 				}
+				
 				if (numItems > 0)
 				{
 					if ((count + numItems) >= 10)
@@ -121,17 +122,20 @@ public class Q00637_ThroughOnceMore extends Quest
 				{
 					return "32010-02.htm";
 				}
+				
 				if (hasQuestItems(player, VISITOR_MARK))
 				{
 					qs.exitQuest(true);
 					return "32010-01a.htm";
 				}
+				
 				if (hasQuestItems(player, MARK))
 				{
 					qs.exitQuest(true);
 					return "32010-0.htm";
 				}
 			}
+			
 			qs.exitQuest(true);
 			return "32010-01.htm";
 		}
@@ -146,8 +150,10 @@ public class Q00637_ThroughOnceMore extends Quest
 				qs.exitQuest(true, true);
 				return "32010-05.htm";
 			}
+			
 			return "32010-04.htm";
 		}
+		
 		return getNoQuestMsg(player);
 	}
 }

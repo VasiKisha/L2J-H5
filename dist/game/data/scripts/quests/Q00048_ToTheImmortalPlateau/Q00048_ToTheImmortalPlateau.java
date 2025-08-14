@@ -43,6 +43,7 @@ public class Q00048_ToTheImmortalPlateau extends Quest
 	private static final int GENTLER = 30094;
 	private static final int SANDRA = 30090;
 	private static final int DUSTIN = 30116;
+	
 	// Items
 	private static final int MARK_OF_TRAVELER = 7570;
 	private static final int GALLADUCCIS_ORDER_1 = 7563;
@@ -51,10 +52,13 @@ public class Q00048_ToTheImmortalPlateau extends Quest
 	private static final int PURIFIED_MAGIC_NECKLACE = 7566;
 	private static final int GEMSTONE_POWDER = 7567;
 	private static final int MAGIC_SWORD_HILT = 7568;
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
+	
 	// Reward
 	private static final int SCROLL_OF_ESCAPE_ORC_VILLAGE = 7557;
+	
 	// Get condition for each npc
 	private static Map<Integer, ItemHolder> NPC_ITEMS = new HashMap<>();
 	static
@@ -82,6 +86,7 @@ public class Q00048_ToTheImmortalPlateau extends Quest
 		{
 			return htmltext;
 		}
+		
 		switch (event)
 		{
 			case "30097-04.htm":
@@ -184,6 +189,7 @@ public class Q00048_ToTheImmortalPlateau extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -297,6 +303,7 @@ public class Q00048_ToTheImmortalPlateau extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

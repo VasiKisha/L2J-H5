@@ -37,6 +37,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 	private static final int GREENIS = 30157;
 	private static final int THALIA = 30371;
 	private static final int NORTHWIND = 30423;
+	
 	// Items
 	private static final int ROSELLAS_LETTER = 1218;
 	private static final int RED_DOWN = 1219;
@@ -51,12 +52,15 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 	private static final int GREENISS_CHARM = 1272;
 	private static final int SAP_OF_THE_MOTHER_TREE = 1273;
 	private static final int LUCKY_POTPOURRI = 1274;
+	
 	// Reward
 	private static final int ETERNITY_DIAMOND = 1230;
+	
 	// Monster
 	private static final int DRYAD_ELDER = 20019;
 	private static final int SUKAR_WERERAT_LEADER = 20047;
 	private static final int PINCER_SPIDER = 20466;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -108,6 +112,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 					{
 						giveItems(player, FERTILITY_PERIDOT, 1);
 					}
+					
 					qs.startQuest();
 					htmltext = "30414-06.htm";
 				}
@@ -130,6 +135,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 					{
 						giveItems(player, ROSELLAS_LETTER, 1);
 					}
+					
 					htmltext = "30414-07.html";
 				}
 				break;
@@ -146,6 +152,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 					{
 						giveItems(player, APPETIZING_APPLE, 1);
 					}
+					
 					htmltext = "30414-13.html";
 				}
 				break;
@@ -162,6 +169,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 					{
 						giveItems(player, IMMORTAL_LOVE, 1);
 					}
+					
 					htmltext = "30414-17.html";
 				}
 				break;
@@ -176,6 +184,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 						giveItems(player, GREENISS_CHARM, 1);
 					}
 				}
+				
 				htmltext = event;
 				break;
 			}
@@ -189,10 +198,12 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 						giveItems(player, SAP_OF_THE_MOTHER_TREE, 1);
 					}
 				}
+				
 				htmltext = event;
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -332,6 +343,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 							{
 								giveItems(player, ETERNITY_DIAMOND, 1);
 							}
+							
 							final int level = player.getLevel();
 							if (level >= 20)
 							{
@@ -345,6 +357,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 							{
 								addExpAndSp(player, 591724, 35928);
 							}
+							
 							qs.exitQuest(false, true);
 							player.sendPacket(new SocialAction(player.getObjectId(), 3));
 							htmltext = "30414-20.html";
@@ -371,6 +384,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 							{
 								giveItems(player, MAGICAL_POWERS_RUBY, 1);
 							}
+							
 							takeItems(player, GREENISS_CHARM, 1);
 							htmltext = "30157-04.html";
 						}
@@ -395,6 +409,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 							{
 								giveItems(player, PURE_AQUAMARINE, 1);
 							}
+							
 							takeItems(player, GOLD_LEAVES, -1);
 							takeItems(player, SAP_OF_THE_MOTHER_TREE, 1);
 							htmltext = "30371-04.html";
@@ -411,6 +426,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 						{
 							giveItems(player, LUCKY_POTPOURRI, 1);
 						}
+						
 						htmltext = "30423-01.html";
 					}
 					else if (hasQuestItems(player, LUCKY_POTPOURRI))
@@ -426,6 +442,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 							{
 								giveItems(player, NOBILITY_AMETHYST, 1);
 							}
+							
 							takeItems(player, LUCKY_POTPOURRI, 1);
 							htmltext = "30423-03.html";
 						}
@@ -434,6 +451,7 @@ public class Q00408_PathOfTheElvenWizard extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

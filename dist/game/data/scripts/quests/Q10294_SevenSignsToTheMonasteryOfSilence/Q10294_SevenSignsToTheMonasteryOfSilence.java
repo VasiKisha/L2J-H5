@@ -60,11 +60,14 @@ public class Q10294_SevenSignsToTheMonasteryOfSilence extends Quest
 	private static final int READING_DESK15 = 32835;
 	private static final int READING_DESK16 = 32836;
 	private static final int JUDE_EVIL_THOUGHTS = 32888;
+	
 	// Monsters
 	private static final int SOLINA_LAY_BROTHER = 22125;
 	private static final int GUIDE_SOLINA = 27415;
+	
 	// Misc
 	private static final int MIN_LEVEL = 81;
+	
 	// Buffs
 	private static final SkillHolder VAMPIRIC_RAGE = new SkillHolder(6727, 1);
 	private static final SkillHolder RESIST_HOLY = new SkillHolder(6729, 1);
@@ -288,6 +291,7 @@ public class Q10294_SevenSignsToTheMonasteryOfSilence extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -436,6 +440,7 @@ public class Q10294_SevenSignsToTheMonasteryOfSilence extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

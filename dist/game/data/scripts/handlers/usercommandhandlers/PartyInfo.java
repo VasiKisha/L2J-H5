@@ -34,7 +34,7 @@ public class PartyInfo implements IUserCommandHandler
 	};
 	
 	@Override
-	public boolean useUserCommand(int id, Player player)
+	public boolean onCommand(int id, Player player)
 	{
 		if (id != COMMAND_IDS[0])
 		{
@@ -80,14 +80,16 @@ public class PartyInfo implements IUserCommandHandler
 				sm.addPcName(party.getLeader());
 				player.sendPacket(sm);
 			}
+			
 			player.sendMessage("Members: " + party.getMemberCount() + "/9"); // TODO: Custom?
 		}
+		
 		player.sendPacket(SystemMessageId.EMPTY_3);
 		return true;
 	}
 	
 	@Override
-	public int[] getUserCommandList()
+	public int[] getCommandList()
 	{
 		return COMMAND_IDS;
 	}

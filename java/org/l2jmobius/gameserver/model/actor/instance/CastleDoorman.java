@@ -80,6 +80,7 @@ public class CastleDoorman extends Doorman
 		if ((player.getClan() != null) && player.hasAccess(ClanAccess.CASTLE_OPEN_DOOR))
 		{
 			final SiegableHall hall = getConquerableHall();
+			
 			// save in variable because it's a costly call
 			if (hall != null)
 			{
@@ -96,6 +97,7 @@ public class CastleDoorman extends Doorman
 				}
 			}
 		}
+		
 		return false;
 	}
 	
@@ -107,6 +109,7 @@ public class CastleDoorman extends Doorman
 		{
 			return hall.isInSiege();
 		}
+		
 		return getCastle().getZone().isActive();
 	}
 }

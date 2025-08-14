@@ -33,9 +33,11 @@ public class Q00641_AttackSailren extends Quest
 {
 	// NPC
 	private static final int SHILENS_STONE_STATUE = 32109;
+	
 	// Items
 	private static final int GAZKH_FRAGMENT = 8782;
 	private static final int GAZKH = 8784;
+	
 	// Monsters
 	private static int[] MOBS =
 	{
@@ -82,6 +84,7 @@ public class Q00641_AttackSailren extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -134,6 +137,7 @@ public class Q00641_AttackSailren extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -35,6 +35,7 @@ public class BlackMarketeerOfMammon extends AbstractNpcAI
 {
 	// NPC
 	private static final int BLACK_MARKETEER = 31092;
+	
 	// Misc
 	private static final int MIN_LEVEL = 60;
 	
@@ -91,6 +92,7 @@ public class BlackMarketeerOfMammon extends AbstractNpcAI
 				htmltext = "31092-02.html";
 			}
 		}
+		
 		return htmltext;
 	}
 	

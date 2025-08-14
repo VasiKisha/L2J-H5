@@ -196,14 +196,17 @@ public class BoatTalkingGludin implements Runnable
 						{
 							BoatManager.getInstance().broadcastPacket(GLUDIN_DOCK[0], TALKING_DOCK[0], BUSY_GLUDIN);
 						}
+						
 						_shoutCount++;
 						if (_shoutCount > 35)
 						{
 							_shoutCount = 0;
 						}
+						
 						ThreadPool.schedule(this, 5000);
 						return;
 					}
+					
 					_boat.executePath(GLUDIN_DOCK);
 					break;
 				}
@@ -268,14 +271,17 @@ public class BoatTalkingGludin implements Runnable
 						{
 							BoatManager.getInstance().broadcastPacket(TALKING_DOCK[0], GLUDIN_DOCK[0], BUSY_TALKING);
 						}
+						
 						_shoutCount++;
 						if (_shoutCount > 35)
 						{
 							_shoutCount = 0;
 						}
+						
 						ThreadPool.schedule(this, 5000);
 						return;
 					}
+					
 					_boat.executePath(TALKING_DOCK);
 					break;
 				}
@@ -288,6 +294,7 @@ public class BoatTalkingGludin implements Runnable
 					break;
 				}
 			}
+			
 			_shoutCount = 0;
 			_cycle++;
 			if (_cycle > 17)

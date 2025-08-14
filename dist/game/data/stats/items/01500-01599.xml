@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="1500" type="EtcItem" name="Totem of Hestui">
 		<!-- The totem of the Hestui. Can be sold in any shop for a high price. -->
@@ -63,9 +63,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="51" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="15" />
-		</for>
+		</stats>
 	</item>
 	<item id="1507" type="Armor" name="Necklace of Valor">
 		<!-- A necklace that is given to young Orcs who have proven their valor. -->
@@ -76,9 +76,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="3600" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="21" />
-		</for>
+		</stats>
 	</item>
 	<item id="1508" type="Armor" name="Ring of Raccoon">
 		<!-- A ring given to apprentices of the Bronze Key Guild. -->
@@ -89,9 +89,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="1800" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="11" />
-		</for>
+		</stats>
 	</item>
 	<item id="1509" type="Armor" name="Ring of Firefly">
 		<!-- A ring given to apprentices of the Black Anvil Guild. -->
@@ -102,9 +102,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="1800" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="11" />
-		</for>
+		</stats>
 	</item>
 	<item id="1510" type="Weapon" name="Butcher's Sword">
 		<!-- A sword granted to young Orc Fighters who distinguished themselves at war. -->
@@ -121,12 +121,12 @@
 		<set name="price" val="19500" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="13" />
 			<set stat="mAtk" val="10" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="1511" type="Weapon" name="Silversmith Hammer">
 		<!-- A hammer silversmiths of the ancient Elmoreden used. -->
@@ -143,13 +143,13 @@
 		<set name="price" val="19500" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="13" />
 			<set stat="mAtk" val="10" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="1512" type="EtcItem" name="Spellbook: Confusion">
 		<!-- Spellbook needed to learn Confusion. Used by Palace Knights and Assassins. Level acquired: Palace Knight 24, Assassin 24 -->
@@ -413,9 +413,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2037-1" /> <!-- Greater Healing Potion -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="1540" type="EtcItem" name="Quick Healing Potion">
 		<!-- A magical potion that quickly restores HP. -->
@@ -432,9 +432,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2038-1" /> <!-- Quick Healing Potion -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="1541" type="EtcItem" name="Honey Khandar">
 		<!-- A miraculous medicine made of the mixture of honey and khandar extract. Take this to Centurion Nakusin. -->

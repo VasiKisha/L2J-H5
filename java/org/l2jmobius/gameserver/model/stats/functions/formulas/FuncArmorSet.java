@@ -41,6 +41,7 @@ public class FuncArmorSet extends AbstractFunction
 		{
 			_fh_instance.put(st, new FuncArmorSet(st));
 		}
+		
 		return _fh_instance.get(st);
 	}
 	
@@ -53,6 +54,7 @@ public class FuncArmorSet extends AbstractFunction
 	public double calc(Creature effector, Creature effected, Skill skill, double initVal)
 	{
 		double value = initVal;
+		
 		// Should not apply armor set bonus to summons.
 		if (effector.isPlayer())
 		{
@@ -99,6 +101,7 @@ public class FuncArmorSet extends AbstractFunction
 				}
 			}
 		}
+		
 		return value;
 	}
 }

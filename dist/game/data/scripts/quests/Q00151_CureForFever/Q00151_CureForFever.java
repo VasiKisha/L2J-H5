@@ -35,6 +35,7 @@ public class Q00151_CureForFever extends Quest
 	// NPCs
 	private static final int ELLIAS = 30050;
 	private static final int YOHANES = 30032;
+	
 	// Monsters
 	private static final int[] MOBS =
 	{
@@ -42,10 +43,12 @@ public class Q00151_CureForFever extends Quest
 		20106, // Talon Spider
 		20108, // Blade Spider
 	};
+	
 	// Items
 	private static final int ROUND_SHIELD = 102;
 	private static final int POISON_SAC = 703;
 	private static final int FEVER_MEDICINE = 704;
+	
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	private static final int CHANCE = 0;
@@ -69,6 +72,7 @@ public class Q00151_CureForFever extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -120,6 +124,7 @@ public class Q00151_CureForFever extends Quest
 									setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 10000000);
 									showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
 								}
+								
 								newbieGuideQs.setState(State.COMPLETED);
 							}
 							
@@ -165,6 +170,7 @@ public class Q00151_CureForFever extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

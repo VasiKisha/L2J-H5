@@ -34,8 +34,10 @@ public class Q00189_ContractCompletion extends Quest
 	private static final int HEAD_BLACKSMITH_KUSTO = 30512;
 	private static final int RESEARCHER_LORAIN = 30673;
 	private static final int BLUEPRINT_SELLER_LUKA = 31437;
+	
 	// Items
 	private static final int SCROLL_OF_DECODING = 10370;
+	
 	// Misc
 	private static final int MIN_LEVEL = 42;
 	private static final int MAX_LEVEL_FOR_EXP_SP = 48;
@@ -80,6 +82,7 @@ public class Q00189_ContractCompletion extends Quest
 					{
 						addExpAndSp(player, 309467, 20614);
 					}
+					
 					qs.exitQuest(false, true);
 					htmltext = event;
 				}
@@ -115,6 +118,7 @@ public class Q00189_ContractCompletion extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -206,6 +210,7 @@ public class Q00189_ContractCompletion extends Quest
 		{
 			htmltext = getAlreadyCompletedMsg(player);
 		}
+		
 		return htmltext;
 	}
 }

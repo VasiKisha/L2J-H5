@@ -122,7 +122,7 @@ public class EnergyDamage extends AbstractEffect
 			
 			// charge count should be the count before casting the skill but since its reduced before calling effects
 			// we add skill consume charges to current charges
-			final double energyChargesBoost = (((attacker.getCharges() + skill.getChargeConsume()) - 1) * 0.2) + 1;
+			final double energyChargesBoost = (((attacker.getCharges() + skill.getChargeConsumeCount()) - 1) * 0.2) + 1;
 			attack += _power;
 			attack *= ssBoost;
 			attack *= energyChargesBoost;

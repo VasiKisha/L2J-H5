@@ -32,17 +32,20 @@ public class Q00274_SkirmishWithTheWerewolves extends Quest
 {
 	// NPC
 	private static final int BRUKURSE = 30569;
+	
 	// Monsters
-	private static final int[] MONSTERS = new int[]
+	private static final int[] MONSTERS =
 	{
 		20363, // Maraku Werewolf
 		20364, // Maraku Werewolf Chieftain
 	};
+	
 	// Items
 	private static final int NECKLACE_OF_COURAGE = 1506;
 	private static final int NECKLACE_OF_VALOR = 1507;
 	private static final int WEREWOLF_HEAD = 1477;
 	private static final int WEREWOLF_TOTEM = 1501;
+	
 	// Misc
 	private static final int MIN_LEVEL = 9;
 	
@@ -64,6 +67,7 @@ public class Q00274_SkirmishWithTheWerewolves extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -78,6 +82,7 @@ public class Q00274_SkirmishWithTheWerewolves extends Quest
 			{
 				giveItems(killer, WEREWOLF_TOTEM, 1);
 			}
+			
 			if (getQuestItemsCount(killer, WEREWOLF_HEAD) >= 40)
 			{
 				qs.setCond(2, true);
@@ -132,6 +137,7 @@ public class Q00274_SkirmishWithTheWerewolves extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

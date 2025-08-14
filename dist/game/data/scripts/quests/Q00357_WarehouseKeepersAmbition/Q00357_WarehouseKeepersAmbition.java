@@ -36,8 +36,10 @@ public class Q00357_WarehouseKeepersAmbition extends Quest
 {
 	// NPC
 	private static final int SILVA = 30686;
+	
 	// Item
 	private static final int JADE_CRYSTAL = 5867;
+	
 	// Monsters
 	private static final Map<Integer, Double> DROP_DATA = new HashMap<>();
 	static
@@ -47,6 +49,7 @@ public class Q00357_WarehouseKeepersAmbition extends Quest
 		DROP_DATA.put(20596, 0.638); // Liele Elder
 		DROP_DATA.put(20597, 0.062); // Valley Treant Elder
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 47;
 	
@@ -101,6 +104,7 @@ public class Q00357_WarehouseKeepersAmbition extends Quest
 							adenaReward += 40500;
 							htmltext = event;
 						}
+						
 						giveAdena(player, adenaReward, true);
 						takeItems(player, JADE_CRYSTAL, -1);
 					}
@@ -114,12 +118,14 @@ public class Q00357_WarehouseKeepersAmbition extends Quest
 						giveAdena(player, (crystalCount * 425) + ((crystalCount >= 100) ? 40500 : 0), true);
 						takeItems(player, JADE_CRYSTAL, -1);
 					}
+					
 					qs.exitQuest(true, true);
 					htmltext = event;
 					break;
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -136,6 +142,7 @@ public class Q00357_WarehouseKeepersAmbition extends Quest
 		{
 			htmltext = (hasQuestItems(talker, JADE_CRYSTAL)) ? "30686-07.html" : "30686-06.html";
 		}
+		
 		return htmltext;
 	}
 	

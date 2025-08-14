@@ -2,28 +2,28 @@
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/skills.xsd">
 	<skill id="22300" levels="1" name="Fantasy Isle Magic">
 		<!-- Magic obtained from Fantasy Isle. Increases Speed by 30%, and decreases fall damage when falling from a high place. -->
-		<set name="abnormalTime" val="300" />
 		<set name="icon" val="BranchSys2.icon.s_g_fantastic_magic" />
 		<set name="operateType" val="A2" />
 		<set name="targetType" val="ONE" />
-		<for>
+		<set name="abnormalTime" val="300" />
+		<effects>
 			<effect name="Buff">
 				<mul stat="runSpd" val="1.30" /> <!-- Increases Speed by 30% -->
 				<mul stat="fall" val="0.7" />
 			</effect>
-		</for>
+		</effects>
 	</skill>
 	<skill id="22301" levels="1" name="Party Cake">
+		<set name="operateType" val="A1" />
 		<set name="targetType" val="SELF" />
 		<set name="abnormalTime" val="1200" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
-		<set name="operateType" val="A1" />
-		<for>
+		<effects>
 			<effect name="SummonNpc">
 				<param npcId="147" npcCount="1" despawnDelay="1200000" />
 			</effect>
-		</for>
+		</effects>
 	</skill>
 	<skill id="22302" levels="1" name="Sweet Chocolate - 4 hour">
 		<!-- For 4 hours, recovers energy when Exp. is acquired through hunting. -->
@@ -33,19 +33,19 @@
 	<skill id="22303" levels="1" name="Party Cake">
 		<!-- Party Cake's Vitality effect. Maintains Vitality for 20 minutes. -->
 		<set name="icon" val="BranchSys.icon.br_birthday_cake_i00" />
+		<set name="operateType" val="A2" />
 		<set name="targetType" val="PARTY" />
-		<set name="affectRange" val="500" />
-		<set name="castRange" val="500" />
 		<set name="abnormalTime" val="1200" />
+		<set name="affectRange" val="500" />
 		<set name="canBeDispeled" val="false" />
+		<set name="castRange" val="500" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="magicLevel" val="1" />
-		<set name="operateType" val="A2" />
-		<for>
+		<effects>
 			<effect name="Buff">
 				<mul stat="vitalityConsumeRate" val="0" />
 			</effect>
-		</for>
+		</effects>
 	</skill>
 	<skill id="22304" levels="1" name="Campfire's Warmth">
 		<!-- The campfire's warmth can be felt. Increases HP regeneration by 80%, CP regeneration by 60%, and MP regeneration by 40%. -->
@@ -84,35 +84,35 @@
 	</skill>
 	<skill id="22312" levels="1" name="Joyous Vitality Potion">
 		<!-- Birthday gift received once a year. Increases your Vitality whenever you gain experience. This buff is active for 4 hours and is not lost upon death. However, it will disappear if you change to a subclass. -->
+		<set name="operateType" val="A2" />
+		<set name="targetType" val="SELF" />
 		<set name="abnormalTime" val="14400" />
 		<set name="canBeDispeled" val="false" />
-		<set name="operateType" val="A2" />
 		<set name="reuseDelay" val="3600000" />
 		<set name="stayAfterDeath" val="true" />
 		<set name="stayOnSubclassChange" val="false" />
-		<set name="targetType" val="SELF" />
-		<for>
+		<effects>
 			<effect name="Buff">
 				<sub stat="vitalityConsumeRate" val="10" />
 			</effect>
-		</for>
+		</effects>
 	</skill>
 	<skill id="22313" levels="1" name="Pa'agrio's Warm Breeze - 4 hour">
 		<!-- For 4 hours, recovers Vitality when Exp. is acquired through hunting. -->
+		<set name="icon" val="BranchSys2.Icon.pi_wind_of_paagrio" />
+		<set name="operateType" val="A2" />
+		<set name="targetType" val="SELF" />
 		<set name="abnormalLevel" val="1" />
 		<set name="abnormalTime" val="14400" />
 		<set name="abnormalVisualEffect" val="VP_KEEP" />
-		<set name="icon" val="BranchSys2.Icon.pi_wind_of_paagrio" />
 		<set name="isMagic" val="2" /> <!-- Static Skill -->
 		<set name="itemConsumeCount" val="1" />
 		<set name="itemConsumeId" val="21880" /> <!-- Pa'agrio's Warm Breeze - 4 hour -->
-		<set name="operateType" val="A2" />
-		<set name="targetType" val="SELF" />
-		<for>
+		<effects>
 			<effect name="Buff">
 				<sub stat="vitalityConsumeRate" val="10" />
 			</effect>
-		</for>
+		</effects>
 	</skill>
 	<skill id="22314" levels="1" name="Treasure Sack 1st Place">
 		<set name="operateType" val="P" />
@@ -313,22 +313,90 @@
 		<set name="targetType" val="NONE" />
 	</skill>
 	<skill id="22355" levels="1" name="Soul Crystal Box - Level 17">
+		<table name="#extractableItems">
+			15541,1,33.3333;15542,1,33.3333;15543,1,33.3334
+		</table>
+		<set name="operateType" val="A1" />
+		<set name="targetType" val="SELF" />
 		<set name="blockedInOlympiad" val="true" />
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<set name="isMagic" val="2" /> <!-- Static Skill -->
+		<set name="itemConsumeCount" val="1" />
+		<set name="itemConsumeId" val="22206" /> <!-- Soul Crystal - Stage 17 Box - Event -->
+		<set name="magicLevel" val="1" />
+		<set name="capsuled_items_skill" val="#extractableItems" />
+		<conditions msgId="129">
+			<and>
+				<player invSize="10" />
+				<player weight="80" />
+			</and>
+		</conditions>
+		<effects>
+			<effect name="RestorationRandom" />
+		</effects>
 	</skill>
 	<skill id="22356" levels="1" name="Soul Crystal Box - Level 18">
+		<table name="#extractableItems">
+			15826,1,33.3333;15827,1,33.3333;15828,1,33.3334
+		</table>
+		<set name="operateType" val="A1" />
+		<set name="targetType" val="SELF" />
 		<set name="blockedInOlympiad" val="true" />
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<set name="isMagic" val="2" /> <!-- Static Skill -->
+		<set name="itemConsumeCount" val="1" />
+		<set name="itemConsumeId" val="22207" /> <!-- Soul Crystal - Stage 18 Box - Event -->
+		<set name="magicLevel" val="1" />
+		<set name="capsuled_items_skill" val="#extractableItems" />
+		<conditions msgId="129">
+			<and>
+				<player invSize="10" />
+				<player weight="80" />
+			</and>
+		</conditions>
+		<effects>
+			<effect name="RestorationRandom" />
+		</effects>
 	</skill>
 	<skill id="22357" levels="1" name="S84 High-Grade Weapon Box">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<table name="#extractableItems">
+			15558,1,6.25;15559,1,6.25;15560,1,6.25;15561,1,6.25;15562,1,6.25;15563,1,6.25;15564,1,6.25;15565,1,6.25;15566,1,6.25;15567,1,6.25;15568,1,6.25;15569,1,6.25;15570,1,6.25;15571,1,6.25;16152,1,6.25;16154,1,6.25
+		</table>
+		<set name="operateType" val="A1" />
+		<set name="targetType" val="SELF" />
+		<set name="isMagic" val="2" /> <!-- Static Skill -->
+		<set name="itemConsumeCount" val="1" />
+		<set name="itemConsumeId" val="22202" /> <!-- S84 Weapon Box - Event -->
+		<set name="magicLevel" val="1" />
+		<set name="capsuled_items_skill" val="#extractableItems" />
+		<conditions msgId="129">
+			<and>
+				<player invSize="10" />
+				<player weight="80" />
+			</and>
+		</conditions>
+		<effects>
+			<effect name="RestorationRandom" />
+		</effects>
 	</skill>
 	<skill id="22358" levels="1" name="Vorpal Armor Box">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<table name="#extractableItems">
+			15589,1,5.8824;15590,1,5.8824;15591,1,5.8824;15592,1,5.8824;15593,1,5.8824;15594,1,5.8824;15595,1,5.8824;15596,1,5.8824;15597,1,5.8824;15598,1,5.8824;15599,1,5.8824;15600,1,5.8824;15601,1,5.8824;15602,1,5.8824;15603,1,5.8824;15604,1,5.8824;15605,1,5.8816
+		</table>
+		<set name="operateType" val="A1" />
+		<set name="targetType" val="SELF" />
+		<set name="isMagic" val="2" /> <!-- Static Skill -->
+		<set name="itemConsumeCount" val="1" />
+		<set name="itemConsumeId" val="22203" /> <!-- Vorpal Armor Box - Event -->
+		<set name="magicLevel" val="1" />
+		<set name="capsuled_items_skill" val="#extractableItems" />
+		<conditions msgId="129">
+			<and>
+				<player invSize="10" />
+				<player weight="80" />
+			</and>
+		</conditions>
+		<effects>
+			<effect name="RestorationRandom" />
+		</effects>
 	</skill>
 	<skill id="22359" levels="1" name="Scroll: Enchant Weapon of Destruction (S-Grade)">
 		<set name="operateType" val="A1" /> <!-- FIXME: value unconfirmed -->
@@ -420,13 +488,49 @@
 		<set name="operateType" val="P" />
 		<set name="targetType" val="NONE" />
 	</skill>
-	<skill id="22381" levels="1" name="Attribute Ore Box">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+	<skill id="22381" levels="1" name="Attribute Stone Box">
+		<!-- Confirmed CT2.5 -->
+		<table name="#extractableItems">
+			9546,1,16.6666;9547,1,16.6666;9548,1,16.6667;9549,1,16.6667;9550,1,16.6667;9551,1,16.6667
+		</table>
+		<set name="operateType" val="A1" />
+		<set name="targetType" val="SELF" />
+		<set name="isMagic" val="2" /> <!-- Static Skill -->
+		<set name="itemConsumeCount" val="1" />
+		<set name="itemConsumeId" val="22204" /> <!-- Attribute Stone Box - Event -->
+		<set name="magicLevel" val="1" />
+		<set name="capsuled_items_skill" val="#extractableItems" />
+		<conditions msgId="129">
+			<and>
+				<player invSize="10" />
+				<player weight="80" />
+			</and>
+		</conditions>
+		<effects>
+			<effect name="RestorationRandom" />
+		</effects>
 	</skill>
 	<skill id="22382" levels="1" name="Attribute Crystal Box">
-		<set name="operateType" val="P" />
-		<set name="targetType" val="NONE" />
+		<!-- Confirmed CT2.5 -->
+		<table name="#extractableItems">
+			9552,1,16.6666;9553,1,16.6666;9554,1,16.6667;9555,1,16.6667;9556,1,16.6667;9557,1,16.6667
+		</table>
+		<set name="operateType" val="A1" />
+		<set name="targetType" val="SELF" />
+		<set name="isMagic" val="2" /> <!-- Static Skill -->
+		<set name="itemConsumeCount" val="1" />
+		<set name="itemConsumeId" val="22205" /> <!-- Attribute Crystal Box - Event -->
+		<set name="magicLevel" val="1" />
+		<set name="capsuled_items_skill" val="#extractableItems" />
+		<conditions msgId="129">
+			<and>
+				<player invSize="10" />
+				<player weight="80" />
+			</and>
+		</conditions>
+		<effects>
+			<effect name="RestorationRandom" />
+		</effects>
 	</skill>
 	<skill id="22383" levels="1" name="Pathfinder Supplies">
 		<set name="operateType" val="P" />

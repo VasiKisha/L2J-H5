@@ -54,7 +54,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_itemcreate"))
 		{
@@ -98,6 +98,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 			{
 				activeChar.sendSysMessage("Specify a valid number.");
 			}
+			
 			AdminHtml.showAdminHtml(activeChar, "itemcreation.htm");
 		}
 		else if (command.startsWith("admin_create_coin"))
@@ -132,6 +133,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 			{
 				activeChar.sendSysMessage("Specify a valid number.");
 			}
+			
 			AdminHtml.showAdminHtml(activeChar, "itemcreation.htm");
 		}
 		else if (command.startsWith("admin_give_item_target"))
@@ -170,6 +172,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 			{
 				activeChar.sendSysMessage("Specify a valid number.");
 			}
+			
 			AdminHtml.showAdminHtml(activeChar, "itemcreation.htm");
 		}
 		else if (command.startsWith("admin_give_item_to_all"))
@@ -191,6 +194,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 				idval = Integer.parseInt(id);
 				numval = 1;
 			}
+			
 			int counter = 0;
 			final ItemTemplate template = ItemData.getInstance().getTemplate(idval);
 			if (template == null)
@@ -198,11 +202,13 @@ public class AdminCreateItem implements IAdminCommandHandler
 				activeChar.sendSysMessage("This item doesn't exist.");
 				return false;
 			}
+			
 			if ((numval > 10) && !template.isStackable())
 			{
 				activeChar.sendSysMessage("This item does not stack - Creation aborted.");
 				return false;
 			}
+			
 			for (Player onlinePlayer : World.getInstance().getPlayers())
 			{
 				if ((activeChar != onlinePlayer) && onlinePlayer.isOnline() && ((onlinePlayer.getClient() != null) && !onlinePlayer.getClient().isDetached()))
@@ -212,6 +218,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 					counter++;
 				}
 			}
+			
 			activeChar.sendMessage(counter + " players rewarded with " + template.getName());
 		}
 		else if (command.startsWith("admin_delete_item"))
@@ -233,6 +240,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 				idval = Integer.parseInt(id);
 				numval = 1;
 			}
+			
 			final Item item = (Item) World.getInstance().findObject(idval);
 			final int ownerId = item.getOwnerId();
 			if (ownerId > 0)
@@ -281,12 +289,13 @@ public class AdminCreateItem implements IAdminCommandHandler
 				}
 				else
 				{
-					final IItemHandler ih = ItemHandler.getInstance().getHandler(item.getEtcItem());
-					if (ih != null)
+					final IItemHandler handler = ItemHandler.getInstance().getHandler(item.getEtcItem());
+					if (handler != null)
 					{
-						ih.useItem(player, item, false);
+						handler.onItemUse(player, item, false);
 					}
 				}
+				
 				activeChar.sendPacket(new GMViewItemList(player));
 			}
 			else
@@ -295,11 +304,12 @@ public class AdminCreateItem implements IAdminCommandHandler
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
@@ -312,6 +322,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 			activeChar.sendSysMessage("This item doesn't exist.");
 			return;
 		}
+		
 		if ((num > 10) && !template.isStackable())
 		{
 			activeChar.sendSysMessage("This item does not stack - Creation aborted.");
@@ -323,6 +334,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 		{
 			target.sendMessage("Admin spawned " + num + " " + template.getName() + " in your inventory.");
 		}
+		
 		target.sendItemList(false);
 		
 		activeChar.sendSysMessage("You have spawned " + num + " " + template.getName() + "(" + id + ") in " + target.getName() + " inventory.");
@@ -336,6 +348,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 			activeChar.sendSysMessage("This item doesn't exist.");
 			return;
 		}
+		
 		if ((num > 10) && !template.isStackable())
 		{
 			activeChar.sendSysMessage("This item does not stack - Creation aborted.");
@@ -351,10 +364,12 @@ public class AdminCreateItem implements IAdminCommandHandler
 		{
 			activeChar.sendMessage("This item is not enchantable, no enchant applied.");
 		}
+		
 		if (activeChar != target)
 		{
 			target.sendMessage("Admin spawned " + num + " " + template.getName() + " in your inventory.");
 		}
+		
 		target.sendItemList(false);
 		
 		activeChar.sendSysMessage("You have spawned " + num + " " + template.getName() + "(" + id + ") in " + target.getName() + " inventory.");
@@ -415,6 +430,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 		{
 			id = 0;
 		}
+		
 		return id;
 	}
 }

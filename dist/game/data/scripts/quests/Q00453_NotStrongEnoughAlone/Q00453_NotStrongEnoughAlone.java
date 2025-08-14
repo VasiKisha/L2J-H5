@@ -68,6 +68,7 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 		22764,
 		22765
 	};
+	
 	// Reward
 	private static final int[][] REWARD =
 	{
@@ -207,6 +208,7 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 				log.addNpc(MONSTER3[1], qs.getInt(String.valueOf(MONSTER3[1])));
 				log.addNpc(MONSTER3[2], qs.getInt(String.valueOf(MONSTER3[2])));
 			}
+			
 			player.sendPacket(log);
 		}
 	}
@@ -237,6 +239,7 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 		{
 			qs.setCond(4, true);
 		}
+		
 		return htmltext;
 	}
 	
@@ -332,6 +335,7 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -344,6 +348,7 @@ public class Q00453_NotStrongEnoughAlone extends Quest
 				return;
 			}
 		}
+		
 		qs.setCond(5, true);
 	}
 }

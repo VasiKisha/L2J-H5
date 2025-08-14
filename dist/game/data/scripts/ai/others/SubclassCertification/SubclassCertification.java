@@ -180,6 +180,7 @@ public class SubclassCertification extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -188,12 +189,14 @@ public class SubclassCertification extends AbstractNpcAI
 		String htmltext = getHtm(player, htmlFile);
 		if (replaceClass)
 		{
-			htmltext = htmltext.replace("%class%", ClassListData.getInstance().getClass(player.getActiveClass()).getClientCode());
+			htmltext = htmltext.replace("%class%", ClassListData.getInstance().getClass(player.getActiveClass()).getClassName());
 		}
+		
 		if (levelToReplace != null)
 		{
 			htmltext = htmltext.replace("%level%", levelToReplace);
 		}
+		
 		return htmltext;
 	}
 	
@@ -227,6 +230,7 @@ public class SubclassCertification extends AbstractNpcAI
 		{
 			return 6;
 		}
+		
 		return -1;
 	}
 	
@@ -263,6 +267,7 @@ public class SubclassCertification extends AbstractNpcAI
 			player.getVariables().set(var, String.valueOf(item.getObjectId()));
 			htmltext = "GetAbility.html";
 		}
+		
 		return htmltext;
 	}
 	

@@ -38,6 +38,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 	private static final int BLACKSMITH_ALTRAN = 30283;
 	private static final int BLACKSMITH_PINTER = 30298;
 	private static final int BLACKSMITH_DUNING = 30688;
+	
 	// Items
 	private static final int RECIPE_JOURNEYMAN_RING = 3024;
 	private static final int RECIPE_AMBER_BEAD = 3025;
@@ -61,9 +62,11 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 	private static final int AMBER_LUMP = 3137;
 	private static final int JOURNEYMAN_DECO_BEADS = 3138;
 	private static final int JOURNEYMAN_RING = 3139;
+	
 	// Reward
 	private static final int MARK_OF_GUILDSMAN = 3119;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monsters
 	private static final int ANT = 20079;
 	private static final int ANT_CAPTAIN = 20080;
@@ -82,6 +85,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 	private static final int BREKA_ORC_SHAMAN = 20269;
 	private static final int BREKA_ORC_OVERLORD = 20270;
 	private static final int BREKA_ORC_WARRIOR = 20271;
+	
 	// Misc
 	private static final int MIN_LEVEL = 35;
 	
@@ -116,6 +120,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 					{
 						giveItems(player, VALKONS_RECOMMENDATION, 1);
 					}
+					
 					playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 					if (player.getVariables().getInt("2ND_CLASS_DIAMOND_REWARD", 0) == 0)
 					{
@@ -251,6 +256,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -482,6 +488,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 								{
 									qs.setCond(6, true);
 								}
+								
 								htmltext = "30210-12.html";
 							}
 							else
@@ -548,6 +555,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 								{
 									qs.setCond(6, true);
 								}
+								
 								htmltext = "30298-07.html";
 							}
 						}
@@ -566,6 +574,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 						{
 							htmltext = "30688-01.html";
 						}
+						
 						if (hasQuestItems(player, DUNINGS_INSTRUCTIONS) && !hasQuestItems(player, NORMANS_RECEIPT) && (getQuestItemsCount(player, DUNINGS_KEY) < 30))
 						{
 							htmltext = "30688-03.html";
@@ -590,6 +599,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -637,6 +647,7 @@ public class Q00216_TrialOfTheGuildsman extends Quest
 				break;
 			}
 		}
+		
 		return check;
 	}
 }

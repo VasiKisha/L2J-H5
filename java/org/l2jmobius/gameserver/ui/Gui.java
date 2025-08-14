@@ -276,6 +276,20 @@ public class Gui
 		});
 		mnAnnounce.add(mntmCritical);
 		
+		final JMenu mnLogs = new JMenu("Logs");
+		mnLogs.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		menuBar.add(mnLogs);
+		
+		final JMenuItem mntmLogs = new JMenuItem("View");
+		mntmLogs.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		mntmLogs.addActionListener(_ -> new LogPanel(false));
+		mnLogs.add(mntmLogs);
+		
+		final JMenuItem mntmDeleteLogs = new JMenuItem("Delete");
+		mntmDeleteLogs.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+		mntmDeleteLogs.addActionListener(_ -> new LogPanel(true));
+		mnLogs.add(mntmDeleteLogs);
+		
 		final JMenu mnFont = new JMenu("Font");
 		mnFont.setFont(new Font("Segoe UI", Font.PLAIN, 13));
 		menuBar.add(mnFont);

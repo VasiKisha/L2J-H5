@@ -46,6 +46,7 @@ public class PvpFlagTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		if (!PLAYERS.isEmpty())

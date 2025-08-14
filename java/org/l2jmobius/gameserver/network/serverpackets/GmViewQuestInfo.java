@@ -61,6 +61,7 @@ public class GmViewQuestInfo extends ServerPacket
 				buffer.writeInt(0);
 				continue;
 			}
+			
 			buffer.writeInt(qs.getCond()); // stage of quest progress
 		}
 	}

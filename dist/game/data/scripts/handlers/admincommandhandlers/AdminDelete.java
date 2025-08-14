@@ -44,7 +44,7 @@ public class AdminDelete implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.contains("group"))
 		{
@@ -55,6 +55,7 @@ public class AdminDelete implements IAdminCommandHandler
 			final String[] split = command.split(" ");
 			handleDelete(activeChar, (split.length > 1) && StringUtil.isNumeric(split[1]) ? Integer.parseInt(split[1]) : 0);
 		}
+		
 		return true;
 	}
 	
@@ -108,11 +109,12 @@ public class AdminDelete implements IAdminCommandHandler
 				{
 					SpawnData.getInstance().deleteSpawn(spawn);
 				}
+				
 				player.sendSysMessage("Deleted " + target.getName() + " from " + target.getObjectId() + ".");
 			}
 			else
 			{
-				AdminCommandHandler.getInstance().useAdminCommand(player, AdminDelete.ADMIN_COMMANDS[1], true);
+				AdminCommandHandler.getInstance().onCommand(player, AdminDelete.ADMIN_COMMANDS[1], true);
 			}
 		}
 	}
@@ -165,7 +167,7 @@ public class AdminDelete implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

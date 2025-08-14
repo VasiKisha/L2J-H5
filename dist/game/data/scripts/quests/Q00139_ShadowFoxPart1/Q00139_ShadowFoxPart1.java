@@ -33,6 +33,7 @@ public class Q00139_ShadowFoxPart1 extends Quest
 {
 	// NPC
 	private static final int MIA = 30896;
+	
 	// Monsters
 	private static final int[] MOBS =
 	{
@@ -41,9 +42,11 @@ public class Q00139_ShadowFoxPart1 extends Quest
 		21639, // Tasaba Lizardman
 		21640, // Tasaba Lizardman Shaman
 	};
+	
 	// Items
 	private static final int FRAGMENT = 10345;
 	private static final int CHEST = 10346;
+	
 	// Misc
 	private static final int MIN_LEVEL = 37;
 	private static final int MAX_REWARD_LEVEL = 42;
@@ -102,6 +105,7 @@ public class Q00139_ShadowFoxPart1 extends Quest
 					takeItems(player, CHEST, 1);
 					return "30896-16.html";
 				}
+				
 				takeItems(player, FRAGMENT, -1);
 				takeItems(player, CHEST, -1);
 				qs.set("talk", "1");
@@ -114,6 +118,7 @@ public class Q00139_ShadowFoxPart1 extends Quest
 				{
 					addExpAndSp(player, 30000, 2000);
 				}
+				
 				qs.exitQuest(false, true);
 				break;
 			}
@@ -133,6 +138,7 @@ public class Q00139_ShadowFoxPart1 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -191,6 +197,7 @@ QuestState qs = getQuestState(member, false);
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

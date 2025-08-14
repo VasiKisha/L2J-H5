@@ -66,6 +66,7 @@ public class UCArena
 		{
 			_manager = spawn.getLastSpawn();
 		}
+		
 		_minLevel = minLevel;
 		_maxLevel = maxLevel;
 		_rewards.clear();
@@ -97,6 +98,7 @@ public class UCArena
 		{
 			return;
 		}
+		
 		_points[index] = point;
 	}
 	
@@ -106,6 +108,7 @@ public class UCArena
 		{
 			return;
 		}
+		
 		_teams[index] = team;
 	}
 	
@@ -137,6 +140,7 @@ public class UCArena
 				_taskFuture.cancel(true);
 				_taskFuture = null;
 			}
+			
 			generateWinner();
 			removeTeams();
 			for (UCTeam team : getTeams())
@@ -149,6 +153,7 @@ public class UCArena
 				point.actionDoors(false);
 				point.getPlayers().clear();
 			}
+			
 			_isBattleNow = false;
 		}
 	}
@@ -166,6 +171,7 @@ public class UCArena
 			_taskFuture.cancel(true);
 			_taskFuture = null;
 		}
+		
 		_taskFuture = ThreadPool.schedule(new UCRunningTask(this), 0);
 	}
 	
@@ -231,6 +237,7 @@ public class UCArena
 		{
 			broadcastRecord(ExPVPMatchRecord.FINISH, 0);
 		}
+		
 		blueTeam.setLastParty(redTeam.getParty());
 		redTeam.setLastParty(blueTeam.getParty());
 	}
@@ -367,6 +374,7 @@ public class UCArena
 				team.setParty(null);
 				team.setRegisterTime(0);
 			}
+			
 			_isBattleNow = false;
 			runNewTask(false);
 			return;
@@ -408,6 +416,7 @@ public class UCArena
 				}
 			}
 		}
+		
 		broadcastRecord(ExPVPMatchRecord.UPDATE, 0);
 	}
 	

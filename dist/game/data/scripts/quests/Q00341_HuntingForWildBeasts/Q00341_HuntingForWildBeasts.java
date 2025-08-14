@@ -34,6 +34,7 @@ public class Q00341_HuntingForWildBeasts extends Quest
 {
 	// NPCs
 	private static final int PANO = 30078;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -43,8 +44,10 @@ public class Q00341_HuntingForWildBeasts extends Quest
 		MONSTERS.put(20021, 83);
 		MONSTERS.put(20335, 87);
 	}
+	
 	// Items
 	private static final int BEAR_SKIN = 4259;
+	
 	// Misc
 	private static final int MIN_LEVEL = 20;
 	private static final int ADENA_COUNT = 3710;
@@ -81,6 +84,7 @@ public class Q00341_HuntingForWildBeasts extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -111,6 +115,7 @@ public class Q00341_HuntingForWildBeasts extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

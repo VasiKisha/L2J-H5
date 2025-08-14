@@ -70,6 +70,7 @@ public class Participant
 		{
 			player = World.getInstance().getPlayer(getObjectId());
 		}
+		
 		return player != null;
 	}
 	

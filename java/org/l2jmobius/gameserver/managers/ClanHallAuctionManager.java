@@ -107,6 +107,7 @@ public class ClanHallAuctionManager
 			{
 				_auctions.add(new ClanHallAuction(rs.getInt("id")));
 			}
+			
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _auctions.size() + " auction(s)");
 		}
 		catch (Exception e)
@@ -122,6 +123,7 @@ public class ClanHallAuctionManager
 		{
 			return _auctions.get(index);
 		}
+		
 		return null;
 	}
 	
@@ -136,6 +138,7 @@ public class ClanHallAuctionManager
 				return i;
 			}
 		}
+		
 		return -1;
 	}
 	
@@ -158,6 +161,7 @@ public class ClanHallAuctionManager
 				break;
 			}
 		}
+		
 		if ((i >= ItemInitDataId.length) || (ItemInitDataId[i] != id))
 		{
 			LOGGER.warning(getClass().getSimpleName() + ": Clan Hall auction not found for Id :" + id);

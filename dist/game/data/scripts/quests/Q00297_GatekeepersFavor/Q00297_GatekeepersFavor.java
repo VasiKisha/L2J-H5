@@ -31,11 +31,14 @@ public class Q00297_GatekeepersFavor extends Quest
 {
 	// NPC
 	private static final int WIRPHY = 30540;
+	
 	// Monster
 	private static final int WHINSTONE_GOLEM = 20521;
+	
 	// Items
 	private static final int STARSTONE = 1573;
 	private static final int GATEKEEPER_TOKEN = 1659;
+	
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	private static final int STARSTONE_COUT = 20;
@@ -59,9 +62,11 @@ public class Q00297_GatekeepersFavor extends Quest
 			{
 				return "30540-01.htm";
 			}
+			
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -110,6 +115,7 @@ public class Q00297_GatekeepersFavor extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

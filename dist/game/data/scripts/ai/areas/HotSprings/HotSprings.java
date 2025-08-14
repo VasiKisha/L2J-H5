@@ -42,11 +42,13 @@ public class HotSprings extends AbstractNpcAI
 	private static final int NEPENTHES = 21319;
 	private static final int ATROX = 21321;
 	private static final int BANDERSNATCH = 21322;
+	
 	// Skills
 	private static final int RHEUMATISM = 4551;
 	private static final int CHOLERA = 4552;
 	private static final int FLU = 4553;
 	private static final int MALARIA = 4554;
+	
 	// Misc
 	private static final int DISEASE_CHANCE = 10;
 	

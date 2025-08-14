@@ -46,17 +46,20 @@ public class Q00211_TrialOfTheChallenger extends Quest
 	private static final int MARTIAN = 30645;
 	private static final int RALDO = 30646;
 	private static final int CHEST_OF_SHYSLASSYS = 30647;
+	
 	// Items
 	private static final int LETTER_OF_KASH = 2628;
 	private static final int WATCHERS_EYE1 = 2629;
 	private static final int WATCHERS_EYE2 = 2630;
 	private static final int SCROLL_OF_SHYSLASSYS = 2631;
 	private static final int BROKEN_KEY = 2632;
+	
 	// Monsters
 	private static final int SHYSLASSYS = 27110;
 	private static final int GORR = 27112;
 	private static final int BARAHAM = 27113;
 	private static final int QUEEN_OF_SUCCUBUS = 27114;
+	
 	// Rewards
 	private static final int ELVEN_NECKLACE_BEADS = 1904;
 	private static final int WHITE_TUNIC_PATTERN = 1936;
@@ -68,6 +71,7 @@ public class Q00211_TrialOfTheChallenger extends Quest
 	private static final int TOME_OF_BLOOD_PAGE = 2030;
 	private static final int MARK_OF_CHALLENGER = 2627;
 	private static final ItemHolder DIMENSIONAL_DIAMONDS = new ItemHolder(7562, 61);
+	
 	// Misc
 	private static final int MIN_LEVEL = 35;
 	
@@ -123,6 +127,7 @@ public class Q00211_TrialOfTheChallenger extends Quest
 					{
 						htmltext = "30644-05.htm";
 					}
+					
 					qs.startQuest();
 				}
 				break;
@@ -157,6 +162,7 @@ public class Q00211_TrialOfTheChallenger extends Quest
 						{
 							rewardItems(player, IRON_BOOTS_DESIGN, 1);
 						}
+						
 						htmltext = "30647-03.html";
 					}
 					else
@@ -192,6 +198,7 @@ public class Q00211_TrialOfTheChallenger extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -380,6 +387,7 @@ public class Q00211_TrialOfTheChallenger extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -402,6 +410,7 @@ public class Q00211_TrialOfTheChallenger extends Quest
 					{
 						addSpawn(CHEST_OF_SHYSLASSYS, npc, false, 200000);
 					}
+					
 					giveItems(killer, SCROLL_OF_SHYSLASSYS, 1);
 					giveItems(killer, BROKEN_KEY, 1);
 					qs.setCond(2, true);
@@ -425,6 +434,7 @@ public class Q00211_TrialOfTheChallenger extends Quest
 					{
 						addSpawn(RALDO, npc, false, 100000);
 					}
+					
 					giveItems(killer, WATCHERS_EYE2, 1);
 					qs.setCond(7, true);
 				}
@@ -438,6 +448,7 @@ public class Q00211_TrialOfTheChallenger extends Quest
 					{
 						addSpawn(RALDO, npc, false, 100000);
 					}
+					
 					qs.setCond(10, true);
 				}
 				break;

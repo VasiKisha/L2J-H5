@@ -143,6 +143,7 @@ public class RecoBonus
 			final int exp = (Math.min(100, player.getRecomHave()) - 1) / 10;
 			return _recoBonus[level][exp];
 		}
+		
 		return 0;
 	}
 	
@@ -154,6 +155,7 @@ public class RecoBonus
 		{
 			multiplier += (bonus / 100);
 		}
+		
 		return multiplier;
 	}
 }

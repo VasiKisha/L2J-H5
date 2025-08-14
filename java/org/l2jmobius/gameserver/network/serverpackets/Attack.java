@@ -111,6 +111,7 @@ public class Attack extends ServerPacket
 		{
 			writeHit(it.next(), buffer);
 		}
+		
 		buffer.writeInt(_targetLoc.getX());
 		buffer.writeInt(_targetLoc.getY());
 		buffer.writeInt(_targetLoc.getZ());

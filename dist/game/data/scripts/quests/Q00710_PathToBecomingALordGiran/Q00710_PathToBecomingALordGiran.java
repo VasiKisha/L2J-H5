@@ -111,6 +111,7 @@ public class Q00710_PathToBecomingALordGiran extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -243,6 +244,7 @@ public class Q00710_PathToBecomingALordGiran extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -255,6 +257,7 @@ public class Q00710_PathToBecomingALordGiran extends Quest
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

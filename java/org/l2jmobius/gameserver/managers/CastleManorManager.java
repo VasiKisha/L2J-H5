@@ -65,10 +65,13 @@ public class CastleManorManager implements IXmlReader
 	
 	// Current manor status
 	private ManorMode _mode = ManorMode.APPROVED;
+	
 	// Temporary date
 	private Calendar _nextModeChange = null;
+	
 	// Seeds holder
 	private static final Map<Integer, Seed> _seeds = new HashMap<>();
+	
 	// Manor period settings
 	private final Map<Integer, List<CropProcure>> _procure = new HashMap<>();
 	private final Map<Integer, List<CropProcure>> _procureNext = new HashMap<>();
@@ -146,6 +149,7 @@ public class CastleManorManager implements IXmlReader
 									att = attrs.item(i);
 									set.set(att.getNodeName(), att.getNodeValue());
 								}
+								
 								_seeds.put(set.getInt("seedId"), new Seed(set));
 							}
 						}
@@ -196,6 +200,7 @@ public class CastleManorManager implements IXmlReader
 						}
 					}
 				}
+				
 				_production.put(castleId, pCurrent);
 				_productionNext.put(castleId, pNext);
 				
@@ -227,9 +232,11 @@ public class CastleManorManager implements IXmlReader
 						}
 					}
 				}
+				
 				_procure.put(castleId, current);
 				_procureNext.put(castleId, next);
 			}
+			
 			LOGGER.info(getClass().getSimpleName() + ": Manor data loaded.");
 		}
 		catch (Exception e)
@@ -271,6 +278,7 @@ public class CastleManorManager implements IXmlReader
 				break;
 			}
 		}
+		
 		// Schedule mode change
 		ThreadPool.schedule(this::changeMode, _nextModeChange.getTimeInMillis() - System.currentTimeMillis());
 	}
@@ -313,6 +321,7 @@ public class CastleManorManager implements IXmlReader
 									cwh.addItem(ItemProcessType.REWARD, getSeedByCrop(crop.getId()).getMatureId(), count, null, null);
 								}
 							}
+							
 							// Reserved and not used money giving back to treasury
 							if (crop.getAmount() > 0)
 							{
@@ -339,6 +348,7 @@ public class CastleManorManager implements IXmlReader
 						{
 							s.setAmount(s.getStartAmount());
 						}
+						
 						_productionNext.put(castleId, production);
 						
 						final List<CropProcure> procure = new ArrayList<>(nextProcure);
@@ -346,6 +356,7 @@ public class CastleManorManager implements IXmlReader
 						{
 							cr.setAmount(cr.getStartAmount());
 						}
+						
 						_procureNext.put(castleId, procure);
 					}
 				}
@@ -369,6 +380,7 @@ public class CastleManorManager implements IXmlReader
 						}
 					}
 				}
+				
 				_mode = ManorMode.MODIFIABLE;
 				break;
 			}
@@ -421,6 +433,7 @@ public class CastleManorManager implements IXmlReader
 				break;
 			}
 		}
+		
 		scheduleModeChange();
 	}
 	
@@ -450,6 +463,7 @@ public class CastleManorManager implements IXmlReader
 						ips.setBoolean(6, true);
 						ips.addBatch();
 					}
+					
 					ips.executeBatch();
 				}
 			}
@@ -487,6 +501,7 @@ public class CastleManorManager implements IXmlReader
 						ips.setBoolean(7, true);
 						ips.addBatch();
 					}
+					
 					ips.executeBatch();
 				}
 			}
@@ -509,6 +524,7 @@ public class CastleManorManager implements IXmlReader
 				ps.setInt(3, sp.getId());
 				ps.addBatch();
 			}
+			
 			ps.executeBatch();
 		}
 		catch (Exception e)
@@ -529,6 +545,7 @@ public class CastleManorManager implements IXmlReader
 				ps.setInt(3, sp.getId());
 				ps.addBatch();
 			}
+			
 			ps.executeBatch();
 		}
 		catch (Exception e)
@@ -551,6 +568,7 @@ public class CastleManorManager implements IXmlReader
 				return sp;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -568,6 +586,7 @@ public class CastleManorManager implements IXmlReader
 				return cp;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -581,10 +600,12 @@ public class CastleManorManager implements IXmlReader
 			final Seed s = getSeed(seed.getId());
 			total += (s == null) ? 1 : (s.getSeedReferencePrice() * seed.getStartAmount());
 		}
+		
 		for (CropProcure crop : procure)
 		{
 			total += crop.getPrice() * crop.getStartAmount();
 		}
+		
 		return total;
 	}
 	
@@ -752,6 +773,7 @@ public class CastleManorManager implements IXmlReader
 				cropIds.add(seed.getCropId());
 			}
 		}
+		
 		cropIds.clear();
 		return seeds;
 	}
@@ -766,6 +788,7 @@ public class CastleManorManager implements IXmlReader
 				result.add(seed);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -781,6 +804,7 @@ public class CastleManorManager implements IXmlReader
 		{
 			result.add(seed.getCropId());
 		}
+		
 		return result;
 	}
 	
@@ -798,6 +822,7 @@ public class CastleManorManager implements IXmlReader
 				return s;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -810,6 +835,7 @@ public class CastleManorManager implements IXmlReader
 				return s;
 			}
 		}
+		
 		return null;
 	}
 	

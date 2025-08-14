@@ -70,6 +70,7 @@ public class EnchantSkillGroupsData implements IXmlReader
 		{
 			routes += group.getEnchantGroupDetails().size();
 		}
+		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _enchantSkillGroups.size() + " groups and " + routes + " routes.");
 	}
 	
@@ -104,6 +105,7 @@ public class EnchantSkillGroupsData implements IXmlReader
 									final Node att = attrs.item(i);
 									set.set(att.getNodeName(), att.getNodeValue());
 								}
+								
 								group.addEnchantDetail(new EnchantSkillHolder(set));
 							}
 						}
@@ -129,11 +131,13 @@ public class EnchantSkillGroupsData implements IXmlReader
 			enchantableSkill = new EnchantSkillLearn(skillId, maxLvL);
 			_enchantSkillTrees.put(skillId, enchantableSkill);
 		}
+		
 		if (_enchantSkillGroups.containsKey(group))
 		{
 			enchantableSkill.addNewEnchantRoute(route, group);
 			return _enchantSkillGroups.get(group).getEnchantGroupDetails().size();
 		}
+		
 		LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Error while loading generating enchant skill id: " + skillId + "; route: " + route + "; missing group: " + group);
 		return 0;
 	}
@@ -186,6 +190,7 @@ public class EnchantSkillGroupsData implements IXmlReader
 				return esh.getSpCost();
 			}
 		}
+		
 		return Integer.MAX_VALUE;
 	}
 	
@@ -205,6 +210,7 @@ public class EnchantSkillGroupsData implements IXmlReader
 				return esh.getAdenaCost();
 			}
 		}
+		
 		return Integer.MAX_VALUE;
 	}
 	
@@ -225,6 +231,7 @@ public class EnchantSkillGroupsData implements IXmlReader
 				return esh.getRate(player);
 			}
 		}
+		
 		return 0;
 	}
 	

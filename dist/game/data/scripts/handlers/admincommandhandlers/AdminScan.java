@@ -56,7 +56,7 @@ public class AdminScan implements IAdminCommandHandler
 	private static final int DEFAULT_RADIUS = 1000;
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final StringTokenizer st = new StringTokenizer(command, " ");
 		final String actualCommand = st.nextToken();
@@ -111,6 +111,7 @@ public class AdminScan implements IAdminCommandHandler
 				break;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -143,7 +144,7 @@ public class AdminScan implements IAdminCommandHandler
 		final NpcHtmlMessage html = new NpcHtmlMessage();
 		html.setFile(activeChar, "data/html/admin/scan.htm");
 		
-		//@formatter:off
+		// @formatter:off
 		final PageResult result = PageBuilder.newBuilder(World.getInstance().getVisibleObjectsInRange(activeChar, Npc.class, radius, condition), 15, "bypass -h admin_scan")
 			.currentPage(page)
 			.pageHandler(NextPrevPageHandler.INSTANCE)
@@ -159,7 +160,7 @@ public class AdminScan implements IAdminCommandHandler
 			sb.append("<td width=\"54\"><a action=\"bypass -h admin_deleteNpcByObjectId objectId=").append(character.getObjectId()).append("\"><font color=\"LEVEL\">Delete</font></a></td>");
 			sb.append("</tr>");
 		}).build();
-		//@formatter:on
+		// @formatter:on
 		
 		if (result.getPages() > 1)
 		{
@@ -189,6 +190,7 @@ public class AdminScan implements IAdminCommandHandler
 				// Ignore and return default.
 			}
 		}
+		
 		return defaultValue;
 	}
 	
@@ -200,11 +202,12 @@ public class AdminScan implements IAdminCommandHandler
 		{
 			return matcher.group(1).trim();
 		}
+		
 		return defaultValue;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

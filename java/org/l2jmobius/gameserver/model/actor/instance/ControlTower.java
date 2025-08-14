@@ -68,9 +68,11 @@ public class ControlTower extends Tower
 						LOGGER.log(Level.WARNING, "Error at ControlTower", e);
 					}
 				}
+				
 				_guards.clear();
 			}
 		}
+		
 		return super.doDie(killer);
 	}
 	
@@ -91,6 +93,7 @@ public class ControlTower extends Tower
 				}
 			}
 		}
+		
 		return _guards;
 	}
 }

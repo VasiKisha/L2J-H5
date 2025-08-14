@@ -141,6 +141,7 @@ public class FuncTemplate
 		{
 			return null;
 		}
+		
 		try
 		{
 			return (AbstractFunction) _constructor.newInstance(_stat, _order, owner, _value, _applyCond);
@@ -149,6 +150,7 @@ public class FuncTemplate
 		{
 			LOG.warning(FuncTemplate.class.getSimpleName() + ": " + e.getMessage());
 		}
+		
 		return null;
 	}
 }

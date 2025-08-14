@@ -169,12 +169,14 @@ public class ThreadPool
 			LOGGER.warning(TraceUtil.getStackTrace(new Exception()));
 			return MIN_DELAY;
 		}
+		
 		if (delay > MAX_DELAY)
 		{
 			LOGGER.warning("ThreadPool found delay " + delay + "!");
 			LOGGER.warning(TraceUtil.getStackTrace(new Exception()));
 			return MAX_DELAY;
 		}
+		
 		return delay;
 	}
 	

@@ -167,6 +167,7 @@ public class SchemeBufferTable
 						st.addBatch();
 					}
 				}
+				
 				st.executeBatch();
 			}
 		}
@@ -210,6 +211,7 @@ public class SchemeBufferTable
 		{
 			return Collections.emptyList();
 		}
+		
 		return _schemesTable.get(playerId).get(schemeName);
 	}
 	
@@ -252,6 +254,7 @@ public class SchemeBufferTable
 				skills.add(skill.getId());
 			}
 		}
+		
 		return skills;
 	}
 	
@@ -268,6 +271,7 @@ public class SchemeBufferTable
 				skillTypes.add(skill.getType());
 			}
 		}
+		
 		return skillTypes;
 	}
 	

@@ -46,6 +46,7 @@ public class MagicSkillLaunched extends ServerPacket
 			_targets = Collections.singletonList(creature);
 			return;
 		}
+		
 		_targets = targets;
 	}
 	

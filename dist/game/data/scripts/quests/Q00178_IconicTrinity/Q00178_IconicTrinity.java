@@ -34,8 +34,10 @@ public class Q00178_IconicTrinity extends Quest
 	private static final int ICON_OF_THE_PAST = 32255;
 	private static final int ICON_OF_THE_PRESENT = 32256;
 	private static final int ICON_OF_THE_FUTURE = 32257;
+	
 	// Reward
 	private static final int SCROLL_ENCHANT_ARMOR_D_GRADE = 956;
+	
 	// Misc
 	private static final int MIN_LEVEL = 17;
 	private static final int TWENTY_LEVEL = 20;
@@ -367,6 +369,7 @@ public class Q00178_IconicTrinity extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -544,6 +547,7 @@ public class Q00178_IconicTrinity extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

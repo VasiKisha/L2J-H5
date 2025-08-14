@@ -35,7 +35,7 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class CharInfo extends ServerPacket
 {
-	private static final int[] PAPERDOLL_ORDER = new int[]
+	private static final int[] PAPERDOLL_ORDER =
 	{
 		Inventory.PAPERDOLL_UNDER,
 		Inventory.PAPERDOLL_HEAD,
@@ -97,6 +97,7 @@ public class CharInfo extends ServerPacket
 			_y = _player.getY();
 			_z = _player.getZ();
 		}
+		
 		_heading = _player.getHeading();
 		_mAtkSpd = _player.getMAtkSpd();
 		_pAtkSpd = (int) _player.getPAtkSpd();
@@ -182,6 +183,7 @@ public class CharInfo extends ServerPacket
 			buffer.writeInt(0);
 			buffer.writeInt(0);
 		}
+		
 		buffer.writeByte(!_player.isSitting()); // standing = 1 sitting = 0
 		buffer.writeByte(_player.isRunning()); // running = 1 walking = 0
 		buffer.writeByte(_player.isInCombat());
@@ -221,11 +223,14 @@ public class CharInfo extends ServerPacket
 		buffer.writeInt(appearance.getTitleColor());
 		buffer.writeInt(_player.isCursedWeaponEquipped() ? CursedWeaponsManager.getInstance().getLevel(_player.getCursedWeaponEquippedId()) : 0);
 		buffer.writeInt(_clan != null ? _clan.getReputationScore() : 0);
+		
 		// T1
 		buffer.writeInt(_player.getTransformationDisplayId());
 		buffer.writeInt(_player.getAgathionId());
+		
 		// T2
 		buffer.writeInt(1);
+		
 		// T2.3
 		buffer.writeInt(_player.getAbnormalVisualEffectSpecial());
 	}

@@ -66,6 +66,7 @@ public class BaseReadablePacket
 		catch (Exception ignored)
 		{
 		}
+		
 		return result.toString();
 	}
 	
@@ -83,6 +84,7 @@ public class BaseReadablePacket
 		catch (Exception ignored)
 		{
 		}
+		
 		return result;
 	}
 	
@@ -99,6 +101,7 @@ public class BaseReadablePacket
 		{
 			result[i] = _bytes[_position++];
 		}
+		
 		return result;
 	}
 	
@@ -114,6 +117,7 @@ public class BaseReadablePacket
 		{
 			array[i] = _bytes[_position++];
 		}
+		
 		return array;
 	}
 	

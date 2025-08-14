@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="6700" type="EtcItem" name="Sealed Tateossian Necklace Chain">
 		<!-- Main ingredient required for a Dwarf to make the Sealed Tateossian Necklace. Can also be sold at ordinary shops. -->
@@ -167,13 +167,13 @@
 		<set name="mp_consume" val="1" />
 		<set name="reuse_delay" val="1500" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="16" />
 			<set stat="mAtk" val="6" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="6716" type="Weapon" name="Monster Only(Silenos Shaman)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -191,13 +191,13 @@
 		<set name="spiritshots" val="1" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="11" />
 			<set stat="mAtk" val="12" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="6717" type="Weapon" name="Monster Only(Einhasad Warrior)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -214,12 +214,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="6718" type="Weapon" name="Monster Only(Einhasad Shaman)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -236,13 +236,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="6719" type="Weapon" name="Monster Only(Ketra Orc Chieftain)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -262,7 +262,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="141" />
 			<set stat="mAtk" val="104" />
 			<set stat="critRate" val="4" />
@@ -270,7 +270,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="6720" type="Weapon" name="Monster Only(Shadow of Halisha)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -289,13 +289,13 @@
 		<set name="mp_consume" val="1" />
 		<set name="reuse_delay" val="1500" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="16" />
 			<set stat="mAtk" val="6" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="6721" type="Weapon" name="Monster Only(Shield of Imperial Warlord Zombie)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -306,12 +306,12 @@
 		<set name="weight" val="1430" />
 		<set name="price" val="39" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="47" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="6722" type="Weapon" name="Monster Only(Ahrimanes)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -331,14 +331,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant4_skill" val="3045-14" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="236" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="6723" type="Weapon" name="Monster Only(Vampire Warrior)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -357,14 +357,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="112" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="6724" type="Armor" name="Sealed Tateossian Earring">
 		<!-- The seal can be broken with the help of the Blacksmith of Mammon. When the seal is broken, the effect of M. Def+3 and MP+31 is given. -->
@@ -378,10 +378,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3270000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="68" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="6725" type="Armor" name="Sealed Tateossian Ring">
 		<!-- The seal of this item can be broken by going through the Blacksmith of Mammon. When the seal is broken, it will produce the effects of M. Def. +2 and MP+21. -->
@@ -395,10 +395,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="2180000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="46" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="6726" type="Armor" name="Sealed Tateossian Necklace">
 		<!-- The seal can be broken with the help of the Blacksmith of Mammon. Once the seal is broken, the effect of M. Def+4 and MP+42 are given. -->
@@ -412,10 +412,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="4361000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="91" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="6727" type="EtcItem" name="Seed: Alternative Great Coba">
 		<!-- Plant this seed onto a monster in the Goddard area and it will bear the fruit of the Alternative Great Coba. For best results, a level 80-90 character must plant it on a level 80-90 monster. -->

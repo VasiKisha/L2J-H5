@@ -190,6 +190,7 @@ public class FortressSiegeManager extends AbstractNpcAI
 				htmltext = npc.getFort().getSiege().getAttackerClans().isEmpty() ? "FortressSiegeManager-20.html" : "FortressSiegeManager-21.html";
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -202,6 +203,7 @@ public class FortressSiegeManager extends AbstractNpcAI
 		{
 			return "FortressSiegeManager.html";
 		}
+		
 		final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
 		html.setHtml(getHtm(player, "FortressSiegeManager-01.html"));
 		html.replace("%clanName%", fortress.getOwnerClan().getName());

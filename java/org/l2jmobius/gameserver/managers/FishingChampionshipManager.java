@@ -120,6 +120,7 @@ public class FishingChampionshipManager
 					_winPlayers.add(new Fisher(rs.getString("player_name"), rs.getDouble("fish_length"), rewarded));
 				}
 			}
+			
 			rs.close();
 			statement.close();
 		}
@@ -159,6 +160,7 @@ public class FishingChampionshipManager
 					return;
 				}
 			}
+			
 			_tmpPlayers.add(new Fisher(pl.getName(), len, 0));
 			pl.sendPacket(SystemMessageId.BECAUSE_OF_THE_SIZE_OF_FISH_CAUGHT_YOU_WILL_BE_REGISTERED_IN_THE_RANKING);
 			recalculateMinLength();
@@ -189,6 +191,7 @@ public class FishingChampionshipManager
 					minLen = minFisher.getLength();
 				}
 			}
+			
 			_tmpPlayers.remove(minFisher);
 			_tmpPlayers.add(new Fisher(pl.getName(), len, 0));
 			pl.sendPacket(SystemMessageId.BECAUSE_OF_THE_SIZE_OF_FISH_CAUGHT_YOU_WILL_BE_REGISTERED_IN_THE_RANKING);
@@ -206,6 +209,7 @@ public class FishingChampionshipManager
 				minLen = fisher.getLength();
 			}
 		}
+		
 		_minFishLength = minLen;
 	}
 	
@@ -243,6 +247,7 @@ public class FishingChampionshipManager
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -287,6 +292,7 @@ public class FishingChampionshipManager
 						}
 					}
 				}
+				
 				fisher.setRewardType(2);
 				if (rewardCnt > 0)
 				{
@@ -323,6 +329,7 @@ public class FishingChampionshipManager
 			str += "<td width=110 align=center>" + getCurrentName(x) + "</td>";
 			str += "<td width=80 align=center>" + getCurrentFishLength(x) + "</td></tr>";
 		}
+		
 		html.replace("%TABLE%", str);
 		html.replace("%prizeItem%", ItemData.getInstance().getTemplate(Config.ALT_FISH_CHAMPIONSHIP_REWARD_ITEM).getName());
 		html.replace("%prizeFirst%", String.valueOf(Config.ALT_FISH_CHAMPIONSHIP_REWARD_1));
@@ -345,6 +352,7 @@ public class FishingChampionshipManager
 			str += "<td width=110 align=center>" + getWinnerName(x) + "</td>";
 			str += "<td width=80 align=center>" + getFishLength(x) + "</td></tr>";
 		}
+		
 		html.replace("%TABLE%", str);
 		html.replace("%prizeItem%", ItemData.getInstance().getTemplate(Config.ALT_FISH_CHAMPIONSHIP_REWARD_ITEM).getName());
 		html.replace("%prizeFirst%", String.valueOf(Config.ALT_FISH_CHAMPIONSHIP_REWARD_1));
@@ -469,6 +477,7 @@ public class FishingChampionshipManager
 				fisher.setRewardType(1);
 				_winPlayers.add(fisher);
 			}
+			
 			_tmpPlayers.clear();
 			
 			refreshWinResult();

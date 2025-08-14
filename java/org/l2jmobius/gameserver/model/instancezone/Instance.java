@@ -84,9 +84,11 @@ public class Instance
 	private boolean _showTimer = false;
 	private boolean _isTimerIncrease = true;
 	private String _timerText = "";
+	
 	// Instance reset data
 	private InstanceReenterType _type = InstanceReenterType.NONE;
 	private final List<InstanceReenterTimeHolder> _resetData = new ArrayList<>();
+	
 	// Instance remove buffs data
 	private InstanceRemoveBuffType _removeBuffType = InstanceRemoveBuffType.NONE;
 	private final List<Integer> _exceptionList = new ArrayList<>();
@@ -222,6 +224,7 @@ public class Instance
 		{
 			return;
 		}
+		
 		_lastLeft = System.currentTimeMillis();
 		setDuration((int) (_instanceEndTime - System.currentTimeMillis() - 500));
 	}
@@ -237,6 +240,7 @@ public class Instance
 		{
 			npc.getSpawn().stopRespawn();
 		}
+		
 		_npcs.remove(npc);
 	}
 	
@@ -251,6 +255,7 @@ public class Instance
 			LOGGER.warning("Door ID " + set.getInt("DoorId") + " already exists in instance " + _id);
 			return;
 		}
+		
 		_doorTemplates.add(set);
 	}
 	
@@ -369,6 +374,7 @@ public class Instance
 				}
 			}
 		}
+		
 		_players.clear();
 	}
 	
@@ -382,9 +388,11 @@ public class Instance
 				{
 					mob.getSpawn().stopRespawn();
 				}
+				
 				mob.deleteMe();
 			}
 		}
+		
 		_npcs.clear();
 	}
 	
@@ -405,6 +413,7 @@ public class Instance
 				World.getInstance().removeObject(door);
 			}
 		}
+		
 		_doors.clear();
 	}
 	
@@ -434,6 +443,7 @@ public class Instance
 					{
 						spawned.asAttackable().setOnKillDelay(set.getInt("delay"));
 					}
+					
 					if (set.getInt("respawn") == 0)
 					{
 						spawnDat.stopRespawn();
@@ -442,6 +452,7 @@ public class Instance
 					{
 						spawnDat.startRespawn();
 					}
+					
 					spawnedNpcs.add(spawned);
 				}
 				catch (Exception e)
@@ -450,6 +461,7 @@ public class Instance
 				}
 			}
 		}
+		
 		return spawnedNpcs;
 	}
 	
@@ -491,11 +503,13 @@ public class Instance
 		{
 			_ejectTime = 1000 * Integer.parseInt(a.getNodeValue());
 		}
+		
 		a = n.getAttributes().getNamedItem("allowRandomWalk");
 		if (a != null)
 		{
 			_allowRandomWalk = Boolean.parseBoolean(a.getNodeValue());
 		}
+		
 		for (n = n.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			switch (n.getNodeName().toLowerCase())
@@ -535,11 +549,13 @@ public class Instance
 					{
 						_showTimer = Boolean.parseBoolean(a.getNodeValue());
 					}
+					
 					a = n.getAttributes().getNamedItem("increase");
 					if (a != null)
 					{
 						_isTimerIncrease = Boolean.parseBoolean(a.getNodeValue());
 					}
+					
 					a = n.getAttributes().getNamedItem("text");
 					if (a != null)
 					{
@@ -576,6 +592,7 @@ public class Instance
 									set.set(setname, value);
 								}
 							}
+							
 							addDoor(set);
 						}
 					}
@@ -609,18 +626,22 @@ public class Instance
 									{
 										heading = Integer.parseInt(d.getAttributes().getNamedItem("heading").getNodeValue());
 									}
+									
 									if (d.getAttributes().getNamedItem("respawn") != null)
 									{
 										respawn = Integer.parseInt(d.getAttributes().getNamedItem("respawn").getNodeValue());
 									}
+									
 									if (d.getAttributes().getNamedItem("onKillDelay") != null)
 									{
 										delay = Integer.parseInt(d.getAttributes().getNamedItem("onKillDelay").getNodeValue());
 									}
+									
 									if (d.getAttributes().getNamedItem("respawnRandom") != null)
 									{
 										respawnRandom = Integer.parseInt(d.getAttributes().getNamedItem("respawnRandom").getNodeValue());
 									}
+									
 									if (d.getAttributes().getNamedItem("allowRandomWalk") != null)
 									{
 										allowRandomWalk = Boolean.parseBoolean(d.getAttributes().getNamedItem("allowRandomWalk").getNodeValue());
@@ -644,6 +665,7 @@ public class Instance
 									{
 										spawnSet.set("allowRandomWalk", !allowRandomWalk);
 									}
+									
 									_spawnTemplates.add(spawnSet);
 								}
 							}
@@ -726,6 +748,7 @@ public class Instance
 								{
 									minute = Integer.parseInt(a.getNodeValue());
 								}
+								
 								_resetData.add(new InstanceReenterTimeHolder(day, hour, minute));
 							}
 						}
@@ -829,6 +852,7 @@ public class Instance
 			cs = new CreatureSay(null, ChatType.ALLIANCE, "Notice", timeLeft + " seconds left.");
 			remaining -= 10000;
 		}
+		
 		if (cs != null)
 		{
 			for (Integer objectId : _players)
@@ -840,6 +864,7 @@ public class Instance
 				}
 			}
 		}
+		
 		cancelTimer();
 		if (remaining >= 10000)
 		{

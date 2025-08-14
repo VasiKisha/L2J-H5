@@ -35,8 +35,10 @@ public class NornilsGardenQuest extends AbstractInstance
 	// NPCs
 	private static final int RODENPICULA = 32237;
 	private static final int MOTHER_NORNIL = 32239;
+	
 	// Location
 	private static final Location ENTER_LOC = new Location(-119538, 87177, -12592);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 12;
 	
@@ -91,6 +93,7 @@ public class NornilsGardenQuest extends AbstractInstance
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -101,6 +104,7 @@ public class NornilsGardenQuest extends AbstractInstance
 		{
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, ENTER_LOC, world.getInstanceId(), false);
 	}
 	
@@ -122,6 +126,7 @@ public class NornilsGardenQuest extends AbstractInstance
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

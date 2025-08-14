@@ -65,9 +65,11 @@ public class RaidBossPointsManager
 				{
 					values = new HashMap<>();
 				}
+				
 				values.put(bossId, points);
 				_list.put(charId, values);
 			}
+			
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _list.size() + " Characters Raid Points.");
 		}
 		catch (SQLException e)
@@ -111,6 +113,7 @@ public class RaidBossPointsManager
 		{
 			totalPoints += points;
 		}
+		
 		return totalPoints;
 	}
 	
@@ -140,6 +143,7 @@ public class RaidBossPointsManager
 		{
 			return rank.get(playerObjId);
 		}
+		
 		return 0;
 	}
 	
@@ -163,6 +167,7 @@ public class RaidBossPointsManager
 		{
 			tmpRanking.put(entry.getKey(), ranking++);
 		}
+		
 		return tmpRanking;
 	}
 	

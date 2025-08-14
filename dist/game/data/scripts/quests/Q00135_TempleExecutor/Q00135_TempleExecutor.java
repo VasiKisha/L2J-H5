@@ -36,6 +36,7 @@ public class Q00135_TempleExecutor extends Quest
 	private static final int PANO = 30078;
 	private static final int ALEX = 30291;
 	private static final int SONIN = 31773;
+	
 	// Items
 	private static final int STOLEN_CARGO = 10328;
 	private static final int HATE_CRYSTAL = 10329;
@@ -44,6 +45,7 @@ public class Q00135_TempleExecutor extends Quest
 	private static final int PANOS_CREDENTIALS = 10332;
 	private static final int ALEXS_CREDENTIALS = 10333;
 	private static final int BADGE_TEMPLE_EXECUTOR = 10334;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
 	static
@@ -115,6 +117,7 @@ public class Q00135_TempleExecutor extends Quest
 				{
 					addExpAndSp(player, 30000, 2000);
 				}
+				
 				qs.exitQuest(false, true);
 				break;
 			}
@@ -124,6 +127,7 @@ public class Q00135_TempleExecutor extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -264,6 +268,7 @@ public class Q00135_TempleExecutor extends Quest
 								{
 									return htmltext;
 								}
+								
 								qs.setCond(5, true);
 								takeItems(player, OLD_TREASURE_MAP, -1);
 								giveItems(player, ALEXS_CREDENTIALS, 1);
@@ -313,6 +318,7 @@ public class Q00135_TempleExecutor extends Quest
 								{
 									return htmltext;
 								}
+								
 								takeItems(player, HATE_CRYSTAL, -1);
 								giveItems(player, PANOS_CREDENTIALS, 1);
 								qs.set("Pano", "1");
@@ -358,6 +364,7 @@ public class Q00135_TempleExecutor extends Quest
 								{
 									return htmltext;
 								}
+								
 								takeItems(player, STOLEN_CARGO, -1);
 								giveItems(player, SONINS_CREDENTIALS, 1);
 								qs.set("Sonin", "1");
@@ -375,6 +382,7 @@ public class Q00135_TempleExecutor extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

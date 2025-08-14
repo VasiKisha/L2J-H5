@@ -84,6 +84,7 @@ public class Minigame extends AbstractNpcAI
 				{
 					return "32758-05.html";
 				}
+				
 				if ((npc.getTarget() != null) && (npc.getTarget() != player))
 				{
 					return "32758-04.html";
@@ -99,6 +100,7 @@ public class Minigame extends AbstractNpcAI
 				{
 					room.getOrder()[i] = getRandom(8);
 				}
+				
 				cancelQuestTimer("hurry_up", npc, null);
 				cancelQuestTimer("hurry_up2", npc, null);
 				cancelQuestTimer("expire", npc, null);
@@ -194,6 +196,7 @@ public class Minigame extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -230,6 +233,7 @@ public class Minigame extends AbstractNpcAI
 		{
 			htmltext = "32758-04.html";
 		}
+		
 		return htmltext;
 	}
 	
@@ -329,6 +333,7 @@ public class Minigame extends AbstractNpcAI
 				burners[potNumber++] = lastSpawn;
 			}
 		}
+		
 		return new MinigameRoom(burners, manager);
 	}
 	
@@ -346,6 +351,7 @@ public class Minigame extends AbstractNpcAI
 				return room;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -363,6 +369,7 @@ public class Minigame extends AbstractNpcAI
 				return room;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -406,6 +413,7 @@ public class Minigame extends AbstractNpcAI
 					return i;
 				}
 			}
+			
 			return 0;
 		}
 		

@@ -37,12 +37,14 @@ public class Q00168_DeliverSupplies extends Quest
 	private static final int ROSELYN = 30355;
 	private static final int KRISTIN = 30357;
 	private static final int HARANT = 30360;
+	
 	// Items
 	private static final int JENNAS_LETTER = 1153;
 	private static final int SENTRY_BLADE1 = 1154;
 	private static final int SENTRY_BLADE2 = 1155;
 	private static final int SENTRY_BLADE3 = 1156;
 	private static final int OLD_BRONZE_SWORD = 1157;
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	private static final Map<Integer, Integer> SENTRIES = new HashMap<>();
@@ -70,6 +72,7 @@ public class Q00168_DeliverSupplies extends Quest
 			giveItems(player, JENNAS_LETTER, 1);
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -168,6 +171,7 @@ public class Q00168_DeliverSupplies extends Quest
 					{
 						qs.setCond(4, true);
 					}
+					
 					htmltext = npc.getId() + "-01.html";
 				}
 				else if (!hasQuestItems(player, SENTRIES.get(npc.getId())) && hasQuestItems(player, OLD_BRONZE_SWORD))
@@ -177,6 +181,7 @@ public class Q00168_DeliverSupplies extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

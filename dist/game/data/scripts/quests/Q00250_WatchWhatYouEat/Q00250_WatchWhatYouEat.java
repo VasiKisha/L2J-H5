@@ -32,6 +32,7 @@ public class Q00250_WatchWhatYouEat extends Quest
 {
 	// NPCs
 	private static final int SALLY = 32743;
+	
 	// Mobs - Items
 	private static final int[][] MOBS =
 	{
@@ -59,6 +60,7 @@ public class Q00250_WatchWhatYouEat extends Quest
 		{
 			addKillId(mob[0]);
 		}
+		
 		registerQuestItems(15493, 15494, 15495);
 	}
 	
@@ -89,6 +91,7 @@ public class Q00250_WatchWhatYouEat extends Quest
 				htmltext = "32743-23.html";
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -99,6 +102,7 @@ public class Q00250_WatchWhatYouEat extends Quest
 		{
 			return "32743-20.html";
 		}
+		
 		return null;
 	}
 	
@@ -121,6 +125,7 @@ public class Q00250_WatchWhatYouEat extends Quest
 					playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 				}
 			}
+			
 			if (hasQuestItems(player, MOBS[0][1]) && hasQuestItems(player, MOBS[1][1]) && hasQuestItems(player, MOBS[2][1]))
 			{
 				qs.setCond(2, true);
@@ -172,6 +177,7 @@ public class Q00250_WatchWhatYouEat extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

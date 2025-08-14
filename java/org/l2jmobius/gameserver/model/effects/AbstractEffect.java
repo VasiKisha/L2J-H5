@@ -100,6 +100,7 @@ public abstract class AbstractEffect
 		{
 			LOGGER.warning(AbstractEffect.class.getSimpleName() + ": Unable to initialize effect handler: " + name + ": " + e.getMessage());
 		}
+		
 		return null;
 	}
 	
@@ -125,6 +126,7 @@ public abstract class AbstractEffect
 		{
 			_funcTemplates = new ArrayList<>(1);
 		}
+		
 		_funcTemplates.add(f);
 	}
 	
@@ -243,6 +245,7 @@ public abstract class AbstractEffect
 				functions.add(function);
 			}
 		}
+		
 		return functions;
 	}
 	

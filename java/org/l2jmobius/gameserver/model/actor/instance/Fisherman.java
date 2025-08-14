@@ -62,6 +62,7 @@ public class Fisherman extends Merchant
 		{
 			pom = npcId + "-" + value;
 		}
+		
 		return "data/html/fisherman/" + pom + ".htm";
 	}
 	
@@ -119,6 +120,7 @@ public class Fisherman extends Merchant
 			{
 				continue;
 			}
+			
 			count++;
 			asl.addSkill(s.getSkillId(), s.getSkillLevel(), s.getSkillLevel(), s.getLevelUpSp(), 1);
 		}

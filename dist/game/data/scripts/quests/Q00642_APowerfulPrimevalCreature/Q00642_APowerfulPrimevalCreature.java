@@ -32,11 +32,14 @@ public class Q00642_APowerfulPrimevalCreature extends Quest
 {
 	// NPC
 	private static final int DINN = 32105;
+	
 	// Items
 	private static final int DINOSAUR_TISSUE = 8774;
 	private static final int DINOSAUR_EGG = 8775;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
+	
 	// Mobs
 	private static final int ANCIENT_EGG = 18344;
 	
@@ -115,6 +118,7 @@ public class Q00642_APowerfulPrimevalCreature extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -151,6 +155,7 @@ public class Q00642_APowerfulPrimevalCreature extends Quest
 		{
 			htmltext = hasAtLeastOneQuestItem(player, DINOSAUR_TISSUE, DINOSAUR_EGG) ? "32105-08.html" : "32105-07.html";
 		}
+		
 		return htmltext;
 	}
 }

@@ -25,7 +25,6 @@ import java.util.Collection;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -38,7 +37,7 @@ public class TradeStart extends AbstractItemPacket
 	public TradeStart(Player player)
 	{
 		_player = player;
-		_itemList = _player.getInventory().getAvailableItems(true, (_player.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && Config.GM_TRADE_RESTRICTED_ITEMS), false);
+		_itemList = _player.getInventory().getAvailableItems(true, (_player.isGM() && Config.GM_TRADE_RESTRICTED_ITEMS), false);
 	}
 	
 	@Override

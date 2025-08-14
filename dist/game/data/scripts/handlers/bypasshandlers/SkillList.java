@@ -41,7 +41,7 @@ public class SkillList implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if ((target == null) || !target.isNpc())
 		{
@@ -101,14 +101,17 @@ public class SkillList implements IBypassHandler
 								text += "<a action=\"bypass -h npc_%objectId%_SkillList " + cid.getId() + "\">Learn " + cid + "'s class Skills</a><br>\n";
 								count++;
 							}
+							
 							classCheck = classCheck.getParent();
 						}
+						
 						classCheck = null;
 					}
 					else
 					{
 						text += "No Skills.<br>";
 					}
+					
 					text += "</body></html>";
 					
 					final NpcHtmlMessage html = new NpcHtmlMessage(target.asNpc().getObjectId());
@@ -128,11 +131,12 @@ public class SkillList implements IBypassHandler
 		{
 			Folk.showSkillList(player, target.asNpc(), player.getPlayerClass());
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

@@ -39,8 +39,8 @@
 		<npc id="31734" x="88223" y="-142349" z="-1343" heading="60027" respawnDelay="60" /> <!-- Adventure Guildsman -->
 		<npc id="31738" x="84521" y="-141191" z="-1542" heading="57344" respawnDelay="60" /> <!-- Adventure Guildsman -->
 		<npc id="31945" x="86459" y="-139631" z="-1527" heading="52453" respawnDelay="60" /> <!-- Auzendorff -->
-		<npc id="31946" x="86307" y="-139661" z="-1527" heading="51608" respawnDelay="60" /> <!-- Hombre -->
-		<npc id="31947" x="86282" y="-139682" z="-1528" heading="54339" respawnDelay="60" /> <!-- Owaki -->
+		<npc id="31946" x="86311" y="-139669" z="-1553" heading="53988" respawnDelay="60" /> <!-- Hombre -->
+		<npc id="31947" x="86285" y="-139679" z="-1553" heading="53634" respawnDelay="60" /> <!-- Owaki -->
 		<npc id="31948" x="86144" y="-139800" z="-1527" heading="60527" respawnDelay="60" /> <!-- Adrian -->
 		<npc id="31949" x="85672" y="-141146" z="-1528" heading="57344" respawnDelay="60" /> <!-- Rouge -->
 		<npc id="31950" x="85779" y="-141100" z="-1528" heading="54094" respawnDelay="60" /> <!-- Mailland -->

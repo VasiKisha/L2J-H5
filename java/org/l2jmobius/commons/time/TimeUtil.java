@@ -135,18 +135,22 @@ public class TimeUtil
 		{
 			sb.append(days).append(" day").append(days > 1 ? "s" : "").append(", ");
 		}
+		
 		if (hours > 0)
 		{
 			sb.append(hours).append(" hour").append(hours > 1 ? "s" : "").append(", ");
 		}
+		
 		if (minutes > 0)
 		{
 			sb.append(minutes).append(" minute").append(minutes > 1 ? "s" : "").append(", ");
 		}
+		
 		if (seconds > 0)
 		{
 			sb.append(seconds).append(" second").append(seconds > 1 ? "s" : "").append(", ");
 		}
+		
 		if (millis > 0)
 		{
 			sb.append(millis).append(" millisecond").append(millis > 1 ? "s" : "");

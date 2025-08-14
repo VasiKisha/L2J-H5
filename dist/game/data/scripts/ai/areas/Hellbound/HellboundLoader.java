@@ -74,6 +74,7 @@ public class HellboundLoader
 		// Commands
 		AdminHellbound.class,
 		Hellbound.class,
+		
 		// AIs
 		Amaskari.class,
 		Chimeras.class,
@@ -85,6 +86,7 @@ public class HellboundLoader
 		Ranku.class,
 		Slaves.class,
 		Typhoon.class,
+		
 		// NPCs
 		Bernarde.class,
 		Budenka.class,
@@ -100,16 +102,19 @@ public class HellboundLoader
 		Shadai.class,
 		Solomon.class,
 		Warpgate.class,
+		
 		// Zones
 		AnomicFoundry.class,
 		BaseTower.class,
 		TowerOfInfinitum.class,
 		TowerOfNaia.class,
 		TullyWorkshop.class,
+		
 		// Instances
 		DemonPrinceFloor.class,
 		UrbanArea.class,
 		RankuFloor.class,
+		
 		// Quests
 		Q00130_PathToHellbound.class,
 		Q00133_ThatsBloodyHot.class,
@@ -118,9 +123,11 @@ public class HellboundLoader
 	public static void main(String[] args)
 	{
 		LOGGER.info(HellboundLoader.class.getSimpleName() + ": Loading Hellbound related scripts:");
+		
 		// Data
 		HellboundPointData.getInstance();
 		HellboundSpawns.getInstance();
+		
 		// Engine
 		HellboundEngine.getInstance();
 		for (Class<?> script : SCRIPTS)

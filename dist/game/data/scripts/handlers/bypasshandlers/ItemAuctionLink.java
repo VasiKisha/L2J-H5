@@ -45,7 +45,7 @@ public class ItemAuctionLink implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if (!target.isNpc())
 		{
@@ -96,6 +96,7 @@ public class ItemAuctionLink implements IBypassHandler
 					{
 						player.sendMessage("The next auction will begin on the " + SDF.format(new Date(nextAuction.getStartingTime())) + ".");
 					}
+					
 					return true;
 				}
 				
@@ -111,6 +112,7 @@ public class ItemAuctionLink implements IBypassHandler
 						returned = true;
 					}
 				}
+				
 				if (!returned)
 				{
 					player.sendPacket(SystemMessageId.THERE_ARE_NO_OFFERINGS_I_OWN_OR_I_MADE_A_BID_FOR);
@@ -130,7 +132,7 @@ public class ItemAuctionLink implements IBypassHandler
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

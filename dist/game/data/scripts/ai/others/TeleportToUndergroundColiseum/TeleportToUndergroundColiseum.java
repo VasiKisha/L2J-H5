@@ -108,6 +108,7 @@ public class TeleportToUndergroundColiseum extends AbstractNpcAI
 			final int val = Integer.parseInt(event) - 1;
 			player.teleToLocation(getRandomEntry(MANAGERS_LOCS[val]), false);
 		}
+		
 		return null;
 	}
 	
@@ -122,6 +123,7 @@ public class TeleportToUndergroundColiseum extends AbstractNpcAI
 		{
 			player.teleToLocation(getRandomEntry(COLISEUM_LOCS), false);
 		}
+		
 		return null;
 	}
 	

@@ -42,13 +42,14 @@ public class ClanWarsList implements IUserCommandHandler
 		89,
 		90
 	};
+	
 	// SQL queries
 	private static final String ATTACK_LIST = "SELECT clan_name,clan_id,ally_id,ally_name FROM clan_data,clan_wars WHERE clan1=? AND clan_id=clan2 AND clan2 NOT IN (SELECT clan1 FROM clan_wars WHERE clan2=?)";
 	private static final String UNDER_ATTACK_LIST = "SELECT clan_name,clan_id,ally_id,ally_name FROM clan_data,clan_wars WHERE clan2=? AND clan_id=clan1 AND clan1 NOT IN (SELECT clan2 FROM clan_wars WHERE clan1=?)";
 	private static final String WAR_LIST = "SELECT clan_name,clan_id,ally_id,ally_name FROM clan_data,clan_wars WHERE clan1=? AND clan_id=clan2 AND clan2 IN (SELECT clan1 FROM clan_wars WHERE clan2=?)";
 	
 	@Override
-	public boolean useUserCommand(int id, Player player)
+	public boolean onCommand(int id, Player player)
 	{
 		if ((id != COMMAND_IDS[0]) && (id != COMMAND_IDS[1]) && (id != COMMAND_IDS[2]))
 		{
@@ -65,6 +66,7 @@ public class ClanWarsList implements IUserCommandHandler
 		try (Connection con = DatabaseFactory.getConnection())
 		{
 			String query;
+			
 			// Attack List
 			if (id == 88)
 			{
@@ -110,21 +112,24 @@ public class ClanWarsList implements IUserCommandHandler
 							sm = new SystemMessage(SystemMessageId.S1_NO_ALLIANCE_EXISTS);
 							sm.addString(clanName);
 						}
+						
 						player.sendPacket(sm);
 					}
 				}
 			}
+			
 			player.sendPacket(SystemMessageId.EMPTY_3);
 		}
 		catch (Exception e)
 		{
 			LOGGER.log(Level.WARNING, "", e);
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public int[] getUserCommandList()
+	public int[] getCommandList()
 	{
 		return COMMAND_IDS;
 	}

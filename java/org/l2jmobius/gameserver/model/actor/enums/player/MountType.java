@@ -43,6 +43,7 @@ public enum MountType
 		{
 			return WOLF;
 		}
+		
 		return NONE;
 	}
 }

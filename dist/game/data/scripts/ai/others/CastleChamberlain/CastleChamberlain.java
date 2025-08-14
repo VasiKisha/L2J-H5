@@ -25,14 +25,13 @@ import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
-import org.l2jmobius.gameserver.data.sql.TeleportLocationTable;
+import org.l2jmobius.gameserver.data.xml.TeleporterData;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.model.SeedProduction;
-import org.l2jmobius.gameserver.model.TeleportLocation;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportType;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -49,6 +48,7 @@ import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Castle.CastleFunction;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
+import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowCropInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowCropSetting;
@@ -80,8 +80,10 @@ public class CastleChamberlain extends AbstractNpcAI
 		35509, // Frederick
 		35555, // August
 	};
+	
 	// Item
 	private static final int CROWN = 6841;
+	
 	// Fortress
 	private static final Map<Integer, List<Integer>> FORTRESS = new HashMap<>();
 	static
@@ -96,6 +98,7 @@ public class CastleChamberlain extends AbstractNpcAI
 		FORTRESS.put(8, Arrays.asList(110, 120, 121)); // Rune Castle
 		FORTRESS.put(9, Arrays.asList(111, 121)); // Schuttgart Castle
 	}
+	
 	// Buffs
 	private static final SkillHolder[] BUFFS =
 	{
@@ -166,9 +169,11 @@ public class CastleChamberlain extends AbstractNpcAI
 				html.replace("%AgitDecoEffect%", "<fstring p1=\"" + level + "\">" + fstring + "</fstring>");
 				html.replace("%AgitDecoSubmit%", func + " " + level);
 			}
+			
 			player.sendPacket(html);
 			return null;
 		}
+		
 		return "chamberlain-21.html";
 	}
 	
@@ -225,6 +230,7 @@ public class CastleChamberlain extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return fee;
 	}
 	
@@ -259,6 +265,7 @@ public class CastleChamberlain extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return ratio;
 	}
 	
@@ -334,6 +341,7 @@ public class CastleChamberlain extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		switch (SevenSigns.getInstance().getSealOwner(SevenSigns.SEAL_STRIFE))
 		{
 			case SevenSigns.CABAL_DUSK:
@@ -347,6 +355,7 @@ public class CastleChamberlain extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return price;
 	}
 	
@@ -371,6 +380,7 @@ public class CastleChamberlain extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return npcString;
 	}
 	
@@ -395,6 +405,7 @@ public class CastleChamberlain extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return taxLimit;
 	}
 	
@@ -438,6 +449,7 @@ public class CastleChamberlain extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return price;
 	}
 	
@@ -453,12 +465,13 @@ public class CastleChamberlain extends AbstractNpcAI
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
 	private final boolean isOwner(Player player, Npc npc)
 	{
-		return player.canOverrideCond(PlayerCondOverride.CASTLE_CONDITIONS) || ((player.getClan() != null) && (player.getClanId() == npc.getCastle().getOwnerId()));
+		return player.isGM() || ((player.getClan() != null) && (player.getClanId() == npc.getCastle().getOwnerId()));
 	}
 	
 	@Override
@@ -508,10 +521,12 @@ public class CastleChamberlain extends AbstractNpcAI
 								break;
 							}
 						}
+						
 						sb.append("<fstring>1300" + fortId + "</fstring>");
 						sb.append(" (<fstring>" + fortType + "</fstring>)");
 						sb.append(" : <font color=\"00FFFF\"><fstring>" + fortStatus + "</fstring></font><br>");
 					}
+					
 					final NpcHtmlMessage html = getHtmlPacket(player, npc, "chamberlain-28.html");
 					html.replace("%list%", sb.toString());
 					player.sendPacket(html);
@@ -562,6 +577,7 @@ public class CastleChamberlain extends AbstractNpcAI
 						{
 							sb.append(" " + st.nextToken());
 						}
+						
 						html.replace("%doors%", sb.toString());
 						player.sendPacket(html);
 					}
@@ -611,6 +627,7 @@ public class CastleChamberlain extends AbstractNpcAI
 						{
 							doors[i] = Integer.parseInt(st.nextToken());
 						}
+						
 						final Door door = castle.getDoor(doors[0]);
 						if (door != null)
 						{
@@ -628,6 +645,7 @@ public class CastleChamberlain extends AbstractNpcAI
 								{
 									castle.setDoorUpgrade(doorId, level, true);
 								}
+								
 								htmltext = "chamberlain-16.html";
 							}
 							else
@@ -658,6 +676,7 @@ public class CastleChamberlain extends AbstractNpcAI
 						{
 							html = getHtmlPacket(player, npc, "chamberlain-17.html");
 						}
+						
 						html.replace("%trapIndex%", st.nextToken());
 						player.sendPacket(html);
 					}
@@ -762,6 +781,7 @@ public class CastleChamberlain extends AbstractNpcAI
 								break;
 							}
 						}
+						
 						html.replace("%ss_avarice%", getSealOwner(1));
 						html.replace("%ss_gnosis%", getSealOwner(2));
 						html.replace("%ss_strife%", getSealOwner(3));
@@ -828,6 +848,7 @@ public class CastleChamberlain extends AbstractNpcAI
 							html = getHtmlPacket(player, npc, "castleaftersettaxrate.html");
 							html.replace("%next_tax_rate%", Integer.toString(tax));
 						}
+						
 						player.sendPacket(html);
 					}
 				}
@@ -853,6 +874,7 @@ public class CastleChamberlain extends AbstractNpcAI
 							}
 						}
 					}
+					
 					final NpcHtmlMessage html = getHtmlPacket(player, npc, "castlemanagevault.html");
 					html.replace("%tax_income%", FormatUtil.formatAdena(castle.getTreasury()));
 					html.replace("%tax_income_reserved%", "0"); // TODO: Implement me!
@@ -882,6 +904,7 @@ public class CastleChamberlain extends AbstractNpcAI
 							player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
 						}
 					}
+					
 					htmltext = "chamberlain-01.html";
 				}
 				else
@@ -1000,6 +1023,7 @@ public class CastleChamberlain extends AbstractNpcAI
 					{
 						castle.openCloseDoor(player, Integer.parseInt(st.nextToken()), open);
 					}
+					
 					htmltext = (open ? "chamberlain-05.html" : "chamberlain-06.html");
 				}
 				break;
@@ -1126,15 +1150,25 @@ public class CastleChamberlain extends AbstractNpcAI
 				}
 				break;
 			}
-			case "goto":
+			case "goto": // goto listId locId
 			{
 				if (isOwner(player, npc) && player.hasAccess(ClanAccess.CASTLE_FUNCTIONS))
 				{
-					final int locId = Integer.parseInt(st.nextToken());
-					final TeleportLocation list = TeleportLocationTable.getInstance().getTemplate(locId);
-					if ((list != null) && takeItems(player, list.getItemId(), list.getPrice()))
+					final CastleFunction function = castle.getFunction(Castle.FUNC_TELEPORT);
+					if (function == null)
 					{
-						player.teleToLocation(list.getLocX(), list.getLocY(), list.getLocZ());
+						return "castlefuncdisabled.html";
+					}
+					
+					final String listIndex = st.nextToken();
+					final int functionLevel = listIndex.length() == 2 ? Character.getNumericValue(listIndex.charAt(0)) : -1;
+					if (function.getLvl() == functionLevel)
+					{
+						final TeleportHolder holder = TeleporterData.getInstance().getHolder(npc.getId(), TeleportType.OTHER.name());
+						if (holder != null)
+						{
+							holder.doTeleport(player, npc, Character.getNumericValue(listIndex.charAt(1)));
+						}
 					}
 				}
 				else
@@ -1189,6 +1223,7 @@ public class CastleChamberlain extends AbstractNpcAI
 							{
 								html = getHtmlPacket(player, npc, "castlenotenoughmp.html");
 							}
+							
 							html.replace("%MPLeft%", Integer.toString((int) npc.getCurrentMp()));
 							player.sendPacket(html);
 						}
@@ -1372,6 +1407,7 @@ public class CastleChamberlain extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -1424,6 +1460,7 @@ public class CastleChamberlain extends AbstractNpcAI
 						player.sendPacket(SystemMessageId.A_MANOR_CANNOT_BE_SET_UP_BETWEEN_4_30_AM_AND_8_PM);
 						return;
 					}
+					
 					player.sendPacket(new ExShowSeedSetting(castleId));
 					break;
 				}
@@ -1434,6 +1471,7 @@ public class CastleChamberlain extends AbstractNpcAI
 						player.sendPacket(SystemMessageId.A_MANOR_CANNOT_BE_SET_UP_BETWEEN_4_30_AM_AND_8_PM);
 						return;
 					}
+					
 					player.sendPacket(new ExShowCropSetting(castleId));
 					break;
 				}

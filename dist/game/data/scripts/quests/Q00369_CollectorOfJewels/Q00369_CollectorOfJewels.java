@@ -33,11 +33,14 @@ public class Q00369_CollectorOfJewels extends Quest
 {
 	// NPC
 	private static final int NELL = 30376;
+	
 	// Items
 	private static final int FLARE_SHARD = 5882;
 	private static final int FREEZING_SHARD = 5883;
+	
 	// Misc
 	private static final int MIN_LEVEL = 25;
+	
 	// Mobs
 	private static final Map<Integer, ItemChanceHolder> MOBS_DROP_CHANCES = new HashMap<>();
 	static
@@ -107,6 +110,7 @@ public class Q00369_CollectorOfJewels extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -181,6 +185,7 @@ public class Q00369_CollectorOfJewels extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -82,6 +82,7 @@ public class DispelBySlot extends AbstractEffect
 		}
 		
 		final EffectList effectList = effected.getEffectList();
+		
 		// There is no need to iterate over all buffs,
 		// Just iterate once over all slots to dispel and get the buff with that abnormal if exists,
 		// Operation of O(n) for the amount of slots to dispel (which is usually small) and O(1) to get the buff.

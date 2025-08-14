@@ -154,6 +154,7 @@ public class GameServerPacketHandler
 				break;
 			}
 		}
+		
 		return msg;
 	}
 }

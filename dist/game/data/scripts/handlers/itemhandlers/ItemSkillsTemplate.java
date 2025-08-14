@@ -34,7 +34,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 public class ItemSkillsTemplate implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer() && !playable.isPet())
 		{
@@ -159,6 +159,7 @@ public class ItemSkillsTemplate implements IItemHandler
 				}
 			}
 		}
+		
 		return false;
 	}
 	
@@ -189,6 +190,7 @@ public class ItemSkillsTemplate implements IItemHandler
 				{
 					sm.addSkillName(skill);
 				}
+				
 				sm.addInt(hours);
 				sm.addInt(minutes);
 			}
@@ -203,6 +205,7 @@ public class ItemSkillsTemplate implements IItemHandler
 				{
 					sm.addSkillName(skill);
 				}
+				
 				sm.addInt(minutes);
 			}
 			else
@@ -217,9 +220,11 @@ public class ItemSkillsTemplate implements IItemHandler
 					sm.addSkillName(skill);
 				}
 			}
+			
 			sm.addInt(seconds);
 			playable.sendPacket(sm);
 		}
+		
 		return isAvailable;
 	}
 }

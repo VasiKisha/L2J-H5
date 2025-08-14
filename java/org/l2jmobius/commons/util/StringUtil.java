@@ -56,6 +56,7 @@ public class StringUtil
 		{
 			totalLength += (arg != null ? arg.length() : 4);
 		}
+		
 		sb.ensureCapacity(totalLength);
 		
 		// Append each argument.
@@ -81,6 +82,7 @@ public class StringUtil
 			totalLength += objectAsString.length();
 			strings.add(objectAsString);
 		}
+		
 		sb.ensureCapacity(totalLength);
 		
 		// Append each stored string.
@@ -155,6 +157,7 @@ public class StringUtil
 		{
 			joiner.add(item.toString());
 		}
+		
 		return joiner.toString();
 	}
 	
@@ -172,6 +175,7 @@ public class StringUtil
 		{
 			joiner.add(element.toString());
 		}
+		
 		return joiner.toString();
 	}
 	
@@ -294,6 +298,7 @@ public class StringUtil
 				// Parsing failed, fall back to default.
 			}
 		}
+		
 		return defaultValue;
 	}
 	

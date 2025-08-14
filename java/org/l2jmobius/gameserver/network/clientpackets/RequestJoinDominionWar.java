@@ -48,6 +48,7 @@ public class RequestJoinDominionWar extends ClientPacket
 		{
 			return;
 		}
+		
 		final Clan clan = player.getClan();
 		final int castleId = _territoryId - 80;
 		if (TerritoryWarManager.getInstance().isRegistrationOver())
@@ -86,6 +87,7 @@ public class RequestJoinDominionWar extends ClientPacket
 					player.sendPacket(SystemMessageId.YOU_VE_ALREADY_REQUESTED_A_TERRITORY_WAR_IN_ANOTHER_TERRITORY_ELSEWHERE);
 					return;
 				}
+				
 				TerritoryWarManager.getInstance().registerClan(castleId, clan);
 			}
 			else
@@ -100,6 +102,7 @@ public class RequestJoinDominionWar extends ClientPacket
 				// TODO: punish player
 				return;
 			}
+			
 			if (_isJoining == 1)
 			{
 				if (TerritoryWarManager.getInstance().checkIsRegistered(-1, player.getObjectId()))
@@ -112,6 +115,7 @@ public class RequestJoinDominionWar extends ClientPacket
 					player.sendPacket(SystemMessageId.YOU_VE_ALREADY_REQUESTED_A_TERRITORY_WAR_IN_ANOTHER_TERRITORY_ELSEWHERE);
 					return;
 				}
+				
 				TerritoryWarManager.getInstance().registerMerc(castleId, player);
 			}
 			else
@@ -119,6 +123,7 @@ public class RequestJoinDominionWar extends ClientPacket
 				TerritoryWarManager.getInstance().removeMerc(castleId, player);
 			}
 		}
+		
 		player.sendPacket(new ExShowDominionRegistry(castleId, player));
 	}
 }

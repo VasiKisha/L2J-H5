@@ -35,6 +35,7 @@ public class Q00162_CurseOfTheUndergroundFortress extends Quest
 {
 	// NPC
 	private static final int UNOREN = 30147;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS_SKULLS = new HashMap<>();
 	private static final Map<Integer, Integer> MONSTERS_BONES = new HashMap<>();
@@ -47,10 +48,12 @@ public class Q00162_CurseOfTheUndergroundFortress extends Quest
 		MONSTERS_BONES.put(20464, 23); // Dungeon Skeleton
 		MONSTERS_BONES.put(20504, 26); // Dread Soldier
 	}
+	
 	// Items
 	private static final int BONE_SHIELD = 625;
 	private static final int BONE_FRAGMENT = 1158;
 	private static final int ELF_SKULL = 1159;
+	
 	// Misc
 	private static final int MIN_LEVEL = 12;
 	private static final int REQUIRED_COUNT = 13;
@@ -87,6 +90,7 @@ public class Q00162_CurseOfTheUndergroundFortress extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -168,6 +172,7 @@ public class Q00162_CurseOfTheUndergroundFortress extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -71,6 +71,7 @@ public class EkimusMouth extends AbstractNpcAI
 				htmltext = "32537-4.htm";
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -82,6 +83,7 @@ public class EkimusMouth extends AbstractNpcAI
 		{
 			qs = newQuestState(player);
 		}
+		
 		return "32537.htm";
 	}
 }

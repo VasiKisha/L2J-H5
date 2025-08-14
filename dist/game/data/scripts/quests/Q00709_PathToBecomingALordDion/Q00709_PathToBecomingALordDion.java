@@ -154,6 +154,7 @@ public class Q00709_PathToBecomingALordDion extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -303,6 +304,7 @@ public class Q00709_PathToBecomingALordDion extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -315,6 +317,7 @@ public class Q00709_PathToBecomingALordDion extends Quest
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	

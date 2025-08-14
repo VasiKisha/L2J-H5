@@ -40,6 +40,7 @@ public class Wedding extends AbstractNpcAI
 {
 	// NPC
 	private static final int MANAGER_ID = 50007;
+	
 	// Item
 	private static final int FORMAL_WEAR = 6408;
 	
@@ -88,6 +89,7 @@ public class Wedding extends AbstractNpcAI
 				htmltext = getHtm(player, "Ask.html");
 				htmltext = htmltext.replace("%player%", partner.getName());
 			}
+			
 			return htmltext;
 		}
 		
@@ -168,6 +170,7 @@ public class Wedding extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -185,6 +188,7 @@ public class Wedding extends AbstractNpcAI
 		{
 			html = html.replaceAll(regex, replacement);
 		}
+		
 		player.sendPacket(new NpcHtmlMessage(html));
 		return html;
 	}
@@ -196,6 +200,7 @@ public class Wedding extends AbstractNpcAI
 			final Item formalWear = player.getChestArmorInstance();
 			return (formalWear != null) && (formalWear.getId() == FORMAL_WEAR);
 		}
+		
 		return true;
 	}
 	

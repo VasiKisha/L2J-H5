@@ -83,6 +83,7 @@ public class CastleManager
 				{
 					continue;
 				}
+				
 				distance = castle.getDistance(obj);
 				if (maxDistance > distance)
 				{
@@ -91,6 +92,7 @@ public class CastleManager
 				}
 			}
 		}
+		
 		return index;
 	}
 	
@@ -103,6 +105,7 @@ public class CastleManager
 				return temp;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -112,6 +115,7 @@ public class CastleManager
 		{
 			return null;
 		}
+		
 		for (Castle temp : _castles)
 		{
 			if (temp.getOwnerId() == clan.getId())
@@ -119,6 +123,7 @@ public class CastleManager
 				return temp;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -131,6 +136,7 @@ public class CastleManager
 				return temp;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -143,6 +149,7 @@ public class CastleManager
 				return temp;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -162,6 +169,7 @@ public class CastleManager
 				return i;
 			}
 		}
+		
 		return -1;
 	}
 	
@@ -181,6 +189,7 @@ public class CastleManager
 				return i;
 			}
 		}
+		
 		return -1;
 	}
 	
@@ -200,6 +209,7 @@ public class CastleManager
 				break;
 			}
 		}
+		
 		return hasOwnedCastle;
 	}
 	
@@ -224,6 +234,7 @@ public class CastleManager
 				break;
 			}
 		}
+		
 		for (Castle castle : _castles)
 		{
 			if (castle.getTaxPercent() > maxTax)
@@ -244,6 +255,7 @@ public class CastleManager
 		{
 			return _castleCirclets[castleId];
 		}
+		
 		return 0;
 	}
 	
@@ -279,6 +291,7 @@ public class CastleManager
 						{
 							player.getInventory().unEquipItemInSlot(circlet.getLocationSlot());
 						}
+						
 						player.destroyItemByItemId(ItemProcessType.DESTROY, circletId, 1, player, true);
 					}
 					return;
@@ -313,6 +326,7 @@ public class CastleManager
 			{
 				_castles.add(new Castle(rs.getInt("id")));
 			}
+			
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _castles.size() + " castles");
 		}
 		catch (Exception e)
@@ -344,6 +358,7 @@ public class CastleManager
 				count++;
 			}
 		}
+		
 		return count;
 	}
 	

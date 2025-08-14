@@ -25,8 +25,7 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
- * This class handles following admin commands: - invul = turns invulnerability on/off
- * @version $Revision: 1.2.4.4 $ $Date: 2007/07/31 10:06:02 $
+ * @author Skache
  */
 public class AdminInvul implements IAdminCommandHandler
 {
@@ -37,43 +36,51 @@ public class AdminInvul implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
-		if (command.equals("admin_invul"))
+		switch (command)
 		{
-			handleInvul(activeChar);
-			AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");
-		}
-		if (command.equals("admin_setinvul"))
-		{
-			final WorldObject target = activeChar.getTarget();
-			if ((target != null) && target.isPlayer())
+			case "admin_invul":
 			{
-				handleInvul(target.asPlayer());
+				toggleInvul(activeChar, activeChar);
+				break;
+			}
+			case "admin_setinvul":
+			{
+				final WorldObject target = activeChar.getTarget();
+				if ((target != null) && target.isPlayer())
+				{
+					toggleInvul(target.asPlayer(), activeChar);
+				}
+				else
+				{
+					activeChar.sendSysMessage("You must target a player.");
+				}
+				break;
 			}
 		}
+		
 		return true;
 	}
 	
-	@Override
-	public String[] getAdminCommandList()
+	private void toggleInvul(Player target, Player admin)
 	{
-		return ADMIN_COMMANDS;
+		final boolean invul = !target.isInvul();
+		target.setInvul(invul);
+		
+		// Notify target.
+		target.sendSysMessage("You are now " + (invul ? "invulnerable." : "mortal."));
+		
+		// Notify admin.
+		if (admin != target)
+		{
+			admin.sendSysMessage("You made " + target.getName() + " " + (invul ? "invulnerable." : "mortal."));
+		}
 	}
 	
-	private void handleInvul(Player activeChar)
+	@Override
+	public String[] getCommandList()
 	{
-		String text;
-		if (activeChar.isInvul())
-		{
-			activeChar.setInvul(false);
-			text = activeChar.getName() + " is now mortal.";
-		}
-		else
-		{
-			activeChar.setInvul(true);
-			text = activeChar.getName() + " is now invulnerable.";
-		}
-		activeChar.sendSysMessage(text);
+		return ADMIN_COMMANDS;
 	}
 }

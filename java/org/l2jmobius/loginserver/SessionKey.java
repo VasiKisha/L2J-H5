@@ -73,6 +73,7 @@ public class SessionKey
 		{
 			return (playOkID1 == key.playOkID1) && (loginOkID1 == key.loginOkID1) && (playOkID2 == key.playOkID2) && (loginOkID2 == key.loginOkID2);
 		}
+		
 		return (playOkID1 == key.playOkID1) && (playOkID2 == key.playOkID2);
 	}
 }

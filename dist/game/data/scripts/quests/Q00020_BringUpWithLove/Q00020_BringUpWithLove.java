@@ -30,9 +30,11 @@ public class Q00020_BringUpWithLove extends Quest
 {
 	// NPC
 	private static final int TUNATUN = 31537;
+	
 	// Items
 	private static final int WATER_CRYSTAL = 9553;
 	private static final int INNOCENCE_JEWEL = 15533;
+	
 	// Misc
 	private static final int MIN_LEVEL = 82;
 	
@@ -87,6 +89,7 @@ public class Q00020_BringUpWithLove extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -125,6 +128,7 @@ public class Q00020_BringUpWithLove extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

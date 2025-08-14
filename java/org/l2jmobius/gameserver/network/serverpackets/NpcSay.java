@@ -92,6 +92,7 @@ public class NpcSay extends ServerPacket
 		{
 			_parameters = new ArrayList<>();
 		}
+		
 		_parameters.add(text);
 		return this;
 	}
@@ -108,6 +109,7 @@ public class NpcSay extends ServerPacket
 			{
 				_parameters = new ArrayList<>();
 			}
+			
 			for (String item : params)
 			{
 				if ((item != null) && (item.length() > 0))
@@ -116,6 +118,7 @@ public class NpcSay extends ServerPacket
 				}
 			}
 		}
+		
 		return this;
 	}
 	

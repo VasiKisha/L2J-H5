@@ -174,6 +174,7 @@ public class LoginServer
 			{
 				LOGGER.log(Level.WARNING, "Error while reading the bans file (" + bannedFile.getName() + "). Details: " + e.getMessage(), e);
 			}
+			
 			LOGGER.info("Loaded " + LoginController.getInstance().getBannedIps().size() + " IP Bans.");
 		}
 		else
@@ -188,6 +189,7 @@ public class LoginServer
 		{
 			DatabaseBackup.performBackup();
 		}
+		
 		Runtime.getRuntime().exit(restart ? 2 : 0);
 	}
 	

@@ -50,7 +50,7 @@ public class AdminCursedWeapons implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final CursedWeaponsManager cwm = CursedWeaponsManager.getInstance();
 		int id = 0;
@@ -84,6 +84,7 @@ public class AdminCursedWeapons implements IAdminCommandHandler
 					{
 						activeChar.sendSysMessage("  Don't exist in the world.");
 					}
+					
 					activeChar.sendPacket(SystemMessageId.EMPTY_3);
 				}
 			}
@@ -145,6 +146,7 @@ public class AdminCursedWeapons implements IAdminCommandHandler
 					
 					replyMSG.append("</table><br>");
 				}
+				
 				adminReply.replace("%cwinfo%", replyMSG.toString());
 				activeChar.sendPacket(adminReply);
 			}
@@ -175,6 +177,7 @@ public class AdminCursedWeapons implements IAdminCommandHandler
 						}
 					}
 				}
+				
 				cw = cwm.getCursedWeapon(id);
 			}
 			catch (Exception e)
@@ -213,6 +216,7 @@ public class AdminCursedWeapons implements IAdminCommandHandler
 					{
 						activeChar.addItem(ItemProcessType.QUEST, id, 1, activeChar, true);
 					}
+					
 					cw.setEndTime(System.currentTimeMillis() + (cw.getDuration() * 60000));
 					cw.reActivate();
 				}
@@ -222,11 +226,12 @@ public class AdminCursedWeapons implements IAdminCommandHandler
 				activeChar.sendSysMessage("Unknown command.");
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

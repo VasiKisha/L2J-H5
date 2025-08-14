@@ -64,6 +64,7 @@ public class IllegalPlayerActionTask implements Runnable
 					_actor.setAccessLevel(-1);
 					_actor.setAccountAccesslevel(-1);
 				}
+				
 				_actor.sendMessage("You are banned for illegal action, GM informed.");
 				break;
 			}
@@ -99,7 +100,7 @@ public class IllegalPlayerActionTask implements Runnable
 				}
 				case KICK:
 				{
-					Disconnection.of(_actor).defaultSequence(LeaveWorld.STATIC_PACKET);
+					Disconnection.of(_actor).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 					break;
 				}
 				case KICKBAN:

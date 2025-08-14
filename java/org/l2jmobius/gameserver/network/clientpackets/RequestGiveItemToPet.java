@@ -67,6 +67,7 @@ public class RequestGiveItemToPet extends ClientPacket
 			player.sendPacket(new EnchantResult(2, 0, 0));
 			return;
 		}
+		
 		// Alt game - Karma punishment
 		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_TRADE && (player.getKarma() > 0))
 		{

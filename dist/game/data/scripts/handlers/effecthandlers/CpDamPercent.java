@@ -59,6 +59,7 @@ public class CpDamPercent extends AbstractEffect
 		}
 		
 		final int damage = (int) ((effected.getCurrentCp() * _power) / 100);
+		
 		// Manage attack or cast break of the target (calculating rate, sending message)
 		if (!effected.isRaid() && Formulas.calcAtkBreak(effected, damage))
 		{

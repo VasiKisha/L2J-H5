@@ -39,7 +39,7 @@ public class AdminGm implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_gm") && activeChar.isGM())
 		{
@@ -48,11 +48,12 @@ public class AdminGm implements IAdminCommandHandler
 			activeChar.sendSysMessage("You no longer have GM status.");
 			LOGGER.info("GM: " + activeChar.getName() + "(" + activeChar.getObjectId() + ") turned his GM status off");
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

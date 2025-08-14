@@ -40,16 +40,20 @@ public class Q10270_BirthOfTheSeed extends Quest
 	private static final int PLENOS = 32563;
 	private static final int GINBY = 32566;
 	private static final int LELRIKIA = 32567;
+	
 	// Monsters
 	private static final int COHEMENES = 25634;
 	private static final int YEHAN_KLODEKUS = 25665;
 	private static final int YEHAN_KLANIKUS = 25666;
+	
 	// Items
 	private static final int YEHAN_KLODEKUS_BADGE = 13868;
 	private static final int YEHAN_KLANIKUS_BADGE = 13869;
 	private static final int LICH_CRYSTAL = 13870;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
+	
 	// Location
 	private static final Location INSTANCE_EXIT = new Location(-185057, 242821, 1576);
 	
@@ -236,6 +240,7 @@ public class Q10270_BirthOfTheSeed extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -375,6 +380,7 @@ public class Q10270_BirthOfTheSeed extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

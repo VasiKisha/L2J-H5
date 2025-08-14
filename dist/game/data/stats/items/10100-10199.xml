@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="10100" type="EtcItem" name="Spellbook - Diamond Dust">
 		<!-- Spellbook needed to learn Diamond Dust. Used by Mystic Muses. -->
@@ -173,14 +173,14 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="1370" />
 		<set name="price" val="6404000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="305" />
-		</for>
+		</stats>
 	</item>
 	<item id="10118" type="EtcItem" name="Chaotic Dynasty Sigil">
 		<!-- A rare Sealed Dynasty Sigil that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -190,14 +190,14 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="1390" />
 		<set name="price" val="6404000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="321" />
-		</for>
+		</stats>
 	</item>
 	<item id="10119" type="Armor" name="Dynasty Sigil">
 		<!-- Increases M. Def. and Resistance to Dark. -->
@@ -213,14 +213,14 @@
 		<set name="price" val="6404000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8311-1" /> <!-- Dynasty Sigil -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="15" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10120" type="Armor" name="Sealed Dynasty Sigil">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -235,14 +235,14 @@
 		<set name="weight" val="930" />
 		<set name="price" val="6404000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="15" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10121" type="Armor" name="Sealed Arcana Sigil">
 		<!-- Sealed Masterwork Item. The seal can be broken with the help of the Blacksmith of Mammon. -->
@@ -257,14 +257,14 @@
 		<set name="weight" val="940" />
 		<set name="price" val="3355000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="13" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10122" type="Armor" name="Red Crescent Earring">
 		<!-- Cannot be exchanged, dropped, crystallized, or enchanted -->
@@ -280,9 +280,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="24" />
-		</for>
+		</stats>
 	</item>
 	<item id="10123" type="Armor" name="Necklace of Devotion">
 		<!-- Cannot be exchanged, dropped, crystallized, or enchanted. -->
@@ -298,9 +298,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="32" />
-		</for>
+		</stats>
 	</item>
 	<item id="10124" type="Armor" name="Ring of Devotion">
 		<!-- Cannot be exchanged, dropped, crystallized, or enchanted. -->
@@ -316,9 +316,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="16" />
-		</for>
+		</stats>
 	</item>
 	<item id="10125" type="Weapon" name="Shadow Item - War Axe">
 		<!-- A Shadow Item with the power of a War Axe. It cannot be traded, dropped, crystallized, or given other functions. -->
@@ -339,7 +339,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="300" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="4" />
@@ -347,7 +347,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10126" type="Armor" name="Dynasty Leather Armor - Force Master">
 		<!-- Can only be worn by Duelists and Grand Khavataris. -->
@@ -363,16 +363,16 @@
 		<set name="price" val="18298000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="FORCE_MASTER" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="170" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10127" type="Armor" name="Dynasty Leather Armor - Weapon Master">
 		<!-- Can only be worn by Dreadnoughts, Titans, Fortune Seekers, Maestros, Doombringers and Soul Hounds. -->
@@ -388,13 +388,13 @@
 		<set name="price" val="18298000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player categoryType="WEAPON_MASTER" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="170" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10128" type="Weapon" name="For Monster only (Crossbow)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -410,12 +410,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="10129" type="EtcItem" name="Scroll of Escape: Fortress">
 		<!-- A magical scroll that transports you to your Fortress. If you don't have a Fortress, it will relocate you to the nearest village. -->
@@ -429,9 +429,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2365-1" /> <!-- Scroll of Fortress Return -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10130" type="EtcItem" name="Blessed Scroll of Escape: Fortress">
 		<!-- A magical scroll that transports you to your Fortress quickly. -->
@@ -445,9 +445,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2364-1" /> <!-- Blessed Scroll of Fortress Return -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10131" type="EtcItem" name="Transformation Scroll: Onyx Beast">
 		<!-- A Scroll that transforms you into an Onyx Beast for 30 minutes. -->
@@ -578,10 +578,10 @@
 		<set name="item_skill" val="3408-1" /> <!-- Blessed Ring of Escape -->
 		<set name="duration" val="250" />
 		<set name="useSkillDisTime" val="2" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="24" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10141" type="Armor" name="Grey Talisman - Yeti Transform">
 		<!-- Can be transformed into a Yeti for a certain amount of time. Transformation is cancelled if unequipped. Effect does not stack with additional Talismans of the same type. This item cannot be traded or dropped. -->
@@ -632,9 +632,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2379-1;2380-1;2381-1;2382-1;2383-1" /> <!-- Wind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10144" type="EtcItem" name="Battleground Spell - Wizard">
 		<!-- Effects of Wind Walk Lv 2, Shield Lv 3, Magic Barrier Lv 2, Acumen Lv 1, and Empower Lv 1 can be obtained for a certain period of time. Can only be used in Siege and Fortress war. -->
@@ -649,9 +649,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2379-1;2380-1;2381-1;2384-1;2385-1" /> <!-- Wind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10145" type="EtcItem" name="Battleground Spell - Healer">
 		<!-- Effects of Wind Walk Lv 2, Shield Lv 3, Magic Barrier Lv 2, Acumen Lv 1, and Heal Empower Lv 1 can be obtained for a certain period of time. Can only be used in Siege and Fortress war. -->
@@ -666,9 +666,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2379-1;2380-1;2381-1;2384-1;2386-1" /> <!-- Wind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10146" type="EtcItem" name="Battleground Spell - Dagger Master">
 		<!-- Effects of Wind Walk Lv 2, Might Lv 3, Magic Barrier Lv 2, Focus Lv 1, and Haste Lv 1 can be obtained for a certain period of time. Can only be used in Siege and Fortress war. -->
@@ -683,9 +683,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2379-1;2387-1;2381-1;2388-1;2383-1" /> <!-- Wind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10147" type="EtcItem" name="Battleground Spell - Bow Master">
 		<!-- Effects of Wind Walk Lv 2, Might Lv 3, Magic Barrier Lv 2, Guidance Lv 1, and Haste Lv 1 can be obtained for a certain period of time. Can only be used in Siege and Fortress war. -->
@@ -700,9 +700,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2379-1;2387-1;2381-1;2389-1;2383-1" /> <!-- Wind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10148" type="EtcItem" name="Battleground Spell - Berserker">
 		<!-- Effects of Berserker Spirit Lv 2 and Clarity Lv 1 can be obtained for a certain period of time. Can only be used in Siege and Fortress war. -->
@@ -717,9 +717,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2390-1;2391-1" /> <!-- Berserker Spirit -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10149" type="EtcItem" name="Battleground Blessed Scroll of Escape">
 		<!-- Relocates you to the nearest village. Can only be used in Siege and Fortress war. -->
@@ -734,9 +734,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2392-1" /> <!-- Blessed Scroll of Battlefield Escape -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10150" type="EtcItem" name="Battleground Blessed Scroll of Resurrection">
 		<!-- Resurrects a dead character and restores his or her Exp. completely. Can only be used in Siege and Fortress war. -->
@@ -749,9 +749,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2393-1" /> <!-- Blessed Scroll of Battlefield Resurrection -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10151" type="EtcItem" name="Battleground Transform Spell">
 		<!-- When used, it transforms you into a pixy for a certain amount of time. It can only be used on the battleground during a siege battle or a fortress battle. It will have no effect if used while in a transformed state. -->
@@ -766,9 +766,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2394-1" /> <!-- Scroll of Battlefield Transformation -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10152" type="EtcItem" name="Battle Health Recovery Potion">
 		<!-- Recovers HP when in use. Characters below Level 52 are not affected. Usable only during a Siege or Fortress war. -->
@@ -784,9 +784,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2395-1" /> <!-- Lesser Battlefield Healing Potion -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10153" type="EtcItem" name="Battle Mana Recovery Potion">
 		<!-- Recovers MP when in use. Characters below Level 52 are not affected. Usable only during a Siege or Fortress war. -->
@@ -802,9 +802,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2401-1" /> <!-- Lesser Battlefield Mana Potion -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10154" type="EtcItem" name="Battle CP Recovery Potion">
 		<!-- Recovers CP when in use. Characters below Level 52 are not affected. Usable only during a Siege or Fortress war. -->
@@ -820,9 +820,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2402-1" /> <!-- Lesser Battlefield CP Potion -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10155" type="EtcItem" name="Mental Strengthening Potion">
 		<!-- Increases Resistance to Hold and Sleep for a certain period of time. Can only be used in Siege and Fortress war. -->
@@ -836,9 +836,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2396-1" /> <!-- Mental Potion -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10156" type="EtcItem" name="Medusa's Potion">
 		<!-- Becomes invincible temporarily. Can only be used in Siege and Fortress war. -->
@@ -854,9 +854,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2397-1" /> <!-- Medusa Potion -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10157" type="EtcItem" name="Instant Haste Potion">
 		<!-- Increases Speed instantly. Can only be used in Siege and Fortress war. -->
@@ -870,9 +870,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2398-1" /> <!-- Instant Haste Potion -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10158" type="Armor" name="Grey Talisman of Upper Grade Fishing">
 		<!-- Obtains Upper-Grade Fishing Mastery Level (Lv 24). Effect does not stack with additional Talismans of the same type. This item cannot be traded or dropped. -->
@@ -901,9 +901,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2399-1" /> <!-- Capture Rope -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10160" type="EtcItem" name="Cursed Red Soul Crystal - Stage 14">
 		<!-- A red crystal that is cursed by the darkness, stage 14. Take this to Legendary Blacksmith Shadai in Hellbound to process. -->
@@ -949,9 +949,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10164" type="EtcItem" name="Animal Slayer's List">
 		<!-- Destroys the animal slayers of the Mimir Forest, the Crimson Spiders. -->
@@ -1006,12 +1006,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="unequip_skill" val="839-1" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="10168" type="Armor" name="Dynasty Leather Armor - Enchanter">
 		<!-- Can only be worn by Hierophants, Dominators, Doom Cryers and Judicators. -->
@@ -1027,13 +1027,13 @@
 		<set name="price" val="18298000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player categoryType="BUFF_MASTER" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="170" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10169" type="Armor" name="Enchanter Circlet (Kamael only)">
 		<!-- A circlet that can be worn by the Kamael Race only, exclusively for the Enchanter class after completion of 2nd or 3rd class transfer. Cannot be worn in a sub job condition. Uses 2 hair accessory slots. -->
@@ -1043,12 +1043,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="WOOD" />
 		<set name="weight" val="10" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player categoryType="BUFF_MASTER2_3" />
 				<player level="40" />
 			</and>
-		</cond>
+		</conditions>
 	</item>
 	<item id="10170" type="Armor" name="Baylor's Earring">
 		<!-- Dark Resistance +30, MP +31. -->
@@ -1062,12 +1062,12 @@
 		<set name="weight" val="150" />
 		<set name="price" val="12185000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="71" />
 			<add stat="maxMp" val="31" />
 			<add stat="darkRes" val="30" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10171" type="EtcItem" name="Seed: Dark Coda">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Dark Coda. For best results, a level 5-15 character must plant it on a level 5-15 monster. -->

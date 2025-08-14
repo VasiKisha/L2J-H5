@@ -62,6 +62,7 @@ public class BuyListHolder
 		{
 			_allowedNpcs = new HashSet<>();
 		}
+		
 		_allowedNpcs.add(npcId);
 	}
 	

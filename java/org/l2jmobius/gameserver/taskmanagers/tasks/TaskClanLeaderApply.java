@@ -59,6 +59,7 @@ public class TaskClanLeaderApply extends PersistentTask
 				clan.setNewLeader(member);
 			}
 		}
+		
 		LOGGER.info(getClass().getSimpleName() + ": launched.");
 	}
 	

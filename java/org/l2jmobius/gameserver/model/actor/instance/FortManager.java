@@ -24,18 +24,19 @@ import java.text.SimpleDateFormat;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
-import org.l2jmobius.gameserver.data.sql.TeleportLocationTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
-import org.l2jmobius.gameserver.model.TeleportLocation;
+import org.l2jmobius.gameserver.data.xml.TeleporterData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.clan.ClanAccess;
 import org.l2jmobius.gameserver.model.effects.EffectType;
-import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.siege.Fort;
+import org.l2jmobius.gameserver.model.siege.Fort.FortFunction;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
 import org.l2jmobius.gameserver.network.enums.WarehouseListType;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -83,6 +84,7 @@ public class FortManager extends Merchant
 		{
 			return;
 		}
+		
 		final SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy HH:mm");
 		final int condition = validateCondition(player);
 		if (condition <= COND_ALL_FALSE)
@@ -102,6 +104,7 @@ public class FortManager extends Merchant
 			{
 				val = st.nextToken();
 			}
+			
 			if (actualCommand.equalsIgnoreCase("expel"))
 			{
 				if (player.hasAccess(ClanAccess.CASTLE_BANISH))
@@ -160,6 +163,7 @@ public class FortManager extends Merchant
 						html.replace("%hr%", String.valueOf(hour));
 						html.replace("%min%", String.valueOf(minutes));
 					}
+					
 					player.sendPacket(html);
 				}
 				else
@@ -183,6 +187,7 @@ public class FortManager extends Merchant
 						html.replace("%hr%", String.valueOf(hour));
 						html.replace("%min%", String.valueOf(minutes));
 					}
+					
 					hour = (int) Math.floor(getFort().getTimeTillNextFortUpdate() / 3600);
 					minutes = (int) (Math.floor(getFort().getTimeTillNextFortUpdate() - (hour * 3600)) / 60);
 					html.replace("%castle%", getFort().getContractedCastle().getName());
@@ -204,6 +209,7 @@ public class FortManager extends Merchant
 						{
 							getFort().openCloseDoor(player, Integer.parseInt(st.nextToken()), open);
 						}
+						
 						if (open)
 						{
 							final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -304,15 +310,24 @@ public class FortManager extends Merchant
 				if (val.equalsIgnoreCase("tele"))
 				{
 					final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
-					if (getFort().getFunction(Fort.FUNC_TELEPORT) == null)
+					final FortFunction func = getFort().getFunction(Fort.FUNC_TELEPORT);
+					if (func == null)
 					{
 						html.setFile(player, "data/html/fortress/foreman-nac.htm");
+						sendHtmlMessage(player, html);
 					}
 					else
 					{
-						html.setFile(player, "data/html/fortress/" + getId() + "-t" + getFort().getFunction(Fort.FUNC_TELEPORT).getLevel() + ".htm");
+						final int funcLvl = func.getLevel();
+						if (funcLvl > 0)
+						{
+							final TeleportHolder holder = TeleporterData.getInstance().getHolder(getId(), "tel" + funcLvl);
+							if (holder != null)
+							{
+								holder.showTeleportList(player, this, "npc_" + getObjectId() + "_goto");
+							}
+						}
 					}
-					sendHtmlMessage(player, html);
 				}
 				else if (val.equalsIgnoreCase("support"))
 				{
@@ -326,6 +341,7 @@ public class FortManager extends Merchant
 						html.setFile(player, "data/html/fortress/support" + getFort().getFunction(Fort.FUNC_SUPPORT).getLevel() + ".htm");
 						html.replace("%mp%", String.valueOf((int) getCurrentMp()));
 					}
+					
 					sendHtmlMessage(player, html);
 				}
 				else if (val.equalsIgnoreCase("back"))
@@ -344,6 +360,7 @@ public class FortManager extends Merchant
 					{
 						html.replace("%xp_regen%", "0");
 					}
+					
 					if (getFort().getFunction(Fort.FUNC_RESTORE_HP) != null)
 					{
 						html.replace("%hp_regen%", String.valueOf(getFort().getFunction(Fort.FUNC_RESTORE_HP).getLevel()));
@@ -352,6 +369,7 @@ public class FortManager extends Merchant
 					{
 						html.replace("%hp_regen%", "0");
 					}
+					
 					if (getFort().getFunction(Fort.FUNC_RESTORE_MP) != null)
 					{
 						html.replace("%mp_regen%", String.valueOf(getFort().getFunction(Fort.FUNC_RESTORE_MP).getLevel()));
@@ -360,6 +378,7 @@ public class FortManager extends Merchant
 					{
 						html.replace("%mp_regen%", "0");
 					}
+					
 					sendHtmlMessage(player, html);
 				}
 				return;
@@ -377,6 +396,7 @@ public class FortManager extends Merchant
 								player.sendMessage("This fortress has no owner, you cannot change the configuration.");
 								return;
 							}
+							
 							val = st.nextToken();
 							if (val.equalsIgnoreCase("hp_cancel"))
 							{
@@ -451,6 +471,7 @@ public class FortManager extends Merchant
 										break;
 									}
 								}
+								
 								html.replace("%cost%", cost + "</font>Adena /" + (Config.FS_MPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Provides additional MP recovery for clan members in the fortress.<font color=\"00FFFF\">" + percent + "%</font>");
 								html.replace("%apply%", "recovery mp " + percent);
@@ -478,6 +499,7 @@ public class FortManager extends Merchant
 										break;
 									}
 								}
+								
 								html.replace("%cost%", cost + "</font>Adena /" + (Config.FS_EXPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Restores the Exp of any clan member who is resurrected in the fortress.<font color=\"00FFFF\">" + percent + "%</font>");
 								html.replace("%apply%", "recovery exp " + percent);
@@ -499,6 +521,7 @@ public class FortManager extends Merchant
 										sendHtmlMessage(player, html);
 										return;
 									}
+									
 									final int percent = Integer.parseInt(val);
 									switch (percent)
 									{
@@ -519,11 +542,13 @@ public class FortManager extends Merchant
 											break;
 										}
 									}
+									
 									if (!getFort().updateFunctions(player, Fort.FUNC_RESTORE_HP, percent, fee, Config.FS_HPREG_FEE_RATIO, (getFort().getFunction(Fort.FUNC_RESTORE_HP) == null)))
 									{
 										html.setFile(player, "data/html/fortress/low_adena.htm");
 										sendHtmlMessage(player, html);
 									}
+									
 									sendHtmlMessage(player, html);
 								}
 								return;
@@ -543,6 +568,7 @@ public class FortManager extends Merchant
 										sendHtmlMessage(player, html);
 										return;
 									}
+									
 									final int percent = Integer.parseInt(val);
 									switch (percent)
 									{
@@ -563,11 +589,13 @@ public class FortManager extends Merchant
 											break;
 										}
 									}
+									
 									if (!getFort().updateFunctions(player, Fort.FUNC_RESTORE_MP, percent, fee, Config.FS_MPREG_FEE_RATIO, (getFort().getFunction(Fort.FUNC_RESTORE_MP) == null)))
 									{
 										html.setFile(player, "data/html/fortress/low_adena.htm");
 										sendHtmlMessage(player, html);
 									}
+									
 									sendHtmlMessage(player, html);
 								}
 								return;
@@ -587,6 +615,7 @@ public class FortManager extends Merchant
 										sendHtmlMessage(player, html);
 										return;
 									}
+									
 									final int percent = Integer.parseInt(val);
 									switch (percent)
 									{
@@ -607,16 +636,19 @@ public class FortManager extends Merchant
 											break;
 										}
 									}
+									
 									if (!getFort().updateFunctions(player, Fort.FUNC_RESTORE_EXP, percent, fee, Config.FS_EXPREG_FEE_RATIO, (getFort().getFunction(Fort.FUNC_RESTORE_EXP) == null)))
 									{
 										html.setFile(player, "data/html/fortress/low_adena.htm");
 										sendHtmlMessage(player, html);
 									}
+									
 									sendHtmlMessage(player, html);
 								}
 								return;
 							}
 						}
+						
 						final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 						html.setFile(player, "data/html/fortress/edit_recovery.htm");
 						final String hp = "[<a action=\"bypass -h npc_%objectId%_manage recovery edit_hp 300\">300%</a>][<a action=\"bypass -h npc_%objectId%_manage recovery edit_hp 400\">400%</a>]";
@@ -634,6 +666,7 @@ public class FortManager extends Merchant
 							html.replace("%hp_period%", "none");
 							html.replace("%change_hp%", hp);
 						}
+						
 						if (getFort().getFunction(Fort.FUNC_RESTORE_EXP) != null)
 						{
 							html.replace("%exp_recovery%", getFort().getFunction(Fort.FUNC_RESTORE_EXP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_RESTORE_EXP).getLease() + "</font>Adena /" + (Config.FS_EXPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
@@ -646,6 +679,7 @@ public class FortManager extends Merchant
 							html.replace("%exp_period%", "none");
 							html.replace("%change_exp%", exp);
 						}
+						
 						if (getFort().getFunction(Fort.FUNC_RESTORE_MP) != null)
 						{
 							html.replace("%mp_recovery%", getFort().getFunction(Fort.FUNC_RESTORE_MP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_RESTORE_MP).getLease() + "</font>Adena /" + (Config.FS_MPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
@@ -658,6 +692,7 @@ public class FortManager extends Merchant
 							html.replace("%mp_period%", "none");
 							html.replace("%change_mp%", mp);
 						}
+						
 						sendHtmlMessage(player, html);
 					}
 					else if (val.equalsIgnoreCase("other"))
@@ -669,6 +704,7 @@ public class FortManager extends Merchant
 								player.sendMessage("This fortress has no owner, you cannot change the configuration.");
 								return;
 							}
+							
 							val = st.nextToken();
 							if (val.equalsIgnoreCase("tele_cancel"))
 							{
@@ -707,6 +743,7 @@ public class FortManager extends Merchant
 										break;
 									}
 								}
+								
 								html.replace("%cost%", cost + "</font>Adena /" + (Config.FS_SUPPORT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Enables the use of supplementary magic.");
 								html.replace("%apply%", "other support " + stage);
@@ -734,6 +771,7 @@ public class FortManager extends Merchant
 										break;
 									}
 								}
+								
 								html.replace("%cost%", cost + "</font>Adena /" + (Config.FS_TELE_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Teleports clan members in a fort to the target <font color=\"00FFFF\">Stage " + stage + "</font> staging area");
 								html.replace("%apply%", "other tele " + stage);
@@ -755,6 +793,7 @@ public class FortManager extends Merchant
 										sendHtmlMessage(player, html);
 										return;
 									}
+									
 									final int level = Integer.parseInt(val);
 									switch (level)
 									{
@@ -775,11 +814,13 @@ public class FortManager extends Merchant
 											break;
 										}
 									}
+									
 									if (!getFort().updateFunctions(player, Fort.FUNC_TELEPORT, level, fee, Config.FS_TELE_FEE_RATIO, (getFort().getFunction(Fort.FUNC_TELEPORT) == null)))
 									{
 										html.setFile(player, "data/html/fortress/low_adena.htm");
 										sendHtmlMessage(player, html);
 									}
+									
 									sendHtmlMessage(player, html);
 								}
 								return;
@@ -799,6 +840,7 @@ public class FortManager extends Merchant
 										sendHtmlMessage(player, html);
 										return;
 									}
+									
 									final int level = Integer.parseInt(val);
 									switch (level)
 									{
@@ -819,6 +861,7 @@ public class FortManager extends Merchant
 											break;
 										}
 									}
+									
 									if (!getFort().updateFunctions(player, Fort.FUNC_SUPPORT, level, fee, Config.FS_SUPPORT_FEE_RATIO, (getFort().getFunction(Fort.FUNC_SUPPORT) == null)))
 									{
 										html.setFile(player, "data/html/fortress/low_adena.htm");
@@ -832,6 +875,7 @@ public class FortManager extends Merchant
 								return;
 							}
 						}
+						
 						final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 						html.setFile(player, "data/html/fortress/edit_other.htm");
 						final String tele = "[<a action=\"bypass -h npc_%objectId%_manage other edit_tele 1\">Level 1</a>][<a action=\"bypass -h npc_%objectId%_manage other edit_tele 2\">Level 2</a>]";
@@ -848,6 +892,7 @@ public class FortManager extends Merchant
 							html.replace("%tele_period%", "none");
 							html.replace("%change_tele%", tele);
 						}
+						
 						if (getFort().getFunction(Fort.FUNC_SUPPORT) != null)
 						{
 							html.replace("%support%", "Stage " + getFort().getFunction(Fort.FUNC_SUPPORT).getLevel() + "</font> (<font color=\"FFAABB\">" + getFort().getFunction(Fort.FUNC_SUPPORT).getLease() + "</font>Adena /" + (Config.FS_SUPPORT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
@@ -860,6 +905,7 @@ public class FortManager extends Merchant
 							html.replace("%support_period%", "none");
 							html.replace("%change_support%", support);
 						}
+						
 						sendHtmlMessage(player, html);
 					}
 					else if (val.equalsIgnoreCase("back"))
@@ -899,16 +945,19 @@ public class FortManager extends Merchant
 						{
 							return;
 						}
+						
 						if (getFort().getFunction(Fort.FUNC_SUPPORT).getLevel() == 0)
 						{
 							return;
 						}
+						
 						final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 						int skillLevel = 0;
 						if (st.countTokens() >= 1)
 						{
 							skillLevel = Integer.parseInt(st.nextToken());
 						}
+						
 						skill = SkillData.getInstance().getSkill(skillId, skillLevel);
 						if (skill.hasEffectType(EffectType.SUMMON))
 						{
@@ -928,6 +977,7 @@ public class FortManager extends Merchant
 								return;
 							}
 						}
+						
 						html.setFile(player, "data/html/fortress/support-done.htm");
 						html.replace("%mp%", String.valueOf((int) getCurrentMp()));
 						sendHtmlMessage(player, html);
@@ -950,17 +1000,32 @@ public class FortManager extends Merchant
 				{
 					return;
 				}
+				
 				html.setFile(player, "data/html/fortress/support" + getFort().getFunction(Fort.FUNC_SUPPORT).getLevel() + ".htm");
 				html.replace("%mp%", String.valueOf((int) getStatus().getCurrentMp()));
 				sendHtmlMessage(player, html);
 				return;
 			}
-			else if (actualCommand.equalsIgnoreCase("goto"))
+			else if (actualCommand.equalsIgnoreCase("goto")) // goto listId locId
 			{
-				final int whereTo = Integer.parseInt(val);
-				doTeleport(player, whereTo);
+				final FortFunction func = getFort().getFunction(Fort.FUNC_TELEPORT);
+				if (func == null)
+				{
+					return;
+				}
+				
+				final String listName = command.split(" ")[1];
+				final TeleportHolder holder = TeleporterData.getInstance().getHolder(getId(), listName);
+				if (holder == null)
+				{
+					LOGGER.warning(player + " requested unknown teleport list: " + listName + " for npc: " + getId() + "!");
+					return;
+				}
+				
+				holder.doTeleport(player, this, StringUtil.parseNextInt(st, -1));
 				return;
 			}
+			
 			super.onBypassFeedback(player, command);
 		}
 	}
@@ -991,23 +1056,6 @@ public class FortManager extends Merchant
 		player.sendPacket(html);
 	}
 	
-	private void doTeleport(Player player, int value)
-	{
-		final TeleportLocation list = TeleportLocationTable.getInstance().getTemplate(value);
-		if (list != null)
-		{
-			if (player.destroyItemByItemId(ItemProcessType.FEE, list.getItemId(), list.getPrice(), this, true))
-			{
-				player.teleToLocation(list.getLocX(), list.getLocY(), list.getLocZ());
-			}
-		}
-		else
-		{
-			LOGGER.warning("No teleport destination with id:" + value);
-		}
-		player.sendPacket(ActionFailed.STATIC_PACKET);
-	}
-	
 	protected int validateCondition(Player player)
 	{
 		if ((getFort() != null) && (getFort().getResidenceId() > 0) && (player.getClan() != null))
@@ -1021,6 +1069,7 @@ public class FortManager extends Merchant
 				return COND_OWNER; // Owner
 			}
 		}
+		
 		return COND_ALL_FALSE;
 	}
 	

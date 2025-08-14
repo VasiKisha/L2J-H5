@@ -69,6 +69,7 @@ public class RequestBuySeed extends ClientPacket
 				_items = null;
 				return;
 			}
+			
 			_items.add(new ItemHolder(itemId, cnt));
 		}
 	}
@@ -151,6 +152,7 @@ public class RequestBuySeed extends ClientPacket
 			{
 				slots++;
 			}
+			
 			productInfo.put(ih.getId(), sp);
 		}
 		

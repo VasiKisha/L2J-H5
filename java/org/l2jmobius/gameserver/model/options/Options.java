@@ -73,6 +73,7 @@ public class Options
 				funcs.add(fuction);
 			}
 		}
+		
 		return funcs;
 	}
 	
@@ -125,6 +126,7 @@ public class Options
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -143,6 +145,7 @@ public class Options
 				temp.add(holder);
 			}
 		}
+		
 		return temp;
 	}
 	
@@ -157,14 +160,17 @@ public class Options
 		{
 			player.addStatFuncs(getStatFuncs(null, player));
 		}
+		
 		if (hasActiveSkill())
 		{
 			addSkill(player, _activeSkill);
 		}
+		
 		if (hasPassiveSkill())
 		{
 			addSkill(player, _passiveSkill);
 		}
+		
 		if (!_activationSkills.isEmpty())
 		{
 			for (OptionSkillHolder holder : _activationSkills)
@@ -182,14 +188,17 @@ public class Options
 		{
 			player.removeStatsOwner(this);
 		}
+		
 		if (hasActiveSkill())
 		{
 			player.removeSkill(_activeSkill, false, false);
 		}
+		
 		if (hasPassiveSkill())
 		{
 			player.removeSkill(_passiveSkill, false, true);
 		}
+		
 		if (!_activationSkills.isEmpty())
 		{
 			for (OptionSkillHolder holder : _activationSkills)
@@ -197,6 +206,7 @@ public class Options
 				player.removeTriggerSkill(holder);
 			}
 		}
+		
 		player.sendSkillList();
 	}
 	
@@ -212,8 +222,10 @@ public class Options
 				player.addTimeStamp(skill, remainingTime);
 				player.disableSkill(skill, remainingTime);
 			}
+			
 			updateTimeStamp = true;
 		}
+		
 		if (updateTimeStamp)
 		{
 			player.sendPacket(new SkillCoolTime(player));

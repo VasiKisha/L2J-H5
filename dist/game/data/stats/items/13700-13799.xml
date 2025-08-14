@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="13700" type="EtcItem" name="Innadril Supply Box - Magic Pin - Grade B, C">
 		<!-- A box that has the symbol of Innadril. A low grade magic pin that's attached to the belt can be acquired at a certain rate. -->
@@ -419,9 +419,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2649-1" /> <!-- Escape - Gludin Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13732" type="EtcItem" name="Blessed Scroll of Escape: Dion">
 		<!-- Magically teleports you to the Town of Dion. -->
@@ -433,9 +433,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2649-2" /> <!-- Escape - Gludin Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13733" type="EtcItem" name="Blessed Scroll of Escape: Giran">
 		<!-- Magically teleports you to the Town of Giran. -->
@@ -447,9 +447,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2649-3" /> <!-- Escape - Gludin Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13734" type="EtcItem" name="Blessed Scroll of Escape: Oren">
 		<!-- Magically teleports you to the Town of Oren. -->
@@ -461,9 +461,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2649-5" /> <!-- Escape - Gludin Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13735" type="EtcItem" name="Blessed Scroll of Escape: Aden">
 		<!-- Magically teleports you to the Town of Aden. -->
@@ -475,9 +475,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2649-6" /> <!-- Escape - Gludin Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13736" type="EtcItem" name="Blessed Scroll of Escape: Innadril">
 		<!-- Magically teleports you to the Town of Innadril. -->
@@ -489,9 +489,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2649-4" /> <!-- Escape - Gludin Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13737" type="EtcItem" name="Blessed Scroll of Escape: Goddard">
 		<!-- Magically teleports you to the Town of Goddard . -->
@@ -503,9 +503,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2649-7" /> <!-- Escape - Gludin Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13738" type="EtcItem" name="Blessed Scroll of Escape: Rune">
 		<!-- Magically teleports you to Rune Township. -->
@@ -517,9 +517,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2649-8" /> <!-- Escape - Gludin Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13739" type="EtcItem" name="Blessed Scroll of Escape: Schuttgart">
 		<!-- Magically teleports you to the Town of Schuttgart. -->
@@ -531,9 +531,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2649-9" /> <!-- Escape - Gludin Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13740" type="Armor" name="Gludio Water Resistance Necklace">
 		<!-- Necklace given to the guardian of Gludio territory. Water power defense +26. Cannot be exchanged or dropped. -->
@@ -548,12 +548,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="85" />
 			<add stat="maxMp" val="33" />
 			<add stat="waterRes" val="26" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13741" type="Armor" name="Dion Holy Resistance Necklace">
 		<!-- Necklace given to the guardian of Dion territory. Resistance to Holy + 26. Cannot be exchanged or dropped. -->
@@ -568,12 +568,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="85" />
 			<add stat="maxMp" val="33" />
 			<add stat="holyRes" val="26" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13742" type="Armor" name="Giran Wind Resistance Necklace">
 		<!-- Necklace given to the guardian of Giran territory. Wind power defense + 26. Cannot be exchanged or dropped. -->
@@ -588,12 +588,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="85" />
 			<add stat="maxMp" val="33" />
 			<add stat="windRes" val="26" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13743" type="Armor" name="Oren Dark Resistance Necklace">
 		<!-- Necklace given to the guardian of Oren territory. Resistance to Dark +26. Cannot be exchanged or dropped. -->
@@ -608,12 +608,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="85" />
 			<add stat="maxMp" val="33" />
 			<add stat="darkRes" val="26" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13744" type="Armor" name="Aden Earth Resistance Necklace">
 		<!-- Necklace given to the guardian of Aden territory. Earth power defense + 26. Cannot be exchanged or dropped. -->
@@ -628,12 +628,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="85" />
 			<add stat="maxMp" val="33" />
 			<add stat="earthRes" val="26" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13745" type="Armor" name="Innadril Water Resistance Necklace">
 		<!-- Necklace given to the guardian of Innadril territory. Water power defense + 26. Cannot be exchanged or dropped. -->
@@ -648,12 +648,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="85" />
 			<add stat="maxMp" val="33" />
 			<add stat="waterRes" val="26" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13746" type="Armor" name="Goddard Fire Resistance Necklace">
 		<!-- Necklace given to the guardian of Goddard territory. Fire power defense + 26. Cannot be exchanged or dropped. -->
@@ -668,12 +668,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="85" />
 			<add stat="maxMp" val="33" />
 			<add stat="fireRes" val="26" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13747" type="Armor" name="Rune Fire Resistance Necklace">
 		<!-- Necklace given to the guardian of Rune territory. Fire power defense + 26. Cannot be exchanged or dropped. -->
@@ -688,12 +688,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="85" />
 			<add stat="maxMp" val="33" />
 			<add stat="fireRes" val="26" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13748" type="Armor" name="Schuttgart Wind Resistance Necklace">
 		<!-- Necklace given to the guardian of Schuttgart territory. Wind power defense + 26. Cannot be exchanged or dropped. -->
@@ -708,12 +708,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="85" />
 			<add stat="maxMp" val="33" />
 			<add stat="windRes" val="26" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13749" type="EtcItem" name="Emery Piece">
 		<!-- A small piece obtained on the Aerial Cleft battlefield. Cannot be exchanged or dropped. Though weak, it seems as if a great amount of energy is condensed into it. -->
@@ -743,9 +743,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2592-1" /> <!-- Quick Healing Potion -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13751" type="Armor" name="Warrior's T-shirt">
 		<!-- Olympiad Warrior's T-shirt. Bestows an option that increases Max CP by 672 when enchanted by 4 or more. Cannot be exchanged or dropped. -->
@@ -761,10 +761,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="28" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13752" type="Armor" name="Olympiad Warrior's Ring">
 		<!-- Olympiad Warrior's ring. Limited time item available for 60 days. Limited time item available forMP+ 21, increased Accuracy, increased Critical Damage, hold resistance increase by 30% and hold attack rate increase by 30%. Only one effect is applied even when two identical rings are worn. Cannot be exchanged or dropped. -->
@@ -780,10 +780,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8292-1" /> <!-- Olympiad Warrior's Ring -->
 		<set name="time" val="86400" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="42" />
 			<add stat="maxMp" val="21" />
-		</for>
+		</stats>
 	</item>
 	<item id="13753" type="Armor" name="Olympiad Warrior's Necklace">
 		<!-- Olympiad Warrior's necklace. Limited time item available for 60 days. MP+ 42, Sleep/Paralysis/Shock Resistance increase by 15%. Sleep/Paralysis/Shock attack rate increase by 15%. Decreased skill reuse delay and damage shield effects. Cannot be exchanged or dropped. -->
@@ -799,10 +799,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8294-1" /> <!-- Olympiad Warrior's Necklace -->
 		<set name="time" val="86400" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="85" />
 			<add stat="maxMp" val="26" />
-		</for>
+		</stats>
 	</item>
 	<item id="13754" type="Armor" name="Olympiad Warrior's Earring">
 		<!-- Olympiad Warrior's earring. Limited-time item available for 60 days. It has effects of MP +31, shock/mind attack resistance +20%, Shock/Mental attack rate +20% and Vampiric Rage. Cannot be exchanged or dropped. When equipped with two identical earrings, the effect of only one earring will be applied. -->
@@ -818,10 +818,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8293-1" /> <!-- Olympiad Warrior's Earring -->
 		<set name="time" val="86400" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="31" />
-		</for>
+		</stats>
 	</item>
 	<item id="13755" type="Weapon" name="Olympiad Warrior's Weapon (undetermined)">
 		<!-- (not determined) -->
@@ -840,12 +840,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13756" type="Armor" name="Agathion Summon Bracelet - Knight">
 		<!-- Summons an Agathion. Cannot be exchanged or dropped. -->
@@ -1015,12 +1015,12 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2622-1" /> <!-- Summon Life-size Decoy -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<and>
 				<player instanceId="120" />
 				<player categoryType="WARSMITH_GROUP" />
 			</and>
-		</cond>
+		</conditions>
 	</item>
 	<item id="13770" type="Armor" name="Shadow Item - Shield of Yehan Miakesh">
 		<!-- Shield type shadow item that bears the crest of last hero of Ancient Gracian Kingdom. The user of this item will have the powerful skill against some monsters inside Tumor of Death and Seed of Infinity. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. Can be used only in the instant dungeons of the Seed of Infinity. Exclusively for Phoenix Knight, Hell Knight, Eva's Templar and Shillien Templar. -->
@@ -1037,17 +1037,17 @@
 		<set name="item_skill" val="8276-1" /> <!-- Shield Branding -->
 		<set name="duration" val="60" />
 		<set name="useSkillDisTime" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player instanceId="115,116,119,120,121,122" />
 				<player categoryType="SHIELD_MASTER" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="101" />
-		</for>
+		</stats>
 	</item>
 	<item id="13771" type="EtcItem" name="Strong Alkaline Ointment">
 		<!-- It's an ointment that's made of the ingredients easily found in daily life and almost completely blocks the skin oxidation. It lessens the effects of lethal de-buff skills inside the Hall of Erosion. Can be used only inside Hall of Erosion instant dungeons. -->
@@ -1062,9 +1062,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2623-1" /> <!-- Alkaline Therapy -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="119,120" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13772" type="EtcItem" name="Life Aid Bandage">
 		<!-- A wondrous curative cloth that almost completely blocks the foreign contagion, which is the true nature of the Seed of Infinity, when you adhere it to your body. It increases Resistance to bleeding, poison, and Netherworld's Magyun induced special de-buff skills that the monsters use inside Seed of Infinity. Can be used only inside Seed of Infinity instant dungeons. -->
@@ -1079,9 +1079,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2624-1" /> <!-- Life Aid Banding -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="115,116,119,120,121,122" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13773" type="EtcItem" name="Scent of Preservation">
 		<!-- An ancient Gracian scent used to keep a body from decaying. It stops severe bleeding up to the maximum effect 8 caused by the monsters inside Seed of Infinity. Can be used only inside Seed of Infinity instant dungeons. -->
@@ -1095,9 +1095,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2625-1" /> <!-- Embalming -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="115,116,119,120,121,122" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13774" type="EtcItem" name="Scent of Exorcism">
 		<!-- An ancient Gracian scent used to cure people who are possessed by ghosts. It neutralizes the powerful poison up to the maximum effect 8 caused by the monsters inside Seed of Infinity. Can be used only inside Seed of Infinity instant dungeons. -->
@@ -1111,9 +1111,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2626-1" /> <!-- Lighting Incense -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="115,116,119,120,121,122" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13775" type="EtcItem" name="Miracle Cure of Resuscitation">
 		<!-- A wondrous drug that seems to have been used in ancient Gracian sacrificial rituals. It cancels the effect of bleeding and poison caused by the monsters inside Seed of Infinity up to the maximum effect 8 or Netherworld's Magyun induced special de-buff up to the maximum effect 4. Can be used only inside Seed of Infinity instant dungeons. -->
@@ -1127,9 +1127,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2627-1" /> <!-- Elixir Miracle -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="115,116,119,120,121,122" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13776" type="EtcItem" name="Structure Scarab">
 		<!-- Amulet frequently used by ancient Gracian nobles. It gives the ability to resurrect and protection against death. Can be used only inside Seed of Infinity instant dungeons. Cannot be exchanged or dropped. -->
@@ -1145,9 +1145,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2628-1" /> <!-- Structure Scarab -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="115,116,119,120,121,122" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13777" type="EtcItem" name="Jewel Ornamented Duel Supplies">
 		<!-- Lavishly adorned with jewels, this box looks like contains items of exceeding value. -->
@@ -1331,7 +1331,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="5852-1" /> <!-- Flip Block -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
@@ -1339,7 +1339,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13790" type="Weapon" name="Blue Boing Hammer">
 		<!-- Used during the block-flipping match, it is needed to attach the block to the floor. -->
@@ -1359,7 +1359,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="5853-1" /> <!-- Flip Block -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
@@ -1367,7 +1367,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13791" type="Weapon" name="Small Red Boing Hammer">
 		<!-- Used during the block-flipping match. -->
@@ -1386,7 +1386,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
@@ -1394,7 +1394,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13792" type="Weapon" name="Small Blue Boing Hammer">
 		<!-- Used during the block-flipping match. -->
@@ -1413,7 +1413,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
@@ -1421,7 +1421,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13793" type="EtcItem" name="Kratei's Cube Name Hiding Scroll">
 		<!-- Used to hide your name in Kratei's Cube. -->

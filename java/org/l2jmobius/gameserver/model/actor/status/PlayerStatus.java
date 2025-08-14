@@ -89,6 +89,7 @@ public class PlayerStatus extends PlayableStatus
 		if (!isHPConsumption)
 		{
 			player.stopEffectsOnDamage(awake);
+			
 			// Attacked players in craft/shops stand up.
 			if (player.isCrafting() || player.isInStoreMode())
 			{
@@ -286,6 +287,7 @@ public class PlayerStatus extends PlayableStatus
 					amount = 0;
 				}
 			}
+			
 			setCurrentHp(amount);
 		}
 		
@@ -331,6 +333,7 @@ public class PlayerStatus extends PlayableStatus
 				qs.getQuest().notifyEvent("CE45", null, player);
 			}
 		}
+		
 		return result;
 	}
 	

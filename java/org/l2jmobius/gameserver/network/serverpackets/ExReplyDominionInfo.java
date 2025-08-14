@@ -52,6 +52,7 @@ public class ExReplyDominionInfo extends ServerPacket
 			{
 				buffer.writeInt(i); // Emblem ID - should be in for loop for emblem count
 			}
+			
 			buffer.writeInt((int) (TerritoryWarManager.getInstance().getTWStartTimeInMillis() / 1000));
 		}
 	}

@@ -37,9 +37,11 @@ public class SilentValley extends AbstractNpcAI
 	private static final SkillHolder BLAZE = new SkillHolder(4157, 10); // NPC Blaze - Magic
 	// Item
 	private static final int SACK = 13799; // Treasure Sack of the Ancient Giants
+	
 	// Chance
 	private static final int SPAWN_CHANCE = 2;
 	private static final int CHEST_DIE_CHANCE = 5;
+	
 	// Monsters
 	private static final int CHEST = 18693; // Treasure Chest of the Ancient Giants
 	private static final int GUARD1 = 18694; // Treasure Chest Guard
@@ -93,6 +95,7 @@ public class SilentValley extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return null;
 	}
 	
@@ -202,6 +205,7 @@ public class SilentValley extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return super.onEventReceived(eventName, sender, receiver, reference);
 	}
 	

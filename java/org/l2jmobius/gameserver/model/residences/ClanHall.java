@@ -134,6 +134,7 @@ public abstract class ClanHall
 			{
 				return;
 			}
+			
 			final long currentTime = System.currentTimeMillis();
 			if (_endDate > currentTime)
 			{
@@ -161,6 +162,7 @@ public abstract class ClanHall
 					{
 						return;
 					}
+					
 					if ((ClanTable.getInstance().getClan(getOwnerId()).getWarehouse().getAdena() >= _fee) || !_cwh)
 					{
 						final int fee = _endDate == -1 ? _tempFee : _fee;
@@ -170,6 +172,7 @@ public abstract class ClanHall
 						{
 							ClanTable.getInstance().getClan(getOwnerId()).getWarehouse().destroyItemByItemId(ItemProcessType.FEE, Inventory.ADENA_ID, fee, null, null);
 						}
+						
 						ThreadPool.schedule(new FunctionTask(true), _rate);
 					}
 					else
@@ -277,6 +280,7 @@ public abstract class ClanHall
 		{
 			_doors = new ArrayList<>();
 		}
+		
 		return _doors;
 	}
 	
@@ -290,6 +294,7 @@ public abstract class ClanHall
 		{
 			return null;
 		}
+		
 		for (Door door : getDoors())
 		{
 			if (door.getId() == doorId)
@@ -297,6 +302,7 @@ public abstract class ClanHall
 				return door;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -346,6 +352,7 @@ public abstract class ClanHall
 		{
 			removeFunction(fc);
 		}
+		
 		_functions.clear();
 		updateDb();
 	}
@@ -361,9 +368,11 @@ public abstract class ClanHall
 		{
 			return;
 		}
+		
 		_ownerId = clan.getId();
 		_isFree = false;
 		clan.setHideoutId(_clanHallId);
+		
 		// Announce to Online member new ClanHall
 		clan.broadcastToOnlineMembers(new PledgeShowInfoUpdate(clan));
 		updateDb();
@@ -489,6 +498,7 @@ public abstract class ClanHall
 		{
 			return false;
 		}
+		
 		if (addNew)
 		{
 			_functions.put(type, new ClanHallFunction(type, level, lease, 0, rate, 0, false));
@@ -508,6 +518,7 @@ public abstract class ClanHall
 			_functions.get(type).setLevel(level);
 			_functions.get(type).dbSave();
 		}
+		
 		return true;
 	}
 	

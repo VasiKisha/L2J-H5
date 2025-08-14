@@ -37,18 +37,22 @@ public class Q00623_TheFinestFood extends Quest
 {
 	// NPCs
 	private static final int JEREMY = 31521;
+	
 	// Monsters
 	private static final int THERMAL_BUFFALO = 21315;
 	private static final int THERMAL_FLAVA = 21316;
 	private static final int THERMAL_ANTELOPE = 21318;
+	
 	// Items
 	private static final ItemHolder LEAF_OF_FLAVA = new ItemHolder(7199, 100);
 	private static final ItemHolder BUFFALO_MEAT = new ItemHolder(7200, 100);
 	private static final ItemHolder HORN_OF_ANTELOPE = new ItemHolder(7201, 100);
+	
 	// Rewards
 	private static final ItemHolder RING_OF_AURAKYRA = new ItemHolder(6849, 1);
 	private static final ItemHolder SEALED_SANDDRAGONS_EARING = new ItemHolder(6847, 1);
 	private static final ItemHolder DRAGON_NECKLACE = new ItemHolder(6851, 1);
+	
 	// Misc
 	private static final int MIN_LEVEL = 71;
 	
@@ -78,6 +82,7 @@ public class Q00623_TheFinestFood extends Quest
 		{
 			return htmltext;
 		}
+		
 		switch (event)
 		{
 			case "31521-03.htm":
@@ -116,6 +121,7 @@ public class Q00623_TheFinestFood extends Quest
 							giveAdena(player, 73000, true);
 							addExpAndSp(player, 230000, 18200);
 						}
+						
 						qs.exitQuest(true, true);
 						htmltext = event;
 					}
@@ -127,6 +133,7 @@ public class Q00623_TheFinestFood extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -166,6 +173,7 @@ public class Q00623_TheFinestFood extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

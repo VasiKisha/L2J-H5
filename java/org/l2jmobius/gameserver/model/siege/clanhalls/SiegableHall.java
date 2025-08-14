@@ -82,7 +82,7 @@ public class SiegableHall extends ClanHall
 		
 		_nextSiege = Calendar.getInstance();
 		final long nextSiege = set.getLong("nextSiege");
-		if ((nextSiege - System.currentTimeMillis()) < 0)
+		if ((nextSiege - System.currentTimeMillis() - 3600000) < 0)
 		{
 			updateNextSiege();
 		}
@@ -182,14 +182,14 @@ public class SiegableHall extends ClanHall
 	
 	public void updateNextSiege()
 	{
-		final Calendar c = Calendar.getInstance();
-		c.add(Calendar.DAY_OF_YEAR, _scheduleConfig[0]);
-		c.add(Calendar.MONTH, _scheduleConfig[1]);
-		c.add(Calendar.YEAR, _scheduleConfig[2]);
-		c.set(Calendar.HOUR_OF_DAY, _scheduleConfig[3]);
-		c.set(Calendar.MINUTE, _scheduleConfig[4]);
-		c.set(Calendar.SECOND, 0);
-		setNextSiegeDate(c);
+		final Calendar callendar = Calendar.getInstance();
+		callendar.add(Calendar.DAY_OF_YEAR, _scheduleConfig[0]);
+		callendar.add(Calendar.MONTH, _scheduleConfig[1]);
+		callendar.add(Calendar.YEAR, _scheduleConfig[2]);
+		callendar.set(Calendar.HOUR_OF_DAY, _scheduleConfig[3]);
+		callendar.set(Calendar.MINUTE, _scheduleConfig[4]);
+		callendar.set(Calendar.SECOND, 0);
+		setNextSiegeDate(callendar);
 		updateDb();
 	}
 	

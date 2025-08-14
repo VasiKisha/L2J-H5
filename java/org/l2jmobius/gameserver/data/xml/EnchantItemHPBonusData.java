@@ -71,6 +71,7 @@ public class EnchantItemHPBonusData implements IXmlReader
 								bonuses.add(Integer.parseInt(e.getTextContent()));
 							}
 						}
+						
 						_armorHPBonuses.put(parseEnum(d.getAttributes(), CrystalType.class, "grade"), bonuses);
 					}
 				}
@@ -80,6 +81,7 @@ public class EnchantItemHPBonusData implements IXmlReader
 		if (!_armorHPBonuses.isEmpty())
 		{
 			final ItemData it = ItemData.getInstance();
+			
 			// Armors
 			final Collection<Integer> armorIds = it.getAllArmorsId();
 			for (Integer itemId : armorIds)
@@ -139,6 +141,7 @@ public class EnchantItemHPBonusData implements IXmlReader
 		{
 			return (int) (bonus * FULL_ARMOR_MODIFIER);
 		}
+		
 		return bonus;
 	}
 	

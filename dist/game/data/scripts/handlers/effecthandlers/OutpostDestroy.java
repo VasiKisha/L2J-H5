@@ -60,6 +60,7 @@ public class OutpostDestroy extends AbstractEffect
 			{
 				flag.deleteMe();
 			}
+			
 			TerritoryWarManager.getInstance().setHQForClan(clan, null);
 		}
 	}

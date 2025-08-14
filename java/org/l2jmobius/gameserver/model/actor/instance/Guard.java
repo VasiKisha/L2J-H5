@@ -56,6 +56,7 @@ public class Guard extends Attackable
 		{
 			return true;
 		}
+		
 		if (Config.FACTION_SYSTEM_ENABLED && Config.FACTION_GUARDS_ENABLED && attacker.isPlayable())
 		{
 			final Player player = attacker.asPlayer();
@@ -64,6 +65,7 @@ public class Guard extends Attackable
 				return true;
 			}
 		}
+		
 		return super.isAutoAttackable(attacker);
 	}
 	
@@ -90,6 +92,7 @@ public class Guard extends Attackable
 		super.onSpawn();
 		
 		getAI().setIntention(Intention.ACTIVE);
+		
 		// check the region where this mob is, do not activate the AI if region is inactive.
 		// final WorldRegion region = World.getInstance().getRegion(this);
 		// if ((region != null) && (!region.isActive()))
@@ -121,6 +124,7 @@ public class Guard extends Attackable
 		{
 			pom = npcId + "-" + value;
 		}
+		
 		return "data/html/guard/" + pom + ".htm";
 	}
 	
@@ -159,6 +163,7 @@ public class Guard extends Attackable
 		if (Config.FACTION_SYSTEM_ENABLED && Config.FACTION_GUARDS_ENABLED && ((player.isGood() && getTemplate().isClan(Config.FACTION_EVIL_TEAM_NAME)) || (player.isEvil() && getTemplate().isClan(Config.FACTION_GOOD_TEAM_NAME))))
 		{
 			interact = false;
+			
 			// TODO: Fix normal targeting
 			player.getAI().setIntention(Intention.ATTACK, this);
 		}
@@ -166,6 +171,7 @@ public class Guard extends Attackable
 		if (isFakePlayer() && isInCombat())
 		{
 			interact = false;
+			
 			// TODO: Fix normal targeting
 			player.getAI().setIntention(Intention.ATTACK, this);
 		}

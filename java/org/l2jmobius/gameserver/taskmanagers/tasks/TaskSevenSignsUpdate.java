@@ -45,6 +45,7 @@ public class TaskSevenSignsUpdate extends PersistentTask
 			{
 				SevenSignsFestival.getInstance().saveFestivalData(false);
 			}
+			
 			LOGGER.info("SevenSigns: Data updated successfully.");
 		}
 		catch (Exception e)

@@ -36,12 +36,14 @@ public class Q00364_JovialAccordion extends Quest
 	private static final int BARBADO = 30959;
 	private static final int BEER_CHEST = 30960;
 	private static final int CLOTH_CHEST = 30961;
+	
 	// Items
 	private static final int STOLEN_BLACK_BEER = 4321;
 	private static final int STOLEN_EVENT_CLOTHES = 4322;
 	private static final int CLOTHES_CHEST_KEY = 4323;
 	private static final int BEER_CHEST_KEY = 4324;
 	private static final int THEME_OF_THE_FEAST = 4421;
+	
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	
@@ -92,6 +94,7 @@ public class Q00364_JovialAccordion extends Quest
 					{
 						htmltext = "30960-03.html";
 					}
+					
 					takeItems(player, BEER_CHEST_KEY, -1);
 				}
 				else
@@ -113,6 +116,7 @@ public class Q00364_JovialAccordion extends Quest
 					{
 						htmltext = "30961-03.html";
 					}
+					
 					takeItems(player, CLOTHES_CHEST_KEY, -1);
 				}
 				else
@@ -131,6 +135,7 @@ public class Q00364_JovialAccordion extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -283,6 +288,7 @@ public class Q00364_JovialAccordion extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

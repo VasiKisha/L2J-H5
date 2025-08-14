@@ -100,6 +100,7 @@ public class VarkaKetra extends AbstractNpcAI
 		25315, // Varka's Chief Horus (Raid Boss)
 		25316, // Soul of Water Ashutar (Raid Boss)
 	};
+	
 	// Items
 	private static final int[] KETRA_MARKS =
 	{
@@ -117,6 +118,7 @@ public class VarkaKetra extends AbstractNpcAI
 		7224, // Mark of Varka's Alliance - Level 4
 		7225, // Mark of Varka's Alliance - Level 5
 	};
+	
 	// Quests
 	private static final String[] KETRA_QUESTS =
 	{
@@ -204,6 +206,7 @@ public class VarkaKetra extends AbstractNpcAI
 		{
 			return !hasAtLeastOneQuestItem(player, KETRA_MARKS);
 		}
+		
 		return !hasAtLeastOneQuestItem(player, VARKA_MARKS);
 	}
 	

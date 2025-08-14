@@ -169,6 +169,7 @@ public class FakePlayerChatManager implements IXmlReader
 							allFound = false;
 						}
 					}
+					
 					if (allFound)
 					{
 						sendChat(player, fpcName, chatHolder.getAnswers().get(Rnd.get(chatHolder.getAnswers().size())));

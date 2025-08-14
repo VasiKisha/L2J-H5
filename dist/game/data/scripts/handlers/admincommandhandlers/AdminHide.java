@@ -32,7 +32,7 @@ public class AdminHide implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player player)
+	public boolean onCommand(String command, Player player)
 	{
 		final StringTokenizer st = new StringTokenizer(command);
 		st.nextToken();
@@ -79,7 +79,7 @@ public class AdminHide implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

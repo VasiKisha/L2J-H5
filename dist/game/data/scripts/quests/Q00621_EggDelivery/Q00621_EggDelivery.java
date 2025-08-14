@@ -43,16 +43,20 @@ public class Q00621_EggDelivery extends Quest
 	private static final int KUBER = 31546;
 	private static final int BOELIN = 31547;
 	private static final int VALENTINE = 31584;
+	
 	// Items
 	private static final int BOILED_EGG = 7195;
 	private static final int EGG_PRICE = 7196;
+	
 	// Misc
 	private static final int MIN_LEVEL = 68;
+	
 	// Reward
 	private static final int QUICK_STEP_POTION = 734;
 	private static final int SEALED_RING_OF_AURAKYRA = 6849;
 	private static final int SEALED_SANDDRAGONS_EARING = 6847;
 	private static final int SEALED_DRAGON_NECKLACE = 6851;
+	
 	// Talkers
 	private static final List<Integer> TALKERS = Arrays.asList(NAFF, CROCUS, KUBER, BOELIN);
 	
@@ -74,6 +78,7 @@ public class Q00621_EggDelivery extends Quest
 		{
 			return htmltext;
 		}
+		
 		switch (event)
 		{
 			case "31521-03.htm":
@@ -164,12 +169,14 @@ public class Q00621_EggDelivery extends Quest
 					{
 						rewardItems(player, SEALED_DRAGON_NECKLACE, 1);
 					}
+					
 					qs.exitQuest(true, true);
 					htmltext = event;
 				}
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -276,6 +283,7 @@ public class Q00621_EggDelivery extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

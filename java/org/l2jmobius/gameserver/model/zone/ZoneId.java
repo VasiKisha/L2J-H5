@@ -37,6 +37,7 @@ public enum ZoneId
 	NO_SUMMON_FRIEND,
 	FORT,
 	NO_STORE,
+	NO_PVP,
 	TOWN,
 	SCRIPT,
 	HQ,

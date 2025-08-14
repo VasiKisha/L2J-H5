@@ -154,6 +154,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 			tele[2] = -9128;
 			return enterInstance(player, "RimPailakaCastle.xml", tele, _fortDungeons.get(npc.getId()), checkFortCondition(player, npc, true));
 		}
+		
 		return htmltext;
 	}
 	
@@ -203,6 +204,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -251,6 +253,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 				player.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_ANOTHER_INSTANCE_ZONE_THEREFORE_YOU_CANNOT_ENTER_CORRESPONDING_DUNGEON);
 				return "";
 			}
+			
 			teleportPlayer(player, coords, world.getInstanceId());
 			return "";
 		}
@@ -283,6 +286,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 				newQuestState(partyMember);
 			}
 		}
+		
 		return "";
 	}
 	
@@ -305,6 +309,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 			player.sendPacket(SystemMessageId.ONLY_A_PARTY_LEADER_CAN_MAKE_THE_REQUEST_TO_ENTER);
 			return null;
 		}
+		
 		for (Player partymember : party.getMembers())
 		{
 			if (!partymember.isInsideRadius3D(player, 1000))
@@ -314,6 +319,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 				player.sendPacket(sm);
 				return null;
 			}
+			
 			if (partymember.getLevel() < 70)
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY);
@@ -322,6 +328,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 				return null;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -333,6 +340,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 		{
 			return "FortWarden-01a.htm";
 		}
+		
 		if ((player.getClan() == null) || (player.getClan().getFortId() != fort.getResidenceId()))
 		{
 			return "FortWarden-01.htm";
@@ -355,6 +363,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 		{
 			return "FortWarden-10.htm";
 		}
+		
 		for (Player partyMember : party.getMembers())
 		{
 			if ((partyMember.getClan() == null) || (partyMember.getClan().getFortId() == 0) || (partyMember.getClan().getFortId() != fort.getResidenceId()))
@@ -362,6 +371,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 				return showHtmlFile(player, "FortWarden-11.htm").replace("%player%", partyMember.getName());
 			}
 		}
+		
 		return null;
 	}
 	
@@ -395,6 +405,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 			{
 				addSpawn(KANADIS_FOLLOWER1, 50536, -12232, -9384, 32768, false, 0, false, world.getInstanceId());
 			}
+			
 			ThreadPool.schedule(() -> SecondWave(world), 8 * 60 * 1000);
 		}, 10000);
 	}
@@ -407,6 +418,7 @@ public class Q00726_LightWithinTheDarkness extends Quest
 		{
 			addSpawn(KANADIS_FOLLOWER2, 50536, -12232, -9384, 32768, false, 0, false, world.getInstanceId());
 		}
+		
 		ThreadPool.schedule(() -> ThirdWave(world), 8 * 60 * 1000);
 	}
 	

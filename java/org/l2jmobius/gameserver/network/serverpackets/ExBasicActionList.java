@@ -25,7 +25,7 @@ import org.l2jmobius.gameserver.network.ServerPackets;
  */
 public class ExBasicActionList extends ServerPacket
 {
-	//@formatter:off
+	// @formatter:off
 	public static final int[] ACTIONS_ON_TRANSFORM =
 	{
 		1, 2, 3, 4,
@@ -63,7 +63,7 @@ public class ExBasicActionList extends ServerPacket
 		1092, 1093, 1094, 1095,
 		1096, 1097, 1098 
 	};
-	//@formatter:on
+	// @formatter:on
 	
 	public static final int[] DEFAULT_ACTION_LIST;
 	static
@@ -81,6 +81,7 @@ public class ExBasicActionList extends ServerPacket
 		{
 			DEFAULT_ACTION_LIST[count1 + i] = 1000 + i;
 		}
+		
 		for (i = count3; i-- > 0;)
 		{
 			DEFAULT_ACTION_LIST[count1 + count2 + i] = 5000 + i;

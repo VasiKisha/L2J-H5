@@ -69,6 +69,7 @@ public class ExBrProductList extends ServerPacket
 					break;
 				}
 			}
+			
 			buffer.writeInt(0); // start sale
 			buffer.writeInt(0); // end sale
 			buffer.writeByte(0); // day week

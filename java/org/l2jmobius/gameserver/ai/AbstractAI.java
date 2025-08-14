@@ -619,6 +619,7 @@ public abstract class AbstractAI
 			}
 			return;
 		}
+		
 		_clientAutoAttacking = isAutoAttacking;
 	}
 	

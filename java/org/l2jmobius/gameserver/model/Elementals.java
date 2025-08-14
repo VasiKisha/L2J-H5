@@ -124,6 +124,7 @@ public class Elementals
 				return "Holy";
 			}
 		}
+		
 		return "None";
 	}
 	
@@ -134,26 +135,32 @@ public class Elementals
 		{
 			return FIRE;
 		}
+		
 		if (tmp.equals("water"))
 		{
 			return WATER;
 		}
+		
 		if (tmp.equals("wind"))
 		{
 			return WIND;
 		}
+		
 		if (tmp.equals("earth"))
 		{
 			return EARTH;
 		}
+		
 		if (tmp.equals("dark"))
 		{
 			return DARK;
 		}
+		
 		if (tmp.equals("holy"))
 		{
 			return HOLY;
 		}
+		
 		return NONE;
 	}
 	

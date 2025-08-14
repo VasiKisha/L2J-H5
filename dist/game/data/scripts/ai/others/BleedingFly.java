@@ -33,17 +33,21 @@ public class BleedingFly extends AbstractNpcAI
 	// NPCs
 	private static final int BLEEDING_FLY = 25720;
 	private static final int PARASITIC_LEECH = 25734;
+	
 	// Skills
 	private static final SkillHolder SUMMON_PARASITE_LEECH = new SkillHolder(6832, 1);
 	private static final SkillHolder NPC_ACUMEN_LEVEL_3 = new SkillHolder(6915, 3);
+	
 	// Variables
 	private static final String MID_HP_FLAG = "MID_HP_FLAG";
 	private static final String LOW_HP_FLAG = "LOW_HP_FLAG";
 	private static final String MID_HP_MINION_COUNT = "MID_HP_MINION_COUNT";
 	private static final String LOW_HP_MINION_COUNT = "LOW_HP_MINION_COUNT";
+	
 	// Timers
 	private static final String TIMER_MID_HP = "TIMER_MID_HP";
 	private static final String TIMER_LOW_HP = "TIMER_LOW_HP";
+	
 	// Misc
 	private static final int MAX_CHASE_DIST = 2500;
 	private static final double MID_HP_PERCENTAGE = 0.50;
@@ -118,6 +122,7 @@ public class BleedingFly extends AbstractNpcAI
 				startQuestTimer(TIMER_LOW_HP, 80000, npc, null);
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

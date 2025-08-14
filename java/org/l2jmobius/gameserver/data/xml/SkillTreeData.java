@@ -81,6 +81,7 @@ public class SkillTreeData implements IXmlReader
 	private final Map<PlayerClass, Map<Integer, SkillLearn>> _classSkillTrees = new ConcurrentHashMap<>();
 	private final Map<PlayerClass, Map<Integer, SkillLearn>> _completeClassSkillTree = new HashMap<>();
 	private final Map<PlayerClass, Map<Integer, SkillLearn>> _transferSkillTrees = new ConcurrentHashMap<>();
+	
 	// Skill Hash Code, SkillLearn
 	private final Map<Integer, SkillLearn> _collectSkillTree = new ConcurrentHashMap<>();
 	private final Map<Integer, SkillLearn> _fishingSkillTree = new ConcurrentHashMap<>();
@@ -89,6 +90,7 @@ public class SkillTreeData implements IXmlReader
 	private final Map<Integer, SkillLearn> _subPledgeSkillTree = new ConcurrentHashMap<>();
 	private final Map<Integer, SkillLearn> _transformSkillTree = new ConcurrentHashMap<>();
 	private final Map<Integer, SkillLearn> _commonSkillTree = new ConcurrentHashMap<>();
+	
 	// Other skill trees
 	private final Map<Integer, SkillLearn> _nobleSkillTree = new ConcurrentHashMap<>();
 	private final Map<Integer, SkillLearn> _heroSkillTree = new ConcurrentHashMap<>();
@@ -139,6 +141,7 @@ public class SkillTreeData implements IXmlReader
 		for (Entry<PlayerClass, Map<Integer, SkillLearn>> entry : _classSkillTrees.entrySet())
 		{
 			final Map<Integer, SkillLearn> skillTree = new LinkedHashMap<>();
+			
 			// Add all skills that belong to all classes.
 			skillTree.putAll(_commonSkillTree);
 			
@@ -387,6 +390,7 @@ public class SkillTreeData implements IXmlReader
 		{
 			return getTransferSkillTree(classId.getParent());
 		}
+		
 		return _transferSkillTrees.get(classId);
 	}
 	
@@ -465,6 +469,7 @@ public class SkillTreeData implements IXmlReader
 		{
 			tree.put(e.getKey(), st.getSkill(e.getValue().getSkillId(), e.getValue().getSkillLevel()));
 		}
+		
 		return tree;
 	}
 	
@@ -480,6 +485,7 @@ public class SkillTreeData implements IXmlReader
 		{
 			tree.put(e.getKey(), st.getSkill(e.getValue().getSkillId(), e.getValue().getSkillLevel()));
 		}
+		
 		return tree;
 	}
 	
@@ -495,6 +501,7 @@ public class SkillTreeData implements IXmlReader
 		{
 			tree.put(e.getKey(), st.getSkill(e.getValue().getSkillId(), e.getValue().getSkillLevel()));
 		}
+		
 		return tree;
 	}
 	
@@ -510,6 +517,7 @@ public class SkillTreeData implements IXmlReader
 		{
 			tree.put(e.getKey(), st.getSkill(e.getValue().getSkillId(), e.getValue().getSkillLevel()));
 		}
+		
 		return tree;
 	}
 	
@@ -578,6 +586,7 @@ public class SkillTreeData implements IXmlReader
 				result.add(skill);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -661,6 +670,7 @@ public class SkillTreeData implements IXmlReader
 				}
 			}
 		}
+		
 		return result;
 	}
 	
@@ -697,6 +707,7 @@ public class SkillTreeData implements IXmlReader
 				}
 			}
 		}
+		
 		return result;
 	}
 	
@@ -723,6 +734,7 @@ public class SkillTreeData implements IXmlReader
 				result.add(skill);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -735,6 +747,7 @@ public class SkillTreeData implements IXmlReader
 	{
 		final List<SkillLearn> result = new LinkedList<>();
 		PlayerClass classId = player.getPlayerClass();
+		
 		// If new classes are implemented over 3rd class, a different way should be implemented.
 		if (classId.level() == 3)
 		{
@@ -754,6 +767,7 @@ public class SkillTreeData implements IXmlReader
 				result.add(skill);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -784,6 +798,7 @@ public class SkillTreeData implements IXmlReader
 				}
 			}
 		}
+		
 		return result;
 	}
 	
@@ -813,6 +828,7 @@ public class SkillTreeData implements IXmlReader
 				}
 			}
 		}
+		
 		return result;
 	}
 	
@@ -851,6 +867,7 @@ public class SkillTreeData implements IXmlReader
 				}
 			}
 		}
+		
 		return result;
 	}
 	
@@ -869,6 +886,7 @@ public class SkillTreeData implements IXmlReader
 				result.add(skill);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -906,6 +924,7 @@ public class SkillTreeData implements IXmlReader
 				}
 			}
 		}
+		
 		return result;
 	}
 	
@@ -924,6 +943,7 @@ public class SkillTreeData implements IXmlReader
 				result.add(skill);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -981,6 +1001,7 @@ public class SkillTreeData implements IXmlReader
 				break;
 			}
 		}
+		
 		return sl;
 	}
 	
@@ -1057,6 +1078,7 @@ public class SkillTreeData implements IXmlReader
 				return _transferSkillTrees.get(parentId).get(SkillData.getSkillHashCode(id, lvl));
 			}
 		}
+		
 		return null;
 	}
 	
@@ -1116,6 +1138,7 @@ public class SkillTreeData implements IXmlReader
 				}
 			}
 		}
+		
 		return minLevel;
 	}
 	
@@ -1139,6 +1162,7 @@ public class SkillTreeData implements IXmlReader
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -1208,6 +1232,7 @@ public class SkillTreeData implements IXmlReader
 			{
 				skillHashes[index++] = skillHash;
 			}
+			
 			skillLearnMap.clear();
 			Arrays.sort(skillHashes);
 			_skillsByClassIdHashCodes.put(classId.getId(), skillHashes);
@@ -1240,6 +1265,7 @@ public class SkillTreeData implements IXmlReader
 			{
 				skillHashes[index++] = skillHash;
 			}
+			
 			Arrays.sort(skillHashes);
 			_skillsByRaceHashCodes.put(race.ordinal(), skillHashes);
 			skillHashList.clear();
@@ -1281,6 +1307,7 @@ public class SkillTreeData implements IXmlReader
 		{
 			_allSkillsHashCodes[hashIndex++] = skillHash;
 		}
+		
 		Arrays.sort(_allSkillsHashCodes);
 	}
 	

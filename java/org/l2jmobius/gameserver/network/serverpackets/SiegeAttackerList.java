@@ -87,6 +87,7 @@ public class SiegeAttackerList extends ServerPacket
 					{
 						continue;
 					}
+					
 					buffer.writeInt(clan.getId());
 					buffer.writeString(clan.getName());
 					buffer.writeString(clan.getLeaderName());
@@ -123,6 +124,7 @@ public class SiegeAttackerList extends ServerPacket
 					{
 						continue;
 					}
+					
 					buffer.writeInt(clan.getId());
 					buffer.writeString(clan.getName());
 					buffer.writeString(clan.getLeaderName());

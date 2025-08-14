@@ -36,11 +36,14 @@ public class Q00306_CrystalOfFireAndIce extends Quest
 {
 	// NPC
 	private static final int KATERINA = 30004;
+	
 	// Items
 	private static final int FLAME_SHARD = 1020;
 	private static final int ICE_SHARD = 1021;
+	
 	// Misc
 	private static final int MIN_LEVEL = 17;
+	
 	// Monsters
 	private static final int UNDINE_NOBLE = 20115;
 	private static final Map<Integer, ItemHolder> MONSTER_DROPS = new HashMap<>();
@@ -71,6 +74,7 @@ public class Q00306_CrystalOfFireAndIce extends Quest
 		{
 			return null;
 		}
+		
 		String htmltext = null;
 		switch (event)
 		{
@@ -95,6 +99,7 @@ public class Q00306_CrystalOfFireAndIce extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -149,6 +154,7 @@ public class Q00306_CrystalOfFireAndIce extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

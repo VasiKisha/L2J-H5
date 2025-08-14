@@ -30,9 +30,11 @@ public class Rignos extends AbstractNpcAI
 {
 	// NPC
 	private static final int RIGNOS = 32349; // Rignos
+	
 	// Item
 	private static final int STAMP = 10013; // Race Stamp
 	private static final int KEY = 9694; // Secret Key
+	
 	// Skill
 	private static final SkillHolder TIMER = new SkillHolder(5239, 5); // Event Timer
 	// Misc
@@ -88,6 +90,7 @@ public class Rignos extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -99,6 +102,7 @@ public class Rignos extends AbstractNpcAI
 		{
 			htmltext = "32349-01.html";
 		}
+		
 		return htmltext;
 	}
 	

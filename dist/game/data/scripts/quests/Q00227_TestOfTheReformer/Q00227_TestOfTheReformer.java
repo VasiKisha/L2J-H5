@@ -49,6 +49,7 @@ public class Q00227_TestOfTheReformer extends Quest
 	private static final int KAKAN = 30669;
 	private static final int NYAKURI = 30670;
 	private static final int OL_MAHUM_PILGRIM = 30732;
+	
 	// Items
 	private static final int BOOK_OF_REFORM = 2822;
 	private static final int LETTER_OF_INTRODUCTION = 2823;
@@ -70,15 +71,18 @@ public class Q00227_TestOfTheReformer extends Quest
 	private static final int KAKANS_LETTER = 3037;
 	private static final int LETTER_GREETINGS1 = 5567;
 	private static final int LETTER_GREETINGS2 = 5568;
+	
 	// Rewards
 	private static final int MARK_OF_REFORMER = 2821;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monsters
 	private static final int MISERY_SKELETON = 20022;
 	private static final int SKELETON_ARCHER = 20100;
 	private static final int SKELETON_MARKSMAN = 20102;
 	private static final int SKELETON_LORD = 20104;
 	private static final int SILENT_HORROR = 20404;
+	
 	// Quest Monsters
 	private static final int NAMELESS_REVENANT = 27099;
 	private static final int ARURAUNE = 27128;
@@ -86,6 +90,7 @@ public class Q00227_TestOfTheReformer extends Quest
 	private static final int OL_MAHUM_BETRAYER = 27130;
 	private static final int CRIMSON_WEREWOLF = 27131;
 	private static final int KRUDEL_LIZARDMAN = 27132;
+	
 	// Skills
 	private static final int DISRUPT_UNDEAD = 1031;
 	private static final int SLEEP = 1069;
@@ -97,8 +102,10 @@ public class Q00227_TestOfTheReformer extends Quest
 	private static final int DRYAD_ROOT = 1201;
 	private static final int WIND_SHACKLE = 1206;
 	private static final List<Integer> SKILLS = Arrays.asList(DISRUPT_UNDEAD, SLEEP, VAMPIRIC_TOUCH, CURSE_WEAKNESS, CURSE_POISON, WIND_STRIKE, ICE_BOLD, DRYAD_ROOT, WIND_SHACKLE);
+	
 	// Location
 	private static final Location MOVE_TO = new Location(36787, -3709, 10000);
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	
@@ -127,6 +134,7 @@ public class Q00227_TestOfTheReformer extends Quest
 			{
 				npc.deleteMe();
 			}
+			
 			return super.onEvent(event, npc, player);
 		}
 		
@@ -201,6 +209,7 @@ public class Q00227_TestOfTheReformer extends Quest
 					wolf.asAttackable().addDamageHate(pilgrim, 99999, 99999);
 					wolf.getAI().setIntention(Intention.ATTACK, pilgrim);
 				}
+				
 				htmltext = event;
 				break;
 			}
@@ -214,10 +223,12 @@ public class Q00227_TestOfTheReformer extends Quest
 					lizard.asAttackable().addDamageHate(pilgrim, 99999, 99999);
 					lizard.getAI().setIntention(Intention.ATTACK, pilgrim);
 				}
+				
 				htmltext = event;
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -251,6 +262,7 @@ public class Q00227_TestOfTheReformer extends Quest
 						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.COWARDLY_GUY));
 						npc.deleteMe();
 					}
+					
 					if (attacker.isPlayer())
 					{
 						npc.setScriptValue(attacker.getObjectId());
@@ -566,6 +578,7 @@ public class Q00227_TestOfTheReformer extends Quest
 							inspector.asAttackable().addDamageHate(pilgrim, 99999, 99999);
 							inspector.getAI().setIntention(Intention.ATTACK, pilgrim);
 						}
+						
 						htmltext = "30668-01.html";
 					}
 					else if ((memoState == 7) || (memoState == 8))
@@ -574,11 +587,13 @@ public class Q00227_TestOfTheReformer extends Quest
 						{
 							qs.setMemoState(8);
 						}
+						
 						qs.setCond(8, true);
 						if (npc.getSummonedNpcCount() < 3)
 						{
 							addSpawn(OL_MAHUM_BETRAYER, -4106, 40174, -3660, 0, false, 0);
 						}
+						
 						htmltext = "30668-02.html";
 					}
 					else if (memoState == 9)
@@ -661,6 +676,7 @@ public class Q00227_TestOfTheReformer extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 	

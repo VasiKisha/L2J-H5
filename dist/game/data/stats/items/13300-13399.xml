@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="13300" type="EtcItem" name="Feather of Blessing (Event)">
 		<!-- Dimensional item. You can resurrect right away at the spot where you get killed if you have the Feather of Blessing. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. Can be shared between characters within the account through Dimensional Merchant. -->
@@ -54,9 +54,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13304" type="EtcItem" name="Fairy Princess Hunting Helper Necklace (Event)">
 		<!-- Dimensional item. Item that allows you to summon a hunting helper who temporarily casts magician-type battle support magic. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -72,9 +72,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13305" type="EtcItem" name="Wild Beast Fighter Hunting Helper Necklace (Event)">
 		<!-- Dimensional item. Item that allows you to summon a warrior-type battle hunting helper. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -90,9 +90,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13306" type="EtcItem" name="Fox Shaman Hunting Helper Necklace (Event)">
 		<!-- Dimensional item. Item that allows you to summon a magician-type battle hunting helper. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -108,9 +108,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13307" type="EtcItem" name="Color Name (Event)">
 		<!-- Dimensional item. Item that allows you to change a character's name color. You can change back to the original name color by using the "/resetname" command after changing the name color. If there is no original name, the name will disappear. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. Can be shared between characters within the account through Dimensional Merchant. -->
@@ -301,12 +301,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13320" type="Weapon" name="X Stick (Event) - 30-day limited period">
 		<!-- Dimensional item. X Stick. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -324,12 +324,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13321" type="Weapon" name="Scissors Stick (Event) - 30-day limited period">
 		<!-- Dimensional item. Scissor stick. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -347,12 +347,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13322" type="Weapon" name="Rock-type Stick (Event) - 30-day limited period">
 		<!-- Dimensional item. Rock stick. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -370,12 +370,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13323" type="Weapon" name="Paper-type Stick (Event) - 30-day limited period">
 		<!-- Dimensional item. Paper stick. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -393,12 +393,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13324" type="Weapon" name="Pumpkin Transformation Stick (Event) - 30-day limited period">
 		<!-- Dimensional item. Transformation stick that turns you into a pumpkin. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -418,12 +418,12 @@
 		<set name="unequip_skill" val="839-1" />
 		<set name="item_skill" val="8246-1" /> <!-- Transform Pumpkin Ghost -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13325" type="Armor" name="Kat the Cat Hat (Event) - 7-day limited period">
 		<!-- Dimensional item. Hat that looks like Kat the Cat. Can be used for 7 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -567,12 +567,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13335" type="Weapon" name="X Stick (Event) - 7-day limited period">
 		<!-- Dimensional item. X Stick. Can be used for 7 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -590,12 +590,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13336" type="Weapon" name="Scissors Stick (Event) - 7-day limited period">
 		<!-- Dimensional item. Scissor stick. Can be used for 7 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -613,12 +613,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13337" type="Weapon" name="Rock-type Stick (Event) - 7-day limited period">
 		<!-- Dimensional item. Rock stick. Can be used for 7 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -636,12 +636,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13338" type="Weapon" name="Paper-type Stick (Event) - 7-day limited period">
 		<!-- Dimensional item. Paper stick. Can be used for 7 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -659,12 +659,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13339" type="Weapon" name="Pumpkin Transformation Stick (Event) - 7-day limited period">
 		<!-- Dimensional item. Pumpkin transformation stick. Can be used for 7 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -684,12 +684,12 @@
 		<set name="unequip_skill" val="839-1" />
 		<set name="item_skill" val="8246-1" /> <!-- Transform Pumpkin Ghost -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13340" type="Armor" name="Agathion of Love (Event) - 7-day limited period">
 		<!-- Dimensional item. Seal bracelet that can summon an Agathion of Love. Can be used for 7 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1442,10 +1442,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="23" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13390" type="Armor" name="Kratei Mithril Shirt - CP">
 		<!-- Increases Max CP by 672 when over-enchanted to 4 or more. Cannot be exchanged or dropped. -->
@@ -1461,10 +1461,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="28" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13391" type="Armor" name="Kratei Striped Barbed Shirt - CP">
 		<!-- Increases Max CP by 564 when over-enchanted to 4 or more. Cannot be exchanged or dropped. -->
@@ -1480,10 +1480,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="26" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13392" type="Armor" name="Kratei Striped Mithril Shirt - CP">
 		<!-- Increases Max CP by 744 when over-enchanted to 4 or more. Cannot be exchanged or dropped. -->
@@ -1499,10 +1499,10 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="30" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13393" type="Armor" name="Shadow Item - Monkey Hat">
 		<!-- A cute Monkey Hat. Uses 2 hair accessory slots. Cannot be exchanged or dropped. -->
@@ -1542,9 +1542,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2609-1" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13396" type="EtcItem" name="Scroll of Escape: Elven Village">
 		<!-- Teleports you to the Elven Village. Cannot be sold, exchanged or dropped. -->
@@ -1558,9 +1558,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2609-2" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13397" type="EtcItem" name="Scroll of Escape: Dark Elven Village">
 		<!-- Teleports you to the Dark Elven Village. Cannot be sold, exchanged or dropped. -->
@@ -1574,9 +1574,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2609-3" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13398" type="EtcItem" name="Scroll of Escape: Orc Village">
 		<!-- Teleports you to the Orc Village. Cannot be sold, exchanged or dropped. -->
@@ -1590,9 +1590,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2609-4" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13399" type="EtcItem" name="Scroll of Escape: Dwarven Village">
 		<!-- Magic scroll that moves you to Dwarven Village. No selling to stores, exchange, or drop available for this item. -->
@@ -1606,8 +1606,8 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2609-5" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 </list>

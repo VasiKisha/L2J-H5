@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="100" type="Weapon" name="Voodoo Doll">
 		<set name="icon" val="icon.weapon_voodoo_doll_i00" />
@@ -15,12 +15,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="25" />
 			<set stat="mAtk" val="28" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="101" type="Weapon" name="Scroll of Wisdom">
 		<set name="icon" val="icon.weapon_scroll_of_wisdom_i00" />
@@ -40,14 +40,14 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="32" />
 			<set stat="mAtk" val="35" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="102" type="Armor" name="Round Shield">
 		<set name="icon" val="icon.shield_round_shield_i00" />
@@ -57,15 +57,15 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="1390" />
 		<set name="price" val="5470" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="79" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="103" type="Armor" name="Tower Shield">
 		<set name="icon" val="icon.shield_tower_shield_i00" />
@@ -78,15 +78,15 @@
 		<set name="weight" val="1240" />
 		<set name="price" val="198300" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="190" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="104" type="Armor" name="Shield of Victory">
 		<set name="icon" val="icon.shield_small_shield_i00" />
@@ -99,15 +99,15 @@
 		<set name="weight" val="6400" />
 		<set name="price" val="419000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="216" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="105" type="Armor" name="Implosion Shield">
 		<set name="icon" val="icon.shield_doom_shield_i00" />
@@ -120,15 +120,15 @@
 		<set name="weight" val="4800" />
 		<set name="price" val="419000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="216" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="106" type="Armor" name="Dark Dragon Shield">
 		<set name="icon" val="icon.shield_dark_dragon_shield_i00" />
@@ -141,15 +141,15 @@
 		<set name="weight" val="4800" />
 		<set name="price" val="649800" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="230" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="107" type="Armor" name="Composite Shield">
 		<set name="icon" val="icon.shield_composite_shield_i00" />
@@ -162,15 +162,15 @@
 		<set name="weight" val="1230" />
 		<set name="price" val="198300" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="190" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="108" type="Armor" name="Masterpiece Shield">
 		<set name="icon" val="icon.shield_masterpiece_shield_i00" />
@@ -183,15 +183,15 @@
 		<set name="weight" val="5600" />
 		<set name="price" val="649800" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="230" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="109" type="Armor" name="Shield of Solar Eclipse">
 		<set name="icon" val="icon.shield_shield_of_sola_eclipse_i00" />
@@ -204,15 +204,15 @@
 		<set name="weight" val="4800" />
 		<set name="price" val="419000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="216" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="110" type="Armor" name="Doom Shield">
 		<set name="icon" val="icon.shield_doom_shield_i00" />
@@ -225,15 +225,15 @@
 		<set name="weight" val="1200" />
 		<set name="price" val="649800" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="230" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="111" type="Armor" name="Shield of Pledge">
 		<set name="icon" val="icon.shield_shield_of_pledge_i00" />
@@ -246,15 +246,15 @@
 		<set name="weight" val="4800" />
 		<set name="price" val="419000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="216" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="112" type="Armor" name="Apprentice's Earring">
 		<set name="icon" val="icon.accessary_apprentices_earing_i00" />
@@ -264,9 +264,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="38" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="11" />
-		</for>
+		</stats>
 	</item>
 	<item id="113" type="Armor" name="Mystic's Earring">
 		<set name="icon" val="icon.accessary_mage_earing_i00" />
@@ -276,9 +276,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="620" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="13" />
-		</for>
+		</stats>
 	</item>
 	<item id="114" type="Armor" name="Earring of Strength">
 		<set name="icon" val="icon.accessary_earing_of_strength_i00" />
@@ -288,9 +288,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="2700" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="16" />
-		</for>
+		</stats>
 	</item>
 	<item id="115" type="Armor" name="Earring of Wisdom">
 		<set name="icon" val="icon.accessary_earing_of_wisdom_i00" />
@@ -300,9 +300,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="2700" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="16" />
-		</for>
+		</stats>
 	</item>
 	<item id="116" type="Armor" name="Magic Ring">
 		<set name="icon" val="icon.accessary_magic_ring_i00" />
@@ -312,9 +312,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="25" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="7" />
-		</for>
+		</stats>
 	</item>
 	<item id="117" type="Armor" name="Ring of Mana">
 		<set name="icon" val="icon.accessary_ring_of_mana_i00" />
@@ -327,10 +327,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="310600" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="34" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="118" type="Armor" name="Necklace of Magic">
 		<set name="icon" val="icon.accessary_necklace_of_magic_i00" />
@@ -340,9 +340,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="51" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="15" />
-		</for>
+		</stats>
 	</item>
 	<item id="119" type="Armor" name="Necklace of Seal">
 		<set name="icon" val="icon.accessary_necklace_of_binding_i00" />
@@ -355,10 +355,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="434400" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="64" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="120" type="Weapon" name="Sword of Reflection">
 		<set name="icon" val="icon.weapon_sword_of_watershadow_i00" />
@@ -374,12 +374,12 @@
 		<set name="price" val="105000" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="121" type="Weapon" name="Sword of Watershadow">
 		<set name="icon" val="icon.weapon_sword_of_watershadow_i00" />
@@ -395,12 +395,12 @@
 		<set name="price" val="105000" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="122" type="Weapon" name="Handmade Sword">
 		<set name="icon" val="icon.weapon_handmade_sword_i00" />
@@ -416,12 +416,12 @@
 		<set name="price" val="41600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="17" />
 			<set stat="mAtk" val="12" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="123" type="Weapon" name="Saber">
 		<set name="icon" val="icon.weapon_saber_i00" />
@@ -441,14 +441,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="40" />
 			<set stat="mAtk" val="26" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="124" type="Weapon" name="Two-Handed Sword">
 		<set name="icon" val="icon.weapon_two_handed_sword_i00" />
@@ -468,14 +468,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="78" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="125" type="Weapon" name="Spinebone Sword">
 		<set name="icon" val="icon.weapon_spinebone_sword_i00" />
@@ -495,14 +495,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="51" />
 			<set stat="mAtk" val="32" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="126" type="Weapon" name="Artisan's Sword">
 		<set name="icon" val="icon.weapon_artisans_sword_i00" />
@@ -522,14 +522,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="51" />
 			<set stat="mAtk" val="32" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="127" type="Weapon" name="Crimson Sword">
 		<set name="icon" val="icon.weapon_crimson_sword_i00" />
@@ -549,14 +549,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="64" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="128" type="Weapon" name="Knight's Sword">
 		<set name="icon" val="icon.weapon_knights_sword_i00" />
@@ -576,14 +576,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="51" />
 			<set stat="mAtk" val="32" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="129" type="Weapon" name="Sword of Revolution">
 		<set name="icon" val="icon.weapon_sword_of_revolution_i00" />
@@ -603,14 +603,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="130" type="Weapon" name="Elven Sword">
 		<set name="icon" val="icon.weapon_elven_sword_i00" />
@@ -630,14 +630,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="64" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="131" type="Weapon" name="Spirit Sword">
 		<!-- Bestows one of the following functions: Critical Damage, Critical Poison or Haste -->
@@ -658,14 +658,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="132" type="Weapon" name="Sword of Limit">
 		<!-- Bestows one of the following functions: Guidance, Critical Drain, or Health. -->
@@ -686,14 +686,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="133" type="Weapon" name="Raid Sword">
 		<!-- Bestows one of the following functions: Focus, Critical Drain or Critical Poison -->
@@ -714,14 +714,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="134" type="Weapon" name="Sword of Nightmare">
 		<!-- Bestows one of the following functions: Health, Focus, or Light. -->
@@ -742,14 +742,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="135" type="Weapon" name="Samurai Longsword">
 		<!-- Bestows one of the following functions: Focus, Critical Damage or Haste. -->
@@ -770,14 +770,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="156" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="136" type="EtcItem" name="(Not In Use)">
 		<!-- Dimensional item pack. A wrapped pack containing a Sudden Agathion Bracelet (30 days). Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -888,14 +888,14 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="175" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="143" type="Weapon" name="Sword of Mystic">
 		<set name="icon" val="icon.weapon_sword_of_mystic_i00" />
@@ -915,14 +915,14 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="43" />
 			<set stat="mAtk" val="45" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="144" type="Weapon" name="Sword of Occult">
 		<set name="icon" val="icon.weapon_sword_of_occult_i00" />
@@ -942,14 +942,14 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="43" />
 			<set stat="mAtk" val="45" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="145" type="Weapon" name="Sword of Whispering Death">
 		<!-- Bestows one of the following functions: Empower, M. Atk. or Magic Silence. -->
@@ -970,14 +970,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="101" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="146" type="Weapon" name="Ghoulbane">
 		<set name="icon" val="icon.weapon_falchion_i00" />
@@ -997,14 +997,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="140" />
 			<set stat="mAtk" val="122" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="147" type="Weapon" name="Tear of Darkness">
 		<set name="icon" val="icon.weapon_shamshir_i00" />
@@ -1024,14 +1024,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="170" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="148" type="Weapon" name="Sword of Valhalla">
 		<!-- Bestows one of the following functions: Acumen, Magic Weakness or Magic Regeneration. -->
@@ -1052,14 +1052,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="140" />
 			<set stat="mAtk" val="122" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="149" type="Weapon" name="Sword of Life">
 		<set name="icon" val="icon.weapon_needle_wolverine_i00" />
@@ -1079,14 +1079,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="170" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="150" type="Weapon" name="Elemental Sword">
 		<!-- Bestows one of the following functions: M. Atk., Magic Paralyze or Empower. -->
@@ -1107,14 +1107,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="170" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="151" type="Weapon" name="Sword of Miracles">
 		<!-- Bestows one of the following functions: M. Atk., Magic Silence or Acumen. -->
@@ -1135,14 +1135,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="186" />
 			<set stat="mAtk" val="152" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="152" type="Weapon" name="Heavy Chisel">
 		<set name="icon" val="icon.weapon_heavy_chisel_i00" />
@@ -1158,13 +1158,13 @@
 		<set name="price" val="6200" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="10" />
 			<set stat="mAtk" val="8" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="153" type="Weapon" name="Sigil">
 		<set name="icon" val="icon.weapon_sickle_i00" />
@@ -1180,13 +1180,13 @@
 		<set name="price" val="14200" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="12" />
 			<set stat="mAtk" val="9" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="154" type="Weapon" name="Dwarven Mace">
 		<set name="icon" val="icon.weapon_dwarven_mace_i00" />
@@ -1202,13 +1202,13 @@
 		<set name="price" val="41600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="17" />
 			<set stat="mAtk" val="12" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="155" type="Weapon" name="Flanged Mace">
 		<set name="icon" val="icon.weapon_buzdygan_i00" />
@@ -1224,13 +1224,13 @@
 		<set name="price" val="188000" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="156" type="Weapon" name="Hand Axe">
 		<set name="icon" val="icon.weapon_hand_axe_i00" />
@@ -1249,7 +1249,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="40" />
 			<set stat="mAtk" val="26" />
 			<set stat="critRate" val="4" />
@@ -1257,7 +1257,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="157" type="Weapon" name="Spiked Club">
 		<set name="icon" val="icon.weapon_spike_club_i00" />
@@ -1276,7 +1276,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="64" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="4" />
@@ -1284,7 +1284,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="158" type="Weapon" name="Tarbar">
 		<set name="icon" val="icon.weapon_tarbar_i00" />
@@ -1303,7 +1303,7 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
@@ -1311,7 +1311,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="159" type="Weapon" name="Bonebreaker">
 		<set name="icon" val="icon.weapon_bonebreaker_i00" />
@@ -1330,7 +1330,7 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="92" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="4" />
@@ -1338,7 +1338,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="160" type="Weapon" name="Battle Axe">
 		<!-- Bestows one of the following functions: Anger, Rsk. Focus or Haste. -->
@@ -1358,7 +1358,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
@@ -1366,7 +1366,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="161" type="Weapon" name="Silver Axe">
 		<!-- Bestows one of the following functions: Anger, Rsk. Focus or Haste. -->
@@ -1386,7 +1386,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
@@ -1394,7 +1394,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="162" type="Weapon" name="War Axe">
 		<!-- Bestows one of the following functions: Anger, Health or Haste. -->
@@ -1414,7 +1414,7 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="4" />
@@ -1422,7 +1422,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="163" type="EtcItem" name="(Not In Use)">
 		<!-- Dimensional item pack. A wrapped pack containing a Sobbing Agathion Bracelet (30 days). Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1457,7 +1457,7 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
@@ -1465,7 +1465,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="165" type="Weapon" name="Yablonski's Hammer">
 		<set name="icon" val="icon.weapon_basalt_battlehammer_i00" />
@@ -1484,7 +1484,7 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1492,7 +1492,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="166" type="Weapon" name="Heavy Mace">
 		<set name="icon" val="icon.weapon_heavy_mace_i00" />
@@ -1511,7 +1511,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="40" />
 			<set stat="mAtk" val="26" />
 			<set stat="critRate" val="4" />
@@ -1519,7 +1519,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="167" type="Weapon" name="Scalpel">
 		<set name="icon" val="icon.weapon_scalpel_i00" />
@@ -1538,7 +1538,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="40" />
 			<set stat="mAtk" val="26" />
 			<set stat="critRate" val="4" />
@@ -1546,7 +1546,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="168" type="Weapon" name="Work Hammer">
 		<set name="icon" val="icon.weapon_work_hammer_i00" />
@@ -1565,7 +1565,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="40" />
 			<set stat="mAtk" val="26" />
 			<set stat="critRate" val="4" />
@@ -1573,7 +1573,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="169" type="Weapon" name="Skull Breaker">
 		<set name="icon" val="icon.weapon_skull_breaker_i00" />
@@ -1592,7 +1592,7 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
@@ -1600,7 +1600,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="170" type="EtcItem" name="Sudden Agathion 7-Day Pack (Event)">
 		<!-- Dimensional item pack. A wrapped pack containing a Sudden Agathion Bracelet (7 days). Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1635,7 +1635,7 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
@@ -1643,7 +1643,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="172" type="Weapon" name="Heavy Bone Club">
 		<set name="icon" val="icon.weapon_heavy_bone_club_i00" />
@@ -1662,7 +1662,7 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
@@ -1670,7 +1670,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="173" type="Weapon" name="Skull Graver">
 		<!-- Bestows one of the following functions: Anger, Health, or Rsk. Focus. -->
@@ -1690,7 +1690,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
@@ -1698,7 +1698,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="174" type="Weapon" name="Nirvana Axe">
 		<!-- Bestows one of the following functions: Magic Poison, M. Atk. or Magic Weakness. -->
@@ -1719,7 +1719,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="101" />
 			<set stat="critRate" val="4" />
@@ -1727,7 +1727,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="175" type="Weapon" name="Art of Battle Axe">
 		<!-- Bestows one of the following functions: Health, Rsk. Focus or Haste. -->
@@ -1747,7 +1747,7 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
@@ -1755,7 +1755,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="176" type="Weapon" name="Apprentice's Staff">
 		<set name="icon" val="icon.weapon_apprentices_staff_i00" />
@@ -1772,13 +1772,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="23" />
 			<set stat="mAtk" val="24" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="177" type="Weapon" name="Mage Staff">
 		<set name="icon" val="icon.weapon_apprentices_staff_i00" />
@@ -1795,13 +1795,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="30" />
 			<set stat="mAtk" val="31" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="178" type="Weapon" name="Bone Staff">
 		<set name="icon" val="icon.weapon_apprentices_staff_i00" />
@@ -1821,7 +1821,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="39" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="4" />
@@ -1829,7 +1829,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="179" type="Weapon" name="Mace of Prayer">
 		<set name="icon" val="icon.weapon_mace_of_prayer_i00" />
@@ -1849,7 +1849,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="41" />
 			<set stat="mAtk" val="43" />
 			<set stat="critRate" val="4" />
@@ -1857,7 +1857,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="180" type="Weapon" name="Mace of Judgment">
 		<set name="icon" val="icon.weapon_mace_of_judgment_i00" />
@@ -1877,7 +1877,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="41" />
 			<set stat="mAtk" val="43" />
 			<set stat="critRate" val="4" />
@@ -1885,7 +1885,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="181" type="Weapon" name="Mace of Miracle">
 		<set name="icon" val="icon.weapon_mace_of_miracle_i00" />
@@ -1905,7 +1905,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="41" />
 			<set stat="mAtk" val="43" />
 			<set stat="critRate" val="4" />
@@ -1913,7 +1913,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="182" type="Weapon" name="Doom Hammer">
 		<set name="icon" val="icon.weapon_doom_hammer_i00" />
@@ -1933,7 +1933,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="41" />
 			<set stat="mAtk" val="43" />
 			<set stat="critRate" val="4" />
@@ -1941,7 +1941,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="183" type="Weapon" name="Mystic Staff">
 		<set name="icon" val="icon.weapon_mystic_staff_i00" />
@@ -1961,7 +1961,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="50" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
@@ -1969,7 +1969,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="184" type="Weapon" name="Conjuror's Staff">
 		<set name="icon" val="icon.weapon_conjure_staff_i00" />
@@ -1989,7 +1989,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="50" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
@@ -1997,7 +1997,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="185" type="Weapon" name="Staff of Mana">
 		<set name="icon" val="icon.weapon_staff_of_mana_i00" />
@@ -2017,7 +2017,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="50" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
@@ -2025,7 +2025,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="186" type="Weapon" name="Staff of Magic">
 		<set name="icon" val="icon.weapon_staff_of_magicpower_i00" />
@@ -2045,7 +2045,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="62" />
 			<set stat="mAtk" val="57" />
 			<set stat="critRate" val="4" />
@@ -2053,7 +2053,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="187" type="Weapon" name="Atuba Hammer">
 		<set name="icon" val="icon.weapon_atuba_hammer_i00" />
@@ -2073,7 +2073,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="90" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
@@ -2081,7 +2081,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="188" type="Weapon" name="Ghost Staff">
 		<set name="icon" val="icon.weapon_ghost_staff_i00" />
@@ -2101,7 +2101,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="90" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
@@ -2109,7 +2109,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="189" type="Weapon" name="Staff of Life">
 		<set name="icon" val="icon.weapon_life_stick_i00" />
@@ -2129,7 +2129,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="74" />
 			<set stat="mAtk" val="72" />
 			<set stat="critRate" val="4" />
@@ -2137,7 +2137,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="190" type="Weapon" name="Atuba Mace">
 		<set name="icon" val="icon.weapon_atuba_mace_i00" />
@@ -2157,7 +2157,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="90" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
@@ -2165,7 +2165,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="191" type="Weapon" name="Heavy Doom Hammer">
 		<!-- Bestows one of the following functions: Regeneration, Mental Shield or Hold. -->
@@ -2186,7 +2186,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="103" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="4" />
@@ -2194,7 +2194,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="192" type="Weapon" name="Crystal Staff">
 		<!-- Bestows one of the following functions: Rsk. Evasion, Mana Up, or Blessed Body. -->
@@ -2215,7 +2215,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="103" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="4" />
@@ -2223,7 +2223,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="193" type="Weapon" name="Stick of Faith">
 		<!-- Bestows one of the following functions: Mana Up, Magic Hold or Mental Shield. -->
@@ -2244,7 +2244,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="85" />
 			<set stat="mAtk" val="81" />
 			<set stat="critRate" val="4" />
@@ -2252,7 +2252,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="194" type="Weapon" name="Heavy Doom Axe">
 		<!-- Bestows one of the following functions: Magic Poison, Magic Weakness, or Magic Chaos. -->
@@ -2273,7 +2273,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="103" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="4" />
@@ -2281,7 +2281,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="195" type="Weapon" name="Cursed Staff">
 		<!-- Bestows one of the following functions: Magic Hold, Magic Poison, or Magic Weakness. -->
@@ -2302,7 +2302,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="119" />
 			<set stat="mAtk" val="100" />
 			<set stat="critRate" val="4" />
@@ -2310,7 +2310,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="196" type="Weapon" name="Stick of Eternity">
 		<!-- Bestows one of the following functions: Empower, Rsk. Evasion, or Blessed Body. -->
@@ -2331,7 +2331,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="101" />
 			<set stat="critRate" val="4" />
@@ -2339,7 +2339,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="197" type="Weapon" name="Paradia Staff">
 		<!-- Bestows one of the following functions: Regeneration, Mental Shield or Hold. -->
@@ -2360,7 +2360,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="135" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
@@ -2368,7 +2368,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="198" type="Weapon" name="Inferno Staff">
 		<!-- Bestows one of the following functions: Magic Silence, Acumen or Magic Paralyze. -->
@@ -2389,7 +2389,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="135" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
@@ -2397,7 +2397,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="199" type="Weapon" name="Pa'agrian Hammer">
 		<!-- Bestows one of the following functions: Rsk. Evasion, Magic Poison, or Magic Weakness. -->
@@ -2418,7 +2418,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="135" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
@@ -2426,6 +2426,6 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 </list>

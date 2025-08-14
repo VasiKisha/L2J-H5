@@ -91,6 +91,7 @@ public class ExOlympiadUserInfo extends ServerPacket
 			buffer.writeString(_par.getName());
 			buffer.writeInt(_par.getBaseClass());
 		}
+		
 		buffer.writeInt(_curHp);
 		buffer.writeInt(_maxHp);
 		buffer.writeInt(_curCp);

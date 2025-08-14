@@ -53,7 +53,7 @@ public class AdminServerInfo implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_serverinfo"))
 		{
@@ -93,8 +93,10 @@ public class AdminServerInfo implements IAdminCommandHandler
 				html.replace("%colcount%", gcBean.getCollectionCount());
 				html.replace("%coltime%", gcBean.getCollectionTime());
 			}
+			
 			activeChar.sendPacket(html);
 		}
+		
 		return true;
 	}
 	
@@ -129,6 +131,7 @@ public class AdminServerInfo implements IAdminCommandHandler
 						offlineCount++;
 					}
 				}
+				
 				return offlineCount;
 			}
 			case "GM":
@@ -141,6 +144,7 @@ public class AdminServerInfo implements IAdminCommandHandler
 						onlineGMcount++;
 					}
 				}
+				
 				return onlineGMcount;
 			}
 			case "ALL_REAL":
@@ -153,14 +157,16 @@ public class AdminServerInfo implements IAdminCommandHandler
 						realPlayers.add(onlinePlayer.getIPAddress());
 					}
 				}
+				
 				return realPlayers.size();
 			}
 		}
+		
 		return 0;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

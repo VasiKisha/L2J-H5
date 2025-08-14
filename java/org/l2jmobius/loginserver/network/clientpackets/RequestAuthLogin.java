@@ -64,6 +64,7 @@ public class RequestAuthLogin extends LoginClientPacket
 			readBytes(_raw1);
 			return true;
 		}
+		
 		return false;
 	}
 	

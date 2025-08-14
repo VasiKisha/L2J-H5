@@ -38,13 +38,13 @@ public class InstanceZone implements IUserCommandHandler
 	};
 	
 	@Override
-	public int[] getUserCommandList()
+	public int[] getCommandList()
 	{
 		return COMMAND_IDS;
 	}
 	
 	@Override
-	public boolean useUserCommand(int id, Player player)
+	public boolean onCommand(int id, Player player)
 	{
 		if (id != COMMAND_IDS[0])
 		{
@@ -73,6 +73,7 @@ public class InstanceZone implements IUserCommandHandler
 						firstMessage = false;
 						player.sendPacket(SystemMessageId.INSTANCE_ZONE_TIME_LIMIT);
 					}
+					
 					final int hours = (int) (remainingTime / 3600);
 					final int minutes = (int) ((remainingTime % 3600) / 60);
 					final SystemMessage sm = new SystemMessage(SystemMessageId.S1_WILL_BE_AVAILABLE_FOR_RE_USE_AFTER_S2_HOUR_S_S3_MINUTE_S);
@@ -87,10 +88,12 @@ public class InstanceZone implements IUserCommandHandler
 				}
 			}
 		}
+		
 		if (firstMessage)
 		{
 			player.sendPacket(SystemMessageId.THERE_IS_NO_INSTANCE_ZONE_UNDER_A_TIME_LIMIT);
 		}
+		
 		return true;
 	}
 }

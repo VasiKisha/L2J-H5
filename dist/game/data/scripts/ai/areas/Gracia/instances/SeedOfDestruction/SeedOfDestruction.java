@@ -871,6 +871,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -883,8 +884,10 @@ public class SeedOfDestruction extends AbstractNpcAI
 			{
 				return 0;
 			}
+			
 			return 1;
 		}
+		
 		return 2;
 	}
 	
@@ -923,6 +926,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 					door.setIsAttackableDoor(true);
 				}
 			}
+			
 			LOGGER.info("Seed of Destruction started " + INSTANCE_ID + " Instance: " + instanceId + " created by player: " + player.getName());
 			
 			((SODWorld) world).ZoneWaitForTP = true;
@@ -938,6 +942,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				{
 					removeBuffs(player);
 				}
+				
 				world.addAllowed(player);
 			}
 			else if (party.getCommandChannel() != null)
@@ -951,6 +956,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 					{
 						removeBuffs(channelMember);
 					}
+					
 					world.addAllowed(channelMember);
 				}
 			}
@@ -965,9 +971,11 @@ public class SeedOfDestruction extends AbstractNpcAI
 					{
 						removeBuffs(partyMember);
 					}
+					
 					world.addAllowed(partyMember);
 				}
 			}
+			
 			return instanceId;
 		}
 	}
@@ -1011,6 +1019,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 		{
 			world.npcList.put(mob, true);
 		}
+		
 		for (boolean isDead : world.npcList.values())
 		{
 			if (!isDead)
@@ -1018,6 +1027,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -1042,6 +1052,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				{
 					world.openDoor(i);
 				}
+				
 				spawn(world, SQUARE_SPAWNS_STATIC, false, true);
 				spawn(world, SQUARE_SPAWNS_MAIN, true, false);
 				break;
@@ -1059,6 +1070,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				{
 					world.openDoor(i);
 				}
+				
 				spawn(world, CORRIDOR_SPAWNS_UPPER, false, true);
 				spawn(world, CORRIDOR_SPAWNS_GROUND, false, false);
 				world.killedDevice = 0;
@@ -1097,6 +1109,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		world.incStatus();
 	}
 	
@@ -1116,12 +1129,14 @@ public class SeedOfDestruction extends AbstractNpcAI
 			{
 				world.npcList.put(npc, false);
 			}
+			
 			npc.setImmobilized(TIAT == mob[0] ? true : isImmobilized);
 			npc.setRandomWalking(false);
 			if (npc.isAttackable())
 			{
 				npc.asAttackable().setSeeThroughSilentMove(true);
 			}
+			
 			if (mob[0] == SPAWN_DEVICE)
 			{
 				npc.disableCoreAI(true);
@@ -1135,11 +1150,13 @@ public class SeedOfDestruction extends AbstractNpcAI
 		final Calendar reenter = Calendar.getInstance();
 		reenter.set(Calendar.MINUTE, RESET_MIN);
 		reenter.set(Calendar.HOUR_OF_DAY, RESET_HOUR);
+		
 		// if time is >= RESET_HOUR - roll to the next day
 		if (reenter.getTimeInMillis() <= System.currentTimeMillis())
 		{
 			reenter.add(Calendar.DAY_OF_MONTH, 1);
 		}
+		
 		if (reenter.get(Calendar.DAY_OF_WEEK) <= RESET_DAY_1)
 		{
 			while (reenter.get(Calendar.DAY_OF_WEEK) != RESET_DAY_1)
@@ -1240,6 +1257,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 						final Npc npc2 = addSpawn(22541, TWOTR[i][0], TWOTR[i][1], TWOTR[i][2], 16285, false, 0, false, world.getInstanceId());
 						npc2.setRandomWalking(false);
 					}
+					
 					for (int i = 0; i < 6; i++)
 					{
 						final Npc npc3 = addSpawn(FRETR[i][0], FRETR[i][1], FRETR[i][2], FRETR[i][3], 16285, false, 0, false, world.getInstanceId());
@@ -1251,6 +1269,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 						final Npc npc5 = addSpawn(22537, FIVETR[i][0], FIVETR[i][1], FIVETR[i][2], 16285, false, 0, false, world.getInstanceId());
 						npc5.setRandomWalking(false);
 					}
+					
 					spawn(world, FORT_PORTALS, false, true);
 					break;
 				}
@@ -1278,6 +1297,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return "";
 	}
 	
@@ -1338,6 +1358,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 					{
 						mob.deleteMe();
 					}
+					
 					final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
 					inst.setDuration(EXIT_TIME * 60000);
 					inst.setEmptyDestroyTime(0);
@@ -1374,6 +1395,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 		{
 			qs = newQuestState(player);
 		}
+		
 		if (npcId == ALENOS)
 		{
 			if (SoDManager.getInstance().getSoDState() == 1)
@@ -1408,6 +1430,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				teleportplayer(player, tele, world);
 			}
 		}
+		
 		return "";
 	}
 	
@@ -1429,18 +1452,22 @@ public class SeedOfDestruction extends AbstractNpcAI
 				{
 					return "32601-1.htm";
 				}
+				
 				if ((world.getStatus() > 2) && (world.getStatus() < 9))
 				{
 					return "32601-2.htm";
 				}
+				
 				if (world.getStatus() == 9)
 				{
 					return "32601-3.htm";
 				}
 			}
+			
 			npc.showChatWindow(player);
 			return null;
 		}
+		
 		return "";
 	}
 	

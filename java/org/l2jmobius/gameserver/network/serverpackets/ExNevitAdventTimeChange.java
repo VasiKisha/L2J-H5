@@ -38,8 +38,10 @@ public class ExNevitAdventTimeChange extends ServerPacket
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.EX_NAVIT_ADVENT_TIME_CHANGE.writeId(this, buffer);
+		
 		// state 0 - pause 1 - started
 		buffer.writeByte(!_paused);
+		
 		// left time in ms max is 16000 its 4m and state is automatically changed to quit
 		buffer.writeInt(_time);
 	}

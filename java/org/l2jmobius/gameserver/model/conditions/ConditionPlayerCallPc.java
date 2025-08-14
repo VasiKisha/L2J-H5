@@ -72,6 +72,7 @@ public class ConditionPlayerCallPc extends Condition
 			player.sendPacket(SystemMessageId.YOUR_TARGET_IS_IN_AN_AREA_WHICH_BLOCKS_SUMMONING);
 			canCallPlayer = false;
 		}
+		
 		return _value == canCallPlayer;
 	}
 }

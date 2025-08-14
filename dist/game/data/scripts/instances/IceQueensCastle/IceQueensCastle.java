@@ -48,12 +48,15 @@ public class IceQueensCastle extends AbstractInstance
 	private static final int MERCENARY_ARCHER = 18926;
 	private static final int ARCHERY_KNIGHT = 22767;
 	private static final int JINIA = 32781;
+	
 	// Locations
 	private static final Location START_LOC = new Location(114000, -112357, -11200, 0, 0);
 	private static final Location EXIT_LOC = new Location(113883, -108777, -848, 0, 0);
 	private static final Location FREYA_LOC = new Location(114730, -114805, -11200, 50, 0);
+	
 	// Skill
 	private static final SkillHolder ETHERNAL_BLIZZARD = new SkillHolder(6276, 1);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 137;
 	private static final int ICE_QUEEN_DOOR = 23140101;
@@ -128,6 +131,7 @@ public class IceQueensCastle extends AbstractInstance
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -188,6 +192,7 @@ public class IceQueensCastle extends AbstractInstance
 			world.setParameter("player", player);
 			world.openDoor(ICE_QUEEN_DOOR);
 		}
+		
 		teleportPlayer(player, START_LOC, world.getInstanceId(), false);
 	}
 	
@@ -199,6 +204,7 @@ public class IceQueensCastle extends AbstractInstance
 			player.sendPacket(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY);
 			return false;
 		}
+		
 		return true;
 	}
 	

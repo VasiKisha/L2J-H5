@@ -49,6 +49,7 @@ public abstract class AbstractPlayerGroup
 			ids.add(m.getObjectId());
 			return true;
 		});
+		
 		return ids;
 	}
 	
@@ -73,6 +74,7 @@ public abstract class AbstractPlayerGroup
 		{
 			return 0;
 		}
+		
 		return leader.getObjectId();
 	}
 	
@@ -122,6 +124,7 @@ public abstract class AbstractPlayerGroup
 			{
 				m.sendPacket(packet);
 			}
+			
 			return true;
 		});
 	}
@@ -152,6 +155,7 @@ public abstract class AbstractPlayerGroup
 			{
 				m.sendPacket(msg);
 			}
+			
 			return true;
 		});
 	}
@@ -189,6 +193,7 @@ public abstract class AbstractPlayerGroup
 				return false;
 			}
 		}
+		
 		return true;
 	}
 }

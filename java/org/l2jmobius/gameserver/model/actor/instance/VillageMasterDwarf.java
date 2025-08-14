@@ -42,6 +42,7 @@ public class VillageMasterDwarf extends VillageMaster
 		{
 			return false;
 		}
+		
 		return pClass.getRace() == Race.DWARF;
 	}
 }

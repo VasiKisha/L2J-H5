@@ -236,6 +236,7 @@ public class ItemAuction
 				ps.setLong(3, bid.getLastBid());
 				ps.setLong(4, bid.getLastBid());
 			}
+			
 			ps.execute();
 		}
 		catch (SQLException e)
@@ -477,6 +478,7 @@ public class ItemAuction
 			
 			player.sendPacket(SystemMessageId.YOU_HAVE_CANCELED_YOUR_BID);
 		}
+		
 		return true;
 	}
 	
@@ -495,6 +497,7 @@ public class ItemAuction
 				{
 					continue;
 				}
+				
 				updatePlayerBid(bid, true);
 			}
 		}
@@ -506,6 +509,7 @@ public class ItemAuction
 		{
 			return true;
 		}
+		
 		player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA_FOR_THIS_BID);
 		return false;
 	}
@@ -542,6 +546,7 @@ public class ItemAuction
 				return i;
 			}
 		}
+		
 		return -1;
 	}
 }

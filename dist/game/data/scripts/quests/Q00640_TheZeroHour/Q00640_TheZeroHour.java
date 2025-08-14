@@ -16,7 +16,6 @@
  */
 package quests.Q00640_TheZeroHour;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -52,8 +51,10 @@ public class Q00640_TheZeroHour extends Quest
 		22631, // Spike Stakato Nurse
 		22633 // Spiked Stakato Shaman
 	};
+	
 	// Item
 	private static final int FANG_OF_STAKATO = 8085;
+	
 	// Misc
 	private static final int MIN_LEVEL = 66;
 	
@@ -220,6 +221,7 @@ public class Q00640_TheZeroHour extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -267,6 +269,7 @@ public class Q00640_TheZeroHour extends Quest
 				break;
 			}
 		}
+		
 		return htmlText;
 	}
 	
@@ -284,7 +287,7 @@ public class Q00640_TheZeroHour extends Quest
 			return;
 		}
 		
-		giveItems(partyMember, FANG_OF_STAKATO, (long) Config.RATE_QUEST_DROP);
+		giveItems(partyMember, FANG_OF_STAKATO, 1);
 		playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 	}
 }

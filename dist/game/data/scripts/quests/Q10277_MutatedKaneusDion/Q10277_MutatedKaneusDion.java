@@ -42,6 +42,7 @@ public class Q10277_MutatedKaneusDion extends Quest
 	private static final int MIRIEN = 30461;
 	private static final int CRIMSON_HATU = 18558;
 	private static final int SEER_FLOUROS = 18559;
+	
 	// Items
 	private static final int TISSUE_CH = 13832;
 	private static final int TISSUE_SF = 13833;
@@ -78,6 +79,7 @@ public class Q10277_MutatedKaneusDion extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -165,6 +167,7 @@ public class Q10277_MutatedKaneusDion extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

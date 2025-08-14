@@ -70,16 +70,19 @@ public class RequestBlock extends ClientPacket
 					player.sendPacket(SystemMessageId.YOU_HAVE_FAILED_TO_REGISTER_THE_USER_TO_YOUR_IGNORE_LIST);
 					return;
 				}
+				
 				if (targetAL > 0)
 				{
 					// Cannot block a GM character.
 					player.sendPacket(SystemMessageId.YOU_MAY_NOT_IMPOSE_A_BLOCK_ON_A_GM);
 					return;
 				}
+				
 				if (player.getObjectId() == targetId)
 				{
 					return;
 				}
+				
 				if (_type == BLOCK)
 				{
 					BlockList.addToBlockList(player, targetId);

@@ -29,6 +29,7 @@ public class Rafforty extends AbstractNpcAI
 {
 	// NPC
 	private static final int RAFFORTY = 32020;
+	
 	// Items
 	private static final int NECKLACE = 16025;
 	private static final int BLESSED_NECKLACE = 16026;
@@ -62,12 +63,14 @@ public class Rafforty extends AbstractNpcAI
 				{
 					return "32020-08.html";
 				}
+				
 				takeItems(player, NECKLACE, 1);
 				takeItems(player, BOTTLE, 1);
 				giveItems(player, BLESSED_NECKLACE, 1);
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

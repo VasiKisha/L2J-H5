@@ -185,6 +185,7 @@ public class SchemeBuffer extends Npc
 					player.sendMessage("Scheme's name must contain up to 14 chars.");
 					return;
 				}
+				
 				// Simple hack to use spaces, dots, commas, minus, plus, exclamations or question marks.
 				if (!StringUtil.isAlphaNumeric(schemeName.replace(" ", "").replace(".", "").replace(",", "").replace("-", "").replace("+", "").replace("!", "").replace("?", "")))
 				{
@@ -231,6 +232,7 @@ public class SchemeBuffer extends Npc
 			{
 				player.sendMessage("This scheme name is invalid.");
 			}
+			
 			showGiveBuffsWindow(player);
 		}
 	}
@@ -247,6 +249,7 @@ public class SchemeBuffer extends Npc
 		{
 			filename = npcId + "-" + value;
 		}
+		
 		return "data/html/mods/SchemeBuffer/" + filename + ".htm";
 	}
 	
@@ -451,6 +454,7 @@ public class SchemeBuffer extends Npc
 				count++;
 			}
 		}
+		
 		return count;
 	}
 }

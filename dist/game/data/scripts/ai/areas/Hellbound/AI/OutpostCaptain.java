@@ -53,6 +53,7 @@ public class OutpostCaptain extends AbstractNpcAI
 		{
 			door.openMe();
 		}
+		
 		if (HellboundEngine.getInstance().getLevel() == 8)
 		{
 			HellboundEngine.getInstance().setLevel(9);

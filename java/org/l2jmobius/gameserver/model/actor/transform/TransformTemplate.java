@@ -98,6 +98,7 @@ public class TransformTemplate
 		{
 			_baseSpeed = new HashMap<>();
 		}
+		
 		_baseSpeed.put(type.ordinal(), value);
 	}
 	
@@ -107,6 +108,7 @@ public class TransformTemplate
 		{
 			return 0;
 		}
+		
 		return _baseSpeed.get(type.ordinal());
 	}
 	
@@ -116,6 +118,7 @@ public class TransformTemplate
 		{
 			_baseDefense = new HashMap<>();
 		}
+		
 		_baseDefense.put(type, value);
 	}
 	
@@ -125,6 +128,7 @@ public class TransformTemplate
 		{
 			return 0;
 		}
+		
 		return _baseDefense.get(type);
 	}
 	
@@ -134,6 +138,7 @@ public class TransformTemplate
 		{
 			_baseStats = new HashMap<>();
 		}
+		
 		_baseStats.put(stat.ordinal(), value);
 	}
 	
@@ -143,6 +148,7 @@ public class TransformTemplate
 		{
 			return 0;
 		}
+		
 		return _baseStats.get(stat.ordinal());
 	}
 	
@@ -177,6 +183,7 @@ public class TransformTemplate
 		{
 			_skills = new ArrayList<>();
 		}
+		
 		_skills.add(holder);
 	}
 	
@@ -191,6 +198,7 @@ public class TransformTemplate
 		{
 			_additionalSkills = new ArrayList<>();
 		}
+		
 		_additionalSkills.add(holder);
 	}
 	
@@ -205,6 +213,7 @@ public class TransformTemplate
 		{
 			_additionalItems = new ArrayList<>();
 		}
+		
 		_additionalItems.add(holder);
 	}
 	

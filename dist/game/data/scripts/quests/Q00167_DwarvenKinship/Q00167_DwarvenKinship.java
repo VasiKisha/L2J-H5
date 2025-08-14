@@ -32,9 +32,11 @@ public class Q00167_DwarvenKinship extends Quest
 	private static final int NORMAN = 30210;
 	private static final int HAPROCK = 30255;
 	private static final int CARLON = 30350;
+	
 	// Items
 	private static final int CARLONS_LETTER = 1076;
 	private static final int NORMANS_LETTER = 1106;
+	
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	
@@ -101,6 +103,7 @@ public class Q00167_DwarvenKinship extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -157,6 +160,7 @@ public class Q00167_DwarvenKinship extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

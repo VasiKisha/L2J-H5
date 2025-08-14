@@ -31,9 +31,11 @@ public class Q00155_FindSirWindawood extends Quest
 	// NPCs
 	private static final int ABELLOS = 30042;
 	private static final int SIR_COLLIN_WINDAWOOD = 30311;
+	
 	// Items
 	private static final int OFFICIAL_LETTER = 1019;
 	private static final int HASTE_POTION = 734;
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	
@@ -55,6 +57,7 @@ public class Q00155_FindSirWindawood extends Quest
 			giveItems(player, OFFICIAL_LETTER, 1);
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -98,6 +101,7 @@ public class Q00155_FindSirWindawood extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -31,8 +31,10 @@ public class Q00176_StepsForHonor extends Quest
 {
 	// NPC
 	private static final int RAPIDUS = 36479;
+	
 	// Item
 	private static final int CLOAK = 14603;
+	
 	// Misc
 	private static final int MIN_LEVEL = 80;
 	
@@ -52,6 +54,7 @@ public class Q00176_StepsForHonor extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -73,6 +76,7 @@ public class Q00176_StepsForHonor extends Quest
 				{
 					return "36479-05.html";
 				}
+				
 				switch (qs.getCond())
 				{
 					case 1:
@@ -129,6 +133,7 @@ public class Q00176_StepsForHonor extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

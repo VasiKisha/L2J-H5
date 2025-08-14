@@ -65,6 +65,7 @@ public class RequestCancelPostAttachment extends ClientPacket
 		{
 			return;
 		}
+		
 		if (msg.getSenderId() != player.getObjectId())
 		{
 			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to cancel not own post!", Config.DEFAULT_PUNISH);

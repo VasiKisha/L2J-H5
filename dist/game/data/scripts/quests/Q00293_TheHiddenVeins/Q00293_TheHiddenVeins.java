@@ -38,18 +38,21 @@ public class Q00293_TheHiddenVeins extends Quest
 	// NPCs
 	private static final int FILAUR = 30535;
 	private static final int CHICHIRIN = 30539;
+	
 	// Monsters
-	private static final int[] MONSTERS = new int[]
+	private static final int[] MONSTERS =
 	{
 		20446,
 		20447,
 		20448,
 	};
+	
 	// Items
 	private static final int CHRYSOLITE_ORE = 1488;
 	private static final int TORN_MAP_FRAGMENT = 1489;
 	private static final int HIDDEN_ORE_MAP = 1490;
 	private static final ItemHolder SOULSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5789, 6000);
+	
 	// Misc
 	private static final int MIN_LEVEL = 6;
 	private static final int REQUIRED_TORN_MAP_FRAGMENT = 4;
@@ -107,6 +110,7 @@ public class Q00293_TheHiddenVeins extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -202,6 +206,7 @@ public class Q00293_TheHiddenVeins extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

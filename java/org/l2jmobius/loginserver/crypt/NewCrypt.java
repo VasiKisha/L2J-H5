@@ -78,6 +78,7 @@ public class NewCrypt
 		{
 			checksum ^= data.readInt(i);
 		}
+		
 		data.writeInt(i, checksum);
 	}
 	
@@ -102,6 +103,7 @@ public class NewCrypt
 			raw.writeInt(pos, edx);
 			pos += 4;
 		}
+		
 		raw.writeInt(pos, ecx);
 	}
 	

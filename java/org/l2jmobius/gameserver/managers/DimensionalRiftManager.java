@@ -214,6 +214,7 @@ public class DimensionalRiftManager
 		{
 			LOGGER.log(Level.WARNING, "Error on loading dimensional rift spawns: " + e.getMessage(), e);
 		}
+		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + countGood + " dimensional rift spawns, " + countBad + " errors.");
 	}
 	
@@ -225,8 +226,10 @@ public class DimensionalRiftManager
 			{
 				room.getSpawns().clear();
 			}
+			
 			rooms.clear();
 		}
+		
 		_rooms.clear();
 		loadRooms();
 		loadSpawns();
@@ -238,6 +241,7 @@ public class DimensionalRiftManager
 		{
 			return _rooms.get((byte) 0).get((byte) 1).checkIfInZone(x, y, z);
 		}
+		
 		return _rooms.get((byte) 0).get((byte) 1).checkIfInZone(x, y, z) && !_rooms.get((byte) 0).get((byte) 0).checkIfInZone(x, y, z);
 	}
 	
@@ -362,6 +366,7 @@ public class DimensionalRiftManager
 			emptyRooms = getFreeRooms(type);
 			room = emptyRooms.get(Rnd.get(1, emptyRooms.size()) - 1);
 		}
+		
 		// find empty room
 		while (_rooms.get(type).get(room).isPartyInside());
 		new DimensionalRift(party, type, room);
@@ -373,24 +378,28 @@ public class DimensionalRiftManager
 		{
 			d.getTeleportTimerTask().cancel();
 		}
+		
 		d.setTeleportTimerTask(null);
 		
 		if (d.getTeleportTimer() != null)
 		{
 			d.getTeleportTimer().cancel();
 		}
+		
 		d.setTeleportTimer(null);
 		
 		if (d.getSpawnTimerTask() != null)
 		{
 			d.getSpawnTimerTask().cancel();
 		}
+		
 		d.setSpawnTimerTask(null);
 		
 		if (d.getSpawnTimer() != null)
 		{
 			d.getSpawnTimer().cancel();
 		}
+		
 		d.setSpawnTimer(null);
 	}
 	
@@ -457,6 +466,7 @@ public class DimensionalRiftManager
 				count++;
 			}
 		}
+		
 		return (count < (_rooms.get(type).size() - 1));
 	}
 	
@@ -470,6 +480,7 @@ public class DimensionalRiftManager
 				list.add(room.getRoom());
 			}
 		}
+		
 		return list;
 	}
 	

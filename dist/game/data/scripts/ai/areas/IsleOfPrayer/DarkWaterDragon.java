@@ -136,9 +136,11 @@ public class DarkWaterDragon extends AbstractNpcAI
 					MY_TRACKING_SET.remove(npc.getObjectId());
 					ID_MAP.remove(npc.getObjectId());
 				}
+				
 				npc.reduceCurrentHp(500, npc, null); // poison kills Fafurion if he is not healed
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -152,6 +154,7 @@ public class DarkWaterDragon extends AbstractNpcAI
 			if (!MY_TRACKING_SET.contains(npcObjId)) // this allows to handle multiple instances of npc
 			{
 				MY_TRACKING_SET.add(npcObjId);
+				
 				// Spawn first 5 shades on first attack on Dark Water Dragon
 				final Creature originalAttacker = isSummon ? attacker.getSummon() : attacker;
 				spawnShade(originalAttacker, SHADE1, npc.getX() + 100, npc.getY() + 100, npc.getZ());
@@ -163,6 +166,7 @@ public class DarkWaterDragon extends AbstractNpcAI
 			else if ((npc.getCurrentHp() < (npc.getMaxHp() / 2.0)) && !(SECOND_SPAWN.contains(npcObjId)))
 			{
 				SECOND_SPAWN.add(npcObjId);
+				
 				// Spawn second 5 shades on half hp of on Dark Water Dragon
 				final Creature originalAttacker = isSummon ? attacker.getSummon() : attacker;
 				spawnShade(originalAttacker, SHADE2, npc.getX() + 100, npc.getY() + 100, npc.getZ());
@@ -211,6 +215,7 @@ public class DarkWaterDragon extends AbstractNpcAI
 		if ((npcId == FAFURION) && !MY_TRACKING_SET.contains(npcObjId))
 		{
 			MY_TRACKING_SET.add(npcObjId);
+			
 			// Spawn 4 Detractors on spawn of Fafurion
 			final int x = npc.getX();
 			final int y = npc.getY();

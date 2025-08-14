@@ -34,7 +34,7 @@ public class BypassHandler implements IHandler<IBypassHandler, String>
 	@Override
 	public void registerHandler(IBypassHandler handler)
 	{
-		for (String element : handler.getBypassList())
+		for (String element : handler.getCommandList())
 		{
 			_datatable.put(element.toLowerCase(), handler);
 		}
@@ -43,7 +43,7 @@ public class BypassHandler implements IHandler<IBypassHandler, String>
 	@Override
 	public synchronized void removeHandler(IBypassHandler handler)
 	{
-		for (String element : handler.getBypassList())
+		for (String element : handler.getCommandList())
 		{
 			_datatable.remove(element.toLowerCase());
 		}
@@ -57,6 +57,7 @@ public class BypassHandler implements IHandler<IBypassHandler, String>
 		{
 			command = command.substring(0, command.indexOf(' '));
 		}
+		
 		return _datatable.get(command.toLowerCase());
 	}
 	

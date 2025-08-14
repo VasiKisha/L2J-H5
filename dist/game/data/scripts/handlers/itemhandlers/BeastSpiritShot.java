@@ -27,7 +27,6 @@ import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
  * Beast SpiritShot Handler
@@ -36,7 +35,7 @@ import org.l2jmobius.gameserver.util.Broadcast;
 public class BeastSpiritShot implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{
@@ -75,6 +74,7 @@ public class BeastSpiritShot implements IItemHandler
 			{
 				activeOwner.sendPacket(SystemMessageId.YOU_DON_T_HAVE_ENOUGH_SPIRITSHOTS_NEEDED_FOR_A_PET_SERVITOR);
 			}
+			
 			return false;
 		}
 		
@@ -90,13 +90,14 @@ public class BeastSpiritShot implements IItemHandler
 			{
 				activeOwner.sendPacket(SystemMessageId.YOU_DON_T_HAVE_ENOUGH_SPIRITSHOTS_NEEDED_FOR_A_PET_SERVITOR);
 			}
+			
 			return false;
 		}
 		
 		// Pet uses the power of spirit.
 		activeOwner.sendPacket(SystemMessageId.YOUR_PET_USES_SPIRITSHOT);
 		activeOwner.getSummon().setChargedShot(isBlessed ? ShotType.BLESSED_SPIRITSHOTS : ShotType.SPIRITSHOTS, true);
-		Broadcast.toSelfAndKnownPlayersInRadius(activeOwner, new MagicSkillUse(activeOwner.getSummon(), activeOwner.getSummon(), skills[0].getSkillId(), skills[0].getSkillLevel(), 0, 0), 600);
+		activeOwner.broadcastSkillPacket(new MagicSkillUse(activeOwner.getSummon(), activeOwner.getSummon(), skills[0].getSkillId(), skills[0].getSkillLevel(), 0, 0), activeOwner);
 		return true;
 	}
 }

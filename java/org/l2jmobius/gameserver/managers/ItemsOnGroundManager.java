@@ -49,6 +49,7 @@ public class ItemsOnGroundManager implements Runnable
 		{
 			ThreadPool.scheduleAtFixedRate(this, Config.SAVE_DROPPED_ITEM_INTERVAL, Config.SAVE_DROPPED_ITEM_INTERVAL);
 		}
+		
 		load();
 	}
 	
@@ -104,16 +105,19 @@ public class ItemsOnGroundManager implements Runnable
 				{
 					item = new Item(rs.getInt(1), rs.getInt(2));
 					World.getInstance().addObject(item);
+					
 					// this check and..
 					if (item.isStackable() && (rs.getInt(3) > 1))
 					{
 						item.setCount(rs.getInt(3));
 					}
+					
 					// this, are really necessary?
 					if (rs.getInt(4) > 0)
 					{
 						item.setEnchantLevel(rs.getInt(4));
 					}
+					
 					item.setXYZ(rs.getInt(5), rs.getInt(6), rs.getInt(7));
 					item.setWorldRegion(World.getInstance().getRegion(item));
 					item.getWorldRegion().addVisibleObject(item);
@@ -124,6 +128,7 @@ public class ItemsOnGroundManager implements Runnable
 					World.getInstance().addVisibleObject(item, item.getWorldRegion());
 					_items.add(item);
 					count++;
+					
 					// add to ItemsAutoDestroy only items not protected
 					if (!Config.LIST_PROTECTED_ITEMS.contains(item.getId()) && (dropTime > -1) && (((Config.AUTODESTROY_ITEM_AFTER > 0) && !item.getTemplate().hasExImmediateEffect()) || ((Config.HERB_AUTO_DESTROY_TIME > 0) && item.getTemplate().hasExImmediateEffect())))
 					{
@@ -131,6 +136,7 @@ public class ItemsOnGroundManager implements Runnable
 					}
 				}
 			}
+			
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + count + " items.");
 		}
 		catch (Exception e)
@@ -150,6 +156,7 @@ public class ItemsOnGroundManager implements Runnable
 		{
 			return;
 		}
+		
 		_items.add(item);
 	}
 	

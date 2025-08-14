@@ -480,6 +480,7 @@ public class Formulas
 		{
 			cpRegenMultiplier *= 0.7; // Running
 		}
+		
 		return player.calcStat(Stat.REGENERATE_CP_RATE, Math.max(1, init), null, null) * cpRegenMultiplier;
 	}
 	
@@ -569,18 +570,21 @@ public class Formulas
 		{
 			// Damage bonuses in PvP fight
 			pvpBonus = attacker.calcStat(Stat.PVP_PHYS_SKILL_DMG, 1, null, null);
+			
 			// Defense bonuses in PvP fight
 			defence *= target.calcStat(Stat.PVP_PHYS_SKILL_DEF, 1, null, null);
 		}
 		
 		// Initial damage
 		final double baseMod = ((77 * (power + (attacker.getPAtk(target) * ssboost))) / defence);
+		
 		// Critical
 		final double criticalMod = (attacker.calcStat(Stat.CRITICAL_DAMAGE, 1, target, skill));
 		final double criticalModPos = (((attacker.calcStat(Stat.CRITICAL_DAMAGE_POS, 1, target, skill) - 1) / 2) + 1);
 		final double criticalVulnMod = (target.calcStat(Stat.DEFENCE_CRITICAL_DAMAGE, 1, target, skill));
 		final double criticalAddMod = ((attacker.getStat().calcStat(Stat.CRITICAL_DAMAGE_ADD, 0) * 6.1 * 77) / defence);
 		final double criticalAddVuln = target.calcStat(Stat.DEFENCE_CRITICAL_DAMAGE_ADD, 0, target, skill);
+		
 		// Trait, elements
 		final double weaponTraitMod = calcWeaponTraitBonus(attacker, target);
 		final double generalTraitMod = calcGeneralTraitBonus(attacker, target, skill.getTraitType(), false);
@@ -643,18 +647,21 @@ public class Formulas
 		{
 			// Damage bonuses in PvP fight
 			pvpBonus = attacker.calcStat(Stat.PVP_PHYS_SKILL_DMG, 1, null, null);
+			
 			// Defense bonuses in PvP fight
 			defence *= target.calcStat(Stat.PVP_PHYS_SKILL_DEF, 1, null, null);
 		}
 		
 		// Initial damage
 		final double baseMod = ((77 * (skill.getPower(isPvP, isPvE) + attacker.getPAtk(target))) / defence) * ssboost;
+		
 		// Critical
 		final double criticalMod = (attacker.calcStat(Stat.CRITICAL_DAMAGE, 1, target, skill));
 		final double criticalModPos = (((attacker.calcStat(Stat.CRITICAL_DAMAGE_POS, 1, target, skill) - 1) / 2) + 1);
 		final double criticalVulnMod = (target.calcStat(Stat.DEFENCE_CRITICAL_DAMAGE, 1, target, skill));
 		final double criticalAddMod = ((attacker.calcStat(Stat.CRITICAL_DAMAGE_ADD, 0, target, skill) * 6.1 * 77) / defence);
 		final double criticalAddVuln = target.calcStat(Stat.DEFENCE_CRITICAL_DAMAGE_ADD, 0, target, skill);
+		
 		// Trait, elements
 		final double generalTraitMod = calcGeneralTraitBonus(attacker, target, skill.getTraitType(), false);
 		final double attributeMod = calcAttributeBonus(attacker, target, skill);
@@ -845,6 +852,7 @@ public class Formulas
 				}
 			}
 		}
+		
 		return damage;
 	}
 	
@@ -883,6 +891,7 @@ public class Formulas
 		
 		// Bonus Spirit shot
 		mAtk *= bss ? 4 : sps ? 2 : 1;
+		
 		// MDAM Formula.
 		double damage = ((91 * Math.sqrt(mAtk)) / mDef) * skill.getPower(attacker, target, isPvP, isPvE);
 		
@@ -901,6 +910,7 @@ public class Formulas
 					{
 						attacker.sendPacket(SystemMessageId.YOUR_ATTACK_HAS_FAILED);
 					}
+					
 					damage /= 2;
 				}
 				else
@@ -958,6 +968,7 @@ public class Formulas
 				}
 			}
 		}
+		
 		return damage;
 	}
 	
@@ -998,6 +1009,7 @@ public class Formulas
 				{
 					owner.sendPacket(SystemMessageId.YOUR_ATTACK_HAS_FAILED);
 				}
+				
 				damage /= 2;
 			}
 			else
@@ -1048,6 +1060,7 @@ public class Formulas
 				}
 			}
 		}
+		
 		return damage;
 	}
 	
@@ -1074,6 +1087,7 @@ public class Formulas
 		{
 			rate = attacker.getStat().calcStat(Stat.CRITICAL_RATE_POS, attacker.getStat().getCriticalHit(target, null), target, skill);
 		}
+		
 		return (target.getStat().calcStat(Stat.DEFENCE_CRITICAL_RATE, rate, null, null) + target.getStat().calcStat(Stat.DEFENCE_CRITICAL_RATE_ADD, 0, null, null)) > Rnd.get(1000);
 	}
 	
@@ -1100,6 +1114,7 @@ public class Formulas
 		{
 			init = 15;
 		}
+		
 		if (Config.ALT_GAME_CANCEL_BOW && target.isAttackingNow())
 		{
 			final Weapon wpn = target.getActiveWeaponItem();
@@ -1144,6 +1159,7 @@ public class Formulas
 		{
 			return 2700;
 		}
+		
 		return (int) (470000 / rate);
 	}
 	
@@ -1160,6 +1176,7 @@ public class Formulas
 		{
 			return (int) ((skillTime / attacker.getMAtkSpd()) * 333);
 		}
+		
 		return (int) ((skillTime / attacker.getPAtkSpd()) * 300);
 	}
 	
@@ -1219,6 +1236,7 @@ public class Formulas
 		}
 		
 		byte shldSuccess = SHIELD_DEFENSE_FAILED;
+		
 		// if attacker use bow and target wear shield, shield block rate is multiplied by 1.3 (30%)
 		final Weapon atWeapon = attacker.getActiveWeaponItem();
 		if ((atWeapon != null) && (atWeapon.getItemType() == WeaponType.BOW))
@@ -1271,7 +1289,7 @@ public class Formulas
 	{
 		// TODO: CHECK/FIX THIS FORMULA UP!!
 		double defence = 0;
-		if (skill.isActive() && skill.isBad())
+		if (skill.isActive() && skill.hasNegativeEffect())
 		{
 			defence = target.getMDef(actor, skill);
 		}
@@ -1384,6 +1402,7 @@ public class Formulas
 			{
 				val = mAtk * 3.0; // 3.0 is the blessed spiritshot multiplier
 			}
+			
 			val += mAtk;
 			val = (Math.sqrt(val) / target.getMDef(null, null)) * 11.0;
 			mAtkMod = val;
@@ -1400,6 +1419,7 @@ public class Formulas
 			attacker.sendPacket(sm);
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -1479,6 +1499,7 @@ public class Formulas
 				}
 			}
 		}
+		
 		// general magic resist
 		final double resModifier = target.calcStat(Stat.MAGIC_SUCCESS_RES, 1, null, skill);
 		final int rate = 100 - Math.round((float) (lvlModifier * targetModifier * resModifier));
@@ -1561,6 +1582,7 @@ public class Formulas
 			damage *= 3;
 			attacker.sendPacket(SystemMessageId.MAGIC_CRITICAL_HIT);
 		}
+		
 		return damage;
 	}
 	
@@ -1589,6 +1611,7 @@ public class Formulas
 		{
 			return false;
 		}
+		
 		if (Rnd.get(100) < target.calcStat(Stat.P_SKILL_EVASION, 0, null, skill))
 		{
 			if (creature.isPlayer())
@@ -1597,14 +1620,17 @@ public class Formulas
 				sm.addString(target.getName());
 				creature.asPlayer().sendPacket(sm);
 			}
+			
 			if (target.isPlayer())
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_AVOIDED_C1_S_ATTACK_2);
 				sm.addString(creature.getName());
 				target.asPlayer().sendPacket(sm);
 			}
+			
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -1638,6 +1664,7 @@ public class Formulas
 					break;
 				}
 			}
+			
 			initVal *= actor.getStat().calcStat(Stat.SKILL_MASTERY_RATE, 1, null, null);
 			return (Rnd.get(100) < initVal);
 		}
@@ -1661,6 +1688,7 @@ public class Formulas
 			{
 				return 1;
 			}
+			
 			attackAttribute = attacker.getAttackElementValue(attacker.getAttackElement()) + skill.getElementPower();
 		}
 		else
@@ -1830,6 +1858,7 @@ public class Formulas
 				sm.addString(attacker.getName());
 				target.sendPacket(sm);
 			}
+			
 			if (attacker.isPlayer())
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_PERFORMING_A_COUNTERATTACK);
@@ -1861,6 +1890,7 @@ public class Formulas
 		{
 			return false;
 		}
+		
 		final double reflectChance = target.calcStat(skill.isMagic() ? Stat.REFLECT_SKILL_MAGIC : Stat.REFLECT_SKILL_PHYSIC, 0, null, skill);
 		return reflectChance > Rnd.get(100);
 	}
@@ -1877,18 +1907,23 @@ public class Formulas
 		{
 			return 0;
 		}
+		
 		return creature.calcStat(Stat.FALL, (fallHeight * creature.getMaxHp()) / 1000, null, null);
 	}
 	
 	public static boolean calcBlowSuccess(Creature creature, Creature target, Skill skill)
 	{
 		final double dexMod = BaseStat.DEX.calcBonus(creature);
+		
 		// Apply DEX Mod.
 		final double blowChance = skill.getBlowChance();
+		
 		// Apply Position Bonus (TODO: values are unconfirmed, possibly custom, remove or update when confirmed).
 		final double sideMod = (creature.isInFrontOf(target)) ? 1 : (creature.isBehind(target)) ? 2 : 1.5;
+		
 		// Apply all mods.
 		final double baseRate = blowChance * dexMod * sideMod;
+		
 		// Apply blow rates
 		final double rate = creature.calcStat(Stat.BLOW_RATE, baseRate, target, null);
 		return Rnd.get(100) < rate;
@@ -1902,7 +1937,7 @@ public class Formulas
 			case "buff":
 			{
 				// Resist Modifier.
-				final int cancelMagicLvl = skill.getMagicLevel();
+				final int cancelMagicLvl = skill == null ? creature.getLevel() : skill.getMagicLevel();
 				final double vuln = target.calcStat(Stat.CANCEL_VULN, 0, target, null);
 				final double prof = creature.calcStat(Stat.CANCEL_PROF, 0, target, null);
 				final double resMod = 1 + (((vuln + prof) * -1) / 100);
@@ -1914,10 +1949,12 @@ public class Formulas
 				{
 					buffs.addAll(target.getEffectList().getTriggered());
 				}
+				
 				if (target.getEffectList().hasDances())
 				{
 					buffs.addAll(target.getEffectList().getDances());
 				}
+				
 				for (int i = buffs.size() - 1; i >= 0; i--) // reverse order
 				{
 					final BuffInfo info = buffs.get(i);
@@ -1925,6 +1962,7 @@ public class Formulas
 					{
 						continue;
 					}
+					
 					canceled.add(info);
 					if (canceled.size() >= max)
 					{
@@ -1951,6 +1989,7 @@ public class Formulas
 				break;
 			}
 		}
+		
 		return canceled;
 	}
 	
@@ -1995,6 +2034,7 @@ public class Formulas
 			final double elementMod = calcAttributeBonus(caster, target, skill);
 			time = (int) Math.ceil(MathUtil.clamp(((time * resMod * lvlBonusMod * elementMod) / statMod), (time * 0.5), time));
 		}
+		
 		return time;
 	}
 	
@@ -2034,6 +2074,7 @@ public class Formulas
 		{
 			return (int) ((Math.abs(exp / Config.RATE_KARMA_LOST) / karmaLooseMul) / 30);
 		}
+		
 		return (int) ((Math.abs(exp) / karmaLooseMul) / 30);
 	}
 	

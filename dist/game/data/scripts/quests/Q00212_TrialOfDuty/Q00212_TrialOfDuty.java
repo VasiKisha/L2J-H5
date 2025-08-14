@@ -44,6 +44,7 @@ public class Q00212_TrialOfDuty extends Quest
 	private static final int SIR_KIEL_NIGHTHAWK = 30654;
 	private static final int ISAEL_SILVERSHADOW = 30655;
 	private static final int SPIRIT_OF_SIR_TALIANUS = 30656;
+	
 	// Items
 	private static final int LETTER_OF_DUSTIN = 2634;
 	private static final int KNIGHTS_TEAR = 2635;
@@ -59,6 +60,7 @@ public class Q00212_TrialOfDuty extends Quest
 	private static final int ATHEBALDTS_SHIN = 2645;
 	private static final int LETTER_OF_WINDAWOOD = 2646;
 	private static final int OLD_KNIGHTS_SWORD = 3027;
+	
 	// Monsters
 	private static final int HANGMAN_TREE = 20144;
 	private static final int SKELETON_MARAUDER = 20190;
@@ -73,9 +75,11 @@ public class Q00212_TrialOfDuty extends Quest
 	private static final int LETO_LIZARDMAN_SHAMAN = 20581;
 	private static final int LETO_LIZARDMAN_OVERLORD = 20582;
 	private static final int SPIRIT_OF_SIR_HEROD = 27119;
+	
 	// Rewards
 	private static final int MARK_OF_DUTY = 2633;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Misc
 	private static final int MIN_LEVEL = 35;
 	
@@ -140,6 +144,7 @@ public class Q00212_TrialOfDuty extends Quest
 				break;
 			}
 		}
+		
 		return html;
 	}
 	
@@ -551,6 +556,7 @@ public class Q00212_TrialOfDuty extends Quest
 				break;
 			}
 		}
+		
 		return html;
 	}
 	
@@ -571,6 +577,7 @@ public class Q00212_TrialOfDuty extends Quest
 			vars.set("2ND_CLASS_DIAMOND_REWARD", 1);
 			return true;
 		}
+		
 		return false;
 	}
 }

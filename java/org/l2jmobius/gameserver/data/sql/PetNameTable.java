@@ -26,38 +26,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 
 public class PetNameTable
 {
 	private static final Logger LOGGER = Logger.getLogger(PetNameTable.class.getName());
 	
-	public static PetNameTable getInstance()
-	{
-		return SingletonHolder.INSTANCE;
-	}
+	// SQL
+	private static final String CHECK_PET_NAME = "SELECT p.name FROM pets p JOIN items i ON p.item_obj_id = i.object_id WHERE p.name=? AND i.item_id=?";
 	
 	public boolean doesPetNameExist(String name, int petNpcId)
 	{
-		boolean result = true;
+		boolean result = false;
+		final int petItemId = PetDataTable.getInstance().getPetItemsByNpc(petNpcId);
+		
 		try (Connection con = DatabaseFactory.getConnection();
-			PreparedStatement ps = con.prepareStatement("SELECT name FROM pets p, items i WHERE p.item_obj_id = i.object_id AND name=? AND i.item_id IN (?)"))
+			PreparedStatement ps = con.prepareStatement(CHECK_PET_NAME))
 		{
 			ps.setString(1, name);
-			final StringBuilder cond = new StringBuilder();
-			if (!cond.toString().isEmpty())
-			{
-				cond.append(", ");
-			}
+			ps.setInt(2, petItemId);
 			
-			cond.append(PetDataTable.getInstance().getPetItemsByNpc(petNpcId));
-			ps.setString(2, cond.toString());
 			try (ResultSet rs = ps.executeQuery())
 			{
 				result = rs.next();
@@ -65,54 +59,39 @@ public class PetNameTable
 		}
 		catch (SQLException e)
 		{
-			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Could not check existing petname:" + e.getMessage(), e);
+			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Could not check existing pet name: " + e.getMessage(), e);
 		}
+		
 		return result;
 	}
 	
 	public boolean isValidPetName(String name)
 	{
-		boolean result = true;
-		if (!isAlphaNumeric(name))
+		// Only allow alphanumeric names.
+		if (!StringUtil.isAlphaNumeric(name))
 		{
-			return result;
+			return false;
 		}
 		
-		Pattern pattern;
 		try
 		{
-			pattern = Pattern.compile(Config.PET_NAME_TEMPLATE);
+			Pattern pattern = Pattern.compile(Config.PET_NAME_TEMPLATE);
+			return pattern.matcher(name).matches();
 		}
-		catch (PatternSyntaxException e) // case of illegal pattern
+		catch (PatternSyntaxException e)
 		{
-			LOGGER.warning(getClass().getSimpleName() + ": Pet name pattern of config is wrong!");
-			pattern = Pattern.compile(".*");
+			LOGGER.warning(getClass().getSimpleName() + ": Invalid PetNameTemplate regex in config: " + Config.PET_NAME_TEMPLATE);
+			return true; // If regex is broken, fallback to allowing all names.
 		}
-		final Matcher regexp = pattern.matcher(name);
-		if (!regexp.matches())
-		{
-			result = false;
-		}
-		return result;
-	}
-	
-	private boolean isAlphaNumeric(String text)
-	{
-		boolean result = true;
-		final char[] chars = text.toCharArray();
-		for (char aChar : chars)
-		{
-			if (!Character.isLetterOrDigit(aChar))
-			{
-				result = false;
-				break;
-			}
-		}
-		return result;
 	}
 	
 	private static class SingletonHolder
 	{
 		protected static final PetNameTable INSTANCE = new PetNameTable();
+	}
+	
+	public static PetNameTable getInstance()
+	{
+		return SingletonHolder.INSTANCE;
 	}
 }

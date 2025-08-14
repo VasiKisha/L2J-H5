@@ -33,10 +33,12 @@ public class Q00044_HelpTheSon extends Quest
 	// NPCs
 	private static final int LUNDY = 30827;
 	private static final int DRIKUS = 30505;
+	
 	// Monsters
 	private static final int MAILLE_GUARD = 20921;
 	private static final int MAILLE_SCOUT = 20920;
 	private static final int MAILLE_LIZARDMAN = 20919;
+	
 	// Items
 	private static final int WORK_HAMMER = 168;
 	private static final int GEMSTONE_FRAGMENT = 7552;
@@ -215,6 +217,7 @@ public class Q00044_HelpTheSon extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

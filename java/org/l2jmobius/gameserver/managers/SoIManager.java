@@ -65,6 +65,7 @@ public class SoIManager
 		{
 			openSeed(getOpenedTime());
 		}
+		
 		LOGGER.info("Seed of Infinity Manager: Loaded. Current stage is: " + getCurrentStage());
 	}
 	
@@ -79,6 +80,7 @@ public class SoIManager
 		{
 			return 0;
 		}
+		
 		return (GlobalVariablesManager.getInstance().getLong("SoI_opened", 0) * 1000) - System.currentTimeMillis();
 	}
 	
@@ -88,6 +90,7 @@ public class SoIManager
 		{
 			return;
 		}
+		
 		if (stage == 3)
 		{
 			openSeed(SOI_OPEN_TIME);
@@ -96,6 +99,7 @@ public class SoIManager
 		{
 			closeSeed();
 		}
+		
 		GlobalVariablesManager.getInstance().set("SoI_stage", stage);
 		setCohemenesCount(0);
 		setEkimusCount(0);
@@ -133,6 +137,7 @@ public class SoIManager
 	{
 		LOGGER.info("Seed of Infinity Manager: Closing the seed.");
 		GlobalVariablesManager.getInstance().remove("SoI_opened");
+		
 		// EnergySeeds.SoiSeedStop();
 		DoorData.getInstance().getDoor(14240102).closeMe();
 		for (Player ch : ZoneManager.getInstance().getZoneById(60010).getPlayersInside())

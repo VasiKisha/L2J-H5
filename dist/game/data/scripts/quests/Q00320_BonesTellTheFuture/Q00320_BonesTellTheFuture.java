@@ -31,12 +31,15 @@ public class Q00320_BonesTellTheFuture extends Quest
 {
 	// NPC
 	private static final int TETRACH_KAITAR = 30359;
+	
 	// Item
 	private static final int BONE_FRAGMENT = 809;
+	
 	// Misc
 	private static final int MIN_LEVEL = 10;
 	private static final int REQUIRED_BONE_COUNT = 10;
 	private static final double DROP_CHANCE = 0.18;
+	
 	// Monsters
 	private static final int[] MONSTERS =
 	{
@@ -62,6 +65,7 @@ public class Q00320_BonesTellTheFuture extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -102,6 +106,7 @@ public class Q00320_BonesTellTheFuture extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -32,12 +32,15 @@ public class Q00159_ProtectTheWaterSource extends Quest
 {
 	// NPC
 	private static final int ASTERIOS = 30154;
+	
 	// Monster
 	private static final int PLAGUE_ZOMBIE = 27017;
+	
 	// Items
 	private static final int PLAGUE_DUST = 1035;
 	private static final int HYACINTH_CHARM = 1071;
 	private static final int HYACINTH_CHARM2 = 1072;
+	
 	// Misc
 	private static final int MIN_LEVEL = 12;
 	
@@ -60,6 +63,7 @@ public class Q00159_ProtectTheWaterSource extends Quest
 			giveItems(player, HYACINTH_CHARM, 1);
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -164,6 +168,7 @@ public class Q00159_ProtectTheWaterSource extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

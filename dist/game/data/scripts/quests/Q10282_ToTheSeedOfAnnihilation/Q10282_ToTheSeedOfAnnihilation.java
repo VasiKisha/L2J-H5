@@ -36,6 +36,7 @@ public class Q10282_ToTheSeedOfAnnihilation extends Quest
 	// NPCs
 	private static final int KBALDIR = 32733;
 	private static final int KLEMIS = 32734;
+	
 	// Item
 	private static final int SOA_ORDERS = 15512;
 	
@@ -73,6 +74,7 @@ public class Q10282_ToTheSeedOfAnnihilation extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -118,6 +120,7 @@ public class Q10282_ToTheSeedOfAnnihilation extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -34,13 +34,17 @@ public class Q00644_GraveRobberAnnihilation extends Quest
 {
 	// NPC
 	private static final int KARUDA = 32017;
+	
 	// Item
 	private static final int ORC_GOODS = 8088;
+	
 	// Misc
 	private static final int MIN_LEVEL = 20;
 	private static final int ORC_GOODS_REQUIRED_COUNT = 120;
+	
 	// Monsters
 	private static final Map<Integer, Double> MONSTER_DROP_CHANCES = new HashMap<>();
+	
 	// Rewards
 	private static final Map<String, ItemHolder> REWARDS = new HashMap<>();
 	static
@@ -114,6 +118,7 @@ public class Q00644_GraveRobberAnnihilation extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -152,6 +157,7 @@ public class Q00644_GraveRobberAnnihilation extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

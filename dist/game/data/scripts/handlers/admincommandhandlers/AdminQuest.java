@@ -39,7 +39,7 @@ import org.l2jmobius.gameserver.model.events.listeners.AbstractEventListener;
 import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.quest.QuestTimer;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-import org.l2jmobius.gameserver.scripting.ScriptEngineManager;
+import org.l2jmobius.gameserver.scripting.ScriptManager;
 
 public class AdminQuest implements IAdminCommandHandler
 {
@@ -60,11 +60,12 @@ public class AdminQuest implements IAdminCommandHandler
 		{
 			return QuestManager.getInstance().getQuest(Integer.parseInt(script));
 		}
+		
 		return QuestManager.getInstance().getQuest(script);
 	}
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_quest_reload"))
 		{
@@ -84,12 +85,7 @@ public class AdminQuest implements IAdminCommandHandler
 				return false;
 			}
 			
-			if (!quest.reload())
-			{
-				activeChar.sendSysMessage("Failed to reload " + script + "!");
-				return false;
-			}
-			
+			quest.reload();
 			activeChar.sendSysMessage("Script successful reloaded.");
 		}
 		else if (command.startsWith("admin_script_load"))
@@ -105,7 +101,7 @@ public class AdminQuest implements IAdminCommandHandler
 			final String script = st.nextToken();
 			try
 			{
-				ScriptEngineManager.getInstance().executeScript(Paths.get(script));
+				ScriptManager.getInstance().executeScript(Paths.get(script));
 				activeChar.sendSysMessage("Script loaded seccessful!");
 			}
 			catch (Exception e)
@@ -161,6 +157,7 @@ public class AdminQuest implements IAdminCommandHandler
 							{
 								continue;
 							}
+							
 							sb.append("<tr><td colspan=\"4\"><font color=\"LEVEL\"><a action=\"bypass -h admin_quest_info " + quest.getName() + "\">" + quest.getName() + "</a></font></td></tr>");
 						}
 					}
@@ -197,6 +194,7 @@ public class AdminQuest implements IAdminCommandHandler
 					events += ", " + listener.getType().name();
 					counter++;
 				}
+				
 				if (counter > 10)
 				{
 					counter = 0;
@@ -238,6 +236,7 @@ public class AdminQuest implements IAdminCommandHandler
 						break;
 					}
 				}
+				
 				items = quest.getRegisteredItemIds().length + ":" + items.substring(2);
 			}
 			
@@ -264,10 +263,12 @@ public class AdminQuest implements IAdminCommandHandler
 			{
 				sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">NPCs:</font> <font color=00FF00>" + npcs + "</font></td></tr></table></td></tr>");
 			}
+			
 			if (!items.isEmpty())
 			{
 				sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">Items:</font> <font color=00FF00>" + items + "</font></td></tr></table></td></tr>");
 			}
+			
 			if (!timers.isEmpty())
 			{
 				sb.append("<tr><td colspan=\"4\"><table width=270 border=0 bgcolor=131210><tr><td width=270><font color=\"LEVEL\">Timers:</font> <font color=00FF00></font></td></tr></table></td></tr>");
@@ -280,11 +281,12 @@ public class AdminQuest implements IAdminCommandHandler
 			msg.replace("%questName%", "<table><tr><td width=\"50\" align=\"left\"><a action=\"bypass -h admin_quest_reload " + quest.getName() + "\">Reload</a></td> <td width=\"150\"  align=\"center\"><a action=\"bypass -h admin_quest_info " + quest.getName() + "\">" + quest.getName() + "</a></td> <td width=\"50\" align=\"right\"><a action=\"bypass -h admin_script_unload " + quest.getName() + "\">Unload</a></td></tr></table>");
 			activeChar.sendPacket(msg);
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

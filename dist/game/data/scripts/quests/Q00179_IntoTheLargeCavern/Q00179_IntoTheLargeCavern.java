@@ -35,6 +35,7 @@ public class Q00179_IntoTheLargeCavern extends Quest
 	// NPCs
 	private static final int KEKROPUS = 32138;
 	private static final int MENACING_MACHINE = 32258;
+	
 	// Misc
 	private static final int MIN_LEVEL = 17;
 	private static final int MAX_LEVEL = 21;
@@ -79,6 +80,7 @@ public class Q00179_IntoTheLargeCavern extends Quest
 				qs.exitQuest(false, true);
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -135,6 +137,7 @@ public class Q00179_IntoTheLargeCavern extends Quest
 		{
 			htmltext = "32258-01.html";
 		}
+		
 		return htmltext;
 	}
 }

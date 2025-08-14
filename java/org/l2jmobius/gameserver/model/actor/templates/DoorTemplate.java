@@ -39,6 +39,7 @@ public class DoorTemplate extends CreatureTemplate
 	private final String _groupName;
 	private final boolean _showHp;
 	private final boolean _isWall;
+	
 	// -1 close, 0 nothing, 1 open
 	private final byte _masterDoorClose;
 	private final byte _masterDoorOpen;
@@ -74,6 +75,7 @@ public class DoorTemplate extends CreatureTemplate
 			_nodeX[i] = Integer.parseInt(split[0]);
 			_nodeY[i] = Integer.parseInt(split[1]);
 		}
+		
 		_posX = Integer.parseInt(pos[0]);
 		_posY = Integer.parseInt(pos[1]);
 		_posZ = Math.min(Integer.parseInt(pos[2]), _nodeZ);
@@ -84,6 +86,7 @@ public class DoorTemplate extends CreatureTemplate
 		_isWall = set.getBoolean("is_wall", false);
 		_groupName = set.getString("group", null);
 		_childDoorId = set.getInt("child_id_event", -1);
+		
 		// true if door is opening
 		String masterevent = set.getString("master_close_event", "act_nothing");
 		_masterDoorClose = (byte) (masterevent.equals("act_open") ? 1 : masterevent.equals("act_close") ? -1 : 0);
@@ -100,6 +103,7 @@ public class DoorTemplate extends CreatureTemplate
 			_openTime = set.getInt("open_time");
 			_randomTime = set.getInt("random_time", -1);
 		}
+		
 		_isAttackableDoor = set.getBoolean("is_attackable", false);
 		_clanhallId = set.getInt("clanhall_id", 0);
 		_stealth = set.getBoolean("stealth", false);

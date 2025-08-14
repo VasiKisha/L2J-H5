@@ -79,10 +79,12 @@ public class PartyClan implements ITargetTypeHandler
 				{
 					continue;
 				}
+				
 				if (player.getOlympiadGameId() != obj.getOlympiadGameId())
 				{
 					continue;
 				}
+				
 				if (player.getOlympiadSide() != obj.getOlympiadSide())
 				{
 					continue;

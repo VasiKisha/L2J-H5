@@ -38,7 +38,7 @@ public class AdminLevel implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final WorldObject targetChar = activeChar.getTarget();
 		final StringTokenizer st = new StringTokenizer(command, " ");
@@ -96,6 +96,7 @@ public class AdminLevel implements IAdminCommandHandler
 						targetPlayer.addExpAndSp(tXp - pXp, 0);
 						activeChar.sendSysMessage("Added " + (tXp - pXp) + " exp.");
 					}
+					
 					targetPlayer.setCurrentHpMp(targetPlayer.getMaxHp(), targetPlayer.getMaxMp());
 					targetPlayer.setCurrentCp(targetPlayer.getMaxCp());
 					targetPlayer.broadcastUserInfo();
@@ -112,11 +113,12 @@ public class AdminLevel implements IAdminCommandHandler
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

@@ -46,6 +46,7 @@ public class FuncDiv extends AbstractFunction
 				LOG.warning(FuncDiv.class.getSimpleName() + ": Division by zero: " + getValue() + "!");
 			}
 		}
+		
 		return initVal;
 	}
 }

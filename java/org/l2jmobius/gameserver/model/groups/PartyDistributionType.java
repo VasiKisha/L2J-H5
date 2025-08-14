@@ -73,6 +73,7 @@ public enum PartyDistributionType
 				return partyDistributionType;
 			}
 		}
+		
 		return null;
 	}
 }

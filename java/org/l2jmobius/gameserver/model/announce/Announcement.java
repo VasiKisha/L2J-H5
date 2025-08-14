@@ -128,6 +128,7 @@ public class Announcement implements IAnnouncement
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't store announcement: ", e);
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -148,6 +149,7 @@ public class Announcement implements IAnnouncement
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't store announcement: ", e);
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -165,6 +167,7 @@ public class Announcement implements IAnnouncement
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't remove announcement: ", e);
 			return false;
 		}
+		
 		return true;
 	}
 }

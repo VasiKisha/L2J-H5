@@ -40,6 +40,7 @@ public class ClanHallZone extends ResidenceZone
 		if (name.equals("clanHallId"))
 		{
 			setResidenceId(Integer.parseInt(value));
+			
 			// Register self to the correct clan hall
 			final ClanHall hall = ClanHallTable.getInstance().getClanHallById(getResidenceId());
 			if (hall != null)
@@ -64,6 +65,7 @@ public class ClanHallZone extends ResidenceZone
 		{
 			return;
 		}
+		
 		// Set as in clan hall
 		creature.setInsideZone(ZoneId.CLAN_HALL, true);
 		final AuctionableHall clanHall = ClanHallTable.getInstance().getAuctionableHallById(getResidenceId());
@@ -71,6 +73,7 @@ public class ClanHallZone extends ResidenceZone
 		{
 			return;
 		}
+		
 		// Send decoration packet
 		creature.sendPacket(new AgitDecoInfo(clanHall));
 	}

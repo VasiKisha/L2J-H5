@@ -39,6 +39,7 @@ public class Q00005_MinersFavor extends Quest
 	private static final int GARITA = 30518;
 	private static final int REED = 30520;
 	private static final int BRUNON = 30526;
+	
 	// Items
 	private static final int BOLTERS_LIST = 1547;
 	private static final int MINING_BOOTS = 1548;
@@ -47,6 +48,7 @@ public class Q00005_MinersFavor extends Quest
 	private static final int REDSTONE_BEER = 1551;
 	private static final int BOLTERS_SMELLY_SOCKS = 1552;
 	private static final int NECKLACE = 906;
+	
 	// Misc
 	private static final int MIN_LEVEL = 2;
 	private static final int GUIDE_MISSION = 41;
@@ -84,6 +86,7 @@ public class Q00005_MinersFavor extends Quest
 				{
 					return "30526-04.html";
 				}
+				
 				takeItems(player, BOLTERS_SMELLY_SOCKS, -1);
 				giveItems(player, MINERS_PICK, 1);
 				checkProgress(player, qs);
@@ -99,6 +102,7 @@ public class Q00005_MinersFavor extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -186,6 +190,7 @@ public class Q00005_MinersFavor extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -207,6 +212,7 @@ public class Q00005_MinersFavor extends Quest
 		{
 			return npcId + "-02.html";
 		}
+		
 		giveItems(player, itemId, 1);
 		playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		checkProgress(player, qs);

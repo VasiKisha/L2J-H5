@@ -32,6 +32,7 @@ public class Q00132_MatrasCuriosity extends Quest
 	private static final int MATRAS = 32245;
 	private static final int DEMON_PRINCE = 25540;
 	private static final int RANKU = 25542;
+	
 	// Items
 	private static final int FIRE = 10521;
 	private static final int WATER = 10522;
@@ -86,6 +87,7 @@ public class Q00132_MatrasCuriosity extends Quest
 			giveItems(player, DIVINITY, 1);
 			qs.exitQuest(false, true);
 		}
+		
 		return htmltext;
 	}
 	
@@ -175,6 +177,7 @@ public class Q00132_MatrasCuriosity extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="8200" type="EtcItem" name="Fisherman's Potion - White">
 		<!-- By lowering one's fishing skill level, this potion allows one to catch a white fish (level 22~24 fish). If one uses a potion that is designed for a higher fishing skill level than one's own, the potion will have no effect. -->
@@ -52,10 +52,10 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8204" type="Weapon" name="Monster Only (Follower of Frintezza Calibur)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -71,10 +71,10 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8205" type="Weapon" name="Monster Only (Heretic Priest Sigil)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -90,11 +90,11 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8206" type="Weapon" name="Monster Only (Heretic Priest Sword)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -110,10 +110,10 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8207" type="Weapon" name="Monster Only (Heretic Private Axe)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -129,10 +129,10 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8208" type="Weapon" name="Monster Only (Heretic Private Staff)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -148,11 +148,11 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8209" type="Weapon" name="Monster Only (Lidia Von Helmann Sword)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -168,10 +168,10 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8210" type="Armor" name="Monster Only (Monk Warrior Shield)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -181,11 +181,11 @@
 		<set name="material" val="DAMASCUS" />
 		<set name="weight" val="4800" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="230" />
-		</for>
+		</stats>
 	</item>
 	<item id="8211" type="Weapon" name="Monster Only (Monk Warrior Sword)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -201,10 +201,10 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8212" type="Weapon" name="Monster Only (Solina Brother Mace)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -220,11 +220,11 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8213" type="Weapon" name="Monster Only (Solina Father Mace)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -240,11 +240,11 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8214" type="Weapon" name="Monster Only (Solina Priest Pole)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -260,11 +260,11 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8215" type="Weapon" name="Monster Only (Zombie Enlisted Man Sword)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -280,10 +280,10 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8216" type="Weapon" name="Monster Only (Zombie Enlisted Man Claw)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -299,11 +299,11 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8217" type="Weapon" name="Monster Only (Zombie Gateguard Spear)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -319,10 +319,10 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8218" type="Weapon" name="Monster Only (Zombie Laborer Axe)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -338,11 +338,11 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8219" type="Weapon" name="Monster Only (Zombie Laborer Sword)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -358,10 +358,10 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8220" type="Weapon" name="Monster Only (Grail Apostle Bow)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -379,11 +379,11 @@
 		<set name="mp_consume" val="1" />
 		<set name="reuse_delay" val="1500" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="8221" type="Weapon" name="Monster Only (Grail Apostle Spear)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -399,11 +399,11 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="8222" type="Weapon" name="Monster Only (Follower of Frintezza Tran Calibur)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -419,10 +419,10 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8223" type="EtcItem" name="Seed: Twin Codran">
 		<!-- Plant this seed onto a monster in the Rune area and it will bear the fruit of the Twin Codran. For best results, a level 53-63 character must plant it on a level 53-63 monster. -->

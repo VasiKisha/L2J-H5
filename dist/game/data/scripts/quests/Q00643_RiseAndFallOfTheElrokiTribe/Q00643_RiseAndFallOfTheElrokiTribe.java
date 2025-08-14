@@ -16,7 +16,6 @@
  */
 package quests.Q00643_RiseAndFallOfTheElrokiTribe;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -34,14 +33,17 @@ public class Q00643_RiseAndFallOfTheElrokiTribe extends Quest
 	// NPCs
 	private static final int SINGSING = 32106;
 	private static final int KARAKAWEI = 32117;
+	
 	// Item
 	private static final int BONES_OF_A_PLAINS_DINOSAUR = 8776;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
 	private static final int CHANCE_MOBS1 = 116;
 	private static final int CHANCE_MOBS2 = 360;
 	private static final int CHANCE_DEINO = 558;
 	private boolean isFirstTalk = true;
+	
 	// Rewards
 	private static final int[] PIECE =
 	{
@@ -57,6 +59,7 @@ public class Q00643_RiseAndFallOfTheElrokiTribe extends Quest
 		8721, // Cabrio's Hand Head
 		8722, // Daimon Crystal Fragment
 	};
+	
 	// Mobs
 	private static final int[] MOBS1 =
 	{
@@ -157,6 +160,7 @@ public class Q00643_RiseAndFallOfTheElrokiTribe extends Quest
 					giveAdena(player, 1374 * getQuestItemsCount(player, BONES_OF_A_PLAINS_DINOSAUR), true);
 					htmltext = "32106-12.html";
 				}
+				
 				qs.exitQuest(true, true);
 				break;
 			}
@@ -176,6 +180,7 @@ public class Q00643_RiseAndFallOfTheElrokiTribe extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -191,8 +196,7 @@ public class Q00643_RiseAndFallOfTheElrokiTribe extends Quest
 		final int npcId = npc.getId();
 		if (ArrayUtil.contains(MOBS1, npcId))
 		{
-			final float chance = CHANCE_MOBS1 * Config.RATE_QUEST_DROP;
-			if (getRandom(1000) < chance)
+			if (getRandom(1000) < CHANCE_MOBS1)
 			{
 				rewardItems(partyMember, BONES_OF_A_PLAINS_DINOSAUR, 2);
 			}
@@ -200,16 +204,17 @@ public class Q00643_RiseAndFallOfTheElrokiTribe extends Quest
 			{
 				rewardItems(partyMember, BONES_OF_A_PLAINS_DINOSAUR, 1);
 			}
+			
 			playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
 		
-		if (ArrayUtil.contains(MOBS2, npcId) && (getRandom(1000) < (CHANCE_MOBS2 * Config.RATE_QUEST_DROP)))
+		if (ArrayUtil.contains(MOBS2, npcId) && (getRandom(1000) < CHANCE_MOBS2))
 		{
 			rewardItems(partyMember, BONES_OF_A_PLAINS_DINOSAUR, 1);
 			playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
 		
-		if ((npcId == DEINONYCHUS) && (getRandom(1000) < (CHANCE_DEINO * Config.RATE_QUEST_DROP)))
+		if ((npcId == DEINONYCHUS) && (getRandom(1000) < CHANCE_DEINO))
 		{
 			rewardItems(partyMember, BONES_OF_A_PLAINS_DINOSAUR, 1);
 			playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -249,6 +254,7 @@ public class Q00643_RiseAndFallOfTheElrokiTribe extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

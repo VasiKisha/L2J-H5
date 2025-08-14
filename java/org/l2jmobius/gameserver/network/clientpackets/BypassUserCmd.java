@@ -56,7 +56,7 @@ public class BypassUserCmd extends ClientPacket
 		}
 		else
 		{
-			handler.useUserCommand(_command, player);
+			handler.onCommand(_command, player);
 		}
 	}
 }

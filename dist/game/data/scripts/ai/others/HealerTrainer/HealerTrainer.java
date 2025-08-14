@@ -50,6 +50,7 @@ public class HealerTrainer extends AbstractNpcAI
 		31970, 31976, 32155, 32162
 	};
 	// @formatter:on
+	
 	// Misc
 	private static final int MIN_LEVEL = 76;
 	private static final int MIN_CLASS_LEVEL = 3;
@@ -152,6 +153,7 @@ public class HealerTrainer extends AbstractNpcAI
 							{
 								player.addItem(ItemProcessType.REFUND, item.getId(), item.getCount(), npc, true);
 							}
+							
 							hasSkills = true;
 						}
 					}
@@ -165,6 +167,7 @@ public class HealerTrainer extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -198,6 +201,7 @@ public class HealerTrainer extends AbstractNpcAI
 				itemId = -1;
 			}
 		}
+		
 		return (player.getInventory().getInventoryItemCount(itemId, -1) > 0);
 	}
 	

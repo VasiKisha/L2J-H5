@@ -209,6 +209,7 @@ public class OracleTeleport extends AbstractNpcAI
 			{
 				htmltext = "5a.htm";
 			}
+			
 			int i = 0;
 			for (int id1 : TELEPORTERS)
 			{
@@ -216,8 +217,10 @@ public class OracleTeleport extends AbstractNpcAI
 				{
 					break;
 				}
+				
 				i++;
 			}
+			
 			qs.set("id", Integer.toString(i));
 			qs.setState(State.STARTED);
 			player.teleToLocation(new Location(-114755, -179466, -6752));
@@ -254,6 +257,7 @@ public class OracleTeleport extends AbstractNpcAI
 			{
 				takeItems(player, Inventory.ADENA_ID, 24500);
 			}
+			
 			int i = 0;
 			for (int ziggurat : TELEPORTERS)
 			{
@@ -261,14 +265,17 @@ public class OracleTeleport extends AbstractNpcAI
 				{
 					break;
 				}
+				
 				i++;
 			}
+			
 			qs.set("id", Integer.toString(i));
 			qs.setState(State.STARTED);
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ACCEPT);
 			htmltext = "ziggurat_rift.htm";
 			player.teleToLocation(new Location(-114755, -179466, -6752));
 		}
+		
 		return htmltext;
 	}
 	
@@ -288,13 +295,16 @@ public class OracleTeleport extends AbstractNpcAI
 				{
 					break;
 				}
+				
 				i++;
 			}
+			
 			qs.set("id", Integer.toString(i));
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ACCEPT);
 			player.teleToLocation(new Location(-80157, 111344, -4901));
 			player.setIn7sDungeon(true);
 		}
+		
 		if (ArrayUtil.contains(TOWN_DUSK, npcId))
 		{
 			qs.setState(State.STARTED);
@@ -305,8 +315,10 @@ public class OracleTeleport extends AbstractNpcAI
 				{
 					break;
 				}
+				
 				i++;
 			}
+			
 			qs.set("id", Integer.toString(i));
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ACCEPT);
 			player.teleToLocation(new Location(-81261, 86531, -5157));
@@ -387,6 +399,7 @@ public class OracleTeleport extends AbstractNpcAI
 				htmltext = "ziggurat.htm";
 			}
 		}
+		
 		return htmltext;
 	}
 	

@@ -108,7 +108,7 @@ public class CubicAction implements Runnable
 			if (useCubicCure)
 			{
 				// Smart Cubic debuff cancel is needed, no other skill is used in this activation period
-				_cubic.getOwner().broadcastPacket(new MagicSkillUse(_cubic.getOwner(), _cubic.getOwner(), Cubic.SKILL_CUBIC_CURE, 1, 0, 0));
+				_cubic.getOwner().broadcastSkillPacket(new MagicSkillUse(_cubic.getOwner(), _cubic.getOwner(), Cubic.SKILL_CUBIC_CURE, 1, 0, 0), _cubic.getOwner());
 				
 				// The cubic has done an action, increase the current count
 				_currentCount.incrementAndGet();
@@ -135,10 +135,11 @@ public class CubicAction implements Runnable
 						_cubic.setTarget(null);
 					}
 				}
+				
 				final Creature target = _cubic.getTarget();
 				if ((target != null) && !target.isDead())
 				{
-					_cubic.getOwner().broadcastPacket(new MagicSkillUse(_cubic.getOwner(), target, skill.getId(), skill.getLevel(), 0, 0));
+					_cubic.getOwner().broadcastSkillPacket(new MagicSkillUse(_cubic.getOwner(), target, skill.getId(), skill.getLevel(), 0, 0), target);
 					
 					if (skill.isContinuous())
 					{

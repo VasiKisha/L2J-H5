@@ -21,9 +21,11 @@ import java.util.Map;
 
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.data.xml.SkillData;
+import org.l2jmobius.gameserver.data.xml.TeleporterData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
 
 import ai.AbstractNpcAI;
 
@@ -64,6 +66,7 @@ public class VarkaSilenosSupport extends AbstractNpcAI
 	private static final int HAGOS = 31381; // Warehouse Keeper
 	private static final int SHIKON = 31382; // Trader
 	private static final int TERANU = 31383; // Teleporter
+	
 	// Items
 	private static final int SEED = 7187;
 	private static final int[] VARKA_MARKS =
@@ -74,6 +77,7 @@ public class VarkaSilenosSupport extends AbstractNpcAI
 		7224, // Mark of Varka's Alliance - Level 4
 		7225, // Mark of Varka's Alliance - Level 5
 	};
+	
 	// Misc
 	private static final Map<Integer, BuffsData> BUFF = new HashMap<>();
 	static
@@ -104,6 +108,7 @@ public class VarkaSilenosSupport extends AbstractNpcAI
 				return -(i + 1);
 			}
 		}
+		
 		return 0;
 	}
 	
@@ -126,18 +131,16 @@ public class VarkaSilenosSupport extends AbstractNpcAI
 				htmltext = "31379-02.html";
 			}
 		}
-		else if (event.equals("Teleport"))
+		else if (event.equals("TELEPORT"))
 		{
-			final int AllianceLevel = getAllianceLevel(player);
-			if (AllianceLevel == -4)
+			final String listName = "list" + getAllianceLevel(player);
+			final TeleportHolder holder = TeleporterData.getInstance().getHolder(npc.getId(), listName);
+			if (holder != null)
 			{
-				htmltext = "31383-04.html";
-			}
-			else if (AllianceLevel == -5)
-			{
-				htmltext = "31383-05.html";
+				holder.showTeleportList(player, npc);
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -232,6 +235,7 @@ public class VarkaSilenosSupport extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

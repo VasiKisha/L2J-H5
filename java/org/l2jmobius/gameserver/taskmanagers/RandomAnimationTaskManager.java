@@ -49,6 +49,7 @@ public class RandomAnimationTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		final long currentTime = System.currentTimeMillis();
@@ -61,6 +62,7 @@ public class RandomAnimationTaskManager implements Runnable
 				{
 					npc.onRandomAnimation(Rnd.get(2, 3));
 				}
+				
 				PENDING_ANIMATIONS.put(npc, currentTime + (Rnd.get((npc.isAttackable() ? Config.MIN_MONSTER_ANIMATION : Config.MIN_NPC_ANIMATION), (npc.isAttackable() ? Config.MAX_MONSTER_ANIMATION : Config.MAX_NPC_ANIMATION)) * 1000));
 			}
 		}

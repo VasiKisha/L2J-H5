@@ -79,6 +79,7 @@ public class DoorData implements IXmlReader
 							final Node att = attrs.item(i);
 							set.set(att.getNodeName(), att.getNodeValue());
 						}
+						
 						makeDoor(set);
 						_templates.put(set.getInt("id"), set);
 					}
@@ -144,6 +145,7 @@ public class DoorData implements IXmlReader
 			set = new HashSet<>();
 			_groups.put(groupName, set);
 		}
+		
 		set.add(doorId);
 	}
 	
@@ -194,6 +196,7 @@ public class DoorData implements IXmlReader
 				doors = null;
 			}
 		}
+		
 		if ((doors == null) || doors.isEmpty())
 		{
 			return false;
@@ -211,6 +214,7 @@ public class DoorData implements IXmlReader
 			for (int i = 0; i < 4; i++)
 			{
 				final int j = (i + 1) < 4 ? i + 1 : 0;
+				
 				// lower part of the multiplier fraction, if it is 0 we avoid an error and also know that the lines are parallel
 				final int denominator = ((ty - y) * (doorInst.getX(i) - doorInst.getX(j))) - ((tx - x) * (doorInst.getY(i) - doorInst.getY(j)));
 				if (denominator == 0)
@@ -224,6 +228,7 @@ public class DoorData implements IXmlReader
 				if ((multiplier1 >= 0) && (multiplier1 <= 1) && (multiplier2 >= 0) && (multiplier2 <= 1))
 				{
 					final int intersectZ = Math.round(z + (multiplier1 * (tz - z)));
+					
 					// now checking if the resulting point is between door's min and max z
 					if ((intersectZ > doorInst.getZMin()) && (intersectZ < doorInst.getZMax()))
 					{
@@ -231,11 +236,13 @@ public class DoorData implements IXmlReader
 						{
 							return true;
 						}
+						
 						intersectFace = true;
 					}
 				}
 			}
 		}
+		
 		return false;
 	}
 	

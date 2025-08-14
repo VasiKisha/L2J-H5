@@ -33,12 +33,14 @@ public class Q00136_MoreThanMeetsTheEye extends Quest
 	private static final int HARDIN = 30832;
 	private static final int ERRICKIN = 30701;
 	private static final int CLAYTON = 30464;
+	
 	// Monsters
 	private static final int GLASS_JAGUAR = 20250;
 	private static final int GHOST1 = 20636;
 	private static final int GHOST2 = 20637;
 	private static final int GHOST3 = 20638;
 	private static final int MIRROR = 20639;
+	
 	// Items
 	private static final int ECTOPLASM = 9787;
 	private static final int STABILIZED_ECTOPLASM = 9786;
@@ -46,6 +48,7 @@ public class Q00136_MoreThanMeetsTheEye extends Quest
 	private static final int GLASS_JAGUAR_CRYSTAL = 9789;
 	private static final int BOOK_OF_SEAL = 9790;
 	private static final int TRANSFORM_BOOK = 9648;
+	
 	// Misc
 	private static final int MIN_LEVEL = 50;
 	private static final int ECTOPLASM_COUNT = 35;
@@ -152,6 +155,7 @@ public class Q00136_MoreThanMeetsTheEye extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -173,6 +177,7 @@ public class Q00136_MoreThanMeetsTheEye extends Quest
 			{
 				giveItems(killer, ECTOPLASM, 1);
 			}
+			
 			giveItem(qs, ECTOPLASM, count, ECTOPLASM_COUNT, 4);
 		}
 		else if ((npcId == GLASS_JAGUAR) && qs.isCond(7))
@@ -360,6 +365,7 @@ public class Q00136_MoreThanMeetsTheEye extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

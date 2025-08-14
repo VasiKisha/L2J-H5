@@ -37,6 +37,7 @@ public class Q00040_ASpecialOrder extends Quest
 	private static final int HELVETIA = 30081;
 	private static final int OFULLE = 31572;
 	private static final int GESTO = 30511;
+	
 	// Items
 	private static final int ORANGE_SWIFT_FISH = 6450;
 	private static final int ORANGE_UGLY_FISH = 6451;
@@ -47,6 +48,7 @@ public class Q00040_ASpecialOrder extends Quest
 	private static final int WONDROUS_CUBIC = 10632;
 	private static final int BOX_OF_FISH = 12764;
 	private static final int BOX_OF_SEED = 12765;
+	
 	// Misc
 	private static final int MIN_LEVEL = 40;
 	
@@ -66,6 +68,7 @@ public class Q00040_ASpecialOrder extends Quest
 		{
 			return null;
 		}
+		
 		String htmltext = null;
 		switch (event)
 		{
@@ -130,6 +133,7 @@ public class Q00040_ASpecialOrder extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -257,6 +261,7 @@ public class Q00040_ASpecialOrder extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

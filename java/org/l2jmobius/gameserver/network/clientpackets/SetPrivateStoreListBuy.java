@@ -65,6 +65,7 @@ public class SetPrivateStoreListBuy extends ClientPacket
 				_items = null;
 				return;
 			}
+			
 			readInt(); // Unk
 			readInt(); // Unk
 			readInt(); // Unk

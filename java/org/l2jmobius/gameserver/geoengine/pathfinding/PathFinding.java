@@ -154,16 +154,16 @@ public class PathFinding
 	public List<GeoLocation> findPath(int x, int y, int z, int tx, int ty, int tz, int instanceId, boolean playable)
 	{
 		final GeoEngine geoEngine = GeoEngine.getInstance();
-		final int gx = geoEngine.getGeoX(x);
-		final int gy = geoEngine.getGeoY(y);
+		final int gx = GeoEngine.getGeoX(x);
+		final int gy = GeoEngine.getGeoY(y);
 		if (!geoEngine.hasGeo(x, y))
 		{
 			return null;
 		}
 		
 		final int gz = geoEngine.getHeight(x, y, z);
-		final int gtx = geoEngine.getGeoX(tx);
-		final int gty = geoEngine.getGeoY(ty);
+		final int gtx = GeoEngine.getGeoX(tx);
+		final int gty = GeoEngine.getGeoY(ty);
 		if (!geoEngine.hasGeo(tx, ty))
 		{
 			return null;
@@ -313,6 +313,7 @@ public class PathFinding
 						break;
 					}
 				}
+				
 				if (current != null)
 				{
 					break;

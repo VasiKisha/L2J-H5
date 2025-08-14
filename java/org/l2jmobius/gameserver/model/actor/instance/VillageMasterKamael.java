@@ -45,6 +45,7 @@ public class VillageMasterKamael extends VillageMaster
 		{
 			return "data/html/villagemaster/SubClass.htm";
 		}
+		
 		return "data/html/villagemaster/SubClass_NoKamael.htm";
 	}
 	
@@ -85,6 +86,7 @@ public class VillageMasterKamael extends VillageMaster
 		{
 			return false;
 		}
+		
 		return pClass.getRace() == Race.KAMAEL;
 	}
 }

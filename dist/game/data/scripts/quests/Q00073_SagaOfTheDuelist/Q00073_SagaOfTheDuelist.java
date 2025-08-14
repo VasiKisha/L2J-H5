@@ -128,10 +128,13 @@ public class Q00073_SagaOfTheDuelist extends AbstractSagaQuest
 					giveItems(player, TOPQUALITYMEAT, 1);
 					return "tunatun_01.htm";
 				}
+				
 				return "tunatun_02.htm";
 			}
+			
 			return htmltext;
 		}
+		
 		return super.onTalk(npc, player);
 	}
 }

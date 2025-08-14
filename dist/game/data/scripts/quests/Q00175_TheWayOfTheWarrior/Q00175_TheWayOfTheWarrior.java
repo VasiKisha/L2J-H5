@@ -38,11 +38,14 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 	// NPCs
 	private static final int PERWAN = 32133;
 	private static final int KEKROPUS = 32138;
+	
 	// Items
 	private static final ItemHolder WOLF_TAIL = new ItemHolder(9807, 5);
 	private static final ItemHolder MUERTOS_CLAW = new ItemHolder(9808, 10);
+	
 	// Buff
 	private static final SkillHolder UNSEALED_ALTAR = new SkillHolder(4549, 1);
+	
 	// Rewards
 	private static final int WARRIORS_SWORD = 9720;
 	private static final ItemHolder SOULSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5789, 7000);
@@ -55,6 +58,7 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 		new ItemHolder(4415, 10), // Echo Crystal - Theme of Feast
 		new ItemHolder(4416, 10), // Echo Crystal - Theme of Celebration
 	};
+	
 	// Monsters
 	private static final int MOUNTAIN_WEREWOLF = 22235;
 	private static final int[] MONSTERS =
@@ -67,6 +71,7 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 		22245, // Muertos Lieutenant
 		22246, // Muertos Commander
 	};
+	
 	// Misc
 	private static final int MIN_LEVEL = 10;
 	private static final int GUIDE_MISSION = 41;
@@ -89,6 +94,7 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 		{
 			return null;
 		}
+		
 		String htmltext = null;
 		switch (event)
 		{
@@ -152,6 +158,7 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 					{
 						giveItems(player, reward);
 					}
+					
 					qs.exitQuest(false, true);
 					player.sendPacket(new SocialAction(player.getObjectId(), 3));
 					htmltext = event;
@@ -168,6 +175,7 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -314,6 +322,7 @@ public class Q00175_TheWayOfTheWarrior extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

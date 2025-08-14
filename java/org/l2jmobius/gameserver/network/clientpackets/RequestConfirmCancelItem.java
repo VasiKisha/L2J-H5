@@ -45,6 +45,7 @@ public class RequestConfirmCancelItem extends ClientPacket
 		{
 			return;
 		}
+		
 		final Item item = player.getInventory().getItemByObjectId(_objectId);
 		if (item == null)
 		{
@@ -127,6 +128,7 @@ public class RequestConfirmCancelItem extends ClientPacket
 				price = 920000;
 				break;
 			}
+			
 			// TODO: S84 TOP price 3.2M
 			// any other item type is not augmentable
 			default:

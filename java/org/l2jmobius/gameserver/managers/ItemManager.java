@@ -245,6 +245,7 @@ public class ItemManager
 			{
 				_item.setOwnerId(0);
 			}
+			
 			_item.setItemLootShedule(null);
 		}
 	}

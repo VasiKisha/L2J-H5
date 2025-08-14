@@ -34,13 +34,13 @@ public class MemoBoard implements IWriteBoardHandler
 	};
 	
 	@Override
-	public String[] getCommunityBoardCommands()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}
 	
 	@Override
-	public boolean parseCommunityBoardCommand(String command, Player player)
+	public boolean onCommand(String command, Player player)
 	{
 		CommunityBoardHandler.getInstance().addBypass(player, "Memo Command", command);
 		

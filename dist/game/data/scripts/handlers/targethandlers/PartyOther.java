@@ -49,6 +49,7 @@ public class PartyOther implements ITargetTypeHandler
 							{
 								return Collections.singletonList(target);
 							}
+							
 							return Collections.emptyList();
 						}
 						case 427:
@@ -57,12 +58,15 @@ public class PartyOther implements ITargetTypeHandler
 							{
 								return Collections.singletonList(target);
 							}
+							
 							return Collections.emptyList();
 						}
 					}
 				}
+				
 				return Collections.singletonList(target);
 			}
+			
 			return Collections.emptyList();
 		}
 		

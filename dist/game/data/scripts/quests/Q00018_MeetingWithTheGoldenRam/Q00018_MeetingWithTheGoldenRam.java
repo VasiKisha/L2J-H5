@@ -37,6 +37,7 @@ public class Q00018_MeetingWithTheGoldenRam extends Quest
 	private static final int DONAL = 31314;
 	private static final int DAISY = 31315;
 	private static final int ABERCROMBIE = 31555;
+	
 	// Item
 	private static final int BOX = 7245;
 	
@@ -89,6 +90,7 @@ public class Q00018_MeetingWithTheGoldenRam extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -131,6 +133,7 @@ public class Q00018_MeetingWithTheGoldenRam extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

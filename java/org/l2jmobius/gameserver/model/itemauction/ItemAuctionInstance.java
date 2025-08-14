@@ -233,6 +233,7 @@ public class ItemAuctionInstance
 				return item;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -334,6 +335,7 @@ public class ItemAuctionInstance
 			{
 				setStateTask(ThreadPool.schedule(new ScheduleAuctionTask(currentAuction), Math.max(currentAuction.getStartingTime() - System.currentTimeMillis(), 0)));
 			}
+			
 			LOGGER.log(Level.INFO, getClass().getSimpleName() + ": Schedule current auction " + currentAuction.getAuctionId() + " for instance " + _instanceId);
 		}
 		else
@@ -359,6 +361,7 @@ public class ItemAuctionInstance
 				stack.add(auction);
 			}
 		}
+		
 		return stack;
 	}
 	
@@ -548,6 +551,7 @@ public class ItemAuctionInstance
 						LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Auction data not found for auction: " + auctionId);
 						return null;
 					}
+					
 					auctionItemId = rset.getInt(1);
 					startingTime = rset.getLong(2);
 					endingTime = rset.getLong(3);
@@ -589,6 +593,7 @@ public class ItemAuctionInstance
 					ps.setInt(1, auctionId);
 					ps.execute();
 				}
+				
 				return null;
 			}
 			
@@ -604,6 +609,7 @@ public class ItemAuctionInstance
 					}
 				}
 			}
+			
 			return new ItemAuction(auctionId, _instanceId, startingTime, endingTime, auctionItem, auctionBids, auctionState);
 		}
 	}

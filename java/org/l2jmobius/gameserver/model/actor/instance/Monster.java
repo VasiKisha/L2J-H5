@@ -172,6 +172,7 @@ public class Monster extends Attackable
 				}
 			}
 		}
+		
 		return _minionList;
 	}
 	
@@ -209,7 +210,7 @@ public class Monster extends Attackable
 	public void doCast(Skill skill, Creature target, List<WorldObject> targets)
 	{
 		// Might need some exceptions here, but it will prevent the monster buffing player bug.
-		if (!skill.isBad() && (getTarget() != null) && getTarget().isPlayer())
+		if (!skill.hasNegativeEffect() && (getTarget() != null) && getTarget().isPlayer())
 		{
 			setCastingNow(false);
 			setCastingSimultaneouslyNow(false);

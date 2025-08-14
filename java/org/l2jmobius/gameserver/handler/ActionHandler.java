@@ -58,6 +58,7 @@ public class ActionHandler implements IHandler<IActionHandler, InstanceType>
 				break;
 			}
 		}
+		
 		return result;
 	}
 	

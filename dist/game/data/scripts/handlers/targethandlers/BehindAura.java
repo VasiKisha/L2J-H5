@@ -65,6 +65,7 @@ public class BehindAura implements ITargetTypeHandler
 				}
 			}
 		}
+		
 		return targetList;
 	}
 	

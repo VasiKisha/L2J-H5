@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="12400" type="EtcItem" name="Foundation Kaim Vanul's Bones">
 		<!-- A rare Kaim Vanul's Bones that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -12,13 +12,13 @@
 		<set name="price" val="10091400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12401" type="EtcItem" name="Foundation Colichemarde">
 		<!-- A rare Colichemarde that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -32,16 +32,16 @@
 		<set name="price" val="10091400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="176" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="12402" type="EtcItem" name="Foundation Wizard's Tear">
 		<!-- A rare Wizard's Tear that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -55,12 +55,12 @@
 		<set name="price" val="10091400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12403" type="EtcItem" name="Foundation Bow of Peril">
 		<!-- A rare Bow of Peril that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -75,13 +75,13 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="1" />
 		<set name="mp_consume" val="4" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="400" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="12404" type="EtcItem" name="Foundation Hell Hound">
 		<!-- A rare Hell Hound that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -95,16 +95,16 @@
 		<set name="price" val="10091400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="245" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="12405" type="EtcItem" name="Foundation Dasparion's Staff">
 		<!-- A rare Dasparion's Staff that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -118,13 +118,13 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12406" type="EtcItem" name="Foundation Doomchanter">
 		<!-- A rare Doomchanter that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -138,16 +138,16 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="270" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="12407" type="EtcItem" name="Foundation White Lightning">
 		<!-- A rare White Lightning that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -161,16 +161,16 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="193" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="12408" type="EtcItem" name="Foundation Meteor Shower">
 		<!-- A rare Meteor Shower that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -184,13 +184,13 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12409" type="EtcItem" name="Foundation Blood Tornado">
 		<!-- A rare Blood Tornado that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -204,13 +204,13 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12410" type="EtcItem" name="Foundation Bloody Orchid">
 		<!-- A rare Bloody Orchid that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -224,13 +224,13 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="186" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="12411" type="EtcItem" name="Foundation Elemental Sword">
 		<!-- A rare Elemental Sword that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -244,12 +244,12 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12412" type="EtcItem" name="Foundation Spiritual Eye">
 		<!-- A rare Spiritual Eye that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -263,13 +263,13 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12413" type="EtcItem" name="Foundation Infernal Master">
 		<!-- A rare Infernal Master that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -283,12 +283,12 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12414" type="EtcItem" name="Foundation Carnage Bow">
 		<!-- A rare Carnage Bow that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -303,13 +303,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="1" />
 		<set name="mp_consume" val="4" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="440" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="12415" type="EtcItem" name="Foundation Tallum Blade">
 		<!-- A rare Tallum Blade that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -323,12 +323,12 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12416" type="EtcItem" name="Foundation Destroyer Hammer">
 		<!-- A rare Destroyer Hammer that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -342,13 +342,13 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12417" type="EtcItem" name="Foundation Divine Pain">
 		<!-- A rare Divine Pain that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -362,16 +362,16 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="231" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="12418" type="EtcItem" name="Foundation Halberd">
 		<!-- A rare Halberd that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -385,13 +385,13 @@
 		<set name="price" val="14098000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12419" type="EtcItem" name="Foundation Lacerator">
 		<!-- A rare Lacerator that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -405,16 +405,16 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="210" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="12420" type="EtcItem" name="Foundation Dark Legion's Edge">
 		<!-- A rare Dark Legion's Edge that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -428,12 +428,12 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12421" type="EtcItem" name="Foundation Undertaker">
 		<!-- A rare Undertaker that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -447,16 +447,16 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="12422" type="EtcItem" name="Foundation Doom Crusher">
 		<!-- A rare Doom Crusher that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -470,13 +470,13 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12423" type="EtcItem" name="Foundation Dragon Grinder">
 		<!-- A rare Dragon Grinder that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -490,13 +490,13 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12424" type="EtcItem" name="Foundation Dragon Slayer">
 		<!-- A rare Dragon Slayer that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -510,12 +510,12 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12425" type="EtcItem" name="Foundation Flaming Dragon Skull">
 		<!-- A rare Flaming Dragon Skull that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -529,13 +529,13 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12426" type="EtcItem" name="Foundation Branch of the Mother Tree">
 		<!-- A rare Branch of the Mother Tree that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -549,13 +549,13 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12427" type="EtcItem" name="Foundation Sword of Miracles">
 		<!-- A rare Sword of Miracles that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -569,12 +569,12 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12428" type="EtcItem" name="Foundation Reaper">
 		<!-- A rare Reaper that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -588,16 +588,16 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="294" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="12429" type="EtcItem" name="Foundation Soul Separator">
 		<!-- A rare Soul Separator that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -611,13 +611,13 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="203" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="12430" type="EtcItem" name="Foundation Elysian">
 		<!-- A rare Elysian that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -631,13 +631,13 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12431" type="EtcItem" name="Foundation Soul Bow">
 		<!-- A rare Soul Bow that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -652,13 +652,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="1" />
 		<set name="mp_consume" val="5" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="528" />
 			<set stat="mAtk" val="125" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="227" />
-		</for>
+		</stats>
 	</item>
 	<item id="12432" type="EtcItem" name="Foundation Tallum Glaive">
 		<!-- A rare Tallum Glaive that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -672,13 +672,13 @@
 		<set name="price" val="20741000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12433" type="EtcItem" name="Foundation Naga Storm">
 		<!-- A rare Naga Storm that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -692,13 +692,13 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="220" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="12434" type="EtcItem" name="Foundation Daimon Crystal">
 		<!-- A rare Daimon Crystal that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -712,13 +712,13 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12435" type="EtcItem" name="Foundation Barakiel's Axe">
 		<!-- A rare Barakiel's Axe that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -732,13 +732,13 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12436" type="EtcItem" name="Foundation Screaming Vengeance">
 		<!-- A rare Screaming Vengeance that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -752,16 +752,16 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="318" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="12437" type="EtcItem" name="Foundation Behemoth's Tuning Fork">
 		<!-- A rare Behemoth's Tuning Fork that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -775,13 +775,13 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12438" type="EtcItem" name="Foundation Durendal">
 		<!-- A rare Durendal that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -795,16 +795,16 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="272" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="12439" type="EtcItem" name="Foundation Shyeed's Bow">
 		<!-- A rare Shyeed's Bow that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -819,13 +819,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="mp_consume" val="5" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="571" />
 			<set stat="mAtk" val="133" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="227" />
-		</for>
+		</stats>
 	</item>
 	<item id="12440" type="EtcItem" name="Foundation Sword of Ipos">
 		<!-- A rare Sword of Ipos that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -839,12 +839,12 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12441" type="EtcItem" name="Foundation Sobekk's Hurricane">
 		<!-- A rare Sobekk's Hurricane that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -858,13 +858,13 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12442" type="EtcItem" name="Foundation Sirra's Blade">
 		<!-- A rare Sirra's Blade that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -878,12 +878,12 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12443" type="EtcItem" name="Foundation Éclair Bijou">
 		<!-- A rare Éclair Bijou that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -897,16 +897,16 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="228" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="12444" type="EtcItem" name="Foundation Tiphon's Spear">
 		<!-- A rare Tiphon's Spear that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -920,13 +920,13 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12445" type="EtcItem" name="Foundation Themis' Tongue">
 		<!-- A rare Themis' Tongue that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -940,12 +940,12 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12446" type="EtcItem" name="Foundation Cabrio's Hand">
 		<!-- A rare Cabrio's Hand that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -959,13 +959,13 @@
 		<set name="price" val="26968400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12447" type="EtcItem" name="Foundation Gram">
 		<!-- A rare Gram that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -979,16 +979,16 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="304" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="12448" type="EtcItem" name="Foundation Demon Splinter">
 		<!-- A rare Demon Splinter that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1002,13 +1002,13 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12449" type="EtcItem" name="Foundation Draconic Bow">
 		<!-- A rare Draconic Bow that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1023,13 +1023,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="mp_consume" val="6" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="581" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="12450" type="EtcItem" name="Foundation Dragon Hunter Axe">
 		<!-- A rare Dragon Hunter Axe that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1043,13 +1043,13 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12451" type="EtcItem" name="Foundation Laevateinn">
 		<!-- A rare Laevateinn that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1063,16 +1063,16 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="255" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="12452" type="EtcItem" name="Foundation Basalt Battlehammer">
 		<!-- A rare Basalt Battlehammer that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1086,13 +1086,13 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12453" type="EtcItem" name="Foundation Sarunga">
 		<!-- A rare Sarunga that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1106,16 +1106,16 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="356" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="12454" type="EtcItem" name="Foundation Saint Spear">
 		<!-- A rare Saint Spear that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1129,13 +1129,13 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12455" type="EtcItem" name="Foundation Arcana Mace">
 		<!-- A rare Arcana Mace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1149,13 +1149,13 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12456" type="EtcItem" name="Foundation Angel Slayer">
 		<!-- A rare Angel Slayer that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1169,13 +1169,13 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="246" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="12457" type="EtcItem" name="Foundation Imperial Staff">
 		<!-- A rare Imperial Staff that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1189,13 +1189,13 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12458" type="EtcItem" name="Foundation Forgotten Blade">
 		<!-- A rare Forgotten Blade that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1209,12 +1209,12 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12459" type="EtcItem" name="Foundation Heaven's Divider">
 		<!-- A rare Heaven's Divider that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1228,12 +1228,12 @@
 		<set name="price" val="42759400" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12460" type="EtcItem" name="Foundation Dynasty Ancient Sword">
 		<!-- A rare Dynasty Ancient Sword that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1247,16 +1247,16 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="361" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="12461" type="EtcItem" name="Foundation Dynasty Knife">
 		<!-- A rare Dynasty Knife that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1270,13 +1270,13 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="291" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="12462" type="EtcItem" name="Foundation Dynasty Rapier">
 		<!-- A rare Dynasty Rapier that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1290,16 +1290,16 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="302" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="12463" type="EtcItem" name="Foundation Dynasty Mace">
 		<!-- A rare Dynasty Mace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1313,13 +1313,13 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12464" type="EtcItem" name="Foundation Dynasty Bagh-Nakh">
 		<!-- A rare Dynasty Bagh-Nakh that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1333,13 +1333,13 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12465" type="EtcItem" name="Foundation Dynasty Bow">
 		<!-- A rare Dynasty Bow that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1354,13 +1354,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="mp_consume" val="6" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="654" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="12466" type="EtcItem" name="Foundation Dynasty Blade">
 		<!-- A rare Dynasty Blade that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1374,12 +1374,12 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12467" type="EtcItem" name="Foundation Dynasty Sword">
 		<!-- A rare Dynasty Sword that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1393,12 +1393,12 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12468" type="EtcItem" name="Foundation Dynasty Staff">
 		<!-- A rare Dynasty Staff that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1412,13 +1412,13 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12469" type="EtcItem" name="Foundation Dynasty Cudgel">
 		<!-- A rare Dynasty Cudgel that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1432,13 +1432,13 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12470" type="EtcItem" name="Foundation Dynasty Crusher">
 		<!-- A rare Dynasty Crusher that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1452,13 +1452,13 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12471" type="EtcItem" name="Foundation Dynasty Crossbow">
 		<!-- A rare Dynasty Crossbow that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1472,16 +1472,16 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="401" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="12472" type="EtcItem" name="Foundation Dynasty Phantom">
 		<!-- A rare Dynasty Phantom that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1495,12 +1495,12 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12473" type="EtcItem" name="Foundation Dynasty Halberd">
 		<!-- A rare Dynasty Halberd that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1514,13 +1514,13 @@
 		<set name="price" val="74946000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="333" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12474" type="EtcItem" name="Foundation Icarus Disperser">
 		<!-- A rare Icarus Disperser that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1534,13 +1534,13 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="318" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="12475" type="EtcItem" name="Foundation Icarus Sawsword">
 		<!-- A rare Icarus Sawsword that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1554,12 +1554,12 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12476" type="EtcItem" name="Foundation Icarus Shooter">
 		<!-- A rare Icarus Shooter that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1573,16 +1573,16 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="422" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="12477" type="EtcItem" name="Foundation Icarus Stinger">
 		<!-- A rare Icarus Stinger that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1596,16 +1596,16 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="329" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="12478" type="EtcItem" name="Foundation Icarus Spirit">
 		<!-- A rare Icarus Spirit that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1619,12 +1619,12 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12479" type="EtcItem" name="Foundation Icarus Spitter">
 		<!-- A rare Icarus Spitter that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1639,13 +1639,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="mp_consume" val="6" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="689" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="12480" type="EtcItem" name="Foundation Icarus Wingblade">
 		<!-- A rare Icarus Wingblade that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1659,16 +1659,16 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="393" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="12481" type="EtcItem" name="Foundation Icarus Trident">
 		<!-- A rare Icarus Trident that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1682,13 +1682,13 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12482" type="EtcItem" name="Foundation Icarus Hammer">
 		<!-- A rare Icarus Hammer that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1702,13 +1702,13 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12483" type="EtcItem" name="Foundation Icarus Hand">
 		<!-- A rare Icarus Hand that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1722,13 +1722,13 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="12484" type="EtcItem" name="Foundation Icarus Heavy Arms">
 		<!-- A rare Icarus Heavy Arms that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1742,12 +1742,12 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12485" type="EtcItem" name="Foundation Icarus Hall">
 		<!-- A rare Icarus Hall that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1761,13 +1761,13 @@
 		<set name="price" val="103439000" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12486" type="EtcItem" name="Foundation Sealed Zubei's Gauntlet">
 		<!-- A rare Sealed Zubei's Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1777,9 +1777,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="590" />
 		<set name="price" val="399100" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12487" type="EtcItem" name="Foundation Sealed Zubei's Boots">
 		<!-- A rare Sealed Zubei's Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1789,9 +1789,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1180" />
 		<set name="price" val="399100" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12488" type="EtcItem" name="Foundation Sealed Avadon Gloves">
 		<!-- A rare Sealed Avadon Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1801,9 +1801,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="590" />
 		<set name="price" val="399100" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12489" type="EtcItem" name="Foundation Sealed Avadon Boots">
 		<!-- A rare Sealed Avadon Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1813,9 +1813,9 @@
 		<set name="material" val="DAMASCUS" />
 		<set name="weight" val="1170" />
 		<set name="price" val="399100" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12490" type="EtcItem" name="Foundation Zubei's Leather Gaiters">
 		<!-- A rare Zubei's Leather Gaiters that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1826,9 +1826,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1480" />
 		<set name="price" val="748300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="73" />
-		</for>
+		</stats>
 	</item>
 	<item id="12491" type="EtcItem" name="Foundation Zubei's Leather Shirt">
 		<!-- A rare Zubei's Leather Shirt that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1839,9 +1839,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="4330" />
 		<set name="price" val="1197000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="117" />
-		</for>
+		</stats>
 	</item>
 	<item id="12492" type="EtcItem" name="Foundation Zubei's Gaiters">
 		<!-- A rare Zubei's Gaiters that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1852,12 +1852,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="3570" />
 		<set name="price" val="997700" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="98" />
-		</for>
+		</stats>
 	</item>
 	<item id="12493" type="EtcItem" name="Foundation Zubei's Gauntlet">
 		<!-- A rare Zubei's Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1867,12 +1867,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="590" />
 		<set name="price" val="399100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12494" type="EtcItem" name="Foundation Zubei's Gauntlet">
 		<!-- A rare Zubei's Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1882,9 +1882,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="590" />
 		<set name="price" val="399100" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12495" type="EtcItem" name="Foundation Zubei's Gauntlet">
 		<!-- A rare Zubei's Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1894,12 +1894,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="590" />
 		<set name="price" val="399100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12496" type="EtcItem" name="Foundation Zubei's Boots">
 		<!-- A rare Zubei's Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1909,12 +1909,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1180" />
 		<set name="price" val="399100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12497" type="EtcItem" name="Foundation Zubei's Boots">
 		<!-- A rare Zubei's Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1924,9 +1924,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1180" />
 		<set name="price" val="399100" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12498" type="EtcItem" name="Foundation Zubei's Boots">
 		<!-- A rare Zubei's Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1936,12 +1936,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1180" />
 		<set name="price" val="399100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12499" type="EtcItem" name="Foundation Zubei's Shield">
 		<!-- A rare Zubei's Shield that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1951,13 +1951,13 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1210" />
 		<set name="price" val="419000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="216" />
-		</for>
+		</stats>
 	</item>
 </list>

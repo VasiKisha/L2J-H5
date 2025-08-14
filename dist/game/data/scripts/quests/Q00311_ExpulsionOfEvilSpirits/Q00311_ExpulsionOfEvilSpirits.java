@@ -46,12 +46,14 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 {
 	// NPCs
 	private static final int CHAIREN = 32655;
-	private final static int ALTAR = 18811;
-	private final static int VARANGKA = 18808;
+	private static final int ALTAR = 18811;
+	private static final int VARANGKA = 18808;
+	
 	// Items
 	private static final int PROTECTION_SOULS_PENDANT = 14848;
 	private static final int SOUL_CORE_CONTAINING_EVIL_SPIRIT = 14881;
 	private static final int RAGNA_ORCS_AMULET = 14882;
+	
 	// Monsters
 	private static final Map<Integer, Double> MONSTERS = new HashMap<>();
 	static
@@ -71,6 +73,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 		MONSTERS.put(18809, 0.694);
 		MONSTERS.put(18810, 0.694);
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 80;
 	private static final int SOUL_CORE_COUNT = 10;
@@ -101,6 +104,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 		{
 			
 		}
+		
 		GlobalVariablesManager.getInstance().set("VarangkaRespawn", respawnTime);
 		if ((respawnTime == 0) || ((respawnTime - System.currentTimeMillis()) < 0))
 		{
@@ -127,6 +131,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 					ThreadPool.schedule(new zoneCheck(player), 1000);
 				}
 			}
+			
 			return null;
 		}
 		else if (event.equalsIgnoreCase("minion1") && checkIfSpawned(VARANGKA))
@@ -140,6 +145,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				_varangkaMinion1.asAttackable().addDamageHate(targetPlayer, 1, 99999);
 				_varangkaMinion1.getAI().setIntention(Intention.ATTACK, targetPlayer);
 			}
+			
 			return null;
 		}
 		else if (event.equalsIgnoreCase("minion2"))
@@ -153,6 +159,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				_varangkaMinion2.asAttackable().addDamageHate(targetPlayer, 1, 99999);
 				_varangkaMinion2.getAI().setIntention(Intention.ATTACK, targetPlayer);
 			}
+			
 			return null;
 		}
 		
@@ -210,6 +217,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -234,10 +242,12 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				{
 					_varangkaMinion1.doDie(killer);
 				}
+				
 				if (checkIfSpawned(VARANGKA + 2))
 				{
 					_varangkaMinion2.doDie(killer);
 				}
+				
 				cancelQuestTimers("minion1");
 				cancelQuestTimers("minion2");
 				_varangkaMinion1 = null;
@@ -293,6 +303,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 		{
 			htmltext = hasAtLeastOneQuestItem(player, RAGNA_ORCS_AMULET, SOUL_CORE_CONTAINING_EVIL_SPIRIT) ? "32655-06.html" : "32655-05.html";
 		}
+		
 		return htmltext;
 	}
 	
@@ -314,6 +325,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				{
 					_varangkaMinion1 = addSpawn(VARANGKA + 1, 74914 + Rnd.get(10, 50), -101922 + Rnd.get(10, 50), -967, 0, false, 0);
 				}
+				
 				if ((_varangkaMinion2 == null) && !checkIfSpawned(VARANGKA + 2))
 				{
 					_varangkaMinion2 = addSpawn(VARANGKA + 2, 74914 + Rnd.get(10, 50), -101922 + Rnd.get(10, 50), -967, 0, false, 0);
@@ -347,8 +359,8 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 	
 	private class zoneCheck implements Runnable
 	{
-		private final static int DEBUFF_SKILL_ID = 6148;
-		private final static int DEBUFF_SKILL_LEVEL = 1;
+		private static final int DEBUFF_SKILL_ID = 6148;
+		private static final int DEBUFF_SKILL_LEVEL = 1;
 		
 		private final Player _player;
 		
@@ -385,6 +397,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 					info.getEffected().getEffectList().stopSkillEffects(SkillFinishType.REMOVED, DEBUFF_SKILL_ID);
 				}
 			}
+			
 			_altar.broadcastPacket(new MagicSkillUse(_altar, player, DEBUFF_SKILL_ID, DEBUFF_SKILL_LEVEL, 1000, 0));
 			SkillData.getInstance().getSkill(DEBUFF_SKILL_ID, 1).applyEffects(_altar, player);
 		}
@@ -399,6 +412,7 @@ public class Q00311_ExpulsionOfEvilSpirits extends Quest
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

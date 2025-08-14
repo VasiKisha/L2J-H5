@@ -32,13 +32,16 @@ public class Q00632_NecromancersRequest extends Quest
 {
 	// NPC
 	private static final int MYSTERIOUS_WIZARD = 31522;
+	
 	// Items
 	private static final int VAMPIRES_HEART = 7542;
 	private static final int ZOMBIES_BRAIN = 7543;
+	
 	// Misc
 	private static final int MIN_LEVEL = 63;
 	private static final int REQUIRED_ITEM_COUNT = 200;
 	private static final int ADENA_REWARD = 120000;
+	
 	// Monsters
 	private static final Map<Integer, Double> BRAIN_MONSTERS = new HashMap<>();
 	private static final Map<Integer, Double> HEART_MONSTERS = new HashMap<>();
@@ -135,6 +138,7 @@ public class Q00632_NecromancersRequest extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -180,6 +184,7 @@ public class Q00632_NecromancersRequest extends Quest
 				htmltext = "31522-105.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -97,6 +97,7 @@ public class ExShowBaseAttributeCancelWindow extends ServerPacket
 				break;
 			}
 		}
+		
 		return _price;
 	}
 }

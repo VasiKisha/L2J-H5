@@ -37,11 +37,14 @@ public class Q00316_DestroyPlagueCarriers extends Quest
 {
 	// NPC
 	private static final int ELLENIA = 30155;
+	
 	// Items
 	private static final int WERERAT_FANG = 1042;
 	private static final int VAROOL_FOULCLAW_FANG = 1043;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
+	
 	// Monsters
 	private static final int VAROOL_FOULCLAW = 27020;
 	private static final Map<Integer, ItemHolder> MONSTER_DROPS = new HashMap<>();
@@ -101,6 +104,7 @@ public class Q00316_DestroyPlagueCarriers extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -161,6 +165,7 @@ public class Q00316_DestroyPlagueCarriers extends Quest
 				htmltext = "30155-05.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

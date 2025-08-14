@@ -37,6 +37,7 @@ public class Q00063_PathOfTheWarder extends Quest
 	private static final int MASTER_GOBIE = 32198;
 	private static final int MASTER_TOBIAS = 30297;
 	private static final int CAPTAIN_BATHIS = 30332;
+	
 	// Items
 	private static final int ORDERS = 9762;
 	private static final int ORGANIZATION_CHART = 9763;
@@ -48,16 +49,20 @@ public class Q00063_PathOfTheWarder extends Quest
 	private static final int REPORT_TO_SIONE = 9769;
 	private static final int EMPTY_SOUL_CRYSTAL = 9770;
 	private static final int TAKS_CAPTURED_SOUL = 9771;
+	
 	// Reward
 	private static final int STEELRAZOR_EVALUTION = 9772;
+	
 	// Monster
 	private static final int OL_MAHUM_PATROL = 20053;
 	private static final int OL_MAHUM_NOVICE = 20782;
 	private static final int MAILLE_LIZARDMAN = 20919;
 	private static final int MAILLE_LIZARDMAN_SCOUT = 20920;
 	private static final int MAILLE_LIZARDMAN_GUARD = 20921;
+	
 	// Quest Monster
 	private static final int OL_MAHUM_OFFICER_TAK = 27337;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -231,6 +236,7 @@ public class Q00063_PathOfTheWarder extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -254,6 +260,7 @@ public class Q00063_PathOfTheWarder extends Quest
 						{
 							playSound(qs.getPlayer(), QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, ORGANIZATION_CHART, 1);
 					}
 					break;
@@ -270,6 +277,7 @@ public class Q00063_PathOfTheWarder extends Quest
 						{
 							playSound(qs.getPlayer(), QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, ORDERS, 1);
 					}
 					break;
@@ -463,6 +471,7 @@ public class Q00063_PathOfTheWarder extends Quest
 							{
 								addExpAndSp(player, 591724, 35442);
 							}
+							
 							qs.exitQuest(false, true);
 							player.sendPacket(new SocialAction(player.getObjectId(), 3));
 							htmltext = "32198-19.html";
@@ -528,6 +537,7 @@ public class Q00063_PathOfTheWarder extends Quest
 				htmltext = "32198-20.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -18,7 +18,6 @@ package quests.Q00279_TargetOfOpportunity;
 
 import java.util.Arrays;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -41,6 +40,7 @@ public class Q00279_TargetOfOpportunity extends Quest
 		22375,
 		22376
 	};
+	
 	// Items
 	private static final int[] SEAL_COMPONENTS =
 	{
@@ -85,6 +85,7 @@ public class Q00279_TargetOfOpportunity extends Quest
 			giveItems(player, SEAL_BREAKERS[1], 1);
 			qs.exitQuest(true, true);
 		}
+		
 		return htmltext;
 	}
 	
@@ -99,7 +100,7 @@ public class Q00279_TargetOfOpportunity extends Quest
 		}
 		
 		final QuestState qs = getQuestState(pl, false);
-		if ((getRandom(1000) < (int) (311 * Config.RATE_QUEST_DROP)) && !hasQuestItems(player, SEAL_COMPONENTS[idx]))
+		if ((getRandom(1000) < 311) && !hasQuestItems(player, SEAL_COMPONENTS[idx]))
 		{
 			giveItems(player, SEAL_COMPONENTS[idx], 1);
 			if (haveAllExceptThis(player, idx))
@@ -127,6 +128,7 @@ public class Q00279_TargetOfOpportunity extends Quest
 		{
 			htmltext = (hasQuestItems(player, SEAL_COMPONENTS[0]) && hasQuestItems(player, SEAL_COMPONENTS[1]) && hasQuestItems(player, SEAL_COMPONENTS[2]) && hasQuestItems(player, SEAL_COMPONENTS[3])) ? "32302-07.html" : "32302-06.html";
 		}
+		
 		return htmltext;
 	}
 	
@@ -144,6 +146,7 @@ public class Q00279_TargetOfOpportunity extends Quest
 				return false;
 			}
 		}
+		
 		return true;
 	}
 }

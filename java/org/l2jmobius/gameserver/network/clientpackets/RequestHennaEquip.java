@@ -20,7 +20,6 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.data.xml.HennaData;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.item.Henna;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -83,10 +82,11 @@ public class RequestHennaEquip extends ClientPacket
 		else
 		{
 			player.sendPacket(SystemMessageId.THE_SYMBOL_CANNOT_BE_DRAWN);
-			if (!player.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && !henna.isAllowedClass(player.getPlayerClass()))
+			if (!player.isGM() && !henna.isAllowedClass(player.getPlayerClass()))
 			{
 				PunishmentManager.handleIllegalPlayerAction(player, "Exploit attempt: " + player + " tryed to add a forbidden henna.", Config.DEFAULT_PUNISH);
 			}
+			
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 		}
 	}

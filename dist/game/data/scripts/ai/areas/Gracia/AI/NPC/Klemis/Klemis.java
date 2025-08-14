@@ -30,8 +30,10 @@ public class Klemis extends AbstractNpcAI
 {
 	// NPC
 	private static final int KLEMIS = 32734; // Klemis
+	
 	// Location
 	private static final Location LOCATION = new Location(-180218, 185923, -10576);
+	
 	// Misc
 	private static final int MIN_LV = 80;
 	
@@ -56,6 +58,7 @@ public class Klemis extends AbstractNpcAI
 				return "32734-01.html";
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 }

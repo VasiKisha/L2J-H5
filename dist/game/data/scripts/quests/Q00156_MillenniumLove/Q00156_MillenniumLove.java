@@ -31,10 +31,12 @@ public class Q00156_MillenniumLove extends Quest
 	// NPCs
 	private static final int LILITH = 30368;
 	private static final int BAENEDES = 30369;
+	
 	// Items
 	private static final int LILITHS_LETTER = 1022;
 	private static final int THEONS_DIARY = 1023;
 	private static final int GREATER_COMP_SOULSHOUT_PACKAGE_NO_GRADE = 5250;
+	
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	
@@ -98,6 +100,7 @@ public class Q00156_MillenniumLove extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -164,6 +167,7 @@ public class Q00156_MillenniumLove extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

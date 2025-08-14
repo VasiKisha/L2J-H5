@@ -59,6 +59,7 @@ public class SkillHolder
 		{
 			_skill = SkillData.getInstance().getSkill(_skillId, Math.max(_skillLevel, 1));
 		}
+		
 		return _skill;
 	}
 	

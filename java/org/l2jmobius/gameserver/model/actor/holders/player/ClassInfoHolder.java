@@ -1,50 +1,53 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.actor.holders.player;
-
-import java.util.regex.Matcher;
 
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
 /**
- * This class will hold the information of the player classes.
- * @author Zoey76
+ * A holder containing information about a player class.
+ * @author Mobius
  */
 public class ClassInfoHolder
 {
 	private final PlayerClass _playerClass;
-	private final String _className;
 	private final PlayerClass _parentClass;
+	private final String _className;
 	
 	/**
-	 * Constructor for ClassInfo.
-	 * @param playerClass the PlayerClass.
-	 * @param className the in game class name.
-	 * @param parentClass the parent PlayerClass for the given {@code playerClass}.
+	 * Constructs a new ClassInfoHolder with the specified class information.
+	 * @param playerClass the {@link PlayerClass} representing the player class
+	 * @param parentClass the parent {@link PlayerClass} from which this class evolves, or {@code null} if this is a base class
+	 * @param className the display name of the class
 	 */
-	public ClassInfoHolder(PlayerClass playerClass, String className, PlayerClass parentClass)
+	public ClassInfoHolder(PlayerClass playerClass, PlayerClass parentClass, String className)
 	{
 		_playerClass = playerClass;
-		_className = className;
 		_parentClass = parentClass;
+		_className = className;
 	}
 	
 	/**
-	 * @return the PlayerClass.
+	 * Gets the player class type.
+	 * @return the {@link PlayerClass} representing the player current class
 	 */
 	public PlayerClass getPlayerClass()
 	{
@@ -52,55 +55,20 @@ public class ClassInfoHolder
 	}
 	
 	/**
-	 * @return the hardcoded in-game class name.
-	 */
-	public String getClassName()
-	{
-		return _className;
-	}
-	
-	/**
-	 * @return the class client Id.
-	 */
-	private int getClassClientId()
-	{
-		int classClientId = _playerClass.getId();
-		if ((classClientId >= 0) && (classClientId <= 57))
-		{
-			classClientId += 247;
-		}
-		else if ((classClientId >= 88) && (classClientId <= 118))
-		{
-			classClientId += 1071;
-		}
-		else if ((classClientId >= 123) && (classClientId <= 136))
-		{
-			classClientId += 1438;
-		}
-		return classClientId;
-	}
-	
-	/**
-	 * @return the class client Id formatted to be displayed on a HTML.
-	 */
-	public String getClientCode()
-	{
-		return "&$" + getClassClientId() + ";";
-	}
-	
-	/**
-	 * @return the escaped class client Id formatted to be displayed on a HTML.
-	 */
-	public String getEscapedClientCode()
-	{
-		return Matcher.quoteReplacement(getClientCode());
-	}
-	
-	/**
-	 * @return the parent PlayerClass.
+	 * Gets the parent class of this player class.
+	 * @return the parent {@link PlayerClass}, or {@code null} if this is a base class
 	 */
 	public PlayerClass getParentClass()
 	{
 		return _parentClass;
+	}
+	
+	/**
+	 * Gets the display name of the player class.
+	 * @return the class name as a String
+	 */
+	public String getClassName()
+	{
+		return _className;
 	}
 }

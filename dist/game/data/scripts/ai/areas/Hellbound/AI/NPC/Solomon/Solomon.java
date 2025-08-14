@@ -47,6 +47,7 @@ public class Solomon extends AbstractNpcAI
 		{
 			return "32355-01a.htm";
 		}
+		
 		return super.onFirstTalk(npc, player);
 	}
 }

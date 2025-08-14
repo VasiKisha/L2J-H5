@@ -53,6 +53,7 @@ public class RequestPartyLootModification extends ClientPacket
 		{
 			return;
 		}
+		
 		party.requestLootChange(partyDistributionType);
 	}
 }

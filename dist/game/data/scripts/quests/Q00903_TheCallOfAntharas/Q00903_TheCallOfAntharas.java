@@ -34,14 +34,17 @@ public class Q00903_TheCallOfAntharas extends Quest
 {
 	// NPC
 	private static final int THEODRIC = 30755;
+	
 	// Monsters
 	private static final int BEHEMOTH_DRAGON = 29069;
 	private static final int TARASK_DRAGON = 29190;
+	
 	// Items
 	private static final int TARASK_DRAGONS_LEATHER_FRAGMENT = 21991;
 	private static final int BEHEMOTH_DRAGON_LEATHER = 21992;
 	private static final int SCROLL_ANTHARAS_CALL = 21897;
 	private static final int PORTAL_STONE = 3865;
+	
 	// Misc
 	private static final int MIN_LEVEL = 83;
 	
@@ -81,6 +84,7 @@ public class Q00903_TheCallOfAntharas extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -187,6 +191,7 @@ public class Q00903_TheCallOfAntharas extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

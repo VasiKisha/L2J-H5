@@ -49,6 +49,7 @@ public class AutoPotionTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		if (!PLAYERS.isEmpty())
@@ -73,13 +74,14 @@ public class AutoPotionTaskManager implements Runnable
 							success = true;
 							if (restoreHP)
 							{
-								ItemHandler.getInstance().getHandler(hpPotion.getEtcItem()).useItem(player, hpPotion, false);
+								ItemHandler.getInstance().getHandler(hpPotion.getEtcItem()).onItemUse(player, hpPotion, false);
 								player.sendMessage("Auto potion: Restored HP.");
 								break HP;
 							}
 						}
 					}
 				}
+				
 				if (Config.AUTO_CP_ENABLED)
 				{
 					final boolean restoreCP = ((player.getStatus().getCurrentCp() / player.getMaxCp()) * 100) < Config.AUTO_CP_PERCENTAGE;
@@ -91,13 +93,14 @@ public class AutoPotionTaskManager implements Runnable
 							success = true;
 							if (restoreCP)
 							{
-								ItemHandler.getInstance().getHandler(cpPotion.getEtcItem()).useItem(player, cpPotion, false);
+								ItemHandler.getInstance().getHandler(cpPotion.getEtcItem()).onItemUse(player, cpPotion, false);
 								player.sendMessage("Auto potion: Restored CP.");
 								break CP;
 							}
 						}
 					}
 				}
+				
 				if (Config.AUTO_MP_ENABLED)
 				{
 					final boolean restoreMP = ((player.getStatus().getCurrentMp() / player.getMaxMp()) * 100) < Config.AUTO_MP_PERCENTAGE;
@@ -109,7 +112,7 @@ public class AutoPotionTaskManager implements Runnable
 							success = true;
 							if (restoreMP)
 							{
-								ItemHandler.getInstance().getHandler(mpPotion.getEtcItem()).useItem(player, mpPotion, false);
+								ItemHandler.getInstance().getHandler(mpPotion.getEtcItem()).onItemUse(player, mpPotion, false);
 								player.sendMessage("Auto potion: Restored MP.");
 								break MP;
 							}

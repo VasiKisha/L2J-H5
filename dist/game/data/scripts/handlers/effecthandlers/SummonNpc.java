@@ -100,8 +100,7 @@ public class SummonNpc extends AbstractEffect
 			case "Decoy":
 			{
 				final Decoy decoy = new Decoy(npcTemplate, player, _despawnDelay);
-				decoy.setCurrentHp(decoy.getMaxHp());
-				decoy.setCurrentMp(decoy.getMaxMp());
+				decoy.fullRestore();
 				decoy.setHeading(player.getHeading());
 				decoy.setInstanceId(player.getInstanceId());
 				decoy.setSummoner(player);
@@ -112,8 +111,7 @@ public class SummonNpc extends AbstractEffect
 			case "EffectPoint": // TODO: Implement proper signet skills.
 			{
 				final EffectPoint effectPoint = new EffectPoint(npcTemplate, player);
-				effectPoint.setCurrentHp(effectPoint.getMaxHp());
-				effectPoint.setCurrentMp(effectPoint.getMaxMp());
+				effectPoint.fullRestore();
 				int x = player.getX();
 				int y = player.getY();
 				int z = player.getZ();
@@ -171,6 +169,7 @@ public class SummonNpc extends AbstractEffect
 				{
 					npc.scheduleDespawn(_despawnDelay);
 				}
+				
 				npc.broadcastInfo();
 			}
 		}

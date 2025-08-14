@@ -36,6 +36,7 @@ public class Q00413_PathOfTheShillienOracle extends Quest
 	private static final int MAGISTER_SIDRA = 30330;
 	private static final int PRIEST_ADONIUS = 30375;
 	private static final int MAGISTER_TALBOT = 30377;
+	
 	// Items
 	private static final int SIDRAS_LETTER = 1262;
 	private static final int BLANK_SHEET = 1263;
@@ -45,14 +46,17 @@ public class Q00413_PathOfTheShillienOracle extends Quest
 	private static final int PENITENTS_MARK = 1267;
 	private static final int ASHEN_BONES = 1268;
 	private static final int ANDARIEL_BOOK = 1269;
+	
 	// Reward
 	private static final int ORB_OF_ABYSS = 1270;
+	
 	// Monster
 	private static final int ZOMBIE_SOLDIER = 20457;
 	private static final int ZOMBIE_WARRIOR = 20458;
 	private static final int SHIELD_SKELETON = 20514;
 	private static final int SKELETON_INFANTRYMAN = 20515;
 	private static final int DARK_SUCCUBUS = 20776;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -113,6 +117,7 @@ public class Q00413_PathOfTheShillienOracle extends Quest
 				{
 					giveItems(player, SIDRAS_LETTER, 1);
 				}
+				
 				qs.startQuest();
 				htmltext = event;
 				break;
@@ -132,6 +137,7 @@ public class Q00413_PathOfTheShillienOracle extends Quest
 					giveItems(player, PENITENTS_MARK, 1);
 					qs.setCond(5, true);
 				}
+				
 				htmltext = event;
 				break;
 			}
@@ -143,10 +149,12 @@ public class Q00413_PathOfTheShillienOracle extends Quest
 					giveItems(player, BLANK_SHEET, 5);
 					qs.setCond(2, true);
 				}
+				
 				htmltext = event;
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -245,6 +253,7 @@ public class Q00413_PathOfTheShillienOracle extends Quest
 						{
 							addExpAndSp(player, 591724, 39928);
 						}
+						
 						qs.exitQuest(false, true);
 						player.sendPacket(new SocialAction(player.getObjectId(), 3));
 						htmltext = "30330-10.html";
@@ -316,6 +325,7 @@ public class Q00413_PathOfTheShillienOracle extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

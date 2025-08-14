@@ -39,6 +39,7 @@ public class ExItemAuctionInfoPacket extends AbstractItemPacket
 		{
 			throw new NullPointerException();
 		}
+		
 		if (currentAuction.getAuctionState() != ItemAuctionState.STARTED)
 		{
 			_timeRemaining = 0;
@@ -47,6 +48,7 @@ public class ExItemAuctionInfoPacket extends AbstractItemPacket
 		{
 			_timeRemaining = (int) (currentAuction.getFinishingTimeRemaining() / 1000); // in seconds
 		}
+		
 		_refresh = refresh;
 		_currentAuction = currentAuction;
 		_nextAuction = nextAuction;

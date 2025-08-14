@@ -20,7 +20,6 @@
  */
 package quests.Q00051_OFullesSpecialBait;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -38,6 +37,7 @@ public class Q00051_OFullesSpecialBait extends Quest
 	// NPCs
 	private static final int OFULLE = 31572;
 	private static final int FETTERED_SOUL = 20552;
+	
 	// Items
 	private static final int LOST_BAIT = 7622;
 	private static final int ICY_AIR_LURE = 7611;
@@ -79,6 +79,7 @@ public class Q00051_OFullesSpecialBait extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -94,8 +95,7 @@ public class Q00051_OFullesSpecialBait extends Quest
 		final QuestState qs = getQuestState(partyMember, false);
 		if (getQuestItemsCount(player, LOST_BAIT) < 100)
 		{
-			final float chance = 33 * Config.RATE_QUEST_DROP;
-			if (getRandom(100) < chance)
+			if (getRandom(100) < 33)
 			{
 				rewardItems(player, LOST_BAIT, 1);
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -131,6 +131,7 @@ public class Q00051_OFullesSpecialBait extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

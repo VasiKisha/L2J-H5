@@ -49,6 +49,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 	private static final int POWDER_KEG = 18622; // Powder Keg
 	private static final int TREASURE_BOX = 32495; // Treasure Chest
 	private static final int ADVENTURER2 = 32511; // Dwarf Adventurer
+	
 	// Items
 	private static final int ANTIDOTE_POTION = 13048; // Pailaka Antidote
 	private static final int DIVINE_POTION = 13049; // Divine Soul
@@ -56,6 +57,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 	private static final int SHIELD = 13032; // Pailaka Instant Shield
 	private static final int DEFENCE_POTION = 13059; // Long-Range Defense Increasing Potion
 	private static final int HEALING_POTION = 13033; // Quick Healing Potion
+	
 	// Skills
 	private static final SkillHolder ENERGY = new SkillHolder(5712, 1); // Energy Ditch
 	private static final SkillHolder BOOM = new SkillHolder(5714, 1); // Boom Up
@@ -77,6 +79,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 		new Location(85144, -208855, -3341, 33380),
 		new Location(85139, -208630, -3339, 31777),
 	};
+	
 	// Misc
 	private static final int TEMPLATE_ID = 44;
 	private static final int ZONE = 20109;
@@ -128,6 +131,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 							follower.setTarget(lematanNpc);
 							follower.doCast(ENERGY.getSkill());
 						}
+						
 						startQuestTimer("FOLLOWER_CAST", 15000, lematanNpc, null);
 					}
 					break;
@@ -147,6 +151,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 						follower.setImmobilized(true);
 						followerslist.add(follower);
 					}
+					
 					world.setParameter("followerslist", followerslist);
 					startQuestTimer("FOLLOWER_CAST", 4000, world.getParameters().getObject("lematanNpc", Npc.class), null);
 					break;
@@ -163,6 +168,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -239,6 +245,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 								break;
 							}
 						}
+						
 						npc.setScriptValue(1);
 						startQuestTimer("DELETE", 3000, npc, attacker);
 					}
@@ -258,6 +265,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 			{
 				_follower.deleteMe();
 			}
+			
 			world.getParameters().remove("followerslist");
 			addSpawn(ADVENTURER2, ADVENTURER_LOC, false, 0, false, npc.getInstanceId());
 		}
@@ -297,8 +305,10 @@ public class PailakaDevilsLegacy extends AbstractInstance
 						{
 							summon.getAI().stopAITask();
 						}
+						
 						summon.setTarget(null);
 					}
+					
 					summon.decayMe();
 					creature.asPlayer().setPet(null);
 				}
@@ -324,6 +334,7 @@ public class PailakaDevilsLegacy extends AbstractInstance
 			world.addAllowed(player);
 			world.setParameter("lematanNpc", addSpawn(LEMATAN, LEMATAN_SPAWN, false, 0, false, world.getInstanceId()));
 		}
+		
 		teleportPlayer(player, TELEPORT, world.getInstanceId());
 	}
 	

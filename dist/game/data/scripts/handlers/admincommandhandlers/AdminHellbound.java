@@ -37,13 +37,13 @@ public class AdminHellbound implements IAdminCommandHandler
 	};
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (activeChar == null)
 		{
@@ -77,6 +77,7 @@ public class AdminHellbound implements IAdminCommandHandler
 			showMenu(activeChar);
 			return true;
 		}
+		
 		return false;
 	}
 	

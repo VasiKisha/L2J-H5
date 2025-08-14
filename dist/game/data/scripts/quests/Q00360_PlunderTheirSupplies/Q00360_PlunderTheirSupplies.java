@@ -36,10 +36,13 @@ public class Q00360_PlunderTheirSupplies extends Quest
 {
 	// Npc
 	private static final int COLEMAN = 30873;
+	
 	// Misc
 	private static final int MIN_LEVEL = 52;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTER_DROP_CHANCES = new HashMap<>();
+	
 	// Items
 	private static final int RECIPE_OF_SUPPLY = 5870;
 	private static final int SUPPLY_ITEMS = 5872;
@@ -90,6 +93,7 @@ public class Q00360_PlunderTheirSupplies extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -119,6 +123,7 @@ public class Q00360_PlunderTheirSupplies extends Quest
 				giveItems(killer, RECIPE_OF_SUPPLY, 1);
 				takeItems(killer, SUSPICIOUS_DOCUMENT_PIECE, -1);
 			}
+			
 			playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
 	}
@@ -171,6 +176,7 @@ public class Q00360_PlunderTheirSupplies extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

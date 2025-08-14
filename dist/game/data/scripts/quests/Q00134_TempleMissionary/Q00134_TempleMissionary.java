@@ -35,12 +35,14 @@ public class Q00134_TempleMissionary extends Quest
 	// NPCs
 	private static final int GLYVKA = 30067;
 	private static final int ROUKE = 31418;
+	
 	// Items
 	private static final int GIANTS_EXPERIMENTAL_TOOL_FRAGMENT = 10335;
 	private static final int GIANTS_EXPERIMENTAL_TOOL = 10336;
 	private static final int GIANTS_TECHNOLOGY_REPORT = 10337;
 	private static final int ROUKES_REPOT = 10338;
 	private static final int BADGE_TEMPLE_MISSIONARY = 10339;
+	
 	// Monsters
 	private static final int CRUMA_MARSHLANDS_TRAITOR = 27339;
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
@@ -119,6 +121,7 @@ public class Q00134_TempleMissionary extends Quest
 				{
 					addExpAndSp(player, 30000, 2000);
 				}
+				
 				qs.exitQuest(false, true);
 				break;
 			}
@@ -128,6 +131,7 @@ public class Q00134_TempleMissionary extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -282,6 +286,7 @@ public class Q00134_TempleMissionary extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

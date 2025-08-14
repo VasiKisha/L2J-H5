@@ -44,6 +44,7 @@ public abstract class ClientPacket extends ReadablePacket<GameClient>
 			PacketLogger.warning("Client: " + getClient() + " - Failed reading: " + getClass().getSimpleName() + " ; " + e.getMessage());
 			PacketLogger.warning(TraceUtil.getStackTrace(e));
 		}
+		
 		return false;
 	}
 	

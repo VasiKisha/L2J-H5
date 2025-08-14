@@ -41,7 +41,7 @@ public class AdminDestroyItems implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final PlayerInventory inventory = activeChar.getInventory();
 		final InventoryUpdate iu = new InventoryUpdate();
@@ -51,15 +51,17 @@ public class AdminDestroyItems implements IAdminCommandHandler
 			{
 				continue;
 			}
+			
 			iu.addRemovedItem(item);
 			inventory.destroyItem(ItemProcessType.DESTROY, item, activeChar, null);
 		}
+		
 		activeChar.sendInventoryUpdate(iu);
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

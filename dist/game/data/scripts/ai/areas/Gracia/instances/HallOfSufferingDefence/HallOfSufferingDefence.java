@@ -78,7 +78,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 	private static final int TUMOR_ALIVE = 18704;
 	private static final int TUMOR_DEAD = 32531;
 	
-	//@formatter:off
+	// @formatter:off
 	private static final int[] ENTER_TELEPORT = {-174701,218109,-9592};
 	private static final int[] TUMOR_MOBIDS = {22509,22510,22511,22512,22513,22514,22515};
 	private static final int[] TWIN_MOBIDS = {22509,22510,22511,22512,22513};
@@ -120,7 +120,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 	};
 	private static final int[][] TWIN_SPAWNS = {{25665,-173727,218169,-9536},{25666,-173727,218049,-9536}};
 	private static final int[] TEPIOS_SPAWN = {-173727,218109,-9536};
-	//@formatter:on
+	// @formatter:on
 	
 	private static final int BOSS_INVUL_TIME = 30000;
 	private static final int BOSS_MINION_SPAWN_TIME = 60000;
@@ -159,11 +159,13 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_CURRENTLY_IN_A_PARTY_SO_YOU_CANNOT_ENTER);
 			return false;
 		}
+		
 		if (party.getLeader() != player)
 		{
 			player.sendPacket(SystemMessageId.ONLY_A_PARTY_LEADER_CAN_MAKE_THE_REQUEST_TO_ENTER);
 			return false;
 		}
+		
 		for (Player partyMember : party.getMembers())
 		{
 			if ((partyMember.getLevel() < 75) || (partyMember.getLevel() > 82))
@@ -200,6 +202,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -213,6 +216,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 	{
 		// check for existing instances for this player
 		InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
+		
 		// existing instance
 		if (world != null)
 		{
@@ -221,6 +225,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_ANOTHER_INSTANCE_ZONE_THEREFORE_YOU_CANNOT_ENTER_CORRESPONDING_DUNGEON);
 				return;
 			}
+			
 			teleportPlayer(player, coords, world.getInstanceId());
 			return;
 		}
@@ -257,6 +262,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 		{
 			world.npcList.put(mob, true);
 		}
+		
 		for (boolean isDead : world.npcList.values())
 		{
 			if (!isDead)
@@ -264,6 +270,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -292,6 +299,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 				return ROOM_5_MOBS;
 			}
 		}
+		
 		return new int[][] {};
 	}
 	
@@ -302,6 +310,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 			final Npc npc = addSpawn(mob[0], mob[1], mob[2], mob[3], 0, false, 0, false, world.getInstanceId());
 			world.npcList.put(npc, false);
 		}
+		
 		final Npc mob = addSpawn(TUMOR_ALIVE, TUMOR_SPAWNS[world.getStatus()][0], TUMOR_SPAWNS[world.getStatus()][1], TUMOR_SPAWNS[world.getStatus()][2], 0, false, 0, false, world.getInstanceId());
 		mob.disableCoreAI(true);
 		mob.setImmobilized(true);
@@ -328,6 +337,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 			{
 				return;
 			}
+			
 			// now reset currentHp to zero
 			boss.setCurrentHp(0);
 			boss.setDead(true);
@@ -366,6 +376,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 			{
 				hate = 1000;
 			}
+			
 			npc.asAttackable().addDamageHate(caster, 0, hate);
 		}
 	}
@@ -384,6 +395,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 					world.isBossesAttacked = false;
 					return "";
 				}
+				
 				Npc mob = addSpawn(getRandomEntry(TWIN_MOBIDS), TWIN_SPAWNS[0][1], TWIN_SPAWNS[0][2], TWIN_SPAWNS[0][3], 0, false, 0, false, npc.getInstanceId());
 				mob.asAttackable().addDamageHate(npc.asAttackable().getMostHated(), 0, 1);
 				if (getRandom(100) < 33)
@@ -391,6 +403,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 					mob = addSpawn(getRandomEntry(TWIN_MOBIDS), TWIN_SPAWNS[1][1], TWIN_SPAWNS[1][2], TWIN_SPAWNS[1][3], 0, false, 0, false, npc.getInstanceId());
 					mob.asAttackable().addDamageHate(npc.asAttackable().getMostHated(), 0, 1);
 				}
+				
 				startQuestTimer("spawnBossGuards", BOSS_MINION_SPAWN_TIME, npc, null);
 			}
 			else if (event.equalsIgnoreCase("isTwinSeparated"))
@@ -405,6 +418,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 					world.klanikus.setInvul(true);
 					world.klodekus.setInvul(true);
 				}
+				
 				startQuestTimer("isTwinSeparated", 10000, npc, null);
 			}
 			else if (event.equalsIgnoreCase("ressurectTwin"))
@@ -430,6 +444,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 				npc.setInvul(false);
 			}
 		}
+		
 		return "";
 	}
 	
@@ -461,6 +476,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 						}
 					}
 				}
+				
 				startQuestTimer("spawnBossGuards", BOSS_MINION_SPAWN_TIME, npc, null);
 				startQuestTimer("isTwinSeparated", 10000, npc, null);
 			}
@@ -500,6 +516,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 				npc.deleteMe();
 				addSpawn(TUMOR_DEAD, npc.getX(), npc.getY(), npc.getZ(), npc.getHeading(), false, 0, false, npc.getInstanceId());
 			}
+			
 			if (world.getStatus() < 5)
 			{
 				if (checkKillProgress(npc, world))
@@ -592,6 +609,7 @@ public class HallOfSufferingDefence extends AbstractNpcAI
 			enterInstance(player, ENTER_TELEPORT);
 			return null;
 		}
+		
 		return "";
 	}
 }

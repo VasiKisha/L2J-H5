@@ -93,6 +93,7 @@ public class RecipeList
 			_rareCount = set.getInt("rareCount");
 			_rarity = set.getInt("rarity");
 		}
+		
 		_isDwarvenRecipe = set.getBoolean("isDwarvenRecipe");
 	}
 	

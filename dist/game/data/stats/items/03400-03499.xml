@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="3400" type="EtcItem" name="Huge Orc Fang">
 		<!-- The totem of the Atuba tribe. Gather the totems of the 5 tribes and take them to Pa'agrio Lord Kakai. -->
@@ -452,15 +452,15 @@
 		<set name="weight" val="100" />
 		<set name="price" val="17000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add stat="pAtk" val="7" />
 			<add stat="mAtk" val="8" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="277" />
-		</for>
+		</stats>
 	</item>
 	<item id="3440" type="EtcItem" name="Cargo Box">
 		<!-- Freight box on which the mark of Aden Commercial Guild is stamped. -->
@@ -754,13 +754,13 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="10" />
 			<set stat="mAtk" val="9" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="3472" type="EtcItem" name="Blood Medusa">
 		<!-- Lowest-grade coin -->

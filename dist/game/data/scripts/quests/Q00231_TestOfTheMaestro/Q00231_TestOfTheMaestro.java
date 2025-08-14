@@ -43,6 +43,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 	private static final int CHIEF_CROTO = 30671;
 	private static final int JAILER_DUBABAH = 30672;
 	private static final int RESEARCHER_LORAIN = 30673;
+	
 	// Items
 	private static final int RECOMMENDATION_OF_BALANKI = 2864;
 	private static final int RECOMMENDATION_OF_FILAUR = 2865;
@@ -59,16 +60,20 @@ public class Q00231_TestOfTheMaestro extends Quest
 	private static final int MARSH_SPIDERS_WEB = 2877;
 	private static final int BLOOD_OF_LEECH = 2878;
 	private static final int BROKEN_TELEPORT_DEVICE = 2916;
+	
 	// Reward
 	private static final int MARK_OF_MAESTRO = 2867;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monster
 	private static final int KING_BUGBEAR = 20150;
 	private static final int GIANT_MIST_LEECH = 20225;
 	private static final int STINGER_WASP = 20229;
 	private static final int MARSH_SPIDER = 20233;
+	
 	// Quest Monster
 	private static final int EVIL_EYE_LORD = 27133;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	
@@ -126,7 +131,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 				htmltext = event;
 				break;
 			}
-			case "30556-05.html":
+			case "TELEPORT":
 			{
 				if (hasQuestItems(player, PAINT_OF_TELEPORT_DEVICE))
 				{
@@ -165,6 +170,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -311,6 +317,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 							{
 								qs.setCond(2, true);
 							}
+							
 							htmltext = "30533-04.html";
 						}
 					}
@@ -348,6 +355,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 							{
 								qs.setCond(2, true);
 							}
+							
 							htmltext = "30535-03.html";
 						}
 					}
@@ -380,6 +388,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 							{
 								qs.setCond(2, true);
 							}
+							
 							htmltext = "30536-03.html";
 						}
 					}
@@ -478,6 +487,7 @@ public class Q00231_TestOfTheMaestro extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

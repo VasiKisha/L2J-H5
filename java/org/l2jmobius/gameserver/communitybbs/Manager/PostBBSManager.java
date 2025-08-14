@@ -45,6 +45,7 @@ public class PostBBSManager extends BaseBBSManager
 			post = new Post(t);
 			_postByTopic.put(t, post);
 		}
+		
 		return post;
 	}
 	

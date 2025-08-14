@@ -105,6 +105,7 @@ public class RequestAcquireSkillInfo extends ClientPacket
 				{
 					return;
 				}
+				
 				player.sendPacket(new AcquireSkillInfo(_skillType, s));
 				break;
 			}
@@ -114,6 +115,7 @@ public class RequestAcquireSkillInfo extends ClientPacket
 				{
 					return;
 				}
+				
 				player.sendPacket(new AcquireSkillInfo(_skillType, s));
 				break;
 			}

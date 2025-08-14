@@ -35,20 +35,24 @@ public class Q00039_RedEyedInvaders extends Quest
 	// NPCs
 	private static final int CAPTAIN_BATHIA = 30332;
 	private static final int GUARD_BABENCO = 30334;
+	
 	// Monsters
 	private static final int MALE_LIZARDMAN = 20919;
 	private static final int MALE_LIZARDMAN_SCOUT = 20920;
 	private static final int MALE_LIZARDMAN_GUARD = 20921;
 	private static final int GIANT_ARANE = 20925;
+	
 	// Items
 	private static final ItemHolder LIZ_NECKLACE_A = new ItemHolder(7178, 100);
 	private static final ItemHolder LIZ_NECKLACE_B = new ItemHolder(7179, 100);
 	private static final ItemHolder LIZ_PERFUME = new ItemHolder(7180, 30);
 	private static final ItemHolder LIZ_GEM = new ItemHolder(7181, 30);
+	
 	// Rewards
 	private static final ItemHolder GREEN_HIGH_LURE = new ItemHolder(6521, 60);
 	private static final ItemHolder BABYDUCK_ROD = new ItemHolder(6529, 1);
 	private static final ItemHolder FISHING_SHOT_NONE = new ItemHolder(6535, 500);
+	
 	// Misc
 	private static final int MIN_LEVEL = 20;
 	
@@ -70,6 +74,7 @@ public class Q00039_RedEyedInvaders extends Quest
 		{
 			return htmltext;
 		}
+		
 		switch (event)
 		{
 			case "30334-03.htm":
@@ -128,6 +133,7 @@ public class Q00039_RedEyedInvaders extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -187,6 +193,7 @@ public class Q00039_RedEyedInvaders extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

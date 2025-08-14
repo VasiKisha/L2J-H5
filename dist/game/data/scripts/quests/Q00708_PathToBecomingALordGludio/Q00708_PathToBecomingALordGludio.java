@@ -160,6 +160,7 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -303,6 +304,7 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -315,6 +317,7 @@ public class Q00708_PathToBecomingALordGludio extends Quest
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	

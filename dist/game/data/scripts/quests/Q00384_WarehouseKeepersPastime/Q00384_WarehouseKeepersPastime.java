@@ -67,8 +67,10 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 	private static final int NIGHTMARE_KEEPER = 20943;
 	private static final int LUMINUN = 20949;
 	private static final int THUNDER_WYRM = 20243;
+	
 	// Items
 	private static final int Q_IRONGATE_MEDAL = 5964;
+	
 	// Reward
 	private static final int MOONSTONE_EARING = 852;
 	private static final int DRAKE_LEATHER_BOOTS = 2437;
@@ -112,12 +114,15 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 					{
 						return "30182-01.htm";
 					}
+					
 					return "30182-04.html";
 				}
+				
 				if (getQuestItemsCount(player, Q_IRONGATE_MEDAL) < 10)
 				{
 					return "30182-06.html";
 				}
+				
 				return "30182-07.html";
 			}
 			case WAREHOUSE_CHIEF_BAXT:
@@ -128,11 +133,13 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 					{
 						return "30685-06.html";
 					}
+					
 					return "30685-07.html";
 				}
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -160,6 +167,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 						playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 						return "30182-05.htm";
 					}
+					
 					final int ask = Integer.parseInt(event);
 					switch (ask)
 					{
@@ -177,6 +185,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 							{
 								return getNoQuestMsg(player);
 							}
+							
 							return "30182-03.htm";
 						}
 						case 6:
@@ -197,6 +206,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 								createBingoBoard(qs);
 								return "30182-10.html";
 							}
+							
 							return "30182-11.html";
 						}
 						case 8:
@@ -208,6 +218,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 								createBingoBoard(qs);
 								return "30182-12.html";
 							}
+							
 							return "30182-11.html";
 						}
 						case 10:
@@ -277,6 +288,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 								createBingoBoard(qs);
 								return "30685-10.html";
 							}
+							
 							return "30685-11.html";
 						}
 						case 8:
@@ -288,6 +300,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 								createBingoBoard(qs);
 								return "30685-12.html";
 							}
+							
 							return "30685-11.html";
 						}
 						case 10:
@@ -332,6 +345,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 				}
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -359,8 +373,10 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 			{
 				html = getHtm(player, npcId + "-20.html");
 			}
+			
 			return fillBoard(qs, html);
 		}
+		
 		i3 = getBingoSelectCount(qs);
 		if (i3 == 1)
 		{
@@ -378,6 +394,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 		{
 			html = getHtm(player, npcId + "-21.html");
 		}
+		
 		return fillBoard(qs, html);
 	}
 	
@@ -396,6 +413,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 				result = result.replace("<?Cell" + (i0 + 1) + "?>", "?");
 			}
 		}
+		
 		return result;
 	}
 	
@@ -408,6 +426,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 			result = result.replace("<?FontColor" + (i0 + 1) + "?>", (isSelectedBingoNumber(qs, i1)) ? "ff0000" : "ffffff");
 			result = result.replace("<?Cell" + (i0 + 1) + "?>", Integer.toString(i1));
 		}
+		
 		return result;
 	}
 	
@@ -432,8 +451,10 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 			{
 				html = getHtm(player, npcId + "-23.html");
 			}
+			
 			return colorBoard(qs, html);
 		}
+		
 		return fillBoard(qs, getHtm(player, npcId + "-25.html"));
 	}
 	
@@ -545,9 +566,9 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 	 */
 	private void createBingoBoard(QuestState qs)
 	{
-		//@formatter:off
+		// @formatter:off
 		final Integer[] arr = {1,2,3,4,5,6,7,8,9};
-		//@formatter:on
+		// @formatter:on
 		Collections.shuffle(Arrays.asList(arr));
 		qs.set("numbers", Arrays.asList(arr).toString().replaceAll("[^\\d ]", ""));
 		qs.set("selected", "? ? ? ? ? ? ? ? ?");
@@ -561,41 +582,50 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 	{
 		final String[] q = qs.get("selected").split(" ");
 		int found = 0;
+		
 		// Horizontal
 		if ((q[0] + q[1] + q[2]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		if ((q[3] + q[4] + q[5]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		if ((q[6] + q[7] + q[8]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		// Vertical
 		if ((q[0] + q[3] + q[6]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		if ((q[1] + q[4] + q[7]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		if ((q[2] + q[5] + q[8]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		// Diagonal
 		if ((q[0] + q[4] + q[8]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		if ((q[2] + q[4] + q[6]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		return found;
 	}
 	
@@ -615,6 +645,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 				break;
 			}
 		}
+		
 		final String[] selected = qs.get("selected").split(" ");
 		for (int i = 0; i < selected.length; i++)
 		{
@@ -623,11 +654,13 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 				selected[i] = Integer.toString(num);
 			}
 		}
+		
 		String result = selected[0];
 		for (int i = 1; i < selected.length; i++)
 		{
 			result += " " + selected[i];
 		}
+		
 		qs.set("selected", result);
 	}
 	
@@ -902,6 +935,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 				}
 			});
 		}
+		
 		return candidates.isEmpty() ? null : candidates.get(getRandom(candidates.size()));
 	}
 }

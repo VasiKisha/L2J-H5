@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="14600" type="Armor" name="Schuttgart Dark Resistance Ring">
 		<!-- Ring given to the guardian of Schuttgart territory. Resistance to Dark +12. Cannot be exchanged or dropped. Only one effect is applied even when wearing two earrings with the same effect. -->
@@ -14,12 +14,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8387-1" /> <!-- Royal Guard Ring - Schuttgart -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="42" />
 			<add stat="maxMp" val="17" />
 			<add stat="darkRes" val="12" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="14601" type="Armor" name="Ancient Cloak: Kamael exclusive - Kamael Use">
 		<!-- Cloak covered with the ancient energy. When the entire set of Vesper Noble is worn, the Sealed Cloak Slot will be open and one can now wear the cloak. Kamael exclusive cloak. Enchantment, special abilities and augmentation are not possible. Cannot be exchanged or dropped. -->
@@ -33,15 +33,15 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="2453">
+		<conditions msgId="2453">
 			<and>
 				<player races="KAMAEL" />
 				<player cloakStatus="true" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
-		</for>
+		</stats>
 	</item>
 	<item id="14602" type="Armor" name="Ancient Cloak">
 		<!-- Cloak covered with energy of the Holy Spirit. Armor sets that unlocks the cloak slot allow this to be worn. Kamael exclusive cloak. Enchantment, attribute and augmenting are impossible. Cannot be exchanged or dropped. -->
@@ -55,15 +55,15 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="2453">
+		<conditions msgId="2453">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player cloakStatus="true" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
-		</for>
+		</stats>
 	</item>
 	<item id="14603" type="EtcItem" name="Sealed Ancient Cloak">
 		<!-- Sealed Ancient Cloak. The seal can be removed through the weavers Olf Kanore and Olf Adams. It cannot be worn before the seal is removed. Enchantment, attribute and augmenting are impossible. Cannot be exchanged or dropped. -->
@@ -75,9 +75,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
-		</for>
+		</stats>
 	</item>
 	<item id="14604" type="Armor" name="Red Talisman - Territory Guardian">
 		<!-- When used, Max CP is greatly increased and a certain amount of CP is greatly recovered. Only one effect is applied when you wear the same two talismans. Shadow Item with no exchange/drop available -->
@@ -128,14 +128,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="78" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="14607" type="EtcItem" name="Mark of Gracia">
 		<!-- Token given to new, human PC in Gracia server. It can be exchanged to an item through Token Exchanger. -->
@@ -160,16 +160,16 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="2453">
+		<conditions msgId="2453">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="ROGUE_CLOACK" />
 				<player cloakStatus="true" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
-		</for>
+		</stats>
 	</item>
 	<item id="14609" type="Armor" name="Ancient Cloak">
 		<!-- A sealed cloak containing ancient power. When an armor set above the Dynasty level is worn, the Sealed Cloak Slot will be open so that the cloak can be equipped. Enchantment, attribute, and smelting are impossible. Cannot be exchanged or dropped. -->
@@ -183,12 +183,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="2453">
+		<conditions msgId="2453">
 			<player cloakStatus="true" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
-		</for>
+		</stats>
 	</item>
 	<item id="14610" type="Armor" name="Ancient Cloak: Robe exclusive">
 		<!-- Ancient Power Sealed Cloak. When the entire set of Vesper Noble is worn, the Sealed Cloak Slot will be open and one can now wear the cloak. The cloak is exclusively for Healer, Enchanter, Summoner and Wizard excluding Kamaels. Enchantment, special abilities and augmentation are not possible. Cannot be exchanged or dropped. -->
@@ -202,16 +202,16 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="2453">
+		<conditions msgId="2453">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="MAGE_CLOACK" />
 				<player cloakStatus="true" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
-		</for>
+		</stats>
 	</item>
 	<item id="14611" type="Armor" name="Rudolph's Nose">
 		<!-- Rudolph's Nose. 14-day-limited-time Item. Cannot be exchanged or dropped. -->
@@ -355,12 +355,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="51" />
 			<set stat="mAtk" val="38" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="14622" type="Weapon" name="Santa Claus' Sword of Ipos">
 		<!-- Santa Claus' Sword of Ipos. -->
@@ -379,12 +379,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="62" />
 			<set stat="mAtk" val="38" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="14623" type="Weapon" name="Santa Claus' Barakiel Axe">
 		<!-- Santa Claus' Barakiel Axe. -->
@@ -403,13 +403,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="51" />
 			<set stat="mAtk" val="38" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="14624" type="Weapon" name="Santa Claus' Behemoth Tuning Fork">
 		<!-- Santa Claus' Behemoth Tuning Fork. -->
@@ -428,13 +428,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="62" />
 			<set stat="mAtk" val="38" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="14625" type="Weapon" name="Santa Claus' Naga Storm">
 		<!-- Santa Claus' Naga Storm. -->
@@ -453,13 +453,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="45" />
 			<set stat="mAtk" val="38" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="14626" type="Weapon" name="Santa Claus' Tiphon Spear">
 		<!-- Santa Claus' Tiphon Spear. -->
@@ -478,13 +478,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1;3599-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="51" />
 			<set stat="mAtk" val="38" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="14627" type="Weapon" name="Santa Claus' Shyeed Bow">
 		<!-- Santa Claus' Shyeed Bow. -->
@@ -505,13 +505,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="116" />
 			<set stat="mAtk" val="42" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="227" />
-		</for>
+		</stats>
 	</item>
 	<item id="14628" type="Weapon" name="Santa Claus' Sobekk Hurricane">
 		<!-- Santa Claus' Sobekk Hurricane. -->
@@ -530,13 +530,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="41" />
 			<set stat="mAtk" val="38" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="14629" type="Weapon" name="Santa Claus' Themis Tongue">
 		<!-- Santa Claus' Themis Tongue. -->
@@ -556,12 +556,12 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1;3047-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="41" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="14630" type="Weapon" name="Santa Claus' Hand of Cabrio">
 		<!-- Santa Claus' Hand of Cabrio. -->
@@ -581,13 +581,13 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1;3047-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="50" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="14631" type="Weapon" name="Santa Claus' Daimon Crystal">
 		<!-- Santa Claus' Daimon Crystal. -->
@@ -607,13 +607,13 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1;3047-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="62" />
 			<set stat="mAtk" val="56" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="14632" type="Weapon" name="Santa Claus' Éclair Bijou">
 		<!-- Kamael Exclusive Weapon: Santa Claus' Sirra Blade Conversion -->
@@ -633,16 +633,16 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="46" />
 			<set stat="mAtk" val="38" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="14633" type="Weapon" name="Santa Claus' Screaming Vengeance">
 		<!-- Kamael Exclusive Weapon: Santa Claus' Shyeed Bow Conversion -->
@@ -662,16 +662,16 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="56" />
 			<set stat="mAtk" val="38" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="14634" type="Weapon" name="Santa Claus' Durendal">
 		<!-- Kamael Exclusive Weapon: Santa Claus' Sword of Ipos Conversion -->
@@ -690,16 +690,16 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="65" />
 			<set stat="mAtk" val="38" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="14635" type="EtcItem" name="Low Quality Battle Reward Chest">
 		<!-- Something might happen when double clicked. -->
@@ -1121,12 +1121,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8348-1" /> <!-- Royal Guard Earring - Gludio -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="25" />
 			<add stat="waterRes" val="8" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="14665" type="Armor" name="Dion Protection Earring">
 		<!-- Earring given to the guardian of Dion territory. Hold Attack +15%, Resistance to Poison +15%, Resistance to Holy +8. Cannot be exchanged or dropped. Only one effect is applied when wearing the same two earrings. -->
@@ -1142,12 +1142,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8349-1" /> <!-- Royal Guard Earring - Dion -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="25" />
 			<add stat="holyRes" val="8" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="14666" type="Armor" name="Giran Protection Earring">
 		<!-- Earring given to the guardian of Giran territory. Bleed Attack +15%, Paralysis Defense +15%, Wind Power Defense +8. Cannot be exchanged or dropped. Only one effect is applied when wearing the same two earrings. -->
@@ -1163,12 +1163,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8350-1" /> <!-- Royal Guard Earring - Giran -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="25" />
 			<add stat="windRes" val="8" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="14667" type="Armor" name="Oren Protection Earring">
 		<!-- Earring given to the guardian of Oren territory. Paralysis attack +15%, hold defense +15%, darkness defense +8. Cannot be exchanged or dropped. Only one effect is applied when wearing the same two earrings. -->
@@ -1184,12 +1184,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8351-1" /> <!-- Royal Guard Earring - Oren -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="25" />
 			<add stat="darkRes" val="8" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="14668" type="Armor" name="Aden Protection Earring">
 		<!-- Earring given to the guardian of Aden territory. Mind Attack +15%, Stun Defense +15%, Earth Power Defense +8. Cannot be exchanged or dropped. Only one effect is applied when wearing two earrings with the same effect. -->
@@ -1205,12 +1205,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8352-1" /> <!-- Royal Guard Earring - Aden -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="25" />
 			<add stat="earthRes" val="8" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="14669" type="Armor" name="Innadril Protection Earring">
 		<!-- Earring given to the guardian of Innadril territory. Sleep Attack +15%, Stun Defense +15%, Water Power Defense +8. Cannot be exchanged or dropped. Only one effect is applied when wearing the same two earrings. -->
@@ -1226,12 +1226,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8353-1" /> <!-- Royal Guard Earring - Innadril -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="25" />
 			<add stat="waterRes" val="8" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="14670" type="Armor" name="Goddard Protection Earring">
 		<!-- Earring given to the guardian of Goddard territory. Stun Attack +15%, Sleep Defense +15%, Fire Power Defense +8. Cannot be exchanged or dropped. Only one effect is applied when wearing the same two earrings. -->
@@ -1247,12 +1247,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8354-1" /> <!-- Royal Guard Earring - Goddard -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="25" />
 			<add stat="fireRes" val="8" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="14671" type="Armor" name="Rune Protection Earring">
 		<!-- Earring given to the guardian of Rune territory. Poison Attack +15%, Hold Defense +15%, Fire Power Defense +8. Cannot be exchanged or dropped. Only one effect is applied when wearing the same two earrings. -->
@@ -1268,12 +1268,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8355-1" /> <!-- Royal Guard Earring - Rune -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="25" />
 			<add stat="fireRes" val="8" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="14672" type="Armor" name="Schuttgart Protection Earring">
 		<!-- Earring given to the guardian of Schuttgart territory. Hold Attack +15%, Fear Defense +15%, Wind Power Defense +8. Cannot be exchanged or dropped. Only one effect is applied when wearing the same two earrings. -->
@@ -1289,12 +1289,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8356-1" /> <!-- Royal Guard Earring - Schuttgart -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="63" />
 			<add stat="maxMp" val="25" />
 			<add stat="windRes" val="8" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="14673" type="EtcItem" name="Rudolph's Nose">
 		<!-- Rudolph's Nose. Can be used only during the Christmas season. -->
@@ -1322,12 +1322,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8315-1;8316-1;8317-1;8318-1;8319-1;8320-1;8321-1;8322-1" /> <!-- Santa Claus' Blessed Weapon -->
 		<set name="time" val="180" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="61" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="14675" type="Armor" name="Agathion Seal Bracelet - Neolithica">
 		<!-- Bracelet that can summon an Agathion. Cannot be exchanged or dropped. Cannot receive the gift if the inventory and weight are full. -->
@@ -1413,9 +1413,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2860-1" /> <!-- Highest Power No-grade Secret Medicine of Life -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14683" type="EtcItem" name="Greater Elixir of Life (D-Grade)">
 		<!-- Regenerates HP. Can only be used by characters above level 20 and below level 39 upon themselves. Re-use delay is 5 minutes. -->
@@ -1432,9 +1432,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2860-2" /> <!-- Highest Power No-grade Secret Medicine of Life -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14684" type="EtcItem" name="Greater Elixir of Life (C-Grade)">
 		<!-- Regenerates HP. Can only be used by characters above level 40 and below level 51 upon themselves. Re-use delay is 5 minutes. -->
@@ -1451,9 +1451,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2860-3" /> <!-- Highest Power No-grade Secret Medicine of Life -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14685" type="EtcItem" name="Greater Elixir of Life (B-Grade)">
 		<!-- Regenerates HP. Can only be used by characters above level 52 and below level 60 upon themselves. Re-use delay is 5 minutes. -->
@@ -1470,9 +1470,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2860-4" /> <!-- Highest Power No-grade Secret Medicine of Life -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14686" type="EtcItem" name="Greater Elixir of Life (A-Grade)">
 		<!-- Regenerates HP. Can only be used by characters above level 61 and below level 75 upon themselves. Re-use delay is 5 minutes. -->
@@ -1489,9 +1489,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2860-5" /> <!-- Highest Power No-grade Secret Medicine of Life -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14687" type="EtcItem" name="Greater Elixir of Life (S-Grade)">
 		<!-- Regenerates HP. Can only be used by characters above level 76 upon themselves. Re-use delay is 5 minutes. -->
@@ -1508,9 +1508,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2860-6" /> <!-- Highest Power No-grade Secret Medicine of Life -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14688" type="EtcItem" name="Greater Elixir of Mental Strength (No-Grade)">
 		<!-- Regenerates MP. Can only be used by characters below level 19 upon themselves. Re-use delay is 5 minutes. -->
@@ -1526,9 +1526,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2861-1" /> <!-- Highest Power No-grade Secret Medicine of Mind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14689" type="EtcItem" name="Greater Elixir of Mental Strength (D-Grade)">
 		<!-- Regenerates MP. Can only be used by characters above level 20 and below level 39 upon themselves. Re-use delay is 5 minutes. -->
@@ -1545,9 +1545,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2861-2" /> <!-- Highest Power No-grade Secret Medicine of Mind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14690" type="EtcItem" name="Greater Elixir of Mental Strength (C-Grade)">
 		<!-- Regenerates MP. Can only be used by characters above level40 and below level 51 upon themselves. Re-use delay is 5 minutes. -->
@@ -1564,9 +1564,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2861-3" /> <!-- Highest Power No-grade Secret Medicine of Mind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14691" type="EtcItem" name="Greater Elixir of Mental Strength (B-Grade)">
 		<!-- Regenerates MP. Can only be used by characters above level 52 and below level 60 upon themselves. Re-use delay is 5 minutes. -->
@@ -1583,9 +1583,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2861-4" /> <!-- Highest Power No-grade Secret Medicine of Mind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14692" type="EtcItem" name="Greater Elixir of Mental Strength (A-Grade)">
 		<!-- Regenerates MP. Can only be used by characters above level 61 and below level 75 upon themselves. Re-use delay is 5 minutes. -->
@@ -1602,9 +1602,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2861-5" /> <!-- Highest Power No-grade Secret Medicine of Mind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14693" type="EtcItem" name="Greater Elixir of Mental Strength (S-Grade)">
 		<!-- Regenerates MP. Can only be used by characters above level 76 upon themselves. Re-use delay is 5 minutes. -->
@@ -1621,9 +1621,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2861-6" /> <!-- Highest Power No-grade Secret Medicine of Mind -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="14694" type="EtcItem" name="Greater Elixir of CP (No Grade)">
 		<!-- Regenerates CP. Can only be used by characters below level 19 upon themselves. Re-use delay is 5 minutes. -->

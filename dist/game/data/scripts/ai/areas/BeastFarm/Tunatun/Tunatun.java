@@ -31,8 +31,10 @@ public class Tunatun extends AbstractNpcAI
 {
 	// NPC
 	private static final int TUNATUN = 31537;
+	
 	// Item
 	private static final int BEAST_HANDLERS_WHIP = 15473;
+	
 	// Misc
 	private static final int MIN_LEVEL = 82;
 	
@@ -64,6 +66,7 @@ public class Tunatun extends AbstractNpcAI
 				return "31537-03.html";
 			}
 		}
+		
 		return event;
 	}
 	

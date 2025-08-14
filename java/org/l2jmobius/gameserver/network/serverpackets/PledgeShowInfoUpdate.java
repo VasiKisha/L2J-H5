@@ -38,6 +38,7 @@ public class PledgeShowInfoUpdate extends ServerPacket
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.PLEDGE_SHOW_INFO_UPDATE.writeId(this, buffer);
+		
 		// sending empty data so client will ask all the info in response ;)
 		buffer.writeInt(_clan.getId());
 		buffer.writeInt(_clan.getCrestId());

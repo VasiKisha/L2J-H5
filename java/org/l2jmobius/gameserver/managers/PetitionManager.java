@@ -248,12 +248,14 @@ public class PetitionManager
 				{
 					continue;
 				}
+				
 				if (((currPetition.getPetitioner() != null) && (currPetition.getPetitioner().getObjectId() == player.getObjectId())) || ((currPetition.getResponder() != null) && (currPetition.getResponder().getObjectId() == player.getObjectId())))
 				{
 					return true;
 				}
 			}
 		}
+		
 		return false;
 	}
 	

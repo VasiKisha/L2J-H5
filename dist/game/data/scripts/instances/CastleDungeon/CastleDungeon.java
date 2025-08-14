@@ -50,6 +50,7 @@ public class CastleDungeon extends AbstractInstance
 	};
 	
 	private static final Location RAIDS_LOC = new Location(11793, -49190, -3008, 0);
+	
 	// Misc
 	private static final Map<Integer, Integer> CASTLE_DUNGEON = new HashMap<>();
 	private static final Map<Integer, List<Integer>> FORTRESS = new HashMap<>();

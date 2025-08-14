@@ -41,6 +41,7 @@ public class Q00402_PathOfTheHumanKnight extends Quest
 	private static final int CAPTAIN_BEZIQUE = 30379;
 	private static final int SIR_KLAUS_VASPER = 30417;
 	private static final int SIR_ARON_TANFORD = 30653;
+	
 	// Items
 	private static final int SQUIRES_MARK = 1271;
 	private static final int COIN_OF_LORDS1 = 1162;
@@ -61,8 +62,10 @@ public class Q00402_PathOfTheHumanKnight extends Quest
 	private static final int GIANT_SPIDERS_HUSK = 1177;
 	private static final int EINHASADS_3RD_TEMPLE_BADGE = 1178;
 	private static final int SKULL_OF_SILENT_HORROR = 1179;
+	
 	// Reward
 	private static final int SWORD_OF_RITUAL = 1161;
+	
 	// Monster
 	private static final int LANGK_LIZARDMAN_WARRIOR = 20024;
 	private static final int LANGK_LIZARDMAN_SCOUT = 20027;
@@ -75,8 +78,10 @@ public class Q00402_PathOfTheHumanKnight extends Quest
 	private static final int BLADE_SPIDER = 20108;
 	private static final int SILENT_HORROR = 20404;
 	private static final int BUGBEAR_RAIDER = 20775;
+	
 	// Quest Monster
 	private static final int UNDEAD_PRIEST = 27024;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -167,6 +172,7 @@ public class Q00402_PathOfTheHumanKnight extends Quest
 					{
 						addExpAndSp(player, 295862, 18274);
 					}
+					
 					qs.exitQuest(false, true);
 					player.sendPacket(new SocialAction(player.getObjectId(), 3));
 					htmltext = event;
@@ -193,6 +199,7 @@ public class Q00402_PathOfTheHumanKnight extends Quest
 					{
 						addExpAndSp(player, 295862, 18274);
 					}
+					
 					qs.exitQuest(false, true);
 					player.sendPacket(new SocialAction(player.getObjectId(), 3));
 					htmltext = event;
@@ -236,6 +243,7 @@ public class Q00402_PathOfTheHumanKnight extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -404,6 +412,7 @@ public class Q00402_PathOfTheHumanKnight extends Quest
 							{
 								addExpAndSp(player, 591724, 36542);
 							}
+							
 							qs.exitQuest(false, true);
 							player.sendPacket(new SocialAction(player.getObjectId(), 3));
 							htmltext = "30417-12.html";
@@ -577,6 +586,7 @@ public class Q00402_PathOfTheHumanKnight extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

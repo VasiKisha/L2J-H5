@@ -39,6 +39,7 @@ public class FuncSub extends AbstractFunction
 		{
 			return initVal - getValue();
 		}
+		
 		return initVal;
 	}
 }

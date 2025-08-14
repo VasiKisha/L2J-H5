@@ -26,6 +26,7 @@
 		<npc id="31273" x="146580" y="-58752" z="-2973" heading="45000" respawnDelay="60" /> <!-- Borodin -->
 		<npc id="31274" x="146688" y="-59008" z="-2972" heading="12000" respawnDelay="60" /> <!-- Fundin -->
 		<npc id="31275" x="147966" y="-55228" z="-2728" heading="48000" respawnDelay="60" /> <!-- Tatiana -->
+		<npc id="30990" x="147908" y="-55221" z="-2728" heading="48000" respawnDelay="60" /> <!-- Lottery Ticket Seller -->
 		<npc id="31284" x="147840" y="-53872" z="-2731" heading="17000" respawnDelay="60" /> <!-- Elena -->
 		<npc id="31285" x="145080" y="-54592" z="-2965" heading="45000" respawnDelay="60" /> <!-- Samael -->
 		<npc id="31286" x="144808" y="-54732" z="-2965" heading="62000" respawnDelay="60" /> <!-- Drakon -->

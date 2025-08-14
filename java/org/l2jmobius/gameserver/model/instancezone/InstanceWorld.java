@@ -81,6 +81,7 @@ public class InstanceWorld
 				allowed.add(player);
 			}
 		}
+		
 		return allowed;
 	}
 	
@@ -220,6 +221,7 @@ public class InstanceWorld
 				result.add(npc);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -242,6 +244,7 @@ public class InstanceWorld
 				result.add((T) npc);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -259,6 +262,7 @@ public class InstanceWorld
 				result.add(npc);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -277,6 +281,7 @@ public class InstanceWorld
 				result.add(npc);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -299,6 +304,7 @@ public class InstanceWorld
 				result.add((T) npc);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -316,6 +322,7 @@ public class InstanceWorld
 				return npc;
 			}
 		}
+		
 		return null;
 	}
 	

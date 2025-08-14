@@ -31,11 +31,14 @@ public class Q00383_TreasureHunt extends Quest
 	// NPCs
 	private static final int ESPEN = 30890;
 	private static final int PIRATES_CHEST = 31148;
+	
 	// Items
 	private static final int THIEF_KEY = 1661;
 	private static final int PIRATES_TREASURE_MAP = 5915;
+	
 	// Misc
 	private static final int MIN_LEVEL = 42;
+	
 	// Rewards
 	private static final ItemHolder SCROLL_ENCHANT_ARMOR_C = new ItemHolder(952, 1);
 	private static final ItemHolder SCROLL_ENCHANT_ARMOR_D = new ItemHolder(956, 1);
@@ -285,6 +288,7 @@ public class Q00383_TreasureHunt extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -329,6 +333,7 @@ public class Q00383_TreasureHunt extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

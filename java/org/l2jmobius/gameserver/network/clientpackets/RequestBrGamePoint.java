@@ -41,6 +41,7 @@ public class RequestBrGamePoint extends ClientPacket
 		{
 			return;
 		}
+		
 		player.sendPacket(new ExBrGamePoint(player));
 	}
 }

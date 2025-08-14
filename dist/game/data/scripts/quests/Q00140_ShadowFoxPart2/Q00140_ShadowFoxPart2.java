@@ -37,10 +37,12 @@ public class Q00140_ShadowFoxPart2 extends Quest
 	// NPCs
 	private static final int KLUCK = 30895;
 	private static final int XENOVIA = 30912;
+	
 	// Items
 	private static final int DARK_CRYSTAL = 10347;
 	private static final int DARK_OXYDE = 10348;
 	private static final int CRYPTOGRAM_OF_THE_GODDESS_SWORD = 10349;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
 	static
@@ -120,12 +122,14 @@ public class Q00140_ShadowFoxPart2 extends Quest
 						takeItems(player, DARK_CRYSTAL, 5);
 						return "30912-12.html";
 					}
+					
 					giveItems(player, CRYPTOGRAM_OF_THE_GODDESS_SWORD, 1);
 					takeItems(player, DARK_CRYSTAL, -1);
 					takeItems(player, DARK_OXYDE, -1);
 					qs.setCond(4, true);
 					return "30912-13.html";
 				}
+				
 				takeItems(player, DARK_CRYSTAL, 5);
 				break;
 			}
@@ -136,6 +140,7 @@ public class Q00140_ShadowFoxPart2 extends Quest
 				{
 					addExpAndSp(player, 30000, 2000);
 				}
+				
 				qs.exitQuest(false, true);
 				break;
 			}
@@ -145,6 +150,7 @@ public class Q00140_ShadowFoxPart2 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -252,6 +258,7 @@ public class Q00140_ShadowFoxPart2 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

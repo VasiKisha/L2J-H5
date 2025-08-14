@@ -36,6 +36,7 @@ public class PaganTeleporters extends AbstractNpcAI
 	// NPCs
 	private static final int TRIOLS_MIRROR_1 = 32039;
 	private static final int TRIOLS_MIRROR_2 = 32040;
+	
 	// Locations
 	private static final Map<Integer, Location> TRIOLS_LOCS = new HashMap<>();
 	static
@@ -49,6 +50,7 @@ public class PaganTeleporters extends AbstractNpcAI
 		32034, 32035, 32036, 32037, 32039, 32040
 	};
 	// @formatter:on
+	
 	// Items
 	private static final int VISITORS_MARK = 8064;
 	private static final int FADED_VISITORS_MARK = 8065;
@@ -66,18 +68,19 @@ public class PaganTeleporters extends AbstractNpcAI
 	{
 		switch (event)
 		{
-			case "Close_Door1":
+			case "CLOSE_DOOR_1":
 			{
 				DoorData.getInstance().getDoor(19160001).closeMe();
 				break;
 			}
-			case "Close_Door2":
+			case "CLOSE_DOOR_2":
 			{
 				DoorData.getInstance().getDoor(19160010).closeMe();
 				DoorData.getInstance().getDoor(19160011).closeMe();
 				break;
 			}
 		}
+		
 		return "";
 	}
 	
@@ -88,6 +91,7 @@ public class PaganTeleporters extends AbstractNpcAI
 		{
 			player.teleToLocation(TRIOLS_LOCS.get(npc.getId()));
 		}
+		
 		return "";
 	}
 	
@@ -102,14 +106,15 @@ public class PaganTeleporters extends AbstractNpcAI
 				{
 					return "noItem.htm";
 				}
+				
 				DoorData.getInstance().getDoor(19160001).openMe();
-				startQuestTimer("Close_Door1", 10000, null, null);
+				startQuestTimer("CLOSE_DOOR_1", 10000, null, null);
 				return "FadedMark.htm";
 			}
 			case 32035:
 			{
 				DoorData.getInstance().getDoor(19160001).openMe();
-				startQuestTimer("Close_Door1", 10000, null, null);
+				startQuestTimer("CLOSE_DOOR_1", 10000, null, null);
 				return "FadedMark.htm";
 			}
 			case 32036:
@@ -118,19 +123,21 @@ public class PaganTeleporters extends AbstractNpcAI
 				{
 					return "noMark.htm";
 				}
+				
 				DoorData.getInstance().getDoor(19160010).openMe();
 				DoorData.getInstance().getDoor(19160011).openMe();
-				startQuestTimer("Close_Door2", 10000, null, null);
-				return "world.openDoor.htm";
+				startQuestTimer("CLOSE_DOOR_2", 10000, null, null);
+				return "openDoor.htm";
 			}
 			case 32037:
 			{
 				DoorData.getInstance().getDoor(19160010).openMe();
 				DoorData.getInstance().getDoor(19160011).openMe();
-				startQuestTimer("Close_Door2", 10000, null, null);
+				startQuestTimer("CLOSE_DOOR_2", 10000, null, null);
 				return "FadedMark.htm";
 			}
 		}
+		
 		return super.onTalk(npc, player);
 	}
 	

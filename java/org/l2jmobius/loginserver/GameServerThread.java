@@ -70,6 +70,7 @@ public class GameServerThread extends Thread
 		{
 			LOGGER.info("GameServerRegistration: IP Address " + _connectionIPAddress + " is on Banned IP list.");
 			forceClose(LoginServerFail.REASON_IP_BANNED);
+			
 			// Ensure no further processing for this connection.
 			return;
 		}
@@ -137,8 +138,10 @@ public class GameServerThread extends Thread
 				{
 					_gsi.setDown();
 				}
+				
 				LOGGER.info("Server [" + getServerId() + "] " + GameServerTable.getInstance().getServerNameById(getServerId()) + " is now set as disconnected.");
 			}
+			
 			LoginServer.getInstance().getGameServerListener().removeGameServer(this);
 			LoginServer.getInstance().getGameServerListener().removeFloodProtection(_connectionIp);
 		}
@@ -217,6 +220,7 @@ public class GameServerThread extends Thread
 		_privateKey = (RSAPrivateKey) pair.getPrivateKey();
 		_publicKey = (RSAPublicKey) pair.getPublicKey();
 		_blowfish = new NewCrypt("_;v.]05-31!|+-%xT!^[$\00");
+		
 		// Java 18
 		// setName(getClass().getSimpleName() + "-" + getId() + "@" + _connectionIp);
 		// Java 19
@@ -324,6 +328,7 @@ public class GameServerThread extends Thread
 		{
 			return false;
 		}
+		
 		return _gsi.isAuthed();
 	}
 	
@@ -351,6 +356,7 @@ public class GameServerThread extends Thread
 		{
 			return _gsi.getId();
 		}
+		
 		return -1;
 	}
 	

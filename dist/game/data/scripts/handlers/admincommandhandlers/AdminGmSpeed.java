@@ -38,7 +38,7 @@ public class AdminGmSpeed implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player player)
+	public boolean onCommand(String command, Player player)
 	{
 		final StringTokenizer st = new StringTokenizer(command);
 		final String cmd = st.nextToken();
@@ -49,12 +49,13 @@ public class AdminGmSpeed implements IAdminCommandHandler
 				player.sendSysMessage("//gmspeed [0...10]");
 				return false;
 			}
+			
 			final String token = st.nextToken();
 			
 			// Rollback feature for old custom way, in order to make everyone happy.
 			if (Config.USE_SUPER_HASTE_AS_GM_SPEED)
 			{
-				AdminCommandHandler.getInstance().useAdminCommand(player, AdminSuperHaste.ADMIN_COMMANDS[0] + " " + token, false);
+				AdminCommandHandler.getInstance().onCommand(player, AdminSuperHaste.ADMIN_COMMANDS[0] + " " + token, false);
 				return true;
 			}
 			
@@ -63,6 +64,7 @@ public class AdminGmSpeed implements IAdminCommandHandler
 				player.sendSysMessage("//gmspeed [0...10]");
 				return false;
 			}
+			
 			final double runSpeedBoost = Double.parseDouble(token);
 			if ((runSpeedBoost < 0) || (runSpeedBoost > 10))
 			{
@@ -95,11 +97,12 @@ public class AdminGmSpeed implements IAdminCommandHandler
 			
 			player.sendSysMessage("[" + targetCharacter.getName() + "] speed is [" + (runSpeedBoost * 100) + "0]% fast.");
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

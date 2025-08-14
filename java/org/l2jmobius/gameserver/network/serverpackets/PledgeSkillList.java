@@ -63,6 +63,7 @@ public class PledgeSkillList extends ServerPacket
 			buffer.writeInt(sk.getDisplayId());
 			buffer.writeInt(sk.getDisplayLevel());
 		}
+		
 		for (SubPledgeSkill sk : _subSkills)
 		{
 			buffer.writeInt(sk._subType); // Clan Sub-unit types

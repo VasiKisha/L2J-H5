@@ -217,6 +217,7 @@ public enum CategoryType
 				return type;
 			}
 		}
+		
 		return null;
 	}
 }

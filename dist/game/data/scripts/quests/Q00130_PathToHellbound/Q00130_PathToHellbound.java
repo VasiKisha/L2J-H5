@@ -33,8 +33,10 @@ public class Q00130_PathToHellbound extends Quest
 	// NPCs
 	private static final int CASIAN = 30612;
 	private static final int GALATE = 32292;
+	
 	// Item
 	private static final int CASIANS_BLUE_CRYSTAL = 12823;
+	
 	// Misc
 	private static final int MIN_LEVEL = 78;
 	
@@ -114,6 +116,7 @@ public class Q00130_PathToHellbound extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -191,6 +194,7 @@ public class Q00130_PathToHellbound extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -62,7 +62,7 @@ public class OfflinePlay implements IVoicedCommandHandler
 	}
 	
 	@Override
-	public boolean useVoicedCommand(String command, Player player, String target)
+	public boolean onCommand(String command, Player player, String target)
 	{
 		if (command.equals("offlineplay") && Config.ENABLE_OFFLINE_PLAY_COMMAND)
 		{
@@ -106,7 +106,7 @@ public class OfflinePlay implements IVoicedCommandHandler
 	}
 	
 	@Override
-	public String[] getVoicedCommandList()
+	public String[] getCommandList()
 	{
 		return VOICED_COMMANDS;
 	}

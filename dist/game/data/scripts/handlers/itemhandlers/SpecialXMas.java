@@ -28,7 +28,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ShowXMasSeal;
 public class SpecialXMas implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{

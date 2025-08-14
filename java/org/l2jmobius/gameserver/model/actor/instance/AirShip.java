@@ -115,6 +115,7 @@ public class AirShip extends Vehicle
 		{
 			broadcastPacket(new ExMoveToLocationAirShip(this));
 		}
+		
 		return result;
 	}
 	

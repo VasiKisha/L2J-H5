@@ -82,6 +82,7 @@ public class CharacterBirthday extends AbstractNpcAI
 				takeItems(player, 10250, 1); // Adventurer Hat (Event)
 				giveItems(player, 21594, 1); // Birthday Hat
 				htmltext = null; // FIXME: Probably has html
+				
 				// Despawn npc
 				npc.doDie(player);
 				SPAWNS--;
@@ -91,6 +92,7 @@ public class CharacterBirthday extends AbstractNpcAI
 				htmltext = "32600-nohat.htm";
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -112,6 +114,7 @@ public class CharacterBirthday extends AbstractNpcAI
 		{
 			return "tooclose.htm";
 		}
+		
 		return null;
 	}
 	

@@ -40,9 +40,11 @@ public class FreyaCelebration extends LongTimeEvent
 {
 	// NPC
 	private static final int FREYA = 13296;
+	
 	// Items
 	private static final int FREYA_POTION = 15440;
 	private static final int FREYA_GIFT = 17138;
+	
 	// Misc
 	private static final String RESET_VAR = "FreyaCelebration";
 	private static final int HOURS = 20;
@@ -110,6 +112,7 @@ public class FreyaCelebration extends LongTimeEvent
 				player.sendPacket(sm);
 			}
 		}
+		
 		return null;
 	}
 	

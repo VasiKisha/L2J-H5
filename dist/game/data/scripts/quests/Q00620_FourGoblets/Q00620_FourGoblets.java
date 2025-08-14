@@ -44,6 +44,7 @@ public class Q00620_FourGoblets extends Quest
 	private static final int EMPERORS_SEPULCHER_MANAGER = 31922;
 	private static final int GREAT_SAGES_SEPULCHER_MANAGER = 31923;
 	private static final int JUDGES_SEPULCHER_MANAGER = 31924;
+	
 	// Items
 	private static final int BROKEN_RELIC_PART = 7254;
 	private static final int SEALED_BOX = 7255;
@@ -54,11 +55,14 @@ public class Q00620_FourGoblets extends Quest
 	private static final int CHAPEL_KEY = 7260;
 	private static final int USED_GRAVE_PASS = 7261;
 	private static final int ANTIQUE_BROOCH = 7262;
+	
 	// Misc
 	private static final int MIN_LEVEL = 74;
+	
 	// Locations
 	private static final Location ENTER_LOC = new Location(170000, -88250, -2912, 0);
 	private static final Location EXIT_LOC = new Location(169584, -91008, -2912, 0);
+	
 	// Rewards
 	private static final ItemHolder CORD = new ItemHolder(1884, 42);
 	private static final ItemHolder METALLIC_FIBER = new ItemHolder(1895, 36);
@@ -127,6 +131,7 @@ public class Q00620_FourGoblets extends Quest
 	private static final ItemHolder DEMON_SPLINTER_BLADE = new ItemHolder(6695, 1);
 	private static final ItemHolder HEAVENS_DIVIDER_EDGE = new ItemHolder(6696, 1);
 	private static final ItemHolder ARCANA_MACE_HEAD = new ItemHolder(6697, 1);
+	
 	// Mobs
 	private static final int HALISHA_ALECTIA = 25339;
 	private static final int HALISHA_TISHAS = 25342;
@@ -327,6 +332,7 @@ public class Q00620_FourGoblets extends Quest
 				{
 					qs.setCond(2);
 				}
+				
 				htmltext = event;
 				break;
 			}
@@ -429,7 +435,7 @@ public class Q00620_FourGoblets extends Quest
 				break;
 			}
 			// Ghost Chamberlain of Elmoreden: Teleport to 4s.
-			case "go_to_4s":
+			case "TELEPORT_TO_4S":
 			{
 				if (hasQuestItems(player, ANTIQUE_BROOCH))
 				{
@@ -447,7 +453,7 @@ public class Q00620_FourGoblets extends Quest
 				htmltext = npc.getId() + "-00.html";
 			}
 			// Ghost Chamberlain of Elmoreden: Teleport to Imperial Tomb Entrance.
-			case "go_to_it":
+			case "TELEPORT_TO_IT":
 			{
 				if (hasQuestItems(player, ANTIQUE_BROOCH))
 				{
@@ -465,6 +471,7 @@ public class Q00620_FourGoblets extends Quest
 				htmltext = npc.getId() + "-00.html";
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -640,6 +647,7 @@ public class Q00620_FourGoblets extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

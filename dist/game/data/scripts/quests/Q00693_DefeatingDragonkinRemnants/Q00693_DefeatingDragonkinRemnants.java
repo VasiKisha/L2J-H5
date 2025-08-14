@@ -53,6 +53,7 @@ public class Q00693_DefeatingDragonkinRemnants extends Quest
 		{
 			return "32527-00.html";
 		}
+		
 		return "32527-00a.html";
 	}
 	
@@ -84,6 +85,7 @@ public class Q00693_DefeatingDragonkinRemnants extends Quest
 					{
 						htmltext = "32527-noreward.html";
 					}
+					
 					qs.unset("difficulty");
 					qs.unset("members");
 					playSound(talker, QuestSound.ITEMSOUND_QUEST_FINISH);
@@ -114,10 +116,12 @@ public class Q00693_DefeatingDragonkinRemnants extends Quest
 							return htmltext;
 						}
 					}
+					
 					htmltext = "32527-06.htm";
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -181,6 +185,7 @@ public class Q00693_DefeatingDragonkinRemnants extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -193,6 +198,7 @@ public class Q00693_DefeatingDragonkinRemnants extends Quest
 		{
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -216,8 +222,10 @@ public class Q00693_DefeatingDragonkinRemnants extends Quest
 			{
 				giveItems(qs.getPlayer(), 14635, 1L); // Low Quality Battle Reward Chest
 			}
+			
 			return true;
 		}
+		
 		return false;
 	}
 }

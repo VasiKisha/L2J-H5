@@ -24,7 +24,6 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
@@ -111,7 +110,7 @@ public class Action extends ClientPacket
 			return;
 		}
 		
-		if (!obj.isTargetable() && !player.canOverrideCond(PlayerCondOverride.TARGET_ALL))
+		if (!obj.isTargetable() && !player.isGM())
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;

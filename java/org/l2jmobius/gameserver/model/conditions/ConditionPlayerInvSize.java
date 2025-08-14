@@ -46,6 +46,7 @@ public class ConditionPlayerInvSize extends Condition
 		{
 			return player.getInventory().getNonQuestSize() <= (player.getInventoryLimit() - _size);
 		}
+		
 		return true;
 	}
 }

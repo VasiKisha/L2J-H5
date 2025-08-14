@@ -55,10 +55,12 @@ public class Q00456_DontKnowDontCare extends Quest
 	private static final int DRAKE_LORD_CORPSE = 32884;
 	private static final int BEHEMOTH_LEADER_CORPSE = 32885;
 	private static final int DRAGON_BEAST_CORPSE = 32886;
+	
 	// Items
 	private static final int DRAKE_LORD_ESSENCE = 17251;
 	private static final int BEHEMOTH_LEADER_ESSENCE = 17252;
 	private static final int DRAGON_BEAST_ESSENCE = 17253;
+	
 	// Misc
 	private static final int MIN_PLAYERS = 18;
 	private static final int MIN_LEVEL = 80;
@@ -193,6 +195,7 @@ public class Q00456_DontKnowDontCare extends Quest
 						htmltext = "32864-02.html";
 						break;
 					}
+					
 					qs.setState(State.CREATED);
 					// intentional fall-through
 				}
@@ -225,6 +228,7 @@ public class Q00456_DontKnowDontCare extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -261,6 +265,7 @@ public class Q00456_DontKnowDontCare extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

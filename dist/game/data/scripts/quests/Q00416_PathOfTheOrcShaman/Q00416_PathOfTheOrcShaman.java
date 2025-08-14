@@ -45,6 +45,7 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 	private static final int MOIRA = 31979;
 	private static final int TOTEM_SPIRIT_OF_GANDI = 32057;
 	private static final int DEAD_LEOPARDS_CARCASS = 32090;
+	
 	// Items
 	private static final int FIRE_CHARM = 1616;
 	private static final int KASHA_BEAR_PELT = 1617;
@@ -62,11 +63,14 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 	private static final int DURKA_PARASITE = 1629;
 	private static final int TOTEM_SPIRIT_BLOOD = 1630;
 	private static final int MASK_OF_MEDIUM = 1631;
+	
 	// Quest Monsters
 	private static final int DURKA_SPIRIT = 27056;
 	private static final int BLACK_LEOPARD = 27319;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
+	
 	// Mobs
 	private static final Map<Integer, ItemChanceHolder> MOBS = new HashMap<>();
 	static
@@ -186,6 +190,7 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 					{
 						addExpAndSp(player, 591724, 36388);
 					}
+					
 					giveAdena(player, 163800, true);
 					qs.exitQuest(false, true);
 					player.sendPacket(new SocialAction(player.getObjectId(), 3));
@@ -270,6 +275,7 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -498,6 +504,7 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 						{
 							addExpAndSp(player, 295862, 18194);
 						}
+						
 						giveAdena(player, 81900, true);
 						qs.exitQuest(false, true);
 						player.sendPacket(new SocialAction(player.getObjectId(), 3));
@@ -616,6 +623,7 @@ public class Q00416_PathOfTheOrcShaman extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

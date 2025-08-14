@@ -98,6 +98,7 @@ public class GameServerRegister extends JFrame
 			{
 				DarkTheme.activate();
 			}
+			
 			gui();
 		}
 		else
@@ -481,6 +482,7 @@ public class GameServerRegister extends JFrame
 		
 		final Properties hexSetting = new Properties();
 		final File file = new File(outDir, "hexid.txt"); // Create the hexid.txt file.
+		
 		// Create a new empty file only if it doesn't exist.
 		file.createNewFile();
 		try (OutputStream out = new FileOutputStream(file))
@@ -499,6 +501,7 @@ public class GameServerRegister extends JFrame
 			statement.setInt(1, id);
 			statement.executeUpdate();
 		}
+		
 		GameServerTable.getInstance().getRegisteredGameServers().remove(id); // Remove it from the GameServerTable.
 	}
 	
@@ -574,6 +577,7 @@ public class GameServerRegister extends JFrame
 						{
 							
 						}
+						
 						System.exit(0);
 						break;
 					}

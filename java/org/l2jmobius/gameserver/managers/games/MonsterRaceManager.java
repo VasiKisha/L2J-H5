@@ -347,6 +347,7 @@ public class MonsterRaceManager
 					break;
 				}
 			}
+			
 			_finalCountdown += 1;
 		}
 	}
@@ -451,6 +452,7 @@ public class MonsterRaceManager
 		{
 			LOGGER.log(Level.WARNING, "MonsterRace: Can't load history: " + e.getMessage(), e);
 		}
+		
 		LOGGER.info("MonsterRace: loaded " + _history.size() + " records, currently on race #" + _raceNumber);
 	}
 	

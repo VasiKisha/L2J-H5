@@ -23,6 +23,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
+import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
@@ -72,6 +73,17 @@ public class ValidatePosition extends ClientPacket
 			return; // Disable validations during fall to avoid "jumping".
 		}
 		
+		// Abnormal z read from client.
+		if ((_z < -20000) || (_z > 20000))
+		{
+			final Location lastServerPosition = player.getLastServerPosition();
+			if (lastServerPosition != null)
+			{
+				player.teleToLocation(lastServerPosition);
+			}
+			return;
+		}
+		
 		// Don't allow flying transformations outside gracia area!
 		if (player.isFlyingMounted() && (_x > World.GRACIA_MAX_X))
 		{
@@ -115,7 +127,7 @@ public class ValidatePosition extends ClientPacket
 			}
 			else
 			{
-				player.setXYZ(_x, _y, player.getZ() > _z ? GeoEngine.getInstance().getHeight(_x, _y, player.getZ()) : _z);
+				player.setXYZ(_x, _y, realZ > _z ? GeoEngine.getInstance().getHeight(_x, _y, realZ) : _z);
 			}
 		}
 		
@@ -124,7 +136,7 @@ public class ValidatePosition extends ClientPacket
 		player.setClientZ(_z);
 		player.setClientHeading(_heading); // No real need to validate heading.
 		
-		// Mobius: Check for possible door logout and move over exploit. Also checked at MoveBackwardToLocation.
+		// Mobius: Check for possible door logout and move over exploit. Also checked at MoveToLocation.
 		if (!DoorData.getInstance().checkIfDoorsBetween(realX, realY, realZ, _x, _y, _z, player.getInstanceId(), false))
 		{
 			player.setLastServerPosition(realX, realY, realZ);

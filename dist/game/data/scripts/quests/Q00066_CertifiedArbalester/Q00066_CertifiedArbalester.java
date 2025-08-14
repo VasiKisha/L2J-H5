@@ -42,6 +42,7 @@ public class Q00066_CertifiedArbalester extends Quest
 	private static final int MASTER_RINDY = 32201;
 	private static final int GRAND_MASTER_MELDINA = 32214;
 	private static final int MASTER_SELSIA = 32220;
+	
 	// Items
 	private static final int ENMITY_CRYSTAL = 9773;
 	private static final int ENMITY_CRYSTAL_CORE = 9774;
@@ -52,9 +53,11 @@ public class Q00066_CertifiedArbalester extends Quest
 	private static final int GRANDIS_ATTACK_ORDERS = 9779;
 	private static final int MANASHENS_TALISMAN = 9780;
 	private static final int RESEARCH_ON_THE_GIANTS_AND_THE_ANCIENT_RACE = 9781;
+	
 	// Reward
 	private static final int DIMENSIONAL_DIAMOND = 7562;
 	private static final int KAMAEL_INQUISITOR_MARK = 9782;
+	
 	// Monster
 	private static final int GRANITIC_GOLEM = 20083;
 	private static final int HANGMAN_TREE = 20144;
@@ -73,8 +76,10 @@ public class Q00066_CertifiedArbalester extends Quest
 	private static final int DELU_LIZARDMAN_AGENT = 21105;
 	private static final int CURSED_SEER = 21106;
 	private static final int DELU_LIZARDMAN_COMMANDER = 21107;
+	
 	// Quest Monster
 	private static final int CRIMSON_LADY = 27336;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	
@@ -191,6 +196,7 @@ public class Q00066_CertifiedArbalester extends Quest
 				{
 					qs.setMemoState(25);
 				}
+				
 				qs.setCond(14, true);
 				htmltext = event;
 				break;
@@ -416,6 +422,7 @@ public class Q00066_CertifiedArbalester extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -440,6 +447,7 @@ public class Q00066_CertifiedArbalester extends Quest
 						{
 							playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, MANUSCRIPT_PAGE, 1);
 						if ((getRandom(1000) < 100) && (getQuestItemsCount(killer, MANUSCRIPT_PAGE) < 29))
 						{
@@ -460,6 +468,7 @@ public class Q00066_CertifiedArbalester extends Quest
 						{
 							playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, MANUSCRIPT_PAGE, 1);
 					}
 					break;
@@ -476,6 +485,7 @@ public class Q00066_CertifiedArbalester extends Quest
 						{
 							playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, MANUSCRIPT_PAGE, 1);
 					}
 					break;
@@ -493,6 +503,7 @@ public class Q00066_CertifiedArbalester extends Quest
 						{
 							playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, MANUSCRIPT_PAGE, 1);
 						if ((getRandom(1000) < 20) && (getQuestItemsCount(killer, MANUSCRIPT_PAGE) < 29))
 						{
@@ -544,6 +555,7 @@ public class Q00066_CertifiedArbalester extends Quest
 						{
 							playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, MANASHENS_TALISMAN, 1);
 					}
 					break;
@@ -579,6 +591,7 @@ public class Q00066_CertifiedArbalester extends Quest
 						{
 							playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, ENMITY_CRYSTAL, 1);
 						if ((getRandom(1000) < 80) && (getQuestItemsCount(killer, ENMITY_CRYSTAL) < 29))
 						{
@@ -599,6 +612,7 @@ public class Q00066_CertifiedArbalester extends Quest
 						{
 							playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, ENMITY_CRYSTAL, 1);
 					}
 					break;
@@ -615,6 +629,7 @@ public class Q00066_CertifiedArbalester extends Quest
 						{
 							playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, ENMITY_CRYSTAL, 1);
 					}
 					break;
@@ -631,6 +646,7 @@ public class Q00066_CertifiedArbalester extends Quest
 						{
 							playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, ENMITY_CRYSTAL, 1);
 						if ((getRandom(1000) < 240) && (getQuestItemsCount(killer, ENMITY_CRYSTAL) < 29))
 						{
@@ -651,6 +667,7 @@ public class Q00066_CertifiedArbalester extends Quest
 						{
 							playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 						}
+						
 						giveItems(killer, ENMITY_CRYSTAL, 1);
 						if ((getRandom(1000) < 40) && (getQuestItemsCount(killer, ENMITY_CRYSTAL) < 29))
 						{
@@ -923,6 +940,7 @@ public class Q00066_CertifiedArbalester extends Quest
 					{
 						htmltext = "30720-02.html";
 					}
+					
 					if (memoState >= 30)
 					{
 						htmltext = "30720-05.html";
@@ -939,10 +957,12 @@ public class Q00066_CertifiedArbalester extends Quest
 					{
 						htmltext = "32214-02.html";
 					}
+					
 					if (memoState == 11)
 					{
 						htmltext = "32214-05.html";
 					}
+					
 					if (memoState > 11)
 					{
 						htmltext = "32214-06.html";
@@ -1023,6 +1043,7 @@ public class Q00066_CertifiedArbalester extends Quest
 				}
 			}
 		}
+		
 		if (qs.isCompleted())
 		{
 			if (npc.getId() == MASTER_RINDY)
@@ -1037,6 +1058,7 @@ public class Q00066_CertifiedArbalester extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

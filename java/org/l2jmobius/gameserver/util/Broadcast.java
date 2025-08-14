@@ -98,6 +98,7 @@ public class Broadcast
 						{
 							player.sendPacket(new RelationChanged(broadcaster.getSummon(), relation, isAutoAttackable));
 						}
+						
 						broadcaster.getKnownRelations().put(player.getObjectId(), new RelationCache(relation, isAutoAttackable));
 					}
 				}

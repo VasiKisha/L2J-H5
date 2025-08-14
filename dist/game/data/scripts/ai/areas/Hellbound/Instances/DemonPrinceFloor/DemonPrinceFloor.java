@@ -20,7 +20,6 @@ import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
@@ -41,11 +40,14 @@ public class DemonPrinceFloor extends AbstractInstance
 	private static final int GK_4 = 32748;
 	private static final int CUBE = 32375;
 	private static final int DEMON_PRINCE = 25540;
+	
 	// Item
 	private static final int SEAL_BREAKER_5 = 15515;
+	
 	// Locations
 	private static final Location ENTRY_POINT = new Location(-22208, 277056, -8239);
 	private static final Location EXIT_POINT = new Location(-19024, 277122, -8256);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 142;
 	private static final int MIN_LV = 78;
@@ -63,7 +65,7 @@ public class DemonPrinceFloor extends AbstractInstance
 		String htmltext = null;
 		if (npc.getId() == GK_4)
 		{
-			if (!player.canOverrideCond(PlayerCondOverride.INSTANCE_CONDITIONS))
+			if (!player.isGM())
 			{
 				final Party party = player.getParty();
 				if (party == null)
@@ -90,6 +92,7 @@ public class DemonPrinceFloor extends AbstractInstance
 				teleportPlayer(player, EXIT_POINT, 0);
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -111,7 +114,7 @@ public class DemonPrinceFloor extends AbstractInstance
 	@Override
 	protected boolean checkConditions(Player player)
 	{
-		if (player.canOverrideCond(PlayerCondOverride.INSTANCE_CONDITIONS))
+		if (player.isGM())
 		{
 			return true;
 		}
@@ -156,6 +159,7 @@ public class DemonPrinceFloor extends AbstractInstance
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	

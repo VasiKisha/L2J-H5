@@ -50,21 +50,26 @@ public class SeerUgoros extends AbstractNpcAI
 	private static final int SEER_UGOROS = 18863;
 	private static final int BATRACOS = 32740;
 	private static final int WEED_ID = 18867;
+	
 	// Items
 	private static final int SEER_UGOROS_PASS = 15496;
 	private static final int HIGH_GRADE_LIZARD_SCALE = 15497;
 	private static final int MIDDLE_GRADE_LIZARD_SCALE = 15498;
+	
 	// Skill
 	private static final Skill UGOROS_SKILL = SkillData.getInstance().getSkill(6426, 1);
+	
 	// Locations
 	private static final Location UGOROS_SPAWN_LOCATION = new Location(96804, 85604, -3720, 34360);
 	private static final Location BATRACOS_SPAWN_LOCATION = new Location(96782, 85918, -3720, 34360);
 	private static final Location ENTER_LOCATION = new Location(95984, 85692, -3720);
 	private static final Location EXIT_LOCATION = new Location(94763, 83562, -3425);
+	
 	// State
 	private static final byte ALIVE = 0;
 	private static final byte FIGHTING = 1;
 	private static final byte DEAD = 2;
+	
 	// Misc
 	protected static byte _state = DEAD;
 	protected static boolean _weedAttack = false;
@@ -119,6 +124,7 @@ public class SeerUgoros extends AbstractNpcAI
 				{
 					broadcastInRegion(_ugoros, NpcStringId.LISTEN_OH_TANTAS_THE_BLACK_ABYSS_IS_FAMISHED_FIND_SOME_FRESH_OFFERINGS);
 				}
+				
 				startQuestTimer("ugoros_shout", 120000, null, null);
 				break;
 			}
@@ -134,6 +140,7 @@ public class SeerUgoros extends AbstractNpcAI
 					{
 						_thinkTask.cancel(true);
 					}
+					
 					_thinkTask = ThreadPool.scheduleAtFixedRate(new ThinkTask(), 1000, 3000);
 				}
 				break;
@@ -197,6 +204,7 @@ public class SeerUgoros extends AbstractNpcAI
 						{
 							return "<html><body>Gatekeeper Batracos:<br>You look too inexperienced to make a journey to see Tanta Seer Ugoros. If you can convince Chief Investigator Johnny that you should go, then I will let you pass. Johnny has been everywhere and done everything. He may not be of my people but he has my respect, and anyone who has his will in turn have mine as well.<br></body></html>";
 						}
+						
 						return "<html><body>Gatekeeper Batracos:<br>Tanta Seer Ugoros is hard to find. You'll just have to keep looking.<br></body></html>";
 					}
 				}
@@ -216,6 +224,7 @@ public class SeerUgoros extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -231,20 +240,26 @@ public class SeerUgoros extends AbstractNpcAI
 		{
 			// Reset weed
 			_weed = null;
+			
 			// Reset attack state
 			_weedAttack = false;
+			
 			// Set it
 			_weedKilledByPlayer = true;
+			
 			// Complain
 			_ugoros.broadcastPacket(new NpcSay(_ugoros.getObjectId(), ChatType.NPC_GENERAL, _ugoros.getId(), NpcStringId.NO_HOW_DARE_YOU_STOP_ME_FROM_USING_THE_ABYSS_WEED_DO_YOU_KNOW_WHAT_YOU_HAVE_DONE));
+			
 			// Cancel current think-task
 			if (_thinkTask != null)
 			{
 				_thinkTask.cancel(true);
 			}
+			
 			// Re-setup task to re-think attack again
 			_thinkTask = ThreadPool.scheduleAtFixedRate(new ThinkTask(), 500, 3000);
 		}
+		
 		npc.doDie(attacker);
 	}
 	
@@ -279,6 +294,7 @@ public class SeerUgoros extends AbstractNpcAI
 				giveItems(killer, HIGH_GRADE_LIZARD_SCALE, 1);
 				qs.setCond(3, true);
 			}
+			
 			qs.unset("drop");
 		}
 	}
@@ -326,6 +342,7 @@ public class SeerUgoros extends AbstractNpcAI
 							break;
 						}
 					}
+					
 					if (_weed == null)
 					{
 						changeAttackTarget(_attacker);

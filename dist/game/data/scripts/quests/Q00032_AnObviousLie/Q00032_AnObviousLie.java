@@ -39,16 +39,20 @@ public class Q00032_AnObviousLie extends Quest
 	private static final int MAXIMILIAN = 30120;
 	private static final int GENTLER = 30094;
 	private static final int MIKI_THE_CAT = 31706;
+	
 	// Monster
 	private static final int ALLIGATOR = 20135;
+	
 	// Items
 	private static final int MAP_OF_GENTLER = 7165;
 	private static final ItemHolder MEDICINAL_HERB = new ItemHolder(7166, 20);
 	private static final ItemHolder SPIRIT_ORE = new ItemHolder(3031, 500);
 	private static final ItemHolder THREAD = new ItemHolder(1868, 1000);
 	private static final ItemHolder SUEDE = new ItemHolder(1866, 500);
+	
 	// Misc
 	private static final int MIN_LEVEL = 45;
+	
 	// Reward
 	private static final Map<String, Integer> EARS = new HashMap<>();
 	static
@@ -168,6 +172,7 @@ public class Q00032_AnObviousLie extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -289,6 +294,7 @@ public class Q00032_AnObviousLie extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

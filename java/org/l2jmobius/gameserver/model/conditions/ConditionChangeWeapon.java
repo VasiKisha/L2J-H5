@@ -70,6 +70,7 @@ public class ConditionChangeWeapon extends Condition
 				return false;
 			}
 		}
+		
 		return true;
 	}
 }

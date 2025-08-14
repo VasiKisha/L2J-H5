@@ -56,22 +56,30 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 public class BlockCheckerManager
 {
 	protected static final Logger LOGGER = Logger.getLogger(BlockCheckerManager.class.getName());
+	
 	// The object which holds all basic members info
 	protected ArenaParticipantsHolder _holder;
+	
 	// Maps to hold player of each team and his points
 	protected Map<Player, Integer> _redTeamPoints = new ConcurrentHashMap<>();
 	protected Map<Player, Integer> _blueTeamPoints = new ConcurrentHashMap<>();
+	
 	// The initial points of the event
 	protected int _redPoints = 15;
 	protected int _bluePoints = 15;
+	
 	// Current used arena
 	protected int _arena = -1;
+	
 	// All blocks
 	protected Collection<Spawn> _spawns = ConcurrentHashMap.newKeySet();
+	
 	// Sets if the red team won the event at the end of this (used for packets)
 	protected boolean _isRedWinner;
+	
 	// Time when the event starts. Used on packet sending
 	protected long _startedTime;
+	
 	// The needed arena coordinates
 	// Arena X: team1X, team1Y, team2X, team2Y, ArenaCenterX, ArenaCenterY
 	protected static final int[][] _arenaCoordinates =
@@ -113,16 +121,22 @@ public class BlockCheckerManager
 			-62391
 		}
 	};
+	
 	// Common z coordinate
 	private static final int Z_COORD = -2405;
+	
 	// List of dropped items in event (for later deletion)
 	protected Collection<Item> _drops = ConcurrentHashMap.newKeySet();
+	
 	// Default arena
 	private static final byte DEFAULT_ARENA = -1;
+	
 	// Event is started
 	protected boolean _isStarted = false;
+	
 	// Event end
 	protected ScheduledFuture<?> _task;
+	
 	// Preserve from exploit reward by logging out
 	protected boolean _abnormalEnd = false;
 	
@@ -138,6 +152,7 @@ public class BlockCheckerManager
 		{
 			_redTeamPoints.put(player, 0);
 		}
+		
 		for (Player player : holder.getBluePlayers())
 		{
 			_blueTeamPoints.put(player, 0);
@@ -221,6 +236,7 @@ public class BlockCheckerManager
 		{
 			return _redTeamPoints.get(player);
 		}
+		
 		return _blueTeamPoints.get(player);
 	}
 	
@@ -319,6 +335,7 @@ public class BlockCheckerManager
 		private final Skill _freeze;
 		private final Skill _transformationRed;
 		private final Skill _transformationBlue;
+		
 		// Common and unparametizer packet
 		private final ExCubeGameCloseUI _closeUserInterface = new ExCubeGameCloseUI();
 		
@@ -361,10 +378,12 @@ public class BlockCheckerManager
 				// Team 0 * 2 = 0; 0 = 0, 0 + 1 = 1.
 				// Team 1 * 2 = 2; 2 = 2, 2 + 1 = 3
 				final int tc = _holder.getPlayerTeam(player) * 2;
+				
 				// Get x and y coordinates
 				final int x = _arenaCoordinates[_arena][tc];
 				final int y = _arenaCoordinates[_arena][tc + 1];
 				player.teleToLocation(x, y, Z_COORD);
+				
 				// Set the player team
 				if (isRed)
 				{
@@ -376,6 +395,7 @@ public class BlockCheckerManager
 					_blueTeamPoints.put(player, 0);
 					player.setTeam(Team.BLUE);
 				}
+				
 				player.stopAllEffects();
 				
 				if (player.hasSummon())
@@ -386,6 +406,7 @@ public class BlockCheckerManager
 				// Give the player start up effects
 				// Freeze
 				_freeze.applyEffects(player, player);
+				
 				// Transformation
 				if (_holder.getPlayerTeam(player) == 0)
 				{
@@ -395,12 +416,15 @@ public class BlockCheckerManager
 				{
 					_transformationBlue.applyEffects(player, player);
 				}
+				
 				// Set the current player arena
 				player.setBlockCheckerArena((byte) _arena);
 				player.setInsideZone(ZoneId.PVP, true);
+				
 				// Send needed packets
 				player.sendPacket(initialPoints);
 				player.sendPacket(_closeUserInterface);
+				
 				// ExBasicActionList
 				player.sendPacket(ExBasicActionList.STATIC_PACKET);
 				broadcastRelationChanged(player);
@@ -416,11 +440,15 @@ public class BlockCheckerManager
 				LOGGER.severe("Could not set up the arena Id for the Block Checker event, cancelling event...");
 				return;
 			}
+			
 			_isStarted = true;
+			
 			// Spawn the blocks
 			ThreadPool.execute(new SpawnRound(16, 1));
+			
 			// Start up player parameters
 			setUpPlayers();
+			
 			// Set the started time
 			_startedTime = System.currentTimeMillis() + 300000;
 		}
@@ -466,9 +494,11 @@ public class BlockCheckerManager
 					break;
 				}
 			}
+			
 			// random % 2, if == 0 will spawn a red block
 			// if != 0, will spawn a blue block
 			byte random = 2;
+			
 			// Spawn blocks
 			try
 			{
@@ -483,6 +513,7 @@ public class BlockCheckerManager
 					SpawnTable.getInstance().addSpawn(spawn);
 					spawn.init();
 					final Block block = (Block) spawn.getLastSpawn();
+					
 					// switch color
 					block.setRed((random % 2) == 0);
 					block.disableCoreAI(true);
@@ -507,6 +538,7 @@ public class BlockCheckerManager
 					girlSpawn.setRespawnDelay(1);
 					SpawnTable.getInstance().addSpawn(girlSpawn);
 					girlSpawn.init();
+					
 					// Schedule his deletion after 9 secs of spawn
 					ThreadPool.schedule(new CarryingGirlUnspawn(girlSpawn), 9000);
 				}
@@ -540,6 +572,7 @@ public class BlockCheckerManager
 				LOGGER.warning("HBCE: Block Carrying Girl is null");
 				return;
 			}
+			
 			SpawnTable.getInstance().removeSpawn(_spawn);
 			_spawn.stopRespawn();
 			_spawn.getLastSpawn().deleteMe();
@@ -571,6 +604,7 @@ public class BlockCheckerManager
 				spawn.getLastSpawn().deleteMe();
 				SpawnTable.getInstance().removeSpawn(spawn);
 			}
+			
 			_spawns.clear();
 			
 			for (Item item : _drops)
@@ -590,6 +624,7 @@ public class BlockCheckerManager
 				item.decayMe();
 				World.getInstance().removeObject(item);
 			}
+			
 			_drops.clear();
 		}
 		
@@ -666,6 +701,7 @@ public class BlockCheckerManager
 					// Move old data
 					second = first;
 					winner2 = winner1;
+					
 					// Set new data
 					first = pcPoints;
 					winner1 = pc;
@@ -676,10 +712,12 @@ public class BlockCheckerManager
 					winner2 = pc;
 				}
 			}
+			
 			if (winner1 != null)
 			{
 				winner1.addItem(ItemProcessType.QUEST, 13067, 8, winner1, true);
 			}
+			
 			if (winner2 != null)
 			{
 				winner2.addItem(ItemProcessType.QUEST, 13067, 5, winner2, true);
@@ -716,26 +754,34 @@ public class BlockCheckerManager
 				}
 				
 				player.stopAllEffects();
+				
 				// Remove team aura
 				player.setTeam(Team.NONE);
+				
 				// Set default arena
 				player.setBlockCheckerArena(DEFAULT_ARENA);
+				
 				// Untransform.
 				player.untransform();
+				
 				// Remove the event items
 				final PlayerInventory inv = player.getInventory();
 				if (inv.getItemByItemId(13787) != null)
 				{
 					inv.destroyItemByItemId(ItemProcessType.DESTROY, 13787, inv.getInventoryItemCount(13787, 0), player, player);
 				}
+				
 				if (inv.getItemByItemId(13788) != null)
 				{
 					inv.destroyItemByItemId(ItemProcessType.DESTROY, 13788, inv.getInventoryItemCount(13788, 0), player, player);
 				}
+				
 				broadcastRelationChanged(player);
+				
 				// Teleport Back
 				player.teleToLocation(-57478, -60367, -2370);
 				player.setInsideZone(ZoneId.PVP, false);
+				
 				// Send end packet
 				player.sendPacket(end);
 				player.broadcastUserInfo();
@@ -749,6 +795,7 @@ public class BlockCheckerManager
 			{
 				rewardPlayers();
 			}
+			
 			setPlayersBack();
 			clearMe();
 			_isStarted = false;

@@ -29,16 +29,16 @@ public interface IUserCommandHandler
 	Logger LOGGER = Logger.getLogger(IUserCommandHandler.class.getName());
 	
 	/**
-	 * this is the worker method that is called when someone uses an admin command.
+	 * This is the worker method that is called when someone uses a command.
 	 * @param id
 	 * @param player
 	 * @return command success
 	 */
-	boolean useUserCommand(int id, Player player);
+	boolean onCommand(int id, Player player);
 	
 	/**
-	 * this method is called at initialization to register all the item ids automatically
-	 * @return all known itemIds
+	 * This method is called at initialization to register all the command ids automatically.
+	 * @return all known commands ids
 	 */
-	int[] getUserCommandList();
+	int[] getCommandList();
 }

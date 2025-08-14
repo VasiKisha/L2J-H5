@@ -103,6 +103,7 @@ public class Calculator
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -189,6 +190,7 @@ public class Calculator
 				removeFunc(func);
 			}
 		}
+		
 		return modifiedStats;
 	}
 	
@@ -207,6 +209,7 @@ public class Calculator
 		{
 			value = func.calc(caster, target, skill, value);
 		}
+		
 		return value;
 	}
 	

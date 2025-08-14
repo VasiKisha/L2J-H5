@@ -40,7 +40,7 @@ public class AdminOnline implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equalsIgnoreCase("admin_online"))
 		{
@@ -102,11 +102,12 @@ public class AdminOnline implements IAdminCommandHandler
 			activeChar.sendSysMessage("In instances: " + instanced);
 			activeChar.sendSysMessage("In combat: " + combat);
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

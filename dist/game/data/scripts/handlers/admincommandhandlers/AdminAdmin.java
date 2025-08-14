@@ -24,6 +24,7 @@ import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
 import org.l2jmobius.Config;
+import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -58,6 +59,7 @@ public class AdminAdmin implements IAdminCommandHandler
 		"admin_tradeoff",
 		"admin_set",
 		"admin_set_mod",
+		"admin_checkolympiad",
 		"admin_saveolymp",
 		"admin_sethero",
 		"admin_givehero",
@@ -68,7 +70,7 @@ public class AdminAdmin implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_admin"))
 		{
@@ -102,7 +104,60 @@ public class AdminAdmin implements IAdminCommandHandler
 				activeChar.setSilenceMode(true);
 				activeChar.sendPacket(SystemMessageId.MESSAGE_REFUSAL_MODE);
 			}
+			
 			AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");
+		}
+		else if (command.startsWith("admin_checkolympiad"))
+		{
+			final long currentTimeMillis = System.currentTimeMillis();
+			final long olympiadEndMillis = Olympiad.getInstance().getMillisToOlympiadEnd();
+			final long weeklyChangeMillis = Olympiad.getInstance().getMillisToWeekChange();
+			
+			final String currentServerTime = TimeUtil.getDateTimeString(currentTimeMillis);
+			final String olympiadEndTime = TimeUtil.getDateTimeString(currentTimeMillis + olympiadEndMillis);
+			final String weeklyChangeTime = TimeUtil.getDateTimeString(currentTimeMillis + weeklyChangeMillis);
+			
+			final String olympiadTimeLeft = TimeUtil.formatDuration(olympiadEndMillis).replaceAll(",? \\d+ seconds?", "").replaceAll(",? \\d+ milliseconds?", "");
+			final String weeklyChangeTimeLeft = TimeUtil.formatDuration(weeklyChangeMillis).replaceAll(",? \\d+ seconds?", "").replaceAll(",? \\d+ milliseconds?", "");
+			
+			final NpcHtmlMessage html = new NpcHtmlMessage();
+			final StringBuilder sb = new StringBuilder();
+			
+			sb.append("<html><title>Olympiad Period</title><body>");
+			sb.append("<center><table width=280>");
+			sb.append("<tr><td width=60><button value=\"Main\" action=\"bypass admin_admin\" width=60 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td>");
+			sb.append("<td width=150><center>Olympiad Info</center></td>");
+			sb.append("<td width=60><button value=\"Back\" action=\"bypass admin_admin2\" width=60 height=15 back=\"sek.cbui94\" fore=\"sek.cbui92\"></td></tr>");
+			sb.append("</table></center><br>");
+			
+			// Current Server Time.
+			sb.append("<center><table width=280 bgcolor=\"000000\">");
+			sb.append("<tr><td width=120>Current Time:</td><td width=140><font color=\"LEVEL\">");
+			sb.append(currentServerTime);
+			sb.append("</font></td></tr></table></center><br><br>");
+			
+			// Olympiad End Time.
+			sb.append("<center><table width=280 bgcolor=\"000000\">");
+			sb.append("<tr><td width=120>Olympiad Period Ends:</td><td width=120><font color=\"LEVEL\">");
+			sb.append(olympiadEndTime);
+			sb.append("</font></td></tr>");
+			sb.append("<tr><td width=120>Time Left:</td><td width=120><font color=\"LEVEL\">");
+			sb.append(olympiadTimeLeft);
+			sb.append("</font></td></tr></table></center><br>");
+			
+			// Weekly Change.
+			sb.append("<center><table width=280 bgcolor=\"000000\">");
+			sb.append("<tr><td width=120>Next Weekly Change:</td><td width=120><font color=\"LEVEL\">");
+			sb.append(weeklyChangeTime);
+			sb.append("</font></td></tr>");
+			sb.append("<tr><td width=120>Time Left:</td><td width=120><font color=\"LEVEL\">");
+			sb.append(weeklyChangeTimeLeft);
+			sb.append("</font></td></tr></table></center><br>");
+			
+			sb.append("</body></html>");
+			
+			html.setHtml(sb.toString());
+			activeChar.sendPacket(html);
 		}
 		else if (command.startsWith("admin_saveolymp"))
 		{
@@ -119,6 +174,7 @@ public class AdminAdmin implements IAdminCommandHandler
 			{
 				LOGGER.warning("An error occured while ending olympiad: " + e);
 			}
+			
 			activeChar.sendSysMessage("Heroes formed.");
 		}
 		else if (command.startsWith("admin_sethero"))
@@ -153,6 +209,7 @@ public class AdminAdmin implements IAdminCommandHandler
 				activeChar.sendSysMessage("This player cannot claim the hero status.");
 				return false;
 			}
+			
 			Hero.getInstance().claimHero(target);
 		}
 		else if (command.startsWith("admin_diet"))
@@ -189,6 +246,7 @@ public class AdminAdmin implements IAdminCommandHandler
 			{
 				activeChar.refreshOverloaded();
 			}
+			
 			AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");
 		}
 		else if (command.startsWith("admin_tradeoff"))
@@ -220,6 +278,7 @@ public class AdminAdmin implements IAdminCommandHandler
 					activeChar.sendSysMessage("Trade refusal enabled");
 				}
 			}
+			
 			AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");
 		}
 		else if (command.startsWith("admin_setconfig"))
@@ -235,6 +294,7 @@ public class AdminAdmin implements IAdminCommandHandler
 					activeChar.sendSysMessage("Invalid parameter!");
 					return false;
 				}
+				
 				switch (pName)
 				{
 					case "RateXp":
@@ -273,6 +333,7 @@ public class AdminAdmin implements IAdminCommandHandler
 						break;
 					}
 				}
+				
 				activeChar.sendSysMessage("Config parameter " + pName + " set to " + pValue);
 			}
 			catch (Exception e)
@@ -292,11 +353,12 @@ public class AdminAdmin implements IAdminCommandHandler
 		{
 			// nothing
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
@@ -313,6 +375,7 @@ public class AdminAdmin implements IAdminCommandHandler
 		{
 			// Not important.
 		}
+		
 		switch (mode)
 		{
 			case 1:
@@ -356,6 +419,7 @@ public class AdminAdmin implements IAdminCommandHandler
 				break;
 			}
 		}
+		
 		AdminHtml.showAdminHtml(activeChar, filename + "_menu.htm");
 	}
 	

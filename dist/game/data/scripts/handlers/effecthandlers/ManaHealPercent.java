@@ -64,12 +64,14 @@ public class ManaHealPercent extends AbstractEffect
 		final double power = _power;
 		final boolean full = (power == 100.0);
 		amount = full ? effected.getMaxMp() : (effected.getMaxMp() * power) / 100.0;
+		
 		// Prevents overheal and negative amount.
 		amount = Math.max(Math.min(amount, effected.getMaxRecoverableMp() - effected.getCurrentMp()), 0);
 		if (amount != 0)
 		{
 			effected.setCurrentMp(amount + effected.getCurrentMp());
 		}
+		
 		SystemMessage sm;
 		if (effector.getObjectId() != effected.getObjectId())
 		{
@@ -80,6 +82,7 @@ public class ManaHealPercent extends AbstractEffect
 		{
 			sm = new SystemMessage(SystemMessageId.S1_MP_HAS_BEEN_RESTORED);
 		}
+		
 		sm.addInt((int) amount);
 		effected.sendPacket(sm);
 	}

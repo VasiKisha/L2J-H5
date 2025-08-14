@@ -80,10 +80,12 @@ public class ItemRequest
 		{
 			return true;
 		}
+		
 		if (!(obj instanceof ItemRequest))
 		{
 			return false;
 		}
+		
 		return (_objectId != ((ItemRequest) obj)._objectId);
 	}
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="13000" type="Armor" name="Sealed Helm of Nightmare - Light Armor Use">
 		<!-- Sealed Masterwork Item. The blacksmith in a village can release the seal on this item. -->
@@ -12,10 +12,10 @@
 		<set name="weight" val="560" />
 		<set name="price" val="2032000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="73" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13001" type="Armor" name="Sealed Helm of Nightmare - Robe">
 		<!-- Sealed Masterwork Item. The blacksmith in a village can release the seal on this item. -->
@@ -29,13 +29,13 @@
 		<set name="weight" val="560" />
 		<set name="price" val="2032000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="73" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13002" type="EtcItem" name="Essence of Kamaloka">
 		<!-- An item filled with the essence of Kanabions you have defeated. -->
@@ -242,9 +242,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13018" type="EtcItem" name="Fairy Princess Hunting Helper Necklace">
 		<!-- Dimensional item. Item that allows you to summon a hunting helper who temporarily casts magician-type battle support magic. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -261,9 +261,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13019" type="EtcItem" name="Wild Beast Fighter Hunting Helper Necklace">
 		<!-- Dimensional item. Item that allows you to summon a warrior-type battle hunting helper. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -280,9 +280,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13020" type="EtcItem" name="Fox Shaman Hunting Helper Necklace">
 		<!-- Dimensional item. Item that allows you to summon a magician-type battle hunting helper. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -299,9 +299,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13021" type="EtcItem" name="Color Name">
 		<!-- Dimensional item. Item that allows you to change a character's name color. You can change back to the original name color by using the "/resetname" command after changing the name color. If there is no original name, the name will disappear. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. Can be shared between characters within the account through Dimensional Merchant. -->
@@ -454,9 +454,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2577-1" /> <!-- Instant Defense -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43,44,45" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13033" type="EtcItem" name="Quick Healing Potion">
 		<!-- Instantly recovers stamina. Cannot be exchanged or dropped. Can only be used in the Pailaka instant dungeon. -->
@@ -475,9 +475,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2592-1" /> <!-- Quick Healing Potion -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43,44,45" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13034" type="Weapon" name="Sprite's Sword">
 		<!-- Sword created with the essences of water and fire. Cannot be exchanged or dropped. Can only be equipped in the Pailaka instant dungeon. -->
@@ -498,15 +498,15 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="43" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="72" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13035" type="Weapon" name="Enhanced Sprite's Sword">
 		<!-- Sword created with the essences of water and fire. Cannot be exchanged or dropped. Can only be equipped in the Pailaka instant dungeon. -->
@@ -528,15 +528,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="item_skill" val="8237-1" /> <!-- Shalin Heal -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="43" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="127" />
 			<set stat="mAtk" val="82" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13036" type="Weapon" name="Sword of Ice and Fire">
 		<!-- Sword created with the essences of water and fire. Cannot be exchanged or dropped. Can only be equipped in the Pailaka instant dungeon. -->
@@ -558,15 +558,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="item_skill" val="8238-1;8237-1" /> <!-- Shalin Strike -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="43" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="147" />
 			<set stat="mAtk" val="92" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13037" type="EtcItem" name="Pailaka Soulshot - Grade D">
 		<!-- Weapon containing the light of Sprites -->
@@ -596,9 +596,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13039" type="EtcItem" name="Essence of Fire">
 		<!-- If you bring it along with an Enhanced Sprite's Sword to the Temple Inspector, you can exchange them for a Sword of Ice and Fire. -->
@@ -613,9 +613,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13040" type="EtcItem" name="Fire Attribute Enhancer">
 		<!-- Temporarily increases P. Def. for fire-related attributes. Cannot be exchanged or dropped. Can only be used in the Pailaka instant dungeon. -->
@@ -632,9 +632,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2335-1" /> <!-- Fire Resist Potion -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13041" type="EtcItem" name="Water Attribute Enhancer">
 		<!-- Temporarily increases P. Def. for water-related attributes. Cannot be exchanged or dropped. Can only be used in the Pailaka instant dungeon. -->
@@ -651,9 +651,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2336-1" /> <!-- Water Resist Potion -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13042" type="Weapon" name="Ancient Legacy Sword">
 		<!-- Sword containing the power of the Giants. Cannot be exchanged or dropped. Can only be equipped in the Pailaka instant dungeon. -->
@@ -675,15 +675,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="item_skill" val="8250-1" /> <!-- Summon Tigress -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="44" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="259" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13043" type="Weapon" name="Enhanced Ancient Legacy Sword">
 		<!-- Sword containing the power of the Giants. Cannot be exchanged or dropped. Can only be equipped in the Pailaka instant dungeon. -->
@@ -705,15 +705,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="item_skill" val="8250-1;8242-1" /> <!-- Summon Tigress -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="44" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="279" />
 			<set stat="mAtk" val="153" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13044" type="Weapon" name="Complete Ancient Legacy Sword">
 		<!-- Sword containing the power of the Giants. Cannot be exchanged or dropped. Can only be equipped in the Pailaka instant dungeon. -->
@@ -735,15 +735,15 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="item_skill" val="8250-2;8242-1;8243-1" /> <!-- Summon Tigress -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="44" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="299" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13045" type="EtcItem" name="Pailaka Soulshot - Grade C">
 		<!-- Weapon containing the light of Sprites -->
@@ -759,9 +759,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2151-1" /> <!-- Soulshot: C-Grade -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43,44,45" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13046" type="EtcItem" name="Pailaka Weapon Upgrade Stage 1">
 		<!-- If you bring it along with an Ancient Legacy Sword to the Dwarf Adventurer, you can exchange them for an Ancient Legacy Sword Stage 2. -->
@@ -776,9 +776,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43,44,45" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13047" type="EtcItem" name="Pailaka Weapon Upgrade Stage 2">
 		<!-- If you bring it along with an Ancient Legacy Sword Stage 2 to the Dwarf Adventurer, you can exchange them for an Ancient Legacy Sword Stage 3. -->
@@ -793,9 +793,9 @@
 		<set name="is_depositable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43,44,45" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13048" type="EtcItem" name="Pailaka Antidote">
 		<!-- Cures paralysis-type poisons. Cannot be exchanged or dropped. Can only be used in the Pailaka instant dungeon. -->
@@ -811,9 +811,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2578-1" /> <!-- Cure Poison Paralyze -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="44" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13049" type="EtcItem" name="Divine Soul">
 		<!-- Potion that allows you to feel Holy energy. Cannot be exchanged or dropped. Can only be used in the Pailaka instant dungeon. -->
@@ -828,9 +828,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2340-1" /> <!-- Dark Resist Potion -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="44" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13050" type="Armor" name="Tigress exclusive armor">
 		<!-- Pailaka Piglis exclusive armor -->
@@ -845,13 +845,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="for_npc" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="43,44,45" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="mDef" val="49" />
 			<add order="0" stat="pDef" val="49" />
-		</for>
+		</stats>
 	</item>
 	<item id="13051" type="EtcItem" name="Hair Accessory">
 		<set name="icon" val="icon.accessory_bear_cap_i00" />
@@ -881,16 +881,16 @@
 		<set name="is_depositable" val="false" />
 		<set name="unequip_skill" val="8249-1" />
 		<set name="item_skill" val="8239-1;8240-1;3599-1" /> <!-- Critical Up -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="45" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="161" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13053" type="Weapon" name="Enhanced Spear of Silenos">
 		<!-- Spear of Silenos obtained from the Internal Supporter. Cannot be exchanged or dropped. Can only be equipped in the Pailaka instant dungeon. -->
@@ -913,16 +913,16 @@
 		<set name="is_depositable" val="false" />
 		<set name="unequip_skill" val="8249-1" />
 		<set name="item_skill" val="8239-1;8240-2;3599-1" /> <!-- Critical Up -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="45" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="271" />
 			<set stat="mAtk" val="171" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13054" type="Weapon" name="Complete Spear of Silenos">
 		<!-- Spear of Silenos obtained from the Internal Supporter. Cannot be exchanged or dropped. Can only be equipped in the Pailaka instant dungeon. -->
@@ -945,16 +945,16 @@
 		<set name="is_depositable" val="false" />
 		<set name="unequip_skill" val="8249-1" />
 		<set name="item_skill" val="8239-1;8240-3;3599-1" /> <!-- Critical Up -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="45" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="291" />
 			<set stat="mAtk" val="181" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13055" type="EtcItem" name="Pailaka Soulshot - Grade A">
 		<!-- Weapon containing the light of Sprites -->
@@ -970,9 +970,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2153-1" /> <!-- Soulshot: A-Grade -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43,44,45" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13056" type="EtcItem" name="Weapon Upgrade Stage 1">
 		<!-- If you bring it along with a Spear of Silenos to the Ketra Orc Intelligence Officer, you can exchange them for Spear of Silenos Stage 2. -->
@@ -986,9 +986,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43,44,45" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13057" type="EtcItem" name="Weapon Upgrade Stage 2">
 		<!-- If you bring it along with a Spear of Silenos Stage 2 to the Ketra Orc Intelligence Officer, you can exchange them for Spear of Silenos Stage 3. -->
@@ -1002,9 +1002,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_stackable" val="true" />
 		<set name="is_questitem" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43,44,45" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13058" type="Armor" name="Silenos Hair Accessory">
 		<set name="icon" val="icon.accessory_barka_karm_i00" />
@@ -1033,9 +1033,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2593-1" /> <!-- Bow/Crossbow Attack Resistance Potion -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="44" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13060" type="EtcItem" name="Tinplate Golem Transformation Stick">
 		<set name="icon" val="icon.etc_gateleeper_stick_i00" />
@@ -1063,13 +1063,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3014-2" /> <!-- Special Ability: Mana Up -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="267" />
 			<set stat="mAtk" val="202" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13062" type="Weapon" name="Exclusive to Monsters (Employee's Friend)">
 		<set name="icon" val="icon.weapon_mon_friend_employee_i00" />
@@ -1090,12 +1090,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="442" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13063" type="EtcItem" name="Unfair Joystick">
 		<set name="icon" val="icon.etc_gateleeper_stick_i00" />
@@ -1239,13 +1239,13 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="1170" />
 		<set name="price" val="3355000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
-		</for>
+		</stats>
 	</item>
 	<item id="13078" type="Armor" name="Arcana Sigil">
 		<!-- Increases M. Def. Decreases Magic Cancel Rate. -->
@@ -1261,14 +1261,14 @@
 		<set name="price" val="3355000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8310-1" /> <!-- Arcana Sigil -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="13" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13079" type="EtcItem" name="My Teleport Spellbook 1-Sheet Pack">
 		<!-- Dimensional item pack. A wrapped pack containing a Free Teleporter's Scroll. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->

@@ -73,6 +73,7 @@ public class Q00251_NoSecrets extends Quest
 		{
 			qs.startQuest();
 		}
+		
 		return event;
 	}
 	
@@ -143,6 +144,7 @@ public class Q00251_NoSecrets extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

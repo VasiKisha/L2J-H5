@@ -96,6 +96,7 @@ public class HellboundSpawns implements IXmlReader
 				{
 					continue;
 				}
+				
 				final NamedNodeMap attrs = element.getAttributes();
 				minLevel = 1;
 				maxLevel = 100;
@@ -129,6 +130,7 @@ public class HellboundSpawns implements IXmlReader
 				{
 					LOGGER.warning("Hellbound spawn location is null!");
 				}
+				
 				spawn.setLocation(loc);
 				spawn.setRespawnDelay(delay, randomInterval);
 				_spawnLevels.put(spawn, new int[]

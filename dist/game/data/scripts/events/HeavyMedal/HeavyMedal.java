@@ -86,10 +86,12 @@ public class HeavyMedal extends LongTimeEvent
 					{
 						takeItems(player, BADGES[level - 1], -1);
 					}
+					
 					giveItems(player, BADGES[level], 1);
 					playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 					level++;
 				}
+				
 				htmltext = "31229-" + event.toLowerCase() + "-" + level + ".htm";
 			}
 		}
@@ -97,6 +99,7 @@ public class HeavyMedal extends LongTimeEvent
 		{
 			htmltext = npc.getId() + "-lvl-" + level + ".htm";
 		}
+		
 		return htmltext;
 	}
 	
@@ -107,6 +110,7 @@ public class HeavyMedal extends LongTimeEvent
 		{
 			newQuestState(player);
 		}
+		
 		return npc.getId() + ".htm";
 	}
 	
@@ -129,6 +133,7 @@ public class HeavyMedal extends LongTimeEvent
 		{
 			level = 1;
 		}
+		
 		return level;
 	}
 	

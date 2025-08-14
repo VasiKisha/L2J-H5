@@ -114,6 +114,7 @@ public class FortressOfTheDead extends ClanHallSiegeEngine
 		{
 			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.AARGH_IF_I_DIE_THEN_THE_MAGIC_FORCE_FIELD_OF_BLOOD_WILL);
 		}
+		
 		if (npcId == LIDIA)
 		{
 			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.GRARR_FOR_THE_NEXT_2_MINUTES_OR_SO_THE_GAME_ARENA_ARE_WILL_BE_CLEANED_THROW_ANY_ITEMS_YOU_DON_T_NEED_TO_THE_FLOOR_NOW);
@@ -140,6 +141,7 @@ public class FortressOfTheDead extends ClanHallSiegeEngine
 				damagest = e.getKey();
 			}
 		}
+		
 		return ClanTable.getInstance().getClan(damagest);
 	}
 	

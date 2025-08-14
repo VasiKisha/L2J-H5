@@ -32,15 +32,18 @@ public class Q00431_WeddingMarch extends Quest
 {
 	// NPC
 	private static final int KANTABILON = 31042;
+	
 	// Monsters
 	private static final int[] MOBS =
 	{
 		20786, // Lienrik
 		20787, // Lienrik Lad
 	};
+	
 	// Items
 	private static final int SILVER_CRYSTAL = 7540;
 	private static final int WEDDING_ECHO_CRYSTAL = 7062;
+	
 	// Misc
 	private static final int MIN_LEVEL = 38;
 	private static final int CRYSTAL_COUNT = 50;
@@ -75,10 +78,12 @@ public class Q00431_WeddingMarch extends Quest
 			{
 				return "31042-05.html";
 			}
+			
 			giveItems(player, WEDDING_ECHO_CRYSTAL, 25);
 			qs.exitQuest(true, true);
 			htmltext = event;
 		}
+		
 		return htmltext;
 	}
 	
@@ -118,6 +123,7 @@ public class Q00431_WeddingMarch extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

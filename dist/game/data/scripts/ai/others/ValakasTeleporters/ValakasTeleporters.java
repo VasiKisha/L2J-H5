@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.others.ValakasTeleporters;
 
@@ -32,22 +36,21 @@ import ai.AbstractNpcAI;
 import ai.bosses.Valakas.Valakas;
 
 /**
- * Grand Bosses teleport AI.<br>
- * Original python script by Emperorc.
- * @author Plim
+ * @author Plim, Skache
  */
 public class ValakasTeleporters extends AbstractNpcAI
 {
 	// NPCs
 	private static final int[] NPCs =
 	{
-		31384, // Gatekeeper of Fire Dragon : Opening some doors
-		31385, // Heart of Volcano : Teleport into Lair of Valakas
-		31540, // Watcher of Valakas Klein : Teleport into Hall of Flames
-		31686, // Gatekeeper of Fire Dragon : Opens doors to Heart of Volcano
-		31687, // Gatekeeper of Fire Dragon : Opens doors to Heart of Volcano
-		31759, // Teleportation Cubic : Teleport out of Lair of Valakas
+		31384, // Gatekeeper of Fire Dragon: Opening some doors.
+		31385, // Heart of Volcano: Teleport into Lair of Valakas.
+		31540, // Watcher of Valakas Klein: Teleport into Hall of Flames.
+		31686, // Gatekeeper of Fire Dragon: Opens doors to Heart of Volcano.
+		31687, // Gatekeeper of Fire Dragon: Opens doors to Heart of Volcano.
+		31759, // Teleportation Cubic: Teleport out of Lair of Valakas.
 	};
+	
 	// Items
 	private static final int VACUALITE_FLOATING_STONE = 7267;
 	private static final Location ENTER_HALL_OF_FLAMES = new Location(183813, -115157, -3303);
@@ -65,43 +68,41 @@ public class ValakasTeleporters extends AbstractNpcAI
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
-		String htmltext = "";
-		final QuestState qs = getQuestState(player, false);
-		if (hasQuestItems(player, VACUALITE_FLOATING_STONE))
-		{
-			player.teleToLocation(ENTER_HALL_OF_FLAMES);
-			qs.set("allowEnter", "1");
-		}
-		else
-		{
-			htmltext = "31540-06.htm";
-		}
-		return htmltext;
-	}
-	
-	@Override
-	public String onTalk(Npc npc, Player player)
-	{
-		String htmltext = "";
 		final QuestState qs = getQuestState(player, true);
+		String htmltext = "";
 		
-		switch (npc.getId())
+		switch (event)
 		{
-			case 31385:
+			case "ENTER":
+			{
+				if (hasQuestItems(player, VACUALITE_FLOATING_STONE))
+				{
+					takeItems(player, VACUALITE_FLOATING_STONE, 1);
+					player.teleToLocation(ENTER_HALL_OF_FLAMES);
+					qs.set("allowEnter", "1");
+				}
+				else
+				{
+					htmltext = "31540-06.htm";
+				}
+				break;
+			}
+			
+			case "ENTER_LAIR":
 			{
 				if (valakasAI() != null)
 				{
-					final int status = GrandBossManager.getInstance().getStatus(29028);
-					if ((status == 0) || (status == 1))
+					int status = GrandBossManager.getInstance().getStatus(29028);
+					if (((status == 0) || (status == 1)) && (qs.getInt("allowEnter") == 1))
 					{
 						if (playerCount >= 200)
 						{
 							htmltext = "31385-03.htm";
 						}
-						else if (qs.getInt("allowEnter") == 1)
+						else
 						{
 							qs.unset("allowEnter");
-							final BossZone zone = GrandBossManager.getInstance().getZone(212852, -114842, -1632);
+							BossZone zone = GrandBossManager.getInstance().getZone(212852, -114842, -1632);
 							if (zone != null)
 							{
 								zone.allowPlayerEntry(player, 30);
@@ -117,18 +118,10 @@ public class ValakasTeleporters extends AbstractNpcAI
 								GrandBossManager.getInstance().setStatus(29028, 1);
 							}
 						}
-						else
-						{
-							htmltext = "31385-04.htm";
-						}
-					}
-					else if (status == 2)
-					{
-						htmltext = "31385-02.htm";
 					}
 					else
 					{
-						htmltext = "31385-01.htm";
+						htmltext = (status == 2) ? "31385-02.htm" : "31385-04.htm";
 					}
 				}
 				else
@@ -137,52 +130,68 @@ public class ValakasTeleporters extends AbstractNpcAI
 				}
 				break;
 			}
-			case 31384:
+			
+			case "OPEN_DOOR_1":
 			{
 				DoorData.getInstance().getDoor(24210004).openMe();
 				break;
 			}
-			case 31686:
+			
+			case "OPEN_DOOR_2":
 			{
 				DoorData.getInstance().getDoor(24210005).openMe();
 				break;
 			}
-			case 31687:
+			
+			case "OPEN_DOOR_3":
 			{
 				DoorData.getInstance().getDoor(24210006).openMe();
 				break;
 			}
-			case 31540:
-			{
-				if (playerCount < 50)
-				{
-					htmltext = "31540-01.htm";
-				}
-				else if (playerCount < 100)
-				{
-					htmltext = "31540-02.htm";
-				}
-				else if (playerCount < 150)
-				{
-					htmltext = "31540-03.htm";
-				}
-				else if (playerCount < 200)
-				{
-					htmltext = "31540-04.htm";
-				}
-				else
-				{
-					htmltext = "31540-05.htm";
-				}
-				break;
-			}
-			case 31759:
+			
+			case "EXIT":
 			{
 				player.teleToLocation(TELEPORT_OUT_OF_VALAKAS_LAIR.getX() + getRandom(500), TELEPORT_OUT_OF_VALAKAS_LAIR.getY() + getRandom(500), TELEPORT_OUT_OF_VALAKAS_LAIR.getZ());
 				break;
 			}
 		}
+		
 		return htmltext;
+	}
+	
+	@Override
+	public String onTalk(Npc npc, Player player)
+	{
+		switch (npc.getId())
+		{
+			case 31540: // Watcher of Valakas Klein
+			{
+				if (playerCount < 50)
+				{
+					return "31540-01.htm";
+				}
+				else if (playerCount < 100)
+				{
+					return "31540-02.htm";
+				}
+				else if (playerCount < 150)
+				{
+					return "31540-03.htm";
+				}
+				else if (playerCount < 200)
+				{
+					return "31540-04.htm";
+				}
+				else
+				{
+					return "31540-05.htm";
+				}
+			}
+			default:
+			{
+				return npc.getId() + ".htm";
+			}
+		}
 	}
 	
 	private Quest valakasAI()

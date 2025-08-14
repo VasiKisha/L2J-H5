@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.CrumaTower;
 
@@ -24,15 +28,17 @@ import ai.AbstractNpcAI;
 
 /**
  * Cruma Tower teleport AI.
- * @author Plim
+ * @author Plim, Skache
  */
 public class CrumaTower extends AbstractNpcAI
 {
 	// NPC
 	private static final int MOZELLA = 30483;
+	
 	// Locations
 	private static final Location TELEPORT_LOC1 = new Location(17776, 113968, -11671);
 	private static final Location TELEPORT_LOC2 = new Location(17680, 113968, -11671);
+	
 	// Misc
 	private static final int MAX_LEVEL = 55;
 	
@@ -44,14 +50,20 @@ public class CrumaTower extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onTalk(Npc npc, Player talker)
+	public String onEvent(String event, Npc npc, Player player)
 	{
-		if (talker.getLevel() <= MAX_LEVEL)
+		if (event.equals("ENTER"))
 		{
-			talker.teleToLocation(getRandomBoolean() ? TELEPORT_LOC1 : TELEPORT_LOC2);
-			return null;
+			if (player.getLevel() <= MAX_LEVEL)
+			{
+				player.teleToLocation(getRandomBoolean() ? TELEPORT_LOC1 : TELEPORT_LOC2);
+				return null;
+			}
+			
+			return "30483-1.html"; // Characters who are level 56 and above cannot enter the Cruma Tower.
 		}
-		return "30483-1.html";
+		
+		return null;
 	}
 	
 	public static void main(String[] args)

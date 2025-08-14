@@ -35,10 +35,12 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 {
 	// NPC
 	private static final int HEAD_BLACKSMITH_NEWYEAR = 31961;
+	
 	// Items
 	private static final int CRYSTAL_D = 1458;
 	private static final int BRUIN_LIZARDMAN_BLOOD = 8549;
 	private static final int PICOT_ARANEIDS_LEG = 8550;
+	
 	// Reward
 	private static final int CLAN_OATH_HELM = 7850;
 	private static final int CLAN_OATH_ARMOR = 7851;
@@ -50,9 +52,11 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 	private static final int CLAN_OATH_AKETON = 7857;
 	private static final int CLAN_OATH_PADDED_GLOVES_ROBE = 7858;
 	private static final int CLAN_OATH_SANDALS_ROBE = 7859;
+	
 	// Quest Monster
 	private static final int BRUIN_LIZARDMAN = 27321;
 	private static final int PICOT_ARANEID = 27322;
+	
 	// Misc
 	private static final int MIN_LEVEL = 19;
 	private static final int CRYSTAL_COUNT_1 = 922;
@@ -71,6 +75,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = null;
+		
 		// Manage Sponsor's quest events.
 		if (player.getApprentice() > 0)
 		{
@@ -148,6 +153,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 				}
 					break;
 			}
+			
 			return htmltext;
 		}
 		
@@ -214,6 +220,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -369,6 +376,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 							giveItems(player, CLAN_OATH_SANDALS_ROBE, 1);
 							takeItems(player, PICOT_ARANEIDS_LEG, -1);
 						}
+						
 						qs.exitQuest(false, true);
 						htmltext = "31961-17.html";
 					}
@@ -381,6 +389,7 @@ public class Q00123_TheLeaderAndTheFollower extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

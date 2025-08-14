@@ -117,6 +117,7 @@ public class Q00714_PathToBecomingALordSchuttgart extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -245,6 +246,7 @@ public class Q00714_PathToBecomingALordSchuttgart extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -257,6 +259,7 @@ public class Q00714_PathToBecomingALordSchuttgart extends Quest
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

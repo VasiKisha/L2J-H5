@@ -80,6 +80,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 	
 	// NPC
 	private static final int WAHKAN = 31371;
+	
 	// Monsters
 	private static final Map<Integer, DropInfo> MOBS = new HashMap<>();
 	static
@@ -106,6 +107,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 		MOBS.put(21374, new DropInfo(626, 3)); // Prophet's Guard
 		MOBS.put(21375, new DropInfo(626, 3)); // Disciple of Prophet
 	}
+	
 	// Items
 	private static final int VARKA_BADGE_SOLDIER = 7216;
 	private static final int VARKA_BADGE_OFFICER = 7217;
@@ -128,6 +130,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 		7224, // Mark of Varka's Alliance - Level 4
 		7225, // Mark of Varka's Alliance - Level 5
 	};
+	
 	// Misc
 	private static final int MIN_LEVEL = 74;
 	private static final int[] SOLDIER_BADGE_COUNT =
@@ -185,6 +188,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 				break;
 			}
 		}
+		
 		return getQuestItemsCount(qs.getPlayer(), itemId) < count;
 	}
 	
@@ -212,6 +216,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 				{
 					return "31371-03.htm";
 				}
+				
 				qs.setState(State.STARTED);
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ACCEPT);
 				for (int i = 0; i < KETRA_MARKS.length; i++)
@@ -222,6 +227,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 						return "31371-0" + (i + 5) + ".htm";
 					}
 				}
+				
 				qs.setCond(1);
 				break;
 			}
@@ -231,6 +237,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				takeItems(player, VARKA_BADGE_SOLDIER, -1);
 				giveItems(player, KETRA_MARKS[0], 1);
 				qs.setCond(2, true);
@@ -242,6 +249,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				takeItems(player, -1, VARKA_BADGE_SOLDIER, VARKA_BADGE_OFFICER, KETRA_MARKS[0]);
 				giveItems(player, KETRA_MARKS[1], 1);
 				qs.setCond(3, true);
@@ -253,6 +261,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				takeItems(player, -1, VARKA_BADGE_SOLDIER, VARKA_BADGE_OFFICER, VARKA_BADGE_CAPTAIN, KETRA_MARKS[1]);
 				giveItems(player, KETRA_MARKS[2], 1);
 				qs.setCond(4, true);
@@ -264,6 +273,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				takeItems(player, -1, VARKA_BADGE_SOLDIER, VARKA_BADGE_OFFICER, VARKA_BADGE_CAPTAIN, VALOR_TOTEM, KETRA_MARKS[2]);
 				giveItems(player, KETRA_MARKS[3], 1);
 				qs.setCond(5, true);
@@ -282,6 +292,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -342,6 +353,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 						{
 							return "31371-22.html";
 						}
+						
 						qs.setCond(6, true);
 						takeItems(player, -1, VARKA_BADGE_SOLDIER, VARKA_BADGE_OFFICER, VARKA_BADGE_CAPTAIN, WISDOM_TOTEM, KETRA_MARKS[3]);
 						giveItems(player, KETRA_MARKS[4], 1);
@@ -360,6 +372,7 @@ public class Q00605_AllianceWithKetraOrcs extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

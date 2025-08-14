@@ -32,12 +32,15 @@ public class Q00131_BirdInACage extends Quest
 	// NPCs
 	private static final int KANIS = 32264;
 	private static final int PARME = 32271;
+	
 	// Items
 	private static final int ECHO_CRYSTAL_OF_FREE_THOUGHT = 9783;
 	private static final int PARMES_LETTER = 9784;
 	private static final int FIRE_STONE = 9546;
+	
 	// Locations
 	private static final Location INSTANCE_EXIT = new Location(143281, 148843, -12004);
+	
 	// Misc
 	private static final int MIN_LEVEL = 78;
 	
@@ -158,6 +161,7 @@ public class Q00131_BirdInACage extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -228,6 +232,7 @@ public class Q00131_BirdInACage extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

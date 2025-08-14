@@ -32,13 +32,16 @@ public class Q00358_IllegitimateChildOfTheGoddess extends Quest
 {
 	// NPC
 	private static final int OLTRAN = 30862;
+	
 	// Item
 	private static final int SNAKE_SCALE = 5868;
+	
 	// Misc
 	private static final int MIN_LEVEL = 63;
 	private static final int SNAKE_SCALE_COUNT = 108;
+	
 	// Rewards
-	private static final int[] REWARDS = new int[]
+	private static final int[] REWARDS =
 	{
 		5364, // Recipe: Sealed Dark Crystal Shield(60%)
 		5366, // Recipe: Sealed Shield of Nightmare(60%)
@@ -49,6 +52,7 @@ public class Q00358_IllegitimateChildOfTheGoddess extends Quest
 		6337, // Recipe: Sealed Majestic Earring(70%)
 		6339, // Recipe: Sealed Majestic Ring(70%)
 	};
+	
 	// Mobs
 	private static final Map<Integer, Double> MOBS = new HashMap<>();
 	static
@@ -91,6 +95,7 @@ public class Q00358_IllegitimateChildOfTheGoddess extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -126,6 +131,7 @@ public class Q00358_IllegitimateChildOfTheGoddess extends Quest
 				htmltext = "30862-07.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -63,6 +63,7 @@ public class Armor extends ItemTemplate
 			{
 				_type = ArmorType.SHIELD;
 			}
+			
 			_type1 = ItemTemplate.TYPE1_SHIELD_ARMOR;
 			_type2 = ItemTemplate.TYPE2_SHIELD_ARMOR;
 		}
@@ -91,6 +92,7 @@ public class Armor extends ItemTemplate
 			// Incorrect syntax, don't add new skill
 			LOGGER.info("> Could not parse " + skill + " in armor enchant skills! item " + this);
 		}
+		
 		if ((id > 0) && (level > 0))
 		{
 			_enchant4Skill = new SkillHolder(id, level);

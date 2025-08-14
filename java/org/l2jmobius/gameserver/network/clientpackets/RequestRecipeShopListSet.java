@@ -64,6 +64,7 @@ public class RequestRecipeShopListSet extends ClientPacket
 				_items = null;
 				return;
 			}
+			
 			_items[i] = new ManufactureItem(id, cost);
 		}
 	}

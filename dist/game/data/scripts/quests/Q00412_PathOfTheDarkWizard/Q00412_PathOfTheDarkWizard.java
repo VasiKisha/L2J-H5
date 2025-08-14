@@ -37,6 +37,7 @@ public class Q00412_PathOfTheDarkWizard extends Quest
 	private static final int ANNIKA = 30418;
 	private static final int ARKENIA = 30419;
 	private static final int VARIKA = 30421;
+	
 	// Items
 	private static final int SEEDS_OF_ANGER = 1253;
 	private static final int SEEDS_OF_DESPAIR = 1254;
@@ -48,14 +49,17 @@ public class Q00412_PathOfTheDarkWizard extends Quest
 	private static final int LUCKY_KEY = 1277;
 	private static final int CANDLE = 1278;
 	private static final int HUB_SCENT = 1279;
+	
 	// Reward
 	private static final int JEWEL_OF_DARKNESS = 1261;
+	
 	// Monster
 	private static final int MARSH_ZOMBIE = 20015;
 	private static final int MISERY_SKELETON = 20022;
 	private static final int SKELETON_SCOUT = 20045;
 	private static final int SKELETON_HUNTER = 20517;
 	private static final int SKELETON_HUNTER_ARCHER = 20518;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -167,6 +171,7 @@ public class Q00412_PathOfTheDarkWizard extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -274,6 +279,7 @@ public class Q00412_PathOfTheDarkWizard extends Quest
 						{
 							addExpAndSp(player, 591724, 35328);
 						}
+						
 						qs.exitQuest(false, true);
 						player.sendPacket(new SocialAction(player.getObjectId(), 3));
 						htmltext = "30421-13.html";
@@ -372,6 +378,7 @@ public class Q00412_PathOfTheDarkWizard extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -59,6 +59,7 @@ public class CoupleManager
 			{
 				_couples.add(new Couple(rs.getInt("id")));
 			}
+			
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _couples.size() + " couples(s)");
 		}
 		catch (Exception e)
@@ -98,6 +99,7 @@ public class CoupleManager
 		{
 			return;
 		}
+		
 		final Player player1 = World.getInstance().getPlayer(couple.getPlayer1Id());
 		final Player player2 = World.getInstance().getPlayer(couple.getPlayer2Id());
 		if (player1 != null)
@@ -106,12 +108,14 @@ public class CoupleManager
 			player1.setMarried(false);
 			player1.setCoupleId(0);
 		}
+		
 		if (player2 != null)
 		{
 			player2.setPartnerId(0);
 			player2.setMarried(false);
 			player2.setCoupleId(0);
 		}
+		
 		couple.divorce();
 		_couples.remove(index);
 	}
@@ -125,8 +129,10 @@ public class CoupleManager
 			{
 				return i;
 			}
+			
 			i++;
 		}
+		
 		return -1;
 	}
 	

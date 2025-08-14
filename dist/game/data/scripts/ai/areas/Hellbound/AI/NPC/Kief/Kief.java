@@ -30,6 +30,7 @@ public class Kief extends AbstractNpcAI
 {
 	// NPCs
 	private static final int KIEF = 32354;
+	
 	// Items
 	private static final int BOTTLE = 9672; // Magic Bottle
 	private static final int DARION_BADGE = 9674; // Darion's Badge
@@ -148,6 +149,7 @@ public class Kief extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

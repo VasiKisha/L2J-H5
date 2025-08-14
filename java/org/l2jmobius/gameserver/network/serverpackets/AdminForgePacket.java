@@ -95,6 +95,7 @@ public class AdminForgePacket extends ServerPacket
 			buffer.writeLong(Long.decode(value));
 			return true;
 		}
+		
 		return false;
 	}
 	

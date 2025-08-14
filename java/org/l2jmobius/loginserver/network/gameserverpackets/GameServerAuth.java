@@ -104,6 +104,7 @@ public class GameServerAuth extends BaseReadablePacket
 						_server.forceClose(LoginServerFail.REASON_ALREADY_LOGGED8IN);
 						return false;
 					}
+					
 					_server.attachGameServerInfo(gsi, _port, _hosts, _maxPlayers);
 				}
 			}
@@ -157,6 +158,7 @@ public class GameServerAuth extends BaseReadablePacket
 				return false;
 			}
 		}
+		
 		return true;
 	}
 }

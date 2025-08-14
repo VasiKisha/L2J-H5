@@ -124,6 +124,7 @@ public final class ChamblainsMountedTroop extends AbstractInstance
 		{
 			_hallZone1.add(coord[0], coord[1], coord[2], coord[3], 0);
 		}
+		
 		for (int[] coord : HALL_ZONE_2_COORDINATES)
 		{
 			_hallZone2.add(coord[0], coord[1], coord[2], coord[3], 0);
@@ -144,6 +145,7 @@ public final class ChamblainsMountedTroop extends AbstractInstance
 						InstanceManager.getInstance().setInstanceTime(partyMember.getObjectId(), TEMPLATE_ID, System.currentTimeMillis());
 						enterInstance(partyMember, TEMPLATE_ID);
 					}
+					
 					return "32527-entrance.html";
 				}
 				break;
@@ -155,6 +157,7 @@ public final class ChamblainsMountedTroop extends AbstractInstance
 				break;
 			}
 		}
+		
 		return null;
 	}
 	

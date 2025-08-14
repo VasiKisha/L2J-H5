@@ -46,11 +46,13 @@ public class RequestSurrenderPledgeWar extends ClientPacket
 		{
 			return;
 		}
+		
 		final Clan playerClan = player.getClan();
 		if (playerClan == null)
 		{
 			return;
 		}
+		
 		final Clan clan = ClanTable.getInstance().getClanByName(_pledgeName);
 		if (clan == null)
 		{
@@ -71,6 +73,7 @@ public class RequestSurrenderPledgeWar extends ClientPacket
 		msg.addString(_pledgeName);
 		player.sendPacket(msg);
 		ClanTable.getInstance().deleteClanWars(playerClan.getId(), clan.getId());
+		
 		// Zoey76: TODO: Implement or cleanup.
 		// Player leader = World.getInstance().getPlayer(clan.getLeaderName());
 		// if ((leader != null) && (leader.isOnline() == 0))

@@ -61,6 +61,7 @@ public class ConditionPlayerHasCastle extends Condition
 		{
 			return clan.getCastleId() > 0;
 		}
+		
 		return clan.getCastleId() == _castle;
 	}
 }

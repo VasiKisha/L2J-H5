@@ -663,6 +663,7 @@ public interface IXmlReader
 			final Node attribute = attributes.item(i);
 			attributeMap.put(attribute.getNodeName(), attribute.getNodeValue());
 		}
+		
 		return attributeMap;
 	}
 	

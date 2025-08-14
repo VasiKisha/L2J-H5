@@ -78,6 +78,7 @@ public class EventDispatcher
 				}
 			}
 		}
+		
 		return hasListeners;
 	}
 	
@@ -130,6 +131,7 @@ public class EventDispatcher
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't notify event " + event.getClass().getSimpleName(), e);
 		}
+		
 		return null;
 	}
 	
@@ -214,6 +216,7 @@ public class EventDispatcher
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't notify event " + event.getClass().getSimpleName(), e);
 		}
+		
 		return null;
 	}
 	
@@ -258,6 +261,7 @@ public class EventDispatcher
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't notify event " + event.getClass().getSimpleName(), e);
 		}
+		
 		return null;
 	}
 	
@@ -325,6 +329,7 @@ public class EventDispatcher
 				LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Exception during notification of event: " + event.getClass().getSimpleName() + " listener: " + listener.getClass().getSimpleName(), e);
 			}
 		}
+		
 		return callback;
 	}
 	

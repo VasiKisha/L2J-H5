@@ -58,14 +58,17 @@ public class Detection extends AbstractEffect
 			{
 				return;
 			}
+			
 			if (player.isInClanWith(target))
 			{
 				return;
 			}
+			
 			if (player.isInAllyWith(target))
 			{
 				return;
 			}
+			
 			// Remove Hide.
 			target.getEffectList().stopSkillEffects(SkillFinishType.REMOVED, AbnormalType.HIDE);
 		}

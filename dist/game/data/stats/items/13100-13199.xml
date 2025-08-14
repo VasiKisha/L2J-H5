@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="13100" type="EtcItem" name="Recipe - Sealed Arcana Sigil (60%)">
 		<!-- Exclusive to Dwarves. Recipe for making a Sealed Arcana Sigil. Requires Create Item - Skill Level 9. The success rate is 60%. -->
@@ -34,13 +34,13 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="1170" />
 		<set name="price" val="3355000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
-		</for>
+		</stats>
 	</item>
 	<item id="13103" type="EtcItem" name="My Teleport Spellbook 1-Book Pack">
 		<!-- Dimensional item pack. A wrapped pack containing 1 sheet of the Free Teleporter's Scroll. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -442,9 +442,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2594-1" /> <!-- Pailaka Scroll of Escape -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="44" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13130" type="EtcItem" name="Temple Book of Secrets">
 		<!-- Book containing the secrets of Hillas -->
@@ -556,13 +556,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13138" type="Armor" name="Vesper Leather Helmet">
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
@@ -576,10 +576,10 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13139" type="Armor" name="Vesper Circlet">
 		<set name="icon" val="icon.armor_circlet_i00" />
@@ -593,13 +593,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13140" type="Armor" name="Vesper Noble Helmet">
 		<set name="icon" val="icon.armor_helmet_i00" />
@@ -613,13 +613,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13141" type="Armor" name="Vesper Noble Leather Helmet">
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
@@ -633,10 +633,10 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13142" type="Armor" name="Vesper Noble Circlet">
 		<set name="icon" val="icon.armor_circlet_i00" />
@@ -650,13 +650,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13143" type="Armor" name="Sealed Vesper Helmet">
 		<!-- Sealed Vesper Helmet. Seal can be removed by the blacksmith of Mammon or Maestro Ishuma. -->
@@ -671,13 +671,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13144" type="Armor" name="Sealed Vesper Leather Helmet">
 		<!-- Sealed Vesper Leather Helmet. Seal can be removed by the blacksmith of Mammon or Maestro Ishuma. -->
@@ -692,10 +692,10 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13145" type="Armor" name="Sealed Vesper Circlet">
 		<!-- Sealed Vesper Circlet. Seal can be removed by the blacksmith of Mammon or Maestro Ishuma. -->
@@ -710,13 +710,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13146" type="Armor" name="Sealed Vesper Noble Helmet">
 		<!-- Sealed Vesper Noble Helmet. Seal can be removed by the blacksmith of Mammon or Maestro Ishuma. -->
@@ -731,13 +731,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13147" type="Armor" name="Sealed Vesper Noble Leather Helmet">
 		<!-- Sealed Vesper Noble Leather Helmet. Seal can be removed by the blacksmith of Mammon or Maestro Ishuma. -->
@@ -752,13 +752,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13148" type="Armor" name="Sealed Vesper Noble Circlet">
 		<!-- Sealed Vesper Noble Circlet. Seal can be removed by the blacksmith of Mammon or Maestro Ishuma. -->
@@ -773,13 +773,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13149" type="EtcItem" name="Pailaka Final Key">
 		<!-- Key that opens the secrets of Pailaka -->
@@ -806,9 +806,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2607-1" /> <!-- Pailaka Door Key -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="44" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13151" type="EtcItem" name="Pailaka Vitality Replenishing Potion (100%)">
 		<!-- Pailaka reward item. Replenishing potion that fills 100% of Vitality. Reuse time is 60 minutes. -->
@@ -826,9 +826,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2586-2" /> <!-- Vitality Replenishing Potion -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43,44,45" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13152" type="EtcItem" name="Pailaka Vitality Replenishing Potion (50%)">
 		<!-- Pailaka reward item. Replenishing potion that fills 50% of Vitality. Reuse time is 60 minutes. -->
@@ -846,9 +846,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2586-1" /> <!-- Vitality Replenishing Potion -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player instanceId="43,44,45" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13153" type="Weapon" name="Player Commendation - Great Spear - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Great Spear. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -871,13 +871,13 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13154" type="Weapon" name="Player Commendation - Falchion - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Falchion. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -898,12 +898,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13155" type="Weapon" name="Player Commendation - Iron Hammer - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of an Iron Hammer. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -924,13 +924,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13156" type="Weapon" name="Player Commendation - Voodoo Doll - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Voodoo Doll. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -952,12 +952,12 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="25" />
 			<set stat="mAtk" val="28" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13157" type="Weapon" name="Player Commendation - Flanged Mace - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Flanged Mace. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -978,13 +978,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13158" type="Weapon" name="Player Commendation - Mage's Wand - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Mage Staff. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1006,13 +1006,13 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="30" />
 			<set stat="mAtk" val="31" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13159" type="Weapon" name="Player Commendation - Sword Breaker - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Sword Breaker. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1033,13 +1033,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="27" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="13160" type="Weapon" name="Player Commendation - Viper Fang - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Viper Fang. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1060,13 +1060,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="38" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13161" type="Weapon" name="Player Commendation - Compound Bow - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Composite Bow. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1089,13 +1089,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="64" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="13162" type="Weapon" name="Player Commendation - Crucifix of Blessing - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Crucifix of Blessing. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1117,12 +1117,12 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="25" />
 			<set stat="mAtk" val="28" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13163" type="Weapon" name="Player Commendation - Bastard*Crimson Sword - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Bastard Sword*Crimson Sword. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1145,14 +1145,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13164" type="Weapon" name="Player Commendation - Claymore - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Claymore. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1175,14 +1175,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="112" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13165" type="Weapon" name="Player Commendation - Bonebreaker - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Bonebreaker. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1205,7 +1205,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="92" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="4" />
@@ -1213,7 +1213,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13166" type="Weapon" name="Player Commendation - Atuba Hammer - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of an Atuba Hammer. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1237,7 +1237,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="90" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
@@ -1245,7 +1245,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13167" type="Weapon" name="Player Commendation - Ghost's Wand - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Ghost Staff. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1269,7 +1269,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="90" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
@@ -1277,7 +1277,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13168" type="Weapon" name="Player Commendation - Hall of Life - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Staff of Life. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1301,7 +1301,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="74" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
@@ -1309,7 +1309,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13169" type="Weapon" name="Player Commendation - Atuba Mace - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of an Atuba Mace. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1333,7 +1333,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="90" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
@@ -1341,7 +1341,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13170" type="Weapon" name="Player Commendation - Mithril Dagger - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Mithril Dagger. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1364,7 +1364,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="80" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="12" />
@@ -1372,7 +1372,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13171" type="Weapon" name="Player Commendation - Scallop Jamadhr - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Scallop Jamadhr. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1395,7 +1395,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="112" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="4" />
@@ -1403,7 +1403,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13172" type="Weapon" name="Player Commendation - Crossbow - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Light Crossbow. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1428,7 +1428,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="191" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="12" />
@@ -1436,7 +1436,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13173" type="Weapon" name="Player Commendation - Glaive - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of a Glaive. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1461,7 +1461,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="92" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
@@ -1469,7 +1469,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13174" type="Weapon" name="Player Commendation - Elven Long Sword - Player Commendation Weapon">
 		<!-- Limited time item that contains the power of an Elven Longsword. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1492,14 +1492,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="92" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13175" type="Weapon" name="Player Commendation - Grand Epee - Player Commendation Weapon">
 		<!-- Kamael exclusive weapon. Limited-time item containing the power of a Grand Epee. When enchanted to 4 or more, during a critical attack, party members including yourself will receive at a fixed rate increased attack power, magic power, and healing capacity, as well as decreased MP consumption per skill. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1523,10 +1523,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="83" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="10" />
@@ -1534,7 +1534,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13176" type="Weapon" name="Player Commendation - General Katzbalger - Player Commendation Weapon">
 		<!-- Kamael exclusive weapon. Limited-time item containing the power of a General's Katzbalger. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1557,10 +1557,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="100" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
@@ -1568,7 +1568,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13177" type="Weapon" name="Player Commendation - Cranequin - Player Commendation Weapon">
 		<!-- Kamael exclusive weapon. Limited-time item containing the power of a Cranequin. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1592,10 +1592,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="117" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="10" />
@@ -1603,7 +1603,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13178" type="Weapon" name="Player Commendation - Samurai Long Sword - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Samurai Long Sword Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Critical by 73 additionally. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1628,14 +1628,14 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="156" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13179" type="Weapon" name="Player Commendation - Ghost's Wand - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Samurai Long Sword Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Casts Regeneration with a 30% of chance when using additional magic skills to a target. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1662,7 +1662,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="152" />
 			<set stat="mAtk" val="122" />
 			<set stat="critRate" val="4" />
@@ -1670,7 +1670,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13180" type="Weapon" name="Player Commendation - Ghoul's Wand - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Ghoul's Wand Available to enchant by the enchanted scroll of PC Cafe exclusive weapons (Additional Max MP increases by 30%.) Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1696,7 +1696,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="152" />
 			<set stat="mAtk" val="122" />
 			<set stat="critRate" val="4" />
@@ -1704,7 +1704,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13181" type="Weapon" name="Player Commendation - Devil's Wand - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Devil's Wand Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Casts a Curse Weakness with a 7% of chance when using additional magic skills to a target. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1731,7 +1731,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="152" />
 			<set stat="mAtk" val="122" />
 			<set stat="critRate" val="4" />
@@ -1739,7 +1739,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13182" type="Weapon" name="Player Commendation - Crystal Dagger - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Crystal Dagger Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Critical Damage increases by 140 during additional critical attack. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1764,7 +1764,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="12" />
@@ -1772,7 +1772,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13183" type="Weapon" name="Player Commendation - Great Pata - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Great Pata Available to enchant by the enchanted scroll of PC Cafe exclusive weapons When additional HP is below 60%, attack speed increases by 11%. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1797,7 +1797,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="4" />
@@ -1805,7 +1805,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13184" type="Weapon" name="Player Commendation - Eminence Bow - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Eminence Bow Available to enchant by the enchanted scroll of PC Cafe exclusive weapons During a general attack, MP consumption decreases to 1 with a 42% chance. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1832,7 +1832,7 @@
 		<set name="time" val="21600" />
 		<set name="reduced_mp_consume" val="42,1" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="323" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="12" />
@@ -1840,7 +1840,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13185" type="Weapon" name="Player Commendation - Orcish Poleaxe - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Orcish Poleaxe Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Attack angle expands additionally. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1865,7 +1865,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="156" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
@@ -1873,7 +1873,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13186" type="Weapon" name="Player Commendation - Yaksa Mace - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Yaksa Mace Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Max HP increases by 25% additionally. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1898,7 +1898,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="156" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="4" />
@@ -1906,7 +1906,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13187" type="Weapon" name="Player Commendation - Shamshir*Shamshir - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Shamshir*Shamshir The PC Cafe exclusive weapon enhancing scroll, which will be endowed with a function to increase the Accuracy of 2 when enchanted over 4 Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1931,14 +1931,14 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13188" type="Weapon" name="Player Commendation - Admiral's Estoc - Player Commendation Weapon">
 		<!-- Kamael exclusive weapon. PC Cafe exclusive item containing the power of an Admiral's Estoc. Can be enchanted by using the PC Cafe Exclusive Weapon Enhance Scroll. Also increases Atk. Spd. by about 7%. When enchanted to 4 or more, during a critical attack, party members including yourself will receive at a fixed rate increased attack power, magic power, and healing capacity, as well as decreased MP consumption per skill. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -1964,10 +1964,10 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="141" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="10" />
@@ -1975,7 +1975,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13189" type="Weapon" name="Player Commendation - Saber Tooth - Player Commendation Weapon">
 		<!-- Kamael exclusive weapon. PC Cafe exclusive item containing the power of a Saber Tooth. Can be enchanted by using the PC Cafe Exclusive Weapon Enhance Scroll. Also increases Critical by 73. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2000,10 +2000,10 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="169" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
@@ -2011,7 +2011,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13190" type="Weapon" name="Player Commendation - Sharpshooter - Player Commendation Weapon">
 		<!-- Kamael exclusive weapon. PC Cafe exclusive item containing the power of a Sharpshooter. Can be enchanted by using the PC Cafe Exclusive Weapon Enhance Scroll. Also increases Accuracy by 4. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2037,10 +2037,10 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="198" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="10" />
@@ -2048,7 +2048,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13191" type="Weapon" name="Player Commendation - Ecliptic Sword - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Ecliptic Sword Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Additionally, Increases M. Atk. by 26. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2074,14 +2074,14 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="125" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13192" type="Weapon" name="Player Commendation - Ecliptic Axe - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Ecliptic Axe Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Casts Dryad Root with a 10% of chance when using additional magic skills to a target. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2108,7 +2108,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="125" />
 			<set stat="mAtk" val="111" />
 			<set stat="critRate" val="4" />
@@ -2116,7 +2116,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13193" type="Weapon" name="Player Commendation - Dwarven Hammer - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Dwarven Hammer Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Upon additional Critical, gives effect to a target by 42% of chance. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2141,7 +2141,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="4" />
@@ -2149,7 +2149,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13194" type="Weapon" name="Player Commendation - Damascus Sword - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Damascus Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Critical by 64 additionally. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2174,14 +2174,14 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13195" type="Weapon" name="Player Commendation - Lance - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Lance Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Upon additional Critical, about 25% of Stun effect is activated. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2207,7 +2207,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
@@ -2215,7 +2215,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13196" type="Weapon" name="Player Commendation - Deadman's Glory - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Deadman's Glory Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Additionally, attack speed increases by about 6% Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2240,7 +2240,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
@@ -2248,7 +2248,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13197" type="Weapon" name="Player Commendation - Art of Battle Axe - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Art of Battle Axe Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Max HP increases by 25% additionally. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2273,7 +2273,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="4" />
@@ -2281,7 +2281,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13198" type="Weapon" name="Player Commendation - Staff of Evil Spirits - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Staff of Evil Spirits Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Casts a Bless the Body with a 20% of chance when using additional magic skills to a target. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2308,7 +2308,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="189" />
 			<set stat="mAtk" val="145" />
 			<set stat="critRate" val="4" />
@@ -2316,7 +2316,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13199" type="Weapon" name="Player Commendation - Devil's Dagger - Player Commendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Devil's Dagger Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Critical Damage increases by 160 during additional critical attack. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -2341,7 +2341,7 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="170" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="12" />
@@ -2349,6 +2349,6 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 </list>

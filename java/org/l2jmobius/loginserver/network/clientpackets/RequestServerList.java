@@ -48,6 +48,7 @@ public class RequestServerList extends LoginClientPacket
 			_skey2 = readInt(); // loginOk 2
 			return true;
 		}
+		
 		return false;
 	}
 	

@@ -46,7 +46,7 @@ public class FindPvP implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if (!Config.ENABLE_FIND_PVP || !target.isNpc())
 		{
@@ -95,6 +95,7 @@ public class FindPvP implements IBypassHandler
 				{
 					allyId = player.getClanId();
 				}
+				
 				clanNumbers.put(allyId, 1);
 				for (Player known : World.getInstance().getVisibleObjects(mostPvP, Player.class))
 				{
@@ -103,6 +104,7 @@ public class FindPvP implements IBypassHandler
 					{
 						knownAllyId = known.getClanId();
 					}
+					
 					if (knownAllyId != 0)
 					{
 						if (clanNumbers.containsKey(knownAllyId))
@@ -146,11 +148,12 @@ public class FindPvP implements IBypassHandler
 		{
 			player.sendPacket(new CreatureSay(null, ChatType.WHISPER, target.getName(), "Sorry, I can't find anyone in flag status right now."));
 		}
+		
 		return false;
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

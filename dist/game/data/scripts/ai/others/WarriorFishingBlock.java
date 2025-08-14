@@ -43,6 +43,7 @@ public class WarriorFishingBlock extends AbstractNpcAI
 		18325, // Caught Flava
 		18326, // Caught Gigantic Eye
 	};
+	
 	// NPC Strings
 	private static final NpcStringId[] NPC_STRINGS_ON_SPAWN =
 	{
@@ -62,6 +63,7 @@ public class WarriorFishingBlock extends AbstractNpcAI
 		NpcStringId.CROAK_CROAK_A_FROG_IS_DYING,
 		NpcStringId.A_FROG_TASTES_BAD_YUCK
 	};
+	
 	// Misc
 	private static final int CHANCE_TO_SHOUT_ON_ATTACK = 33;
 	private static final int DESPAWN_TIME = 50; // 50 seconds to despawn
@@ -103,6 +105,7 @@ public class WarriorFishingBlock extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

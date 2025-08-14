@@ -53,6 +53,7 @@ public class Q00698_BlockTheLordsEscape extends Quest
 		{
 			qs.startQuest();
 		}
+		
 		return htmltext;
 	}
 	
@@ -71,12 +72,14 @@ public class Q00698_BlockTheLordsEscape extends Quest
 					qs.exitQuest(true);
 					break;
 				}
+				
 				if (SoIManager.getCurrentStage() != 5)
 				{
 					htmltext = "32603-00a.html";
 					qs.exitQuest(true);
 					break;
 				}
+				
 				htmltext = "32603-01.htm";
 				break;
 			}
@@ -95,6 +98,7 @@ public class Q00698_BlockTheLordsEscape extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -41,11 +41,14 @@ public class Q00247_PossessorOfAPreciousSoul4 extends Quest
 	// NPCs
 	private static final int CARADINE = 31740;
 	private static final int LADY_OF_LAKE = 31745;
+	
 	// Items
 	private static final int CARADINE_LETTER_LAST = 7679;
 	private static final int NOBLESS_TIARA = 7694;
+	
 	// Location
 	private static final Location CARADINE_LOC = new Location(143209, 43968, -3038);
+	
 	// Skill
 	private static final SkillHolder MIMIRS_ELIXIR = new SkillHolder(4339, 1);
 	
@@ -60,10 +63,12 @@ public class Q00247_PossessorOfAPreciousSoul4 extends Quest
 	public String onEvent(String event, Npc npc, Player player)
 	{
 		final QuestState st = getQuestState(player, false);
+		
 		if (st == null)
 		{
 			return getNoQuestMsg(player);
 		}
+		
 		if (!player.isSubClassActive())
 		{
 			return "no_sub.html";
@@ -72,17 +77,22 @@ public class Q00247_PossessorOfAPreciousSoul4 extends Quest
 		switch (event)
 		{
 			case "31740-3.html":
+			{
 				st.startQuest();
 				takeItems(player, CARADINE_LETTER_LAST, -1);
 				break;
-			case "31740-5.html":
+			}
+			case "TELEPORT":
+			{
 				if (st.isCond(1))
 				{
 					st.setCond(2, true);
 					player.teleToLocation(CARADINE_LOC, 0);
 				}
 				break;
+			}
 			case "31745-5.html":
+			{
 				if (st.isCond(2))
 				{
 					player.setNoble(true);
@@ -94,7 +104,9 @@ public class Q00247_PossessorOfAPreciousSoul4 extends Quest
 					st.exitQuest(false, true);
 				}
 				break;
+			}
 		}
+		
 		return event;
 	}
 	
@@ -103,6 +115,7 @@ public class Q00247_PossessorOfAPreciousSoul4 extends Quest
 	{
 		final QuestState st = getQuestState(player, true);
 		String htmltext = getNoQuestMsg(player);
+		
 		if (st.isStarted() && !player.isSubClassActive())
 		{
 			return "no_sub.html";
@@ -115,21 +128,27 @@ public class Q00247_PossessorOfAPreciousSoul4 extends Quest
 				switch (st.getState())
 				{
 					case State.CREATED:
+					{
 						final QuestState qs = player.getQuestState(Q00246_PossessorOfAPreciousSoul3.class.getSimpleName());
 						if ((qs != null) && qs.isCompleted())
 						{
 							htmltext = ((player.getLevel() >= 75) ? "31740-1.htm" : "31740-2.html");
 						}
 						break;
+					}
 					case State.STARTED:
+					{
 						if (st.isCond(1))
 						{
 							htmltext = "31740-6.html";
 						}
 						break;
+					}
 					case State.COMPLETED:
+					{
 						htmltext = getAlreadyCompletedMsg(player);
 						break;
+					}
 				}
 				break;
 			}
@@ -142,6 +161,7 @@ public class Q00247_PossessorOfAPreciousSoul4 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

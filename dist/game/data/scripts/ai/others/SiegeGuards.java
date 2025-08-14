@@ -52,7 +52,7 @@ import ai.AbstractNpcAI;
  */
 public class SiegeGuards extends AbstractNpcAI
 {
-	//@formatter:off
+	// @formatter:off
 	// NPCs
 	private static final int[] CASTLE_GUARDS = 
 	{
@@ -99,7 +99,7 @@ public class SiegeGuards extends AbstractNpcAI
 		35010, 35011, 35012, 35013, 35014, 35020, 35021, 35022, 35023, 35024, 35030, 35031, 35032, 35033, 35034, 35040, 35041, 35042, 35043, 35044, 35050, 35051, 35052, 35053, 35054, 35092, 35093, 35094,
 		35134, 35135, 35136, 35176, 35177, 35178, 35218, 35219, 35220, 35261, 35262, 35263, 35264, 35265, 35308, 35309, 35310, 35352, 35353, 35354, 35497, 35498, 35499, 35500, 35501, 35544, 35545, 35546
 	};
-	//@formatter:on
+	// @formatter:on
 	@SuppressWarnings("unchecked")
 	protected static final List<Npc>[] RESIDENCE_GUARD_MAP = new CopyOnWriteArrayList[122];
 	protected static final boolean[] RESIDENCE_WORKING = new boolean[122];
@@ -158,6 +158,7 @@ public class SiegeGuards extends AbstractNpcAI
 				{
 					return;
 				}
+				
 				RESIDENCE_WORKING[_residenceId] = true;
 			}
 			
@@ -284,6 +285,7 @@ public class SiegeGuards extends AbstractNpcAI
 			{
 				spawn.stopRespawn();
 			}
+			
 			if (guard.isSpawned())
 			{
 				guard.deleteMe();
@@ -312,6 +314,7 @@ public class SiegeGuards extends AbstractNpcAI
 			{
 				spawn.stopRespawn();
 			}
+			
 			if (guard.isSpawned())
 			{
 				guard.deleteMe();

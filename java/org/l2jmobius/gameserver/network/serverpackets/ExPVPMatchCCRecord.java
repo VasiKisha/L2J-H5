@@ -60,6 +60,7 @@ public class ExPVPMatchCCRecord extends ServerPacket
 			{
 				break;
 			}
+			
 			buffer.writeString(entry.getKey().getName());
 			buffer.writeInt(entry.getValue());
 		}

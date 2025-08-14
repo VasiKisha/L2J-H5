@@ -71,6 +71,7 @@ public class RequestRecipeShopMakeItem extends ClientPacket
 			player.sendMessage("You cannot create items while trading.");
 			return;
 		}
+		
 		if (manufacturer.getPrivateStoreType() != PrivateStoreType.MANUFACTURE)
 		{
 			// player.sendMessage("You cannot create items while trading.");
@@ -82,6 +83,7 @@ public class RequestRecipeShopMakeItem extends ClientPacket
 			player.sendMessage("You are currently in Craft Mode.");
 			return;
 		}
+		
 		if (LocationUtil.checkIfInRange(150, player, manufacturer, true))
 		{
 			RecipeManager.getInstance().requestManufactureItem(manufacturer, _recipeId, player);

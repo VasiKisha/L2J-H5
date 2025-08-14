@@ -133,7 +133,7 @@ public class AutoUseTaskManager
 						if ((reuseDelay <= 0) || (player.getItemRemainingReuseTime(item.getObjectId()) <= 0))
 						{
 							final IItemHandler handler = ItemHandler.getInstance().getHandler(item.getEtcItem());
-							if ((handler != null) && handler.useItem(player, item, false) && (reuseDelay > 0))
+							if ((handler != null) && handler.onItemUse(player, item, false) && (reuseDelay > 0))
 							{
 								player.addTimeStampItem(item, reuseDelay);
 							}
@@ -158,7 +158,7 @@ public class AutoUseTaskManager
 							{
 								final EtcItem etcItem = item.getEtcItem();
 								final IItemHandler handler = ItemHandler.getInstance().getHandler(etcItem);
-								if ((handler != null) && handler.useItem(player, item, false) && (reuseDelay > 0))
+								if ((handler != null) && handler.onItemUse(player, item, false) && (reuseDelay > 0))
 								{
 									player.addTimeStampItem(item, reuseDelay);
 								}
@@ -207,11 +207,13 @@ public class AutoUseTaskManager
 								{
 									skill = PetSkillData.getInstance().getKnownSkill(summon, skillId);
 								}
+								
 								if (skill != null)
 								{
 									pet = summon;
 								}
 							}
+							
 							if (skill == null)
 							{
 								player.getAutoUseSettings().getAutoBuffs().remove(skillId);
@@ -291,12 +293,14 @@ public class AutoUseTaskManager
 								{
 									skill = PetSkillData.getInstance().getKnownSkill(summon, skillId);
 								}
+								
 								if (skill != null)
 								{
 									pet = summon;
 									pet.setTarget(target);
 								}
 							}
+							
 							if (skill == null)
 							{
 								player.getAutoUseSettings().getAutoSkills().remove(skillId);
@@ -311,7 +315,7 @@ public class AutoUseTaskManager
 							break SKILLS;
 						}
 						
-						// Check bad skill target.
+						// Check negative effect skill target.
 						if ((target == null) || target.asCreature().isDead())
 						{
 							// Remove queued skill.
@@ -383,14 +387,21 @@ public class AutoUseTaskManager
 				{
 					return (abnormalBuffInfo.getSkill().getId() == buffInfo.getSkill().getId()) && ((buffInfo.getTime() <= REUSE_MARGIN_TIME) || (buffInfo.getSkill().getLevel() < skill.getLevel()));
 				}
+				
 				return (abnormalBuffInfo.getSkill().getAbnormalLevel() < skill.getAbnormalLevel()) || abnormalBuffInfo.isAbnormalType(AbnormalType.NONE);
 			}
+			
 			return buffInfo == null;
 		}
 		
 		private boolean canUseMagic(Playable playable, WorldObject target, Skill skill)
 		{
 			if ((skill.getItemConsumeCount() > 0) && (playable.getInventory().getInventoryItemCount(skill.getItemConsumeId(), -1) < skill.getItemConsumeCount()))
+			{
+				return false;
+			}
+			
+			if (playable.isPlayer() && (playable.asPlayer().getCharges() < skill.getChargeConsumeCount()))
 			{
 				return false;
 			}

@@ -139,7 +139,9 @@ public abstract class Summon extends Playable
 		{
 			party.broadcastToPartyMembers(_owner, new ExPartyPetWindowAdd(this));
 		}
+		
 		setShowSummonAnimation(false); // addVisibleObject created the info packets with summon animation
+		
 		// if someone comes into range now, the animation shouldn't show any more
 		_restoreSummon = false;
 		rechargeShots(true, true);
@@ -215,6 +217,7 @@ public abstract class Summon extends Playable
 				{
 					World.getInstance().forEachVisibleObject(this, Player.class, player -> player.sendPacket(new SummonInfo(this, player, 1)));
 				}
+				
 				_abnormalEffectTask = null;
 			}, 50);
 		}
@@ -234,6 +237,7 @@ public abstract class Summon extends Playable
 		{
 			return 0;
 		}
+		
 		return ExperienceData.getInstance().getExpForLevel(getLevel());
 	}
 	
@@ -243,6 +247,7 @@ public abstract class Summon extends Playable
 		{
 			return 0;
 		}
+		
 		return ExperienceData.getInstance().getExpForLevel(getLevel() + 1);
 	}
 	
@@ -285,6 +290,7 @@ public abstract class Summon extends Playable
 		{
 			return (short) getTemplate().getSoulShot();
 		}
+		
 		return 1;
 	}
 	
@@ -294,6 +300,7 @@ public abstract class Summon extends Playable
 		{
 			return (short) getTemplate().getSpiritShot();
 		}
+		
 		return 1;
 	}
 	
@@ -347,10 +354,12 @@ public abstract class Summon extends Playable
 		{
 			return false;
 		}
+		
 		if (!decayed)
 		{
 			DecayTaskManager.getInstance().add(this);
 		}
+		
 		return true;
 	}
 	
@@ -389,11 +398,13 @@ public abstract class Summon extends Playable
 		{
 			getInventory().destroyAllItems(ItemProcessType.DESTROY, _owner, this);
 		}
+		
 		decayMe();
 		if (owner != null)
 		{
 			owner.setPet(null);
 		}
+		
 		super.deleteMe();
 	}
 	
@@ -423,6 +434,7 @@ public abstract class Summon extends Playable
 					_owner.setPetInvItems(false);
 				}
 			}
+			
 			abortAttack();
 			abortCast();
 			storeMe();
@@ -555,6 +567,7 @@ public abstract class Summon extends Playable
 		{
 			return null;
 		}
+		
 		return _owner.getParty();
 	}
 	
@@ -675,7 +688,7 @@ public abstract class Summon extends Playable
 		}
 		
 		// Check if this is bad magic skill
-		if (skill.isBad())
+		if (skill.hasNegativeEffect())
 		{
 			if (_owner == target)
 			{
@@ -707,6 +720,7 @@ public abstract class Summon extends Playable
 				{
 					sendPacket(SystemMessageId.FORCE_ATTACK_IS_IMPOSSIBLE_AGAINST_A_TEMPORARY_ALLIED_MEMBER_DURING_A_SIEGE);
 				}
+				
 				sendPacket(ActionFailed.STATIC_PACKET);
 				return false;
 			}
@@ -734,6 +748,7 @@ public abstract class Summon extends Playable
 				}
 			}
 		}
+		
 		// Notify the AI with CAST and target
 		getAI().setIntention(Intention.CAST, skill, target);
 		return true;
@@ -747,6 +762,7 @@ public abstract class Summon extends Playable
 		if (value)
 		{
 			_previousFollowStatus = _follow;
+			
 			// if immobilized temporarily disable follow mode
 			if (_previousFollowStatus)
 			{
@@ -884,6 +900,7 @@ public abstract class Summon extends Playable
 			{
 				return;
 			}
+			
 			player.sendPacket(new SummonInfo(this, player, value));
 		});
 	}
@@ -910,6 +927,7 @@ public abstract class Summon extends Playable
 		if (player == _owner)
 		{
 			player.sendPacket(new PetInfo(this, 0));
+			
 			// The PetInfo packet wipes the PartySpelled (list of active spells' icons). Re-add them
 			updateEffectIcons(true);
 			if (isPet())
@@ -1029,6 +1047,7 @@ public abstract class Summon extends Playable
 			{
 				sendPacket(SystemMessageId.FORCE_ATTACK_IS_IMPOSSIBLE_AGAINST_A_TEMPORARY_ALLIED_MEMBER_DURING_A_SIEGE);
 			}
+			
 			sendPacket(ActionFailed.STATIC_PACKET);
 			return false;
 		}
@@ -1060,10 +1079,17 @@ public abstract class Summon extends Playable
 			return false;
 		}
 		
-		if ((_owner.calculateDistance3D(target) > 3000) || !GeoEngine.getInstance().canMoveToTarget(this, target))
+		if (_owner.calculateDistance3D(target) > 3000)
 		{
 			getAI().setIntention(Intention.FOLLOW, _owner);
-			sendPacket(SystemMessageId.INVALID_TARGET);
+			sendPacket(SystemMessageId.YOUR_TARGET_IS_OUT_OF_RANGE);
+			return false;
+		}
+		
+		if (!GeoEngine.getInstance().canSeeTarget(this, target))
+		{
+			getAI().setIntention(Intention.FOLLOW, _owner);
+			sendPacket(SystemMessageId.CANNOT_SEE_TARGET);
 			return false;
 		}
 		
@@ -1139,7 +1165,7 @@ public abstract class Summon extends Playable
 					handler = ItemHandler.getInstance().getHandler(item.getEtcItem());
 					if (handler != null)
 					{
-						handler.useItem(_owner, item, false);
+						handler.onItemUse(_owner, item, false);
 					}
 				}
 				
@@ -1148,7 +1174,7 @@ public abstract class Summon extends Playable
 					handler = ItemHandler.getInstance().getHandler(item.getEtcItem());
 					if (handler != null)
 					{
-						handler.useItem(_owner, item, false);
+						handler.onItemUse(_owner, item, false);
 					}
 				}
 			}
@@ -1205,6 +1231,7 @@ public abstract class Summon extends Playable
 				formId = 1;
 			}
 		}
+		
 		return formId;
 	}
 	

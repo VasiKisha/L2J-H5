@@ -19,7 +19,6 @@ package handlers.chathandlers;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.handler.IChatHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoom;
 import org.l2jmobius.gameserver.model.groups.matching.PartyMatchRoomList;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -38,23 +37,26 @@ public class ChatPartyMatchRoom implements IChatHandler
 	};
 	
 	@Override
-	public void handleChat(ChatType type, Player activeChar, String target, String text)
+	public void onChat(ChatType type, Player activeChar, String target, String text)
 	{
 		if (!activeChar.isInPartyMatchRoom())
 		{
 			return;
 		}
+		
 		final PartyMatchRoom room = PartyMatchRoomList.getInstance().getPlayerRoom(activeChar);
 		if (room == null)
 		{
 			return;
 		}
+		
 		if (activeChar.isChatBanned() && Config.BAN_CHAT_CHANNELS.contains(type))
 		{
 			activeChar.sendPacket(SystemMessageId.CHATTING_IS_CURRENTLY_PROHIBITED_IF_YOU_TRY_TO_CHAT_BEFORE_THE_PROHIBITION_IS_REMOVED_THE_PROHIBITION_TIME_WILL_INCREASE_EVEN_FURTHER);
 			return;
 		}
-		if (Config.JAIL_DISABLE_CHAT && activeChar.isJailed() && !activeChar.canOverrideCond(PlayerCondOverride.CHAT_CONDITIONS))
+		
+		if (Config.JAIL_DISABLE_CHAT && activeChar.isJailed() && !activeChar.isGM())
 		{
 			activeChar.sendPacket(SystemMessageId.CHATTING_IS_CURRENTLY_PROHIBITED);
 			return;

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="8600" type="EtcItem" name="Herb of Life">
 		<set name="immediate_effect" val="true" />
@@ -220,9 +220,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2287-1" /> <!-- Elixir of Life (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8623" type="EtcItem" name="Elixir of Life (D-Grade)">
 		<!-- Regenerates HP. This item can only be used by a character whose level is between 20 and 39. Re-use delay is 5 minutes. -->
@@ -240,9 +240,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2287-2" /> <!-- Elixir of Life (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8624" type="EtcItem" name="Elixir of Life (C-Grade)">
 		<!-- Regenerates HP. This item can only be used by a character whose level is between 40 and 51. Re-use delay is 5 minutes. -->
@@ -260,9 +260,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2287-3" /> <!-- Elixir of Life (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8625" type="EtcItem" name="Elixir of Life (B-Grade)">
 		<!-- Regenerates HP. This item can only be used by a character whose level is between 52 and 60. Re-use delay is 5 minutes. -->
@@ -280,9 +280,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2287-4" /> <!-- Elixir of Life (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8626" type="EtcItem" name="Elixir of Life (A-Grade)">
 		<!-- Regenerates HP. This item can only be used by a character whose level is between 61 and 75. Re-use delay is 5 minutes. -->
@@ -300,9 +300,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2287-5" /> <!-- Elixir of Life (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8627" type="EtcItem" name="Elixir of Life (S-Grade)">
 		<!-- Regenerates HP. This item can only be used by a character whose level is 76 or higher. Re-use delay is 5 minutes. -->
@@ -320,9 +320,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2287-6" /> <!-- Elixir of Life (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8628" type="EtcItem" name="Elixir of Mental Strength (No Grade)">
 		<!-- Regenerates MP. Can only be used by characters below level 19 upon themselves. Re-use delay is 5 minutes. -->
@@ -339,9 +339,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2288-1" /> <!-- Elixir of Mental Strength (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8629" type="EtcItem" name="Elixir of Mental Strength (D-Grade)">
 		<!-- Regenerates MP. Can be used by characters above level 20 and below level 39 upon themselves. Re-use delay 5 minutes. -->
@@ -359,9 +359,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2288-2" /> <!-- Elixir of Mental Strength (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8630" type="EtcItem" name="Elixir of Mental Strength (C-Grade)">
 		<!-- Regenerates MP. Can be used by characters above level 40 and below level 51 upon themselves. Re-use delay 5 minutes. -->
@@ -379,9 +379,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2288-3" /> <!-- Elixir of Mental Strength (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8631" type="EtcItem" name="Elixir of Mental Strength (B-Grade)">
 		<!-- Regenerates MP. Can be used by characters above level 52 and below level 60 upon themselves. Re-use delay 5 minutes. -->
@@ -399,9 +399,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2288-4" /> <!-- Elixir of Mental Strength (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8632" type="EtcItem" name="Elixir of Mental Strength (A-Grade)">
 		<!-- Regenerates MP. Can be used by characters above level 61 and below level 75 upon themselves. Re-use delay 5 minutes. -->
@@ -419,9 +419,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2288-5" /> <!-- Elixir of Mental Strength (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8633" type="EtcItem" name="Elixir of Mental Strength (S-Grade)">
 		<!-- Regenerates MP. Can be used by characters above level 76 upon themselves. Re-use delay 5 minutes. -->
@@ -439,9 +439,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="Elixir" />
 		<set name="item_skill" val="2288-6" /> <!-- Elixir of Mental Strength (No Grade) -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8634" type="EtcItem" name="Elixir of CP (No Grade)">
 		<!-- Regenerates CP. Can only be used by characters below level 19 upon themselves. Re-use delay is 5 minutes. -->
@@ -924,9 +924,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2297-1" /> <!-- Dye Potion -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="8671" type="EtcItem" name="Hair Style Change Potion - A (Event)">
 		<!-- Altered Realities Event Item. The label reads "Effects of this oil may be unpredictable. BEWARE! Changes caused will be permanent. Drink at your own risk!" -->
@@ -1031,14 +1031,14 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8679" type="Weapon" name="Sword of Ipos">
 		<!-- Bestows one of the following functions: Focus, Haste, or Health. -->
@@ -1059,14 +1059,14 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8680" type="Weapon" name="Barakiel's Axe">
 		<!-- Bestows one of the following functions: Health, Haste, or Focus. -->
@@ -1086,7 +1086,7 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1094,7 +1094,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8681" type="Weapon" name="Behemoth's Tuning Fork">
 		<!-- Bestows one of the following functions: Focus, Health, or Anger. -->
@@ -1114,7 +1114,7 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1122,7 +1122,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8682" type="Weapon" name="Naga Storm">
 		<!-- Bestows one of the following functions: Focus, Critical Damage, or Back Blow. -->
@@ -1142,7 +1142,7 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="220" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="12" />
@@ -1150,7 +1150,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8683" type="Weapon" name="Tiphon's Spear">
 		<!-- Bestows one of the following functions: Critical Stun, Towering Blow or Wide Blow. -->
@@ -1171,7 +1171,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
@@ -1179,7 +1179,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8684" type="Weapon" name="Shyeed's Bow">
 		<!-- Bestows one of the following functions: Cheap Shot, Focus, or Quick Recovery. -->
@@ -1202,7 +1202,7 @@
 		<set name="mp_consume" val="5" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="820" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="570" />
 			<set stat="mAtk" val="133" />
 			<set stat="critRate" val="12" />
@@ -1210,7 +1210,7 @@
 			<set stat="pAtkSpd" val="227" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8685" type="Weapon" name="Sobekk's Hurricane">
 		<!-- Bestows one of the following functions: Rsk. Haste, Haste, or Critical Drain. -->
@@ -1230,7 +1230,7 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1238,7 +1238,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8686" type="Weapon" name="Themis' Tongue">
 		<!-- Bestows one of the following functions: Mana Up, Mental Shield, or Magic Focus. -->
@@ -1259,14 +1259,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="202" />
 			<set stat="mAtk" val="161" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8687" type="Weapon" name="Cabrio's Hand">
 		<!-- Bestows one of the following functions: Conversion, Mana Up, or Magic Silence. -->
@@ -1287,7 +1287,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="202" />
 			<set stat="mAtk" val="161" />
 			<set stat="critRate" val="4" />
@@ -1295,7 +1295,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8688" type="Weapon" name="Daimon Crystal">
 		<!-- Bestows one of the following functions: Mana Up, Acumen, or Mental Shield. -->
@@ -1316,7 +1316,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="245" />
 			<set stat="mAtk" val="177" />
 			<set stat="critRate" val="4" />
@@ -1324,7 +1324,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8689" type="Weapon" name="Blood Sword Akamanah">
 		<!-- This demonic twin blade was forged by Gran Kain, the god of chaos. It needs the fresh blood of a PK at least every 24 hours or it will disappear. -->
@@ -1345,14 +1345,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="item_skill" val="3629-1" /> <!-- Blood Sword Akamanah -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="361" />
 			<set stat="mAtk" val="137" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="8690" type="EtcItem" name="Recipe: Sirra's Blade (60%)">
 		<!-- For Dwarves only. Recipe for making Sirra's Blade. Requires Create Item - Skill Level 8. 60% success rate. -->

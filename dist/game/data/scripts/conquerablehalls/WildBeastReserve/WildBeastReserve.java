@@ -255,6 +255,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 					{
 						LOGGER.warning(getClass().getSimpleName() + "->select_clan_npc->Wrong mahum warrior id: " + var[1]);
 					}
+					
 					if ((id > 0) && ((htmltext = getAllyHtml(id)) != null))
 					{
 						_data.get(clan.getId()).npc = id;
@@ -387,6 +388,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -596,6 +598,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 			clan.setHideoutId(0);
 			_hall.free();
 		}
+		
 		super.endSiege();
 	}
 	
@@ -616,6 +619,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 				}
 			}
 		}
+		
 		clearTables();
 	}
 	
@@ -643,6 +647,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 				}
 			}
 		}
+		
 		return loc;
 	}
 	
@@ -684,6 +689,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 			{
 				index = clanId == _hall.getOwnerId() ? 5 : 6;
 			}
+			
 			final Location loc = FLAG_COORDS[index];
 			
 			data.flagInstance = addSpawn(flagTemplate.getId(), loc);
@@ -736,6 +742,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 			data.flagInstance.getSpawn().stopRespawn();
 			data.flagInstance.getSpawn().getLastSpawn().deleteMe();
 		}
+		
 		if (data.warrior != null)
 		{
 			data.warrior.getSpawn().stopRespawn();
@@ -827,6 +834,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 				break;
 			}
 		}
+		
 		return result;
 	}
 	
@@ -861,6 +869,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 				break;
 			}
 		}
+		
 		return result;
 	}
 	
@@ -893,6 +902,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 				
 				loadAttackerMembers(clanId);
 			}
+			
 			rset.close();
 			statement.close();
 		}
@@ -920,6 +930,7 @@ public class WildBeastReserve extends ClanHallSiegeEngine
 			{
 				listInstance.add(rset.getInt("object_id"));
 			}
+			
 			rset.close();
 			statement.close();
 		}

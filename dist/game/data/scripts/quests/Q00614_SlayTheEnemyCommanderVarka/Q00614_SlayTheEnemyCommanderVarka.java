@@ -32,12 +32,15 @@ public class Q00614_SlayTheEnemyCommanderVarka extends Quest
 {
 	// NPC
 	private static final int ASHAS = 31377;
+	
 	// Monster
 	private static final int TAYR = 25302;
+	
 	// Items
 	private static final int TAYR_HEAD = 7241;
 	private static final int WISDOM_FEATHER = 7230;
 	private static final int VARKA_ALLIANCE_FOUR = 7224;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
 	
@@ -98,6 +101,7 @@ public class Q00614_SlayTheEnemyCommanderVarka extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -125,6 +129,7 @@ public class Q00614_SlayTheEnemyCommanderVarka extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -81,6 +81,7 @@ public class SSQStatus extends ServerPacket
 						break;
 					}
 				}
+				
 				switch (currentPeriod)
 				{
 					case SevenSigns.PERIOD_COMP_RECRUITING:
@@ -96,6 +97,7 @@ public class SSQStatus extends ServerPacket
 						break;
 					}
 				}
+				
 				buffer.writeByte(SevenSigns.getInstance().getPlayerCabal(_objectId));
 				buffer.writeByte(SevenSigns.getInstance().getPlayerSeal(_objectId));
 				buffer.writeLong(SevenSigns.getInstance().getPlayerStoneContrib(_objectId)); // Seal Stones Turned-In
@@ -115,6 +117,7 @@ public class SSQStatus extends ServerPacket
 					duskStoneScoreProp = Math.round(((float) duskStoneScore / (float) totalStoneScore) * 500);
 					dawnStoneScoreProp = Math.round(((float) dawnStoneScore / (float) totalStoneScore) * 500);
 				}
+				
 				final int duskTotalScore = SevenSigns.getInstance().getCurrentScore(SevenSigns.CABAL_DUSK);
 				final int dawnTotalScore = SevenSigns.getInstance().getCurrentScore(SevenSigns.CABAL_DAWN);
 				final int totalOverallScore = duskTotalScore + dawnTotalScore;
@@ -146,6 +149,7 @@ public class SSQStatus extends ServerPacket
 					buffer.writeInt(SevenSignsFestival.FESTIVAL_LEVEL_SCORES[i]);
 					final int duskScore = SevenSignsFestival.getInstance().getHighestScore(SevenSigns.CABAL_DUSK, i);
 					final int dawnScore = SevenSignsFestival.getInstance().getHighestScore(SevenSigns.CABAL_DAWN, i);
+					
 					// Dusk Score \\
 					buffer.writeLong(duskScore);
 					StatSet highScoreData = SevenSignsFestival.getInstance().getHighestScoreData(SevenSigns.CABAL_DUSK, i);
@@ -162,6 +166,7 @@ public class SSQStatus extends ServerPacket
 					{
 						buffer.writeByte(0);
 					}
+					
 					// Dawn Score \\
 					buffer.writeLong(dawnScore);
 					highScoreData = SevenSignsFestival.getInstance().getHighestScoreData(SevenSigns.CABAL_DAWN, i);

@@ -349,6 +349,7 @@ public class DynamicPacketBuffer extends InternalWritableBuffer
 			final PacketNode node = indexToNode(_limit);
 			node.buffer.clear();
 		}
+		
 		ensureSize(newLimit + 1);
 		_limit = newLimit;
 		limitBuffer();
@@ -381,6 +382,7 @@ public class DynamicPacketBuffer extends InternalWritableBuffer
 			{
 				newSize <<= 1;
 			}
+			
 			increaseBuffers(newSize);
 		}
 	}
@@ -428,6 +430,7 @@ public class DynamicPacketBuffer extends InternalWritableBuffer
 				return node;
 			}
 		}
+		
 		throw new IndexOutOfBoundsException("Could not map the index to a node: " + index);
 	}
 	
@@ -446,6 +449,7 @@ public class DynamicPacketBuffer extends InternalWritableBuffer
 		{
 			buffers[i] = _nodes[i].buffer;
 		}
+		
 		return buffers;
 	}
 	
@@ -457,6 +461,7 @@ public class DynamicPacketBuffer extends InternalWritableBuffer
 			_resourcePool.recycleBuffer(_nodes[i].buffer);
 			_nodes[i] = null;
 		}
+		
 		_nodeCount = 0;
 		_bufferIndex = 0;
 	}

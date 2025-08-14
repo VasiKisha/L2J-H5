@@ -37,10 +37,12 @@ public class Q00310_OnlyWhatRemains extends Quest
 {
 	// NPC
 	private static final int KINTAIJIN = 32640;
+	
 	// Items
 	private static final int GROW_ACCELERATOR = 14832;
 	private static final int MULTI_COLORED_JEWEL = 14835;
 	private static final int DIRTY_BEAD = 14880;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
 	static
@@ -109,6 +111,7 @@ public class Q00310_OnlyWhatRemains extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -161,6 +164,7 @@ public class Q00310_OnlyWhatRemains extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

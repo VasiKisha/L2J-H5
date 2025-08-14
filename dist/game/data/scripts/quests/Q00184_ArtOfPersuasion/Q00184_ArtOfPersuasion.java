@@ -35,12 +35,15 @@ public class Q00184_ArtOfPersuasion extends Quest
 	private static final int RESEARCHER_LORAIN = 30673;
 	private static final int DESTROYED_DEVICE = 32366;
 	private static final int ALARM_OF_GIANT = 32367;
+	
 	// Items
 	private static final int METALLOGRAPH = 10359;
 	private static final int BROKEN_METAL_PIECES = 10360;
 	private static final int NIKOLAS_MAP = 10361;
+	
 	// Reward
 	private static final int LORAINES_CERTIFICATE = 10362;
+	
 	// Misc
 	private static final int MIN_LEVEL = 40;
 	private static final int MAX_LEVEL_FOR_EXP_SP = 46;
@@ -139,6 +142,7 @@ public class Q00184_ArtOfPersuasion extends Quest
 						htmltext = "30673-10.htm";
 						qs.exitQuest(false, true);
 					}
+					
 					giveAdena(player, 72527, true);
 					if (player.getLevel() < MAX_LEVEL_FOR_EXP_SP)
 					{
@@ -182,6 +186,7 @@ public class Q00184_ArtOfPersuasion extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -269,6 +274,7 @@ public class Q00184_ArtOfPersuasion extends Quest
 		{
 			htmltext = getAlreadyCompletedMsg(player);
 		}
+		
 		return htmltext;
 	}
 }

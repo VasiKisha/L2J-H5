@@ -34,15 +34,13 @@ public class AdminInstance implements IAdminCommandHandler
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_setinstance",
-		"admin_ghoston",
-		"admin_ghostoff",
 		"admin_createinstance",
 		"admin_destroyinstance",
 		"admin_listinstances"
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final StringTokenizer st = new StringTokenizer(command);
 		st.nextToken();
@@ -68,6 +66,7 @@ public class AdminInstance implements IAdminCommandHandler
 					{
 						activeChar.sendSysMessage("Failed to create instance.");
 					}
+					
 					return true;
 				}
 				catch (Exception e)
@@ -89,6 +88,7 @@ public class AdminInstance implements IAdminCommandHandler
 					activeChar.sendSysMessage("Id: " + instance.getId() + " Name: " + InstanceManager.getInstance().getInstanceIdName(world.getTemplateId()));
 				}
 			}
+			
 			if (counter == 0)
 			{
 				activeChar.sendSysMessage("No active instances.");
@@ -111,6 +111,7 @@ public class AdminInstance implements IAdminCommandHandler
 					activeChar.sendSysMessage("Incorrect target.");
 					return false;
 				}
+				
 				target.setInstanceId(val);
 				if (target.isPlayer())
 				{
@@ -118,6 +119,7 @@ public class AdminInstance implements IAdminCommandHandler
 					player.sendMessage("Admin set your instance to:" + val);
 					player.teleToLocation(player.getLocation());
 				}
+				
 				activeChar.sendSysMessage("Moved " + target.getName() + " to instance " + target.getInstanceId() + ".");
 				return true;
 			}
@@ -139,11 +141,12 @@ public class AdminInstance implements IAdminCommandHandler
 				activeChar.sendSysMessage("Use //destroyinstance id");
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

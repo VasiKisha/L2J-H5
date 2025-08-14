@@ -28,7 +28,7 @@ import java.nio.charset.StandardCharsets;
 public abstract class WritableBuffer implements Buffer
 {
 	/**
-	 * Write <b>char</b> to the buffer.<BR>
+	 * Write <b>char</b> to the buffer.<br>
 	 * 16 bit char
 	 * @param value the char to be put on data.
 	 */

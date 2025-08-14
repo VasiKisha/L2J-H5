@@ -89,6 +89,7 @@ public class Chest extends Monster
 				id = 21786;
 			}
 		}
+		
 		super.doItemDrop(NpcData.getInstance().getTemplate(id), lastAttacker);
 	}
 	

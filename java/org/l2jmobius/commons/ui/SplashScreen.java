@@ -64,11 +64,13 @@ public class SplashScreen extends JWindow
 				{
 					// Make parent visible.
 					parent.setVisible(true);
+					
 					// Focus parent window.
 					parent.toFront();
 					parent.setState(Frame.ICONIFIED);
 					parent.setState(Frame.NORMAL);
 				}
+				
 				dispose();
 			}
 		}, imageIcon.getIconWidth() > 0 ? time : 100);

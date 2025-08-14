@@ -32,7 +32,7 @@ import org.l2jmobius.gameserver.model.quest.State;
  */
 public class Q00426_QuestForFishingShot extends Quest
 {
-	private static final int[] NPC = new int[]
+	private static final int[] NPC =
 	{
 		31562, // Klufe
 		31563, // Perelin
@@ -359,6 +359,7 @@ public class Q00426_QuestForFishingShot extends Quest
 		{
 			return null;
 		}
+		
 		switch (event)
 		{
 			case "QUEST_ACEPT":
@@ -380,6 +381,7 @@ public class Q00426_QuestForFishingShot extends Quest
 				return "08.html";
 			}
 		}
+		
 		return event;
 	}
 	
@@ -399,6 +401,7 @@ public class Q00426_QuestForFishingShot extends Quest
 				{
 					rewardItems(qs.getPlayer(), SWEET_FLUID, MOBS_SPECIAL.get(npc.getId()).reward);
 				}
+				
 				playSound(qs.getPlayer(), QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 			else
@@ -430,9 +433,11 @@ public class Q00426_QuestForFishingShot extends Quest
 				{
 					return "04.html";
 				}
+				
 				return "05.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -31,10 +31,8 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
-import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SetupGauge;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
  * Unstuck user command.
@@ -47,7 +45,7 @@ public class Unstuck implements IUserCommandHandler
 	};
 	
 	@Override
-	public boolean useUserCommand(int id, Player player)
+	public boolean onCommand(int id, Player player)
 	{
 		if (player.isRegisteredOnEvent())
 		{
@@ -89,13 +87,15 @@ public class Unstuck implements IUserCommandHandler
 				player.doCast(gmEscape);
 				return true;
 			}
+			
 			player.sendMessage("You use Escape: 1 second.");
 		}
 		else if ((Config.UNSTUCK_INTERVAL == 300) && (escape != null))
 		{
-			// If unstuck is default (5min), send sound and system message.
-			player.sendPacket(new PlaySound("systemmsg_e.809"));
+			// If unstuck is default (5min), send retail system message.
 			player.sendPacket(SystemMessageId.YOU_ARE_STUCK_YOU_WILL_BE_TRANSPORTED_TO_THE_NEAREST_VILLAGE_IN_FIVE_MINUTES);
+			player.stopMove(null);
+			player.abortCast();
 			player.doCast(escape);
 			return true;
 		}
@@ -110,12 +110,14 @@ public class Unstuck implements IUserCommandHandler
 				player.sendMessage("You use Escape: " + (unstuckTimer / 1000) + " seconds.");
 			}
 		}
+		
 		player.getAI().setIntention(Intention.IDLE);
+		
 		// SoE Animation section
 		player.setTarget(player);
 		player.disableAllSkills();
 		
-		Broadcast.toSelfAndKnownPlayersInRadius(player, new MagicSkillUse(player, 1050, 1, unstuckTimer, 0), 900);
+		player.broadcastSkillPacket(new MagicSkillUse(player, 1050, 1, unstuckTimer, 0), player);
 		player.sendPacket(new SetupGauge(player.getObjectId(), 0, unstuckTimer));
 		// End SoE Animation section
 		
@@ -150,7 +152,7 @@ public class Unstuck implements IUserCommandHandler
 	}
 	
 	@Override
-	public int[] getUserCommandList()
+	public int[] getCommandList()
 	{
 		return COMMAND_IDS;
 	}

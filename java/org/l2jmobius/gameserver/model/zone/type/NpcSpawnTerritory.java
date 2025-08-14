@@ -49,6 +49,7 @@ public class NpcSpawnTerritory
 		{
 			_bannedTerritories = new ArrayList<>(1);
 		}
+		
 		_bannedTerritories.add(territory);
 	}
 	

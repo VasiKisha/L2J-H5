@@ -53,6 +53,7 @@ public class PlainsOfLizardman extends AbstractNpcAI
 		22773, // Tanta Lizardman Magician
 		22774, // Tanta Lizardman Summoner
 	};
+	
 	// Skills
 	private static final SkillHolder STUN_EFFECT = new SkillHolder(6622, 1);
 	private static final SkillHolder DEMOTIVATION_HEX = new SkillHolder(6425, 1);
@@ -60,8 +61,10 @@ public class PlainsOfLizardman extends AbstractNpcAI
 	private static final SkillHolder RAINBOW_FROG_SKILL = new SkillHolder(6429, 1);
 	private static final SkillHolder STICKY_MUSHROOM_SKILL = new SkillHolder(6428, 1);
 	private static final SkillHolder ENERGY_PLANT_SKILL = new SkillHolder(6430, 1);
+	
 	// Misc
 	private static final double HP_PERCENTAGE = 0.60;
+	
 	// Buffs
 	private static final SkillHolder[] BUFFS =
 	{
@@ -80,6 +83,7 @@ public class PlainsOfLizardman extends AbstractNpcAI
 		new SkillHolder(6640, 1), // Energizing Aura
 		new SkillHolder(6674, 1), // Energy of Range Increment
 	};
+	
 	// Misc
 	// @formatter:off
 	private static final int[] BUFF_LIST =
@@ -108,6 +112,7 @@ public class PlainsOfLizardman extends AbstractNpcAI
 			});
 			npc.doDie(player);
 		}
+		
 		return null;
 	}
 	
@@ -181,19 +186,23 @@ public class PlainsOfLizardman extends AbstractNpcAI
 		{
 			castRandomBuff(buffer, 7, 45, BUFFS[0], BUFFS[1], BUFFS[2]);
 		}
+		
 		if (random <= 11)
 		{
 			castRandomBuff(buffer, 8, 60, BUFFS[3], BUFFS[4], BUFFS[5]);
 			castRandomBuff(buffer, 3, 6, BUFFS[9], BUFFS[10], BUFFS[12]);
 		}
+		
 		if (random <= 25)
 		{
 			buffer.doCast(BUFFS[getRandomEntry(BUFF_LIST)].getSkill());
 		}
+		
 		if (random <= 10)
 		{
 			buffer.doCast(BUFFS[13].getSkill());
 		}
+		
 		if (random <= 1)
 		{
 			final int i = getRandom(100);

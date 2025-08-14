@@ -38,6 +38,7 @@ public class Q00029_ChestCaughtWithABaitOfEarth extends Quest
 	// NPCs
 	private static final int WILLIE = 31574;
 	private static final int ANABEL = 30909;
+	
 	// Items
 	private static final int PURPLE_TREASURE_BOX = 6507;
 	private static final int SMALL_GLASS_BOX = 7627;
@@ -90,6 +91,7 @@ public class Q00029_ChestCaughtWithABaitOfEarth extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -157,6 +159,7 @@ public class Q00029_ChestCaughtWithABaitOfEarth extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

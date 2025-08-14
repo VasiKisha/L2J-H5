@@ -38,7 +38,7 @@ public class Offline implements IVoicedCommandHandler
 	};
 	
 	@Override
-	public boolean useVoicedCommand(String command, Player player, String target)
+	public boolean onCommand(String command, Player player, String target)
 	{
 		if (command.equals("offline") && Config.ENABLE_OFFLINE_COMMAND && (Config.OFFLINE_TRADE_ENABLE || Config.OFFLINE_CRAFT_ENABLE))
 		{
@@ -62,7 +62,7 @@ public class Offline implements IVoicedCommandHandler
 	}
 	
 	@Override
-	public String[] getVoicedCommandList()
+	public String[] getCommandList()
 	{
 		return VOICED_COMMANDS;
 	}

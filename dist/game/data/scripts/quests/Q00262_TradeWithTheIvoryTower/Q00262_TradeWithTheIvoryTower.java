@@ -19,7 +19,6 @@ package quests.Q00262_TradeWithTheIvoryTower;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -35,11 +34,14 @@ public class Q00262_TradeWithTheIvoryTower extends Quest
 {
 	// NPCs
 	private static final int VOLLODOS = 30137;
+	
 	// Items
 	private static final int SPORE_SAC = 707;
+	
 	// Misc
 	private static final int MIN_LEVEL = 8;
 	private static final int REQUIRED_ITEM_COUNT = 10;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS_SAC = new HashMap<>();
 	static
@@ -66,6 +68,7 @@ public class Q00262_TradeWithTheIvoryTower extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -79,8 +82,7 @@ public class Q00262_TradeWithTheIvoryTower extends Quest
 		}
 		
 		final QuestState qs = getQuestState(partyMember, false);
-		final float chance = (MOBS_SAC.get(npc.getId()) * Config.RATE_QUEST_DROP);
-		if (getRandom(10) < chance)
+		if (getRandom(10) < MOBS_SAC.get(npc.getId()))
 		{
 			rewardItems(player, SPORE_SAC, 1);
 			if (getQuestItemsCount(player, SPORE_SAC) >= REQUIRED_ITEM_COUNT)
@@ -132,6 +134,7 @@ public class Q00262_TradeWithTheIvoryTower extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -33,16 +33,20 @@ public class MuscleBomber extends AbstractNpcAI
 	// NPC
 	private static final int MUSCLE_BOMBER = 25724;
 	private static final int DRAKOS_ASSASSIN = 22823;
+	
 	// Skills
 	private static final SkillHolder ENHANCE_LEVEL_1 = new SkillHolder(6842, 1);
 	private static final SkillHolder ENHANCE_LEVEL_2 = new SkillHolder(6842, 2);
+	
 	// Variables
 	private static final String HIGH_HP_FLAG = "HIGH_HP_FLAG";
 	private static final String MED_HP_FLAG = "MED_HP_FLAG";
 	private static final String LIMIT_FLAG = "LIMIT_FLAG";
+	
 	// Timers
 	private static final String TIMER_SUMMON = "TIMER_SUMMON";
 	private static final String TIMER_LIMIT = "TIMER_LIMIT";
+	
 	// Misc
 	private static final int MAX_CHASE_DIST = 2500;
 	private static final double HIGH_HP_PERCENTAGE = 0.80;
@@ -95,11 +99,13 @@ public class MuscleBomber extends AbstractNpcAI
 						addAttackDesire(addSpawn(DRAKOS_ASSASSIN, npc.getX() + getRandom(100), npc.getY() + getRandom(10), npc.getZ(), npc.getHeading(), false, 0), player);
 						addAttackDesire(addSpawn(DRAKOS_ASSASSIN, npc.getX() + getRandom(100), npc.getY() + getRandom(10), npc.getZ(), npc.getHeading(), false, 0), player);
 					}
+					
 					startQuestTimer(TIMER_SUMMON, 60000, npc, player);
 				}
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

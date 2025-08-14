@@ -215,6 +215,7 @@ public class FestivalGuide extends Npc
 		{
 			html.replace("%statsTable%", getStatsTable());
 		}
+		
 		if (value == 6)
 		{
 			html.replace("%bonusTable%", getBonusTable());
@@ -271,6 +272,7 @@ public class FestivalGuide extends Npc
 			final String festivalName = SevenSignsFestival.getFestivalName(i);
 			tableHtml.append("<tr><td align=\"center\" width=\"150\">" + festivalName + "</td><td align=\"center\" width=\"150\">" + accumScore + "</td></tr>");
 		}
+		
 		return tableHtml.toString();
 	}
 }

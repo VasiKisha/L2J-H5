@@ -32,6 +32,7 @@ public class Q00061_LawEnforcement extends Quest
 	private static final int LIANE = 32222;
 	private static final int KEKROPUS = 32138;
 	private static final int EINDBURGH = 32469;
+	
 	// Misc
 	private static final int MIN_LEVEL = 76;
 	
@@ -141,6 +142,7 @@ public class Q00061_LawEnforcement extends Quest
 				if (qs.isMemoState(5))
 				{
 					player.setPlayerClass(136);
+					
 					// SystemMessage and cast skill is done by setClassId
 					player.broadcastUserInfo();
 					giveAdena(player, 26000, true);
@@ -150,6 +152,7 @@ public class Q00061_LawEnforcement extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -170,6 +173,7 @@ public class Q00061_LawEnforcement extends Quest
 				{
 					return getHtm(player, "32222-01.htm").replace("%name%", player.getName());
 				}
+				
 				htmltext = "32222-04.htm";
 			}
 			else
@@ -222,6 +226,7 @@ public class Q00061_LawEnforcement extends Quest
 					{
 						return getHtm(player, "32469-01.html").replace("%name%", player.getName());
 					}
+					
 					if (qs.isMemoState(5))
 					{
 						htmltext = "32469-02.html";
@@ -230,6 +235,7 @@ public class Q00061_LawEnforcement extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

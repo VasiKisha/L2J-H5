@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="12800" type="Weapon" name="Pumpkin Transformation Stick - 30-day limited period">
 		<!-- Dimensional item. Transformation stick that turns you into a pumpkin. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -18,12 +18,12 @@
 		<set name="unequip_skill" val="839-1" />
 		<set name="item_skill" val="8246-1" /> <!-- Transform Pumpkin Ghost -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12801" type="Weapon" name="Condolence Flowerpot A">
 		<set name="icon" val="icon.etc_pig_candy_i00" />
@@ -42,12 +42,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12802" type="Weapon" name="Condolence Flowerpot B">
 		<set name="icon" val="icon.etc_pig_candy_i00" />
@@ -66,12 +66,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12803" type="Weapon" name="Congratulatory Flowerpot A">
 		<set name="icon" val="icon.etc_pig_candy_i00" />
@@ -90,12 +90,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12804" type="Weapon" name="Congratulatory Flowerpot B">
 		<set name="icon" val="icon.etc_pig_candy_i00" />
@@ -114,12 +114,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12805" type="Weapon" name="Flower Arrangement">
 		<set name="icon" val="icon.etc_pig_candy_i00" />
@@ -138,12 +138,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12806" type="Weapon" name="Bomb">
 		<set name="icon" val="icon.etc_pig_candy_i00" />
@@ -162,12 +162,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12807" type="Weapon" name="Direction Board">
 		<set name="icon" val="icon.etc_pig_candy_i00" />
@@ -186,12 +186,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12808" type="Weapon" name="Fruit Basket">
 		<set name="icon" val="icon.etc_pig_candy_i00" />
@@ -210,12 +210,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12809" type="Weapon" name="Arranged Clams">
 		<set name="icon" val="icon.etc_pig_candy_i00" />
@@ -234,12 +234,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12810" type="Weapon" name="Halloween Pumpkin">
 		<set name="icon" val="icon.etc_pig_candy_i00" />
@@ -258,12 +258,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12811" type="Armor" name="Arcana Sigil">
 		<set name="icon" val="icon.arcana_sigil_i00" />
@@ -277,14 +277,14 @@
 		<set name="weight" val="940" />
 		<set name="price" val="3355000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="13" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="12812" type="Armor" name="Dynasty Sigil">
 		<set name="icon" val="icon.dynasty_sigil_i00" />
@@ -298,14 +298,14 @@
 		<set name="weight" val="930" />
 		<set name="price" val="6404000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="15" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="12813" type="Armor" name="Vesper Sigil">
 		<set name="icon" val="icon.verper_sigil_i00" />
@@ -319,14 +319,14 @@
 		<set name="weight" val="920" />
 		<set name="price" val="12250000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="17" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="12814" type="Weapon" name="Shadow Item - Gatekeeper Transformation Stick">
 		<!-- Allows you to transform into a Gatekeeper for 60 minutes. The transformation ends when you cancel the equip. Cannot be exchanged or dropped. -->
@@ -347,12 +347,12 @@
 		<set name="item_skill" val="8244-1" /> <!-- Transform Gatekeeper -->
 		<set name="duration" val="60" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12815" type="Armor" name="Red Talisman - Max CP">
 		<!-- Increases Max CP when equipped. Effect does not stack with additional Talismans of the same type. Shadow Item that cannot be exchanged or dropped. -->
@@ -429,9 +429,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2530-1" /> <!-- Recovery Item for Battlefield Use -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player SiegeZone="126" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12820" type="EtcItem" name="Blueprint - Summon Merchant Golem">
 		<!-- Blueprint needed to learn the Summon Merchant Golem skill. Used by Warsmiths. Required level: 52 -->
@@ -450,9 +450,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="28800" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="80" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12822" type="EtcItem" name="Accessory Life Stone - Level 82">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 82 and above when augmenting items. -->
@@ -462,9 +462,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="34560" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="82" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12823" type="EtcItem" name="Casian's Blue Crystal">
 		<!-- A gift that Casian received as a child from the Water Dragon. Take it to Galate. -->
@@ -713,9 +713,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="5000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="46" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12841" type="EtcItem" name="Accessory Life Stone - Level 49">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 49 and above when augmenting items. -->
@@ -725,9 +725,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="6000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="49" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12842" type="EtcItem" name="Accessory Life Stone - Level 52">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 52 and above when augmenting items. -->
@@ -737,9 +737,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="7200" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="52" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12843" type="EtcItem" name="Accessory Life Stone - Level 55">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 55 and above when augmenting items. -->
@@ -749,9 +749,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="8640" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="55" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12844" type="EtcItem" name="Accessory Life Stone - Level 58">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 58 and above when augmenting items. -->
@@ -761,9 +761,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="10000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="58" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12845" type="EtcItem" name="Accessory Life Stone - Level 61">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 61 and above when augmenting items. -->
@@ -773,9 +773,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="12000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="61" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12846" type="EtcItem" name="Accessory Life Stone - Level 64">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 64 and above when augmenting items. -->
@@ -785,9 +785,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="15000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="64" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12847" type="EtcItem" name="Accessory Life Stone - Level 67">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 67 and above when augmenting items. -->
@@ -797,9 +797,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="18000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="67" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12848" type="EtcItem" name="Accessory Life Stone - Level 70">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 70 and above when augmenting items. -->
@@ -809,9 +809,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="21600" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="70" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12849" type="EtcItem" name="Accessory Life Stone - Level 76">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 76 and above when augmenting items. -->
@@ -821,9 +821,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="24000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="75" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12850" type="EtcItem" name="Accessory Life Stone - Level 80">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 80 and above when augmenting items. -->
@@ -833,9 +833,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="21600" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="80" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12851" type="EtcItem" name="Accessory Life Stone - Level 82">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 82 and above when augmenting items. -->
@@ -845,9 +845,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="24000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="80" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12852" type="Weapon" name="Naga Storm - Molar {PvP} - Focus">
 		<!-- Masterwork Item that activates the poison effect occasionally when attacking. <Soul Crystal Enhancement>. Increases Critical by 67. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -871,7 +871,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3861-1;3651-1;3652-1;3552-1;3051-2" /> <!-- Dagger of Poison -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="220" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="12" />
@@ -879,7 +879,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12853" type="Weapon" name="Naga Storm - Molar {PvP} - Critical Damage">
 		<!-- Masterwork Item that activates the poison effect occasionally when attacking. <Soul Crystal Enhancement>. P. Atk. +200 during a critical attack. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -903,7 +903,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3861-1;3651-1;3652-1;3552-1;3066-2" /> <!-- Dagger of Poison -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="220" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="12" />
@@ -911,7 +911,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12854" type="Weapon" name="Naga Storm - Molar {PvP} - Back Blow">
 		<!-- Masterwork Item that activates the poison effect occasionally when attacking. <Soul Crystal Enhancement>. Critical Rate increases by 37 when attacking from behind the target. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -935,7 +935,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3861-1;3651-1;3652-1;3552-1;3063-1" /> <!-- Dagger of Poison -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="220" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="12" />
@@ -943,7 +943,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12855" type="Weapon" name="Daimon Crystal - Wisdom {PvP} - Mana Up">
 		<!-- Masterwork Item that decreases MP consumption when using the skill. <Soul Crystal Enhancement>. Max MP increases by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -968,7 +968,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3902-1;3654-1;3552-1;3014-3" /> <!-- Staff of Clarity -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="245" />
 			<set stat="mAtk" val="177" />
 			<set stat="critRate" val="4" />
@@ -976,7 +976,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12856" type="Weapon" name="Daimon Crystal - Wisdom {PvP} - Acumen">
 		<!-- Masterwork Item that decreases MP consumption when using the skill. <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -1001,7 +1001,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3902-1;3654-1;3552-1;3047-3" /> <!-- Staff of Clarity -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="245" />
 			<set stat="mAtk" val="177" />
 			<set stat="critRate" val="4" />
@@ -1009,7 +1009,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12857" type="Weapon" name="Daimon Crystal - Wisdom {PvP} - Mental Shield">
 		<!-- Masterwork Item that decreases MP consumption upon skill use. <Soul Crystal Enhancement>. Has a 50% chance of casting Mental Shield when using a magic skill on the target. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -1036,7 +1036,7 @@
 		<set name="onmagic_chance" val="50" />
 		<set name="onmagic_skill" val="1035-4" />
 		<set name="item_skill" val="3902-1;3654-1;3552-3" /> <!-- Staff of Clarity -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="245" />
 			<set stat="mAtk" val="177" />
 			<set stat="critRate" val="4" />
@@ -1044,7 +1044,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12858" type="Weapon" name="Barakiel's Axe - On Fire {PvP} - Health">
 		<!-- Masterwork Item that increases HP recovery power. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1068,7 +1068,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3887-1;3650-1;3552-1;3013-5" /> <!-- Blunt Weapon of Regeneration -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1076,7 +1076,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12859" type="Weapon" name="Barakiel's Axe - On Fire {PvP} - Haste">
 		<!-- Masterwork Item that increases HP recovery power. <Soul Crystal Enhancement>. Atk. Spd. increases by 6%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1100,7 +1100,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3887-1;3650-1;3552-1;3068-3" /> <!-- Blunt Weapon of Regeneration -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1108,7 +1108,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12860" type="Weapon" name="Barakiel's Axe - On Fire {PvP} - Focus">
 		<!-- Masterwork Item that increases HP recovery power. <Soul Crystal Enhancement>. Increases Critical by 61. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1132,7 +1132,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3887-1;3650-1;3552-1;3050-2" /> <!-- Blunt Weapon of Regeneration -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1140,7 +1140,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12861" type="Weapon" name="Screaming Vengeance - Concentration {PvP} - Cheap Shot">
 		<!-- Masterwork Item that decreases MP consumption when using a bow. Kamael Exclusive Weapon: Shyeed's Bow Conversion. <Soul Crystal Enhancement>when using the . skill MP consumption decreases by 12%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1165,10 +1165,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3360-1;3868-4;3552-3;3360-1;3655-1" /> <!-- Special Ability: Cheap Shot -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="318" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="10" />
@@ -1176,7 +1176,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12862" type="Weapon" name="Screaming Vengeance - Concentration {PvP} - Focus">
 		<!-- Masterwork Item that decreases MP consumption when using a bow. Kamael Exclusive Weapon: Shyeed's Bow Conversion. <Soul Crystal Enhancement>. Increases Critical by 61. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1201,10 +1201,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3868-4;3655-1;3552-1;3050-2" /> <!-- Crossbow of Guidance -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="318" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="10" />
@@ -1212,7 +1212,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12863" type="Weapon" name="Screaming Vengeance - Concentration {PvP} - Quick Recovery">
 		<!-- Masterwork Item that decreases MP consumption when using a bow. Kamael Exclusive Weapon: Shyeed's Bow conversion. <Soul Crystal Enhancement> . Decreases re-use delay by 17%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1237,10 +1237,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3868-4;3655-1;3552-3" /> <!-- Crossbow of Guidance -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="318" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="10" />
@@ -1248,7 +1248,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12864" type="Weapon" name="Behemoth's Tuning Fork - Destruction {PvP} - Focus">
 		<!-- Masterwork Item that increases P. Atk. <Soul Crystal Enhancement>. Increases Critical by 61. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1272,7 +1272,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3897-1;3653-1;3552-1;3050-2" /> <!-- Two-handed Blunt Weapon of Might -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1280,7 +1280,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12865" type="Weapon" name="Behemoth's Tuning Fork - Destruction {PvP} - Health">
 		<!-- Masterwork Item that increases P. Atk. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1304,7 +1304,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3897-1;3653-1;3552-1;3013-5" /> <!-- Two-handed Blunt Weapon of Might -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1312,7 +1312,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12866" type="Weapon" name="Behemoth's Tuning Fork - Destruction {PvP} - Anger">
 		<!-- Masterwork Item that increases P. Atk. <Soul Crystal Enhancement>. Decreases Max HP by 15% and P. Atk. +32. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1336,7 +1336,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3897-1;3653-1;3552-1;3057-3" /> <!-- Two-handed Blunt Weapon of Might -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1344,7 +1344,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12867" type="Weapon" name="Durendal - Earth {PvP} - Focus">
 		<!-- Masterwork Item than increases Max HP. Kamael Exclusive Weapon: Sword of Ipos Conversion. <Soul Crystal Enhancement>. Increases Critical by 61. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1368,10 +1368,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3849-1;3653-1;3552-1;3050-2" /> <!-- Ancient Sword of Boost HP -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="272" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
@@ -1379,7 +1379,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12868" type="Weapon" name="Durendal - Earth {PvP} - Haste">
 		<!-- Masterwork Item than increases Max HP. Kamael Exclusive Weapon: Sword of Ipos Conversion. The . Atk. Spd. of . <Soul Crystal Enhancement> increases by 6%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1403,10 +1403,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3849-1;3653-1;3552-1;3068-3" /> <!-- Ancient Sword of Boost HP -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="272" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
@@ -1414,7 +1414,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12869" type="Weapon" name="Durendal - Earth {PvP} - Health">
 		<!-- Masterwork Item than increases Max HP. Kamael Exclusive Weapon: Sword of Ipos Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1438,10 +1438,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3849-1;3653-1;3552-1;3013-5" /> <!-- Ancient Sword of Boost HP -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="272" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
@@ -1449,7 +1449,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12870" type="Weapon" name="Shyeed's Bow - Concentration {PvP} - Cheap Shot">
 		<!-- Masterwork Item that decreases MP consumption when using a bow. <Soul Crystal Enhancement>. MP consumption decreases to 1 at the chance of 30% during a general attack. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1476,7 +1476,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3863-4;3655-1;3552-3" /> <!-- Bow of Guidance -->
 		<set name="reduced_mp_consume" val="30,1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="571" />
 			<set stat="mAtk" val="133" />
 			<set stat="critRate" val="12" />
@@ -1484,7 +1484,7 @@
 			<set stat="pAtkSpd" val="227" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12871" type="Weapon" name="Shyeed's Bow - Concentration {PvP} - Focus">
 		<!-- Masterwork Item that decreases MP consumption when using a bow. <Soul Crystal Enhancement>. Increases Critical by 61. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1510,7 +1510,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3863-4;3655-1;3552-1;3050-2" /> <!-- Bow of Guidance -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="571" />
 			<set stat="mAtk" val="133" />
 			<set stat="critRate" val="12" />
@@ -1518,7 +1518,7 @@
 			<set stat="pAtkSpd" val="227" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12872" type="Weapon" name="Shyeed's Bow - Concentration {PvP} - Quick Recovery">
 		<!-- Masterwork Item that decreases MP consumption when using a bow. <Soul Crystal Enhancement>. Re-use delay decreases by about 17%. Increases damage inflicted during PvP. Has a chance of increasing Atk. Spd. of bows/crossbows during an attack. -->
@@ -1544,7 +1544,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3863-4;3655-1;3552-3" /> <!-- Bow of Guidance -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="571" />
 			<set stat="mAtk" val="133" />
 			<set stat="critRate" val="12" />
@@ -1552,7 +1552,7 @@
 			<set stat="pAtkSpd" val="227" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12873" type="Weapon" name="Sword of Ipos - Earth {PvP} - Focus">
 		<!-- Masterwork Item that increases Max HP. <Soul Crystal Enhancement>. Increases Critical by 61. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1576,14 +1576,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3843-1;3653-1;3552-1;3050-2" /> <!-- Two-handed Sword of Boost HP -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12874" type="Weapon" name="Sword of Ipos - Earth {PvP} - Haste">
 		<!-- Masterwork Item that increases Max HP. <Soul Crystal Enhancement>. Atk. Spd. increases by 6%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1607,14 +1607,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3843-1;3653-1;3552-1;3068-3" /> <!-- Two-handed Sword of Boost HP -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12875" type="Weapon" name="Sword of Ipos - Earth {PvP} - Health">
 		<!-- Masterwork Item that increases Max HP. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1638,14 +1638,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3843-1;3653-1;3552-1;3013-5" /> <!-- Two-handed Sword of Boost HP -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12876" type="Weapon" name="Sobekk's Hurricane - Landslide {PvP} - Rsk. Haste">
 		<!-- Masterwork Item that activates the stun effect occasionally when attacking. <Soul Crystal Enhancement>. Atk. Spd. increases by 11% when HP is 60% or below. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -1669,7 +1669,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3882-1;3651-1;3652-1;3552-1;3056-3" /> <!-- Fist Weapon of Stun -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1677,7 +1677,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12877" type="Weapon" name="Sobekk's Hurricane - Landslide {PvP} - Haste">
 		<!-- Masterwork Item that has the stun effect occasionally when hitting. <Soul Crystal Enhancement>. Atk. Spd. increases by 6%. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -1701,7 +1701,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3882-1;3651-1;3652-1;3552-1;3068-3" /> <!-- Fist Weapon of Stun -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1709,7 +1709,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12878" type="Weapon" name="Sobekk's Hurricane - Landslide {PvP} - Critical Drain">
 		<!-- Masterwork Item that activates the stun effect occasionally when attacking. <Soul Crystal Enhancement>. Absorbs HP 14 of the target during a critical attack. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -1734,7 +1734,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3039-7" />
 		<set name="item_skill" val="3882-1;3651-1;3652-1;3552-3" /> <!-- Fist Weapon of Stun -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="4" />
@@ -1742,7 +1742,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12879" type="Weapon" name="Sirra's Blade - Landslide {PvP} - Haste">
 		<!-- Masterwork Item that has the stun effect occasionally when hitting. <Soul Crystal Enhancement>. Atk. Spd. increases by 6%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1766,14 +1766,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3829-1;3650-1;3552-1;3068-3" /> <!-- Sword of Stun -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12880" type="Weapon" name="Sirra's Blade - Landslide {PvP} - Health">
 		<!-- Masterwork Item that activates the stun effect occasionally when attacking. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1797,14 +1797,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3829-1;3650-1;3552-1;3013-5" /> <!-- Sword of Stun -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12881" type="Weapon" name="Sirra's Blade - Landslide {PvP} - Critical Poison">
 		<!-- Masterwork Item that activates the stun effect occasionally when attacking. <Soul Crystal Enhancement>. Poisons the target at the chance of 15% during the general attack critical. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1829,14 +1829,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3061-3" />
 		<set name="item_skill" val="3829-1;3650-1;3552-3" /> <!-- Sword of Stun -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12882" type="Weapon" name="Éclair Bijou - Landslide {PvP} - Haste">
 		<!-- Masterwork Item that activates the stun effect occasionally when attacking. Kamael Exclusive Weapon: Sirra's Blade Conversion The . Atk. Spd. of . <Soul Crystal Enhancement> increases by 6%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
@@ -1861,10 +1861,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3834-1;3650-1;3552-1;3068-3" /> <!-- Rapier of Stun -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="228" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="10" />
@@ -1872,7 +1872,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12883" type="Weapon" name="Éclair Bijou - Landslide {PvP} - Health">
 		<!-- Masterwork Item that activates the stun effect occasionally when attacking. Kamael Exclusive Weapon: Sirra's Blade Conversion . <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
@@ -1897,10 +1897,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3834-1;3650-1;3552-1;3013-5" /> <!-- Rapier of Stun -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="228" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="10" />
@@ -1908,7 +1908,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12884" type="Weapon" name="Éclair Bijou - Landslide {PvP} - Critical Poison">
 		<!-- Masterwork Item that activates the stun effect occasionally when attacking. Kamael Exclusive Weapon: Sirra's Blade Conversion. <Soul Crystal Enhancement>. Has a 15% chance of poisoning a target during a general critical attack. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
@@ -1934,10 +1934,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3061-3" />
 		<set name="item_skill" val="3834-1;3650-1;3552-3" /> <!-- Rapier of Stun -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="228" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="10" />
@@ -1945,7 +1945,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12885" type="Weapon" name="Tiphon's Spear - Landslide {PvP} - Critical Stun">
 		<!-- Masterwork Item that activates the stun effect occasionally when attacking. <Soul Crystal Enhancement>. Gives it stun effect at the rate of about 25% during a critical attack. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1970,7 +1970,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3070-3" />
 		<set name="item_skill" val="3876-1;3653-1;3552-4" /> <!-- Polearm of Stun -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
@@ -1978,7 +1978,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12886" type="Weapon" name="Tiphon's Spear - Landslide {PvP} - Towering Blow">
 		<!-- Masterwork Item that has the stun effect occasionally when hitting. <Soul Crystal Enhancement>. the range increases. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2002,7 +2002,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3876-1;3653-1;3552-4" /> <!-- Polearm of Stun -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
@@ -2011,7 +2011,7 @@
 			<set val="80" stat="pAtkRange" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12887" type="Weapon" name="Tiphon's Spear - Landslide {PvP} - Wild Blow">
 		<!-- Masterwork Item that has the stun effect occasionally when hitting. <Soul Crystal Enhancement>. the attack angle widens. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2035,7 +2035,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3876-1;3653-1;3552-4" /> <!-- Polearm of Stun -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="251" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
@@ -2043,7 +2043,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12888" type="Weapon" name="Tallum Blade*Damascus - Landslide {PvP}">
 		<!-- Masterwork Item that has the stun effect occasionally when hitting. When enchanted with a two-handed sword, a two-handed blunt weapon or a fighting weapon, its P. Atk. increases more than that of a regular one-handed sword. When enchanted to 4 or more, Atk. Spd. increases by 8%. Increases damage inflicted during PvP, and decreases the range of bows/crossbows occasionally during an attack. -->
@@ -2068,14 +2068,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3839-1;3656-1;3552-3" /> <!-- Dual-Blade Weapon of Stun -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="305" />
 			<set stat="mAtk" val="121" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12889" type="Weapon" name="Themis' Tongue - Cleverness {PvP} - Mana Up">
 		<!-- Masterwork Item that increases MP recovery power. <Soul Crystal Enhancement>. Max MP increases by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2100,14 +2100,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3853-2;3654-1;3552-1;3014-3" /> <!-- Sword of Mana Regeneration -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="202" />
 			<set stat="mAtk" val="161" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12890" type="Weapon" name="Themis' Tongue - Cleverness {PvP} - Mental Shield">
 		<!-- Masterwork Item that increases MP Regeneration. <Soul Crystal Enhancement>. Has a 50% chance of casting Mental Shield when using a magic skill on the target. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2134,14 +2134,14 @@
 		<set name="onmagic_chance" val="50" />
 		<set name="onmagic_skill" val="1035-4" />
 		<set name="item_skill" val="3853-2;3654-1;3552-3" /> <!-- Sword of Mana Regeneration -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="202" />
 			<set stat="mAtk" val="161" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12891" type="Weapon" name="Themis' Tongue - Cleverness {PvP} - Magic Focus">
 		<!-- Masterwork Item that increases MP Regeneration. <Soul Crystal Enhancement>. Has a 20% chance of casting Focus when using a magic skill on the target. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2168,14 +2168,14 @@
 		<set name="onmagic_chance" val="20" />
 		<set name="onmagic_skill" val="1077-3" />
 		<set name="item_skill" val="3853-2;3654-1;3552-3" /> <!-- Sword of Mana Regeneration -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="202" />
 			<set stat="mAtk" val="161" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12892" type="Weapon" name="Cabrio's Hand - Cleverness {PvP} - Conversion">
 		<!-- Masterwork Item that increases MP regeneration. <Soul Crystal Enhancement>. Max MP increases by 60% and decreases Max HP by 40%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2200,7 +2200,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3893-1;3654-1;3552-1;3048-3" /> <!-- Blunt Weapon of Mana Regeneration -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="202" />
 			<set stat="mAtk" val="161" />
 			<set stat="critRate" val="4" />
@@ -2208,7 +2208,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12893" type="Weapon" name="Cabrio's Hand - Cleverness {PvP} - Mana Up">
 		<!-- Masterwork Item that increases MP recovery power. <Soul Crystal Enhancement>. Max MP increases by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2233,7 +2233,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3893-1;3654-1;3552-1;3014-3" /> <!-- Blunt Weapon of Mana Regeneration -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="202" />
 			<set stat="mAtk" val="161" />
 			<set stat="critRate" val="4" />
@@ -2241,7 +2241,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12894" type="Weapon" name="Cabrio's Hand - Cleverness {PvP} - Magic Silence">
 		<!-- Masterwork Item that increases MP Regeneration. <Soul Crystal Enhancement>. Has a 10% chance of casting Silence when using a magic skill on the target. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2268,7 +2268,7 @@
 		<set name="onmagic_chance" val="10" />
 		<set name="onmagic_skill" val="3074-2" />
 		<set name="item_skill" val="3893-1;3654-1;3552-3" /> <!-- Blunt Weapon of Mana Regeneration -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="202" />
 			<set stat="mAtk" val="161" />
 			<set stat="critRate" val="4" />
@@ -2276,7 +2276,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12895" type="Weapon" name="Gram - Thunder {PvP} - Haste">
 		<!-- Masterwork Item than increases the critical impact. Kamael Exclusive Weapon: Heaven's Divider Conversion. <Soul Crystal Enhancement>. Atk. Spd. increases by about 7%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2300,10 +2300,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3850-1;3653-1;3552-1;3564-1" /> <!-- Ancient Sword of Critical Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="304" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
@@ -2311,7 +2311,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12896" type="Weapon" name="Gram - Thunder {PvP} - Health">
 		<!-- Masterwork Item than increases the critical impact. Kamael Exclusive Weapon: Heaven's Divider Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2335,10 +2335,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3850-1;3653-1;3552-1;3013-3" /> <!-- Ancient Sword of Critical Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="304" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
@@ -2346,7 +2346,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12897" type="Weapon" name="Gram - Thunder {PvP} - Focus">
 		<!-- Masterwork Item than increases the critical impact. Kamael Exclusive Weapon: Heaven's Divider Conversion. <Soul Crystal Enhancement>. Increases Critical by 84. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2370,10 +2370,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3850-1;3653-1;3552-1;3566-1" /> <!-- Ancient Sword of Critical Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="304" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
@@ -2381,7 +2381,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12898" type="Weapon" name="Demon Splinter - Thunder {PvP} - Focus">
 		<!-- Masterwork Item that increases Critical Damage. <Soul Crystal Enhancement>. Increases Critical by 80. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2405,7 +2405,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3883-1;3651-1;3652-1;3552-1;3565-1" /> <!-- Fist Weapon of Critical Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="342" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
@@ -2413,7 +2413,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="12899" type="Weapon" name="Demon Splinter - Thunder {PvP} - Health">
 		<!-- Masterwork Item that increases Critical Damage. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Has a chance of canceling more than 1 of a target's enhanced status, or of decreasing a target's Shield Defense during an attack. -->
@@ -2437,7 +2437,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3883-1;3651-1;3652-1;3552-1;3013-3" /> <!-- Fist Weapon of Critical Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="342" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
@@ -2445,6 +2445,6 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 </list>

@@ -64,6 +64,7 @@ public class PetStatus extends SummonStatus
 			sm.addInt((int) value);
 			pet.sendPacket(sm);
 		}
+		
 		pet.getAI().notifyAction(Action.ATTACKED, attacker);
 	}
 	

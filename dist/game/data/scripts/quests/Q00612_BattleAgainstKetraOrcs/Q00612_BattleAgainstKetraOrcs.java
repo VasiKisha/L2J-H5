@@ -34,6 +34,7 @@ public class Q00612_BattleAgainstKetraOrcs extends Quest
 {
 	// NPC
 	private static final int ASHAS = 31377;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
 	static
@@ -54,9 +55,11 @@ public class Q00612_BattleAgainstKetraOrcs extends Quest
 		MOBS.put(21345, 713); // Ketra's Head Shaman
 		MOBS.put(21347, 738); // Ketra Prophet
 	}
+	
 	// Items
 	private static final int SEED = 7187;
 	private static final int MOLAR = 7234;
+	
 	// Misc
 	private static final int MIN_LEVEL = 74;
 	private static final int MOLAR_COUNT = 100;
@@ -97,6 +100,7 @@ public class Q00612_BattleAgainstKetraOrcs extends Quest
 				{
 					return "31377-08.html";
 				}
+				
 				takeItems(player, MOLAR, MOLAR_COUNT);
 				giveItems(player, SEED, 20);
 				break;
@@ -112,6 +116,7 @@ public class Q00612_BattleAgainstKetraOrcs extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -144,6 +149,7 @@ public class Q00612_BattleAgainstKetraOrcs extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

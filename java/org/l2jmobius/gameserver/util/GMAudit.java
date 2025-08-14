@@ -42,9 +42,9 @@ public class GMAudit
 	// List of characters not allowed in file names.
 	private static final char[] ILLEGAL_CHARACTERS =
 	{
-		//@formatter:off
+		// @formatter:off
 		'/', '\n', '\r', '\t', '\0', '\f', '`', '?', '*', '\\', '<', '>', '|', '\"', ':'
-		//@formatter:on
+		// @formatter:on
 	};
 	
 	/**
@@ -102,6 +102,7 @@ public class GMAudit
 		{
 			sanitized = sanitized.replace(illegalChar, '_');
 		}
+		
 		return sanitized;
 	}
 	

@@ -83,6 +83,7 @@ public class ExAirShipInfo extends ServerPacket
 			buffer.writeInt(0);
 			buffer.writeInt(0);
 		}
+		
 		buffer.writeInt(_ship.getFuel());
 		buffer.writeInt(_ship.getMaxFuel());
 	}

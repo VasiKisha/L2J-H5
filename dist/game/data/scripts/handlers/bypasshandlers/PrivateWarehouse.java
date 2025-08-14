@@ -44,7 +44,7 @@ public class PrivateWarehouse implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if (!target.isNpc())
 		{
@@ -71,6 +71,7 @@ public class PrivateWarehouse implements IBypassHandler
 				{
 					showWithdrawWindow(player, null, (byte) 0);
 				}
+				
 				return true;
 			}
 			else if (command.toLowerCase().startsWith(COMMANDS[1])) // WithdrawSortedP
@@ -88,6 +89,7 @@ public class PrivateWarehouse implements IBypassHandler
 				{
 					showWithdrawWindow(player, WarehouseListType.ALL, SortedWareHouseWithdrawalList.A2Z);
 				}
+				
 				return true;
 			}
 			else if (command.toLowerCase().startsWith(COMMANDS[2])) // DepositP
@@ -105,6 +107,7 @@ public class PrivateWarehouse implements IBypassHandler
 		{
 			LOGGER.log(Level.WARNING, "Exception in " + getClass().getSimpleName(), e);
 		}
+		
 		return false;
 	}
 	
@@ -130,7 +133,7 @@ public class PrivateWarehouse implements IBypassHandler
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

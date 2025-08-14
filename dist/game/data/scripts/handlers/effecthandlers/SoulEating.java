@@ -72,7 +72,7 @@ public class SoulEating extends AbstractEffect
 			if ((player.getTarget() != null) && player.getTarget().isNpc())
 			{
 				final Npc npc = playable.getTarget().asNpc();
-				player.broadcastPacket(new ExSpawnEmitter(player, npc), 500);
+				player.broadcastPacket(new ExSpawnEmitter(player, npc));
 			}
 		}
 	}

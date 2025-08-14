@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="15300" type="Weapon" name="Transparent Dual (for NPC)">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -20,12 +20,12 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="282" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15301" type="Weapon" name="Transparent Pole (for NPC)">
 		<set name="icon" val="icon.weapon_long_spear_i00" />
@@ -47,13 +47,13 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="156" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15302" type="Weapon" name="Transparent Bow (for NPC)">
 		<set name="icon" val="icon.weapon_long_bow_i00" />
@@ -77,13 +77,13 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="114" />
 			<set stat="mAtk" val="35" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="227" />
-		</for>
+		</stats>
 	</item>
 	<item id="15303" type="Weapon" name="Transparent Claw (for NPC)">
 		<set name="icon" val="icon.weapon_foxs_nail_i00" />
@@ -106,13 +106,13 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="376" />
 			<set stat="mAtk" val="119" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15304" type="Weapon" name="Transparent Bowgun (for NPC)">
 		<set name="icon" val="icon.weapon_hunting_gun_i00" />
@@ -135,16 +135,16 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="64" />
 			<set stat="mAtk" val="32" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="15305" type="Weapon" name="Transparent Rapier (for NPC)">
 		<set name="icon" val="icon.weapon_rapier_i00" />
@@ -166,16 +166,16 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="36" />
 			<set stat="mAtk" val="26" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="15306" type="Weapon" name="Transparent Dual Dagger (for NPC)">
 		<set name="icon" val="icon.dual_dagger_i00" />
@@ -198,19 +198,19 @@
 		<set name="is_destroyable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player level="81" />
 				<player categoryType="DAGGER_MASTER" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="304" />
 			<set stat="mAtk" val="157" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="15307" type="EtcItem" name="Holy Pomander - Cardinal">
 		<set name="icon" val="icon.etc_saint_pomander_bishop_i00" />
@@ -266,15 +266,15 @@
 		<set name="is_depositable" val="false" />
 		<set name="item_skill" val="8357-1" /> <!-- Einhasad's Strike -->
 		<set name="time" val="7200" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player instanceId="112" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="7" />
 			<set stat="mAtk" val="5" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="15311" type="EtcItem" name="Delusion Chamber Invitation">
 		<set name="icon" val="icon.etc_magic_coin_gold_i01" />
@@ -326,12 +326,12 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="15314" type="Weapon" name="Player Commendation - Basalt Battlehammer - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Basalt Battlehammer Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Max HP by 25% additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -357,13 +357,13 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="15315" type="Weapon" name="Player Commendation - Imperial Staff - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Imperial Staff Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases MP Recovery Rate additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -390,13 +390,13 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="274" />
 			<set stat="mAtk" val="193" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15316" type="Weapon" name="Player Commendation - Angel Slayer - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Angel Slayer Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Upon additional Critical, P. Atk. increases by 265, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -422,13 +422,13 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="246" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="15317" type="Weapon" name="Player Commendation - Dragon Hunter Axe - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Dragon Hunter Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases HP recovery power additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -454,13 +454,13 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="342" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15318" type="Weapon" name="Player Commendation - Saint Spear - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Saint Spear Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Max HP by 25% additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -486,13 +486,13 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="281" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15319" type="Weapon" name="Player Commendation - Demon Splinter - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Demon Splinter Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Critical by 80 additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -518,13 +518,13 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="342" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15320" type="Weapon" name="Player Commendation - Heaven's Divider - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Heaven's Divider Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Critical by 84 additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -550,12 +550,12 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="342" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15321" type="Weapon" name="Player Commendation - Arcana Macw - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Arcana Mace Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Casting Spd. by 61 additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -582,13 +582,13 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="225" />
 			<set stat="mAtk" val="175" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="15322" type="Weapon" name="Player Commendation - Draconic Bow - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Draconic Bow Available to enchant by the enchanted scroll of PC Cafe exclusive weapons Increases Critical by 88 additionally, and increases damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -616,13 +616,13 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="581" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="15323" type="Weapon" name="Player Commendation - Laevateinn - Player Recommendation Weapon">
 		<!-- Kamael exclusive weapon. PC Cafe exclusive item containing the power of a Laevateinn. Can be enchanted by using the PC Cafe Exclusive Weapon Enhance Scroll. Also increases Atk. Spd. by about 7% and damage inflicted during PvP. When enchanted to 4 or more, during a critical attack, party members including yourself will receive at a fixed rate increased attack power, magic power, and healing capacity, as well as decreased MP consumption per skill. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -649,16 +649,16 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="255" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="15324" type="Weapon" name="Player Commendation - Gram - Player Recommendation Weapon">
 		<!-- Kamael exclusive weapon. PC Cafe exclusive item containing the power of a Gram. Can be enchanted by using the PC Cafe Exclusive Weapon Enhance Scroll. Also increases Critical by 84 and damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -684,16 +684,16 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="304" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="15325" type="Weapon" name="Player Commendation - Sarunga - Player Recommendation Weapon">
 		<!-- Kamael exclusive weapon. PC Cafe exclusive item containing the power of a Sarunga. Can be enchanted by using the PC Cafe Exclusive Weapon Enhance Scroll. Also increases Critical by 88 and damage inflicted during PvP. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -720,16 +720,16 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="356" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="15326" type="Weapon" name="Player Commendation - Tallum Blade *Dark Legion's Edge - Player Recommendation Weapon">
 		<!-- PC Cafe exclusive item with a power of Tallum Blade*Dark Legion's Edge. Available to enchant by the enchanted scroll of PC Cafe exclusive weapons. Upon enchanted over 4, Max HP and Max CP increase by 15% and 30% respectively, and the damage during the PvP increases. Cannot be exchanged, dropped, or crystallized. Cannot be granted additional functions. -->
@@ -755,12 +755,12 @@
 		<set name="duration" val="180" />
 		<set name="time" val="21600" />
 		<set name="useSkillDisTime" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="342" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15327" type="EtcItem" name="Seed: Sea Coba">
 		<!-- Plant this seed onto a monster in the Innadril area and it will bear the fruit of the Sea Coba. For best results, a level 74-84 character must plant it on a level 74-84 monster. -->
@@ -955,12 +955,12 @@
 		<set name="unequip_skill" val="619-1" />
 		<set name="item_skill" val="2994-1" /> <!-- Disguised Half - Aqua Elf -->
 		<set name="time" val="86400" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="15343" type="EtcItem" name="Aqua Elf Transforming Harp 60-day Pack">
 		<!-- Dimensional item pack. A wrapped pack containing Aqua Elf Transformation Stick (60 days). Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -996,12 +996,12 @@
 		<set name="unequip_skill" val="619-1" />
 		<set name="item_skill" val="2994-1" /> <!-- Disguised Half - Aqua Elf -->
 		<set name="time" val="86400" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="15345" type="EtcItem" name="Aqua Elf Transforming Harp 60-day Pack">
 		<!-- Dimensional item pack. A wrapped pack containing Aqua Elf Transformation Stick (60 days). Cannot be exchanged or dropped. Can be stored in a private warehouse. -->

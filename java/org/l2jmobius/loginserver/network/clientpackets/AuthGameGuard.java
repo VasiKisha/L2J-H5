@@ -40,6 +40,7 @@ public class AuthGameGuard extends LoginClientPacket
 			readInt(); // data4
 			return true;
 		}
+		
 		return false;
 	}
 	

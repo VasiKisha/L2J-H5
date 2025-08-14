@@ -39,6 +39,7 @@ public class FuncMul extends AbstractFunction
 		{
 			return initVal * getValue();
 		}
+		
 		return initVal;
 	}
 }

@@ -82,7 +82,7 @@ public abstract class PlayableAI extends CreatureAI
 	@Override
 	protected void onIntentionCast(Skill skill, WorldObject target)
 	{
-		if ((target != null) && (target.isPlayable()) && skill.isBad())
+		if ((target != null) && (target.isPlayable()) && skill.hasNegativeEffect())
 		{
 			final Player player = _actor.asPlayer();
 			final Player targetPlayer = target.asPlayer();

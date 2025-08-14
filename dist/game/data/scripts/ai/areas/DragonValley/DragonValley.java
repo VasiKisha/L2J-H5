@@ -71,14 +71,17 @@ public class DragonValley extends AbstractNpcAI
 		22861, // Hard Scorpion Bones
 		22862, // Drakos Hunter
 	};
+	
 	// Items
 	private static final int GREATER_HERB_OF_MANA = 8604;
 	private static final int SUPERIOR_HERB_OF_MANA = 8605;
+	
 	// Skills
 	private static final SkillHolder SELF_DESTRUCTION = new SkillHolder(6850, 1);
 	private static final SkillHolder MORALE_BOOST1 = new SkillHolder(6885, 1);
 	private static final SkillHolder MORALE_BOOST2 = new SkillHolder(6885, 2);
 	private static final SkillHolder MORALE_BOOST3 = new SkillHolder(6885, 3);
+	
 	// Misc
 	private static final int MIN_DISTANCE = 1500;
 	private static final int MIN_MEMBERS = 3;
@@ -152,6 +155,7 @@ public class DragonValley extends AbstractNpcAI
 				startQuestTimer("SELF_DESTRUCTION", 3000, npc, null);
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -286,6 +290,7 @@ public class DragonValley extends AbstractNpcAI
 				addAttackDesire(ghost2, attacker);
 				val++;
 			}
+			
 			npc.setScriptValue(val);
 		}
 	}

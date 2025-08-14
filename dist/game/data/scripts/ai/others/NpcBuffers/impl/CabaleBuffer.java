@@ -97,6 +97,7 @@ public class CabaleBuffer extends AbstractNpcAI
 				{
 					messages = PREACHER_MSG;
 				}
+				
 				broadcastSay(_npc, getRandomEntry(messages), null, -1);
 				ThreadPool.schedule(this, 60000);
 			}
@@ -156,6 +157,7 @@ public class CabaleBuffer extends AbstractNpcAI
 							{
 								broadcastSay(_npc, NpcStringId.I_BESTOW_UPON_YOU_A_BLESSING, null, 1);
 							}
+							
 							isBuffAWinner = true;
 							continue;
 						}
@@ -172,6 +174,7 @@ public class CabaleBuffer extends AbstractNpcAI
 							{
 								broadcastSay(_npc, NpcStringId.HERALD_OF_THE_NEW_ERA_OPEN_YOUR_EYES, null, 1);
 							}
+							
 							isBuffAWinner = true;
 							continue;
 						}
@@ -191,6 +194,7 @@ public class CabaleBuffer extends AbstractNpcAI
 							{
 								broadcastSay(_npc, NpcStringId.YOU_DON_T_HAVE_ANY_HOPE_YOUR_END_HAS_COME, null, 1);
 							}
+							
 							isBuffALoser = true;
 							continue;
 						}
@@ -207,6 +211,7 @@ public class CabaleBuffer extends AbstractNpcAI
 							{
 								broadcastSay(_npc, NpcStringId.S1_YOU_BRING_AN_ILL_WIND, player.getName(), 1);
 							}
+							
 							isBuffALoser = true;
 							continue;
 						}
@@ -218,6 +223,7 @@ public class CabaleBuffer extends AbstractNpcAI
 					break;
 				}
 			}
+			
 			ThreadPool.schedule(this, 3000);
 		}
 		
@@ -265,6 +271,7 @@ public class CabaleBuffer extends AbstractNpcAI
 				_npc.doCast(skill);
 				return true;
 			}
+			
 			return false;
 		}
 	}

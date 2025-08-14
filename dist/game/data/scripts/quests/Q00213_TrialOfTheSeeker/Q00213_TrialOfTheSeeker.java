@@ -38,6 +38,7 @@ public class Q00213_TrialOfTheSeeker extends Quest
 	private static final int BLACKSMITH_BRUNON = 30526;
 	private static final int TRADER_VIKTOR = 30684;
 	private static final int MAGISTER_MARINA = 30715;
+	
 	// Items
 	private static final int DUFNERS_LETTER = 2647;
 	private static final int TERRYS_1ST_ORDER = 2648;
@@ -65,9 +66,11 @@ public class Q00213_TrialOfTheSeeker extends Quest
 	private static final int ABYSS_SPIRIT_ORE3 = 2670;
 	private static final int ABYSS_SPIRIT_ORE4 = 2671;
 	private static final int TERRYS_REPORT = 2672;
+	
 	// Reward
 	private static final int MARK_OF_SEEKER = 2673;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monsters
 	private static final int ANT_CAPTAIN = 20080;
 	private static final int ANT_WARRIOR_CAPTAIN = 20088;
@@ -79,6 +82,7 @@ public class Q00213_TrialOfTheSeeker extends Quest
 	private static final int BREKA_ORC_OVERLORD = 20270;
 	private static final int TUREK_ORC_WARLORD = 20495;
 	private static final int LETO_LIZARDMAN_WARRIOR = 20580;
+	
 	// Misc
 	private static final int MIN_LEVEL = 35;
 	private static final int LEVEL = 36;
@@ -113,6 +117,7 @@ public class Q00213_TrialOfTheSeeker extends Quest
 					{
 						giveItems(player, DUFNERS_LETTER, 1);
 					}
+					
 					playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 					if (player.getVariables().getInt("2ND_CLASS_DIAMOND_REWARD", 0) == 0)
 					{
@@ -242,6 +247,7 @@ public class Q00213_TrialOfTheSeeker extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -605,6 +611,7 @@ public class Q00213_TrialOfTheSeeker extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20300" type="Armor" name="Agathion Seal Bracelet - Blue Sumo Wrestler - Wild Magic - 7-Day Limited Period">
 		<!-- Bracelet that summons Blue Sumo Wrestler Agathion. Cannot be exchanged or dropped. Special skill reuse delay is 1 hour. -->
@@ -349,9 +349,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22034-1" /> <!-- Birthday Cake -->
 		<set name="time" val="1440" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player vehicleMounted="false" /> <!-- TEMP FIX: To prevent retail bug lose a cake in ship/airship -->
-		</cond>
+		</conditions>
 	</item>
 	<item id="20321" type="Armor" name="Goggle">
 		<!-- A stylish goggle accessory with a fine silver decoration. Cannot be exchanged or dropped. -->
@@ -394,9 +394,9 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="is_freightable" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20324" type="Armor" name="Black Gem Mask">
 		<!-- A black gem mask accessory made of luxurious metal material. Cannot be exchanged or dropped. -->
@@ -1204,9 +1204,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-1" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20373" type="EtcItem" name="Scroll of Escape: Elven Village">
 		<!-- Magic scroll that moves you to Elven Village. Cannot be exchanged or dropped. -->
@@ -1223,9 +1223,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-2" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20374" type="EtcItem" name="Scroll of Escape: Dark Elven Village">
 		<!-- Magic scroll that moves you to Dark Elf Village. Cannot be exchanged or dropped. -->
@@ -1242,9 +1242,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-3" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20375" type="EtcItem" name="Scroll of Escape: Orc Village">
 		<!-- Magic scroll that moves you to Orc Village. Cannot be exchanged or dropped. -->
@@ -1261,9 +1261,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-4" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20376" type="EtcItem" name="Scroll of Escape: Dwarven Village">
 		<!-- Magic scroll that moves you to Dwarven Village. Cannot be exchanged or dropped. -->
@@ -1280,9 +1280,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-5" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20377" type="EtcItem" name="Scroll of Escape: Gludin Village">
 		<!-- Magic scroll that moves you to Gludin Village. Cannot be exchanged or dropped. -->
@@ -1299,9 +1299,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-6" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20378" type="EtcItem" name="Scroll of Escape: Town of Gludio">
 		<!-- Magic scroll that moves you to Town of Gludio. Cannot be exchanged or dropped. -->
@@ -1318,9 +1318,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-7" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20379" type="EtcItem" name="Scroll of Escape: Town of Dion">
 		<!-- Magic scroll that moves you to Town of Dion. Cannot be exchanged or dropped. -->
@@ -1337,9 +1337,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-8" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20380" type="EtcItem" name="Scroll of Escape: Floran Village">
 		<!-- Magic scroll that moves you to Floran Village. Cannot be exchanged or dropped. -->
@@ -1356,9 +1356,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-9" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20381" type="EtcItem" name="Scroll of Escape: Giran Castle Town">
 		<!-- Magic scroll that moves you to Giran Castle Town. Cannot be exchanged or dropped. -->
@@ -1375,9 +1375,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-10" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20382" type="EtcItem" name="Scroll of Escape: Hardin's Academy">
 		<!-- Magic scroll that moves you to Hardin's Academy. Cannot be exchanged or dropped. -->
@@ -1394,9 +1394,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-11" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20383" type="EtcItem" name="Scroll of Escape: Heine">
 		<!-- Magic scroll that moves you to Heine. Cannot be exchanged or dropped. -->
@@ -1413,9 +1413,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-12" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20384" type="EtcItem" name="Scroll of Escape: Town of Oren">
 		<!-- Magic scroll that moves you to Town of Oren. Cannot be exchanged or dropped. -->
@@ -1432,9 +1432,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-13" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20385" type="EtcItem" name="Scroll of Escape: Ivory Tower">
 		<!-- Magic scroll that moves you to Ivory Tower. Cannot be exchanged or dropped. -->
@@ -1451,9 +1451,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-14" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20386" type="EtcItem" name="Scroll of Escape: Hunters Village">
 		<!-- Magic scroll that moves you to Hunters Village. Cannot be exchanged or dropped. -->
@@ -1470,9 +1470,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-15" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20387" type="EtcItem" name="Scroll of Escape: Town of Aden">
 		<!-- Magic scroll that moves you to Town of Aden. Cannot be exchanged or dropped. -->
@@ -1489,9 +1489,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-16" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20388" type="EtcItem" name="Scroll of Escape: Town of Goddard">
 		<!-- Magic scroll that moves you to Town of Goddard. Cannot be exchanged or dropped. -->
@@ -1508,9 +1508,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-17" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20389" type="EtcItem" name="Scroll of Escape: Rune Township">
 		<!-- Magic scroll that moves you to Rune Township. Cannot be exchanged or dropped. -->
@@ -1527,9 +1527,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-18" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20390" type="EtcItem" name="Scroll of Escape: Town of Schuttgart">
 		<!-- Magic scroll that moves you to Town of Schuttgart. Cannot be exchanged or dropped. -->
@@ -1546,9 +1546,9 @@
 		<set name="is_freightable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22053-19" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20391" type="EtcItem" name="Vitality Maintaining Potion">
 		<!-- Magic potion that maintains the energy stage. Reuse delay 30 minutes. Cannot be exchanged or dropped. -->

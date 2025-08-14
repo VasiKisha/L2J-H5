@@ -57,8 +57,10 @@ public class GameServerTable implements IXmlReader
 	
 	// Map for storing server names with their corresponding IDs.
 	private static final Map<Integer, String> SERVER_NAMES = new HashMap<>();
+	
 	// Table for storing game server information.
 	private static final Map<Integer, GameServerInfo> GAME_SERVER_TABLE = new HashMap<>();
+	
 	// Configuration for RSA key pairs.
 	private static final int KEYS_SIZE = 10;
 	private KeyPair[] _keyPairs;
@@ -187,6 +189,7 @@ public class GameServerTable implements IXmlReader
 				}
 			}
 		}
+		
 		return false;
 	}
 	
@@ -207,6 +210,7 @@ public class GameServerTable implements IXmlReader
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -291,6 +295,7 @@ public class GameServerTable implements IXmlReader
 		{
 			return "null";
 		}
+		
 		return new BigInteger(hex).toString(16);
 	}
 	
@@ -303,12 +308,15 @@ public class GameServerTable implements IXmlReader
 		private int _id;
 		private final byte[] _hexId;
 		private boolean _isAuthed;
+		
 		// Status information.
 		private GameServerThread _gst;
 		private int _status;
+		
 		// Network configuration.
 		private final List<GameServerAddress> _addrs = new ArrayList<>(5);
 		private int _port;
+		
 		// Configuration settings.
 		private static final boolean IS_PVP = true;
 		private int _serverType;
@@ -483,6 +491,7 @@ public class GameServerTable implements IXmlReader
 			{
 				return 0;
 			}
+			
 			return _gst.getPlayerCount();
 		}
 		
@@ -518,6 +527,7 @@ public class GameServerTable implements IXmlReader
 			{
 				// Ignore.
 			}
+			
 			return null;
 		}
 		
@@ -657,6 +667,7 @@ public class GameServerTable implements IXmlReader
 					return a.getServerAddress();
 				}
 			}
+			
 			return null; // Should not happen.
 		}
 		

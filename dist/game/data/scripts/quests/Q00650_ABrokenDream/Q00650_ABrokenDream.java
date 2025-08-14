@@ -40,10 +40,13 @@ public class Q00650_ABrokenDream extends Quest
 {
 	// Npc
 	private static final int GHOST_OF_A_RAILROAD_ENGINEER = 32054;
+	
 	// Item
 	private static final int REMNANTS_OF_OLD_DWARVES_DREAMS = 8514;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTER_DROP_CHANCES = new HashMap<>();
 	static
@@ -101,6 +104,7 @@ public class Q00650_ABrokenDream extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -130,6 +134,7 @@ public class Q00650_ABrokenDream extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

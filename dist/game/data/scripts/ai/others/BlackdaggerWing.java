@@ -35,14 +35,18 @@ public class BlackdaggerWing extends AbstractNpcAI
 {
 	// NPCs
 	private static final int BLACKDAGGER_WING = 25721;
+	
 	// Skills
 	private static final SkillHolder POWER_STRIKE = new SkillHolder(6833, 1);
 	private static final SkillHolder RANGE_MAGIC_ATTACK = new SkillHolder(6834, 1);
+	
 	// Variables
 	private static final String MID_HP_FLAG = "MID_HP_FLAG";
 	private static final String POWER_STRIKE_CAST_COUNT = "POWER_STRIKE_CAST_COUNT";
+	
 	// Timers
 	private static final String DAMAGE_TIMER = "DAMAGE_TIMER";
+	
 	// Misc
 	private static final int MAX_CHASE_DIST = 2500;
 	private static final double MID_HP_PERCENTAGE = 0.50;
@@ -104,6 +108,7 @@ public class BlackdaggerWing extends AbstractNpcAI
 			npc.getAI().setIntention(Intention.ATTACK);
 			startQuestTimer(DAMAGE_TIMER, 30000, npc, player);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

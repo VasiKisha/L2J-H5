@@ -47,19 +47,23 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 	private static final int IDENTITY_CONFIRM_DEVICE = 32578;
 	private static final int DARKNESS_OF_DAWN = 32579;
 	private static final int SHELF = 32580;
+	
 	// Item
 	private static final int IDENTITY_CARD = 13822;
+	
 	// Skill
 	private static final SkillHolder GUARD_SKILL = new SkillHolder(5978, 1);
+	
 	// Locations
 	private static final Location ENTER = new Location(-76161, 213401, -7120, 0, 0);
 	private static final Location EXIT = new Location(-12585, 122305, -2989, 0, 0);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 111;
 	private static int DOOR_ONE = 17240001;
 	private static int DOOR_TWO = 17240003;
 	private static int DOOR_THREE = 17240005;
-	private static final Location[] SAVE_POINT = new Location[]
+	private static final Location[] SAVE_POINT =
 	{
 		new Location(-75775, 213415, -7120),
 		new Location(-74959, 209240, -7472),
@@ -123,6 +127,7 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 							break;
 						}
 					}
+					
 					if (!teleported)
 					{
 						for (Npc monster : world.getParameters().getList("save_point2", Npc.class))
@@ -135,6 +140,7 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 							}
 						}
 					}
+					
 					if (!teleported)
 					{
 						for (Npc monster : world.getParameters().getList("save_point3", Npc.class))
@@ -147,6 +153,7 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 							}
 						}
 					}
+					
 					if (!teleported)
 					{
 						for (Npc monster : world.getParameters().getList("save_point4", Npc.class))
@@ -161,6 +168,7 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 				}
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -175,6 +183,7 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 			world.setParameter("save_point3", world.spawnGroup("save_point3"));
 			world.setParameter("save_point4", world.spawnGroup("save_point4"));
 		}
+		
 		teleportPlayer(player, ENTER, world.getInstanceId());
 	}
 	
@@ -191,6 +200,7 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 					enterInstance(talker, TEMPLATE_ID);
 					return "32575-01.html";
 				}
+				
 				return "32575-02.html";
 			}
 			case IDENTITY_CONFIRM_DEVICE:
@@ -224,8 +234,10 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 								}
 							}
 						}
+						
 						return "32578-01.html";
 					}
+					
 					return "32578-02.html";
 				}
 				break;
@@ -255,6 +267,7 @@ public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
 				return "32580-01.html";
 			}
 		}
+		
 		return "";
 	}
 	

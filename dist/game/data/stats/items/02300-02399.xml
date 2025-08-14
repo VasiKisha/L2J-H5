@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="2300" type="EtcItem" name="Recipe: Scythe">
 		<!-- For Dwarves only. The recipe for a Scythe. Requires Create Item - Skill Level 4. The success rate is 100%. -->
@@ -901,13 +901,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="7" />
 			<set stat="mAtk" val="5" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="2369" type="Weapon" name="Squire's Sword">
 		<set name="icon" val="icon.weapon_squires_sword_i00" />
@@ -926,12 +926,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="6" />
 			<set stat="mAtk" val="5" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="2370" type="Weapon" name="Guild Member's Club">
 		<set name="icon" val="icon.weapon_club_i00" />
@@ -950,13 +950,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="6" />
 			<set stat="mAtk" val="5" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="2371" type="Weapon" name="Fist of Butcher">
 		<set name="icon" val="icon.weapon_iron_glove_i00" />
@@ -972,13 +972,13 @@
 		<set name="price" val="19500" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="16" />
 			<set stat="mAtk" val="10" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="2372" type="Weapon" name="Dagger of Adept">
 		<set name="icon" val="icon.weapon_doomed_dagger_i00" />
@@ -994,13 +994,13 @@
 		<set name="price" val="19500" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="11" />
 			<set stat="mAtk" val="10" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="2373" type="Weapon" name="Eldritch Staff">
 		<set name="icon" val="icon.weapon_apprentices_staff_i00" />
@@ -1017,13 +1017,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="13" />
 			<set stat="mAtk" val="13" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="2374" type="Weapon" name="Red Sunset Dagger">
 		<set name="icon" val="icon.weapon_doomed_dagger_i00" />
@@ -1039,13 +1039,13 @@
 		<set name="price" val="19500" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="11" />
 			<set stat="mAtk" val="10" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="2375" type="EtcItem" name="Wolf Collar">
 		<!-- A necklace used to summon Wolves. It takes away some of the experience points the Pet Master earns. -->
@@ -1058,9 +1058,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="2376" type="Armor" name="Avadon Breastplate">
 		<set name="icon" val="icon.armor_t66_u_i00" />
@@ -1074,13 +1074,13 @@
 		<set name="weight" val="7920" />
 		<set name="price" val="1596000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="157" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2377" type="Armor" name="Mithril Scale Gaiters">
 		<set name="icon" val="icon.armor_t40_l_i00" />
@@ -1094,13 +1094,13 @@
 		<set name="weight" val="3870" />
 		<set name="price" val="143600" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2378" type="Armor" name="Brigandine Gaiters">
 		<set name="icon" val="icon.armor_t43_l_i00" />
@@ -1114,13 +1114,13 @@
 		<set name="weight" val="3820" />
 		<set name="price" val="143600" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2379" type="Armor" name="Avadon Gaiters">
 		<set name="icon" val="icon.armor_t66_l_i00" />
@@ -1134,13 +1134,13 @@
 		<set name="weight" val="3520" />
 		<set name="price" val="997700" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="98" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2380" type="Armor" name="Blue Wolf Gaiters">
 		<set name="icon" val="icon.armor_t68_l_i00" />
@@ -1154,13 +1154,13 @@
 		<set name="weight" val="3370" />
 		<set name="price" val="1547100" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="104" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2381" type="Armor" name="Doom Plate Armor">
 		<!-- Full body armor. -->
@@ -1175,13 +1175,13 @@
 		<set name="weight" val="9980" />
 		<set name="price" val="4022000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="270" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2382" type="Armor" name="Tallum Plate Armor">
 		<!-- Full body armor. -->
@@ -1196,13 +1196,13 @@
 		<set name="weight" val="9780" />
 		<set name="price" val="5788000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="278" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2383" type="Armor" name="Majestic Plate Armor">
 		<!-- Full body armor. -->
@@ -1217,13 +1217,13 @@
 		<set name="weight" val="9200" />
 		<set name="price" val="8804000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="293" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2384" type="Armor" name="Zubei's Leather Shirt">
 		<set name="icon" val="icon.armor_t65_u_i00" />
@@ -1237,10 +1237,10 @@
 		<set name="weight" val="4330" />
 		<set name="price" val="1197000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="117" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2385" type="Armor" name="Dark Crystal Leather Armor">
 		<set name="icon" val="icon.armor_t75_u_i00" />
@@ -1254,10 +1254,10 @@
 		<set name="weight" val="4300" />
 		<set name="price" val="2671000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="128" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2386" type="Armor" name="Wooden Gaiters">
 		<set name="icon" val="icon.armor_t06_l_i00" />
@@ -1268,9 +1268,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1670" />
 		<set name="price" val="3820" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="29" />
-		</for>
+		</stats>
 	</item>
 	<item id="2387" type="Armor" name="Reinforced Mithril Gaiters">
 		<set name="icon" val="icon.armor_t47_l_i00" />
@@ -1284,10 +1284,10 @@
 		<set name="weight" val="1530" />
 		<set name="price" val="182100" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="56" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2388" type="Armor" name="Zubei's Leather Gaiters">
 		<set name="icon" val="icon.armor_t65_l_i00" />
@@ -1301,10 +1301,10 @@
 		<set name="weight" val="1480" />
 		<set name="price" val="748300" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="73" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2389" type="Armor" name="Dark Crystal Leggings">
 		<set name="icon" val="icon.armor_t75_l_i00" />
@@ -1318,10 +1318,10 @@
 		<set name="weight" val="1480" />
 		<set name="price" val="1670000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="80" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2390" type="Armor" name="Avadon Leather Armor">
 		<!-- Full body armor. -->
@@ -1336,10 +1336,10 @@
 		<set name="weight" val="5600" />
 		<set name="price" val="1946000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="191" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2391" type="Armor" name="Blue Wolf Leather Armor">
 		<!-- Full body armor. -->
@@ -1354,10 +1354,10 @@
 		<set name="weight" val="5500" />
 		<set name="price" val="3017000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="202" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2392" type="Armor" name="Leather Armor of Doom">
 		<!-- Full body armor. -->
@@ -1372,10 +1372,10 @@
 		<set name="weight" val="5500" />
 		<set name="price" val="3017000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="202" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2393" type="Armor" name="Tallum Leather Armor">
 		<!-- Full body armor. -->
@@ -1390,10 +1390,10 @@
 		<set name="weight" val="5400" />
 		<set name="price" val="4341000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="209" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2394" type="Armor" name="Leather Armor of Nightmare">
 		<!-- Full body armor. -->
@@ -1408,10 +1408,10 @@
 		<set name="weight" val="5300" />
 		<set name="price" val="6603000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="220" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2395" type="Armor" name="Majestic Leather Armor">
 		<!-- Full body armor. -->
@@ -1426,10 +1426,10 @@
 		<set name="weight" val="5350" />
 		<set name="price" val="6603000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="220" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2396" type="Armor" name="Elven Mithril Tunic">
 		<set name="icon" val="icon.armor_elven_tunic_i00" />
@@ -1443,14 +1443,14 @@
 		<set name="weight" val="720" />
 		<set name="price" val="172000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="54" />
 			<add stat="maxMp" val="169" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2397" type="Armor" name="Tunic of Zubei">
 		<set name="icon" val="icon.armor_t56_u_i00" />
@@ -1464,14 +1464,14 @@
 		<set name="weight" val="1960" />
 		<set name="price" val="1197000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="78" />
 			<add stat="maxMp" val="345" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2398" type="Armor" name="Blue Wolf Tunic">
 		<set name="icon" val="icon.armor_t70_u_i00" />
@@ -1485,14 +1485,14 @@
 		<set name="weight" val="1920" />
 		<set name="price" val="1857000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="83" />
 			<add stat="maxMp" val="377" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="2399" type="Armor" name="Tunic of Doom">
 		<set name="icon" val="icon.armor_t73_u_i00" />
@@ -1506,13 +1506,13 @@
 		<set name="weight" val="1900" />
 		<set name="price" val="1857000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="83" />
 			<add stat="maxMp" val="377" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 </list>

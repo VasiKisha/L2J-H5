@@ -90,6 +90,7 @@ public class ClanPrivileges
 		{
 			mask |= 1 << access.ordinal();
 		}
+		
 		return mask;
 	}
 	

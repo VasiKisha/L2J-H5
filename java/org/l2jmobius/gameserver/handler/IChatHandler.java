@@ -32,7 +32,7 @@ public interface IChatHandler
 	 * @param target
 	 * @param text
 	 */
-	void handleChat(ChatType type, Player player, String target, String text);
+	void onChat(ChatType type, Player player, String target, String text);
 	
 	/**
 	 * Returns a list of all chat types registered to this handler

@@ -95,6 +95,7 @@ public class AltarsOfSacrifice extends AbstractNpcAI
 	private static final String EVT_DESPAWN_BOSS_PRE = "despawnboss";
 	private static final int BOSS_MIN_SPAWN_RADIUS = 250;
 	private static final int BOSS_MAX_SPAWN_RADIUS = 500;
+	
 	// every 240 minutes/4 hours, altars change
 	private static final long ALTAR_STATE_CHANGE_DELAY = 240 * 60 * 1000;
 	
@@ -107,98 +108,115 @@ public class AltarsOfSacrifice extends AbstractNpcAI
 		(
 			new Location(-92481, 244812, -3505)
 		),
+		
 		// Elven
 		new Altar
 		(
 			new Location(40241, 53974, -3262)
 		),
+		
 		// DarkElven
 		new Altar
 		(
 			new Location(1851, 21697, -3305),
 			25750
 		),
+		
 		// Dwarven
 		new Altar
 		(
 			new Location(130133, -180968, -3271),
 			25800, 25782
 		),
+		
 		// Orc
 		new Altar
 		(
 			new Location(-45329, -118327, -166),
 			25779
 		),
+		
 		// Kamael
 		new Altar
 		(
 			new Location(-104031, 45059, -1417)
 		),
+		
 		// Oren
 		new Altar
 		(
 			new Location(80188, 47037, -3109),
 			25767, 25770
 		),
+		
 		// Gludin
 		new Altar
 		(
 			new Location(-86620, 151536, -3018),
 			25735, 25738, 25741
 		),
+		
 		// Gludio
 		new Altar
 		(
 			new Location(-14152, 120674, -2935),
 			25744, 25747
 		),
+		
 		// Dion
 		new Altar
 		(
 			new Location(16715, 148320, -3210),
 			25753, 25754, 25757
 		),
+		
 		// Heine
 		new Altar
 		(
 			new Location(120123, 219164, -3319),
 			25773, 25776
 		),
+		
 		// Giran
 		new Altar
 		(
 			new Location(80712, 142538, -3487),
 			25760, 25763, 25766
 		),
+		
 		// Aden
 		new Altar
 		(
 			new Location(152720, 24714, -2083),
 			25793, 25794, 25797
 		),
+		
 		// Rune
 		new Altar
 		(
 			new Location(28010, -49175, -1278)
 		),
+		
 		// Goddard
 		new Altar
 		(
 			new Location(152274, -57706, -3383),
 			25787, 25790
 		),
+		
 		// Schutgart
 		new Altar
 		(
 			new Location(82066, -139418, -2220),
 			25784
 		),
+		
 		// Primeval
 		new Altar
 		(
 			new Location(10998, -24068, -3603)
 		),
+		
 		// Dragon Valley
 		new Altar
 		(
@@ -254,14 +272,15 @@ public class AltarsOfSacrifice extends AbstractNpcAI
 	}
 	
 	@Override
-	public boolean unload(boolean removeFromList)
+	public void unload(boolean removeFromList)
 	{
 		LOGGER.info(getClass().getSimpleName() + ": Unloading altars due to script unloading.");
 		for (Altar altar : _altars)
 		{
 			altar.unload();
 		}
-		return super.unload(removeFromList);
+		
+		super.unload(removeFromList);
 	}
 	
 	@Override
@@ -279,6 +298,7 @@ public class AltarsOfSacrifice extends AbstractNpcAI
 			catch (Exception e)
 			{
 				LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Failed to spawn altar boss.", e);
+				
 				// let's try again to spawn it in 5 seconds
 				startQuestTimer(event, 5000, null, null);
 			}
@@ -298,6 +318,7 @@ public class AltarsOfSacrifice extends AbstractNpcAI
 				startQuestTimer(makeSpawnBossEvt(altarIndex), ALTAR_STATE_CHANGE_DELAY, null, null);
 			}
 		}
+		
 		return null;
 	}
 }

@@ -109,6 +109,7 @@ public abstract class Vehicle extends Creature
 			{
 				getStat().setMoveSpeed(point.getMoveSpeed());
 			}
+			
 			if (point.getRotationSpeed() > 0)
 			{
 				getStat().setRotationSpeed(point.getRotationSpeed());
@@ -117,6 +118,7 @@ public abstract class Vehicle extends Creature
 			getAI().setIntention(Intention.MOVE_TO, new Location(point.getX(), point.getY(), point.getZ(), 0));
 			return;
 		}
+		
 		getAI().setIntention(Intention.ACTIVE);
 	}
 	
@@ -141,6 +143,7 @@ public abstract class Vehicle extends Creature
 							_monitorTask.cancel(true);
 							_monitorTask = null;
 						}
+						
 						_currentPath = null;
 					}
 					else
@@ -149,6 +152,7 @@ public abstract class Vehicle extends Creature
 						{
 							getStat().setMoveSpeed(point.getMoveSpeed());
 						}
+						
 						if (point.getRotationSpeed() > 0)
 						{
 							getStat().setRotationSpeed(point.getRotationSpeed());
@@ -210,6 +214,7 @@ public abstract class Vehicle extends Creature
 					_monitorTask.cancel(true);
 					_monitorTask = null;
 				}
+				
 				_currentPath = null;
 			}
 		}
@@ -340,6 +345,7 @@ public abstract class Vehicle extends Creature
 					iu.addModifiedItem(ticket);
 					player.sendInventoryUpdate(iu);
 				}
+				
 				addPassenger(player);
 			}
 		});
@@ -357,6 +363,7 @@ public abstract class Vehicle extends Creature
 				player.revalidateZone(false);
 			}
 		}
+		
 		return result;
 	}
 	

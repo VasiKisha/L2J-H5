@@ -63,6 +63,7 @@ public class ConditionPlayerHasClanHall extends Condition
 		{
 			return clan.getHideoutId() > 0;
 		}
+		
 		return _clanHall.contains(clan.getHideoutId());
 	}
 }

@@ -100,6 +100,7 @@ public class RequestExEnchantSkillRouteChange extends ClientPacket
 		}
 		
 		final int beforeEnchantSkillLevel = player.getSkillLevel(_skillId);
+		
 		// do you have this skill enchanted?
 		if (beforeEnchantSkillLevel <= 100)
 		{
@@ -107,11 +108,13 @@ public class RequestExEnchantSkillRouteChange extends ClientPacket
 		}
 		
 		final int currentEnchantLevel = beforeEnchantSkillLevel % 100;
+		
 		// is the requested level valid?
 		if (currentEnchantLevel != (_skillLevel % 100))
 		{
 			return;
 		}
+		
 		final EnchantSkillHolder esd = s.getEnchantSkillHolder(_skillLevel);
 		final int requiredSp = esd.getSpCost();
 		final int requireditems = esd.getAdenaCost();
@@ -119,6 +122,7 @@ public class RequestExEnchantSkillRouteChange extends ClientPacket
 		{
 			// only first level requires book
 			final Item spb = player.getInventory().getItemByItemId(reqItemId);
+			
 			// does not have spellbook
 			if (Config.ES_SP_BOOK_NEEDED && (spb == null))
 			{
@@ -179,6 +183,7 @@ public class RequestExEnchantSkillRouteChange extends ClientPacket
 				sm.addInt(levelPenalty);
 				player.sendPacket(sm);
 			}
+			
 			player.sendSkillList();
 			final int afterEnchantSkillLevel = player.getSkillLevel(_skillId);
 			player.sendPacket(new ExEnchantSkillInfo(_skillId, afterEnchantSkillLevel));

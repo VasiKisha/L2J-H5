@@ -100,8 +100,10 @@ public class UCPoint
 					pl.setUCState(Player.UC_STATE_ARENA);
 				}
 			}
+			
 			return true;
 		}
+		
 		return false;
 	}
 }

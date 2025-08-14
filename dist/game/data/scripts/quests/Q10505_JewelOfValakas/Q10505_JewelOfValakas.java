@@ -33,13 +33,16 @@ public class Q10505_JewelOfValakas extends Quest
 {
 	// NPC
 	private static final int KLEIN = 31540;
+	
 	// Monster
 	private static final int VALAKAS = 29028;
+	
 	// Items
 	private static final int EMPTY_CRYSTAL = 21906;
 	private static final int FILLED_CRYSTAL_VALAKAS_ENERGY = 21908;
 	private static final int JEWEL_OF_VALAKAS = 21896;
 	private static final int VACUALITE_FLOATING_STONE = 7267;
+	
 	// Misc
 	private static final int MIN_LEVEL = 83;
 	
@@ -94,6 +97,7 @@ public class Q10505_JewelOfValakas extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -160,6 +164,7 @@ public class Q10505_JewelOfValakas extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

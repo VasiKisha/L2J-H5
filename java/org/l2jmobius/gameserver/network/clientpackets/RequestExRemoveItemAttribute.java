@@ -69,6 +69,7 @@ public class RequestExRemoveItemAttribute extends ClientPacket
 			{
 				targetItem.getElemental(_element).removeBonus(player);
 			}
+			
 			targetItem.clearElementAttr(_element);
 			player.updateUserInfo();
 			
@@ -87,6 +88,7 @@ public class RequestExRemoveItemAttribute extends ClientPacket
 				{
 					sm = new SystemMessage(SystemMessageId.S1_S2_S_S3_ATTRIBUTE_HAS_BEEN_REMOVED);
 				}
+				
 				sm.addInt(targetItem.getEnchantLevel());
 				sm.addItemName(targetItem);
 				sm.addElemental(realElement);
@@ -105,6 +107,7 @@ public class RequestExRemoveItemAttribute extends ClientPacket
 				{
 					sm = new SystemMessage(SystemMessageId.S1_S_S2_ATTRIBUTE_HAS_BEEN_REMOVED);
 				}
+				
 				sm.addItemName(targetItem);
 				sm.addElemental(realElement);
 				if (targetItem.isArmor())
@@ -112,6 +115,7 @@ public class RequestExRemoveItemAttribute extends ClientPacket
 					sm.addElemental(Elementals.getOppositeElement(realElement));
 				}
 			}
+			
 			player.sendPacket(sm);
 			player.sendPacket(new ExBaseAttributeCancelResult(targetItem.getObjectId(), _element));
 		}
@@ -162,6 +166,7 @@ public class RequestExRemoveItemAttribute extends ClientPacket
 				break;
 			}
 		}
+		
 		return _price;
 	}
 }

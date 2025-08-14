@@ -26,6 +26,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -45,7 +46,6 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.Cubic;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
@@ -123,6 +123,7 @@ public class Skill
 	private final boolean _isRecoveryHerb;
 	
 	private int _refId;
+	
 	// all times in milliseconds
 	private final int _hitTime;
 	// private final int _skillInterruptTime;
@@ -133,6 +134,7 @@ public class Skill
 	/** Target type of the skill : SELF, PARTY, CLAN, PET... */
 	private final TargetType _targetType;
 	private final int _feed;
+	
 	// base success chance
 	private final double _power;
 	private final double _pvpPower;
@@ -176,9 +178,11 @@ public class Skill
 	private final boolean _directHpDmg; // If true then damage is being make directly
 	private final boolean _isTriggeredSkill; // If true the skill will take activation buff slot instead of a normal buff slot
 	private final int _effectPoint;
+	
 	// Condition lists
 	private List<Condition> _preCondition;
 	private List<Condition> _itemPreCondition;
+	
 	// Function lists
 	private List<FuncTemplate> _funcTemplates;
 	
@@ -248,6 +252,7 @@ public class Skill
 				abnormalTime += Config.SKILL_DURATION_LIST.get(_id);
 			}
 		}
+		
 		_abnormalTime = abnormalTime;
 		_isAbnormalInstant = set.getBoolean("abnormalInstant", false);
 		parseAbnormalVisualEffect(set.getString("abnormalVisualEffect", null));
@@ -380,6 +385,7 @@ public class Skill
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -422,6 +428,7 @@ public class Skill
 		{
 			return getPower(isPvP, isPvE) * (-((target.getCurrentHp() * 2) / target.getMaxHp()) + 2);
 		}
+		
 		return getPower(isPvP, isPvE);
 	}
 	
@@ -902,7 +909,7 @@ public class Skill
 		return _abnormalType == AbnormalType.HP_RECOVER;
 	}
 	
-	public int getChargeConsume()
+	public int getChargeConsumeCount()
 	{
 		return _chargeConsume;
 	}
@@ -947,19 +954,19 @@ public class Skill
 		return _stayOnSubclassChange;
 	}
 	
-	public boolean isBad()
+	public boolean hasNegativeEffect()
 	{
 		return (_effectPoint < 0) && (_targetType != TargetType.SELF);
 	}
 	
 	public boolean checkCondition(Creature creature, WorldObject object, boolean itemOrWeapon)
 	{
-		if (creature.isFakePlayer() || (creature.canOverrideCond(PlayerCondOverride.SKILL_CONDITIONS) && !Config.GM_SKILL_RESTRICTION))
+		if (creature.isFakePlayer() || (creature.isGM() && !Config.GM_SKILL_RESTRICTION))
 		{
 			return true;
 		}
 		
-		if (creature.isPlayer() && creature.asPlayer().isMounted() && isBad() && !MountEnabledSkillList.contains(_id))
+		if (creature.isPlayer() && creature.asPlayer().isMounted() && hasNegativeEffect() && !MountEnabledSkillList.contains(_id))
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.S1_CANNOT_BE_USED_DUE_TO_UNSUITABLE_TERMS);
 			sm.addSkillName(_id);
@@ -987,30 +994,35 @@ public class Skill
 					{
 						sm.addSkillName(_id);
 					}
+					
 					creature.sendPacket(sm);
 				}
 				else if (msg != null)
 				{
 					creature.sendMessage(msg);
 				}
+				
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
 	public List<WorldObject> getTargetList(Creature creature, boolean onlyFirst)
 	{
-		// Init to null the target of the skill
+		// Init to null the target of the skill.
 		Creature target = null;
 		
-		// Get the L2Objcet targeted by the user of the skill at this moment
+		// Get the WorldObject targeted by the user of the skill at this moment.
 		final WorldObject objTarget = creature.getTarget();
-		// If the WorldObject targeted is a Creature, it becomes the Creature target
+		
+		// If the WorldObject targeted is a Creature, it becomes the Creature target.
 		if ((objTarget != null) && objTarget.isCreature())
 		{
 			target = objTarget.asCreature();
 		}
+		
 		return getTargetList(creature, onlyFirst, target);
 	}
 	
@@ -1043,7 +1055,15 @@ public class Skill
 		{
 			try
 			{
-				return handler.getTargetList(this, creature, onlyFirst, target);
+				final List<WorldObject> result = handler.getTargetList(this, creature, onlyFirst, target);
+				
+				// Prevent monsters buffing playables.
+				if ((creature != null) && creature.isMonster() && !hasNegativeEffect() && (result instanceof LinkedList))
+				{
+					result.removeIf(wo -> wo.isPlayable());
+				}
+				
+				return result;
 			}
 			catch (Exception e)
 			{
@@ -1051,7 +1071,11 @@ public class Skill
 			}
 		}
 		
-		creature.sendMessage("Target type of skill is not currently handled.");
+		if (creature != null)
+		{
+			creature.sendMessage("Target type of skill is not currently handled.");
+		}
+		
 		return Collections.emptyList();
 	}
 	
@@ -1114,12 +1138,12 @@ public class Skill
 					return false;
 				}
 				
-				if (skill.isBad() && (player.getSiegeState() > 0) && player.isInsideZone(ZoneId.SIEGE) && (player.getSiegeState() == targetPlayer.getSiegeState()) && (player.getSiegeSide() == targetPlayer.getSiegeSide()))
+				if (skill.hasNegativeEffect() && (player.getSiegeState() > 0) && player.isInsideZone(ZoneId.SIEGE) && (player.getSiegeState() == targetPlayer.getSiegeState()) && (player.getSiegeSide() == targetPlayer.getSiegeSide()))
 				{
 					return false;
 				}
 				
-				if (skill.isBad() && target.isInsideZone(ZoneId.PEACE))
+				if (skill.hasNegativeEffect() && target.isInsideZone(ZoneId.PEACE))
 				{
 					return false;
 				}
@@ -1188,6 +1212,7 @@ public class Skill
 		{
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -1197,6 +1222,7 @@ public class Skill
 		{
 			return false;
 		}
+		
 		return addCharacter(caster, owner.getSummon(), radius, isDead);
 	}
 	
@@ -1211,6 +1237,7 @@ public class Skill
 		{
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -1235,6 +1262,7 @@ public class Skill
 				funcs.add(f);
 			}
 		}
+		
 		return funcs;
 	}
 	
@@ -1331,8 +1359,8 @@ public class Skill
 			return;
 		}
 		
-		// Check bad skills against target.
-		if ((effector != effected) && isBad() && (effected.isInvul() || (effector.isGM() && !effector.getAccessLevel().canGiveDamage())))
+		// Check negative effect skills against target.
+		if ((effector != effected) && hasNegativeEffect() && (effected.isInvul() || (effector.isGM() && !effector.getAccessLevel().canGiveDamage())))
 		{
 			return;
 		}
@@ -1470,6 +1498,7 @@ public class Skill
 			{
 				caster.stopSkillEffects(SkillFinishType.REMOVED, _id);
 			}
+			
 			applyEffects(caster, caster, true, false, true, 0);
 		}
 		
@@ -1497,6 +1526,7 @@ public class Skill
 		{
 			_funcTemplates = new ArrayList<>(1);
 		}
+		
 		_funcTemplates.add(f);
 	}
 	
@@ -1513,6 +1543,7 @@ public class Skill
 			effects = new ArrayList<>(1);
 			_effectLists.put(effectScope, effects);
 		}
+		
 		effects.add(effect);
 	}
 	
@@ -1524,6 +1555,7 @@ public class Skill
 			{
 				_itemPreCondition = new ArrayList<>();
 			}
+			
 			_itemPreCondition.add(c);
 		}
 		else
@@ -1532,6 +1564,7 @@ public class Skill
 			{
 				_preCondition = new ArrayList<>();
 			}
+			
 			_preCondition.add(c);
 		}
 	}
@@ -1631,6 +1664,7 @@ public class Skill
 			{
 				LOGGER.warning("Extractable skills data: Error in Skill Id: " + skillId + " Level: " + skillLevel + " -> wrong seperator!");
 			}
+			
 			List<ItemHolder> items = null;
 			double chance = 0;
 			final int length = prodData.length - 1;
@@ -1645,14 +1679,17 @@ public class Skill
 					{
 						LOGGER.warning("Extractable skills data: Error in Skill Id: " + skillId + " Level: " + skillLevel + " wrong production Id: " + prodId + " or wrond quantity: " + quantity + "!");
 					}
+					
 					items.add(new ItemHolder(prodId, quantity));
 				}
+				
 				chance = Double.parseDouble(prodData[length]);
 			}
 			catch (Exception e)
 			{
 				LOGGER.warning("Extractable skills data: Error in Skill Id: " + skillId + " Level: " + skillLevel + " -> incomplete/invalid production data or wrong seperator!");
 			}
+			
 			products.add(new ExtractableProductItem(items, chance));
 		}
 		
@@ -1660,6 +1697,7 @@ public class Skill
 		{
 			LOGGER.warning("Extractable skills data: Error in Skill Id: " + skillId + " Level: " + skillLevel + " -> There are no production items!");
 		}
+		
 		return new ExtractableSkill(SkillData.getSkillHashCode(skillId, skillLevel), products);
 	}
 	
@@ -1686,6 +1724,7 @@ public class Skill
 						{
 							avesEvent = new ArrayList<>(1);
 						}
+						
 						avesEvent.add(ave);
 						continue;
 					}
@@ -1696,6 +1735,7 @@ public class Skill
 						{
 							avesSpecial = new ArrayList<>(1);
 						}
+						
 						avesSpecial.add(ave);
 						continue;
 					}
@@ -1704,6 +1744,7 @@ public class Skill
 					{
 						aves = new ArrayList<>(1);
 					}
+					
 					aves.add(ave);
 				}
 			}
@@ -1754,6 +1795,7 @@ public class Skill
 								{
 									continue;
 								}
+								
 								effectTypesSet.add((byte) effect.getEffectType().ordinal());
 							}
 						}
@@ -1778,6 +1820,7 @@ public class Skill
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	

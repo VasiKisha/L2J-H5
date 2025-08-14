@@ -147,6 +147,7 @@ public class FishData implements IXmlReader
 			{
 				continue;
 			}
+			
 			result.add(f);
 		}
 		
@@ -154,6 +155,7 @@ public class FishData implements IXmlReader
 		{
 			LOGGER.warning(getClass().getSimpleName() + ": Cannot find any fish for level: " + level + " group: " + group + " and grade: " + grade + "!");
 		}
+		
 		return result;
 	}
 	

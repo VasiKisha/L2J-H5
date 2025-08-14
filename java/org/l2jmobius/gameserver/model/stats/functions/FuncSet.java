@@ -39,6 +39,7 @@ public class FuncSet extends AbstractFunction
 		{
 			return getValue();
 		}
+		
 		return initVal;
 	}
 }

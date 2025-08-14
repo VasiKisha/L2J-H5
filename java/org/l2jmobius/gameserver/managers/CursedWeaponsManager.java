@@ -239,10 +239,12 @@ public class CursedWeaponsManager
 								LOGGER.warning("Error while updating karma & pkkills for userId " + cw.getPlayerId());
 							}
 						}
+						
 						// clean up the cursed weapons table.
 						removeFromDb(itemId);
 					}
 				}
+				
 				ps.clearParameters();
 			}
 		}
@@ -279,6 +281,7 @@ public class CursedWeaponsManager
 		if (player.isCursedWeaponEquipped()) // cannot own 2 cursed swords
 		{
 			final CursedWeapon cw2 = _cursedWeapons.get(player.getCursedWeaponEquippedId());
+			
 			// TODO: give the bonus level in a more appropriate manner.
 			// The following code adds "_stageKills" levels. This will also show in the char status.
 			// I do not have enough info to know if the bonus should be shown in the pk count, or if it
@@ -351,6 +354,7 @@ public class CursedWeaponsManager
 				return cw.getItemId();
 			}
 		}
+		
 		return -1;
 	}
 	

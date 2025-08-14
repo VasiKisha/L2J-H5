@@ -242,9 +242,11 @@ public class KrateisCubeManager implements IXmlReader
 										params.set(c.getAttributes().getNamedItem("name").getNodeValue(), c.getAttributes().getNamedItem("value").getNodeValue());
 									}
 								}
+								
 								arena.addParam(params);
 							}
 						}
+						
 						_arenas.put(arena.getId(), arena);
 					}
 				}
@@ -305,6 +307,7 @@ public class KrateisCubeManager implements IXmlReader
 						arena.removePlayer(pl);
 					}
 				}
+				
 				invalidPlayers.clear();
 				
 				if (count > 1)
@@ -343,6 +346,7 @@ public class KrateisCubeManager implements IXmlReader
 				_state = EventState.STARTED;
 			}
 		}
+		
 		_periodTask = ThreadPool.schedule(this::recalcEventTime, 180000);
 	}
 	
@@ -460,6 +464,7 @@ public class KrateisCubeManager implements IXmlReader
 		{
 			_periodTask.cancel(false);
 		}
+		
 		_registerActive = false;
 		getManagerMessage(KrateiMsgType.PREPATING);
 		_state = EventState.PREPARING;
@@ -480,31 +485,31 @@ public class KrateisCubeManager implements IXmlReader
 			}
 			case REGISTRATION_5:
 			{
-				_manager.broadcastPacket(new CreatureSay(_manager, ChatType.NPC_SHOUT, NpcStringId.THERE_ARE_5_MINUTES_REMAINING_TO_REGISTER_FOR_KRATEI_S_CUBE_MATCH), 1500);
+				_manager.broadcastPacket(new CreatureSay(_manager, ChatType.NPC_SHOUT, NpcStringId.THERE_ARE_5_MINUTES_REMAINING_TO_REGISTER_FOR_KRATEI_S_CUBE_MATCH));
 				_msgTask = ThreadPool.schedule(() -> getManagerMessage(KrateiMsgType.REGISTRATION_3), lastTime - 180000);
 				break;
 			}
 			case REGISTRATION_3:
 			{
-				_manager.broadcastPacket(new CreatureSay(_manager, ChatType.NPC_SHOUT, NpcStringId.THERE_ARE_3_MINUTES_REMAINING_TO_REGISTER_FOR_KRATEI_S_CUBE_MATCH), 1500);
+				_manager.broadcastPacket(new CreatureSay(_manager, ChatType.NPC_SHOUT, NpcStringId.THERE_ARE_3_MINUTES_REMAINING_TO_REGISTER_FOR_KRATEI_S_CUBE_MATCH));
 				_msgTask = ThreadPool.schedule(() -> getManagerMessage(KrateiMsgType.REGISTRATION_1), lastTime - 60000);
 				break;
 			}
 			case REGISTRATION_1:
 			{
-				_manager.broadcastPacket(new CreatureSay(_manager, ChatType.NPC_SHOUT, NpcStringId.THERE_ARE_1_MINUTES_REMAINING_TO_REGISTER_FOR_KRATEI_S_CUBE_MATCH), 1500);
+				_manager.broadcastPacket(new CreatureSay(_manager, ChatType.NPC_SHOUT, NpcStringId.THERE_ARE_1_MINUTES_REMAINING_TO_REGISTER_FOR_KRATEI_S_CUBE_MATCH));
 				break;
 			}
 			case PREPATING:
 			{
 				final CreatureSay msg3 = new CreatureSay(_manager, ChatType.NPC_SHOUT, NpcStringId.THE_MATCH_WILL_BEGIN_IN_S1_MINUTE_S);
 				msg3.addStringParameter(String.valueOf(3));
-				_manager.broadcastPacket(msg3, 1500);
+				_manager.broadcastPacket(msg3);
 				break;
 			}
 			case STARTED:
 			{
-				_manager.broadcastPacket(new CreatureSay(_manager, ChatType.NPC_SHOUT, NpcStringId.THE_MATCH_WILL_BEGIN_SHORTLY), 1500);
+				_manager.broadcastPacket(new CreatureSay(_manager, ChatType.NPC_SHOUT, NpcStringId.THE_MATCH_WILL_BEGIN_SHORTLY));
 				break;
 			}
 		}

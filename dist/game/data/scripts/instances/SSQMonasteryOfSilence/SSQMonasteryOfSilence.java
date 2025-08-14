@@ -54,6 +54,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 	private static final int TELEPORT_CONTROL_DEVICE3 = 32819;
 	private static final int TELEPORT_CONTROL_DEVICE4 = 32820;
 	private static final int TOMB_OF_THE_SAINTESS = 32843;
+	
 	// Monsters
 	private static final int TRAINEE_OF_REST = 27403;
 	private static final int SUPPLICANT_OF_REST = 27404;
@@ -66,11 +67,13 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 	private static final int GUARDIAN_OF_THE_TOMB_2 = 18957;
 	private static final int GUARDIAN_OF_THE_TOMB_3 = 18958;
 	private static final int GUARDIAN_OF_THE_TOMB_4 = 18959;
+	
 	// Items
 	private static final int SCROLL_OF_ABSTINENCE = 17228;
 	private static final int SHIELD_OF_SACRIFICE = 17229;
 	private static final int SWORD_OF_HOLY_SPIRIT = 17230;
 	private static final int STAFF_OF_BLESSING = 17231;
+	
 	// Skills
 	private static final SkillHolder[] BUFFS =
 	{
@@ -78,6 +81,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 		new SkillHolder(6728, 1), // Recharge of Elcadia
 		new SkillHolder(6730, 1), // Greater Battle Heal of Elcadia
 	};
+	
 	// Locations
 	private static final Location START_LOC = new Location(120717, -86879, -3424);
 	private static final Location EXIT_LOC = new Location(115983, -87351, -3397);
@@ -130,6 +134,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 		new Location(56336, -252168, -6752),
 		new Location(56336, -252288, -6752),
 	};
+	
 	// NpcString
 	private static final NpcStringId[] ELCADIA_DIALOGS_Q010294 =
 	{
@@ -144,8 +149,10 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 		NpcStringId.THE_DEVICE_LOCATED_IN_THE_ROOM_IN_FRONT_OF_THE_GUARDIAN_OF_THE_SEAL_IS_DEFINITELY_THE_BARRIER_THAT_CONTROLS_THE_GUARDIAN_S_POWER,
 		NpcStringId.TO_REMOVE_THE_BARRIER_YOU_MUST_FIND_THE_RELICS_THAT_FIT_THE_BARRIER_AND_ACTIVATE_THE_DEVICE
 	};
+	
 	// Misc
 	private static final int TEMPLATE_ID = 151;
+	
 	// Doors
 	private static final int TOMB_DOOR = 21100018;
 	private static final int[] DOORS =
@@ -192,6 +199,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 		{
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, START_LOC, world.getInstanceId(), false);
 		spawnElcadia(player, world);
 	}
@@ -268,6 +276,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 					{
 						npc.doCast(getRandomEntry(BUFFS).getSkill());
 					}
+					
 					startQuestTimer("FOLLOW", 5000, npc, player);
 					break;
 				}
@@ -279,10 +288,12 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 					{
 						npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(ELCADIA_DIALOGS_Q010294));
 					}
+					
 					if ((qs10295 != null) && qs10295.isMemoState(1))
 					{
 						npc.broadcastSay(ChatType.NPC_GENERAL, getRandomEntry(ELCADIA_DIALOGS_Q010295));
 					}
+					
 					startQuestTimer("DIALOG", 10000, npc, player);
 					break;
 				}
@@ -420,6 +431,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 						mob.addDamageHate(player, 0, 999);
 						mob.getAI().setIntention(Intention.ATTACK, player);
 					}
+					
 					return "32843-01.html";
 				}
 				case "START_MOVIE_Q10296":
@@ -443,6 +455,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 				}
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -531,6 +544,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 		{
 			enterInstance(talker, TEMPLATE_ID);
 		}
+		
 		return super.onTalk(npc, talker);
 	}
 	
@@ -540,6 +554,7 @@ public class SSQMonasteryOfSilence extends AbstractInstance
 		{
 			world.getParameters().getObject("elcadia", Npc.class).deleteMe();
 		}
+		
 		final Npc elcadia = addSpawn(ELCADIA_INSTANCE, player.getX(), player.getY(), player.getZ(), 0, false, 0, false, world.getInstanceId());
 		world.setParameter("elcadia", elcadia);
 		startQuestTimer("FOLLOW", 5000, elcadia, player);

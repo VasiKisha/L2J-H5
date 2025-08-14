@@ -80,6 +80,7 @@ public class RelationChanged extends ServerPacket
 		{
 			return;
 		}
+		
 		final Relation r = new Relation();
 		r._objId = activeChar.getObjectId();
 		r._relation = relation;

@@ -365,6 +365,7 @@ public class LotteryManager
 				sm.addInt(_number);
 				sm.addLong(_prize);
 			}
+			
 			Broadcast.toAllOnlinePlayers(sm);
 			
 			try (Connection con = DatabaseFactory.getConnection();
@@ -407,6 +408,7 @@ public class LotteryManager
 				res[id] = nr;
 				id++;
 			}
+			
 			enchant /= 2;
 			nr++;
 		}
@@ -422,6 +424,7 @@ public class LotteryManager
 				res[id] = nr;
 				id++;
 			}
+			
 			type2 /= 2;
 			nr++;
 		}
@@ -464,11 +467,13 @@ public class LotteryManager
 						{
 							count++;
 						}
+						
 						final int val2 = curtype2 / 2;
 						if (val2 != ((double) curtype2 / 2))
 						{
 							count++;
 						}
+						
 						curenchant = val;
 						curtype2 = val2;
 					}
@@ -510,6 +515,7 @@ public class LotteryManager
 		{
 			LOGGER.log(Level.WARNING, "Lottery: Could not check lottery ticket #" + id + ": " + e.getMessage(), e);
 		}
+		
 		return res;
 	}
 	

@@ -68,6 +68,7 @@ public class Locator
 		{
 			c = Locator.class.getClassLoader();
 		}
+		
 		URL url = null;
 		if (c == null)
 		{
@@ -77,6 +78,7 @@ public class Locator
 		{
 			url = c.getResource(resource);
 		}
+		
 		if (url != null)
 		{
 			final String u = url.toString();
@@ -93,6 +95,7 @@ public class Locator
 				return new File(fromURI(dirName));
 			}
 		}
+		
 		return null;
 	}
 	
@@ -134,6 +137,7 @@ public class Locator
 		{
 			buf.insert(0, File.separatorChar).insert(0, File.separatorChar);
 		}
+		
 		final String file = url.getFile();
 		final int queryPos = file.indexOf('?');
 		buf.append((queryPos < 0) ? file : file.substring(0, queryPos));
@@ -157,6 +161,7 @@ public class Locator
 		{
 			return uri;
 		}
+		
 		final StringBuilder sb = new StringBuilder();
 		final CharacterIterator iter = new StringCharacterIterator(uri);
 		for (char c = iter.first(); c != CharacterIterator.DONE; c = iter.next())
@@ -180,6 +185,7 @@ public class Locator
 				sb.append(c);
 			}
 		}
+		
 		return sb.toString();
 	}
 	
@@ -209,10 +215,12 @@ public class Locator
 				// ignore
 			}
 		}
+		
 		if (toolsJarAvailable)
 		{
 			return null;
 		}
+		
 		// couldn't find compiler - try to find tools.jar
 		// based on java.home setting
 		String javaHome = System.getProperty("java.home");
@@ -220,12 +228,14 @@ public class Locator
 		{
 			javaHome = javaHome.substring(0, javaHome.length() - 4);
 		}
+		
 		final File toolsJar = new File(javaHome + "/lib/tools.jar");
 		if (!toolsJar.exists())
 		{
 			System.out.println("Unable to locate tools.jar. " + "Expected to find it in " + toolsJar.getPath());
 			return null;
 		}
+		
 		return toolsJar;
 	}
 	
@@ -258,6 +268,7 @@ public class Locator
 		{
 			return urls;
 		}
+		
 		if (!location.isDirectory())
 		{
 			urls = new URL[1];
@@ -270,8 +281,10 @@ public class Locator
 					break;
 				}
 			}
+			
 			return urls;
 		}
+		
 		final File[] matches = location.listFiles((FilenameFilter) (_, name) ->
 		{
 			for (String extension : extensions)
@@ -281,6 +294,7 @@ public class Locator
 					return true;
 				}
 			}
+			
 			return false;
 		});
 		urls = new URL[matches.length];
@@ -288,6 +302,7 @@ public class Locator
 		{
 			urls[i] = matches[i].toURI().toURL();
 		}
+		
 		return urls;
 	}
 }

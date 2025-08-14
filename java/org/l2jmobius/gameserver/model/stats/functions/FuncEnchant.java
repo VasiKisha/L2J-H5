@@ -106,6 +106,7 @@ public class FuncEnchant extends AbstractFunction
 					break;
 				}
 			}
+			
 			return value;
 		}
 		
@@ -239,6 +240,7 @@ public class FuncEnchant extends AbstractFunction
 				}
 			}
 		}
+		
 		return value;
 	}
 }

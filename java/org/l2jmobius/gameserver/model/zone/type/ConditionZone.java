@@ -59,6 +59,7 @@ public class ConditionZone extends ZoneType
 			{
 				creature.setInsideZone(ZoneId.NO_BOOKMARK, true);
 			}
+			
 			if (NO_ITEM_DROP)
 			{
 				creature.setInsideZone(ZoneId.NO_ITEM_DROP, true);
@@ -75,6 +76,7 @@ public class ConditionZone extends ZoneType
 			{
 				creature.setInsideZone(ZoneId.NO_BOOKMARK, false);
 			}
+			
 			if (NO_ITEM_DROP)
 			{
 				creature.setInsideZone(ZoneId.NO_ITEM_DROP, false);

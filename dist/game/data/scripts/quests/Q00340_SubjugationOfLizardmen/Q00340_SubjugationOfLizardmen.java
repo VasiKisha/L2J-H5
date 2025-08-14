@@ -35,11 +35,13 @@ public class Q00340_SubjugationOfLizardmen extends Quest
 	private static final int PRIEST_ADONIUS = 30375;
 	private static final int GUARD_WEISZ = 30385;
 	private static final int CHEST_OF_BIFRONS = 30989;
+	
 	// Items
 	private static final int TRADE_CARGO = 4255;
 	private static final int AGNESS_HOLY_SYMBOL = 4256;
 	private static final int AGNESS_ROSARY = 4257;
 	private static final int SINISTER_TOTEM = 4258;
+	
 	// Monster
 	private static final int FELIM_LIZARDMAN = 20008;
 	private static final int FELIM_LIZARDMAN_SCOUT = 20010;
@@ -47,8 +49,10 @@ public class Q00340_SubjugationOfLizardmen extends Quest
 	private static final int LANGK_LIZARDMAN_WARRIOR = 20024;
 	private static final int LANGK_LIZARDMAN_SCOUT = 20027;
 	private static final int LANGK_LIZARDMAN = 20030;
+	
 	// Raid Boss
 	private static final int SERPENT_DEMON_BIFRONS = 25146;
+	
 	// Misc
 	private static final int MIN_LEVEL = 17;
 	
@@ -149,6 +153,7 @@ public class Q00340_SubjugationOfLizardmen extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -338,6 +343,7 @@ public class Q00340_SubjugationOfLizardmen extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -78,6 +78,7 @@ public class Q10271_TheEnvelopingDarkness extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -199,6 +200,7 @@ public class Q10271_TheEnvelopingDarkness extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

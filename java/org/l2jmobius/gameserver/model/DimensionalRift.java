@@ -82,13 +82,16 @@ public class DimensionalRift
 				{
 					qs = riftQuest.newQuestState(p);
 				}
+				
 				if (!qs.isStarted())
 				{
 					qs.startQuest();
 				}
 			}
+			
 			p.teleToLocation(coords);
 		}
+		
 		createSpawnTimer(_choosenRoom);
 		createTeleporterTimer(true);
 	}
@@ -153,6 +156,7 @@ public class DimensionalRift
 							teleportToNextRoom(p);
 						}
 					}
+					
 					createTeleporterTimer(true);
 					createSpawnTimer(_choosenRoom);
 				}
@@ -165,6 +169,7 @@ public class DimensionalRift
 							teleportToWaitingRoom(p);
 						}
 					}
+					
 					killRift();
 					cancel();
 				}
@@ -243,6 +248,7 @@ public class DimensionalRift
 			{
 				teleportToWaitingRoom(p);
 			}
+			
 			killRift();
 		}
 	}
@@ -301,6 +307,7 @@ public class DimensionalRift
 		{
 			teleportToWaitingRoom(p);
 		}
+		
 		killRift();
 	}
 	
@@ -312,13 +319,16 @@ public class DimensionalRift
 			do
 			{
 				emptyRooms = DimensionalRiftManager.getInstance().getFreeRooms(_type);
+				
 				// Do not tp in the same room a second time
 				emptyRooms.removeAll(_completedRooms);
+				
 				// If no room left, find any empty
 				if (emptyRooms.isEmpty())
 				{
 					emptyRooms = DimensionalRiftManager.getInstance().getFreeRooms(_type);
 				}
+				
 				_choosenRoom = emptyRooms.get(Rnd.get(1, emptyRooms.size()) - 1);
 			}
 			while (DimensionalRiftManager.getInstance().getRoom(_type, _choosenRoom).isPartyInside());
@@ -414,6 +424,7 @@ public class DimensionalRift
 		{
 			return (long) (time * Config.RIFT_BOSS_ROOM_TIME_MUTIPLY);
 		}
+		
 		return time;
 	}
 	
@@ -458,6 +469,7 @@ public class DimensionalRift
 					teleportToWaitingRoom(p);
 				}
 			}
+			
 			killRift();
 		}
 	}
@@ -488,6 +500,7 @@ public class DimensionalRift
 		{
 			return (byte) Config.RIFT_MAX_JUMPS;
 		}
+		
 		return 4;
 	}
 }

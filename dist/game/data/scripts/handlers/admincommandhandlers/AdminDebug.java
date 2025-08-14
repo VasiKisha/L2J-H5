@@ -64,7 +64,7 @@ public class AdminDebug implements IAdminCommandHandler
 	private static final int DEBUG_MOVE_DELAY = 100;
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final StringTokenizer st = new StringTokenizer(command.toLowerCase(), " ");
 		st.nextToken(); // Skip actual command.
@@ -94,6 +94,7 @@ public class AdminDebug implements IAdminCommandHandler
 				{
 					showMenu(activeChar);
 				}
+				
 				return true;
 			}
 			case "door":
@@ -112,6 +113,7 @@ public class AdminDebug implements IAdminCommandHandler
 				{
 					showMenu(activeChar);
 				}
+				
 				return true;
 			}
 			case "geo":
@@ -130,6 +132,7 @@ public class AdminDebug implements IAdminCommandHandler
 				{
 					showMenu(activeChar);
 				}
+				
 				return true;
 			}
 			case "move":
@@ -150,6 +153,7 @@ public class AdminDebug implements IAdminCommandHandler
 				{
 					showMenu(activeChar);
 				}
+				
 				return true;
 			}
 		}
@@ -227,7 +231,7 @@ public class AdminDebug implements IAdminCommandHandler
 		{
 			if (task == null)
 			{
-				AdminCommandHandler.getInstance().useAdminCommand(player, "admin_showdoors", false);
+				AdminCommandHandler.getInstance().onCommand(player, "admin_showdoors", false);
 				PLAYER_DOOR_LOCATIONS.put(player, new Location(player));
 				PLAYER_DOOR_TASKS.put(player, ThreadPool.scheduleAtFixedRate(() ->
 				{
@@ -236,7 +240,7 @@ public class AdminDebug implements IAdminCommandHandler
 						if (LocationUtil.calculateDistance(player, PLAYER_DOOR_LOCATIONS.get(player), false, false) > 15)
 						{
 							PLAYER_DOOR_LOCATIONS.put(player, new Location(player));
-							AdminCommandHandler.getInstance().useAdminCommand(player, "admin_showdoors", false);
+							AdminCommandHandler.getInstance().onCommand(player, "admin_showdoors", false);
 						}
 					}
 					else
@@ -256,8 +260,9 @@ public class AdminDebug implements IAdminCommandHandler
 			task.cancel(false);
 			PLAYER_DOOR_TASKS.remove(player);
 			PLAYER_DOOR_LOCATIONS.remove(player);
-			ThreadPool.schedule(() -> AdminCommandHandler.getInstance().useAdminCommand(player, "admin_showdoors off", false), DEBUG_DOOR_DELAY + 100);
+			ThreadPool.schedule(() -> AdminCommandHandler.getInstance().onCommand(player, "admin_showdoors off", false), DEBUG_DOOR_DELAY + 100);
 		}
+		
 		player.sendSysMessage("Door debugging is " + (enabled ? "enabled." : "disabled."));
 	}
 	
@@ -268,7 +273,7 @@ public class AdminDebug implements IAdminCommandHandler
 		{
 			if (task == null)
 			{
-				AdminCommandHandler.getInstance().useAdminCommand(player, "admin_geogrid", false);
+				AdminCommandHandler.getInstance().onCommand(player, "admin_geogrid", false);
 				PLAYER_GEO_LOCATIONS.put(player, new Location(player));
 				PLAYER_GEO_TASKS.put(player, ThreadPool.scheduleAtFixedRate(() ->
 				{
@@ -277,7 +282,7 @@ public class AdminDebug implements IAdminCommandHandler
 						if (!PLAYER_MOVE_PATHS.containsKey(player) && (LocationUtil.calculateDistance(player, PLAYER_GEO_LOCATIONS.get(player), false, false) > 15))
 						{
 							PLAYER_GEO_LOCATIONS.put(player, new Location(player));
-							AdminCommandHandler.getInstance().useAdminCommand(player, "admin_geogrid", false);
+							AdminCommandHandler.getInstance().onCommand(player, "admin_geogrid", false);
 						}
 					}
 					else
@@ -297,8 +302,9 @@ public class AdminDebug implements IAdminCommandHandler
 			task.cancel(false);
 			PLAYER_GEO_TASKS.remove(player);
 			PLAYER_GEO_LOCATIONS.remove(player);
-			ThreadPool.schedule(() -> AdminCommandHandler.getInstance().useAdminCommand(player, "admin_geogrid off", false), DEBUG_GEO_DELAY + 100);
+			ThreadPool.schedule(() -> AdminCommandHandler.getInstance().onCommand(player, "admin_geogrid off", false), DEBUG_GEO_DELAY + 100);
 		}
+		
 		player.sendSysMessage("Geodata debugging is " + (enabled ? "enabled." : "disabled."));
 	}
 	
@@ -348,6 +354,7 @@ public class AdminDebug implements IAdminCommandHandler
 			PLAYER_MOVE_LOCATIONS.remove(player);
 			ThreadPool.schedule(() -> clearMoveLine(player), DEBUG_GEO_DELAY + 100);
 		}
+		
 		player.sendSysMessage("Movement debugging is " + (enabled ? "enabled." : "disabled."));
 	}
 	
@@ -373,6 +380,7 @@ public class AdminDebug implements IAdminCommandHandler
 					final GeoLocation next = path.get(i + 1);
 					exsp.addLine(Color.BLUE, current.getX(), current.getY(), current.getZ(), next.getX(), next.getY(), next.getZ());
 				}
+				
 				player.sendPacket(exsp);
 				
 				PLAYER_MOVE_PATHS.put(player, path);
@@ -405,7 +413,7 @@ public class AdminDebug implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

@@ -105,6 +105,7 @@ public class KamaelChange2 extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -173,6 +174,7 @@ public class KamaelChange2 extends AbstractNpcAI
 							takeItems(player, ORKURUS_RECOMMENDATION, -1);
 							player.setPlayerClass(127);
 							player.setBaseClass(127);
+							
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
 							giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
@@ -202,6 +204,7 @@ public class KamaelChange2 extends AbstractNpcAI
 							takeItems(player, SOUL_BREAKER_CERTIFICATE, -1);
 							player.setPlayerClass(128);
 							player.setBaseClass(128);
+							
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
 							giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
@@ -245,6 +248,7 @@ public class KamaelChange2 extends AbstractNpcAI
 							takeItems(player, SOUL_BREAKER_CERTIFICATE, -1);
 							player.setPlayerClass(129);
 							player.setBaseClass(129);
+							
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
 							giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
@@ -274,6 +278,7 @@ public class KamaelChange2 extends AbstractNpcAI
 							takeItems(player, KAMAEL_INQUISITOR_MARK, -1);
 							player.setPlayerClass(130);
 							player.setBaseClass(130);
+							
 							// SystemMessage and cast skill is done by setClassId
 							player.broadcastUserInfo();
 							giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
@@ -283,6 +288,7 @@ public class KamaelChange2 extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -392,6 +398,7 @@ public class KamaelChange2 extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

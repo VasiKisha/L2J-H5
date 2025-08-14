@@ -31,8 +31,10 @@ public class Q00112_WalkOfFate extends Quest
 	// NPCs
 	private static final int LIVINA = 30572;
 	private static final int KARUDA = 32017;
+	
 	// Item
 	private static final int SCROLL_ENCHANT_ARMOR_D_GRADE = 956;
+	
 	// Misc
 	private static final int MIN_LEVEL = 20;
 	
@@ -70,6 +72,7 @@ public class Q00112_WalkOfFate extends Quest
 				htmltext = event;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -108,6 +111,7 @@ public class Q00112_WalkOfFate extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

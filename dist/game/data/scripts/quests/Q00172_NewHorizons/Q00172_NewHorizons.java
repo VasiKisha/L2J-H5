@@ -77,6 +77,7 @@ public class Q00172_NewHorizons extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -118,6 +119,7 @@ public class Q00172_NewHorizons extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

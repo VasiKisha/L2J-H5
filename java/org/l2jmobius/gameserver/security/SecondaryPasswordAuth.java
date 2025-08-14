@@ -106,7 +106,7 @@ public class SecondaryPasswordAuth
 		if (passwordExist())
 		{
 			LOGGER.warning("[SecondaryPasswordAuth]" + _activeClient.getAccountName() + " forced savePassword");
-			Disconnection.of(_activeClient).defaultSequence(LeaveWorld.STATIC_PACKET);
+			Disconnection.of(_activeClient).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 			return false;
 		}
 		
@@ -130,6 +130,7 @@ public class SecondaryPasswordAuth
 			LOGGER.log(Level.SEVERE, "Error while writing password.", e);
 			return false;
 		}
+		
 		_password = password;
 		return true;
 	}
@@ -150,6 +151,7 @@ public class SecondaryPasswordAuth
 			LOGGER.log(Level.SEVERE, "Error while writing wrong attempts.", e);
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -158,7 +160,7 @@ public class SecondaryPasswordAuth
 		if (!passwordExist())
 		{
 			LOGGER.warning("[SecondaryPasswordAuth]" + _activeClient.getAccountName() + " forced changePassword");
-			Disconnection.of(_activeClient).defaultSequence(LeaveWorld.STATIC_PACKET);
+			Disconnection.of(_activeClient).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 			return false;
 		}
 		
@@ -212,13 +214,16 @@ public class SecondaryPasswordAuth
 				insertWrongAttempt(0);
 				_activeClient.close(new Ex2ndPasswordVerify(Ex2ndPasswordVerify.PASSWORD_BAN, SecondaryAuthData.getInstance().getMaxAttempts()));
 			}
+			
 			return false;
 		}
+		
 		if (!skipAuth)
 		{
 			_authed = true;
 			_activeClient.sendPacket(new Ex2ndPasswordVerify(Ex2ndPasswordVerify.PASSWORD_OK, _wrongAttempts));
 		}
+		
 		insertWrongAttempt(0);
 		return true;
 	}
@@ -258,6 +263,7 @@ public class SecondaryPasswordAuth
 		{
 			LOGGER.severe("[SecondaryPasswordAuth]Unsupported Algorythm");
 		}
+		
 		return null;
 	}
 	

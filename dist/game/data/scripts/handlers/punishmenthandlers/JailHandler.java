@@ -1,25 +1,31 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package handlers.punishmenthandlers;
 
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.LoginServerThread;
 import org.l2jmobius.gameserver.cache.HtmCache;
 import org.l2jmobius.gameserver.handler.IPunishmentHandler;
+import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.tasks.player.TeleportTask;
@@ -28,6 +34,7 @@ import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLogin;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
+import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
 import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
 import org.l2jmobius.gameserver.model.punishment.PunishmentType;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
@@ -37,22 +44,44 @@ import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 /**
  * This class handles jail punishment.
- * @author UnAfraid
+ * @author UnAfraid, Skache
  */
 public class JailHandler implements IPunishmentHandler
 {
 	public JailHandler()
 	{
-		// Register global listener
+		// Register global listener.
 		Containers.Global().addListener(new ConsumerEventListener(Containers.Global(), EventType.ON_PLAYER_LOGIN, (OnPlayerLogin event) -> onPlayerLogin(event), this));
 	}
 	
 	private void onPlayerLogin(OnPlayerLogin event)
 	{
 		final Player player = event.getPlayer();
+		
 		if (player.isJailed() && !player.isInsideZone(ZoneId.JAIL))
 		{
 			applyToPlayer(null, player);
+		}
+		else if (player.isJailed())
+		{
+			// Notify about remaining jail time.
+			PunishmentTask task = PunishmentManager.getInstance().getPunishment(player.getObjectId(), PunishmentAffect.CHARACTER, PunishmentType.JAIL);
+			if (task != null)
+			{
+				long timeRemaining = task.getExpirationTime() - System.currentTimeMillis();
+				if (timeRemaining > 0)
+				{
+					// Round up to nearest second to avoid showing 1 second less.
+					timeRemaining = ((timeRemaining + 999) / 1000) * 1000;
+					
+					String message = "Jail time remaining: " + TimeUtil.formatDuration(timeRemaining) + ".";
+					player.sendMessage(message);
+				}
+				else
+				{
+					player.sendMessage("You are jailed forever.");
+				}
+			}
 		}
 		else if (!player.isJailed() && player.isInsideZone(ZoneId.JAIL) && !player.isGM())
 		{
@@ -190,7 +219,7 @@ public class JailHandler implements IPunishmentHandler
 		
 		ThreadPool.schedule(new TeleportTask(player, JailZone.getLocationIn()), 2000);
 		
-		// Open a Html message to inform the player
+		// Show jail reason HTML message.
 		final NpcHtmlMessage msg = new NpcHtmlMessage();
 		String content = HtmCache.getInstance().getHtm(player, "data/html/jail_in.htm");
 		if (content != null)
@@ -203,27 +232,19 @@ public class JailHandler implements IPunishmentHandler
 		{
 			msg.setHtml("<html><body>You have been put in jail by an admin.</body></html>");
 		}
+		
 		player.sendPacket(msg);
+		
+		// Inform the player about jail duration.
 		if (task != null)
 		{
-			final long delay = (task.getExpirationTime() - System.currentTimeMillis()) / 1000;
-			if (delay > 0)
+			long jailDuration = task.getExpirationTime() - System.currentTimeMillis();
+			if (jailDuration > 0)
 			{
-				final long minutes = delay / 60;
-				final long seconds = delay % 60;
-				String message = "You've been jailed for ";
-				if (minutes > 0)
-				{
-					message += minutes + " minute" + (minutes > 1 ? "s" : "");
-					if (seconds > 0)
-					{
-						message += " and ";
-					}
-				}
-				if ((seconds > 0) || (minutes == 0))
-				{
-					message += seconds + " second" + (seconds > 1 ? "s" : "");
-				}
+				// Round up to nearest second to avoid showing 1 second less.
+				jailDuration = ((jailDuration + 999) / 1000) * 1000;
+				
+				String message = "You've been jailed for " + TimeUtil.formatDuration(jailDuration) + "!";
 				player.sendMessage(message);
 			}
 			else
@@ -252,6 +273,7 @@ public class JailHandler implements IPunishmentHandler
 		{
 			msg.setHtml("<html><body>You are free for now, respect server rules!</body></html>");
 		}
+		
 		player.sendPacket(msg);
 	}
 	

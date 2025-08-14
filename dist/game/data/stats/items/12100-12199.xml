@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="12100" type="Armor" name="Common Item - Karmian Stockings">
 		<!-- Karmian Stockings with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -12,13 +12,13 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="323" />
 		<set name="price" val="8430" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="37" />
 			<add stat="maxMp" val="141" />
-		</for>
+		</stats>
 	</item>
 	<item id="12101" type="Armor" name="Common Item - Plate Leather Boots">
 		<!-- Plate Leather Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -31,9 +31,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="407" />
 		<set name="price" val="4500" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="32" />
-		</for>
+		</stats>
 	</item>
 	<item id="12102" type="Armor" name="Common Item - Dwarven Chain Shield">
 		<!-- Dwarven Chain Shield with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -46,14 +46,14 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="427" />
 		<set name="price" val="5480" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="174" />
-		</for>
+		</stats>
 	</item>
 	<item id="12103" type="Armor" name="Common Item - Plate Leather Gaiters">
 		<!-- Plate Leather Gaiters with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -67,9 +67,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="520" />
 		<set name="price" val="9780" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="59" />
-		</for>
+		</stats>
 	</item>
 	<item id="12104" type="Armor" name="Common Item - Plate Leather Gloves">
 		<!-- Plate Leather Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -82,9 +82,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="203" />
 		<set name="price" val="5220" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="33" />
-		</for>
+		</stats>
 	</item>
 	<item id="12105" type="Armor" name="Common Item - Plate Leather Armor">
 		<!-- Plate Leather Armor with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -98,9 +98,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1483" />
 		<set name="price" val="15700" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="94" />
-		</for>
+		</stats>
 	</item>
 	<item id="12106" type="Armor" name="Common Item - Great Helmet">
 		<!-- Great Helmet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -113,9 +113,9 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="203" />
 		<set name="price" val="8420" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="51" />
-		</for>
+		</stats>
 	</item>
 	<item id="12107" type="Armor" name="Common Item - Knight's Shield">
 		<!-- Knight's Shield with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -128,14 +128,14 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="420" />
 		<set name="price" val="5900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="178" />
-		</for>
+		</stats>
 	</item>
 	<item id="12108" type="Armor" name="Common Item - Dwarven Chain Gloves">
 		<!-- Dwarven Chain Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -148,9 +148,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="200" />
 		<set name="price" val="5620" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="34" />
-		</for>
+		</stats>
 	</item>
 	<item id="12109" type="Armor" name="Common Item - Dwarven Chain Gaiters">
 		<!-- Dwarven Chain Gaiters with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -164,12 +164,12 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="1207" />
 		<set name="price" val="14000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="80" />
-		</for>
+		</stats>
 	</item>
 	<item id="12110" type="Armor" name="Common Item - Dwarven Chain Mail Shirt">
 		<!-- Dwarven Chain Mail Shirt with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -183,12 +183,12 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="2690" />
 		<set name="price" val="22500" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="129" />
-		</for>
+		</stats>
 	</item>
 	<item id="12111" type="Armor" name="Common Item - Rind Leather Gaiters">
 		<!-- Rind Leather Gaiters with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -202,9 +202,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="517" />
 		<set name="price" val="10500" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="60" />
-		</for>
+		</stats>
 	</item>
 	<item id="12112" type="Armor" name="Common Item - Rind Leather Gloves">
 		<!-- Rind Leather Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -217,9 +217,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="200" />
 		<set name="price" val="5620" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="34" />
-		</for>
+		</stats>
 	</item>
 	<item id="12113" type="Armor" name="Common Item - Rind Leather Armor">
 		<!-- Rind Leather Armor with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -233,9 +233,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1473" />
 		<set name="price" val="16800" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="97" />
-		</for>
+		</stats>
 	</item>
 	<item id="12114" type="Armor" name="Common Item - Rind Leather Boots">
 		<!-- Rind Leather Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -248,9 +248,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="407" />
 		<set name="price" val="5620" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="34" />
-		</for>
+		</stats>
 	</item>
 	<item id="12115" type="Armor" name="Common Item - Robe of Seal">
 		<!-- Robe of Seal with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -264,13 +264,13 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="833" />
 		<set name="price" val="27400" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="105" />
 			<add stat="maxMp" val="413" />
-		</for>
+		</stats>
 	</item>
 	<item id="12116" type="Armor" name="Common Item - Gloves of Seal">
 		<!-- Gloves of Seal with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -283,9 +283,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="207" />
 		<set name="price" val="5620" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="34" />
-		</for>
+		</stats>
 	</item>
 	<item id="12117" type="Armor" name="Common Item - Silk Shirt">
 		<!-- Silk Shirt with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -298,9 +298,9 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="43" />
 		<set name="price" val="14000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="17" />
-		</for>
+		</stats>
 	</item>
 	<item id="12118" type="Armor" name="Common Item - Crimson Boots">
 		<!-- Crimson Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -313,9 +313,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="403" />
 		<set name="price" val="5620" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="34" />
-		</for>
+		</stats>
 	</item>
 	<item id="12119" type="Armor" name="Common Item - Mithril Gauntlet">
 		<!-- Mithril Gauntlet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -328,9 +328,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="200" />
 		<set name="price" val="10400" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="36" />
-		</for>
+		</stats>
 	</item>
 	<item id="12120" type="Armor" name="Common Item - Shining Circlet">
 		<!-- Shining Circlet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -343,9 +343,9 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="200" />
 		<set name="price" val="15600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="54" />
-		</for>
+		</stats>
 	</item>
 	<item id="12121" type="Armor" name="Common Item - Demon's Boots">
 		<!-- Demon's Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -358,9 +358,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="407" />
 		<set name="price" val="10400" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="36" />
-		</for>
+		</stats>
 	</item>
 	<item id="12122" type="Armor" name="Common Item - Demon's Gloves">
 		<!-- Demon's Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -373,9 +373,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="203" />
 		<set name="price" val="10400" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="36" />
-		</for>
+		</stats>
 	</item>
 	<item id="12123" type="Armor" name="Common Item - Demon's Tunic">
 		<!-- Demon's Tunic with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -389,13 +389,13 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="663" />
 		<set name="price" val="31200" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="69" />
 			<add stat="maxMp" val="284" />
-		</for>
+		</stats>
 	</item>
 	<item id="12124" type="Armor" name="Common Item - Demon's Stockings">
 		<!-- Demon's Stockings with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -409,13 +409,13 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="327" />
 		<set name="price" val="19500" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="43" />
 			<add stat="maxMp" val="177" />
-		</for>
+		</stats>
 	</item>
 	<item id="12125" type="Armor" name="Common Item - Composite Boots">
 		<!-- Composite Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -428,9 +428,9 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="407" />
 		<set name="price" val="10400" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="36" />
-		</for>
+		</stats>
 	</item>
 	<item id="12126" type="Armor" name="Common Item - Composite Shield">
 		<!-- Composite Shield with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -443,14 +443,14 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="410" />
 		<set name="price" val="10900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="190" />
-		</for>
+		</stats>
 	</item>
 	<item id="12127" type="Armor" name="Common Item - Composite Helmet">
 		<!-- Composite Helmet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -463,9 +463,9 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="203" />
 		<set name="price" val="15600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="54" />
-		</for>
+		</stats>
 	</item>
 	<item id="12128" type="Armor" name="Common Item - Composite Armor">
 		<!-- Composite Armor with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -479,12 +479,12 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="3660" />
 		<set name="price" val="67700" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="224" />
-		</for>
+		</stats>
 	</item>
 	<item id="12129" type="Armor" name="Common Item - Tower Shield">
 		<!-- Tower Shield with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -497,14 +497,14 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="413" />
 		<set name="price" val="10900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="190" />
-		</for>
+		</stats>
 	</item>
 	<item id="12130" type="Armor" name="Common Item - Theca Leather Gaiters">
 		<!-- Theca Leather Gaiters with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -518,9 +518,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="21000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="66" />
-		</for>
+		</stats>
 	</item>
 	<item id="12131" type="Armor" name="Common Item - Theca Leather Gloves">
 		<!-- Theca Leather Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -533,9 +533,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="200" />
 		<set name="price" val="11200" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="37" />
-		</for>
+		</stats>
 	</item>
 	<item id="12132" type="Armor" name="Common Item - Theca Leather Boots">
 		<!-- Theca Leather Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -548,9 +548,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="403" />
 		<set name="price" val="11200" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="37" />
-		</for>
+		</stats>
 	</item>
 	<item id="12133" type="Armor" name="Common Item - Theca Leather Armor">
 		<!-- Theca Leather Armor with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -564,9 +564,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1457" />
 		<set name="price" val="33600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="106" />
-		</for>
+		</stats>
 	</item>
 	<item id="12134" type="Armor" name="Common Item - Drake Leather Gloves">
 		<!-- Drake Leather Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -579,9 +579,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="200" />
 		<set name="price" val="16300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="39" />
-		</for>
+		</stats>
 	</item>
 	<item id="12135" type="Armor" name="Common Item - Drake Leather Armor">
 		<!-- Drake Leather Armor with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -595,9 +595,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1933" />
 		<set name="price" val="79500" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="179" />
-		</for>
+		</stats>
 	</item>
 	<item id="12136" type="Armor" name="Common Item - Drake Leather Boots">
 		<!-- Drake Leather Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -610,9 +610,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="403" />
 		<set name="price" val="16300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="39" />
-		</for>
+		</stats>
 	</item>
 	<item id="12137" type="Armor" name="Common Item - Divine Gloves">
 		<!-- Divine Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -625,9 +625,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="203" />
 		<set name="price" val="16300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="39" />
-		</for>
+		</stats>
 	</item>
 	<item id="12138" type="Armor" name="Common Item - Divine Tunic">
 		<!-- Divine Tunic with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -641,13 +641,13 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="660" />
 		<set name="price" val="48900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<add stat="maxMp" val="314" />
-		</for>
+		</stats>
 	</item>
 	<item id="12139" type="Armor" name="Common Item - Divine Stockings">
 		<!-- Divine Stockings with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -661,13 +661,13 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="320" />
 		<set name="price" val="30600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="46" />
 			<add stat="maxMp" val="196" />
-		</for>
+		</stats>
 	</item>
 	<item id="12140" type="Armor" name="Common Item - Stripe Silk Shirt">
 		<!-- Stripe Silk Shirt with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -680,9 +680,9 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="43" />
 		<set name="price" val="40800" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="19" />
-		</for>
+		</stats>
 	</item>
 	<item id="12141" type="Armor" name="Common Item - Full Plate Gauntlet">
 		<!-- Full Plate Gauntlet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -695,9 +695,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="200" />
 		<set name="price" val="16300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="39" />
-		</for>
+		</stats>
 	</item>
 	<item id="12142" type="Armor" name="Common Item - Full Plate Boots">
 		<!-- Full Plate Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -710,9 +710,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="400" />
 		<set name="price" val="16300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="39" />
-		</for>
+		</stats>
 	</item>
 	<item id="12143" type="Armor" name="Common Item - Full Plate Shield">
 		<!-- Full Plate Shield with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -725,14 +725,14 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="407" />
 		<set name="price" val="17100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="203" />
-		</for>
+		</stats>
 	</item>
 	<item id="12144" type="Armor" name="Common Item - Full Plate Armor">
 		<!-- Full Plate Armor with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -746,12 +746,12 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="3493" />
 		<set name="price" val="106000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="239" />
-		</for>
+		</stats>
 	</item>
 	<item id="12145" type="Armor" name="Common Item - Full Plate Helmet">
 		<!-- Full Plate Helmet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -764,9 +764,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="200" />
 		<set name="price" val="24500" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="58" />
-		</for>
+		</stats>
 	</item>
 	<item id="12146" type="Armor" name="Common Item - Sealed Zubei's Gauntlet">
 		<!-- Sealed Zubei's Gauntlet with limited power enhancement. Enchantment, storing souls, and smelting are impossible. The blacksmith in a village can release the seal on this item. -->
@@ -779,9 +779,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="197" />
 		<set name="price" val="20900" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12147" type="Armor" name="Common Item - Sealed Zubei's Boots">
 		<!-- Sealed Zubei's Boots with limited power enhancement. Enchantment, storing souls, and smelting are impossible. The blacksmith in a village can release the seal on this item. -->
@@ -794,9 +794,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="393" />
 		<set name="price" val="20900" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12148" type="Armor" name="Common Item - Sealed Avadon Gloves">
 		<!-- Sealed Avadon Gloves with limited power enhancement. Enchantment, storing souls, and augmenting are impossible.The blacksmith in a village can release the seal on this item. -->
@@ -809,9 +809,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="197" />
 		<set name="price" val="20900" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12149" type="Armor" name="Common Item - Sealed Avadon Boots">
 		<!-- Sealed Avadon Boots with limited power enhancement. Enchantment, storing souls, and augmenting are impossible.The blacksmith in a village can release the seal on this item. -->
@@ -824,9 +824,9 @@
 		<set name="material" val="DAMASCUS" />
 		<set name="weight" val="390" />
 		<set name="price" val="20900" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12150" type="Armor" name="Common Item - Zubei's Leather Gaiters">
 		<!-- Zubei's Leather Gaiters with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -840,9 +840,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="493" />
 		<set name="price" val="39100" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="73" />
-		</for>
+		</stats>
 	</item>
 	<item id="12151" type="Armor" name="Common Item - Zubei's Leather Shirt">
 		<!-- Zubei's Leather Shirt with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -856,9 +856,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1443" />
 		<set name="price" val="62600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="117" />
-		</for>
+		</stats>
 	</item>
 	<item id="12152" type="Armor" name="Common Item - Zubei's Gaiters">
 		<!-- Zubei's Gaiters with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -872,12 +872,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="1190" />
 		<set name="price" val="52200" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="98" />
-		</for>
+		</stats>
 	</item>
 	<item id="12153" type="Armor" name="Common Item - Zubei's Gauntlet - Heavy Armor">
 		<!-- Zubei's Gauntlet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -890,12 +890,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="197" />
 		<set name="price" val="20900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12154" type="Armor" name="Common Item - Zubei's Gauntlet - Tans Armor Use">
 		<!-- Zubei's Gauntlet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -908,9 +908,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="197" />
 		<set name="price" val="20900" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12155" type="Armor" name="Common Item - Zubei's Gauntlet - Robe">
 		<!-- Zubei's Gauntlet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -923,12 +923,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="197" />
 		<set name="price" val="20900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12156" type="Armor" name="Common Item - Zubei's Boots - Heavy Armor">
 		<!-- Zubei's Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -941,12 +941,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="393" />
 		<set name="price" val="20900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12157" type="Armor" name="Common Item - Zubei's Boots - Tans Armor Use">
 		<!-- Zubei's Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -959,9 +959,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="393" />
 		<set name="price" val="20900" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12158" type="Armor" name="Common Item - Zubei's Boots - Robe">
 		<!-- Zubei's Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -974,12 +974,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="393" />
 		<set name="price" val="20900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12159" type="Armor" name="Common Item - Zubei's Shield">
 		<!-- Zubei's Shield with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -992,14 +992,14 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="403" />
 		<set name="price" val="21900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="216" />
-		</for>
+		</stats>
 	</item>
 	<item id="12160" type="Armor" name="Common Item - Zubei's Helmet">
 		<!-- Zubei's Helmet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1012,9 +1012,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="197" />
 		<set name="price" val="31300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="62" />
-		</for>
+		</stats>
 	</item>
 	<item id="12161" type="Armor" name="Common Item - Zubei's Breastplate">
 		<!-- Zubei's Breastplate with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1028,12 +1028,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="2657" />
 		<set name="price" val="83500" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="157" />
-		</for>
+		</stats>
 	</item>
 	<item id="12162" type="Armor" name="Common Item - Avadon Gloves - Heavy Armor">
 		<!-- Avadon Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1046,12 +1046,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="197" />
 		<set name="price" val="20900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12163" type="Armor" name="Common Item - Avadon Gloves - Tans Armor Use">
 		<!-- Avadon Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1064,9 +1064,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="197" />
 		<set name="price" val="20900" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12164" type="Armor" name="Common Item - Avadon Gloves - Robe">
 		<!-- Avadon Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1079,12 +1079,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="197" />
 		<set name="price" val="20900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12165" type="Armor" name="Common Item - Avadon Leather Armor">
 		<!-- Avadon Leather Armor with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1098,9 +1098,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1867" />
 		<set name="price" val="102000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="191" />
-		</for>
+		</stats>
 	</item>
 	<item id="12166" type="Armor" name="Common Item - Avadon Robe">
 		<!-- Avadon Robe with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1114,13 +1114,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="847" />
 		<set name="price" val="102000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="127" />
 			<add stat="maxMp" val="561" />
-		</for>
+		</stats>
 	</item>
 	<item id="12167" type="Armor" name="Common Item - Avadon Boots - Heavy Armor">
 		<!-- Avadon Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1133,12 +1133,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="393" />
 		<set name="price" val="20900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12168" type="Armor" name="Common Item - Avadon Boots - Tans Armor Use">
 		<!-- Avadon Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1151,9 +1151,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="393" />
 		<set name="price" val="20900" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12169" type="Armor" name="Common Item - Avadon Boots - Robe">
 		<!-- Avadon Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1166,12 +1166,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="393" />
 		<set name="price" val="20900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="41" />
-		</for>
+		</stats>
 	</item>
 	<item id="12170" type="Armor" name="Common Item - Avadon Circlet">
 		<!-- Avadon Circlet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1184,9 +1184,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="197" />
 		<set name="price" val="31300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="62" />
-		</for>
+		</stats>
 	</item>
 	<item id="12171" type="Armor" name="Common Item - Avadon Shield">
 		<!-- Avadon Shield with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1199,14 +1199,14 @@
 		<set name="material" val="DAMASCUS" />
 		<set name="weight" val="403" />
 		<set name="price" val="21900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="216" />
-		</for>
+		</stats>
 	</item>
 	<item id="12172" type="Armor" name="Common Item - Avadon Plate Gaiters">
 		<!-- Avadon Plate Gaiters with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1220,12 +1220,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1173" />
 		<set name="price" val="52200" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="98" />
-		</for>
+		</stats>
 	</item>
 	<item id="12173" type="Armor" name="Common Item - Avadon Breastplate">
 		<!-- Avadon Breastplate with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1239,12 +1239,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="2640" />
 		<set name="price" val="83500" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="157" />
-		</for>
+		</stats>
 	</item>
 	<item id="12174" type="Armor" name="Common Item - Thin Leather Shirt">
 		<!-- Thin Leather Shirt with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1257,9 +1257,9 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="43" />
 		<set name="price" val="52200" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="21" />
-		</for>
+		</stats>
 	</item>
 	<item id="12175" type="Armor" name="Common Item - Tunic of Zubei">
 		<!-- Tunic of Zubei with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1273,13 +1273,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="653" />
 		<set name="price" val="62600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="78" />
 			<add stat="maxMp" val="345" />
-		</for>
+		</stats>
 	</item>
 	<item id="12176" type="Armor" name="Common Item - Stockings of Zubei">
 		<!-- Stockings of Zubei with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1293,13 +1293,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="313" />
 		<set name="price" val="39100" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="49" />
 			<add stat="maxMp" val="216" />
-		</for>
+		</stats>
 	</item>
 	<item id="12177" type="Armor" name="Common Item - Doom Gloves - Heavy Armor">
 		<!-- Doom Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1312,12 +1312,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="193" />
 		<set name="price" val="37600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12178" type="Armor" name="Common Item - Doom Gloves - Tans Armor Use">
 		<!-- Doom Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1330,9 +1330,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="193" />
 		<set name="price" val="37600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12179" type="Armor" name="Common Item - Doom Gloves - Robe">
 		<!-- Doom Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1345,12 +1345,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="193" />
 		<set name="price" val="37600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12180" type="Armor" name="Common Item - Doom Boots - Heavy Armor">
 		<!-- Doom Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1363,12 +1363,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="377" />
 		<set name="price" val="37600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12181" type="Armor" name="Common Item - Doom Boots - Tans Armor Use">
 		<!-- Doom Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1381,9 +1381,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="377" />
 		<set name="price" val="37600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12182" type="Armor" name="Common Item - Doom Boots - Robe">
 		<!-- Doom Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1396,12 +1396,12 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="377" />
 		<set name="price" val="37600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12183" type="Armor" name="Common Item - Doom Shield">
 		<!-- Doom Shield with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1414,14 +1414,14 @@
 		<set name="material" val="FINE_STEEL" />
 		<set name="weight" val="400" />
 		<set name="price" val="39400" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="230" />
-		</for>
+		</stats>
 	</item>
 	<item id="12184" type="Armor" name="Common Item - Doom Plate Armor">
 		<!-- Doom Plate Armor with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1435,12 +1435,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="3327" />
 		<set name="price" val="244000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="270" />
-		</for>
+		</stats>
 	</item>
 	<item id="12185" type="Armor" name="Common Item - Doom Helmet">
 		<!-- Doom Helmet with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1453,9 +1453,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="193" />
 		<set name="price" val="56300" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="66" />
-		</for>
+		</stats>
 	</item>
 	<item id="12186" type="Armor" name="Common Item - Leather Armor of Doom">
 		<!-- Leather Armor of Doom with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1469,9 +1469,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1833" />
 		<set name="price" val="183000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="202" />
-		</for>
+		</stats>
 	</item>
 	<item id="12187" type="Armor" name="Common Item - Sealed Doom Gloves">
 		<!-- Sealed Doom Gloves with limited power enhancement. Enchantment, storing souls, and augmenting are impossible. The blacksmith in a village can release the seal on this item. -->
@@ -1484,9 +1484,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="193" />
 		<set name="price" val="37600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12188" type="Armor" name="Common Item - Sealed Doom Boots">
 		<!-- Sealed Doom Boots with limited power enhancement. Enchantment, storing souls, and augmenting are impossible. The blacksmith in a village can release the seal on this item. -->
@@ -1499,9 +1499,9 @@
 		<set name="material" val="MITHRIL" />
 		<set name="weight" val="377" />
 		<set name="price" val="37600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12189" type="Armor" name="Common Item - Sealed Blue Wolf Boots">
 		<!-- Sealed Blue Wolf Boots with limited power enhancement. Enchantment, storing souls, and augmenting are impossible. The blacksmith in a village can release the seal on this item. -->
@@ -1514,9 +1514,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="377" />
 		<set name="price" val="37600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12190" type="Armor" name="Common Item - Sealed Blue Wolf Gloves">
 		<!-- Sealed Blue Wolf Gloves with limited power enhancement. Enchantment, storing souls, and augmenting are impossible. The blacksmith in a village can release the seal on this item. -->
@@ -1529,9 +1529,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="197" />
 		<set name="price" val="37600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12191" type="Armor" name="Common Item - Thin Stripe Leather Shirt">
 		<!-- Thin Stripe Leather Shirt with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1544,9 +1544,9 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="43" />
 		<set name="price" val="93900" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="22" />
-		</for>
+		</stats>
 	</item>
 	<item id="12192" type="Armor" name="Common Item - Tunic of Doom">
 		<!-- Tunic of Doom with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1560,13 +1560,13 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="633" />
 		<set name="price" val="112700" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="83" />
 			<add stat="maxMp" val="377" />
-		</for>
+		</stats>
 	</item>
 	<item id="12193" type="Armor" name="Common Item - Blue Wolf Gaiters">
 		<!-- Blue Wolf Gaiters with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1580,12 +1580,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1123" />
 		<set name="price" val="93900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="104" />
-		</for>
+		</stats>
 	</item>
 	<item id="12194" type="Armor" name="Common Item - Blue Wolf Leather Armor">
 		<!-- Blue Wolf Leather Armor with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1599,9 +1599,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1833" />
 		<set name="price" val="183000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="202" />
-		</for>
+		</stats>
 	</item>
 	<item id="12195" type="Armor" name="Common Item - Blue Wolf Boots - Heavy Armor">
 		<!-- Blue Wolf Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1614,12 +1614,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="377" />
 		<set name="price" val="37600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12196" type="Armor" name="Common Item - Blue Wolf Boots - Tans Armor Use">
 		<!-- Blue Wolf Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1632,9 +1632,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="377" />
 		<set name="price" val="37600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12197" type="Armor" name="Common Item - Blue Wolf Boots - Robe">
 		<!-- Blue Wolf Boots with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1647,12 +1647,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="377" />
 		<set name="price" val="37600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12198" type="Armor" name="Common Item - Blue Wolf Gloves - Heavy Armor">
 		<!-- Blue Wolf Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1665,12 +1665,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="197" />
 		<set name="price" val="37600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="12199" type="Armor" name="Common Item - Blue Wolf Gloves - Tans Armor Use">
 		<!-- Blue Wolf Gloves with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1683,8 +1683,8 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="197" />
 		<set name="price" val="37600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 </list>

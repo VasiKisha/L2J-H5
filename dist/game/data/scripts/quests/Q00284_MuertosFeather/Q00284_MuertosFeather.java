@@ -32,8 +32,10 @@ public class Q00284_MuertosFeather extends Quest
 {
 	// NPC
 	private static final int TREVOR = 32166;
+	
 	// Item
 	private static final int MUERTOS_FEATHER = 9748;
+	
 	// Monsters
 	private static final Map<Integer, Double> MOB_DROP_CHANCE = new HashMap<>();
 	static
@@ -45,6 +47,7 @@ public class Q00284_MuertosFeather extends Quest
 		MOB_DROP_CHANCE.put(22245, 0.633); // Muertos Lieutenant
 		MOB_DROP_CHANCE.put(22246, 0.633); // Muertos Commander
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 11;
 	
@@ -66,6 +69,7 @@ public class Q00284_MuertosFeather extends Quest
 		{
 			return html;
 		}
+		
 		switch (event)
 		{
 			case "32166-03.htm":
@@ -100,6 +104,7 @@ public class Q00284_MuertosFeather extends Quest
 				break;
 			}
 		}
+		
 		return html;
 	}
 	
@@ -126,6 +131,7 @@ public class Q00284_MuertosFeather extends Quest
 		{
 			html = (hasQuestItems(player, MUERTOS_FEATHER) ? "32166-05.html" : "32166-04.html");
 		}
+		
 		return html;
 	}
 }

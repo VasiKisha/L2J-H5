@@ -42,13 +42,13 @@ public class AdminEvents implements IAdminCommandHandler
 	};
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (activeChar == null)
 		{
@@ -63,6 +63,7 @@ public class AdminEvents implements IAdminCommandHandler
 		{
 			eventName = st.nextToken();
 		}
+		
 		if (st.hasMoreTokens())
 		{
 			eventBypass = st.nextToken();
@@ -144,6 +145,7 @@ public class AdminEvents implements IAdminCommandHandler
 				return false;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -159,6 +161,7 @@ public class AdminEvents implements IAdminCommandHandler
 				cList.append("<tr><td><font color=\"LEVEL\">" + event.getName() + ":</font></td><br><td><button value=\"Start\" action=\"bypass -h admin_event_start_menu " + event.getName() + "\" width=80 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td><button value=\"Stop\" action=\"bypass -h admin_event_stop_menu " + event.getName() + "\" width=80 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr>");
 			}
 		}
+		
 		html.replace("%LIST%", cList.toString());
 		activeChar.sendPacket(html);
 	}

@@ -94,6 +94,7 @@ public class ClanHallTable
 					_clanHall.put(id, ch);
 					continue;
 				}
+				
 				_freeClanHall.put(id, ch);
 				
 				if ((ClanHallAuctionManager.getInstance().getAuction(id) == null) && (lease > 0))
@@ -101,6 +102,7 @@ public class ClanHallTable
 					ClanHallAuctionManager.getInstance().initNPC(id);
 				}
 			}
+			
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _clanHall.size() + " clan halls");
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _freeClanHall.size() + " free clan halls");
 			_loaded = true;
@@ -182,6 +184,7 @@ public class ClanHallTable
 		{
 			_clanHall.get(chId).free();
 		}
+		
 		ClanTable.getInstance().getClan(clan.getId()).setHideoutId(chId);
 		_clanHall.get(chId).setOwner(clan);
 	}
@@ -215,6 +218,7 @@ public class ClanHallTable
 				return temp;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -234,6 +238,7 @@ public class ClanHallTable
 				return ch.getValue();
 			}
 		}
+		
 		for (Entry<Integer, AuctionableHall> ch : _freeClanHall.entrySet())
 		{
 			zone = ch.getValue().getZone();
@@ -242,6 +247,7 @@ public class ClanHallTable
 				return ch.getValue();
 			}
 		}
+		
 		return null;
 	}
 	
@@ -256,6 +262,7 @@ public class ClanHallTable
 				return ch.getValue();
 			}
 		}
+		
 		return null;
 	}
 	
@@ -272,6 +279,7 @@ public class ClanHallTable
 				return ch.getValue();
 			}
 		}
+		
 		return null;
 	}
 	
@@ -285,6 +293,7 @@ public class ClanHallTable
 				return ch.getValue();
 			}
 		}
+		
 		for (Entry<Integer, SiegableHall> ch : CHSiegeManager.getInstance().getConquerableHalls().entrySet())
 		{
 			if (clan.getId() == ch.getValue().getOwnerId())
@@ -292,6 +301,7 @@ public class ClanHallTable
 				return ch.getValue();
 			}
 		}
+		
 		return null;
 	}
 	

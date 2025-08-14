@@ -39,12 +39,15 @@ public class Q00281_HeadForTheHills extends Quest
 {
 	// NPC
 	private static final int MERCELA = 32173;
+	
 	// Item
 	private static final int CLAWS = 9796;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
+	
 	// Rewards
-	private static final int[] REWARDS = new int[]
+	private static final int[] REWARDS =
 	{
 		115, // Earring of Wisdom
 		876, // Ring of Anguish
@@ -68,6 +71,7 @@ public class Q00281_HeadForTheHills extends Quest
 		MONSTERS.put(22238, 920); // Mountain Werewolf Chief
 		MONSTERS.put(22239, 990); // Muertos Guard
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 6;
 	private static final int GUIDE_MISSION = 41;
@@ -173,6 +177,7 @@ public class Q00281_HeadForTheHills extends Quest
 					{
 						giveItems(player, REWARDS[9], 1);
 					}
+					
 					takeItems(player, CLAWS, 50);
 					
 					if ((player.getLevel() < 25) && (getOneTimeQuestFlag(player, 57) == 0))
@@ -219,6 +224,7 @@ public class Q00281_HeadForTheHills extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -251,6 +257,7 @@ public class Q00281_HeadForTheHills extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

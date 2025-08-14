@@ -31,6 +31,7 @@ public class FortuneTelling extends AbstractNpcAI
 {
 	// NPC
 	private static final int MINE = 32616;
+	
 	// Misc
 	private static final int COST = 1000;
 	
@@ -53,6 +54,7 @@ public class FortuneTelling extends AbstractNpcAI
 			takeItems(player, Inventory.ADENA_ID, COST);
 			htmltext = getHtm(player, "fortune.htm").replace("%fortune%", String.valueOf(getRandom(1800309, 1800695)));
 		}
+		
 		return htmltext;
 	}
 }

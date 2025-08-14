@@ -115,6 +115,7 @@ public class SignsPriest extends Npc
 						player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
 						break;
 					}
+					
 					player.getInventory().addItem(ItemProcessType.REWARD, SevenSigns.RECORD_SEVEN_SIGNS_ID, 1, player, this);
 					sm = new SystemMessage(SystemMessageId.YOU_HAVE_EARNED_S1);
 					sm.addItemName(SevenSigns.RECORD_SEVEN_SIGNS_ID);
@@ -218,6 +219,7 @@ public class SignsPriest extends Npc
 							showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "signs_33_dusk_no.htm");
 							return;
 						}
+						
 						// If the player is trying to join the Lords of Dawn, check if they are carrying a Lord's certificate. If not then try to take the required amount of adena instead.
 						if (Config.ALT_GAME_CASTLE_DAWN && (cabal == SevenSigns.CABAL_DAWN))
 						{
@@ -242,6 +244,7 @@ public class SignsPriest extends Npc
 							}
 						}
 					}
+					
 					SevenSigns.getInstance().setPlayerInfo(player.getObjectId(), cabal, newSeal);
 					if (cabal == SevenSigns.CABAL_DAWN)
 					{
@@ -373,6 +376,7 @@ public class SignsPriest extends Npc
 						msg.addLong(redContrib);
 						player.sendPacket(msg);
 					}
+					
 					if ((greenContrib > 0) && player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_GREEN_ID, greenContrib, this, false))
 					{
 						contribStonesFound = true;
@@ -381,6 +385,7 @@ public class SignsPriest extends Npc
 						msg.addLong(greenContrib);
 						player.sendPacket(msg);
 					}
+					
 					if ((blueContrib > 0) && player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_BLUE_ID, blueContrib, this, false))
 					{
 						contribStonesFound = true;
@@ -502,6 +507,7 @@ public class SignsPriest extends Npc
 									msg.addLong(redContribCount);
 									player.sendPacket(msg);
 								}
+								
 								if ((greenContribCount > 0) && player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_GREEN_ID, greenContribCount, this, false))
 								{
 									stonesFound = true;
@@ -510,6 +516,7 @@ public class SignsPriest extends Npc
 									msg.addLong(greenContribCount);
 									player.sendPacket(msg);
 								}
+								
 								if ((blueContribCount > 0) && player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_BLUE_ID, blueContribCount, this, false))
 								{
 									stonesFound = true;
@@ -603,6 +610,7 @@ public class SignsPriest extends Npc
 						showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "blkmrkt_3.htm");
 						break;
 					}
+					
 					if (ancientAdenaAmount < ancientAdenaConvert)
 					{
 						showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "blkmrkt_4.htm");
@@ -739,10 +747,12 @@ public class SignsPriest extends Npc
 							{
 								player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_BLUE_ID, blueStoneCountAll, this, true);
 							}
+							
 							if (greenStoneCountAll > 0)
 							{
 								player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_GREEN_ID, greenStoneCountAll, this, true);
 							}
+							
 							if (redStoneCountAll > 0)
 							{
 								player.destroyItemByItemId(ItemProcessType.FEE, SevenSigns.SEAL_STONE_RED_ID, redStoneCountAll, this, true);

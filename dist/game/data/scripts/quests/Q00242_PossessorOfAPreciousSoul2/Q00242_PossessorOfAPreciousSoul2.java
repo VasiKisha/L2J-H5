@@ -49,12 +49,14 @@ public class Q00242_PossessorOfAPreciousSoul2 extends Quest
 	private static final int KALIS = 30759;
 	private static final int MATILD = 30738;
 	private static final int RESTRAINER_OF_GLORY = 27317;
+	
 	// Items
 	private static final int VIRGILS_LETTER = 7677;
 	private static final int GOLDEN_HAIR = 7590;
 	private static final int ORB_OF_BINDING = 7595;
 	private static final int SORCERY_INGREDIENT = 7596;
 	private static final int CARADINE_LETTER = 7678;
+	
 	// Rewards
 	private static final int CHANCE_FOR_HAIR = 20;
 	
@@ -75,6 +77,7 @@ public class Q00242_PossessorOfAPreciousSoul2 extends Quest
 		{
 			return getNoQuestMsg(player);
 		}
+		
 		if (!player.isSubClassActive())
 		{
 			return "no_sub.html";
@@ -156,6 +159,7 @@ public class Q00242_PossessorOfAPreciousSoul2 extends Quest
 				return null;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -174,6 +178,7 @@ public class Q00242_PossessorOfAPreciousSoul2 extends Quest
 			giveItems(partyMember, ORB_OF_BINDING, 1);
 			playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
+		
 		if (getQuestItemsCount(partyMember, ORB_OF_BINDING) >= 4)
 		{
 			st.unset("awaitsDrops");
@@ -392,6 +397,7 @@ public class Q00242_PossessorOfAPreciousSoul2 extends Quest
 						{
 							st.setCond(10);
 						}
+						
 						playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 						npc.setTarget(player);
 						npc.doCast(SkillData.getInstance().getSkill(4546, 1));
@@ -440,6 +446,7 @@ public class Q00242_PossessorOfAPreciousSoul2 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -96,6 +96,7 @@ public class EnchantSkillLearn
 		{
 			return false;
 		}
+		
 		final int index = getEnchantIndex(level);
 		return (index + 1) >= EnchantSkillGroupsData.getInstance().getEnchantSkillGroupById(_enchantRoutes.get(enchantType)).getEnchantGroupDetails().size();
 	}
@@ -107,6 +108,7 @@ public class EnchantSkillLearn
 		{
 			return null;
 		}
+		
 		final int index = getEnchantIndex(level);
 		final EnchantSkillGroup group = EnchantSkillGroupsData.getInstance().getEnchantSkillGroupById(_enchantRoutes.get(enchantType));
 		if (index < 0)
@@ -117,6 +119,7 @@ public class EnchantSkillLearn
 		{
 			return group.getEnchantGroupDetails().get(EnchantSkillGroupsData.getInstance().getEnchantSkillGroupById(_enchantRoutes.get(enchantType)).getEnchantGroupDetails().size() - 1);
 		}
+		
 		return group.getEnchantGroupDetails().get(index);
 	}
 }

@@ -40,6 +40,7 @@ public class Q00265_BondsOfSlavery extends Quest
 {
 	// NPC
 	private static final int KRISTIN = 30357;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -47,10 +48,12 @@ public class Q00265_BondsOfSlavery extends Quest
 		MONSTERS.put(20004, 5); // Imp
 		MONSTERS.put(20005, 6); // Imp Elder
 	}
+	
 	// Items
 	private static final int IMP_SHACKLES = 1368;
 	private static final ItemHolder SPIRITSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5790, 3000);
 	private static final ItemHolder SOULSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5789, 6000);
+	
 	// Misc
 	private static final int MIN_LEVEL = 6;
 	private static final int GUIDE_MISSION = 41;
@@ -94,6 +97,7 @@ public class Q00265_BondsOfSlavery extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -172,6 +176,7 @@ public class Q00265_BondsOfSlavery extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

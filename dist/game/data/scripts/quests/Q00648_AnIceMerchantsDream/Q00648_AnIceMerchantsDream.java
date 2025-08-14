@@ -58,12 +58,15 @@ public class Q00648_AnIceMerchantsDream extends Quest
 	// NPCs
 	private static final int RAFFORTY = 32020;
 	private static final int ICE_SHELF = 32023;
+	
 	// Items
 	private static final int SILVER_HEMOCYTE = 8057;
 	private static final int SILVER_ICE_CRYSTAL = 8077;
 	private static final int BLACK_ICE_CRYSTAL = 8078;
+	
 	// Misc
 	private static final int MIN_LEVEL = 53;
+	
 	// Monsters
 	private static final Map<Integer, DropInfo> MONSTERS = new HashMap<>();
 	static
@@ -247,6 +250,7 @@ public class Q00648_AnIceMerchantsDream extends Quest
 						htmltext = "32023-08.html";
 						playSound(player, QuestSound.ITEMSOUND_ENCHANT_FAILED);
 					}
+					
 					qs.set("ex", 0);
 				}
 				break;
@@ -269,11 +273,13 @@ public class Q00648_AnIceMerchantsDream extends Quest
 						htmltext = "32023-08.html";
 						playSound(player, QuestSound.ITEMSOUND_ENCHANT_FAILED);
 					}
+					
 					qs.set("ex", 0);
 				}
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -369,6 +375,7 @@ public class Q00648_AnIceMerchantsDream extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

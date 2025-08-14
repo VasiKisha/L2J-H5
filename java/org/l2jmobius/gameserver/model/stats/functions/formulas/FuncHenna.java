@@ -38,6 +38,7 @@ public class FuncHenna extends AbstractFunction
 		{
 			_fh_instance.put(st, new FuncHenna(st));
 		}
+		
 		return _fh_instance.get(st);
 	}
 	
@@ -50,6 +51,7 @@ public class FuncHenna extends AbstractFunction
 	public double calc(Creature effector, Creature effected, Skill skill, double initVal)
 	{
 		double value = initVal;
+		
 		// Should not apply henna bonus to summons.
 		if (effector.isPlayer())
 		{
@@ -88,6 +90,7 @@ public class FuncHenna extends AbstractFunction
 				}
 			}
 		}
+		
 		return value;
 	}
 }

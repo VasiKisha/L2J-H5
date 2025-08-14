@@ -406,6 +406,7 @@ public class ExServerPrimitive extends ServerPacket
 			buffer.writeInt(point.getY());
 			buffer.writeInt(point.getZ());
 		}
+		
 		for (Line line : _lines)
 		{
 			buffer.writeByte(2); // It is the type in this case Line

@@ -59,6 +59,7 @@ public class PartyMatchRoomList
 			// _member.setPartyMatching(0);
 			_member.broadcastUserInfo();
 		}
+		
 		_rooms.remove(id);
 	}
 	
@@ -94,6 +95,7 @@ public class PartyMatchRoomList
 				}
 			}
 		}
+		
 		return null;
 	}
 	
@@ -109,6 +111,7 @@ public class PartyMatchRoomList
 				}
 			}
 		}
+		
 		return -1;
 	}
 	

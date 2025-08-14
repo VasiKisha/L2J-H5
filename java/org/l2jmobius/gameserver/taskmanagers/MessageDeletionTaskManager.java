@@ -53,6 +53,7 @@ public class MessageDeletionTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		if (!PENDING_MESSAGES.isEmpty())
@@ -96,6 +97,7 @@ public class MessageDeletionTaskManager implements Runnable
 						{
 							message.getAttachments().returnToWh(null);
 						}
+						
 						message.getAttachments().deleteMe();
 						message.removeAttachments();
 						

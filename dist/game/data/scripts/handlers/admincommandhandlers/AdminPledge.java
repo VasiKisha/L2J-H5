@@ -52,7 +52,7 @@ public class AdminPledge implements IAdminCommandHandler
 	private static final int REP_POINTS_REWARD_LEVEL = 5;
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final StringTokenizer st = new StringTokenizer(command);
 		final String cmd = st.nextToken();
@@ -153,6 +153,7 @@ public class AdminPledge implements IAdminCommandHandler
 						{
 							clan = player.getClan();
 						}
+						
 						activeChar.sendPacket(new GMViewPledgeInfo(clan, player));
 						return true;
 					}
@@ -248,11 +249,12 @@ public class AdminPledge implements IAdminCommandHandler
 				showMainPage(activeChar);
 			}
 		}
+		
 		return false;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

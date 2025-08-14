@@ -44,6 +44,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 	private static final int WELL = 31527;
 	private static final int GHOST_OF_PRIEST = 31528;
 	private static final int GHOST_OF_ADVENTURER = 31529;
+	
 	// Mobs
 	private static final int[] MOBS =
 	{
@@ -54,6 +55,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 		21561, // Sacrificed Man
 	};
 	private static final int SOUL_OF_WELL = 27217;
+	
 	// Items
 	private static final int CROSS_OF_EINHASAD = 7141;
 	private static final int LOST_SKULL_OF_ELF = 7142;
@@ -62,6 +64,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 	private static final int JEWEL_OF_ADVENTURER_2 = 7145;
 	private static final int SEALED_REPORT_BOX = 7146;
 	private static final int REPORT_BOX = 7147;
+	
 	// Misc
 	private static final int MIN_LEVEL = 63;
 	private static final Location PRIEST_LOC = new Location(38354, -49777, -1128);
@@ -89,6 +92,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 		{
 			return htmltext;
 		}
+		
 		switch (event)
 		{
 			case "31529-02.html":
@@ -184,6 +188,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 							takeItems(player, LOST_SKULL_OF_ELF, -1);
 							qs.setCond(7, true);
 						}
+						
 						htmltext = event;
 					}
 					else
@@ -223,6 +228,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 				{
 					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.I_M_CONFUSED_MAYBE_IT_S_TIME_TO_GO_BACK));
 				}
+				
 				npc.deleteMe();
 				break;
 			}
@@ -294,6 +300,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 				{
 					_soulWellNpc = null;
 				}
+				
 				npc.deleteMe();
 				break;
 			}
@@ -327,6 +334,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -649,6 +657,7 @@ public class Q00022_TragedyInVonHellmannForest extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

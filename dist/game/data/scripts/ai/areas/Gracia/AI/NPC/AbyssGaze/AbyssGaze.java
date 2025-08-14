@@ -68,6 +68,7 @@ public class AbyssGaze extends AbstractNpcAI
 		{
 			return null;
 		}
+		
 		return htmltext;
 	}
 	
@@ -79,6 +80,7 @@ public class AbyssGaze extends AbstractNpcAI
 		{
 			qs = newQuestState(player);
 		}
+		
 		return "32539.htm";
 	}
 }

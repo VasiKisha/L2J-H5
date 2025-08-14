@@ -57,7 +57,7 @@ public class AdminMobGroup implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_mobmenu"))
 		{
@@ -132,6 +132,7 @@ public class AdminMobGroup implements IAdminCommandHandler
 		{
 			teleportGroup(command, activeChar);
 		}
+		
 		showMainPage(activeChar);
 		return true;
 	}
@@ -154,12 +155,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 			activeChar.sendSysMessage("Incorrect command arguments.");
 			return;
 		}
+		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
 			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
+		
 		group.returnGroup(activeChar);
 	}
 	
@@ -176,12 +179,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 			activeChar.sendSysMessage("Incorrect command arguments.");
 			return;
 		}
+		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
 			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
+		
 		group.setIdleMode();
 	}
 	
@@ -197,12 +202,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 			activeChar.sendSysMessage("Incorrect command arguments.");
 			return;
 		}
+		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
 			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
+		
 		group.setAttackRandom();
 	}
 	
@@ -218,12 +225,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 			activeChar.sendSysMessage("Incorrect command arguments.");
 			return;
 		}
+		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
 			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
+		
 		group.setAttackTarget(target);
 	}
 	
@@ -239,12 +248,14 @@ public class AdminMobGroup implements IAdminCommandHandler
 			activeChar.sendSysMessage("Incorrect command arguments.");
 			return;
 		}
+		
 		final MobGroup group = MobGroupTable.getInstance().getGroup(groupId);
 		if (group == null)
 		{
 			activeChar.sendSysMessage("Invalid group specified.");
 			return;
 		}
+		
 		group.setFollowMode(target);
 	}
 	
@@ -604,7 +615,7 @@ public class AdminMobGroup implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

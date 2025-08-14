@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20400" type="Armor" name="Laborer Hat - Blessed Soul - 7-day limited period">
 		<!-- Hat that was worn by Reipung. Cannot be exchanged or dropped. -->
@@ -361,9 +361,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21057-1" /> <!-- Reflect -->
 		<set name="time" val="10080" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20421" type="Armor" name="Visor - Mana Regeneration - 7-Day Limited Period">
 		<!-- Accessory that stylishly covers the eye area. Exclusive to males. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -381,9 +381,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21058-1" /> <!-- Mana Regeneration -->
 		<set name="time" val="10080" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="0" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20422" type="Armor" name="Kat the Cat Hat - Greater Heal - 7-Day Limited Period">
 		<!-- Hat that looks like Kat the Cat. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -503,9 +503,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21065-1" /> <!-- Reflect -->
 		<set name="time" val="10080" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20429" type="Armor" name="Black Gem Mask - Vitality - 7-Day Limited Period">
 		<!-- A black gem mask accessory made of luxurious metal material. When equipped, grants a Vitality Maintaining skill that can be used every hour. Can be used for 7 days. Cannot be exchanged or dropped. -->
@@ -556,9 +556,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21068-1" /> <!-- UnResistance to Holy -->
 		<set name="time" val="10080" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20432" type="Armor" name="Forget-me-not Hairpin - Wind Walk - 7-Day Limited Period">
 		<!-- Forget-me-not shaped hairpin Hair accessory exclusive to female. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -576,9 +576,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21069-1" /> <!-- Wind Walk -->
 		<set name="time" val="10080" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20433" type="Armor" name="Outlaw's Eyepatch - Death Whisper - 7-Day Limited Period">
 		<!-- Purple eyepatch accessory Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -731,9 +731,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21078-1" /> <!-- Death Whisper -->
 		<set name="time" val="10080" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="20442" type="Armor" name="Raccoon Ears - Agility - 7-day limited period">
 		<!-- Raccoon ear shaped hair accessory. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->

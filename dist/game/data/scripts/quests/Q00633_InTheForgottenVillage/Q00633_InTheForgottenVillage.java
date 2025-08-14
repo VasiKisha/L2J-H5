@@ -33,12 +33,15 @@ public class Q00633_InTheForgottenVillage extends Quest
 {
 	// NPC
 	private static final int MINA = 31388;
+	
 	// Items
 	private static final int RIB_BONE_OF_A_BLACK_MAGUS = 7544;
 	private static final int ZOMBIES_LIVER = 7545;
+	
 	// Misc
 	private static final int MIN_LEVEL = 65;
 	private static final int RIB_BONE_REQUIRED_COUNT = 200;
+	
 	// Mobs
 	private static final Map<Integer, ItemChanceHolder> MOBS_DROP_CHANCES = new HashMap<>();
 	static
@@ -141,6 +144,7 @@ public class Q00633_InTheForgottenVillage extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -183,6 +187,7 @@ public class Q00633_InTheForgottenVillage extends Quest
 		{
 			htmltext = ((getQuestItemsCount(player, RIB_BONE_OF_A_BLACK_MAGUS) >= RIB_BONE_REQUIRED_COUNT) ? "31388-04.html" : "31388-05.html");
 		}
+		
 		return htmltext;
 	}
 }

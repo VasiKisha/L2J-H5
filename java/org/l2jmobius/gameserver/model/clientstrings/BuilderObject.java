@@ -29,6 +29,7 @@ public class BuilderObject extends Builder
 		{
 			throw new RuntimeException("Illegal Id: " + id);
 		}
+		
 		_index = id - 1;
 	}
 	
@@ -45,6 +46,7 @@ public class BuilderObject extends Builder
 		{
 			return "null";
 		}
+		
 		return params[0].toString();
 	}
 	

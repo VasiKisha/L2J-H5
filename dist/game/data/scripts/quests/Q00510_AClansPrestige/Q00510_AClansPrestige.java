@@ -36,6 +36,7 @@ public class Q00510_AClansPrestige extends Quest
 {
 	// NPC
 	private static final int VALDIS = 31331;
+	
 	// Quest Item
 	private static final int TYRANNOSAURUS_CLAW = 8767;
 	
@@ -76,6 +77,7 @@ public class Q00510_AClansPrestige extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -152,6 +154,7 @@ public class Q00510_AClansPrestige extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

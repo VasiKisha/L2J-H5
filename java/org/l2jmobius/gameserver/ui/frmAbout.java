@@ -120,14 +120,17 @@ public class frmAbout
 				{
 					protocols += " - ";
 				}
+				
 				protocols += number;
 			}
+			
 			lblSupports.setText("Server Protocols");
 		}
 		else
 		{
 			protocols += Config.PROTOCOL_LIST.get(0);
 		}
+		
 		lblProtocols.setText(protocols);
 		
 		// Center frame to screen.

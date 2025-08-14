@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="7100" type="EtcItem" name="Importance of Strain">
 		<!-- Contains information regarding the means to strengthen and the means to defeat the ancient giant. Double-click to view contents. -->
@@ -208,9 +208,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-1" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7118" type="EtcItem" name="Scroll of Escape: Elven Village">
 		<!-- A magical scroll that relocates you to Elven Village. Cannot be sold in shops. -->
@@ -223,9 +223,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-2" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7119" type="EtcItem" name="Scroll of Escape: Dark Elven Village">
 		<!-- A magical scroll that relocates you to Dark Elven Village. Cannot be sold in shops. -->
@@ -238,9 +238,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-3" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7120" type="EtcItem" name="Scroll of Escape: Orc Village">
 		<!-- A magical scroll that relocates you to Orc Village. Cannot be sold in shops. -->
@@ -253,9 +253,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-4" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7121" type="EtcItem" name="Scroll of Escape: Dwarven Village">
 		<!-- A magical scroll that relocates you to Dwarven Village. Cannot be sold in shops. -->
@@ -268,9 +268,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-5" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7122" type="EtcItem" name="Scroll of Escape: Gludin Village">
 		<!-- A magical scroll that relocates you to Gludin Village. Cannot be sold in shops. -->
@@ -283,9 +283,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-6" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7123" type="EtcItem" name="Scroll of Escape: Town of Gludio">
 		<!-- A magical scroll that relocates you to the Town of Gludio. Cannot be sold in shops. -->
@@ -298,9 +298,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-7" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7124" type="EtcItem" name="Scroll of Escape: Town of Dion">
 		<!-- A magical scroll that relocates you to the Town of Dion. Cannot be sold in shops. -->
@@ -313,9 +313,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-8" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7125" type="EtcItem" name="Scroll of Escape: Floran Village">
 		<!-- A magical scroll that relocates you to Floran Village. Cannot be sold in shops. -->
@@ -328,9 +328,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-9" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7126" type="EtcItem" name="Scroll of Escape: Town of Giran">
 		<!-- A magical scroll that relocates you to the Town of Giran. Cannot be sold in shops. -->
@@ -343,9 +343,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-10" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7127" type="EtcItem" name="Scroll of Escape: Hardin's Academy">
 		<!-- A magical scroll that relocates you to Hardin's Academy. Cannot be sold in shops. -->
@@ -358,9 +358,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-11" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7128" type="EtcItem" name="Scroll of Escape: Heine">
 		<!-- A magical scroll that relocates you to Heine. Cannot be sold in shops. -->
@@ -373,9 +373,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-12" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7129" type="EtcItem" name="Scroll of Escape: Town of Oren">
 		<!-- A magical scroll that relocates you to the Town of Oren. Cannot be sold in shops. -->
@@ -388,9 +388,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-13" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7130" type="EtcItem" name="Scroll of Escape: Ivory Tower">
 		<!-- A magical scroll that relocates you to the Ivory Tower. Cannot be sold in shops. -->
@@ -403,9 +403,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-14" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7131" type="EtcItem" name="Scroll of Escape: Hunters Village">
 		<!-- A magical scroll that relocates you to Hunters Village. Cannot be sold in shops. -->
@@ -418,9 +418,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-15" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7132" type="EtcItem" name="Scroll of Escape: Town of Aden">
 		<!-- A magical scroll that relocates you to the Town of Aden. Cannot be sold in shops. -->
@@ -433,9 +433,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-16" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7133" type="EtcItem" name="Scroll of Escape: Town of Goddard">
 		<!-- A magical scroll that relocates you to the Town of Goddard . Cannot be sold in shops. -->
@@ -448,9 +448,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-17" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7134" type="EtcItem" name="Scroll of Escape: Rune Township">
 		<!-- A magical scroll that relocates you to Rune Township. Cannot be sold in shops. -->
@@ -463,9 +463,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-18" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7135" type="EtcItem" name="Scroll of Escape: Town of Schuttgart">
 		<!-- A magical scroll that relocates you to the Town of Schuttgart. Cannot be sold in shops. -->
@@ -478,9 +478,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2213-19" /> <!-- Escape - Talking Island Village -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7136" type="EtcItem" name="Fruit Basket">
 		<!-- A basket full of fruit. Emily asked you to bring it to her. -->

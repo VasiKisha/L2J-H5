@@ -58,6 +58,7 @@ public class AdminSiege implements IAdminCommandHandler
 		"admin_setsiegetime",
 		"admin_setcastle",
 		"admin_removecastle",
+		
 		// Clan hall commands
 		"admin_clanhall",
 		"admin_clanhallset",
@@ -68,7 +69,7 @@ public class AdminSiege implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String commandValue, Player activeChar)
+	public boolean onCommand(String commandValue, Player activeChar)
 	{
 		String command = commandValue;
 		final StringTokenizer st = new StringTokenizer(command, " ");
@@ -101,17 +102,20 @@ public class AdminSiege implements IAdminCommandHandler
 								activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
 								return false;
 							}
+							
 							if (clanhall.getOwnerId() > 0)
 							{
 								activeChar.sendSysMessage("This Clan Hall is not free!");
 								return false;
 							}
+							
 							clan = player.getClan();
 							if (clan.getHideoutId() > 0)
 							{
 								activeChar.sendSysMessage("You have already a Clan Hall!");
 								return false;
 							}
+							
 							if (!clanhall.isSiegableHall())
 							{
 								ClanHallTable.getInstance().setOwner(clanhall.getId(), clan);
@@ -231,6 +235,7 @@ public class AdminSiege implements IAdminCommandHandler
 								break;
 							}
 						}
+						
 						// If doesn't have more tokens or token is not a number.
 						activeChar.sendSysMessage("Usage: //add_guard castle npcId");
 						break;
@@ -296,6 +301,7 @@ public class AdminSiege implements IAdminCommandHandler
 									activeChar.sendSysMessage("Unable to change Siege Date - Incorrect month value only " + calendar.getActualMinimum(Calendar.MONTH) + "-" + calendar.getActualMaximum(Calendar.MONTH) + " is accepted!");
 									return false;
 								}
+								
 								calendar.set(Calendar.MONTH, month);
 							}
 							else if ("day".equals(val))
@@ -306,6 +312,7 @@ public class AdminSiege implements IAdminCommandHandler
 									activeChar.sendSysMessage("Unable to change Siege Date - Incorrect day value only " + calendar.getActualMinimum(Calendar.DAY_OF_MONTH) + "-" + calendar.getActualMaximum(Calendar.DAY_OF_MONTH) + " is accepted!");
 									return false;
 								}
+								
 								calendar.set(Calendar.DAY_OF_MONTH, day);
 							}
 							else if ("hour".equals(val))
@@ -316,6 +323,7 @@ public class AdminSiege implements IAdminCommandHandler
 									activeChar.sendSysMessage("Unable to change Siege Date - Incorrect hour value only " + calendar.getActualMinimum(Calendar.HOUR_OF_DAY) + "-" + calendar.getActualMaximum(Calendar.HOUR_OF_DAY) + " is accepted!");
 									return false;
 								}
+								
 								calendar.set(Calendar.HOUR_OF_DAY, hour);
 							}
 							else if ("min".equals(val))
@@ -326,8 +334,10 @@ public class AdminSiege implements IAdminCommandHandler
 									activeChar.sendSysMessage("Unable to change Siege Date - Incorrect minute value only " + calendar.getActualMinimum(Calendar.MINUTE) + "-" + calendar.getActualMaximum(Calendar.MINUTE) + " is accepted!");
 									return false;
 								}
+								
 								calendar.set(Calendar.MINUTE, min);
 							}
+							
 							if (calendar.getTimeInMillis() < currentTime)
 							{
 								activeChar.sendSysMessage("Unable to change Siege Date");
@@ -339,6 +349,7 @@ public class AdminSiege implements IAdminCommandHandler
 								activeChar.sendSysMessage("Castle siege time for castle " + castle.getName() + " has been changed.");
 							}
 						}
+						
 						showSiegeTimePage(activeChar, castle);
 						break;
 					}
@@ -364,6 +375,7 @@ public class AdminSiege implements IAdminCommandHandler
 		{
 			showCastleSelectPage(activeChar);
 		}
+		
 		return true;
 	}
 	
@@ -385,12 +397,14 @@ public class AdminSiege implements IAdminCommandHandler
 				cList.append("<td fixwidth=90><a action=\"bypass -h admin_siege " + name + "\">" + name + "</a></td>");
 				i++;
 			}
+			
 			if (i > 2)
 			{
 				cList.append("</tr><tr>");
 				i = 0;
 			}
 		}
+		
 		adminReply.replace("%castles%", cList.toString());
 		cList.setLength(0);
 		i = 0;
@@ -401,12 +415,14 @@ public class AdminSiege implements IAdminCommandHandler
 				cList.append("<td fixwidth=90><a action=\"bypass -h admin_chsiege_siegablehall " + hall.getId() + "\">" + hall.getName() + "</a></td>");
 				i++;
 			}
+			
 			if (i > 1)
 			{
 				cList.append("</tr><tr>");
 				i = 0;
 			}
 		}
+		
 		adminReply.replace("%siegableHalls%", cList.toString());
 		cList.setLength(0);
 		i = 0;
@@ -417,12 +433,14 @@ public class AdminSiege implements IAdminCommandHandler
 				cList.append("<td fixwidth=134><a action=\"bypass -h admin_clanhall " + clanhall.getId() + "\">" + clanhall.getName() + "</a></td>");
 				i++;
 			}
+			
 			if (i > 1)
 			{
 				cList.append("</tr><tr>");
 				i = 0;
 			}
 		}
+		
 		adminReply.replace("%clanhalls%", cList.toString());
 		cList.setLength(0);
 		i = 0;
@@ -433,12 +451,14 @@ public class AdminSiege implements IAdminCommandHandler
 				cList.append("<td fixwidth=134><a action=\"bypass -h admin_clanhall " + clanhall.getId() + "\">" + clanhall.getName() + "</a></td>");
 				i++;
 			}
+			
 			if (i > 1)
 			{
 				cList.append("</tr><tr>");
 				i = 0;
 			}
 		}
+		
 		adminReply.replace("%freeclanhalls%", cList.toString());
 		player.sendPacket(adminReply);
 	}
@@ -499,6 +519,7 @@ public class AdminSiege implements IAdminCommandHandler
 			adminReply.replace("%sundaylink%", String.valueOf(newDay.get(Calendar.DAY_OF_YEAR)));
 			adminReply.replace("%sunday%", newDay.get(Calendar.MONTH) + "/" + newDay.get(Calendar.DAY_OF_MONTH));
 		}
+		
 		player.sendPacket(adminReply);
 	}
 	
@@ -538,11 +559,12 @@ public class AdminSiege implements IAdminCommandHandler
 		{
 			msg.replace("%clanhallOwner%", "No Owner");
 		}
+		
 		player.sendPacket(msg);
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

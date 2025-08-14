@@ -29,12 +29,13 @@ import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 public class Bypass implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{
 			return false;
 		}
+		
 		final Player player = playable.asPlayer();
 		final int itemId = item.getId();
 		final String filename = "data/html/item/" + itemId + ".htm";
@@ -51,6 +52,7 @@ public class Bypass implements IItemHandler
 			html.replace("%itemId%", String.valueOf(item.getObjectId()));
 			player.sendPacket(html);
 		}
+		
 		return true;
 	}
 }

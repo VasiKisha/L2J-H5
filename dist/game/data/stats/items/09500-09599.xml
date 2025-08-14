@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="9500" type="EtcItem" name="Recipe: Sealed Dynasty Helmet (100%)">
 		<!-- For Dwarves only. The recipe for the Sealed Dynasty Helmet. Requires Create Item - Level 9. The success rate is 100%. -->
@@ -182,13 +182,13 @@
 		<set name="price" val="24398000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="214" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9515" type="Armor" name="Sealed Dynasty Gaiter">
 		<!-- Sealed Dynasty Gaiters Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -204,13 +204,13 @@
 		<set name="price" val="15248000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="134" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9516" type="Armor" name="Sealed Dynasty Helmet">
 		<!-- Sealed Dynasty Helmet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -225,13 +225,13 @@
 		<set name="price" val="9149000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="92" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9517" type="Armor" name="Sealed Dynasty Gauntlets">
 		<!-- Sealed Dynasty Gauntlet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -246,13 +246,13 @@
 		<set name="price" val="6099000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="61" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9518" type="Armor" name="Sealed Dynasty Boots">
 		<!-- Sealed Dynasty Boots. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -267,13 +267,13 @@
 		<set name="price" val="6099000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="61" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9519" type="Armor" name="Sealed Dynasty Leather Armor">
 		<!-- Sealed Dynasty Leather Armor. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -289,10 +289,10 @@
 		<set name="price" val="18298000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="161" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9520" type="Armor" name="Sealed Dynasty Leather Leggings">
 		<!-- Sealed Dynasty Leather Legging. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -308,10 +308,10 @@
 		<set name="price" val="11436000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="100" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9521" type="Armor" name="Sealed Dynasty Leather Helmet">
 		<!-- Sealed Dynasty Leather Helmet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -326,10 +326,10 @@
 		<set name="price" val="9149000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="92" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9522" type="Armor" name="Sealed Dynasty Leather Gloves">
 		<!-- Sealed Dynasty Leather Gloves Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -344,10 +344,10 @@
 		<set name="price" val="6099000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="61" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9523" type="Armor" name="Sealed Dynasty Leather Boots">
 		<!-- Sealed Dynasty Leather Boots. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -362,10 +362,10 @@
 		<set name="price" val="6099000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="61" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9524" type="Armor" name="Sealed Dynasty Tunic">
 		<!-- Sealed Dynasty Tunic. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -381,14 +381,14 @@
 		<set name="price" val="18298000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="107" />
 			<add stat="maxMp" val="592" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9525" type="Armor" name="Sealed Dynasty Stockings">
 		<!-- Sealed Dynasty Stockings. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -404,14 +404,14 @@
 		<set name="price" val="11436000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="67" />
 			<add stat="maxMp" val="370" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9526" type="Armor" name="Sealed Dynasty Circlet">
 		<!-- Sealed Dynasty Circlet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -426,13 +426,13 @@
 		<set name="price" val="9149000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="92" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9527" type="Armor" name="Sealed Dynasty Gloves">
 		<!-- Sealed Dynasty Gloves. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -447,13 +447,13 @@
 		<set name="price" val="6099000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="61" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9528" type="Armor" name="Sealed Dynasty Shoes">
 		<!-- Sealed Dynasty Shoes. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -468,13 +468,13 @@
 		<set name="price" val="6099000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="61" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9529" type="Armor" name="Sealed Dynasty Shield">
 		<!-- Sealed Dynasty Shield. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -488,15 +488,15 @@
 		<set name="weight" val="1150" />
 		<set name="price" val="6404000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="305" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="9530" type="EtcItem" name="Sealed Dynasty Breast Plate Piece">
 		<!-- A key material that Dwarves use to make Dynasty Breast Plate. Can be sold in any shop. -->
@@ -999,9 +999,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="28800" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="80" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="9574" type="EtcItem" name="Mid-Grade Life Stone - Level 80">
 		<!-- A mid-grade mineral that has been petrified by a creature's physical or magical damage. May be used as an ingredient in weapon crafting by characters above level 80. -->
@@ -1011,9 +1011,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="115200" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="80" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="9575" type="EtcItem" name="High-Grade Life Stone - Level 80">
 		<!-- A high-grade mineral that has been petrified by a creature's physical or magical damage. May be used as an ingredient in weapon crafting by characters above level 80. -->
@@ -1023,9 +1023,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="1152000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="80" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="9576" type="EtcItem" name="Top-Grade Life Stone - Level 80">
 		<!-- This is the highest-grade mineral available, having been petrified by a creature's physical or magical force. May be used as an ingredient in weapon augmentation by characters higher than level 80. -->
@@ -1035,9 +1035,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="5760000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="80" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="9577" type="Armor" name="Cotton Shirt">
 		<set name="icon" val="icon.etc_shirts_none_i00" />
@@ -1048,9 +1048,9 @@
 		<set name="weight" val="130" />
 		<set name="price" val="1300" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="6" />
-		</for>
+		</stats>
 	</item>
 	<item id="9578" type="Armor" name="Linen Shirt">
 		<set name="icon" val="icon.etc_shirts_d_i01" />
@@ -1063,10 +1063,10 @@
 		<set name="weight" val="130" />
 		<set name="price" val="25000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="12" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9579" type="Armor" name="Silk Shirt">
 		<set name="icon" val="icon.etc_shirts_c_i02" />
@@ -1079,10 +1079,10 @@
 		<set name="weight" val="130" />
 		<set name="price" val="80000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="17" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9580" type="Armor" name="Thin Leather Shirt">
 		<set name="icon" val="icon.etc_shirts_b_i03" />
@@ -1095,10 +1095,10 @@
 		<set name="weight" val="130" />
 		<set name="price" val="260000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="21" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9581" type="Armor" name="Scale Shirt">
 		<set name="icon" val="icon.etc_shirts_a_i04" />
@@ -1111,10 +1111,10 @@
 		<set name="weight" val="130" />
 		<set name="price" val="588000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="23" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9582" type="Armor" name="Mithril Shirt">
 		<set name="icon" val="icon.etc_shirts_s_i05" />
@@ -1127,10 +1127,10 @@
 		<set name="weight" val="130" />
 		<set name="price" val="1800000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="28" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9583" type="Armor" name="Striped Cotton Shirt">
 		<set name="icon" val="icon.etc_stripe_shirts_none_i00" />
@@ -1141,9 +1141,9 @@
 		<set name="weight" val="130" />
 		<set name="price" val="6100" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="8" />
-		</for>
+		</stats>
 	</item>
 	<item id="9584" type="Armor" name="Stripe Linen Shirt">
 		<set name="icon" val="icon.etc_stripe_shirts_d_i01" />
@@ -1156,10 +1156,10 @@
 		<set name="weight" val="130" />
 		<set name="price" val="49000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="14" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9585" type="Armor" name="Striped Silk Shirt">
 		<set name="icon" val="icon.etc_stripe_shirts_c_i02" />
@@ -1172,10 +1172,10 @@
 		<set name="weight" val="130" />
 		<set name="price" val="180000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="19" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9586" type="Armor" name="Thin Striped Leather Shirt">
 		<set name="icon" val="icon.etc_stripe_shirts_b_i03" />
@@ -1188,10 +1188,10 @@
 		<set name="weight" val="130" />
 		<set name="price" val="400000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="22" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9587" type="Armor" name="Striped Scale Shirt">
 		<set name="icon" val="icon.etc_stripe_shirts_a_i04" />
@@ -1204,10 +1204,10 @@
 		<set name="weight" val="130" />
 		<set name="price" val="880000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="26" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9588" type="Armor" name="Striped Mithril Shirt">
 		<set name="icon" val="icon.etc_stripe_shirts_s_i05" />
@@ -1220,10 +1220,10 @@
 		<set name="weight" val="130" />
 		<set name="price" val="2540000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="30" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="9589" type="Armor" name="Iron Bracelet">
 		<!-- Uses 1 talisman slot when equipped. -->

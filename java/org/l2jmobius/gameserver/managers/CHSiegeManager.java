@@ -76,6 +76,7 @@ public class CHSiegeManager
 				_siegableHalls.put(id, hall);
 				ClanHallTable.addClanHall(hall);
 			}
+			
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _siegableHalls.size() + " conquerable clan halls.");
 		}
 		catch (Exception e)
@@ -110,6 +111,7 @@ public class CHSiegeManager
 				return ch.getValue();
 			}
 		}
+		
 		return null;
 	}
 	
@@ -167,6 +169,7 @@ public class CHSiegeManager
 		{
 			return;
 		}
+		
 		hall.removeAttacker(clan);
 	}
 	
@@ -179,6 +182,7 @@ public class CHSiegeManager
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	

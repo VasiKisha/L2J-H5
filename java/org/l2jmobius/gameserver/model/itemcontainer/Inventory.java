@@ -42,7 +42,6 @@ import org.l2jmobius.gameserver.model.ArmorSet;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerItemUnequip;
@@ -334,6 +333,7 @@ public abstract class Inventory extends ItemContainer
 					{
 						continue;
 					}
+					
 					for (SkillHolder sk : itm.getTemplate().getSkills())
 					{
 						if (player.getSkillLevel(sk.getSkillId()) != 0)
@@ -356,8 +356,10 @@ public abstract class Inventory extends ItemContainer
 										player.disableSkill(itemSkill, equipDelay);
 									}
 								}
+								
 								updateTimeStamp = true;
 							}
+							
 							update = true;
 						}
 					}
@@ -444,8 +446,10 @@ public abstract class Inventory extends ItemContainer
 									player.disableSkill(itemSkill, equipDelay);
 								}
 							}
+							
 							updateTimeStamp = true;
 						}
+						
 						update = true;
 					}
 					else
@@ -498,9 +502,11 @@ public abstract class Inventory extends ItemContainer
 			{
 				return;
 			}
+			
 			final ArmorSet armorSet = ArmorSetData.getInstance().getSet(chestItem.getId());
 			boolean update = false;
 			boolean updateTimeStamp = false;
+			
 			// Checks if equipped item is part of set
 			if (armorSet.containItem(slot, item.getId()))
 			{
@@ -527,8 +533,10 @@ public abstract class Inventory extends ItemContainer
 											player.disableSkill(itemSkill, equipDelay);
 										}
 									}
+									
 									updateTimeStamp = true;
 								}
+								
 								update = true;
 							}
 							else
@@ -618,6 +626,7 @@ public abstract class Inventory extends ItemContainer
 				{
 					return;
 				}
+				
 				final ArmorSet armorSet = ArmorSetData.getInstance().getSet(item.getId());
 				remove = true;
 				skills = armorSet.getSkills();
@@ -804,6 +813,7 @@ public abstract class Inventory extends ItemContainer
 			item.updateDatabase();
 			refreshWeight();
 		}
+		
 		return item;
 	}
 	
@@ -878,6 +888,7 @@ public abstract class Inventory extends ItemContainer
 				unEquipItemInSlot(i);
 			}
 		}
+		
 		return super.removeItem(item);
 	}
 	
@@ -990,6 +1001,7 @@ public abstract class Inventory extends ItemContainer
 				return PAPERDOLL_BELT;
 			}
 		}
+		
 		return -1;
 	}
 	
@@ -1005,6 +1017,7 @@ public abstract class Inventory extends ItemContainer
 		{
 			return null;
 		}
+		
 		return _paperdoll[index];
 	}
 	
@@ -1048,6 +1061,7 @@ public abstract class Inventory extends ItemContainer
 				return item;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -1129,9 +1143,11 @@ public abstract class Inventory extends ItemContainer
 			if (old != null)
 			{
 				_paperdoll[slot] = null;
+				
 				// Put old item from paperdoll slot to base location
 				old.setItemLocation(getBaseLocation());
 				old.setLastChange(Item.MODIFIED);
+				
 				// Get the mask for paperdoll
 				int mask = 0;
 				for (int i = 0; i < PAPERDOLL_TOTALSLOTS; i++)
@@ -1142,7 +1158,9 @@ public abstract class Inventory extends ItemContainer
 						mask |= pi.getTemplate().getItemMask();
 					}
 				}
+				
 				_wearedMask = mask;
+				
 				// Notify all paperdoll listener in order to unequip old item in slot
 				for (PaperdollListener listener : _paperdollListeners)
 				{
@@ -1153,8 +1171,10 @@ public abstract class Inventory extends ItemContainer
 					
 					listener.notifyUnequiped(slot, old, this);
 				}
+				
 				old.updateDatabase();
 			}
+			
 			// Add new item in slot of paperdoll
 			if (item != null)
 			{
@@ -1171,6 +1191,7 @@ public abstract class Inventory extends ItemContainer
 					
 					listener.notifyEquiped(slot, item, this);
 				}
+				
 				item.updateDatabase();
 			}
 		}
@@ -1308,6 +1329,7 @@ public abstract class Inventory extends ItemContainer
 				break;
 			}
 		}
+		
 		return slot;
 	}
 	
@@ -1328,6 +1350,7 @@ public abstract class Inventory extends ItemContainer
 		{
 			removePaperdollListener(recorder);
 		}
+		
 		return recorder.getChangedItems();
 	}
 	
@@ -1362,6 +1385,7 @@ public abstract class Inventory extends ItemContainer
 		{
 			removePaperdollListener(recorder);
 		}
+		
 		return recorder.getChangedItems();
 	}
 	
@@ -1491,6 +1515,7 @@ public abstract class Inventory extends ItemContainer
 				LOGGER.info(TraceUtil.getTraceString(Thread.currentThread().getStackTrace()));
 			}
 		}
+		
 		if (pdollSlot >= 0)
 		{
 			final Item old = setPaperdollItem(pdollSlot, null);
@@ -1498,8 +1523,10 @@ public abstract class Inventory extends ItemContainer
 			{
 				getOwner().asPlayer().refreshExpertisePenalty();
 			}
+			
 			return old;
 		}
+		
 		return null;
 	}
 	
@@ -1520,6 +1547,7 @@ public abstract class Inventory extends ItemContainer
 		{
 			removePaperdollListener(recorder);
 		}
+		
 		return recorder.getChangedItems();
 	}
 	
@@ -1537,7 +1565,7 @@ public abstract class Inventory extends ItemContainer
 			}
 			
 			final Player player = getOwner().asPlayer();
-			if (!player.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && !player.isHero() && item.isHeroItem())
+			if (!player.isGM() && !player.isHero() && item.isHeroItem())
 			{
 				return;
 			}
@@ -1580,6 +1608,7 @@ public abstract class Inventory extends ItemContainer
 				{
 					setPaperdollItem(PAPERDOLL_RHAND, null);
 				}
+				
 				setPaperdollItem(PAPERDOLL_LHAND, item);
 				break;
 			}
@@ -1649,6 +1678,7 @@ public abstract class Inventory extends ItemContainer
 				{
 					setPaperdollItem(PAPERDOLL_CHEST, null);
 				}
+				
 				setPaperdollItem(PAPERDOLL_LEGS, item);
 				break;
 			}
@@ -1678,6 +1708,7 @@ public abstract class Inventory extends ItemContainer
 				{
 					setPaperdollItem(PAPERDOLL_HAIR, null);
 				}
+				
 				setPaperdollItem(PAPERDOLL_HAIR, item);
 				break;
 			}
@@ -1692,6 +1723,7 @@ public abstract class Inventory extends ItemContainer
 				{
 					setPaperdollItem(PAPERDOLL_HAIR2, null);
 				}
+				
 				setPaperdollItem(PAPERDOLL_HAIR2, item);
 				break;
 			}
@@ -1764,6 +1796,7 @@ public abstract class Inventory extends ItemContainer
 				weight += item.getTemplate().getWeight() * item.getCount();
 			}
 		}
+		
 		_totalWeight = (int) Math.min(weight, Integer.MAX_VALUE);
 	}
 	
@@ -1848,7 +1881,7 @@ public abstract class Inventory extends ItemContainer
 					if (getOwner().isPlayer())
 					{
 						final Player player = getOwner().asPlayer();
-						if (!player.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS) && !player.isHero() && item.isHeroItem())
+						if (!player.isGM() && !player.isHero() && item.isHeroItem())
 						{
 							item.setItemLocation(ItemLocation.INVENTORY);
 						}
@@ -1867,6 +1900,7 @@ public abstract class Inventory extends ItemContainer
 					}
 				}
 			}
+			
 			refreshWeight();
 		}
 		catch (Exception e)
@@ -1967,6 +2001,7 @@ public abstract class Inventory extends ItemContainer
 				items.add(item);
 			}
 		}
+		
 		return items;
 	}
 }

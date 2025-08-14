@@ -38,8 +38,10 @@ public class BaseTower extends AbstractNpcAI
 	private static final int GUZEN = 22362;
 	private static final int KENDAL = 32301;
 	private static final int BODY_DESTROYER = 22363;
+	
 	// Skills
 	private static final SkillHolder DEATH_WORD = new SkillHolder(5256, 1);
+	
 	// Misc
 	private static final Map<Integer, Player> BODY_DESTROYER_TARGET_LIST = new ConcurrentHashMap<>();
 	
@@ -59,6 +61,7 @@ public class BaseTower extends AbstractNpcAI
 		{
 			return "32301-02.htm";
 		}
+		
 		return "32301-01.htm";
 	}
 	
@@ -69,6 +72,7 @@ public class BaseTower extends AbstractNpcAI
 		{
 			DoorData.getInstance().getDoor(20260004).closeMe();
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -106,6 +110,7 @@ public class BaseTower extends AbstractNpcAI
 					{
 						pl.stopSkillEffects(SkillFinishType.REMOVED, DEATH_WORD.getSkillId());
 					}
+					
 					BODY_DESTROYER_TARGET_LIST.remove(npc.getObjectId());
 				}
 				break;

@@ -33,8 +33,10 @@ public class Q00286_FabulousFeathers extends Quest
 {
 	// NPC
 	private static final int ERINU = 32164;
+	
 	// Item
 	private static final ItemHolder COMMANDERS_FEATHER = new ItemHolder(9746, 80);
+	
 	// Monsters
 	private static final Map<Integer, Double> MOB_DROP_CHANCES = new HashMap<>();
 	static
@@ -45,6 +47,7 @@ public class Q00286_FabulousFeathers extends Quest
 		MOB_DROP_CHANCES.put(22255, 0.796); // Shady Muertos Commander
 		MOB_DROP_CHANCES.put(22256, 0.952); // Shady Muertos Wizard
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 17;
 	
@@ -66,6 +69,7 @@ public class Q00286_FabulousFeathers extends Quest
 		{
 			return html;
 		}
+		
 		switch (event)
 		{
 			case "32164-03.htm":
@@ -90,6 +94,7 @@ public class Q00286_FabulousFeathers extends Quest
 				break;
 			}
 		}
+		
 		return html;
 	}
 	
@@ -116,6 +121,7 @@ public class Q00286_FabulousFeathers extends Quest
 		{
 			html = ((qs.isCond(2) && hasItem(player, COMMANDERS_FEATHER)) ? "32164-04.html" : "32164-05.html");
 		}
+		
 		return html;
 	}
 }

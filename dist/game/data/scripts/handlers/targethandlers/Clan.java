@@ -84,6 +84,7 @@ public class Clan implements ITargetTypeHandler
 						{
 							continue;
 						}
+						
 						if (player.isInParty() && obj.isInParty() && (player.getParty().getLeaderObjectId() != obj.getParty().getLeaderObjectId()))
 						{
 							continue;

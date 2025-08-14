@@ -47,11 +47,13 @@ public class Q00905_RefinedDragonBlood extends Quest
 		32870,
 		32891
 	};
+	
 	// Items
 	private static final int UNREFINED_RED_DRAGON_BLOOD = 21913;
 	private static final int UNREFINED_BLUE_DRAGON_BLOOD = 21914;
 	private static final int REFINED_RED_DRAGON_BLOOD = 21903;
 	private static final int REFINED_BLUE_DRAGON_BLOOD = 21904;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -67,6 +69,7 @@ public class Q00905_RefinedDragonBlood extends Quest
 		MONSTERS.put(22852, UNREFINED_BLUE_DRAGON_BLOOD); // Dragon Guard
 		MONSTERS.put(22853, UNREFINED_BLUE_DRAGON_BLOOD); // Dragon Mage
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 83;
 	private static final int DRAGON_BLOOD_COUNT = 10;
@@ -147,6 +150,7 @@ public class Q00905_RefinedDragonBlood extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -207,6 +211,7 @@ public class Q00905_RefinedDragonBlood extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -46,6 +46,7 @@ public enum ItemAuctionState
 				return state;
 			}
 		}
+		
 		return null;
 	}
 }

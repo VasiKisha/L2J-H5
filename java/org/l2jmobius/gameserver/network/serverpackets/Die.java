@@ -60,6 +60,7 @@ public class Die extends ServerPacket
 			_clan = player.getClan();
 			_isJailed = player.isJailed();
 		}
+		
 		_canTeleport = creature.canRevive() && !creature.isPendingRevive();
 		_sweepable = creature.isSweepActive();
 	}
@@ -77,12 +78,14 @@ public class Die extends ServerPacket
 			{
 				_staticRes = _creature.getInventory().haveItemForSelfResurrection();
 			}
+			
 			// Verify if player can use fixed resurrection without Feather
 			if (_access.allowFixedRes())
 			{
 				_staticRes = true;
 			}
 		}
+		
 		if (_canTeleport && (_clan != null) && !_isJailed)
 		{
 			boolean isInCastleDefense = false;
@@ -109,6 +112,7 @@ public class Die extends ServerPacket
 					isInFortDefense = true;
 				}
 			}
+			
 			buffer.writeInt(_clan.getHideoutId() > 0); // 6d 01 00 00 00 - to hide away
 			buffer.writeInt((_clan.getCastleId() > 0) || isInCastleDefense); // 6d 02 00 00 00 - to castle
 			buffer.writeInt((TerritoryWarManager.getInstance().getHQForClan(_clan) != null) || ((siegeClan != null) && !isInCastleDefense && !isInFortDefense && !siegeClan.getFlag().isEmpty()) || ((hall != null) && (hall.getSiege() != null) && hall.getSiege().checkIsAttacker(_clan))); // siege HQ
@@ -125,6 +129,7 @@ public class Die extends ServerPacket
 			buffer.writeInt(_staticRes); // 6d 04 00 00 00 - to FIXED
 			buffer.writeInt(0); // 6d 05 00 00 00 - to fortress
 		}
+		
 		// TODO: protocol 152
 		// buffer.writeByte(0); // show die animation
 		// buffer.writeInt(0); // agathion ress button

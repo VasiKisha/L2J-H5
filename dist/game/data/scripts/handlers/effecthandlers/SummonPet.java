@@ -98,8 +98,7 @@ public class SummonPet extends AbstractEffect
 		pet.setShowSummonAnimation(true);
 		if (!pet.isRespawned())
 		{
-			pet.setCurrentHp(pet.getMaxHp());
-			pet.setCurrentMp(pet.getMaxMp());
+			pet.fullRestore();
 			pet.getStat().setExp(pet.getExpForThisLevel());
 			pet.setCurrentFed(pet.getMaxFed());
 		}

@@ -82,6 +82,7 @@ public class PrimeShopData implements IXmlReader
 							att = attrs.item(i);
 							set.set(att.getNodeName(), att.getNodeValue());
 						}
+						
 						final PrimeShopProductHolder product = new PrimeShopProductHolder(set.getInt("id"), set.getInt("category"), set.getInt("points"), set.getInt("item"), set.getInt("count"));
 						_products.put(set.getInt("id"), product);
 					}

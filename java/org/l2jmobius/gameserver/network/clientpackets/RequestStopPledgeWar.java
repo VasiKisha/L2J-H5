@@ -47,6 +47,7 @@ public class RequestStopPledgeWar extends ClientPacket
 		{
 			return;
 		}
+		
 		final Clan playerClan = player.getClan();
 		if (playerClan == null)
 		{
@@ -93,12 +94,14 @@ public class RequestStopPledgeWar extends ClientPacket
 		// player.sendPacket(sm);
 		// return;
 		// }
+		
 		for (ClanMember member : playerClan.getMembers())
 		{
 			if ((member == null) || (member.getPlayer() == null))
 			{
 				continue;
 			}
+			
 			if (AttackStanceTaskManager.getInstance().hasAttackStanceTask(member.getPlayer()))
 			{
 				player.sendPacket(SystemMessageId.A_CEASE_FIRE_DURING_A_CLAN_WAR_CAN_NOT_BE_CALLED_WHILE_MEMBERS_OF_YOUR_CLAN_ARE_ENGAGED_IN_BATTLE);

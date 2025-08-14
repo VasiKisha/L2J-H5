@@ -34,11 +34,11 @@ public interface IParseBoardHandler
 	 * @param player the player
 	 * @return
 	 */
-	boolean parseCommunityBoardCommand(String command, Player player);
+	boolean onCommand(String command, Player player);
 	
 	/**
 	 * Gets the community board commands.
 	 * @return the community board commands
 	 */
-	String[] getCommunityBoardCommands();
+	String[] getCommandList();
 }

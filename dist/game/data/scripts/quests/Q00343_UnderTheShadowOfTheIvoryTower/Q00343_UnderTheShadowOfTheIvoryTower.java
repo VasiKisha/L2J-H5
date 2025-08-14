@@ -36,8 +36,10 @@ public class Q00343_UnderTheShadowOfTheIvoryTower extends Quest
 	private static final int LICH_KING_ICARUS = 30835;
 	private static final int COLLECTOR_MARSHA = 30934;
 	private static final int COLLECTOR_TRUMPIN = 30935;
+	
 	// Item
 	private static final int NEBULITE_ORB = 4364;
+	
 	// Rewards
 	private static final int TOWER_SHIELD = 103;
 	private static final int NICKLACE_OF_MAGIC = 118;
@@ -51,11 +53,13 @@ public class Q00343_UnderTheShadowOfTheIvoryTower extends Quest
 	private static final int SPIRITSHOT_D_GRADE = 2510;
 	private static final int SPIRITSHOT_C_GRADE = 2511;
 	private static final int ECTOPLASM_LIQUEUR = 4365;
+	
 	// Monster
 	private static final int MANASHEN_GARGOYLE = 20563;
 	private static final int ENCHANTED_MONSTEREYE = 20564;
 	private static final int ENCHANTED_STONE_GOLEM = 20565;
 	private static final int ENCHANTED_IRON_GOLEM = 20566;
+	
 	// Misc
 	private static final int MIN_LEVEL = 40;
 	
@@ -230,6 +234,7 @@ public class Q00343_UnderTheShadowOfTheIvoryTower extends Quest
 						{
 							qs.set("param1", 1);
 						}
+						
 						htmltext = "30934-09a.html";
 					}
 					else if ((i0 >= 20) && (i0 < 50) && (i1 == 1))
@@ -242,6 +247,7 @@ public class Q00343_UnderTheShadowOfTheIvoryTower extends Quest
 						{
 							qs.set("param1", 2);
 						}
+						
 						htmltext = "30934-09b.html";
 					}
 					else if ((i0 >= 20) && (i0 < 50) && (i1 == 2))
@@ -254,6 +260,7 @@ public class Q00343_UnderTheShadowOfTheIvoryTower extends Quest
 						{
 							qs.set("param1", 0);
 						}
+						
 						htmltext = "30934-09c.html";
 					}
 					else
@@ -284,6 +291,7 @@ public class Q00343_UnderTheShadowOfTheIvoryTower extends Quest
 						qs.set("param1", 4);
 						htmltext = "30934-11c.html";
 					}
+					
 					qs.setMemoState(1);
 				}
 				break;
@@ -308,6 +316,7 @@ public class Q00343_UnderTheShadowOfTheIvoryTower extends Quest
 					{
 						htmltext = "30934-12c.html";
 					}
+					
 					qs.setMemoState(1);
 				}
 				break;
@@ -332,6 +341,7 @@ public class Q00343_UnderTheShadowOfTheIvoryTower extends Quest
 						qs.set("param1", 4);
 						htmltext = "30934-13c.html";
 					}
+					
 					qs.setMemoState(1);
 				}
 				break;
@@ -498,6 +508,7 @@ public class Q00343_UnderTheShadowOfTheIvoryTower extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -625,6 +636,7 @@ public class Q00343_UnderTheShadowOfTheIvoryTower extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -34,8 +34,10 @@ public class Q00288_HandleWithCare extends Quest
 {
 	// NPC
 	private static final int ANKUMI = 32741;
+	
 	// Monster
 	private static final int SEER_UGOROS = 18863;
+	
 	// Items
 	private static final int HIGH_GRADE_LIZARD_SCALE = 15497;
 	private static final int MIDDLE_GRADE_LIZARD_SCALE = 15498;
@@ -51,6 +53,7 @@ public class Q00288_HandleWithCare extends Quest
 		new ItemHolder(HOLY_CRYSTAL, 1),
 		new ItemHolder(HOLY_CRYSTAL, 2)
 	};
+	
 	// Misc
 	private static final int MIN_LEVEL = 82;
 	
@@ -146,18 +149,22 @@ public class Q00288_HandleWithCare extends Quest
 						{
 							reward = REWARDS[3];
 						}
+						
 						giveItems(player, REWARDS[4]);
 					}
+					
 					if (reward != null)
 					{
 						giveItems(player, reward);
 					}
+					
 					qs.exitQuest(true, true);
 					htmltext = event;
 					break;
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -204,6 +211,7 @@ public class Q00288_HandleWithCare extends Quest
 				{
 					htmltext = "32741-06.html";
 				}
+				
 				if (qs.isCond(2) && hasQuestItems(player, HIGH_GRADE_LIZARD_SCALE))
 				{
 					htmltext = "32741-07.html";
@@ -211,6 +219,7 @@ public class Q00288_HandleWithCare extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

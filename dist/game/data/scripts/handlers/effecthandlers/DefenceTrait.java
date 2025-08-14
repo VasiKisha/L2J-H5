@@ -56,6 +56,7 @@ public class DefenceTrait extends AbstractEffect
 				{
 					continue;
 				}
+				
 				_defenceTraits.put(traitType, (value + 100) / 100);
 			}
 			catch (NumberFormatException e)

@@ -63,6 +63,7 @@ public class Q00695_DefendTheHallOfSuffering extends Quest
 		{
 			qs.startQuest();
 		}
+		
 		return htmltext;
 	}
 	
@@ -79,11 +80,11 @@ public class Q00695_DefendTheHallOfSuffering extends Quest
 				{
 					if (SoIManager.getCurrentStage() == 4)
 					{
-						htmltext = "32603-01.htm";
+						htmltext = "32603-01.html";
 					}
 					else
 					{
-						htmltext = "32603-04.htm";
+						htmltext = "32603-04.html";
 					}
 				}
 				else
@@ -241,6 +242,7 @@ public class Q00695_DefendTheHallOfSuffering extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -253,6 +255,7 @@ public class Q00695_DefendTheHallOfSuffering extends Quest
 		{
 			reenter.add(Calendar.DATE, 1);
 		}
+		
 		reenter.set(Calendar.HOUR_OF_DAY, 6);
 		
 		final SystemMessage sm = new SystemMessage(SystemMessageId.INSTANT_ZONE_S1_S_ENTRY_HAS_BEEN_RESTRICTED_YOU_CAN_CHECK_THE_NEXT_POSSIBLE_ENTRY_TIME_BY_USING_THE_COMMAND_INSTANCEZONE);
@@ -269,6 +272,7 @@ public class Q00695_DefendTheHallOfSuffering extends Quest
 				}
 			}
 		}
+		
 		final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
 		inst.setDuration(5 * 60000);
 		inst.setEmptyDestroyTime(0);

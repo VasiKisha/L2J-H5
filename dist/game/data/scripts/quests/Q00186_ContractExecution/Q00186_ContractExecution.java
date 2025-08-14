@@ -39,13 +39,16 @@ public class Q00186_ContractExecution extends Quest
 	private static final int MAESTRO_NIKOLA = 30621;
 	private static final int RESEARCHER_LORAIN = 30673;
 	private static final int BLUEPRINT_SELLER_LUKA = 31437;
+	
 	// Items
 	private static final int LORAINES_CERTIFICATE = 10362;
 	private static final int METALLOGRAPH_RESEARCH_REPORT = 10366;
 	private static final int LETO_LIZARDMAN_ACCESSORY = 10367;
+	
 	// Misc
 	private static final int MIN_LEVEL = 41;
 	private static final int MAX_LEVEL_FOR_EXP_SP = 47;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -135,12 +138,14 @@ public class Q00186_ContractExecution extends Quest
 					{
 						addExpAndSp(player, 285935, 18711);
 					}
+					
 					qs.exitQuest(false, true);
 					htmltext = event;
 				}
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -214,6 +219,7 @@ public class Q00186_ContractExecution extends Quest
 		{
 			htmltext = getAlreadyCompletedMsg(player);
 		}
+		
 		return htmltext;
 	}
 }

@@ -80,6 +80,12 @@ public class ReadHandler<T extends Client<Connection<T>>> implements CompletionH
 	private void handleHeader(T client)
 	{
 		final ByteBuffer buffer = client.getConnection().getReadingBuffer();
+		if (buffer == null)
+		{
+			client.disconnect();
+			return;
+		}
+		
 		buffer.flip();
 		
 		// Read packet size from header and adjust buffer size accordingly.
@@ -97,6 +103,12 @@ public class ReadHandler<T extends Client<Connection<T>>> implements CompletionH
 	private void handlePayload(T client)
 	{
 		final ByteBuffer buffer = client.getConnection().getReadingBuffer();
+		if (buffer == null)
+		{
+			client.disconnect();
+			return;
+		}
+		
 		buffer.flip();
 		
 		// Parse the buffer and execute the resulting packet.
@@ -126,7 +138,8 @@ public class ReadHandler<T extends Client<Connection<T>>> implements CompletionH
 		}
 		catch (Exception e)
 		{
-			// Placeholder for logging exceptions in packet parsing.
+			// Disconnect the client.
+			failed(e, client);
 		}
 	}
 	

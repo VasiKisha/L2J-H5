@@ -44,6 +44,7 @@ public class RequestReplySurrenderPledgeWar extends ClientPacket
 		{
 			return;
 		}
+		
 		final Player requestor = player.getActiveRequester();
 		if (requestor == null)
 		{
@@ -58,6 +59,7 @@ public class RequestReplySurrenderPledgeWar extends ClientPacket
 		{
 			PacketLogger.info(getClass().getSimpleName() + ": Missing implementation for answer: " + _answer + " and name: " + _reqName + "!");
 		}
+		
 		player.onTransactionRequest(requestor);
 	}
 }

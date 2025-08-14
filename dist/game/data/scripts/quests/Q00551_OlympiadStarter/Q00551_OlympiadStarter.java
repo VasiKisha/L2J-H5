@@ -58,6 +58,7 @@ public class Q00551_OlympiadStarter extends Quest
 		{
 			return getNoQuestMsg(player);
 		}
+		
 		final String htmltext = event;
 		
 		switch (event)
@@ -91,6 +92,7 @@ public class Q00551_OlympiadStarter extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -138,6 +140,7 @@ public class Q00551_OlympiadStarter extends Quest
 			{
 				return;
 			}
+			
 			final QuestState qs = getQuestState(player, false);
 			if ((qs != null) && qs.isStarted() && qs.isMemoState(1))
 			{
@@ -173,6 +176,7 @@ public class Q00551_OlympiadStarter extends Quest
 			{
 				return;
 			}
+			
 			final QuestState qs = getQuestState(player, false);
 			if ((qs != null) && qs.isStarted() && qs.isMemoState(1))
 			{
@@ -241,6 +245,7 @@ public class Q00551_OlympiadStarter extends Quest
 				htmltext = "31688-04.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

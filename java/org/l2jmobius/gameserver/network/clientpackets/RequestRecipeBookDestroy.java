@@ -54,6 +54,7 @@ public class RequestRecipeBookDestroy extends ClientPacket
 		{
 			return;
 		}
+		
 		player.unregisterRecipeList(_recipeID);
 		
 		final RecipeBookItemList response = new RecipeBookItemList(rp.isDwarvenRecipe(), player.getMaxMp());

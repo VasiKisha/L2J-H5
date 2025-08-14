@@ -53,6 +53,7 @@ public class Q00697_DefendTheHallOfErosion extends Quest
 		{
 			qs.startQuest();
 		}
+		
 		return htmltext;
 	}
 	
@@ -71,12 +72,14 @@ public class Q00697_DefendTheHallOfErosion extends Quest
 					qs.exitQuest(true);
 					break;
 				}
+				
 				if (SoIManager.getCurrentStage() != 4)
 				{
 					htmltext = "32603-00a.html";
 					qs.exitQuest(true);
 					break;
 				}
+				
 				htmltext = "32603-01.htm";
 				break;
 			}
@@ -96,6 +99,7 @@ public class Q00697_DefendTheHallOfErosion extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

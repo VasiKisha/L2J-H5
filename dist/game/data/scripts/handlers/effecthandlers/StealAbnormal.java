@@ -76,6 +76,7 @@ public class StealAbnormal extends AbstractEffect
 				// Invert effected and effector.
 				final BuffInfo stolen = new BuffInfo(effected, effector, infoToSteal.getSkill());
 				stolen.setAbnormalTime(infoToSteal.getTime()); // Copy the remaining time.
+				
 				// To include all the effects, it's required to go through the template rather the buff info.
 				infoToSteal.getSkill().applyEffectScope(EffectScope.GENERAL, stolen, true, true);
 				effected.getEffectList().remove(SkillFinishType.REMOVED, infoToSteal);

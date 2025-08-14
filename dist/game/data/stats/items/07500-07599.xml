@@ -659,9 +659,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-1" /> <!-- Scroll of Escape to Talking Island -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7555" type="EtcItem" name="Scroll of Escape: Elven Village">
 		<!-- A magical scroll that relocates you to Elven Village. -->
@@ -674,9 +674,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-2" /> <!-- Scroll of Escape to Talking Island -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7556" type="EtcItem" name="Scroll of Escape: Dark Elven Village">
 		<!-- A magical scroll that relocates you to Dark Elven Village. -->
@@ -689,9 +689,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-3" /> <!-- Scroll of Escape to Talking Island -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7557" type="EtcItem" name="Scroll of Escape: Orc Village">
 		<!-- A magical scroll that relocates you to Orc Village. -->
@@ -704,9 +704,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-4" /> <!-- Scroll of Escape to Talking Island -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7558" type="EtcItem" name="Scroll of Escape: Dwarven Village">
 		<!-- A magical scroll that relocates you to Dwarven Village. -->
@@ -719,9 +719,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-5" /> <!-- Scroll of Escape to Talking Island -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7559" type="EtcItem" name="Scroll of Escape: Town of Giran">
 		<!-- A magical scroll that relocates you to Town of Giran. -->
@@ -734,9 +734,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2214-10" /> <!-- Scroll of Escape to Talking Island -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7560" type="Weapon" name="Monster Only (Fishing Rod)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -754,12 +754,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="7561" type="EtcItem" name="Fishing Manual">
 		<!-- An instructional book of fishing techniques. You can double-click it to read it. -->
@@ -946,7 +946,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="581" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="12" />
@@ -954,7 +954,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="7576" type="Weapon" name="Draconic Bow - Cheap Shot">
 		<!-- <Soul Crystal Enhancement>. Has a 26% chance of decreasing MP consumption to 1 on a general attack. Increases damage inflicted during PvP. -->
@@ -980,7 +980,7 @@
 		<set name="reuse_delay" val="1500" />
 		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
 		<set name="reduced_mp_consume" val="26,1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="581" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="12" />
@@ -988,7 +988,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="7577" type="Weapon" name="Draconic Bow - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 88. Increases damage inflicted during PvP. -->
@@ -1013,7 +1013,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
 		<set name="item_skill" val="3567-1" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="581" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="12" />
@@ -1021,7 +1021,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="7578" type="Weapon" name="Draconic Bow - Critical Slow">
 		<!-- <Soul Crystal Enhancement>. Has a chance of casting Slow on a critical attack. Increases damage inflicted during PvP. -->
@@ -1048,7 +1048,7 @@
 		<set name="oncrit_chance" val="16" />
 		<set name="oncrit_skill" val="3574-1" />
 		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="581" />
 			<set stat="mAtk" val="132" />
 			<set stat="critRate" val="12" />
@@ -1056,7 +1056,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="7579" type="EtcItem" name="Draconic Bow Shaft">
 		<!-- Main ingredient essentially required for a Dwarf to make a Draconic Bow. Can also be sold at ordinary shops. -->
@@ -1107,9 +1107,9 @@
 		<set name="handler" val="PetFood" />
 		<set name="item_skill" val="2048-1" /> <!-- Wolves' Food -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="BABY_PET_GROUP" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="7583" type="EtcItem" name="Pet Exchange Ticket: Buffalo">
 		<set name="icon" val="icon.etc_ticket_red_i00" />

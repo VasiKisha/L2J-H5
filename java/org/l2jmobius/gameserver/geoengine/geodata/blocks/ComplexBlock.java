@@ -98,18 +98,22 @@ public class ComplexBlock implements IBlock
 		{
 			nswe = (short) (nswe | Cell.NSWE_NORTH);
 		}
+		
 		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_EAST))
 		{
 			nswe = (short) (nswe | Cell.NSWE_EAST);
 		}
+		
 		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_SOUTH))
 		{
 			nswe = (short) (nswe | Cell.NSWE_SOUTH);
 		}
+		
 		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_WEST))
 		{
 			nswe = (short) (nswe | Cell.NSWE_WEST);
 		}
+		
 		return nswe;
 	}
 	

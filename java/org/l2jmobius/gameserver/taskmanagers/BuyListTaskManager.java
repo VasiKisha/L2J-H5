@@ -54,6 +54,7 @@ public class BuyListTaskManager
 			{
 				return;
 			}
+			
 			_workingProducts = true;
 			
 			final long currentTime = System.currentTimeMillis();
@@ -86,6 +87,7 @@ public class BuyListTaskManager
 			{
 				return;
 			}
+			
 			_workingSaves = true;
 			
 			if (!PENDING_UPDATES.isEmpty())
@@ -96,6 +98,7 @@ public class BuyListTaskManager
 					product = PENDING_UPDATES.get(0);
 					PENDING_UPDATES.remove(product);
 				}
+				
 				product.restock();
 			}
 			

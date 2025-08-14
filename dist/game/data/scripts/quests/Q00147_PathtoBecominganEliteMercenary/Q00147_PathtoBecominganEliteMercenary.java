@@ -42,6 +42,7 @@ public class Q00147_PathtoBecominganEliteMercenary extends Quest
 		36488,
 		36489
 	};
+	
 	// Items
 	private static final int ORDINARY_CERTIFICATE = 13766;
 	private static final int ELITE_CERTIFICATE = 13767;
@@ -69,12 +70,14 @@ public class Q00147_PathtoBecominganEliteMercenary extends Quest
 			{
 				return "elite-02a.htm";
 			}
+			
 			giveItems(player, ORDINARY_CERTIFICATE, 1);
 		}
 		else if (event.equalsIgnoreCase("elite-04.htm"))
 		{
 			qs.startQuest();
 		}
+		
 		return htmltext;
 	}
 	
@@ -118,6 +121,7 @@ public class Q00147_PathtoBecominganEliteMercenary extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

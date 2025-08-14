@@ -62,6 +62,7 @@ public class RequestMakeMacro extends ClientPacket
 			_commandsLength += command.length();
 			commands.add(new MacroCmd(entry, MacroType.values()[(type < 1) || (type > 6) ? 0 : type], d1, d2, command));
 		}
+		
 		_macro = new Macro(id, icon, name, desc, acronym, commands);
 	}
 	

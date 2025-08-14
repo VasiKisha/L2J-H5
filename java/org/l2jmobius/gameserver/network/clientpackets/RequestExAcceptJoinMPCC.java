@@ -58,6 +58,7 @@ public class RequestExAcceptJoinMPCC extends ClientPacket
 					requestor.sendPacket(sm);
 					newCc = true;
 				}
+				
 				requestor.getParty().getCommandChannel().addParty(player.getParty());
 				if (!newCc)
 				{

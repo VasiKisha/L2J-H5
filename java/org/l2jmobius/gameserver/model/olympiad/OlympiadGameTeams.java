@@ -124,8 +124,10 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 					teamOnePlayers.clear();
 					break;
 				}
+				
 				teamOnePlayers.add(player);
 			}
+			
 			if (teamOnePlayers.isEmpty())
 			{
 				continue;
@@ -147,8 +149,10 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 					teamTwoPlayers.clear();
 					break;
 				}
+				
 				teamTwoPlayers.add(player);
 			}
+			
 			if (teamTwoPlayers.isEmpty())
 			{
 				list.add(teamOne);
@@ -226,6 +230,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -312,6 +317,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 			LOGGER.log(Level.WARNING, "", e);
 			return false;
 		}
+		
 		return result;
 	}
 	
@@ -361,6 +367,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 			par.getPlayer().setOlympiadStart(true);
 			par.getPlayer().updateEffectIcons();
 		}
+		
 		return true;
 	}
 	
@@ -562,8 +569,10 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 						removePointsFromParticipant(par, val);
 						list1.add(new OlympiadInfo(par.getName(), par.getClanName(), par.getClanId(), par.getBaseClass(), _damageT1, points - val, -val));
 					}
+					
 					winside = 2;
 				}
+				
 				if (_teamTwoDefaulted)
 				{
 					for (int i = _teamTwoSize; --i >= 0;)
@@ -574,6 +583,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 						removePointsFromParticipant(par, val);
 						list2.add(new OlympiadInfo(par.getName(), par.getClanName(), par.getClanId(), par.getBaseClass(), _damageT2, points - val, -val));
 					}
+					
 					if (winside == 2)
 					{
 						tie = true;
@@ -583,6 +593,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 						winside = 1;
 					}
 				}
+				
 				if (winside == 1)
 				{
 					result = new ExOlympiadMatchResult(tie, winside, list1, list2);
@@ -591,6 +602,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 				{
 					result = new ExOlympiadMatchResult(tie, winside, list2, list1);
 				}
+				
 				stadium.broadcastPacket(result);
 			}
 			catch (Exception e)
@@ -803,6 +815,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 			{
 				result = new ExOlympiadMatchResult(tie, winside, list2, list1);
 			}
+			
 			stadium.broadcastPacket(result);
 			return;
 		}
@@ -824,6 +837,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 						teamOneHp += hp;
 					}
 				}
+				
 				par.updatePlayer();
 			}
 			
@@ -838,6 +852,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 						teamTwoHp += hp;
 					}
 				}
+				
 				par.updatePlayer();
 			}
 			
@@ -924,6 +939,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 					removePointsFromParticipant(par, points);
 					list2.add(new OlympiadInfo(par.getName(), par.getClanName(), par.getClanId(), par.getBaseClass(), _damageT2, par.getStats().getInt(POINTS) - points, -points));
 				}
+				
 				tie = true;
 			}
 			
@@ -942,6 +958,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 				par.updateStat(COMP_DONE_WEEK, 1);
 				par.updateStat(getWeeklyMatchType(), 1);
 			}
+			
 			if (winside == 1)
 			{
 				result = new ExOlympiadMatchResult(tie, winside, list1, list2);
@@ -950,6 +967,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 			{
 				result = new ExOlympiadMatchResult(tie, winside, list2, list1);
 			}
+			
 			stadium.broadcastPacket(result);
 		}
 		catch (Exception e)
@@ -1105,6 +1123,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 				participant.getPlayer().setInvul(true);
 			}
 		}
+		
 		for (Participant participant : _teamTwo)
 		{
 			if (participant.getPlayer() != null)
@@ -1124,6 +1143,7 @@ public class OlympiadGameTeams extends AbstractOlympiadGame
 				participant.getPlayer().setInvul(false);
 			}
 		}
+		
 		for (Participant participant : _teamTwo)
 		{
 			if (participant.getPlayer() != null)

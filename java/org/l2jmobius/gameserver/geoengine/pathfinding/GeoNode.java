@@ -107,14 +107,17 @@ public class GeoNode
 		{
 			return true;
 		}
+		
 		if (obj == null)
 		{
 			return false;
 		}
+		
 		if (!(obj instanceof GeoNode))
 		{
 			return false;
 		}
+		
 		final GeoNode other = (GeoNode) obj;
 		if (_location == null)
 		{
@@ -127,6 +130,7 @@ public class GeoNode
 		{
 			return false;
 		}
+		
 		return true;
 	}
 }

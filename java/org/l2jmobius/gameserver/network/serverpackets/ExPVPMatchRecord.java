@@ -106,6 +106,7 @@ public class ExPVPMatchRecord extends ServerPacket
 			buffer.writeInt(member._kills);
 			buffer.writeInt(member._deaths);
 		}
+		
 		buffer.writeInt(_redList.size());
 		for (Member member : _redList)
 		{

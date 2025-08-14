@@ -38,6 +38,7 @@ public class Q00224_TestOfSagittarius extends Quest
 	private static final int SIR_ARON_TANFORD = 30653;
 	private static final int GUILD_PRESIDENT_BERNARD = 30702;
 	private static final int MAGISTER_GAUEN = 30717;
+	
 	// Items
 	private static final int WOODEN_ARROW = 17;
 	private static final int CRESCENT_MOON_BOW = 3028;
@@ -54,9 +55,11 @@ public class Q00224_TestOfSagittarius extends Quest
 	private static final int REINFORCED_BOWSTRING = 3304;
 	private static final int MANASHENS_HORN = 3305;
 	private static final int BLOOD_OF_LIZARDMAN = 3306;
+	
 	// Reward
 	private static final int MARK_OF_SAGITTARIUS = 3293;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monster
 	private static final int ANT = 20079;
 	private static final int ANT_CAPTAIN = 20080;
@@ -80,8 +83,10 @@ public class Q00224_TestOfSagittarius extends Quest
 	private static final int LETO_LIZARDMAN_WARRIOR = 20580;
 	private static final int LETO_LIZARDMAN_SHAMAN = 20581;
 	private static final int LETO_LIZARDMAN_OVERLORD = 20582;
+	
 	// Quest Monster
 	private static final int SERPENT_DEMON_KADESH = 27090;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	
@@ -180,6 +185,7 @@ public class Q00224_TestOfSagittarius extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -581,6 +587,7 @@ public class Q00224_TestOfSagittarius extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

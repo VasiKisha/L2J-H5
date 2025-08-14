@@ -78,6 +78,7 @@ public class HandysBlockCheckerEvent extends AbstractNpcAI
 				holder.broadCastPacketToTeam(new ExCubeGameChangeTimeToStart(10));
 			}
 		}
+		
 		return null;
 	}
 	

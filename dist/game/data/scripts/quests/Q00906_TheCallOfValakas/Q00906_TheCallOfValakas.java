@@ -34,12 +34,15 @@ public class Q00906_TheCallOfValakas extends Quest
 {
 	// NPC
 	private static final int KLEIN = 31540;
+	
 	// Monster
 	private static final int LAVASAURUS_ALPHA = 29029;
+	
 	// Items
 	private static final int LAVASAURUS_ALPHA_FRAGMENT = 21993;
 	private static final int SCROLL_VALAKAS_CALL = 21895;
 	private static final int VACUALITE_FLOATING_STONE = 7267;
+	
 	// Misc
 	private static final int MIN_LEVEL = 83;
 	
@@ -91,6 +94,7 @@ public class Q00906_TheCallOfValakas extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -168,6 +172,7 @@ public class Q00906_TheCallOfValakas extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

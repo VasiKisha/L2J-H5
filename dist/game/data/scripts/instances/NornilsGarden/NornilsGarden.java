@@ -62,14 +62,17 @@ public class NornilsGarden extends AbstractInstance
 		32261,
 		32262
 	};
+	
 	// Skills
 	private static final Skill SKILL_1 = SkillData.getInstance().getSkill(4322, 1);
 	private static final Skill SKILL_2 = SkillData.getInstance().getSkill(4327, 1);
 	private static final Skill SKILL_3 = SkillData.getInstance().getSkill(4329, 1);
 	private static final Skill SKILL_4 = SkillData.getInstance().getSkill(4324, 1);
+	
 	// Locations
 	private static final Location SPAWN_PPL = new Location(-111184, 74540, -12430);
 	private static final Location EXIT_PPL = new Location(-74058, 52040, -3680);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 11;
 	private static final int DURATION_TIME = 70;
@@ -184,14 +187,17 @@ public class NornilsGarden extends AbstractInstance
 		{
 			SKILL_1.applyEffects(ch, ch);
 		}
+		
 		if (SKILL_2 != null)
 		{
 			SKILL_2.applyEffects(ch, ch);
 		}
+		
 		if (SKILL_3 != null)
 		{
 			SKILL_3.applyEffects(ch, ch);
 		}
+		
 		if (SKILL_4 != null)
 		{
 			SKILL_4.applyEffects(ch, ch);
@@ -207,10 +213,12 @@ public class NornilsGarden extends AbstractInstance
 		{
 			addKillId(i[0]);
 		}
+		
 		for (int[] i : AUTO_GATES)
 		{
 			addEnterZoneId(i[0]);
 		}
+		
 		addTalkId(FINAL_GATES);
 		addAttackId(HERB_JAR);
 		addAttackId(18362); // first garden guard
@@ -224,6 +232,7 @@ public class NornilsGarden extends AbstractInstance
 		{
 			giveBuffs(player.getSummon());
 		}
+		
 		super.teleportPlayer(player, loc, instanceId);
 	}
 	
@@ -237,6 +246,7 @@ public class NornilsGarden extends AbstractInstance
 				player.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_ANOTHER_INSTANCE_ZONE_THEREFORE_YOU_CANNOT_ENTER_CORRESPONDING_DUNGEON);
 				return null;
 			}
+			
 			// check for level difference again on reenter
 			if ((player.getLevel() > INSTANCE_LEVEL_MAX) || (player.getLevel() < INSTANCE_LEVEL_MIN))
 			{
@@ -245,14 +255,17 @@ public class NornilsGarden extends AbstractInstance
 				player.sendPacket(sm);
 				return null;
 			}
+			
 			// check what instance still exist
 			final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
 			if (inst != null)
 			{
 				teleportPlayer(player, SPAWN_PPL, world.getInstanceId());
 			}
+			
 			return null;
 		}
+		
 		// Creating new instance
 		final String result = checkConditions(npc, player);
 		if (!(result.equalsIgnoreCase("ok")))
@@ -288,6 +301,7 @@ public class NornilsGarden extends AbstractInstance
 				teleportPlayer(partyMember, SPAWN_PPL, instanceId);
 			}
 		}
+		
 		return null;
 	}
 	
@@ -372,19 +386,23 @@ public class NornilsGarden extends AbstractInstance
 	private static String checkConditions(Npc npc, Player player)
 	{
 		final Party party = player.getParty();
+		
 		// player must be in party
 		if (party == null)
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_CURRENTLY_IN_A_PARTY_SO_YOU_CANNOT_ENTER);
 			return "32330-05.html";
 		}
+		
 		// ...and be party leader
 		if (party.getLeader() != player)
 		{
 			player.sendPacket(SystemMessageId.ONLY_A_PARTY_LEADER_CAN_MAKE_THE_REQUEST_TO_ENTER);
 			return "32330-08.html";
 		}
+		
 		boolean kamael = false;
+		
 		// for each party member
 		for (Player partyMember : party.getMembers())
 		{
@@ -396,6 +414,7 @@ public class NornilsGarden extends AbstractInstance
 				player.sendPacket(sm);
 				return "32330-06.html";
 			}
+			
 			if (partyMember.getLevel() < INSTANCE_LEVEL_MIN)
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY);
@@ -403,6 +422,7 @@ public class NornilsGarden extends AbstractInstance
 				player.sendPacket(sm);
 				return "32330-07.html";
 			}
+			
 			if (partyMember.getPlayerClass().level() != 0)
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY);
@@ -410,6 +430,7 @@ public class NornilsGarden extends AbstractInstance
 				player.sendPacket(sm);
 				return "32330-06.html";
 			}
+			
 			// player must be near party leader
 			if (!partyMember.isInsideRadius3D(player, 500))
 			{
@@ -418,6 +439,7 @@ public class NornilsGarden extends AbstractInstance
 				player.sendPacket(sm);
 				return "32330-08.html";
 			}
+			
 			if (partyMember.getRace().ordinal() == 5)
 			{
 				final QuestState checkst = partyMember.getQuestState(Q00179_IntoTheLargeCavern.class.getSimpleName());
@@ -434,10 +456,12 @@ public class NornilsGarden extends AbstractInstance
 				}
 			}
 		}
+		
 		if (!kamael)
 		{
 			return "32330-08.html";
 		}
+		
 		return "ok";
 	}
 	
@@ -455,6 +479,7 @@ public class NornilsGarden extends AbstractInstance
 					{
 						tmpworld.openDoor(auto[1]);
 					}
+					
 					if (zone.getId() == 20111)
 					{
 						spawn3(creature);
@@ -530,6 +555,7 @@ public class NornilsGarden extends AbstractInstance
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -543,8 +569,10 @@ public class NornilsGarden extends AbstractInstance
 			{
 				return npc.getId() + "-01.html";
 			}
+			
 			return getNoQuestMsg(player);
 		}
+		
 		return null;
 	}
 	
@@ -596,6 +624,7 @@ public class NornilsGarden extends AbstractInstance
 					}
 				}
 			}
+			
 			if (npc.getId() == 18355)
 			{
 				spawn2(npc);

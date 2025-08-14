@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="22100" type="EtcItem" name="Spiritshot Pack (C-Grade)">
 		<!-- If used, five thousand Spiritshots in C-grade are acquired. -->
@@ -871,9 +871,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="22157" type="Armor" name="Forget-me-not Hairpin">
 		<!-- Forget-me-not shaped hairpin. Hair accessory exclusive to female. Cannot be exchanged or dropped. -->
@@ -886,9 +886,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="22158" type="Armor" name="Outlaw's Eyepatch">
 		<!-- Purple eyepatch accessory Cannot be exchanged or dropped. -->
@@ -996,9 +996,9 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player sex="1" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="22167" type="Armor" name="Raccoon Ears">
 		<!-- Raccoon ear shaped hair accessory. Cannot be exchanged or dropped. -->
@@ -1085,11 +1085,11 @@
 		<set name="price" val="1730000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3561-1" /> <!-- Ring of Baium -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="48" />
 			<add stat="maxMp" val="21" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="22174" type="Armor" name="Improved Ring of Queen Ant">
 		<!-- MP +21, Resistance to Poison +30%, Poison attack rate +30%, Resistance to Hold +20%, Hold attack rate +20%, and increases Accuracy and Critical Damage. Only one effect is applied when wearing two of the same ring. -->
@@ -1104,11 +1104,11 @@
 		<set name="price" val="616000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3562-1" /> <!-- Ring of Ant Queen -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="48" />
 			<add stat="maxMp" val="21" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="22175" type="Armor" name="Improved Blessed Earring of Zaken">
 		<!-- MP +37, Resistance to Bleed +30%, Bleed attack rate +30%, heal amount +15%, vampiric rage effect, Resistance to Shock/Metal attacks +30%, Shock/Metal attack rate +30%, and Resistance to Dark +15. Only one effect is applied even when the same two earrings are worn. If it is equipped together with a standard Earring of Zaken, only the effect of Blessed Earring of Zaken will be applied. -->
@@ -1122,11 +1122,11 @@
 		<set name="weight" val="150" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3559-2" /> <!-- Earring of Zaken -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="94" />
 			<add stat="maxMp" val="37" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="22176" type="EtcItem" name="Angry Bunny Lure Scroll - Event">
 		<!-- Scroll that summons an Angry Bunny. If you rid the bunny of it's anger you can acquire Apiga. (De-rageifying is only possible through Bunny Pacifier Juice or Extra Strength Bunny Pacifier Juice.) -->
@@ -1239,9 +1239,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22312-1" /> <!-- Joyous Vitality Potion -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="22189" type="Armor" name="Child's Hat - Boy">
 		<!-- Taiwanese child exclusive hat (boy). Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Item that can be stored in a private warehouse. -->

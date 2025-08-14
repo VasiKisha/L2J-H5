@@ -47,6 +47,7 @@ public class BlowFishKey extends BaseReadablePacket
 			final Cipher rsaCipher = Cipher.getInstance("RSA/ECB/nopadding");
 			rsaCipher.init(Cipher.DECRYPT_MODE, server.getPrivateKey());
 			tempDecryptKey = rsaCipher.doFinal(tempKey);
+			
 			// There are nulls before the key we must remove them.
 			int i = 0;
 			final int len = tempDecryptKey.length;
@@ -57,6 +58,7 @@ public class BlowFishKey extends BaseReadablePacket
 					break;
 				}
 			}
+			
 			final byte[] key = new byte[len - i];
 			System.arraycopy(tempDecryptKey, i, key, 0, len - i);
 			server.setBlowFish(new NewCrypt(key));

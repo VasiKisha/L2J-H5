@@ -46,6 +46,7 @@ public class Q00348_AnArrogantSearch extends Quest
 	private static final int HOLY_ARK_OF_SECRECY_3 = 30979;
 	private static final int ARK_GUARDIANS_CORPSE = 30980;
 	private static final int CLAUDIA_ATHEBALDT = 31001;
+	
 	// Items
 	private static final int GREATER_HEALING_POTION = 1061;
 	private static final int ANTIDOTE = 1831;
@@ -63,11 +64,14 @@ public class Q00348_AnArrogantSearch extends Quest
 	private static final int BOUGH_OF_SAINT = 4399;
 	private static final int WHITE_FABRIC_2 = 4400;
 	private static final int SHELL_OF_MONSTERS = 14857;
+	
 	// Misc
 	private static final int MIN_LEVEL = 60;
 	private static final double MIN_HP_PERCENTAGE = 0.3;
+	
 	// Variables
 	private static final String I_QUEST0 = "I_QUEST0";
+	
 	// Rewards
 	private static final int ANIMAL_BONE = 1872;
 	private static final int ORIHARUKON_ORE = 1874;
@@ -93,10 +97,12 @@ public class Q00348_AnArrogantSearch extends Quest
 	private static final int DEMONS_DAGGER_EDGE = 4119;
 	private static final int BELLION_CESTUS_EDGE = 4120;
 	private static final int BOW_OF_PERIL_SHAFT = 4121;
+	
 	// Quest Monsters
 	private static final int ARK_GUARDIAN_ELBEROTH = 27182;
 	private static final int ARK_GUARDIAN_SHADOWFANG = 27183;
 	private static final int ANGEL_KILLER = 27184;
+	
 	// Monsters
 	private static final int YINTZU = 20647;
 	private static final int PALIOTE = 20648;
@@ -320,6 +326,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -1411,6 +1418,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

@@ -44,6 +44,7 @@ public class VillageMasterFighter extends VillageMaster
 		{
 			return false;
 		}
+		
 		return (pClass.getRace() == Race.HUMAN) || (pClass.getRace() == Race.ELF);
 	}
 	
@@ -54,6 +55,7 @@ public class VillageMasterFighter extends VillageMaster
 		{
 			return false;
 		}
+		
 		return CategoryData.getInstance().isInCategory(CategoryType.FIGHTER_GROUP, pClass.getId());
 	}
 }

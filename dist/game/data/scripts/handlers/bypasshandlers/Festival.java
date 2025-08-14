@@ -49,7 +49,7 @@ public class Festival implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if (!(target instanceof FestivalGuide))
 		{
@@ -79,37 +79,44 @@ public class Festival implements IBypassHandler
 						npc.showChatWindow(player, 2, "a", false);
 						return true;
 					}
+					
 					// Check if a festival is in progress, then don't allow registration yet.
 					if (SevenSignsFestival.getInstance().isFestivalInitialized())
 					{
 						player.sendMessage("You cannot sign up while a festival is in progress.");
 						return true;
 					}
+					
 					// Check if the player is in a formed party already.
 					if (!player.isInParty())
 					{
 						npc.showChatWindow(player, 2, "b", false);
 						return true;
 					}
+					
 					party = player.getParty();
+					
 					// Check if the player is the party leader.
 					if (!party.isLeader(player))
 					{
 						npc.showChatWindow(player, 2, "c", false);
 						return true;
 					}
+					
 					// Check to see if the party has at least 5 members.
 					if (party.getMemberCount() < Config.ALT_FESTIVAL_MIN_PLAYER)
 					{
 						npc.showChatWindow(player, 2, "b", false);
 						return true;
 					}
+					
 					// Check if all the party members are in the required level range.
 					if (party.getLevel() > SevenSignsFestival.getMaxLevelForFestival(npc.getFestivalType()))
 					{
 						npc.showChatWindow(player, 2, "d", false);
 						return true;
 					}
+					
 					// Check to see if the player has already signed up
 					if (player.isFestivalParticipant())
 					{
@@ -117,6 +124,7 @@ public class Festival implements IBypassHandler
 						npc.showChatWindow(player, 2, "f", false);
 						return true;
 					}
+					
 					npc.showChatWindow(player, 1, null, false);
 					break;
 				}
@@ -128,10 +136,12 @@ public class Festival implements IBypassHandler
 					{
 						return false;
 					}
+					
 					if (!player.destroyItemByItemId(ItemProcessType.FEE, stoneType, stoneCount, npc, true))
 					{
 						return false;
 					}
+					
 					SevenSignsFestival.getInstance().setParticipants(npc.getFestivalOracle(), npc.getFestivalType(), player.getParty());
 					SevenSignsFestival.getInstance().addAccumulatedBonus(npc.getFestivalType(), stoneType, stoneCount);
 					npc.showChatWindow(player, 2, "e", false);
@@ -145,43 +155,52 @@ public class Festival implements IBypassHandler
 						npc.showChatWindow(player, 3, "a", false);
 						return true;
 					}
+					
 					// Check if a festival is in progress, if it is don't register the score.
 					if (SevenSignsFestival.getInstance().isFestivalInProgress())
 					{
 						player.sendMessage("You cannot register a score while a festival is in progress.");
 						return true;
 					}
+					
 					// Check if the player is in a party.
 					if (!player.isInParty())
 					{
 						npc.showChatWindow(player, 3, "b", false);
 						return true;
 					}
+					
 					final List<Integer> prevParticipants = SevenSignsFestival.getInstance().getPreviousParticipants(npc.getFestivalOracle(), npc.getFestivalType());
+					
 					// Check if there are any past participants.
 					if ((prevParticipants == null) || prevParticipants.isEmpty() || !prevParticipants.contains(player.getObjectId()))
 					{
 						npc.showChatWindow(player, 3, "b", false);
 						return true;
 					}
+					
 					// Check if this player was the party leader in the festival.
 					if (player.getObjectId() != prevParticipants.get(0))
 					{
 						npc.showChatWindow(player, 3, "b", false);
 						return true;
 					}
+					
 					final Item bloodOfferings = player.getInventory().getItemByItemId(SevenSignsFestival.FESTIVAL_OFFERING_ID);
+					
 					// Check if the player collected any blood offerings during the festival.
 					if (bloodOfferings == null)
 					{
 						player.sendMessage("You do not have any blood offerings to contribute.");
 						return true;
 					}
+					
 					final long offeringScore = bloodOfferings.getCount() * SevenSignsFestival.FESTIVAL_OFFERING_VALUE;
 					if (!player.destroyItem(ItemProcessType.FEE, bloodOfferings, npc, false))
 					{
 						return true;
 					}
+					
 					final boolean isHighestScore = SevenSignsFestival.getInstance().setFinalScore(player, npc.getFestivalOracle(), npc.getFestivalType(), offeringScore);
 					final SystemMessage sm = new SystemMessage(SystemMessageId.YOUR_CONTRIBUTION_SCORE_HAS_INCREASED_BY_S1);
 					sm.addLong(offeringScore);
@@ -206,11 +225,13 @@ public class Festival implements IBypassHandler
 					final int dawnScore = dawnData.getInt("score");
 					final int duskScore = duskData.getInt("score");
 					int overallScore = 0;
+					
 					// If no data is returned, assume there is no record, or all scores are 0.
 					if (overallData != null)
 					{
 						overallScore = overallData.getInt("score");
 					}
+					
 					strBuffer.append(SevenSignsFestival.getFestivalName(npc.getFestivalType()) + " festival.<br>");
 					if (dawnScore > 0)
 					{
@@ -220,6 +241,7 @@ public class Festival implements IBypassHandler
 					{
 						strBuffer.append("Dawn: No record exists. Score 0<br>");
 					}
+					
 					if (duskScore > 0)
 					{
 						strBuffer.append("Dusk: " + calculateDate(duskData.getString("date")) + ". Score " + duskScore + "<br>" + duskData.getString("members") + "<br>");
@@ -228,6 +250,7 @@ public class Festival implements IBypassHandler
 					{
 						strBuffer.append("Dusk: No record exists. Score 0<br>");
 					}
+					
 					if ((overallScore > 0) && (overallData != null))
 					{
 						final String cabalStr;
@@ -239,6 +262,7 @@ public class Festival implements IBypassHandler
 						{
 							cabalStr = "Children of Dusk";
 						}
+						
 						strBuffer.append("Consecutive top scores: " + calculateDate(overallData.getString("date")) + ". Score " + overallScore + "<br>Affilated side: " + cabalStr + "<br>" + overallData.getString("members") + "<br>");
 					}
 					else
@@ -257,16 +281,19 @@ public class Festival implements IBypassHandler
 					{
 						return true;
 					}
+					
 					if (!SevenSignsFestival.getInstance().isFestivalInProgress())
 					{
 						return true;
 					}
+					
 					party = player.getParty();
 					if (!party.isLeader(player))
 					{
 						npc.showChatWindow(player, 8, "a", false);
 						return true;
 					}
+					
 					if (SevenSignsFestival.getInstance().increaseChallenge(npc.getFestivalOracle(), npc.getFestivalType()))
 					{
 						npc.showChatWindow(player, 8, "b", false);
@@ -283,6 +310,7 @@ public class Festival implements IBypassHandler
 					{
 						return true;
 					}
+					
 					party = player.getParty();
 					if (party.isLeader(player))
 					{
@@ -308,6 +336,7 @@ public class Festival implements IBypassHandler
 						player.sendMessage("Bonuses cannot be paid during the competition period.");
 						return true;
 					}
+					
 					if (SevenSignsFestival.getInstance().distribAccumulatedBonus(player) > 0)
 					{
 						npc.showChatWindow(player, 0, "a", false);
@@ -323,12 +352,14 @@ public class Festival implements IBypassHandler
 					npc.showChatWindow(player, val, null, false);
 				}
 			}
+			
 			return true;
 		}
 		catch (Exception e)
 		{
 			LOGGER.log(Level.WARNING, "Exception in " + getClass().getSimpleName(), e);
 		}
+		
 		return false;
 	}
 	
@@ -341,7 +372,7 @@ public class Festival implements IBypassHandler
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

@@ -75,6 +75,7 @@ public class FortUpdater implements Runnable
 							_fort.setFortState(1, 0);
 						}
 					}
+					
 					_fort.saveFortVariables();
 					break;
 				}
@@ -84,6 +85,7 @@ public class FortUpdater implements Runnable
 					{
 						return;
 					}
+					
 					if (_fort.getOwnedTime() > (Config.FS_MAX_OWN_TIME * 3600))
 					{
 						_fort.removeOwner(true);

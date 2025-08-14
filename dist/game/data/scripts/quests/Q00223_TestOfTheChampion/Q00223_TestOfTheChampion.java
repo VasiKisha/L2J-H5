@@ -37,6 +37,7 @@ public class Q00223_TestOfTheChampion extends Quest
 	private static final int CAPTAIN_MOUEN = 30196;
 	private static final int VETERAN_ASCALON = 30624;
 	private static final int MASON = 30625;
+	
 	// Items
 	private static final int ASCALONS_1ST_LETTER = 3277;
 	private static final int MASONS_LETTER = 3278;
@@ -54,9 +55,11 @@ public class Q00223_TestOfTheChampion extends Quest
 	private static final int BLOODY_AXE_HEAD = 3290;
 	private static final int ROAD_RATMAN_HEAD = 3291;
 	private static final int LETO_LIZARDMAN_FANG = 3292;
+	
 	// Reward
 	private static final int MARK_OF_CHAMPION = 3276;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monster
 	private static final int HARPY = 20145;
 	private static final int MEDUSA = 20158;
@@ -69,9 +72,11 @@ public class Q00223_TestOfTheChampion extends Quest
 	private static final int LETO_LIZARDMAN_SHAMAN = 20581;
 	private static final int LETO_LIZARDMAN_OCERLORD = 20582;
 	private static final int BLOODY_AXE_ELITE = 20780;
+	
 	// Quest Monster
 	private static final int HARPY_MATRIARCH = 27088;
 	private static final int ROAD_COLLECTOR = 27089;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	
@@ -114,6 +119,7 @@ public class Q00223_TestOfTheChampion extends Quest
 						{
 							giveItems(player, DIMENSIONAL_DIAMOND, 64);
 						}
+						
 						player.getVariables().set("2ND_CLASS_DIAMOND_REWARD", 1);
 						htmltext = "30624-06a.htm";
 					}
@@ -199,6 +205,7 @@ public class Q00223_TestOfTheChampion extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -229,6 +236,7 @@ public class Q00223_TestOfTheChampion extends Quest
 									addAttackDesire(addSpawn(HARPY_MATRIARCH, npc, true, 0, false), attacker);
 								}
 							}
+							
 							npc.setScriptValue(1);
 							break;
 						}
@@ -259,6 +267,7 @@ public class Q00223_TestOfTheChampion extends Quest
 									addAttackDesire(addSpawn(ROAD_COLLECTOR, npc, true, 0, false), attacker);
 								}
 							}
+							
 							npc.setScriptValue(1);
 							break;
 						}
@@ -281,6 +290,7 @@ public class Q00223_TestOfTheChampion extends Quest
 							{
 								addAttackDesire(addSpawn(BLOODY_AXE_ELITE, npc, true, 0, false), attacker);
 							}
+							
 							npc.setScriptValue(1);
 							break;
 						}
@@ -622,6 +632,7 @@ public class Q00223_TestOfTheChampion extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

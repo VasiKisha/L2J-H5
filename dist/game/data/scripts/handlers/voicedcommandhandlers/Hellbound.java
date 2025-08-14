@@ -33,7 +33,7 @@ public class Hellbound implements IVoicedCommandHandler
 	};
 	
 	@Override
-	public boolean useVoicedCommand(String command, Player activeChar, String params)
+	public boolean onCommand(String command, Player activeChar, String params)
 	{
 		if (HellboundEngine.getInstance().isLocked())
 		{
@@ -47,7 +47,7 @@ public class Hellbound implements IVoicedCommandHandler
 	}
 	
 	@Override
-	public String[] getVoicedCommandList()
+	public String[] getCommandList()
 	{
 		return VOICED_COMMANDS;
 	}

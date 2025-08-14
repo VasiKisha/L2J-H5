@@ -39,6 +39,7 @@ public class FuncAdd extends AbstractFunction
 		{
 			return initVal + getValue();
 		}
+		
 		return initVal;
 	}
 }

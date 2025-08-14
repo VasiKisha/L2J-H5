@@ -112,6 +112,7 @@ public class RequestDuelAnswerStart extends ClientPacket
 				msg = new SystemMessage(SystemMessageId.C1_HAS_DECLINED_YOUR_CHALLENGE_TO_A_DUEL);
 				msg.addPcName(player);
 			}
+			
 			requestor.sendPacket(msg);
 		}
 		

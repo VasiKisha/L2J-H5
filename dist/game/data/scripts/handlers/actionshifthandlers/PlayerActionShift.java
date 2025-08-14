@@ -29,7 +29,7 @@ import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 public class PlayerActionShift implements IActionShiftHandler
 {
 	@Override
-	public boolean action(Player player, WorldObject target, boolean interact)
+	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
 		if (player.isGM())
 		{
@@ -40,8 +40,9 @@ public class PlayerActionShift implements IActionShiftHandler
 				player.setTarget(target);
 			}
 			
-			AdminCommandHandler.getInstance().useAdminCommand(player, "admin_character_info " + target.getName(), true);
+			AdminCommandHandler.getInstance().onCommand(player, "admin_character_info " + target.getName(), true);
 		}
+		
 		return true;
 	}
 	

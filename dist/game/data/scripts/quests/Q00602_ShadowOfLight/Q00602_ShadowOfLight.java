@@ -32,8 +32,10 @@ public class Q00602_ShadowOfLight extends Quest
 {
 	// NPC
 	private static final int EYE_OF_ARGOS = 31683;
+	
 	// Item
 	private static final int EYE_OF_DARKNESS = 7189;
+	
 	// Monsters
 	private static final int[] MOBS =
 	{
@@ -102,11 +104,13 @@ public class Q00602_ShadowOfLight extends Quest
 				{
 					return "31683-06.html";
 				}
+				
 				final int i = getRandom(4);
 				if (i < 3)
 				{
 					giveItems(player, REWARD[i][0], 3);
 				}
+				
 				giveAdena(player, REWARD[i][1], true);
 				addExpAndSp(player, REWARD[i][2], REWARD[i][3]);
 				qs.exitQuest(true, true);
@@ -118,6 +122,7 @@ public class Q00602_ShadowOfLight extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -163,6 +168,7 @@ public class Q00602_ShadowOfLight extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

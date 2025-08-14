@@ -32,10 +32,13 @@ public class Q00659_IdRatherBeCollectingFairyBreath extends Quest
 {
 	// NPC
 	private static final int GALATEA = 30634;
+	
 	// Item
 	private static final int FAIRY_BREATH = 8286;
+	
 	// Misc
 	private static final int MIN_LEVEL = 26;
+	
 	// Mobs
 	private static final Map<Integer, Double> MOBS = new HashMap<>();
 	static
@@ -102,6 +105,7 @@ public class Q00659_IdRatherBeCollectingFairyBreath extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -128,6 +132,7 @@ public class Q00659_IdRatherBeCollectingFairyBreath extends Quest
 		{
 			htmltext = (hasQuestItems(player, FAIRY_BREATH) ? "30634-04.html" : "30634-09.html");
 		}
+		
 		return htmltext;
 	}
 }

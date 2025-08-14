@@ -34,13 +34,13 @@ public class FriendsBoard implements IParseBoardHandler
 	};
 	
 	@Override
-	public String[] getCommunityBoardCommands()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}
 	
 	@Override
-	public boolean parseCommunityBoardCommand(String command, Player player)
+	public boolean onCommand(String command, Player player)
 	{
 		if (command.equals("_friendlist"))
 		{
@@ -54,6 +54,7 @@ public class FriendsBoard implements IParseBoardHandler
 			final String html = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/friends_block_list.html");
 			CommunityBoardHandler.separateAndSend(html, player);
 		}
+		
 		return true;
 	}
 }

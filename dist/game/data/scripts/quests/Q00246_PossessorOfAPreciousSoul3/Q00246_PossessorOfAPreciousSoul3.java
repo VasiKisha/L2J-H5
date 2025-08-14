@@ -55,6 +55,7 @@ public class Q00246_PossessorOfAPreciousSoul3 extends Quest
 		21539, // Wailing of Splendor
 		21540, // Wailing of Splendor
 	};
+	
 	// Items
 	private static final int CARADINE_LETTER = 7678;
 	private static final int CARADINE_LETTER_LAST = 7679;
@@ -63,6 +64,7 @@ public class Q00246_PossessorOfAPreciousSoul3 extends Quest
 	private static final int RAIN_SONG = 7593;
 	private static final int RELIC_BOX = 7594;
 	private static final int FRAGMENTS = 21725;
+	
 	// Rewards
 	private static final int CHANCE_FOR_DROP = 30;
 	private static final int CHANCE_FOR_DROP_FRAGMENTS = 60;
@@ -85,6 +87,7 @@ public class Q00246_PossessorOfAPreciousSoul3 extends Quest
 		{
 			return getNoQuestMsg(player);
 		}
+		
 		if (!player.isSubClassActive())
 		{
 			return "no_sub.html";
@@ -148,6 +151,7 @@ public class Q00246_PossessorOfAPreciousSoul3 extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -369,6 +373,7 @@ public class Q00246_PossessorOfAPreciousSoul3 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

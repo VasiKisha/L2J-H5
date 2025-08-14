@@ -39,7 +39,7 @@ public class RentPet implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if (!(target instanceof Merchant))
 		{
@@ -79,6 +79,7 @@ public class RentPet implements IBypassHandler
 		{
 			LOGGER.info("Exception in " + getClass().getSimpleName());
 		}
+		
 		return false;
 	}
 	
@@ -88,6 +89,7 @@ public class RentPet implements IBypassHandler
 		{
 			return;
 		}
+		
 		if (!player.disarmWeapons())
 		{
 			return;
@@ -140,7 +142,7 @@ public class RentPet implements IBypassHandler
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

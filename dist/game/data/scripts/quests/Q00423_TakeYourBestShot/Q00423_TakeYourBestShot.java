@@ -88,6 +88,7 @@ public class Q00423_TakeYourBestShot extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -98,6 +99,7 @@ public class Q00423_TakeYourBestShot extends Quest
 		{
 			return "32740-ugoros.html";
 		}
+		
 		return "32740.html";
 	}
 	
@@ -177,6 +179,7 @@ public class Q00423_TakeYourBestShot extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

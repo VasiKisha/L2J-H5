@@ -43,6 +43,7 @@ public class SiegableHallZone extends ClanHallZone
 			{
 				_challengerLocations = new ArrayList<>();
 			}
+			
 			_challengerLocations.add(new Location(x, y, z));
 		}
 		else

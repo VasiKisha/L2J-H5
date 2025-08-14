@@ -53,6 +53,7 @@ public class Q00464_Oath extends Quest
 	private static final int STRONGBOX = 15537;
 	private static final int BOOK = 15538;
 	private static final int BOOK2 = 15539;
+	
 	// Misc
 	private static final int MIN_LEVEL = 82;
 	
@@ -81,6 +82,7 @@ public class Q00464_Oath extends Quest
 		{
 			addTalkId(npc[0]);
 		}
+		
 		addKillId(MOBS.keySet());
 		addItemTalkId(STRONGBOX);
 		registerQuestItems(BOOK, BOOK2);
@@ -180,6 +182,7 @@ public class Q00464_Oath extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -230,6 +233,7 @@ public class Q00464_Oath extends Quest
 				htmltext = "strongbox-00.htm";
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -306,6 +310,7 @@ public class Q00464_Oath extends Quest
 				htmltext = npcId + "-01.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

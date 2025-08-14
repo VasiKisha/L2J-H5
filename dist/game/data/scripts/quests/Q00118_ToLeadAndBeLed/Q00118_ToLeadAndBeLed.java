@@ -35,10 +35,12 @@ public class Q00118_ToLeadAndBeLed extends Quest
 {
 	// NPC
 	private static final int BLACKSMITH_PINTER = 30298;
+	
 	// Items
 	private static final int CRYSTAL_D = 1458;
 	private static final int BLOOD_OF_MAILLE_LIZARDMAN = 8062;
 	private static final int LEG_OF_KING_ARANEID = 8063;
+	
 	// Reward
 	private static final int CLAN_OATH_HELM = 7850;
 	private static final int CLAN_OATH_ARMOR = 7851;
@@ -50,11 +52,13 @@ public class Q00118_ToLeadAndBeLed extends Quest
 	private static final int CLAN_OATH_AKETON = 7857;
 	private static final int CLAN_OATH_PADDED_GLOVES_ROBE = 7858;
 	private static final int CLAN_OATH_SANDALS_ROBE = 7859;
+	
 	// Monster
 	private static final int MAILLE_LIZARDMAN = 20919;
 	private static final int MAILLE_LIZARDMAN_SCOUT = 20920;
 	private static final int MAILLE_LIZARDMAN_GUARD = 20921;
 	private static final int KING_OF_THE_ARANEID = 20927;
+	
 	// Misc
 	private static final int MIN_LEVEL = 19;
 	private static final int CRYSTAL_COUNT_1 = 922;
@@ -73,6 +77,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 	public String onEvent(String event, Npc npc, Player player)
 	{
 		String htmltext = null;
+		
 		// Manage Sponsor's quest events.
 		if (player.getApprentice() > 0)
 		{
@@ -150,6 +155,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 					break;
 				}
 			}
+			
 			return htmltext;
 		}
 		
@@ -216,6 +222,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -373,6 +380,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 							giveItems(player, CLAN_OATH_SANDALS_ROBE, 1);
 							takeItems(player, LEG_OF_KING_ARANEID, -1);
 						}
+						
 						qs.exitQuest(false, true);
 						htmltext = "30298-17.html";
 					}
@@ -385,6 +393,7 @@ public class Q00118_ToLeadAndBeLed extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -81,6 +81,7 @@ public class RequestAnswerJoinParty extends ClientPacket
 						requestor.sendPacket(sm);
 						return;
 					}
+					
 					player.joinParty(requestor.getParty());
 				}
 				else
@@ -125,6 +126,7 @@ public class RequestAnswerJoinParty extends ClientPacket
 									member.sendPacket(packet);
 								}
 							}
+							
 							player.setPartyRoom(room.getId());
 							// player.setPartyMatching(1);
 							player.broadcastUserInfo();

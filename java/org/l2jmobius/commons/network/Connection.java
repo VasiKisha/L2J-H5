@@ -170,8 +170,10 @@ public class Connection<T extends Client<Connection<T>>>
 				_config.resourcePool.recycleBuffer(buffer);
 				released = true;
 			}
+			
 			_writingBuffers = null;
 		}
+		
 		return released;
 	}
 	

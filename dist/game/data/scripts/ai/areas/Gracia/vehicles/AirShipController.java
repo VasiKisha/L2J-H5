@@ -132,29 +132,35 @@ public abstract class AirShipController extends AbstractNpcAI
 				{
 					player.sendPacket(SystemMessageId.THE_CLAN_OWNED_AIRSHIP_ALREADY_EXISTS);
 				}
+				
 				return null;
 			}
+			
 			if (_isBusy)
 			{
 				player.sendPacket(SystemMessageId.ANOTHER_AIRSHIP_HAS_ALREADY_BEEN_SUMMONED_PLEASE_TRY_AGAIN_LATER);
 				return null;
 			}
+			
 			if (!player.hasAccess(ClanAccess.ACCESS_AIRSHIP))
 			{
 				player.sendPacket(SystemMessageId.AIRSHIP_SUMMON_LICENSE_REGISTRATION_CAN_ONLY_BE_DONE_BY_THE_CLAN_LEADER);
 				return null;
 			}
+			
 			final int ownerId = player.getClanId();
 			if (!AirShipManager.getInstance().hasAirShipLicense(ownerId))
 			{
 				player.sendPacket(SystemMessageId.AN_AIRSHIP_CANNOT_BE_SUMMONED_BECAUSE_EITHER_YOU_HAVE_NOT_REGISTERED_YOUR_AIRSHIP_LICENSE_OR_THE_AIRSHIP_HAS_NOT_YET_BEEN_SUMMONED);
 				return null;
 			}
+			
 			if (AirShipManager.getInstance().hasAirShip(ownerId))
 			{
 				player.sendPacket(SystemMessageId.YOUR_CLAN_S_AIRSHIP_IS_ALREADY_BEING_USED_BY_ANOTHER_CLAN_MEMBER);
 				return null;
 			}
+			
 			if (!player.destroyItemByItemId(ItemProcessType.FEE, STARSTONE, SUMMON_COST, npc, true))
 			{
 				player.sendPacket(SM_NEED_MORE);
@@ -261,17 +267,20 @@ public abstract class AirShipController extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.IN_ORDER_TO_ACQUIRE_AN_AIRSHIP_THE_CLAN_S_LEVEL_MUST_BE_LEVEL_5_OR_HIGHER);
 				return null;
 			}
+			
 			if (!player.isClanLeader())
 			{
 				player.sendPacket(SystemMessageId.AIRSHIP_SUMMON_LICENSE_REGISTRATION_CAN_ONLY_BE_DONE_BY_THE_CLAN_LEADER);
 				return null;
 			}
+			
 			final int ownerId = player.getClanId();
 			if (AirShipManager.getInstance().hasAirShipLicense(ownerId))
 			{
 				player.sendPacket(SystemMessageId.THE_AIRSHIP_SUMMON_LICENSE_HAS_ALREADY_BEEN_ACQUIRED);
 				return null;
 			}
+			
 			if (!player.destroyItemByItemId(ItemProcessType.FEE, LICENSE, 1, npc, true))
 			{
 				player.sendPacket(SM_NEED_MORE);
@@ -365,6 +374,7 @@ public abstract class AirShipController extends AbstractNpcAI
 				}
 			}
 		}
+		
 		if ((_arrivalPath == null) && !ZoneManager.getInstance().getZoneById(_dockZone, ScriptZone.class).isInsideZone(_shipSpawnX, _shipSpawnY, _shipSpawnZ))
 		{
 			LOGGER.log(Level.WARNING, getName() + ": Arrival path is null and spawn point not in zone " + _dockZone + ", controller disabled");

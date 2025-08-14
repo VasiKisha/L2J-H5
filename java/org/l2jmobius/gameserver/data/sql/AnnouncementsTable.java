@@ -79,6 +79,7 @@ public class AnnouncementsTable
 						continue;
 					}
 				}
+				
 				_announcements.put(announce.getId(), announce);
 			}
 		}

@@ -71,14 +71,17 @@ public class ZoneCylinder extends ZoneForm
 		{
 			return true;
 		}
+		
 		if ((Math.pow(ax1 - _x, 2) + Math.pow(ay2 - _y, 2)) < _radS)
 		{
 			return true;
 		}
+		
 		if ((Math.pow(ax2 - _x, 2) + Math.pow(ay1 - _y, 2)) < _radS)
 		{
 			return true;
 		}
+		
 		if ((Math.pow(ax2 - _x, 2) + Math.pow(ay2 - _y, 2)) < _radS)
 		{
 			return true;
@@ -91,17 +94,20 @@ public class ZoneCylinder extends ZoneForm
 			{
 				return true;
 			}
+			
 			if (Math.abs(_y - ay1) < _rad)
 			{
 				return true;
 			}
 		}
+		
 		if ((_y > ay1) && (_y < ay2))
 		{
 			if (Math.abs(_x - ax2) < _rad)
 			{
 				return true;
 			}
+			
 			if (Math.abs(_x - ax1) < _rad)
 			{
 				return true;

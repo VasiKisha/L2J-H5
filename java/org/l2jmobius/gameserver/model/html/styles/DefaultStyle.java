@@ -36,6 +36,7 @@ public class DefaultStyle implements IHtmlStyle
 		{
 			return String.format(DEFAULT_PAGE_TEXT_FORMAT, name);
 		}
+		
 		return String.format(DEFAULT_PAGE_LINK_FORMAT, bypass, name);
 	}
 	

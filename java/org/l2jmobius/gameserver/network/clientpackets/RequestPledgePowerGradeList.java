@@ -16,6 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
+import java.util.Collection;
+
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.Clan.RankPrivs;
@@ -39,7 +41,7 @@ public class RequestPledgePowerGradeList extends ClientPacket
 		final Clan clan = player.getClan();
 		if (clan != null)
 		{
-			final RankPrivs[] privs = clan.getAllRankPrivs();
+			final Collection<RankPrivs> privs = clan.getAllRankPrivs();
 			player.sendPacket(new PledgePowerGradeList(privs));
 		}
 	}

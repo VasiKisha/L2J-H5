@@ -34,10 +34,13 @@ public class Q00283_TheFewTheProudTheBrave extends Quest
 {
 	// NPC
 	private static final int PERWAN = 32133;
+	
 	// Item
 	private static final int CRIMSON_SPIDER_CLAW = 9747;
+	
 	// Monster
 	private static final int CRIMSON_SPIDER = 22244;
+	
 	// Misc
 	private static final int CLAW_PRICE = 45;
 	private static final int BONUS = 2187;
@@ -101,6 +104,7 @@ public class Q00283_TheFewTheProudTheBrave extends Quest
 							setNRMemoState(newbieGuideQs, GUIDE_MISSION, getNRMemoState(newbieGuideQs, GUIDE_MISSION) + 10000000);
 							showOnScreenMsg(player, NpcStringId.LAST_DUTY_COMPLETE_N_GO_FIND_THE_NEWBIE_GUIDE, 2, 5000);
 						}
+						
 						newbieGuideQs.setState(State.COMPLETED);
 					}
 					
@@ -119,6 +123,7 @@ public class Q00283_TheFewTheProudTheBrave extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -151,6 +156,7 @@ public class Q00283_TheFewTheProudTheBrave extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

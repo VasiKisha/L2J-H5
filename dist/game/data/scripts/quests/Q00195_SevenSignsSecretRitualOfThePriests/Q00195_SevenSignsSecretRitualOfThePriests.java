@@ -41,11 +41,14 @@ public class Q00195_SevenSignsSecretRitualOfThePriests extends Quest
 	private static final int IDENTITY_CONFIRM_DEVICE = 32578;
 	private static final int DARKNESS_OF_DAWN = 32579;
 	private static final int SHELF = 32580;
+	
 	// Items
 	private static final int IDENTITY_CARD = 13822;
 	private static final int SHUNAIMANS_CONTRACT = 13823;
+	
 	// Misc
 	private static final int MIN_LEVEL = 79;
+	
 	// Skills
 	// private static final SkillHolder TRANSFORM_DISPEL = new SkillHolder(6200, 1);
 	private static final SkillHolder TRANSFORMATION = new SkillHolder(6204, 1);
@@ -185,6 +188,7 @@ public class Q00195_SevenSignsSecretRitualOfThePriests extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -215,6 +219,7 @@ public class Q00195_SevenSignsSecretRitualOfThePriests extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -342,6 +347,7 @@ public class Q00195_SevenSignsSecretRitualOfThePriests extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

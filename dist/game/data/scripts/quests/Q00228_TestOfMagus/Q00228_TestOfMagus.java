@@ -43,6 +43,7 @@ public class Q00228_TestOfMagus extends Quest
 	private static final int WATER_UNDINE = 30413;
 	private static final int ELDER_CASIAN = 30612;
 	private static final int BARD_RUKAL = 30629;
+	
 	// Items
 	private static final int RUKALS_LETTER = 2841;
 	private static final int PARINAS_LETTER = 2842;
@@ -67,9 +68,11 @@ public class Q00228_TestOfMagus extends Quest
 	private static final int SYLPH_CHARM = 2861;
 	private static final int UNDINE_CHARM = 2862;
 	private static final int SERPENT_CHARM = 2863;
+	
 	// Reward
 	private static final int MARK_OF_MAGUS = 2840;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monster
 	private static final int HARPY = 20145;
 	private static final int MARSH_STAKATO = 20157;
@@ -82,11 +85,13 @@ public class Q00228_TestOfMagus extends Quest
 	private static final int ENCHANTED_MONSTEREYE = 20564;
 	private static final int ENCHANTED_STOLEN_GOLEM = 20565;
 	private static final int ENCHANTED_IRON_GOLEM = 20566;
+	
 	// Quest Monster
 	private static final int SINGING_FLOWER_PHANTASM = 27095;
 	private static final int SINGING_FLOWER_NIGTMATE = 27096;
 	private static final int SINGING_FLOWER_DARKLING = 27097;
 	private static final int GHOST_FIRE = 27098;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	
@@ -183,6 +188,7 @@ public class Q00228_TestOfMagus extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -482,6 +488,7 @@ public class Q00228_TestOfMagus extends Quest
 								{
 									qs.setCond(6, true);
 								}
+								
 								htmltext = "30409-05.html";
 							}
 							else
@@ -520,6 +527,7 @@ public class Q00228_TestOfMagus extends Quest
 								{
 									qs.setCond(6, true);
 								}
+								
 								htmltext = "30411-03.html";
 							}
 						}
@@ -551,6 +559,7 @@ public class Q00228_TestOfMagus extends Quest
 								{
 									qs.setCond(6, true);
 								}
+								
 								htmltext = "30412-04.html";
 							}
 							else
@@ -589,6 +598,7 @@ public class Q00228_TestOfMagus extends Quest
 								{
 									qs.setCond(6, true);
 								}
+								
 								htmltext = "30413-03.html";
 							}
 						}
@@ -631,6 +641,7 @@ public class Q00228_TestOfMagus extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

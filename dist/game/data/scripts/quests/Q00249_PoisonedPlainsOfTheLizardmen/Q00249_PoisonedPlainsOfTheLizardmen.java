@@ -63,6 +63,7 @@ public class Q00249_PoisonedPlainsOfTheLizardmen extends Quest
 			addExpAndSp(player, 477496, 58743);
 			qs.exitQuest(false, true);
 		}
+		
 		return htmltext;
 	}
 	
@@ -106,6 +107,7 @@ public class Q00249_PoisonedPlainsOfTheLizardmen extends Quest
 				htmltext = "32744-04.htm";
 			}
 		}
+		
 		return htmltext;
 	}
 }

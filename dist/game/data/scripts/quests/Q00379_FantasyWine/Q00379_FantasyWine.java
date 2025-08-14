@@ -32,15 +32,18 @@ public class Q00379_FantasyWine extends Quest
 {
 	// NPC
 	private static final int HARLAN = 30074;
+	
 	// Items
 	private static final ItemHolder LEAF_OF_EUCALYPTUS = new ItemHolder(5893, 80);
 	private static final ItemHolder STONE_OF_CHILL = new ItemHolder(5894, 100);
 	private static final int OLD_WINE_15_YEAR = 5956;
 	private static final int OLD_WINE_30_YEAR = 5957;
 	private static final int OLD_WINE_60_YEAR = 5958;
+	
 	// Monsters
 	private static final int ENKU_ORC_CHAMPION = 20291;
 	private static final int ENKU_ORC_SHAMAN = 20292;
+	
 	// Misc
 	private static final int MIN_LEVEL = 20;
 	
@@ -107,6 +110,7 @@ public class Q00379_FantasyWine extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -156,6 +160,7 @@ public class Q00379_FantasyWine extends Quest
 				htmltext = "30074-10.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

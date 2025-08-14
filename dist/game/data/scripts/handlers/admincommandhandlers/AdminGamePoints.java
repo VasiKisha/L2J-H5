@@ -42,7 +42,7 @@ public class AdminGamePoints implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_add_game_points"))
 		{
@@ -107,6 +107,7 @@ public class AdminGamePoints implements IAdminCommandHandler
 				activeChar.sendSysMessage("Usage: //subtract_game_points count");
 			}
 		}
+		
 		return true;
 	}
 	
@@ -209,12 +210,13 @@ public class AdminGamePoints implements IAdminCommandHandler
 		{
 			player.setGamePoints(currentPoints - points);
 		}
+		
 		admin.sendMessage(player.getName() + " has now a total of " + player.getGamePoints() + " game points.");
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

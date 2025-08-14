@@ -56,9 +56,11 @@ public class Q00352_HelpRoodRaiseANewPet extends Quest
 	
 	// NPC
 	private static final int ROOD = 31067;
+	
 	// Items
 	private static final int LIENRIK_EGG1 = 5860;
 	private static final int LIENRIK_EGG2 = 5861;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
 	
@@ -113,6 +115,7 @@ public class Q00352_HelpRoodRaiseANewPet extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -176,6 +179,7 @@ public class Q00352_HelpRoodRaiseANewPet extends Quest
 				htmltext = "31067-11.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

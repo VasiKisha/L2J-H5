@@ -35,8 +35,10 @@ public class Q00617_GatherTheFlames extends Quest
 	private static final int HILDA = 31271;
 	private static final int VULCAN = 31539;
 	private static final int ROONEY = 32049;
+	
 	// Item
 	private static final int TORCH = 7264;
+	
 	// Reward
 	private static final int[] REWARD =
 	{
@@ -113,6 +115,7 @@ public class Q00617_GatherTheFlames extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				giveItems(player, getRandomEntry(REWARD), 1);
 				takeItems(player, TORCH, 1000);
 				break;
@@ -135,6 +138,7 @@ public class Q00617_GatherTheFlames extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				giveItems(player, Integer.parseInt(event), 1);
 				takeItems(player, TORCH, 1200);
 				htmltext = "32049-04.html";
@@ -147,6 +151,7 @@ public class Q00617_GatherTheFlames extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				giveItems(player, Integer.parseInt(event), 1);
 				takeItems(player, TORCH, 1200);
 				htmltext = "32049-03.html";
@@ -158,6 +163,7 @@ public class Q00617_GatherTheFlames extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -178,6 +184,7 @@ public class Q00617_GatherTheFlames extends Quest
 		{
 			giveItems(partyMember, TORCH, 1);
 		}
+		
 		playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 	}
 	
@@ -221,6 +228,7 @@ public class Q00617_GatherTheFlames extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -55,6 +55,7 @@ public class WareHouseWithdrawalList extends AbstractItemPacket
 			PacketLogger.warning("Error while sending withdraw request to: " + player.getName());
 			return;
 		}
+		
 		_playerAdena = player.getAdena();
 		_items = player.getActiveWarehouse().getItems();
 		_whType = type;

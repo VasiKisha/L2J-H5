@@ -33,8 +33,10 @@ public class JiniaGuildHideout1 extends AbstractInstance
 {
 	// NPC
 	private static final int RAFFORTY = 32020;
+	
 	// Location
 	private static final Location START_LOC = new Location(-23530, -8963, -5413);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 140;
 	
@@ -53,6 +55,7 @@ public class JiniaGuildHideout1 extends AbstractInstance
 			enterInstance(talker, TEMPLATE_ID);
 			qs.setCond(2, true);
 		}
+		
 		return super.onTalk(npc, talker);
 	}
 	
@@ -63,6 +66,7 @@ public class JiniaGuildHideout1 extends AbstractInstance
 		{
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, START_LOC, world.getInstanceId(), false);
 	}
 	

@@ -34,6 +34,7 @@ public class Q00606_BattleAgainstVarkaSilenos extends Quest
 {
 	// NPC
 	private static final int KADUN = 31370;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
 	static
@@ -54,9 +55,11 @@ public class Q00606_BattleAgainstVarkaSilenos extends Quest
 		MOBS.put(21371, 713); // Varka's Head Magus
 		MOBS.put(21373, 738); // Varka's Prophet
 	}
+	
 	// Items
 	private static final int HORN = 7186;
 	private static final int MANE = 7233;
+	
 	// Misc
 	private static final int MIN_LEVEL = 74;
 	private static final int MANE_COUNT = 100;
@@ -97,6 +100,7 @@ public class Q00606_BattleAgainstVarkaSilenos extends Quest
 				{
 					return "31370-08.html";
 				}
+				
 				takeItems(player, MANE, MANE_COUNT);
 				giveItems(player, HORN, 20);
 				break;
@@ -112,6 +116,7 @@ public class Q00606_BattleAgainstVarkaSilenos extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -144,6 +149,7 @@ public class Q00606_BattleAgainstVarkaSilenos extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

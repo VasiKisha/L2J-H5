@@ -32,10 +32,13 @@ public class LoveYourGatekeeper extends LongTimeEvent
 {
 	// NPC
 	private static final int GATEKEEPER = 32477;
+	
 	// Item
 	private static final int GATEKEEPER_TRANSFORMATION_STICK = 12814;
+	
 	// Skills
 	private static final SkillHolder TELEPORTER_TRANSFORM = new SkillHolder(5655, 1);
+	
 	// Misc
 	private static final int HOURS = 24;
 	private static final int PRICE = 10000;
@@ -80,6 +83,7 @@ public class LoveYourGatekeeper extends LongTimeEvent
 				{
 					return "32477-3.htm";
 				}
+				
 				return null;
 			}
 			case "transform":
@@ -88,9 +92,11 @@ public class LoveYourGatekeeper extends LongTimeEvent
 				{
 					player.doCast(TELEPORTER_TRANSFORM.getSkill());
 				}
+				
 				return null;
 			}
 		}
+		
 		return event;
 	}
 	

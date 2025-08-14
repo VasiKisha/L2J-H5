@@ -67,6 +67,7 @@ public class Merchant extends Folk
 		{
 			pom = npcId + "-" + value;
 		}
+		
 		return "data/html/merchant/" + pom + ".htm";
 	}
 	

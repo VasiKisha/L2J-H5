@@ -210,6 +210,7 @@ public class AccessLevel
 			
 			_childsAccessLevel = AdminData.getInstance().getAccessLevel(_child);
 		}
+		
 		return (_childsAccessLevel != null) && ((_childsAccessLevel.getLevel() == accessLevel.getLevel()) || _childsAccessLevel.hasChildAccess(accessLevel));
 	}
 }

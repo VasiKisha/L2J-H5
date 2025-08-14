@@ -111,6 +111,7 @@ public class MapRegion
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -166,6 +167,7 @@ public class MapRegion
 		{
 			return _spawnLocs.get(Rnd.get(_spawnLocs.size()));
 		}
+		
 		return _spawnLocs.get(0);
 	}
 	
@@ -177,8 +179,10 @@ public class MapRegion
 			{
 				return _otherSpawnLocs.get(Rnd.get(_otherSpawnLocs.size()));
 			}
+			
 			return _otherSpawnLocs.get(0);
 		}
+		
 		return getSpawnLoc();
 	}
 	
@@ -190,8 +194,10 @@ public class MapRegion
 			{
 				return _chaoticSpawnLocs.get(Rnd.get(_chaoticSpawnLocs.size()));
 			}
+			
 			return _chaoticSpawnLocs.get(0);
 		}
+		
 		return getSpawnLoc();
 	}
 	
@@ -203,8 +209,10 @@ public class MapRegion
 			{
 				return _banishSpawnLocs.get(Rnd.get(_banishSpawnLocs.size()));
 			}
+			
 			return _banishSpawnLocs.get(0);
 		}
+		
 		return getSpawnLoc();
 	}
 	

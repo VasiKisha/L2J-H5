@@ -42,6 +42,7 @@ public class VillageMasterOrc extends VillageMaster
 		{
 			return false;
 		}
+		
 		return pClass.getRace() == Race.ORC;
 	}
 }

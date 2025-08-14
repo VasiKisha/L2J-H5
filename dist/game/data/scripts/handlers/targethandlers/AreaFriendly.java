@@ -138,6 +138,7 @@ public class AreaFriendly implements ITargetTypeHandler
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	

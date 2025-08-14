@@ -32,11 +32,14 @@ public class Q00313_CollectSpores extends Quest
 {
 	// NPC
 	private static final int HERBIEL = 30150;
+	
 	// Item
 	private static final int SPORE_SAC = 1118;
+	
 	// Misc
 	private static final int MIN_LEVEL = 8;
 	private static final int REQUIRED_SAC_COUNT = 10;
+	
 	// Monster
 	private static final int SPORE_FUNGUS = 20509;
 	
@@ -57,6 +60,7 @@ public class Q00313_CollectSpores extends Quest
 		{
 			return null;
 		}
+		
 		String htmltext = null;
 		switch (event)
 		{
@@ -75,6 +79,7 @@ public class Q00313_CollectSpores extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -126,6 +131,7 @@ public class Q00313_CollectSpores extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

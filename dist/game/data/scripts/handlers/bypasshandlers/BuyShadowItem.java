@@ -34,7 +34,7 @@ public class BuyShadowItem implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if (!(target instanceof Merchant))
 		{
@@ -58,6 +58,7 @@ public class BuyShadowItem implements IBypassHandler
 		{
 			html.setFile(player, "data/html/common/shadow_item_b.htm");
 		}
+		
 		html.replace("%objectId%", String.valueOf(target.asNpc().getObjectId()));
 		player.sendPacket(html);
 		
@@ -65,7 +66,7 @@ public class BuyShadowItem implements IBypassHandler
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

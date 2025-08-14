@@ -54,6 +54,7 @@ public class ExEnchantSkillInfoDetail extends ServerPacket
 	{
 		final EnchantSkillLearn enchantLearn = EnchantSkillGroupsData.getInstance().getSkillEnchantmentBySkillId(skillId);
 		EnchantSkillHolder esd = null;
+		
 		// do we have this skill?
 		if (enchantLearn != null)
 		{
@@ -66,10 +67,12 @@ public class ExEnchantSkillInfoDetail extends ServerPacket
 				esd = enchantLearn.getFirstRouteGroup().getEnchantGroupDetails().get(0);
 			}
 		}
+		
 		if (esd == null)
 		{
 			throw new IllegalArgumentException("Skill " + skillId + " does not have enchant data for level " + skillLevel);
 		}
+		
 		if (type == 0)
 		{
 			multi = EnchantSkillGroupsData.NORMAL_ENCHANT_COST_MULTIPLIER;
@@ -78,12 +81,14 @@ public class ExEnchantSkillInfoDetail extends ServerPacket
 		{
 			multi = EnchantSkillGroupsData.SAFE_ENCHANT_COST_MULTIPLIER;
 		}
+		
 		_chance = esd.getRate(ply);
 		_sp = esd.getSpCost();
 		if (type == TYPE_UNTRAIN_ENCHANT)
 		{
 			_sp = (int) (0.8 * _sp);
 		}
+		
 		_adenacount = esd.getAdenaCost() * multi;
 		_type = type;
 		_skillId = skillId;
@@ -119,6 +124,7 @@ public class ExEnchantSkillInfoDetail extends ServerPacket
 				return;
 			}
 		}
+		
 		if ((type != TYPE_SAFE_ENCHANT) && !Config.ES_SP_BOOK_NEEDED)
 		{
 			reqCount = false;

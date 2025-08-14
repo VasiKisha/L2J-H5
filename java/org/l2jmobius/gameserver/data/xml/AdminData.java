@@ -24,6 +24,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -38,7 +39,6 @@ import org.l2jmobius.gameserver.model.AdminCommandAccessRight;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -51,7 +51,7 @@ public class AdminData implements IXmlReader
 	private static final Logger LOGGER = Logger.getLogger(AdminData.class.getName());
 	
 	private final Map<Integer, AccessLevel> _accessLevels = new HashMap<>();
-	private final Map<String, AdminCommandAccessRight> _adminCommandAccessRights = new HashMap<>();
+	private final Map<String, AdminCommandAccessRight> _adminCommandAccessRights = new LinkedHashMap<>();
 	private final Map<Player, Boolean> _gmList = new ConcurrentHashMap<>();
 	private int _highestLevel = 0;
 	
@@ -92,6 +92,7 @@ public class AdminData implements IXmlReader
 							{
 								_highestLevel = level.getLevel();
 							}
+							
 							_accessLevels.put(level.getLevel(), level);
 							break;
 						}
@@ -99,7 +100,7 @@ public class AdminData implements IXmlReader
 						{
 							final StatSet set = new StatSet(parseAttributes(d));
 							final AdminCommandAccessRight command = new AdminCommandAccessRight(set);
-							_adminCommandAccessRights.put(command.getAdminCommand(), command);
+							_adminCommandAccessRights.put(command.getCommand(), command);
 							break;
 						}
 					}
@@ -161,8 +162,8 @@ public class AdminData implements IXmlReader
 			// Trying to avoid the spam for next time when the GM would try to use the same command.
 			if ((accessLevel.getLevel() > 0) && (accessLevel.getLevel() == _highestLevel))
 			{
-				accessRight = new AdminCommandAccessRight(adminCommand, true, accessLevel.getLevel());
-				_adminCommandAccessRights.put(accessRight.getAdminCommand(), accessRight);
+				accessRight = new AdminCommandAccessRight(adminCommand, "", true, accessLevel.getLevel());
+				_adminCommandAccessRights.put(accessRight.getCommand(), accessRight);
 				LOGGER.info(getClass().getSimpleName() + ": No rights defined for admin command " + adminCommand + " auto setting accesslevel: " + accessLevel.getLevel() + " !");
 			}
 			else
@@ -171,6 +172,7 @@ public class AdminData implements IXmlReader
 				return false;
 			}
 		}
+		
 		return accessRight.hasAccess(accessLevel);
 	}
 	
@@ -206,6 +208,7 @@ public class AdminData implements IXmlReader
 				result.add(entry.getKey());
 			}
 		}
+		
 		return result;
 	}
 	
@@ -228,6 +231,7 @@ public class AdminData implements IXmlReader
 				result.add(entry.getKey().getName() + " (invis)");
 			}
 		}
+		
 		return result;
 	}
 	
@@ -264,6 +268,7 @@ public class AdminData implements IXmlReader
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -285,7 +290,6 @@ public class AdminData implements IXmlReader
 		}
 		else
 		{
-			player.sendPacket(new PlaySound("systemmsg_e.702"));
 			player.sendPacket(SystemMessageId.THERE_ARE_NO_GMS_CURRENTLY_VISIBLE_IN_THE_PUBLIC_LIST_AS_THEY_MAY_BE_PERFORMING_OTHER_FUNCTIONS_AT_THE_MOMENT);
 		}
 	}
@@ -312,6 +316,14 @@ public class AdminData implements IXmlReader
 		{
 			player.sendMessage(message);
 		}
+	}
+	
+	/**
+	 * @return all admin access rights
+	 */
+	public Collection<AdminCommandAccessRight> getAdminCommandAccessRights()
+	{
+		return _adminCommandAccessRights.values();
 	}
 	
 	public static AdminData getInstance()

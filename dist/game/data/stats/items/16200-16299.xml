@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="16200" type="Weapon" name="Vesper Retributer - Gale {PvP} - HP Regeneration">
 		<!-- Masterwork Item that increases Atk. Spd. <Soul Crystal Enhancement>. HP's recovery rate increases. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -22,7 +22,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3569-2;3896-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="482" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="4" />
@@ -30,7 +30,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16201" type="Weapon" name="Vesper Retributer - Gale {PvP} - Health">
 		<!-- Masterwork Item that increases Atk. Spd. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -54,7 +54,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3013-3;3896-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="482" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="4" />
@@ -62,7 +62,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16202" type="Weapon" name="Vesper Retributer - Gale {PvP} - HP Drain">
 		<!-- Masterwork Item that increases Atk. Spd. <Soul Crystal Enhancement>. HP recovers by 4% of the damage inflicted on the enemy during a short-range ordinary physical attack. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -86,7 +86,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3568-2;3896-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="482" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="4" />
@@ -94,7 +94,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16203" type="Weapon" name="Vesper Caster - Cleverness {PvP} - Acumen">
 		<!-- Masterwork Item that increases MP Regen. <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -119,7 +119,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3047-2;3853-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="317" />
 			<set stat="mAtk" val="234" />
 			<set stat="critRate" val="4" />
@@ -127,7 +127,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16204" type="Weapon" name="Vesper Caster - Cleverness {PvP} - MP Regeneration">
 		<!-- Masterwork Item that increases MP Regen. <Soul Crystal Enhancement>. Increases MP Recovery Rate. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -152,7 +152,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3576-2;3853-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="317" />
 			<set stat="mAtk" val="234" />
 			<set stat="critRate" val="4" />
@@ -160,7 +160,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16205" type="Weapon" name="Vesper Caster - Cleverness {PvP} - Mana Up">
 		<!-- Masterwork Item that increases MP Regen. <Soul Crystal Enhancement>. Max MP increases by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -185,7 +185,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3014-2;3853-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="317" />
 			<set stat="mAtk" val="234" />
 			<set stat="critRate" val="4" />
@@ -193,7 +193,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16206" type="Weapon" name="Vesper Singer - Hail {PvP} - Empower">
 		<!-- Masterwork Item that increases M. Atk. <Soul Crystal Enhancement>. Increases M. Atk. by 151. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -218,7 +218,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3575-2;3899-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="386" />
 			<set stat="mAtk" val="257" />
 			<set stat="critRate" val="4" />
@@ -226,7 +226,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16207" type="Weapon" name="Vesper Singer - Hail {PvP} - MP Regeneration">
 		<!-- Masterwork Item that increases M. Atk. <Soul Crystal Enhancement>. MP's recovery rate increases. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -251,7 +251,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3576-2;3899-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="386" />
 			<set stat="mAtk" val="257" />
 			<set stat="critRate" val="4" />
@@ -259,7 +259,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16208" type="Weapon" name="Vesper Singer - Hail {PvP} - Magic Hold">
 		<!-- Masterwork Item that increases M. Atk. <Soul Crystal Enhancement>. Has a 20% chance of casting Dryad Root when using a magic skill on the target. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -286,7 +286,7 @@
 		<set name="onmagic_chance" val="20" />
 		<set name="onmagic_skill" val="3577-2" />
 		<set name="item_skill" val="3552-3;3654-1;3899-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="386" />
 			<set stat="mAtk" val="257" />
 			<set stat="critRate" val="4" />
@@ -294,7 +294,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16209" type="Weapon" name="Vesper Thrower - Clairvoyance {PvP} - Cheap Shot">
 		<!-- Masterwork Item that increases range. <Soul Crystal Enhancement>. MP consumption decreases by 8% during a skill attack. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -320,7 +320,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3655-1;8312-2;3865-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="724" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="12" />
@@ -328,7 +328,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16210" type="Weapon" name="Vesper Thrower - Clairvoyance {PvP} - Focus">
 		<!-- Masterwork Item that increases range. <Soul Crystal Enhancement>. Increases Critical by 133. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -354,7 +354,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3655-1;3567-3;3865-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="724" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="12" />
@@ -362,7 +362,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16211" type="Weapon" name="Vesper Thrower - Clairvoyance {PvP} - Critical Slow">
 		<!-- Masterwork Item that increases range. <Soul Crystal Enhancement>. Inflicts slow with 33% chance during a critical attack. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -389,7 +389,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3574-3" />
 		<set name="item_skill" val="3552-3;3655-1;3865-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="724" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="12" />
@@ -397,7 +397,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16212" type="Weapon" name="Vesper Pincer- Thunder {PvP} - Haste">
 		<!-- Masterwork Item that increases Critical Rate. Kamael Exclusive Weapon: Vesper Cutter Conversion . <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
@@ -422,10 +422,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3564-3;3833-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="359" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="10" />
@@ -433,7 +433,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16213" type="Weapon" name="Vesper Pincer- Thunder {PvP} - Health">
 		<!-- Masterwork Item that increases Critical Rate. Kamael Exclusive Weapon: Vesper Cutter Conversion . <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
@@ -458,10 +458,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3013-3;3833-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="359" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="10" />
@@ -469,7 +469,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16214" type="Weapon" name="Vesper Pincer- Thunder {PvP} - Focus">
 		<!-- Masterwork Item that increases Critical Rate. Kamael Exclusive Weapon: Vesper Cutter Conversion . <Soul Crystal Enhancement>. Increases Critical by 131. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk., and the amount of recieved heal, and decreased MP consumption during skill use. -->
@@ -494,10 +494,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;8289-1;3833-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="359" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="10" />
@@ -505,7 +505,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16215" type="Weapon" name="Vesper Shooter - Clairvoyance {PvP} - Cheap Shot">
 		<!-- Masterwork Item that increases range. Kamael Exclusive Weapon: Vesper Thrower Conversion. <Soul Crystal Enhancement>. MP consumption decreases by 12% during skill use. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -530,10 +530,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3655-1;3870-1;3360-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="444" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="10" />
@@ -541,7 +541,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16216" type="Weapon" name="Vesper Shooter - Clairvoyance {PvP} - Focus">
 		<!-- Masterwork Item that increases range. Kamael Exclusive Weapon: Vesper Thrower Conversion. <Soul Crystal Enhancement>. Increases Critical by 133. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -566,10 +566,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3655-1;8289-1;3870-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="444" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="10" />
@@ -577,7 +577,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16217" type="Weapon" name="Vesper Shooter - Clairvoyance {PvP} - Critical Slow">
 		<!-- Masterwork Item that increases range. Kamael Exclusive Weapon: Vesper Thrower Conversion. <Soul Crystal Enhancement>. Casts Slow at a 24% rate during a critical attack. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -603,10 +603,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3574-2" />
 		<set name="item_skill" val="3552-3;3655-1;3870-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="444" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="10" />
@@ -614,7 +614,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16218" type="Weapon" name="Vesper Nagan - Gale {PvP} - Haste">
 		<!-- Masterwork Item that increases Atk. Spd. Kamael Exclusive Weapon: Vesper Slasher Conversion. <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -638,10 +638,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3564-3;3846-2" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="429" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="8" />
@@ -649,7 +649,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16219" type="Weapon" name="Vesper Nagan - Gale {PvP} - Health">
 		<!-- Masterwork Item that increases Atk. Spd. Kamael Exclusive Weapon: Vesper Slasher Conversion. <Soul Crystal Enhancement>. Max HP increases by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -673,10 +673,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3013-3;3846-2" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="429" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="8" />
@@ -684,7 +684,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16220" type="Weapon" name="Vesper Nagan - Gale {PvP} - Focus">
 		<!-- Masterwork Item that increases Atk. Spd. Kamael Exclusive Weapon: Vesper Slasher Conversion. <Soul Crystal Enhancement>. Increases Critical by 131. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -708,10 +708,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3566-3;3846-2" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="429" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="8" />
@@ -719,7 +719,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="16221" type="EtcItem" name="Sealed Moirai Helmet of Chaos">
 		<!-- A rare Sealed Moirai Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -729,12 +729,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="12627000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
-		</for>
+		</stats>
 	</item>
 	<item id="16222" type="EtcItem" name="Sealed Moirai Leather Helmet of Chaos">
 		<!-- A rare Sealed Moirai Leather Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -744,9 +744,9 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="12627000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
-		</for>
+		</stats>
 	</item>
 	<item id="16223" type="EtcItem" name="Sealed Moirai Circlet of Chaos">
 		<!-- A rare Sealed Moirai Circlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -756,12 +756,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="12627000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
-		</for>
+		</stats>
 	</item>
 	<item id="16224" type="EtcItem" name="Sealed Moirai Breastplate of Chaos">
 		<!-- A rare Sealed Moirai Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -772,12 +772,12 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="7520" />
 		<set name="price" val="33673000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="225" />
-		</for>
+		</stats>
 	</item>
 	<item id="16225" type="EtcItem" name="Sealed Moirai Leather Breastplate of Chaos">
 		<!-- A rare Sealed Moirai Leather Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -788,9 +788,9 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="4140" />
 		<set name="price" val="25255000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="169" />
-		</for>
+		</stats>
 	</item>
 	<item id="16226" type="EtcItem" name="Sealed Moirai Tunic of Chaos">
 		<!-- A rare Sealed Moirai Tunic that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -801,13 +801,13 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="1750" />
 		<set name="price" val="25255000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="112" />
 			<add stat="maxMp" val="614" />
-		</for>
+		</stats>
 	</item>
 	<item id="16227" type="EtcItem" name="Sealed Moirai Gaiter of Chaos">
 		<!-- A rare Sealed Moirai Gaiters that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -818,12 +818,12 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="3170" />
 		<set name="price" val="21046000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="141" />
-		</for>
+		</stats>
 	</item>
 	<item id="16228" type="EtcItem" name="Sealed Moirai Leather Legging of Chaos">
 		<!-- A rare Sealed Moirai Leather Leggings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -834,9 +834,9 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="1320" />
 		<set name="price" val="15784000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="105" />
-		</for>
+		</stats>
 	</item>
 	<item id="16229" type="EtcItem" name="Sealed Moirai Stockings of Chaos">
 		<!-- A rare Sealed Moirai Stockings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -847,13 +847,13 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="850" />
 		<set name="price" val="15784000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="70" />
 			<add stat="maxMp" val="392" />
-		</for>
+		</stats>
 	</item>
 	<item id="16230" type="EtcItem" name="Sealed Moirai Gauntlet of Chaos">
 		<!-- A rare Sealed Moirai Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -863,12 +863,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="8418000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16231" type="EtcItem" name="Sealed Moirai Leather Gloves of Chaos">
 		<!-- A rare Sealed Moirai Leather Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -878,9 +878,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="8418000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16232" type="EtcItem" name="Sealed Moirai Gloves of Chaos">
 		<!-- A rare Sealed Moirai Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -890,12 +890,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="8418000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16233" type="EtcItem" name="Sealed Moirai Boots of Chaos">
 		<!-- A rare Sealed Moirai Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -905,12 +905,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="8418000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16234" type="EtcItem" name="Sealed Moirai Leather Boots of Chaos">
 		<!-- A rare Sealed Moirai Leather Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -920,9 +920,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="8418000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16235" type="EtcItem" name="Sealed Moirai Shoes of Chaos">
 		<!-- A rare Sealed Moirai Shoes that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -932,12 +932,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="8418000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16236" type="EtcItem" name="Sealed Moirai Shield of Chaos">
 		<!-- A rare Sealed Moirai Shield that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -947,14 +947,14 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="1190" />
 		<set name="price" val="8839000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="337" />
-		</for>
+		</stats>
 	</item>
 	<item id="16237" type="EtcItem" name="Sealed Moirai Sigil of Chaos">
 		<!-- A rare Sealed Moirai Sigil that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -964,12 +964,12 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="920" />
 		<set name="price" val="8839000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
-		</for>
+		</stats>
 	</item>
 	<item id="16238" type="EtcItem" name="Sealed Vesper Helmet of Chaos">
 		<!-- A rare Sealed Vesper Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -979,12 +979,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="17500000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
-		</for>
+		</stats>
 	</item>
 	<item id="16239" type="EtcItem" name="Sealed Vesper Leather Helmet of Chaos">
 		<!-- A rare Sealed Vesper Leather Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -994,9 +994,9 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="17500000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
-		</for>
+		</stats>
 	</item>
 	<item id="16240" type="EtcItem" name="Sealed Vesper Circlet of Chaos">
 		<!-- A rare Sealed Vesper Circlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1006,12 +1006,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="17500000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
-		</for>
+		</stats>
 	</item>
 	<item id="16241" type="EtcItem" name="Sealed Vesper Breastplate of Chaos">
 		<!-- A rare Sealed Vesper Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1022,12 +1022,12 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="7520" />
 		<set name="price" val="46668000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="250" />
-		</for>
+		</stats>
 	</item>
 	<item id="16242" type="EtcItem" name="Sealed Vesper Leather Breastplate of Chaos">
 		<!-- A rare Sealed Vesper Leather Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1038,9 +1038,9 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="4140" />
 		<set name="price" val="35000000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="187" />
-		</for>
+		</stats>
 	</item>
 	<item id="16243" type="EtcItem" name="Sealed Moirai Tunic of Chaos">
 		<!-- A rare Sealed Vesper Tunic that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1051,13 +1051,13 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="1750" />
 		<set name="price" val="35000000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="125" />
 			<add stat="maxMp" val="637" />
-		</for>
+		</stats>
 	</item>
 	<item id="16244" type="EtcItem" name="Sealed Vesper Gaiter of Chaos">
 		<!-- A rare Sealed Vesper Gaiters that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1068,12 +1068,12 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="3170" />
 		<set name="price" val="29168000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="156" />
-		</for>
+		</stats>
 	</item>
 	<item id="16245" type="EtcItem" name="Sealed Vesper Leather Legging of Chaos">
 		<!-- A rare Sealed Vesper Leather Leggings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1084,9 +1084,9 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="1320" />
 		<set name="price" val="21876000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="117" />
-		</for>
+		</stats>
 	</item>
 	<item id="16246" type="EtcItem" name="Sealed Vesper Stockings of Chaos">
 		<!-- A rare Sealed Vesper Stockings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1097,13 +1097,13 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="850" />
 		<set name="price" val="21876000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="78" />
 			<add stat="maxMp" val="415" />
-		</for>
+		</stats>
 	</item>
 	<item id="16247" type="EtcItem" name="Sealed Vesper Gauntlet of Chaos">
 		<!-- A rare Sealed Vesper Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1113,12 +1113,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="11667000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16248" type="EtcItem" name="Sealed Vesper Leather Gloves of Chaos">
 		<!-- A rare Sealed Vesper Leather Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1128,9 +1128,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="11667000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16249" type="EtcItem" name="Sealed Vesper Gloves of Chaos">
 		<!-- A rare Sealed Vesper Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1140,12 +1140,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="11667000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16250" type="EtcItem" name="Sealed Vesper Boots of Chaos">
 		<!-- A rare Sealed Vesper Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1155,12 +1155,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="11667000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16251" type="EtcItem" name="Sealed Vesper Leather Boots of Chaos">
 		<!-- A rare Sealed Vesper Leather Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1170,9 +1170,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="11667000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16252" type="EtcItem" name="Sealed Vesper Shoes of Chaos">
 		<!-- A rare Sealed Vesper Shoes that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1182,12 +1182,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="11667000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16253" type="EtcItem" name="Sealed Vesper Shield of Chaos">
 		<!-- A rare Sealed Vesper Shield that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1197,14 +1197,14 @@
 		<set name="material" val="DAMASCUS" />
 		<set name="weight" val="1130" />
 		<set name="price" val="12250000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="352" />
-		</for>
+		</stats>
 	</item>
 	<item id="16254" type="EtcItem" name="Sealed Vesper Sigil of Chaos">
 		<!-- A rare Sealed Vesper Sigil that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1214,12 +1214,12 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="920" />
 		<set name="price" val="12250000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
-		</for>
+		</stats>
 	</item>
 	<item id="16255" type="EtcItem" name="Moirai Helmet of Chaos">
 		<!-- A rare Sealed Moirai Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1230,12 +1230,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="12627000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
-		</for>
+		</stats>
 	</item>
 	<item id="16256" type="EtcItem" name="Moirai Leather Helmet of Chaos">
 		<!-- A rare Sealed Moirai Leather Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1246,9 +1246,9 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="12627000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
-		</for>
+		</stats>
 	</item>
 	<item id="16257" type="EtcItem" name="Moirai Circlet of Chaos">
 		<!-- A rare Sealed Moirai Circlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1259,12 +1259,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="12627000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
-		</for>
+		</stats>
 	</item>
 	<item id="16258" type="EtcItem" name="Moirai Breastplate of Chaos">
 		<!-- A rare Sealed Moirai Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1276,12 +1276,12 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="7520" />
 		<set name="price" val="33673000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="238" />
-		</for>
+		</stats>
 	</item>
 	<item id="16259" type="EtcItem" name="Moirai Leather Breastplate of Chaos">
 		<!-- A rare Sealed Moirai Leather Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1293,9 +1293,9 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="4140" />
 		<set name="price" val="25255000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="178" />
-		</for>
+		</stats>
 	</item>
 	<item id="16260" type="EtcItem" name="Moirai Tunic of Chaos">
 		<!-- A rare Sealed Moirai Tunic that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1307,13 +1307,13 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="1750" />
 		<set name="price" val="25255000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="119" />
 			<add stat="maxMp" val="614" />
-		</for>
+		</stats>
 	</item>
 	<item id="16261" type="EtcItem" name="Moirai Gaiter of Chaos">
 		<!-- A rare Sealed Moirai Gaiters that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1325,12 +1325,12 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="3170" />
 		<set name="price" val="21046000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="149" />
-		</for>
+		</stats>
 	</item>
 	<item id="16262" type="EtcItem" name="Moirai Leather Legging of Chaos">
 		<!-- A rare Sealed Moirai Leather Leggings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1342,9 +1342,9 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="1320" />
 		<set name="price" val="15784000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="111" />
-		</for>
+		</stats>
 	</item>
 	<item id="16263" type="EtcItem" name="Moirai Stockings of Chaos">
 		<!-- A rare Sealed Moirai Stockings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1356,13 +1356,13 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="850" />
 		<set name="price" val="15784000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<add stat="maxMp" val="392" />
-		</for>
+		</stats>
 	</item>
 	<item id="16264" type="EtcItem" name="Moirai Gauntlet of Chaos">
 		<!-- A rare Sealed Moirai Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1373,12 +1373,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="8418000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16265" type="EtcItem" name="Moirai Leather Gloves of Chaos">
 		<!-- A rare Sealed Moirai Leather Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1389,9 +1389,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="8418000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16266" type="EtcItem" name="Moirai Gloves of Chaos">
 		<!-- A rare Sealed Moirai Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1402,12 +1402,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="8418000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16267" type="EtcItem" name="Moirai Boots of Chaos">
 		<!-- A rare Sealed Moirai Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1418,12 +1418,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="8418000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16268" type="EtcItem" name="Moirai Leather Boots of Chaos">
 		<!-- A rare Sealed Moirai Leather Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1434,9 +1434,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="8418000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16269" type="EtcItem" name="Moirai Shoes of Chaos">
 		<!-- A rare Sealed Moirai Shoes that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1447,12 +1447,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="8418000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
-		</for>
+		</stats>
 	</item>
 	<item id="16270" type="EtcItem" name="Moirai Shield of Chaos">
 		<!-- A rare Sealed Moirai Shield that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1463,14 +1463,14 @@
 		<set name="material" val="CRYSTAL" />
 		<set name="weight" val="1190" />
 		<set name="price" val="8839000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="355" />
-		</for>
+		</stats>
 	</item>
 	<item id="16271" type="EtcItem" name="Moirai Sigil of Chaos">
 		<!-- A rare Sealed Moirai Sigil that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1482,14 +1482,14 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="920" />
 		<set name="price" val="8839000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="355" />
-		</for>
+		</stats>
 	</item>
 	<item id="16272" type="EtcItem" name="Vesper Helmet of Chaos">
 		<!-- A rare Sealed Vesper Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1500,12 +1500,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="17500000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
-		</for>
+		</stats>
 	</item>
 	<item id="16273" type="EtcItem" name="Vesper Leather Helmet of Chaos">
 		<!-- A rare Sealed Vesper Leather Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1516,9 +1516,9 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="17500000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
-		</for>
+		</stats>
 	</item>
 	<item id="16274" type="EtcItem" name="Vesper Circlet of Chaos">
 		<!-- A rare Sealed Vesper Circlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1529,12 +1529,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="17500000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
-		</for>
+		</stats>
 	</item>
 	<item id="16275" type="EtcItem" name="Vesper Breastplate of Chaos">
 		<!-- A rare Sealed Vesper Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1546,12 +1546,12 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="7520" />
 		<set name="price" val="46668000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="250" />
-		</for>
+		</stats>
 	</item>
 	<item id="16276" type="EtcItem" name="Vesper Leather Breastplate of Chaos">
 		<!-- A rare Sealed Vesper Leather Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1563,9 +1563,9 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="4140" />
 		<set name="price" val="35000000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="187" />
-		</for>
+		</stats>
 	</item>
 	<item id="16277" type="EtcItem" name="Vesper Tunic of Chaos">
 		<!-- A rare Sealed Vesper Tunic that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1577,13 +1577,13 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="1750" />
 		<set name="price" val="35000000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="125" />
 			<add stat="maxMp" val="637" />
-		</for>
+		</stats>
 	</item>
 	<item id="16278" type="EtcItem" name="Vesper Gaiter of Chaos">
 		<!-- A rare Sealed Vesper Gaiters that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1595,12 +1595,12 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="3170" />
 		<set name="price" val="29168000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="156" />
-		</for>
+		</stats>
 	</item>
 	<item id="16279" type="EtcItem" name="Vesper Leather Legging of Chaos">
 		<!-- A rare Sealed Vesper Leather Leggings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1612,9 +1612,9 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="1320" />
 		<set name="price" val="21876000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="117" />
-		</for>
+		</stats>
 	</item>
 	<item id="16280" type="EtcItem" name="Vesper Stockings of Chaos">
 		<!-- A rare Sealed Vesper Stockings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1626,13 +1626,13 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="850" />
 		<set name="price" val="21876000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="78" />
 			<add stat="maxMp" val="415" />
-		</for>
+		</stats>
 	</item>
 	<item id="16281" type="EtcItem" name="Vesper Gauntlet of Chaos">
 		<!-- A rare Sealed Vesper Gauntlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1643,12 +1643,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="11667000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16282" type="EtcItem" name="Vesper Leather Gloves of Chaos">
 		<!-- A rare Sealed Vesper Leather Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1659,9 +1659,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="11667000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16283" type="EtcItem" name="Vesper Gloves of Chaos">
 		<!-- A rare Sealed Vesper Gloves that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1672,12 +1672,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="510" />
 		<set name="price" val="11667000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16284" type="EtcItem" name="Vesper Boots of Chaos">
 		<!-- A rare Sealed Vesper Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1688,12 +1688,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="11667000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16285" type="EtcItem" name="Vesper Leather Boots of Chaos">
 		<!-- A rare Sealed Vesper Leather Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1704,9 +1704,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="11667000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16286" type="EtcItem" name="Vesper Shoes of Chaos">
 		<!-- A rare Sealed Vesper Shoes that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1717,12 +1717,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1070" />
 		<set name="price" val="11667000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="16287" type="EtcItem" name="Vesper Shield of Chaos">
 		<!-- A rare Sealed Vesper Shield that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1733,14 +1733,14 @@
 		<set name="material" val="DAMASCUS" />
 		<set name="weight" val="1130" />
 		<set name="price" val="12250000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="371" />
-		</for>
+		</stats>
 	</item>
 	<item id="16288" type="EtcItem" name="Vesper Sigil of Chaos">
 		<!-- A rare Sealed Vesper Sigil that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1752,13 +1752,13 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="920" />
 		<set name="price" val="12250000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="17" />
-		</for>
+		</stats>
 	</item>
 	<item id="16289" type="Armor" name="Moirai Helmet">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., Resistance to Shock, and Resistance to Fire. -->
@@ -1774,13 +1774,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8418-1" /> <!-- Moirai Helmet -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16290" type="Armor" name="Moirai Leather Helmet">
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Bonus, Resistance to Hold, and Resistance to Fire. -->
@@ -1796,10 +1796,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8424-1" /> <!-- Moirai Leather Helmet -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16291" type="Armor" name="Moirai Circlet">
 		<!-- Masterwork Item that increases M. Atk., Resistance to Paralysis, and Resistance to Fire. -->
@@ -1815,13 +1815,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8429-1" /> <!-- Moirai Circlet -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16292" type="Armor" name="Moirai Breastplate">
 		<!-- Masterwork Item that increases Atk. Spd., Resistance to Shock, and Resistance to Fire/Water/Wind/Earth. -->
@@ -1838,13 +1838,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8419-1" /> <!-- Moirai Cuirass -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="238" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16293" type="Armor" name="Moirai Leather Breastplate">
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Bonus, Resistance to Hold, and Resistance to Water. -->
@@ -1861,10 +1861,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8425-1" /> <!-- Moirai Leather Hauberk -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="178" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16294" type="Armor" name="Moirai Tunic">
 		<!-- Masterwork Item that increases M. Atk., Casting Spd., Resistance to Paralysis, and Resistance to Fire/Water/Wind/Earth. -->
@@ -1881,14 +1881,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8430-1" /> <!-- Moirai Jacket -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="119" />
 			<add stat="maxMp" val="614" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16295" type="Armor" name="Moirai Gaiter">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., Resistance to Shock, and Resistance to water. -->
@@ -1905,13 +1905,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8420-1" /> <!-- Moirai Gaiter -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="149" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16296" type="Armor" name="Moirai Leather Legging">
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Bonus, Resistance to Hold, and Resistance to water. -->
@@ -1928,10 +1928,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8426-1" /> <!-- Moirai Leather Legging -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="111" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16297" type="Armor" name="Moirai Stockings">
 		<!-- Masterwork Item that increases M. Atk., Resistance to Paralysis, and Resistance to water. -->
@@ -1948,14 +1948,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8431-1" /> <!-- Moirai Hose -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<add stat="maxMp" val="392" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16298" type="Armor" name="Moirai Gauntlet">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., Resistance to Shock, and Resistance to wind. -->
@@ -1971,13 +1971,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8421-1" /> <!-- Moirai Gauntlet -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16299" type="Armor" name="Moirai Leather Gloves">
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Bonus, Resistance to Hold, and Resistance to wind. -->
@@ -1993,9 +1993,9 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8427-1" /> <!-- Moirai Leather Gloves -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 </list>

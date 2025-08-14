@@ -64,6 +64,7 @@ public class MinionHolder
 		{
 			return Rnd.get(_count, _max);
 		}
+		
 		return _count;
 	}
 	

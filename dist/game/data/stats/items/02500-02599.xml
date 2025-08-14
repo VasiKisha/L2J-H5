@@ -19,14 +19,14 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="232" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2501" type="Weapon" name="Bone Club">
 		<set name="icon" val="icon.weapon_club_i00" />
@@ -42,13 +42,13 @@
 		<set name="price" val="105000" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="2502" type="Weapon" name="Dwarven War Hammer">
 		<!-- Bestows one of the following functions: Anger, Health or Haste. -->
@@ -68,7 +68,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="4" />
@@ -76,7 +76,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2503" type="Weapon" name="Yaksa Mace">
 		<!-- Bestows one of the following functions: Anger, Health, or Rsk. Focus. -->
@@ -96,7 +96,7 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="156" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="4" />
@@ -104,7 +104,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2504" type="Weapon" name="Meteor Shower">
 		<!-- Bestows one of the following functions: Focus, Critical Bleed, or Rsk. Haste. -->
@@ -124,7 +124,7 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="4" />
@@ -132,7 +132,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2505" type="Weapon" name="Iron Canine">
 		<!-- Double-click to wear. Only for wolves, great wolves, and fenrir. -->
@@ -148,15 +148,15 @@
 		<set name="weight" val="100" />
 		<set name="price" val="7000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add stat="pAtk" val="4" />
 			<add stat="mAtk" val="5" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="277" />
-		</for>
+		</stats>
 	</item>
 	<item id="2506" type="Armor" name="Wolf's Leather Armor">
 		<!-- Double-click to wear. Only for wolves, great wolves, and fenrir. -->
@@ -169,13 +169,13 @@
 		<set name="weight" val="160" />
 		<set name="price" val="3060" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ALL_WOLF_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="mDef" val="14" />
 			<add order="0" stat="pDef" val="9" />
-		</for>
+		</stats>
 	</item>
 	<item id="2507" type="Weapon" name="Lizardspear">
 		<set name="icon" val="icon.weapon_doomed_dagger_i00" />
@@ -194,7 +194,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="5" />
 			<set stat="mAtk" val="5" />
 			<set stat="critRate" val="12" />
@@ -202,7 +202,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2508" type="EtcItem" name="Cursed Bone">
 		<set name="icon" val="icon.etc_piece_bone_red_i00" />
@@ -308,9 +308,9 @@
 		<set name="handler" val="PetFood" />
 		<set name="item_skill" val="2048-1" /> <!-- Wolves' Food -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ALL_WOLF_GROUP,SIN_EATER_GROUP,DEINONYCHUS_PET_GROUP" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="2516" type="Weapon" name="Saber*Saber">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -329,14 +329,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="73" />
 			<set stat="mAtk" val="37" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2517" type="Weapon" name="Saber*Bastard Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -355,14 +355,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="83" />
 			<set stat="mAtk" val="41" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2518" type="Weapon" name="Saber*Spinebone Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -381,14 +381,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="83" />
 			<set stat="mAtk" val="41" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2519" type="Weapon" name="Saber*Artisan's Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -407,14 +407,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="83" />
 			<set stat="mAtk" val="41" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2520" type="Weapon" name="Saber*Knight's Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -433,14 +433,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="83" />
 			<set stat="mAtk" val="41" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2521" type="Weapon" name="Saber*Crimson Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -459,14 +459,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2522" type="Weapon" name="Saber*Elven Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -485,14 +485,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2523" type="Weapon" name="Saber*Sword of Revolution">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -511,14 +511,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="118" />
 			<set stat="mAtk" val="56" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2524" type="Weapon" name="Saber*Elven Long Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -537,14 +537,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="130" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2525" type="Weapon" name="Bastard Sword*Bastard Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -563,14 +563,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2526" type="Weapon" name="Bastard Sword*Spinebone Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -589,14 +589,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2527" type="Weapon" name="Bastard Sword*Artisan's Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -615,14 +615,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2528" type="Weapon" name="Bastard Sword*Knight's Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -641,14 +641,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2529" type="Weapon" name="Bastard Sword*Crimson Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -667,14 +667,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2530" type="Weapon" name="Bastard Sword*Elven Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -693,14 +693,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2531" type="Weapon" name="Bastard Sword*Sword of Revolution">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -719,14 +719,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="124" />
 			<set stat="mAtk" val="58" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2532" type="Weapon" name="Bastard Sword*Elven Long Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -745,14 +745,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2533" type="Weapon" name="Spinebone Sword*Spinebone Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -771,14 +771,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2534" type="Weapon" name="Spinebone Sword*Artisan's Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -797,14 +797,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2535" type="Weapon" name="Spinebone Sword*Knight's Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -823,14 +823,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2536" type="Weapon" name="Spinebone Sword*Crimson Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -849,14 +849,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2537" type="Weapon" name="Spinebone Sword*Elven Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -875,14 +875,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2538" type="Weapon" name="Spinebone Sword*Sword of Revolution">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -901,14 +901,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="124" />
 			<set stat="mAtk" val="58" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2539" type="Weapon" name="Spinebone Sword*Elven Long Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -927,14 +927,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2540" type="Weapon" name="Artisan's Sword*Artisan's Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -953,14 +953,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2541" type="Weapon" name="Artisan's Sword*Knight's Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -979,14 +979,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2542" type="Weapon" name="Artisan's Sword*Crimson Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1005,14 +1005,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2543" type="Weapon" name="Artisan's Sword*Elven Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1031,14 +1031,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2544" type="Weapon" name="Artisan's Sword*Sword of Revolution">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1057,14 +1057,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="124" />
 			<set stat="mAtk" val="58" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2545" type="Weapon" name="Artisan's Sword*Elven Long Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1083,14 +1083,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2546" type="Weapon" name="Knight's Sword*Knight's Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1109,14 +1109,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2547" type="Weapon" name="Knight's Sword*Crimson Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1135,14 +1135,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2548" type="Weapon" name="Knight's Sword*Elven Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1161,14 +1161,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2549" type="Weapon" name="Knight's Sword*Sword of Revolution">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1187,14 +1187,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="124" />
 			<set stat="mAtk" val="58" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2550" type="Weapon" name="Knight's Sword*Elven Long Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1213,14 +1213,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2551" type="Weapon" name="Crimson Sword*Crimson Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1239,14 +1239,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="118" />
 			<set stat="mAtk" val="56" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2552" type="Weapon" name="Crimson Sword*Elven Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1265,14 +1265,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="118" />
 			<set stat="mAtk" val="56" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2553" type="Weapon" name="Crimson Sword*Sword of Revolution">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1291,14 +1291,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2554" type="Weapon" name="Crimson Sword*Elven Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Accuracy will increase by 2. -->
@@ -1319,14 +1319,14 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="148" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2555" type="Weapon" name="Elven Sword*Elven Sword">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1345,14 +1345,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="118" />
 			<set stat="mAtk" val="56" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2556" type="Weapon" name="Elven Sword*Sword of Revolution">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1371,14 +1371,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2557" type="Weapon" name="Elven Sword*Elven Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its P. Atk. will increase by 61 on a critical attack. -->
@@ -1399,14 +1399,14 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3042-2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="148" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2558" type="Weapon" name="Sword of Revolution*Sword of Revolution">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Max HP will increase by 25%. -->
@@ -1427,14 +1427,14 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3013-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="148" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2559" type="Weapon" name="Sword of Revolution*Elven Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Critical Attack will increase by 50. -->
@@ -1455,14 +1455,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3044-3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="70" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2560" type="Weapon" name="Elven Long Sword*Elven Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Atk. Spd. will increase by 4%. -->
@@ -1483,14 +1483,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3045-4" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="162" />
 			<set stat="mAtk" val="73" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2561" type="Weapon" name="Stormbringer*Stormbringer">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Accuracy will increase by 2. -->
@@ -1511,14 +1511,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-6" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="175" />
 			<set stat="mAtk" val="78" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2562" type="Weapon" name="Stormbringer*Shamshir">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its P. Atk. will increase by 49 on a critical attack. -->
@@ -1539,14 +1539,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3042-7" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="183" />
 			<set stat="mAtk" val="81" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2563" type="Weapon" name="Stormbringer*Katana">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Max HP will increase by 25%. -->
@@ -1567,14 +1567,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3013-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="183" />
 			<set stat="mAtk" val="81" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2564" type="Weapon" name="Stormbringer*Spirit Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its critical attack will increase by 24. -->
@@ -1595,14 +1595,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3044-7" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="183" />
 			<set stat="mAtk" val="81" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2565" type="Weapon" name="Stormbringer*Raid Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Atk. Spd. will increase by 2%. -->
@@ -1623,14 +1623,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3045-7" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="183" />
 			<set stat="mAtk" val="81" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2566" type="Weapon" name="Stormbringer*Caliburs">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Accuracy will increase by 5. -->
@@ -1651,14 +1651,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-9" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="197" />
 			<set stat="mAtk" val="86" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2567" type="Weapon" name="Stormbringer*Sword of Limit">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its P. Atk. will increase by 166 on a critical attack. -->
@@ -1679,14 +1679,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3042-9" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="197" />
 			<set stat="mAtk" val="86" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2568" type="Weapon" name="Stormbringer*Sword of Delusion">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Max HP will increase by 25%. -->
@@ -1707,14 +1707,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3013-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="197" />
 			<set stat="mAtk" val="86" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2569" type="Weapon" name="Stormbringer*Sword of Nightmare">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its critical will increase by 76. -->
@@ -1735,14 +1735,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3044-9" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="197" />
 			<set stat="mAtk" val="86" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2570" type="Weapon" name="Stormbringer*Tsurugi">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Atk. Spd. will increase by 7%. -->
@@ -1763,14 +1763,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3045-9" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="197" />
 			<set stat="mAtk" val="86" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2571" type="Weapon" name="Stormbringer*Samurai Long sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Accuracy will increase by 4. -->
@@ -1791,14 +1791,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-11" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2572" type="Weapon" name="Shamshir*Shamshir">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Accuracy will increase by 2. -->
@@ -1819,14 +1819,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-8" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2573" type="Weapon" name="Shamshir*Katana">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its P. Atk. will increase by 84 on a critical attack. -->
@@ -1847,14 +1847,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3042-8" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2574" type="Weapon" name="Shamshir*Spirit Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Max HP will increase by 25%. -->
@@ -1875,14 +1875,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3013-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2575" type="Weapon" name="Shamshir*Raid Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its critical will increase by 40. -->
@@ -1903,14 +1903,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3044-8" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2576" type="Weapon" name="Shamshir*Caliburs">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Accuracy will increase by 4. -->
@@ -1931,14 +1931,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2577" type="Weapon" name="Shamshir*Sword of Limit">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, P. Atk. will increase by 146 on a critical attack. -->
@@ -1959,14 +1959,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3042-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2578" type="Weapon" name="Shamshir*Sword of Delusion">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Max HP will increase by 25%. -->
@@ -1987,14 +1987,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3013-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2579" type="Weapon" name="Shamshir*Sword of Nightmare">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its critical will increase by 65. -->
@@ -2015,14 +2015,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3044-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2580" type="Weapon" name="Shamshir*Tsurugi">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Atk. Spd. will increase by 6%. -->
@@ -2043,14 +2043,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3045-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2581" type="Weapon" name="Shamshir*Samurai Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Accuracy will increase by 3. -->
@@ -2071,14 +2071,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-12" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="220" />
 			<set stat="mAtk" val="94" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2582" type="Weapon" name="Katana*Katana">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Atk. Spd. will increase by 4%. -->
@@ -2099,14 +2099,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3045-8" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2583" type="Weapon" name="Katana*Spirit Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, its Accuracy will increase by 2. -->
@@ -2127,14 +2127,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-8" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2584" type="Weapon" name="Katana*Raid Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, P. Atk. will increase by 84 on a critical attack. -->
@@ -2155,14 +2155,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3042-8" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2585" type="Weapon" name="Katana*Caliburs">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Accuracy will increase by 4. -->
@@ -2183,14 +2183,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2586" type="Weapon" name="Katana*Sword of Limit">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, P. Atk. will increase by 146 on a critical attack. -->
@@ -2211,14 +2211,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3042-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2587" type="Weapon" name="Katana*Sword of Delusion">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Max HP will increase by 25%. -->
@@ -2239,14 +2239,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3013-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2588" type="Weapon" name="Katana*Sword of Nightmare">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, critical will increase by 65. -->
@@ -2267,14 +2267,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3044-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2589" type="Weapon" name="Katana*Tsurugi">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Atk. Spd. will increase by 6%. -->
@@ -2295,14 +2295,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3045-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2590" type="Weapon" name="Katana*Samurai Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, P. Atk. will increase by 106 on a critical attack. -->
@@ -2323,14 +2323,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3042-12" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="220" />
 			<set stat="mAtk" val="94" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2591" type="Weapon" name="Spirit Sword*Spirit Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Max HP will increase by 25%. -->
@@ -2351,14 +2351,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3013-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2592" type="Weapon" name="Spirit Sword*Raid Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, critical will increase by 40. -->
@@ -2379,14 +2379,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3044-8" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2593" type="Weapon" name="Spirit Sword*Caliburs">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Accuracy will increase by 4. -->
@@ -2407,14 +2407,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3046-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2594" type="Weapon" name="Spirit Sword*Sword of Limit">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, P. Atk. will increase by 146 on a critical attack. -->
@@ -2435,14 +2435,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3042-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2595" type="Weapon" name="Spirit Sword*Sword of Delusion">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Max HP will increase by 25%. -->
@@ -2463,14 +2463,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3013-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2596" type="Weapon" name="Spirit Sword*Sword of Nightmare">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, critical will increase by 65. -->
@@ -2491,14 +2491,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3044-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2597" type="Weapon" name="Spirit Sword*Tsurugi">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Atk. Spd. will increase by 6%. -->
@@ -2519,14 +2519,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3045-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="204" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2598" type="Weapon" name="Spirit Sword*Samurai Long Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Max HP will increase by 25%. -->
@@ -2547,14 +2547,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3013-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="220" />
 			<set stat="mAtk" val="94" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="2599" type="Weapon" name="Raid Sword*Raid Sword">
 		<!-- When enchanted, P. Atk. of a dualsword will increase more significantly than that of one-handed or fist weapon. When enchanted to 4 or more, Atk. Spd. will increase by 4%. -->
@@ -2575,13 +2575,13 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3045-8" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="190" />
 			<set stat="mAtk" val="83" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 </list>

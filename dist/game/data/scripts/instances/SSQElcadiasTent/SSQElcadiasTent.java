@@ -38,9 +38,11 @@ public class SSQElcadiasTent extends AbstractInstance
 	// NPCs
 	private static final int ELCADIA = 32784;
 	private static final int GRUFF_LOOKING_MAN = 32862;
+	
 	// Locations
 	private static final Location START_LOC = new Location(89797, -238081, -9632);
 	private static final Location EXIT_LOC = new Location(43347, -87923, -2820);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 158;
 	
@@ -80,6 +82,7 @@ public class SSQElcadiasTent extends AbstractInstance
 			talker.setInstanceId(0);
 			talker.teleToLocation(EXIT_LOC);
 		}
+		
 		return super.onTalk(npc, talker);
 	}
 	
@@ -90,6 +93,7 @@ public class SSQElcadiasTent extends AbstractInstance
 		{
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, START_LOC, world.getInstanceId(), false);
 	}
 	

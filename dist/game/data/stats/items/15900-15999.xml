@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="15900" type="Weapon" name="Archangel Sword - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. -->
@@ -21,14 +21,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3047-3" /> <!-- Special Ability: Acumen -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="350" />
 			<set stat="mAtk" val="256" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15901" type="Weapon" name="Recurve Thorne Bow - Critical Slow">
 		<!-- <Soul Crystal Enhancement>. Slow effect with 44% chance during a critical attack. Increases damage inflicted during PvP. -->
@@ -55,7 +55,7 @@
 		<set name="oncrit_chance" val="33" />
 		<set name="oncrit_skill" val="3574-3" />
 		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="794" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="12" />
@@ -63,7 +63,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15902" type="Weapon" name="Recurve Thorne Bow - Cheap Shot">
 		<!-- <Soul Crystal Enhancement> . Launching a general attack, there is a 8% chance that MP consumption will be decreased to 1. Increases damage inflicted during PvP. -->
@@ -88,7 +88,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
 		<set name="item_skill" val="3552-1;8312-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="794" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="12" />
@@ -96,7 +96,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15903" type="Weapon" name="Recurve Thorne Bow - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 139. Increases damage inflicted during PvP. -->
@@ -121,7 +121,7 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
 		<set name="item_skill" val="3567-5" /> <!-- Special Ability: Focus -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="794" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="12" />
@@ -129,7 +129,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15904" type="Weapon" name="Heavenstare Rapier - Focus">
 		<!-- Kamael exclusive weapon Incessantcore Sword Conversion. <Soul Crystal Enhancement>. Increases Critical by 134. Increases damage inflicted during PvP. When enchanted over 4, party members including yourself can increase attack power, magic power, and healing capacity at a fixed rate and decrease MP consumption per skill during a critical attack. -->
@@ -153,10 +153,10 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3426-1" />
 		<set name="item_skill" val="8289-3" /> <!-- Special Ability: Focus -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="396" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="10" />
@@ -164,7 +164,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15905" type="Weapon" name="Heavenstare Rapier - Haste">
 		<!-- Kamael exclusive weapon Incessantcore Sword Conversion. <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. When enchanted over 4, party members including yourself can increase attack power, magic power, and healing capacity at a fixed rate and decrease MP consumption per skill during a critical attack. -->
@@ -188,10 +188,10 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3426-1" />
 		<set name="item_skill" val="3564-3" /> <!-- Special Ability: Haste -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="396" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="10" />
@@ -199,7 +199,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15906" type="Weapon" name="Heavenstare Rapier - Health">
 		<!-- Kamael exclusive weapon Incessantcore Sword Conversion. <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. When enchanted over 4, party members including yourself can increase attack power, magic power, and healing capacity at a fixed rate and decrease MP consumption per skill during a critical attack. -->
@@ -223,10 +223,10 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3426-1" />
 		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="396" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="10" />
@@ -234,7 +234,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15907" type="Weapon" name="Pyseal Blade - Focus">
 		<!-- Kamael exclusive weapon Lavamond Saw Conversion. <Soul Crystal Enhancement>. Increases Critical by 134. Increases damage inflicted during PvP. -->
@@ -257,10 +257,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3566-5" /> <!-- Special Ability: Focus -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="473" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
@@ -268,7 +268,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15908" type="Weapon" name="Pyseal Blade - Haste">
 		<!-- Kamael exclusive weapon Lavamond Saw Conversion. <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. -->
@@ -291,10 +291,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3564-3" /> <!-- Special Ability: Haste -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="473" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
@@ -302,7 +302,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15909" type="Weapon" name="Pyseal Blade - Health">
 		<!-- Kamael exclusive weapon Lavamond Saw Conversion. <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. -->
@@ -325,10 +325,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3013-3" /> <!-- Special Ability: Health -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="473" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
@@ -336,7 +336,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15910" type="Weapon" name="Thorne Crossbow - Critical Slow">
 		<!-- Kamael exclusive weapon Recurvethorne Bow Conversion. <Soul Crystal Enhancement>. Inflicts Slow at a 24% rate during a critical attack. Increases damage inflicted during PvP. -->
@@ -362,10 +362,10 @@
 		<set name="oncrit_chance" val="33" />
 		<set name="oncrit_skill" val="3574-3" />
 		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="487" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="10" />
@@ -373,7 +373,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15911" type="Weapon" name="Thorne Crossbow - Cheap Shot">
 		<!-- Kamael exclusive weapon Recurvethorne Bow Conversion. <Soul Crystal Enhancement>. MP consumption decreases to 1 with a 12% chance during a regular attack. Increases damage inflicted during PvP. -->
@@ -397,10 +397,10 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="400" />
 		<set name="item_skill" val="3552-1;3360-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="487" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="10" />
@@ -408,7 +408,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15912" type="Weapon" name="Thorne Crossbow - Focus">
 		<!-- Kamael exclusive weapon Recurvethorne Bow Conversion. <Soul Crystal Enhancement>. Increases Critical by 139. Increases damage inflicted during PvP. -->
@@ -432,10 +432,10 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="400" />
 		<set name="item_skill" val="8289-3" /> <!-- Special Ability: Focus -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="487" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="10" />
@@ -443,7 +443,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15913" type="Weapon" name="Eternal Core Sword {PvP}">
 		<!-- It can bestow one of the following functions: Health, Focus, or Haste. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -467,14 +467,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3653-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15914" type="Weapon" name="Mamba Edge {PvP}">
 		<!-- It can bestow one of the following functions: HP Drain, Haste, or Critical Damage. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -498,7 +498,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="382" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="12" />
@@ -506,7 +506,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15915" type="Weapon" name="Eversor Mace {PvP}">
 		<!-- It can bestow one of the following functions: Health, HP Regeneration, or HP Drain. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -530,7 +530,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3650-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -538,7 +538,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15916" type="Weapon" name="Contristo Hammer {PvP}">
 		<!-- It can bestow one of the following functions: Health, HP Drain, or HP Regeneration. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -562,7 +562,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -570,7 +570,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15917" type="Weapon" name="Lava Saw {PvP}">
 		<!-- It can bestow one of the following functions: Health, Focus, or Haste. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -594,14 +594,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15918" type="Weapon" name="Jade Claw {PvP}">
 		<!-- It can bestow one of the following functions: Health, Critical Stun, or Focus. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -625,7 +625,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-4;3653-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -633,7 +633,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15919" type="Weapon" name="Demitelum {PvP}">
 		<!-- It can bestow one of the following functions: Guidance, Haste, or Health. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -657,7 +657,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3650-1;3599-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
@@ -665,7 +665,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15920" type="Weapon" name="Sacredium {PvP}">
 		<!-- It can bestow one of the following functions: MP Regeneration, Mana Up, or Acumen. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -690,7 +690,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="350" />
 			<set stat="mAtk" val="256" />
 			<set stat="critRate" val="4" />
@@ -698,7 +698,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15921" type="Weapon" name="Cyclic Cane {PvP}">
 		<!-- It can bestow one of the following functions: MP Regeneration, Magic Hold, or Empower. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -723,7 +723,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-3;3655-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="426" />
 			<set stat="mAtk" val="281" />
 			<set stat="critRate" val="4" />
@@ -731,7 +731,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15922" type="Weapon" name="Archangel Sword {PvP}">
 		<!-- It can bestow one of the following functions: Acumen, Magic Hold, or Mana Up. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -756,14 +756,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="350" />
 			<set stat="mAtk" val="256" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15923" type="Weapon" name="Recurve Thorne Bow {PvP}">
 		<!-- It can bestow one of the following functions: Focus, Critical Slow, or Cheap Shot. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -789,7 +789,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3656-1;3657-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="794" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="12" />
@@ -797,7 +797,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15924" type="Weapon" name="Heavenstare Rapier {PvP}">
 		<!-- Kamael Exclusive Weapon: Eternal Core Sword Conversion. It can bestow one of the following functions: Health, Focus, or Haste. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -823,10 +823,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3579-1" />
 		<set name="item_skill" val="3552-3;3655-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="396" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="10" />
@@ -834,7 +834,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15925" type="Weapon" name="Pyseal Blade {PvP}">
 		<!-- Kamael Exclusive Weapon: Lava Saw Conversion. It can bestow one of the following functions: Health, Focus, or Haste. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -858,10 +858,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="473" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
@@ -869,7 +869,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15926" type="Weapon" name="Thorne Crossbow {PvP}">
 		<!-- Kamael Exclusive Weapon: Recurvethorne Bow Conversion. It can bestow one of the following functions: Focus, Critical Slow, or Cheap Shot. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -894,10 +894,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3653-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="487" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="10" />
@@ -905,7 +905,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15927" type="Weapon" name="Periel Sword {PvP}">
 		<!-- It can bestow one of the following functions: Focus, Haste, or Health. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -929,14 +929,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3653-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15928" type="Weapon" name="Skull Edge {PvP}">
 		<!-- It can bestow one of the following functions: Haste, Critical Damage, or HP Drain. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -960,7 +960,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="12" />
@@ -968,7 +968,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15929" type="Weapon" name="Vigwik Axe {PvP}">
 		<!-- It can bestow one of the following functions: HP Regeneration, HP Drain, or Health. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -992,7 +992,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3650-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1000,7 +1000,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15930" type="Weapon" name="Devilish Maul {PvP}">
 		<!-- It can bestow one of the following functions: HP Drain, HP Regeneration, or Health. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1024,7 +1024,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1032,7 +1032,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15931" type="Weapon" name="Feather Eye Blade {PvP}">
 		<!-- It can bestow one of the following functions: Focus, Haste, or Health. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1056,14 +1056,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15932" type="Weapon" name="Octo Claw {PvP}">
 		<!-- It can bestow one of the following functions: Critical Stun, Focus, or Health. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1087,7 +1087,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-4;3653-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1095,7 +1095,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15933" type="Weapon" name="Doubletop Spear {PvP}">
 		<!-- It can bestow one of the following functions: Haste, Health, or Guidance. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1119,7 +1119,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3650-1;3599-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
@@ -1127,7 +1127,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15934" type="Weapon" name="Rising Star {PvP}">
 		<!-- It can bestow one of the following functions: Mana Up, Acumen, or MP Regeneration. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1152,7 +1152,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="332" />
 			<set stat="mAtk" val="244" />
 			<set stat="critRate" val="4" />
@@ -1160,7 +1160,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15935" type="Weapon" name="Black Visage {PvP}">
 		<!-- It can bestow one of the following functions: Magic Hold, Empower, or MP Regeneration. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1185,7 +1185,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-3;3655-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="404" />
 			<set stat="mAtk" val="268" />
 			<set stat="critRate" val="4" />
@@ -1193,7 +1193,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15936" type="Weapon" name="Veniplant Sword {PvP}">
 		<!-- It can bestow one of the following functions: Magic Hold, Mana Up, or Acumen. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1218,14 +1218,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="332" />
 			<set stat="mAtk" val="244" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15937" type="Weapon" name="Skull Carnium Bow {PvP}">
 		<!-- It can bestow one of the following functions: Critical Slow, Cheap Shot, or Focus. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1251,7 +1251,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3656-1;3657-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="768" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="12" />
@@ -1259,7 +1259,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15938" type="Weapon" name="Gemtail Rapier {PvP}">
 		<!-- Kamael Exclusive Weapon: Periel Sword Conversion. It can bestow one of the following functions: Focus, Haste, or Health. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1285,10 +1285,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3579-1" />
 		<set name="item_skill" val="3552-3;3655-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="376" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="10" />
@@ -1296,7 +1296,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15939" type="Weapon" name="Finale Blade {PvP}">
 		<!-- Kamael Exclusive Weapon: Feather Eye Blade Conversion. It can bestow one of the following functions: Focus, Haste, or Health. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1320,10 +1320,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="449" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
@@ -1331,7 +1331,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15940" type="Weapon" name="Dominion Crossbow {PvP}">
 		<!-- Kamael Exclusive Weapon: Skull Carnium Bow Conversion. It can bestow one of the following functions: Critical Slow, Cheap Shot, or Focus. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1356,10 +1356,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3653-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="471" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="10" />
@@ -1367,7 +1367,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15941" type="Weapon" name="Periel Sword {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1391,14 +1391,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15942" type="Weapon" name="Periel Sword {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 134. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1422,14 +1422,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3566-4" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15943" type="Weapon" name="Periel Sword {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1453,14 +1453,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3564-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15944" type="Weapon" name="Skull Edge {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Restores 4% of melee damage inflicted upon the enemy to your own HP. Increases damage inflicted during PvP. During an attack, it has a chance of canceling a target's enhanced status by more than 1, or to decrease a target's Shield Defense. -->
@@ -1484,7 +1484,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3651-1;3652-1;3568-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="12" />
@@ -1492,7 +1492,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15945" type="Weapon" name="Skull Edge {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. During an attack, it has a chance of canceling a target's enhanced status by more than 1, or decreases a target's Shield Defense. -->
@@ -1516,7 +1516,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3651-1;3652-1;3564-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="12" />
@@ -1524,7 +1524,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15946" type="Weapon" name="Skull Edge {PvP} - Critical Damage">
 		<!-- <Soul Crystal Enhancement>. Increases P. Atk. by 1000 during a critical attack. Increases damage inflicted during PvP. During an attack, it has a chance of canceling a target's enhanced status by more than 1, or to decrease a target's Shield Defense. -->
@@ -1548,7 +1548,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3651-1;3652-1;3572-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="12" />
@@ -1556,7 +1556,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15947" type="Weapon" name="Vigwik Axe {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1580,7 +1580,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1588,7 +1588,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15948" type="Weapon" name="Vigwik Axe {PvP} - HP Regeneration">
 		<!-- <Soul Crystal Enhancement>. Increases HP Recovery Rate. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1612,7 +1612,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3569-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1620,7 +1620,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15949" type="Weapon" name="Vigwik Axe {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Restores 4% of melee damage inflicted upon the enemy to your own HP. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -1644,7 +1644,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3568-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1652,7 +1652,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15950" type="Weapon" name="Devilish Maul {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1676,7 +1676,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1684,7 +1684,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15951" type="Weapon" name="Devilish Maul {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Restores 4% of melee damage inflicted upon the enemy to your own HP. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1708,7 +1708,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3568-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1716,7 +1716,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15952" type="Weapon" name="Devilish Maul {PvP} - HP Regeneration">
 		<!-- <Soul Crystal Enhancement>. Increases HP Recovery Rate. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1740,7 +1740,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3569-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1748,7 +1748,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15953" type="Weapon" name="Feather Eye Blade {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1772,14 +1772,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15954" type="Weapon" name="Feather Eye Blade {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 134. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1803,14 +1803,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3566-4" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15955" type="Weapon" name="Feather Eye Blade {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. There is a chance to inflict additional damage when attacking. -->
@@ -1834,14 +1834,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3564-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15956" type="Weapon" name="Octo Claw {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Has a chance of cancelling a target's enhanced status by more than 1 or decreasing Shield Def. during an attack. -->
@@ -1865,7 +1865,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3651-1;3652-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1873,7 +1873,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15957" type="Weapon" name="Octo Claw {PvP} - Critical Stun">
 		<!-- <Soul Crystal Enhancement>. Has a 43% chance of inflicting Stun during a critical attack. Increases damage inflicted during PvP. Has a chance of cancelling a target's enhanced status by more than 1 or decreasing Shield Def. during an attack. -->
@@ -1898,7 +1898,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3571-2" />
 		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1906,7 +1906,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15958" type="Weapon" name="Octo Claw {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 129. Increases damage inflicted during PvP. Has a chance of cancelling a target's enhanced status by more than 1 or decreasing Shield Def. during an attack. -->
@@ -1930,7 +1930,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3651-1;3652-1;3565-4" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1938,7 +1938,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15959" type="Weapon" name="Doubletop Spear {PvP} - Guidance">
 		<!-- <Soul Crystal Enhancement>. Increases Accuracy by 8. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -1962,7 +1962,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3602-10" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
@@ -1970,7 +1970,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15960" type="Weapon" name="Doubletop Spear {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP.There is a chance to inflict additional damage when attacking. -->
@@ -1994,7 +1994,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3601-10" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
@@ -2002,7 +2002,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15961" type="Weapon" name="Doubletop Spear {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -2026,7 +2026,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3013-4" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
@@ -2034,7 +2034,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15962" type="Weapon" name="Rising Star {PvP} - MP Regeneration">
 		<!-- <Soul Crystal Enhancement>. Increases MP Recovery Rate. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2059,7 +2059,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3576-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="332" />
 			<set stat="mAtk" val="244" />
 			<set stat="critRate" val="4" />
@@ -2067,7 +2067,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15963" type="Weapon" name="Rising Star {PvP} - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2092,7 +2092,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3014-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="332" />
 			<set stat="mAtk" val="244" />
 			<set stat="critRate" val="4" />
@@ -2100,7 +2100,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15964" type="Weapon" name="Rising Star {PvP} - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2125,7 +2125,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3047-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="332" />
 			<set stat="mAtk" val="244" />
 			<set stat="critRate" val="4" />
@@ -2133,7 +2133,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15965" type="Weapon" name="Black Visage {PvP} - MP Regeneration">
 		<!-- <Soul Crystal Enhancement>. Increases MP Recovery Rate. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2158,7 +2158,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3576-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="404" />
 			<set stat="mAtk" val="268" />
 			<set stat="critRate" val="4" />
@@ -2166,7 +2166,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15966" type="Weapon" name="Black Visage {PvP} - Magic Hold">
 		<!-- <Soul Crystal Enhancement>. Inflicts Dryad Root with a 20% chance when using a magic skill on the target. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2193,7 +2193,7 @@
 		<set name="onmagic_chance" val="20" />
 		<set name="onmagic_skill" val="3577-2" />
 		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="404" />
 			<set stat="mAtk" val="268" />
 			<set stat="critRate" val="4" />
@@ -2201,7 +2201,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15967" type="Weapon" name="Black Visage {PvP} - Empower">
 		<!-- <Soul Crystal Enhancement>. Increases M. Atk. by 167. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2226,7 +2226,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3575-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="404" />
 			<set stat="mAtk" val="268" />
 			<set stat="critRate" val="4" />
@@ -2234,7 +2234,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15968" type="Weapon" name="Veniplant Sword {PvP} - Acumen">
 		<!-- <Soul Crystal Enhancement>. Increases Casting Spd. by 15%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2259,14 +2259,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3047-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="332" />
 			<set stat="mAtk" val="244" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15969" type="Weapon" name="Veniplant Sword {PvP} - Magic Hold">
 		<!-- <Soul Crystal Enhancement>. Inflicts Dryad Root with a 20% chance when using a magic skill on the target. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2293,14 +2293,14 @@
 		<set name="onmagic_chance" val="20" />
 		<set name="onmagic_skill" val="3577-2" />
 		<set name="item_skill" val="3552-3;3654-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="332" />
 			<set stat="mAtk" val="244" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15970" type="Weapon" name="Veniplant Sword {PvP} - Mana Up">
 		<!-- <Soul Crystal Enhancement>. Increases Max MP by 30%. Increases damage inflicted during PvP. Has a chance of increasing Casting Spd. when being attacked. -->
@@ -2325,14 +2325,14 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
 		<set name="item_skill" val="3552-1;3654-1;3014-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="332" />
 			<set stat="mAtk" val="244" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15971" type="Weapon" name="Skull Carnium Bow {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 139. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -2358,7 +2358,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3655-1;3567-4" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="768" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="12" />
@@ -2366,7 +2366,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15972" type="Weapon" name="Skull Carnium Bow {PvP} - Critical Slow">
 		<!-- <Soul Crystal Enhancement>. Inflicts Slow with a 33% chance during a critical attack. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -2393,7 +2393,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3574-3" />
 		<set name="item_skill" val="3552-3;3655-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="768" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="12" />
@@ -2401,7 +2401,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15973" type="Weapon" name="Skull Carnium Bow {PvP} - Cheap Shot">
 		<!-- <Soul Crystal Enhancement>. Decreases MP consumption to 1 with a 8% chance during a general attack. Increases damage inflicted during PvP. Chance to increase bow/crossbow attack speed during an attack. -->
@@ -2427,7 +2427,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3655-1;8312-2;3552-3" /> <!-- PvP Weapon - Rapid Fire -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="768" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="12" />
@@ -2435,7 +2435,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15974" type="Weapon" name="Gemtail Rapier {PvP} - Health">
 		<!-- Kamael exclusive weapon Peri El Sword Conversion. <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP, and recovers CP at a fixed rate during an attack. When enchanted to 4 or more, party members including yourself will get increased P. Atk., magic power, and healing capacity by a fixed rate, and MP consumption during skill use is decreased. -->
@@ -2460,10 +2460,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="376" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="10" />
@@ -2471,7 +2471,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15975" type="Weapon" name="Gemtail Rapier {PvP} - Focus">
 		<!-- Kamael exclusive weapon Peri El Sword Conversion. <Soul Crystal Enhancement>. Increases Critical by 134. Increases damage inflicted during PvP, and recovers CP at a fixed rate during an attack. When enchanted to 4 or more, party members including yourself will get increased P. Atk., magic power, and healing capacity by a fixed rate, and MP consumption during skill use is decreased. -->
@@ -2496,10 +2496,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;8289-2" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="376" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="10" />
@@ -2507,7 +2507,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15976" type="Weapon" name="Gemtail Rapier {PvP} - Haste">
 		<!-- Kamael exclusive weapon Peri El Sword Conversion. <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP, and recovers CP at a fixed rate during an attack. When enchanted to 4 or more, party members including yourself will get increased P. Atk., magic power, and healing capacity by a fixed rate, and MP consumption during skill use is decreased. -->
@@ -2532,10 +2532,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3564-3" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="376" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="10" />
@@ -2543,7 +2543,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15977" type="Weapon" name="Finale Blade {PvP} - Health">
 		<!-- Kamael exclusive weapon Feather Eye Blade Conversion. <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Inflicts additional damage with a fixed rate when attacking. -->
@@ -2567,10 +2567,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="449" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
@@ -2578,7 +2578,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15978" type="Weapon" name="Finale Blade {PvP} - Focus">
 		<!-- Kamael exclusive weapon Feather Eye Blade Conversion. <Soul Crystal Enhancement>. Increases Critical by 134. Increases damage inflicted during PvP. Inflicts additional damage with a fixed rate when attacking. -->
@@ -2602,10 +2602,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3566-4" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="449" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
@@ -2613,7 +2613,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15979" type="Weapon" name="Finale Blade {PvP} - Haste">
 		<!-- Kamael exclusive weapon Feather Eye Blade Conversion. <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Inflicts additional damage with a fixed rate when attacking. -->
@@ -2637,10 +2637,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3564-3" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="449" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
@@ -2648,7 +2648,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15980" type="Weapon" name="Dominion Crossbow {PvP} - Focus">
 		<!-- Kamael exclusive weapon Skull Carnium Bow Conversion. <Soul Crystal Enhancement>. Increases Critical by 139. Increases damage inflicted during PvP. Increases bow/crossbow attack speed with a fixed rate when attacking. -->
@@ -2673,10 +2673,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3655-1;8289-2" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="471" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="10" />
@@ -2684,7 +2684,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15981" type="Weapon" name="Dominion Crossbow {PvP} - Critical Slow">
 		<!-- Kamael exclusive weapon Skull Carnium Bow Conversion. <Soul Crystal Enhancement>. Inflicts Slow at a 24% rate during a critical attack. Increases damage inflicted during PvP. Increases bow/crossbow attack speed with a fixed rate when attacking. -->
@@ -2710,10 +2710,10 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3574-3" />
 		<set name="item_skill" val="3552-3;3655-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="471" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="10" />
@@ -2721,7 +2721,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15982" type="Weapon" name="Dominion Crossbow {PvP} - Cheap Shot">
 		<!-- Kamael exclusive weapon Skull Carnium Bow Conversion. <Soul Crystal Enhancement>. During a general attack, decreases MP consumption to 1 at a 12% rate. Increases damage inflicted during PvP. Increases bow/crossbow attack speed with a fixed rate when attacking. -->
@@ -2746,10 +2746,10 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-3;3655-1;3360-1" /> <!-- Special Ability: PvP Damage -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="471" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="10" />
@@ -2757,7 +2757,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15983" type="Weapon" name="Eternal Core Sword {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 134. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -2781,14 +2781,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3566-5" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15984" type="Weapon" name="Eternal Core Sword {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -2812,14 +2812,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3564-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15985" type="Weapon" name="Eternal Core Sword {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -2843,14 +2843,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15986" type="Weapon" name="Mamba Edge {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. Has a chance of canceling one or more enhanced stats of a target, or decreasing a target's Shield Defense during an attack. -->
@@ -2874,7 +2874,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3651-1;3652-1;3564-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="382" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="12" />
@@ -2882,7 +2882,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15987" type="Weapon" name="Mamba Edge {PvP} - Critical Damage">
 		<!-- <Soul Crystal Enhancement>. Increases P. Atk. by 1060 during a critical attack. Increases damage inflicted during PvP. During an attack, it has a chance of canceling a target's enhanced status by more than 1, or to decrease a target's Shield Defense. -->
@@ -2906,7 +2906,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3651-1;3652-1;3572-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="382" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="12" />
@@ -2914,7 +2914,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15988" type="Weapon" name="Mamba Edge {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Restores 4% of melee damage inflicted upon the enemy to your own HP. Increases damage inflicted during PvP. During an attack, it has a chance of canceling a target's enhanced status by more than 1, or to decrease a target's Shield Defense. -->
@@ -2938,7 +2938,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3651-1;3652-1;3568-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="382" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="12" />
@@ -2946,7 +2946,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15989" type="Weapon" name="Eversor Mace {PvP} - HP Regeneration">
 		<!-- <Soul Crystal Enhancement>. Increases HP Recovery Rate. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -2970,7 +2970,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3569-4" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -2978,7 +2978,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15990" type="Weapon" name="Eversor Mace {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Restores 4% of melee damage inflicted upon the enemy to your own HP. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -3002,7 +3002,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3568-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -3010,7 +3010,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15991" type="Weapon" name="Eversor Mace {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of CP recovery during an attack. -->
@@ -3034,7 +3034,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3650-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -3042,7 +3042,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15992" type="Weapon" name="Contristo Hammer {PvP} - HP Drain">
 		<!-- <Soul Crystal Enhancement>. Restores 4% of melee damage inflicted upon the enemy to your own HP. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -3066,7 +3066,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3568-2" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -3074,7 +3074,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15993" type="Weapon" name="Contristo Hammer {PvP} - HP Regeneration">
 		<!-- <Soul Crystal Enhancement>. Increases HP Recovery Rate. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -3098,7 +3098,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3569-4" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -3106,7 +3106,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15994" type="Weapon" name="Contristo Hammer {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -3130,7 +3130,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -3138,7 +3138,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15995" type="Weapon" name="Lava Saw {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 134. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -3162,14 +3162,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3566-5" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15996" type="Weapon" name="Lava Saw {PvP} - Haste">
 		<!-- <Soul Crystal Enhancement>. Increases Atk. Spd. by about 11%. Increases damage inflicted during PvP. There is a chance to inflict additional damage when attacking. -->
@@ -3193,14 +3193,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3564-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15997" type="Weapon" name="Lava Saw {PvP} - Health">
 		<!-- <Soul Crystal Enhancement>. Increases Max HP by 25%. Increases damage inflicted during PvP. Improves the chance of additional damage during an attack. -->
@@ -3224,14 +3224,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3653-1;3013-3" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15998" type="Weapon" name="Jade Claw {PvP} - Critical Stun">
 		<!-- <Soul Crystal Enhancement>. There is a 43% chance to inflict Stun during a critical attack. Increases damage inflicted during PvP. Chance to cancel a target's enhanced status by more than 1 or decreases shield P. Def during an attack. -->
@@ -3256,7 +3256,7 @@
 		<set name="is_sellable" val="false" />
 		<set name="oncrit_skill" val="3571-2" />
 		<set name="item_skill" val="3552-3;3651-1;3652-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -3264,7 +3264,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15999" type="Weapon" name="Jade Claw {PvP} - Focus">
 		<!-- <Soul Crystal Enhancement>. Increases Critical by 129. Increases damage inflicted during PvP. Chance to cancel a target's enhanced status by more than 1 or decreases shield P. Def during an attack. -->
@@ -3288,7 +3288,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="3552-1;3651-1;3652-1;3565-5" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -3296,6 +3296,6 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 </list>

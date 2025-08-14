@@ -40,13 +40,16 @@ public class PailakaSongOfIceAndFire extends AbstractInstance
 	private static final int BLOOM = 18616;
 	private static final int BOTTLE = 32492;
 	private static final int BRAZIER = 32493;
+	
 	// Items
 	private static final int FIRE_ENHANCER = 13040;
 	private static final int WATER_ENHANCER = 13041;
 	private static final int SHIELD_POTION = 13032;
 	private static final int HEAL_POTION = 13033;
+	
 	// Location
 	private static final Location TELEPORT = new Location(-52875, 188232, -4696);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 43;
 	private static final int ZONE = 20108;
@@ -69,6 +72,7 @@ public class PailakaSongOfIceAndFire extends AbstractInstance
 		{
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, TELEPORT, world.getInstanceId());
 	}
 	
@@ -112,6 +116,7 @@ public class PailakaSongOfIceAndFire extends AbstractInstance
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -151,6 +156,7 @@ public class PailakaSongOfIceAndFire extends AbstractInstance
 					break;
 				}
 			}
+			
 			npc.setScriptValue(1);
 			startQuestTimer("DELETE", 3000, npc, null);
 		}

@@ -83,8 +83,7 @@ public class SummonTrap extends AbstractEffect
 		}
 		
 		final Trap trap = new Trap(npcTemplate, player, _despawnTime);
-		trap.setCurrentHp(trap.getMaxHp());
-		trap.setCurrentMp(trap.getMaxMp());
+		trap.fullRestore();
 		trap.setInvul(true);
 		trap.setHeading(player.getHeading());
 		trap.spawnMe(player.getX(), player.getY(), player.getZ());

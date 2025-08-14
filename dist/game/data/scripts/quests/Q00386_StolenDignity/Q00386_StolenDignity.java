@@ -37,6 +37,7 @@ public class Q00386_StolenDignity extends Quest
 {
 	// NPCs
 	private static final int WAREHOUSE_KEEPER_ROMP = 30843;
+	
 	// Monsters
 	private static final int CRIMSON_DRAKE = 20670;
 	private static final int KADIOS = 20671;
@@ -64,8 +65,10 @@ public class Q00386_StolenDignity extends Quest
 	private static final int HAMES_ORC_CHIEFTAIN = 21116;
 	private static final int FALLEN_ORC_SHAMAN_TRANS = 21258;
 	private static final int SHARP_TALON_TIGER_TRANS = 21259;
+	
 	// Items
 	private static final int Q_STOLEN_INF_ORE = 6363;
+	
 	// Reward
 	private static final int DRAGON_SLAYER_EDGE = 5529;
 	private static final int METEOR_SHOWER_HEAD = 5532;
@@ -122,14 +125,18 @@ public class Q00386_StolenDignity extends Quest
 				{
 					return "30843-01.htm";
 				}
+				
 				return "30843-04.html";
 			}
+			
 			if (getQuestItemsCount(player, Q_STOLEN_INF_ORE) < 100)
 			{
 				return "30843-06.html";
 			}
+			
 			return "30843-07.html";
 		}
+		
 		return htmltext;
 	}
 	
@@ -148,10 +155,12 @@ public class Q00386_StolenDignity extends Quest
 				playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 				return "30843-05.htm";
 			}
+			
 			if (event.contains(".html"))
 			{
 				return event;
 			}
+			
 			final int ask = Integer.parseInt(event);
 			switch (ask)
 			{
@@ -180,6 +189,7 @@ public class Q00386_StolenDignity extends Quest
 						createBingoBoard(qs);
 						return "30843-12.html";
 					}
+					
 					return "30843-11.html";
 				}
 				case 10:
@@ -269,6 +279,7 @@ public class Q00386_StolenDignity extends Quest
 				}
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -296,8 +307,10 @@ public class Q00386_StolenDignity extends Quest
 			{
 				html = getHtm(player, "30843-20.html");
 			}
+			
 			return fillBoard(qs, html);
 		}
+		
 		i3 = getBingoSelectCount(qs);
 		if (i3 == 1)
 		{
@@ -315,6 +328,7 @@ public class Q00386_StolenDignity extends Quest
 		{
 			html = getHtm(player, "30843-21.html");
 		}
+		
 		return fillBoard(qs, html);
 	}
 	
@@ -333,6 +347,7 @@ public class Q00386_StolenDignity extends Quest
 				result = result.replace("<?Cell" + (i0 + 1) + "?>", "?");
 			}
 		}
+		
 		return result;
 	}
 	
@@ -345,6 +360,7 @@ public class Q00386_StolenDignity extends Quest
 			result = result.replace("<?FontColor" + (i0 + 1) + "?>", isSelectedBingoNumber(qs, i1) ? "ff0000" : "ffffff");
 			result = result.replace("<?Cell" + (i0 + 1) + "?>", Integer.toString(i1));
 		}
+		
 		return result;
 	}
 	
@@ -369,8 +385,10 @@ public class Q00386_StolenDignity extends Quest
 			{
 				html = getHtm(player, "30843-23.html");
 			}
+			
 			return colorBoard(qs, html);
 		}
+		
 		return fillBoard(qs, getHtm(player, "30843-25.html"));
 	}
 	
@@ -551,9 +569,9 @@ public class Q00386_StolenDignity extends Quest
 	 */
 	private void createBingoBoard(QuestState qs)
 	{
-		//@formatter:off
+		// @formatter:off
 		final Integer[] arr = {1,2,3,4,5,6,7,8,9};
-		//@formatter:on
+		// @formatter:on
 		Collections.shuffle(Arrays.asList(arr));
 		qs.set("numbers", Arrays.asList(arr).toString().replaceAll("[^\\d ]", ""));
 		qs.set("selected", "? ? ? ? ? ? ? ? ?");
@@ -567,41 +585,50 @@ public class Q00386_StolenDignity extends Quest
 	{
 		final String[] q = qs.get("selected").split(" ");
 		int found = 0;
+		
 		// Horizontal
 		if ((q[0] + q[1] + q[2]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		if ((q[3] + q[4] + q[5]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		if ((q[6] + q[7] + q[8]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		// Vertical
 		if ((q[0] + q[3] + q[6]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		if ((q[1] + q[4] + q[7]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		if ((q[2] + q[5] + q[8]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		// Diagonal
 		if ((q[0] + q[4] + q[8]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		if ((q[2] + q[4] + q[6]).matches("\\d+"))
 		{
 			found++;
 		}
+		
 		return found;
 	}
 	
@@ -621,6 +648,7 @@ public class Q00386_StolenDignity extends Quest
 				break;
 			}
 		}
+		
 		final String[] selected = qs.get("selected").split(" ");
 		for (int i = 0; i < selected.length; i++)
 		{
@@ -629,11 +657,13 @@ public class Q00386_StolenDignity extends Quest
 				selected[i] = Integer.toString(num);
 			}
 		}
+		
 		String result = selected[0];
 		for (int i = 1; i < selected.length; i++)
 		{
 			result += " " + selected[i];
 		}
+		
 		qs.set("selected", result);
 	}
 	
@@ -893,6 +923,7 @@ public class Q00386_StolenDignity extends Quest
 				}
 			});
 		}
+		
 		return candidates.isEmpty() ? null : candidates.get(getRandom(candidates.size()));
 	}
 }

@@ -535,7 +535,7 @@ public enum ServerPackets
 		if (Config.DEBUG_SERVER_PACKETS)
 		{
 			final String name = packet.getClass().getSimpleName();
-			if (!Config.ALT_DEV_EXCLUDED_PACKETS.contains(name))
+			if (!Config.EXCLUDED_DEBUG_PACKETS.contains(name))
 			{
 				PacketLogger.info((_id2 > 0 ? "[S EX] " : "[S] ") + name);
 			}

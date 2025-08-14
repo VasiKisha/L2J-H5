@@ -52,6 +52,7 @@ public class FolkStatus extends NpcStatus
 		{
 			return;
 		}
+		
 		super.reduceMp(value);
 	}
 	

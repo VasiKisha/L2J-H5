@@ -34,6 +34,7 @@ public class Q00458_PerfectForm extends Quest
 {
 	// NPCs
 	private static final int KELLEYIA = 32768;
+	
 	// Monsters
 	// Level 4 (full grown) feedable beasts
 	private static final int[] KOOKABURRAS =
@@ -120,6 +121,7 @@ public class Q00458_PerfectForm extends Quest
 					{
 						htmltext = "32768-14c.html";
 					}
+					
 					overHits = overhitsTotal;
 					overHitHtml = true;
 				}
@@ -146,6 +148,7 @@ public class Q00458_PerfectForm extends Quest
 					{
 						htmltext = "32768-15c.html";
 					}
+					
 					overHits = overhitsCritical;
 					overHitHtml = true;
 				}
@@ -172,6 +175,7 @@ public class Q00458_PerfectForm extends Quest
 					{
 						htmltext = "32768-16c.html";
 					}
+					
 					overHits = overhitsConsecutive;
 					overHitHtml = true;
 				}
@@ -198,10 +202,12 @@ public class Q00458_PerfectForm extends Quest
 					{
 						final int rnd = getRandom(ICARUS_WEAPON_PIECES.length);
 						rewardItems(player, ICARUS_WEAPON_PIECES[rnd], 2);
+						
 						// not sure if this should use rewardItems
 						giveItems(player, 15482, 10); // Golden Spice Crate
 						giveItems(player, 15483, 10); // Crystal Spice Crate
 					}
+					
 					qs.exitQuest(QuestType.DAILY, true);
 				}
 				else
@@ -217,6 +223,7 @@ public class Q00458_PerfectForm extends Quest
 			htmltext = getHtm(player, htmltext);
 			htmltext = htmltext.replace("<?number?>", String.valueOf(overHits));
 		}
+		
 		return htmltext;
 	}
 	
@@ -243,12 +250,14 @@ public class Q00458_PerfectForm extends Quest
 				{
 					qs.set("overhitsTotal", String.valueOf(qs.getInt("overhitsTotal") + 1)); // memoStateEx 1
 					final int maxHp = mob.getMaxHp();
+					
 					// Attackable#calculateOverhitExp() way of calculating overhit % seems illogical
 					final double overhitPercentage = (maxHp + mob.getOverhitDamage()) / maxHp;
 					if (overhitPercentage >= 1.2)
 					{
 						qs.set("overhitsCritical", String.valueOf(qs.getInt("overhitsCritical") + 1)); // memoStateEx 2
 					}
+					
 					qs.set("overhitsConsecutive", String.valueOf(qs.getInt("overhitsConsecutive") + 1)); // memoStateEx 3
 					/*
 					 * Retail logic (makes for a long/messy string in database): int i0 = overhitsConsecutive % 100; int i1 = overhitsConsecutive - (i0 * 100); if (i0 < i1) { st.set("overhitsConsecutive", String.valueOf((i1 * 100) + i1)); }
@@ -295,8 +304,9 @@ public class Q00458_PerfectForm extends Quest
 					htmltext = "32768-18.htm";
 					break;
 				}
+				
 				qs.setState(State.CREATED);
-				//$FALL-THROUGH$
+				// $FALL-THROUGH$
 			}
 			case State.CREATED:
 			{
@@ -328,6 +338,7 @@ public class Q00458_PerfectForm extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

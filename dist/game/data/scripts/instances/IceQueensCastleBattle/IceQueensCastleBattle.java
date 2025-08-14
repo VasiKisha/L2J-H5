@@ -30,7 +30,6 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
@@ -80,6 +79,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 	private static final int JINIA = 32781; // Jinia
 	private static final int SUPP_JINIA = 18850; // Jinia
 	private static final int SUPP_KEGOR = 18851; // Kegor
+	
 	// Skills
 	private static final SkillHolder ETERNAL_BLIZZARD = new SkillHolder(6274, 1); // Eternal Blizzard
 	private static final SkillHolder ETERNAL_BLIZZARD_HARD = new SkillHolder(6275, 1); // Eternal Blizzard Hard
@@ -147,6 +147,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 		new Location(114937, -115323, -11205, 18106),
 		new Location(114722, -115185, -11205, 16437),
 	};
+	
 	// Misc
 	private static final int MAX_PLAYERS = 27;
 	private static final int MIN_PLAYERS = 10;
@@ -226,6 +227,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 									}
 								}
 							}
+							
 							world.setParameter("controller", control);
 							startQuestTimer("STAGE_1_MOVIE", 60000, control, null);
 						}
@@ -244,6 +246,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							qs.setMemoState(10);
 							qs.setCond(7, true);
 						}
+						
 						world.getNpc(SUPP_KEGOR).deleteMe();
 						freya.decayMe();
 						manageMovie(world, Movie.SC_BOSS_FREYA_ENDING_B);
@@ -374,6 +377,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 								}
 							}
 						}
+						
 						final Npc frey = addSpawn((isHardMode ? FREYA_STAND_HARD : FREYA_STAND_EASY), FREYA_SPAWN, false, 0, true, world.getInstanceId());
 						world.setStatus(4);
 						world.setParameter("canSpawnMobs", true);
@@ -447,6 +451,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 						{
 							players.setInvul(false);
 						}
+						
 						freya.setInvul(false);
 						freya.disableCoreAI(false);
 						manageScreenMsg(world, NpcStringId.BEGIN_STAGE_4);
@@ -591,6 +596,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 									npc.setTarget(npc);
 									npc.doCast(BREATH_OF_ICE_PALACE.getSkill());
 								}
+								
 								startQuestTimer("BLIZZARD", 20000, npc, null);
 							}
 						}
@@ -648,6 +654,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 								players.broadcastPacket(ExChangeClientEffectInfo.STATIC_FREYA_DEFAULT);
 							}
 						}
+						
 						finishInstance(world);
 						break;
 					}
@@ -681,6 +688,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							npc.setTarget(mostHated);
 							npc.doCast(RUSH.getSkill());
 						}
+						
 						startQuestTimer("LEADER_DASH", 10000, npc, null);
 						break;
 					}
@@ -754,6 +762,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 				}
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -775,9 +784,11 @@ public class IceQueensCastleBattle extends AbstractInstance
 					player.sendPacket(ActionFailed.STATIC_PACKET);
 					return null;
 				}
+				
 				return "18851.html";
 			}
 		}
+		
 		player.sendPacket(ActionFailed.STATIC_PACKET);
 		return null;
 	}
@@ -892,6 +903,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 							players.setInvul(true);
 							players.abortAttack();
 						}
+						
 						manageMovie(world, Movie.SC_BOSS_KEGOR_INTRUSION);
 						startQuestTimer("SPAWN_SUPPORT", 27000, controller, null);
 					}
@@ -1103,8 +1115,10 @@ public class IceQueensCastleBattle extends AbstractInstance
 							{
 								manageRandomAttack(world, breath);
 							}
+							
 							startQuestTimer("BLIZZARD", 20000, breath, null);
 						}
+						
 						notifyEvent("SUICIDE", npc, null);
 					}
 					break;
@@ -1265,7 +1279,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 	{
 		final Party party = player.getParty();
 		final CommandChannel channel = party != null ? party.getCommandChannel() : null;
-		if (player.canOverrideCond(PlayerCondOverride.INSTANCE_CONDITIONS))
+		if (player.isGM())
 		{
 			return true;
 		}
@@ -1290,6 +1304,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 			player.sendPacket(SystemMessageId.YOU_CANNOT_ENTER_DUE_TO_THE_PARTY_HAVING_EXCEEDED_THE_LIMIT);
 			return false;
 		}
+		
 		for (Player channelMember : channel.getMembers())
 		{
 			if (channelMember.getLevel() < MIN_LEVEL)
@@ -1321,6 +1336,7 @@ public class IceQueensCastleBattle extends AbstractInstance
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	

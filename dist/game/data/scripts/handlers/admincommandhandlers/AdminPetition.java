@@ -39,7 +39,7 @@ public class AdminPetition implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		int petitionId = -1;
 		
@@ -85,6 +85,7 @@ public class AdminPetition implements IAdminCommandHandler
 			{
 				activeChar.sendPacket(SystemMessageId.FAILED_TO_CANCEL_PETITION_PLEASE_TRY_AGAIN_LATER);
 			}
+			
 			PetitionManager.getInstance().sendPendingPetitionList(activeChar);
 		}
 		else if (command.equals("admin_reset_petitions"))
@@ -94,6 +95,7 @@ public class AdminPetition implements IAdminCommandHandler
 				activeChar.sendPacket(SystemMessageId.YOUR_PETITION_IS_BEING_PROCESSED);
 				return false;
 			}
+			
 			PetitionManager.getInstance().clearPendingPetitions();
 			PetitionManager.getInstance().sendPendingPetitionList(activeChar);
 		}
@@ -107,6 +109,7 @@ public class AdminPetition implements IAdminCommandHandler
 					activeChar.sendPacket(SystemMessageId.THAT_IS_AN_INCORRECT_TARGET);
 					return false;
 				}
+				
 				final Player targetPlayer = targetChar.asPlayer();
 				final String val = command.substring(15);
 				petitionId = PetitionManager.getInstance().submitPetition(targetPlayer, val, 9);
@@ -118,11 +121,12 @@ public class AdminPetition implements IAdminCommandHandler
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

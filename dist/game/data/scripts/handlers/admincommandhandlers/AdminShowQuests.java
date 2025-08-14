@@ -57,7 +57,7 @@ public class AdminShowQuests implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final String[] cmdParams = command.split(" ");
 		Player target = null;
@@ -74,25 +74,30 @@ public class AdminShowQuests implements IAdminCommandHandler
 					val[0] = "var";
 					val[1] = "Start";
 				}
+				
 				if (cmdParams[2].equals("1"))
 				{
 					val[0] = "var";
 					val[1] = "Started";
 				}
+				
 				if (cmdParams[2].equals("2"))
 				{
 					val[0] = "var";
 					val[1] = "Completed";
 				}
+				
 				if (cmdParams[2].equals("3"))
 				{
 					val[0] = "full";
 				}
+				
 				if (cmdParams[2].contains("_"))
 				{
 					val[0] = "name";
 					val[1] = cmdParams[2];
 				}
+				
 				if ((cmdParams.length > 3) && cmdParams[3].equals("custom"))
 				{
 					val[0] = "custom";
@@ -137,6 +142,7 @@ public class AdminShowQuests implements IAdminCommandHandler
 				{
 					val[3] = cmdParams[5];
 				}
+				
 				setQuestVar(target, activeChar, val);
 			}
 			else
@@ -144,6 +150,7 @@ public class AdminShowQuests implements IAdminCommandHandler
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -207,8 +214,10 @@ public class AdminShowQuests implements IAdminCommandHandler
 						{
 							continue;
 						}
+						
 						replyMSG.append("<tr><td>" + var_name + "</td><td>" + rs.getString(2) + "</td><td><edit var=\"var" + var_name + "\" width=80 height=15></td><td><button value=\"Set\" action=\"bypass -h admin_setcharquest " + target.getName() + " " + val[1] + " " + var_name + " $var" + var_name + "\" width=30 height=15 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td><button value=\"Del\" action=\"bypass -h admin_setcharquest " + target.getName() + " " + val[1] + " " + var_name + " delete\" width=30 height=15 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr>");
 					}
+					
 					rs.close();
 					req.close();
 					replyMSG.append("</table><br><br><table width=250><tr><td>Repeatable quest:</td><td>Unrepeatable quest:</td></tr>");
@@ -229,6 +238,7 @@ public class AdminShowQuests implements IAdminCommandHandler
 					{
 						replyMSG.append("<tr><td><a action=\"bypass -h admin_charquestmenu " + target.getName() + " " + rs.getString(1) + "\">" + rs.getString(1) + "</a></td></tr>");
 					}
+					
 					rs.close();
 					req.close();
 					replyMSG.append("</table></body></html>");
@@ -280,6 +290,7 @@ public class AdminShowQuests implements IAdminCommandHandler
 								{
 									continue;
 								}
+								
 								replyMSG.append("<tr><td>" + var_name + "</td><td>" + rs.getString(2) + "</td><td><edit var=\"var" + var_name + "\" width=80 height=15></td><td><button value=\"Set\" action=\"bypass -h admin_setcharquest " + target.getName() + " " + qname + " " + var_name + " $var" + var_name + "\" width=30 height=15 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td><td><button value=\"Del\" action=\"bypass -h admin_setcharquest " + target.getName() + " " + qname + " " + var_name + " delete\" width=30 height=15 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></td></tr>");
 							}
 							replyMSG.append("</table><br><br><table width=250><tr><td>Repeatable quest:</td><td>Unrepeatable quest:</td></tr>");
@@ -305,6 +316,7 @@ public class AdminShowQuests implements IAdminCommandHandler
 					break;
 				}
 			}
+			
 			adminReply.setHtml(replyMSG.toString());
 			actor.sendPacket(adminReply);
 		}
@@ -367,9 +379,11 @@ public class AdminShowQuests implements IAdminCommandHandler
 			{
 				qs.set(val[1], val[2]);
 			}
+			
 			target.sendPacket(new QuestList(target));
 			target.sendPacket(new ExShowQuestMark(qs.getQuest().getId()));
 		}
+		
 		actor.sendMessage("");
 		outval[0] = "name";
 		outval[1] = val[0];
@@ -377,7 +391,7 @@ public class AdminShowQuests implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

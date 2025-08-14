@@ -81,6 +81,7 @@ public class ConditionPlayerCanSummonSiegeGolem extends Condition
 		{
 			canSummonSiegeGolem = false;
 		}
+		
 		return _value == canSummonSiegeGolem;
 	}
 }

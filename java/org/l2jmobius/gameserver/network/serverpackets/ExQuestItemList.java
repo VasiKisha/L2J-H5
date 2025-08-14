@@ -54,6 +54,7 @@ public class ExQuestItemList extends AbstractItemPacket
 		{
 			writeItem(item, buffer);
 		}
+		
 		writeInventoryBlock(_player.getInventory(), buffer);
 	}
 }

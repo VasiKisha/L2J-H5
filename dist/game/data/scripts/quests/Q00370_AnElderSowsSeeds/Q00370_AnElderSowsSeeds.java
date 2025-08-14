@@ -33,14 +33,17 @@ public class Q00370_AnElderSowsSeeds extends Quest
 {
 	// NPC
 	private static final int CASIAN = 30612;
+	
 	// Items
 	private static final int SPELLBOOK_PAGE = 5916;
 	private static final int CHAPTER_OF_FIRE = 5917;
 	private static final int CHAPTER_OF_WATER = 5918;
 	private static final int CHAPTER_OF_WIND = 5919;
 	private static final int CHAPTER_OF_EARTH = 5920;
+	
 	// Misc
 	private static final int MIN_LEVEL = 28;
+	
 	// Mobs
 	private static final Map<Integer, Integer> MOBS1 = new HashMap<>();
 	private static final Map<Integer, Double> MOBS2 = new HashMap<>();
@@ -122,6 +125,7 @@ public class Q00370_AnElderSowsSeeds extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -163,6 +167,7 @@ public class Q00370_AnElderSowsSeeds extends Quest
 		{
 			htmltext = "30612-06.html";
 		}
+		
 		return htmltext;
 	}
 	
@@ -177,6 +182,7 @@ public class Q00370_AnElderSowsSeeds extends Quest
 		{
 			giveAdena(player, minCount * 3600, true);
 		}
+		
 		final long countToTake = (takeAllItems ? -1 : minCount);
 		takeItems(player, (int) countToTake, CHAPTER_OF_WATER, CHAPTER_OF_EARTH, CHAPTER_OF_WIND, CHAPTER_OF_FIRE);
 		return (minCount > 0);

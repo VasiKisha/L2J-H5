@@ -37,9 +37,11 @@ public class Natives extends AbstractNpcAI
 	private static final int INSURGENT = 32363;
 	private static final int TRAITOR = 32364;
 	private static final int INCASTLE = 32357;
+	
 	// Items
 	private static final int MARK_OF_BETRAYAL = 9676; // Mark of Betrayal
 	private static final int BADGES = 9674; // Darion's Badge
+	
 	// Misc
 	private static final int[] DOORS =
 	{
@@ -93,6 +95,7 @@ public class Natives extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -172,6 +175,7 @@ public class Natives extends AbstractNpcAI
 				npc.deleteMe();
 			}
 		}
+		
 		return htmltext;
 	}
 	

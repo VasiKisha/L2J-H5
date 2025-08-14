@@ -133,6 +133,7 @@ public abstract class ClanHallSiegeEngine extends Quest implements Siegable
 					}
 				}
 			}
+			
 			LOGGER.config(getName() + ": Successfully saved attackers to database.");
 		}
 		catch (Exception e)
@@ -207,6 +208,7 @@ public abstract class ClanHallSiegeEngine extends Quest implements Siegable
 		{
 			result = sClan.getFlag();
 		}
+		
 		return result;
 	}
 	
@@ -222,6 +224,7 @@ public abstract class ClanHallSiegeEngine extends Quest implements Siegable
 		{
 			return false;
 		}
+		
 		return _attackers.containsKey(clan.getId());
 	}
 	
@@ -261,6 +264,7 @@ public abstract class ClanHallSiegeEngine extends Quest implements Siegable
 				attackers.add(pc);
 			}
 		}
+		
 		return attackers;
 	}
 	
@@ -363,6 +367,7 @@ public abstract class ClanHallSiegeEngine extends Quest implements Siegable
 		{
 			finalMsg = new SystemMessage(SystemMessageId.THE_SIEGE_OF_S1_HAS_ENDED_IN_A_DRAW);
 		}
+		
 		finalMsg.addString(_hall.getName());
 		Broadcast.toAllOnlinePlayers(finalMsg);
 		_missionAccomplished = false;

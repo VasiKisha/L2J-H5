@@ -202,6 +202,7 @@ public class DenOfEvil extends AbstractNpcAI
 				{
 					continue;
 				}
+				
 				if (creature.isPlayable())
 				{
 					final Skill skill = SkillData.getInstance().getSkill(6149, 1);
@@ -223,6 +224,7 @@ public class DenOfEvil extends AbstractNpcAI
 					}
 				}
 			}
+			
 			for (int i = SKILL_ID; i <= (SKILL_ID + 4); i += 2)
 			{
 				_zone.removeSkill(i);

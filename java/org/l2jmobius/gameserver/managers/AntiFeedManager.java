@@ -212,6 +212,7 @@ public class AntiFeedManager
 			{
 				return null;
 			}
+			
 			return v;
 		}) != null;
 	}

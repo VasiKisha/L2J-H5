@@ -38,6 +38,7 @@ public class Q00235_MimirsElixir extends Quest
 	private static final int JOAN = 30718;
 	private static final int LADD = 30721;
 	private static final int ALCHEMISTS_MIXING_URN = 31149;
+	
 	// Items
 	private static final int STAR_OF_DESTINY = 5011;
 	private static final int MAGISTERS_MIXING_STONE = 5905;
@@ -46,12 +47,16 @@ public class Q00235_MimirsElixir extends Quest
 	private static final int PURE_SILVER = 6320;
 	private static final int TRUE_GOLD = 6321;
 	private static final int SAGES_STONE = 6322;
+	
 	// Reward
 	private static final int ENCHANT_WEAPON_A = 729;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
+	
 	// Skill
 	private static final SkillHolder QUEST_MIMIRS_ELIXIR = new SkillHolder(4339, 1);
+	
 	// Mobs
 	private static final Map<Integer, ItemChanceHolder> MOBS = new HashMap<>();
 	static
@@ -225,6 +230,7 @@ public class Q00235_MimirsElixir extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -348,6 +354,7 @@ public class Q00235_MimirsElixir extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

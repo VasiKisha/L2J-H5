@@ -52,6 +52,7 @@ public class FuncAtkEvasion extends AbstractFunction
 			{
 				diff *= 1.2;
 			}
+			
 			if (level >= 70)
 			{
 				value += diff;
@@ -66,6 +67,7 @@ public class FuncAtkEvasion extends AbstractFunction
 				value += (level - 69) + 2;
 			}
 		}
+		
 		return value;
 	}
 }

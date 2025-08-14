@@ -33,6 +33,7 @@ public class Q00026_TiredOfWaiting extends Quest
 	// NPCs
 	private static final int ISAEL_SILVERSHADOW = 30655;
 	private static final int KITZKA = 31045;
+	
 	// Items
 	private static final int DELIVERY_BOX = 17281;
 	private static final Map<String, Integer> REWARDS = new HashMap<>();
@@ -110,6 +111,7 @@ public class Q00026_TiredOfWaiting extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -145,6 +147,7 @@ public class Q00026_TiredOfWaiting extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

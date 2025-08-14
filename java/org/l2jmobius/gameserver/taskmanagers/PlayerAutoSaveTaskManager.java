@@ -49,6 +49,7 @@ public class PlayerAutoSaveTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		if (!PLAYER_TIMES.isEmpty())

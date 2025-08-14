@@ -56,6 +56,7 @@ public class CreatureFollowTaskManager
 			{
 				return;
 			}
+			
 			_workingNormal = true;
 			
 			if (!NORMAL_FOLLOW_CREATURES.isEmpty())
@@ -79,6 +80,7 @@ public class CreatureFollowTaskManager
 			{
 				return;
 			}
+			
 			_workingAttack = true;
 			
 			if (!ATTACK_FOLLOW_CREATURES.isEmpty())
@@ -109,6 +111,7 @@ public class CreatureFollowTaskManager
 						{
 							creature.asSummon().setFollowStatus(false);
 						}
+						
 						ai.setIntention(Intention.IDLE);
 						return;
 					}
@@ -123,9 +126,11 @@ public class CreatureFollowTaskManager
 							{
 								creature.asSummon().setFollowStatus(false);
 							}
+							
 							ai.setIntention(Intention.IDLE);
 							return;
 						}
+						
 						ai.moveToPawn(followTarget, followRange);
 					}
 				}

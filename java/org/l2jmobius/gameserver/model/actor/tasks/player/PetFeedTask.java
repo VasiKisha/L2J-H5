@@ -24,6 +24,8 @@ import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.handler.IItemHandler;
 import org.l2jmobius.gameserver.handler.ItemHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -61,10 +63,19 @@ public class PetFeedTask implements Runnable
 			}
 			else
 			{
-				// go back to pet control item, or simply said, unsummon it
 				_player.setCurrentFeed(0);
 				_player.stopFeed();
-				_player.dismount();
+				
+				if (_player.isFlying() && (_player.getMountType() == MountType.WYVERN))
+				{
+					_player.dismount();
+					_player.teleToLocation(TeleportWhereType.TOWN); // Teleport to nearest village.
+				}
+				else
+				{
+					_player.dismount();
+				}
+				
 				_player.sendPacket(SystemMessageId.YOU_ARE_OUT_OF_FEED_MOUNT_STATUS_CANCELED);
 				return;
 			}
@@ -91,7 +102,7 @@ public class PetFeedTask implements Runnable
 				final IItemHandler handler = ItemHandler.getInstance().getHandler(food.getEtcItem());
 				if (handler != null)
 				{
-					handler.useItem(_player, food, false);
+					handler.onItemUse(_player, food, false);
 					final SystemMessage sm = new SystemMessage(SystemMessageId.YOUR_PET_WAS_HUNGRY_SO_IT_ATE_S1);
 					sm.addItemName(food.getId());
 					_player.sendPacket(sm);

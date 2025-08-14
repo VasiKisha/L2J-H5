@@ -60,6 +60,7 @@ public class ConditionPlayerActiveSkillId extends Condition
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

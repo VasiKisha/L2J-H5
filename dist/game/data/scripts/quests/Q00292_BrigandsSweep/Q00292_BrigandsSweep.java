@@ -38,12 +38,14 @@ public class Q00292_BrigandsSweep extends Quest
 	// NPCs
 	private static final int SPIRON = 30532;
 	private static final int BALANKI = 30533;
+	
 	// Items
 	private static final int GOBLIN_NECKLACE = 1483;
 	private static final int GOBLIN_PENDANT = 1484;
 	private static final int GOBLIN_LORD_PENDANT = 1485;
 	private static final int SUSPICIOUS_MEMO = 1486;
 	private static final int SUSPICIOUS_CONTRACT = 1487;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOB_ITEM_DROP = new HashMap<>();
 	static
@@ -54,6 +56,7 @@ public class Q00292_BrigandsSweep extends Quest
 		MOB_ITEM_DROP.put(20327, GOBLIN_NECKLACE); // Goblin Snooper
 		MOB_ITEM_DROP.put(20528, GOBLIN_LORD_PENDANT); // Goblin Lord
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 5;
 	
@@ -105,6 +108,7 @@ public class Q00292_BrigandsSweep extends Quest
 				break;
 			}
 		}
+		
 		return html;
 	}
 	
@@ -173,6 +177,7 @@ public class Q00292_BrigandsSweep extends Quest
 								giveAdena(talker, (necklaces * 12) + (pendants * 36) + (lordPendants * 33) + (sum >= 10 ? 1000 : 0), true);
 								takeItems(talker, -1, GOBLIN_NECKLACE, GOBLIN_PENDANT, GOBLIN_LORD_PENDANT);
 							}
+							
 							if ((sum > 0) && !hasAtLeastOneQuestItem(talker, SUSPICIOUS_MEMO, SUSPICIOUS_CONTRACT))
 							{
 								html = "30532-05.html";
@@ -221,6 +226,7 @@ public class Q00292_BrigandsSweep extends Quest
 				break;
 			}
 		}
+		
 		return html;
 	}
 }

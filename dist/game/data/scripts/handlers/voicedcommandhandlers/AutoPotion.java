@@ -39,12 +39,13 @@ public class AutoPotion implements IVoicedCommandHandler
 	};
 	
 	@Override
-	public boolean useVoicedCommand(String command, Player activeChar, String target)
+	public boolean onCommand(String command, Player activeChar, String target)
 	{
 		if (!Config.AUTO_POTIONS_ENABLED || (activeChar == null))
 		{
 			return false;
 		}
+		
 		if (activeChar.getLevel() < Config.AUTO_POTION_MIN_LEVEL)
 		{
 			activeChar.sendMessage("You need to be at least " + Config.AUTO_POTION_MIN_LEVEL + " to use auto potions.");
@@ -73,7 +74,7 @@ public class AutoPotion implements IVoicedCommandHandler
 	}
 	
 	@Override
-	public String[] getVoicedCommandList()
+	public String[] getCommandList()
 	{
 		return VOICED_COMMANDS;
 	}

@@ -36,6 +36,7 @@ public class Q00699_GuardianOfTheSkies extends Quest
 {
 	// NPC
 	private static final int LEKON = 32557;
+	
 	// Monsters
 	private static final int VALDSTONE = 25623;
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
@@ -45,8 +46,10 @@ public class Q00699_GuardianOfTheSkies extends Quest
 		MONSTERS.put(22615, 857); // Vulture Rider lvl 2
 		MONSTERS.put(25633, 719); // Vulture Rider lvl 3
 	}
+	
 	// Item
 	private static final int VULTURES_GOLDEN_FEATHER = 13871;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
 	private static final int VULTURES_GOLDEN_FEATHER_ADENA = 1500;
@@ -92,6 +95,7 @@ public class Q00699_GuardianOfTheSkies extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -121,6 +125,7 @@ public class Q00699_GuardianOfTheSkies extends Quest
 				{
 					amount = getRandom(10) + 60;
 				}
+				
 				giveItems(killer, VULTURES_GOLDEN_FEATHER, amount);
 				playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
@@ -164,6 +169,7 @@ public class Q00699_GuardianOfTheSkies extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

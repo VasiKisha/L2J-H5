@@ -37,9 +37,11 @@ public class Q00461_RumbleInTheBase extends Quest
 {
 	// NPC
 	private static final int STAN = 30200;
+	
 	// Items
 	private static final int SHINY_SALMON = 15503;
 	private static final int SHOES_STRING_OF_SEL_MAHUM = 16382;
+	
 	// Mobs
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -81,6 +83,7 @@ public class Q00461_RumbleInTheBase extends Quest
 		{
 			htmltext = event;
 		}
+		
 		return htmltext;
 	}
 	
@@ -169,6 +172,7 @@ public class Q00461_RumbleInTheBase extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

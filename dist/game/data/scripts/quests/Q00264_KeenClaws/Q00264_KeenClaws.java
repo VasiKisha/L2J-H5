@@ -38,12 +38,16 @@ public class Q00264_KeenClaws extends Quest
 {
 	// Npc
 	private static final int PAINT = 30136;
+	
 	// Item
 	private static final int WOLF_CLAW = 1367;
+	
 	// Monsters
 	private static final Map<Integer, List<ItemHolder>> MONSTER_CHANCES = new HashMap<>();
+	
 	// Rewards
 	private static final Map<Integer, List<ItemHolder>> REWARDS = new HashMap<>();
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	private static final int WOLF_CLAW_COUNT = 50;
@@ -79,6 +83,7 @@ public class Q00264_KeenClaws extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -137,6 +142,7 @@ public class Q00264_KeenClaws extends Quest
 									{
 										rewardItems(player, item);
 									}
+									
 									if (chance == 0)
 									{
 										playSound(player, QuestSound.ITEMSOUND_QUEST_JACKPOT);
@@ -144,6 +150,7 @@ public class Q00264_KeenClaws extends Quest
 									break;
 								}
 							}
+							
 							qs.exitQuest(true, true);
 							htmltext = "30136-05.html";
 						}
@@ -153,6 +160,7 @@ public class Q00264_KeenClaws extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

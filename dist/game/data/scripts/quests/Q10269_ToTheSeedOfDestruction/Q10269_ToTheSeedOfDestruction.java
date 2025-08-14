@@ -36,6 +36,7 @@ public class Q10269_ToTheSeedOfDestruction extends Quest
 	// NPCs
 	private static final int KEUCEREUS = 32548;
 	private static final int ALLENOS = 32526;
+	
 	// Item
 	private static final int INTRODUCTION = 13812;
 	
@@ -61,6 +62,7 @@ public class Q10269_ToTheSeedOfDestruction extends Quest
 			qs.startQuest();
 			giveItems(player, INTRODUCTION, 1);
 		}
+		
 		return event;
 	}
 	
@@ -118,6 +120,7 @@ public class Q10269_ToTheSeedOfDestruction extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

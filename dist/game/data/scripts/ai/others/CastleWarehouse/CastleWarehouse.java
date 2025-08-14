@@ -41,6 +41,7 @@ public class CastleWarehouse extends AbstractNpcAI
 		35508, // Warehouse Keeper (Rune)
 		35554, // Warehouse Keeper (Schuttgart)
 	};
+	
 	// Items
 	private static final int BLOOD_OATH = 9910;
 	private static final int BLOOD_ALLIANCE = 9911;
@@ -112,6 +113,7 @@ public class CastleWarehouse extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

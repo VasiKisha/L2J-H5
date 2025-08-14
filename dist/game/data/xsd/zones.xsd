@@ -134,6 +134,7 @@
 									<xs:enumeration value="NoRestartZone" />
 									<xs:enumeration value="NoStoreZone" />
 									<xs:enumeration value="NoSummonFriendZone" />
+									<xs:enumeration value="NoPvPZone" />
 									<xs:enumeration value="NpcSpawnTerritory" />
 									<xs:enumeration value="OlympiadStadiumZone" />
 									<xs:enumeration value="PeaceZone" />

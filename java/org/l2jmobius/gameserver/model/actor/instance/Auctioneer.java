@@ -367,6 +367,7 @@ public class Auctioneer extends Npc
 					{
 						return;
 					}
+					
 					auctionId = clan.getAuctionBiddedAt();
 				}
 				else
@@ -380,6 +381,7 @@ public class Auctioneer extends Npc
 				{
 					biders += "<tr><td>" + b.getClanName() + "</td><td>" + b.getName() + "</td><td>" + b.getTimeBid().get(Calendar.YEAR) + "/" + (b.getTimeBid().get(Calendar.MONTH) + 1) + "/" + b.getTimeBid().get(Calendar.DATE) + "</td><td>" + b.getBid() + "</td></tr>";
 				}
+				
 				final String filename = "data/html/auction/AgitBidderList.htm";
 				
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
@@ -589,6 +591,7 @@ public class Auctioneer extends Npc
 					player.sendPacket(html);
 					return;
 				}
+				
 				try
 				{
 					final String filename = "data/html/auction/AgitBid2.htm";
@@ -667,6 +670,7 @@ public class Auctioneer extends Npc
 			{
 				return COND_BUSY_BECAUSE_OF_SIEGE; // Busy because of siege
 			}
+			
 			return COND_REGULAR;
 		}
 		

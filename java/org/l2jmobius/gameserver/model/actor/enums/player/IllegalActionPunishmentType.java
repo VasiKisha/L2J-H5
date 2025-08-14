@@ -37,6 +37,7 @@ public enum IllegalActionPunishmentType
 				return type;
 			}
 		}
+		
 		return NONE;
 	}
 }

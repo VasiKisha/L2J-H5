@@ -78,6 +78,7 @@ public abstract class AbstractItemPacket extends ServerPacket
 		{
 			buffer.writeShort(item.getElementDefAttr(i));
 		}
+		
 		// Enchant Effects
 		for (int op : item.getEnchantOptions())
 		{

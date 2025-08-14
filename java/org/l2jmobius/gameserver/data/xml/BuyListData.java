@@ -79,12 +79,14 @@ public class BuyListData implements IXmlReader
 					LOGGER.warning("BuyList found in database but not loaded from xml! BuyListId: " + buyListId);
 					continue;
 				}
+				
 				final Product product = buyList.getProductByItemId(itemId);
 				if (product == null)
 				{
 					LOGGER.warning("ItemId found in database but not loaded from xml! BuyListId: " + buyListId + " ItemId: " + itemId);
 					continue;
 				}
+				
 				if (count < product.getMaxCount())
 				{
 					product.setCount(count);
@@ -125,16 +127,19 @@ public class BuyListData implements IXmlReader
 							{
 								price = Long.parseLong(attr.getNodeValue());
 							}
+							
 							attr = attrs.getNamedItem("restock_delay");
 							if (attr != null)
 							{
 								restockDelay = Long.parseLong(attr.getNodeValue());
 							}
+							
 							attr = attrs.getNamedItem("count");
 							if (attr != null)
 							{
 								count = Long.parseLong(attr.getNodeValue());
 							}
+							
 							final ItemTemplate item = ItemData.getInstance().getTemplate(itemId);
 							if (item != null)
 							{
@@ -165,6 +170,7 @@ public class BuyListData implements IXmlReader
 							}
 						}
 					}
+					
 					_buyLists.put(buyList.getListId(), buyList);
 				}
 			}

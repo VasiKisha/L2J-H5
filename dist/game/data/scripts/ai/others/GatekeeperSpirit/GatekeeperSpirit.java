@@ -34,9 +34,11 @@ public class GatekeeperSpirit extends AbstractNpcAI
 	private static final int GATEKEEPER_SPIRIT_EXIT = 31112;
 	private static final int LILITH = 25283;
 	private static final int ANAKIM = 25286;
+	
 	// Exit gatekeeper spawn locations
 	private static final Location SPAWN_LILITH_GATEKEEPER = new Location(184410, -10111, -5488);
 	private static final Location SPAWN_ANAKIM_GATEKEEPER = new Location(184410, -13102, -5488);
+	
 	// Teleport
 	private static final Location TELEPORT_DUSK = new Location(184464, -13104, -5504);
 	private static final Location TELEPORT_DAWN = new Location(184448, -10112, -5504);
@@ -66,11 +68,12 @@ public class GatekeeperSpirit extends AbstractNpcAI
 				addSpawn(GATEKEEPER_SPIRIT_EXIT, SPAWN_LILITH_GATEKEEPER, false, 900000);
 				break;
 			}
-			case "TeleportIn":
+			case "ENTER":
 			{
 				final int playerCabal = SevenSigns.getInstance().getPlayerCabal(player.getObjectId());
 				final int sealOfAvariceOwner = SevenSigns.getInstance().getSealOwner(SevenSigns.SEAL_AVARICE);
 				final int compWinner = SevenSigns.getInstance().getCabalHighestScore();
+				
 				if (!SevenSigns.getInstance().isSealValidationPeriod())
 				{
 					htmltext = "31111-no.html";
@@ -89,12 +92,13 @@ public class GatekeeperSpirit extends AbstractNpcAI
 				}
 				break;
 			}
-			case "TeleportOut":
+			case "EXIT":
 			{
 				player.teleToLocation(EXIT, true);
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

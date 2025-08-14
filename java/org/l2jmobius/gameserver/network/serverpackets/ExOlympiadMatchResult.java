@@ -69,6 +69,7 @@ public class ExOlympiadMatchResult extends ServerPacket
 			buffer.writeInt(info.getCurrentPoints());
 			buffer.writeInt(info.getDiffPoints());
 		}
+		
 		buffer.writeInt(_loseTeam);
 		buffer.writeInt(_loserList.size());
 		for (OlympiadInfo info : _loserList)

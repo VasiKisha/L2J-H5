@@ -22,9 +22,11 @@ import java.util.Map;
 import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
+import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import ai.AbstractNpcAI;
@@ -58,6 +60,7 @@ public class WyvernManager extends AbstractNpcAI
 		16068,
 		13197
 	};
+	
 	// NPCS
 	private static final Map<Integer, ManagerType> MANAGERS = new HashMap<>();
 	static
@@ -113,10 +116,18 @@ public class WyvernManager extends AbstractNpcAI
 				takeItems(player, CRYSTAL_B_GRADE, WYVERN_FEE);
 				player.dismount();
 				player.mount(WYVERN, 0, true);
+				
 				return "wyvernmanager-04.html";
 			}
+			
 			return replacePart(player, "wyvernmanager-06.html");
 		}
+		
+		if (player.getMountType() != MountType.STRIDER)
+		{
+			player.sendPacket(SystemMessageId.YOU_MAY_ONLY_RIDE_A_WYVERN_WHILE_YOU_RE_RIDING_A_STRIDER);
+		}
+		
 		return replacePart(player, "wyvernmanager-05.html");
 	}
 	
@@ -126,6 +137,7 @@ public class WyvernManager extends AbstractNpcAI
 		{
 			return false;
 		}
+		
 		final ManagerType type = MANAGERS.get(npc.getId());
 		switch (type)
 		{
@@ -135,6 +147,7 @@ public class WyvernManager extends AbstractNpcAI
 				{
 					return player.getClanId() == npc.getCastle().getOwnerId();
 				}
+				
 				return false;
 			}
 			case CLAN_HALL:
@@ -143,6 +156,7 @@ public class WyvernManager extends AbstractNpcAI
 				{
 					return player.getClanId() == npc.getConquerableHall().getOwnerId();
 				}
+				
 				return false;
 			}
 			case FORT:
@@ -152,6 +166,7 @@ public class WyvernManager extends AbstractNpcAI
 				{
 					return player.getClanId() == npc.getFort().getOwnerClan().getId();
 				}
+				
 				return false;
 			}
 			default:
@@ -265,6 +280,7 @@ public class WyvernManager extends AbstractNpcAI
 						player.sendMessage("You cannot summon wyvern while in siege.");
 						return null;
 					}
+					
 					final ManagerType type = MANAGERS.get(npc.getId());
 					if ((type == ManagerType.CASTLE) && SevenSigns.getInstance().isSealValidationPeriod() && ((SevenSigns.getInstance()).getSealOwner(SevenSigns.SEAL_STRIFE) == SevenSigns.CABAL_DUSK))
 					{
@@ -282,6 +298,7 @@ public class WyvernManager extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -312,6 +329,7 @@ public class WyvernManager extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

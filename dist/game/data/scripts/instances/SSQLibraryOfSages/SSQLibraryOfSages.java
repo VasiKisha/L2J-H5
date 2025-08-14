@@ -42,10 +42,12 @@ public class SSQLibraryOfSages extends AbstractInstance
 	private static final int SOPHIA2 = 32861;
 	private static final int SOPHIA3 = 32863;
 	private static final int ELCADIA_INSTANCE = 32785;
+	
 	// Locations
 	private static final Location START_LOC = new Location(37063, -49813, -1128);
 	private static final Location EXIT_LOC = new Location(37063, -49813, -1128, 0, 0);
 	private static final Location LIBRARY_LOC = new Location(37355, -50065, -1127);
+	
 	// NpcString
 	private static final NpcStringId[] ELCADIA_DIALOGS =
 	{
@@ -54,6 +56,7 @@ public class SSQLibraryOfSages extends AbstractInstance
 		NpcStringId.AN_UNDERGROUND_LIBRARY_I_HATE_DAMP_AND_SMELLY_PLACES,
 		NpcStringId.THE_BOOK_THAT_WE_SEEK_IS_CERTAINLY_HERE_SEARCH_INCH_BY_INCH
 	};
+	
 	// Misc
 	private static final int TEMPLATE_ID = 156;
 	
@@ -102,6 +105,7 @@ public class SSQLibraryOfSages extends AbstractInstance
 				}
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -119,6 +123,7 @@ public class SSQLibraryOfSages extends AbstractInstance
 		{
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, START_LOC, world.getInstanceId(), false);
 		spawnElcadia(player, world);
 	}
@@ -130,6 +135,7 @@ public class SSQLibraryOfSages extends AbstractInstance
 		{
 			elcadia.deleteMe();
 		}
+		
 		world.setParameter("elcadia", addSpawn(ELCADIA_INSTANCE, player, false, 0, false, player.getInstanceId()));
 		startQuestTimer("FOLLOW", 3000, elcadia, player);
 	}

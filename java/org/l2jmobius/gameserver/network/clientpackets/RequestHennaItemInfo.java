@@ -53,6 +53,7 @@ public class RequestHennaItemInfo extends ClientPacket
 			{
 				PacketLogger.warning(getClass().getSimpleName() + ": Invalid Henna Id: " + _symbolId + " from " + player);
 			}
+			
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
 		}

@@ -36,6 +36,7 @@ public class Q00174_SupplyCheck extends Quest
 	private static final int NIKA = 32167;
 	private static final int BENIS = 32170;
 	private static final int MARCELA = 32173;
+	
 	// Items
 	private static final int WAREHOUSE_MANIFEST = 9792;
 	private static final int GROCERY_STORE_MANIFEST = 9793;
@@ -47,6 +48,7 @@ public class Q00174_SupplyCheck extends Quest
 		2386, // Wooden Gaiters
 		37, // Leather Shoes
 	};
+	
 	// Misc
 	private static final int MIN_LEVEL = 2;
 	private static final int GUIDE_MISSION = 41;
@@ -73,6 +75,7 @@ public class Q00174_SupplyCheck extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -212,6 +215,7 @@ public class Q00174_SupplyCheck extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

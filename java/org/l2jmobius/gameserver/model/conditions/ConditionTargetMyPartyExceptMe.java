@@ -57,6 +57,7 @@ public class ConditionTargetMyPartyExceptMe extends Condition
 			player.sendPacket(sm);
 			isPartyMember = false;
 		}
+		
 		return _value == isPartyMember;
 	}
 }

@@ -73,6 +73,7 @@ public class PhysicalDamageHpLink extends AbstractEffect
 		}
 		
 		final byte shld = Formulas.calcShldUse(effector, effected, skill);
+		
 		// Physical damage critical rate is only affected by STR.
 		boolean crit = false;
 		if (skill.getBaseCritRate() > 0)

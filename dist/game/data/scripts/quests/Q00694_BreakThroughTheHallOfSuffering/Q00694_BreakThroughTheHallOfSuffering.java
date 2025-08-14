@@ -63,6 +63,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 		{
 			qs.startQuest();
 		}
+		
 		return htmltext;
 	}
 	
@@ -118,6 +119,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 											{
 												giveItems(member, MARK, 1);
 											}
+											
 											giveItems(member, 13777, 1);
 											giveItems(member, SOE, 1);
 											qs1.unset("cond");
@@ -132,6 +134,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 											{
 												giveItems(member, MARK, 1);
 											}
+											
 											giveItems(member, 13778, 1);
 											giveItems(member, SOE, 1);
 											qs1.unset("cond");
@@ -146,6 +149,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 											{
 												giveItems(member, MARK, 1);
 											}
+											
 											giveItems(member, 13779, 1);
 											giveItems(member, SOE, 1);
 											qs1.unset("cond");
@@ -160,6 +164,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 											{
 												giveItems(member, MARK, 1);
 											}
+											
 											giveItems(member, 13780, 1);
 											giveItems(member, SOE, 1);
 											qs1.unset("cond");
@@ -174,6 +179,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 											{
 												giveItems(member, MARK, 1);
 											}
+											
 											giveItems(member, 13781, 1);
 											giveItems(member, SOE, 1);
 											qs1.unset("cond");
@@ -188,6 +194,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 											{
 												giveItems(member, MARK, 1);
 											}
+											
 											giveItems(member, 13782, 1);
 											giveItems(member, SOE, 1);
 											qs1.unset("cond");
@@ -202,6 +209,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 											{
 												giveItems(member, MARK, 1);
 											}
+											
 											giveItems(member, 13783, 1);
 											giveItems(member, SOE, 1);
 											qs1.unset("cond");
@@ -216,6 +224,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 											{
 												giveItems(member, MARK, 1);
 											}
+											
 											giveItems(member, 13784, 1);
 											giveItems(member, SOE, 1);
 											qs1.unset("cond");
@@ -230,6 +239,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 											{
 												giveItems(member, MARK, 1);
 											}
+											
 											giveItems(member, 13785, 1);
 											giveItems(member, SOE, 1);
 											qs1.unset("cond");
@@ -244,6 +254,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 											{
 												giveItems(member, MARK, 1);
 											}
+											
 											giveItems(member, 13786, 1);
 											giveItems(member, SOE, 1);
 											qs1.unset("cond");
@@ -274,6 +285,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -286,6 +298,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 		{
 			reenter.add(Calendar.DATE, 1);
 		}
+		
 		reenter.set(Calendar.HOUR_OF_DAY, 6);
 		
 		final SystemMessage sm = new SystemMessage(SystemMessageId.INSTANT_ZONE_S1_S_ENTRY_HAS_BEEN_RESTRICTED_YOU_CAN_CHECK_THE_NEXT_POSSIBLE_ENTRY_TIME_BY_USING_THE_COMMAND_INSTANCEZONE);
@@ -302,6 +315,7 @@ public class Q00694_BreakThroughTheHallOfSuffering extends Quest
 				}
 			}
 		}
+		
 		final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
 		inst.setDuration(5 * 60000);
 		inst.setEmptyDestroyTime(0);

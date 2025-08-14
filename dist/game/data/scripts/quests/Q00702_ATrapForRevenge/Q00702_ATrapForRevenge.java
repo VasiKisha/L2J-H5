@@ -45,6 +45,7 @@ public class Q00702_ATrapForRevenge extends Quest
 		25631,
 		25626
 	};
+	
 	// Items
 	private static final int DRAKES_FLESH = 13877;
 	private static final int ROTTEN_BLOOD = 13878;
@@ -186,6 +187,7 @@ public class Q00702_ATrapForRevenge extends Quest
 					giveItems(player, 9629, getRandom(3) + 1);
 					giveItems(player, 9630, getRandom(3) + 1);
 				}
+				
 				htmltext = "32555-15.html";
 			}
 			else if ((i0 >= 500) && (i1 < 600))
@@ -234,6 +236,7 @@ public class Q00702_ATrapForRevenge extends Quest
 					giveItems(player, 9629, getRandom(3) + 1);
 					giveItems(player, 9630, getRandom(3) + 1);
 				}
+				
 				htmltext = "32555-17.html";
 			}
 			else if ((i0 < 500) && (i1 < 600))
@@ -258,8 +261,10 @@ public class Q00702_ATrapForRevenge extends Quest
 				
 				htmltext = "32555-18.html";
 			}
+			
 			takeItems(player, VARIANT_DRAKE_WING_HORNS, 1);
 		}
+		
 		return htmltext;
 	}
 	
@@ -366,10 +371,12 @@ public class Q00702_ATrapForRevenge extends Quest
 				{
 					count = getRandom(5) + 14;
 				}
+				
 				giveItems(player, VARIANT_DRAKE_WING_HORNS, count);
 				break;
 			}
 		}
+		
 		playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 	}
 	
@@ -395,6 +402,7 @@ public class Q00702_ATrapForRevenge extends Quest
 				}
 			}
 		}
+		
 		if (qs.getState() == State.STARTED)
 		{
 			if (npc.getId() == LEKON)
@@ -430,6 +438,7 @@ public class Q00702_ATrapForRevenge extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

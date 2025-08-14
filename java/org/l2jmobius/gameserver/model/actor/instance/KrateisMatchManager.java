@@ -80,6 +80,7 @@ public class KrateisMatchManager extends Folk
 					pet.stopAllEffects();
 				}
 			}
+			
 			player.teleToLocation(-70381, -70937, -1428, 0, true);
 		}
 		else

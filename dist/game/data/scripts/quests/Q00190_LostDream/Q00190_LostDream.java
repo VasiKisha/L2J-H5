@@ -34,6 +34,7 @@ public class Q00190_LostDream extends Quest
 	private static final int HEAD_BLACKSMITH_KUSTO = 30512;
 	private static final int MAESTRO_NIKOLA = 30621;
 	private static final int RESEARCHER_LORAIN = 30673;
+	
 	// Misc
 	private static final int MIN_LEVEL = 42;
 	private static final int MAX_LEVEL_FOR_EXP_SP = 48;
@@ -96,6 +97,7 @@ public class Q00190_LostDream extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -142,6 +144,7 @@ public class Q00190_LostDream extends Quest
 						{
 							addExpAndSp(player, 309467, 20614);
 						}
+						
 						qs.exitQuest(false, true);
 					}
 					break;
@@ -192,6 +195,7 @@ public class Q00190_LostDream extends Quest
 		{
 			htmltext = getAlreadyCompletedMsg(player);
 		}
+		
 		return htmltext;
 	}
 }

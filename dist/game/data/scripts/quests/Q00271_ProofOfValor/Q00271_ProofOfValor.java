@@ -32,14 +32,18 @@ public class Q00271_ProofOfValor extends Quest
 {
 	// NPC
 	private static final int RUKAIN = 30577;
+	
 	// Items
 	private static final int KASHA_WOLF_FANG = 1473;
+	
 	// Monsters
 	private static final int KASHA_WOLF = 20475;
+	
 	// Rewards
 	private static final int HEALING_POTION = 1061;
 	private static final int NECKLACE_OF_COURAGE = 1506;
 	private static final int NECKLACE_OF_VALOR = 1507;
+	
 	// Misc
 	private static final int MIN_LEVEL = 4;
 	
@@ -61,6 +65,7 @@ public class Q00271_ProofOfValor extends Quest
 			qs.startQuest();
 			return hasAtLeastOneQuestItem(player, NECKLACE_OF_VALOR, NECKLACE_OF_COURAGE) ? "30577-08.html" : event;
 		}
+		
 		return null;
 	}
 	
@@ -118,6 +123,7 @@ public class Q00271_ProofOfValor extends Quest
 							{
 								rewardItems(player, NECKLACE_OF_COURAGE, 1);
 							}
+							
 							takeItems(player, KASHA_WOLF_FANG, -1);
 							qs.exitQuest(true, true);
 							htmltext = "30577-06.html";
@@ -128,6 +134,7 @@ public class Q00271_ProofOfValor extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

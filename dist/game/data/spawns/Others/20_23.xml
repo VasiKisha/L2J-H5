@@ -105,7 +105,7 @@
 		<npc id="30079" x="17836" y="169853" z="-3494" heading="20000" respawnDelay="60" /> <!-- Barder -->
 		<npc id="30291" x="20943" y="171358" z="-3548" heading="12288" respawnDelay="60" /> <!-- Alex -->
 		<npc id="30609" x="17475" y="169556" z="-3493" heading="57344" respawnDelay="60" /> <!-- Creta -->
-		<npc id="30616" x="19509" y="192096" z="-3724" heading="20480" respawnDelay="60" /> <!-- Kepra -->
+		<npc id="30616" x="19815" y="189703" z="-3032" heading="20480" respawnDelay="60" /> <!-- Kepra -->
 		<npc id="30626" x="15734" y="174805" z="-3636" heading="0" respawnDelay="60" /> <!-- Hamil -->
 		<npc id="30633" x="13258" y="169790" z="-3705" heading="1000" respawnDelay="60" /> <!-- Evert -->
 		<npc id="30636" x="23471" y="188092" z="-3604" heading="16384" respawnDelay="60" /> <!-- Camoniell -->

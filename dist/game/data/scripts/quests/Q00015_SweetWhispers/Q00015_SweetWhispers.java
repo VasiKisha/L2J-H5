@@ -80,6 +80,7 @@ public class Q00015_SweetWhispers extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -142,6 +143,7 @@ public class Q00015_SweetWhispers extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

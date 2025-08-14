@@ -19,7 +19,6 @@ package quests.Q00308_ReedFieldMaintenance;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -40,6 +39,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 {
 	// NPC
 	private static final int KATENSA = 32646;
+	
 	// Mobs
 	private static final int AWAKENED_MUCROKIAN = 22655;
 	private static final Map<Integer, Integer> MUCROKIAN = new HashMap<>();
@@ -56,6 +56,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 	// Items
 	private static final int MUCROKIAN_HIDE = 14871;
 	private static final int AWAKENED_MUCROKIAN_HIDE = 14872;
+	
 	// Rewards
 	private static final int REC_DYNASTY_EARRINGS_70 = 9985;
 	private static final int REC_DYNASTY_NECKLACE_70 = 9986;
@@ -122,6 +123,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 			takeItems(player, MUCROKIAN_HIDE, quanty);
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -203,6 +205,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -219,6 +222,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 			{
 				giveItems(player, item, 1);
 			}
+			
 			playSound(player, QuestSound.ITEMSOUND_QUEST_FINISH);
 			htmltext = "32646-14.html";
 		}
@@ -226,6 +230,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 		{
 			htmltext = "32646-13.html";
 		}
+		
 		return htmltext;
 	}
 	
@@ -235,8 +240,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 		final Player partyMember = getRandomPartyMember(killer, 1);
 		if (partyMember != null)
 		{
-			final float chance = (MUCROKIAN.get(npc.getId()) * Config.RATE_QUEST_DROP);
-			if (getRandom(1000) < chance)
+			if (getRandom(1000) < MUCROKIAN.get(npc.getId()))
 			{
 				if (npc.getId() == AWAKENED_MUCROKIAN)
 				{
@@ -246,6 +250,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 				{
 					giveItems(partyMember, MUCROKIAN_HIDE, 1);
 				}
+				
 				playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
@@ -269,6 +274,7 @@ public class Q00308_ReedFieldMaintenance extends Quest
 		{
 			htmltext = (talker.getLevel() >= MIN_LEVEL) ? "32646-01.htm" : "32646-00.html";
 		}
+		
 		return htmltext;
 	}
 }

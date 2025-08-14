@@ -42,8 +42,10 @@ public class Anais extends AbstractNpcAI
 	private static final int ANAIS = 25701;
 	private static final int DIVINE_BURNER = 18915;
 	private static final int GRAIL_WARD = 18929;
+	
 	// Skill
 	private static final SkillHolder DIVINE_NOVA = new SkillHolder(6326, 1);
+	
 	// Instances
 	List<Npc> _divineBurners = new ArrayList<>(4);
 	private Player _nextTarget = null;
@@ -87,6 +89,7 @@ public class Anais extends AbstractNpcAI
 				{
 					cancelQuestTimer("CHECK", npc, null);
 				}
+				
 				if ((_current != null) || (_pot < 4))
 				{
 					final WorldObject target = npc.getTarget();
@@ -132,10 +135,12 @@ public class Anais extends AbstractNpcAI
 					_current.setWalking();
 					_current = null;
 				}
+				
 				npc.doDie(null);
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

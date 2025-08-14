@@ -52,6 +52,7 @@ public class OrcChange2 extends AbstractNpcAI
 	private static final int MARK_OF_GLORY = 3203; // proof11y, proof21y, proof31y, proof32y
 	private static final int MARK_OF_CHAMPION = 3276; // proof11z
 	private static final int MARK_OF_LORD = 3390; // proof31z
+	
 	// Classes
 	private static final int DESTROYER = 46;
 	private static final int TYRANT = 48;
@@ -96,6 +97,7 @@ public class OrcChange2 extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -124,6 +126,7 @@ public class OrcChange2 extends AbstractNpcAI
 				takeItems(player, -1, MARK_OF_CHALLENGER, MARK_OF_GLORY, MARK_OF_CHAMPION);
 				player.setPlayerClass(DESTROYER);
 				player.setBaseClass(DESTROYER);
+				
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
@@ -152,6 +155,7 @@ public class OrcChange2 extends AbstractNpcAI
 				takeItems(player, -1, MARK_OF_CHALLENGER, MARK_OF_GLORY, MARK_OF_DUELIST);
 				player.setPlayerClass(TYRANT);
 				player.setBaseClass(TYRANT);
+				
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
@@ -180,6 +184,7 @@ public class OrcChange2 extends AbstractNpcAI
 				takeItems(player, -1, MARK_OF_PILGRIM, MARK_OF_GLORY, MARK_OF_LORD);
 				player.setPlayerClass(OVERLORD);
 				player.setBaseClass(OVERLORD);
+				
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
@@ -208,6 +213,7 @@ public class OrcChange2 extends AbstractNpcAI
 				takeItems(player, -1, MARK_OF_PILGRIM, MARK_OF_GLORY, MARK_OF_WARSPIRIT);
 				player.setPlayerClass(WARCRYER);
 				player.setBaseClass(WARCRYER);
+				
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
@@ -218,6 +224,7 @@ public class OrcChange2 extends AbstractNpcAI
 				htmltext = "30513-35.htm"; // fnNoProof32
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -253,6 +260,7 @@ public class OrcChange2 extends AbstractNpcAI
 		{
 			htmltext = "30513-18.htm"; // fnClassMismatch
 		}
+		
 		return htmltext;
 	}
 	

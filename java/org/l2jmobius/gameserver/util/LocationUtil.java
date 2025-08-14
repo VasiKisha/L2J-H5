@@ -58,6 +58,7 @@ public class LocationUtil
 		{
 			angle += 360;
 		}
+		
 		return angle;
 	}
 	
@@ -87,6 +88,7 @@ public class LocationUtil
 		{
 			angle += 360;
 		}
+		
 		return (int) (angle * 182.044444444);
 	}
 	
@@ -103,6 +105,7 @@ public class LocationUtil
 		{
 			angle += 360;
 		}
+		
 		return (int) (angle * 182.044444444);
 	}
 	
@@ -162,45 +165,18 @@ public class LocationUtil
 			return false;
 		}
 		
-		if (range == -1)
-		{
-			return true; // Not limited.
-		}
-		
 		int combinedRadius = 0;
 		if (obj1.isCreature())
 		{
 			combinedRadius += obj1.asCreature().getTemplate().getCollisionRadius();
 		}
+		
 		if (obj2.isCreature())
 		{
 			combinedRadius += obj2.asCreature().getTemplate().getCollisionRadius();
 		}
 		
 		return calculateDistance(obj1, obj2, includeZ, false) <= (range + combinedRadius);
-	}
-	
-	/**
-	 * Checks if two objects are within a specified short range of each other, ignoring collision radius. This method is optimized for short-range checks and should not be used for long-distance checks.
-	 * @param range the maximum allowable distance between the two objects
-	 * @param obj1 the first object
-	 * @param obj2 the second object
-	 * @param includeZ if {@code true}, includes the Z-axis in the range check
-	 * @return {@code true} if the two objects are within the specified range, {@code false} otherwise
-	 */
-	public static boolean checkIfInShortRange(int range, WorldObject obj1, WorldObject obj2, boolean includeZ)
-	{
-		if ((obj1 == null) || (obj2 == null))
-		{
-			return false;
-		}
-		
-		if (range == -1)
-		{
-			return true; // Not limited.
-		}
-		
-		return calculateDistance(obj1, obj2, includeZ, false) <= range;
 	}
 	
 	/**

@@ -34,6 +34,7 @@ public class Q00324_SweetestVenom extends Quest
 {
 	// NPCs
 	private static final int ASTARON = 30351;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -42,8 +43,10 @@ public class Q00324_SweetestVenom extends Quest
 		MONSTERS.put(20038, 29);
 		MONSTERS.put(20043, 30);
 	}
+	
 	// Items
 	private static final int VENOM_SAC = 1077;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	private static final int REQUIRED_COUNT = 10;
@@ -68,6 +71,7 @@ public class Q00324_SweetestVenom extends Quest
 			qs.startQuest();
 			htmltext = event;
 		}
+		
 		return htmltext;
 	}
 	
@@ -98,6 +102,7 @@ public class Q00324_SweetestVenom extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

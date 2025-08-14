@@ -45,11 +45,13 @@ public class Q10275_ContainingTheAttributePower extends Quest
 	private static final int YANG = 32326;
 	private static final int WATER = 27380;
 	private static final int AIR = 27381;
+	
 	// Items
 	private static final int YINSWORD = 13845;
 	private static final int YANGSWORD = 13881;
 	private static final int SOULPIECEWATER = 13861;
 	private static final int SOULPIECEAIR = 13862;
+	
 	// Skills
 	private static final SkillHolder BLESSING_OF_FIRE = new SkillHolder(2635, 1);
 	private static final SkillHolder BLESSING_OF_EARTH = new SkillHolder(2636, 1);
@@ -110,6 +112,7 @@ public class Q10275_ContainingTheAttributePower extends Quest
 					takeItems(player, YINSWORD, 1);
 					htmltext = "32325-07.html";
 				}
+				
 				giveItems(player, YINSWORD, 1, Elementals.FIRE, 10);
 				break;
 			}
@@ -120,6 +123,7 @@ public class Q10275_ContainingTheAttributePower extends Quest
 					takeItems(player, YANGSWORD, 1);
 					htmltext = "32326-07.html";
 				}
+				
 				giveItems(player, YANGSWORD, 1, Elementals.EARTH, 10);
 				break;
 			}
@@ -338,6 +342,7 @@ public class Q10275_ContainingTheAttributePower extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

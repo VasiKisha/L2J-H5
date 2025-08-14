@@ -63,6 +63,7 @@ public class ZoneNPoly extends ZoneForm
 			cx += (_p.xpoints[i] + _p.xpoints[nextIndex]) * crossProduct;
 			cy += (_p.ypoints[i] + _p.ypoints[nextIndex]) * crossProduct;
 		}
+		
 		area /= 2.0;
 		if (area == 0)
 		{
@@ -73,6 +74,7 @@ public class ZoneNPoly extends ZoneForm
 				cx += _p.xpoints[i];
 				cy += _p.ypoints[i];
 			}
+			
 			cx /= _p.npoints;
 			cy /= _p.npoints;
 		}
@@ -81,6 +83,7 @@ public class ZoneNPoly extends ZoneForm
 			cx /= (6.0 * area);
 			cy /= (6.0 * area);
 		}
+		
 		_centerPoint = new Location((int) cx, (int) cy, (_z1 + _z2) / 2);
 	}
 	

@@ -40,6 +40,7 @@ public class Q00129_PailakaDevilsLegacy extends Quest
 	private static final int SUPPORTER = 32501; // Devil's Isle Supporter
 	private static final int ADVENTURER1 = 32508; // Dwarf Adventurer
 	private static final int ADVENTURER2 = 32511; // Dwarf Adventurer
+	
 	// Items
 	private static final int SWORD = 13042; // Ancient Legacy Sword
 	private static final int ENH_SWORD1 = 13043; // Enhanced Ancient Legacy Sword
@@ -54,6 +55,7 @@ public class Q00129_PailakaDevilsLegacy extends Quest
 	private static final int PAILAKA_KEY = 13150; // Pailaka All-Purpose Key
 	private static final int BRACELET = 13295; // Pailaka Bracelet
 	private static final int ESCAPE = 736; // Scroll of Escape
+	
 	// Skills
 	private static final SkillHolder VITALITY_REPLENISHING = new SkillHolder(5774, 2); // Pailaka Reward Vitality Replenishing
 	// Misc
@@ -116,6 +118,7 @@ public class Q00129_PailakaDevilsLegacy extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -127,6 +130,7 @@ public class Q00129_PailakaDevilsLegacy extends Quest
 		{
 			return npc.getId() + ".htm";
 		}
+		
 		return "32511-03.htm";
 	}
 	
@@ -210,6 +214,7 @@ public class Q00129_PailakaDevilsLegacy extends Quest
 						htmltext = "32508-05.htm";
 						break;
 					}
+					
 					htmltext = "32508-04.htm";
 				}
 				else if (hasQuestItems(player, ENH_SWORD2))
@@ -250,6 +255,7 @@ public class Q00129_PailakaDevilsLegacy extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

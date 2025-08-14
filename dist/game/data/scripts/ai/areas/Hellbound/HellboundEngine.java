@@ -46,8 +46,10 @@ public class HellboundEngine extends AbstractNpcAI
 		0, 300000, 600000, 1000000, 1010000, 1400000, 1490000, 2000000, 2000001, 2500000, 4000000, 0
 	};
 	// @formatter:on
+	
 	// Monsters
 	private static final int DEREK = 18465;
+	
 	// Engine
 	private static final String ANNOUNCEMENT = "Hellbound has reached level: %lvl%";
 	private static final int UPDATE_INTERVAL = 60000; // 1 minute.
@@ -86,8 +88,10 @@ public class HellboundEngine extends AbstractNpcAI
 			{
 				onLevelChange(level); // First run or changed by administrator.
 			}
+			
 			startQuestTimer(UPDATE_EVENT, UPDATE_INTERVAL, null, null);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -126,10 +130,12 @@ public class HellboundEngine extends AbstractNpcAI
 					{
 						npc.setDecayed(false);
 					}
+					
 					if (npc.isDead())
 					{
 						npc.doRevive();
 					}
+					
 					if (!npc.isSpawned())
 					{
 						npc.setSpawned(true);
@@ -146,6 +152,7 @@ public class HellboundEngine extends AbstractNpcAI
 		{
 			LOGGER.info(getClass().getSimpleName() + ": Spawned " + added + " NPCs.");
 		}
+		
 		if (deleted > 0)
 		{
 			LOGGER.info(getClass().getSimpleName() + ": Removed " + deleted + " NPCs.");
@@ -290,6 +297,7 @@ public class HellboundEngine extends AbstractNpcAI
 			Broadcast.toAllOnlinePlayers(ANNOUNCEMENT.replace("%lvl%", String.valueOf(newLevel)));
 			LOGGER.info(HellboundEngine.class.getSimpleName() + ": New level: " + newLevel);
 		}
+		
 		_cachedLevel = newLevel;
 	}
 	
@@ -321,10 +329,10 @@ public class HellboundEngine extends AbstractNpcAI
 	}
 	
 	@Override
-	public boolean unload()
+	public void unload()
 	{
 		cancelQuestTimers(UPDATE_EVENT);
-		return true;
+		// super.unload(); ?
 	}
 	
 	/**

@@ -73,11 +73,13 @@ public class Decoy extends Creature
 		{
 			return false;
 		}
+		
 		if (_hateSpam != null)
 		{
 			_hateSpam.cancel(true);
 			_hateSpam = null;
 		}
+		
 		unSummon(_owner);
 		DecayTaskManager.getInstance().add(this);
 		return true;

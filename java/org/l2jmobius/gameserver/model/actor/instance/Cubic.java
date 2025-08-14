@@ -183,6 +183,7 @@ public class Cubic
 				break;
 			}
 		}
+		
 		_disappearTask = ThreadPool.schedule(new CubicDisappear(this), cubicDuration * 1000); // disappear
 	}
 	
@@ -289,6 +290,7 @@ public class Cubic
 			{
 				return;
 			}
+			
 			// Custom event targeting
 			if (_owner.isOnEvent())
 			{
@@ -299,6 +301,7 @@ public class Cubic
 				}
 				return;
 			}
+			
 			// Duel targeting
 			if (_owner.isInDuel())
 			{
@@ -345,10 +348,12 @@ public class Cubic
 							_target = playerA;
 						}
 					}
+					
 					if (((_target == playerA) || (_target == playerB)) && (_target == ownerTarget))
 					{
 						return;
 					}
+					
 					if (partyEnemy != null)
 					{
 						if (partyEnemy.getMembers().contains(ownerTarget))
@@ -358,19 +363,23 @@ public class Cubic
 						return;
 					}
 				}
+				
 				if ((playerA != _owner) && (ownerTarget == playerA))
 				{
 					_target = playerA;
 					return;
 				}
+				
 				if ((playerB != _owner) && (ownerTarget == playerB))
 				{
 					_target = playerB;
 					return;
 				}
+				
 				_target = null;
 				return;
 			}
+			
 			// Olympiad targeting
 			if (_owner.isInOlympiadMode())
 			{
@@ -384,6 +393,7 @@ public class Cubic
 				}
 				return;
 			}
+			
 			// test owners target if it is valid then use it
 			if (ownerTarget.isCreature() && (ownerTarget != _owner.getSummon()) && (ownerTarget != _owner))
 			{
@@ -396,6 +406,7 @@ public class Cubic
 						_target = ownerTarget.asCreature();
 						return;
 					}
+					
 					if (_owner.hasSummon() && attackable.isInAggroList(_owner.getSummon()) && !attackable.isDead())
 					{
 						_target = ownerTarget.asCreature();
@@ -426,29 +437,35 @@ public class Cubic
 								targetIt = false;
 							}
 						}
+						
 						if ((_owner.getClan() != null) && !_owner.isInsideZone(ZoneId.PVP))
 						{
 							if (_owner.getClan().isMember(enemy.getObjectId()))
 							{
 								targetIt = false;
 							}
+							
 							if ((_owner.getAllyId() > 0) && (enemy.getAllyId() > 0) && (_owner.getAllyId() == enemy.getAllyId()))
 							{
 								targetIt = false;
 							}
 						}
+						
 						if ((enemy.getPvpFlag() == 0) && !enemy.isInsideZone(ZoneId.PVP))
 						{
 							targetIt = false;
 						}
+						
 						if (enemy.isInsideZone(ZoneId.PEACE))
 						{
 							targetIt = false;
 						}
+						
 						if ((_owner.getSiegeState() > 0) && (_owner.getSiegeState() == enemy.getSiegeState()))
 						{
 							targetIt = false;
 						}
+						
 						if (!enemy.isSpawned())
 						{
 							targetIt = false;
@@ -477,7 +494,7 @@ public class Cubic
 				continue;
 			}
 			
-			if (skill.isBad())
+			if (skill.hasNegativeEffect())
 			{
 				final byte shld = Formulas.calcShldUse(_owner, target, skill);
 				final boolean acted = Formulas.calcCubicSkillSuccess(this, target, skill, shld);
@@ -491,11 +508,11 @@ public class Cubic
 			// Apply effects
 			skill.applyEffects(_owner, target, false, false, true, 0);
 			
-			// If this is a bad skill notify the duel manager, so it can be removed after the duel (player & target must be in the same duel).
+			// If this is a negative effect skill notify the duel manager, so it can be removed after the duel (player & target must be in the same duel).
 			if (target.isPlayer())
 			{
 				final Player player = target.asPlayer();
-				if (player.isInDuel() && skill.isBad() && (_owner.getDuelId() == player.getDuelId()))
+				if (player.isInDuel() && skill.hasNegativeEffect() && (_owner.getDuelId() == player.getDuelId()))
 				{
 					DuelManager.getInstance().onBuff(player, skill);
 				}
@@ -584,6 +601,7 @@ public class Cubic
 					target.breakAttack();
 					target.breakCast();
 				}
+				
 				owner.sendDamageMessage(target, damage, mcrit, false, false);
 			}
 		}
@@ -604,11 +622,11 @@ public class Cubic
 				// Apply effects
 				skill.applyEffects(_owner, target, false, false, true, 0);
 				
-				// If this is a bad skill notify the duel manager, so it can be removed after the duel (player & target must be in the same duel).
+				// If this is a negative effect skill notify the duel manager, so it can be removed after the duel (player & target must be in the same duel).
 				if (target.isPlayer())
 				{
 					final Player player = target.asPlayer();
-					if (player.isInDuel() && skill.isBad() && (_owner.getDuelId() == player.getDuelId()))
+					if (player.isInDuel() && skill.hasNegativeEffect() && (_owner.getDuelId() == player.getDuelId()))
 					{
 						DuelManager.getInstance().onBuff(player, skill);
 					}
@@ -643,6 +661,7 @@ public class Cubic
 		int x;
 		int y;
 		int z;
+		
 		// temporary range check until real behavior of cubics is known/coded
 		final int range = MAX_MAGIC_RANGE;
 		x = (owner.getX() - target.getX());
@@ -711,6 +730,7 @@ public class Cubic
 				percentleft = (_owner.getCurrentHp() / _owner.getMaxHp());
 				target = _owner;
 			}
+			
 			if (_owner.hasSummon() && !_owner.getSummon().isDead() && (_owner.getSummon().getCurrentHp() < _owner.getSummon().getMaxHp()) && (percentleft > (_owner.getSummon().getCurrentHp() / _owner.getSummon().getMaxHp())) && isInCubicRange(_owner, _owner.getSummon()))
 			{
 				target = _owner.getSummon();

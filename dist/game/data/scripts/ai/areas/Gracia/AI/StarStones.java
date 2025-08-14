@@ -86,6 +86,7 @@ public class StarStones extends AbstractNpcAI
 					return;
 				}
 			}
+			
 			if (getRandom(100) < 33)
 			{
 				caster.sendPacket(SystemMessageId.YOUR_COLLECTION_HAS_SUCCEEDED);
@@ -100,6 +101,7 @@ public class StarStones extends AbstractNpcAI
 			{
 				caster.sendPacket(SystemMessageId.THE_COLLECTION_HAS_FAILED);
 			}
+			
 			npc.deleteMe();
 		}
 	}

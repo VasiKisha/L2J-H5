@@ -108,6 +108,7 @@ public class ConnectionManager<T extends Client<Connection<T>>>
 			{
 				_socketChannel.accept(null, this);
 			}
+			
 			processNewConnection(clientChannel);
 		}
 		

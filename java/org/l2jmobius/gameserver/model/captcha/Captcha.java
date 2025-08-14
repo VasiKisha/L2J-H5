@@ -105,6 +105,7 @@ public class Captcha
 			dt.image = generateCaptcha(captchaText);
 			imageMap.put(i, dt);
 		}
+		
 		return imageMap;
 	}
 	
@@ -115,6 +116,7 @@ public class Captcha
 		{
 			text[i] = CAPTCHA_TEXT_POSSIBILITIES[Rnd.get(CAPTCHA_TEXT_POSSIBILITIES.length)];
 		}
+		
 		return text;
 	}
 	

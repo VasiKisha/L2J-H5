@@ -48,8 +48,10 @@ public class SeparatedSoul extends AbstractNpcAI
 	private static final int WILL_OF_ANTHARAS = 17266;
 	private static final int SEALED_BLOOD_CRYSTAL = 17267;
 	private static final int ANTHARAS_BLOOD_CRYSTAL = 17268;
+	
 	// Misc
 	private static final int MIN_LEVEL = 80;
+	
 	// Locations
 	private static final Map<String, Location> LOCATIONS = new HashMap<>();
 	static
@@ -97,6 +99,7 @@ public class SeparatedSoul extends AbstractNpcAI
 				return "no-items.htm";
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

@@ -58,6 +58,7 @@ public class CreatureTemplate extends ListenersContainer
 	private int _baseShldRate;
 	private int _baseCritRate;
 	private int _baseMCritRate;
+	
 	// SpecialStats
 	private int _baseBreath;
 	private int _baseFire;

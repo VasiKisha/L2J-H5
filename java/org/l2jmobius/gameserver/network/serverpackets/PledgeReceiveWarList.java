@@ -50,6 +50,7 @@ public class PledgeReceiveWarList extends ServerPacket
 			{
 				continue;
 			}
+			
 			buffer.writeString(clan.getName());
 			buffer.writeInt(_tab); // ??
 			buffer.writeInt(_tab); // ??

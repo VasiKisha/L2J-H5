@@ -33,9 +33,11 @@ public class Q00009_IntoTheCityOfHumans extends Quest
 	private static final int PETUKAI = 30583;
 	private static final int TANAPI = 30571;
 	private static final int TAMIL = 30576;
+	
 	// Items
 	private static final int SCROLL_OF_ESCAPE_GIRAN = 7559;
 	private static final int MARK_OF_TRAVELER = 7570;
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	
@@ -81,6 +83,7 @@ public class Q00009_IntoTheCityOfHumans extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -133,6 +136,7 @@ public class Q00009_IntoTheCityOfHumans extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

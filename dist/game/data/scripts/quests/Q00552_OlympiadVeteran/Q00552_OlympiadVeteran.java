@@ -33,6 +33,7 @@ public class Q00552_OlympiadVeteran extends Quest
 {
 	// NPC
 	private static final int MANAGER = 31688;
+	
 	// Items
 	private static final int TEAM_EVENT_CERTIFICATE = 17241;
 	private static final int CLASS_FREE_BATTLE_CERTIFICATE = 17242;
@@ -56,6 +57,7 @@ public class Q00552_OlympiadVeteran extends Quest
 		{
 			return getNoQuestMsg(player);
 		}
+		
 		String htmltext = event;
 		if (event.equalsIgnoreCase("31688-03.html"))
 		{
@@ -74,6 +76,7 @@ public class Q00552_OlympiadVeteran extends Quest
 				htmltext = getNoQuestMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -135,6 +138,7 @@ public class Q00552_OlympiadVeteran extends Quest
 			{
 				return;
 			}
+			
 			final QuestState qs = getQuestState(player, false);
 			if ((qs != null) && qs.isStarted())
 			{
@@ -215,6 +219,7 @@ public class Q00552_OlympiadVeteran extends Quest
 				htmltext = "31688-s" + count + ".html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

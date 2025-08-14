@@ -32,10 +32,13 @@ public class Q00432_BirthdayPartySong extends Quest
 {
 	// NPC
 	private static final int OCTAVIA = 31043;
+	
 	// Monster
 	private static final int GOLEM = 21103;
+	
 	// Item
 	private static final int RED_CRYSTAL = 7541;
+	
 	// Reward
 	private static final int ECHO_CRYSTAL = 7061;
 	
@@ -71,6 +74,7 @@ public class Q00432_BirthdayPartySong extends Quest
 				{
 					return "31043-06.html";
 				}
+				
 				giveItems(player, ECHO_CRYSTAL, 25);
 				qs.exitQuest(true, true);
 				break;
@@ -81,6 +85,7 @@ public class Q00432_BirthdayPartySong extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -120,6 +125,7 @@ public class Q00432_BirthdayPartySong extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

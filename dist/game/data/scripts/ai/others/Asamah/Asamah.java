@@ -46,6 +46,7 @@ public class Asamah extends AbstractNpcAI
 		{
 			htmltext = event;
 		}
+		
 		return htmltext;
 	}
 	

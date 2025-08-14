@@ -154,18 +154,22 @@ public class ArmorSet
 		{
 			legs = legsItem.getId();
 		}
+		
 		if (headItem != null)
 		{
 			head = headItem.getId();
 		}
+		
 		if (glovesItem != null)
 		{
 			gloves = glovesItem.getId();
 		}
+		
 		if (feetItem != null)
 		{
 			feet = feetItem.getId();
 		}
+		
 		return containAll(_chestId, legs, head, gloves, feet);
 	}
 	
@@ -175,22 +179,27 @@ public class ArmorSet
 		{
 			return false;
 		}
+		
 		if (!_legs.isEmpty() && !_legs.contains(legs))
 		{
 			return false;
 		}
+		
 		if (!_head.isEmpty() && !_head.contains(head))
 		{
 			return false;
 		}
+		
 		if (!_gloves.isEmpty() && !_gloves.contains(gloves))
 		{
 			return false;
 		}
+		
 		if (!_feet.isEmpty() && !_feet.contains(feet))
 		{
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -248,6 +257,7 @@ public class ArmorSet
 		{
 			return false;
 		}
+		
 		return _shield.contains(shieldId);
 	}
 	
@@ -283,18 +293,22 @@ public class ArmorSet
 		{
 			return false;
 		}
+		
 		if (!_legs.isEmpty() && ((legsItem == null) || (legsItem.getEnchantLevel() < 6)))
 		{
 			return false;
 		}
+		
 		if (!_gloves.isEmpty() && ((glovesItem == null) || (glovesItem.getEnchantLevel() < 6)))
 		{
 			return false;
 		}
+		
 		if (!_head.isEmpty() && ((headItem == null) || (headItem.getEnchantLevel() < 6)))
 		{
 			return false;
 		}
+		
 		if (!_feet.isEmpty() && ((feetItem == null) || (feetItem.getEnchantLevel() < 6)))
 		{
 			return false;

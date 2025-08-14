@@ -36,12 +36,14 @@ public class Q00660_AidingTheFloranVillage extends Quest
 	// NPC
 	private static final int ALEX = 30291;
 	private static final int MARIA = 30608;
+	
 	// Items
 	private static final int SCROLL_ENCHANT_WEAPON_D_GRADE = 955;
 	private static final int SCROLL_ENCHANT_ARMOR_D_GRADE = 956;
 	private static final int WATCHING_EYES = 8074;
 	private static final int ROUGHLY_HEWN_ROCK_GOLEM_SHARD = 8075;
 	private static final int DELU_LIZARDMANS_SCALE = 8076;
+	
 	// Misc
 	private static final int MIN_LEVEL = 30;
 	private static final int ADENA_REWARD_1 = 13000;
@@ -51,6 +53,7 @@ public class Q00660_AidingTheFloranVillage extends Quest
 	private static final int ADENA_REWARD_5 = 45000;
 	private static final int ADENA_REWARD_6 = 5000;
 	private static final int DELU_LIZARDMAN_COMMANDER_DOUBLE_ITEM_CHANCE = 33;
+	
 	// Monsters
 	private static final int DELU_LIZARDMAN_COMMANDER = 21107; // Delu Lizardman Commander
 	
@@ -121,6 +124,7 @@ public class Q00660_AidingTheFloranVillage extends Quest
 						qs.setCond(2);
 						playSound(player, QuestSound.ITEMSOUND_QUEST_ACCEPT);
 					}
+					
 					htmltext = event;
 				}
 				else
@@ -202,6 +206,7 @@ public class Q00660_AidingTheFloranVillage extends Quest
 						{
 							giveItems(player, SCROLL_ENCHANT_WEAPON_D_GRADE, 1);
 						}
+						
 						htmltext = event;
 					}
 					else
@@ -257,6 +262,7 @@ public class Q00660_AidingTheFloranVillage extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -281,6 +287,7 @@ public class Q00660_AidingTheFloranVillage extends Quest
 				{
 					giveItems(player, DELU_LIZARDMANS_SCALE, 1);
 				}
+				
 				playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 			}
 		}
@@ -337,6 +344,7 @@ public class Q00660_AidingTheFloranVillage extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

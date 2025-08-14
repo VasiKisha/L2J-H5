@@ -34,8 +34,10 @@ public class Q00133_ThatsBloodyHot extends Quest
 	// NPCs
 	private static final int KANIS = 32264;
 	private static final int GALATE = 32292;
+	
 	// Item
 	private static final int REFINED_CRYSTAL_SAMPLE = 9785;
+	
 	// Misc
 	private static final int MIN_LEVEL = 78;
 	
@@ -143,6 +145,7 @@ public class Q00133_ThatsBloodyHot extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -209,6 +212,7 @@ public class Q00133_ThatsBloodyHot extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

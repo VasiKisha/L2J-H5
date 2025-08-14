@@ -62,6 +62,7 @@ public class RequestAnswerJoinAlly extends ClientPacket
 			}
 			
 			final Clan requestorClan = requestor.getClan();
+			
 			// we must double check this cause of hack
 			if (requestorClan.checkAllyJoinCondition(requestor, player))
 			{

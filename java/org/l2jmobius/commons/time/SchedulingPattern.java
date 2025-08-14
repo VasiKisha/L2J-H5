@@ -209,6 +209,7 @@ public class SchedulingPattern
 		{
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -256,6 +257,7 @@ public class SchedulingPattern
 						
 						throw new RuntimeException("Unknown hour modifier \"" + minutePatternParts[i] + "\"");
 					}
+					
 					minutePattern = minutePatternParts[minutePatternParts.length - 1];
 				}
 				
@@ -293,6 +295,7 @@ public class SchedulingPattern
 						
 						throw new RuntimeException("Unknown hour modifier \"" + hourPatternParts[i] + "\"");
 					}
+					
 					hourPattern = hourPatternParts[hourPatternParts.length - 1];
 				}
 				
@@ -325,6 +328,7 @@ public class SchedulingPattern
 						
 						throw new RuntimeException("Unknown day modifier \"" + dayOfMonthPatternParts[i] + "\"");
 					}
+					
 					dayOfMonthPattern = dayOfMonthPatternParts[dayOfMonthPatternParts.length - 1];
 				}
 				
@@ -362,6 +366,7 @@ public class SchedulingPattern
 					{
 						throw new RuntimeException("Unknown week of year addition in pattern \"" + localPattern + "\".");
 					}
+					
 					weekOfYearAdderText = weekOfYearAdderText.substring(1);
 					_weekOfYearAdder.put(_matcherSize, Integer.parseInt(weekOfYearAdderText));
 				}
@@ -477,6 +482,7 @@ public class SchedulingPattern
 			{
 				values2.add(values.get(i));
 			}
+			
 			return values2;
 		}
 		
@@ -501,6 +507,7 @@ public class SchedulingPattern
 			{
 				values.add(i);
 			}
+			
 			return values;
 		}
 		
@@ -556,6 +563,7 @@ public class SchedulingPattern
 			{
 				values.add(i);
 			}
+			
 			for (int i = min; i <= v2; i++)
 			{
 				values.add(i);
@@ -566,6 +574,7 @@ public class SchedulingPattern
 			// v1 == v2
 			values.add(v1);
 		}
+		
 		return values;
 	}
 	
@@ -588,14 +597,17 @@ public class SchedulingPattern
 			{
 				gc.add(Calendar.WEEK_OF_YEAR, -_weekOfYearAdder.get(i).intValue());
 			}
+			
 			if (_dayOfYearAdder.containsKey(i))
 			{
 				gc.add(Calendar.DAY_OF_YEAR, -_dayOfYearAdder.get(i).intValue());
 			}
+			
 			if (_hourAdder.containsKey(i))
 			{
 				gc.add(Calendar.HOUR, -_hourAdder.get(i).intValue());
 			}
+			
 			final int minute = gc.get(Calendar.MINUTE);
 			final int hour = gc.get(Calendar.HOUR_OF_DAY);
 			final int dayOfMonth = gc.get(Calendar.DAY_OF_MONTH);
@@ -612,6 +624,7 @@ public class SchedulingPattern
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -645,14 +658,17 @@ public class SchedulingPattern
 			{
 				gc.add(3, _weekOfYearAdder.get(i));
 			}
+			
 			if (_dayOfYearAdder.containsKey(i))
 			{
 				gc.add(6, _dayOfYearAdder.get(i));
 			}
+			
 			if (_hourAdder.containsKey(i))
 			{
 				gc.add(10, _hourAdder.get(i));
 			}
+			
 			final ValueMatcher minuteMatcher = _minuteMatchers.get(i);
 			final ValueMatcher hourMatcher = _hourMatchers.get(i);
 			final ValueMatcher dayOfMonthMatcher = _dayOfMonthMatchers.get(i);
@@ -716,18 +732,22 @@ public class SchedulingPattern
 												break SEARCH;
 											}
 										}
+										
 										gc.set(MONTH_MAX_VALUE, 0);
 									}
 								}
 							}
+							
 							gc.set(11, 0);
 							gc.set(MONTH_MAX_VALUE, 0);
 						}
 					}
+					
 					gc.set(5, 1);
 					gc.set(11, 0);
 					gc.set(MONTH_MAX_VALUE, 0);
 				}
+				
 				gc.set(2, 0);
 				gc.set(11, 0);
 				gc.set(MONTH_MAX_VALUE, 0);
@@ -742,6 +762,7 @@ public class SchedulingPattern
 			
 			result = next;
 		}
+		
 		return result;
 	}
 	
@@ -801,6 +822,7 @@ public class SchedulingPattern
 				return offset + i;
 			}
 		}
+		
 		throw new Exception("invalid alias \"" + value + "\"");
 	}
 	
@@ -931,6 +953,7 @@ public class SchedulingPattern
 					return true;
 				}
 			}
+			
 			return false;
 		}
 	}
@@ -1018,7 +1041,7 @@ public class SchedulingPattern
 		/**
 		 * Months of year aliases.
 		 */
-		private static String[] ALIASES = new String[]
+		private static String[] ALIASES =
 		{
 			"jan",
 			"feb",
@@ -1076,6 +1099,7 @@ public class SchedulingPattern
 			{
 				return 32;
 			}
+			
 			return super.parse(value);
 		}
 	}
@@ -1146,10 +1170,12 @@ public class SchedulingPattern
 			{
 				throw new Exception("invalid integer value");
 			}
+			
 			if ((i < _minValue) || (i > _maxValue))
 			{
 				throw new Exception("value out of range");
 			}
+			
 			return i;
 		}
 		

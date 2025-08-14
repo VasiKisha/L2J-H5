@@ -95,6 +95,7 @@ public class RaceManager extends Npc
 					search = "Mob" + n;
 					html.replace(search, MonsterRaceManager.getInstance().getMonsters()[i].getTemplate().getName());
 				}
+				
 				search = "No1";
 				if (val == 0)
 				{
@@ -183,6 +184,7 @@ public class RaceManager extends Npc
 				super.onBypassFeedback(player, "Chat 0");
 				return;
 			}
+			
 			html.replace("1race", MonsterRaceManager.getInstance().getRaceNumber());
 			html.replace("%objectId%", getObjectId());
 			player.sendPacket(html);
@@ -208,6 +210,7 @@ public class RaceManager extends Npc
 				final double odd = MonsterRaceManager.getInstance().getOdds().get(i);
 				html.replace("Odd" + n, (odd > 0D) ? String.format(Locale.ENGLISH, "%.1f", odd) : "&$804;");
 			}
+			
 			html.replace("1race", MonsterRaceManager.getInstance().getRaceNumber());
 			html.replace("%objectId%", getObjectId());
 			player.sendPacket(html);
@@ -228,6 +231,7 @@ public class RaceManager extends Npc
 				String search = "Mob" + n;
 				html.replace(search, MonsterRaceManager.getInstance().getMonsters()[i].getTemplate().getName());
 			}
+			
 			html.replace("%objectId%", getObjectId());
 			player.sendPacket(html);
 			player.sendPacket(ActionFailed.STATIC_PACKET);

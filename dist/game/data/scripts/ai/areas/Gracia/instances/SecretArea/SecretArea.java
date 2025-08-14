@@ -32,12 +32,14 @@ public class SecretArea extends AbstractInstance
 	// NPCs
 	private static final int GINBY = 32566;
 	private static final int LELRIKIA = 32567;
+	
 	// Locations
 	private static final Location[] TELEPORTS =
 	{
 		new Location(-23758, -8959, -5384),
 		new Location(-185057, 242821, 1576)
 	};
+	
 	// Misc
 	private static final int TEMPLATE_ID = 117;
 	private static final int ENTER = 0;
@@ -57,6 +59,7 @@ public class SecretArea extends AbstractInstance
 		{
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, TELEPORTS[ENTER], world.getInstanceId());
 	}
 	
@@ -74,6 +77,7 @@ public class SecretArea extends AbstractInstance
 			teleportPlayer(player, TELEPORTS[EXIT], 0);
 			return "32567-01.html";
 		}
+		
 		return htmltext;
 	}
 }

@@ -81,6 +81,7 @@ public class ItemsAutoDestroyTaskManager implements Runnable
 					{
 						ItemsOnGroundManager.getInstance().removeObject(itemInstance);
 					}
+					
 					iterator.remove();
 				}
 			}

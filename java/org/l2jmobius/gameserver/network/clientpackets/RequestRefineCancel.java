@@ -128,6 +128,7 @@ public class RequestRefineCancel extends ClientPacket
 				price = 920000;
 				break;
 			}
+			
 			// any other item type is not augmentable
 			default:
 			{

@@ -34,6 +34,7 @@ public class Dorian extends AbstractNpcAI
 {
 	// NPC
 	private static final int DORIAN = 25332;
+	
 	// Items
 	private static final int SILVER_CROSS = 7153;
 	private static final int BROKEN_SILVER_CROSS = 7154;

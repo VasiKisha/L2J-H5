@@ -50,6 +50,7 @@ public class ItemManaTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		if (!ITEMS.isEmpty())

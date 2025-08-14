@@ -30,6 +30,7 @@ public class MithrilMinesTeleporter extends AbstractNpcAI
 {
 	// NPC
 	private static final int TELEPORT_CRYSTAL = 32652;
+	
 	// Location
 	private static final Location[] LOCS =
 	{
@@ -57,6 +58,7 @@ public class MithrilMinesTeleporter extends AbstractNpcAI
 			final Location loc = LOCS[index];
 			player.teleToLocation(loc, false);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -77,6 +79,7 @@ public class MithrilMinesTeleporter extends AbstractNpcAI
 		{
 			return "32652-03.htm";
 		}
+		
 		return super.onFirstTalk(npc, player);
 	}
 	

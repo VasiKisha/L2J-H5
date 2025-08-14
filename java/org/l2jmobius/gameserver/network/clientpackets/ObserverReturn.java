@@ -40,6 +40,7 @@ public class ObserverReturn extends ClientPacket
 		{
 			return;
 		}
+		
 		if (player.inObserverMode())
 		{
 			player.leaveObserverMode();

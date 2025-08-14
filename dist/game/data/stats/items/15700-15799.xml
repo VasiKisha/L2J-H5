@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="15700" type="Armor" name="Sealed Moirai Gaiter">
 		<!-- Sealed Moirai Gaiters. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -14,13 +14,13 @@
 		<set name="price" val="21046000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="141" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15701" type="Armor" name="Sealed Moirai Leather Legging">
 		<!-- Sealed Moirai Leather Leggings. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -36,10 +36,10 @@
 		<set name="price" val="15784000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="105" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15702" type="Armor" name="Sealed Moirai Stockings">
 		<!-- Sealed Moirai Stockings. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -55,14 +55,14 @@
 		<set name="price" val="15784000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="70" />
 			<add stat="maxMp" val="392" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15703" type="Armor" name="Sealed Moirai Gauntlet">
 		<!-- Sealed Moirai Gauntlet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -77,13 +77,13 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15704" type="Armor" name="Sealed Moirai Leather Gloves">
 		<!-- Sealed Moirai Leather Gloves. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -98,10 +98,10 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15705" type="Armor" name="Sealed Moirai Gloves">
 		<!-- Sealed Moirai Gloves. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -116,13 +116,13 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15706" type="Armor" name="Sealed Moirai Boots">
 		<!-- Sealed Moirai Boots. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -137,13 +137,13 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15707" type="Armor" name="Sealed Moirai Leather Boots">
 		<!-- Sealed Moirai Leather Boots. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -158,10 +158,10 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15708" type="Armor" name="Sealed Moirai Shoes">
 		<!-- Sealed Moirai Shoes. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -176,13 +176,13 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15709" type="Armor" name="Sealed Moirai Sigil">
 		<!-- Sealed Moirai Sigil. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -197,14 +197,14 @@
 		<set name="weight" val="920" />
 		<set name="price" val="8839000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="16" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15710" type="Armor" name="Sealed Moirai Shield">
 		<!-- Sealed Moirai Shield. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -218,15 +218,15 @@
 		<set name="weight" val="1190" />
 		<set name="price" val="8839000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="337" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="15711" type="EtcItem" name="War Veteran Voucher">
 		<!-- Document showing military service in the Seed of Annihilation region. Collect plenty of these and take them back to Soldier Ilvenis at the pier in the Seed of Annihilation to exchange for a reward. -->
@@ -317,11 +317,11 @@
 		<set name="weight" val="150" />
 		<set name="price" val="10897000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="69" />
 			<add stat="maxMp" val="27" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15718" type="Armor" name="Elegia Earring">
 		<!-- Elegia Earring. The effect is MP +39. -->
@@ -335,11 +335,11 @@
 		<set name="weight" val="150" />
 		<set name="price" val="16346000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="104" />
 			<add stat="maxMp" val="39" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15719" type="Armor" name="Elegia Necklace">
 		<!-- Elegia Necklace. The effect is MP +52. -->
@@ -353,11 +353,11 @@
 		<set name="weight" val="150" />
 		<set name="price" val="21795000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="138" />
 			<add stat="maxMp" val="52" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15720" type="Armor" name="Vorpal Ring">
 		<!-- Vorpal Ring. The effect is MP +26. -->
@@ -371,11 +371,11 @@
 		<set name="weight" val="150" />
 		<set name="price" val="9088000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="65" />
 			<add stat="maxMp" val="26" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15721" type="Armor" name="Vorpal Earring">
 		<!-- Vorpal Earring. The effect is MP +38. -->
@@ -389,11 +389,11 @@
 		<set name="weight" val="150" />
 		<set name="price" val="13633000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="98" />
 			<add stat="maxMp" val="38" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15722" type="Armor" name="Vorpal Necklace">
 		<!-- Vorpal Necklace. The effect is MP +51. -->
@@ -407,11 +407,11 @@
 		<set name="weight" val="150" />
 		<set name="price" val="18177000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="131" />
 			<add stat="maxMp" val="51" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15723" type="Armor" name="Moirai Ring">
 		<!-- Moirai Ring. The effect is MP +24. -->
@@ -425,11 +425,11 @@
 		<set name="weight" val="150" />
 		<set name="price" val="5480000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="61" />
 			<add stat="maxMp" val="24" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15724" type="Armor" name="Moirai Earring">
 		<!-- Moirai Earring. The effect is MP +36. -->
@@ -443,11 +443,11 @@
 		<set name="weight" val="150" />
 		<set name="price" val="8221000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="86" />
 			<add stat="maxMp" val="36" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15725" type="Armor" name="Moirai Necklace">
 		<!-- Moirai Necklace. The effect is MP +48. -->
@@ -461,11 +461,11 @@
 		<set name="weight" val="150" />
 		<set name="price" val="10961000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="115" />
 			<add stat="maxMp" val="48" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15726" type="Armor" name="Sealed Elegia Helmet">
 		<!-- Sealed Elegia Helmet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -480,13 +480,13 @@
 		<set name="price" val="25107000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="110" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15727" type="Armor" name="Sealed Elegia Leather Helmet">
 		<!-- Sealed Elegia Leather Helmet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -501,10 +501,10 @@
 		<set name="price" val="25107000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="110" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15728" type="Armor" name="Sealed Elegia Circlet">
 		<!-- Sealed Elegia Circlet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -519,13 +519,13 @@
 		<set name="price" val="25107000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="110" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15729" type="Armor" name="Sealed Elegia Breastplate">
 		<!-- Sealed Elegia Breastplate. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -541,13 +541,13 @@
 		<set name="price" val="66953000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="257" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15730" type="Armor" name="Sealed Elegia Leather Breastplate">
 		<!-- Sealed Elegia Leather Breastplate. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -563,10 +563,10 @@
 		<set name="price" val="50215000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="193" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15731" type="Armor" name="Sealed Elegia Tunic">
 		<!-- Sealed Elegia Tunic. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -582,14 +582,14 @@
 		<set name="price" val="50215000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="129" />
 			<add stat="maxMp" val="661" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15732" type="Armor" name="Sealed Elegia Gaiter">
 		<!-- Sealed Elegia Gaiters. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -605,13 +605,13 @@
 		<set name="price" val="41846000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="161" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15733" type="Armor" name="Sealed Elegia Leather Legging">
 		<!-- Sealed Elegia Leather Leggings. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -627,10 +627,10 @@
 		<set name="price" val="31384000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="121" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15734" type="Armor" name="Sealed Elegia Stockings">
 		<!-- Sealed Elegia Stockings. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -646,14 +646,14 @@
 		<set name="price" val="31384000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="80" />
 			<add stat="maxMp" val="439" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15735" type="Armor" name="Sealed Elegia Gauntlet">
 		<!-- Sealed Elegia Gauntlet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -668,13 +668,13 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15736" type="Armor" name="Sealed Elegia Leather Gloves">
 		<!-- Sealed Elegia Leather Gloves. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -689,10 +689,10 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15737" type="Armor" name="Sealed Elegia Gloves">
 		<!-- Sealed Elegia Gloves. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -707,13 +707,13 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15738" type="Armor" name="Sealed Elegia Boots">
 		<!-- Sealed Elegia Boots. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -728,13 +728,13 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15739" type="Armor" name="Sealed Elegia Leather Boots">
 		<!-- Sealed Elegia Leather Boots. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -749,10 +749,10 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15740" type="Armor" name="Sealed Elegia Shoes">
 		<!-- Sealed Elegia Shoes. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -767,13 +767,13 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15741" type="Armor" name="Sealed Elegia Shield">
 		<!-- Sealed Elegia Shield. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -787,15 +787,15 @@
 		<set name="weight" val="1190" />
 		<set name="price" val="17575000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="392" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="15742" type="Armor" name="Sealed Elegia Sigil">
 		<!-- Sealed Elegia Sigil. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -810,14 +810,14 @@
 		<set name="weight" val="920" />
 		<set name="price" val="17575000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="21" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15743" type="Armor" name="Sealed Vorpal Helmet">
 		<!-- Sealed Vorpal Helmet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -832,13 +832,13 @@
 		<set name="price" val="20940000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="107" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15744" type="Armor" name="Sealed Vorpal Leather Helmet">
 		<!-- Sealed Vorpal Leather Helmet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -853,10 +853,10 @@
 		<set name="price" val="20940000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="107" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15745" type="Armor" name="Sealed Vorpal Circlet">
 		<!-- Sealed Vorpal Circlet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -871,13 +871,13 @@
 		<set name="price" val="20940000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="107" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15746" type="Armor" name="Sealed Vorpal Breastplate">
 		<!-- Sealed Vorpal Breastplate. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -893,13 +893,13 @@
 		<set name="price" val="55840000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="249" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15747" type="Armor" name="Sealed Vorpal Leather Breastplate">
 		<!-- Sealed Vorpal Leather Breastplate. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -915,10 +915,10 @@
 		<set name="price" val="41880000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="187" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15748" type="Armor" name="Sealed Vorpal Tunic">
 		<!-- Sealed Vorpal Tunic. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -934,14 +934,14 @@
 		<set name="price" val="41880000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="124" />
 			<add stat="maxMp" val="649" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15749" type="Armor" name="Sealed Vorpal Gaiter">
 		<!-- Sealed Vorpal Gaiters. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -957,13 +957,13 @@
 		<set name="price" val="34900000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="156" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15750" type="Armor" name="Sealed Vorpal Leather Legging">
 		<!-- Sealed Vorpal Leather Leggings. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -979,10 +979,10 @@
 		<set name="price" val="26175000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="117" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15751" type="Armor" name="Sealed Vorpal Stockings">
 		<!-- Sealed Vorpal Stockings. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -998,14 +998,14 @@
 		<set name="price" val="26175000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="78" />
 			<add stat="maxMp" val="427" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15752" type="Armor" name="Sealed Vorpal Gauntlet">
 		<!-- Sealed Vorpal Gauntlet. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1020,13 +1020,13 @@
 		<set name="price" val="13960000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="71" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15753" type="Armor" name="Sealed Vorpal Leather Gloves">
 		<!-- Sealed Vorpal Leather Gloves. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1041,10 +1041,10 @@
 		<set name="price" val="13960000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="71" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15754" type="Armor" name="Sealed Vorpal Gloves">
 		<!-- Sealed Vorpal Gloves. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1059,13 +1059,13 @@
 		<set name="price" val="13960000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="71" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15755" type="Armor" name="Sealed Vorpal Boots">
 		<!-- Sealed Vorpal Boots. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1080,13 +1080,13 @@
 		<set name="price" val="13960000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="71" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15756" type="Armor" name="Sealed Vorpal Leather Boots">
 		<!-- Sealed Vorpal Leather Boots. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1101,10 +1101,10 @@
 		<set name="price" val="13960000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="71" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15757" type="Armor" name="Sealed Vorpal Shoes">
 		<!-- Sealed Vorpal Shoes. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1119,13 +1119,13 @@
 		<set name="price" val="13960000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="71" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15758" type="Armor" name="Sealed Vorpal Shield">
 		<!-- Sealed Vorpal Shield. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1139,15 +1139,15 @@
 		<set name="weight" val="1190" />
 		<set name="price" val="14658000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="379" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="15759" type="Armor" name="Sealed Vorpal Sigil">
 		<!-- Sealed Vorpal Sigil. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1162,14 +1162,14 @@
 		<set name="weight" val="920" />
 		<set name="price" val="14658000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="19" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15760" type="Armor" name="Sealed Elegia Ring">
 		<!-- Sealed Elegia Ring. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is released, has an M. Def. +8 and MP+27. -->
@@ -1183,10 +1183,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="7377000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="61" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15761" type="Armor" name="Sealed Elegia Earring">
 		<!-- Sealed Elegia Earring. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is released, has an M. Def. +12 and MP+39. -->
@@ -1200,10 +1200,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="11066000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="92" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15762" type="Armor" name="Sealed Elegia Necklace">
 		<!-- Sealed Elegia Necklace. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is released, has an M. Def. +17 and MP+52. -->
@@ -1217,10 +1217,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="14755000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="121" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15763" type="Armor" name="Sealed Vorpal Ring">
 		<!-- Sealed Vorpal Ring. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is released, has an M. Def. +8 and MP+26. -->
@@ -1234,10 +1234,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="6152000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="57" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15764" type="Armor" name="Sealed Vorpal Earring">
 		<!-- Sealed Vorpal Earring. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is released, has an M. Def. +12 and MP+38. -->
@@ -1251,10 +1251,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="9229000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="86" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15765" type="Armor" name="Sealed Vorpal Necklace">
 		<!-- Sealed Vorpal Necklace. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is released, has an M. Def. +16 and MP+51. -->
@@ -1268,10 +1268,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="12305000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="115" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15766" type="Armor" name="Sealed Moirai Ring">
 		<!-- Sealed Moirai Ring. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is released, has an M. Def. +7 and MP+24. -->
@@ -1285,10 +1285,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3710000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="53" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15767" type="Armor" name="Sealed Moirai Earring">
 		<!-- Sealed Moirai Earring. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is released, has M. Def. +10 and MP+36. -->
@@ -1302,10 +1302,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="5565000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="76" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15768" type="Armor" name="Sealed Moirai Necklace">
 		<!-- Sealed Moirai Necklace. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is released, has an M. Def. +14 and MP+48. -->
@@ -1319,10 +1319,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="7420000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="101" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15769" type="EtcItem" name="Sealed Vesper Ring Gem">
 		<!-- An essential ingredient that a Dwarf needs to make Vesper Ring. It can be sold at ordinary stores. -->

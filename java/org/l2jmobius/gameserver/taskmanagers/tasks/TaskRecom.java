@@ -75,6 +75,7 @@ public class TaskRecom extends PersistentTask
 				}
 			}
 		}
+		
 		LOGGER.info("Recommendations System reseted.");
 	}
 	

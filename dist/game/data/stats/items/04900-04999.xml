@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="4900" type="Weapon" name="Staff of Evil Spirits - Magic Focus">
 		<!-- <Soul Crystal Enhancement>. Has a 20% chance of casting Focus when using a magic skill on the target. -->
@@ -21,7 +21,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="20" />
 		<set name="onmagic_skill" val="1077-3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="189" />
 			<set stat="mAtk" val="145" />
 			<set stat="critRate" val="4" />
@@ -29,7 +29,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="4901" type="Weapon" name="Staff of Evil Spirits - Blessed Body">
 		<!-- <Soul Crystal Enhancement>. Has a 20% chance of casting Blessed Body when using a magic skill on the target. -->
@@ -52,7 +52,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="20" />
 		<set name="onmagic_skill" val="1045-5" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="189" />
 			<set stat="mAtk" val="145" />
 			<set stat="critRate" val="4" />
@@ -60,7 +60,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="4902" type="Weapon" name="Staff of Evil Spirits - Magic Poison">
 		<!-- <Soul Crystal Enhancement>. Has a 6% chance of casting Curse: Poison when using a magic skill on the target. -->
@@ -83,7 +83,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="6" />
 		<set name="onmagic_skill" val="1168-6" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="189" />
 			<set stat="mAtk" val="145" />
 			<set stat="critRate" val="4" />
@@ -91,7 +91,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="4903" type="Weapon" name="Dasparion's Staff">
 		<set name="icon" val="icon.weapon_dasparions_staff_i01" />
@@ -111,7 +111,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="207" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="4" />
@@ -119,7 +119,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="4904" type="Weapon" name="Dasparion's Staff">
 		<set name="icon" val="icon.weapon_dasparions_staff_i01" />
@@ -141,7 +141,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="4" />
 		<set name="onmagic_skill" val="1164-14" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="207" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="4" />
@@ -149,7 +149,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="4905" type="Weapon" name="Dasparion's Staff">
 		<set name="icon" val="icon.weapon_dasparions_staff_i01" />
@@ -171,7 +171,7 @@
 		<set name="is_magic_weapon" val="true" />
 		<set name="onmagic_chance" val="4" />
 		<set name="onmagic_skill" val="1222-10" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="207" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="4" />
@@ -179,7 +179,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="4906" type="EtcItem" name="Spellbook: Solar Spark">
 		<!-- Spellbook needed to learn Solar Spark. Used by Elven Wizards. Required level: 25 -->

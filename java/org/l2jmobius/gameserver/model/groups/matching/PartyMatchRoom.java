@@ -92,12 +92,16 @@ public class PartyMatchRoom
 	{
 		// Get current leader
 		final Player oldLeader = _members.get(0);
+		
 		// Remove new leader
 		_members.remove(newLeader);
+		
 		// Move him to first position
 		_members.set(0, newLeader);
+		
 		// Add old leader as normal member
 		_members.add(oldLeader);
+		
 		// Broadcast change
 		for (Player member : _members)
 		{

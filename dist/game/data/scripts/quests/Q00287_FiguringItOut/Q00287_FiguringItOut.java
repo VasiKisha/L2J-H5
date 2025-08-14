@@ -51,6 +51,7 @@ public class Q00287_FiguringItOut extends Quest
 	
 	// Items
 	private static final int VIAL_OF_TANTA_BLOOD = 15499;
+	
 	// Rewards
 	private static final ItemHolder[] MOIRAI =
 	{
@@ -165,6 +166,7 @@ public class Q00287_FiguringItOut extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -176,6 +178,7 @@ public class Q00287_FiguringItOut extends Quest
 		{
 			return;
 		}
+		
 		if (getRandom(1000) < MONSTERS.get(npc.getId()))
 		{
 			giveItems(player, VIAL_OF_TANTA_BLOOD, 1);
@@ -203,6 +206,7 @@ public class Q00287_FiguringItOut extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

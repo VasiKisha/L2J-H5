@@ -79,6 +79,7 @@ public class TerritoryManagers extends AbstractNpcAI
 			// If the player does not have the second class transfer or is under level 40, it cannot continue.
 			return "36490-08.html";
 		}
+		
 		return npc.getId() + ".html";
 	}
 	
@@ -137,20 +138,26 @@ public class TerritoryManagers extends AbstractNpcAI
 					// Complete the Noblesse related quests.
 					// Possessor of a Precious Soul - 1 (241)
 					processNoblesseQuest(player, 241, preciousSoul1ItemIds);
+					
 					// Possessor of a Precious Soul - 2 (242)
 					processNoblesseQuest(player, 242, preciousSoul2ItemIds);
+					
 					// Possessor of a Precious Soul - 3 (246)
 					processNoblesseQuest(player, 246, preciousSoul3ItemIds);
+					
 					// Possessor of a Precious Soul - 4 (247)
 					processNoblesseQuest(player, 247, null);
 					
 					// Take the Territory Badges.
 					player.destroyItemByItemId(ItemProcessType.FEE, itemId, TerritoryWarManager.MINTWBADGEFORNOBLESS, npc, true);
+					
 					// Give Noblesse Tiara to the player.
 					player.addItem(ItemProcessType.REWARD, 7694, 1, npc, true);
+					
 					// Set Noblesse status to the player.
 					player.setNoble(true);
 					player.updateUserInfo();
+					
 					// Complete the sub-class related quest.
 					// Complete quest Seeds of Chaos (236) for Kamael characters.
 					// Complete quest Mimir's Elixir (235) for other races characters.
@@ -163,18 +170,24 @@ public class TerritoryManagers extends AbstractNpcAI
 							qs = q.newQuestState(player);
 							qs.setState(State.STARTED);
 						}
+						
 						// Completes the quest.
 						qs.exitQuest(false);
 					}
+					
 					// Remove the following items
 					// Caradine's Letter
 					deleteIfExist(player, 7678, npc);
+					
 					// Caradine's Letter
 					deleteIfExist(player, 7679, npc);
+					
 					// Star of Destiny
 					deleteIfExist(player, 5011, npc);
+					
 					// Virgil's Letter
 					deleteIfExist(player, 1239, npc);
+					
 					// Arkenia's Letter
 					deleteIfExist(player, 1246, npc);
 				}
@@ -204,6 +217,7 @@ public class TerritoryManagers extends AbstractNpcAI
 					html.replace("%badge%", String.valueOf(reward[1]));
 					html.replace("%adena%", String.valueOf(reward[1] * 5000));
 				}
+				
 				html.replace("%territoryId%", String.valueOf(territoryId));
 				html.replace("%objectId%", String.valueOf(npc.getObjectId()));
 				player.sendPacket(html);
@@ -217,6 +231,7 @@ public class TerritoryManagers extends AbstractNpcAI
 				{
 					badgeId = TerritoryWarManager.TERRITORY_ITEM_IDS.get(territoryId);
 				}
+				
 				final int[] reward = TerritoryWarManager.getInstance().calcReward(player);
 				final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
 				if (TerritoryWarManager.getInstance().isTWInProgress() || (reward[0] == 0))
@@ -251,6 +266,7 @@ public class TerritoryManagers extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -285,6 +301,7 @@ public class TerritoryManagers extends AbstractNpcAI
 					takeItems(player, itemId, -1);
 				}
 			}
+			
 			// Completes the quest.
 			qs.exitQuest(false);
 		}

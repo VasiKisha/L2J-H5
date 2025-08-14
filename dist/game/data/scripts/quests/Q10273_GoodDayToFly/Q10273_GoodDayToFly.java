@@ -37,14 +37,17 @@ public class Q10273_GoodDayToFly extends Quest
 {
 	// NPC
 	private static final int LEKON = 32557;
+	
 	// Monsters
 	private static final int[] MOBS =
 	{
 		22614, // Vulture Rider
 		22615, // Vulture Rider
 	};
+	
 	// Item
 	private static final int MARK = 13856;
+	
 	// Skills
 	private static final SkillHolder AURA_BIRD_FALCON = new SkillHolder(5982, 1);
 	private static final SkillHolder AURA_BIRD_OWL = new SkillHolder(5983, 1);
@@ -104,6 +107,7 @@ public class Q10273_GoodDayToFly extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -163,6 +167,7 @@ public class Q10273_GoodDayToFly extends Quest
 					{
 						giveItems(player, 13554, 1);
 					}
+					
 					giveItems(player, 13857, 1);
 					addExpAndSp(player, 25160, 2525);
 					qs.exitQuest(false, true);
@@ -178,6 +183,7 @@ public class Q10273_GoodDayToFly extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

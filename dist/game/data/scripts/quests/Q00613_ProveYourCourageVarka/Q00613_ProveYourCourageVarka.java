@@ -32,12 +32,15 @@ public class Q00613_ProveYourCourageVarka extends Quest
 {
 	// NPC
 	private static final int ASHAS = 31377;
+	
 	// Monster
 	private static final int HEKATON = 25299;
+	
 	// Items
 	private static final int HEKATON_HEAD = 7240;
 	private static final int VALOR_FEATHER = 7229;
 	private static final int VARKA_ALLIANCE_THREE = 7223;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
 	
@@ -98,6 +101,7 @@ public class Q00613_ProveYourCourageVarka extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -125,6 +129,7 @@ public class Q00613_ProveYourCourageVarka extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -49,6 +49,7 @@ public class SpecialSiegeGuardAI extends SiegeGuardAI
 		{
 			return false;
 		}
+		
 		return super.autoAttackCondition(target);
 	}
 }

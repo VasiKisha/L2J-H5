@@ -160,10 +160,12 @@ public class ItemData
 		{
 			_allTemplates[item.getId()] = item;
 		}
+		
 		for (Weapon item : _weapons.values())
 		{
 			_allTemplates[item.getId()] = item;
 		}
+		
 		for (EtcItem item : _etcItems.values())
 		{
 			_allTemplates[item.getId()] = item;

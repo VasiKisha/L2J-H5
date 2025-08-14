@@ -68,6 +68,7 @@ public class Q00170_DangerousSeduction extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -116,6 +117,7 @@ public class Q00170_DangerousSeduction extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

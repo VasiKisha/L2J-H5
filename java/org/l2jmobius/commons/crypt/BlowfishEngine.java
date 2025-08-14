@@ -1187,12 +1187,14 @@ public class BlowfishEngine
 			{
 				// create a 32 bit block
 				data = (data << 8) | (key[keyIndex++] & 0xff);
+				
 				// wrap when we get to the end of the key
 				if (keyIndex >= keyLength)
 				{
 					keyIndex = 0;
 				}
 			}
+			
 			// XOR the newly created 32 bit chunk onto the P-array
 			P[i] ^= data;
 		}
@@ -1224,10 +1226,12 @@ public class BlowfishEngine
 		{
 			throw new IllegalStateException("Blowfish not initialized");
 		}
+		
 		if ((srcIndex + BLOCK_SIZE) > src.length)
 		{
 			throw new IOException("input buffer too short");
 		}
+		
 		encryptBlock(src, srcIndex);
 	}
 	
@@ -1247,14 +1251,17 @@ public class BlowfishEngine
 		{
 			throw new IllegalStateException("Blowfish not initialized");
 		}
+		
 		if ((srcIndex + BLOCK_SIZE) > src.length)
 		{
 			throw new IOException("input buffer too short");
 		}
+		
 		if ((dstIndex + BLOCK_SIZE) > dst.length)
 		{
 			throw new IOException("output buffer too short");
 		}
+		
 		encryptBlock(src, srcIndex, dst, dstIndex);
 	}
 	
@@ -1331,10 +1338,12 @@ public class BlowfishEngine
 		{
 			throw new IllegalStateException("Blowfish not initialized");
 		}
+		
 		if ((srcIndex + BLOCK_SIZE) > src.length)
 		{
 			throw new IOException("input buffer too short");
 		}
+		
 		decryptBlock(src, srcIndex);
 	}
 	
@@ -1354,14 +1363,17 @@ public class BlowfishEngine
 		{
 			throw new IllegalStateException("Blowfish not initialized");
 		}
+		
 		if ((srcIndex + BLOCK_SIZE) > src.length)
 		{
 			throw new IOException("input buffer too short");
 		}
+		
 		if ((dstIndex + BLOCK_SIZE) > src.length)
 		{
 			throw new IOException("output buffer too short");
 		}
+		
 		decryptBlock(src, srcIndex, dst, dstIndex);
 	}
 	

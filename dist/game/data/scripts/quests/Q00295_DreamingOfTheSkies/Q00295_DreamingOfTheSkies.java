@@ -31,12 +31,16 @@ public class Q00295_DreamingOfTheSkies extends Quest
 {
 	// NPC
 	private static final int ARIN = 30536;
+	
 	// Monster
 	private static final int MAGICAL_WEAVER = 20153;
+	
 	// Item
 	private static final int FLOATING_STONE = 1492;
+	
 	// Reward
 	private static final int RING_OF_FIREFLY = 1509;
+	
 	// Misc
 	private static final int MIN_LEVEL = 11;
 	
@@ -58,6 +62,7 @@ public class Q00295_DreamingOfTheSkies extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -94,6 +99,7 @@ public class Q00295_DreamingOfTheSkies extends Quest
 					giveItems(talker, RING_OF_FIREFLY, 1);
 					html = "30536-05.html";
 				}
+				
 				takeItems(talker, FLOATING_STONE, -1);
 				qs.exitQuest(true, true);
 			}
@@ -102,6 +108,7 @@ public class Q00295_DreamingOfTheSkies extends Quest
 				html = "30536-04.html";
 			}
 		}
+		
 		return html;
 	}
 }

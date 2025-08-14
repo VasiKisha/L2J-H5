@@ -108,6 +108,7 @@ public class PlayerTemplateData implements IXmlReader
 											set.set("collisionHeight", cnd.getTextContent());
 										}
 									}
+									
 									if ("node".equalsIgnoreCase(cnd.getNodeName()))
 									{
 										attributes = cnd.getAttributes();

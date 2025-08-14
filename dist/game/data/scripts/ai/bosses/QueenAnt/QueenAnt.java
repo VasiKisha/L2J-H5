@@ -94,6 +94,7 @@ public class QueenAnt extends AbstractNpcAI
 		{
 			// load the unlock date and time for queen ant from DB
 			final long temp = info.getLong("respawn_time") - System.currentTimeMillis();
+			
 			// if queen ant is locked until a certain time, mark it so and start the unlock timer
 			// the unlock time has not yet expired.
 			if (temp > 0)
@@ -137,6 +138,7 @@ public class QueenAnt extends AbstractNpcAI
 		{
 			_zone.movePlayersTo(OUST_LOC_3);
 		}
+		
 		GrandBossManager.getInstance().addBoss(npc);
 		startQuestTimer("action", 10000, npc, null, true);
 		startQuestTimer("heal", 1000, null, null, true);
@@ -172,6 +174,7 @@ public class QueenAnt extends AbstractNpcAI
 						}
 						continue;
 					}
+					
 					if (queenNeedHeal)
 					{
 						if (nurse.getLeader() == _larva)
@@ -186,6 +189,7 @@ public class QueenAnt extends AbstractNpcAI
 						}
 						continue;
 					}
+					
 					// if nurse not casting - remove target
 					if (notCasting && (nurse.getTarget() != null))
 					{
@@ -230,6 +234,7 @@ public class QueenAnt extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -354,6 +359,7 @@ public class QueenAnt extends AbstractNpcAI
 			startQuestTimer("queen_unlock", respawnTime, null, null);
 			cancelQuestTimer("action", npc, null);
 			cancelQuestTimer("heal", null, null);
+			
 			// also save the respawn time so that the info is maintained past reboots
 			final StatSet info = GrandBossManager.getInstance().getStatSet(QUEEN);
 			info.set("respawn_time", System.currentTimeMillis() + respawnTime);
@@ -363,6 +369,7 @@ public class QueenAnt extends AbstractNpcAI
 			{
 				_larva.deleteMe();
 			}
+			
 			_larva = null;
 			_queen = null;
 			cancelQuestTimers("DISTANCE_CHECK");

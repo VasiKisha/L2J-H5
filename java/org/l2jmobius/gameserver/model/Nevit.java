@@ -176,6 +176,7 @@ public class Nevit
 					_player.sendPacket(new ExNevitAdventTimeChange(getAdventTime(), false));
 				}
 			}
+			
 			stopAdventTask(false);
 		}
 	}
@@ -187,6 +188,7 @@ public class Nevit
 			_adventTask.cancel(true);
 			_adventTask = null;
 		}
+		
 		if (sendPacket)
 		{
 			_player.sendPacket(new ExNevitAdventTimeChange(getAdventTime(), true));
@@ -201,6 +203,7 @@ public class Nevit
 			stopNevitEffectTask(false);
 			time += getEffectTime();
 		}
+		
 		if ((Config.NEVIT_IGNORE_ADVENT_TIME || (getAdventTime() < Config.NEVIT_ADVENT_TIME)) && (time > 0))
 		{
 			_player.getVariables().set("nevit_b", time);
@@ -220,6 +223,7 @@ public class Nevit
 			{
 				setAdventTime(0);
 			}
+			
 			_player.getVariables().remove("nevit_b");
 			_player.sendPacket(new ExNevitAdventEffect(0));
 			_player.sendPacket(new ExNevitAdventPointInfoPacket(getAdventPoints()));
@@ -245,6 +249,7 @@ public class Nevit
 					_player.getVariables().remove("nevit_b");
 				}
 			}
+			
 			_nevitEffectTask.cancel(true);
 			_nevitEffectTask = null;
 		}
@@ -266,6 +271,7 @@ public class Nevit
 		{
 			return 0;
 		}
+		
 		return (int) Math.max(0, _nevitEffectTask.getDelay(TimeUnit.SECONDS));
 	}
 	

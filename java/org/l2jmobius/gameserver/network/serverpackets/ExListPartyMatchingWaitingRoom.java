@@ -64,6 +64,7 @@ public class ExListPartyMatchingWaitingRoom extends ServerPacket
 			{
 				continue;
 			}
+			
 			if (!cha.isPartyWaiting())
 			{
 				PartyMatchWaitingList.getInstance().removePlayer(cha);
@@ -73,8 +74,10 @@ public class ExListPartyMatchingWaitingRoom extends ServerPacket
 			{
 				continue;
 			}
+			
 			_members.add(cha);
 		}
+		
 		buffer.writeInt(1); // Page?
 		buffer.writeInt(_members.size());
 		for (Player member : _members)

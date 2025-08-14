@@ -87,7 +87,7 @@ public class RequestBypassToServer extends ClientPacket
 		if (_command.isEmpty())
 		{
 			PacketLogger.warning(player + " sent empty bypass!");
-			Disconnection.of(getClient(), player).defaultSequence(LeaveWorld.STATIC_PACKET);
+			Disconnection.of(getClient(), player).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 			return;
 		}
 		
@@ -126,7 +126,7 @@ public class RequestBypassToServer extends ClientPacket
 		{
 			if (_command.startsWith("admin_"))
 			{
-				AdminCommandHandler.getInstance().useAdminCommand(player, _command, true);
+				AdminCommandHandler.getInstance().onCommand(player, _command, true);
 			}
 			else if (CommunityBoardHandler.getInstance().isCommunityBoardCommand(_command))
 			{
@@ -148,6 +148,7 @@ public class RequestBypassToServer extends ClientPacket
 				{
 					id = _command.substring(4);
 				}
+				
 				if (StringUtil.isNumeric(id))
 				{
 					final WorldObject object = World.getInstance().findObject(Integer.parseInt(id));
@@ -171,6 +172,7 @@ public class RequestBypassToServer extends ClientPacket
 				{
 					id = _command.substring(5);
 				}
+				
 				try
 				{
 					final Item item = player.getInventory().getItemByObjectId(Integer.parseInt(id));
@@ -216,7 +218,7 @@ public class RequestBypassToServer extends ClientPacket
 				final IBypassHandler handler = BypassHandler.getInstance().getHandler("arenachange");
 				if (handler != null)
 				{
-					handler.useBypass("arenachange " + (arenaId - 1), player, null);
+					handler.onCommand("arenachange " + (arenaId - 1), player, null);
 				}
 			}
 			else if (_command.startsWith("manor_menu_select"))
@@ -245,16 +247,16 @@ public class RequestBypassToServer extends ClientPacket
 						final WorldObject bypassOrigin = World.getInstance().findObject(bypassOriginId);
 						if ((bypassOrigin != null) && bypassOrigin.isCreature())
 						{
-							handler.useBypass(_command, player, bypassOrigin.asCreature());
+							handler.onCommand(_command, player, bypassOrigin.asCreature());
 						}
 						else
 						{
-							handler.useBypass(_command, player, null);
+							handler.onCommand(_command, player, null);
 						}
 					}
 					else
 					{
-						handler.useBypass(_command, player, null);
+						handler.onCommand(_command, player, null);
 					}
 				}
 				else
@@ -279,6 +281,7 @@ public class RequestBypassToServer extends ClientPacket
 					sb.append(ste + "<br1>");
 				}
 				sb.append("</body></html>");
+				
 				// item html
 				final NpcHtmlMessage msg = new NpcHtmlMessage(0, 1, sb.toString());
 				msg.disableValidation();
@@ -302,6 +305,7 @@ public class RequestBypassToServer extends ClientPacket
 		{
 			return;
 		}
+		
 		if (obj instanceof Npc)
 		{
 			final Npc temp = obj.asNpc();

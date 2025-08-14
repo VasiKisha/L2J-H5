@@ -127,6 +127,7 @@ public class FortSiegeGuardManager
 					
 					siegeGuardSpawns.add(spawn);
 				}
+				
 				_siegeGuards.put(fortId, siegeGuardSpawns);
 			}
 		}

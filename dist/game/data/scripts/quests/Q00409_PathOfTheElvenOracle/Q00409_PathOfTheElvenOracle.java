@@ -38,6 +38,7 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 	private static final int PRIEST_MANUEL = 30293;
 	private static final int ALLANA = 30424;
 	private static final int PERRIN = 30428;
+	
 	// Items
 	private static final int CRYSTAL_MEDALLION = 1231;
 	private static final int SWINDLERS_MONEY = 1232;
@@ -45,10 +46,13 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 	private static final int LIZARD_CAPTAIN_ORDER = 1234;
 	private static final int HALF_OF_DAIRY = 1236;
 	private static final int TAMIL_NECKLACE = 1275;
+	
 	// Reward
 	private static final int LEAF_OF_ORACLE = 1235;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
+	
 	// Quest Monster
 	private static final int LIZARDMAN_WARRIOR = 27032;
 	private static final int LIZARDMAN_SCOUT = 27033;
@@ -151,6 +155,7 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -304,6 +309,7 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 								{
 									addExpAndSp(player, 591724, 33788);
 								}
+								
 								qs.exitQuest(false, true);
 								player.sendPacket(new SocialAction(player.getObjectId(), 3));
 								htmltext = "30293-08.html";
@@ -395,6 +401,7 @@ public class Q00409_PathOfTheElvenOracle extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

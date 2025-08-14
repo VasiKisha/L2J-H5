@@ -246,6 +246,7 @@ public class LoginClient extends Client<Connection<LoginClient>>
 		{
 			_charsOnServers = new HashMap<>();
 		}
+		
 		_charsOnServers.put(servId, chars);
 	}
 	
@@ -260,6 +261,7 @@ public class LoginClient extends Client<Connection<LoginClient>>
 		{
 			_charsToDelete = new HashMap<>();
 		}
+		
 		_charsToDelete.put(servId, charsToDel);
 	}
 	
@@ -290,6 +292,7 @@ public class LoginClient extends Client<Connection<LoginClient>>
 			sb.append("Account: ");
 			sb.append(_account);
 		}
+		
 		if (ip != null)
 		{
 			if (_account != null)

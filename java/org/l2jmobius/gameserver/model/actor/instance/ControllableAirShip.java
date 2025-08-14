@@ -85,6 +85,7 @@ public class ControllableAirShip extends AirShip
 		{
 			return false;
 		}
+		
 		return (player.getClanId() == _ownerId) || (player.getObjectId() == _ownerId);
 	}
 	
@@ -188,6 +189,7 @@ public class ControllableAirShip extends AirShip
 					player.sendPacket(SystemMessageId.YOU_CANNOT_CONTROL_THE_HELM_WHILE_IN_A_DUEL);
 					return false;
 				}
+				
 				_captain = player;
 				player.broadcastUserInfo();
 			}
@@ -196,6 +198,7 @@ public class ControllableAirShip extends AirShip
 				return false;
 			}
 		}
+		
 		updateAbnormalEffect();
 		return true;
 	}
@@ -277,6 +280,7 @@ public class ControllableAirShip extends AirShip
 			_checkTask.cancel(false);
 			_checkTask = null;
 		}
+		
 		if (_consumeFuelTask != null)
 		{
 			_consumeFuelTask.cancel(false);

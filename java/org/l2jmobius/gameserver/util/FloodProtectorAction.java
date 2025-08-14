@@ -22,7 +22,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
 import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
 import org.l2jmobius.gameserver.model.punishment.PunishmentType;
@@ -85,7 +84,7 @@ public class FloodProtectorAction
 	 */
 	public boolean canPerformAction()
 	{
-		if ((_client.getPlayer() != null) && _client.getPlayer().canOverrideCond(PlayerCondOverride.FLOOD_CONDITIONS))
+		if ((_client.getPlayer() != null) && _client.getPlayer().isGM())
 		{
 			return true;
 		}
@@ -119,6 +118,7 @@ public class FloodProtectorAction
 				
 				_punishmentInProgress = false;
 			}
+			
 			return false;
 		}
 		
@@ -138,7 +138,7 @@ public class FloodProtectorAction
 	 */
 	private void kickPlayer()
 	{
-		Disconnection.of(_client).defaultSequence(LeaveWorld.STATIC_PACKET);
+		Disconnection.of(_client).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 		
 		if (LOGGER.isLoggable(Level.WARNING))
 		{

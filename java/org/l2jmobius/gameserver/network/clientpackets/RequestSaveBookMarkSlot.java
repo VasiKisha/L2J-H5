@@ -44,6 +44,7 @@ public class RequestSaveBookMarkSlot extends ClientPacket
 		{
 			return;
 		}
+		
 		player.teleportBookmarkAdd(player.getX(), player.getY(), player.getZ(), icon, tag, name);
 	}
 }

@@ -44,6 +44,7 @@ public class ConditionPlayerCanRefuelAirship extends Condition
 		{
 			canRefuelAirship = false;
 		}
+		
 		return canRefuelAirship;
 	}
 }

@@ -103,6 +103,7 @@ public class UIKeysSettings
 				query += "(" + _playerObjId + ", " + category + ", " + order++ + ", " + key + "),";
 			}
 		}
+		
 		query = query.substring(0, query.length() - 1) + "; ";
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement statement = con.prepareStatement(query))
@@ -123,6 +124,7 @@ public class UIKeysSettings
 				query += key.getSqlSaveString(_playerObjId, order++) + ",";
 			}
 		}
+		
 		query = query.substring(0, query.length() - 1) + ";";
 		
 		try (Connection con = DatabaseFactory.getConnection();
@@ -134,6 +136,7 @@ public class UIKeysSettings
 		{
 			LOGGER.log(Level.WARNING, "Exception: saveInDB(): " + e.getMessage(), e);
 		}
+		
 		_saved = true;
 	}
 	

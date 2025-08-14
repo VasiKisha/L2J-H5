@@ -121,6 +121,7 @@ public class TaskRaidPointsReset extends PersistentTask
 								break;
 							}
 						}
+						
 						c.addReputationScore(reputation);
 					}
 				}

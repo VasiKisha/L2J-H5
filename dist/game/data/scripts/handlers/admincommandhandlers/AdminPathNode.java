@@ -36,7 +36,7 @@ public class AdminPathNode implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_path_find"))
 		{
@@ -54,6 +54,7 @@ public class AdminPathNode implements IAdminCommandHandler
 					activeChar.sendSysMessage("No Route!");
 					return true;
 				}
+				
 				for (GeoLocation a : path)
 				{
 					activeChar.sendSysMessage("x:" + a.getX() + " y:" + a.getY() + " z:" + a.getZ());
@@ -64,11 +65,12 @@ public class AdminPathNode implements IAdminCommandHandler
 				activeChar.sendSysMessage("No Target!");
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

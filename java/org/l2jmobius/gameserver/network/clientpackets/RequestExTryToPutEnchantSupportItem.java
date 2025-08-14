@@ -71,6 +71,7 @@ public class RequestExTryToPutEnchantSupportItem extends ClientPacket
 				player.sendPacket(new ExPutEnchantSupportItemResult(0));
 				return;
 			}
+			
 			player.setActiveEnchantSupportItemId(support.getObjectId());
 			player.sendPacket(new ExPutEnchantSupportItemResult(_supportObjectId));
 		}

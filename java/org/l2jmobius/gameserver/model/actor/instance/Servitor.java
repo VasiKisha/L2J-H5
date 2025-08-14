@@ -247,6 +247,7 @@ public class Servitor extends Summon implements Runnable
 						}
 						
 						final Skill skill = info.getSkill();
+						
 						// Do not save heals.
 						if (skill.getAbnormalType() == AbnormalType.LIFE_FORCE_OTHERS)
 						{
@@ -282,6 +283,7 @@ public class Servitor extends Summon implements Runnable
 						
 						SummonEffectTable.getInstance().addServitorEffect(getOwner(), getReferenceSkill(), skill, info.getTime());
 					}
+					
 					ps2.executeBatch();
 				}
 			}

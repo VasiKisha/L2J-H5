@@ -68,17 +68,21 @@ public class Q00638_SeekersOfTheHolyGrail extends Quest
 	
 	// NPC
 	private static final int INNOCENTIN = 31328;
+	
 	// Items
 	private static final int TOTEM = 8068;
 	private static final int ANTEROOM_KEY = 8273;
 	private static final int CHAPEL_KEY = 8274;
 	private static final int KEY_OF_DARKNESS = 8275;
+	
 	// Misc
 	private static final int MIN_LEVEL = 73;
 	private static final int TOTEMS_REQUIRED_COUNT = 2000;
+	
 	// Rewards
 	private static final int SCROLL_ENCHANT_W_S = 959;
 	private static final int SCROLL_ENCHANT_A_S = 960;
+	
 	// Mobs
 	private static final Map<Integer, DropInfo> MOBS_DROP_CHANCES = new HashMap<>();
 	static
@@ -186,6 +190,7 @@ public class Q00638_SeekersOfTheHolyGrail extends Quest
 						{
 							rewardItems(player, SCROLL_ENCHANT_W_S, 1);
 						}
+						
 						htmltext = "31328-07.html";
 					}
 					else
@@ -193,6 +198,7 @@ public class Q00638_SeekersOfTheHolyGrail extends Quest
 						giveAdena(player, 3576000, true);
 						htmltext = "31328-08.html";
 					}
+					
 					takeItems(player, TOTEM, 2000);
 				}
 				break;
@@ -206,6 +212,7 @@ public class Q00638_SeekersOfTheHolyGrail extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -236,6 +243,7 @@ public class Q00638_SeekersOfTheHolyGrail extends Quest
 		{
 			htmltext = ((getQuestItemsCount(player, TOTEM) >= TOTEMS_REQUIRED_COUNT) ? "31328-04.html" : "31328-05.html");
 		}
+		
 		return htmltext;
 	}
 }

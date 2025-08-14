@@ -40,9 +40,11 @@ public class Q00102_SeaOfSporesFever extends Quest
 	private static final int RAYEN = 30221;
 	private static final int ALBERIUS = 30284;
 	private static final int GARTRANDELL = 30285;
+	
 	// Monsters
 	private static final int DRYAD = 20013;
 	private static final int DRYAD_ELDER = 20019;
+	
 	// Items
 	private static final int SWORD_OF_SENTINEL = 743;
 	private static final int STAFF_OF_SENTINEL = 744;
@@ -63,6 +65,7 @@ public class Q00102_SeaOfSporesFever extends Quest
 	private static final int ECHO_CRYSTAL_THEME_OF_SOLITUDE = 4414;
 	private static final int ECHO_CRYSTAL_THEME_OF_FEAST = 4415;
 	private static final int ECHO_CRYSTAL_THEME_OF_CELEBRATION = 4416;
+	
 	// Misc
 	private static final int MIN_LEVEL = 12;
 	private static final Map<Integer, Integer> SENTINELS = new HashMap<>();
@@ -94,6 +97,7 @@ public class Q00102_SeaOfSporesFever extends Quest
 			giveItems(player, ALBERIUS_LETTER, 1);
 			return event;
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -190,6 +194,7 @@ public class Q00102_SeaOfSporesFever extends Quest
 										giveItems(player, SWORD_OF_SENTINEL, 1);
 										giveItems(player, SOULSHOT_NO_GRADE, 500);
 									}
+									
 									addExpAndSp(player, 30202, 1339);
 									giveAdena(player, 6331, true);
 									qs.exitQuest(false, true);
@@ -278,11 +283,13 @@ public class Q00102_SeaOfSporesFever extends Quest
 					{
 						qs.setCond(6);
 					}
+					
 					htmltext = npc.getId() + "-01.html";
 				}
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

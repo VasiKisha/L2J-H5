@@ -16,7 +16,6 @@
  */
 package quests.Q00688_DefeatTheElrokianRaiders;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -33,8 +32,10 @@ public class Q00688_DefeatTheElrokianRaiders extends Quest
 	// NPCs
 	private static final int ELROKI = 22214;
 	private static final int DINN = 32105;
+	
 	// Item
 	private static final int DINOSAUR_FANG_NECKLACE = 8785;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
 	private static final int DROP_RATE = 448;
@@ -100,6 +101,7 @@ public class Q00688_DefeatTheElrokianRaiders extends Quest
 						giveAdena(player, 150000, true);
 						htmltext = "32105-09.html";
 					}
+					
 					takeItems(player, DINOSAUR_FANG_NECKLACE, 100);
 				}
 				break;
@@ -110,11 +112,13 @@ public class Q00688_DefeatTheElrokianRaiders extends Quest
 				{
 					giveAdena(player, 3000 * getQuestItemsCount(player, DINOSAUR_FANG_NECKLACE), true);
 				}
+				
 				qs.exitQuest(true, true);
 				htmltext = event;
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -127,8 +131,7 @@ public class Q00688_DefeatTheElrokianRaiders extends Quest
 			return;
 		}
 		
-		final float chance = DROP_RATE * Config.RATE_QUEST_DROP;
-		if (getRandom(1000) < chance)
+		if (getRandom(1000) < DROP_RATE)
 		{
 			rewardItems(partyMember, DINOSAUR_FANG_NECKLACE, 1);
 			playSound(partyMember, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -153,6 +156,7 @@ public class Q00688_DefeatTheElrokianRaiders extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

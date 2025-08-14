@@ -90,6 +90,7 @@ public class ListContainer
 		{
 			_npcsAllowed = new HashSet<>();
 		}
+		
 		_npcsAllowed.add(npcId);
 	}
 	

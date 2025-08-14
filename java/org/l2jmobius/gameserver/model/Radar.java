@@ -54,6 +54,7 @@ public class Radar
 				_markers.remove(rm);
 			}
 		}
+		
 		_player.sendPacket(new RadarControl(1, 1, x, y, z));
 	}
 	
@@ -119,10 +120,12 @@ public class Radar
 			{
 				return true;
 			}
+			
 			if (!(obj instanceof RadarMarker))
 			{
 				return false;
 			}
+			
 			final RadarMarker other = (RadarMarker) obj;
 			return (_type == other._type) && (_x == other._x) && (_y == other._y) && (_z == other._z);
 		}

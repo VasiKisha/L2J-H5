@@ -32,8 +32,10 @@ public class Q00367_ElectrifyingRecharge extends Quest
 {
 	// NPC
 	private static final int LORAIN = 30673;
+	
 	// Monster
 	private static final int CATHEROK = 21035;
+	
 	// Items
 	private static final int TITAN_LAMP1 = 5875;
 	private static final int TITAN_LAMP2 = 5876;
@@ -41,8 +43,10 @@ public class Q00367_ElectrifyingRecharge extends Quest
 	private static final int TITAN_LAMP4 = 5878;
 	private static final int TITAN_LAMP5 = 5879;
 	private static final int BROKEN_TITAN_LAMP = 5880;
+	
 	// Misc
 	private static final int MIN_LEVEL = 37;
+	
 	// Skill
 	private static final Skill NPC_THUNDER_STORM = new SkillHolder(4072, 4).getSkill();
 	
@@ -86,6 +90,7 @@ public class Q00367_ElectrifyingRecharge extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -118,6 +123,7 @@ public class Q00367_ElectrifyingRecharge extends Quest
 		{
 			return;
 		}
+		
 		qs = getQuestState(luckyPlayer, false);
 		if ((qs != null) && qs.isStarted() && !hasQuestItems(luckyPlayer, TITAN_LAMP5))
 		{
@@ -250,12 +256,14 @@ public class Q00367_ElectrifyingRecharge extends Quest
 						break;
 					}
 				}
+				
 				rewardItems(player, itemId, 1);
 				takeItems(player, TITAN_LAMP5, -1);
 				giveItems(player, TITAN_LAMP1, 1);
 				htmltext = "30673-08.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

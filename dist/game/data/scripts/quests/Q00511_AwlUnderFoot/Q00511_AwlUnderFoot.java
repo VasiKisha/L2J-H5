@@ -102,6 +102,7 @@ public class Q00511_AwlUnderFoot extends Quest
 				{
 					spawnId = RAIDS3[getRandom(RAIDS3.length)];
 				}
+				
 				final Npc raid = addSpawn(spawnId, 53319, 245814, -6576, 0, false, 0, false, _world.getInstanceId());
 				if (raid instanceof RaidBoss)
 				{
@@ -121,10 +122,13 @@ public class Q00511_AwlUnderFoot extends Quest
 	private static final long RAID_SPAWN_DELAY = 120000;
 	
 	private final Map<Integer, FortDungeon> _fortDungeons = new HashMap<>(21);
+	
 	// QUEST ITEMS
 	private static final int DL_MARK = 9797;
+	
 	// REWARDS
 	private static final int KNIGHT_EPALUETTE = 9912;
+	
 	// MONSTER TO KILL -- Only last 3 Raids (lvl ordered) give DL_MARK
 	protected static final int[] RAIDS1 =
 	{
@@ -196,15 +200,18 @@ public class Q00511_AwlUnderFoot extends Quest
 		{
 			return null;
 		}
+		
 		final Party party = player.getParty();
 		if (party == null)
 		{
 			return "FortressWarden-03.htm";
 		}
+		
 		if (party.getLeader() != player)
 		{
 			return getHtm(player, "FortressWarden-04.htm").replace("%leader%", party.getLeader().getName());
 		}
+		
 		for (Player partyMember : party.getMembers())
 		{
 			final QuestState qs = getQuestState(partyMember, false);
@@ -212,11 +219,13 @@ public class Q00511_AwlUnderFoot extends Quest
 			{
 				return getHtm(player, "FortressWarden-05.htm").replace("%player%", partyMember.getName());
 			}
+			
 			if (!LocationUtil.checkIfInRange(1000, player, partyMember, true))
 			{
 				return getHtm(player, "FortressWarden-06.htm").replace("%player%", partyMember.getName());
 			}
 		}
+		
 		return null;
 	}
 	
@@ -228,6 +237,7 @@ public class Q00511_AwlUnderFoot extends Quest
 		{
 			return "FortressWarden-01.htm";
 		}
+		
 		if ((player.getClan() == null) || (player.getClan().getFortId() != fortress.getResidenceId()))
 		{
 			return "FortressWarden-01.htm";
@@ -250,6 +260,7 @@ public class Q00511_AwlUnderFoot extends Quest
 		{
 			return "FortressWarden-03.htm";
 		}
+		
 		for (Player partyMember : party.getMembers())
 		{
 			if ((partyMember.getClan() == null) || (partyMember.getClan().getFortId() == 0) || (partyMember.getClan().getFortId() != fortress.getResidenceId()))
@@ -257,6 +268,7 @@ public class Q00511_AwlUnderFoot extends Quest
 				return getHtm(player, "FortressWarden-05.htm").replace("%player%", partyMember.getName());
 			}
 		}
+		
 		return null;
 	}
 	
@@ -264,6 +276,7 @@ public class Q00511_AwlUnderFoot extends Quest
 	{
 		// check for existing instances for this player
 		InstanceWorld world = InstanceManager.getInstance().getPlayerWorld(player);
+		
 		// existing instance
 		if (world != null)
 		{
@@ -272,6 +285,7 @@ public class Q00511_AwlUnderFoot extends Quest
 				player.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_ANOTHER_INSTANCE_ZONE_THEREFORE_YOU_CANNOT_ENTER_CORRESPONDING_DUNGEON);
 				return "";
 			}
+			
 			teleportPlayer(player, coords, world.getInstanceId());
 			return "";
 		}
@@ -314,6 +328,7 @@ public class Q00511_AwlUnderFoot extends Quest
 				getQuestState(partyMember, true);
 			}
 		}
+		
 		return getHtm(player, "FortressWarden-08.htm").replace("%clan%", player.getClan().getName());
 	}
 	
@@ -329,6 +344,7 @@ public class Q00511_AwlUnderFoot extends Quest
 			tele[2] = -6580;
 			return enterInstance(player, tele, _fortDungeons.get(npc.getId()), checkFortCondition(player, npc, true));
 		}
+		
 		final QuestState qs = getQuestState(player, true);
 		if (event.equalsIgnoreCase("FortressWarden-10.htm"))
 		{
@@ -341,6 +357,7 @@ public class Q00511_AwlUnderFoot extends Quest
 		{
 			qs.exitQuest(true, true);
 		}
+		
 		return htmltext;
 	}
 	
@@ -444,6 +461,7 @@ public class Q00511_AwlUnderFoot extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

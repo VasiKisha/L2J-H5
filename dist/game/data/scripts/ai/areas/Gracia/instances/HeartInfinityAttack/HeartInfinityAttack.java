@@ -40,6 +40,7 @@ import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.quest.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -79,10 +80,13 @@ public class HeartInfinityAttack extends AbstractNpcAI
 	}
 	
 	private static final String qn = "HeartInfinityAttack";
+	
 	private static final int INSTANCEID = 121;
 	private static final int INSTANCEPENALTY = 24;
 	
-	private static final int ABYSSGAZE = 32540;
+	private static final ZoneType ZONE = ZoneManager.getInstance().getZoneByName("Heart of Infinity Attack");
+	
+	private static final int ABYSSGAZE = 32539;
 	private static final int ALIVETUMOR = 18708;
 	private static final int DEADTUMOR = 32535;
 	private static final int EKIMUS = 29150;
@@ -109,7 +113,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 		DEADTUMOR
 	};
 	
-	private static final int[] mobs =
+	private static final int[] MONSTERS =
 	{
 		22516,
 		22520,
@@ -117,7 +121,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 		22524
 	};
 	
-	//@formatter:off
+	// @formatter:off
 	private static final int[][] ROOMS_MOBS =
 	{
 		{22520, -179949, 206751, -15521, 0, 60, 1},
@@ -213,7 +217,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 		{25641, -182388, 207599, -15504, 4096, 0, 1},
 		{25642, -182733, 211096, -15504, 61439, 0, 1}
 	};
-	//@formatter:on
+	// @formatter:on
 	
 	public HeartInfinityAttack()
 	{
@@ -254,21 +258,25 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_CURRENTLY_IN_A_PARTY_SO_YOU_CANNOT_ENTER);
 			return false;
 		}
+		
 		if (party.getLeader() != player)
 		{
 			player.sendPacket(SystemMessageId.ONLY_A_PARTY_LEADER_CAN_MAKE_THE_REQUEST_TO_ENTER);
 			return false;
 		}
+		
 		if ((party.getCommandChannel() == null) || (party.getCommandChannel().getLeader() != player))
 		{
 			player.sendPacket(SystemMessageId.ONLY_A_PARTY_LEADER_CAN_MAKE_THE_REQUEST_TO_ENTER);
 			return false;
 		}
+		
 		if ((party.getCommandChannel().getMembers().size() < Config.HEART_ATTACK_MIN_PLAYERS) || (party.getCommandChannel().getMembers().size() > Config.HEART_ATTACK_MAX_PLAYERS))
 		{
 			party.getCommandChannel().broadcastPacket(new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY));
 			return false;
 		}
+		
 		for (Player partyMember : party.getCommandChannel().getMembers())
 		{
 			if ((partyMember.getLevel() < 75) || (partyMember.getLevel() > 85))
@@ -296,6 +304,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -310,6 +319,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_ANOTHER_INSTANCE_ZONE_THEREFORE_YOU_CANNOT_ENTER_CORRESPONDING_DUNGEON);
 				return;
 			}
+			
 			teleportPlayer(player, coords, world.getInstanceId());
 			return;
 		}
@@ -339,6 +349,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 					}
 				}
 			}
+			
 			broadCastPacket(((HIAWorld) world), new ExShowScreenMessage(NpcStringId.YOU_WILL_PARTICIPATE_IN_S1_S2_SHORTLY_BE_PREPARED_FOR_ANYTHING, 2, 8000));
 			final Npc npc = addSpawn(32536, -179376, 206111, -15538, 16384, false, 0, false, world.getInstanceId());
 			((HIAWorld) world).startroom.add(npc);
@@ -371,6 +382,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 					npc.deleteMe();
 				}
 			}
+			
 			world.startroom.clear();
 		}
 		
@@ -430,6 +442,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 						partyMember.teleToLocation(-179548, 209584, -15504, true);
 					}
 				}
+				
 				notifyEchmusEntrance(world);
 			}
 			else if (event.startsWith("reenterechmus"))
@@ -468,6 +481,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return "";
 	}
 	
@@ -485,6 +499,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 		{
 			enterInstance(player, ENTER_TELEPORT);
 		}
+		
 		return "";
 	}
 	
@@ -500,8 +515,9 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			{
 				for (int i = 0; i < getRandom(1, 4); i++)
 				{
-					addSpawn(mobs[getRandom(mobs.length)], npc.getLocation(), world.getInstanceId());
+					addSpawn(MONSTERS[getRandom(MONSTERS.length)], npc.getLocation(), world.getInstanceId());
 				}
+				
 				npc.doDie(npc);
 			}
 		}
@@ -605,12 +621,14 @@ public class HeartInfinityAttack extends AbstractNpcAI
 					{
 						hound.setInvul(true);
 					}
+					
 					broadCastPacket(world, new ExShowScreenMessage(NpcStringId.WITH_ALL_CONNECTIONS_TO_THE_TUMOR_SEVERED_EKIMUS_HAS_LOST_ITS_POWER_TO_CONTROL_THE_FERAL_HOUND, 2, 8000));
 				}
 				else
 				{
 					broadCastPacket(world, new ExShowScreenMessage(NpcStringId.THE_TUMOR_INSIDE_S1_THAT_HAS_PROVIDED_ENERGY_N_TO_EKIMUS_IS_DESTROYED, 2, 8000));
 				}
+				
 				handleEkimusStats(world);
 			}
 			
@@ -618,6 +636,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			{
 				conquestConclusion(world);
 				SoIManager.notifyEkimusKill();
+				playMovie(world, Movie.SC_ECHMUS_SUCCESS);
 			}
 			
 			if (npc.getId() == 18711)
@@ -645,6 +664,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			{
 				return;
 			}
+			
 			final Npc alivetumor = addSpawn(ALIVETUMOR, _deadTumor.getLocation(), _world.getInstanceId());
 			alivetumor.setCurrentHp(alivetumor.getMaxHp() * .25);
 			notifyTumorRevival(_world);
@@ -712,12 +732,14 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			{
 				hound.setInvul(false);
 			}
+			
 			broadCastPacket(world, new ExShowScreenMessage(NpcStringId.WITH_THE_CONNECTION_TO_THE_TUMOR_RESTORED_EKIMUS_HAS_REGAINED_CONTROL_OVER_THE_FERAL_HOUND, 2, 8000));
 		}
 		else
 		{
 			broadCastPacket(world, new ExShowScreenMessage(NpcStringId.THE_TUMOR_INSIDE_S1_HAS_BEEN_COMPLETELY_RESURRECTED_N_AND_STARTED_TO_ENERGIZE_EKIMUS_AGAIN, 2, 8000));
 		}
+		
 		handleEkimusStats(world);
 	}
 	
@@ -739,6 +761,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			{
 				return;
 			}
+			
 			for (int i = 0; i < 4; i++)
 			{
 				final Npc worm = addSpawn(COFFIN, _deadTumor.getLocation(), _world.getInstanceId());
@@ -815,16 +838,17 @@ public class HeartInfinityAttack extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return a;
 	}
 	
 	public void notifyEkimusRoomEntrance(HIAWorld world)
 	{
-		for (Player ch : ZoneManager.getInstance().getZoneById(200032).getPlayersInside())
+		for (Player player : ZONE.getPlayersInside())
 		{
-			if (ch != null)
+			if (player != null)
 			{
-				ch.teleToLocation(-179537, 211233, -15472, true);
+				player.teleToLocation(-179537, 211233, -15472, true);
 			}
 		}
 		

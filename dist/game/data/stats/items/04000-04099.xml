@@ -280,12 +280,12 @@
 		<set name="damage_range" val="0;0;40;120" />
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="PAPER" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="8" />
 			<set stat="mAtk" val="6" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="4028" type="Weapon" name="Giant Cannon">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -305,7 +305,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="5" />
 			<set stat="mAtk" val="5" />
 			<set stat="critRate" val="12" />
@@ -313,7 +313,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="4029" type="EtcItem" name="Red Paper">
 		<set name="icon" val="icon.etc_paper_red_i00" />
@@ -395,9 +395,9 @@
 		<set name="handler" val="PetFood" />
 		<set name="item_skill" val="2063-1" /> <!-- Hatchling Food -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="HATCHLING_GROUP" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="4039" type="EtcItem" name="Mold Glue">
 		<!-- Ingredient for making upper garment tools. Can also be sold at ordinary shops. -->

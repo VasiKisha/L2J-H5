@@ -38,8 +38,10 @@ public class Q10296_SevenSignsOneWhoSeeksThePowerOfTheSeal extends Quest
 	private static final int ELCADIA_2 = 32787;
 	private static final int ERISS_EVIL_THOUGHTS = 32792;
 	private static final int ODD_GLOBE = 32815;
+	
 	// Reward
 	private static final int CERTIFICATE_OF_DAWN = 17265;
+	
 	// Misc
 	private static final int MIN_LEVEL = 81;
 	
@@ -145,6 +147,7 @@ public class Q10296_SevenSignsOneWhoSeeksThePowerOfTheSeal extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -285,6 +288,7 @@ public class Q10296_SevenSignsOneWhoSeeksThePowerOfTheSeal extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -183,6 +183,7 @@ public abstract class ReadablePacket<T extends Client<Connection<T>>> implements
 		catch (Exception ignored)
 		{
 		}
+		
 		return result.toString();
 	}
 	
@@ -200,6 +201,7 @@ public abstract class ReadablePacket<T extends Client<Connection<T>>> implements
 		catch (Exception ignored)
 		{
 		}
+		
 		return result;
 	}
 	

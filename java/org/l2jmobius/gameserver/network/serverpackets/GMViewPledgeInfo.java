@@ -20,6 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import java.util.Collection;
+
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -61,8 +63,10 @@ public class GMViewPledgeInfo extends ServerPacket
 		buffer.writeInt(_clan.getAllyCrestId()); // c2
 		buffer.writeInt(_clan.isAtWar()); // c3
 		buffer.writeInt(0); // T3 Unknown
-		buffer.writeInt(_clan.getMembers().length);
-		for (ClanMember member : _clan.getMembers())
+		
+		final Collection<ClanMember> members = _clan.getMembers();
+		buffer.writeInt(members.size());
+		for (ClanMember member : members)
 		{
 			if (member != null)
 			{

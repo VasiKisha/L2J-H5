@@ -34,7 +34,7 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 public class Disguise implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{
@@ -51,6 +51,7 @@ public class Disguise implements IItemHandler
 				player.sendPacket(SystemMessageId.A_TERRITORY_OWNING_CLAN_MEMBER_CANNOT_USE_A_DISGUISE_SCROLL);
 				return false;
 			}
+			
 			TerritoryWarManager.getInstance().addDisguisedPlayer(player.getObjectId());
 			player.broadcastUserInfo();
 			playable.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false);

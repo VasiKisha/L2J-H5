@@ -81,6 +81,7 @@ public class PhysicalSoulDamage extends AbstractEffect
 		int damage = 0;
 		final boolean ss = skill.isPhysical() && effector.isChargedShot(ShotType.SOULSHOTS);
 		final byte shld = Formulas.calcShldUse(effector, effected, skill);
+		
 		// Physical damage critical rate is only affected by STR.
 		boolean crit = false;
 		if (skill.getBaseCritRate() > 0)
@@ -91,10 +92,11 @@ public class PhysicalSoulDamage extends AbstractEffect
 		damage = (int) Formulas.calcPhysDam(effector, effected, skill, shld, false, ss);
 		if ((skill.getMaxSoulConsumeCount() > 0) && effector.isPlayer())
 		{
-			// Souls Formula (each soul increase +4%).
+			// Souls Formula (each soul increase +4.8%).
 			final int chargedSouls = (effector.asPlayer().getChargedSouls() <= skill.getMaxSoulConsumeCount()) ? effector.asPlayer().getChargedSouls() : skill.getMaxSoulConsumeCount();
-			damage *= 1 + (chargedSouls * 0.04);
+			damage *= 1 + (chargedSouls * 0.048);
 		}
+		
 		if (crit)
 		{
 			damage *= 2;

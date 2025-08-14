@@ -48,11 +48,13 @@ public class RequestDuelStart extends ClientPacket
 		{
 			return;
 		}
+		
 		if (targetChar == null)
 		{
 			player.sendPacket(SystemMessageId.THERE_IS_NO_OPPONENT_TO_RECEIVE_YOUR_CHALLENGE_FOR_A_DUEL);
 			return;
 		}
+		
 		if (player == targetChar)
 		{
 			player.sendPacket(SystemMessageId.THERE_IS_NO_OPPONENT_TO_RECEIVE_YOUR_CHALLENGE_FOR_A_DUEL);
@@ -111,6 +113,7 @@ public class RequestDuelStart extends ClientPacket
 					return;
 				}
 			}
+			
 			Player partyLeader = null; // snatch party leader of targetChar's party
 			for (Player temp : targetChar.getParty().getMembers())
 			{
@@ -118,6 +121,7 @@ public class RequestDuelStart extends ClientPacket
 				{
 					partyLeader = temp;
 				}
+				
 				if (!temp.canDuel())
 				{
 					player.sendPacket(SystemMessageId.THE_OPPOSING_PARTY_IS_CURRENTLY_UNABLE_TO_ACCEPT_A_CHALLENGE_TO_A_DUEL);

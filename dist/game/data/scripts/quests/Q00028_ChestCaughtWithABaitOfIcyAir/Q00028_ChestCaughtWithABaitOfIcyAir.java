@@ -38,6 +38,7 @@ public class Q00028_ChestCaughtWithABaitOfIcyAir extends Quest
 	// NPCs
 	private static final int OFULLE = 31572;
 	private static final int KIKI = 31442;
+	
 	// Items
 	private static final int YELLOW_TREASURE_BOX = 6503;
 	private static final int KIKIS_LETTER = 7626;
@@ -90,6 +91,7 @@ public class Q00028_ChestCaughtWithABaitOfIcyAir extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -157,6 +159,7 @@ public class Q00028_ChestCaughtWithABaitOfIcyAir extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

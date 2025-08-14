@@ -33,10 +33,12 @@ public class Q00007_ATripBegins extends Quest
 	private static final int MIRABEL = 30146;
 	private static final int ARIEL = 30148;
 	private static final int ASTERIOS = 30154;
+	
 	// Items
 	private static final int ARIELS_RECOMMENDATION = 7572;
 	private static final int SCROLL_OF_ESCAPE_GIRAN = 7559;
 	private static final int MARK_OF_TRAVELER = 7570;
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	
@@ -84,6 +86,7 @@ public class Q00007_ATripBegins extends Quest
 				{
 					return "30154-03.html";
 				}
+				
 				takeItems(player, ARIELS_RECOMMENDATION, -1);
 				qs.setCond(3, true);
 				break;
@@ -94,6 +97,7 @@ public class Q00007_ATripBegins extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -164,6 +168,7 @@ public class Q00007_ATripBegins extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

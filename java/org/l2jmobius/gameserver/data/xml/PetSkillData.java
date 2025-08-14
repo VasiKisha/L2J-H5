@@ -114,6 +114,7 @@ public class PetSkillData implements IXmlReader
 			{
 				continue;
 			}
+			
 			if (skillHolder.getSkillLevel() == 0)
 			{
 				if (pet.getLevel() < 70)

@@ -75,7 +75,7 @@ public class SpawnData implements IXmlReader
 	public void load()
 	{
 		_spawnTemplates.put(0, "None");
-		if (!Config.ALT_DEV_NO_SPAWNS)
+		if (!Config.NO_SPAWNS)
 		{
 			LOGGER.info(getClass().getSimpleName() + ": Initializing spawns...");
 			parseDatapackDirectory("data/spawns", true);
@@ -99,6 +99,7 @@ public class SpawnData implements IXmlReader
 			{
 				LOGGER.warning(getClass().getSimpleName() + ": Requested spawn for non-existing NPC: " + npcId + ".");
 			}
+			
 			return false;
 		}
 		
@@ -146,6 +147,7 @@ public class SpawnData implements IXmlReader
 						{
 							spawnName = parseString(attrs, "name");
 						}
+						
 						// Check, if spawn territory specified.
 						if (attrs.getNamedItem("zone") != null)
 						{
@@ -164,6 +166,7 @@ public class SpawnData implements IXmlReader
 								{
 									map = new HashMap<>();
 								}
+								
 								for (Node c = npctag.getFirstChild(); c != null; c = c.getNextSibling())
 								{
 									// Skip odd nodes.
@@ -186,6 +189,7 @@ public class SpawnData implements IXmlReader
 											val = Integer.parseInt(c.getTextContent());
 										}
 									}
+									
 									map.put(c.getNodeName(), val);
 								}
 							}
@@ -253,6 +257,7 @@ public class SpawnData implements IXmlReader
 												aX[i] = coords[i][0];
 												aY[i] = coords[i][1];
 											}
+											
 											zoneForm = new ZoneNPoly(aX, aY, minZ, maxZ);
 										}
 										else
@@ -353,6 +358,7 @@ public class SpawnData implements IXmlReader
 												aX[i] = coords[i][0];
 												aY[i] = coords[i][1];
 											}
+											
 											zoneForm = new ZoneNPoly(aX, aY, minZ, maxZ);
 										}
 										else
@@ -501,6 +507,7 @@ public class SpawnData implements IXmlReader
 			{
 				spawnDat.setName(spawnName);
 			}
+			
 			if (!territoryName.isEmpty())
 			{
 				spawnDat.setSpawnTerritory(ZoneManager.getInstance().getSpawnTerritory(territoryName));
@@ -583,6 +590,7 @@ public class SpawnData implements IXmlReader
 			{
 				// Ignore.
 			}
+			
 			if (result)
 			{
 				LOGGER.info(getClass().getSimpleName() + ": Created directory: " + OTHER_XML_FOLDER);
@@ -621,8 +629,10 @@ public class SpawnData implements IXmlReader
 						writer.write(currentLine + System.lineSeparator());
 						continue;
 					}
+					
 					writer.write(currentLine + System.lineSeparator());
 				}
+				
 				writer.close();
 				reader.close();
 				spawnFile.delete();
@@ -703,6 +713,7 @@ public class SpawnData implements IXmlReader
 							}
 							continue;
 						}
+						
 						if (currentLine.contains(spawnId) && currentLine.contains(spawnX) && currentLine.contains(spawnY) && currentLine.contains(spawnZ))
 						{
 							if (!currentLine.contains("/>") && !currentLine.contains("</npc>"))
@@ -716,11 +727,13 @@ public class SpawnData implements IXmlReader
 							continue;
 						}
 					}
+					
 					writer.write(currentLine + System.lineSeparator());
 					if (currentLine.contains("</list>"))
 					{
 						lastLineFound = true;
 					}
+					
 					if (!lastLineFound)
 					{
 						lineCount++;
@@ -741,17 +754,20 @@ public class SpawnData implements IXmlReader
 							}
 							continue;
 						}
+						
 						if (currentLine.contains('"' + npcSpawnTerritory.getName() + '"'))
 						{
 							isMultiLine = true;
 							continue SEARCH;
 						}
 					}
+					
 					writer.write(currentLine + System.lineSeparator());
 					if (currentLine.contains("</list>"))
 					{
 						lastLineFound = true;
 					}
+					
 					if (!lastLineFound)
 					{
 						lineCount++;

@@ -72,6 +72,7 @@ public class OlympiadGameManager implements Runnable
 					break;
 				}
 			}
+			
 			_tasks[i++] = new OlympiadGameTask(zone, instanceId);
 		}
 		
@@ -126,8 +127,10 @@ public class OlympiadGameManager implements Runnable
 										task.attachGame(newGame);
 										continue;
 									}
+									
 									readyTeams = false;
 								}
+								
 								// if no ready teams found check for classed
 								if (readyClassed != null)
 								{
@@ -137,9 +140,11 @@ public class OlympiadGameManager implements Runnable
 										task.attachGame(newGame);
 										continue;
 									}
+									
 									readyClassed = null;
 								}
 							}
+							
 							// 1,3,5,7,9.. arenas used for non-classed
 							// also other arenas will be used for non-classed if no classed or teams available
 							if (readyNonClassed)
@@ -150,6 +155,7 @@ public class OlympiadGameManager implements Runnable
 									task.attachGame(newGame);
 									continue;
 								}
+								
 								readyNonClassed = false;
 							}
 						}
@@ -181,6 +187,7 @@ public class OlympiadGameManager implements Runnable
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	

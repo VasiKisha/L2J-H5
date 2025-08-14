@@ -41,7 +41,7 @@ public class Lang implements IVoicedCommandHandler
 	};
 	
 	@Override
-	public boolean useVoicedCommand(String command, Player activeChar, String params)
+	public boolean onCommand(String command, Player activeChar, String params)
 	{
 		if (!Config.MULTILANG_ENABLE || !Config.MULTILANG_VOICED_ALLOW)
 		{
@@ -82,18 +82,21 @@ public class Lang implements IVoicedCommandHandler
 						}, 1000);
 					}
 				}
+				
 				activeChar.setTarget(null);
 				return true;
 			}
+			
 			msg.setFile(activeChar, "data/html/mods/Lang/Error.htm");
 			activeChar.sendPacket(msg);
 			return true;
 		}
+		
 		return false;
 	}
 	
 	@Override
-	public String[] getVoicedCommandList()
+	public String[] getCommandList()
 	{
 		return VOICED_COMMANDS;
 	}

@@ -45,8 +45,8 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.KrateisMatchManager;
-import org.l2jmobius.gameserver.model.events.AbstractScript;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.quest.Quest;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPCCafePointInfo;
@@ -241,6 +241,7 @@ public class KrateiArena
 			player.setRegisteredOnEvent(true);
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -253,6 +254,7 @@ public class KrateiArena
 			player.setRegisteredOnEvent(false);
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -297,14 +299,16 @@ public class KrateiArena
 			{
 				if (loc != null)
 				{
-					final Npc npc = AbstractScript.addSpawn(18601, loc, false, 0);
+					final Npc npc = Quest.addSpawn(18601, loc, false, 0);
 					npc.disableCoreAI(true);
 					npc.setImmobilized(true);
 					_watchers.add(npc);
 				}
 			}
+			
 			_watcherRotation = true;
 		}
+		
 		teleportAllPlayers();
 		final long time = 1200000;
 		_eventTask = ThreadPool.schedule(this::endEvent, time);
@@ -332,6 +336,7 @@ public class KrateiArena
 			_doorTask.cancel(true);
 			_doorTask = null;
 		}
+		
 		_watcherRotation = false;
 		changeDoorStatus(false);
 		
@@ -344,6 +349,7 @@ public class KrateiArena
 					npc.deleteMe();
 				}
 			}
+			
 			_watchers.clear();
 		}
 		
@@ -361,8 +367,10 @@ public class KrateiArena
 					player.setCanRevive(true);
 				}
 			}
+			
 			checkRewardPlayers(getPlayers());
 		}
+		
 		_players.clear();
 		_isBattleNow = false;
 		_isActiveNow = false;
@@ -386,6 +394,7 @@ public class KrateiArena
 					npc.deleteMe();
 				}
 			}
+			
 			_watchers.clear();
 		}
 		
@@ -395,7 +404,7 @@ public class KrateiArena
 			{
 				if (loc != null)
 				{
-					final Npc npc = AbstractScript.addSpawn(_watcherRotation ? 18602 : 18601, loc, false, 0);
+					final Npc npc = Quest.addSpawn(_watcherRotation ? 18602 : 18601, loc, false, 0);
 					npc.disableCoreAI(true);
 					npc.setImmobilized(true);
 					_watchers.add(npc);
@@ -411,6 +420,7 @@ public class KrateiArena
 		{
 			_watcherRotation = true;
 		}
+		
 		_watcherTask = ThreadPool.schedule(this::changeWatchers, getParams().getInt("watcherRotationTime") * 1000);
 	}
 	
@@ -419,7 +429,7 @@ public class KrateiArena
 		if (_watchers.contains(npc))
 		{
 			npc.deleteMe();
-			final Npc newNpc = AbstractScript.addSpawn(npc.getId() == 18602 ? 18601 : 18602, npc.getLocation(), false, 0);
+			final Npc newNpc = Quest.addSpawn(npc.getId() == 18602 ? 18601 : 18602, npc.getLocation(), false, 0);
 			newNpc.disableCoreAI(true);
 			newNpc.setImmobilized(true);
 			_watchers.add(newNpc);
@@ -445,6 +455,7 @@ public class KrateiArena
 				return null;
 			}
 		}
+		
 		final Map<Player, Integer> sortedMap = participants.entrySet().stream().sorted(Entry.comparingByValue(Comparator.reverseOrder())).collect(Collectors.toMap(Entry::getKey, Entry::getValue, (e1, _) -> e1, LinkedHashMap::new));
 		return sortedMap;
 	}
@@ -506,6 +517,7 @@ public class KrateiArena
 			{
 				respawnEffects(player);
 			}
+			
 			player.teleToLocation(getWaitLoc().get(Rnd.get(getWaitLoc().size())), true);
 		}
 	}
@@ -541,6 +553,7 @@ public class KrateiArena
 				changeDoorsStatus(doorsB, false);
 			}
 		}
+		
 		_doorTask = ThreadPool.schedule(() -> changeDoorStatus(active), (getParams().getInt("doorRotationTime") * 1000));
 	}
 	
@@ -623,6 +636,7 @@ public class KrateiArena
 		{
 			player.doRevive(100.);
 		}
+		
 		player.broadcastStatusUpdate();
 		player.broadcastUserInfo();
 	}
@@ -682,6 +696,7 @@ public class KrateiArena
 										{
 											amount = Config.PC_CAFE_MAX_POINTS - pl.getPlayer().getPcCafePoints();
 										}
+										
 										final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_ACQUIRED_S1_PC_CAFE_POINTS);
 										sm.addInt((int) amount);
 										pl.getPlayer().sendPacket(sm);
@@ -714,6 +729,7 @@ public class KrateiArena
 				}
 			}
 		}
+		
 		playerList.clear();
 	}
 	
@@ -760,6 +776,7 @@ public class KrateiArena
 		{
 			kills = pl.getPoints();
 		}
+		
 		return kills;
 	}
 	

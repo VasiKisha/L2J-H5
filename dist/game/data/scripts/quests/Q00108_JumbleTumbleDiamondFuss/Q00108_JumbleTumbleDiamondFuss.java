@@ -53,10 +53,12 @@ public class Q00108_JumbleTumbleDiamondFuss extends Quest
 	private static final int BLACKSMITH_BRUNON = 30526;
 	private static final int WAREHOUSE_KEEPER_MURDOC = 30521;
 	private static final int WAREHOUSE_KEEPER_AIRY = 30522;
+	
 	// Monsters
 	private static final int GOBLIN_BRIGAND_LEADER = 20323;
 	private static final int GOBLIN_BRIGAND_LIEUTENANT = 20324;
 	private static final int BLADE_BAT = 20480;
+	
 	// Items
 	private static final int GOUPHS_CONTRACT = 1559;
 	private static final int REEPS_CONTRACT = 1560;
@@ -71,6 +73,7 @@ public class Q00108_JumbleTumbleDiamondFuss extends Quest
 	private static final int BERRY_TART = 1569;
 	private static final int BAT_DIAGRAM = 1570;
 	private static final int STAR_DIAMOND = 1571;
+	
 	// Rewards
 	private static final ItemHolder[] REWARDS =
 	{
@@ -84,6 +87,7 @@ public class Q00108_JumbleTumbleDiamondFuss extends Quest
 	private static final int SILVERSMITH_HAMMER = 1511;
 	private static final ItemHolder SPIRITSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5790, 3000);
 	private static final ItemHolder SOULSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5789, 7000);
+	
 	// Misc
 	private static final int MIN_LEVEL = 10;
 	private static final int MAX_GEM_COUNT = 10;
@@ -113,6 +117,7 @@ public class Q00108_JumbleTumbleDiamondFuss extends Quest
 		{
 			return htmltext;
 		}
+		
 		switch (event)
 		{
 			case "30523-04.htm":
@@ -148,6 +153,7 @@ public class Q00108_JumbleTumbleDiamondFuss extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -271,6 +277,7 @@ public class Q00108_JumbleTumbleDiamondFuss extends Quest
 									{
 										giveItems(talker, reward);
 									}
+									
 									giveItems(talker, SILVERSMITH_HAMMER, 1);
 									qs.exitQuest(false, true);
 									talker.sendPacket(new SocialAction(talker.getObjectId(), 3));
@@ -542,6 +549,7 @@ public class Q00108_JumbleTumbleDiamondFuss extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -570,6 +578,7 @@ public class Q00108_JumbleTumbleDiamondFuss extends Quest
 							
 							playSound = true;
 						}
+						
 						if (giveItemRandomly(killer, npc, CHRYSOBERYL, 1, MAX_GEM_COUNT, dropChance, false))
 						{
 							if (getQuestItemsCount(killer, AQUAMARINE) >= MAX_GEM_COUNT)

@@ -55,6 +55,7 @@ public class DivineBeast extends AbstractNpcAI
 			cancelQuestTimer(event, npc, player);
 			player.getSummon().unSummon(player);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

@@ -54,6 +54,7 @@ public class Valakas extends AbstractNpcAI
 {
 	// NPC
 	private static final int VALAKAS = 29028;
+	
 	// Skills
 	private static final int VALAKAS_REGENERATION = 4691;
 	private static final SkillHolder VALAKAS_LAVA_SKIN = new SkillHolder(4680, 1);
@@ -109,11 +110,13 @@ public class Valakas extends AbstractNpcAI
 	private static final Location ATTACKER_REMOVE = new Location(150037, -57255, -2976);
 	private static final Location VALAKAS_LAIR = new Location(212852, -114842, -1632);
 	private static final Location VALAKAS_REGENERATION_LOC = new Location(-105200, -253104, -15264);
+	
 	// Valakas status.
 	private static final byte DORMANT = 0; // Valakas is spawned and no one has entered yet. Entry is unlocked.
 	private static final byte WAITING = 1; // Valakas is spawned and someone has entered, triggering a 30 minute window for additional people to enter. Entry is unlocked.
 	private static final byte FIGHTING = 2; // Valakas is engaged in battle, annihilating his foes. Entry is locked.
 	private static final byte DEAD = 3; // Valakas has been killed. Entry is locked.
+	
 	// Misc
 	private static final BossZone BOSS_ZONE = ZoneManager.getInstance().getZoneById(12010, BossZone.class);
 	private static final NoRestartZone GROUND_ZONE = ZoneManager.getInstance().getZoneById(13010, NoRestartZone.class);
@@ -380,6 +383,7 @@ public class Valakas extends AbstractNpcAI
 		{
 			BOSS_ZONE.oustAllPlayers();
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -417,6 +421,7 @@ public class Valakas extends AbstractNpcAI
 			npc.setTarget(attacker);
 			npc.doCast(SkillData.getInstance().getSkill(4258, 1));
 		}
+		
 		_timeTracker = System.currentTimeMillis();
 	}
 	
@@ -451,6 +456,7 @@ public class Valakas extends AbstractNpcAI
 		LOGGER.info("Valakas will respawn at: " + TimeUtil.getDateTimeString(nextRespawnTime));
 		
 		startQuestTimer("valakas_unlock", respawnTime, null, null);
+		
 		// also save the respawn time so that the info is maintained past reboots
 		final StatSet info = GrandBossManager.getInstance().getStatSet(VALAKAS);
 		info.set("respawn_time", System.currentTimeMillis() + respawnTime);
@@ -564,11 +570,7 @@ public class Valakas extends AbstractNpcAI
 		
 		World.getInstance().forEachVisibleObject(npc, Playable.class, obj ->
 		{
-			if ((obj == null) || obj.isPet())
-			{
-				return;
-			}
-			else if (!obj.isDead() && obj.isPlayable())
+			if ((obj != null) && !obj.isDead() && !obj.isInvisible() && !obj.isPet() && obj.isPlayable())
 			{
 				result.add(obj);
 			}

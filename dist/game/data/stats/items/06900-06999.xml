@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="6900" type="EtcItem" name="Recipe: Arcana Mace (100%)">
 		<!-- For Dwarves only. The recipe for an Arcana Mace. Requires Create Item - Skill Level 9. The success rate is 100%. -->
@@ -35,18 +35,18 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="1380" />
 		<set name="price" val="9900" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player clanHall="-1" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="90" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="6903" type="EtcItem" name="Music Box M">
 		<!-- Music Box playing Minu's music. Disappear after the one-time use. -->
@@ -199,10 +199,10 @@
 		<set name="weight" val="6" />
 		<set name="price" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="6918" type="Weapon" name="Monster Only (Shield of Silenos)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -213,12 +213,12 @@
 		<set name="weight" val="1380" />
 		<set name="price" val="12900" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="90" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="6919" type="Weapon" name="Monster Only (Shield of Ketra Orc)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -230,12 +230,12 @@
 		<set name="weight" val="1320" />
 		<set name="price" val="78400" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="142" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="6920" type="EtcItem" name="Recipe: Greater Fish Oil (100%)">
 		<!-- This recipe for mid-grade Fish Oil can be used by all races. Requires Create Common Item Skill Level 2. -->

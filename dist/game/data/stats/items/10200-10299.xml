@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="10200" type="EtcItem" name="Seed: Alternative Blue Coda">
 		<!-- Plant this seed onto a monster in the Aden area and it will bear the fruit of the Alternative Blue Coda. For best results, a level 14-24 character must plant it on a level 14-24 monster. -->
@@ -90,11 +90,11 @@
 		<set name="weight" val="130" />
 		<set name="price" val="880000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="26" />
 			<mul stat="magicSuccRes" val="1.15" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10208" type="Armor" name="Enhanced Striped Mithril Shirt">
 		<!-- Max MP increases by 70, M. Def. increases by 50. -->
@@ -109,12 +109,12 @@
 		<set name="price" val="2540000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3419-1" /> <!-- Magic Immunity -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="30" />
 			<add stat="maxMp" val="70" />
 			<mul stat="magicSuccRes" val="1.5" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10209" type="Armor" name="Enhanced Steel Bracelet">
 		<!-- Activates 3 talisman slots when equipped. Increase Max MP by 60. -->
@@ -128,9 +128,9 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1144000" />
 		<set name="item_skill" val="3324-1" /> <!-- Steel Bracelet -->
-		<for>
+		<stats>
 			<add stat="maxMp" val="60" />
-		</for>
+		</stats>
 	</item>
 	<item id="10210" type="Armor" name="Enhanced Mithril Bracelet">
 		<!-- Activates 4 talisman slots when equipped. Increase Max MP by 120. -->
@@ -144,9 +144,9 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3556000" />
 		<set name="item_skill" val="3325-1" /> <!-- Mithril Bracelet -->
-		<for>
+		<stats>
 			<add stat="maxMp" val="120" />
-		</for>
+		</stats>
 	</item>
 	<item id="10211" type="Armor" name="Blessed Ring of Resurrection">
 		<!-- Makes a blessed resurrection available for up to 180 minutes. Only one effect is applied, even if you wear two identical rings. -->
@@ -163,10 +163,10 @@
 		<set name="item_skill" val="3409-1" /> <!-- Blessed Ring of Resurrection -->
 		<set name="duration" val="180" />
 		<set name="useSkillDisTime" val="6" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="24" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10212" type="Weapon" name="For NPC (Bow)">
 		<set name="icon" val="icon.weapon_monster_i00" />
@@ -182,12 +182,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="10213" type="EtcItem" name="Inventory">
 		<set name="immediate_effect" val="true" />
@@ -212,13 +212,13 @@
 		<set name="price" val="18298000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player categoryType="SUMMON_MASTER" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="170" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10215" type="Weapon" name="Icarus Sawsword">
 		<!-- Bestows one of the following functions: Focus, Health or Light. -->
@@ -240,14 +240,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10216" type="Weapon" name="Icarus Disperser">
 		<!-- Bestows one of the following functions: Focus, Evasion or Crit. Damage. -->
@@ -268,7 +268,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="318" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="12" />
@@ -276,7 +276,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10217" type="Weapon" name="Icarus Spirit">
 		<!-- Bestows one of the following functions: Acumen, Mana Up or Conversion. -->
@@ -298,14 +298,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="290" />
 			<set stat="mAtk" val="217" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10218" type="Weapon" name="Icarus Heavy Arms">
 		<!-- Bestows one of the following functions: Focus, Health or Light. -->
@@ -327,14 +327,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="442" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10219" type="Weapon" name="Icarus Trident">
 		<!-- Bestows one of the following functions: Anger, Critical Stun or Light. -->
@@ -356,7 +356,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
@@ -364,7 +364,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10220" type="Weapon" name="Icarus Hammer">
 		<!-- Bestows one of the following functions: Anger, Health or Rsk. Focus. -->
@@ -385,7 +385,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="4" />
@@ -393,7 +393,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10221" type="Weapon" name="Icarus Hand">
 		<!-- Bestows one of the following functions: Rsk. Evasion, Focus, or Haste. -->
@@ -414,7 +414,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="442" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="4" />
@@ -422,7 +422,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10222" type="Weapon" name="Icarus Hall">
 		<!-- It can bestow one of the follow three functions, Mana Up, Conversion or Acumen. -->
@@ -444,7 +444,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="290" />
 			<set stat="mAtk" val="217" />
 			<set stat="critRate" val="4" />
@@ -452,7 +452,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10223" type="Weapon" name="Icarus Spitter">
 		<!-- Bestows one of the following functions: Cheap Shot, Guidance or Focus. -->
@@ -476,7 +476,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="689" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="12" />
@@ -484,7 +484,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10224" type="Weapon" name="Icarus Stinger">
 		<!-- Kamael Exclusive Weapon: Icarus Sawsword Conversion. Bestows one of the following functions: Focus, Health or Light. When enchanted to 4 or more, it has a chance of increasing P. Atk., M. Atk., and healing power, and of decreaseing MP consumption for skill use for you and your party members during a critical attack. -->
@@ -507,10 +507,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3426-1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="329" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="10" />
@@ -518,7 +518,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10225" type="Weapon" name="Icarus Wingblade">
 		<!-- Kamael Exclusive Weapon: Icarus Heavy Arms Conversion. Bestows one of the following functions: Focus, Health or Light. -->
@@ -540,10 +540,10 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="393" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="8" />
@@ -551,7 +551,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10226" type="Weapon" name="Icarus Shooter">
 		<!-- Kamael Exclusive Weapon: Icarus Spitter Conversion. Bestows one of the following functions: Cheap Shot, Guidance or Focus. -->
@@ -574,10 +574,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="400" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="422" />
 			<set stat="mAtk" val="163" />
 			<set stat="critRate" val="10" />
@@ -585,7 +585,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10227" type="Armor" name="Dynasty Platinum Plate">
 		<set name="icon" val="icon.armor_t91_u_i00" />
@@ -600,13 +600,13 @@
 		<set name="price" val="33673000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="226" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10228" type="Armor" name="Dynasty Platinum Plate - Shield Master">
 		<!-- Can only be worn by Phoenix Knights, Hell Knights, Eva's Templars and Shillien Templars. -->
@@ -622,16 +622,16 @@
 		<set name="price" val="33673000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="SHIELD_MASTER" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="226" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10229" type="Armor" name="Dynasty Platinum Plate - Weapon Master">
 		<!-- Can only be worn by Dreadnoughts, Titans, Fortune Seekers and Maestros can wear it. -->
@@ -647,16 +647,16 @@
 		<set name="price" val="33673000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="WEAPON_MASTER" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="226" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10230" type="Armor" name="Dynasty Platinum Plate - Force Master">
 		<!-- Can only be worn by Duelists and Grand Khavataris. -->
@@ -672,16 +672,16 @@
 		<set name="price" val="33673000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="FORCE_MASTER" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="226" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10231" type="Armor" name="Dynasty Platinum Plate - Bard">
 		<!-- Can only be worn by Sword Muses and Spectral Dancers. -->
@@ -697,16 +697,16 @@
 		<set name="price" val="33673000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="BARD" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="226" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10232" type="Armor" name="Dynasty Jewel Leather Armor">
 		<set name="icon" val="icon.armor_t92_u_i00" />
@@ -721,10 +721,10 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="170" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10233" type="Armor" name="Dynasty Jewel Leather Armor - Dagger Master">
 		<!-- Can be equipped by Adventurers, Wind Riders, Ghost Hunters, and Fortune Seekers. -->
@@ -740,13 +740,13 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player categoryType="DAGGER_MASTER" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="170" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10234" type="Armor" name="Dynasty Jewel Leather Armor - Bow Master">
 		<!-- Can only be worn by Sagittarius', Moonlight Sentinels, Ghost Sentinels and Tricksters. -->
@@ -762,13 +762,13 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player categoryType="BOW_MASTER" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="170" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10235" type="Armor" name="Dynasty Silver Satin Tunic">
 		<set name="icon" val="icon.armor_t93_u_i00" />
@@ -783,14 +783,14 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="113" />
 			<add stat="maxMp" val="592" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10236" type="Armor" name="Dynasty Silver Satin Tunic - Healer">
 		<!-- Can only be worn by Cardinals, Eva's Saints and Shillien Saints. -->
@@ -806,17 +806,17 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="HEAL_MASTER" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="113" />
 			<add stat="maxMp" val="592" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10237" type="Armor" name="Dynasty Silver Satin Tunic - Enchanter">
 		<!-- Can only be worn by Hierophants, Dominators and Doom Cryers -->
@@ -832,17 +832,17 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="BUFF_MASTER" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="113" />
 			<add stat="maxMp" val="592" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10238" type="Armor" name="Dynasty Silver Satin Tunic - Summoner">
 		<!-- Can only be worn by Arcana Lords, Elemental Masters and Spectral Masters. -->
@@ -858,17 +858,17 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="SUMMON_MASTER" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="113" />
 			<add stat="maxMp" val="592" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10239" type="Armor" name="Dynasty Silver Satin Tunic - Wizard">
 		<!-- Can only be worn by Archmages, Mystic Muses, Storm Screamers and Soultakers. -->
@@ -884,17 +884,17 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<and>
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player categoryType="WIZARD_MASTER" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="113" />
 			<add stat="maxMp" val="592" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="10240" type="Armor" name="Bird Nest">
 		<!-- Hair accessory that looks like a bird nest. Uses 2 hair accessory slots. -->
@@ -1038,7 +1038,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="325" />
 			<set stat="mAtk" val="222" />
 			<set stat="critRate" val="4" />
@@ -1046,7 +1046,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10253" type="Weapon" name="Dynasty Crusher">
 		<!-- Bestows one of the following functions: Anger, Health or Rsk. Focus. -->
@@ -1067,7 +1067,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="405" />
 			<set stat="mAtk" val="151" />
 			<set stat="critRate" val="4" />
@@ -1075,7 +1075,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10254" type="EtcItem" name="1st Place Treasure Sack - Event">
 		<!-- When double-clicked, a random 1st Place prize is granted. -->
@@ -1151,9 +1151,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2429-1" /> <!-- Haste Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10261" type="EtcItem" name="Accuracy Juice">
 		<!-- Delicious beverage made with rare fruits. Increases Accuracy by 4 when used. -->
@@ -1169,9 +1169,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2430-1" /> <!-- Accuracy Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10262" type="EtcItem" name="Critical Hit Juice">
 		<!-- Delicious beverage made with rare fruits. Critical Damage increases by 35% when used. -->
@@ -1187,9 +1187,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2431-1" /> <!-- Critical Damage Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10263" type="EtcItem" name="Critical Rate Juice">
 		<!-- Delicious beverage made with rare fruits. Critical Rate increases by 30% when used. -->
@@ -1205,9 +1205,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2432-1" /> <!-- Critical Attack Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10264" type="EtcItem" name="Casting Spd. Juice">
 		<!-- Delicious beverage made with rare fruits. Casting Spd. increases by 30% when used. -->
@@ -1223,9 +1223,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2433-1" /> <!-- Casting Speed Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10265" type="EtcItem" name="Evasion Juice">
 		<!-- Delicious beverage made with rare fruits. Increases Evasion by 4 when used. -->
@@ -1241,9 +1241,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2434-1" /> <!-- Evasion Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10266" type="EtcItem" name="M. Atk. Juice">
 		<!-- Delicious beverage made with rare fruits. Increases M. Atk. by 75% when used. -->
@@ -1259,9 +1259,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2435-1" /> <!-- Magic Power Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10267" type="EtcItem" name="Power Juice">
 		<!-- Delicious beverage made with rare fruits. Increases P. Atk. by 15% when used. -->
@@ -1277,9 +1277,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2436-1" /> <!-- Power Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10268" type="EtcItem" name="Speed Juice">
 		<!-- Delicious beverage made with rare fruits. Speed increases by 33 when used. -->
@@ -1295,9 +1295,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2437-1" /> <!-- Speed Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10269" type="EtcItem" name="Defense Juice">
 		<!-- Delicious beverage made with rare fruits. P. Def. increases by 15% when used. -->
@@ -1313,9 +1313,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2438-1" /> <!-- Defense Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10270" type="EtcItem" name="MP Consumption Juice">
 		<!-- Delicious beverage made with rare fruits. Decreases physical skill MP consumption by 10%, magic skill MP consumption by 4%, and song/dance skill MP consumption by 10%. -->
@@ -1330,9 +1330,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2439-1" /> <!-- MP Consumption Juice -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10271" type="EtcItem" name="Marvelous Fruit Juice #12">
 		<set name="icon" val="icon.etc_fruit_juice_glass_bottle_i11" />
@@ -1380,9 +1380,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2428-1" /> <!-- Scroll of Transformation - Rabbit -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="10275" type="EtcItem" name="Battle Manual - Warp">
 		<!-- Battle Manual needed to learn Warp. Used by Warders. Required level: 32 -->
@@ -1417,13 +1417,13 @@
 		<set name="spiritshots" val="2" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="10278" type="Weapon" name="Monster Only (Behamah Dual)">
 		<set name="icon" val="icon.weapon_dual_sword_i00" />
@@ -1441,14 +1441,14 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="for_npc" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="73" />
 			<set stat="mAtk" val="37" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="10279" type="EtcItem" name="Transformation Scroll: Onyx Beast">
 		<!-- Documents the method for transforming into Onyx Beast. -->

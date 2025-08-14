@@ -52,27 +52,38 @@ public class Race extends Event
 {
 	// Event NPCs list
 	private final Set<Npc> _npcs = ConcurrentHashMap.newKeySet();
+	
 	// Npc
 	private Npc _npc;
+	
 	// Player list
 	private final Set<Player> _players = ConcurrentHashMap.newKeySet();
+	
 	// Event Task
 	ScheduledFuture<?> _eventTask = null;
+	
 	// Event state
 	private static boolean _isactive = false;
+	
 	// Race state
 	private static boolean _isRaceStarted = false;
+	
 	// 5 min for register
 	private static final int REGISTER_TIME = 5;
+	
 	// 5 min for race
 	private static final int RACE_TIME = 10;
+	
 	// NPCs
 	private static final int START_NPC = 900103;
 	private static final int STOP_NPC = 900104;
+	
 	// Skills (Frog by default)
 	private static int _skill = 6201;
+	
 	// We must keep second NPC spawn for radar
 	private static int[] _randspawn = null;
+	
 	// Locations
 	private static final String[] _locations =
 	{
@@ -196,6 +207,7 @@ public class Race extends Event
 		
 		// Set Event active
 		_isactive = true;
+		
 		// Spawn Manager
 		_npc = recordSpawn(START_NPC, 18429, 145861, -3090, 0, false, 0);
 		
@@ -217,15 +229,20 @@ public class Race extends Event
 			eventStop();
 			return;
 		}
+		
 		// Set state
 		_isRaceStarted = true;
+		
 		// Announce
 		Broadcast.toAllOnlinePlayers("Race started!");
+		
 		// Get random Finish
 		final int location = getRandom(0, _locations.length - 1);
 		_randspawn = _coords[location];
+		
 		// And spawn NPC
 		recordSpawn(STOP_NPC, _randspawn[0], _randspawn[1], _randspawn[2], _randspawn[3], false, 0);
+		
 		// Transform players and send message
 		for (Player player : _players)
 		{
@@ -244,6 +261,7 @@ public class Race extends Event
 				}
 			}
 		}
+		
 		// Schedule timeup for Race
 		_eventTask = ThreadPool.schedule(this::timeUp, RACE_TIME * 60 * 1000);
 	}
@@ -267,6 +285,7 @@ public class Race extends Event
 			_eventTask.cancel(true);
 			_eventTask = null;
 		}
+		
 		// Untransform players
 		// Teleport to event start point
 		for (Player player : _players)
@@ -277,13 +296,17 @@ public class Race extends Event
 				player.teleToLocation(_npc.getX(), _npc.getY(), _npc.getZ(), true);
 			}
 		}
+		
 		_players.clear();
+		
 		// Despawn NPCs
 		for (Npc npc : _npcs)
 		{
 			npc.deleteMe();
 		}
+		
 		_npcs.clear();
+		
 		// Announce event end
 		Broadcast.toAllOnlinePlayers("* Race Event finished *");
 		return true;
@@ -325,6 +348,7 @@ public class Race extends Event
 				player.teleToLocation(18429, 145861, -3090);
 			}
 		}
+		
 		showMenu(player);
 		return true;
 	}
@@ -360,6 +384,7 @@ public class Race extends Event
 			{
 				return "900103-onlist.htm";
 			}
+			
 			_players.add(player);
 			return "900103-signup.htm";
 		}
@@ -370,6 +395,7 @@ public class Race extends Event
 			{
 				_players.remove(player);
 			}
+			
 			return "900103-quit.htm";
 		}
 		else if (event.equalsIgnoreCase("finish"))
@@ -379,8 +405,10 @@ public class Race extends Event
 				winRace(player);
 				return "900104-winner.htm";
 			}
+			
 			return "900104-notrans.htm";
 		}
+		
 		return htmltext;
 	}
 	
@@ -394,12 +422,14 @@ public class Race extends Event
 			{
 				return START_NPC + "-started-" + isRacing(player) + ".htm";
 			}
+			
 			return START_NPC + "-" + isRacing(player) + ".htm";
 		}
 		else if ((npc.getId() == STOP_NPC) && _isRaceStarted)
 		{
 			return STOP_NPC + "-" + isRacing(player) + ".htm";
 		}
+		
 		return npc.getId() + ".htm";
 	}
 	
@@ -421,6 +451,7 @@ public class Race extends Event
 		{
 			player.untransform();
 		}
+		
 		if (player.isSitting())
 		{
 			player.standUp();

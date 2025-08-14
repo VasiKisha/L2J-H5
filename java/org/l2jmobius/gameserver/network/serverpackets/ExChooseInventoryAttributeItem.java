@@ -39,6 +39,7 @@ public class ExChooseInventoryAttributeItem extends ServerPacket
 		{
 			throw new IllegalArgumentException("Undefined Atribute item: " + item);
 		}
+		
 		_level = Elementals.getMaxElementLevel(_itemId);
 	}
 	
@@ -47,6 +48,7 @@ public class ExChooseInventoryAttributeItem extends ServerPacket
 	{
 		ServerPackets.EX_CHOOSE_INVENTORY_ATTRIBUTE_ITEM.writeId(this, buffer);
 		buffer.writeInt(_itemId);
+		
 		// Structure for now
 		// Must be 0x01 for stone/crystal attribute type
 		buffer.writeInt(_atribute == Elementals.FIRE); // Fire

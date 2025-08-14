@@ -37,6 +37,7 @@ public class Q00011_SecretMeetingWithKetraOrcs extends Quest
 	private static final int CADMON = 31296;
 	private static final int LEON = 31256;
 	private static final int WAHKAN = 31371;
+	
 	// Item
 	private static final int BOX = 7231;
 	
@@ -88,6 +89,7 @@ public class Q00011_SecretMeetingWithKetraOrcs extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -137,6 +139,7 @@ public class Q00011_SecretMeetingWithKetraOrcs extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

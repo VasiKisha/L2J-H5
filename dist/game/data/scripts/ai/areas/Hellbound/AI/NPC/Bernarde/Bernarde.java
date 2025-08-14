@@ -31,8 +31,10 @@ public class Bernarde extends AbstractNpcAI
 {
 	// NPCs
 	private static final int BERNARDE = 32300;
+	
 	// Misc
 	private static final int NATIVE_TRANSFORM = 101;
+	
 	// Items
 	private static final int HOLY_WATER = 9673;
 	private static final int DARION_BADGE = 9674;
@@ -58,6 +60,7 @@ public class Bernarde extends AbstractNpcAI
 				{
 					return "32300-02b.htm";
 				}
+				
 				return "32300-02c.htm";
 			}
 			case "Treasure":
@@ -68,6 +71,7 @@ public class Bernarde extends AbstractNpcAI
 					takeItems(player, TREASURE, -1);
 					return "32300-02d.htm";
 				}
+				
 				return "32300-02e.htm";
 			}
 			case "rumors":
@@ -75,6 +79,7 @@ public class Bernarde extends AbstractNpcAI
 				return "32300-" + HellboundEngine.getInstance().getLevel() + "r.htm";
 			}
 		}
+		
 		return event;
 	}
 	

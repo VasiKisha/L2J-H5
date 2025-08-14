@@ -52,6 +52,7 @@ public class MultisellData implements IXmlReader
 	private final Map<Integer, ListContainer> _entries = new ConcurrentHashMap<>();
 	
 	public static final int PAGE_SIZE = 40;
+	
 	// Special IDs.
 	public static final int PC_CAFE_POINTS = -100;
 	public static final int CLAN_REPUTATION = -200;
@@ -142,6 +143,7 @@ public class MultisellData implements IXmlReader
 					}
 				}
 			}
+			
 			_entries.put(id, list);
 		}
 		catch (Exception e)
@@ -175,6 +177,7 @@ public class MultisellData implements IXmlReader
 					att = attrs.item(i);
 					set.set(att.getNodeName(), att.getNodeValue());
 				}
+				
 				entry.addIngredient(new Ingredient(set));
 			}
 			else if ("production".equalsIgnoreCase(n.getNodeName()))
@@ -186,6 +189,7 @@ public class MultisellData implements IXmlReader
 					att = attrs.item(i);
 					set.set(att.getNodeName(), att.getNodeValue());
 				}
+				
 				entry.addProduct(new Ingredient(set));
 			}
 		}
@@ -284,6 +288,7 @@ public class MultisellData implements IXmlReader
 				entry.getIngredients().forEach(ingredient -> ingredient.setItemCount((long) Math.max(ingredient.getItemCount() * ingredientMultiplier, 1)));
 			});
 		}
+		
 		int index = 0;
 		do
 		{
@@ -311,6 +316,7 @@ public class MultisellData implements IXmlReader
 					player.sendPacket(SystemMessageId.YOU_ARE_SHORT_OF_ACCUMULATED_POINTS);
 					break;
 				}
+				
 				return true;
 			}
 			case CLAN_REPUTATION:
@@ -321,16 +327,19 @@ public class MultisellData implements IXmlReader
 					player.sendPacket(SystemMessageId.YOU_ARE_NOT_A_CLAN_MEMBER_AND_CANNOT_PERFORM_THIS_ACTION);
 					break;
 				}
+				
 				if (!player.isClanLeader())
 				{
 					player.sendPacket(SystemMessageId.ONLY_THE_CLAN_LEADER_IS_ENABLED);
 					break;
 				}
+				
 				if (clan.getReputationScore() < amount)
 				{
 					player.sendPacket(SystemMessageId.THE_CLAN_REPUTATION_SCORE_IS_TOO_LOW);
 					break;
 				}
+				
 				return true;
 			}
 			case FAME:
@@ -340,9 +349,11 @@ public class MultisellData implements IXmlReader
 					player.sendPacket(SystemMessageId.YOU_DON_T_HAVE_ENOUGH_REPUTATION_TO_DO_THAT);
 					break;
 				}
+				
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -371,6 +382,7 @@ public class MultisellData implements IXmlReader
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -414,6 +426,7 @@ public class MultisellData implements IXmlReader
 						LOGGER.warning(getClass().getSimpleName() + ": can't find ingredient with itemId: " + ing.getItemId() + " in list: " + list.getListId());
 					}
 				}
+				
 				for (Ingredient ing : ent.getProducts())
 				{
 					if (!verifyIngredient(ing))

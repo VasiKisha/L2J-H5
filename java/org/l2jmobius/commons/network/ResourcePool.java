@@ -135,6 +135,7 @@ public class ResourcePool
 				{
 					pool.initialize(_initBufferPoolFactor);
 				}
+				
 				_bufferPools.put(size, pool);
 			}
 			
@@ -163,6 +164,7 @@ public class ResourcePool
 		{
 			pool.initialize(_initBufferPoolFactor);
 		}
+		
 		_bufferPools.put(size, pool);
 		
 		return size;
@@ -249,6 +251,7 @@ public class ResourcePool
 			sb.append(pool.toString());
 			sb.append(System.lineSeparator());
 		}
+		
 		return sb.toString();
 	}
 }

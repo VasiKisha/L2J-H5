@@ -57,6 +57,7 @@ public class ActionShiftHandler implements IHandler<IActionShiftHandler, Instanc
 				break;
 			}
 		}
+		
 		return result;
 	}
 	

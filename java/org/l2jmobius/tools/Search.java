@@ -154,6 +154,7 @@ public class Search extends JFrame
 			{
 				DarkTheme.activate();
 			}
+			
 			gui();
 		}
 		else
@@ -551,6 +552,7 @@ public class Search extends JFrame
 				{
 					return fileList;
 				}
+				
 				throw new UnsupportedFlavorException(flavor);
 			}
 		};
@@ -690,18 +692,22 @@ public class Search extends JFrame
 			{
 				ALLOWED_EXTENSIONS.add(".ini");
 			}
+			
 			if (_sqlCheckBox.isSelected())
 			{
 				ALLOWED_EXTENSIONS.add(".sql");
 			}
+			
 			if (_xmlCheckBox.isSelected())
 			{
 				ALLOWED_EXTENSIONS.add(".xml");
 			}
+			
 			if (_javaCheckBox.isSelected())
 			{
 				ALLOWED_EXTENSIONS.add(".java");
 			}
+			
 			if (_htmlCheckBox.isSelected())
 			{
 				ALLOWED_EXTENSIONS.add(".htm");
@@ -799,6 +805,7 @@ public class Search extends JFrame
 						_timeLabel.setVisible(true);
 					});
 				}
+				
 				return null;
 			}
 			
@@ -957,6 +964,7 @@ public class Search extends JFrame
 			{
 				matchCount++;
 			}
+			
 			return matchCount;
 		}
 		catch (IOException e)

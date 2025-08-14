@@ -222,6 +222,7 @@ public abstract class Client<T extends Connection<?>>
 		{
 			buffer.releaseResources();
 		}
+		
 		if (isConnected())
 		{
 			writeFairPacket();
@@ -275,6 +276,7 @@ public abstract class Client<T extends Connection<?>>
 		{
 			_packetsToWrite.add(packet);
 		}
+		
 		_closing.set(true);
 		
 		writeFairPacket();

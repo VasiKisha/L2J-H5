@@ -65,6 +65,7 @@ public class Kier extends AbstractNpcAI
 				htmltext = "32022-04.html";
 			}
 		}
+		
 		return htmltext;
 	}
 	

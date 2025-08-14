@@ -49,6 +49,7 @@ public class RespawnTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		if (!PENDING_RESPAWNS.isEmpty())

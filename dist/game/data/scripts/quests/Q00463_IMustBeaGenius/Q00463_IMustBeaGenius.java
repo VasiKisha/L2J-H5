@@ -61,6 +61,7 @@ public class Q00463_IMustBeaGenius extends Quest
 	
 	// NPC
 	private static final int GUTENHAGEN = 32069;
+	
 	// Items
 	private static final int CORPSE_LOG = 15510;
 	private static final int COLLECTION = 15511;
@@ -158,6 +159,7 @@ public class Q00463_IMustBeaGenius extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -217,6 +219,7 @@ public class Q00463_IMustBeaGenius extends Quest
 					htmltext = "32069-07.htm";
 					break;
 				}
+				
 				qs.setState(State.CREATED);
 				// fallthrou
 			}
@@ -244,6 +247,7 @@ public class Q00463_IMustBeaGenius extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

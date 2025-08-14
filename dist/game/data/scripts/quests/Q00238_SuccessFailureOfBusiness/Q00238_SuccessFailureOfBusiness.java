@@ -35,14 +35,17 @@ public class Q00238_SuccessFailureOfBusiness extends Quest
 {
 	// NPCs
 	private static final int HELVETICA = 32641;
+	
 	// Mobs
 	private static final int BRAZIER_OF_PURITY = 18806;
 	private static final int EVIL_SPIRITS = 22658;
 	private static final int GUARDIAN_SPIRITS = 22659;
+	
 	// Items
 	private static final int VICINITY_OF_FOS = 14865;
 	private static final int BROKEN_PIECE_OF_MAGIC_FORCE = 14867;
 	private static final int GUARDIAN_SPIRIT_FRAGMENT = 14868;
+	
 	// Misc
 	private static final int BROKEN_PIECE_OF_MAGIC_FORCE_NEEDED = 10;
 	private static final int GUARDIAN_SPIRIT_FRAGMENT_NEEDED = 20;
@@ -91,6 +94,7 @@ public class Q00238_SuccessFailureOfBusiness extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -107,6 +111,7 @@ public class Q00238_SuccessFailureOfBusiness extends Quest
 				{
 					giveItems(killer, BROKEN_PIECE_OF_MAGIC_FORCE, 1);
 				}
+				
 				if (getQuestItemsCount(killer, BROKEN_PIECE_OF_MAGIC_FORCE) == BROKEN_PIECE_OF_MAGIC_FORCE_NEEDED)
 				{
 					qs.setCond(2, true);
@@ -127,6 +132,7 @@ public class Q00238_SuccessFailureOfBusiness extends Quest
 				{
 					giveItems(killer, GUARDIAN_SPIRIT_FRAGMENT, 1);
 				}
+				
 				if (getQuestItemsCount(killer, GUARDIAN_SPIRIT_FRAGMENT) == GUARDIAN_SPIRIT_FRAGMENT_NEEDED)
 				{
 					qs.setCond(4, true);
@@ -208,6 +214,7 @@ public class Q00238_SuccessFailureOfBusiness extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

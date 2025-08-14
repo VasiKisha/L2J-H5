@@ -29,7 +29,7 @@ import org.l2jmobius.Config;
  */
 public class NodeBuffer
 {
-	private static final int MAX_ITERATIONS = 3500;
+	private static final int MAX_ITERATIONS = 7000;
 	
 	private final ReentrantLock _lock = new ReentrantLock();
 	private final int _mapSize;
@@ -82,6 +82,7 @@ public class NodeBuffer
 			
 			_current = nextCellNode;
 		}
+		
 		return null;
 	}
 	
@@ -198,6 +199,7 @@ public class NodeBuffer
 		else if (!result.isInUse())
 		{
 			result.setInUse();
+			
 			// Re-init node if needed.
 			if (result.getLocation() != null)
 			{
@@ -219,6 +221,7 @@ public class NodeBuffer
 		{
 			return null;
 		}
+		
 		if (newNode.getCost() >= 0)
 		{
 			return newNode;
@@ -264,8 +267,10 @@ public class NodeBuffer
 				newNode.setNext(node.getNext());
 				break;
 			}
+			
 			node = node.getNext();
 		}
+		
 		if (count == (MAX_ITERATIONS * 4))
 		{
 			System.err.println("Pathfinding: too long loop detected, cost:" + newNode.getCost());
@@ -287,6 +292,7 @@ public class NodeBuffer
 		final int dX = x - _targetX;
 		final int dY = y - _targetY;
 		final int dZ = z - _targetZ;
+		
 		// Math.abs(dx) + Math.abs(dy) + Math.abs(dz) / 16
 		double result = Math.sqrt((dX * dX) + (dY * dY) + ((dZ * dZ) / 256.0));
 		if (result > weight)

@@ -95,6 +95,7 @@ public class ConvertItem extends AbstractEffect
 		{
 			iu.addModifiedItem(item);
 		}
+		
 		player.sendInventoryUpdate(iu);
 		
 		if (unequipped.isEmpty())
@@ -123,6 +124,7 @@ public class ConvertItem extends AbstractEffect
 				sm = new SystemMessage(SystemMessageId.S1_HAS_BEEN_DISARMED);
 				sm.addItemName(item);
 			}
+			
 			player.sendPacket(sm);
 		}
 		
@@ -147,6 +149,7 @@ public class ConvertItem extends AbstractEffect
 		{
 			newItem.setElementAttr(elementals.getElement(), elementals.getValue());
 		}
+		
 		newItem.setEnchantLevel(enchantLevel);
 		player.getInventory().equipItem(newItem);
 		
@@ -162,6 +165,7 @@ public class ConvertItem extends AbstractEffect
 			msg = new SystemMessage(SystemMessageId.YOU_HAVE_EQUIPPED_YOUR_S1);
 			msg.addItemName(newItem);
 		}
+		
 		player.sendPacket(msg);
 		
 		final InventoryUpdate u = new InventoryUpdate();

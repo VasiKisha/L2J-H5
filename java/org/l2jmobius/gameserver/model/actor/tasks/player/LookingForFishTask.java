@@ -52,10 +52,12 @@ public class LookingForFishTask implements Runnable
 				_player.endFishing(false);
 				return;
 			}
+			
 			if (_fishGroup == -1)
 			{
 				return;
 			}
+			
 			final int check = Rnd.get(100);
 			if (_fishGutsCheck > check)
 			{

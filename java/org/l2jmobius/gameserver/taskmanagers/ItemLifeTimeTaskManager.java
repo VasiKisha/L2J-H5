@@ -48,6 +48,7 @@ public class ItemLifeTimeTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		if (!ITEMS.isEmpty())

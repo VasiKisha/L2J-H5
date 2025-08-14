@@ -50,6 +50,7 @@ public class AggroInfo
 		{
 			_hate = 0;
 		}
+		
 		return _hate;
 	}
 	

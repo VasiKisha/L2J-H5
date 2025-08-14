@@ -115,7 +115,7 @@ public class TowerOfNaia extends AbstractNpcAI
 		"Wind",
 		"Earth"
 	};
-	//@formatter:off
+	// @formatter:off
 	private static final int[][] SPORES_MOVE_POINTS =
 	{
 		{-46080, 246368, -14183},
@@ -132,7 +132,7 @@ public class TowerOfNaia extends AbstractNpcAI
 		{-46207, 247417, -14183},
 		{-45462, 248174, -14183},
 	};
-	//@formatter:on
+	// @formatter:on
 	private static final NpcStringId[] SPORES_NPCSTRING_ID =
 	{
 		NpcStringId.IT_S_S1,
@@ -236,7 +236,7 @@ public class TowerOfNaia extends AbstractNpcAI
 		ZONES.put(18503, 200029);
 		ZONES.put(18504, 200030);
 		ZONES.put(18505, 200031);
-		//@formatter:off
+		// @formatter:off
 		SPAWNS.put(18494, new int[][]
 		{
 			{22393, -46371, 246400, -9120, 0},
@@ -341,7 +341,7 @@ public class TowerOfNaia extends AbstractNpcAI
 			{18490, -47806, 243850, -13376, 0},
 			{18490, -48456, 243447, -13376, 0},
 		});
-		//@formatter:on
+		// @formatter:on
 	}
 	
 	public TowerOfNaia()
@@ -389,6 +389,7 @@ public class TowerOfNaia extends AbstractNpcAI
 			{
 				return "18492-02.htm";
 			}
+			
 			return "18492-01.htm";
 		}
 		else if ((npcId >= ROOM_MANAGER_FIRST) && (npcId <= ROOM_MANAGER_LAST) && _activeRooms.containsKey(npcId) && !_activeRooms.get(npcId))
@@ -398,8 +399,10 @@ public class TowerOfNaia extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.YOU_MUST_BE_IN_A_PARTY_IN_ORDER_TO_OPERATE_THE_MACHINE);
 				return null;
 			}
+			
 			return "manager.htm";
 		}
+		
 		return super.onFirstTalk(npc, player);
 	}
 	
@@ -451,6 +454,7 @@ public class TowerOfNaia extends AbstractNpcAI
 							_despawnedSporesCount.incrementAndGet();
 						}
 					}
+					
 					startQuestTimer("despawn_total", 3000, null, null);
 				}
 			}
@@ -514,6 +518,7 @@ public class TowerOfNaia extends AbstractNpcAI
 							partyMember.teleToLocation(-47271, 246098, -9120, true);
 						}
 					}
+					
 					_lock.deleteMe();
 					_lock = null;
 					cancelQuestTimers("spawn_lock");
@@ -549,6 +554,7 @@ public class TowerOfNaia extends AbstractNpcAI
 				player.sendPacket(SystemMessageId.YOU_MUST_BE_IN_A_PARTY_IN_ORDER_TO_OPERATE_THE_MACHINE);
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -570,6 +576,7 @@ public class TowerOfNaia extends AbstractNpcAI
 					MinionList.spawnMinion(_lock, 18493);
 					MinionList.spawnMinion(_lock, 18493);
 				}
+				
 				_controller.broadcastSay(ChatType.NPC_GENERAL, NpcStringId.EMERGENCY_EMERGENCY_THE_OUTER_WALL_IS_WEAKENING_RAPIDLY);
 				_counter -= 10;
 			}
@@ -674,6 +681,7 @@ public class TowerOfNaia extends AbstractNpcAI
 							}
 						}
 					}
+					
 					if (Math.abs(_indexCount[sporeGroup]) < ELEMENT_INDEX_LIMIT)
 					{
 						if ((((_indexCount[sporeGroup] > 0) && ((npcId == SPORE_FIRE) || (npcId == SPORE_WIND))) || ((_indexCount[sporeGroup] <= 0) && ((npcId == SPORE_WATER) || (npcId == SPORE_EARTH)))) && (getRandom(1000) > 200))
@@ -751,6 +759,7 @@ public class TowerOfNaia extends AbstractNpcAI
 				ret = -1;
 			}
 		}
+		
 		return ret;
 	}
 	
@@ -813,6 +822,7 @@ public class TowerOfNaia extends AbstractNpcAI
 			npc.getAI().setIntention(Intention.MOVE_TO, new Location(coords[0], coords[1], coords[2], heading));
 			npc.getSpawn().setXYZ(coords[0], coords[1], coords[2]);
 		}
+		
 		return time == 0 ? 100 : time;
 	}
 	
@@ -859,6 +869,7 @@ public class TowerOfNaia extends AbstractNpcAI
 				final Npc spawnedNpc = addSpawn(spawn[0], spawn[1], spawn[2], spawn[3], spawn[4], false, 0, false);
 				spawned.add(spawnedNpc);
 			}
+			
 			if (!spawned.isEmpty())
 			{
 				_spawns.put(managerId, spawned);
@@ -909,6 +920,7 @@ public class TowerOfNaia extends AbstractNpcAI
 				spore.deleteMe();
 			}
 		}
+		
 		_sporeSpawn.clear();
 		cancelQuestTimers("despawn_spore");
 	}

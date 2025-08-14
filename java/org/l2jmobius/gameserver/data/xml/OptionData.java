@@ -83,7 +83,7 @@ public class OptionData implements IXmlReader
 						{
 							switch (cd.getNodeName())
 							{
-								case "for":
+								case "stats":
 								{
 									for (Node fd = cd.getFirstChild(); fd != null; fd = fd.getNextSibling())
 									{
@@ -181,6 +181,7 @@ public class OptionData implements IXmlReader
 								}
 							}
 						}
+						
 						_optionMap.put(option.getId(), option);
 					}
 				}
@@ -198,6 +199,7 @@ public class OptionData implements IXmlReader
 		{
 			order = Integer.parseInt(orderNode.getNodeValue());
 		}
+		
 		op.addFunc(new FuncTemplate(null, null, functionName, order, stat, val));
 	}
 	
@@ -207,6 +209,7 @@ public class OptionData implements IXmlReader
 		{
 			return _options[id];
 		}
+		
 		return null;
 	}
 	

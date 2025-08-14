@@ -31,13 +31,16 @@ public class Q00036_MakeASewingKit extends Quest
 {
 	// NPC
 	private static final int FERRIS = 30847;
+	
 	// Monster
 	private static final int ENCHANTED_IRON_GOLEM = 20566;
+	
 	// Items
 	private static final int ARTISANS_FRAME = 1891;
 	private static final int ORIHARUKON = 1893;
 	private static final int SEWING_KIT = 7078;
 	private static final int ENCHANTED_IRON = 7163;
+	
 	// Misc
 	private static final int MIN_LEVEL = 60;
 	private static final int IRON_COUNT = 5;
@@ -75,6 +78,7 @@ public class Q00036_MakeASewingKit extends Quest
 				{
 					return getNoQuestMsg(player);
 				}
+				
 				takeItems(player, ENCHANTED_IRON, -1);
 				qs.setCond(3, true);
 				break;
@@ -100,6 +104,7 @@ public class Q00036_MakeASewingKit extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -161,6 +166,7 @@ public class Q00036_MakeASewingKit extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

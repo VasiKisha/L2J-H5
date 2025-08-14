@@ -23,7 +23,6 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.List;
 
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -57,6 +56,7 @@ public class RequestUnEquipItem extends ClientPacket
 		}
 		
 		final Item item = player.getInventory().getPaperdollItemBySlotId(_slot);
+		
 		// Wear-items are not to be unequipped.
 		if (item == null)
 		{
@@ -94,7 +94,7 @@ public class RequestUnEquipItem extends ClientPacket
 			return;
 		}
 		
-		if (item.isWeapon() && item.getWeaponItem().isForceEquip() && !player.canOverrideCond(PlayerCondOverride.ITEM_CONDITIONS))
+		if (item.isWeapon() && item.getWeaponItem().isForceEquip() && !player.isGM())
 		{
 			player.sendPacket(SystemMessageId.THAT_ITEM_CANNOT_BE_TAKEN_OFF);
 			return;
@@ -117,6 +117,7 @@ public class RequestUnEquipItem extends ClientPacket
 			{
 				sm = new SystemMessage(SystemMessageId.S1_HAS_BEEN_DISARMED);
 			}
+			
 			sm.addItemName(unequippedItem);
 			player.sendPacket(sm);
 			

@@ -152,9 +152,9 @@ public class Item extends WorldObject
 	public static final int REMOVED = 3;
 	public static final int MODIFIED = 2;
 	
-	//@formatter:off
-	public static final int[] DEFAULT_ENCHANT_OPTIONS = new int[] { 0, 0, 0 };
-	//@formatter:on
+	// @formatter:off
+	public static final int[] DEFAULT_ENCHANT_OPTIONS = { 0, 0, 0 };
+	// @formatter:on
 	
 	private int _lastChange = 2; // 1 ??, 2 modified, 3 removed
 	private boolean _existsInDb; // if a record exists in DB.
@@ -187,6 +187,7 @@ public class Item extends WorldObject
 		{
 			throw new IllegalArgumentException();
 		}
+		
 		super.setName(_itemTemplate.getName());
 		setCount(1);
 		_loc = ItemLocation.VOID;
@@ -214,6 +215,7 @@ public class Item extends WorldObject
 		{
 			throw new IllegalArgumentException();
 		}
+		
 		super.setName(_itemTemplate.getName());
 		setCount(1);
 		_loc = ItemLocation.VOID;
@@ -509,6 +511,7 @@ public class Item extends WorldObject
 		{
 			return _itemTemplate.isEnchantable();
 		}
+		
 		return false;
 	}
 	
@@ -637,6 +640,7 @@ public class Item extends WorldObject
 		{
 			return (EtcItem) _itemTemplate;
 		}
+		
 		return null;
 	}
 	
@@ -649,6 +653,7 @@ public class Item extends WorldObject
 		{
 			return (Weapon) _itemTemplate;
 		}
+		
 		return null;
 	}
 	
@@ -661,6 +666,7 @@ public class Item extends WorldObject
 		{
 			return (Armor) _itemTemplate;
 		}
+		
 		return null;
 	}
 	
@@ -1105,6 +1111,7 @@ public class Item extends WorldObject
 		{
 			return null;
 		}
+		
 		for (Elementals elm : _elementals)
 		{
 			if (elm.getElement() == attribute)
@@ -1112,6 +1119,7 @@ public class Item extends WorldObject
 				return elm;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -1129,6 +1137,7 @@ public class Item extends WorldObject
 		{
 			return _elementals[0].getElement();
 		}
+		
 		return -2;
 	}
 	
@@ -1146,6 +1155,7 @@ public class Item extends WorldObject
 		{
 			return _elementals[0].getValue();
 		}
+		
 		return 0;
 	}
 	
@@ -1171,6 +1181,7 @@ public class Item extends WorldObject
 				return elm.getValue();
 			}
 		}
+		
 		return 0;
 	}
 	
@@ -1241,6 +1252,7 @@ public class Item extends WorldObject
 				}
 			}
 		}
+		
 		_elementals = array;
 		
 		final String query = (element != -1) ? "DELETE FROM item_elementals WHERE itemId = ? AND elemType = ?" : "DELETE FROM item_elementals WHERE itemId = ?";
@@ -1314,6 +1326,7 @@ public class Item extends WorldObject
 		{
 			_storedInDb = false;
 		}
+		
 		if (resetConsumingMana)
 		{
 			_consumingMana = false;
@@ -1366,6 +1379,7 @@ public class Item extends WorldObject
 					item.unChargeAllShots();
 					iu.addModifiedItem(item);
 				}
+				
 				player.sendInventoryUpdate(iu);
 				player.broadcastUserInfo();
 			}
@@ -1399,6 +1413,7 @@ public class Item extends WorldObject
 			{
 				scheduleConsumeManaTask();
 			}
+			
 			if (_loc != ItemLocation.WAREHOUSE)
 			{
 				final InventoryUpdate iu = new InventoryUpdate();
@@ -1414,6 +1429,7 @@ public class Item extends WorldObject
 		{
 			return;
 		}
+		
 		_consumingMana = true;
 		ItemManaTaskManager.getInstance().add(this);
 	}
@@ -1473,6 +1489,7 @@ public class Item extends WorldObject
 				{
 					return;
 				}
+				
 				insertIntoDb();
 			}
 		}
@@ -1519,12 +1536,14 @@ public class Item extends WorldObject
 			LOGGER.log(Level.SEVERE, "Could not restore an item owned by " + ownerId + " from DB:", e);
 			return null;
 		}
+		
 		final ItemTemplate item = ItemData.getInstance().getTemplate(itemId);
 		if (item == null)
 		{
 			LOGGER.severe("Item item_id=" + itemId + " not known, object_id=" + objectId);
 			return null;
 		}
+		
 		inst = new Item(objectId, item);
 		inst._ownerId = ownerId;
 		inst.setCount(count);
@@ -1604,6 +1623,7 @@ public class Item extends WorldObject
 		{
 			ItemsOnGroundManager.getInstance().save(this);
 		}
+		
 		setDropperObjectId(0); // Set the dropper Id back to 0 so it no longer shows the drop packet
 		
 		if ((dropper != null) && dropper.isPlayer())
@@ -1684,6 +1704,7 @@ public class Item extends WorldObject
 			{
 				updateItemAttributes(con);
 			}
+			
 			if (_elementals != null)
 			{
 				updateItemElements(con);
@@ -1836,6 +1857,7 @@ public class Item extends WorldObject
 				item.unChargeAllShots();
 				iu.addModifiedItem(item);
 			}
+			
 			player.sendInventoryUpdate(iu);
 			player.broadcastUserInfo();
 		}
@@ -1858,6 +1880,7 @@ public class Item extends WorldObject
 		{
 			player.getWarehouse().destroyItem(ItemProcessType.DESTROY, this, player, null);
 		}
+		
 		player.sendPacket(SystemMessageId.THE_LIMITED_TIME_ITEM_HAS_DISAPPEARED_BECAUSE_THE_REMAINING_TIME_RAN_OUT);
 		
 		// Delete from world.
@@ -1870,6 +1893,7 @@ public class Item extends WorldObject
 		{
 			return;
 		}
+		
 		if (getRemainingTime() <= 0)
 		{
 			endOfLife();
@@ -1886,6 +1910,7 @@ public class Item extends WorldObject
 		{
 			return;
 		}
+		
 		for (Elementals elm : _elementals)
 		{
 			elm.updateBonus(player, isArmor());
@@ -1898,6 +1923,7 @@ public class Item extends WorldObject
 		{
 			return;
 		}
+		
 		for (Elementals elm : _elementals)
 		{
 			elm.removeBonus(player);
@@ -2058,6 +2084,7 @@ public class Item extends WorldObject
 		{
 			_owner = World.getInstance().getPlayer(_ownerId);
 		}
+		
 		return _owner;
 	}
 	
@@ -2153,6 +2180,7 @@ public class Item extends WorldObject
 		{
 			op.remove(player);
 		}
+		
 		_enchantOptions.clear();
 	}
 	

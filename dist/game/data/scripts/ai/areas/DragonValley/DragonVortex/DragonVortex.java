@@ -31,6 +31,7 @@ public class DragonVortex extends AbstractNpcAI
 {
 	// NPC
 	private static final int DRAGON_VORTEX = 32871;
+	
 	// Raids
 	private static final int EMERALD_HORN = 25718;
 	private static final int DUST_RIDER = 25719;
@@ -39,10 +40,13 @@ public class DragonVortex extends AbstractNpcAI
 	private static final int SHADOW_SUMMONER = 25722;
 	private static final int SPIKE_SLASHER = 25723;
 	private static final int MUSCLE_BOMBER = 25724;
+	
 	// Item
 	private static final int LARGE_DRAGON_BONE = 17248;
+	
 	// Variables
 	private static final String I_QUEST0 = "I_QUEST0";
+	
 	// Locations
 	private static final Location SPOT_1 = new Location(92744, 114045, -3072);
 	private static final Location SPOT_2 = new Location(110112, 124976, -3624);
@@ -145,6 +149,7 @@ public class DragonVortex extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

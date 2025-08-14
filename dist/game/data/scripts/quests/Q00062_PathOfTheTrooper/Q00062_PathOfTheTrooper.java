@@ -36,17 +36,21 @@ public class Q00062_PathOfTheTrooper extends Quest
 	// NPCs
 	private static final int MASTER_SHUBAIN = 32194;
 	private static final int MASTER_GWAIN = 32197;
+	
 	// Items
 	private static final int FELIM_LIZARDMAN_HEAD = 9749;
 	private static final int VENOMOUS_SPIDERS_LEG = 9750;
 	private static final int TUMRAN_BUGBEAR_HEART = 9751;
 	private static final int SHUBAINS_RECOMMENDATION = 9752;
+	
 	// Reward
 	private static final int GWAINS_RECOMMENDATION = 9753;
+	
 	// Monster
 	private static final int FELIM_LIZARDMAN_WARRIOR = 20014;
 	private static final int VENOMOUS_SPIDER = 20038;
 	private static final int TUMRAN_BUGBEAR = 20062;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -92,6 +96,7 @@ public class Q00062_PathOfTheTrooper extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -228,6 +233,7 @@ public class Q00062_PathOfTheTrooper extends Quest
 								{
 									addExpAndSp(player, 591724, 34244);
 								}
+								
 								qs.exitQuest(false, true);
 								player.sendPacket(new SocialAction(player.getObjectId(), 3));
 								htmltext = "32197-10.html";
@@ -294,6 +300,7 @@ public class Q00062_PathOfTheTrooper extends Quest
 				htmltext = "32197-05.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

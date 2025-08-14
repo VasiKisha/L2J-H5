@@ -1161,6 +1161,7 @@ public class BlowfishEngine
 				xr ^= func(xl) ^ P[i];
 				xl ^= func(xr) ^ P[i + 1];
 			}
+			
 			xr ^= P[ROUNDS + 1];
 			table[s] = xr;
 			table[s + 1] = xl;
@@ -1192,12 +1193,14 @@ public class BlowfishEngine
 			{
 				// create a 32 bit block
 				data = (data << 8) | (key[keyIndex++] & 0xff);
+				
 				// wrap when we get to the end of the key
 				if (keyIndex >= keyLength)
 				{
 					keyIndex = 0;
 				}
 			}
+			
 			// XOR the newly created 32 bit chunk onto the P-array
 			P[i] ^= data;
 		}
@@ -1227,6 +1230,7 @@ public class BlowfishEngine
 			xr ^= func(xl) ^ P[i];
 			xl ^= func(xr) ^ P[i + 1];
 		}
+		
 		xr ^= P[ROUNDS + 1];
 		bits32ToBytes(xr, data, index);
 		bits32ToBytes(xl, data, index + 4);
@@ -1247,6 +1251,7 @@ public class BlowfishEngine
 			xr ^= func(xl) ^ P[i];
 			xl ^= func(xr) ^ P[i - 1];
 		}
+		
 		xr ^= P[0];
 		bits32ToBytes(xr, data, index);
 		bits32ToBytes(xl, data, index + 4);

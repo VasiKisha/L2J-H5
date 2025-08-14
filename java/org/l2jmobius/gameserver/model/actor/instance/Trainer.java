@@ -47,6 +47,7 @@ public class Trainer extends Folk
 		{
 			pom = npcId + "-" + value;
 		}
+		
 		return "data/html/trainer/" + pom + ".htm";
 	}
 }

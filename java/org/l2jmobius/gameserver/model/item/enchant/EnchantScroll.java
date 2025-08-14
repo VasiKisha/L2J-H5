@@ -119,6 +119,7 @@ public class EnchantScroll extends AbstractEnchantItem
 				return false;
 			}
 		}
+		
 		if (_items.isEmpty())
 		{
 			for (EnchantScroll scroll : EnchantItemData.getInstance().getScrolls())
@@ -127,6 +128,7 @@ public class EnchantScroll extends AbstractEnchantItem
 				{
 					continue;
 				}
+				
 				final Collection<Integer> scrollItems = scroll.getItems();
 				if (!scrollItems.isEmpty() && scrollItems.contains(itemToEnchant.getId()))
 				{
@@ -134,6 +136,7 @@ public class EnchantScroll extends AbstractEnchantItem
 				}
 			}
 		}
+		
 		return super.isValid(itemToEnchant, supportItem);
 	}
 	

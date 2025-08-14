@@ -38,6 +38,7 @@ public class Q00141_ShadowFoxPart3 extends Quest
 {
 	// NPCs
 	private static final int NATOOLS = 30894;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
 	static
@@ -49,6 +50,7 @@ public class Q00141_ShadowFoxPart3 extends Quest
 	
 	// Items
 	private static final int PREDECESSORS_REPORT = 10350;
+	
 	// Misc
 	private static final int MIN_LEVEL = 37;
 	private static final int MAX_REWARD_LEVEL = 42;
@@ -116,6 +118,7 @@ public class Q00141_ShadowFoxPart3 extends Quest
 				{
 					addExpAndSp(player, 278005, 17058);
 				}
+				
 				qs.exitQuest(false, true);
 				
 				final Quest q = QuestManager.getInstance().getQuest(Q00998_FallenAngelSelect.class.getSimpleName());
@@ -131,6 +134,7 @@ public class Q00141_ShadowFoxPart3 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -218,6 +222,7 @@ QuestState qs = getQuestState(member, false);
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

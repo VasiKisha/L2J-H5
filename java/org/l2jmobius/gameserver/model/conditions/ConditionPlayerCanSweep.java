@@ -81,6 +81,7 @@ public class ConditionPlayerCanSweep extends Condition
 				}
 			}
 		}
+		
 		return _value == canSweep;
 	}
 }

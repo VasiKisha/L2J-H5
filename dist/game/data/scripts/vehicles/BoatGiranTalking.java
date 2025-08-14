@@ -211,14 +211,17 @@ public class BoatGiranTalking implements Runnable
 						{
 							BoatManager.getInstance().broadcastPacket(TALKING_DOCK[0], GIRAN_DOCK, BUSY_TALKING);
 						}
+						
 						_shoutCount++;
 						if (_shoutCount > 35)
 						{
 							_shoutCount = 0;
 						}
+						
 						ThreadPool.schedule(this, 5000);
 						return;
 					}
+					
 					_boat.executePath(TALKING_DOCK);
 					break;
 				}
@@ -295,6 +298,7 @@ public class BoatGiranTalking implements Runnable
 					break;
 				}
 			}
+			
 			_shoutCount = 0;
 			_cycle++;
 			if (_cycle > 18)

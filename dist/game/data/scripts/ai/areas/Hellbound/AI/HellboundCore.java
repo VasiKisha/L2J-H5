@@ -34,6 +34,7 @@ public class HellboundCore extends AbstractNpcAI
 	// NPCs
 	private static final int NAIA = 18484;
 	private static final int HELLBOUND_CORE = 32331;
+	
 	// Skills
 	private static final SkillHolder BEAM = new SkillHolder(5493, 1);
 	
@@ -57,6 +58,7 @@ public class HellboundCore extends AbstractNpcAI
 			});
 			startQuestTimer("cast", 10000, npc, null);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

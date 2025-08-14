@@ -29,6 +29,7 @@ public class Q00378_GrandFeast extends Quest
 {
 	// NPC
 	private static final int RANSPO = 30594;
+	
 	// Items
 	private static final int JONAS_SALAD_RECIPE = 1455;
 	private static final int JONAS_SAUCE_RECIPE = 1456;
@@ -38,6 +39,7 @@ public class Q00378_GrandFeast extends Quest
 	private static final int OLD_WINE_30_YEAR = 5957;
 	private static final int OLD_WINE_60_YEAR = 5958;
 	private static final int RITRONS_DESSERT_RECIPE = 5959;
+	
 	// Rewards
 	private static final int CORAL_EARRING = 846;
 	private static final int RED_CRESCENT_EARRING = 847;
@@ -46,6 +48,7 @@ public class Q00378_GrandFeast extends Quest
 	private static final int RING_OF_DEVOTION = 890;
 	private static final int BLUE_DIAMOND_NECKLACE = 909;
 	private static final int NECKLACE_OF_DEVOTION = 910;
+	
 	// Misc
 	private static final int MIN_LEVEL = 20;
 	
@@ -192,6 +195,7 @@ public class Q00378_GrandFeast extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -295,6 +299,7 @@ public class Q00378_GrandFeast extends Quest
 								break;
 							}
 						}
+						
 						giveItems(player, item, quantity);
 						giveAdena(player, adena, true);
 						qs.exitQuest(true, true);
@@ -308,6 +313,7 @@ public class Q00378_GrandFeast extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

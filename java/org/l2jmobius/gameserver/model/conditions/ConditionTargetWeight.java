@@ -49,6 +49,7 @@ public class ConditionTargetWeight extends Condition
 				return (((target.getCurrentLoad() - target.getBonusWeightPenalty()) * 100) / target.getMaxLoad()) < _weight;
 			}
 		}
+		
 		return false;
 	}
 }

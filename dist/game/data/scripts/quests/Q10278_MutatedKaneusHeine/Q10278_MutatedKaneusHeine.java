@@ -42,6 +42,7 @@ public class Q10278_MutatedKaneusHeine extends Quest
 	private static final int MINEVIA = 30907;
 	private static final int BLADE_OTIS = 18562;
 	private static final int WEIRD_BUNEI = 18564;
+	
 	// Items
 	private static final int TISSUE_BO = 13834;
 	private static final int TISSUE_WB = 13835;
@@ -78,6 +79,7 @@ public class Q10278_MutatedKaneusHeine extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -165,6 +167,7 @@ public class Q10278_MutatedKaneusHeine extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

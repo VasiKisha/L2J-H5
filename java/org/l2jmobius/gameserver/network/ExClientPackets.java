@@ -218,7 +218,7 @@ public enum ExClientPackets
 			if (packet != null)
 			{
 				final String name = packet.getClass().getSimpleName();
-				if (!Config.ALT_DEV_EXCLUDED_PACKETS.contains(name))
+				if (!Config.EXCLUDED_DEBUG_PACKETS.contains(name))
 				{
 					PacketLogger.info("[C EX] " + name);
 				}
@@ -228,6 +228,7 @@ public enum ExClientPackets
 				PacketLogger.info("[C EX] 0x" + Integer.toHexString(_packetId).toUpperCase());
 			}
 		}
+		
 		return packet;
 	}
 	

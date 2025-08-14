@@ -99,6 +99,7 @@ public class DayNightSpawnManager
 						i++;
 					}
 				}
+				
 				LOGGER.info("DayNightSpawnManager: Removed " + i + " " + unspawnLogInfo + " creatures");
 			}
 			
@@ -109,6 +110,7 @@ public class DayNightSpawnManager
 				{
 					continue;
 				}
+				
 				spawnDat.startRespawn();
 				spawnDat.doSpawn();
 				i++;

@@ -137,6 +137,7 @@ public abstract class AbstractOlympiadGame
 			player.sendPacket(sm);
 			return new SystemMessage(SystemMessageId.YOUR_OPPONENT_DOES_NOT_MEET_THE_REQUIREMENTS_TO_DO_BATTLE_THE_MATCH_HAS_BEEN_CANCELLED);
 		}
+		
 		if (player.isSubClassActive())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_DOES_NOT_MEET_THE_PARTICIPATION_REQUIREMENTS_YOU_CANNOT_PARTICIPATE_IN_THE_OLYMPIAD_BECAUSE_YOU_HAVE_CHANGED_TO_YOUR_SUB_CLASS);
@@ -144,6 +145,7 @@ public abstract class AbstractOlympiadGame
 			player.sendPacket(sm);
 			return new SystemMessage(SystemMessageId.YOUR_OPPONENT_DOES_NOT_MEET_THE_REQUIREMENTS_TO_DO_BATTLE_THE_MATCH_HAS_BEEN_CANCELLED);
 		}
+		
 		if (player.isCursedWeaponEquipped())
 		{
 			sm = new SystemMessage(SystemMessageId.C1_DOES_NOT_MEET_THE_PARTICIPATION_REQUIREMENTS_THE_OWNER_OF_S2_CANNOT_PARTICIPATE_IN_THE_OLYMPIAD);
@@ -152,6 +154,7 @@ public abstract class AbstractOlympiadGame
 			player.sendPacket(sm);
 			return new SystemMessage(SystemMessageId.YOUR_OPPONENT_DOES_NOT_MEET_THE_REQUIREMENTS_TO_DO_BATTLE_THE_MATCH_HAS_BEEN_CANCELLED);
 		}
+		
 		if (!player.isInventoryUnder90(true))
 		{
 			sm = new SystemMessage(SystemMessageId.C1_DOES_NOT_MEET_THE_PARTICIPATION_REQUIREMENTS_YOU_CANNOT_PARTICIPATE_IN_THE_OLYMPIAD_BECAUSE_YOUR_INVENTORY_SLOT_EXCEEDS_80);
@@ -178,6 +181,7 @@ public abstract class AbstractOlympiadGame
 			{
 				player.standUp();
 			}
+			
 			player.setTarget(null);
 			
 			player.setOlympiadGameId(id);
@@ -188,6 +192,7 @@ public abstract class AbstractOlympiadGame
 			loc.setInstanceId(OlympiadGameManager.getInstance().getOlympiadTask(id).getZone().getInstanceId());
 			player.teleToLocation(loc, false);
 			player.sendPacket(new ExOlympiadMode(2));
+			
 			// FIXME: Make sure player has no buffs.
 			cleanEffects(player);
 		}
@@ -196,6 +201,7 @@ public abstract class AbstractOlympiadGame
 			LOGGER.log(Level.WARNING, e.getMessage(), e);
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -224,6 +230,7 @@ public abstract class AbstractOlympiadGame
 						castle.removeResidentialSkills(player);
 					}
 				}
+				
 				if (clan.getFortId() > 0)
 				{
 					final Fort fort = FortManager.getInstance().getFortByOwner(clan);
@@ -272,6 +279,7 @@ public abstract class AbstractOlympiadGame
 					party.removePartyMember(player, PartyMessageType.EXPELLED);
 				}
 			}
+			
 			// Remove Agathion
 			if (player.getAgathionId() > 0)
 			{
@@ -332,6 +340,7 @@ public abstract class AbstractOlympiadGame
 			{
 				player.setAgathionId(0);
 			}
+			
 			final Summon summon = player.getSummon();
 			if ((summon != null) && !summon.isDead())
 			{
@@ -385,6 +394,7 @@ public abstract class AbstractOlympiadGame
 						castle.giveResidentialSkills(player);
 					}
 				}
+				
 				if (clan.getFortId() > 0)
 				{
 					final Fort fort = FortManager.getInstance().getFortByOwner(clan);
@@ -393,6 +403,7 @@ public abstract class AbstractOlympiadGame
 						fort.giveResidentialSkills(player);
 					}
 				}
+				
 				player.sendSkillList();
 			}
 			
@@ -419,11 +430,13 @@ public abstract class AbstractOlympiadGame
 		{
 			return;
 		}
+		
 		final Location loc = player.getLastLocation();
 		if ((loc.getX() == 0) && (loc.getY() == 0))
 		{
 			return;
 		}
+		
 		player.setIsPendingRevive(false);
 		player.setInstanceId(0);
 		player.teleToLocation(loc);
@@ -461,6 +474,7 @@ public abstract class AbstractOlympiadGame
 				sm.addInt(it[1]);
 				player.sendPacket(sm);
 			}
+			
 			player.sendInventoryUpdate(iu);
 		}
 		catch (Exception e)

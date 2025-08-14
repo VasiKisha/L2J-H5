@@ -49,6 +49,7 @@ public class PledgeShowMemberListUpdate extends ServerPacket
 		{
 			_hasSponsor = false;
 		}
+		
 		_name = player.getName();
 		_level = player.getLevel();
 		_classId = player.getPlayerClass().getId();
@@ -98,6 +99,7 @@ public class PledgeShowMemberListUpdate extends ServerPacket
 			buffer.writeInt(0);
 			buffer.writeInt(0);
 		}
+		
 		buffer.writeInt(_hasSponsor);
 	}
 }

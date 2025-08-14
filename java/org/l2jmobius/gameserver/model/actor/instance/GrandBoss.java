@@ -95,6 +95,7 @@ public class GrandBoss extends Monster
 				}
 			}
 		}
+		
 		return true;
 	}
 	

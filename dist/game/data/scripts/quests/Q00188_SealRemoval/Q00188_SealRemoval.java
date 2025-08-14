@@ -36,9 +36,11 @@ public class Q00188_SealRemoval extends Quest
 	private static final int MAESTRO_NIKOLA = 30621;
 	private static final int RESEARCHER_LORAIN = 30673;
 	private static final int DOROTHY_LOCKSMITH = 30970;
+	
 	// Items
 	private static final int LORAINES_CERTIFICATE = 10362;
 	private static final int BROKEN_METAL_PIECES = 10369;
+	
 	// Misc
 	private static final int MIN_LEVEL = 41;
 	private static final int MAX_LEVEL_FOR_EXP_SP = 47;
@@ -117,12 +119,14 @@ public class Q00188_SealRemoval extends Quest
 					{
 						addExpAndSp(player, 285935, 18711);
 					}
+					
 					qs.exitQuest(false, true);
 					htmltext = event;
 				}
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -180,6 +184,7 @@ public class Q00188_SealRemoval extends Quest
 		{
 			htmltext = getAlreadyCompletedMsg(player);
 		}
+		
 		return htmltext;
 	}
 }

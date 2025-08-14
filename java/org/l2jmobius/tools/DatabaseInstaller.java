@@ -37,6 +37,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -97,6 +99,7 @@ public class DatabaseInstaller extends JFrame
 			{
 				DarkTheme.activate();
 			}
+			
 			gui();
 		}
 		else
@@ -219,18 +222,18 @@ public class DatabaseInstaller extends JFrame
 		rightPanel.setLayout(new BorderLayout());
 		splitPane.setRightComponent(rightPanel);
 		
-		// Initialize and set up the progress bar.
-		_progressBar = new JProgressBar(0, 100);
-		_progressBar.setStringPainted(true);
-		_progressBar.setPreferredSize(new Dimension(200, 20));
-		_progressBar.setVisible(true);
-		rightPanel.add(_progressBar, BorderLayout.NORTH);
-		
 		// Output area for logs/messages.
 		_outputArea = new JTextPane();
 		_outputArea.setEditable(false);
 		final JScrollPane scrollPane = new JScrollPane(_outputArea);
 		rightPanel.add(scrollPane, BorderLayout.CENTER);
+		
+		// Initialize and set up the progress bar.
+		_progressBar = new JProgressBar(0, 100);
+		_progressBar.setStringPainted(true);
+		_progressBar.setPreferredSize(new Dimension(200, 20));
+		_progressBar.setVisible(true);
+		rightPanel.add(_progressBar, BorderLayout.SOUTH);
 		
 		// Set the SplitPane divider location.
 		splitPane.setDividerLocation(130);
@@ -287,6 +290,7 @@ public class DatabaseInstaller extends JFrame
 						{
 							
 						}
+						
 						System.exit(0);
 						break;
 					}
@@ -491,6 +495,8 @@ public class DatabaseInstaller extends JFrame
 			return false;
 		}
 		
+		Arrays.sort(sqlFiles, Comparator.comparing(File::getName, String.CASE_INSENSITIVE_ORDER));
+		
 		try (Connection connection = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + dbName, username, password);
 			Statement statement = connection.createStatement())
 		{
@@ -544,6 +550,7 @@ public class DatabaseInstaller extends JFrame
 							System.out.println("[ERROR] Error executing SQL: " + sql + " - " + e.getMessage());
 						}
 					}
+					
 					sb.setLength(0);
 				}
 			}
@@ -624,6 +631,7 @@ public class DatabaseInstaller extends JFrame
 				{
 					installationProgress("Error: Unable to connect to the database. Check your credentials." + System.lineSeparator(), "Error");
 				}
+				
 				return null;
 			}
 		}.execute();
@@ -665,6 +673,7 @@ public class DatabaseInstaller extends JFrame
 					{
 						installationSuccessful = installDatabase("login");
 					}
+					
 					if (isGameInstalled)
 					{
 						installationSuccessful = installDatabase("game");
@@ -691,6 +700,7 @@ public class DatabaseInstaller extends JFrame
 						installationProgress("Installation failed. Please check the error logs." + System.lineSeparator(), "Error");
 					}
 				}
+				
 				_installButton.setEnabled(true); // Re-enable button after installation.
 				return null;
 			}
@@ -718,6 +728,7 @@ public class DatabaseInstaller extends JFrame
 		{
 			installationProgress("Error installing " + dbType + " database: " + e.getMessage() + System.lineSeparator(), "Error");
 		}
+		
 		return installationSuccessful;
 	}
 	
@@ -742,6 +753,7 @@ public class DatabaseInstaller extends JFrame
 			return false;
 		}
 		
+		Arrays.sort(sqlFiles, Comparator.comparing(File::getName, String.CASE_INSENSITIVE_ORDER));
 		final int totalFiles = sqlFiles.length;
 		int completedFiles = 0;
 		
@@ -837,6 +849,7 @@ public class DatabaseInstaller extends JFrame
 								}
 							}
 						}
+						
 						sb.setLength(0); // Clear buffer after execution.
 					}
 				}
@@ -975,17 +988,21 @@ public class DatabaseInstaller extends JFrame
 							{
 								writer.write("," + System.lineSeparator());
 							}
+							
 							writer.write("\t`" + descResult.getString(1) + "` " + descResult.getString(2));
 							if (descResult.getString(3).equals("NO"))
 							{
 								writer.write(" NOT NULL");
 							}
+							
 							if (descResult.getString(4) != null)
 							{
 								writer.write(" DEFAULT '" + descResult.getString(4) + "'");
 							}
+							
 							firstColumn = false;
 						}
+						
 						writer.write(System.lineSeparator() + ");" + System.lineSeparator() + System.lineSeparator());
 					}
 					
@@ -1000,6 +1017,7 @@ public class DatabaseInstaller extends JFrame
 							{
 								writer.write("INSERT INTO `" + tableName + "` VALUES ");
 							}
+							
 							if (rowCount > 0)
 							{
 								writer.write("," + System.lineSeparator());
@@ -1012,8 +1030,10 @@ public class DatabaseInstaller extends JFrame
 								{
 									writer.write(", ");
 								}
+								
 								writer.write("'" + dataResult.getString(i).replace("'", "\\'") + "'");
 							}
+							
 							writer.write(")");
 							rowCount++;
 							if ((rowCount % 100) == 0)
@@ -1021,6 +1041,7 @@ public class DatabaseInstaller extends JFrame
 								writer.write(";" + System.lineSeparator());
 							}
 						}
+						
 						if ((rowCount % 100) != 0)
 						{
 							writer.write(";" + System.lineSeparator());

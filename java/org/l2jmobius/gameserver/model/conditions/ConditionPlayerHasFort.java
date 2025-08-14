@@ -61,6 +61,7 @@ public class ConditionPlayerHasFort extends Condition
 		{
 			return clan.getFortId() > 0;
 		}
+		
 		return clan.getFortId() == _fort;
 	}
 }

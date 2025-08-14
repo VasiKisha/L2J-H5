@@ -86,6 +86,7 @@ public class RequestPreviewItem extends ClientPacket
 		{
 			_count = 0;
 		}
+		
 		if (_count > 100)
 		{
 			return; // prevent too long lists
@@ -230,6 +231,7 @@ public class RequestPreviewItem extends ClientPacket
 		if (!itemList.isEmpty())
 		{
 			player.sendPacket(new ShopPreviewInfo(itemList));
+			
 			// Schedule task
 			ThreadPool.schedule(new RemoveWearItemsTask(player), Config.WEAR_DELAY * 1000);
 		}

@@ -47,6 +47,7 @@ public class ConditionPlayerWeight extends Condition
 			final int weightproc = ((player.getCurrentLoad() - player.getBonusWeightPenalty()) * 100) / player.getMaxLoad();
 			return (weightproc < _weight) || player.getDietMode();
 		}
+		
 		return true;
 	}
 }

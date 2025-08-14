@@ -38,7 +38,7 @@ public class AdminAugment implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final String[] splitCommand = command.trim().split(" ");
 		if (splitCommand.length < 3)
@@ -96,7 +96,7 @@ public class AdminAugment implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

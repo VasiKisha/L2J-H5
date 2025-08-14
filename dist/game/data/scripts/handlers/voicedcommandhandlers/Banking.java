@@ -35,7 +35,7 @@ public class Banking implements IVoicedCommandHandler
 	};
 	
 	@Override
-	public boolean useVoicedCommand(String command, Player activeChar, String params)
+	public boolean onCommand(String command, Player activeChar, String params)
 	{
 		if (command.equals("bank"))
 		{
@@ -49,6 +49,7 @@ public class Banking implements IVoicedCommandHandler
 				{
 					return false;
 				}
+				
 				activeChar.getInventory().addItem(ItemProcessType.COMPENSATE, 3470, Config.BANKING_SYSTEM_GOLDBARS, activeChar, null);
 				activeChar.getInventory().updateDatabase();
 				activeChar.sendMessage("Thank you, you now have " + Config.BANKING_SYSTEM_GOLDBARS + " Goldbar(s), and " + Config.BANKING_SYSTEM_ADENA + " less adena.");
@@ -66,6 +67,7 @@ public class Banking implements IVoicedCommandHandler
 				{
 					return false;
 				}
+				
 				activeChar.getInventory().addAdena(ItemProcessType.COMPENSATE, Config.BANKING_SYSTEM_ADENA, activeChar, null);
 				activeChar.getInventory().updateDatabase();
 				activeChar.sendMessage("Thank you, you now have " + Config.BANKING_SYSTEM_ADENA + " Adena, and " + Config.BANKING_SYSTEM_GOLDBARS + " less Goldbar(s).");
@@ -75,11 +77,12 @@ public class Banking implements IVoicedCommandHandler
 				activeChar.sendMessage("You do not have any Goldbars to turn into " + Config.BANKING_SYSTEM_ADENA + " Adena.");
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getVoicedCommandList()
+	public String[] getCommandList()
 	{
 		return VOICED_COMMANDS;
 	}

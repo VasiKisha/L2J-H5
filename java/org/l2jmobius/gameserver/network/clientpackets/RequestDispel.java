@@ -47,28 +47,34 @@ public class RequestDispel extends ClientPacket
 		{
 			return;
 		}
+		
 		final Player player = getPlayer();
 		if (player == null)
 		{
 			return;
 		}
+		
 		final Skill skill = SkillData.getInstance().getSkill(_skillId, _skillLevel);
 		if (skill == null)
 		{
 			return;
 		}
+		
 		if (!skill.canBeDispeled() || skill.isStayAfterDeath() || skill.isDebuff())
 		{
 			return;
 		}
+		
 		if (skill.getAbnormalType() == AbnormalType.TRANSFORM)
 		{
 			return;
 		}
+		
 		if (skill.isDance() && !Config.DANCE_CANCEL_BUFF)
 		{
 			return;
 		}
+		
 		if (player.getObjectId() == _objectId)
 		{
 			player.stopSkillEffects(SkillFinishType.REMOVED, _skillId);

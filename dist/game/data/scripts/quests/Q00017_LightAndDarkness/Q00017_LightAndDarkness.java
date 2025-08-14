@@ -41,6 +41,7 @@ public class Q00017_LightAndDarkness extends Quest
 	private static final int SAINT_ALTAR_2 = 31509;
 	private static final int SAINT_ALTAR_3 = 31510;
 	private static final int SAINT_ALTAR_4 = 31511;
+	
 	// Item
 	private static final int BLOOD_OF_SAINT = 7168;
 	
@@ -93,6 +94,7 @@ public class Q00017_LightAndDarkness extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -153,6 +155,7 @@ public class Q00017_LightAndDarkness extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

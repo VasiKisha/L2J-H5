@@ -162,6 +162,7 @@ public class ArmorSetData implements IXmlReader
 								}
 							}
 						}
+						
 						_armorSetMap.put(set.getChestId(), set);
 					}
 				}
@@ -190,6 +191,7 @@ public class ArmorSetData implements IXmlReader
 		{
 			return _armorSets[chestId];
 		}
+		
 		return null;
 	}
 	

@@ -16,7 +16,6 @@
  */
 package quests.Q00690_JudesRequest;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -34,6 +33,7 @@ public class Q00690_JudesRequest extends Quest
 	private static final int JUDE = 32356;
 	private static final int LESSER_EVIL = 22398;
 	private static final int GREATER_EVIL = 22399;
+	
 	// Items
 	private static final int EVIL_WEAPON = 10327;
 	private static final int[][] REWARDS =
@@ -117,6 +117,7 @@ public class Q00690_JudesRequest extends Quest
 				htmltext = "32356-09a.htm";
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -139,8 +140,7 @@ public class Q00690_JudesRequest extends Quest
 		{
 			chance = 246;
 		}
-		// Apply the quest drop rate:
-		chance *= Config.RATE_QUEST_DROP;
+		
 		// Normalize
 		chance %= 1000;
 		if (getRandom(1000) <= chance)
@@ -186,6 +186,7 @@ public class Q00690_JudesRequest extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

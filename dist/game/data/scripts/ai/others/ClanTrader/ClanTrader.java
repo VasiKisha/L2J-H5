@@ -37,6 +37,7 @@ public class ClanTrader extends AbstractNpcAI
 		32024, // Mulia
 		32025, // Ilia
 	};
+	
 	// Items
 	private static final int BLOOD_ALLIANCE = 9911; // Blood Alliance
 	private static final int BLOOD_ALLIANCE_COUNT = 1; // Blood Alliance Count
@@ -64,6 +65,7 @@ public class ClanTrader extends AbstractNpcAI
 			player.sendPacket(sm);
 			return npc.getId() + "-04.html";
 		}
+		
 		return npc.getId() + "-03.html";
 	}
 	
@@ -102,6 +104,7 @@ public class ClanTrader extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -112,6 +115,7 @@ public class ClanTrader extends AbstractNpcAI
 		{
 			return npc.getId() + ".html";
 		}
+		
 		return npc.getId() + "-01.html";
 	}
 	

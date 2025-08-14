@@ -114,6 +114,7 @@ public class FakePlayerInfo extends ServerPacket
 		{
 			buffer.writeInt(0);
 		}
+		
 		buffer.writeInt(0); // getTalismanSlots
 		buffer.writeInt(1); // canEquipCloak
 		buffer.writeInt(_npc.getScriptValue()); // getPvpFlag()
@@ -151,6 +152,7 @@ public class FakePlayerInfo extends ServerPacket
 			buffer.writeInt(0);
 			buffer.writeInt(0);
 		}
+		
 		buffer.writeByte(!_fpcHolder.isSitting());
 		buffer.writeByte(_npc.isRunning());
 		buffer.writeByte(_npc.isInCombat());
@@ -159,6 +161,7 @@ public class FakePlayerInfo extends ServerPacket
 		buffer.writeByte(0); // 1-on Strider, 2-on Wyvern, 3-on Great Wolf, 0-no mount
 		buffer.writeByte(_fpcHolder.getPrivateStoreType());
 		buffer.writeShort(0); // getCubics().size()
+		
 		// getCubics().keySet().forEach(packet::writeH);
 		buffer.writeByte(0); // isInPartyMatchRoom
 		buffer.writeInt(_npc.getAbnormalVisualEffects());
@@ -183,11 +186,14 @@ public class FakePlayerInfo extends ServerPacket
 		buffer.writeInt(_fpcHolder.getTitleColor());
 		buffer.writeInt(0); // isCursedWeaponEquipped
 		buffer.writeInt(0); // getClanId() > 0 ? getClan().getReputationScore() : 0
+		
 		// T1
 		buffer.writeInt(0); // getTransformationDisplayId()
 		buffer.writeInt(_fpcHolder.getAgathionId());
+		
 		// T2
 		buffer.writeInt(1);
+		
 		// T2.3
 		buffer.writeInt(_npc.getAbnormalVisualEffectSpecial());
 	}

@@ -43,6 +43,7 @@ public class SpawnItem extends ServerPacket
 		buffer.writeInt(_item.getX());
 		buffer.writeInt(_item.getY());
 		buffer.writeInt(_item.getZ());
+		
 		// only show item count if it is a stackable item
 		buffer.writeInt(_item.isStackable());
 		buffer.writeLong(_item.getCount());

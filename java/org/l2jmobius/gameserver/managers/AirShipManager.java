@@ -141,6 +141,7 @@ public class AirShipManager
 		{
 			return;
 		}
+		
 		storeInDb(ship.getOwnerId());
 		final StatSet info = _airShipsInfo.get(ship.getOwnerId());
 		if (info != null)
@@ -160,6 +161,7 @@ public class AirShipManager
 		{
 			return;
 		}
+		
 		final StatSet info = new StatSet();
 		info.set("fuel", 600);
 		_airShipsInfo.put(ownerId, info);
@@ -253,6 +255,7 @@ public class AirShipManager
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Error while initializing: " + e.getMessage(), e);
 		}
+		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _airShipsInfo.size() + " private airships");
 	}
 	

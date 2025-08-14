@@ -46,6 +46,7 @@ public class Q00138_TempleChampionPart2 extends Quest
 		20551, // Road Scavenger
 		20552, // Fettered Soul
 	};
+	
 	// Items
 	private static final int TEMPLE_MANIFESTO = 10341;
 	private static final int RELICS_OF_THE_DARK_ELF_TRAINEE = 10342;
@@ -69,6 +70,7 @@ public class Q00138_TempleChampionPart2 extends Quest
 		{
 			return getNoQuestMsg(player);
 		}
+		
 		switch (event)
 		{
 			case "30070-02.htm":
@@ -84,6 +86,7 @@ public class Q00138_TempleChampionPart2 extends Quest
 				{
 					addExpAndSp(player, 187062, 11307);
 				}
+				
 				qs.exitQuest(false, true);
 				break;
 			}
@@ -133,6 +136,7 @@ public class Q00138_TempleChampionPart2 extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -190,6 +194,7 @@ public class Q00138_TempleChampionPart2 extends Quest
 						{
 							return getAlreadyCompletedMsg(player);
 						}
+						
 						final QuestState qst = player.getQuestState(Q00137_TempleChampionPart1.class.getSimpleName());
 						htmltext = (player.getLevel() >= 36) ? ((qst != null) && qst.isCompleted()) ? "30070-01.htm" : "30070-00a.htm" : "30070-00.htm";
 						break;
@@ -296,6 +301,7 @@ public class Q00138_TempleChampionPart2 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

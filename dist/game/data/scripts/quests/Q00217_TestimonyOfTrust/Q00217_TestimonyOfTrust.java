@@ -44,6 +44,7 @@ public class Q00217_TestimonyOfTrust extends Quest
 	private static final int FLAME_LORD_KAKAI = 30565;
 	private static final int MAESTRO_NIKOLA = 30621;
 	private static final int CARDINAL_SERESIN = 30657;
+	
 	// Items
 	private static final int LETTER_TO_ELF = 2735;
 	private static final int LETTER_TO_DARKELF = 2736;
@@ -72,9 +73,11 @@ public class Q00217_TestimonyOfTrust extends Quest
 	private static final int LETTER_TO_NICHOLA = 2759;
 	private static final int ORDER_OF_NICHOLA = 2760;
 	private static final int HEART_OF_PORTA = 2761;
+	
 	// Reward
 	private static final int MARK_OF_TRUST = 2734;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monster
 	private static final int DRYAD = 20013;
 	private static final int DRYAD_ELDER = 20019;
@@ -92,9 +95,11 @@ public class Q00217_TestimonyOfTrust extends Quest
 	private static final int MARSH_STAKATO_DRONE = 20234;
 	private static final int GUARDIAN_BASILISK = 20550;
 	private static final int WINDSUS = 20553;
+	
 	// Quest Monster
 	private static final int LUELL_OF_ZEPHYR_WINDS = 27120;
 	private static final int ACTEA_OF_VERDANT_WILDS = 27121;
+	
 	// Misc
 	private static final int MIN_LEVEL = 37;
 	
@@ -232,6 +237,7 @@ public class Q00217_TestimonyOfTrust extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -777,6 +783,7 @@ public class Q00217_TestimonyOfTrust extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

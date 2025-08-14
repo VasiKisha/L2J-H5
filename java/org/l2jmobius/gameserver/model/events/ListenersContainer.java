@@ -188,6 +188,7 @@ public class ListenersContainer
 				}
 			}
 		}
+		
 		return _listeners;
 	}
 }

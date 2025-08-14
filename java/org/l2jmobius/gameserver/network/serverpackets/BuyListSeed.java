@@ -77,12 +77,14 @@ public class BuyListSeed extends ServerPacket
 				{
 					buffer.writeShort(0);
 				}
+				
 				// Enchant Effects
 				buffer.writeShort(0);
 				buffer.writeShort(0);
 				buffer.writeShort(0);
 				buffer.writeLong(s.getPrice()); // price
 			}
+			
 			_list.clear();
 		}
 		else

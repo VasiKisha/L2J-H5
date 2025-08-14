@@ -43,7 +43,7 @@ public class AdminGmChat implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_gmchat"))
 		{
@@ -53,10 +53,12 @@ public class AdminGmChat implements IAdminCommandHandler
 		{
 			snoop(command, activeChar);
 		}
+		
 		if (command.startsWith("admin_gmchat_menu"))
 		{
 			AdminHtml.showAdminHtml(activeChar, "gm_menu.htm");
 		}
+		
 		return true;
 	}
 	
@@ -71,6 +73,7 @@ public class AdminGmChat implements IAdminCommandHandler
 		{
 			target = World.getInstance().getPlayer(command.substring(12));
 		}
+		
 		if (target == null)
 		{
 			target = activeChar.getTarget();
@@ -81,18 +84,20 @@ public class AdminGmChat implements IAdminCommandHandler
 			activeChar.sendPacket(SystemMessageId.SELECT_TARGET);
 			return;
 		}
+		
 		if (!target.isPlayer())
 		{
 			activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
 			return;
 		}
+		
 		final Player player = target.asPlayer();
 		player.addSnooper(activeChar);
 		activeChar.addSnooped(player);
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
@@ -115,6 +120,7 @@ public class AdminGmChat implements IAdminCommandHandler
 			{
 				offset = 13;
 			}
+			
 			text = command.substring(offset);
 			AdminData.getInstance().broadcastToGMs(new CreatureSay(null, ChatType.ALLIANCE, activeChar.getName(), text));
 		}

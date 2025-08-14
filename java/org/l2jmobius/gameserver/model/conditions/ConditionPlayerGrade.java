@@ -29,6 +29,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 public class ConditionPlayerGrade extends Condition
 {
 	protected static final Logger LOGGER = Logger.getLogger(ConditionPlayerGrade.class.getName());
+	
 	// conditional values
 	public static final int COND_NO_GRADE = 0x0001;
 	public static final int COND_D_GRADE = 0x0002;

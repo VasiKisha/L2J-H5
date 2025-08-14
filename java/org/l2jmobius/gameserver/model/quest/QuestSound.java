@@ -34,22 +34,30 @@ public enum QuestSound
 	ITEMSOUND_QUEST_MIDDLE(new PlaySound("ItemSound.quest_middle")),
 	ITEMSOUND_QUEST_FINISH(new PlaySound("ItemSound.quest_finish")),
 	ITEMSOUND_QUEST_ITEMGET(new PlaySound("ItemSound.quest_itemget")),
+	
 	// Newbie Guide tutorial (incl. some quests), Mutated Kaneus quests, Quest 192
 	ITEMSOUND_QUEST_TUTORIAL(new PlaySound("ItemSound.quest_tutorial")),
+	
 	// Quests 107, 363, 364
 	ITEMSOUND_QUEST_GIVEUP(new PlaySound("ItemSound.quest_giveup")),
+	
 	// Quests 212, 217, 224, 226, 416
 	ITEMSOUND_QUEST_BEFORE_BATTLE(new PlaySound("ItemSound.quest_before_battle")),
+	
 	// Quests 211, 258, 266, 330
 	ITEMSOUND_QUEST_JACKPOT(new PlaySound("ItemSound.quest_jackpot")),
+	
 	// Quests 508, 509 and 510
 	ITEMSOUND_QUEST_FANFARE_1(new PlaySound("ItemSound.quest_fanfare_1")),
 	// Played only after class transfer via Test Server Helpers (ID 31756 and 31757)
 	ITEMSOUND_QUEST_FANFARE_2(new PlaySound("ItemSound.quest_fanfare_2")),
+	
 	// Quest 336
 	ITEMSOUND_QUEST_FANFARE_MIDDLE(new PlaySound("ItemSound.quest_fanfare_middle")),
+	
 	// Quest 114
 	ITEMSOUND_ARMOR_WOOD(new PlaySound("ItemSound.armor_wood_3")),
+	
 	// Quest 21
 	ITEMSOUND_ARMOR_CLOTH(new PlaySound("ItemSound.item_drop_equip_armor_cloth")),
 	AMDSOUND_ED_CHIMES(new PlaySound("AmdSound.ed_chimes_05")),
@@ -58,6 +66,7 @@ public enum QuestSound
 	AMBSOUND_HORROR_01(new PlaySound("AmbSound.dd_horror_01")),
 	AMBSOUND_HORROR_03(new PlaySound("AmbSound.d_horror_03")),
 	AMBSOUND_HORROR_15(new PlaySound("AmbSound.d_horror_15")),
+	
 	// Quest 23
 	ITEMSOUND_ARMOR_LEATHER(new PlaySound("ItemSound.itemdrop_armor_leather")),
 	ITEMSOUND_WEAPON_SPEAR(new PlaySound("ItemSound.itemdrop_weapon_spear")),
@@ -65,12 +74,14 @@ public enum QuestSound
 	AMBSOUND_EG_DRON(new PlaySound("AmbSound.eg_dron_02")),
 	SKILLSOUND_HORROR_02(new PlaySound("SkillSound5.horror_02")),
 	CHRSOUND_MHFIGHTER_CRY(new PlaySound("ChrSound.MHFighter_cry")),
+	
 	// Quest 24
 	AMDSOUND_WIND_LOOT(new PlaySound("AmdSound.d_wind_loot_02")),
 	INTERFACESOUND_CHARSTAT_OPEN(new PlaySound("InterfaceSound.charstat_open_01")),
 	// Quest 25
 	AMDSOUND_HORROR_02(new PlaySound("AmdSound.dd_horror_02")),
 	CHRSOUND_FDELF_CRY(new PlaySound("ChrSound.FDElf_Cry")),
+	
 	// Quest 115
 	AMBSOUND_WINGFLAP(new PlaySound("AmbSound.t_wingflap_04")),
 	AMBSOUND_THUNDER(new PlaySound("AmbSound.thunder_02")),
@@ -100,6 +111,7 @@ public enum QuestSound
 	SKILLSOUND_LIQUID_MIX(new PlaySound("SkillSound5.liquid_mix_01")),
 	SKILLSOUND_LIQUID_SUCCESS(new PlaySound("SkillSound5.liquid_success_01")),
 	SKILLSOUND_LIQUID_FAIL(new PlaySound("SkillSound5.liquid_fail_01")),
+	
 	// Quest 111
 	ETCSOUND_ELROKI_SONG_FULL(new PlaySound("EtcSound.elcroki_song_full")),
 	ETCSOUND_ELROKI_SONG_1ST(new PlaySound("EtcSound.elcroki_song_1st")),

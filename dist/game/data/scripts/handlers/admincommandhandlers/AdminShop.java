@@ -48,7 +48,7 @@ public class AdminShop implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_buy"))
 		{
@@ -65,11 +65,12 @@ public class AdminShop implements IAdminCommandHandler
 		{
 			AdminHtml.showAdminHtml(activeChar, "gmshops.htm");
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
@@ -96,6 +97,7 @@ public class AdminShop implements IAdminCommandHandler
 		{
 			LOGGER.warning("no buylist with id:" + val);
 		}
+		
 		activeChar.sendPacket(ActionFailed.STATIC_PACKET);
 	}
 }

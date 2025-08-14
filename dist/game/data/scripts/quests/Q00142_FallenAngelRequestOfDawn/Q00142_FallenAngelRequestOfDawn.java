@@ -37,6 +37,7 @@ public class Q00142_FallenAngelRequestOfDawn extends Quest
 	private static final int CASIAN = 30612;
 	private static final int NATOOLS = 30894;
 	private static final int ROCK = 32368;
+	
 	// Monsters
 	private static final int FALLEN_ANGEL = 27338;
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
@@ -58,6 +59,7 @@ public class Q00142_FallenAngelRequestOfDawn extends Quest
 	private static final int CRYPTOGRAM_OF_THE_ANGEL_SEARCH = 10351;
 	private static final int PROPHECY_FRAGMENT = 10352;
 	private static final int FALLEN_ANGEL_BLOOD = 10353;
+	
 	// Misc
 	private static final int MAX_REWARD_LEVEL = 43;
 	private static final int FRAGMENT_COUNT = 30;
@@ -128,6 +130,7 @@ public class Q00142_FallenAngelRequestOfDawn extends Quest
 				{
 					return "32368-03.html";
 				}
+				
 				addSpawn(FALLEN_ANGEL, npc.getX() + 100, npc.getY() + 100, npc.getZ(), 0, false, 120000);
 				isAngelSpawned = true;
 				startQuestTimer("despawn", 120000, null, player);
@@ -147,6 +150,7 @@ public class Q00142_FallenAngelRequestOfDawn extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -262,6 +266,7 @@ public class Q00142_FallenAngelRequestOfDawn extends Quest
 							{
 								addExpAndSp(player, 223036, 13091);
 							}
+							
 							qs.exitQuest(false, true);
 							htmltext = "30289-07.html";
 							break;
@@ -336,6 +341,7 @@ public class Q00142_FallenAngelRequestOfDawn extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

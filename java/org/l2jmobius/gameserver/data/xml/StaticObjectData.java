@@ -68,6 +68,7 @@ public class StaticObjectData implements IXmlReader
 							final Node att = attrs.item(i);
 							set.set(att.getNodeName(), att.getNodeValue());
 						}
+						
 						addObject(set);
 					}
 				}

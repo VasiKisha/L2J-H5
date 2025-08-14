@@ -178,6 +178,7 @@ public class EffectZone extends ZoneType
 					creature.sendPacket(new EtcStatusUpdate(creature.asPlayer()));
 				}
 			}
+			
 			if (_removeEffectsOnExit && (_skills != null))
 			{
 				for (Entry<Integer, Integer> e : _skills.entrySet())
@@ -221,6 +222,7 @@ public class EffectZone extends ZoneType
 				}
 			}
 		}
+		
 		_skills.put(skillId, skillLevel);
 	}
 	
@@ -246,6 +248,7 @@ public class EffectZone extends ZoneType
 		{
 			return 0;
 		}
+		
 		return _skills.get(skillId);
 	}
 	

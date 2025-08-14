@@ -50,7 +50,7 @@ public class AdminFence implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final StringTokenizer st = new StringTokenizer(command, " ");
 		final String cmd = st.nextToken();
@@ -68,6 +68,7 @@ public class AdminFence implements IAdminCommandHandler
 						activeChar.sendSysMessage("Width and length values must be positive numbers.");
 						return false;
 					}
+					
 					if ((height < 1) || (height > 3))
 					{
 						activeChar.sendSysMessage("The range for height can only be 1-3.");
@@ -135,6 +136,7 @@ public class AdminFence implements IAdminCommandHandler
 				{
 					activeChar.sendSysMessage("Invalid object ID or target was not found.");
 				}
+				
 				sendHtml(activeChar, 0);
 				break;
 			}
@@ -145,6 +147,7 @@ public class AdminFence implements IAdminCommandHandler
 				{
 					page = Integer.parseInt(st.nextToken());
 				}
+				
 				sendHtml(activeChar, page);
 				break;
 			}
@@ -171,7 +174,7 @@ public class AdminFence implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

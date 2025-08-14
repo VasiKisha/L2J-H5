@@ -47,6 +47,7 @@ public class Q00455_WingsOfSand extends Quest
 		32870,
 		32891
 	};
+	
 	// Monsters
 	private static final int EMERALD_HORN = 25718;
 	private static final int DUST_RIDER = 25719;
@@ -55,9 +56,11 @@ public class Q00455_WingsOfSand extends Quest
 	private static final int SHADOW_SUMMONER = 25722;
 	private static final int SPIKE_SLASHER = 25723;
 	private static final int MUSCLE_BOMBER = 25724;
+	
 	// Item
 	private static final int LARGE_BABY_DRAGON = 17250;
 	private static final List<Integer> ARMOR_PARTS = Arrays.asList(15660, 15661, 15662, 15663, 15664, 15665, 15666, 15667, 15668, 15669, 15670, 15671, 15672, 15673, 15674, 15675, 15691);
+	
 	// Misc
 	private static final int MIN_LEVEL = 80;
 	private static final int CHANCE = 350;
@@ -119,6 +122,7 @@ public class Q00455_WingsOfSand extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -184,6 +188,7 @@ public class Q00455_WingsOfSand extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -237,6 +242,7 @@ public class Q00455_WingsOfSand extends Quest
 				giveItems(player, 6577, 1); // Blessed Scroll: Enchant Weapon (S-Grade)
 			}
 		}
+		
 		qs.exitQuest(QuestType.DAILY, true);
 	}
 }

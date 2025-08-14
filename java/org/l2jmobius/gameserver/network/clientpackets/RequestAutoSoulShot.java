@@ -100,6 +100,7 @@ public class RequestAutoSoulShot extends ClientPacket
 									return;
 								}
 							}
+							
 							player.addAutoSoulShot(_itemId);
 							player.sendPacket(new ExAutoSoulShot(_itemId, _type));
 							

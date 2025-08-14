@@ -29,7 +29,6 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.instance.Trap;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -100,7 +99,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 		
 		public NpcInfo(Npc cha, Creature attacker)
 		{
-			super(cha, attacker.canOverrideCond(PlayerCondOverride.SEE_ALL_PLAYERS));
+			super(cha, attacker.isGM());
 			_npc = cha;
 			_displayId = cha.getTemplate().getDisplayId(); // On every subclass
 			_rhand = cha.getRightHandItem(); // On every subclass
@@ -109,6 +108,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 			_collisionHeight = cha.getTemplate().getFCollisionHeight(); // On every subclass
 			_collisionRadius = cha.getTemplate().getFCollisionRadius(); // On every subclass
 			_isAttackable = cha.isAutoAttackable(attacker);
+			
 			// npc crest of owning clan/ally of castle
 			if (cha.isNpc() && cha.isInsideZone(ZoneId.TOWN) && (Config.SHOW_CREST_WITHOUT_QUEST || cha.getCastle().getShowNpcCrest()) && (cha.getCastle().getOwnerId() != 0))
 			{
@@ -126,6 +126,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 					}
 				}
 			}
+			
 			_displayEffect = cha.getDisplayEffect();
 		}
 		
@@ -193,6 +194,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 			{
 				_name = _npc.getName(); // On every subclass
 			}
+			
 			buffer.writeString(_name);
 			buffer.writeInt(-1); // High Five NPCString ID
 			if (_npc.isInvisible())
@@ -210,6 +212,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 					_title = _npc.getTitle(); // On every subclass
 				}
 			}
+			
 			// Custom level titles
 			if (_npc.isMonster() && (Config.SHOW_NPC_LEVEL || Config.SHOW_NPC_AGGRESSION))
 			{
@@ -218,6 +221,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 				{
 					t1 += "Lv " + _npc.getLevel();
 				}
+				
 				String t2 = "";
 				if (Config.SHOW_NPC_AGGRESSION)
 				{
@@ -225,27 +229,32 @@ public abstract class AbstractNpcInfo extends ServerPacket
 					{
 						t2 += " ";
 					}
+					
 					final Monster monster = _npc.asMonster();
 					if (monster.isAggressive())
 					{
 						t2 += "[A]"; // Aggressive.
 					}
+					
 					if ((monster.getTemplate().getClans() != null) && (monster.getTemplate().getClanHelpRange() > 0))
 					{
 						t2 += "[G]"; // Group.
 					}
 				}
+				
 				t1 += t2;
 				if ((_title != null) && !_title.isEmpty())
 				{
 					t1 += " " + _title;
 				}
+				
 				_title = _npc.isChampion() ? Config.CHAMP_TITLE + " " + t1 : t1;
 			}
 			else if (Config.CHAMPION_ENABLE && _npc.isChampion())
 			{
 				_title = (Config.CHAMP_TITLE); // On every subclass
 			}
+			
 			buffer.writeString(_title);
 			buffer.writeInt(0); // Title color 0=client default
 			buffer.writeInt(0); // pvp flag
@@ -276,7 +285,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 		
 		public TrapInfo(Trap cha, Creature attacker)
 		{
-			super(cha, (attacker != null) && attacker.canOverrideCond(PlayerCondOverride.SEE_ALL_PLAYERS));
+			super(cha, (attacker != null) && attacker.isGM());
 			_trap = cha;
 			_displayId = cha.getTemplate().getDisplayId();
 			_isAttackable = cha.isAutoAttackable(attacker);
@@ -288,6 +297,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 			{
 				_name = cha.getName();
 			}
+			
 			_title = cha.getOwner() != null ? cha.getOwner().getName() : "";
 		}
 		
@@ -362,7 +372,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 		
 		public SummonInfo(Summon cha, Creature attacker, int value)
 		{
-			super(cha, attacker.canOverrideCond(PlayerCondOverride.SEE_ALL_PLAYERS));
+			super(cha, attacker.isGM());
 			_summon = cha;
 			_value = value;
 			_form = cha.getFormId();

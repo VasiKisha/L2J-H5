@@ -45,7 +45,7 @@ public class RequestOlympiadMatchList extends ClientPacket
 		final IBypassHandler handler = BypassHandler.getInstance().getHandler(COMMAND);
 		if (handler != null)
 		{
-			handler.useBypass(COMMAND, player, null);
+			handler.onCommand(COMMAND, player, null);
 		}
 	}
 }

@@ -183,6 +183,7 @@ public class RaidBossSpawnManager
 			info.set("currentMP", boss.getCurrentMp());
 			info.set("respawnTime", 0);
 		}
+		
 		_storedInfo.put(boss.getId(), info);
 	}
 	
@@ -372,6 +373,7 @@ public class RaidBossSpawnManager
 		{
 			msg[index++] = boss.getName() + ": " + boss.getRaidStatus().name();
 		}
+		
 		return msg;
 	}
 	
@@ -388,6 +390,7 @@ public class RaidBossSpawnManager
 			final RaidBoss boss = _bosses.get(bossId);
 			msg += boss.getName() + ": " + boss.getRaidStatus().name();
 		}
+		
 		return msg;
 	}
 	
@@ -480,6 +483,7 @@ public class RaidBossSpawnManager
 		{
 			schedule.cancel(true);
 		}
+		
 		_schedules.clear();
 		
 		_storedInfo.clear();

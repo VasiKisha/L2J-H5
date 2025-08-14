@@ -30,11 +30,14 @@ public class Q00303_CollectArrowheads extends Quest
 {
 	// NPC
 	private static final int MINIA = 30029;
+	
 	// Item
 	private static final int ORCISH_ARROWHEAD = 963;
+	
 	// Misc
 	private static final int MIN_LEVEL = 10;
 	private static final int REQUIRED_ITEM_COUNT = 10;
+	
 	// Monster
 	private static final int TUNATH_ORC_MARKSMAN = 20361;
 	
@@ -56,6 +59,7 @@ public class Q00303_CollectArrowheads extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -112,6 +116,7 @@ public class Q00303_CollectArrowheads extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

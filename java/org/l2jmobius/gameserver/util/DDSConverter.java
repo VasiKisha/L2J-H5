@@ -179,6 +179,7 @@ public class DDSConverter
 					ai1[0] = ai1[1];
 					ai1[1] = k1;
 				}
+				
 				bytebuffer.putShort((short) ai[ai1[0]]);
 				bytebuffer.putShort((short) ai[ai1[1]]);
 				final long l1 = computeBitMask(acolor, ai1);
@@ -234,6 +235,7 @@ public class DDSConverter
 					ai1[0] = ai1[1];
 					ai1[1] = l1;
 				}
+				
 				bytebuffer.putShort((short) ai[ai1[0]]);
 				bytebuffer.putShort((short) ai[ai1[1]]);
 				final long l2 = computeBitMask(acolor, ai1);
@@ -325,6 +327,7 @@ public class DDSConverter
 				}
 			}
 		}
+		
 		return ai;
 	}
 	
@@ -400,6 +403,7 @@ public class DDSConverter
 			acolor[i].g = (int) (ai[i] & 65280L) >> 8;
 			acolor[i].b = (int) (ai[i] & 255L);
 		}
+		
 		return acolor;
 	}
 	

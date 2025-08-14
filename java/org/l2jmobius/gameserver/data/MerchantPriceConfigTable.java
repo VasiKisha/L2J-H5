@@ -63,6 +63,7 @@ public class MerchantPriceConfigTable
 				return mpc;
 			}
 		}
+		
 		return _defaultMpc;
 	}
 	
@@ -88,6 +89,7 @@ public class MerchantPriceConfigTable
 			{
 				throw new IllegalStateException("merchantPriceConfig must define an 'defaultPriceConfig'");
 			}
+			
 			defaultPriceConfigId = Integer.parseInt(dpcNode.getNodeValue());
 			
 			MerchantPriceConfig mpc;
@@ -105,6 +107,7 @@ public class MerchantPriceConfigTable
 			{
 				throw new IllegalStateException("'defaultPriceConfig' points to an non-loaded priceConfig");
 			}
+			
 			_defaultMpc = defaultMpc;
 		}
 	}
@@ -124,6 +127,7 @@ public class MerchantPriceConfigTable
 			{
 				throw new IllegalStateException("Must define the priceConfig 'id'");
 			}
+			
 			id = Integer.parseInt(node.getNodeValue());
 			
 			node = n.getAttributes().getNamedItem("name");
@@ -131,6 +135,7 @@ public class MerchantPriceConfigTable
 			{
 				throw new IllegalStateException("Must define the priceConfig 'name'");
 			}
+			
 			name = node.getNodeValue();
 			
 			node = n.getAttributes().getNamedItem("baseTax");
@@ -138,6 +143,7 @@ public class MerchantPriceConfigTable
 			{
 				throw new IllegalStateException("Must define the priceConfig 'baseTax'");
 			}
+			
 			baseTax = Integer.parseInt(node.getNodeValue());
 			
 			node = n.getAttributes().getNamedItem("castleId");
@@ -154,6 +160,7 @@ public class MerchantPriceConfigTable
 			
 			return new MerchantPriceConfig(id, name, baseTax, castleId, zoneId);
 		}
+		
 		return null;
 	}
 	

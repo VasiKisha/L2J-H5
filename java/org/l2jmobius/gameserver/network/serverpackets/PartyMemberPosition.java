@@ -48,6 +48,7 @@ public class PartyMemberPosition extends ServerPacket
 			{
 				continue;
 			}
+			
 			locations.put(member.getObjectId(), member.getLocation());
 		}
 	}

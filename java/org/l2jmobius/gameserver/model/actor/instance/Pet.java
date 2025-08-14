@@ -140,6 +140,7 @@ public class Pet extends Summon
 		{
 			_leveldata = PetDataTable.getInstance().getPetLevelData(getTemplate().getId(), getStat().getLevel());
 		}
+		
 		return _leveldata;
 	}
 	
@@ -149,6 +150,7 @@ public class Pet extends Summon
 		{
 			_data = PetDataTable.getInstance().getPetData(getTemplate().getId());
 		}
+		
 		return _data;
 	}
 	
@@ -175,29 +177,41 @@ public class Pet extends Summon
 					stopFeed();
 					return;
 				}
+				
 				setCurrentFed(_curFed > getFeedConsume() ? _curFed - getFeedConsume() : 0);
 				broadcastStatusUpdate();
 				
-				final Set<Integer> foodIds = getPetData().getFood();
-				if (foodIds.isEmpty())
+				if (isUncontrollable())
 				{
-					if (isUncontrollable())
+					if (Rnd.get(100) < 30)
 					{
-						// Owl Monk remove PK
+						// Owl Monk remove PK.
 						if ((getTemplate().getId() == 16050) && (getOwner() != null))
 						{
 							getOwner().setPkKills(Math.max(0, getOwner().getPkKills() - Rnd.get(1, 6)));
 						}
-						sendPacket(SystemMessageId.THE_HUNTING_HELPER_PET_IS_NOW_LEAVING);
-						deleteMe(getOwner());
+						
+						sendPacket(SystemMessageId.STARVING_GRUMPY_AND_FED_UP_YOUR_PET_HAS_LEFT);
+						unSummon(getOwner());
+						stopFeed();
+						return;
 					}
-					else if (isHungry())
+					
+					sendPacket(SystemMessageId.YOUR_PET_SERVITOR_IS_UNRESPONSIVE_AND_WILL_NOT_OBEY_ANY_ORDERS);
+					return;
+				}
+				
+				final Set<Integer> foodIds = getPetData().getFood();
+				if (foodIds.isEmpty())
+				{
+					if (isHungry())
 					{
-						sendPacket(SystemMessageId.THERE_IS_NOT_MUCH_TIME_REMAINING_UNTIL_THE_HUNTING_HELPER_PET_LEAVES);
+						sendPacket(SystemMessageId.YOUR_PET_IS_VERY_HUNGRY_PLEASE_BE_CAREFUL);
 					}
 					return;
 				}
 				
+				// Try to find food in pet inventory.
 				Item food = null;
 				for (int id : foodIds)
 				{
@@ -208,6 +222,7 @@ public class Pet extends Summon
 					}
 				}
 				
+				// Pet is hungry and food is available - auto feed.
 				if ((food != null) && isHungry())
 				{
 					final IItemHandler handler = ItemHandler.getInstance().getHandler(food.getEtcItem());
@@ -216,10 +231,11 @@ public class Pet extends Summon
 						final SystemMessage sm = new SystemMessage(SystemMessageId.YOUR_PET_WAS_HUNGRY_SO_IT_ATE_S1);
 						sm.addItemName(food.getId());
 						sendPacket(sm);
-						handler.useItem(Pet.this, food, false);
+						handler.onItemUse(Pet.this, food, false);
 					}
 				}
 				
+				// Notify player if pet uncontrollable due to starvation.
 				if (isUncontrollable())
 				{
 					sendPacket(SystemMessageId.YOUR_PET_IS_STARVING_AND_WILL_NOT_OBEY_UNTIL_IT_GETS_IT_S_FOOD_FEED_YOUR_PET);
@@ -247,6 +263,7 @@ public class Pet extends Summon
 		
 		final PetData data = PetDataTable.getInstance().getPetData(template.getId());
 		final Pet pet = restore(control, template, owner);
+		
 		// add the pet instance to world
 		if (pet != null)
 		{
@@ -257,8 +274,10 @@ public class Pet extends Summon
 				pet.getStat().setLevel(availableLevel);
 				pet.getStat().setExp(pet.getStat().getExpForLevel(availableLevel));
 			}
+			
 			World.getInstance().addPet(owner.getObjectId(), pet);
 		}
+		
 		return pet;
 	}
 	
@@ -311,6 +330,7 @@ public class Pet extends Summon
 		{
 			sendPacket(new ExChangeNpcState(getObjectId(), 0x65));
 		}
+		
 		_curFed = num > getMaxFed() ? getMaxFed() : num;
 	}
 	
@@ -327,6 +347,7 @@ public class Pet extends Summon
 				return item;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -379,6 +400,7 @@ public class Pet extends Summon
 			{
 				sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 			}
+			
 			return false;
 		}
 		
@@ -402,6 +424,7 @@ public class Pet extends Summon
 				sm.addItemName(item.getId());
 			}
 		}
+		
 		return true;
 	}
 	
@@ -424,6 +447,7 @@ public class Pet extends Summon
 			{
 				sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
 			}
+			
 			return false;
 		}
 		
@@ -446,6 +470,7 @@ public class Pet extends Summon
 				sm = new SystemMessage(SystemMessageId.S1_HAS_DISAPPEARED);
 				sm.addItemName(item.getId());
 			}
+			
 			sendPacket(sm);
 		}
 		
@@ -481,6 +506,7 @@ public class Pet extends Summon
 			sendPacket(smsg);
 			return;
 		}
+		
 		if (FortSiegeManager.getInstance().isCombat(target.getId()))
 		{
 			return;
@@ -531,6 +557,7 @@ public class Pet extends Summon
 					smsg = new SystemMessage(SystemMessageId.YOU_HAVE_FAILED_TO_PICK_UP_S1);
 					smsg.addItemName(target);
 				}
+				
 				sendPacket(ActionFailed.STATIC_PACKET);
 				sendPacket(smsg);
 				return;
@@ -560,7 +587,7 @@ public class Pet extends Summon
 			}
 			else
 			{
-				handler.useItem(this, target, false);
+				handler.onItemUse(this, target, false);
 			}
 			
 			ItemManager.destroyItem(ItemProcessType.NONE, target, getOwner(), null);
@@ -603,6 +630,7 @@ public class Pet extends Summon
 			else
 			{
 				final Item item = _inventory.addItem(ItemProcessType.PICKUP, target, getOwner(), this);
+				
 				// sendPacket(new PetItemList(_inventory.getItems()));
 				sendPacket(new PetInventoryUpdate(item));
 			}
@@ -633,13 +661,16 @@ public class Pet extends Summon
 		{
 			deathPenalty();
 		}
+		
 		if (!super.doDie(killer, true))
 		{
 			return false;
 		}
+		
 		stopFeed();
 		sendPacket(SystemMessageId.THE_PET_HAS_BEEN_KILLED_IF_YOU_DON_T_RESURRECT_IT_WITHIN_24_HOURS_THE_PET_S_BODY_WILL_DISAPPEAR_ALONG_WITH_ALL_THE_PET_S_ITEMS);
 		DecayTaskManager.getInstance().add(this);
+		
 		// do not decrease exp if is in duel, arena
 		return true;
 	}
@@ -658,6 +689,7 @@ public class Pet extends Summon
 		{
 			setRunning();
 		}
+		
 		getAI().setIntention(Intention.ACTIVE, null);
 	}
 	
@@ -700,6 +732,7 @@ public class Pet extends Summon
 		{
 			petIU.addRemovedItem(oldItem);
 		}
+		
 		sendPacket(petIU);
 		
 		// Send target update packet
@@ -817,6 +850,7 @@ public class Pet extends Summon
 			{
 				dropit.getDropProtection().protect(getOwner());
 			}
+			
 			LOGGER_PET.finer("Item id to drop: " + dropit.getId() + " amount: " + dropit.getCount());
 			dropit.dropMe(this, getX(), getY(), getZ() + 100);
 		}
@@ -855,6 +889,7 @@ public class Pet extends Summon
 					{
 						pet = new Pet(template, owner, control);
 					}
+					
 					return pet;
 				}
 				
@@ -872,6 +907,7 @@ public class Pet extends Summon
 				
 				long exp = rs.getLong("exp");
 				final PetLevelData info = PetDataTable.getInstance().getPetLevelData(pet.getId(), pet.getLevel());
+				
 				// DS: update experience based by level
 				// Avoiding pet delevels due to exp per level values changed.
 				if ((info != null) && (exp < info.getPetMaxExp()))
@@ -893,12 +929,14 @@ public class Pet extends Summon
 				
 				pet.setCurrentFed(rs.getInt("fed"));
 			}
+			
 			return pet;
 		}
 		catch (Exception e)
 		{
 			LOGGER_PET.log(Level.WARNING, "Could not restore pet data for owner: " + owner + " - " + e.getMessage(), e);
 		}
+		
 		return null;
 	}
 	
@@ -1002,6 +1040,7 @@ public class Pet extends Summon
 					}
 					
 					final Skill skill = info.getSkill();
+					
 					// Do not save heals.
 					if (skill.getAbnormalType() == AbnormalType.LIFE_FORCE_OTHERS)
 					{
@@ -1035,6 +1074,7 @@ public class Pet extends Summon
 					
 					SummonEffectTable.getInstance().addPetEffect(getControlObjectId(), skill, info.getTime());
 				}
+				
 				ps2.executeBatch();
 			}
 		}
@@ -1092,6 +1132,7 @@ public class Pet extends Summon
 		{
 			return;
 		}
+		
 		_feedTask.cancel(false);
 		_feedTask = null;
 	}
@@ -1118,6 +1159,7 @@ public class Pet extends Summon
 			{
 				_inventory.deleteMe();
 			}
+			
 			World.getInstance().removePet(owner.getObjectId());
 		}
 	}
@@ -1345,6 +1387,7 @@ public class Pet extends Summon
 		{
 			LOGGER.log(Level.WARNING, "Pet control item null, for pet: " + toString());
 		}
+		
 		super.setName(name);
 	}
 	
@@ -1390,6 +1433,7 @@ public class Pet extends Summon
 		{
 			return isRunning() ? getSwimRunSpeed() : getSwimWalkSpeed();
 		}
+		
 		return isRunning() ? getRunSpeed() : getWalkSpeed();
 	}
 }

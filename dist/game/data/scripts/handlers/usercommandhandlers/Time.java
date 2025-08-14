@@ -43,7 +43,7 @@ public class Time implements IUserCommandHandler
 	private static final SimpleDateFormat SDF = new SimpleDateFormat("H:mm.");
 	
 	@Override
-	public boolean useUserCommand(int id, Player player)
+	public boolean onCommand(int id, Player player)
 	{
 		if (COMMAND_IDS[0] != id)
 		{
@@ -75,16 +75,18 @@ public class Time implements IUserCommandHandler
 			sm.addString(h);
 			sm.addString(m);
 		}
+		
 		player.sendPacket(sm);
 		if (Config.DISPLAY_SERVER_TIME)
 		{
 			player.sendMessage("Server time is " + SDF.format(new Date(System.currentTimeMillis())));
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public int[] getUserCommandList()
+	public int[] getCommandList()
 	{
 		return COMMAND_IDS;
 	}

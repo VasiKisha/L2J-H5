@@ -37,7 +37,7 @@ public class AdminFakePlayers implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_fakechat"))
 		{
@@ -47,18 +47,21 @@ public class AdminFakePlayers implements IAdminCommandHandler
 				activeChar.sendSysMessage("Usage: //fakechat playername fpcname message");
 				return false;
 			}
+			
 			final Player player = World.getInstance().getPlayer(words[0]);
 			if (player == null)
 			{
 				activeChar.sendSysMessage("Player not found.");
 				return false;
 			}
+			
 			final String fpcName = FakePlayerData.getInstance().getProperName(words[1]);
 			if (fpcName == null)
 			{
 				activeChar.sendSysMessage("Fake player not found.");
 				return false;
 			}
+			
 			String message = "";
 			for (int i = 0; i < words.length; i++)
 			{
@@ -66,16 +69,19 @@ public class AdminFakePlayers implements IAdminCommandHandler
 				{
 					continue;
 				}
+				
 				message += (words[i] + " ");
 			}
+			
 			FakePlayerChatManager.getInstance().sendChat(player, fpcName, message);
 			activeChar.sendSysMessage("Your message has been sent.");
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

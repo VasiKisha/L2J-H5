@@ -53,6 +53,7 @@ public class Warehouse extends Folk
 		{
 			pom = npcId + "-" + value;
 		}
+		
 		return "data/html/warehouse/" + pom + ".htm";
 	}
 }

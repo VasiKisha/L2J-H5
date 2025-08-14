@@ -78,6 +78,7 @@ public class TradeRequest extends ClientPacket
 		}
 		
 		final WorldObject target = World.getInstance().findObject(_objectId);
+		
 		// If there is no target, target is far away or
 		// they are in different instances (except multiverse)
 		// trade request is ignored and there is no system message.

@@ -38,6 +38,7 @@ public class MonumentOfHeroes extends AbstractNpcAI
 		31771,
 		31772
 	};
+	
 	// Items
 	private static final int WINGS_OF_DESTINY_CIRCLET = 6842;
 	private static final int[] WEAPONS =
@@ -78,6 +79,7 @@ public class MonumentOfHeroes extends AbstractNpcAI
 				{
 					return hasAtLeastOneQuestItem(player, WEAPONS) ? "already_have_weapon.htm" : "weapon_list.htm";
 				}
+				
 				return "no_hero_weapon.htm";
 			}
 			case "HeroCirclet":
@@ -109,6 +111,7 @@ public class MonumentOfHeroes extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

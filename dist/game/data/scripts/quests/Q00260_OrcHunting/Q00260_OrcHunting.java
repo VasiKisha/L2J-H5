@@ -40,11 +40,13 @@ public class Q00260_OrcHunting extends Quest
 {
 	// NPC
 	private static final int RAYEN = 30221;
+	
 	// Items
 	private static final int ORC_AMULET = 1114;
 	private static final int ORC_NECKLACE = 1115;
 	private static final ItemHolder SPIRITSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5790, 3000);
 	private static final ItemHolder SOULSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5789, 6000);
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -56,6 +58,7 @@ public class Q00260_OrcHunting extends Quest
 		MONSTERS.put(20472, ORC_NECKLACE); // Kaboo Orc Fighter Leader
 		MONSTERS.put(20473, ORC_NECKLACE); // Kaboo Orc Fighter Lieutenant
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 6;
 	private static final int GUIDE_MISSION = 41;
@@ -99,6 +102,7 @@ public class Q00260_OrcHunting extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -178,6 +182,7 @@ public class Q00260_OrcHunting extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -68,6 +68,7 @@ public class DropProtection implements Runnable
 		{
 			_task.cancel(false);
 		}
+		
 		_isProtected = false;
 		_owner = null;
 		_task = null;

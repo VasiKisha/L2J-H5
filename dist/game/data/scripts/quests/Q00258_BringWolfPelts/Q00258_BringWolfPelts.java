@@ -35,14 +35,17 @@ public class Q00258_BringWolfPelts extends Quest
 {
 	// Npc
 	private static final int LECTOR = 30001;
+	
 	// Item
 	private static final int WOLF_PELT = 702;
+	
 	// Monsters
-	private static final int[] MONSTERS = new int[]
+	private static final int[] MONSTERS =
 	{
 		20120, // Wolf
 		20442, // Elder Wolf
 	};
+	
 	// Rewards
 	private static final Map<Integer, Integer> REWARDS = new HashMap<>();
 	static
@@ -53,6 +56,7 @@ public class Q00258_BringWolfPelts extends Quest
 		REWARDS.put(1119, 13); // Short Leather Gloves
 		REWARDS.put(426, 16); // Tunic
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	private static final int WOLF_PELT_COUNT = 40;
@@ -75,6 +79,7 @@ public class Q00258_BringWolfPelts extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -130,6 +135,7 @@ public class Q00258_BringWolfPelts extends Quest
 									break;
 								}
 							}
+							
 							qs.exitQuest(true, true);
 							htmltext = "30001-05.html";
 							break;
@@ -139,6 +145,7 @@ public class Q00258_BringWolfPelts extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

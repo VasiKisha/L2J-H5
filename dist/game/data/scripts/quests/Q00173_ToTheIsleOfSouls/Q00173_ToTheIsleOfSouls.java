@@ -87,6 +87,7 @@ public class Q00173_ToTheIsleOfSouls extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -129,6 +130,7 @@ public class Q00173_ToTheIsleOfSouls extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -47,7 +47,6 @@ import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.FortCommander;
@@ -283,6 +282,7 @@ public class FortSiege implements Siegable
 			_siegeEnd.cancel(true);
 			_siegeEnd = null;
 		}
+		
 		if (_siegeRestore != null)
 		{
 			_siegeRestore.cancel(true);
@@ -319,6 +319,7 @@ public class FortSiege implements Siegable
 			_siegeStartTask.cancel(true);
 			_fort.despawnSuspiciousMerchant();
 		}
+		
 		_siegeStartTask = null;
 		if (_attackerClans.isEmpty())
 		{
@@ -371,10 +372,12 @@ public class FortSiege implements Siegable
 				member.sendPacket(sm);
 			}
 		}
+		
 		if (_fort.getOwnerClan() == null)
 		{
 			return;
 		}
+		
 		clan = ClanTable.getInstance().getClan(getFort().getOwnerClan().getId());
 		for (Player member : clan.getOnlineMembers(0))
 		{
@@ -416,13 +419,16 @@ public class FortSiege implements Siegable
 						member.startFameTask(Config.FORTRESS_ZONE_FAME_TASK_FREQUENCY * 1000, Config.FORTRESS_ZONE_FAME_AQUIRE_POINTS);
 					}
 				}
+				
 				member.broadcastUserInfo();
 			}
 		}
+		
 		if (_fort.getOwnerClan() == null)
 		{
 			return;
 		}
+		
 		clan = ClanTable.getInstance().getClan(getFort().getOwnerClan().getId());
 		for (Player member : clan.getOnlineMembers(0))
 		{
@@ -448,6 +454,7 @@ public class FortSiege implements Siegable
 					member.startFameTask(Config.FORTRESS_ZONE_FAME_TASK_FREQUENCY * 1000, Config.FORTRESS_ZONE_FAME_AQUIRE_POINTS);
 				}
 			}
+			
 			member.broadcastUserInfo();
 		}
 	}
@@ -554,6 +561,7 @@ public class FortSiege implements Siegable
 				}
 			}
 		}
+		
 		return players;
 	}
 	
@@ -587,6 +595,7 @@ public class FortSiege implements Siegable
 				}
 			}
 		}
+		
 		return players;
 	}
 	
@@ -634,22 +643,26 @@ public class FortSiege implements Siegable
 							break;
 						}
 					}
+					
 					if (npcString != null)
 					{
 						instance.broadcastPacket(new NpcSay(instance.getObjectId(), ChatType.NPC_SHOUT, instance.getId(), npcString));
 					}
 				}
 			}
+			
 			_commanders.remove(spawn);
 			if (_commanders.isEmpty())
 			{
 				// spawn fort flags
 				spawnFlag(_fort.getResidenceId());
+				
 				// cancel door/commanders respawn
 				if (_siegeRestore != null)
 				{
 					_siegeRestore.cancel(true);
 				}
+				
 				// open doors in main building
 				for (Door door : _fort.getDoors())
 				{
@@ -661,6 +674,7 @@ public class FortSiege implements Siegable
 					// TODO this also opens control room door at big fort
 					door.openMe();
 				}
+				
 				_fort.getSiege().announceToPlayer(new SystemMessage(SystemMessageId.ALL_BARRACKS_ARE_OCCUPIED));
 			}
 			else
@@ -755,8 +769,10 @@ public class FortSiege implements Siegable
 			{
 				player.reduceAdena(ItemProcessType.FEE, 250000, null, true);
 			}
+			
 			startAutoTask(true);
 		}
+		
 		return 4; // Players clan is successfully registered to siege
 	}
 	
@@ -770,6 +786,7 @@ public class FortSiege implements Siegable
 		{
 			return;
 		}
+		
 		removeSiegeClan(clan.getId());
 	}
 	
@@ -788,6 +805,7 @@ public class FortSiege implements Siegable
 			{
 				ps.setInt(2, clanId);
 			}
+			
 			ps.execute();
 			
 			loadSiegeClan();
@@ -831,6 +849,7 @@ public class FortSiege implements Siegable
 			// siege time in past
 			saveFortSiege();
 			clearSiegeClan(); // remove all clans
+			
 			// spawn suspicious merchant immediately
 			ThreadPool.execute(new ScheduleSuspiciousMerchantSpawn());
 		}
@@ -850,6 +869,7 @@ public class FortSiege implements Siegable
 					ThreadPool.execute(new ScheduleSuspiciousMerchantSpawn());
 					_siegeStartTask = ThreadPool.schedule(new ScheduleStartSiegeTask(3600), delay - 3600000);
 				}
+				
 				if (delay > 600000) // more than 10 min, spawn suspicious merchant
 				{
 					ThreadPool.execute(new ScheduleSuspiciousMerchantSpawn());
@@ -927,7 +947,7 @@ public class FortSiege implements Siegable
 		
 		for (Player player : players)
 		{
-			if (player.canOverrideCond(PlayerCondOverride.FORTRESS_CONDITIONS) || player.isJailed())
+			if (player.isGM() || player.isJailed())
 			{
 				continue;
 			}
@@ -964,6 +984,7 @@ public class FortSiege implements Siegable
 				{
 					return true;
 				}
+				
 				if (siege.checkIsDefender(clan))
 				{
 					return true;
@@ -985,6 +1006,7 @@ public class FortSiege implements Siegable
 		{
 			newDate.add(Calendar.MINUTE, 60);
 		}
+		
 		_fort.setSiegeDate(newDate);
 		saveSiegeDate();
 	}
@@ -1018,6 +1040,7 @@ public class FortSiege implements Siegable
 		{
 			return;
 		}
+		
 		// Remove all instance of commanders for this fort
 		for (Spawn spawn : _commanders)
 		{
@@ -1030,6 +1053,7 @@ public class FortSiege implements Siegable
 				}
 			}
 		}
+		
 		_commanders.clear();
 	}
 	
@@ -1165,6 +1189,7 @@ public class FortSiege implements Siegable
 				return sc;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -1201,6 +1226,7 @@ public class FortSiege implements Siegable
 				return sc.getFlag();
 			}
 		}
+		
 		return null;
 	}
 	
@@ -1210,6 +1236,7 @@ public class FortSiege implements Siegable
 		{
 			_siegeGuardManager = new FortSiegeGuardManager(_fort);
 		}
+		
 		return _siegeGuardManager;
 	}
 	

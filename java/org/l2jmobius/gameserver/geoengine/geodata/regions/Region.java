@@ -45,6 +45,11 @@ public class Region implements IRegion
 	
 	public Region(ByteBuffer bb)
 	{
+		load(bb);
+	}
+	
+	public void load(ByteBuffer bb)
+	{
 		for (int blockOffset = 0; blockOffset < IRegion.REGION_BLOCKS; blockOffset++)
 		{
 			final int blockType = bb.get();
@@ -123,6 +128,7 @@ public class Region implements IRegion
 		{
 			buffer.putShort(combinedData);
 		}
+		
 		buffer.rewind();
 		_blocks[(((geoX / IBlock.BLOCK_CELLS_X) % IRegion.REGION_BLOCKS_X) * IRegion.REGION_BLOCKS_Y) + ((geoY / IBlock.BLOCK_CELLS_Y) % IRegion.REGION_BLOCKS_Y)] = new ComplexBlock(buffer);
 	}
@@ -192,6 +198,7 @@ public class Region implements IRegion
 					{
 						buffer.putShort(Short.reverseBytes(info));
 					}
+					
 					bos.write(buffer.array());
 				}
 				else if (block instanceof MultilayerBlock)
@@ -203,6 +210,7 @@ public class Region implements IRegion
 					{
 						buffer.put(info);
 					}
+					
 					bos.write(buffer.array());
 				}
 			}

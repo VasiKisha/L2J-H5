@@ -80,6 +80,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				{
 					return;
 				}
+				
 				if (_param1 < World.GRACIA_MAX_X)
 				{
 					ship.getAI().setIntention(Intention.MOVE_TO, new Location(_param1, _param2, z));
@@ -92,6 +93,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				{
 					return;
 				}
+				
 				ship.getAI().setIntention(Intention.ACTIVE);
 				break;
 			}
@@ -101,6 +103,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				{
 					return;
 				}
+				
 				if (z < World.GRACIA_MAX_Z)
 				{
 					z = Math.min(z + STEP, World.GRACIA_MAX_Z);
@@ -114,6 +117,7 @@ public class MoveToLocationAirShip extends ClientPacket
 				{
 					return;
 				}
+				
 				if (z > World.GRACIA_MIN_Z)
 				{
 					z = Math.max(z - STEP, World.GRACIA_MIN_Z);
@@ -127,11 +131,13 @@ public class MoveToLocationAirShip extends ClientPacket
 				{
 					return;
 				}
+				
 				final VehiclePathPoint[] dst = AirShipManager.getInstance().getTeleportDestination(ship.getDockId(), _param1);
 				if (dst == null)
 				{
 					return;
 				}
+				
 				// Consume fuel, if needed
 				final int fuelConsumption = AirShipManager.getInstance().getFuelConsumption(ship.getDockId(), _param1);
 				if (fuelConsumption > 0)
@@ -141,8 +147,10 @@ public class MoveToLocationAirShip extends ClientPacket
 						player.sendPacket(SystemMessageId.YOUR_SHIP_CANNOT_TELEPORT_BECAUSE_IT_DOES_NOT_HAVE_ENOUGH_FUEL_FOR_THE_TRIP);
 						return;
 					}
+					
 					ship.setFuel(ship.getFuel() - fuelConsumption);
 				}
+				
 				ship.executePath(dst);
 				break;
 			}

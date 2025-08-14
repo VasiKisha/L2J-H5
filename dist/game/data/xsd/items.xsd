@@ -216,8 +216,8 @@
 	<xs:complexType name="itemType">
 		<xs:sequence maxOccurs="1" minOccurs="1">
 			<xs:element name="set" maxOccurs="unbounded" minOccurs="1" type="setType" />
-			<xs:element name="cond" maxOccurs="2" minOccurs="0" type="condType" />
-			<xs:element name="for" maxOccurs="1" minOccurs="0" type="forType" />
+			<xs:element name="conditions" maxOccurs="2" minOccurs="0" type="condType" />
+			<xs:element name="stats" maxOccurs="1" minOccurs="0" type="forType" />
 		</xs:sequence>
 		<xs:attribute name="id" use="required">
 			<xs:simpleType>

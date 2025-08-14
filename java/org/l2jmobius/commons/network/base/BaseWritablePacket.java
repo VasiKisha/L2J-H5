@@ -85,6 +85,7 @@ public abstract class BaseWritablePacket
 		{
 			writeBytes(text.getBytes(StandardCharsets.UTF_16LE));
 		}
+		
 		writeShort(0);
 	}
 	

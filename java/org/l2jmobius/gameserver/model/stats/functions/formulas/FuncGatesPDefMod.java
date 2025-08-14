@@ -51,6 +51,7 @@ public class FuncGatesPDefMod extends AbstractFunction
 		{
 			return initVal * Config.ALT_SIEGE_DUSK_GATES_PDEF_MULT;
 		}
+		
 		return initVal;
 	}
 }

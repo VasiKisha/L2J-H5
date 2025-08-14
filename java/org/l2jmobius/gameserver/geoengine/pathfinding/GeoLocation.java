@@ -50,14 +50,17 @@ public class GeoLocation
 		{
 			_nswe |= Cell.NSWE_NORTH;
 		}
+		
 		if (geoEngine.checkNearestNswe(x, y, z, Cell.NSWE_EAST))
 		{
 			_nswe |= Cell.NSWE_EAST;
 		}
+		
 		if (geoEngine.checkNearestNswe(x, y, z, Cell.NSWE_SOUTH))
 		{
 			_nswe |= Cell.NSWE_SOUTH;
 		}
+		
 		if (geoEngine.checkNearestNswe(x, y, z, Cell.NSWE_WEST))
 		{
 			_nswe |= Cell.NSWE_WEST;
@@ -98,12 +101,12 @@ public class GeoLocation
 	
 	public int getX()
 	{
-		return GeoEngine.getInstance().getWorldX(_x);
+		return GeoEngine.getWorldX(_x);
 	}
 	
 	public int getY()
 	{
-		return GeoEngine.getInstance().getWorldY(_y);
+		return GeoEngine.getWorldY(_y);
 	}
 	
 	public int getZ()

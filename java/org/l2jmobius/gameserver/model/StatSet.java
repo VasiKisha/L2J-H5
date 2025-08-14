@@ -102,10 +102,12 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("Boolean value required, but not specified");
 		}
+		
 		if (val instanceof Boolean)
 		{
 			return ((Boolean) val).booleanValue();
 		}
+		
 		try
 		{
 			return Boolean.parseBoolean((String) val);
@@ -130,10 +132,12 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		if (val instanceof Boolean)
 		{
 			return ((Boolean) val).booleanValue();
 		}
+		
 		try
 		{
 			return Boolean.parseBoolean((String) val);
@@ -151,10 +155,12 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("Byte value required, but not specified");
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).byteValue();
 		}
+		
 		try
 		{
 			return Byte.parseByte((String) val);
@@ -172,10 +178,12 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).byteValue();
 		}
+		
 		try
 		{
 			return Byte.parseByte((String) val);
@@ -207,6 +215,7 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("Byte value required, but not specified");
 		}
+		
 		if (val instanceof Number)
 		{
 			return new byte[]
@@ -214,6 +223,7 @@ public class StatSet
 				((Number) val).byteValue()
 			};
 		}
+		
 		int c = 0;
 		final String[] vals = ((String) val).split(splitOn);
 		final byte[] result = new byte[vals.length];
@@ -228,6 +238,7 @@ public class StatSet
 				throw new IllegalArgumentException("Byte value required, but found: " + val);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -238,6 +249,7 @@ public class StatSet
 		{
 			result.add(i);
 		}
+		
 		return result;
 	}
 	
@@ -248,10 +260,12 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("Short value required, but not specified");
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).shortValue();
 		}
+		
 		try
 		{
 			return Short.parseShort((String) val);
@@ -269,10 +283,12 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).shortValue();
 		}
+		
 		try
 		{
 			return Short.parseShort((String) val);
@@ -327,10 +343,12 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).intValue();
 		}
+		
 		try
 		{
 			return Integer.parseInt((String) val);
@@ -362,6 +380,7 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("Integer value required, but not specified");
 		}
+		
 		if (val instanceof Number)
 		{
 			return new int[]
@@ -369,6 +388,7 @@ public class StatSet
 				((Number) val).intValue()
 			};
 		}
+		
 		int c = 0;
 		final String[] vals = ((String) val).split(splitOn);
 		final int[] result = new int[vals.length];
@@ -383,6 +403,7 @@ public class StatSet
 				throw new IllegalArgumentException("Integer value required, but found: " + val);
 			}
 		}
+		
 		return result;
 	}
 	
@@ -403,6 +424,7 @@ public class StatSet
 		{
 			result = new ArrayList<>(1);
 		}
+		
 		return result;
 	}
 	
@@ -425,6 +447,7 @@ public class StatSet
 			sb.append(element);
 			sb.append(",");
 		}
+		
 		sb.deleteCharAt(sb.length() - 1); // Prettify value.
 		
 		set(key, sb.toString());
@@ -448,6 +471,7 @@ public class StatSet
 		{
 			result = new HashMap<>(1);
 		}
+		
 		return result;
 	}
 	
@@ -472,6 +496,7 @@ public class StatSet
 			sb.append(entry.getValue());
 			sb.append(",");
 		}
+		
 		sb.deleteCharAt(sb.length() - 1); // Prettify value.
 		
 		set(key, sb.toString());
@@ -484,10 +509,12 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("Long value required, but not specified");
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).longValue();
 		}
+		
 		try
 		{
 			return Long.parseLong((String) val);
@@ -505,10 +532,12 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).longValue();
 		}
+		
 		try
 		{
 			return Long.parseLong((String) val);
@@ -540,10 +569,12 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("Float value required, but not specified");
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).floatValue();
 		}
+		
 		try
 		{
 			return Float.parseFloat((String) val);
@@ -561,10 +592,12 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).floatValue();
 		}
+		
 		try
 		{
 			return Float.parseFloat((String) val);
@@ -596,10 +629,12 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("Double value required, but not specified");
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).doubleValue();
 		}
+		
 		try
 		{
 			return Double.parseDouble((String) val);
@@ -617,10 +652,12 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		if (val instanceof Number)
 		{
 			return ((Number) val).doubleValue();
 		}
+		
 		try
 		{
 			return Double.parseDouble((String) val);
@@ -652,6 +689,7 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("String value required, but not specified");
 		}
+		
 		return String.valueOf(val);
 	}
 	
@@ -662,6 +700,7 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		return String.valueOf(val);
 	}
 	
@@ -672,6 +711,7 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("String value required, but not specified");
 		}
+		
 		return TimeUtil.parseDuration(String.valueOf(val));
 	}
 	
@@ -682,6 +722,7 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		return TimeUtil.parseDuration(String.valueOf(val));
 	}
 	
@@ -693,10 +734,12 @@ public class StatSet
 		{
 			throw new IllegalArgumentException("Enum value of type " + enumClass.getName() + " required, but not specified");
 		}
+		
 		if (enumClass.isInstance(val))
 		{
 			return (T) val;
 		}
+		
 		try
 		{
 			return Enum.valueOf(enumClass, String.valueOf(val));
@@ -715,10 +758,12 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		if (enumClass.isInstance(val))
 		{
 			return (T) val;
 		}
+		
 		try
 		{
 			return Enum.valueOf(enumClass, String.valueOf(val));
@@ -737,6 +782,7 @@ public class StatSet
 		{
 			return null;
 		}
+		
 		return (A) obj;
 	}
 	
@@ -748,6 +794,7 @@ public class StatSet
 		{
 			return defaultValue;
 		}
+		
 		return (A) obj;
 	}
 	
@@ -758,6 +805,7 @@ public class StatSet
 		{
 			return null;
 		}
+		
 		return (SkillHolder) obj;
 	}
 	
@@ -768,6 +816,7 @@ public class StatSet
 		{
 			return null;
 		}
+		
 		return (Location) obj;
 	}
 	
@@ -779,6 +828,7 @@ public class StatSet
 		{
 			return Collections.emptyList();
 		}
+		
 		return (List<MinionHolder>) obj;
 	}
 	
@@ -811,6 +861,7 @@ public class StatSet
 			_set.put(key, convertedList);
 			return convertedList;
 		}
+		
 		return (List<T>) obj;
 	}
 	
@@ -838,6 +889,7 @@ public class StatSet
 			_set.put(key, convertedList);
 			return convertedList;
 		}
+		
 		return (List<T>) obj;
 	}
 	
@@ -870,6 +922,7 @@ public class StatSet
 				return originalList.stream().map(Object::toString).map(Double::valueOf).map(clazz::cast).collect(Collectors.toList());
 			}
 		}
+		
 		return null;
 	}
 	
@@ -887,6 +940,7 @@ public class StatSet
 		{
 			LOGGER.log(Level.WARNING, "getMap(\"" + key + "\", " + keyClass.getSimpleName() + ", " + valueClass.getSimpleName() + ") requested with wrong generic type: " + obj.getClass().getGenericInterfaces()[0] + "!", new ClassNotFoundException());
 		}
+		
 		return (Map<K, V>) obj;
 	}
 	
@@ -896,6 +950,7 @@ public class StatSet
 		{
 			return;
 		}
+		
 		_set.put(name, value);
 	}
 	
@@ -940,6 +995,7 @@ public class StatSet
 		{
 			return;
 		}
+		
 		_set.put(key, value);
 	}
 	
@@ -949,6 +1005,7 @@ public class StatSet
 		{
 			return;
 		}
+		
 		_set.put(key, value);
 	}
 	

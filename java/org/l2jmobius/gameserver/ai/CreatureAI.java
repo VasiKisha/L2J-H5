@@ -109,6 +109,7 @@ public class CreatureAI extends AbstractAI
 			{
 				_creature.abortAttack();
 			}
+			
 			_creature.getAI().changeIntentionToCast(_skill, _target);
 		}
 	}
@@ -700,6 +701,7 @@ public class CreatureAI extends AbstractAI
 				{
 					_onNpcMoveFinished = new OnNpcMoveFinished(npc);
 				}
+				
 				EventDispatcher.getInstance().notifyEventAsync(_onNpcMoveFinished, npc);
 			}
 		}
@@ -1022,6 +1024,7 @@ public class CreatureAI extends AbstractAI
 			// LOGGER.warning("maybeMoveToPawn: target == NULL!");
 			return false;
 		}
+		
 		if (offsetValue < 0)
 		{
 			return false; // skill radius -1
@@ -1043,6 +1046,7 @@ public class CreatureAI extends AbstractAI
 				{
 					return true;
 				}
+				
 				stopFollow();
 				return false;
 			}
@@ -1055,6 +1059,7 @@ public class CreatureAI extends AbstractAI
 				{
 					_actor.getAI().setIntention(Intention.IDLE);
 				}
+				
 				return true;
 			}
 			
@@ -1080,10 +1085,12 @@ public class CreatureAI extends AbstractAI
 				{
 					offset -= 100;
 				}
+				
 				if (offset < 5)
 				{
 					offset = 5;
 				}
+				
 				startFollow(target.asCreature(), offset);
 			}
 			else
@@ -1091,6 +1098,7 @@ public class CreatureAI extends AbstractAI
 				// Move the actor to Pawn server side AND client side by sending Server->Client packet MoveToPawn (broadcast)
 				moveToPawn(target, offset);
 			}
+			
 			return true;
 		}
 		
@@ -1159,7 +1167,7 @@ public class CreatureAI extends AbstractAI
 		
 		if (_actor != null)
 		{
-			if ((_skill != null) && _skill.isBad() && (_skill.getAffectRange() > 0))
+			if ((_skill != null) && _skill.hasNegativeEffect() && (_skill.getAffectRange() > 0))
 			{
 				if (_actor.isPlayer() && _actor.isMoving())
 				{
@@ -1260,6 +1268,7 @@ public class CreatureAI extends AbstractAI
 					break;
 				}
 			}
+			
 			// water movement analysis
 			if (_actor.isNpc())
 			{
@@ -1278,6 +1287,7 @@ public class CreatureAI extends AbstractAI
 					}
 				}
 			}
+			
 			// skill analysis
 			for (Skill sk : _actor.getAllSkills())
 			{
@@ -1285,6 +1295,7 @@ public class CreatureAI extends AbstractAI
 				{
 					continue;
 				}
+				
 				final int castRange = sk.getCastRange();
 				boolean hasLongRangeDamageSkill = false;
 				if (sk.isContinuous())
@@ -1367,11 +1378,13 @@ public class CreatureAI extends AbstractAI
 						hasLongRangeDamageSkills = true;
 					}
 				}
+				
 				if (castRange > maxCastRange)
 				{
 					maxCastRange = castRange;
 				}
 			}
+			
 			// Because of missing skills, some mages/balanced cannot play like mages
 			if (!hasLongRangeDamageSkills && isMage)
 			{
@@ -1379,12 +1392,14 @@ public class CreatureAI extends AbstractAI
 				isMage = false;
 				isFighter = false;
 			}
+			
 			if (!hasLongRangeSkills && (isMage || isBalanced))
 			{
 				isBalanced = false;
 				isMage = false;
 				isFighter = true;
 			}
+			
 			if (generalSkills.isEmpty() && isMage)
 			{
 				isBalanced = true;
@@ -1415,11 +1430,13 @@ public class CreatureAI extends AbstractAI
 			{
 				return;
 			}
+			
 			creature = target;
 			if (target == null)
 			{
 				return;
 			}
+			
 			isMage = false;
 			isBalanced = false;
 			isArcher = false;
@@ -1445,6 +1462,7 @@ public class CreatureAI extends AbstractAI
 					isFighter = true;
 				}
 			}
+			
 			isSlower = target.getRunSpeed() < (_actor.getRunSpeed() - 3);
 			isMagicResistant = (target.getMDef(null, null) * 1.2) > _actor.getMAtk(null, null);
 			if (target.getBuffCount() < 4)
@@ -1466,6 +1484,7 @@ public class CreatureAI extends AbstractAI
 				}
 			}
 		}
+		
 		return false;
 	}
 	
@@ -1482,11 +1501,13 @@ public class CreatureAI extends AbstractAI
 					{
 						continue;
 					}
+					
 					if (target.isAffectedBySkill(sk.getId()))
 					{
 						cancast = false;
 					}
 				}
+				
 				if (cancast)
 				{
 					return true;
@@ -1501,11 +1522,13 @@ public class CreatureAI extends AbstractAI
 					{
 						continue;
 					}
+					
 					if (!target.getEffectList().isEmpty())
 					{
 						cancast = true;
 					}
 				}
+				
 				if (cancast)
 				{
 					return true;
@@ -1521,11 +1544,13 @@ public class CreatureAI extends AbstractAI
 				{
 					continue;
 				}
+				
 				if (!target.getEffectList().isEmpty())
 				{
 					cancast = true;
 				}
 			}
+			
 			if (cancast)
 			{
 				return true;
@@ -1540,16 +1565,19 @@ public class CreatureAI extends AbstractAI
 				{
 					continue;
 				}
+				
 				if (target.isAffectedBySkill(sk.getId()))
 				{
 					cancast = false;
 				}
 			}
+			
 			if (cancast)
 			{
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -1565,6 +1593,7 @@ public class CreatureAI extends AbstractAI
 				{
 					continue;
 				}
+				
 				if (target.isInMyClan(_actor.asNpc()))
 				{
 					count++;
@@ -1574,11 +1603,13 @@ public class CreatureAI extends AbstractAI
 					}
 				}
 			}
+			
 			if (ccount < count)
 			{
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	

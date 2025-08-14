@@ -37,7 +37,7 @@ import org.l2jmobius.gameserver.util.LocationUtil;
 public class RollingDice implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{
@@ -85,6 +85,7 @@ public class RollingDice implements IItemHandler
 		{
 			player.getParty().broadcastToPartyMembers(player, sm);
 		}
+		
 		return true;
 	}
 	
@@ -95,6 +96,7 @@ public class RollingDice implements IItemHandler
 		{
 			return 0;
 		}
+		
 		return Rnd.get(1, 6);
 	}
 }

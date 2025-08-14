@@ -24,6 +24,8 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.QuestSound;
+import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 import ai.AbstractNpcAI;
 
@@ -58,16 +60,33 @@ public class NoblessMaster extends AbstractNpcAI
 				{
 					return "1003000-3.htm";
 				}
+				
+				if (Config.NOBLESS_MASTER_ITEM_COUNT > 0)
+				{
+					if (getQuestItemsCount(player, Config.NOBLESS_MASTER_ITEM_ID) < Config.NOBLESS_MASTER_ITEM_COUNT)
+					{
+						final SystemMessage msg = new SystemMessage(SystemMessageId.S2_UNIT_S_OF_THE_ITEM_S1_IS_ARE_REQUIRED);
+						msg.addItemName(Config.NOBLESS_MASTER_ITEM_ID);
+						msg.addLong(Config.NOBLESS_MASTER_ITEM_COUNT);
+						player.sendPacket(msg);
+						return "1003000-4.htm";
+					}
+					
+					takeItems(player, Config.NOBLESS_MASTER_ITEM_ID, Config.NOBLESS_MASTER_ITEM_COUNT);
+				}
+				
 				if (player.getLevel() >= Config.NOBLESS_MASTER_LEVEL_REQUIREMENT)
 				{
 					if (Config.NOBLESS_MASTER_REWARD_TIARA)
 					{
 						giveItems(player, NOBLESS_TIARA, 1);
 					}
+					
 					player.setNoble(true);
 					player.sendPacket(QuestSound.ITEMSOUND_QUEST_FINISH.getPacket());
 					return "1003000-1.htm";
 				}
+				
 				return "1003000-2.htm";
 			}
 		}

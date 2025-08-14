@@ -54,6 +54,7 @@ public class ExShowSeedInfo extends ServerPacket
 			buffer.writeInt(0);
 			return;
 		}
+		
 		buffer.writeInt(_seeds.size());
 		for (SeedProduction seed : _seeds)
 		{

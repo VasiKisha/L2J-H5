@@ -42,6 +42,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 	private static final int MASTER_TOMA = 30556;
 	private static final int TORAI = 30557;
 	private static final int WAREHOUSE_CHIEF_YASENI = 31958;
+	
 	// Items
 	private static final int PIPPIS_LETTER_OF_RECOMMENDATION = 1643;
 	private static final int ROUTS_TELEPORT_SCROLL = 1644;
@@ -59,16 +60,21 @@ public class Q00417_PathOfTheScavenger extends Quest
 	private static final int BEAD = 1656;
 	private static final int BEAD_PARCEL = 1657;
 	private static final int BEAD_PARCEL2 = 8543;
+	
 	// Reward
 	private static final int RING_OF_RAVEN = 1642;
+	
 	// Monster
 	private static final int HUNTER_TARANTULA = 20403;
 	private static final int PLUNDER_TARANTULA = 20508;
 	private static final int HUNTER_BEAR = 20777;
+	
 	// Quest Monster
 	private static final int HONEY_BEAR = 27058;
+	
 	// Skill
 	private static final int SPOIL = 254;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	private static final String FIRST_ATTACKER = "FIRST_ATTACKER";
@@ -321,6 +327,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 					{
 						addExpAndSp(player, 591724, 48808);
 					}
+					
 					qs.exitQuest(false, true);
 					player.sendPacket(new SocialAction(player.getObjectId(), 3));
 					htmltext = event;
@@ -328,6 +335,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -659,6 +667,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 						{
 							addExpAndSp(player, 295862, 24404);
 						}
+						
 						qs.exitQuest(false, true);
 						player.sendPacket(new SocialAction(player.getObjectId(), 3));
 						htmltext = "30316-05.html";
@@ -683,6 +692,7 @@ public class Q00417_PathOfTheScavenger extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

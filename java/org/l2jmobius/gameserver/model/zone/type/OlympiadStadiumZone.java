@@ -26,7 +26,6 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.OlympiadManager;
@@ -56,6 +55,7 @@ public class OlympiadStadiumZone extends ZoneRespawn
 		{
 			settings = new Settings();
 		}
+		
 		setSettings(settings);
 		
 		_checkAffected = true;
@@ -212,7 +212,7 @@ public class OlympiadStadiumZone extends ZoneRespawn
 		if (player != null)
 		{
 			// only participants, observers and GMs allowed
-			if (!player.canOverrideCond(PlayerCondOverride.ZONE_CONDITIONS) && !player.isInOlympiadMode() && !player.inObserverMode())
+			if (!player.isGM() && !player.isInOlympiadMode() && !player.inObserverMode())
 			{
 				ThreadPool.execute(new KickPlayer(player));
 			}
@@ -254,6 +254,7 @@ public class OlympiadStadiumZone extends ZoneRespawn
 			{
 				continue;
 			}
+			
 			if (creature.getInstanceId() != getInstanceId())
 			{
 				continue;
@@ -276,6 +277,7 @@ public class OlympiadStadiumZone extends ZoneRespawn
 					creature.sendPacket(ExOlympiadMatchEnd.STATIC_PACKET);
 				}
 			}
+			
 			creature.broadcastInfo();
 		}
 	}
@@ -317,6 +319,7 @@ public class OlympiadStadiumZone extends ZoneRespawn
 			{
 				_spectatorLocations = new ArrayList<>();
 			}
+			
 			_spectatorLocations.add(new Location(x, y, z));
 		}
 		else

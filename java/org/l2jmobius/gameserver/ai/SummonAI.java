@@ -81,6 +81,24 @@ public class SummonAI extends PlayableAI implements Runnable
 	}
 	
 	@Override
+	protected void onIntentionFollow(Creature target)
+	{
+		if (target == null)
+		{
+			clientActionFailed();
+			return;
+		}
+		
+		if ((Config.PATHFINDING > 0) && (PathFinding.getInstance().findPath(_actor.getX(), _actor.getY(), _actor.getZ(), target.getX(), target.getY(), target.getZ(), _actor.getInstanceId(), false) == null))
+		{
+			clientActionFailed();
+			return;
+		}
+		
+		super.onIntentionFollow(target);
+	}
+	
+	@Override
 	synchronized void changeIntention(Intention intention, Object arg0, Object arg1)
 	{
 		switch (intention)
@@ -248,6 +266,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		{
 			return;
 		}
+		
 		_startAvoid = false;
 		
 		if (_actor.isMoving() || _actor.isDead() || _actor.isMovementDisabled())
@@ -298,6 +317,7 @@ public class SummonAI extends PlayableAI implements Runnable
 		{
 			_lastAttack = null;
 		}
+		
 		super.onIntentionCast(skill, target);
 	}
 	

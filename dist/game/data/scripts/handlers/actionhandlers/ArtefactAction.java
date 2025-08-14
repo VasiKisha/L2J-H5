@@ -40,12 +40,13 @@ public class ArtefactAction implements IActionHandler
 	 * <li>Client packet : Action, AttackRequest</li>
 	 */
 	@Override
-	public boolean action(Player player, WorldObject target, boolean interact)
+	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
 		if (!target.asNpc().canTarget(player))
 		{
 			return false;
 		}
+		
 		if (player.getTarget() != target)
 		{
 			player.setTarget(target);
@@ -55,6 +56,7 @@ public class ArtefactAction implements IActionHandler
 			// Notify the Player AI with INTERACT
 			player.getAI().setIntention(Intention.INTERACT, target);
 		}
+		
 		return true;
 	}
 	

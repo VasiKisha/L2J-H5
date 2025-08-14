@@ -37,8 +37,10 @@ public class Q00294_CovertBusiness extends Quest
 {
 	// NPC
 	private static final int KEEF = 30534;
+	
 	// Item
 	private static final int BAT_FANG = 1491;
+	
 	// Monsters
 	private static final Map<Integer, List<Integer>> MONSTER_DROP_CHANCE = new HashMap<>();
 	static
@@ -46,8 +48,10 @@ public class Q00294_CovertBusiness extends Quest
 		MONSTER_DROP_CHANCE.put(20370, Arrays.asList(6, 3, 1, -1));
 		MONSTER_DROP_CHANCE.put(20480, Arrays.asList(5, 2, -1));
 	}
+	
 	// Reward
 	private static final int RING_OF_RACCOON = 1508;
+	
 	// Misc
 	private static final int MIN_LEVEL = 10;
 	
@@ -69,6 +73,7 @@ public class Q00294_CovertBusiness extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -118,6 +123,7 @@ public class Q00294_CovertBusiness extends Quest
 					giveItems(talker, RING_OF_RACCOON, 1);
 					html = "30534-05.html";
 				}
+				
 				addExpAndSp(talker, 0, 600);
 				qs.exitQuest(true, true);
 			}
@@ -126,6 +132,7 @@ public class Q00294_CovertBusiness extends Quest
 				html = "30534-04.html";
 			}
 		}
+		
 		return html;
 	}
 }

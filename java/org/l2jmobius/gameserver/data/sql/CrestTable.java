@@ -167,6 +167,7 @@ public class CrestTable
 		{
 			LOGGER.log(Level.WARNING, "There was an error while saving crest in database:", e);
 		}
+		
 		return null;
 	}
 	

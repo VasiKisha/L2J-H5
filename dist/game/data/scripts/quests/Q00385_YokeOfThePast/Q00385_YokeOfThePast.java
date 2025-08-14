@@ -45,10 +45,13 @@ public class Q00385_YokeOfThePast extends Quest
 		31119, 31120, 31121, 31122, 31123, 31124, 31125
 	};
 	// @formatter:on
+	
 	// Item
 	private static final int SCROLL_OF_ANCIENT_MAGIC = 5902;
+	
 	// Reward
 	private static final int BLANK_SCROLL = 5965;
+	
 	// Monsters
 	private static final Map<Integer, Double> MONSTER_CHANCES = new HashMap<>();
 	static
@@ -97,6 +100,7 @@ public class Q00385_YokeOfThePast extends Quest
 		MONSTER_CHANCES.put(21254, 0.354); // Tomb Guard
 		MONSTER_CHANCES.put(21255, 0.250); // Tomb Preacher
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 20;
 	
@@ -143,6 +147,7 @@ public class Q00385_YokeOfThePast extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -173,6 +178,7 @@ public class Q00385_YokeOfThePast extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

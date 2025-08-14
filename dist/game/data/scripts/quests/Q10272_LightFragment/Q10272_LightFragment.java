@@ -16,7 +16,6 @@
  */
 package quests.Q10272_LightFragment;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
@@ -103,6 +102,7 @@ public class Q10272_LightFragment extends Quest
 					takeItems(player, Inventory.ADENA_ID, 10000);
 					return "32566-05.html";
 				}
+				
 				return "32566-04a.html";
 			}
 			case "32567-04.html":
@@ -133,6 +133,7 @@ public class Q10272_LightFragment extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -145,19 +146,21 @@ public class Q10272_LightFragment extends Quest
 			final long count = getQuestItemsCount(player, FRAGMENT_POWDER);
 			if (count < 100)
 			{
-				int chance = (int) (Config.RATE_QUEST_DROP * DROP_CHANCE);
+				int chance = (int) DROP_CHANCE;
 				int numItems = chance / 100;
 				chance = chance % 100;
 				if (getRandom(100) < chance)
 				{
 					numItems++;
 				}
+				
 				if (numItems > 0)
 				{
 					if ((count + numItems) > 100)
 					{
 						numItems = 100 - (int) count;
 					}
+					
 					if (numItems > 0)
 					{
 						giveItems(player, FRAGMENT_POWDER, numItems);
@@ -357,6 +360,7 @@ public class Q10272_LightFragment extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -33,11 +33,14 @@ public class Q10501_ZakenEmbroideredSoulCloak extends Quest
 {
 	// NPC
 	private static final int OLF_ADAMS = 32612;
+	
 	// Monster
 	private static final int ZAKEN = 29181;
+	
 	// Items
 	private static final int ZAKENS_SOUL_FRAGMENT = 21722;
 	private static final int SOUL_CLOAK_OF_ZAKEN = 21719;
+	
 	// Misc
 	private static final int MIN_LEVEL = 78;
 	private static final int FRAGMENT_COUNT = 20;
@@ -81,6 +84,7 @@ public class Q10501_ZakenEmbroideredSoulCloak extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -131,6 +135,7 @@ public class Q10501_ZakenEmbroideredSoulCloak extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

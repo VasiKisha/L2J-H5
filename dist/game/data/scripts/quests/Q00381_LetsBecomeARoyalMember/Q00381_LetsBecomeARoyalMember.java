@@ -37,16 +37,20 @@ public class Q00381_LetsBecomeARoyalMember extends Quest
 	// NPCs
 	private static final int SANDRA = 30090;
 	private static final int SORINT = 30232;
+	
 	// Items
 	private static final int COLLECTOR_MEMBERSHIP_1 = 3813;
 	private static final int KAILS_COIN = 5899;
 	private static final int FOUR_LEAF_COIN = 7569;
 	private static final int COIN_ALBUM = 5900;
+	
 	// Monsters
 	private static final int ANCIENT_GARGOYLE = 21018;
 	private static final int FALLEN_CHIEF_VERGUS = 27316;
+	
 	// Reward
 	private static final int ROYAL_MEMBERSHIP = 5898;
+	
 	// Misc
 	private static final int MIN_LEVEL = 55;
 	
@@ -68,6 +72,7 @@ public class Q00381_LetsBecomeARoyalMember extends Quest
 		{
 			return htmltext;
 		}
+		
 		switch (event)
 		{
 			case "30232-03.htm":
@@ -91,6 +96,7 @@ public class Q00381_LetsBecomeARoyalMember extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -113,6 +119,7 @@ public class Q00381_LetsBecomeARoyalMember extends Quest
 					{
 						htmltext = "30232-01.htm";
 					}
+					
 					// TODO this quest is not visible in quest list if neither of these IF blocks are true
 				}
 				else if (qs.isStarted())
@@ -169,6 +176,7 @@ public class Q00381_LetsBecomeARoyalMember extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

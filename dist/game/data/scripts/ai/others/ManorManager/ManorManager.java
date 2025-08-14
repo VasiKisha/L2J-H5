@@ -20,7 +20,6 @@ import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
@@ -84,6 +83,7 @@ public class ManorManager extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -93,12 +93,14 @@ public class ManorManager extends AbstractNpcAI
 		if (Config.ALLOW_MANOR)
 		{
 			final int castleId = npc.getTemplate().getParameters().getInt("manor_id", -1);
-			if (!player.canOverrideCond(PlayerCondOverride.CASTLE_CONDITIONS) && player.isClanLeader() && (castleId == player.getClan().getCastleId()))
+			if (!player.isGM() && player.isClanLeader() && (castleId == player.getClan().getCastleId()))
 			{
 				return "manager-lord.htm";
 			}
+			
 			return "manager.htm";
 		}
+		
 		return getHtm(player, "data/html/npcdefault.htm");
 	}
 	
@@ -128,6 +130,7 @@ public class ManorManager extends AbstractNpcAI
 					player.sendPacket(new SystemMessage(SystemMessageId.HERE_YOU_CAN_BUY_ONLY_SEEDS_OF_S1_MANOR).addCastleId(templateId));
 					return;
 				}
+				
 				player.sendPacket(new BuyListSeed(player.getAdena(), castleId));
 				break;
 			}

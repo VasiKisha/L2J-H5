@@ -53,16 +53,19 @@ public class RequestOustPledgeMember extends ClientPacket
 		{
 			return;
 		}
+		
 		if (player.getClan() == null)
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_A_CLAN_MEMBER_AND_CANNOT_PERFORM_THIS_ACTION);
 			return;
 		}
+		
 		if (!player.hasAccess(ClanAccess.REMOVE_MEMBER))
 		{
 			player.sendPacket(SystemMessageId.YOU_ARE_NOT_AUTHORIZED_TO_DO_THAT);
 			return;
 		}
+		
 		if (player.getName().equalsIgnoreCase(_target))
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_DISMISS_YOURSELF);
@@ -76,6 +79,7 @@ public class RequestOustPledgeMember extends ClientPacket
 			PacketLogger.warning("Target (" + _target + ") is not member of the clan");
 			return;
 		}
+		
 		if (member.isOnline() && member.getPlayer().isInCombat())
 		{
 			player.sendPacket(SystemMessageId.A_CLAN_MEMBER_MAY_NOT_BE_DISMISSED_DURING_COMBAT);

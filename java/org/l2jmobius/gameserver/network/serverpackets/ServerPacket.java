@@ -88,6 +88,7 @@ public abstract class ServerPacket extends WritablePacket<GameClient>
 			PacketLogger.warning("Error writing packet " + this + " to client (" + e.getMessage() + ") " + c + "]]");
 			PacketLogger.warning(TraceUtil.getStackTrace(e));
 		}
+		
 		return false;
 	}
 	

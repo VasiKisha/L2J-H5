@@ -139,14 +139,17 @@ public class BoatRunePrimeval implements Runnable
 						{
 							BoatManager.getInstance().broadcastPacket(RUNE_DOCK[0], PRIMEVAL_DOCK, BUSY_RUNE);
 						}
+						
 						_shoutCount++;
 						if (_shoutCount > 35)
 						{
 							_shoutCount = 0;
 						}
+						
 						ThreadPool.schedule(this, 5000);
 						return;
 					}
+					
 					_boat.executePath(RUNE_DOCK);
 					break;
 				}
@@ -158,6 +161,7 @@ public class BoatRunePrimeval implements Runnable
 					break;
 				}
 			}
+			
 			_shoutCount = 0;
 			_cycle++;
 			if (_cycle > 4)

@@ -59,6 +59,7 @@ public class NpcWalkerNode extends Location
 		{
 			throw new IllegalStateException("npcString is defined for walker route!");
 		}
+		
 		return _chatString;
 	}
 }

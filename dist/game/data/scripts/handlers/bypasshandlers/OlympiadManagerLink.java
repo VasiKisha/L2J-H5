@@ -70,7 +70,7 @@ public class OlympiadManagerLink implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if (!(target instanceof OlympiadManager))
 		{
@@ -94,6 +94,7 @@ public class OlympiadManagerLink implements IBypassHandler
 					player.sendPacket(html);
 					return false;
 				}
+				
 				if (player.getClassIndex() != 0)
 				{
 					html.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "noble_sub.htm");
@@ -101,6 +102,7 @@ public class OlympiadManagerLink implements IBypassHandler
 					player.sendPacket(html);
 					return false;
 				}
+				
 				if (!player.isNoble() || (player.getPlayerClass().level() < 3))
 				{
 					html.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "noble_thirdclass.htm");
@@ -152,6 +154,7 @@ public class OlympiadManagerLink implements IBypassHandler
 								}
 							}
 						}
+						
 						html.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "noble_registered.htm");
 						if (Config.OLYMPIAD_REG_DISPLAY > 0)
 						{
@@ -165,6 +168,7 @@ public class OlympiadManagerLink implements IBypassHandler
 							html.replace("%listNonClassedTeam%", String.valueOf(teams));
 							html.replace("%listNonClassed%", String.valueOf(nonClassed));
 						}
+						
 						html.replace("%objectId%", String.valueOf(target.getObjectId()));
 						player.sendPacket(html);
 						break;
@@ -277,12 +281,12 @@ public class OlympiadManagerLink implements IBypassHandler
 						
 						player.setOlympiadBuffCount(--buffCount);
 						
-						target.broadcastPacket(new MagicSkillUse(target, player, skill.getId(), skill.getLevel(), 0, 0));
+						target.broadcastSkillPacket(new MagicSkillUse(target, player, skill.getId(), skill.getLevel(), 0, 0), player);
 						skill.applyEffects(player, player);
 						final Summon summon = player.getSummon();
 						if (summon != null)
 						{
-							target.broadcastPacket(new MagicSkillUse(target, summon, skill.getId(), skill.getLevel(), 0, 0));
+							target.broadcastSkillPacket(new MagicSkillUse(target, summon, skill.getId(), skill.getLevel(), 0, 0), summon);
 							skill.applyEffects(summon, summon);
 						}
 					}
@@ -328,11 +332,13 @@ public class OlympiadManagerLink implements IBypassHandler
 									break;
 								}
 							}
+							
 							for (; index <= 10; index++)
 							{
 								reply.replace("%place" + index + "%", "");
 								reply.replace("%rank" + index + "%", "");
 							}
+							
 							reply.replace("%objectId%", String.valueOf(target.getObjectId()));
 							player.sendPacket(reply);
 						}
@@ -354,6 +360,7 @@ public class OlympiadManagerLink implements IBypassHandler
 						{
 							reply.setFile(player, Olympiad.OLYMPIAD_HTML_PATH + "hero_notreceive.htm");
 						}
+						
 						player.sendPacket(reply);
 						break;
 					}
@@ -374,7 +381,7 @@ public class OlympiadManagerLink implements IBypassHandler
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

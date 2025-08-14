@@ -70,6 +70,7 @@ public abstract class AbstractInstance extends AbstractNpcAI
 			{
 				handleRemoveBuffs(player, world);
 			}
+			
 			if (!instance.getEnterLocs().isEmpty())
 			{
 				teleportPlayer(player, instance.getEnterLocs().stream().findAny().get(), world.getInstanceId(), false);
@@ -87,10 +88,12 @@ public abstract class AbstractInstance extends AbstractNpcAI
 			{
 				handleReenterTime(instance);
 			}
+			
 			if (inst.isRemoveBuffEnabled())
 			{
 				handleRemoveBuffs(instance);
 			}
+			
 			if (!inst.getEnterLocs().isEmpty())
 			{
 				teleportPlayer(player, inst.getEnterLocs().stream().findAny().get(), instance.getInstanceId(), false);

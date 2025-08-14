@@ -37,6 +37,7 @@ public class SteelCitadelTeleport extends AbstractNpcAI
 	// NPCs
 	private static final int BELETH = 29118;
 	private static final int NAIA_CUBE = 32376;
+	
 	// Location
 	private static final Location TELEPORT_CITADEL = new Location(16342, 209557, -9352);
 	
@@ -87,6 +88,7 @@ public class SteelCitadelTeleport extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return null;
 	}
 	

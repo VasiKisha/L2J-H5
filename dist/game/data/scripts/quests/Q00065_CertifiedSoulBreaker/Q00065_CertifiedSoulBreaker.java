@@ -54,19 +54,25 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 	private static final int KATENAR = 32242;
 	private static final int CARGO_BOX = 32243;
 	private static final int SUSPICIOUS_MAN = 32244;
+	
 	// Items
 	private static final int SEALED_DOCUMENT = 9803;
 	private static final int WYRM_HEART = 9804;
 	private static final int KEKROPUS_RECOMMENDATION = 9805;
+	
 	// Reward
 	private static final int DIMENSIONAL_DIAMOND = 7562;
 	private static final int SOUL_BREAKER_CERTIFICATE = 9806;
+	
 	// Monster
 	private static final int WYRM = 20176;
+	
 	// Quest Monster
 	private static final int GUARDIAN_ANGEL = 27332;
+	
 	// Misc
 	private static final int MIN_LEVEL = 39;
+	
 	// Locations
 	private static final Location SUSPICIOUS_SPAWN = new Location(16489, 146249, -3112);
 	private static final Location MOVE_TO = new Location(16490, 145839, -3080);
@@ -90,6 +96,7 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 			{
 				npc.deleteMe();
 			}
+			
 			return super.onEvent(event, npc, player);
 		}
 		else if ("DESPAWN_70".equals(event))
@@ -104,6 +111,7 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 					npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.S1_I_WILL_BE_BACK_SOON_STAY_THERE_AND_DON_T_YOU_DARE_WANDER_OFF).addStringParameter(c0.getAppearance().getVisibleName()));
 				}
 			}
+			
 			npc.deleteMe();
 			return super.onEvent(event, npc, player);
 		}
@@ -288,6 +296,7 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -329,6 +338,7 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 						{
 							npc0.getVariables().set("SPAWNED", false);
 						}
+						
 						npc.broadcastPacket(new NpcSay(npc, ChatType.NPC_GENERAL, NpcStringId.GRR_WHO_ARE_YOU_AND_WHY_HAVE_YOU_STOPPED_ME));
 					}
 				}
@@ -716,6 +726,7 @@ public class Q00065_CertifiedSoulBreaker extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 	

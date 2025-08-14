@@ -94,6 +94,7 @@ public class MultiSellList extends ServerPacket
 					buffer.writeInt(0);
 					buffer.writeShort(65535);
 				}
+				
 				buffer.writeLong(ing.getItemCount());
 				if (ing.getItemInfo() != null)
 				{
@@ -124,6 +125,7 @@ public class MultiSellList extends ServerPacket
 					buffer.writeShort(0); // dark
 				}
 			}
+			
 			for (Ingredient ing : ent.getIngredients())
 			{
 				buffer.writeInt(ing.getTemplate() != null ? ing.getTemplate().getDisplayId() : ing.getItemId());

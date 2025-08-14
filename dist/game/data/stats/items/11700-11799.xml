@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="11700" type="Weapon" name="Common Item - Spinebone Sword*Artisan's Sword">
 		<!-- Spinebone Sword*Artisan's Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -17,12 +17,12 @@
 		<set name="price" val="52050" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11701" type="Weapon" name="Common Item - Arm Breaker">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Reinforced Long Bow conversion. Arm Breaker with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -43,16 +43,16 @@
 		<set name="soulshots" val="6" />
 		<set name="spiritshots" val="3" />
 		<set name="reuse_delay" val="400" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="100" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="11702" type="Weapon" name="Common Item - Epee">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Sword of Revolution conversion. Epee with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -73,16 +73,16 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant4_skill" val="3426-1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="72" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="11703" type="Weapon" name="Common Item - Winged Spear">
 		<!-- Winged Spear with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -102,13 +102,13 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11704" type="Weapon" name="Common Item - Artisan's Sword*Knight's Sword">
 		<!-- Artisan's Sword*Knight's Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -127,12 +127,12 @@
 		<set name="price" val="52050" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11705" type="Weapon" name="Common Item - Artisan's Sword*Artisan's Sword">
 		<!-- Artisan's Sword*Artisan's Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -151,12 +151,12 @@
 		<set name="price" val="52050" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11706" type="Weapon" name="Common Item - Cursed Maingauche">
 		<!-- Cursed Maingauche with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -177,13 +177,13 @@
 		<set name="spiritshots" val="3" />
 		<set name="oncrit_chance" val="50" />
 		<set name="oncrit_skill" val="3005-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="62" />
 			<set stat="mAtk" val="42" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="11707" type="Weapon" name="Common Item - Katzbalger">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Titan Sword conversion. Katzbalger with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -203,16 +203,16 @@
 		<set name="change_weaponId" val="11710" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="86" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="11708" type="Weapon" name="Common Item - Tarbar">
 		<!-- Tarbar with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -231,13 +231,13 @@
 		<set name="price" val="52050" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11709" type="Weapon" name="Common Item - Crucifix of Blood">
 		<!-- Crucifix of Blood with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -257,12 +257,12 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="63" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11710" type="Weapon" name="Common Item - Titan Sword">
 		<!-- Titan Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -282,12 +282,12 @@
 		<set name="change_weaponId" val="11707" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11711" type="Weapon" name="Common Item - Titan Hammer">
 		<!-- Titan Hammer with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -306,13 +306,13 @@
 		<set name="price" val="52050" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="96" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11712" type="Weapon" name="Common Item - War Pick">
 		<!-- War Pick with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -332,13 +332,13 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11713" type="Weapon" name="Common Item - Heavy Bone Club">
 		<!-- Heavy Bone Club with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -357,13 +357,13 @@
 		<set name="price" val="52050" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11714" type="Weapon" name="Common Item - Sword of Revolution">
 		<!-- Sword of Revolution with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -383,12 +383,12 @@
 		<set name="change_weaponId" val="11702" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11715" type="Weapon" name="Common Item - Demon Fangs">
 		<!-- Demon Fangs with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -408,12 +408,12 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="67" />
 			<set stat="mAtk" val="66" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11716" type="Weapon" name="Common Item - Knight's Sword*Elven Sword">
 		<!-- Knight's Sword*Elven Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -432,12 +432,12 @@
 		<set name="price" val="60780" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11717" type="Weapon" name="Common Item - Knight's Sword*Crimson Sword">
 		<!-- Knight's Sword*Crimson Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -456,12 +456,12 @@
 		<set name="price" val="60780" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11718" type="Weapon" name="Common Item - Bastard Sword*Elven Sword">
 		<!-- Bastard Sword*Elven Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -480,12 +480,12 @@
 		<set name="price" val="60780" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11719" type="Weapon" name="Common Item - Bastard Sword*Crimson Sword">
 		<!-- Bastard Sword*Crimson Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -504,12 +504,12 @@
 		<set name="price" val="60780" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11720" type="Weapon" name="Common Item - Spinebone Sword*Elven Sword">
 		<!-- Spinebone Sword*Elven Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -528,12 +528,12 @@
 		<set name="price" val="60780" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11721" type="Weapon" name="Common Item - Spinebone Sword*Crimson Sword">
 		<!-- Spinebone Sword*Crimson Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -552,12 +552,12 @@
 		<set name="price" val="60780" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11722" type="Weapon" name="Common Item - Artisan's Sword*Elven Sword">
 		<!-- Artisan's Sword*Elven Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -576,12 +576,12 @@
 		<set name="price" val="60780" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11723" type="Weapon" name="Common Item - Artisan's Sword*Crimson Sword">
 		<!-- Artisan's Sword*Crimson Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -600,12 +600,12 @@
 		<set name="price" val="60780" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11724" type="Weapon" name="Common Item - Grand Epee">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Elven Long Sword conversion. Grand Epee with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -626,16 +626,16 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant4_skill" val="3426-1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="83" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="11725" type="Weapon" name="Common Item - Glaive">
 		<!-- Glaive with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -655,13 +655,13 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="92" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11726" type="Weapon" name="Common Item - Mithril Dagger">
 		<!-- Mithril Dagger of Mana with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -680,13 +680,13 @@
 		<set name="price" val="65580" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="80" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="11727" type="Weapon" name="Common Item - Bonebreaker">
 		<!-- Bonebreaker with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -705,13 +705,13 @@
 		<set name="price" val="65580" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="92" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11728" type="Weapon" name="Common Item - Light Crossbow">
 		<!-- Light Crossbow with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -733,13 +733,13 @@
 		<set name="spiritshots" val="3" />
 		<set name="mp_consume" val="2" />
 		<set name="reuse_delay" val="1500" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="191" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="11729" type="Weapon" name="Common Item - Staff of Life">
 		<!-- Staff of Life with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -759,13 +759,13 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="74" />
 			<set stat="mAtk" val="72" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11730" type="Weapon" name="Common Item - Scallop Jamadhr">
 		<!-- Scallop Jamadhr with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -784,13 +784,13 @@
 		<set name="price" val="65580" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="112" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11731" type="Weapon" name="Common Item - Atuba Mace">
 		<!-- Atuba Mace with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -810,13 +810,13 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="90" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11732" type="Weapon" name="Common Item - Atuba Hammer">
 		<!-- Atuba Hammer with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -836,13 +836,13 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="90" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11733" type="Weapon" name="Common Item - Elven Long Sword">
 		<!-- Elven Long Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -862,12 +862,12 @@
 		<set name="change_weaponId" val="11724" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="92" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11734" type="Weapon" name="Common Item - General's Katzbalger">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Claymore conversion. General's Katzbalger with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -887,16 +887,16 @@
 		<set name="change_weaponId" val="11736" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="100" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="11735" type="Weapon" name="Common Item - Cranequin">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Light Crossbow conversion. Cranequin with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -917,16 +917,16 @@
 		<set name="soulshots" val="6" />
 		<set name="spiritshots" val="3" />
 		<set name="reuse_delay" val="400" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="117" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="11736" type="Weapon" name="Common Item - Claymore">
 		<!-- Claymore with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -946,12 +946,12 @@
 		<set name="change_weaponId" val="11734" />
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="112" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11737" type="Weapon" name="Common Item - Ghost Staff">
 		<!-- Ghost Staff of Mana with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -971,13 +971,13 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="90" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11738" type="Weapon" name="Common Item - Saber*Sword of Revolution">
 		<!-- Saber*Sword of Revolution with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -996,12 +996,12 @@
 		<set name="price" val="70600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="118" />
 			<set stat="mAtk" val="56" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11739" type="Weapon" name="Common Item - Elven Sword*Elven Sword">
 		<!-- Elven Sword*Elven Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1020,12 +1020,12 @@
 		<set name="price" val="70600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="118" />
 			<set stat="mAtk" val="56" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11740" type="Weapon" name="Common Item - Crimson Sword*Elven Sword">
 		<!-- Crimson Sword*Elven Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1044,12 +1044,12 @@
 		<set name="price" val="70600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="118" />
 			<set stat="mAtk" val="56" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11741" type="Weapon" name="Common Item - Crimson Sword*Crimson Sword">
 		<!-- Crimson Sword*Crimson Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1068,12 +1068,12 @@
 		<set name="price" val="70600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="118" />
 			<set stat="mAtk" val="56" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11742" type="Weapon" name="Common Item - Knight's Sword*Sword of Revolution">
 		<!-- Knight's Sword*Sword of Revolution with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1092,12 +1092,12 @@
 		<set name="price" val="75980" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="124" />
 			<set stat="mAtk" val="58" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11743" type="Weapon" name="Common Item - Bastard Sword*Sword of Revolution">
 		<!-- Bastard Sword*Sword of Revolution with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1116,12 +1116,12 @@
 		<set name="price" val="75980" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="124" />
 			<set stat="mAtk" val="58" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11744" type="Weapon" name="Common Item - Spinebone Sword*Sword of Revolution">
 		<!-- Spinebone Sword*Sword of Revolution with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1140,12 +1140,12 @@
 		<set name="price" val="75980" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="124" />
 			<set stat="mAtk" val="58" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11745" type="Weapon" name="Common Item - Artisan's Sword*Sword of Revolution">
 		<!-- Artisan's Sword*Sword of Revolution with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1164,12 +1164,12 @@
 		<set name="price" val="75980" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="124" />
 			<set stat="mAtk" val="58" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11746" type="Weapon" name="Common Item - Wolverine Needle">
 		<!-- Wolverine Needle with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1188,13 +1188,13 @@
 		<set name="price" val="81600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="94" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="11747" type="Weapon" name="Common Item - Dark Elven Dagger">
 		<!-- Dark Elven Dagger with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1213,13 +1213,13 @@
 		<set name="price" val="81600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="94" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="11748" type="Weapon" name="Common Item - Mysterious Sword">
 		<!-- Mysterious Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1239,12 +1239,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="85" />
 			<set stat="mAtk" val="81" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11749" type="Weapon" name="Common Item - Body Slasher">
 		<!-- Body Slasher with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1264,13 +1264,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11750" type="Weapon" name="Common Item - Battle Axe">
 		<!-- Battle Axe with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1289,13 +1289,13 @@
 		<set name="price" val="81600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11751" type="Weapon" name="Common Item - Scythe">
 		<!-- Scythe with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1315,13 +1315,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11752" type="Weapon" name="Common Item - Saber*Elven Long Sword">
 		<!-- Saber*Elven Long Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1340,12 +1340,12 @@
 		<set name="price" val="81600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="130" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11753" type="Weapon" name="Common Item - Soldat Estoc">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Stormbringer conversion. Soldat Estoc with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -1366,16 +1366,16 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant4_skill" val="3426-1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="97" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="11754" type="Weapon" name="Common Item - Schlager">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Flamberge conversion. Schlager with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -1395,16 +1395,16 @@
 		<set name="change_weaponId" val="11766" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="116" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="2" />
 			<set stat="pAtkSpd" val="350" />
-		</for>
+		</stats>
 	</item>
 	<item id="11755" type="Weapon" name="Common Item - Skull Graver">
 		<!-- Skull Graver with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1423,13 +1423,13 @@
 		<set name="price" val="81600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11756" type="Weapon" name="Common Item - Stormbringer">
 		<!-- Stormbringer with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1449,12 +1449,12 @@
 		<set name="change_weaponId" val="11753" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11757" type="Weapon" name="Common Item - Stick of Faith">
 		<!-- Stick of Faith with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1474,13 +1474,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="85" />
 			<set stat="mAtk" val="81" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11758" type="Weapon" name="Common Item - Arbalest">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Crystallized Ice Bow conversion. Arbalest with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -1501,16 +1501,16 @@
 		<set name="soulshots" val="4" />
 		<set name="spiritshots" val="2" />
 		<set name="reuse_delay" val="400" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="135" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="11759" type="Weapon" name="Common Item - Crystallized Ice Bow">
 		<!-- Crystallized Ice Bow with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1532,13 +1532,13 @@
 		<set name="spiritshots" val="2" />
 		<set name="mp_consume" val="2" />
 		<set name="reuse_delay" val="1500" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="220" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="11760" type="Weapon" name="Common Item - Orcish Glaive">
 		<!-- Orcish Glaive with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1558,13 +1558,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11761" type="Weapon" name="Common Item - Silver Axe">
 		<!-- Silver Axe with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1583,13 +1583,13 @@
 		<set name="price" val="81600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11762" type="Weapon" name="Common Item - Cursed Dagger">
 		<!-- Cursed Dagger with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1608,13 +1608,13 @@
 		<set name="price" val="81600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="94" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="11763" type="Weapon" name="Common Item - Chakram">
 		<!-- Chakram with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1633,13 +1633,13 @@
 		<set name="price" val="81600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="130" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11764" type="Weapon" name="Common Item - Crystal Staff">
 		<!-- Crystal Staff of Magic with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1659,13 +1659,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="103" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11765" type="Weapon" name="Common Item - Big Hammer">
 		<!-- Big Hammer with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1684,13 +1684,13 @@
 		<set name="price" val="81600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11766" type="Weapon" name="Common Item - Flamberge">
 		<!-- Flamberge with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1710,12 +1710,12 @@
 		<set name="change_weaponId" val="11754" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="130" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11767" type="Weapon" name="Common Item - Heavy Doom Axe">
 		<!-- Heavy Doom Axe with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1735,13 +1735,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="103" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11768" type="Weapon" name="Common Item - Heavy Doom Hammer">
 		<!-- Heavy Doom Hammer with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1761,13 +1761,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="103" />
 			<set stat="mAtk" val="89" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11769" type="Weapon" name="Common Item - Knight's Sword*Elven Long Sword">
 		<!-- Knight's Sword*Elven Long Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1786,12 +1786,12 @@
 		<set name="price" val="87420" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11770" type="Weapon" name="Common Item - Bastard Sword*Elven Long Sword">
 		<!-- Bastard Sword*Elven Long Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1810,12 +1810,12 @@
 		<set name="price" val="87420" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11771" type="Weapon" name="Common Item - Spinebone Sword*Elven Long Sword">
 		<!-- Spinebone Sword*Elven Long Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1834,12 +1834,12 @@
 		<set name="price" val="87420" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11772" type="Weapon" name="Common Item - Elven Sword*Sword of Revolution">
 		<!-- Elven Sword*Sword of Revolution with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1858,12 +1858,12 @@
 		<set name="price" val="87420" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11773" type="Weapon" name="Common Item - Artisan's Sword*Elven Long Sword">
 		<!-- Artisan's Sword*Elven Long Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1882,12 +1882,12 @@
 		<set name="price" val="87420" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11774" type="Weapon" name="Common Item - Crimson Sword*Sword of Revolution">
 		<!-- Crimson Sword*Sword of Revolution with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1906,12 +1906,12 @@
 		<set name="price" val="87420" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="136" />
 			<set stat="mAtk" val="63" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11775" type="Weapon" name="Common Item - Noble Elven Bow">
 		<!-- Noble Elven Bow with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1933,13 +1933,13 @@
 		<set name="spiritshots" val="2" />
 		<set name="mp_consume" val="3" />
 		<set name="reuse_delay" val="1500" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="252" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="11776" type="Weapon" name="Common Item - Knuckle Duster">
 		<!-- Knuckle Duster with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1958,13 +1958,13 @@
 		<set name="price" val="100200" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="148" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11777" type="Weapon" name="Common Item - Dwarven War Hammer">
 		<!-- Dwarven War Hammer with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -1983,13 +1983,13 @@
 		<set name="price" val="100200" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11778" type="Weapon" name="Common Item - Raid Sword">
 		<!-- Raid Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2009,12 +2009,12 @@
 		<set name="change_weaponId" val="11787" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11779" type="Weapon" name="Common Item - Soulfire Dirk">
 		<!-- Soulfire Dirk with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2034,13 +2034,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="86" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="11780" type="Weapon" name="Common Item - Ballista">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Elemental Bow conversion. Ballista with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -2061,16 +2061,16 @@
 		<set name="soulshots" val="5" />
 		<set name="spiritshots" val="2" />
 		<set name="reuse_delay" val="400" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="11781" type="Weapon" name="Common Item - Ballista">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Noble Elven Bow conversion. Ballista with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -2091,16 +2091,16 @@
 		<set name="soulshots" val="5" />
 		<set name="spiritshots" val="2" />
 		<set name="reuse_delay" val="400" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="303" />
-		</for>
+		</stats>
 	</item>
 	<item id="11782" type="Weapon" name="Common Item - Bec de Corbin">
 		<!-- Bec de Corbin with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2120,13 +2120,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11783" type="Weapon" name="Common Item - Shamshir">
 		<!-- Shamshir with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2146,12 +2146,12 @@
 		<set name="change_weaponId" val="11784" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11784" type="Weapon" name="Common Item - Chevalier Rapier">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Shamshir conversion. Chevalier Rapier with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -2172,16 +2172,16 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant4_skill" val="3426-1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="11785" type="Weapon" name="Common Item - Chevalier Rapier">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Katana conversion. Chevalier Rapier with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -2202,16 +2202,16 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant4_skill" val="3426-1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="11786" type="Weapon" name="Common Item - Chevalier Rapier">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Spirit Sword conversion. Chevalier Rapier with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -2232,16 +2232,16 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant4_skill" val="3426-1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="11787" type="Weapon" name="Common Item - Chevalier Rapier">
 		<!-- Kamael Exclusive Weapon: Shadow weapon - Raid Sword conversion. Chevalier Rapier with limited ability enhancement. Enchantment, special abilities and augmentation are not possible. -->
@@ -2262,16 +2262,16 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant4_skill" val="3426-1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="10" />
 			<add stat="accCombat" val="-1.5" />
 			<set stat="pAtkSpd" val="406" />
-		</for>
+		</stats>
 	</item>
 	<item id="11788" type="Weapon" name="Common Item - Stiletto">
 		<!-- Stiletto with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2290,13 +2290,13 @@
 		<set name="price" val="100200" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="11789" type="Weapon" name="Common Item - Spirit Sword">
 		<!-- Spirit Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2316,12 +2316,12 @@
 		<set name="change_weaponId" val="11786" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11790" type="Weapon" name="Common Item - Elemental Bow">
 		<!-- Elemental Bow with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2343,13 +2343,13 @@
 		<set name="spiritshots" val="2" />
 		<set name="mp_consume" val="3" />
 		<set name="reuse_delay" val="820" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="277" />
 			<set stat="mAtk" val="75" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="227" />
-		</for>
+		</stats>
 	</item>
 	<item id="11791" type="Weapon" name="Common Item - Elven Sword*Elven Long Sword">
 		<!-- Elven Sword*Elven Long Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2369,12 +2369,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant4_skill" val="3042-2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="148" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11792" type="Weapon" name="Common Item - Horn of Glory">
 		<!-- Horn of Glory with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2394,12 +2394,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="98" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11793" type="Weapon" name="Common Item - Cursed Staff">
 		<!-- Cursed Staff with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2419,13 +2419,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="119" />
 			<set stat="mAtk" val="100" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11794" type="Weapon" name="Common Item - Katana">
 		<!-- Katana with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2445,12 +2445,12 @@
 		<set name="change_weaponId" val="11785" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="11795" type="Weapon" name="Common Item - Crimson Sword*Elven Long Sword">
 		<!-- Crimson Sword*Elven Long Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2470,12 +2470,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant4_skill" val="3046-2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="148" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11796" type="Weapon" name="Common Item - Sword of Revolution*Sword of Revolution">
 		<!-- Sword of Revolution*Sword of Revolution with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2495,12 +2495,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant4_skill" val="3013-1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="148" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11797" type="Weapon" name="Common Item - Sword of Revolution*Elven Long Sword">
 		<!-- Sword of Revolution*Elven Long Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2520,12 +2520,12 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant4_skill" val="3044-3" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="155" />
 			<set stat="mAtk" val="70" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11798" type="Weapon" name="Common Item - Elven Long Sword*Elven Long Sword">
 		<!-- Elven Long Sword*Elven Long Sword with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2545,12 +2545,12 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant4_skill" val="3045-4" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="162" />
 			<set stat="mAtk" val="73" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="11799" type="Weapon" name="Common Item - Stick of Eternity">
 		<!-- Stick of Eternity with limited enhancement options. Enchantment, soul storing and augmenting are impossible. -->
@@ -2570,12 +2570,12 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="101" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 </list>

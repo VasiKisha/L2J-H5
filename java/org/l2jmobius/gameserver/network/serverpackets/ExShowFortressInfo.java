@@ -48,6 +48,7 @@ public class ExShowFortressInfo extends ServerPacket
 			buffer.writeInt(fort.getResidenceId());
 			buffer.writeString(clan != null ? clan.getName() : "");
 			buffer.writeInt(fort.getSiege().isInProgress());
+			
 			// Time of possession
 			buffer.writeInt(fort.getOwnedTime());
 		}

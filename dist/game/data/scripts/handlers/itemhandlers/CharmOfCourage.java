@@ -32,7 +32,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 public class CharmOfCourage implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{
@@ -81,6 +81,7 @@ public class CharmOfCourage implements IItemHandler
 			player.sendPacket(new EtcStatusUpdate(player));
 			return true;
 		}
+		
 		return false;
 	}
 }

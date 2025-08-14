@@ -139,6 +139,7 @@ public class ItemInfo
 		{
 			_elemDefAttr[i] = item.getElementDefAttr(i);
 		}
+		
 		_option = item.getEnchantOptions();
 	}
 	

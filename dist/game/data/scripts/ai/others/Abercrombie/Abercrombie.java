@@ -29,6 +29,7 @@ public class Abercrombie extends AbstractNpcAI
 {
 	// NPC
 	private static final int ABERCROMBIE = 31555;
+	
 	// Items
 	private static final int GOLDEN_RAM_BADGE_RECRUIT = 7246;
 	private static final int GOLDEN_RAM_BADGE_SOLDIER = 7247;
@@ -54,6 +55,7 @@ public class Abercrombie extends AbstractNpcAI
 		{
 			htmltext = "31555-09.html";
 		}
+		
 		return htmltext;
 	}
 	

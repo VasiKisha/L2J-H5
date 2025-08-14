@@ -46,6 +46,7 @@ public class RequestReplyStartPledgeWar extends ClientPacket
 		{
 			return;
 		}
+		
 		final Player requestor = player.getActiveRequester();
 		if (requestor == null)
 		{
@@ -60,6 +61,7 @@ public class RequestReplyStartPledgeWar extends ClientPacket
 		{
 			requestor.sendPacket(SystemMessageId.THE_S1_CLAN_DID_NOT_RESPOND_WAR_PROCLAMATION_HAS_BEEN_REFUSED_2);
 		}
+		
 		player.setActiveRequester(null);
 		requestor.onTransactionResponse();
 	}

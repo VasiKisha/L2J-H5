@@ -40,7 +40,6 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.groups.CommandChannel;
@@ -122,6 +121,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 	};
 	private static final int HALL_ALARM = 18328;
 	private static final int HALL_KEEPER_CAPTAIN = 18329;
+	
 	// Items
 	private static final int HALL_KEEPER_SUICIDAL_SOLDIER = 18333;
 	private static final int DARK_CHOIR_PLAYER = 18339;
@@ -132,6 +132,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 	private static final int DEWDROP_OF_DESTRUCTION_ITEM_ID = 8556;
 	private static final int FIRST_SCARLET_WEAPON = 8204;
 	private static final int SECOND_SCARLET_WEAPON = 7903;
+	
 	// Skills
 	private static final int DEWDROP_OF_DESTRUCTION_SKILL_ID = 2276;
 	private static final int SOUL_BREAKING_ARROW_SKILL_ID = 2234;
@@ -146,9 +147,11 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 		new FrintezzaSong(new SkillHolder(5007, 4), new SkillHolder(5008, 4), NpcStringId.FUGUE_OF_JUBILATION, 90),
 		new FrintezzaSong(new SkillHolder(5007, 5), new SkillHolder(5008, 5), NpcStringId.HYPNOTIC_MAZURKA, 100),
 	};
+	
 	// Locations
 	private static final Location ENTER_TELEPORT = new Location(-88015, -141153, -9168);
 	protected static final Location MOVE_TO_CENTER = new Location(-87904, -141296, -9168, 0);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 136; // this is the client number
 	private static final int MIN_PLAYERS = 9;
@@ -251,6 +254,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 								LOGGER.severe("[Final Emperial Tomb] Missing npcId in npc List, skipping");
 								continue;
 							}
+							
 							final int npcId = Integer.parseInt(attrs.getNamedItem("npcId").getNodeValue());
 							
 							att = attrs.getNamedItem("flag");
@@ -280,6 +284,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 									{
 										continue;
 									}
+									
 									att = attrs.getNamedItem("y");
 									if (att != null)
 									{
@@ -289,6 +294,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 									{
 										continue;
 									}
+									
 									att = attrs.getNamedItem("z");
 									if (att != null)
 									{
@@ -298,6 +304,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 									{
 										continue;
 									}
+									
 									att = attrs.getNamedItem("heading");
 									if (att != null)
 									{
@@ -307,15 +314,18 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 									{
 										continue;
 									}
+									
 									att = attrs.getNamedItem("mustKill");
 									if (att != null)
 									{
 										spw.isNeededNextFlag = Boolean.parseBoolean(att.getNodeValue());
 									}
+									
 									if (spw.isNeededNextFlag)
 									{
 										_mustKillMobsId.add(npcId);
 									}
+									
 									_spawnList.get(flag).add(spw);
 									_spawnCount++;
 								}
@@ -335,6 +345,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 									{
 										continue;
 									}
+									
 									att = attrs.getNamedItem("count");
 									if (att != null)
 									{
@@ -344,15 +355,18 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 									{
 										continue;
 									}
+									
 									att = attrs.getNamedItem("mustKill");
 									if (att != null)
 									{
 										spw.isNeededNextFlag = Boolean.parseBoolean(att.getNodeValue());
 									}
+									
 									if (spw.isNeededNextFlag)
 									{
 										_mustKillMobsId.add(npcId);
 									}
+									
 									_spawnList.get(flag).add(spw);
 									_spawnCount++;
 								}
@@ -373,6 +387,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 								LOGGER.severe("[Final Emperial Tomb] Missing id in spawnZones List, skipping");
 								continue;
 							}
+							
 							final int id = Integer.parseInt(att.getNodeValue());
 							att = attrs.getNamedItem("minZ");
 							if (att == null)
@@ -380,6 +395,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 								LOGGER.severe("[Final Emperial Tomb] Missing minZ in spawnZones List id: " + id + ", skipping");
 								continue;
 							}
+							
 							final int minz = Integer.parseInt(att.getNodeValue());
 							att = attrs.getNamedItem("maxZ");
 							if (att == null)
@@ -387,6 +403,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 								LOGGER.severe("[Final Emperial Tomb] Missing maxZ in spawnZones List id: " + id + ", skipping");
 								continue;
 							}
+							
 							final int maxz = Integer.parseInt(att.getNodeValue());
 							final Territory ter = new Territory(id);
 							
@@ -406,6 +423,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 									{
 										continue;
 									}
+									
 									att = attrs.getNamedItem("y");
 									if (att != null)
 									{
@@ -431,7 +449,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 	@Override
 	protected boolean checkConditions(Player player)
 	{
-		if (DEBUG || player.canOverrideCond(PlayerCondOverride.INSTANCE_CONDITIONS))
+		if (DEBUG || player.isGM())
 		{
 			return true;
 		}
@@ -466,6 +484,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 			player.sendPacket(SystemMessageId.YOU_CANNOT_ENTER_DUE_TO_THE_PARTY_HAVING_EXCEEDED_THE_LIMIT);
 			return false;
 		}
+		
 		for (Player channelMember : channel.getMembers())
 		{
 			if (channelMember.getLevel() < 80)
@@ -473,11 +492,13 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				party.broadcastPacket(new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY).addPcName(channelMember));
 				return false;
 			}
+			
 			if (!LocationUtil.checkIfInRange(1000, player, channelMember, true))
 			{
 				party.broadcastPacket(new SystemMessage(SystemMessageId.C1_IS_IN_A_LOCATION_WHICH_CANNOT_BE_ENTERED_THEREFORE_IT_CANNOT_BE_PROCESSED).addPcName(channelMember));
 				return false;
 			}
+			
 			final Long reentertime = InstanceManager.getInstance().getInstanceTime(channelMember.getObjectId(), TEMPLATE_ID);
 			if (System.currentTimeMillis() < reentertime)
 			{
@@ -485,6 +506,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -502,6 +524,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					player.destroyItemByItemId(ItemProcessType.FEE, DEWDROP_OF_DESTRUCTION_ITEM_ID, player.getInventory().getInventoryItemCount(DEWDROP_OF_DESTRUCTION_ITEM_ID, -1), null, true);
 				}
+				
 				world.addAllowed(player);
 				teleportPlayer(player, ENTER_TELEPORT, world.getInstanceId(), false);
 			}
@@ -513,6 +536,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 					{
 						channelMember.destroyItemByItemId(ItemProcessType.FEE, DEWDROP_OF_DESTRUCTION_ITEM_ID, channelMember.getInventory().getInventoryItemCount(DEWDROP_OF_DESTRUCTION_ITEM_ID, -1), null, true);
 					}
+					
 					world.addAllowed(channelMember);
 					teleportPlayer(channelMember, ENTER_TELEPORT, world.getInstanceId(), false);
 				}
@@ -531,6 +555,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 		{
 			npcList.remove(mob);
 		}
+		
 		return npcList.isEmpty();
 	}
 	
@@ -569,6 +594,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 		{
 			LOGGER.info("[Final Emperial Tomb] Starting " + world.getStatus() + ". status.");
 		}
+		
 		world.setParameter("npcList", new ArrayList<>());
 		switch (world.getStatus())
 		{
@@ -583,6 +609,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					world.openDoor(doorId);
 				}
+				
 				spawnFlaggedNPCs(world, world.getStatus());
 				break;
 			}
@@ -592,6 +619,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					world.openDoor(doorId);
 				}
+				
 				ThreadPool.schedule(new IntroTask(world, 0), 600000);
 				break;
 			}
@@ -602,6 +630,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					songEffectTask.cancel(false);
 				}
+				
 				songEffectTask = null;
 				final Npc activeScarlet = world.getParameters().getObject("activeScarlet", Npc.class);
 				activeScarlet.setInvul(true);
@@ -609,6 +638,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					activeScarlet.abortCast();
 				}
+				
 				handleReenterTime(world);
 				activeScarlet.doCast(FIRST_MORPH_SKILL.getSkill());
 				ThreadPool.schedule(new SongTask(world, 2), 1500);
@@ -623,6 +653,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					songEffectTask.cancel(false);
 				}
+				
 				songEffectTask = null;
 				ThreadPool.schedule(new IntroTask(world, 23), 2000);
 				ThreadPool.schedule(new IntroTask(world, 24), 2100);
@@ -637,11 +668,13 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					songTask.cancel(true);
 				}
+				
 				ScheduledFuture<?> songEffectTask = world.getParameters().getObject("songEffectTask", ScheduledFuture.class);
 				if (songEffectTask != null)
 				{
 					songEffectTask.cancel(false);
 				}
+				
 				songTask = null;
 				songEffectTask = null;
 				ThreadPool.schedule(new IntroTask(world, 33), 500);
@@ -654,14 +687,17 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					world.openDoor(doorId);
 				}
+				
 				for (int doorId : FIRST_ROUTE_DOORS)
 				{
 					world.openDoor(doorId);
 				}
+				
 				for (int doorId : SECOND_ROUTE_DOORS)
 				{
 					world.openDoor(doorId);
 				}
+				
 				for (int doorId : SECOND_ROOM_DOORS)
 				{
 					world.closeDoor(doorId);
@@ -669,6 +705,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				break;
 			}
 		}
+		
 		world.incStatus();
 	}
 	
@@ -681,15 +718,18 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 			npcList.add(npc);
 			world.setParameter("npcList", npcList);
 		}
+		
 		npc.setRandomWalking(false);
 		if (npc.isInstanceTypes(InstanceType.Attackable))
 		{
 			npc.asAttackable().setSeeThroughSilentMove(true);
 		}
+		
 		if (ArrayUtil.contains(AI_DISABLED_MOBS, npcId))
 		{
 			npc.disableCoreAI(true);
 		}
+		
 		if (npcId == DARK_CHOIR_PLAYER)
 		{
 			world.setParameter("darkChoirPlayerCount", world.getParameters().getInt("darkChoirPlayerCount", 0) + 1);
@@ -717,6 +757,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				}
 				return;
 			}
+			
 			final List<Monster> demons = _world.getParameters().getList("demons", Monster.class, new ArrayList<>());
 			for (int i : portraits.values())
 			{
@@ -724,9 +765,11 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 				{
 					break;
 				}
+				
 				final Monster demon = addSpawn(PORTRAIT_SPAWNS[i][0] + 2, PORTRAIT_SPAWNS[i][5], PORTRAIT_SPAWNS[i][6], PORTRAIT_SPAWNS[i][7], PORTRAIT_SPAWNS[i][8], false, 0, false, _world.getInstanceId()).asMonster();
 				demons.add(demon);
 			}
+			
 			_world.setParameter("demons", demons);
 			ThreadPool.schedule(new DemonSpawnTask(_world), TIME_BETWEEN_DEMON_SPAWNS);
 		}
@@ -766,6 +809,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 			{
 				return;
 			}
+			
 			switch (_status)
 			{
 				case 0: // new song play
@@ -807,12 +851,14 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 					{
 						songEffectTask.cancel(false);
 					}
+					
 					songEffectTask = null;
 					final Skill skill = _world.getParameters().getObject("OnSong", FrintezzaSong.class).effectSkill.getSkill();
 					if (skill == null)
 					{
 						return;
 					}
+					
 					final Npc frintezza = _world.getParameters().getObject("frintezza", Npc.class);
 					final Npc activeScarlet = _world.getParameters().getObject("activeScarlet", Npc.class);
 					if ((frintezza != null) && !frintezza.isDead() && (activeScarlet != null) && !activeScarlet.isDead())
@@ -828,6 +874,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 									{
 										targetList.add(player);
 									}
+									
 									if (player.hasSummon() && !player.getSummon().isDead())
 									{
 										targetList.add(player.getSummon());
@@ -839,6 +886,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 						{
 							targetList.add(activeScarlet);
 						}
+						
 						if (!targetList.isEmpty())
 						{
 							frintezza.doCast(skill, targetList.get(0).asCreature(), targetList);
@@ -876,6 +924,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 			{
 				return;
 			}
+			
 			running = true;
 			
 			switch (_status)
@@ -893,18 +942,22 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 					{
 						_world.closeDoor(doorId);
 					}
+					
 					for (int doorId : FIRST_ROUTE_DOORS)
 					{
 						_world.closeDoor(doorId);
 					}
+					
 					for (int doorId : SECOND_ROOM_DOORS)
 					{
 						_world.closeDoor(doorId);
 					}
+					
 					for (int doorId : SECOND_ROUTE_DOORS)
 					{
 						_world.closeDoor(doorId);
 					}
+					
 					addSpawn(29061, -87904, -141296, -9168, 0, false, 0, false, _world.getInstanceId());
 					break;
 				}
@@ -954,6 +1007,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 						demon.disableAllSkills();
 						demons.add(demon);
 					}
+					
 					_world.setParameter("demons", demons);
 					ThreadPool.schedule(new IntroTask(_world, 4), 6500);
 					break;
@@ -1105,6 +1159,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 						final Npc portrait = addSpawn(PORTRAIT_SPAWNS[i][0], PORTRAIT_SPAWNS[i][1], PORTRAIT_SPAWNS[i][2], PORTRAIT_SPAWNS[i][3], PORTRAIT_SPAWNS[i][4], false, 0, false, _world.getInstanceId());
 						portraitsC.put(portrait, i);
 					}
+					
 					_world.setParameter("portraits", portraitsC);
 					Npc scarletDummy = _world.getParameters().getObject("scarletDummy", Npc.class);
 					Npc overheadDummy = _world.getParameters().getObject("overheadDummy", Npc.class);
@@ -1122,6 +1177,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 						demon.setImmobilized(false);
 						demon.enableAllSkills();
 					}
+					
 					final Npc activeScarlet = _world.getParameters().getObject("activeScarlet", Npc.class);
 					activeScarlet.setInvul(false);
 					activeScarlet.setImmobilized(false);
@@ -1186,6 +1242,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 					{
 						scarlet_a = Math.abs(540 - (int) (activeScarlet.getHeading() / 182.044444444));
 					}
+					
 					_world.setParameter("scarlet_a", scarlet_a);
 					broadCastPacket(_world, new SpecialCamera(activeScarlet, 250, scarlet_a, 12, 0, 1000, 0, 0, 1, 0, 0));
 					broadCastPacket(_world, new SpecialCamera(activeScarlet, 250, scarlet_a, 12, 0, 10000, 0, 0, 1, 0, 0));
@@ -1342,6 +1399,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 			{
 				return;
 			}
+			
 			switch (_status)
 			{
 				case 0:
@@ -1392,9 +1450,11 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 						target = plr;
 						break;
 					}
+					
 					target = null;
 				}
 			}
+			
 			for (Npc mob : _world.getParameters().getList("npcList", Npc.class, new ArrayList<>()))
 			{
 				mob.setRunning();
@@ -1539,6 +1599,7 @@ public class FinalEmperialTomb extends AbstractInstance implements IXmlReader
 			player.teleToLocation(181380 + getRandom(50), -80903 + getRandom(50), -2731);
 			return null;
 		}
+		
 		return "";
 	}
 	

@@ -33,10 +33,12 @@ public class Q00008_AnAdventureBegins extends Quest
 	private static final int JASMINE = 30134;
 	private static final int ROSELYN = 30355;
 	private static final int HARNE = 30144;
+	
 	// Items
 	private static final int ROSELYNS_NOTE = 7573;
 	private static final int SCROLL_OF_ESCAPE_GIRAN = 7559;
 	private static final int MARK_OF_TRAVELER = 7570;
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	
@@ -84,6 +86,7 @@ public class Q00008_AnAdventureBegins extends Quest
 				{
 					return "30144-03.html";
 				}
+				
 				takeItems(player, ROSELYNS_NOTE, -1);
 				qs.setCond(3, true);
 				break;
@@ -94,6 +97,7 @@ public class Q00008_AnAdventureBegins extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -164,6 +168,7 @@ public class Q00008_AnAdventureBegins extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

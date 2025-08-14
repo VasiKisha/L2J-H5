@@ -95,10 +95,12 @@ public class ServitorShare extends AbstractEffect
 			{
 				summon.setCurrentHp(summon.getMaxHp());
 			}
+			
 			if (summon.getCurrentMp() > summon.getMaxMp())
 			{
 				summon.setCurrentMp(summon.getMaxMp());
 			}
+			
 			summon.broadcastInfo();
 		}
 	}

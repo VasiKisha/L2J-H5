@@ -32,9 +32,11 @@ public class SSQHideoutOfTheDawn extends AbstractInstance
 	// NPCs
 	private static final int WOOD = 32593;
 	private static final int JAINA = 32617;
+	
 	// Location
 	private static final Location WOOD_LOC = new Location(-23758, -8959, -5384);
 	private static final Location JAINA_LOC = new Location(147072, 23743, -1984);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 113;
 	
@@ -70,6 +72,7 @@ public class SSQHideoutOfTheDawn extends AbstractInstance
 				htmltext = event;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -80,6 +83,7 @@ public class SSQHideoutOfTheDawn extends AbstractInstance
 		{
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, WOOD_LOC, world.getInstanceId(), false);
 	}
 	

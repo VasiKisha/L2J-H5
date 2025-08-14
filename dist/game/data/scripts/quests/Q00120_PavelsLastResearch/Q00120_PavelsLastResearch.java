@@ -43,6 +43,7 @@ public class Q00120_PavelsLastResearch extends Quest
 	private static final int WEATHERMASTER_2 = 32043;
 	private static final int WEATHERMASTER_3 = 32044;
 	private static final int DOCTOR_CHAOS_SECRET_BOOKSHELF = 32045;
+	
 	// Items
 	private static final int FLOWER_OF_PAVEL = 8290;
 	private static final int HEART_OF_ATLANTA = 8291;
@@ -50,9 +51,11 @@ public class Q00120_PavelsLastResearch extends Quest
 	private static final int LOCKUP_RESEARCH_REPORT = 8058;
 	private static final int RESEARCH_REPORT = 8059;
 	private static final int KEY_OF_ENIGMA = 8060;
+	
 	// Skills
 	private static final SkillHolder QUEST_TRAP_POWER_SHOT = new SkillHolder(5073, 5);
 	private static final SkillHolder NPC_DEFAULT = new SkillHolder(7000, 1);
+	
 	// Rewards
 	private static final int SEALED_PHOENIX_EARRING = 6324;
 	
@@ -1090,6 +1093,7 @@ public class Q00120_PavelsLastResearch extends Quest
 				if (qs.isMemoState(13))
 				{
 					giveItems(player, LOCKUP_RESEARCH_REPORT, 1);
+					
 					// IMPORTANT!
 					// locked report is exchanged to unlocked by using key of enigma
 					// which is given by Wendy
@@ -1467,6 +1471,7 @@ public class Q00120_PavelsLastResearch extends Quest
 				break;
 			}
 		}
+		
 		return html;
 	}
 	

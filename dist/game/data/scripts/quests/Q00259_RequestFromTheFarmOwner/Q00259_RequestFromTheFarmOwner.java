@@ -36,15 +36,18 @@ public class Q00259_RequestFromTheFarmOwner extends Quest
 	// Npcs
 	private static final int EDMOND = 30497;
 	private static final int MARIUS = 30405;
+	
 	// Monsters
-	private static final int[] MONSTERS = new int[]
+	private static final int[] MONSTERS =
 	{
 		20103, // Giant Spider
 		20106, // Talon Spider
 		20108, // Blade Spider
 	};
+	
 	// Items
 	private static final int SPIDER_SKIN = 1495;
+	
 	// Misc
 	private static final int MIN_LEVEL = 15;
 	private static final int SKIN_COUNT = 10;
@@ -119,6 +122,7 @@ public class Q00259_RequestFromTheFarmOwner extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -173,6 +177,7 @@ public class Q00259_RequestFromTheFarmOwner extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

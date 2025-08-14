@@ -45,6 +45,7 @@ public class RequestExCubeGameChangeTeam extends ClientPacket
 		{
 			return;
 		}
+		
 		final Player player = getPlayer();
 		
 		switch (_team)
@@ -62,6 +63,7 @@ public class RequestExCubeGameChangeTeam extends ClientPacket
 			}
 			{
 				final int team = HandysBlockCheckerManager.getInstance().getHolder(_arena).getPlayerTeam(player);
+				
 				// client sends two times this packet if click on exit
 				// client did not send this packet on restart
 				if (team > -1)

@@ -38,14 +38,18 @@ public class Q00347_GoGetTheCalculator extends Quest
 	private static final int SILVERA = 30527;
 	private static final int SPIRON = 30532;
 	private static final int BALANKI = 30533;
+	
 	// Items
 	private static final int STOLEN_CALCULATOR = 4285;
 	private static final int GEMSTONE = 4286;
+	
 	// Monster
 	private static final int GEMSTONE_BEAST = 20540;
+	
 	// Reward
 	private static final int CALCULATOR = 4393;
 	private static final int ADENA = 1500;
+	
 	// Misc
 	private static final int MIN_LEVEL = 12;
 	
@@ -136,6 +140,7 @@ public class Q00347_GoGetTheCalculator extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -164,6 +169,7 @@ public class Q00347_GoGetTheCalculator extends Quest
 						{
 							qs.setCond(6);
 						}
+						
 						switch (qs.getCond())
 						{
 							case 1:
@@ -258,6 +264,7 @@ public class Q00347_GoGetTheCalculator extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

@@ -36,6 +36,7 @@ public class IsleOfPrayer extends AbstractNpcAI
 	private static final int GREEN_SEED_OF_EVIL_SHARD = 9594;
 	private static final int BLUE_SEED_OF_EVIL_SHARD = 9595;
 	private static final int RED_SEED_OF_EVIL_SHARD = 9596;
+	
 	// Monsters
 	private static final Map<Integer, ItemChanceHolder> MONSTERS = new HashMap<>();
 	static

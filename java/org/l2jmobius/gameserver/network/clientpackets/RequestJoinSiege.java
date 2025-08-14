@@ -74,6 +74,7 @@ public class RequestJoinSiege extends ClientPacket
 					player.sendPacket(SystemMessageId.YOUR_CLAN_MAY_NOT_REGISTER_TO_PARTICIPATE_IN_A_SIEGE_WHILE_UNDER_A_GRACE_PERIOD_OF_THE_CLAN_S_DISSOLUTION);
 					return;
 				}
+				
 				if (_isAttacker == 1)
 				{
 					castle.getSiege().registerAttacker(player);
@@ -87,6 +88,7 @@ public class RequestJoinSiege extends ClientPacket
 			{
 				castle.getSiege().removeSiegeClan(player);
 			}
+			
 			castle.getSiege().listRegisterClan(player);
 		}
 		
@@ -100,12 +102,14 @@ public class RequestJoinSiege extends ClientPacket
 					player.sendPacket(SystemMessageId.YOUR_CLAN_MAY_NOT_REGISTER_TO_PARTICIPATE_IN_A_SIEGE_WHILE_UNDER_A_GRACE_PERIOD_OF_THE_CLAN_S_DISSOLUTION);
 					return;
 				}
+				
 				CHSiegeManager.getInstance().registerClan(clan, hall, player);
 			}
 			else
 			{
 				CHSiegeManager.getInstance().unRegisterClan(clan, hall);
 			}
+			
 			player.sendPacket(new SiegeInfo(hall, player));
 		}
 	}

@@ -141,6 +141,7 @@ public class LevelUpCrystalData implements IXmlReader
 								LOGGER.info("Missing itemId in Crystal List, skipping!");
 								continue;
 							}
+							
 							int itemId = Integer.parseInt(attrs.getNamedItem("itemId").getNodeValue());
 							
 							att = attrs.getNamedItem("level");
@@ -149,6 +150,7 @@ public class LevelUpCrystalData implements IXmlReader
 								LOGGER.info("Missing level in Crystal List item Id " + itemId + " skipping!");
 								continue;
 							}
+							
 							int level = Integer.parseInt(attrs.getNamedItem("level").getNodeValue());
 							
 							att = attrs.getNamedItem("leveledItemId");
@@ -157,6 +159,7 @@ public class LevelUpCrystalData implements IXmlReader
 								LOGGER.info("Missing leveledItemId in Crystal List item Id " + itemId + " skipping!");
 								continue;
 							}
+							
 							int leveledItemId = Integer.parseInt(attrs.getNamedItem("leveledItemId").getNodeValue());
 							
 							_soulCrystalsData.put(itemId, new SoulCrystal(level, itemId, leveledItemId));
@@ -214,6 +217,7 @@ public class LevelUpCrystalData implements IXmlReader
 										LOGGER.info("Missing maxlevel/levelList in NPC List npc Id " + npcId + " skipping!");
 										continue;
 									}
+									
 									chance = (int) (chance * Config.SOUL_CRYSTAL_CHANCE_MULTIPLIER);
 									chance = (chance > 100) ? 100 : chance;
 									LevelingSoulCrystalInfo info = new LevelingSoulCrystalInfo(absorbType, isSkillNeeded, chance);
@@ -237,6 +241,7 @@ public class LevelUpCrystalData implements IXmlReader
 												LOGGER.info("Bad Level value!! npc Id " + npcId + ", token " + i + "!");
 												value = 0;
 											}
+											
 											temp.put(value, info);
 										}
 									}
@@ -248,6 +253,7 @@ public class LevelUpCrystalData implements IXmlReader
 								LOGGER.info("No leveling info for npc Id " + npcId + " skipping!");
 								continue;
 							}
+							
 							_npcLevelingInfo.put(npcId, temp);
 						}
 					}
@@ -269,6 +275,7 @@ public class LevelUpCrystalData implements IXmlReader
 				_crystalDisplayAux.add(new SoulCrystalDisplay(fromLevel, chance, absorb, npcLvl, name));
 			}
 		}
+		
 		_crystalDisplayInfo = _crystalDisplayAux.stream().sorted(Comparator.comparing(SoulCrystalDisplay::getFromLevel).reversed().thenComparing(Comparator.comparing(SoulCrystalDisplay::getChance)).reversed()).collect(Collectors.toList());
 		
 		for (Entry<Integer, SoulCrystal> entry : _soulCrystalsData.entrySet())

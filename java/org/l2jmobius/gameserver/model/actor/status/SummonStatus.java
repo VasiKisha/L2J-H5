@@ -72,6 +72,7 @@ public class SummonStatus extends PlayableStatus
 							membersInRange++;
 						}
 					}
+					
 					if (attacker.isPlayable() && (caster.getCurrentCp() > 0))
 					{
 						if (caster.getCurrentCp() > transferDmg)
@@ -84,6 +85,7 @@ public class SummonStatus extends PlayableStatus
 							caster.getStatus().reduceCp((int) caster.getCurrentCp());
 						}
 					}
+					
 					if (membersInRange > 0)
 					{
 						caster.reduceCurrentHp(transferDmg / membersInRange, attacker, null);

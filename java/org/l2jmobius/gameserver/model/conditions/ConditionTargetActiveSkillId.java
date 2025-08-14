@@ -63,6 +63,7 @@ public class ConditionTargetActiveSkillId extends Condition
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

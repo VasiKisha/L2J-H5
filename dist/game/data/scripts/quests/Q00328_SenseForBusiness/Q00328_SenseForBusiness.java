@@ -47,10 +47,12 @@ public class Q00328_SenseForBusiness extends Quest
 		MONSTER_BASILISKS.put(20072, 63);
 	}
 	// @formatter:on
+	
 	// Items
 	private static final int MONSTER_EYE_CARCASS = 1347;
 	private static final int MONSTER_EYE_LENS = 1366;
 	private static final int BASILISK_GIZZARD = 1348;
+	
 	// Misc
 	private static final int MONSTER_EYE_CARCASS_ADENA = 25;
 	private static final int MONSTER_EYE_LENS_ADENA = 1000;
@@ -92,6 +94,7 @@ public class Q00328_SenseForBusiness extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -125,6 +128,7 @@ public class Q00328_SenseForBusiness extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

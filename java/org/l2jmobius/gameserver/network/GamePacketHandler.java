@@ -111,6 +111,7 @@ public class GamePacketHandler implements PacketHandler<GameClient>
 						return new RequestChangeBookMarkSlot();
 					}
 				}
+				
 				return null;
 			}
 			

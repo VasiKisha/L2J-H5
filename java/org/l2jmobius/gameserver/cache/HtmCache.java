@@ -135,13 +135,6 @@ public class HtmCache
 			content = content.replaceAll("(?s)<!--.*?-->", ""); // Remove html comments.
 			content = content.replaceAll("[\\t\\n]", ""); // Remove tabs and new lines.
 			
-			// Automatic removal of -h parameter from specific bypasses.
-			if (Config.HIDE_BYPASS_REMOVAL)
-			{
-				content = content.replace("bypass -h npc_%objectId%_Chat ", "bypass npc_%objectId%_Chat ");
-				content = content.replace("bypass -h npc_%objectId%_Quest", "bypass npc_%objectId%_Quest");
-			}
-			
 			filePath = file.toURI().getPath().substring(Config.DATAPACK_ROOT.toURI().getPath().length());
 			if (Config.CHECK_HTML_ENCODING && !filePath.startsWith("data/lang") && !StandardCharsets.US_ASCII.newEncoder().canEncode(content))
 			{
@@ -163,6 +156,7 @@ public class HtmCache
 		{
 			LOGGER.log(Level.WARNING, "Problem with htm file:", e);
 		}
+		
 		return content;
 	}
 	

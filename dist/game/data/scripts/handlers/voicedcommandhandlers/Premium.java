@@ -36,7 +36,7 @@ public class Premium implements IVoicedCommandHandler
 	};
 	
 	@Override
-	public boolean useVoicedCommand(String command, Player activeChar, String target)
+	public boolean onCommand(String command, Player activeChar, String target)
 	{
 		if (command.startsWith("premium") && Config.PREMIUM_SYSTEM_ENABLED)
 		{
@@ -94,11 +94,12 @@ public class Premium implements IVoicedCommandHandler
 		{
 			return false;
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getVoicedCommandList()
+	public String[] getCommandList()
 	{
 		return VOICED_COMMANDS;
 	}

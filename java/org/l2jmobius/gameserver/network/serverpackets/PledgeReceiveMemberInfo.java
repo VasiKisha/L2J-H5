@@ -41,6 +41,7 @@ public class PledgeReceiveMemberInfo extends ServerPacket
 		buffer.writeString(_member.getName());
 		buffer.writeString(_member.getTitle()); // title
 		buffer.writeInt(_member.getPowerGrade()); // power
+		
 		// clan or subpledge name
 		if (_member.getPledgeType() != 0)
 		{
@@ -50,6 +51,7 @@ public class PledgeReceiveMemberInfo extends ServerPacket
 		{
 			buffer.writeString(_member.getClan().getName());
 		}
+		
 		buffer.writeString(_member.getApprenticeOrSponsorName()); // name of this member's apprentice/sponsor
 	}
 }

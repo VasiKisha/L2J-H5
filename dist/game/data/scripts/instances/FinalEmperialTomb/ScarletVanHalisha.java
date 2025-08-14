@@ -78,6 +78,7 @@ public class ScarletVanHalisha extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -156,6 +157,7 @@ public class ScarletVanHalisha extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return SkillData.getInstance().getSkill(5014, 1);
 	}
 	
@@ -165,11 +167,13 @@ public class ScarletVanHalisha extends AbstractNpcAI
 		{
 			return;
 		}
+		
 		if ((getRandom(100) < 30) || (_target == null) || _target.isDead())
 		{
 			_skill = getRndSkills(npc);
 			_target = getRandomTarget(npc, _skill);
 		}
+		
 		final Creature target = _target;
 		Skill skill = _skill;
 		if (skill == null)
@@ -221,6 +225,7 @@ public class ScarletVanHalisha extends AbstractNpcAI
 					continue;
 				}
 			}
+			
 			if (obj.isPlayable() || (obj instanceof Decoy))
 			{
 				int skillRange = 150;
@@ -252,16 +257,19 @@ public class ScarletVanHalisha extends AbstractNpcAI
 						}
 					}
 				}
+				
 				if (LocationUtil.checkIfInRange(skillRange, npc, obj, true) && !obj.asCreature().isDead())
 				{
 					result.add(obj.asCreature());
 				}
 			}
 		}
+		
 		if (!result.isEmpty() && (result.size() != 0))
 		{
 			return getRandomEntry(result);
 		}
+		
 		return null;
 	}
 	

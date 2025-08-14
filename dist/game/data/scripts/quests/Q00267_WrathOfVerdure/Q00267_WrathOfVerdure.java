@@ -32,12 +32,16 @@ public class Q00267_WrathOfVerdure extends Quest
 {
 	// NPC
 	private static final int TREANT_BREMEC = 31853;
+	
 	// Item
 	private static final int GOBLIN_CLUB = 1335;
+	
 	// Monster
 	private static final int GOBLIN_RAIDER = 20325;
+	
 	// Reward
 	private static final int SILVERY_LEAF = 1340;
+	
 	// Misc
 	private static final int MIN_LEVEL = 4;
 	
@@ -78,6 +82,7 @@ public class Q00267_WrathOfVerdure extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -114,6 +119,7 @@ public class Q00267_WrathOfVerdure extends Quest
 					{
 						giveAdena(player, 600, true);
 					}
+					
 					takeItems(player, GOBLIN_CLUB, -1);
 					htmltext = "31853-06.html";
 				}
@@ -124,6 +130,7 @@ public class Q00267_WrathOfVerdure extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

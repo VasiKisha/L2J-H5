@@ -129,6 +129,7 @@ public class DimensionalRiftRoom
 				spawn.getLastSpawn().deleteMe();
 			}
 		}
+		
 		return this;
 	}
 	

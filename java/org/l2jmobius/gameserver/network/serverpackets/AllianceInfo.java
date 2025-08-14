@@ -57,6 +57,7 @@ public class AllianceInfo extends ServerPacket
 			total += ci.getTotal();
 			online += ci.getOnline();
 		}
+		
 		_total = total;
 		_online = online;
 	}

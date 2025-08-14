@@ -54,11 +54,13 @@ public class ExShowDominionRegistry extends ServerPacket
 				_isClanRegistered = (TerritoryWarManager.getInstance().getRegisteredClans(castleId).contains(clan));
 			}
 		}
+		
 		if (TerritoryWarManager.getInstance().getRegisteredMercenaries(castleId) != null)
 		{
 			_mercReq = TerritoryWarManager.getInstance().getRegisteredMercenaries(castleId).size();
 			_isMercRegistered = (TerritoryWarManager.getInstance().getRegisteredMercenaries(castleId).contains(player.getObjectId()));
 		}
+		
 		_warTime = (int) (TerritoryWarManager.getInstance().getTWStartTimeInMillis() / 1000);
 	}
 	
@@ -91,6 +93,7 @@ public class ExShowDominionRegistry extends ServerPacket
 				buffer.writeString(clan.getAllyName()); // Owner Alliance
 			}
 		}
+		
 		buffer.writeInt(_clanReq); // Clan Request
 		buffer.writeInt(_mercReq); // Merc Request
 		buffer.writeInt(_warTime); // War Time

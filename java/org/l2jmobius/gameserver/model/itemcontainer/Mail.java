@@ -74,8 +74,10 @@ public class Mail extends ItemContainer
 			{
 				continue;
 			}
+			
 			item.setItemLocation(getBaseLocation(), messageId);
 		}
+		
 		updateDatabase();
 	}
 	
@@ -87,6 +89,7 @@ public class Mail extends ItemContainer
 			{
 				continue;
 			}
+			
 			if (wh != null)
 			{
 				transferItem(ItemProcessType.TRANSFER, item.getObjectId(), item.getCount(), wh, null, null);

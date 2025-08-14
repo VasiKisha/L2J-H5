@@ -75,6 +75,7 @@ public class TopicBBSManager extends BaseBBSManager
 				return t;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -122,6 +123,7 @@ public class TopicBBSManager extends BaseBBSManager
 					{
 						p.deleteMe(t);
 					}
+					
 					t.deleteme(f);
 					parsecmd("_bbsmemo", player);
 				}
@@ -185,6 +187,7 @@ public class TopicBBSManager extends BaseBBSManager
 					{
 						p.deleteMe(t);
 					}
+					
 					t.deleteme(f);
 					parsecmd("_bbsmemo", player);
 				}
@@ -247,6 +250,7 @@ public class TopicBBSManager extends BaseBBSManager
 			{
 				break;
 			}
+			
 			final Topic t = forum.getTopic(j);
 			if ((t != null) && (i++ >= (12 * (index - 1))))
 			{
@@ -269,6 +273,7 @@ public class TopicBBSManager extends BaseBBSManager
 		{
 			nbp++;
 		}
+		
 		for (int i = 1; i <= nbp; i++)
 		{
 			if (i == index)
@@ -280,6 +285,7 @@ public class TopicBBSManager extends BaseBBSManager
 				html.append("<td><a action=\"bypass _bbstopics;read;" + forum.getID() + ";" + i + "\"> " + i + " </a></td>");
 			}
 		}
+		
 		if (index == nbp)
 		{
 			html.append("<td><button action=\"\" back=\"l2ui_ch3.next1_down\" fore=\"l2ui_ch3.next1\" width=16 height=16 ></td>");

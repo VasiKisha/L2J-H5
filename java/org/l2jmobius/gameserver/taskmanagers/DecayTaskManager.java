@@ -51,6 +51,7 @@ public class DecayTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		if (!DECAY_SCHEDULES.isEmpty())

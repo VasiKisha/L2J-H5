@@ -37,6 +37,7 @@ public class Q00012_SecretMeetingWithVarkaSilenos extends Quest
 	private static final int CADMON = 31296;
 	private static final int HELMUT = 31258;
 	private static final int NARAN = 31378;
+	
 	// Item
 	private static final int BOX = 7232;
 	
@@ -88,6 +89,7 @@ public class Q00012_SecretMeetingWithVarkaSilenos extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -138,6 +140,7 @@ public class Q00012_SecretMeetingWithVarkaSilenos extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

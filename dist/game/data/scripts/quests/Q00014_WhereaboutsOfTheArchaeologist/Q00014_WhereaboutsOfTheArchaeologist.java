@@ -36,6 +36,7 @@ public class Q00014_WhereaboutsOfTheArchaeologist extends Quest
 	// NPCs
 	private static final int LIESEL = 31263;
 	private static final int GHOST_OF_ADVENTURER = 31538;
+	
 	// Item
 	private static final int LETTER = 7253;
 	
@@ -80,6 +81,7 @@ public class Q00014_WhereaboutsOfTheArchaeologist extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -126,6 +128,7 @@ public class Q00014_WhereaboutsOfTheArchaeologist extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

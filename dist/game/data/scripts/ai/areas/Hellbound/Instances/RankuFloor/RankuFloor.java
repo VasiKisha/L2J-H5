@@ -20,7 +20,6 @@ import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
@@ -41,11 +40,14 @@ public class RankuFloor extends AbstractInstance
 	private static final int GK_9 = 32752;
 	private static final int CUBE = 32374;
 	private static final int RANKU = 25542;
+	
 	// Item
 	private static final int SEAL_BREAKER_10 = 15516;
+	
 	// Locations
 	private static final Location ENTRY_POINT = new Location(-19008, 277024, -15000);
 	private static final Location EXIT_POINT = new Location(-19008, 277122, -13376);
+	
 	// Misc
 	private static final int TEMPLATE_ID = 143;
 	private static final int MIN_LV = 78;
@@ -63,7 +65,7 @@ public class RankuFloor extends AbstractInstance
 		String htmltext = null;
 		if (npc.getId() == GK_9)
 		{
-			if (!player.canOverrideCond(PlayerCondOverride.INSTANCE_CONDITIONS))
+			if (!player.isGM())
 			{
 				final Party party = player.getParty();
 				if (party == null)
@@ -89,6 +91,7 @@ public class RankuFloor extends AbstractInstance
 				teleportPlayer(player, EXIT_POINT, 0);
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -109,7 +112,7 @@ public class RankuFloor extends AbstractInstance
 	@Override
 	protected boolean checkConditions(Player player)
 	{
-		if (player.canOverrideCond(PlayerCondOverride.INSTANCE_CONDITIONS))
+		if (player.isGM())
 		{
 			return true;
 		}
@@ -154,6 +157,7 @@ public class RankuFloor extends AbstractInstance
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	

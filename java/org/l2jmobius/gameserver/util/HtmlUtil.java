@@ -275,6 +275,7 @@ public class HtmlUtil
 			{
 				LOGGER.info("Cached html bypass(" + scope + "): '" + bypass + "'");
 			}
+			
 			player.addHtmlAction(scope, bypass);
 			bypassStart = htmlLower.indexOf("=\"bypass ", bypassEnd);
 		}
@@ -318,6 +319,7 @@ public class HtmlUtil
 			{
 				LOGGER.info("Cached html link(" + scope + "): '" + htmlLink + "'");
 			}
+			
 			// let's keep an action cache with "link " lowercase literal kept
 			player.addHtmlAction(scope, "link " + htmlLink);
 			linkStart = htmlLower.indexOf("=\"link ", linkEnd);
@@ -342,6 +344,7 @@ public class HtmlUtil
 		{
 			LOGGER.info("Set html action npc(" + scope + "): " + npcObjId);
 		}
+		
 		player.setHtmlActionOriginObjectId(scope, npcObjId);
 		buildHtmlBypassCache(player, scope, html);
 		buildHtmlLinkCache(player, scope, html);

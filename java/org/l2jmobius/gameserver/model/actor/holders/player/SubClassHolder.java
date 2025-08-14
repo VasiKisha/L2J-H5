@@ -103,6 +103,7 @@ public class SubClassHolder
 			_exp = ExperienceData.getInstance().getExpForLevel(MAX_LEVEL + 1) - 1;
 			return;
 		}
+		
 		_exp = expValue;
 	}
 	
@@ -128,6 +129,7 @@ public class SubClassHolder
 			_level = Config.BASE_SUBCLASS_LEVEL;
 			return;
 		}
+		
 		_level = levelValue;
 	}
 	

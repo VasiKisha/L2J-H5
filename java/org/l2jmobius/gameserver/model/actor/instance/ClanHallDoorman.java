@@ -108,6 +108,7 @@ public class ClanHallDoorman extends Doorman
 					break;
 				}
 			}
+			
 			final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 			if (ok)
 			{
@@ -117,9 +118,11 @@ public class ClanHallDoorman extends Doorman
 			{
 				html.setFile(player, "data/html/clanHallDoorman/evolve-no.htm");
 			}
+			
 			player.sendPacket(html);
 			return;
 		}
+		
 		super.onBypassFeedback(player, command);
 	}
 	
@@ -202,10 +205,12 @@ public class ClanHallDoorman extends Doorman
 					{
 						_hasEvolve = Arrays.binarySearch(CH_WITH_EVOLVE, _clanHall.getId()) >= 0;
 					}
+					
 					_init = true;
 				}
 			}
 		}
+		
 		return _clanHall;
 	}
 	

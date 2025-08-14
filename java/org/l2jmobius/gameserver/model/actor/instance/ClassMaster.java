@@ -66,6 +66,7 @@ public class ClassMaster extends Merchant
 		{
 			pom = npcId + "-" + value;
 		}
+		
 		return "data/html/classmaster/" + pom + ".htm";
 	}
 	
@@ -91,7 +92,7 @@ public class ClassMaster extends Merchant
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 				html.setFile(player, "data/html/classmaster/ok.htm");
-				html.replace("%name%", ClassListData.getInstance().getClass(val).getClientCode());
+				html.replace("%name%", ClassListData.getInstance().getClass(val).getClassName());
 				player.sendPacket(html);
 			}
 		}
@@ -157,6 +158,7 @@ public class ClassMaster extends Merchant
 		{
 			// Ignore.
 		}
+		
 		player.sendPacket(TutorialCloseHtml.STATIC_PACKET);
 	}
 	
@@ -259,6 +261,7 @@ public class ClassMaster extends Merchant
 					break;
 				}
 			}
+			
 			sb.append("</body></html>");
 			html.setHtml(sb.toString());
 		}
@@ -281,16 +284,17 @@ public class ClassMaster extends Merchant
 						{
 							continue;
 						}
+						
 						if (validateClassId(currentClassId, cid) && (cid.level() == level))
 						{
-							menu.append("<a action=\"bypass -h npc_%objectId%_change_class " + cid.getId() + "\">" + ClassListData.getInstance().getClass(cid).getClientCode() + "</a><br>");
+							menu.append("<a action=\"bypass -h npc_%objectId%_change_class " + cid.getId() + "\">" + ClassListData.getInstance().getClass(cid).getClassName() + "</a><br>");
 						}
 					}
 					
 					if (menu.length() > 0)
 					{
 						html.setFile(player, "data/html/classmaster/template.htm");
-						html.replace("%name%", ClassListData.getInstance().getClass(currentClassId).getClientCode());
+						html.replace("%name%", ClassListData.getInstance().getClass(currentClassId).getClassName());
 						html.replace("%menu%", menu.toString());
 					}
 					else
@@ -337,6 +341,7 @@ public class ClassMaster extends Merchant
 			{
 				continue;
 			}
+			
 			if (validateClassId(currentClassId, cid))
 			{
 				menu.append("<a action=\"link CO" + cid.getId() + "\">" + ClassListData.getInstance().getClass(cid).getClassName() + "</a><br>"); // getEscapedClientCode());
@@ -486,11 +491,13 @@ public class ClassMaster extends Merchant
 		{
 			return "<tr><td>none</td></tr>";
 		}
+		
 		final StringBuilder sb = new StringBuilder();
 		for (ItemHolder holder : Config.CLASS_MASTER_SETTINGS.getRequireItems(level))
 		{
 			sb.append("<tr><td><font color=\"LEVEL\">" + holder.getCount() + "</font></td><td>" + ItemData.getInstance().getTemplate(holder.getId()).getName() + "</td></tr>");
 		}
+		
 		return sb.toString();
 	}
 }

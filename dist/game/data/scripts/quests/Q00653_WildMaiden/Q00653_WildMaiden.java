@@ -31,8 +31,10 @@ public class Q00653_WildMaiden extends Quest
 	// NPCs
 	private static final int GALIBREDO = 30181;
 	private static final int SUKI = 32013;
+	
 	// Item
 	private static final int SOE = 736;
+	
 	// Misc
 	private static final int MIN_LEVEL = 36;
 	
@@ -63,11 +65,13 @@ public class Q00653_WildMaiden extends Quest
 			{
 				return "32013-05.htm";
 			}
+			
 			qs.startQuest();
 			takeItems(player, SOE, 1);
 			npc.deleteMe();
 			htmltext = (getRandom(2) == 0) ? event : "32013-04a.htm";
 		}
+		
 		return htmltext;
 	}
 	
@@ -106,6 +110,7 @@ public class Q00653_WildMaiden extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

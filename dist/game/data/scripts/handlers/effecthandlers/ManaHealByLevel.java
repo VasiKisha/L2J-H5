@@ -69,6 +69,7 @@ public class ManaHealByLevel extends AbstractEffect
 		if (effected.getLevel() > skill.getMagicLevel())
 		{
 			final int levelDiff = effected.getLevel() - skill.getMagicLevel();
+			
 			// If target is too high compared to skill level, the amount of recharged mp gradually decreases.
 			if (levelDiff == 6)
 			{
@@ -124,6 +125,7 @@ public class ManaHealByLevel extends AbstractEffect
 		{
 			sm.addString(effector.getName());
 		}
+		
 		sm.addInt((int) amount);
 		effected.sendPacket(sm);
 	}

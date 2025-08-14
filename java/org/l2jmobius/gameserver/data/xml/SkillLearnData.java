@@ -68,6 +68,7 @@ public class SkillLearnData implements IXmlReader
 								classIds.add(PlayerClass.getPlayerClass(Integer.parseInt(c.getTextContent())));
 							}
 						}
+						
 						_skillLearn.put(parseInteger(list_node.getAttributes(), "id"), classIds);
 					}
 				}

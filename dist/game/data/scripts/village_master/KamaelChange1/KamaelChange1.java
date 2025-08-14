@@ -80,6 +80,7 @@ public class KamaelChange1 extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -123,6 +124,7 @@ public class KamaelChange1 extends AbstractNpcAI
 					takeItems(player, GWAINS_RECOMMENDATION, -1);
 					player.setPlayerClass(125);
 					player.setBaseClass(125);
+					
 					// SystemMessage and cast skill is done by setClassId
 					player.broadcastUserInfo();
 					giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_D_GRADE, 15);
@@ -152,6 +154,7 @@ public class KamaelChange1 extends AbstractNpcAI
 					takeItems(player, STEELRAZOR_EVALUATION, -1);
 					player.setPlayerClass(126);
 					player.setBaseClass(126);
+					
 					// SystemMessage and cast skill is done by setClassId
 					player.broadcastUserInfo();
 					giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_D_GRADE, 15);
@@ -159,6 +162,7 @@ public class KamaelChange1 extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -193,6 +197,7 @@ public class KamaelChange1 extends AbstractNpcAI
 		{
 			htmltext = "32191-12.htm"; // master_all_kamael100a
 		}
+		
 		return htmltext;
 	}
 	

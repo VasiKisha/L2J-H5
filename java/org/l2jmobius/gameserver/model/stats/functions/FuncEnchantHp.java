@@ -46,6 +46,7 @@ public class FuncEnchantHp extends AbstractFunction
 		{
 			return initVal + EnchantItemHPBonusData.getInstance().getHPBonus(item);
 		}
+		
 		return initVal;
 	}
 }

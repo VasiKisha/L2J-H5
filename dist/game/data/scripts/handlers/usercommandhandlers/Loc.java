@@ -40,7 +40,7 @@ public class Loc implements IUserCommandHandler
 	};
 	
 	@Override
-	public boolean useUserCommand(int id, Player player)
+	public boolean onCommand(int id, Player player)
 	{
 		int region;
 		final RespawnZone zone = ZoneManager.getInstance().getZone(player, RespawnZone.class);
@@ -69,12 +69,13 @@ public class Loc implements IUserCommandHandler
 			sm = new SystemMessage(SystemMessageId.CURRENT_LOCATION_S1);
 			sm.addString(player.getX() + ", " + player.getY() + ", " + player.getZ());
 		}
+		
 		player.sendPacket(sm);
 		return true;
 	}
 	
 	@Override
-	public int[] getUserCommandList()
+	public int[] getCommandList()
 	{
 		return COMMAND_IDS;
 	}

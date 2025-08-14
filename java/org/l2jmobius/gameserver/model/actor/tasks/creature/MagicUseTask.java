@@ -54,6 +54,7 @@ public class MagicUseTask implements Runnable
 		{
 			return;
 		}
+		
 		switch (_phase)
 		{
 			case 1:

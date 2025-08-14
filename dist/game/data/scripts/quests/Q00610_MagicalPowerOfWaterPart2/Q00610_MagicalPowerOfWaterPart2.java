@@ -37,11 +37,14 @@ public class Q00610_MagicalPowerOfWaterPart2 extends Quest
 	// NPCs
 	private static final int ASEFA = 31372;
 	private static final int VARKA_TOTEM = 31560;
+	
 	// Monster
 	private static final int ASHUTAR = 25316;
+	
 	// Items
 	private static final int GREEN_TOTEM = 7238;
 	private static final int ASHUTAR_HEART = 7239;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
 	
@@ -86,6 +89,7 @@ public class Q00610_MagicalPowerOfWaterPart2 extends Quest
 						{
 							giveItems(player, ASHUTAR_HEART, 1);
 						}
+						
 						qs.setCond(3, true);
 						break;
 					}
@@ -148,6 +152,7 @@ public class Q00610_MagicalPowerOfWaterPart2 extends Quest
 				addSpawn(VARKA_TOTEM, 105452, -36775, -1050, 34000, false, 0, true);
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -213,6 +218,7 @@ public class Q00610_MagicalPowerOfWaterPart2 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -222,11 +228,13 @@ public class Q00610_MagicalPowerOfWaterPart2 extends Quest
 		{
 			return "31560-03.html";
 		}
+		
 		if (qs.isCond(1))
 		{
 			takeItems(qs.getPlayer(), GREEN_TOTEM, 1);
 			qs.setCond(2, true);
 		}
+		
 		npc.deleteMe();
 		final Npc ashutar = addSpawn(ASHUTAR, 104825, -36926, -1136, 0, false, 0);
 		ashutar.broadcastPacket(new NpcSay(ashutar, ChatType.NPC_GENERAL, NpcStringId.THE_MAGICAL_POWER_OF_WATER_COMES_FROM_THE_POWER_OF_STORM_AND_HAIL_IF_YOU_DARE_TO_CONFRONT_IT_ONLY_DEATH_WILL_AWAIT_YOU));

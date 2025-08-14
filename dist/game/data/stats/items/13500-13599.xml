@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="13500" type="Armor" name="Refined Black Feather Mask">
 		<!-- Refined Black Feather Mask. Uses 2 hair accessory slots. -->
@@ -282,12 +282,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13525" type="Armor" name="Gracian Soldier Shield">
 		<!-- A Gracian Soldier's standard shield. Uses 2 hair accessory slots. -->
@@ -302,11 +302,11 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="101" />
-		</for>
+		</stats>
 	</item>
 	<item id="13526" type="Armor" name="Test Belt">
 		<set name="icon" val="icon.etc_shirts_a_i04" />
@@ -317,9 +317,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="4830" />
 		<set name="price" val="113" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="36" />
-		</for>
+		</stats>
 	</item>
 	<item id="13527" type="Armor" name="Test Cloak">
 		<set name="icon" val="icon.armor_back01" />
@@ -329,9 +329,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="260" />
 		<set name="price" val="37" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="2" />
-		</for>
+		</stats>
 	</item>
 	<item id="13528" type="Weapon" name="Test Dual Daggers">
 		<set name="icon" val="icon.dual_dagger_i00" />
@@ -349,12 +349,12 @@
 		<set name="spiritshots" val="3" />
 		<set name="is_tradable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="200" />
 			<set stat="mAtk" val="6" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13529" type="Armor" name="Test Sigil">
 		<set name="icon" val="icon.shield_arcana_sigil_i00" />
@@ -364,15 +364,15 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1430" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="47" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="13530" type="Weapon" name="Flag of Gludio">
 		<!-- This official territorial flag can only be obtained on a battlefield in Gludio. -->
@@ -394,9 +394,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13531" type="Weapon" name="Flag of Dion">
 		<!-- This official territorial flag can only be obtained on a battlefield in Dion. -->
@@ -418,9 +418,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13532" type="Weapon" name="Flag of Giran">
 		<!-- This official territorial flag can only be obtained on a battlefield in Giran. -->
@@ -442,9 +442,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13533" type="Weapon" name="Flag of Oren">
 		<!-- This official territorial flag can only be obtained on a battlefield in Oren. -->
@@ -466,9 +466,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13534" type="Weapon" name="Flag of Aden">
 		<!-- This official territorial flag can only be obtained on a battlefield in Aden. -->
@@ -490,9 +490,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13535" type="Weapon" name="Flag of Innadril">
 		<!-- This official territorial flag can only be obtained on a battlefield in Innadril. -->
@@ -514,9 +514,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13536" type="Weapon" name="Goddard Flag">
 		<!-- This official territorial flag can only be obtained on a battlefield in Goddard. -->
@@ -538,9 +538,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13537" type="Weapon" name="Flag of Rune">
 		<!-- This official territorial flag can only be obtained on a battlefield in Rune. -->
@@ -562,9 +562,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13538" type="Weapon" name="Flag of Schuttgart">
 		<!-- This official territorial flag can only be obtained on a battlefield in Schuttgart. -->
@@ -586,9 +586,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13539" type="Weapon" name="Staff of Master Yogi">
 		<!-- Enchant this staff using Master Yogi's weapon enchantment scrolls. Equip the staff and speak with Master Yogi to claim a reward based on enchantment level. -->
@@ -607,7 +607,7 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="11" />
 			<set stat="mAtk" val="12" />
 			<set stat="critRate" val="4" />
@@ -615,7 +615,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="13540" type="EtcItem" name="Master Yogi's Scroll: Enchant Weapon">
 		<!-- Master Yogi's Scroll: Enchant Weapon. Can only be used on Master Yogi's Staff. -->
@@ -746,9 +746,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13549" type="EtcItem" name="Soul Monk Summon Whistle">
 		<!-- Dimensional item. Item that allows you to summon a hunting helper who temporarily casts magician-type battle support magic. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -764,9 +764,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13550" type="EtcItem" name="Owl Monk Summon Whistle">
 		<!-- Dimensional item. Item that allows you to summon a hunting helper who temporarily casts magician-type battle support magic. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -782,9 +782,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13551" type="EtcItem" name="Turtle Ascetic Summon Whistle">
 		<!-- Dimensional item. Item that allows you to summon a hunting helper who temporarily casts magician-type battle support magic. Cannot be exchanged, dropped, or destroyed. Can be stored in a private warehouse. -->
@@ -800,9 +800,9 @@
 		<set name="handler" val="SummonItems" />
 		<set name="item_skill" val="2046-1" /> <!-- Wolf's Necklace -->
 		<set name="use_condition" val="{{uc_transmode_exclude;{tt_pure_stat}}}" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13552" type="EtcItem" name="Spellbook - Flying Final Form">
 		<!-- Holds the method for changing into a Final Form Aerial Transformed Object. -->
@@ -813,9 +813,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2789-1" /> <!-- Final Flying Form -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="75" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13553" type="EtcItem" name="Spellbook - Aurabird Falcon">
 		<!-- Holds the method for changing into an Assault-Type Aerial Transformed Object. -->
@@ -826,9 +826,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2790-1" /> <!-- Aura Bird - Falcon -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="75" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13554" type="EtcItem" name="Spellbook - Aurabird Owl">
 		<!-- Holds the method for changing into a Shooting-Type Aerial Transformed Object. -->
@@ -839,9 +839,9 @@
 		<set name="is_stackable" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2791-1" /> <!-- Aura Bird - Owl -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="75" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13555" type="EtcItem" name="Combined Transformation Scroll">
 		<!-- Holds the method for combining with a Servitor. -->
@@ -866,12 +866,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<set name="is_dropable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13557" type="Weapon" name="Airship Cannon">
 		<!-- Used to control a Airship's cannon. -->
@@ -885,12 +885,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<set name="is_dropable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13558" type="Weapon" name="Airship Cannon Briquet">
 		<!-- Projectile fired by a Flying Boat's cannon. -->
@@ -904,12 +904,12 @@
 		<set name="immediate_effect" val="true" />
 		<set name="material" val="STEEL" />
 		<set name="is_dropable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="13559" type="EtcItem" name="Airship Summon License">
 		<!-- License showing that your clan can summon the Airship -->
@@ -946,9 +946,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13561" type="Weapon" name="Dion Ward">
 		<!-- Ward bearing the unique pattern of Dion. Can obtain great strength when capturing the friendly forces' outpost. It is automatically equipped when acquired, and attack and attack skills cannot be used. The ward capturing skill can be used instead. -->
@@ -972,9 +972,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13562" type="Weapon" name="Giran Ward">
 		<!-- Ward bearing the unique pattern of Giran. Can obtain great strength when capturing the friendly forces' outpost. It is automatically equipped when acquired, and attack and attack skills cannot be used. The ward capturing skill can be used instead. -->
@@ -998,9 +998,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13563" type="Weapon" name="Oren Ward">
 		<!-- Ward bearing the unique pattern of Oren. Can obtain great strength when capturing the friendly forces' outpost. It is automatically equipped when acquired, and attack and attack skills cannot be used. The ward capturing skill can be used instead. -->
@@ -1024,9 +1024,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13564" type="Weapon" name="Aden Ward">
 		<!-- Ward bearing the unique pattern of Aden. Can obtain great strength when capturing the friendly forces' outpost. It is automatically equipped when acquired, and attack and attack skills cannot be used. The ward capturing skill can be used instead. -->
@@ -1050,9 +1050,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13565" type="Weapon" name="Innadril Ward">
 		<!-- Ward bearing the unique pattern of Innadril. Can obtain great strength when capturing the friendly forces' outpost. It is automatically equipped when acquired, and attack and attack skills cannot be used. The ward capturing skill can be used instead. -->
@@ -1076,9 +1076,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13566" type="Weapon" name="Goddard Ward">
 		<!-- Ward bearing the unique pattern of Goddard. Can obtain great strength when capturing the friendly forces' outpost. It is automatically equipped when acquired, and attack and attack skills cannot be used. The ward capturing skill can be used instead. -->
@@ -1102,9 +1102,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13567" type="Weapon" name="Rune Ward">
 		<!-- Ward bearing the unique pattern of Rune. Can obtain great strength when capturing the friendly forces' outpost. It is automatically equipped when acquired, and attack and attack skills cannot be used. The ward capturing skill can be used instead. -->
@@ -1128,9 +1128,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13568" type="Weapon" name="Schuttgart Ward">
 		<!-- Ward bearing the unique pattern of Schuttgart. Can obtain great strength when capturing the friendly forces' outpost. It is automatically equipped when acquired, and attack and attack skills cannot be used. The ward capturing skill can be used instead. -->
@@ -1154,9 +1154,9 @@
 		<set name="isForceEquip" val="true" />
 		<set name="isAttackWeapon" val="false" />
 		<set name="useWeaponSkillsOnly" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="13569" type="EtcItem" name="Transformation Scroll: Gludio Human Mercenary">
 		<!-- Allows you to transform into a Human mercenary. Can only be used by an ordinary mercenary in Gludio Territory. -->
@@ -1172,9 +1172,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2672-1" /> <!-- Gludio Human Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13570" type="EtcItem" name="Transformation Scroll: Gludio Elf Mercenary">
 		<!-- Allows you to transform into an Elven mercenary. Can only be used by an ordinary mercenary in Gludio Territory. -->
@@ -1190,9 +1190,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2673-1" /> <!-- Gludio Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13571" type="EtcItem" name="Transformation Scroll: Gludio Dark Elf Mercenary">
 		<!-- Allows you to transform into a Dark Elven mercenary. Can only be used by an ordinary mercenary in Gludio Territory. -->
@@ -1208,9 +1208,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2674-1" /> <!-- Gludio Dark Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13572" type="EtcItem" name="Transformation Scroll: Gludio Orc Mercenary">
 		<!-- Allows you to transform into an Orc mercenary. Can only be used by an ordinary mercenary in Gludio Territory. -->
@@ -1226,9 +1226,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2675-1" /> <!-- Gludio Orc Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13573" type="EtcItem" name="Transformation Scroll: Gludio Dwarf Mercenary">
 		<!-- Allows you to transform into a Dwarven mercenary. Can only be used by an ordinary mercenary in Gludio Territory. -->
@@ -1244,9 +1244,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2676-1" /> <!-- Gludio Dwarf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13574" type="EtcItem" name="Transformation Scroll: Gludio Kamael Mercenary">
 		<!-- Allows you to transform into a Kamael mercenary. Can only be used by an ordinary mercenary in Gludio Territory. -->
@@ -1262,9 +1262,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2677-1" /> <!-- Gludio Kamael Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13575" type="EtcItem" name="Transformation Scroll: Gludio Knight Mercenary">
 		<!-- Allows you to transform into a Knight mercenary. Can only be used by an elite mercenary in Gludio Territory. -->
@@ -1280,9 +1280,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2678-1" /> <!-- Gludio Knight Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13576" type="EtcItem" name="Transformation Scroll: Gludio Archer Mercenary">
 		<!-- Allows you to transform into an Archer mercenary. Can only be used by an elite mercenary in Gludio Territory. -->
@@ -1298,9 +1298,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2679-1" /> <!-- Gludio Archer Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13577" type="EtcItem" name="Transformation Scroll: Gludio Wizard Mercenary">
 		<!-- Allows you to transform into a Wizard mercenary. Can only be used by an elite mercenary in Gludio Territory. -->
@@ -1316,9 +1316,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2680-1" /> <!-- Gludio Wizard Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13578" type="EtcItem" name="Transformation Scroll: Gludio Kamael Captain Mercenary">
 		<!-- Allows you to transform into a Kamael Captain Mercenary. Can only be used by an elite mercenary in Gludio Territory. -->
@@ -1334,9 +1334,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2681-1" /> <!-- Gludio Kamael Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13579" type="EtcItem" name="Transformation Scroll: Gludio Knight Captain Mercenary">
 		<!-- Allows you to transform into a Knight Captain mercenary. Can only be used by an Exalted Mercenary in Gludio Territory. -->
@@ -1352,9 +1352,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2682-1" /> <!-- Gludio Knight Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13580" type="EtcItem" name="Transformation Scroll: Gludio Commander Mercenary">
 		<!-- Allows you to transform into a Commander mercenary. Can only be used by an Exalted Mercenary in Gludio Territory. -->
@@ -1370,9 +1370,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2683-1" /> <!-- Gludio Commander Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13581" type="EtcItem" name="Transformation Scroll: Dion Human Mercenary">
 		<!-- Allows you to transform into a Human mercenary. Can only be used by an ordinary mercenary in Dion Territory. -->
@@ -1388,9 +1388,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2684-1" /> <!-- Dion Human Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13582" type="EtcItem" name="Transformation Scroll: Dion Elf Mercenary">
 		<!-- Allows you to transform into an Elven mercenary. Can only be used by an ordinary mercenary in Dion Territory. -->
@@ -1406,9 +1406,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2685-1" /> <!-- Dion Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13583" type="EtcItem" name="Transformation Scroll: Dion Dark Elf Mercenary">
 		<!-- Allows you to transform into a Dark Elven mercenary. Can only be used by an ordinary mercenary in Dion Territory. -->
@@ -1424,9 +1424,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2686-1" /> <!-- Dion Dark Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13584" type="EtcItem" name="Transformation Scroll: Dion Orc Mercenary">
 		<!-- Allows you to transform into an Orc mercenary. Can only be used by an ordinary mercenary in Dion Territory. -->
@@ -1442,9 +1442,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2687-1" /> <!-- Dion Orc Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13585" type="EtcItem" name="Transformation Scroll: Dion Dwarf Mercenary">
 		<!-- Allows you to transform into a Dwarven mercenary. Can only be used by an ordinary mercenary in Dion Territory. -->
@@ -1460,9 +1460,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2688-1" /> <!-- Dion Dwarf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13586" type="EtcItem" name="Transformation Scroll: Dion Kamael Mercenary">
 		<!-- Allows you to transform into a Kamael mercenary. Can only be used by an ordinary mercenary in Dion Territory. -->
@@ -1478,9 +1478,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2689-1" /> <!-- Dion Kamael Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13587" type="EtcItem" name="Transformation Scroll: Dion Knight Mercenary">
 		<!-- Allows you to transform into a Knight mercenary. Can only be used by an elite mercenary in Dion Territory. -->
@@ -1496,9 +1496,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2690-1" /> <!-- Dion Knight Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13588" type="EtcItem" name="Transformation Scroll: Dion Archer Mercenary">
 		<!-- Allows you to transform into an Archer mercenary. Can only be used by an elite mercenary in Dion Territory. -->
@@ -1514,9 +1514,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2691-1" /> <!-- Dion Archer Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13589" type="EtcItem" name="Transformation Scroll: Dion Wizard Mercenary">
 		<!-- Allows you to transform into a Wizard mercenary. Can only be used by an elite mercenary in Dion Territory. -->
@@ -1532,9 +1532,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2692-1" /> <!-- Dion Wizard Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13590" type="EtcItem" name="Transformation Scroll: Dion Kamael Captain Mercenary">
 		<!-- Allows you to transform into a Kamael Captain Mercenary. Can only be used by an elite mercenary in Dion Territory. -->
@@ -1550,9 +1550,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2693-1" /> <!-- Dion Kamael Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13591" type="EtcItem" name="Transformation Scroll: Dion Knight Captain Mercenary">
 		<!-- Allows you to transform into a Knight Captain mercenary. Can only be used by an Exalted Mercenary in Dion Territory. -->
@@ -1568,9 +1568,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2694-1" /> <!-- Dion Knight Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13592" type="EtcItem" name="Transformation Scroll: Dion Commander Mercenary">
 		<!-- Allows you to transform into a Commander mercenary. Can only be used by an Exalted Mercenary in Dion Territory. -->
@@ -1586,9 +1586,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2695-1" /> <!-- Dion Commander Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13593" type="EtcItem" name="Transformation Scroll: Giran Human Mercenary">
 		<!-- Allows you to transform into a Human mercenary. Can only be used by an ordinary mercenary in Giran Territory. -->
@@ -1604,9 +1604,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2696-1" /> <!-- Giran Human Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13594" type="EtcItem" name="Transformation Scroll: Giran Elf Mercenary">
 		<!-- Allows you to transform into an Elven mercenary. Can only be used by an ordinary mercenary in Giran Territory. -->
@@ -1622,9 +1622,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2697-1" /> <!-- Giran Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13595" type="EtcItem" name="Transformation Scroll: Giran Dark Elf Mercenary">
 		<!-- Allows you to transform into a Dark Elven mercenary. Can only be used by an ordinary mercenary in Giran Territory. -->
@@ -1640,9 +1640,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2698-1" /> <!-- Giran Dark Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13596" type="EtcItem" name="Transformation Scroll: Giran Orc Mercenary">
 		<!-- Allows you to transform into an Orc mercenary. Can only be used by an ordinary mercenary in Giran Territory. -->
@@ -1658,9 +1658,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2699-1" /> <!-- Giran Orc Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13597" type="EtcItem" name="Transformation Scroll: Giran Dwarf Mercenary">
 		<!-- Allows you to transform into a Dwarven mercenary. Can only be used by an ordinary mercenary in Giran Territory. -->
@@ -1676,9 +1676,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2700-1" /> <!-- Giran Dwarf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13598" type="EtcItem" name="Transformation Scroll: Giran Kamael Mercenary">
 		<!-- Allows you to transform into a Kamael mercenary. Can only be used by an ordinary mercenary in Giran Territory. -->
@@ -1694,9 +1694,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2701-1" /> <!-- Giran Kamael Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13599" type="EtcItem" name="Transformation Scroll: Giran Knight Mercenary">
 		<!-- Allows you to transform into a Knight mercenary. Can only be used by an elite mercenary in Giran Territory. -->
@@ -1712,8 +1712,8 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2702-1" /> <!-- Giran Knight Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 </list>

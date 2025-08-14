@@ -44,7 +44,7 @@ public class AdminShutdown implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_server_shutdown"))
 		{
@@ -90,11 +90,12 @@ public class AdminShutdown implements IAdminCommandHandler
 		{
 			serverAbort(activeChar);
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

@@ -71,9 +71,9 @@ public class SoulBlow extends AbstractEffect
 		double damage = Formulas.calcBlowDamage(effector, effected, skill, shld, ss);
 		if ((skill.getMaxSoulConsumeCount() > 0) && effector.isPlayer())
 		{
-			// Souls Formula (each soul increase +4%).
+			// Souls Formula (each soul increase +4.8%).
 			final int chargedSouls = (effector.asPlayer().getChargedSouls() <= skill.getMaxSoulConsumeCount()) ? effector.asPlayer().getChargedSouls() : skill.getMaxSoulConsumeCount();
-			damage *= 1 + (chargedSouls * 0.04);
+			damage *= 1 + (chargedSouls * 0.048);
 		}
 		
 		effected.reduceCurrentHp(damage, effector, skill);
@@ -91,6 +91,7 @@ public class SoulBlow extends AbstractEffect
 			final Player activePlayer = effector.asPlayer();
 			activePlayer.sendDamageMessage(effected, (int) damage, false, true, false);
 		}
+		
 		// Check if damage should be reflected.
 		Formulas.calcDamageReflected(effector, effected, skill, true);
 	}

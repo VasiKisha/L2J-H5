@@ -98,6 +98,7 @@ public class GrandBossManager
 					LOGGER.info(getClass().getSimpleName() + ": Next spawn date of " + NpcData.getInstance().getTemplate(bossId).getName() + " is " + new Date(info.getLong("respawn_time")) + ".");
 				}
 			}
+			
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _storedInfo.size() + " Instances");
 		}
 		catch (SQLException e)
@@ -108,6 +109,7 @@ public class GrandBossManager
 		{
 			LOGGER.log(Level.WARNING, "Error while initializing GrandBossManager: " + e.getMessage(), e);
 		}
+		
 		ThreadPool.scheduleAtFixedRate(new GrandBossManagerStoreTask(), 5 * 60 * 1000, 5 * 60 * 1000);
 	}
 	
@@ -130,6 +132,7 @@ public class GrandBossManager
 			{
 				zones.get(rs.getInt("zone")).add(rs.getInt("player_id"));
 			}
+			
 			LOGGER.info(getClass().getSimpleName() + ": Initialized " + _zones.size() + " Grand Boss Zones");
 		}
 		catch (SQLException e)
@@ -168,6 +171,7 @@ public class GrandBossManager
 				return zone;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -185,6 +189,7 @@ public class GrandBossManager
 				return zone;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -255,6 +260,7 @@ public class GrandBossManager
 					{
 						continue;
 					}
+					
 					for (Integer player : list)
 					{
 						insert.setInt(1, player);
@@ -264,6 +270,7 @@ public class GrandBossManager
 					}
 				}
 			}
+			
 			for (Entry<Integer, StatSet> e : _storedInfo.entrySet())
 			{
 				final GrandBoss boss = BOSSES.get(e.getKey());
@@ -294,6 +301,7 @@ public class GrandBossManager
 							hp = boss.getMaxHp();
 							mp = boss.getMaxMp();
 						}
+						
 						update.setDouble(6, hp);
 						update.setDouble(7, mp);
 						update.setInt(8, _bossStatus.get(e.getKey()));
@@ -309,6 +317,7 @@ public class GrandBossManager
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't store grandbosses to database:" + e.getMessage(), e);
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -343,6 +352,7 @@ public class GrandBossManager
 						hp = boss.getMaxHp();
 						mp = boss.getMaxMp();
 					}
+					
 					ps.setDouble(6, hp);
 					ps.setDouble(7, mp);
 					ps.setInt(8, _bossStatus.get(bossId));

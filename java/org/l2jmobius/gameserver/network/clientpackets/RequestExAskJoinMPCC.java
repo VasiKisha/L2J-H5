@@ -52,6 +52,7 @@ public class RequestExAskJoinMPCC extends ClientPacket
 		{
 			return;
 		}
+		
 		// invite yourself? ;)
 		if (player.isInParty() && target.isInParty() && player.getParty().equals(target.getParty()))
 		{
@@ -59,10 +60,12 @@ public class RequestExAskJoinMPCC extends ClientPacket
 		}
 		
 		SystemMessage sm;
+		
 		// activeChar is in a Party?
 		if (player.isInParty())
 		{
 			final Party activeParty = player.getParty();
+			
 			// activeChar is PartyLeader? && activeChars Party is already in a CommandChannel?
 			if (activeParty.getLeader().equals(player))
 			{

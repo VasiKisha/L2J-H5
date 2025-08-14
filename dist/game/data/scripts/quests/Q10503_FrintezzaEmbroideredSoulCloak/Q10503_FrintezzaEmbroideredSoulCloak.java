@@ -33,12 +33,15 @@ public class Q10503_FrintezzaEmbroideredSoulCloak extends Quest
 {
 	// NPC
 	private static final int OLF_ADAMS = 32612;
+	
 	// Monster
 	// private static final int FRINTEZZA = 29045;
 	private static final int SCARLET_VAN_HALISHA = 29047;
+	
 	// Items
 	private static final int FRINTEZZAS_SOUL_FRAGMENT = 21724;
 	private static final int SOUL_CLOAK_OF_FRINTEZZA = 21721;
+	
 	// Misc
 	private static final int MIN_LEVEL = 80;
 	private static final int FRAGMENT_COUNT = 20;
@@ -82,6 +85,7 @@ public class Q10503_FrintezzaEmbroideredSoulCloak extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -132,6 +136,7 @@ public class Q10503_FrintezzaEmbroideredSoulCloak extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

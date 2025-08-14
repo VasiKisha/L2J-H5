@@ -38,8 +38,10 @@ public class TowerOfInfinitum extends AbstractNpcAI
 	private static final int JERIAN = 32302;
 	private static final int GK_FIRST = 32745;
 	private static final int GK_LAST = 32752;
+	
 	// Skills
 	private static final int PASS_SKILL = 2357;
+	
 	// Misc
 	private static final Map<Integer, Location[]> TELE_COORDS = new HashMap<>();
 	static
@@ -119,10 +121,12 @@ public class TowerOfInfinitum extends AbstractNpcAI
 							return "32302-02.htm";
 						}
 					}
+					
 					for (Player partyMember : party.getMembers())
 					{
 						partyMember.teleToLocation(ENTER_LOCATION, true);
 					}
+					
 					htmltext = null;
 				}
 				else
@@ -165,9 +169,11 @@ public class TowerOfInfinitum extends AbstractNpcAI
 						partyMember.teleToLocation(tele, true);
 					}
 				}
+				
 				htmltext = null;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -67,9 +67,11 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 	private static final int LILIM_SLAYER = 27377;
 	private static final int LILIM_GREAT_MAGUS = 27378;
 	private static final int LILIM_GUARD_KNIGHT = 27379;
+	
 	// Items
 	private static final int SACRED_SWORD_OF_EINHASAD = 15310;
 	private static final int SEAL_OF_BINDING = 13846;
+	
 	// Skills
 	private static final SkillHolder SEAL_ISOLATION = new SkillHolder(5980, 3);
 	private static final Map<Integer, SkillHolder> SKILLS = new HashMap<>();
@@ -83,9 +85,11 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 		SKILLS.put(32720, new SkillHolder(6194, 1)); // Presentation - Anakim's Guard Battle
 		SKILLS.put(32721, new SkillHolder(6195, 1)); // Presentation - Anakim's Executor Battle
 	}
+	
 	// Locations
 	private static final Location ENTER = new Location(-89554, 216078, -7488, 0, 0);
 	private static final Location EXIT = new Location(171895, -17501, -4903, 0, 0);
+	
 	// NpcStringId
 	private static final NpcStringId[] LILITH_SHOUT =
 	{
@@ -93,6 +97,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 		NpcStringId.ANAKIM_IN_THE_NAME_OF_GREAT_SHILIEN_I_WILL_CUT_YOUR_THROAT,
 		NpcStringId.YOU_CANNOT_BE_THE_MATCH_OF_LILITH_I_LL_TEACH_YOU_A_LESSON
 	};
+	
 	// Misc
 	private static final int TEMPLATE_ID = 112;
 	private static final int DOOR_1 = 17240102;
@@ -132,12 +137,14 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 		{
 			lilithGroup.add(addSpawn(entry.getKey(), entry.getValue(), false, 0, false, world.getInstanceId()));
 		}
+		
 		world.setParameter("lilithGroup", lilithGroup);
 		final List<Npc> anakimGroup = new ArrayList<>();
 		for (Entry<Integer, Location> entry : ANAKIM_SPAWN.entrySet())
 		{
 			anakimGroup.add(addSpawn(entry.getKey(), entry.getValue(), false, 0, false, world.getInstanceId()));
 		}
+		
 		world.setParameter("anakimGroup", anakimGroup);
 	}
 	
@@ -183,6 +190,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 			spawnNPC(world);
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, ENTER, world.getInstanceId());
 	}
 	
@@ -228,6 +236,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 						{
 							makeCast(caster, lilithGroup);
 						}
+						
 						if ((caster != null) && (caster.getId() == ANAKIM))
 						{
 							if (caster.isScriptValue(0))
@@ -241,12 +250,14 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 							}
 						}
 					}
+					
 					for (Npc caster : lilithGroup)
 					{
 						if ((caster != null) && !caster.isCastingNow())
 						{
 							makeCast(caster, anakimGroup);
 						}
+						
 						if ((caster != null) && (caster.getId() == 32715))
 						{
 							if (caster.isScriptValue(0))
@@ -256,6 +267,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 								{
 									player.sendPacket(new NpcSay(caster.getObjectId(), ChatType.WHISPER, caster.getId(), NpcStringId.MY_POWER_S_WEAKENING_HURRY_AND_TURN_ON_THE_SEALING_DEVICE));
 								}
+								
 								caster.setScriptValue(1);
 							}
 							else if (getRandom(100) < 10)
@@ -293,11 +305,13 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 							}
 						}
 					}
+					
 					startQuestTimer("FIGHT", 1000, null, player);
 					break;
 				}
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -362,6 +376,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 				startQuestTimer("FINISH", 1000, npc, player);
 				cancelQuestTimer("FIGHT", npc, player);
 			}
+			
 			if (getRandom(100) < 50)
 			{
 				npc.doCast(SEAL_ISOLATION.getSkill());
@@ -461,6 +476,7 @@ public class SSQDisciplesNecropolisPast extends AbstractInstance
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

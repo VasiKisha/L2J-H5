@@ -47,13 +47,13 @@ public class FavoriteBoard implements IParseBoardHandler
 	};
 	
 	@Override
-	public String[] getCommunityBoardCommands()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}
 	
 	@Override
-	public boolean parseCommunityBoardCommand(String command, Player player)
+	public boolean onCommand(String command, Player player)
 	{
 		// None of this commands can be added to favorites.
 		if (command.startsWith("_bbsgetfav"))
@@ -77,6 +77,7 @@ public class FavoriteBoard implements IParseBoardHandler
 						sb.append(link);
 					}
 				}
+				
 				String html = HtmCache.getInstance().getHtm(player, "data/html/CommunityBoard/favorite.html");
 				html = html.replace("%fav_list%", sb.toString());
 				CommunityBoardHandler.separateAndSend(html, player);
@@ -105,8 +106,9 @@ public class FavoriteBoard implements IParseBoardHandler
 					ps.setString(2, parts[0].trim());
 					ps.setString(3, parts[1].trim());
 					ps.execute();
+					
 					// Callback
-					parseCommunityBoardCommand("_bbsgetfav", player);
+					onCommand("_bbsgetfav", player);
 				}
 				catch (Exception e)
 				{
@@ -129,14 +131,16 @@ public class FavoriteBoard implements IParseBoardHandler
 				ps.setInt(1, player.getObjectId());
 				ps.setInt(2, Integer.parseInt(favId));
 				ps.execute();
+				
 				// Callback
-				parseCommunityBoardCommand("_bbsgetfav", player);
+				onCommand("_bbsgetfav", player);
 			}
 			catch (Exception e)
 			{
 				LOG.warning(FavoriteBoard.class.getSimpleName() + ": Couldn't delete favorite link ID " + favId + " for " + player);
 			}
 		}
+		
 		return true;
 	}
 }

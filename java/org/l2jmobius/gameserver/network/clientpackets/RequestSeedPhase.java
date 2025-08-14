@@ -41,6 +41,7 @@ public class RequestSeedPhase extends ClientPacket
 		{
 			return;
 		}
+		
 		player.sendPacket(ExShowSeedMapInfo.STATIC_PACKET);
 	}
 }

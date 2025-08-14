@@ -59,6 +59,7 @@ public class ConditionPlayerRangeFromNpc extends Condition
 				}
 			}
 		}
+		
 		return existNpc == _value;
 	}
 }

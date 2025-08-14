@@ -52,6 +52,7 @@ public class TerritoryWard extends Attackable
 		{
 			return false;
 		}
+		
 		if ((getCastle() == null) || !getCastle().getZone().isActive())
 		{
 			return false;
@@ -62,10 +63,12 @@ public class TerritoryWard extends Attackable
 		{
 			return false;
 		}
+		
 		if (actingPlayer.getSiegeSide() == 0)
 		{
 			return false;
 		}
+		
 		if (TerritoryWarManager.getInstance().isAllyField(actingPlayer, getCastle().getResidenceId()))
 		{
 			return false;
@@ -104,18 +107,22 @@ public class TerritoryWard extends Attackable
 		{
 			return;
 		}
+		
 		if (actingPlayer.isCombatFlagEquipped())
 		{
 			return;
 		}
+		
 		if (actingPlayer.getSiegeSide() == 0)
 		{
 			return;
 		}
+		
 		if (getCastle() == null)
 		{
 			return;
 		}
+		
 		if (TerritoryWarManager.getInstance().isAllyField(actingPlayer, getCastle().getResidenceId()))
 		{
 			return;
@@ -150,6 +157,7 @@ public class TerritoryWard extends Attackable
 			{
 				TerritoryWarManager.getInstance().getTerritoryWard(getId() - 36491).spawnMe();
 			}
+			
 			final SystemMessage sm = new SystemMessage(SystemMessageId.THE_S1_WARD_HAS_BEEN_DESTROYED_C2_NOW_HAS_THE_TERRITORY_WARD);
 			sm.addString(getName().replace(" Ward", ""));
 			sm.addPcName(player);
@@ -159,6 +167,7 @@ public class TerritoryWard extends Attackable
 		{
 			TerritoryWarManager.getInstance().getTerritoryWard(getId() - 36491).spawnMe();
 		}
+		
 		decayMe();
 		return true;
 	}

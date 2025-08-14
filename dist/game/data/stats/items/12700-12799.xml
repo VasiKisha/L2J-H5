@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="12700" type="EtcItem" name="Foundation Sealed Dynasty Leather Boots">
 		<!-- A rare Sealed Dynasty Leather Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -8,9 +8,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1090" />
 		<set name="price" val="6099000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="61" />
-		</for>
+		</stats>
 	</item>
 	<item id="12701" type="EtcItem" name="Foundation Sealed Dynasty Leather Helmet">
 		<!-- A rare Sealed Dynasty Leather Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -20,9 +20,9 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="9149000" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="92" />
-		</for>
+		</stats>
 	</item>
 	<item id="12702" type="EtcItem" name="Foundation Sealed Dynasty Boots">
 		<!-- A rare Sealed Dynasty Boots that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -32,12 +32,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1090" />
 		<set name="price" val="6099000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="61" />
-		</for>
+		</stats>
 	</item>
 	<item id="12703" type="EtcItem" name="Foundation Sealed Dynasty Breastplate">
 		<!-- A rare Sealed Dynasty Breastplate that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -48,12 +48,12 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="7570" />
 		<set name="price" val="24398000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="214" />
-		</for>
+		</stats>
 	</item>
 	<item id="12704" type="EtcItem" name="Foundation Sealed Dynasty Shield">
 		<!-- A rare Sealed Dynasty Shield that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -63,14 +63,14 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="1370" />
 		<set name="price" val="6404000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="305" />
-		</for>
+		</stats>
 	</item>
 	<item id="12705" type="EtcItem" name="Foundation Sealed Dynasty Shoes">
 		<!-- A rare Sealed Dynasty Shoes that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -80,12 +80,12 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1090" />
 		<set name="price" val="6099000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="61" />
-		</for>
+		</stats>
 	</item>
 	<item id="12706" type="EtcItem" name="Foundation Sealed Dynasty Circlet">
 		<!-- A rare Sealed Dynasty Circlet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -95,12 +95,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="9149000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="92" />
-		</for>
+		</stats>
 	</item>
 	<item id="12707" type="EtcItem" name="Foundation Sealed Dynasty Tunic">
 		<!-- A rare Sealed Dynasty Tunic that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -111,13 +111,13 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="1780" />
 		<set name="price" val="18298000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="107" />
 			<add stat="maxMp" val="592" />
-		</for>
+		</stats>
 	</item>
 	<item id="12708" type="EtcItem" name="Foundation Sealed Dynasty Helmet">
 		<!-- A rare Sealed Dynasty Helmet that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -127,12 +127,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="530" />
 		<set name="price" val="9149000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="92" />
-		</for>
+		</stats>
 	</item>
 	<item id="12709" type="EtcItem" name="Foundation Sealed Dynasty Stockings">
 		<!-- A rare Sealed Dynasty Stockings that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -143,13 +143,13 @@
 		<set name="material" val="SCALE_OF_DRAGON" />
 		<set name="weight" val="860" />
 		<set name="price" val="11436000" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="67" />
 			<add stat="maxMp" val="370" />
-		</for>
+		</stats>
 	</item>
 	<item id="12710" type="EtcItem" name="Foundation Adamantite Earring">
 		<!-- A rare Adamantite Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -159,9 +159,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="465900" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="51" />
-		</for>
+		</stats>
 	</item>
 	<item id="12711" type="EtcItem" name="Foundation Adamantite Necklace">
 		<!-- A rare Adamantite Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -171,9 +171,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="621200" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="12712" type="EtcItem" name="Foundation Adamantite Ring">
 		<!-- A rare Adamantite Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -183,9 +183,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="310600" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="34" />
-		</for>
+		</stats>
 	</item>
 	<item id="12713" type="EtcItem" name="Foundation Earring of Black Ore">
 		<!-- A rare Earring of Black Ore that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -195,9 +195,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="711000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="54" />
-		</for>
+		</stats>
 	</item>
 	<item id="12714" type="EtcItem" name="Foundation Necklace of Black Ore">
 		<!-- A rare Necklace of Black Ore that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -207,9 +207,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="948000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="72" />
-		</for>
+		</stats>
 	</item>
 	<item id="12715" type="EtcItem" name="Foundation Ring of Black Ore">
 		<!-- A rare Ring of Black Ore that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -219,9 +219,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="474000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="36" />
-		</for>
+		</stats>
 	</item>
 	<item id="12716" type="EtcItem" name="Foundation Sealed Phoenix Necklace">
 		<!-- A rare Sealed Phoenix Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -231,9 +231,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="1340000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="76" />
-		</for>
+		</stats>
 	</item>
 	<item id="12717" type="EtcItem" name="Foundation Sealed Phoenix Ring">
 		<!-- A rare Sealed Phoenix Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -243,9 +243,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="670000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="38" />
-		</for>
+		</stats>
 	</item>
 	<item id="12718" type="EtcItem" name="Foundation Sealed Phoenix Earring">
 		<!-- A rare Sealed Phoenix Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -255,9 +255,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="1005000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="57" />
-		</for>
+		</stats>
 	</item>
 	<item id="12719" type="EtcItem" name="Foundation Phoenix Necklace">
 		<!-- A rare Phoenix Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -267,9 +267,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="1340000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="76" />
-		</for>
+		</stats>
 	</item>
 	<item id="12720" type="EtcItem" name="Foundation Phoenix Ring">
 		<!-- A rare Phoenix Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -279,9 +279,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="670000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="38" />
-		</for>
+		</stats>
 	</item>
 	<item id="12721" type="EtcItem" name="Foundation Phoenix Earring">
 		<!-- A rare Phoenix Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -291,9 +291,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="1005000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="57" />
-		</for>
+		</stats>
 	</item>
 	<item id="12722" type="EtcItem" name="Foundation Majestic Necklace">
 		<!-- A rare Majestic Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -303,9 +303,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="1998000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="80" />
-		</for>
+		</stats>
 	</item>
 	<item id="12723" type="EtcItem" name="Foundation Majestic Ring">
 		<!-- A rare Majestic Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -315,9 +315,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="999000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="40" />
-		</for>
+		</stats>
 	</item>
 	<item id="12724" type="EtcItem" name="Foundation Majestic Earring">
 		<!-- A rare Majestic Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -327,9 +327,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="1498000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
-		</for>
+		</stats>
 	</item>
 	<item id="12725" type="EtcItem" name="Foundation Sealed Majestic Necklace">
 		<!-- A rare Sealed Majestic Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -339,9 +339,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="1998000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="80" />
-		</for>
+		</stats>
 	</item>
 	<item id="12726" type="EtcItem" name="Foundation Sealed Majestic Ring">
 		<!-- A rare Sealed Majestic Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -351,9 +351,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="999000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="40" />
-		</for>
+		</stats>
 	</item>
 	<item id="12727" type="EtcItem" name="Foundation Sealed Majestic Earring">
 		<!-- A rare Sealed Majestic Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -363,9 +363,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="1498000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
-		</for>
+		</stats>
 	</item>
 	<item id="12728" type="EtcItem" name="Foundation Sealed Tateossian Necklace">
 		<!-- A rare Sealed Tateossian Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -375,9 +375,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="4361000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="91" />
-		</for>
+		</stats>
 	</item>
 	<item id="12729" type="EtcItem" name="Foundation Sealed Tateossian Ring">
 		<!-- A rare Sealed Tateossian Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -387,9 +387,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="2180000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12730" type="EtcItem" name="Foundation Sealed Tateossian Earring">
 		<!-- A rare Sealed Tateossian Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -399,9 +399,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="3270000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="12731" type="EtcItem" name="Foundation Tateossian Necklace">
 		<!-- A rare Tateossian Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -411,9 +411,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="4361000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="91" />
-		</for>
+		</stats>
 	</item>
 	<item id="12732" type="EtcItem" name="Foundation Tateossian Ring">
 		<!-- A rare Tateossian Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -423,9 +423,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="2180000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="46" />
-		</for>
+		</stats>
 	</item>
 	<item id="12733" type="EtcItem" name="Foundation Tateossian Earring">
 		<!-- A rare Tateossian Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -435,9 +435,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="3270000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="12734" type="EtcItem" name="Foundation Dynasty Necklace">
 		<!-- A rare Dynasty Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -447,9 +447,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="7942000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
-		</for>
+		</stats>
 	</item>
 	<item id="12735" type="EtcItem" name="Foundation Dynasty Ring">
 		<!-- A rare Dynasty Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -459,9 +459,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="3971000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="53" />
-		</for>
+		</stats>
 	</item>
 	<item id="12736" type="EtcItem" name="Foundation Dynasty Earring">
 		<!-- A rare Dynasty Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -471,9 +471,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="5956000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="79" />
-		</for>
+		</stats>
 	</item>
 	<item id="12737" type="EtcItem" name="Foundation Sealed Dynasty Necklace">
 		<!-- A rare Sealed Dynasty Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -483,9 +483,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="7942000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
-		</for>
+		</stats>
 	</item>
 	<item id="12738" type="EtcItem" name="Foundation Sealed Dynasty Ring">
 		<!-- A rare Sealed Dynasty Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -495,9 +495,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="3971000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="53" />
-		</for>
+		</stats>
 	</item>
 	<item id="12739" type="EtcItem" name="Foundation Sealed Dynasty Earring">
 		<!-- A rare Sealed Dynasty Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -507,9 +507,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="5956000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="79" />
-		</for>
+		</stats>
 	</item>
 	<item id="12740" type="Armor" name="Baby Pet Scale Armor">
 		<set name="icon" val="icon.etc_pet_armor_i03" />
@@ -521,12 +521,12 @@
 		<set name="weight" val="160" />
 		<set name="price" val="938500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="112" />
-		</for>
+		</stats>
 	</item>
 	<item id="12741" type="Armor" name="Baby Pet Bronze Armor">
 		<set name="icon" val="icon.etc_pet_armor_i03" />
@@ -538,12 +538,12 @@
 		<set name="weight" val="160" />
 		<set name="price" val="1810000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="124" />
-		</for>
+		</stats>
 	</item>
 	<item id="12742" type="Armor" name="Baby Pet Plate Armor">
 		<set name="icon" val="icon.etc_pet_armor_i03" />
@@ -555,12 +555,12 @@
 		<set name="weight" val="160" />
 		<set name="price" val="3563000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="136" />
-		</for>
+		</stats>
 	</item>
 	<item id="12743" type="Armor" name="Baby Pet Mithril Armor">
 		<set name="icon" val="icon.etc_pet_armor_i03" />
@@ -572,12 +572,12 @@
 		<set name="weight" val="160" />
 		<set name="price" val="6281500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="148" />
-		</for>
+		</stats>
 	</item>
 	<item id="12744" type="Armor" name="Baby Pet Oriharukon Armor">
 		<set name="icon" val="icon.etc_pet_armor_i03" />
@@ -589,12 +589,12 @@
 		<set name="weight" val="160" />
 		<set name="price" val="12118000" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="160" />
-		</for>
+		</stats>
 	</item>
 	<item id="12745" type="Armor" name="Baby Pet Orichalcum Armor">
 		<set name="icon" val="icon.etc_pet_armor_i03" />
@@ -606,12 +606,12 @@
 		<set name="weight" val="160" />
 		<set name="price" val="24439500" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="BABY_PET_GROUP,UPGRADE_BABY_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="171" />
-		</for>
+		</stats>
 	</item>
 	<item id="12746" type="Armor" name="Crystal Pendant">
 		<set name="icon" val="icon.accessory_necklace_of_funtion_pet_i00" />
@@ -622,12 +622,12 @@
 		<set name="weight" val="150" />
 		<set name="price" val="1932" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="mDef" val="22" />
-		</for>
+		</stats>
 	</item>
 	<item id="12747" type="Armor" name="Ruby Pendant">
 		<set name="icon" val="icon.accessory_necklace_of_funtion_pet_i00" />
@@ -638,12 +638,12 @@
 		<set name="weight" val="150" />
 		<set name="price" val="10091" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="mDef" val="30" />
-		</for>
+		</stats>
 	</item>
 	<item id="12748" type="Armor" name="Sapphire Pendant">
 		<set name="icon" val="icon.accessory_necklace_of_funtion_pet_i01" />
@@ -654,12 +654,12 @@
 		<set name="weight" val="150" />
 		<set name="price" val="31949" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="mDef" val="40" />
-		</for>
+		</stats>
 	</item>
 	<item id="12749" type="Armor" name="Diamond Pendant">
 		<set name="icon" val="icon.accessory_necklace_of_funtion_pet_i01" />
@@ -670,12 +670,12 @@
 		<set name="weight" val="150" />
 		<set name="price" val="78374" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="mDef" val="52" />
-		</for>
+		</stats>
 	</item>
 	<item id="12750" type="Armor" name="Enria Pendant">
 		<set name="icon" val="icon.accessory_necklace_of_funtion_pet_i02" />
@@ -686,12 +686,12 @@
 		<set name="weight" val="150" />
 		<set name="price" val="231417" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="mDef" val="66" />
-		</for>
+		</stats>
 	</item>
 	<item id="12751" type="Armor" name="Thons Pendant">
 		<set name="icon" val="icon.accessory_necklace_of_funtion_pet_i03" />
@@ -702,12 +702,12 @@
 		<set name="weight" val="150" />
 		<set name="price" val="828490" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="mDef" val="80" />
-		</for>
+		</stats>
 	</item>
 	<item id="12752" type="Armor" name="Asofe Pendant">
 		<set name="icon" val="icon.accessory_necklace_of_funtion_pet_i04" />
@@ -718,12 +718,12 @@
 		<set name="weight" val="150" />
 		<set name="price" val="2582800" /> <!-- H5 Price -->
 		<set name="for_npc" val="true" />
-		<cond msgId="600">
+		<conditions msgId="600">
 			<player categoryType="ITEM_EQUIP_PET_GROUP" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="mDef" val="94" />
-		</for>
+		</stats>
 	</item>
 	<item id="12753" type="EtcItem" name="Kamael Village Teleportation Scroll">
 		<!-- Magic scroll that takes you to Kamael Village. -->
@@ -747,9 +747,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="5000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="46" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12755" type="EtcItem" name="Accessory Life Stone - Level 49">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 49 and above when augmenting items. -->
@@ -759,9 +759,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="6000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="49" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12756" type="EtcItem" name="Accessory Life Stone - Level 52">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 52 and above when augmenting items. -->
@@ -771,9 +771,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="7200" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="52" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12757" type="EtcItem" name="Accessory Life Stone - Level 55">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 55 and above when augmenting items. -->
@@ -783,9 +783,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="8640" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="55" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12758" type="EtcItem" name="Accessory Life Stone - Level 58">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 58 and above when augmenting items. -->
@@ -795,9 +795,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="10000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="58" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12759" type="EtcItem" name="Accessory Life Stone - Level 61">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 61 and above when augmenting items. -->
@@ -807,9 +807,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="12000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="61" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12760" type="EtcItem" name="Accessory Life Stone - Level 64">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 64 and above when augmenting items. -->
@@ -819,9 +819,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="15000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="64" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12761" type="EtcItem" name="Accessory Life Stone - Level 67">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 67 and above when augmenting items. -->
@@ -831,9 +831,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="18000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="67" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12762" type="EtcItem" name="Accessory Life Stone - Level 70">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 70 and above when augmenting items. -->
@@ -843,9 +843,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="21600" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="70" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12763" type="EtcItem" name="Accessory Life Stone - Level 76">
 		<!-- A mineral that has been petrified by a creature's physical or magical damage. Usable by characters level 76 and above when augmenting items. -->
@@ -855,9 +855,9 @@
 		<set name="weight" val="2" />
 		<set name="price" val="24000" />
 		<set name="is_stackable" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player level="76" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="12764" type="EtcItem" name="Fish Chest">
 		<!-- Chest of fish requested by Helvetia. Bring it to her before the fish lose their freshness. -->
@@ -1218,12 +1218,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12794" type="Weapon" name="X Stick - 30-day limited period">
 		<!-- Dimensional item. X Stick. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1241,12 +1241,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12795" type="Weapon" name="Scissors Stick - 30-day limited period">
 		<!-- Dimensional item. Scissor stick. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1264,12 +1264,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12796" type="Weapon" name="Rock Stick - 30-day limited period">
 		<!-- Dimensional item. Rock stick. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1287,12 +1287,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12797" type="Weapon" name="Paper Stick - 30-day limited period">
 		<!-- Dimensional item. Paper stick. Can be used for 30 days. Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -1310,12 +1310,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_premium" val="true" />
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12798" type="Weapon" name="Snowman Transformation Stick">
 		<set name="icon" val="icon.etc_snow_man_i00" />
@@ -1334,12 +1334,12 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="12799" type="Weapon" name="Scarecrow Transformation Stick">
 		<set name="icon" val="icon.weapon_scarescow_stick_i00" />
@@ -1358,11 +1358,11 @@
 		<set name="is_premium" val="true" />
 		<set name="item_skill" val="3418-1" /> <!-- Active Skill: Transform Pig -->
 		<set name="time" val="43200" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 </list>

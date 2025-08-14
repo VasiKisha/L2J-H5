@@ -294,11 +294,13 @@ public class TalentShow extends AbstractNpcAI
 		{
 			hourDiff = 24 - (hourDiff *= -1);
 		}
+		
 		minDiff = 30 - minutes;
 		if (minDiff < 0)
 		{
 			minDiff = 60 - (minDiff *= -1);
 		}
+		
 		long diff;
 		hourDiff *= 3600000;
 		minDiff *= 60000;
@@ -506,6 +508,7 @@ public class TalentShow extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return null;
 	}
 	

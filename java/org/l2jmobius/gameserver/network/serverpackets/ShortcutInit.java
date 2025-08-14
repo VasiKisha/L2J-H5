@@ -38,6 +38,7 @@ public class ShortcutInit extends ServerPacket
 		{
 			return;
 		}
+		
 		_shortcuts = player.getAllShortcuts();
 	}
 	

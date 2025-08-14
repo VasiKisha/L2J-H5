@@ -136,6 +136,7 @@ public class HuntingGroundsTeleport extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

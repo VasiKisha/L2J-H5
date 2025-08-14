@@ -46,7 +46,7 @@ public class AdminLogin implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_server_gm_only"))
 		{
@@ -95,6 +95,7 @@ public class AdminLogin implements IAdminCommandHandler
 				{
 					modes[i] = st.nextToken().trim();
 				}
+				
 				int newType = 0;
 				try
 				{
@@ -104,6 +105,7 @@ public class AdminLogin implements IAdminCommandHandler
 				{
 					newType = Config.getServerTypeId(modes);
 				}
+				
 				if (Config.SERVER_LIST_TYPE != newType)
 				{
 					Config.SERVER_LIST_TYPE = newType;
@@ -160,6 +162,7 @@ public class AdminLogin implements IAdminCommandHandler
 		{
 			showMainPage(activeChar);
 		}
+		
 		return true;
 	}
 	
@@ -231,6 +234,7 @@ public class AdminLogin implements IAdminCommandHandler
 				}
 			}
 		}
+		
 		return nameType;
 	}
 	
@@ -247,7 +251,7 @@ public class AdminLogin implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

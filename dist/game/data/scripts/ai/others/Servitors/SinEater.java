@@ -77,8 +77,10 @@ public class SinEater extends AbstractNpcAI
 					broadcastSummonSay(summon, NpcStringId.OH_THIS_IS_DRAGGING_ON_TOO_LONG_AT_THIS_RATE_I_WON_T_MAKE_IT_HOME_BEFORE_THE_SEVEN_SEALS_ARE_BROKEN);
 				}
 			}
+			
 			startQuestTimer("TALK", 60000, null, player);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

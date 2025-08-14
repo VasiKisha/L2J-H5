@@ -93,12 +93,9 @@ public class Summon extends AbstractEffect
 			summon.getStat().setExp(ExperienceData.getInstance().getExpForLevel(summon.getLevel() % maxPetLevel));
 		}
 		
-		summon.setCurrentHp(summon.getMaxHp());
-		summon.setCurrentMp(summon.getMaxMp());
+		summon.fullRestore();
 		summon.setHeading(player.getHeading());
-		
 		player.setPet(summon);
-		
 		summon.spawnMe();
 		summon.setRunning();
 	}

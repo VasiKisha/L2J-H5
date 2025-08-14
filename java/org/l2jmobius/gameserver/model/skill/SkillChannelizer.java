@@ -100,6 +100,7 @@ public class SkillChannelizer implements Runnable
 			{
 				creature.getSkillChannelized().removeChannelizer(_skill.getChannelingSkillId(), _channelizer);
 			}
+			
 			_channelized = null;
 		}
 		
@@ -142,6 +143,7 @@ public class SkillChannelizer implements Runnable
 					{
 						_channelizer.sendPacket(SystemMessageId.YOUR_SKILL_WAS_DEACTIVATED_DUE_TO_LACK_OF_MP);
 					}
+					
 					_channelizer.abortCast();
 					return;
 				}
@@ -175,6 +177,7 @@ public class SkillChannelizer implements Runnable
 				{
 					return;
 				}
+				
 				_channelized = targetList;
 				
 				for (Creature creature : _channelized)
@@ -208,7 +211,7 @@ public class SkillChannelizer implements Runnable
 							}
 							
 							// Update PvP status
-							if (creature.isPlayable() && _channelizer.isPlayer() && channelingSkill.isBad())
+							if (creature.isPlayable() && _channelizer.isPlayer() && channelingSkill.hasNegativeEffect())
 							{
 								_channelizer.asPlayer().updatePvPStatus(creature);
 							}
@@ -228,7 +231,8 @@ public class SkillChannelizer implements Runnable
 							// Shots are re-charged every cast.
 							_channelizer.rechargeShots(skill.useSoulShot(), skill.useSpiritShot());
 						}
-						_channelizer.broadcastPacket(new MagicSkillLaunched(_channelizer, skill.getId(), skill.getLevel(), creature));
+						
+						_channelizer.broadcastSkillPacket(new MagicSkillLaunched(_channelizer, skill.getId(), skill.getLevel(), creature), creature);
 					}
 				}
 			}

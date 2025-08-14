@@ -52,16 +52,19 @@ public class PailakaInjuredDragon extends AbstractInstance
 {
 	// NPCs
 	private static final int KETRA_ORC_SUPPORTER_2 = 32512;
+	
 	// Monsters
 	private static final int LATANA = 18660;
 	private static final int LATANA_SKILL_USE = 18661;
 	private static final int INJURED_DRAGON_CAMERA_1 = 18603;
 	private static final int INJURED_DRAGON_CAMERA_2 = 18604;
+	
 	// Animals
 	private static final int GRAZING_ANTELOPE = 18637;
 	private static final int GRAZING_BANDERSNATCH = 18643;
 	private static final int GRAZING_FLAVA = 18647;
 	private static final int GRAZING_ELDER_ANTELOPE = 18651;
+	
 	// Guards
 	private static final int VARKA_SILENOS_RECRUIT = 18635;
 	private static final int VARKA_SILENOS_FOOTMAN = 18636;
@@ -73,6 +76,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 	private static final int VARKA_COMMANDER = 18654;
 	private static final int VARKA_HEAD_GUARD = 18655;
 	private static final int PROPHET_GUARD = 18657;
+	
 	// Wizards
 	private static final int VARKA_SILENOS_SHAMAN = 18640;
 	private static final int VARKA_SILENOS_PRIEST = 18641;
@@ -83,24 +87,30 @@ public class PailakaInjuredDragon extends AbstractInstance
 	private static final int VARKA_HEAD_MAGUS = 18656;
 	private static final int DISCIPLE_OF_PROPHET = 18658;
 	private static final int VARKA_PROPHET = 18659;
+	
 	// Skills
 	private static final SkillHolder ANGER = new SkillHolder(5718, 1);
 	private static final SkillHolder PRESENTATION_THE_RISE_OF_LATANA = new SkillHolder(5759, 1);
 	private static final SkillHolder STUN = new SkillHolder(5716, 1);
 	private static final SkillHolder ELECTRIC_FLAME = new SkillHolder(5715, 1);
 	private static final SkillHolder FIRE_BREATH = new SkillHolder(5717, 1);
+	
 	// Drops
 	private static final int PAILAKA_INSTANT_SHIELD = 13032;
 	private static final int QUICK_HEALING_POTION = 13033;
+	
 	// Items
 	private static final int SPEAR_OF_SILENOS = 13052;
 	private static final int ENHANCED_SPEAR_OF_SILENOS = 13053;
 	private static final int WEAPON_UPGRADE_STAGE_1 = 13056;
 	private static final int WEAPON_UPGRADE_STAGE_2 = 13057;
+	
 	// AI Parameters
 	private static final double HP_ANGER_ACTIVATION = 0.3;
+	
 	// Locations
 	private static final Location ENTRY_POINT = new Location(125738, -40933, -3770);
+	
 	// Misc
 	private static final int INSTANCE_ID = 45;
 	// @formatter:off
@@ -137,6 +147,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 		{
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, ENTRY_POINT, world.getInstanceId(), false);
 	}
 	
@@ -242,6 +253,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 						npc.setTarget(player);
 						npc.doCast(FIRE_BREATH.getSkill());
 					}
+					
 					startQuestTimer("LATANA_2000", 6000, npc, player);
 				}
 				break;
@@ -315,6 +327,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 			case "INJURED_DRAGON_CAMERA_1_1007":
 			{
 				player.sendPacket(new SpecialCamera(npc, 300, -3, 5, 3500, 15000, 6000, 0, 6, 1, 0, 0));
+				
 				// startQuestTimer("INJURED_DRAGON_CAMERA_1_9999", 10000, npc, player);
 				break;
 			}
@@ -586,6 +599,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 				
 				// Spawns Mage Type silenos behind the one that was killed.
 				spawnMageBehind(npc, killer, VARKA_SILENOS_MEDIUM);
+				
 				// Check if all the first row have been killed. Despawn mages.
 				checkIfLastInWall(npc);
 				break;
@@ -600,6 +614,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 				
 				// Spawns Mage Type silenos behind the one that was killed.
 				spawnMageBehind(npc, killer, VARKA_SILENOS_PRIEST);
+				
 				// Check if all the first row have been killed. Despawn mages.
 				checkIfLastInWall(npc);
 				break;
@@ -614,6 +629,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 				
 				// Spawns Mage Type silenos behind the one that was killed.
 				spawnMageBehind(npc, killer, VARKA_SILENOS_SHAMAN);
+				
 				// Check if all the first row have been killed. Despawn mages.
 				checkIfLastInWall(npc);
 				break;
@@ -629,6 +645,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 				
 				// Spawns Mage Type silenos behind the one that was killed.
 				spawnMageBehind(npc, killer, VARKA_SILENOS_SEER);
+				
 				// Check if all the first row have been killed. Despawn mages.
 				checkIfLastInWall(npc);
 				break;
@@ -644,6 +661,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 				
 				// Spawns Mage Type silenos behind the one that was killed.
 				spawnMageBehind(npc, killer, VARKA_SILENOS_MAGUS);
+				
 				// Check if all the first row have been killed. Despawn mages.
 				checkIfLastInWall(npc);
 				break;
@@ -658,6 +676,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 				
 				// Spawns Mage Type silenos behind the one that was killed.
 				spawnMageBehind(npc, killer, DISCIPLE_OF_PROPHET);
+				
 				// Check if all the first row have been killed. Despawn mages.
 				checkIfLastInWall(npc);
 				break;
@@ -672,6 +691,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 				
 				// Spawns Mage Type silenos behind the one that was killed.
 				spawnMageBehind(npc, killer, VARKA_HEAD_MAGUS);
+				
 				// Check if all the first row have been killed. Despawn mages.
 				checkIfLastInWall(npc);
 				break;
@@ -686,6 +706,7 @@ public class PailakaInjuredDragon extends AbstractInstance
 				
 				// Spawns Mage Type silenos behind the one that was killed.
 				spawnMageBehind(npc, killer, VARKA_SILENOS_GREAT_SEER);
+				
 				// Check if all the first row have been killed. Despawn mages.
 				checkIfLastInWall(npc);
 				break;

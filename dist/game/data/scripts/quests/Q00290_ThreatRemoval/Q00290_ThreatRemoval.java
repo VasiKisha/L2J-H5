@@ -19,7 +19,6 @@ package quests.Q00290_ThreatRemoval;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.quest.Quest;
@@ -37,11 +36,13 @@ public class Q00290_ThreatRemoval extends Quest
 {
 	// NPC
 	private static final int PINAPS = 30201;
+	
 	// Items
 	private static final int ENCHANT_WEAPON_S = 959;
 	private static final int ENCHANT_ARMOR_S = 960;
 	private static final int FIRE_CRYSTAL = 9552;
 	private static final int SEL_MAHUM_ID_TAG = 15714;
+	
 	// Misc
 	private static final int MIN_LEVEL = 82;
 	
@@ -130,6 +131,7 @@ public class Q00290_ThreatRemoval extends Quest
 							break;
 						}
 					}
+					
 					htmltext = event;
 				}
 				break;
@@ -168,6 +170,7 @@ public class Q00290_ThreatRemoval extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -181,8 +184,7 @@ public class Q00290_ThreatRemoval extends Quest
 		}
 		
 		final int npcId = npc.getId();
-		final float chance = (MOBS_TAG.get(npcId) * Config.RATE_QUEST_DROP);
-		if (getRandom(1000) < chance)
+		if (getRandom(1000) < MOBS_TAG.get(npcId))
 		{
 			rewardItems(player, SEL_MAHUM_ID_TAG, 1);
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
@@ -211,6 +213,7 @@ public class Q00290_ThreatRemoval extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

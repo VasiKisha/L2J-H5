@@ -40,11 +40,13 @@ public class Q00196_SevenSignsSealOfTheEmperor extends Quest
 	private static final int SHUNAIMAN = 32586;
 	private static final int WOOD = 32593;
 	private static final int COURT_MAGICIAN = 32598;
+	
 	// Items
 	private static final int ELMOREDEN_HOLY_WATER = 13808;
 	private static final int COURT_MAGICIANS_MAGIC_STAFF = 13809;
 	private static final int SEAL_OF_BINDING = 13846;
 	private static final int SACRED_SWORD_OF_EINHASAD = 15310;
+	
 	// Misc
 	private static final int MIN_LEVEL = 79;
 	private boolean isBusy = false;
@@ -221,6 +223,7 @@ public class Q00196_SevenSignsSealOfTheEmperor extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -298,6 +301,7 @@ public class Q00196_SevenSignsSealOfTheEmperor extends Quest
 							{
 								npc.setScriptValue(player.getObjectId());
 							}
+							
 							htmltext = npc.isScriptValue(player.getObjectId()) ? "32584-01.html" : "32584-06.html";
 						}
 						break;
@@ -329,6 +333,7 @@ public class Q00196_SevenSignsSealOfTheEmperor extends Quest
 										htmltext = "32586-09.html";
 										giveItems(player, SACRED_SWORD_OF_EINHASAD, 1);
 									}
+									
 									player.sendPacket(SystemMessageId.BY_USING_THE_SKILL_OF_EINHASAD_S_HOLY_SWORD_DEFEAT_THE_EVIL_LILIMS);
 									player.sendPacket(SystemMessageId.BY_USING_THE_HOLY_WATER_OF_EINHASAD_OPEN_THE_DOOR_POSSESSED_BY_THE_CURSE_OF_FLAMES);
 								}
@@ -367,6 +372,7 @@ public class Q00196_SevenSignsSealOfTheEmperor extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

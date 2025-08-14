@@ -40,9 +40,11 @@ public class Q00126_TheNameOfEvil2 extends Quest
 	private static final int BALU_KAIMU = 32120;
 	private static final int CHUTA_KAIMU = 32121;
 	private static final int WARRIORS_GRAVE = 32122;
+	
 	// Items
 	private static final int GAZKH_FRAGMENT = 8782;
 	private static final int BONE_POWDER = 8783;
+	
 	// Reward
 	private static final int ENCHANT_WEAPON_A = 729;
 	
@@ -228,6 +230,7 @@ public class Q00126_TheNameOfEvil2 extends Quest
 					qs.unset("FA2");
 					return "32122-4n.html";
 				}
+				
 				qs.unset("DO");
 				qs.unset("MI");
 				qs.unset("FA");
@@ -277,6 +280,7 @@ public class Q00126_TheNameOfEvil2 extends Quest
 					qs.unset("FA2");
 					return "32122-5j.html";
 				}
+				
 				qs.unset("FA");
 				qs.unset("SOL");
 				qs.unset("TI");
@@ -326,6 +330,7 @@ public class Q00126_TheNameOfEvil2 extends Quest
 					qs.unset("MI2");
 					return "32122-6j.html";
 				}
+				
 				qs.unset("SOL");
 				qs.unset("FA");
 				qs.unset("MI");
@@ -407,6 +412,7 @@ public class Q00126_TheNameOfEvil2 extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -772,6 +778,7 @@ public class Q00126_TheNameOfEvil2 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

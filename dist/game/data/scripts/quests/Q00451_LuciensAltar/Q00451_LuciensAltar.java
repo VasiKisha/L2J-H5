@@ -41,9 +41,11 @@ public class Q00451_LuciensAltar extends Quest
 		32709,
 		32710
 	};
+	
 	// Items
 	private static final int REPLENISHED_BEAD = 14877;
 	private static final int DISCHARGED_BEAD = 14878;
+	
 	// Misc
 	private static final int MIN_LEVEL = 80;
 	
@@ -76,6 +78,7 @@ public class Q00451_LuciensAltar extends Quest
 			giveItems(player, REPLENISHED_BEAD, 5);
 			htmltext = event;
 		}
+		
 		return htmltext;
 	}
 	
@@ -97,6 +100,7 @@ public class Q00451_LuciensAltar extends Quest
 						htmltext = "30537-03.html";
 						break;
 					}
+					
 					qs.setState(State.CREATED);
 					// fallthrou
 				}

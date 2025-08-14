@@ -70,6 +70,7 @@ public class SiegeDefenderList extends ServerPacket
 			Clan clan;
 			buffer.writeInt(size);
 			buffer.writeInt(size);
+			
 			// Listing the Lord and the approved clans
 			for (SiegeClan siegeclan : _castle.getSiege().getDefenderClans())
 			{
@@ -78,6 +79,7 @@ public class SiegeDefenderList extends ServerPacket
 				{
 					continue;
 				}
+				
 				buffer.writeInt(clan.getId());
 				buffer.writeString(clan.getName());
 				buffer.writeString(clan.getLeaderName());
@@ -106,11 +108,13 @@ public class SiegeDefenderList extends ServerPacket
 						break;
 					}
 				}
+				
 				buffer.writeInt(clan.getAllyId());
 				buffer.writeString(clan.getAllyName());
 				buffer.writeString(""); // AllyLeaderName
 				buffer.writeInt(clan.getAllyCrestId());
 			}
+			
 			for (SiegeClan siegeclan : _castle.getSiege().getDefenderWaitingClans())
 			{
 				clan = ClanTable.getInstance().getClan(siegeclan.getClanId());

@@ -29,6 +29,7 @@ public class Falk extends AbstractNpcAI
 {
 	// NPCs
 	private static final int FALK = 32297;
+	
 	// Items
 	private static final int DARION_BADGE = 9674;
 	private static final int BASIC_CERT = 9850; // Basic Caravan Certificate
@@ -49,6 +50,7 @@ public class Falk extends AbstractNpcAI
 		{
 			return "32297-01a.htm";
 		}
+		
 		return "32297-01.htm";
 	}
 	
@@ -59,6 +61,7 @@ public class Falk extends AbstractNpcAI
 		{
 			return "32297-01a.htm";
 		}
+		
 		return "32297-02.htm";
 	}
 	
@@ -73,8 +76,10 @@ public class Falk extends AbstractNpcAI
 				giveItems(player, BASIC_CERT, 1);
 				return "32297-02a.htm";
 			}
+			
 			return "32297-02b.htm";
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 }

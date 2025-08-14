@@ -44,6 +44,7 @@ public class Kanaf extends AbstractNpcAI
 		{
 			return "32346-0" + getRandom(1, 3) + ".htm";
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 }

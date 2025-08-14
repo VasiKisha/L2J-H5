@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
-import org.l2jmobius.gameserver.scripting.ScriptEngineManager;
+import org.l2jmobius.gameserver.scripting.ScriptManager;
 
 /**
  * @author BiggBoss
@@ -62,7 +62,7 @@ public class EffectHandler implements IHandler<Class<? extends AbstractEffect>, 
 	{
 		try
 		{
-			ScriptEngineManager.getInstance().executeScript(ScriptEngineManager.EFFECT_MASTER_HANDLER_FILE);
+			ScriptManager.getInstance().executeScript(ScriptManager.EFFECT_MASTER_HANDLER_FILE);
 		}
 		catch (Exception e)
 		{

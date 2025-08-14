@@ -46,7 +46,7 @@ public class AdminChangeAccessLevel implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final String[] parts = command.split(" ");
 		if (parts.length == 2)
@@ -103,11 +103,12 @@ public class AdminChangeAccessLevel implements IAdminCommandHandler
 				}
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
@@ -137,7 +138,7 @@ public class AdminChangeAccessLevel implements IAdminCommandHandler
 		{
 			player.setAccessLevel(lvl);
 			player.sendMessage("Your character has been banned. Bye.");
-			Disconnection.of(player).defaultSequence(LeaveWorld.STATIC_PACKET);
+			Disconnection.of(player).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
 		}
 	}
 }

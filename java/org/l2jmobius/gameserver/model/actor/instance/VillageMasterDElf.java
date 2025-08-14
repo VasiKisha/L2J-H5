@@ -42,6 +42,7 @@ public class VillageMasterDElf extends VillageMaster
 		{
 			return false;
 		}
+		
 		return pClass.getRace() == Race.DARK_ELF;
 	}
 }

@@ -35,6 +35,7 @@ public class Q00270_TheOneWhoEndsSilence extends Quest
 {
 	// NPC
 	private static final int FAKE_GREYMORE = 32757;
+	
 	// Monsters
 	private static final int SEEKER_SOLINA = 22790;
 	private static final int SAVIOR_SOLINA = 22791;
@@ -46,8 +47,10 @@ public class Q00270_TheOneWhoEndsSilence extends Quest
 	private static final int DIVINITY_PROTECTOR = 22798;
 	private static final int DIVINITY_FIGHTER = 22799;
 	private static final int DIVINITY_MAGUS = 22800;
+	
 	// Items
 	private static final int TATTERED_MONK_CLOTHES = 15526;
+	
 	// Misc
 	private static final int MIN_LEVEL = 82;
 	
@@ -153,6 +156,7 @@ public class Q00270_TheOneWhoEndsSilence extends Quest
 					{
 						giveItems(player, 10397 + getRandom(9), 1);
 					}
+					
 					rewardScroll(player, 2);
 					takeItems(player, TATTERED_MONK_CLOTHES, 200);
 					playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
@@ -267,6 +271,7 @@ public class Q00270_TheOneWhoEndsSilence extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -350,6 +355,7 @@ public class Q00270_TheOneWhoEndsSilence extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -428,6 +434,7 @@ public class Q00270_TheOneWhoEndsSilence extends Quest
 				break;
 			}
 		}
+		
 		giveItems(player, scrollId, 1);
 	}
 	

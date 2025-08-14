@@ -34,11 +34,14 @@ public class Q00356_DigUpTheSeaOfSpores extends Quest
 {
 	// NPC
 	private static final int GAUEN = 30717;
+	
 	// Items
 	private static final int CARNIVORE_SPORE = 5865;
 	private static final int HERBIVOROUS_SPORE = 5866;
+	
 	// Misc
 	private static final int MIN_LEVEL = 43;
+	
 	// Monsters
 	private static final int ROTTING_TREE = 20558;
 	private static final int SPORE_ZOMBIE = 20562;
@@ -125,11 +128,13 @@ public class Q00356_DigUpTheSeaOfSpores extends Quest
 					adena = 10400;
 					htmltext = "30717-17.html";
 				}
+				
 				giveAdena(player, adena, true);
 				qs.exitQuest(true, true);
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -187,6 +192,7 @@ public class Q00356_DigUpTheSeaOfSpores extends Quest
 				htmltext = "30717-07.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -63,6 +63,7 @@ public class Q00350_EnhanceYourWeapon extends Quest
 		30856,
 		30194
 	};
+	
 	// Items
 	private static final int RED_SOUL_CRYSTAL0_ID = 4629;
 	private static final int GREEN_SOUL_CRYSTAL0_ID = 4640;
@@ -182,6 +183,7 @@ public class Q00350_EnhanceYourWeapon extends Quest
 		{
 			htmltext = npc.getId() + "-21.htm";
 		}
+		
 		return htmltext;
 	}
 	
@@ -194,6 +196,7 @@ public class Q00350_EnhanceYourWeapon extends Quest
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -251,8 +254,10 @@ public class Q00350_EnhanceYourWeapon extends Quest
 			{
 				return null;
 			}
+			
 			ret = LevelUpCrystalData.getInstance().getSoulCrystals().get(itemId);
 		}
+		
 		return ret;
 	}
 	
@@ -265,6 +270,7 @@ public class Q00350_EnhanceYourWeapon extends Quest
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	

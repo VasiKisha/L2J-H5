@@ -86,6 +86,7 @@ public class LoginEncryption
 			NewCrypt.appendChecksum(data, offset, encryptedSize);
 			_crypt.crypt(data, offset, encryptedSize);
 		}
+		
 		return true;
 	}
 }

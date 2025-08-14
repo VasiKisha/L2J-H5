@@ -74,6 +74,7 @@ public class ServerRestartManager
 					lastDelay = delay;
 					lastRestart = restartTime;
 				}
+				
 				if (delay < lastDelay)
 				{
 					lastDelay = delay;
@@ -91,6 +92,7 @@ public class ServerRestartManager
 				{
 					nextRestartTime = new SimpleDateFormat("MMMM d'" + getDayNumberSuffix(lastRestart.get(Calendar.DAY_OF_MONTH)) + "' HH:mm", Locale.UK).format(lastRestart.getTime());
 				}
+				
 				ThreadPool.schedule(new ServerRestartTask(), lastDelay - (Config.SERVER_RESTART_SCHEDULE_COUNTDOWN * 1000));
 				LOGGER.info("Scheduled server restart at " + lastRestart.getTime() + ".");
 			}

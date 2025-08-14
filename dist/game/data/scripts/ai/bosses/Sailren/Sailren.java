@@ -43,13 +43,17 @@ public class Sailren extends AbstractNpcAI
 	private static final int VELOCIRAPTOR = 22218; // Velociraptor
 	private static final int PTEROSAUR = 22199; // Pterosaur
 	private static final int TREX = 22217; // Tyrannosaurus
-	private static final int CUBIC = 32107; // Teleportation Cubic
+	private static final int TELEPORT_CUBE = 32107; // Teleportation Cubic
+	
 	// Item
 	private static final int GAZKH = 8784; // Gazkh
+	
 	// Skill
 	private static final SkillHolder ANIMATION = new SkillHolder(5090, 1);
+	
 	// Zone
 	private static final NoRestartZone zone = ZoneManager.getInstance().getZoneById(70049, NoRestartZone.class);
+	
 	// Misc
 	private static final int RESPAWN = 1; // Respawn time (in hours)
 	private static final int MAX_TIME = 3200; // Max time for Sailren fight (in minutes)
@@ -66,8 +70,8 @@ public class Sailren extends AbstractNpcAI
 	
 	private Sailren()
 	{
-		addStartNpc(STATUE, CUBIC);
-		addTalkId(STATUE, CUBIC);
+		addStartNpc(STATUE, TELEPORT_CUBE);
+		addTalkId(STATUE, TELEPORT_CUBE);
 		addFirstTalkId(STATUE);
 		addKillId(VELOCIRAPTOR, PTEROSAUR, TREX, SAILREN);
 		addAttackId(VELOCIRAPTOR, PTEROSAUR, TREX, SAILREN);
@@ -92,7 +96,7 @@ public class Sailren extends AbstractNpcAI
 			{
 				return event;
 			}
-			case "enter":
+			case "ENTER":
 			{
 				String htmltext = null;
 				final Party party = player.getParty();
@@ -128,13 +132,15 @@ public class Sailren extends AbstractNpcAI
 							member.teleToLocation(27549, -6638, -2008);
 						}
 					}
+					
 					startQuestTimer("SPAWN_VELOCIRAPTOR", 60000, null, null);
 					startQuestTimer("TIME_OUT", MAX_TIME * 1000, null, null);
 					startQuestTimer("CHECK_ATTACK", 120000, null, null);
 				}
+				
 				return htmltext;
 			}
-			case "teleportOut":
+			case "EXIT":
 			{
 				player.teleToLocation(TeleportWhereType.TOWN);
 				break;
@@ -221,6 +227,7 @@ public class Sailren extends AbstractNpcAI
 				{
 					STATUS = Status.ALIVE;
 				}
+				
 				for (Creature creature : zone.getCharactersInside())
 				{
 					if (creature != null)
@@ -251,6 +258,7 @@ public class Sailren extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -273,7 +281,7 @@ public class Sailren extends AbstractNpcAI
 				case SAILREN:
 				{
 					STATUS = Status.DEAD;
-					addSpawn(CUBIC, 27644, -6638, -2008, 0, false, 300000);
+					addSpawn(TELEPORT_CUBE, 27644, -6638, -2008, 0, false, 300000);
 					final long respawnTime = RESPAWN * 3600000;
 					GlobalVariablesManager.getInstance().set("SailrenRespawn", System.currentTimeMillis() + respawnTime);
 					cancelQuestTimer("CHECK_ATTACK", null, null);
@@ -309,14 +317,15 @@ public class Sailren extends AbstractNpcAI
 	}
 	
 	@Override
-	public boolean unload(boolean removeFromList)
+	public void unload(boolean removeFromList)
 	{
 		if (STATUS == Status.IN_FIGHT)
 		{
 			LOGGER.info(getClass().getSimpleName() + ": Script is being unloaded while Sailren is active, clearing zone.");
 			notifyEvent("TIME_OUT", null, null);
 		}
-		return super.unload(removeFromList);
+		
+		super.unload(removeFromList);
 	}
 	
 	public static void main(String[] args)

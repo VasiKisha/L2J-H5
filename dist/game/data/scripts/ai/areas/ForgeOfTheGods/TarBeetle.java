@@ -36,6 +36,7 @@ public class TarBeetle extends AbstractNpcAI
 {
 	// NPC
 	private static final int TAR_BEETLE = 18804;
+	
 	// Skills
 	private static final int TAR_SPITE = 6142;
 	private static final SkillHolder[] SKILLS =
@@ -90,10 +91,10 @@ public class TarBeetle extends AbstractNpcAI
 	}
 	
 	@Override
-	public boolean unload()
+	public void unload()
 	{
 		spawn.unload();
-		return super.unload();
+		super.unload();
 	}
 	
 	public static void main(String[] args)

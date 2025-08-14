@@ -28,7 +28,6 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.managers.tasks.UpdateSoDStateTask;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
-import org.l2jmobius.gameserver.model.events.AbstractScript;
 import org.l2jmobius.gameserver.model.quest.Quest;
 
 public class SoDManager
@@ -146,7 +145,7 @@ public class SoDManager
 		{
 			if (edric == null)
 			{
-				AbstractScript.addSpawn(32527, -248525, 250048, 4307, 24576);
+				Quest.addSpawn(32527, -248525, 250048, 4307, 24576);
 			}
 		}
 		else if (edric != null)
@@ -177,6 +176,7 @@ public class SoDManager
 			{
 				setSoDState(2, false);
 			}
+			
 			saveData(SODTYPE);
 			final Quest esQuest = QuestManager.getInstance().getQuest(ENERGY_SEEDS);
 			if (esQuest == null)

@@ -36,6 +36,7 @@ public class Q10268_ToTheSeedOfInfinity extends Quest
 	// NPCs
 	private static final int KEUCEREUS = 32548;
 	private static final int TEPIOS = 32603;
+	
 	// Item
 	private static final int INTRODUCTION = 13811;
 	
@@ -61,6 +62,7 @@ public class Q10268_ToTheSeedOfInfinity extends Quest
 			qs.startQuest();
 			giveItems(player, INTRODUCTION, 1);
 		}
+		
 		return event;
 	}
 	
@@ -118,6 +120,7 @@ public class Q10268_ToTheSeedOfInfinity extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

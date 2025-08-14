@@ -76,14 +76,17 @@ public abstract class FloodProtectedListener extends Thread
 							{
 								LOGGER.warning("Potential Flood from " + connection.getInetAddress().getHostAddress());
 							}
+							
 							fConnection.isFlooding = true;
 							continue;
 						}
+						
 						if (fConnection.isFlooding) // if connection was flooding server but now passed the check
 						{
 							fConnection.isFlooding = false;
 							LOGGER.info(connection.getInetAddress().getHostAddress() + " is not considered as flooding anymore.");
 						}
+						
 						fConnection.lastConnection = System.currentTimeMillis();
 					}
 					else // If it's a new connection.
@@ -140,6 +143,7 @@ public abstract class FloodProtectedListener extends Thread
 		{
 			return;
 		}
+		
 		// Decrement connection count or remove if no more connections exist.
 		final ForeignConnection fConnection = _floodProtection.get(ip);
 		if (fConnection != null)

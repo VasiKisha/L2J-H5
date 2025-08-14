@@ -70,6 +70,7 @@ public class QuestGuard extends Guard
 		{
 			EventDispatcher.getInstance().notifyEventAsyncDelayed(new OnAttackableKill(null, this, false), this, _onKillDelay);
 		}
+		
 		return true;
 	}
 	

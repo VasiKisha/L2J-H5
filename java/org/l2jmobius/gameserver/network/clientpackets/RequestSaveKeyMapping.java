@@ -48,6 +48,7 @@ public class RequestSaveKeyMapping extends ClientPacket
 			{
 				UIData.addCategory(_catMap, category, readByte());
 			}
+			
 			category++;
 			
 			final int cmd2Size = readByte();
@@ -55,6 +56,7 @@ public class RequestSaveKeyMapping extends ClientPacket
 			{
 				UIData.addCategory(_catMap, category, readByte());
 			}
+			
 			category++;
 			
 			final int cmdSize = readInt();
@@ -68,6 +70,7 @@ public class RequestSaveKeyMapping extends ClientPacket
 				UIData.addKey(_keyMap, i, new ActionKey(i, cmd, key, tgKey1, tgKey2, show));
 			}
 		}
+		
 		readInt();
 		readInt();
 	}

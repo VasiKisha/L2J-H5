@@ -39,6 +39,7 @@ public abstract class LoginServerPacket extends WritablePacket<LoginClient>
 		{
 			// LOGGER.error(e.getMessage(), e);
 		}
+		
 		return false;
 	}
 	

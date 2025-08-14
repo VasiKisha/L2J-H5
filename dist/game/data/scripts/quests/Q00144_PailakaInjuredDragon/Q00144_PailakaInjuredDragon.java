@@ -46,8 +46,10 @@ public class Q00144_PailakaInjuredDragon extends Quest
 	private static final int KETRA_ORC_SUPPORTER_1 = 32502;
 	private static final int KETRA_ORC_INTELLIGENCE_OFFICER = 32509;
 	private static final int KETRA_ORC_SUPPORTER2 = 32512;
+	
 	// Monster
 	private static final int LATANA = 18660;
+	
 	// Items
 	private static final int PAILAKA_INSTANT_SHIELD = 13032;
 	private static final int QUICK_HEALING_POTION = 13033;
@@ -60,6 +62,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 	private static final int SILENOS_HAIR_ACCESSORY = 13058;
 	private static final int PAILAKA_SHIRT = 13296;
 	private static final int SCROLL_OF_ESCAPE = 736;
+	
 	// Skills
 	private static final SkillHolder PAILAKA_REWARD_ENERGY_REPLENISHING = new SkillHolder(5774, 2);
 	private static final SkillHolder[] BUFFS =
@@ -77,6 +80,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 		new SkillHolder(1268, 4), // Vampiric Rage Lv4
 		new SkillHolder(1045, 6), // Blessed Body Lv6
 	};
+	
 	// Misc
 	private static final int MIN_LEVEL = 73;
 	private static final int MAX_LEVEL = 77;
@@ -113,6 +117,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 					qs.startQuest();
 					qs.setMemoState(1);
 				}
+				
 				htmltext = "32499-07.html";
 				break;
 			}
@@ -412,6 +417,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -450,6 +456,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 				count++;
 			}
 		}
+		
 		return count;
 	}
 }

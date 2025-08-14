@@ -37,6 +37,7 @@ public class RequestOlympiadObserverEnd extends ClientPacket
 		{
 			return;
 		}
+		
 		if (player.inObserverMode())
 		{
 			player.leaveOlympiadObserverMode();

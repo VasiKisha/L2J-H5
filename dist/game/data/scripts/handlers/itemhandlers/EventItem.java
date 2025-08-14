@@ -36,7 +36,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 public class EventItem implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{
@@ -65,6 +65,7 @@ public class EventItem implements IItemHandler
 				LOGGER.warning("EventItemHandler: Item with id: " + itemId + " is not handled");
 			}
 		}
+		
 		return used;
 	}
 	
@@ -103,8 +104,10 @@ public class EventItem implements IItemHandler
 					sk.applyEffects(caster, pc);
 				}
 			});
+			
 			return true;
 		}
+		
 		LOGGER.warning("Char: " + caster.getName() + "[" + caster.getObjectId() + "] has unknown block checker arena");
 		return false;
 	}

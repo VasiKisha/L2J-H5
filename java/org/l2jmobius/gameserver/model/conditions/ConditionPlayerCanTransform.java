@@ -69,6 +69,7 @@ public class ConditionPlayerCanTransform extends Condition
 			player.sendMessage("You cannot transform while registered on an event.");
 			canTransform = false;
 		}
+		
 		return _value == canTransform;
 	}
 }

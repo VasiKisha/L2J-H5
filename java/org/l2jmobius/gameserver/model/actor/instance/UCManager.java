@@ -137,6 +137,7 @@ public class UCManager extends Folk
 						player.sendPacket(packet);
 						return;
 					}
+					
 					realCount++;
 				}
 				
@@ -251,10 +252,12 @@ public class UCManager extends Folk
 								teamList += m.getName() + ";";
 							}
 						}
+						
 						list += i + ". (Participating Team: <font color=00ffff>" + teamList + "</font>)<br>";
 					}
 				}
 			}
+			
 			packet.replace("%list%", list);
 			player.sendPacket(packet);
 		}

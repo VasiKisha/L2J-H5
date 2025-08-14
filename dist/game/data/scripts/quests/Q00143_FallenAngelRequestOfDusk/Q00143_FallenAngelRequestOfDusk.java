@@ -34,12 +34,14 @@ public class Q00143_FallenAngelRequestOfDusk extends Quest
 	private static final int NATOOLS = 30894;
 	private static final int ROCK = 32368;
 	private static final int ANGEL = 32369;
+	
 	// Items
 	private static final int SEALED_PROPHECY_PATH_OF_THE_GOD = 10354;
 	private static final int PROPHECY_PATH_OF_THE_GOD = 10355;
 	private static final int EMPTY_SOUND_CRYSTAL = 10356;
 	private static final int ANGEL_MEDICINE = 10357;
 	private static final int ANGELS_MESSAGE = 10358;
+	
 	// Misc
 	private static final int MAX_REWARD_LEVEL = 43;
 	private boolean isAngelSpawned = false;
@@ -122,6 +124,7 @@ public class Q00143_FallenAngelRequestOfDusk extends Quest
 				{
 					return "32368-03.html";
 				}
+				
 				addSpawn(ANGEL, npc.getX() + 100, npc.getY() + 100, npc.getZ(), 0, false, 120000);
 				startQuestTimer("despawn", 120000, null, player);
 				isAngelSpawned = true;
@@ -154,6 +157,7 @@ public class Q00143_FallenAngelRequestOfDusk extends Quest
 				{
 					isAngelSpawned = false;
 				}
+				
 				htmltext = null;
 				break;
 			}
@@ -163,6 +167,7 @@ public class Q00143_FallenAngelRequestOfDusk extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -231,6 +236,7 @@ public class Q00143_FallenAngelRequestOfDusk extends Quest
 							{
 								addExpAndSp(player, 223036, 13901);
 							}
+							
 							qs.exitQuest(false, true);
 							htmltext = "30297-07.html";
 							break;
@@ -326,6 +332,7 @@ public class Q00143_FallenAngelRequestOfDusk extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

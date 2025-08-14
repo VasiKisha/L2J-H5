@@ -41,7 +41,7 @@ public class AdminTargetSay implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_targetsay"))
 		{
@@ -64,11 +64,12 @@ public class AdminTargetSay implements IAdminCommandHandler
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

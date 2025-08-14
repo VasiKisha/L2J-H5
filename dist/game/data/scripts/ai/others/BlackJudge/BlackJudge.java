@@ -32,6 +32,7 @@ public class BlackJudge extends AbstractNpcAI
 {
 	// NPC
 	private static final int BLACK_JUDGE = 30981;
+	
 	// Misc
 	// @formatter:off
 	private static final int[] COSTS =
@@ -83,6 +84,7 @@ public class BlackJudge extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

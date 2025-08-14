@@ -47,6 +47,7 @@ public class FuncMAtkCritical extends AbstractFunction
 		{
 			return initVal * BaseStat.WIT.calcBonus(effector) * 10;
 		}
+		
 		return initVal;
 	}
 }

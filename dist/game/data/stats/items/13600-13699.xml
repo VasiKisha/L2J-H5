@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="13600" type="EtcItem" name="Transformation Scroll: Giran Archer Mercenary">
 		<!-- Allows you to transform into an Archer mercenary. Can only be used by an elite mercenary in Giran Territory. -->
@@ -14,9 +14,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2703-1" /> <!-- Giran Archer Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13601" type="EtcItem" name="Transformation Scroll: Giran Wizard Mercenary">
 		<!-- Allows you to transform into a Wizard mercenary. Can only be used by an elite mercenary in Giran Territory. -->
@@ -32,9 +32,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2704-1" /> <!-- Giran Wizard Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13602" type="EtcItem" name="Transformation Scroll: Giran Kamael Captain Mercenary">
 		<!-- Allows you to transform into a Kamael Captain Mercenary. Can only be used by an elite mercenary in Giran Territory. -->
@@ -50,9 +50,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2705-1" /> <!-- Giran Kamael Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13603" type="EtcItem" name="Transformation Scroll: Giran Knight Captain Mercenary">
 		<!-- Allows you to transform into a Knight Captain mercenary. Can only be used by an Exalted Mercenary in Giran Territory. -->
@@ -68,9 +68,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2706-1" /> <!-- Giran Knight Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13604" type="EtcItem" name="Transformation Scroll: Giran Commander Mercenary">
 		<!-- Allows you to transform into a Commander mercenary. Can only be used by an Exalted Mercenary in Giran Territory. -->
@@ -86,9 +86,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2707-1" /> <!-- Giran Commander Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13605" type="EtcItem" name="Transformation Scroll: Oren Human Mercenary">
 		<!-- Allows you to transform into a Human mercenary. Can only be used by an ordinary mercenary in Oren Territory. -->
@@ -104,9 +104,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2708-1" /> <!-- Oren Human Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13606" type="EtcItem" name="Transformation Scroll: Oren Elf Mercenary">
 		<!-- Allows you to transform into an Elven mercenary. Can only be used by an ordinary mercenary in Oren Territory. -->
@@ -122,9 +122,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2709-1" /> <!-- Oren Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13607" type="EtcItem" name="Transformation Scroll: Oren Dark Elf Mercenary">
 		<!-- Allows you to transform into a Dark Elven mercenary. Can only be used by an ordinary mercenary in Oren Territory. -->
@@ -140,9 +140,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2710-1" /> <!-- Oren Dark Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13608" type="EtcItem" name="Transformation Scroll: Oren Orc Mercenary">
 		<!-- Allows you to transform into an Orc mercenary. Can only be used by an ordinary mercenary in Oren Territory. -->
@@ -158,9 +158,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2711-1" /> <!-- Oren Orc Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13609" type="EtcItem" name="Transformation Scroll: Oren Dwarf Mercenary">
 		<!-- Allows you to transform into a Dwarven mercenary. Can only be used by an ordinary mercenary in Oren Territory. -->
@@ -176,9 +176,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2712-1" /> <!-- Oren Dwarf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13610" type="EtcItem" name="Transformation Scroll: Oren Kamael Mercenary">
 		<!-- Allows you to transform into a Kamael mercenary. Can only be used by an ordinary mercenary in Oren Territory. -->
@@ -194,9 +194,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2713-1" /> <!-- Oren Kamael Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13611" type="EtcItem" name="Transformation Scroll: Oren Knight Mercenary">
 		<!-- Allows you to transform into a Knight mercenary. Can only be used by an elite mercenary in Oren Territory. -->
@@ -212,9 +212,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2714-1" /> <!-- Oren Knight Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13612" type="EtcItem" name="Transformation Scroll: Oren Archer Mercenary">
 		<!-- Allows you to transform into an Archer mercenary. Can only be used by an elite mercenary in Oren Territory. -->
@@ -230,9 +230,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2715-1" /> <!-- Oren Archer Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13613" type="EtcItem" name="Transformation Scroll: Oren Wizard Mercenary">
 		<!-- Allows you to transform into a Wizard mercenary. Can only be used by an elite mercenary in Oren Territory. -->
@@ -248,9 +248,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2716-1" /> <!-- Oren Wizard Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13614" type="EtcItem" name="Transformation Scroll: Oren Kamael Captain Mercenary">
 		<!-- Allows you to transform into a Kamael Captain Mercenary. Can only be used by an elite mercenary in Oren Territory. -->
@@ -266,9 +266,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2717-1" /> <!-- Oren Kamael Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13615" type="EtcItem" name="Transformation Scroll: Oren Knight Captain Mercenary">
 		<!-- Allows you to transform into a Knight Captain mercenary. Can only be used by an Exalted Mercenary in Oren Territory. -->
@@ -284,9 +284,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2718-1" /> <!-- Oren Knight Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13616" type="EtcItem" name="Transformation Scroll: Oren Commander Mercenary">
 		<!-- Allows you to transform into a Commander mercenary. Can only be used by an Exalted Mercenary in Oren Territory. -->
@@ -302,9 +302,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2719-1" /> <!-- Oren Commander Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13617" type="EtcItem" name="Transformation Scroll: Aden Human Mercenary">
 		<!-- Allows you to transform into a Human mercenary. Can only be used by an ordinary mercenary in Aden Territory. -->
@@ -320,9 +320,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2720-1" /> <!-- Aden Human Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13618" type="EtcItem" name="Transformation Scroll: Aden Elf Mercenary">
 		<!-- Allows you to transform into an Elven mercenary. Can only be used by an ordinary mercenary in Aden Territory. -->
@@ -338,9 +338,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2721-1" /> <!-- Aden Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13619" type="EtcItem" name="Transformation Scroll: Aden Dark Elf Mercenary">
 		<!-- Allows you to transform into a Dark Elven mercenary. Can only be used by an ordinary mercenary in Aden Territory. -->
@@ -356,9 +356,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2722-1" /> <!-- Aden Dark Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13620" type="EtcItem" name="Transformation Scroll: Aden Orc Mercenary">
 		<!-- Allows you to transform into an Orc mercenary. Can only be used by an ordinary mercenary in Aden Territory. -->
@@ -374,9 +374,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2723-1" /> <!-- Aden Orc Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13621" type="EtcItem" name="Transformation Scroll: Aden Dwarf Mercenary">
 		<!-- Allows you to transform into a Dwarven mercenary. Can only be used by an ordinary mercenary in Aden Territory. -->
@@ -392,9 +392,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2724-1" /> <!-- Aden Dwarf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13622" type="EtcItem" name="Transformation Scroll: Aden Kamael Mercenary">
 		<!-- Allows you to transform into a Kamael mercenary. Can only be used by an ordinary mercenary in Aden Territory. -->
@@ -410,9 +410,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2725-1" /> <!-- Aden Kamael Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13623" type="EtcItem" name="Transformation Scroll: Aden Knight Mercenary">
 		<!-- Allows you to transform into a Knight mercenary. Can only be used by an elite mercenary in Aden Territory. -->
@@ -428,9 +428,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2726-1" /> <!-- Aden Knight Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13624" type="EtcItem" name="Transformation Scroll: Aden Archer Mercenary">
 		<!-- Allows you to transform into an Archer mercenary. Can only be used by an elite mercenary in Aden Territory. -->
@@ -446,9 +446,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2727-1" /> <!-- Aden Archer Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13625" type="EtcItem" name="Transformation Scroll: Aden Wizard Mercenary">
 		<!-- Allows you to transform into a Wizard mercenary. Can only be used by an elite mercenary in Aden Territory. -->
@@ -464,9 +464,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2728-1" /> <!-- Aden Wizard Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13626" type="EtcItem" name="Transformation Scroll: Aden Kamael Captain Mercenary">
 		<!-- Allows you to transform into a Kamael Captain Mercenary. Can only be used by an elite mercenary in Aden Territory. -->
@@ -482,9 +482,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2729-1" /> <!-- Aden Kamael Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13627" type="EtcItem" name="Transformation Scroll: Aden Knight Captain Mercenary">
 		<!-- Allows you to transform into a Knight Captain mercenary. Can only be used by an Exalted Mercenary in Aden Territory. -->
@@ -500,9 +500,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2730-1" /> <!-- Aden Knight Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13628" type="EtcItem" name="Transformation Scroll: Aden Commander Mercenary">
 		<!-- Allows you to transform into a Commander mercenary. Can only be used by an Exalted Mercenary in Aden Territory. -->
@@ -518,9 +518,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2731-1" /> <!-- Aden Commander Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13629" type="EtcItem" name="Transformation Scroll: Innadril Human Mercenary">
 		<!-- Allows you to transform into a Human mercenary. Can only be used by an ordinary mercenary in Innadril Territory. -->
@@ -536,9 +536,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2732-1" /> <!-- Innadril Human Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13630" type="EtcItem" name="Transformation Scroll: Innadril Elf Mercenary">
 		<!-- Allows you to transform into an Elven mercenary. Can only be used by an ordinary mercenary in Innadril Territory. -->
@@ -554,9 +554,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2733-1" /> <!-- Innadril Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13631" type="EtcItem" name="Transformation Scroll: Innadril Dark Elf Mercenary">
 		<!-- Allows you to transform into a Dark Elven mercenary. Can only be used by an ordinary mercenary in Innadril Territory. -->
@@ -572,9 +572,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2734-1" /> <!-- Innadril Dark Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13632" type="EtcItem" name="Transformation Scroll: Innadril Orc Mercenary">
 		<!-- Allows you to transform into an Orc mercenary. Can only be used by an ordinary mercenary in Innadril Territory. -->
@@ -590,9 +590,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2735-1" /> <!-- Innadril Orc Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13633" type="EtcItem" name="Transformation Scroll: Innadril Dwarf Mercenary">
 		<!-- Allows you to transform into a Dwarven mercenary. Can only be used by an ordinary mercenary in Innadril Territory. -->
@@ -608,9 +608,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2736-1" /> <!-- Innadril Dwarf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13634" type="EtcItem" name="Transformation Scroll: Innadril Kamael Mercenary">
 		<!-- Allows you to transform into a Kamael mercenary. Can only be used by an ordinary mercenary in Innadril Territory. -->
@@ -626,9 +626,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2737-1" /> <!-- Innadril Kamael Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13635" type="EtcItem" name="Transformation Scroll: Innadril Knight Mercenary">
 		<!-- Allows you to transform into a Knight mercenary. Can only be used by an elite mercenary in Innadril Territory. -->
@@ -644,9 +644,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2738-1" /> <!-- Innadril Knight Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13636" type="EtcItem" name="Transformation Scroll: Innadril Archer Mercenary">
 		<!-- Allows you to transform into an Archer mercenary. Can only be used by an elite mercenary in Innadril Territory. -->
@@ -662,9 +662,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2739-1" /> <!-- Innadril Archer Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13637" type="EtcItem" name="Transformation Scroll: Innadril Wizard Mercenary">
 		<!-- Allows you to transform into a Wizard mercenary. Can only be used by an elite mercenary in Innadril Territory. -->
@@ -680,9 +680,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2740-1" /> <!-- Innadril Wizard Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13638" type="EtcItem" name="Transformation Scroll: Innadril Kamael Captain Mercenary">
 		<!-- Allows you to transform into a Kamael Captain Mercenary. Can only be used by an elite mercenary in Innadril Territory. -->
@@ -698,9 +698,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2741-1" /> <!-- Innadril Kamael Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13639" type="EtcItem" name="Transformation Scroll: Innadril Knight Captain Mercenary">
 		<!-- Allows you to transform into a Knight Captain mercenary. Can only be used by an Exalted Mercenary in Innadril Territory. -->
@@ -716,9 +716,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2742-1" /> <!-- Innadril Knight Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13640" type="EtcItem" name="Transformation Scroll: Innadril Commander Mercenary">
 		<!-- Allows you to transform into a Commander mercenary. Can only be used by an Exalted Mercenary in Innadril Territory. -->
@@ -734,9 +734,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2743-1" /> <!-- Innadril Commander Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13641" type="EtcItem" name="Transformation Scroll: Goddard Human Mercenary">
 		<!-- Allows you to transform into a Human mercenary. Can only be used by an ordinary mercenary in Goddard Territory. -->
@@ -752,9 +752,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2744-1" /> <!-- Goddard Human Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13642" type="EtcItem" name="Transformation Scroll: Goddard Elf Mercenary">
 		<!-- Allows you to transform into an Elven mercenary. Can only be used by an ordinary mercenary in Goddard Territory. -->
@@ -770,9 +770,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2745-1" /> <!-- Goddard Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13643" type="EtcItem" name="Transformation Scroll: Goddard Dark Elf Mercenary">
 		<!-- Allows you to transform into a Dark Elven mercenary. Can only be used by an ordinary mercenary in Goddard Territory. -->
@@ -788,9 +788,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2746-1" /> <!-- Goddard Dark Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13644" type="EtcItem" name="Transformation Scroll: Goddard Orc Mercenary">
 		<!-- Allows you to transform into an Orc mercenary. Can only be used by an ordinary mercenary in Goddard Territory. -->
@@ -806,9 +806,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2747-1" /> <!-- Goddard Orc Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13645" type="EtcItem" name="Transformation Scroll: Goddard Dwarf Mercenary">
 		<!-- Allows you to transform into a Dwarven mercenary. Can only be used by an ordinary mercenary in Goddard Territory. -->
@@ -824,9 +824,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2748-1" /> <!-- Goddard Dwarf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13646" type="EtcItem" name="Transformation Scroll: Goddard Kamael Mercenary">
 		<!-- Allows you to transform into a Kamael mercenary. Can only be used by an ordinary mercenary in Goddard Territory. -->
@@ -842,9 +842,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2749-1" /> <!-- Goddard Kamael Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13647" type="EtcItem" name="Transformation Scroll: Goddard Knight Mercenary">
 		<!-- Allows you to transform into a Knight mercenary. Can only be used by an elite mercenary in Goddard Territory. -->
@@ -860,9 +860,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2750-1" /> <!-- Goddard Knight Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13648" type="EtcItem" name="Transformation Scroll: Goddard Archer Mercenary">
 		<!-- Allows you to transform into an Archer mercenary. Can only be used by an elite mercenary in Goddard Territory. -->
@@ -878,9 +878,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2751-1" /> <!-- Goddard Archer Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13649" type="EtcItem" name="Transformation Scroll: Goddard Wizard Mercenary">
 		<!-- Allows you to transform into a Wizard mercenary. Can only be used by an elite mercenary in Goddard Territory. -->
@@ -896,9 +896,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2752-1" /> <!-- Goddard Wizard Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13650" type="EtcItem" name="Transformation Scroll: Goddard Kamael Captain Mercenary">
 		<!-- Allows you to transform into a Kamael Captain Mercenary. Can only be used by an elite mercenary in Goddard Territory. -->
@@ -914,9 +914,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2753-1" /> <!-- Goddard Kamael Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13651" type="EtcItem" name="Transformation Scroll: Goddard Knight Captain Mercenary">
 		<!-- Allows you to transform into a Knight Captain mercenary. Can only be used by an Exalted Mercenary in Goddard Territory. -->
@@ -932,9 +932,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2754-1" /> <!-- Goddard Knight Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13652" type="EtcItem" name="Transformation Scroll: Goddard Commander Mercenary">
 		<!-- Allows you to transform into a Commander mercenary. Can only be used by an Exalted Mercenary in Goddard Territory. -->
@@ -950,9 +950,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2755-1" /> <!-- Goddard Commander Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13653" type="EtcItem" name="Transformation Scroll: Rune Human Mercenary">
 		<!-- Allows you to transform into a Human mercenary. Can only be used by an ordinary mercenary in Rune Territory. -->
@@ -968,9 +968,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2756-1" /> <!-- Rune Human Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13654" type="EtcItem" name="Transformation Scroll: Rune Elf Mercenary">
 		<!-- Allows you to transform into an Elven mercenary. Can only be used by an ordinary mercenary in Rune Territory. -->
@@ -986,9 +986,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2757-1" /> <!-- Rune Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13655" type="EtcItem" name="Transformation Scroll: Rune Dark Elf Mercenary">
 		<!-- Allows you to transform into a Dark Elven mercenary. Can only be used by an ordinary mercenary in Rune Territory. -->
@@ -1004,9 +1004,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2758-1" /> <!-- Rune Dark Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13656" type="EtcItem" name="Transformation Scroll: Rune Orc Mercenary">
 		<!-- Allows you to transform into an Orc mercenary. Can only be used by an ordinary mercenary in Rune Territory. -->
@@ -1022,9 +1022,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2759-1" /> <!-- Rune Orc Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13657" type="EtcItem" name="Transformation Scroll: Rune Dwarf Mercenary">
 		<!-- Allows you to transform into a Dwarven mercenary. Can only be used by an ordinary mercenary in Rune Territory. -->
@@ -1040,9 +1040,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2760-1" /> <!-- Rune Dwarf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13658" type="EtcItem" name="Transformation Scroll: Rune Kamael Mercenary">
 		<!-- Allows you to transform into a Kamael mercenary. Can only be used by an ordinary mercenary in Rune Territory. -->
@@ -1058,9 +1058,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2761-1" /> <!-- Rune Kamael Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13659" type="EtcItem" name="Transformation Scroll: Rune Knight Mercenary">
 		<!-- Allows you to transform into a Knight mercenary. Can only be used by an elite mercenary in Rune Territory. -->
@@ -1076,9 +1076,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2762-1" /> <!-- Rune Knight Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13660" type="EtcItem" name="Transformation Scroll: Rune Archer Mercenary">
 		<!-- Allows you to transform into an Archer mercenary. Can only be used by an elite mercenary in Rune Territory. -->
@@ -1094,9 +1094,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2763-1" /> <!-- Rune Archer Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13661" type="EtcItem" name="Transformation Scroll: Rune Wizard Mercenary">
 		<!-- Allows you to transform into a Wizard mercenary. Can only be used by an elite mercenary in Rune Territory. -->
@@ -1112,9 +1112,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2764-1" /> <!-- Rune Wizard Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13662" type="EtcItem" name="Transformation Scroll: Rune Kamael Captain Mercenary">
 		<!-- Allows you to transform into a Kamael Captain Mercenary. Can only be used by an elite mercenary in Rune Territory. -->
@@ -1130,9 +1130,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2765-1" /> <!-- Rune Kamael Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13663" type="EtcItem" name="Transformation Scroll: Rune Knight Captain Mercenary">
 		<!-- Allows you to transform into a Knight Captain mercenary. Can only be used by an Exalted Mercenary in Rune Territory. -->
@@ -1148,9 +1148,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2766-1" /> <!-- Rune Knight Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13664" type="EtcItem" name="Transformation Scroll: Rune Commander Mercenary">
 		<!-- Allows you to transform into a Commander mercenary. Can only be used by an Exalted Mercenary in Rune Territory. -->
@@ -1166,9 +1166,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2767-1" /> <!-- Rune Commander Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13665" type="EtcItem" name="Transformation Scroll: Schuttgart Human Mercenary">
 		<!-- Allows you to transform into a Human mercenary. Can only be used by an ordinary mercenary in Schuttgart Territory. -->
@@ -1184,9 +1184,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2768-1" /> <!-- Schuttgart Human Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13666" type="EtcItem" name="Transformation Scroll: Schuttgart Elf Mercenary">
 		<!-- Allows you to transform into an Elven mercenary. Can only be used by an ordinary mercenary in Schuttgart Territory. -->
@@ -1202,9 +1202,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2769-1" /> <!-- Schuttgart Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13667" type="EtcItem" name="Transformation Scroll: Schuttgart Dark Elf Mercenary">
 		<!-- Allows you to transform into a Dark Elven mercenary. Can only be used by an ordinary mercenary in Schuttgart Territory. -->
@@ -1220,9 +1220,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2770-1" /> <!-- Schuttgart Dark Elf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13668" type="EtcItem" name="Transformation Scroll: Schuttgart Orc Mercenary">
 		<!-- Allows you to transform into an Orc mercenary. Can only be used by an ordinary mercenary in Schuttgart Territory. -->
@@ -1238,9 +1238,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2771-1" /> <!-- Schuttgart Orc Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13669" type="EtcItem" name="Transformation Scroll: Schuttgart Dwarf Mercenary">
 		<!-- Allows you to transform into a Dwarven mercenary. Can only be used by an ordinary mercenary in Schuttgart Territory. -->
@@ -1256,9 +1256,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2772-1" /> <!-- Schuttgart Dwarf Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13670" type="EtcItem" name="Transformation Scroll: Schuttgart Kamael Mercenary">
 		<!-- Allows you to transform into a Kamael mercenary. Can only be used by an ordinary mercenary in Schuttgart Territory. -->
@@ -1274,9 +1274,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2773-1" /> <!-- Schuttgart Kamael Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13671" type="EtcItem" name="Transformation Scroll: Schuttgart Knight Mercenary">
 		<!-- Allows you to transform into a Knight mercenary. Can only be used by an elite mercenary in Schuttgart Territory. -->
@@ -1292,9 +1292,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2774-1" /> <!-- Schuttgart Knight Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13672" type="EtcItem" name="Transformation Scroll: Schuttgart Archer Mercenary">
 		<!-- Allows you to transform into an Archer mercenary. Can only be used by an elite mercenary in Schuttgart Territory. -->
@@ -1310,9 +1310,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2775-1" /> <!-- Schuttgart Archer Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13673" type="EtcItem" name="Transformation Scroll: Schuttgart Wizard Mercenary">
 		<!-- Allows you to transform into a Wizard mercenary. Can only be used by an elite mercenary in Schuttgart Territory. -->
@@ -1328,9 +1328,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2776-1" /> <!-- Schuttgart Wizard Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13674" type="EtcItem" name="Transformation Scroll: Schuttgart Kamael Captain Mercenary">
 		<!-- Allows you to transform into a Kamael Captain Mercenary. Can only be used by an elite mercenary in Schuttgart Territory. -->
@@ -1346,9 +1346,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2777-1" /> <!-- Schuttgart Kamael Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13675" type="EtcItem" name="Transformation Scroll: Schuttgart Knight Captain Mercenary">
 		<!-- Allows you to transform into a Knight Captain mercenary. Can only be used by an Exalted Mercenary in Schuttgart Territory. -->
@@ -1364,9 +1364,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2778-1" /> <!-- Schuttgart Knight Captain Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13676" type="EtcItem" name="Transformation Scroll: Schuttgart Commander Mercenary">
 		<!-- Allows you to transform into a Commander mercenary. Can only be used by an Exalted Mercenary in Schuttgart Territory. -->
@@ -1382,9 +1382,9 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2779-1" /> <!-- Schuttgart Commander Mercenary -->
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="13677" type="EtcItem" name="Gludio Disguise Scroll">
 		<!-- Allows you to hide your name when participating in a battle in Gludio Territory. -->
@@ -1523,17 +1523,17 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="2453">
+		<conditions msgId="2453">
 			<and>
 				<player castle="-1" /> <!-- owns a castle -->
 				<player pledgeClass="5" /> <!-- Baron -->
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player cloakStatus="true" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
-		</for>
+		</stats>
 	</item>
 	<item id="13687" type="Armor" name="Knight's Cloak">
 		<!-- Cloak with luxurious embroidery. Dark Attribute Defense +30. Can be worn by Barons or higher ranks of the clan that owns a castle. When an armor set above the Dynasty level is worn, the Sealed Cloak Slot will be open so that the cloak can be equipped. Enchantment, attribute, and smelting are impossible. Cannot be exchanged or dropped. -->
@@ -1548,17 +1548,17 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="2453">
+		<conditions msgId="2453">
 			<and>
 				<player castle="-1" /> <!-- owns a castle -->
 				<player pledgeClass="5" /> <!-- Baron -->
 				<player cloakStatus="true" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
 			<add stat="darkRes" val="30" />
-		</for>
+		</stats>
 	</item>
 	<item id="13688" type="Armor" name="Knight's Cloak - Light Armor exclusive">
 		<!-- Cloak with luxurious embroidery. Dark Attribute Defense +30, and Cannot be exchanged or dropped. Can be worn by Barons or higher ranks of the clan that owns a castle. When the entire Vesper Noble or Dynasty set is worn, the Sealed Cloak Slot will be open and one can now wear the cloak. The cloak is exclusively for Bow Masters and Dagger Masters excluding Kamaels. Enchantment, special abilities and augmentation are not possible. Cannot be exchanged or dropped. -->
@@ -1573,7 +1573,7 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="2453">
+		<conditions msgId="2453">
 			<and>
 				<player castle="-1" /> <!-- owns a castle -->
 				<player categoryType="ROGUE_CLOACK" />
@@ -1581,11 +1581,11 @@
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player cloakStatus="true" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
 			<add stat="darkRes" val="30" />
-		</for>
+		</stats>
 	</item>
 	<item id="13689" type="Armor" name="Knight's Cloak - Robe exclusive">
 		<!-- Cloak with luxurious embroidery. Dark Attribute Defense +30, and Cannot be exchanged or dropped. Can be worn by Barons or higher ranks of the clan that owns a castle. When the entire Vesper Noble or Dynasty set is worn, the Sealed Cloak Slot will be open and one can now wear the cloak. The cloak is exclusively for Healer, Enchanter, Summoner and Wizard excluding Kamaels. Enchantment, special abilities and augmentation are not possible. Cannot be exchanged or dropped. -->
@@ -1600,7 +1600,7 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="2453">
+		<conditions msgId="2453">
 			<and>
 				<player castle="-1" /> <!-- owns a castle -->
 				<player categoryType="MAGE_CLOACK" />
@@ -1608,11 +1608,11 @@
 				<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
 				<player cloakStatus="true" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
 			<add stat="darkRes" val="30" />
-		</for>
+		</stats>
 	</item>
 	<item id="13690" type="Armor" name="Knight's Cloak - Kamael exclusive">
 		<!-- Cloak with luxurious embroidery. Dark Attribute Defense +30, and Cannot be exchanged or dropped. Can be worn by Barons or higher ranks of the clan that owns a castle. When the entire Vesper Noble or Dynasty set is worn, the Sealed Cloak Slot will be open and one can now wear the cloak. Kamael exclusive cloak. Enchantment, special abilities and augmentation are not possible. Cannot be exchanged or dropped. -->
@@ -1627,18 +1627,18 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="2453">
+		<conditions msgId="2453">
 			<and>
 				<player castle="-1" /> <!-- owns a castle -->
 				<player pledgeClass="5" /> <!-- Baron -->
 				<player races="KAMAEL" />
 				<player cloakStatus="true" />
 			</and>
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="20" />
 			<add stat="darkRes" val="30" />
-		</for>
+		</stats>
 	</item>
 	<item id="13691" type="EtcItem" name="Mark of Keucereus - Stage 1">
 		<!-- Mark given to an adventurer who successfully completes Keucereus' order to break through to the Hall of Suffering. This mark is required for taking on higher level missions. -->

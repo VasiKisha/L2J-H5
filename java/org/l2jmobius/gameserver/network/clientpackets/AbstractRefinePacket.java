@@ -222,6 +222,7 @@ public abstract class AbstractRefinePacket extends ClientPacket
 		{
 			return false;
 		}
+		
 		// .. and located in inventory
 		if (gemStones.getItemLocation() != ItemLocation.INVENTORY)
 		{
@@ -236,6 +237,7 @@ public abstract class AbstractRefinePacket extends ClientPacket
 		{
 			return false;
 		}
+		
 		// Count must be greater or equal of required number
 		if (getGemStoneCount(grade, ls.getGrade()) > gemStones.getCount())
 		{
@@ -264,6 +266,7 @@ public abstract class AbstractRefinePacket extends ClientPacket
 		{
 			return false;
 		}
+		
 		// Lifestone must be located in inventory
 		if (refinerItem.getItemLocation() != ItemLocation.INVENTORY)
 		{
@@ -275,16 +278,19 @@ public abstract class AbstractRefinePacket extends ClientPacket
 		{
 			return false;
 		}
+		
 		// weapons can't be augmented with accessory ls
 		if ((item.getTemplate() instanceof Weapon) && (ls.getGrade() == GRADE_ACC))
 		{
 			return false;
 		}
+		
 		// and accessory can't be augmented with weapon ls
 		if ((item.getTemplate() instanceof Armor) && (ls.getGrade() != GRADE_ACC))
 		{
 			return false;
 		}
+		
 		// check for level of the lifestone
 		if (player.getLevel() < ls.getPlayerLevel())
 		{
@@ -312,34 +318,42 @@ public abstract class AbstractRefinePacket extends ClientPacket
 		{
 			return false;
 		}
+		
 		if (item.isAugmented())
 		{
 			return false;
 		}
+		
 		if (item.isHeroItem())
 		{
 			return false;
 		}
+		
 		if (item.isShadowItem())
 		{
 			return false;
 		}
+		
 		if (item.isCommonItem())
 		{
 			return false;
 		}
+		
 		if (item.isEtcItem())
 		{
 			return false;
 		}
+		
 		if (item.isTimeLimitedItem())
 		{
 			return false;
 		}
+		
 		if (item.isPvp() && !Config.ALT_ALLOW_AUGMENT_PVP_ITEMS)
 		{
 			return false;
 		}
+		
 		if (item.getTemplate().getCrystalType().isLesser(CrystalType.C))
 		{
 			return false;
@@ -417,39 +431,47 @@ public abstract class AbstractRefinePacket extends ClientPacket
 			player.sendPacket(SystemMessageId.YOU_CANNOT_AUGMENT_ITEMS_WHILE_A_PRIVATE_STORE_OR_PRIVATE_WORKSHOP_IS_IN_OPERATION);
 			return false;
 		}
+		
 		if (player.getActiveTradeList() != null)
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_AUGMENT_ITEMS_WHILE_ENGAGED_IN_TRADE_ACTIVITIES);
 			return false;
 		}
+		
 		if (player.isDead())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_AUGMENT_ITEMS_WHILE_DEAD);
 			return false;
 		}
+		
 		if (player.isParalyzed())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_AUGMENT_ITEMS_WHILE_PARALYZED);
 			return false;
 		}
+		
 		if (player.isFishing())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_AUGMENT_ITEMS_WHILE_FISHING);
 			return false;
 		}
+		
 		if (player.isSitting())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_AUGMENT_ITEMS_WHILE_SITTING_DOWN);
 			return false;
 		}
+		
 		if (player.isCursedWeaponEquipped())
 		{
 			return false;
 		}
+		
 		if (player.isEnchanting() || player.isProcessingTransaction())
 		{
 			return false;
 		}
+		
 		return true;
 	}
 	

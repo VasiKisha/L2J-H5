@@ -127,6 +127,7 @@ public class DocumentItem extends DocumentBase
 				{
 					throw new IllegalStateException("Item created but table node found! Item " + itemId);
 				}
+				
 				parseTable(n);
 			}
 			else if ("set".equalsIgnoreCase(n.getNodeName()))
@@ -135,14 +136,15 @@ public class DocumentItem extends DocumentBase
 				{
 					throw new IllegalStateException("Item created but set node found! Item " + itemId);
 				}
+				
 				parseBeanSet(n, _currentItem.set, 1);
 			}
-			else if ("for".equalsIgnoreCase(n.getNodeName()))
+			else if ("stats".equalsIgnoreCase(n.getNodeName()))
 			{
 				makeItem();
 				parseTemplate(n, _currentItem.item);
 			}
-			else if ("cond".equalsIgnoreCase(n.getNodeName()))
+			else if ("conditions".equalsIgnoreCase(n.getNodeName()))
 			{
 				makeItem();
 				final Condition condition = parseCondition(n.getFirstChild(), _currentItem.item);
@@ -161,9 +163,11 @@ public class DocumentItem extends DocumentBase
 						condition.addName();
 					}
 				}
+				
 				_currentItem.item.attach(condition);
 			}
 		}
+		
 		// bah! in this point item doesn't have to be still created
 		makeItem();
 	}

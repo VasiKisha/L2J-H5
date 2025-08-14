@@ -19,7 +19,6 @@ package org.l2jmobius.gameserver.model.conditions;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
@@ -69,10 +68,11 @@ public class ConditionPlayerCanEscape extends Condition
 		{
 			canTeleport = false;
 		}
-		else if ((GrandBossManager.getInstance().getZone(player) != null) && !player.canOverrideCond(PlayerCondOverride.SKILL_CONDITIONS))
+		else if ((GrandBossManager.getInstance().getZone(player) != null) && !player.isGM())
 		{
 			canTeleport = false;
 		}
+		
 		return _value == canTeleport;
 	}
 }

@@ -95,6 +95,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 			
 			return result;
 		}
+		
 		return null;
 	}
 	
@@ -146,6 +147,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 			LOGGER.log(Level.WARNING, "", e);
 			return false;
 		}
+		
 		return result;
 	}
 	
@@ -203,6 +205,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 		{
 			portPlayerBack(_playerOne.getPlayer());
 		}
+		
 		if ((_playerTwo.getPlayer() != null) && !_playerTwo.isDefaulted() && !_playerTwo.isDisconnected())
 		{
 			portPlayerBack(_playerTwo.getPlayer());
@@ -362,6 +365,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 						LOGGER.log(Level.WARNING, "Exception on validateWinner(): " + e.getMessage(), e);
 					}
 				}
+				
 				if (_playerTwo.isDefaulted())
 				{
 					try
@@ -389,6 +393,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 						LOGGER.log(Level.WARNING, "Exception on validateWinner(): " + e.getMessage(), e);
 					}
 				}
+				
 				if (winside == 1)
 				{
 					result = new ExOlympiadMatchResult(tie, winside, list1, list2);
@@ -397,6 +402,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 				{
 					result = new ExOlympiadMatchResult(tie, winside, list2, list1);
 				}
+				
 				stadium.broadcastPacket(result);
 				return;
 			}
@@ -505,6 +511,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 				{
 					result = new ExOlympiadMatchResult(tie, winside, list2, list1);
 				}
+				
 				stadium.broadcastPacket(result);
 				
 				// Notify to scripts
@@ -651,6 +658,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 			{
 				result = new ExOlympiadMatchResult(tie, winside, list2, list1);
 			}
+			
 			stadium.broadcastPacket(result);
 			
 			if (Config.OLYMPIAD_LOG_FIGHTS)
@@ -768,6 +776,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 		{
 			_playerOne.getPlayer().setInvul(true);
 		}
+		
 		if (_playerTwo.getPlayer() != null)
 		{
 			_playerTwo.getPlayer().setInvul(true);
@@ -781,6 +790,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 		{
 			_playerOne.getPlayer().setInvul(false);
 		}
+		
 		if (_playerTwo.getPlayer() != null)
 		{
 			_playerTwo.getPlayer().setInvul(false);

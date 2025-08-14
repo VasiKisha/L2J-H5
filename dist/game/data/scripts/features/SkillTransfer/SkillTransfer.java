@@ -24,7 +24,6 @@ import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionCancel;
 import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerProfessionChange;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
@@ -89,12 +88,14 @@ public class SkillTransfer extends AbstractNpcAI
 		}
 		
 		final int pomanderId = PORMANDERS[index].getId();
+		
 		// remove unsused HolyPomander
 		final PlayerInventory inv = player.getInventory();
 		for (Item itemI : inv.getAllItemsByItemId(pomanderId))
 		{
 			inv.destroyItem(ItemProcessType.DESTROY, itemI, player, null);
 		}
+		
 		// remove holy pomander variable
 		final String name = HOLY_POMANDER + event.getClassId();
 		player.getVariables().remove(name);
@@ -103,7 +104,7 @@ public class SkillTransfer extends AbstractNpcAI
 	@Override
 	public void onEnterWorld(Player player)
 	{
-		if (!player.canOverrideCond(PlayerCondOverride.SKILL_CONDITIONS) || Config.SKILL_CHECK_GM)
+		if (!player.isGM() || Config.SKILL_CHECK_GM)
 		{
 			final int index = getTransferClassIndex(player);
 			if (index < 0)
@@ -137,6 +138,7 @@ public class SkillTransfer extends AbstractNpcAI
 					}
 				}
 			}
+			
 			// SkillTransfer or HolyPomander missing
 			if (count > 0)
 			{

@@ -28,6 +28,7 @@ import org.l2jmobius.gameserver.data.xml.AdminData;
 public class AdminCommandAccessRight
 {
 	private final String _command;
+	private final String _description;
 	private final int _level;
 	private final boolean _confirmDlg;
 	
@@ -38,6 +39,7 @@ public class AdminCommandAccessRight
 	public AdminCommandAccessRight(StatSet set)
 	{
 		_command = "admin_" + set.getString("command");
+		_description = set.getString("description", "");
 		_confirmDlg = set.getBoolean("confirmDlg", false);
 		_level = set.getInt("accessLevel", 100);
 	}
@@ -45,23 +47,34 @@ public class AdminCommandAccessRight
 	/**
 	 * Initializes the access right for an admin command with specific values.
 	 * @param command the command name (with "admin_" prefix)
+	 * @param description the description associated with this command
 	 * @param confirm whether the command requires confirmation before execution
 	 * @param level the access level required to execute the command
 	 */
-	public AdminCommandAccessRight(String command, boolean confirm, int level)
+	public AdminCommandAccessRight(String command, String description, boolean confirm, int level)
 	{
 		_command = command;
+		_description = description;
 		_confirmDlg = confirm;
 		_level = level;
 	}
 	
 	/**
-	 * Gets the admin command associated with this access right.
-	 * @return the full admin command string, prefixed with "admin_"
+	 * Gets the command associated with this access right.
+	 * @return the full command string, prefixed with "admin_"
 	 */
-	public String getAdminCommand()
+	public String getCommand()
 	{
 		return _command;
+	}
+	
+	/**
+	 * Gets the description associated with this command.
+	 * @return the description string
+	 */
+	public String getDescription()
+	{
+		return _description;
 	}
 	
 	/**

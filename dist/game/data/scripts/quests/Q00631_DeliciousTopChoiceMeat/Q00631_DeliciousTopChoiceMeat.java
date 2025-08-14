@@ -32,12 +32,15 @@ public class Q00631_DeliciousTopChoiceMeat extends Quest
 {
 	// NPC
 	private static final int TUNATUN = 31537;
+	
 	// Items
 	private static final int TOP_QUALITY_MEAT = 7546;
 	private static final int PRIME_MEAT = 15534;
+	
 	// Misc
 	private static final int MIN_LEVEL = 82;
 	private static final int PRIME_MEAT_COUNT = 120;
+	
 	// Rewards
 	private static final int[] RECIPE =
 	{
@@ -169,12 +172,14 @@ public class Q00631_DeliciousTopChoiceMeat extends Quest
 							break;
 						}
 					}
+					
 					qs.exitQuest(true, true);
 					htmltext = event;
 				}
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -211,6 +216,7 @@ public class Q00631_DeliciousTopChoiceMeat extends Quest
 				htmltext = "31537-05.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

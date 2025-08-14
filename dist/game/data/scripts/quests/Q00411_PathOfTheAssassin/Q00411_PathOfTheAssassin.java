@@ -36,6 +36,7 @@ public class Q00411_PathOfTheAssassin extends Quest
 	private static final int TRISKEL = 30416;
 	private static final int GUARD_LEIKAN = 30382;
 	private static final int ARKENIA = 30419;
+	
 	// Items
 	private static final int SHILENS_CALL = 1245;
 	private static final int ARKENIAS_LETTER = 1246;
@@ -43,12 +44,16 @@ public class Q00411_PathOfTheAssassin extends Quest
 	private static final int MOONSTONE_BEASTS_MOLAR = 1248;
 	private static final int SHILENS_TEARS = 1250;
 	private static final int ARKENIAS_RECOMMENDATION = 1251;
+	
 	// Reward
 	private static final int IRON_HEART = 1252;
+	
 	// Monster
 	private static final int MOONSTONE_BEAST = 20369;
+	
 	// Quest Monster
 	private static final int CALPICO = 27036;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -142,6 +147,7 @@ public class Q00411_PathOfTheAssassin extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -224,6 +230,7 @@ public class Q00411_PathOfTheAssassin extends Quest
 						{
 							addExpAndSp(player, 591724, 42528);
 						}
+						
 						qs.exitQuest(false, true);
 						player.sendPacket(new SocialAction(player.getObjectId(), 3));
 						htmltext = "30416-06.html";
@@ -317,6 +324,7 @@ public class Q00411_PathOfTheAssassin extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

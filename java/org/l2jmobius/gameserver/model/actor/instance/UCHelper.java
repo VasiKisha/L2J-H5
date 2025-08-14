@@ -29,7 +29,7 @@ import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 
 public class UCHelper extends Folk
 {
-	private static final Location[][] LOCATIONS = new Location[][]
+	private static final Location[][] LOCATIONS =
 	{
 		{
 			new Location(-84451, -45452, -10728),

@@ -41,6 +41,9 @@ public class GlobalVariablesManager extends AbstractVariables
 	private static final String DELETE_QUERY = "DELETE FROM global_variables";
 	private static final String INSERT_QUERY = "REPLACE INTO global_variables (var, value) VALUES (?, ?)";
 	
+	// Public variable names
+	public static final String DAILY_TASK_RESET = "DAILY_TASK_RESET";
+	
 	protected GlobalVariablesManager()
 	{
 		restoreMe();
@@ -84,6 +87,7 @@ public class GlobalVariablesManager extends AbstractVariables
 				st.setString(2, String.valueOf(entry.getValue()));
 				st.addBatch();
 			}
+			
 			st.executeBatch();
 		}
 		catch (SQLException e)
@@ -108,6 +112,7 @@ public class GlobalVariablesManager extends AbstractVariables
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't delete global variables to database.", e);
 			return false;
 		}
+		
 		return true;
 	}
 	

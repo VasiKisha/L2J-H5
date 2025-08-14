@@ -75,6 +75,7 @@ public class RandomizeHate extends AbstractEffect
 				aggroList.add(creature);
 			}
 		}
+		
 		if (aggroList.isEmpty())
 		{
 			return;

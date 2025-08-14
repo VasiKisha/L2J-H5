@@ -30,7 +30,7 @@ import org.l2jmobius.gameserver.network.serverpackets.ChooseInventoryItem;
 public class EnchantScrolls implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{
@@ -39,6 +39,12 @@ public class EnchantScrolls implements IItemHandler
 		}
 		
 		final Player player = playable.asPlayer();
+		if (player.isMounted())
+		{
+			player.sendPacket(SystemMessageId.INAPPROPRIATE_ENCHANT_CONDITIONS);
+			return false;
+		}
+		
 		if (player.isCastingNow())
 		{
 			return false;

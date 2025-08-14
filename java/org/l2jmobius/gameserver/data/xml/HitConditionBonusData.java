@@ -112,6 +112,7 @@ public class HitConditionBonusData implements IXmlReader
 	public double getConditionBonus(Creature attacker, Creature target)
 	{
 		double mod = 100;
+		
 		// Get high or low bonus
 		if ((attacker.getZ() - target.getZ()) > 50)
 		{

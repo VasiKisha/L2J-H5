@@ -38,6 +38,7 @@ public class TeleportWatchdogTask implements Runnable
 		{
 			return;
 		}
+		
 		_player.onTeleported();
 	}
 }

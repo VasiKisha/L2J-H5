@@ -55,6 +55,7 @@ public class DelevelManager extends AbstractNpcAI
 				{
 					return "1002000-2.htm";
 				}
+				
 				if (getQuestItemsCount(player, Config.DELEVEL_MANAGER_ITEMID) >= Config.DELEVEL_MANAGER_ITEMCOUNT)
 				{
 					takeItems(player, Config.DELEVEL_MANAGER_ITEMID, Config.DELEVEL_MANAGER_ITEMCOUNT);
@@ -62,6 +63,7 @@ public class DelevelManager extends AbstractNpcAI
 					player.broadcastUserInfo();
 					return "1002000.htm";
 				}
+				
 				return "1002000-1.htm";
 			}
 		}

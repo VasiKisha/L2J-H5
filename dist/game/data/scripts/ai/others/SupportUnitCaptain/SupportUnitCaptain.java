@@ -54,6 +54,7 @@ public class SupportUnitCaptain extends AbstractNpcAI
 		36322, // Demon Fortress
 		36360, // Monastic Fortress
 	};
+	
 	// Items
 	private static final int EPAULETTE = 9912; // Knight's Epaulette
 	private static final int RED_MEDITATION = 9931; // Red Talisman of Meditation
@@ -247,6 +248,7 @@ public class SupportUnitCaptain extends AbstractNpcAI
 						itemId = WHITE_FIRE;
 					}
 				}
+				
 				takeItems(player, EPAULETTE, 10);
 				giveItems(player, itemId, 1);
 				htmltext = "unitcaptain-02.html";
@@ -265,6 +267,7 @@ public class SupportUnitCaptain extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

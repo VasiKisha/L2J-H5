@@ -42,11 +42,13 @@ public class Q10274_CollectingInTheAir extends Quest
 {
 	// NPC
 	private static final int LEKON = 32557;
+	
 	// Items
 	private static final int SCROLL = 13844;
 	private static final int RED = 13858;
 	private static final int BLUE = 13859;
 	private static final int GREEN = 13860;
+	
 	// Monsters
 	private static final int[] MOBS =
 	{
@@ -84,6 +86,7 @@ public class Q10274_CollectingInTheAir extends Quest
 			qs.startQuest();
 			giveItems(player, SCROLL, 8);
 		}
+		
 		return event;
 	}
 	
@@ -122,6 +125,7 @@ public class Q10274_CollectingInTheAir extends Quest
 					break;
 				}
 			}
+			
 			playSound(caster, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			npc.doDie(caster);
 		}
@@ -169,6 +173,7 @@ public class Q10274_CollectingInTheAir extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

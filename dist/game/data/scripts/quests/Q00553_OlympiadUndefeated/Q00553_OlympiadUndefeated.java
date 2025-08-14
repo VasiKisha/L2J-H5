@@ -33,6 +33,7 @@ public class Q00553_OlympiadUndefeated extends Quest
 {
 	// NPC
 	private static final int MANAGER = 31688;
+	
 	// Items
 	private static final int WIN_CONF_2 = 17244;
 	private static final int WIN_CONF_5 = 17245;
@@ -57,6 +58,7 @@ public class Q00553_OlympiadUndefeated extends Quest
 		{
 			return getNoQuestMsg(player);
 		}
+		
 		String htmltext = event;
 		if (event.equalsIgnoreCase("31688-03.html"))
 		{
@@ -72,6 +74,7 @@ public class Q00553_OlympiadUndefeated extends Quest
 				{
 					giveItems(player, MEDAL_OF_GLORY, 3);
 				}
+				
 				qs.exitQuest(QuestType.DAILY, true);
 			}
 			else
@@ -79,6 +82,7 @@ public class Q00553_OlympiadUndefeated extends Quest
 				htmltext = getNoQuestMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -188,6 +192,7 @@ public class Q00553_OlympiadUndefeated extends Quest
 				htmltext = "31688-w" + count + ".html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

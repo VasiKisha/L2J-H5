@@ -97,6 +97,7 @@ public class Request
 			_player.sendPacket(SystemMessageId.YOU_HAVE_INVITED_THE_WRONG_TARGET);
 			return false;
 		}
+		
 		if (partner.getRequest().isProcessingRequest())
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.C1_IS_ON_ANOTHER_TASK_PLEASE_TRY_AGAIN_LATER);
@@ -104,6 +105,7 @@ public class Request
 			_player.sendPacket(sm);
 			return false;
 		}
+		
 		if (isProcessingRequest())
 		{
 			_player.sendPacket(SystemMessageId.WAITING_FOR_ANOTHER_REPLY);
@@ -135,6 +137,7 @@ public class Request
 		{
 			_partner.getRequest().clear();
 		}
+		
 		clear();
 	}
 	

@@ -102,6 +102,7 @@ public class CastleAmbassador extends AbstractNpcAI
 					{
 						fortresss.setFortState(1, fortresss.getCastleIdByAmbassador(npc.getId()));
 					}
+					
 					cancelQuestTimer("DESPAWN", npc, null);
 					npc.broadcastEvent("DESPAWN", 1000, null);
 					npc.deleteMe();
@@ -117,6 +118,7 @@ public class CastleAmbassador extends AbstractNpcAI
 				player.sendPacket(packet);
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -127,6 +129,7 @@ public class CastleAmbassador extends AbstractNpcAI
 		{
 			receiver.deleteMe();
 		}
+		
 		return super.onEventReceived(eventName, sender, receiver, reference);
 	}
 	

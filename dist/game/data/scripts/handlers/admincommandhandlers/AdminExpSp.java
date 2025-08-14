@@ -47,7 +47,7 @@ public class AdminExpSp implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_add_exp_sp"))
 		{
@@ -79,12 +79,13 @@ public class AdminExpSp implements IAdminCommandHandler
 				activeChar.sendSysMessage("Usage: //remove_exp_sp exp sp");
 			}
 		}
+		
 		addExpSp(activeChar);
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
@@ -102,13 +103,14 @@ public class AdminExpSp implements IAdminCommandHandler
 			activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
 			return;
 		}
+		
 		final NpcHtmlMessage adminReply = new NpcHtmlMessage();
 		adminReply.setFile(activeChar, "data/html/admin/expsp.htm");
 		adminReply.replace("%name%", player.getName());
 		adminReply.replace("%level%", String.valueOf(player.getLevel()));
 		adminReply.replace("%xp%", String.valueOf(player.getExp()));
 		adminReply.replace("%sp%", String.valueOf(player.getSp()));
-		adminReply.replace("%class%", ClassListData.getInstance().getClass(player.getPlayerClass()).getClientCode());
+		adminReply.replace("%class%", ClassListData.getInstance().getClass(player.getPlayerClass()).getClassName());
 		activeChar.sendPacket(adminReply);
 	}
 	
@@ -125,6 +127,7 @@ public class AdminExpSp implements IAdminCommandHandler
 			activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
 			return false;
 		}
+		
 		final StringTokenizer st = new StringTokenizer(expSp);
 		if (st.countTokens() != 2)
 		{
@@ -144,14 +147,17 @@ public class AdminExpSp implements IAdminCommandHandler
 		{
 			return false;
 		}
+		
 		if ((expval != 0) || (spval != 0))
 		{
 			// Common character information
 			player.sendMessage("Admin is adding you " + expval + " xp and " + spval + " sp.");
 			player.addExpAndSp(expval, spval);
+			
 			// Admin information
 			activeChar.sendSysMessage("Added " + expval + " xp and " + spval + " sp to " + player.getName() + ".");
 		}
+		
 		return true;
 	}
 	
@@ -168,6 +174,7 @@ public class AdminExpSp implements IAdminCommandHandler
 			activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
 			return false;
 		}
+		
 		final StringTokenizer st = new StringTokenizer(expSp);
 		if (st.countTokens() != 2)
 		{
@@ -187,14 +194,17 @@ public class AdminExpSp implements IAdminCommandHandler
 		{
 			return false;
 		}
+		
 		if ((expval != 0) || (spval != 0))
 		{
 			// Common character information
 			player.sendMessage("Admin is removing you " + expval + " xp and " + spval + " sp.");
 			player.removeExpAndSp(expval, spval);
+			
 			// Admin information
 			activeChar.sendSysMessage("Removed " + expval + " xp and " + spval + " sp from " + player.getName() + ".");
 		}
+		
 		return true;
 	}
 }

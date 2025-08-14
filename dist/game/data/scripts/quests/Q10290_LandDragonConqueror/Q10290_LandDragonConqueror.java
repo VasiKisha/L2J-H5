@@ -34,14 +34,18 @@ public class Q10290_LandDragonConqueror extends Quest
 {
 	// NPC
 	private static final int THEODRIC = 30755;
+	
 	// Monster
 	private static final int ANTHARAS = 29068;
+	
 	// Items
 	private static final int PORTAL_STONE = 3865;
 	private static final int SHABBY_NECKLACE = 15522;
 	private static final int MIRACLE_NECKLACE = 15523;
+	
 	// Reward
 	private static final int ANTHARAS_SLAYER_CIRCLET = 8568;
+	
 	// Misc
 	private static final int MIN_LEVEL = 83;
 	
@@ -68,6 +72,7 @@ public class Q10290_LandDragonConqueror extends Quest
 			qs.startQuest();
 			giveItems(player, SHABBY_NECKLACE, 1);
 		}
+		
 		return event;
 	}
 	
@@ -91,6 +96,7 @@ public class Q10290_LandDragonConqueror extends Quest
 					qs.setCond(2, true);
 				}
 			}
+			
 			return true;
 		};
 		
@@ -155,6 +161,7 @@ public class Q10290_LandDragonConqueror extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -46,6 +46,7 @@ public class RequestReplyStopPledgeWar extends ClientPacket
 		{
 			return;
 		}
+		
 		final Player requestor = player.getActiveRequester();
 		if (requestor == null)
 		{

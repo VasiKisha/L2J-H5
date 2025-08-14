@@ -46,6 +46,7 @@ public class ConditionTargetInvSize extends Condition
 			final Player target = effected.asPlayer();
 			return target.getInventory().getNonQuestSize() <= (target.getInventoryLimit() - _size);
 		}
+		
 		return false;
 	}
 }

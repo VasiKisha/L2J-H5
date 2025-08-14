@@ -116,6 +116,7 @@ public class AutoAnnouncement extends Announcement implements Runnable
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't store announcement: ", e);
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -139,6 +140,7 @@ public class AutoAnnouncement extends Announcement implements Runnable
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't update announcement: ", e);
 			return false;
 		}
+		
 		return true;
 	}
 	
@@ -149,6 +151,7 @@ public class AutoAnnouncement extends Announcement implements Runnable
 		{
 			_task.cancel(false);
 		}
+		
 		return super.deleteMe();
 	}
 	
@@ -158,6 +161,7 @@ public class AutoAnnouncement extends Announcement implements Runnable
 		{
 			_task.cancel(false);
 		}
+		
 		_currentState = _repeat;
 		_task = ThreadPool.schedule(this, _initial);
 	}
@@ -169,14 +173,17 @@ public class AutoAnnouncement extends Announcement implements Runnable
 		{
 			return;
 		}
+		
 		for (String content : getContent().split(System.lineSeparator()))
 		{
 			Broadcast.toAllOnlinePlayers(content, getType() == AnnouncementType.AUTO_CRITICAL);
 		}
+		
 		if (_currentState != -1)
 		{
 			_currentState--;
 		}
+		
 		_task = ThreadPool.schedule(this, _delay);
 	}
 }

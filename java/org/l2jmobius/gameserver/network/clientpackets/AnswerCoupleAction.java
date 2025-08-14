@@ -69,6 +69,7 @@ public class AnswerCoupleAction extends ClientPacket
 				target.sendPacket(SystemMessageId.THE_REQUEST_CANNOT_BE_COMPLETED_BECAUSE_THE_TARGET_DOES_NOT_MEET_LOCATION_REQUIREMENTS);
 				return;
 			}
+			
 			int heading = LocationUtil.calculateHeadingFrom(player, target);
 			player.broadcastPacket(new ExRotation(player.getObjectId(), heading));
 			player.setHeading(heading);
@@ -84,6 +85,7 @@ public class AnswerCoupleAction extends ClientPacket
 			sm.addPcName(player);
 			target.sendPacket(sm);
 		}
+		
 		target.setMultiSocialAction(0, 0);
 	}
 }

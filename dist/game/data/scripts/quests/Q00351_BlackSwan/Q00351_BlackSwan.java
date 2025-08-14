@@ -38,13 +38,16 @@ public class Q00351_BlackSwan extends Quest
 	private static final int ROMAN = 30897;
 	private static final int GOSTA = 30916;
 	private static final int IASON_HEINE = 30969;
+	
 	// Items
 	private static final int ORDER_OF_GOSTA = 4296;
 	private static final int LIZARD_FANG = 4297;
 	private static final int BARREL_OF_LEAGUE = 4298;
 	private static final int BILL_OF_IASON_HEINE = 4407;
+	
 	// Misc
 	private static final int MIN_LEVEL = 32;
+	
 	// Monsters
 	private static final int TASABA_LIZARDMAN1 = 20784;
 	private static final int TASABA_LIZARDMAN_SHAMAN1 = 20785;
@@ -138,6 +141,7 @@ public class Q00351_BlackSwan extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -210,6 +214,7 @@ public class Q00351_BlackSwan extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

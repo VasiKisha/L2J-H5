@@ -56,7 +56,7 @@ public class NpcAction implements IActionHandler
 	 * @param player The Player that start an action on the Npc
 	 */
 	@Override
-	public boolean action(Player player, WorldObject target, boolean interact)
+	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
 		final Npc npc = target.asNpc();
 		if (!npc.canTarget(player))
@@ -65,11 +65,13 @@ public class NpcAction implements IActionHandler
 		}
 		
 		player.setLastFolkNPC(npc);
+		
 		// Check if the Player already target the Npc
 		if (target != player.getTarget())
 		{
 			// Set the target of the Player player
 			player.setTarget(target);
+			
 			// Check if the player is attackable (without a forced attack)
 			if (target.isAutoAttackable(player))
 			{
@@ -116,6 +118,7 @@ public class NpcAction implements IActionHandler
 					{
 						player.setLastQuestNpcObject(target.getObjectId());
 					}
+					
 					if (npc.hasListener(EventType.ON_NPC_FIRST_TALK))
 					{
 						EventDispatcher.getInstance().notifyEventAsync(new OnNpcFirstTalk(npc, player), npc);
@@ -129,6 +132,7 @@ public class NpcAction implements IActionHandler
 					{
 						player.updateNotMoveUntil();
 					}
+					
 					if (npc.isFakePlayer() && GeoEngine.getInstance().canSeeTarget(player, npc))
 					{
 						player.getAI().setIntention(Intention.FOLLOW, npc);
@@ -136,6 +140,7 @@ public class NpcAction implements IActionHandler
 				}
 			}
 		}
+		
 		return true;
 	}
 	

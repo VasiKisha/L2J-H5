@@ -43,11 +43,13 @@ public class DarkElfChange1 extends AbstractNpcAI
 		30462, // Tronix
 		32160, // Devon
 	};
+	
 	// Items
 	private static int GAZE_OF_ABYSS = 1244;
 	private static int IRON_HEART = 1252;
 	private static int JEWEL_OF_DARKNESS = 1261;
 	private static int ORB_OF_ABYSS = 1270;
+	
 	// Rewards
 	private static int SHADOW_WEAPON_COUPON_DGRADE = 8869;
 	// @formatter:off
@@ -97,9 +99,11 @@ public class DarkElfChange1 extends AbstractNpcAI
 						player.broadcastUserInfo();
 					}
 				}
+				
 				return npc.getId() + "-" + suffix + ".html";
 			}
 		}
+		
 		return event;
 	}
 	
@@ -146,6 +150,7 @@ public class DarkElfChange1 extends AbstractNpcAI
 		{
 			htmltext = npc.getId() + "-33.html"; // other races
 		}
+		
 		return htmltext;
 	}
 	

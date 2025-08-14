@@ -33,6 +33,7 @@ public class Toma extends AbstractNpcAI
 {
 	// NPC
 	private static final int TOMA = 30556;
+	
 	// Locations
 	private static final Location[] LOCATIONS =
 	{
@@ -40,6 +41,7 @@ public class Toma extends AbstractNpcAI
 		new Location(154153, -220105, -3402),
 		new Location(178834, -184336, -355, 41400)
 	};
+	
 	// Misc
 	private static final int TELEPORT_DELAY = 1800000; // 30 minutes
 	private static Npc _toma;
@@ -60,8 +62,10 @@ public class Toma extends AbstractNpcAI
 			{
 				_toma.deleteMe();
 			}
+			
 			_toma = addSpawn(TOMA, getRandomEntry(LOCATIONS), false, TELEPORT_DELAY);
 		}
+		
 		return null;
 	}
 	

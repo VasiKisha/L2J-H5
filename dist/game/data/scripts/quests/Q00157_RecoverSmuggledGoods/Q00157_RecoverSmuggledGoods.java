@@ -31,11 +31,14 @@ public class Q00157_RecoverSmuggledGoods extends Quest
 {
 	// NPC
 	private static final int WILFORD = 30005;
+	
 	// Monster
 	private static final int GIANT_TOAD = 20121;
+	
 	// Items
 	private static final int BUCKLER = 20;
 	private static final int ADAMANTITE_ORE = 1024;
+	
 	// Misc
 	private static final int MIN_LEVEL = 5;
 	
@@ -70,6 +73,7 @@ public class Q00157_RecoverSmuggledGoods extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -123,6 +127,7 @@ public class Q00157_RecoverSmuggledGoods extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

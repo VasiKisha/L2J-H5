@@ -194,6 +194,7 @@ public class Message
 				_senderName = "";
 			}
 		}
+		
 		return _senderName;
 	}
 	
@@ -207,6 +208,7 @@ public class Message
 				_receiverName = "";
 			}
 		}
+		
 		return _receiverName;
 	}
 	
@@ -246,6 +248,7 @@ public class Message
 		{
 			return;
 		}
+		
 		_unread = false;
 		MailManager.getInstance().markAsReadInDb(_messageId);
 	}
@@ -261,6 +264,7 @@ public class Message
 		{
 			return;
 		}
+		
 		_deletedBySender = true;
 		if (_deletedByReceiver)
 		{
@@ -283,6 +287,7 @@ public class Message
 		{
 			return;
 		}
+		
 		_deletedByReceiver = true;
 		if (_deletedBySender)
 		{
@@ -342,6 +347,7 @@ public class Message
 		{
 			return;
 		}
+		
 		_attachments = null;
 		_hasAttachments = false;
 		MailManager.getInstance().removeAttachmentsInDb(_messageId);
@@ -370,6 +376,7 @@ public class Message
 		{
 			return;
 		}
+		
 		_attachments.deleteMe();
 		_attachments = null;
 	}
@@ -390,6 +397,7 @@ public class Message
 			{
 				return;
 			}
+			
 			_msg.unloadAttachments();
 			_msg = null;
 		}

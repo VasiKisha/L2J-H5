@@ -109,6 +109,7 @@ public class Epidos extends AbstractNpcAI
 				startQuestTimer("check_idle", 600000, npc, null);
 			}
 		}
+		
 		return null;
 	}
 	

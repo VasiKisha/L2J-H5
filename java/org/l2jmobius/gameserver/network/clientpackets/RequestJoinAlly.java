@@ -68,6 +68,7 @@ public class RequestJoinAlly extends ClientPacket
 		{
 			return;
 		}
+		
 		if (!player.getRequest().setRequest(target, this))
 		{
 			return;

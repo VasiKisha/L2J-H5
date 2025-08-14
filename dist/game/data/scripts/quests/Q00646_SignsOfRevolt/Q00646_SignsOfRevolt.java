@@ -30,6 +30,7 @@ public class Q00646_SignsOfRevolt extends Quest
 {
 	// NPC
 	private static final int TORRANT = 32016;
+	
 	// Misc
 	private static final int MIN_LEVEL = 80;
 	

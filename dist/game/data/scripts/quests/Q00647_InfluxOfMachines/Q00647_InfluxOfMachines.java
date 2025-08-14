@@ -34,6 +34,7 @@ public class Q00647_InfluxOfMachines extends Quest
 {
 	// NPC
 	private static final int GUTENHAGEN = 32069;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MOBS = new HashMap<>();
 	static
@@ -51,6 +52,7 @@ public class Q00647_InfluxOfMachines extends Quest
 		MOBS.put(22811, 849); // Great Chaos Golem
 		MOBS.put(22812, 463); // Boom Golem
 	}
+	
 	// Item
 	private static final int BROKEN_GOLEM_FRAGMENT = 15521;
 	private static final int[] RECIPES =
@@ -66,6 +68,7 @@ public class Q00647_InfluxOfMachines extends Quest
 		6899, // Recipe: Arcana Mace (60%)
 		7580, // Recipe: Draconic Bow (60%)
 	};
+	
 	// Misc
 	private static final int MIN_LEVEL = 70;
 	private static final int FRAGMENT_COUNT = 500;
@@ -112,6 +115,7 @@ public class Q00647_InfluxOfMachines extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -162,6 +166,7 @@ public class Q00647_InfluxOfMachines extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -31,7 +31,7 @@ import org.l2jmobius.gameserver.network.serverpackets.StaticObjectInfo;
 public class DoorActionShift implements IActionShiftHandler
 {
 	@Override
-	public boolean action(Player player, WorldObject target, boolean interact)
+	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
 		if (player.isGM())
 		{
@@ -55,6 +55,7 @@ public class DoorActionShift implements IActionShiftHandler
 			html.replace("%unlock%", door.isOpenableBySkill() ? "<font color=00FF00>YES<font>" : "<font color=FF0000>NO</font>");
 			player.sendPacket(html);
 		}
+		
 		return true;
 	}
 	

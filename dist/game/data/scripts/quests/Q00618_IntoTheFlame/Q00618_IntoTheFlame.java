@@ -34,12 +34,15 @@ public class Q00618_IntoTheFlame extends Quest
 	// NPCs
 	private static final int KLEIN = 31540;
 	private static final int HILDA = 31271;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
+	
 	// Items
 	private static final int VACUALITE_ORE = 7265;
 	private static final int VACUALITE = 7266;
 	private static final int VACUALITE_FLOATING_STONE = 7267;
+	
 	// Misc
 	private static final int MIN_LEVEL = 60;
 	private static final int REQUIRED_COUNT = 50;
@@ -72,6 +75,7 @@ public class Q00618_IntoTheFlame extends Quest
 		{
 			return null;
 		}
+		
 		String htmltext = null;
 		switch (event)
 		{
@@ -120,6 +124,7 @@ public class Q00618_IntoTheFlame extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -192,6 +197,7 @@ public class Q00618_IntoTheFlame extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

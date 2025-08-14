@@ -66,6 +66,7 @@ public class ConditionPlayerCanSummon extends Condition
 		{
 			canSummon = false;
 		}
+		
 		return (_value == canSummon);
 	}
 }

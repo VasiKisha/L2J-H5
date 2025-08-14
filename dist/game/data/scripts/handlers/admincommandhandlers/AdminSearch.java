@@ -45,7 +45,7 @@ public class AdminSearch implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_search"))
 		{
@@ -74,9 +74,11 @@ public class AdminSearch implements IAdminCommandHandler
 						page = 1;
 					}
 				}
+				
 				results(activeChar, item, page);
 			}
 		}
+		
 		return true;
 	}
 	
@@ -122,6 +124,7 @@ public class AdminSearch implements IAdminCommandHandler
 				, getFontedWord(text, item.getName()) //
 				, "</td></tr>");
 		}
+		
 		html.replace("%items%", sb.toString());
 		
 		sb.setLength(0);
@@ -189,14 +192,14 @@ public class AdminSearch implements IAdminCommandHandler
 	{
 		final int position = name.toLowerCase().indexOf(text.toLowerCase());
 		final StringBuilder str = new StringBuilder(name);
-		final String font = "<FONT COLOR=\"LEVEL\">";
+		final String font = "<font color=\"LEVEL\">";
 		str.insert(position, font);
-		str.insert(position + (font.length() + text.length()), "</FONT>");
+		str.insert(position + (font.length() + text.length()), "</font>");
 		return str.toString();
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

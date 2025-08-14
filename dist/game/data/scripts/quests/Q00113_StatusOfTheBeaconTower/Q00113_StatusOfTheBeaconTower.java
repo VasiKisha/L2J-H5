@@ -32,6 +32,7 @@ public class Q00113_StatusOfTheBeaconTower extends Quest
 	// NPCs
 	private static final int MOIRA = 31979;
 	private static final int TORRANT = 32016;
+	
 	// Items
 	private static final int FLAME_BOX = 14860;
 	private static final int FIRE_BOX = 8086;
@@ -74,6 +75,7 @@ public class Q00113_StatusOfTheBeaconTower extends Quest
 					giveAdena(player, 154800, true);
 					addExpAndSp(player, 619300, 44200);
 				}
+				
 				qs.exitQuest(false, true);
 				break;
 			}
@@ -83,6 +85,7 @@ public class Q00113_StatusOfTheBeaconTower extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -124,6 +127,7 @@ public class Q00113_StatusOfTheBeaconTower extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

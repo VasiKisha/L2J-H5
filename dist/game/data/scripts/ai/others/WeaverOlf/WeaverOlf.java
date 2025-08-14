@@ -226,8 +226,10 @@ public class WeaverOlf extends AbstractNpcAI
 			{
 				return npc.getId() + "-no.htm";
 			}
+			
 			return super.onEvent(event, npc, player);
 		}
+		
 		return event;
 	}
 	

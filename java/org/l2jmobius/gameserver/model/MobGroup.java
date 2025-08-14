@@ -68,6 +68,7 @@ public class MobGroup
 		{
 			_mobs = new CopyOnWriteArrayList<>();
 		}
+		
 		return _mobs;
 	}
 	

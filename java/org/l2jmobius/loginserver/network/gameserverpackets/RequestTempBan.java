@@ -49,6 +49,7 @@ public class RequestTempBan extends BaseReadablePacket
 		{
 			readString(); // _banReason
 		}
+		
 		banUser();
 	}
 	

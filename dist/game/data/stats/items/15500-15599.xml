@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="15500" type="EtcItem" name="Sel Mahum Diary">
 		<!-- Diary containing the daily life of the Sel Mahum. Take it back to Guard Stan of Oren Village. -->
@@ -584,14 +584,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15545" type="Weapon" name="Mamba Edge">
 		<!-- It can bestow one of the following functions: HP Drain, Haste, or Critical Damage. -->
@@ -612,7 +612,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="382" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="12" />
@@ -620,7 +620,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15546" type="Weapon" name="Eversor Mace">
 		<!-- It can bestow one of the following functions: Health, HP Regeneration, or HP Drain. -->
@@ -641,7 +641,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -649,7 +649,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15547" type="Weapon" name="Contristo Hammer">
 		<!-- It can bestow one of the following functions: Health, HP Drain, or HP Regeneration. -->
@@ -670,7 +670,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -678,7 +678,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15548" type="Weapon" name="Lava Saw">
 		<!-- It can bestow one of the following functions: Health, Focus, or Haste. -->
@@ -700,14 +700,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15549" type="Weapon" name="Jade Claw">
 		<!-- It can bestow one of the following functions: Health, Critical Stun, or Focus. -->
@@ -728,7 +728,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="532" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="4" />
@@ -736,7 +736,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15550" type="Weapon" name="Demitelum">
 		<!-- It can bestow one of the following functions: Guidance, Haste, or Health. -->
@@ -758,7 +758,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="437" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
@@ -766,7 +766,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15551" type="Weapon" name="Sacredium">
 		<!-- It can bestow one of the following functions: MP Regeneration, Mana Up, or Acumen. -->
@@ -788,7 +788,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="350" />
 			<set stat="mAtk" val="256" />
 			<set stat="critRate" val="4" />
@@ -796,7 +796,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15552" type="Weapon" name="Cyclic Cane">
 		<!-- It can bestow one of the following functions: MP Regeneration, Magic Hold, or Empower. -->
@@ -818,7 +818,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="426" />
 			<set stat="mAtk" val="281" />
 			<set stat="critRate" val="4" />
@@ -826,7 +826,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15553" type="Weapon" name="Archangel Sword">
 		<!-- It can bestow one of the following functions: Mana Up, Magic Hold, or Acumen. -->
@@ -848,14 +848,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="350" />
 			<set stat="mAtk" val="256" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15554" type="Weapon" name="Recurve Thorne Bow">
 		<!-- It can bestow one of the following functions: Focus, Critical Slow, or Cheap Shot. -->
@@ -879,7 +879,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="794" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="12" />
@@ -887,7 +887,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15555" type="Weapon" name="Heavenstare Rapier">
 		<!-- Kamael Exclusive Weapon: Eternal Core Sword Conversion. Health, Focus, or Haste can be bestowed. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk. and the amount of recieved heal, and decreased MP consumption per skill during a critical attack. -->
@@ -911,10 +911,10 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3426-1" />
 		<set name="is_sellable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="396" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="10" />
@@ -922,7 +922,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15556" type="Weapon" name="Pyseal Blade">
 		<!-- Kamael Exclusive Weapon: Lava Saw conversion. It can bestow one of the following three functions, Health Focus, or Haste. -->
@@ -944,10 +944,10 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="473" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="8" />
@@ -955,7 +955,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15557" type="Weapon" name="Thorne Crossbow">
 		<!-- Kamael Exclusive Weapon: Recurvethorne Bow conversion. It can bestow one of the following functions, Focus, Critical Slow, or Cheap Shot. -->
@@ -978,10 +978,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="400" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="487" />
 			<set stat="mAtk" val="192" />
 			<set stat="critRate" val="10" />
@@ -989,7 +989,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15558" type="Weapon" name="Periel Sword">
 		<!-- It can bestow one of the following functions: Focus, Haste, or Health. -->
@@ -1011,14 +1011,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15559" type="Weapon" name="Skull Edge">
 		<!-- It can bestow one of the following functions: Haste, Critical Damage, or HP Drain. -->
@@ -1039,7 +1039,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="363" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="12" />
@@ -1047,7 +1047,7 @@
 			<set stat="pAtkSpd" val="433" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15560" type="Weapon" name="Vigwik Axe">
 		<!-- It can bestow one of the following functions: HP Regeneration, HP Drain, or Health. -->
@@ -1068,7 +1068,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1076,7 +1076,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15561" type="Weapon" name="Devilish Maul">
 		<!-- It can bestow one of the following functions: HP Drain, HP Regeneration, or Health. -->
@@ -1097,7 +1097,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1105,7 +1105,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15562" type="Weapon" name="Feather Eye Blade">
 		<!-- It can bestow one of the following functions: Focus, Haste, or Health. -->
@@ -1127,14 +1127,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15563" type="Weapon" name="Octo Claw">
 		<!-- It can bestow one of the following functions: Critical Stun, Focus, or Health. -->
@@ -1155,7 +1155,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="505" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="4" />
@@ -1163,7 +1163,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15564" type="Weapon" name="Doubletop Spear">
 		<!-- It can bestow one of the following functions: Haste, Health, or Guidance. -->
@@ -1185,7 +1185,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="415" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
@@ -1193,7 +1193,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15565" type="Weapon" name="Rising Star">
 		<!-- It can bestow one of the following functions: Mana Up, Acumen, or MP Regeneration. -->
@@ -1215,7 +1215,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="332" />
 			<set stat="mAtk" val="244" />
 			<set stat="critRate" val="4" />
@@ -1223,7 +1223,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15566" type="Weapon" name="Black Visage">
 		<!-- It can bestow one of the following functions: Magic Hold, Empower, or MP Regeneration. -->
@@ -1245,7 +1245,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="404" />
 			<set stat="mAtk" val="268" />
 			<set stat="critRate" val="4" />
@@ -1253,7 +1253,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15567" type="Weapon" name="Veniplant Sword">
 		<!-- It can bestow one of the following functions: Magic Hold, Mana Up, or Acumen. -->
@@ -1275,14 +1275,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="332" />
 			<set stat="mAtk" val="244" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15568" type="Weapon" name="Skull Carnium Bow">
 		<!-- It can bestow one of the following functions: Critical Slow, Cheap Shot, or Focus. -->
@@ -1306,7 +1306,7 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="1500" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="768" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="12" />
@@ -1314,7 +1314,7 @@
 			<set stat="pAtkSpd" val="293" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15569" type="Weapon" name="Gemtail Rapier">
 		<!-- Kamael Exclusive Weapon: Periel Sword Conversion. Focus, Haste, or Health can be bestowed. When enchanted to 4 or more, there is a chance that party members including yourself will get increased P. Atk., M. Atk. and the amount of recieved heal, and decreased MP consumption per skill during a critical attack. -->
@@ -1337,10 +1337,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3426-1" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="376" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="10" />
@@ -1348,7 +1348,7 @@
 			<set stat="pAtkSpd" val="406" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15570" type="Weapon" name="Finale Blade">
 		<!-- Kamael Exclusive Weapon: Feather Eye Blade conversion. It can bestow one of the following three functions, Focus, Haste, or Health. -->
@@ -1370,10 +1370,10 @@
 		<set name="spiritshots" val="1" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="449" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="8" />
@@ -1381,7 +1381,7 @@
 			<set stat="pAtkSpd" val="350" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15571" type="Weapon" name="Dominion Crossbow">
 		<!-- Kamael Exclusive Weapon: Skull Carnium Bow conversion. It can bestow one of the following functions, Critical Slow, Cheap Shot, or Focus. -->
@@ -1404,10 +1404,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="reuse_delay" val="400" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="KAMAEL" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<set stat="pAtk" val="471" />
 			<set stat="mAtk" val="183" />
 			<set stat="critRate" val="10" />
@@ -1415,7 +1415,7 @@
 			<set stat="pAtkSpd" val="303" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="15572" type="Armor" name="Elegia Helmet">
 		<set name="icon" val="icon.armor_helmet_i00" />
@@ -1429,13 +1429,13 @@
 		<set name="price" val="25107000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="110" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15573" type="Armor" name="Elegia Leather Helmet">
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
@@ -1449,10 +1449,10 @@
 		<set name="price" val="25107000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="110" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15574" type="Armor" name="Elegia Circlet">
 		<set name="icon" val="icon.armor_circlet_i00" />
@@ -1466,13 +1466,13 @@
 		<set name="price" val="25107000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="110" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15575" type="Armor" name="Elegia Breastplate">
 		<set name="icon" val="icon.armor_t97_u_i00" />
@@ -1487,13 +1487,13 @@
 		<set name="price" val="66953000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="272" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15576" type="Armor" name="Elegia Leather Breastplate">
 		<set name="icon" val="icon.armor_t98_u_i00" />
@@ -1508,10 +1508,10 @@
 		<set name="price" val="50215000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="204" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15577" type="Armor" name="Elegia Tunic">
 		<set name="icon" val="icon.armor_t99_u_i00" />
@@ -1526,14 +1526,14 @@
 		<set name="price" val="50215000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="136" />
 			<add stat="maxMp" val="661" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15578" type="Armor" name="Elegia Gaiter">
 		<set name="icon" val="icon.armor_t97_l_i00" />
@@ -1548,13 +1548,13 @@
 		<set name="price" val="41846000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="170" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15579" type="Armor" name="Elegia Leather Legging">
 		<set name="icon" val="icon.armor_t98_l_i00" />
@@ -1569,10 +1569,10 @@
 		<set name="price" val="31384000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="128" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15580" type="Armor" name="Elegia Stockings">
 		<set name="icon" val="icon.armor_t99_l_i00" />
@@ -1587,14 +1587,14 @@
 		<set name="price" val="31384000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="85" />
 			<add stat="maxMp" val="439" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15581" type="Armor" name="Elegia Gauntlet">
 		<set name="icon" val="icon.armor_t97_g_i00" />
@@ -1608,13 +1608,13 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15582" type="Armor" name="Elegia Leather Gloves">
 		<set name="icon" val="icon.armor_t98_g_i00" />
@@ -1628,10 +1628,10 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15583" type="Armor" name="Elegia Gloves">
 		<set name="icon" val="icon.armor_t99_g_i00" />
@@ -1645,13 +1645,13 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15584" type="Armor" name="Elegia Boots">
 		<set name="icon" val="icon.armor_t97_b_i00" />
@@ -1665,13 +1665,13 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15585" type="Armor" name="Elegia Leather Boots">
 		<set name="icon" val="icon.armor_t98_b_i00" />
@@ -1685,10 +1685,10 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15586" type="Armor" name="Elegia Shoes">
 		<set name="icon" val="icon.armor_t99_b_i00" />
@@ -1702,13 +1702,13 @@
 		<set name="price" val="16738000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15587" type="Armor" name="Elegia Shield">
 		<set name="icon" val="icon.heavengate_shield_i01" />
@@ -1721,15 +1721,15 @@
 		<set name="weight" val="1190" />
 		<set name="price" val="17575000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="413" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="15588" type="Armor" name="Elegia Sigil">
 		<set name="icon" val="icon.weapon_pricklelotus_i01" />
@@ -1743,14 +1743,14 @@
 		<set name="weight" val="920" />
 		<set name="price" val="17575000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="21" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15589" type="Armor" name="Vorpal Helmet">
 		<set name="icon" val="icon.armor_helmet_i00" />
@@ -1764,13 +1764,13 @@
 		<set name="price" val="20940000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="107" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15590" type="Armor" name="Vorpal Leather Helmet">
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
@@ -1784,10 +1784,10 @@
 		<set name="price" val="20940000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="107" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15591" type="Armor" name="Vorpal Circlet">
 		<set name="icon" val="icon.armor_circlet_i00" />
@@ -1801,13 +1801,13 @@
 		<set name="price" val="20940000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="107" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15592" type="Armor" name="Vorpal Breastplate">
 		<set name="icon" val="icon.armor_t94_u_i03" />
@@ -1822,13 +1822,13 @@
 		<set name="price" val="55840000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="263" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15593" type="Armor" name="Vorpal Leather Breastplate">
 		<set name="icon" val="icon.armor_t95_u_i03" />
@@ -1843,10 +1843,10 @@
 		<set name="price" val="41880000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="197" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15594" type="Armor" name="Vorpal Tunic">
 		<set name="icon" val="icon.armor_t96_u_i03" />
@@ -1861,14 +1861,14 @@
 		<set name="price" val="41880000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="132" />
 			<add stat="maxMp" val="649" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15595" type="Armor" name="Vorpal Gaiter">
 		<set name="icon" val="icon.armor_t94_l_i03" />
@@ -1883,13 +1883,13 @@
 		<set name="price" val="34900000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="164" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15596" type="Armor" name="Vorpal Leather Legging">
 		<set name="icon" val="icon.armor_t95_l_i03" />
@@ -1904,10 +1904,10 @@
 		<set name="price" val="26175000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="123" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15597" type="Armor" name="Vorpal Stockings">
 		<set name="icon" val="icon.armor_t96_l_i03" />
@@ -1922,14 +1922,14 @@
 		<set name="price" val="26175000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="82" />
 			<add stat="maxMp" val="427" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15598" type="Armor" name="Vorpal Gauntlet">
 		<set name="icon" val="icon.armor_t94_g_i03" />
@@ -1943,13 +1943,13 @@
 		<set name="price" val="13960000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="71" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15599" type="Armor" name="Vorpal Leather Gloves">
 		<set name="icon" val="icon.armor_t95_g_i03" />
@@ -1963,9 +1963,9 @@
 		<set name="price" val="13960000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="71" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 </list>

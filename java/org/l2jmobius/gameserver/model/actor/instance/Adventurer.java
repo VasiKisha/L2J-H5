@@ -43,6 +43,7 @@ public class Adventurer extends Folk
 		{
 			pom = npcId + "-" + value;
 		}
+		
 		return "data/html/adventurer_guildsman/" + pom + ".htm";
 	}
 }

@@ -54,6 +54,7 @@ public class Q00221_TestimonyOfProsperity extends Quest
 	private static final int EMILY = 30620;
 	private static final int MAESTRO_NIKOLA = 30621;
 	private static final int BOX_OF_TITAN = 30622;
+	
 	// Items
 	private static final int ADENA = 57;
 	private static final int ANIMAL_SKIN = 1867;
@@ -97,9 +98,11 @@ public class Q00221_TestimonyOfProsperity extends Quest
 	private static final int TOAD_LORD_SAC = 3274;
 	private static final int MARSH_SPIDER_THORN = 3275;
 	private static final int CRYSTAL_BROOCH = 3428;
+	
 	// Reward
 	private static final int MARK_OF_PROSPERITY = 3238;
 	private static final int DIMENSIONAL_DIAMOND = 7562;
+	
 	// Monster
 	private static final int MANDRAGORA_SPROUT1 = 20154;
 	private static final int MANDRAGORA_SAPLING = 20155;
@@ -112,6 +115,7 @@ public class Q00221_TestimonyOfProsperity extends Quest
 	private static final int MARSH_STAKATO_SOLDIER = 20232;
 	private static final int MARSH_SPIDER = 20233;
 	private static final int MARSH_STAKATO_DRONE = 20234;
+	
 	// Misc
 	private static final int MIN_LEVEL = 37;
 	
@@ -145,6 +149,7 @@ public class Q00221_TestimonyOfProsperity extends Quest
 					{
 						giveItems(player, RING_OF_TESTIMONY_1ST, 1);
 					}
+					
 					playSound(player, QuestSound.ITEMSOUND_QUEST_MIDDLE);
 					if (player.getVariables().getInt("2ND_CLASS_DIAMOND_REWARD", 0) == 0)
 					{
@@ -208,6 +213,7 @@ public class Q00221_TestimonyOfProsperity extends Quest
 					{
 						qs.setCond(2, true);
 					}
+					
 					htmltext = event;
 				}
 				break;
@@ -257,6 +263,7 @@ public class Q00221_TestimonyOfProsperity extends Quest
 				{
 					qs.setCond(2, true);
 				}
+				
 				htmltext = event;
 				break;
 			}
@@ -270,6 +277,7 @@ public class Q00221_TestimonyOfProsperity extends Quest
 					{
 						qs.setCond(2, true);
 					}
+					
 					htmltext = event;
 				}
 				break;
@@ -309,6 +317,7 @@ public class Q00221_TestimonyOfProsperity extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -632,6 +641,7 @@ public class Q00221_TestimonyOfProsperity extends Quest
 								{
 									qs.setCond(2, true);
 								}
+								
 								htmltext = "30531-05.html";
 							}
 							else
@@ -958,6 +968,7 @@ public class Q00221_TestimonyOfProsperity extends Quest
 				htmltext = getAlreadyCompletedMsg(player);
 			}
 		}
+		
 		return htmltext;
 	}
 }

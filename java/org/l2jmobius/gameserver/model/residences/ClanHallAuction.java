@@ -182,6 +182,7 @@ public class ClanHallAuction
 					_startingBid = rs.getLong("startingBid");
 				}
 			}
+			
 			loadBid();
 		}
 		catch (Exception e)
@@ -211,6 +212,7 @@ public class ClanHallAuction
 						_highestBidderName = rs.getString("bidderName");
 						_highestBidderMaxBid = rs.getLong("maxBid");
 					}
+					
 					_bidders.put(rs.getInt("bidderId"), new Bidder(rs.getString("bidderName"), rs.getString("clan_name"), rs.getLong("maxBid"), rs.getLong("time_bid")));
 				}
 			}
@@ -235,6 +237,7 @@ public class ClanHallAuction
 		{
 			taskDelay = _endDate - currentTime;
 		}
+		
 		ThreadPool.schedule(new AutoEndTask(), taskDelay);
 	}
 	
@@ -273,6 +276,7 @@ public class ClanHallAuction
 			bidder.getClan().setAuctionBiddedAt(_id, true);
 			return;
 		}
+		
 		if ((bid < _startingBid) || (bid <= _highestBidderMaxBid))
 		{
 			bidder.sendPacket(SystemMessageId.YOUR_BID_PRICE_MUST_BE_HIGHER_THAN_THE_MINIMUM_PRICE_CURRENTLY_BEING_BID);
@@ -326,6 +330,7 @@ public class ClanHallAuction
 			bidder.getClan().getWarehouse().destroyItemByItemId(ItemProcessType.BUY, ADENA_ID, quantity, bidder, bidder);
 			return true;
 		}
+		
 		bidder.sendPacket(SystemMessageId.THERE_IS_NOT_ENOUGH_ADENA_IN_THE_CLAN_HALL_WAREHOUSE);
 		return false;
 	}
@@ -365,6 +370,7 @@ public class ClanHallAuction
 					ps.setLong(7, System.currentTimeMillis());
 					ps.execute();
 				}
+				
 				if (World.getInstance().getPlayer(_highestBidderName) != null)
 				{
 					World.getInstance().getPlayer(_highestBidderName).sendMessage("You have been out bidded");
@@ -384,6 +390,7 @@ public class ClanHallAuction
 				_bidders.get(_highestBidderId).setBid(bid);
 				_bidders.get(_highestBidderId).setTimeBid(currentTime);
 			}
+			
 			bidder.sendPacket(SystemMessageId.YOUR_BID_HAS_BEEN_SUCCESSFULLY_PLACED);
 		}
 		catch (Exception e)
@@ -416,8 +423,10 @@ public class ClanHallAuction
 			{
 				World.getInstance().getPlayer(b.getName()).sendMessage("Congratulation you have won ClanHall!");
 			}
+			
 			ClanTable.getInstance().getClanByName(b.getClanName()).setAuctionBiddedAt(0, true);
 		}
+		
 		_bidders.clear();
 	}
 	
@@ -447,6 +456,7 @@ public class ClanHallAuction
 				startAutoTask();
 				return;
 			}
+			
 			if ((_highestBidderId == 0) && (_sellerId > 0))
 			{
 				/**
@@ -456,11 +466,13 @@ public class ClanHallAuction
 				ClanHallAuctionManager.getInstance().getAuctions().remove(aucId);
 				return;
 			}
+			
 			if (_sellerId > 0)
 			{
 				returnItem(_sellerClanName, _highestBidderMaxBid, true);
 				returnItem(_sellerClanName, ClanHallTable.getInstance().getAuctionableHallById(_itemId).getLease(), false);
 			}
+			
 			deleteAuctionFromDB();
 			final Clan clan = ClanTable.getInstance().getClanByName(_bidders.get(_highestBidderId).getClanName());
 			_bidders.remove(_highestBidderId);

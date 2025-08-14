@@ -90,11 +90,13 @@ public class MultilayerBlock implements IBlock
 	{
 		final int cellLocalOffset = ((geoX % IBlock.BLOCK_CELLS_X) * IBlock.BLOCK_CELLS_Y) + (geoY % IBlock.BLOCK_CELLS_Y);
 		int cellDataOffset = 0;
+		
 		// Move index to cell, we need to parse on each request, OR we parse on creation and save indexes.
 		for (int i = 0; i < cellLocalOffset; i++)
 		{
 			cellDataOffset += 1 + (_data[cellDataOffset] * 2);
 		}
+		
 		// Now the index points to the cell we need.
 		
 		return cellDataOffset;
@@ -206,18 +208,22 @@ public class MultilayerBlock implements IBlock
 		{
 			nswe = (short) (nswe | Cell.NSWE_NORTH);
 		}
+		
 		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_EAST))
 		{
 			nswe = (short) (nswe | Cell.NSWE_EAST);
 		}
+		
 		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_SOUTH))
 		{
 			nswe = (short) (nswe | Cell.NSWE_SOUTH);
 		}
+		
 		if (checkNearestNswe(geoX, geoY, worldZ, Cell.NSWE_WEST))
 		{
 			nswe = (short) (nswe | Cell.NSWE_WEST);
 		}
+		
 		return nswe;
 	}
 	
@@ -234,7 +240,17 @@ public class MultilayerBlock implements IBlock
 	@Override
 	public int getNearestZ(int geoX, int geoY, int worldZ)
 	{
-		return extractLayerHeight(getNearestLayer(geoX, geoY, worldZ));
+		// Get the height of the nearest terrain layer.
+		final int nearestZ = extractLayerHeight(getNearestLayer(geoX, geoY, worldZ));
+		
+		// If the nearest layer is more than 1000 units above current position (likely a different floor/level).
+		if ((nearestZ - worldZ) > 1000)
+		{
+			// Find the next lower valid height instead to prevent unreachable positions.
+			return getNextLowerZ(geoX, geoY, worldZ);
+		}
+		
+		return nearestZ;
 	}
 	
 	@Override

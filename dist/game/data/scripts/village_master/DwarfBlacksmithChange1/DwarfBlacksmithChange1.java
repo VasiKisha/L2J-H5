@@ -41,6 +41,7 @@ public class DwarfBlacksmithChange1 extends AbstractNpcAI
 	// Items
 	private static final int SHADOW_ITEM_EXCHANGE_COUPON_D_GRADE = 8869;
 	private static final int FINAL_PASS_CERTIFICATE = 1635;
+	
 	// Class
 	private static final int ARTISAN = 56;
 	
@@ -82,6 +83,7 @@ public class DwarfBlacksmithChange1 extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -118,6 +120,7 @@ public class DwarfBlacksmithChange1 extends AbstractNpcAI
 				takeItems(player, FINAL_PASS_CERTIFICATE, -1);
 				player.setPlayerClass(ARTISAN);
 				player.setBaseClass(ARTISAN);
+				
 				// SystemMessage and cast skill is done by setClassId
 				player.broadcastUserInfo();
 				giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_D_GRADE, 15);
@@ -128,6 +131,7 @@ public class DwarfBlacksmithChange1 extends AbstractNpcAI
 				htmltext = npc.getId() + "-11.htm"; // fnNoProof11
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -143,6 +147,7 @@ public class DwarfBlacksmithChange1 extends AbstractNpcAI
 		{
 			htmltext = npc.getId() + "-05.htm"; // fnClassMismatch
 		}
+		
 		return htmltext;
 	}
 	

@@ -44,6 +44,7 @@ public class AuctionDateGenerator
 	{
 		_calendar = Calendar.getInstance();
 		_interval = config.getInt(FIELD_INTERVAL, -1);
+		
 		// NC week start in Monday.
 		final int fixedDayWeek = config.getInt(FIELD_DAY_OF_WEEK, -1) + 1;
 		_day_of_week = (fixedDayWeek > 7) ? 1 : fixedDayWeek;
@@ -66,6 +67,7 @@ public class AuctionDateGenerator
 			_calendar.set(Calendar.DAY_OF_WEEK, _day_of_week);
 			return calcDestTime(_calendar.getTimeInMillis(), date, MILLIS_IN_WEEK);
 		}
+		
 		return calcDestTime(_calendar.getTimeInMillis(), date, TimeUnit.MILLISECONDS.convert(_interval, TimeUnit.DAYS));
 	}
 	
@@ -80,6 +82,7 @@ public class AuctionDateGenerator
 				time += add;
 			}
 		}
+		
 		return time;
 	}
 	
@@ -91,6 +94,7 @@ public class AuctionDateGenerator
 			{
 				throw new IllegalArgumentException("Illegal params for '" + FIELD_DAY_OF_WEEK + "': " + (_day_of_week == -1 ? "not found" : _day_of_week));
 			}
+			
 			_day_of_week = defaultValue;
 		}
 		else if (_interval > 1)
@@ -107,6 +111,7 @@ public class AuctionDateGenerator
 			{
 				throw new IllegalArgumentException("Illegal params for '" + FIELD_HOUR_OF_DAY + "': " + (_hour_of_day == -1 ? "not found" : _hour_of_day));
 			}
+			
 			_hour_of_day = defaultValue;
 		}
 	}
@@ -119,6 +124,7 @@ public class AuctionDateGenerator
 			{
 				throw new IllegalArgumentException("Illegal params for '" + FIELD_MINUTE_OF_HOUR + "': " + (_minute_of_hour == -1 ? "not found" : _minute_of_hour));
 			}
+			
 			_minute_of_hour = defaultValue;
 		}
 	}

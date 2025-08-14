@@ -67,6 +67,7 @@ public class SiegeFlag extends Npc
 			{
 				deleteMe();
 			}
+			
 			if (outPost)
 			{
 				_isAdvanced = false;
@@ -77,9 +78,11 @@ public class SiegeFlag extends Npc
 				_isAdvanced = advanced;
 				setInvul(false);
 			}
+			
 			getStatus();
 			return;
 		}
+		
 		_clan = player.getClan();
 		_canTalk = true;
 		_siege = SiegeManager.getInstance().getSiege(player.getX(), player.getY(), player.getZ());
@@ -87,10 +90,12 @@ public class SiegeFlag extends Npc
 		{
 			_siege = FortSiegeManager.getInstance().getSiege(player.getX(), player.getY(), player.getZ());
 		}
+		
 		if (_siege == null)
 		{
 			_siege = CHSiegeManager.getInstance().getSiege(player);
 		}
+		
 		if ((_clan == null) || (_siege == null))
 		{
 			throw new NullPointerException(getClass().getSimpleName() + ": Initialization failed.");
@@ -127,6 +132,7 @@ public class SiegeFlag extends Npc
 		{
 			return false;
 		}
+		
 		if ((_siege != null) && (_clan != null))
 		{
 			final SiegeClan sc = _siege.getAttackerClan(_clan);
@@ -139,6 +145,7 @@ public class SiegeFlag extends Npc
 		{
 			TerritoryWarManager.getInstance().removeClanFlag(_clan);
 		}
+		
 		return true;
 	}
 	

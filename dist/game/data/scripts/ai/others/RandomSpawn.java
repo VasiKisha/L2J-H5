@@ -45,11 +45,11 @@ public class RandomSpawn extends AbstractNpcAI
 		// Keymaster
 		SPAWN_POINTS.put(22361, new Location[]
 		{
-			new Location(14091, 250533, -1940),
-			new Location(15762, 252440, -2015),
-			new Location(19836, 256212, -2090),
-			new Location(21940, 254107, -2010),
-			new Location(17299, 252943, -2015),
+			new Location(14091, 250533, -1940, 2),
+			new Location(15762, 252440, -2015, 2),
+			new Location(19836, 256212, -2090, 2),
+			new Location(21940, 254107, -2010, 2),
+			new Location(17299, 252943, -2015, 2),
 		});
 		// Typhoon
 		SPAWN_POINTS.put(25539, new Location[]

@@ -32,7 +32,6 @@ import org.l2jmobius.gameserver.data.xml.InitialShortcutData;
 import org.l2jmobius.gameserver.data.xml.PlayerTemplateData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.World;
@@ -48,9 +47,6 @@ import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerCreate
 import org.l2jmobius.gameserver.model.item.PlayerItemTemplate;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.PacketLogger;
@@ -234,6 +230,7 @@ public class CharacterCreate extends ClientPacket
 					break;
 				}
 			}
+			
 			newChar = Player.create(template, client.getAccountName(), _name, new PlayerAppearance(_face, _hairColor, _hairStyle, _isFemale));
 		}
 		
@@ -277,16 +274,19 @@ public class CharacterCreate extends ClientPacket
 			final Location createLoc = template.getCreationPoint();
 			newChar.setXYZInvisible(createLoc.getX(), createLoc.getY(), createLoc.getZ());
 		}
-		newChar.setTitle("");
+		
+		newChar.setTitle(Config.ENABLE_CUSTOM_STARTING_TITLE ? Config.CUSTOM_STARTING_TITLE : "");
 		
 		if (Config.ENABLE_VITALITY)
 		{
 			newChar.setVitalityPoints(Math.min(Config.STARTING_VITALITY_POINTS, PlayerStat.MAX_VITALITY_POINTS), true);
 		}
+		
 		if (Config.STARTING_LEVEL > 1)
 		{
 			newChar.getStat().addLevel((byte) (Config.STARTING_LEVEL - 1));
 		}
+		
 		if (Config.STARTING_SP > 0)
 		{
 			newChar.getStat().addSp(Config.STARTING_SP);
@@ -319,38 +319,15 @@ public class CharacterCreate extends ClientPacket
 		// Register all shortcuts for actions, skills and items for this new character.
 		InitialShortcutData.getInstance().registerAllShortcuts(newChar);
 		
-		if (!Config.DISABLE_TUTORIAL)
-		{
-			startTutorialQuest(newChar);
-		}
-		
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_CREATE, Containers.Players()))
 		{
 			EventDispatcher.getInstance().notifyEvent(new OnPlayerCreate(newChar, newChar.getObjectId(), newChar.getName(), client), Containers.Players());
 		}
 		
 		newChar.setOnlineStatus(true, false);
-		Disconnection.of(client, newChar).storeMe().deleteMe();
+		Disconnection.of(client, newChar).storeAndDelete();
 		
 		final CharSelectionInfo cl = new CharSelectionInfo(client.getAccountName(), client.getSessionId().playOkID1);
 		client.setCharSelection(cl.getCharInfo());
-	}
-	
-	/**
-	 * TODO: Unhardcode it using the new listeners.
-	 * @param player
-	 */
-	public void startTutorialQuest(Player player)
-	{
-		final QuestState qs = player.getQuestState("Q00255_Tutorial");
-		Quest q = null;
-		if (qs == null)
-		{
-			q = QuestManager.getInstance().getQuest("Q00255_Tutorial");
-		}
-		if (q != null)
-		{
-			q.newQuestState(player).setState(State.STARTED);
-		}
 	}
 }

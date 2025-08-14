@@ -51,7 +51,6 @@ import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillDone;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.ExStorageMaxCount;
 import org.l2jmobius.gameserver.network.serverpackets.PledgeSkillList;
-import org.l2jmobius.gameserver.network.serverpackets.StatusUpdate;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 /**
@@ -344,6 +343,7 @@ public class RequestAcquireSkill extends ClientPacket
 											if (checkPlayerSkill(player, trainer, s))
 											{
 												giveSkill(player, trainer, skill);
+												
 												// Logging the given skill.
 												player.getVariables().set(varName + i, skill.getId() + ";");
 											}
@@ -459,6 +459,7 @@ public class RequestAcquireSkill extends ClientPacket
 						{
 							player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_THE_NECESSARY_MATERIALS_OR_PREREQUISITES_TO_LEARN_THIS_SKILL);
 						}
+						
 						return false;
 					}
 				}
@@ -480,6 +481,7 @@ public class RequestAcquireSkill extends ClientPacket
 						return false;
 					}
 				}
+				
 				// If the player has all required items, they are consumed.
 				for (ItemHolder itemIdCount : skillLearn.getRequiredItems())
 				{
@@ -489,16 +491,17 @@ public class RequestAcquireSkill extends ClientPacket
 					}
 				}
 			}
+			
 			// If the player has SP and all required items then consume SP.
 			if (levelUpSp > 0)
 			{
 				player.setSp(player.getSp() - levelUpSp);
-				final StatusUpdate su = new StatusUpdate(player);
-				su.addAttribute(StatusUpdate.SP, (int) player.getSp());
-				player.sendPacket(su);
+				player.updateUserInfo();
 			}
+			
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -569,6 +572,7 @@ public class RequestAcquireSkill extends ClientPacket
 		{
 			return true;
 		}
+		
 		final QuestState qs = player.getQuestState("Q00136_MoreThanMeetsTheEye");
 		return (qs != null) && qs.isCompleted();
 	}

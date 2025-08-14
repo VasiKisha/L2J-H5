@@ -22,12 +22,13 @@ package org.l2jmobius.gameserver.model.actor.instance;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.gameserver.data.sql.TeleportLocationTable;
 import org.l2jmobius.gameserver.data.xml.DoorData;
-import org.l2jmobius.gameserver.model.TeleportLocation;
+import org.l2jmobius.gameserver.data.xml.TeleporterData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
+import org.l2jmobius.gameserver.model.actor.enums.player.TeleportType;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
+import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
@@ -85,10 +86,16 @@ public class Doorman extends Folk
 		{
 			if (isOwnerClan(player))
 			{
-				doTeleport(player, command);
+				final TeleportHolder holder = TeleporterData.getInstance().getHolder(getId(), TeleportType.OTHER.name());
+				if (holder != null)
+				{
+					final int locId = Integer.parseInt(command.substring(5).trim());
+					holder.doTeleport(player, this, locId);
+				}
 			}
 			return;
 		}
+		
 		super.onBypassFeedback(player, command);
 	}
 	
@@ -140,25 +147,6 @@ public class Doorman extends Folk
 		final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 		html.setFile(player, "data/html/doorman/" + getTemplate().getId() + "-busy.htm");
 		player.sendPacket(html);
-	}
-	
-	protected void doTeleport(Player player, String command)
-	{
-		final int whereTo = Integer.parseInt(command.substring(5).trim());
-		final TeleportLocation list = TeleportLocationTable.getInstance().getTemplate(whereTo);
-		if (list != null)
-		{
-			if (!player.isAlikeDead())
-			{
-				player.teleToLocation(list.getLocX(), list.getLocY(), list.getLocZ(), false);
-			}
-		}
-		else
-		{
-			LOGGER.warning("No teleport destination with id:" + whereTo);
-		}
-		
-		player.sendPacket(ActionFailed.STATIC_PACKET);
 	}
 	
 	protected boolean isOwnerClan(Player player)

@@ -32,12 +32,15 @@ public class Q00608_SlayTheEnemyCommanderKetra extends Quest
 {
 	// NPC
 	private static final int KADUN = 31370;
+	
 	// Monster
 	private static final int MOS = 25312;
+	
 	// Items
 	private static final int MOS_HEAD = 7236;
 	private static final int WISDOM_TOTEM = 7220;
 	private static final int KETRA_ALLIANCE_FOUR = 7214;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
 	
@@ -98,6 +101,7 @@ public class Q00608_SlayTheEnemyCommanderKetra extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -125,6 +129,7 @@ public class Q00608_SlayTheEnemyCommanderKetra extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

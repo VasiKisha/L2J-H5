@@ -99,6 +99,7 @@ public class RequestExEnchantSkillSafe extends ClientPacket
 		{
 			return;
 		}
+		
 		final EnchantSkillHolder esd = s.getEnchantSkillHolder(_skillLevel);
 		final int beforeEnchantSkillLevel = player.getSkillLevel(_skillId);
 		if (beforeEnchantSkillLevel != s.getMinSkillLevel(_skillLevel))

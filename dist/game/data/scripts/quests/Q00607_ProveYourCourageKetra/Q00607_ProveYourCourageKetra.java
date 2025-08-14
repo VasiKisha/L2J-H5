@@ -32,12 +32,15 @@ public class Q00607_ProveYourCourageKetra extends Quest
 {
 	// NPC
 	private static final int KADUN = 31370;
+	
 	// Monster
 	private static final int SHADITH = 25309;
+	
 	// Items
 	private static final int SHADITH_HEAD = 7235;
 	private static final int VALOR_TOTEM = 7219;
 	private static final int KETRA_ALLIANCE_THREE = 7213;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
 	
@@ -98,6 +101,7 @@ public class Q00607_ProveYourCourageKetra extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -125,6 +129,7 @@ public class Q00607_ProveYourCourageKetra extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

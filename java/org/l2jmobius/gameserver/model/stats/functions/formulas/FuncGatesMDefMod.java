@@ -51,6 +51,7 @@ public class FuncGatesMDefMod extends AbstractFunction
 		{
 			return initVal * Config.ALT_SIEGE_DUSK_GATES_MDEF_MULT;
 		}
+		
 		return initVal;
 	}
 }

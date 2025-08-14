@@ -61,6 +61,7 @@ public class CombatFlag
 		{
 			dropIt();
 		}
+		
 		if (_itemInstance != null)
 		{
 			_itemInstance.decayMe();

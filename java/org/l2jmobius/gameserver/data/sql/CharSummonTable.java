@@ -125,12 +125,14 @@ public class CharSummonTable
 			LOGGER.warning(getClass().getSimpleName() + ": Null pet summoning item for: " + player);
 			return;
 		}
+		
 		final PetData petData = PetDataTable.getInstance().getPetDataByItemId(item.getId());
 		if (petData == null)
 		{
 			LOGGER.warning(getClass().getSimpleName() + ": Null pet data for: " + player + " and summoning item: " + item);
 			return;
 		}
+		
 		final NpcTemplate npcTemplate = NpcData.getInstance().getTemplate(petData.getNpcId());
 		if (npcTemplate == null)
 		{

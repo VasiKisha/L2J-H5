@@ -46,6 +46,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 	private static final int IMPERIAL_COFFER = 30765;
 	private static final int WITCH_CLEO = 30766;
 	private static final int SIR_ERIC_RODEMAI = 30868;
+	
 	// Items
 	private static final int MIST_DRAKES_EGG = 3839;
 	private static final int BLITZ_WYRM_EGG = 3840;
@@ -61,8 +62,10 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 	private static final int RECIPE_SPITEFUL_SOUL_ENERGY = 14854;
 	private static final int SPITEFUL_SOUL_ENERGY = 14855;
 	private static final int SPITEFUL_SOUL_VENGEANCE = 14856;
+	
 	// Reward
 	private static final int SEAL_OF_ASPIRATION = 3870;
+	
 	// Monsters
 	private static final int DRAKE = 20137;
 	private static final int DRAKE2 = 20285;
@@ -70,6 +73,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 	private static final int THUNDER_WYRM2 = 20282;
 	private static final int GRAVE_GUARD = 20668;
 	private static final int SPITEFUL_SOUL_LEADER = 20974;
+	
 	// Quest Monster
 	private static final int GRAVE_KEYMASTER = 27179;
 	private static final int IMPERIAL_GRAVEKEEPER = 27181;
@@ -159,6 +163,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 					takeItems(player, BROOCH_OF_THE_MAGPIE, -1);
 					giveItems(player, BLACK_ANVIL_COIN, 1);
 				}
+				
 				htmltext = event;
 				break;
 			}
@@ -321,6 +326,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -797,6 +803,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -811,6 +818,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 				return leader.getQuestState(quest);
 			}
 		}
+		
 		return null;
 	}
 }

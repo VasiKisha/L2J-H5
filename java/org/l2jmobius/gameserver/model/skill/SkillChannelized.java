@@ -58,6 +58,7 @@ public class SkillChannelized
 				channelizer.abortCast();
 			}
 		}
+		
 		_channelizers.clear();
 	}
 	
@@ -70,6 +71,7 @@ public class SkillChannelized
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

@@ -42,10 +42,13 @@ public class Q00031_SecretBuriedInTheSwamp extends Quest
 	private static final int FORGOTTEN_MONUMENT_3 = 31663;
 	private static final int FORGOTTEN_MONUMENT_4 = 31664;
 	private static final int CORPSE_OF_DWARF = 31665;
+	
 	// Items
 	private static final int KRORINS_JOURNAL = 7252;
+	
 	// Misc
 	private static final int MIN_LEVEL = 66;
+	
 	// Monuments
 	private static final List<Integer> MONUMENTS = Arrays.asList(FORGOTTEN_MONUMENT_1, FORGOTTEN_MONUMENT_2, FORGOTTEN_MONUMENT_3, FORGOTTEN_MONUMENT_4);
 	
@@ -123,6 +126,7 @@ public class Q00031_SecretBuriedInTheSwamp extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -214,6 +218,7 @@ public class Q00031_SecretBuriedInTheSwamp extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

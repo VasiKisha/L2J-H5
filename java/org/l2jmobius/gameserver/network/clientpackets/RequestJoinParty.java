@@ -182,17 +182,20 @@ public class RequestJoinParty extends ClientPacket
 	private void addTargetToParty(Player target, Player requestor)
 	{
 		final Party party = requestor.getParty();
+		
 		// summary of ppl already in party and ppl that get invitation
 		if (!party.isLeader(requestor))
 		{
 			requestor.sendPacket(SystemMessageId.ONLY_THE_LEADER_CAN_GIVE_OUT_INVITATIONS);
 			return;
 		}
+		
 		if (party.getMemberCount() >= 9)
 		{
 			requestor.sendPacket(SystemMessageId.THE_PARTY_IS_FULL);
 			return;
 		}
+		
 		if (party.getPendingInvitation() && !party.isInvitationRequestExpired())
 		{
 			requestor.sendPacket(SystemMessageId.WAITING_FOR_ANOTHER_REPLY);
@@ -202,6 +205,7 @@ public class RequestJoinParty extends ClientPacket
 		if (!target.isProcessingRequest())
 		{
 			requestor.onTransactionRequest(target);
+			
 			// in case a leader change has happened, use party's mode
 			target.sendPacket(new AskJoinParty(requestor.getName(), party.getDistributionType()));
 			party.setPendingInvitation(true);

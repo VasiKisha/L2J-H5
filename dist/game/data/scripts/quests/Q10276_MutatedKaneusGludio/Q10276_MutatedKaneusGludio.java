@@ -42,6 +42,7 @@ public class Q10276_MutatedKaneusGludio extends Quest
 	private static final int ROHMER = 30344;
 	private static final int TOMLAN_KAMOS = 18554;
 	private static final int OL_ARIOSH = 18555;
+	
 	// Items
 	private static final int TISSUE_TK = 13830;
 	private static final int TISSUE_OA = 13831;
@@ -78,6 +79,7 @@ public class Q10276_MutatedKaneusGludio extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -165,6 +167,7 @@ public class Q10276_MutatedKaneusGludio extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

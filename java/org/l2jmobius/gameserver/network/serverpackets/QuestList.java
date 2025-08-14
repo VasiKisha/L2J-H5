@@ -85,6 +85,7 @@ public class QuestList extends ServerPacket
 				buffer.writeInt(0);
 				continue;
 			}
+			
 			final int states = qs.getInt("__compltdStateFlags");
 			if (states > 0)
 			{
@@ -95,6 +96,7 @@ public class QuestList extends ServerPacket
 				buffer.writeInt(qs.getCond());
 			}
 		}
+		
 		buffer.writeBytes(new byte[128]);
 	}
 }

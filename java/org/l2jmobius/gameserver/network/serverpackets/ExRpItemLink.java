@@ -55,6 +55,7 @@ public class ExRpItemLink extends ServerPacket
 		{
 			buffer.writeInt(0);
 		}
+		
 		buffer.writeInt(_item.getMana());
 		buffer.writeInt(_item.isTimeLimitedItem() ? (int) (_item.getRemainingTime() / 1000) : -9999);
 		buffer.writeShort(_item.getAttackElementType());
@@ -63,6 +64,7 @@ public class ExRpItemLink extends ServerPacket
 		{
 			buffer.writeShort(_item.getElementDefAttr(i));
 		}
+		
 		// Enchant Effects
 		for (int op : _item.getEnchantOptions())
 		{

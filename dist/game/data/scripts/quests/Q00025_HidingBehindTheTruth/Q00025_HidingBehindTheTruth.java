@@ -49,8 +49,10 @@ public class Q00025_HidingBehindTheTruth extends Quest
 	private static final int BROKEN_BOOKSHELF3 = 31534;
 	private static final int BROKEN_BOOKSHELF4 = 31535;
 	private static final int COFFIN = 31536;
+	
 	// Mobs
 	private static final int TRIOL_PAWN = 27218;
+	
 	// Items
 	private static final int MAP_FOREST_OF_THE_DEAD = 7063;
 	private static final int CONTRACT = 7066;
@@ -58,10 +60,12 @@ public class Q00025_HidingBehindTheTruth extends Quest
 	private static final int TOTEM_DOLL2 = 7156;
 	private static final int GEMSTONE_KEY = 7157;
 	private static final int TOTEM_DOLL3 = 7158;
+	
 	// Rewards
 	private static final int NECKLACE_OF_BLESSING = 936;
 	private static final int EARING_OF_BLESSING = 874;
 	private static final int RING_OF_BLESSING = 905;
+	
 	// Misc
 	private static final int MIN_LEVEL = 66;
 	private static final HashMap<Integer, Location> TRIOL_PAWN_LOC = new HashMap<>();
@@ -332,6 +336,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 				{
 					brokenDesk.getVariables().set("Q00025", 0);
 				}
+				
 				npc.deleteMe();
 				break;
 			}
@@ -424,6 +429,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -444,6 +450,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 				{
 					brokenDesk.getVariables().set("Q00025", 0);
 				}
+				
 				npc.deleteMe();
 			}
 		}
@@ -743,6 +750,7 @@ public class Q00025_HidingBehindTheTruth extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

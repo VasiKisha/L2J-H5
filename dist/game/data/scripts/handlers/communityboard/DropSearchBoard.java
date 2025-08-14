@@ -158,7 +158,7 @@ public class DropSearchBoard implements IParseBoardHandler
 	}
 	
 	@Override
-	public boolean parseCommunityBoardCommand(String command, Player player)
+	public boolean onCommand(String command, Player player)
 	{
 		final String navigation = HtmCache.getInstance().getHtm(player, NAVIGATION_PATH);
 		final String[] params = command.split(" ");
@@ -299,6 +299,7 @@ public class DropSearchBoard implements IParseBoardHandler
 						{
 							rateAmount *= dropAmountAdenaEffectBonus;
 						}
+						
 						// bonus drop rate effect
 						rateChance *= dropRateEffectBonus;
 					}
@@ -452,11 +453,12 @@ public class DropSearchBoard implements IParseBoardHandler
 		{
 			joiner.add(params[i]);
 		}
+		
 		return joiner.toString();
 	}
 	
 	@Override
-	public String[] getCommunityBoardCommands()
+	public String[] getCommandList()
 	{
 		return COMMAND;
 	}

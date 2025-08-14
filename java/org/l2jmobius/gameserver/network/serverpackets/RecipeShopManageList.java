@@ -48,6 +48,7 @@ public class RecipeShopManageList extends ServerPacket
 		{
 			_recipes = _seller.getCommonRecipeBook();
 		}
+		
 		if (_seller.hasManufactureShop())
 		{
 			final Iterator<ManufactureItem> it = _seller.getManufactureItems().values().iterator();
@@ -85,6 +86,7 @@ public class RecipeShopManageList extends ServerPacket
 				buffer.writeInt(count);
 			}
 		}
+		
 		if (!_seller.hasManufactureShop())
 		{
 			buffer.writeInt(0);

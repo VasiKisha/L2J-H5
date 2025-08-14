@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="21000" type="EtcItem" name="Ball Trapping Gnosian Agathion Pack">
 		<!-- Wrapped pack containing a Ball Trapping Gnosian Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -256,12 +256,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="21016" type="Weapon" name="Balloon Stick of Cheers - Orange">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -281,12 +281,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="21017" type="Weapon" name="Balloon Stick of Cheers - Yellow">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -306,12 +306,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="21018" type="Weapon" name="Balloon Stick of Cheers - Green">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -331,12 +331,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="21019" type="Weapon" name="Balloon Stick of Cheers - Blue">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -356,12 +356,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="21020" type="Weapon" name="Balloon Stick of Cheers - Indigo Blue">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -381,12 +381,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="21021" type="Weapon" name="Balloon Stick of Cheers - Purple">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -406,12 +406,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="21022" type="Weapon" name="Balloon Stick of Cheers - Black">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -431,12 +431,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="21023" type="Weapon" name="Balloon Stick of Cheers - White">
 		<!-- Balloon stick containing a cheering heart. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -456,12 +456,12 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="21024" type="EtcItem" name="Soccer Hall Afro Hair (White) Pack">
 		<!-- Wrapped pack containing a Soccer Hall Afro Hair (White). Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->

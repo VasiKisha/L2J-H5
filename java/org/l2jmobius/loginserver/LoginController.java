@@ -96,6 +96,7 @@ public class LoginController
 		{
 			_keyPairs[i] = new ScrambledKeyPair(keygen.generateKeyPair());
 		}
+		
 		LOGGER.info("Cached 10 KeyPairs for RSA communication.");
 		
 		testCipher((RSAPrivateKey) _keyPairs[0].getPrivateKey());
@@ -108,7 +109,7 @@ public class LoginController
 	}
 	
 	/**
-	 * This is mostly to force the initialization of the Crypto Implementation, avoiding it being done on runtime when its first needed.<BR>
+	 * This is mostly to force the initialization of the Crypto Implementation, avoiding it being done on runtime when its first needed.<br>
 	 * In short it avoids the worst-case execution time on runtime by doing it on loading.
 	 * @param key Any private RSA Key just for testing purposes.
 	 * @throws GeneralSecurityException if a underlying exception was thrown by the Cipher
@@ -131,6 +132,7 @@ public class LoginController
 				_blowfishKeys[i][j] = (byte) (Rnd.get(0, 255));
 			}
 		}
+		
 		LOGGER.info("Stored " + _blowfishKeys.length + " keys for Blowfish communication.");
 	}
 	
@@ -192,6 +194,7 @@ public class LoginController
 		if (failedLoginAttemps >= Config.LOGIN_TRY_BEFORE_BAN)
 		{
 			addBanForAddress(addr, Config.LOGIN_BLOCK_AFTER_BAN * 1000);
+			
 			// We need to clear the failed login attempts here, so after the IP ban is over the client has another 5 attempts.
 			clearFailedLoginAttemps(addr);
 			LOGGER.warning("Added banned address " + addr + "! Too many login attempts.");
@@ -278,6 +281,7 @@ public class LoginController
 		}
 		
 		LoginResult ret = LoginResult.INVALID_PASSWORD;
+		
 		// Check auth.
 		if (canCheckin(client, address, info))
 		{
@@ -293,6 +297,7 @@ public class LoginController
 				}
 			}
 		}
+		
 		return ret;
 	}
 	
@@ -321,14 +326,17 @@ public class LoginController
 		{
 			bi = _bannedIps.get(parts[0] + "." + parts[1] + "." + parts[2] + ".0");
 		}
+		
 		if (bi == null)
 		{
 			bi = _bannedIps.get(parts[0] + "." + parts[1] + ".0.0");
 		}
+		
 		if (bi == null)
 		{
 			bi = _bannedIps.get(parts[0] + ".0.0.0");
 		}
+		
 		if (bi != null)
 		{
 			if ((bi > 0) && (bi < System.currentTimeMillis()))
@@ -366,6 +374,7 @@ public class LoginController
 		{
 			return client.getSessionKey();
 		}
+		
 		return null;
 	}
 	
@@ -380,6 +389,7 @@ public class LoginController
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -394,6 +404,7 @@ public class LoginController
 				return gsi;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -428,8 +439,10 @@ public class LoginController
 					LOGGER.log(Level.WARNING, "Could not set lastServer: " + e.getMessage(), e);
 				}
 			}
+			
 			return loginOk;
 		}
+		
 		return false;
 	}
 	
@@ -523,6 +536,7 @@ public class LoginController
 						{
 							continue;
 						}
+						
 						if (type.equals("allow"))
 						{
 							ipWhiteList.add(ip);
@@ -587,6 +601,7 @@ public class LoginController
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	

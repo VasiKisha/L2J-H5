@@ -48,12 +48,15 @@ public class Q00021_HiddenTruth extends Quest
 	private static final int GHOST_OF_VON_HELLMAN = 31524;
 	private static final int GHOST_OF_VON_HELLMANS_PAGE = 31525;
 	private static final int BROKEN_BOOKSHELF = 31526;
+	
 	// Location
 	private static final Location GHOST_LOC = new Location(51432, -54570, -3136, 0);
 	private static final Location PAGE_LOC = new Location(51446, -54514, -3136, 0);
+	
 	// Items
 	private static final int CROSS_OF_EINHASAD = 7140;
 	private static final int CROSS_OF_EINHASAD2 = 7141;
+	
 	// Misc
 	private static final int MIN_LEVEL = 63;
 	private static final String PAGE_ROUTE_NAME = "rune_ghost1b";
@@ -210,6 +213,7 @@ public class Q00021_HiddenTruth extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -426,6 +430,7 @@ public class Q00021_HiddenTruth extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

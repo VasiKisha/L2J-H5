@@ -26,6 +26,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
+import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.Intention;
@@ -43,64 +44,55 @@ import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
+import org.l2jmobius.gameserver.network.serverpackets.ExPCCafePointInfo;
+import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
 import ai.AbstractNpcAI;
 
+/**
+ * @author Mobius
+ */
 public class RimKamaloka extends AbstractNpcAI
 {
-	/*
-	 * Reset time for all kamaloka Default: 6:30AM on server time
-	 */
+	// NPCs.
+	private static final int START_NPC = 32484;
+	private static final int REWARDER = 32485;
+	
+	// Reset time for all Kamaloka Default: 6:30AM on server time.
 	private static final int RESET_HOUR = 6;
 	private static final int RESET_MIN = 30;
 	
 	private static final int LOCK_TIME = 10;
 	
-	/*
-	 * Duration of the instance, minutes
-	 */
+	// Duration of the instance, minutes.
 	private static final int DURATION = 20;
 	
-	/*
-	 * Time after which instance without players will be destroyed Default: 5 minutes
-	 */
+	// Time after which instance without players will be destroyed Default: 5 minutes.
 	private static final int EMPTY_DESTROY_TIME = 5;
 	
-	/*
-	 * Time to destroy instance (and eject player away) Default: 10 minutes
-	 */
+	// Time to destroy instance (and eject player away) Default: 10 minutes.
 	private static final int EXIT_TIME = 10;
 	
-	/*
-	 * Maximum level difference between players level and kamaloka level Default: 5
-	 */
+	// Maximum level difference between players level and Kamaloka level Default: 5
 	private static final int MAX_LEVEL_DIFFERENCE = 5;
-	
 	private static final int RESPAWN_DELAY = 30;
-	
 	private static final int DESPAWN_DELAY = 10000;
 	
-	/*
-	 * Hardcoded instance ids for kamaloka
-	 */
+	// Hardcoded instance ids for Kamaloka.
 	// @formatter:off
 	private static final int[] INSTANCE_IDS =
 	{
 		46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56
 	};
 	
-	/*
-	 * Level of the kamaloka
-	 */
+	// Level of the Kamaloka.
 	private static final int[] LEVEL =
 	{
 		25, 30, 35, 40, 45, 50, 55, 60, 65, 70, 75
 	};
 	
-	/*
-	 * Teleport points into instances x, y, z
-	 */
+	// Teleport points into instances x, y, z.
 	private static final Location[] TELEPORTS =
 	{
 		new Location(10025, -219868, -8021),
@@ -220,10 +212,6 @@ public class RimKamaloka extends AbstractNpcAI
 		{49014, -219737, -8759}
 	};
 	
-	private static final int START_NPC = 32484;
-	
-	private static final int REWARDER = 32485;
-	
 	private static final int[][][] REWARDS =
 	{
 		{ // 20-30
@@ -232,7 +220,7 @@ public class RimKamaloka extends AbstractNpcAI
 			{13002, 2, 10838, 1}, // Grade C
 			{13002, 2, 10837, 1}, // Grade B
 			{13002, 2, 10836, 1}, // Grade A
-			{13002, 2, 12824, 1} // Grade S
+			{13002, 2, 12824, 1}, // Grade S
 		},
 		{ // 25-35
 			null,
@@ -331,10 +319,7 @@ public class RimKamaloka extends AbstractNpcAI
 		public boolean isFinished = false;
 		public boolean isRewarded = false;
 		
-		@SuppressWarnings("unused")
-		public ScheduledFuture<?> lockTask = null;
 		public ScheduledFuture<?> finishTask = null;
-		
 		public Set<Monster> spawnedMobs = ConcurrentHashMap.newKeySet();
 		public Map<Integer, Long> lastAttack = new ConcurrentHashMap<>();
 		public ScheduledFuture<?> despawnTask = null;
@@ -367,47 +352,82 @@ public class RimKamaloka extends AbstractNpcAI
 			return null;
 		}
 		
-		if (event.equalsIgnoreCase("Exit"))
+		switch (event)
 		{
-			try
+			case "npc_rim_maker001.htm":
+			case "npc_rim_maker001a.htm":
+			case "npc_rim_maker001b.htm":
+			case "npc_rim_maker001ba.htm":
+			case "npc_rim_maker007.htm":
+			case "npc_rim_maker010.htm":
+			case "npc_rim_maker011.htm":
 			{
-				final InstanceWorld world = InstanceManager.getInstance().getWorld(npc.getInstanceId());
-				if ((world instanceof RimKamaWorld) && world.isAllowed(player))
+				return event;
+			}
+			case "Exit":
+			{
+				try
 				{
-					Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
-					teleportPlayer(player, inst.getExitLoc(), 0);
+					final InstanceWorld world = InstanceManager.getInstance().getWorld(npc.getInstanceId());
+					if ((world instanceof RimKamaWorld) && world.isAllowed(player))
+					{
+						final Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
+						teleportPlayer(player, inst.getExitLoc(), 0);
+					}
 				}
-			}
-			catch (Exception e)
-			{
-				LOGGER.warning("RimKamaloka: problem with exit: " + e.getMessage());
-			}
-			return null;
-		}
-		else if (event.equalsIgnoreCase("Reward"))
-		{
-			try
-			{
-				final InstanceWorld world = InstanceManager.getInstance().getWorld(npc.getInstanceId());
-				if ((world instanceof RimKamaWorld) && world.isAllowed(player))
+				catch (Exception e)
 				{
-					rewardPlayer((RimKamaWorld) world, npc);
+					LOGGER.warning("RimKamaloka: problem with exit: " + e.getMessage());
 				}
+				break;
 			}
-			catch (Exception e)
+			case "Reward":
 			{
-				LOGGER.warning("RimKamaloka: problem with reward: " + e.getMessage());
+				try
+				{
+					final InstanceWorld world = InstanceManager.getInstance().getWorld(npc.getInstanceId());
+					if ((world instanceof RimKamaWorld) && world.isAllowed(player))
+					{
+						rewardPlayer((RimKamaWorld) world, npc);
+					}
+				}
+				catch (Exception e)
+				{
+					LOGGER.warning("RimKamaloka: problem with reward: " + e.getMessage());
+				}
+				
+				return "npc_rim_gift_giver003.htm";
 			}
-			return "Rewarded.htm";
+			case "challenge":
+			{
+				final NpcHtmlMessage htmlPacket = new NpcHtmlMessage(npc.getObjectId());
+				String htmltext = getHtm(player, "npc_rim_maker002_" + npc.getCastle().getResidenceId() + ".htm");
+				if (!Config.PC_CAFE_ENABLED)
+				{
+					htmltext = htmltext.replace("; <font color=\"LEVEL\">1000 PC Cafe points</font> are required", "");
+				}
+				
+				htmlPacket.setHtml(htmltext);
+				player.sendPacket(htmlPacket);
+				break;
+			}
+			case "0":
+			case "1":
+			case "2":
+			case "3":
+			case "4":
+			case "5":
+			case "6":
+			case "7":
+			case "8":
+			case "9":
+			case "10":
+			{
+				enterInstance(player, npc, Integer.parseInt(event));
+				break;
+			}
 		}
 		
-		try
-		{
-			enterInstance(player, Integer.parseInt(event));
-		}
-		catch (Exception e)
-		{
-		}
 		return null;
 	}
 	
@@ -487,7 +507,21 @@ public class RimKamaloka extends AbstractNpcAI
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		return String.valueOf(npc.getId()) + ".htm";
+		switch (npc.getId())
+		{
+			case START_NPC:
+			{
+				return "npc_rim_maker001.htm";
+			}
+			case REWARDER:
+			{
+				return "npc_rim_gift_giver001.htm";
+			}
+			default:
+			{
+				return npc.getId() + ".htm";
+			}
+		}
 	}
 	
 	@Override
@@ -643,10 +677,11 @@ public class RimKamaloka extends AbstractNpcAI
 	/**
 	 * Check if party with player as leader allowed to enter
 	 * @param player party leader
+	 * @param npc the Npc
 	 * @param index (0-17) index of the kamaloka in arrays
 	 * @return true if party allowed to enter
 	 */
-	private static boolean checkConditions(Player player, int index)
+	private boolean checkConditions(Player player, Npc npc, int index)
 	{
 		final Party party = player.getParty();
 		if (party != null)
@@ -655,33 +690,38 @@ public class RimKamaloka extends AbstractNpcAI
 			return false;
 		}
 		
-		// get level of the instance
+		// Get level of the instance.
 		final int level = LEVEL[index];
+		
 		// and client name
 		final String instanceName = InstanceManager.getInstance().getInstanceIdName(INSTANCE_IDS[index]);
 		
-		// player level must be in range
+		// Player level must be in range.
 		if (Math.abs(player.getLevel() - level) > MAX_LEVEL_DIFFERENCE)
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY);
 			sm.addPcName(player);
 			player.sendPacket(sm);
+			
+			final NpcHtmlMessage htmlPacket = new NpcHtmlMessage(npc.getObjectId());
+			htmlPacket.setHtml(getHtm(player, "npc_rim_maker004.htm"));
+			player.sendPacket(htmlPacket);
 			return false;
 		}
 		
-		// get instances reenter times for player
+		// Get instances reenter times for player.
 		final Map<Integer, Long> instanceTimes = InstanceManager.getInstance().getAllInstanceTimes(player.getObjectId());
 		if (instanceTimes != null)
 		{
 			for (int id : instanceTimes.keySet())
 			{
-				// find instance with same name (kamaloka or labyrinth)
+				// Find instance with same name (Kamaloka or labyrinth).
 				if (!instanceName.equals(InstanceManager.getInstance().getInstanceIdName(id)))
 				{
 					continue;
 				}
 				
-				// if found instance still can't be reentered - exit
+				// If found instance still can't be reentered - exit.
 				if (System.currentTimeMillis() < instanceTimes.get(id))
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.C1_MAY_NOT_RE_ENTER_YET);
@@ -691,15 +731,32 @@ public class RimKamaloka extends AbstractNpcAI
 				}
 			}
 		}
+		
+		if (Config.PC_CAFE_ENABLED)
+		{
+			final int points = player.getPcCafePoints();
+			if (points < 1000)
+			{
+				final NpcHtmlMessage htmlPacket = new NpcHtmlMessage(npc.getObjectId());
+				htmlPacket.setHtml(getHtm(player, "npc_rim_maker003.htm"));
+				player.sendPacket(htmlPacket);
+				return false;
+			}
+			
+			player.setPcCafePoints(points - 1000);
+			player.sendPacket(new ExPCCafePointInfo(player.getPcCafePoints(), -1000, 0));
+		}
+		
 		return true;
 	}
 	
 	/**
-	 * Handling enter of the players into kamaloka
+	 * Handling enter of the players into Kamaloka
 	 * @param player party leader
-	 * @param index (0-17) kamaloka index in arrays
+	 * @param npc the Npc
+	 * @param index (0-17) Kamaloka index in arrays
 	 */
-	protected synchronized void enterInstance(Player player, int index)
+	protected synchronized void enterInstance(Player player, Npc npc, int index)
 	{
 		int templateId;
 		try
@@ -711,20 +768,19 @@ public class RimKamaloka extends AbstractNpcAI
 			return;
 		}
 		
-		// check for existing instances for this player
-		InstanceWorld tmpWorld = InstanceManager.getInstance().getPlayerWorld(player);
-		// player already in the instance
-		if (tmpWorld != null)
+		// Check for existing instances for this player.
+		final InstanceWorld tmpWorld = InstanceManager.getInstance().getPlayerWorld(player);
+		if (tmpWorld != null) // Player already in the instance.
 		{
-			// but not in kamaloka
+			// But not in kamaloka.
 			if (!(tmpWorld instanceof RimKamaWorld) || (tmpWorld.getTemplateId() != templateId))
 			{
 				player.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_ANOTHER_INSTANCE_ZONE_THEREFORE_YOU_CANNOT_ENTER_CORRESPONDING_DUNGEON);
 				return;
 			}
 			
+			// Check for level difference again on reenter.
 			final RimKamaWorld world = (RimKamaWorld) tmpWorld;
-			// check for level difference again on reenter
 			if (Math.abs(player.getLevel() - LEVEL[world.index]) > MAX_LEVEL_DIFFERENCE)
 			{
 				final SystemMessage sm = new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY);
@@ -733,35 +789,37 @@ public class RimKamaloka extends AbstractNpcAI
 				return;
 			}
 			
-			// check what instance still exist
+			// Check what instance still exist.
 			Instance inst = InstanceManager.getInstance().getInstance(world.getInstanceId());
 			if (inst != null)
 			{
 				teleportPlayer(player, TELEPORTS[index], world.getInstanceId());
 			}
 		}
-		else // Creating new kamaloka instance
+		else // Creating new kamaloka instance.
 		{
-			if (!checkConditions(player, index))
+			if (!checkConditions(player, npc, index))
 			{
 				return;
 			}
 			
-			// Creating new instanceWorld, using our instanceId and templateId
+			// Creating new instanceWorld, using our instanceId and templateId.
 			final RimKamaWorld world = new RimKamaWorld();
 			final Instance instance = InstanceManager.getInstance().createDynamicInstance(templateId);
 			world.setInstance(instance);
 			InstanceManager.getInstance().addWorld(world);
-			// set return location
+			
+			// Set return location.
 			instance.setExitLoc(new Location(player));
-			// set index for easy access to the arrays
+			
+			// Set index for easy access to the arrays.
 			world.index = index;
 			
-			// spawn npcs
+			// Spawn NPCs.
 			spawnKama(world);
 			world.finishTask = ThreadPool.schedule(new FinishTask(world), DURATION * 60000);
-			world.lockTask = ThreadPool.schedule(new LockTask(world), LOCK_TIME * 60000);
 			world.despawnTask = ThreadPool.scheduleAtFixedRate(new DespawnTask(world), 1000, 1000);
+			ThreadPool.schedule(new LockTask(world), LOCK_TIME * 60000);
 			
 			world.addAllowed(player);
 			
@@ -858,6 +916,7 @@ public class RimKamaloka extends AbstractNpcAI
 		{
 			return;
 		}
+		
 		world.isRewarded = true;
 		
 		final int[][] allRewards = REWARDS[world.index];
@@ -867,6 +926,7 @@ public class RimKamaloka extends AbstractNpcAI
 		{
 			return;
 		}
+		
 		for (Player player : world.getAllowed())
 		{
 			if ((player != null) && player.isOnline())
@@ -894,19 +954,21 @@ public class RimKamaloka extends AbstractNpcAI
 		{
 			if (_world != null)
 			{
-				Calendar reenter = Calendar.getInstance();
+				final Calendar reenter = Calendar.getInstance();
 				reenter.set(Calendar.MINUTE, RESET_MIN);
-				// if time is >= RESET_HOUR - roll to the next day
+				
+				// If time is >= RESET_HOUR - roll to the next day.
 				if (reenter.get(Calendar.HOUR_OF_DAY) >= RESET_HOUR)
 				{
 					reenter.roll(Calendar.DATE, true);
 				}
+				
 				reenter.set(Calendar.HOUR_OF_DAY, RESET_HOUR);
 				
 				final SystemMessage sm = new SystemMessage(SystemMessageId.INSTANT_ZONE_S1_S_ENTRY_HAS_BEEN_RESTRICTED_YOU_CAN_CHECK_THE_NEXT_POSSIBLE_ENTRY_TIME_BY_USING_THE_COMMAND_INSTANCEZONE);
 				sm.addString(InstanceManager.getInstance().getInstanceIdName(_world.getTemplateId()));
 				
-				// set instance reenter time for all allowed players
+				// Set instance reenter time for all allowed players.
 				boolean found = false;
 				for (Player player : _world.getAllowed())
 				{
@@ -928,6 +990,7 @@ public class RimKamaloka extends AbstractNpcAI
 						_world.finishTask.cancel(false);
 						_world.finishTask = null;
 					}
+					
 					if (_world.despawnTask != null)
 					{
 						_world.despawnTask.cancel(false);
@@ -960,9 +1023,11 @@ public class RimKamaloka extends AbstractNpcAI
 					_world.despawnTask.cancel(false);
 					_world.despawnTask = null;
 				}
+				
 				_world.spawnedMobs.clear();
 				_world.lastAttack.clear();
-				// destroy instance after EXIT_TIME
+				
+				// Destroy instance after EXIT_TIME.
 				final Instance inst = InstanceManager.getInstance().getInstance(_world.getInstanceId());
 				if (inst != null)
 				{
@@ -979,7 +1044,7 @@ public class RimKamaloka extends AbstractNpcAI
 					}
 				}
 				
-				// calculate reward
+				// Calculate reward.
 				if (_world.kanabionsCount < 10)
 				{
 					_world.grade = 0;
@@ -990,7 +1055,8 @@ public class RimKamaloka extends AbstractNpcAI
 				}
 				
 				final int index = _world.index;
-				// spawn rewarder npc
+				
+				// Spawn rewarder NPC.
 				addSpawn(REWARDER, REWARDERS[index][0], REWARDERS[index][1], REWARDERS[index][2], 0, false, 0, false, _world.getInstanceId());
 			}
 		}

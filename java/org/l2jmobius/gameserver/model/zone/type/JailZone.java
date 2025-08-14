@@ -52,6 +52,7 @@ public class JailZone extends ZoneType
 				creature.setInsideZone(ZoneId.PVP, true);
 				creature.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_A_COMBAT_ZONE);
 			}
+			
 			if (Config.JAIL_DISABLE_TRANSACTION)
 			{
 				creature.setInsideZone(ZoneId.NO_STORE, true);
@@ -80,6 +81,7 @@ public class JailZone extends ZoneType
 				ThreadPool.schedule(new TeleportTask(player, JAIL_IN_LOC), 2000);
 				creature.sendMessage("You cannot cheat your way out of here. You must wait until your jail time is over.");
 			}
+			
 			if (Config.JAIL_DISABLE_TRANSACTION)
 			{
 				creature.setInsideZone(ZoneId.NO_STORE, false);

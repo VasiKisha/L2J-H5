@@ -65,6 +65,7 @@ public class HpByLevel extends AbstractEffect
 		final double absorb = ((effector.getCurrentHp() + abs) > effector.getMaxHp() ? effector.getMaxHp() : (effector.getCurrentHp() + abs));
 		final int restored = (int) (absorb - effector.getCurrentHp());
 		effector.setCurrentHp(absorb);
+		
 		// System message
 		final SystemMessage sm = new SystemMessage(SystemMessageId.S1_HP_HAS_BEEN_RESTORED);
 		sm.addInt(restored);

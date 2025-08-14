@@ -37,6 +37,7 @@ public class Q00407_PathOfTheElvenScout extends Quest
 	private static final int GUARD_BABENCO = 30334;
 	private static final int GUARD_MORETTI = 30337;
 	private static final int PRIAS = 30426;
+	
 	// Items
 	private static final int REISAS_LETTER = 1207;
 	private static final int PRIASS_1ND_TORN_LETTER = 1208;
@@ -49,10 +50,13 @@ public class Q00407_PathOfTheElvenScout extends Quest
 	private static final int HONORARY_GUARD = 1216;
 	private static final int REISAS_RECOMMENDATION = 1217;
 	private static final int RUSTED_KEY = 1293;
+	
 	// Monster
 	private static final int OL_MAHUM_PATROL = 20053;
+	
 	// Quest Monster
 	private static final int OL_MAHUM_SENTRY = 27031;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	
@@ -128,6 +132,7 @@ public class Q00407_PathOfTheElvenScout extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -245,6 +250,7 @@ public class Q00407_PathOfTheElvenScout extends Quest
 						{
 							addExpAndSp(player, 591724, 33328);
 						}
+						
 						giveAdena(player, 163800, true);
 						qs.exitQuest(false, true);
 						player.sendPacket(new SocialAction(player.getObjectId(), 3));
@@ -328,6 +334,7 @@ public class Q00407_PathOfTheElvenScout extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

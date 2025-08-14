@@ -80,6 +80,7 @@ public class CategoryData implements IXmlReader
 								ids.add(Integer.parseInt(category_node.getTextContent()));
 							}
 						}
+						
 						_categories.put(categoryType, ids);
 					}
 				}
@@ -101,6 +102,7 @@ public class CategoryData implements IXmlReader
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Can't find category type :" + type);
 			return false;
 		}
+		
 		return category.contains(id);
 	}
 	

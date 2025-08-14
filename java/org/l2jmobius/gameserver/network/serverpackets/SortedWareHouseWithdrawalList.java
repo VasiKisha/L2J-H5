@@ -84,6 +84,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 			PacketLogger.warning("Error while sending withdraw request to: " + player.getName());
 			return;
 		}
+		
 		switch (itemtype)
 		{
 			case WEAPON:
@@ -153,6 +154,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				break;
 			}
 		}
+		
 		try
 		{
 			switch (sortorder)
@@ -270,10 +272,12 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 			{
 				return (order == A2Z ? Z2A : A2Z);
 			}
+			
 			if ((o2.getType2() == ItemTemplate.TYPE2_MONEY) && (o1.getType2() != ItemTemplate.TYPE2_MONEY))
 			{
 				return (order == A2Z ? A2Z : Z2A);
 			}
+			
 			final String s1 = o1.getItemName();
 			final String s2 = o2.getItemName();
 			return (order == A2Z ? s1.compareTo(s2) : s2.compareTo(s1));
@@ -301,10 +305,12 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 			{
 				return (order == A2Z ? Z2A : A2Z);
 			}
+			
 			if ((o2.getType2() == ItemTemplate.TYPE2_MONEY) && (o1.getType2() != ItemTemplate.TYPE2_MONEY))
 			{
 				return (order == A2Z ? A2Z : Z2A);
 			}
+			
 			if ((o1.isEtcItem() && (o1.getItemType() == EtcItemType.RECIPE)) && (o2.isEtcItem() && (o2.getItemType() == EtcItemType.RECIPE)))
 			{
 				try
@@ -315,10 +321,12 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 					{
 						return (order == A2Z ? A2Z : Z2A);
 					}
+					
 					if (rp2 == null)
 					{
 						return (order == A2Z ? Z2A : A2Z);
 					}
+					
 					final Integer i1 = rp1.getLevel();
 					final Integer i2 = rp2.getLevel();
 					return (order == A2Z ? i1.compareTo(i2) : i2.compareTo(i1));
@@ -328,6 +336,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 					return 0;
 				}
 			}
+			
 			final String s1 = o1.getItemName();
 			final String s2 = o2.getItemName();
 			return (order == A2Z ? s1.compareTo(s2) : s2.compareTo(s1));
@@ -353,10 +362,12 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 			{
 				return (order == A2Z ? Z2A : A2Z);
 			}
+			
 			if ((o2.getType2() == ItemTemplate.TYPE2_MONEY) && (o1.getType2() != ItemTemplate.TYPE2_MONEY))
 			{
 				return (order == A2Z ? A2Z : Z2A);
 			}
+			
 			final Integer i1 = o1.getBodyPart();
 			final Integer i2 = o2.getBodyPart();
 			return (order == A2Z ? i1.compareTo(i2) : i2.compareTo(i1));
@@ -382,10 +393,12 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 			{
 				return (order == A2Z ? Z2A : A2Z);
 			}
+			
 			if ((o2.getType2() == ItemTemplate.TYPE2_MONEY) && (o1.getType2() != ItemTemplate.TYPE2_MONEY))
 			{
 				return (order == A2Z ? A2Z : Z2A);
 			}
+			
 			final CrystalType i1 = o1.getItemGrade();
 			final CrystalType i2 = o2.getItemGrade();
 			return (order == A2Z ? i1.compareTo(i2) : i2.compareTo(i1));
@@ -411,10 +424,12 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 			{
 				return (order == A2Z ? Z2A : A2Z);
 			}
+			
 			if ((o2.getType2() == ItemTemplate.TYPE2_MONEY) && (o1.getType2() != ItemTemplate.TYPE2_MONEY))
 			{
 				return (order == A2Z ? A2Z : Z2A);
 			}
+			
 			try
 			{
 				final MaterialType i1 = o1.getItem().getMaterialType();
@@ -446,6 +461,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -466,6 +482,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -486,6 +503,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -506,6 +524,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -526,6 +545,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -546,6 +566,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -566,6 +587,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -586,6 +608,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -606,6 +629,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -626,6 +650,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -646,6 +671,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -666,6 +692,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -685,6 +712,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				list.add(new WarehouseItem(item));
 			}
 		}
+		
 		return list;
 	}
 	
@@ -718,6 +746,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 			{
 				buffer.writeInt(0);
 			}
+			
 			buffer.writeInt(item.getMana());
 			buffer.writeInt(item.getTime());
 			buffer.writeShort(item.getAttackElementType());
@@ -726,11 +755,13 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 			{
 				buffer.writeShort(item.getElementDefAttr(i));
 			}
+			
 			// Enchant Effects
 			for (int op : item.getEnchantOptions())
 			{
 				buffer.writeShort(op);
 			}
+			
 			buffer.writeInt(item.getObjectId());
 		}
 	}

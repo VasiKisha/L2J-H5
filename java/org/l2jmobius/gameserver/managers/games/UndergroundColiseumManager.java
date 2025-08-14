@@ -155,6 +155,7 @@ public class UndergroundColiseumManager implements IXmlReader
 										}
 									}
 								}
+								
 								final int x = Integer.parseInt(map.getNamedItem("x").getNodeValue());
 								final int y = Integer.parseInt(map.getNamedItem("y").getNodeValue());
 								final int z = Integer.parseInt(map.getNamedItem("z").getNodeValue());
@@ -178,6 +179,7 @@ public class UndergroundColiseumManager implements IXmlReader
 								}
 							}
 						}
+						
 						_arenas.put(arena.getId(), arena);
 					}
 				}

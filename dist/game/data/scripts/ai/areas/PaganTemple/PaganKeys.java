@@ -37,10 +37,12 @@ public class PaganKeys extends AbstractNpcAI
 	private static final int ANTEROOM_KEY = 8273;
 	private static final int CHAPEL_KEY = 8274;
 	private static final int KEY_OF_DARKNESS = 8275;
+	
 	// NPCs
 	private static final int ZOMBIE_WORKER = 22140;
 	private static final int TRIOLS_LAYPERSON = 22142;
 	private static final int TRIOLS_PRIEST = 22168;
+	
 	// Misc
 	private static final int ANTEROOM_KEY_CHANCE = 10;
 	private static final int CHAPEL_KEY_CHANCE = 10;

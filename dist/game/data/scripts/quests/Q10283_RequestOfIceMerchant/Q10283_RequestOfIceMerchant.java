@@ -34,8 +34,10 @@ public class Q10283_RequestOfIceMerchant extends Quest
 	private static final int RAFFORTY = 32020;
 	private static final int KIER = 32022;
 	private static final int JINIA = 32760;
+	
 	// Misc
 	private static final int MIN_LEVEL = 82;
+	
 	// Variables
 	private boolean isBusy = false;
 	private int talker = 0;
@@ -138,6 +140,7 @@ public class Q10283_RequestOfIceMerchant extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -196,6 +199,7 @@ public class Q10283_RequestOfIceMerchant extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -64,6 +64,7 @@ public class Q00122_OminousNews extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -105,6 +106,7 @@ public class Q00122_OminousNews extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

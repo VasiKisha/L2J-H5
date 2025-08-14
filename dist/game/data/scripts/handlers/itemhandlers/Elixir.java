@@ -27,13 +27,14 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 public class Elixir extends ItemSkills
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{
 			playable.sendPacket(SystemMessageId.YOUR_PET_CANNOT_CARRY_THIS_ITEM);
 			return false;
 		}
-		return super.useItem(playable, item, forceUse);
+		
+		return super.onItemUse(playable, item, forceUse);
 	}
 }

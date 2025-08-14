@@ -86,6 +86,7 @@ public class RaidbossInfo extends AbstractNpcAI
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

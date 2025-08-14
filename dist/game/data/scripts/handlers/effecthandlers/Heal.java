@@ -90,6 +90,7 @@ public class Heal extends AbstractEffect
 			{
 				mAtkMul = weaponInst.getTemplate().getCrystalType() == CrystalType.S84 ? 4 : weaponInst.getTemplate().getCrystalType() == CrystalType.S80 ? 2 : 1;
 			}
+			
 			// shot dynamic bonus
 			mAtkMul = bss ? mAtkMul * 4 : mAtkMul + 1;
 		}
@@ -98,6 +99,7 @@ public class Heal extends AbstractEffect
 		{
 			amount += staticShotBonus + Math.sqrt(mAtkMul * effector.getMAtk(effector, null));
 			amount = effected.calcStat(Stat.HEAL_EFFECT, amount, null, null);
+			
 			// Heal critic, since CT2.3 Gracia Final
 			if (skill.isMagic() && Formulas.calcMCrit(effector.getMCriticalHit(effected, skill)))
 			{

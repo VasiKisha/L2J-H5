@@ -32,13 +32,16 @@ public class Q00116_BeyondTheHillsOfWinter extends Quest
 	// NPCs
 	private static final int FILAUR = 30535;
 	private static final int OBI = 32052;
+	
 	// Items
 	private static final ItemHolder THIEF_KEY = new ItemHolder(1661, 10);
 	private static final ItemHolder BANDAGE = new ItemHolder(1833, 20);
 	private static final ItemHolder ENERGY_STONE = new ItemHolder(5589, 5);
 	private static final int SUPPLYING_GOODS = 8098;
+	
 	// Reward
 	private static final int SOULSHOT_D = 1463;
+	
 	// Misc
 	private static final int MIN_LEVEL = 30;
 	
@@ -111,6 +114,7 @@ public class Q00116_BeyondTheHillsOfWinter extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -165,6 +169,7 @@ public class Q00116_BeyondTheHillsOfWinter extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

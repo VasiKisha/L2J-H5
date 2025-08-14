@@ -38,9 +38,11 @@ public class Q00280_TheFoodChain extends Quest
 {
 	// Npc
 	private static final int BIXON = 32175;
+	
 	// Items
 	private static final int GREY_KELTIR_TOOTH = 9809;
 	private static final int BLACK_WOLF_TOOTH = 9810;
+	
 	// Monsters
 	private static final Map<Integer, Integer> MONSTER_ITEM = new HashMap<>();
 	private static final Map<Integer, List<ItemHolder>> MONSTER_CHANCE = new HashMap<>();
@@ -57,8 +59,9 @@ public class Q00280_TheFoodChain extends Quest
 		MONSTER_CHANCE.put(22232, Arrays.asList(new ItemHolder(1000, 3)));
 		MONSTER_CHANCE.put(22233, Arrays.asList(new ItemHolder(500, 3), new ItemHolder(1000, 4)));
 	}
+	
 	// Rewards
-	private static final int[] REWARDS = new int[]
+	private static final int[] REWARDS =
 	{
 		28,
 		35,
@@ -66,6 +69,7 @@ public class Q00280_TheFoodChain extends Quest
 		48,
 		116,
 	};
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	private static final int TEETH_COUNT = 25;
@@ -139,6 +143,7 @@ public class Q00280_TheFoodChain extends Quest
 						takeItems(player, GREY_KELTIR_TOOTH, greyTeeth);
 						takeItems(player, BLACK_WOLF_TOOTH, TEETH_COUNT - greyTeeth);
 					}
+					
 					rewardItems(player, REWARDS[getRandom(5)], 1);
 					htmltext = event;
 				}
@@ -149,6 +154,7 @@ public class Q00280_TheFoodChain extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -196,6 +202,7 @@ public class Q00280_TheFoodChain extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

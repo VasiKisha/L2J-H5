@@ -24,7 +24,6 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.enums.player.PlayerCondOverride;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectType;
@@ -77,7 +76,7 @@ public class Fishing extends AbstractEffect
 		}
 		
 		final Player player = effector.asPlayer();
-		if (!Config.ALLOW_FISHING && !player.canOverrideCond(PlayerCondOverride.SKILL_CONDITIONS))
+		if (!Config.ALLOW_FISHING && !player.isGM())
 		{
 			player.sendMessage("Fishing is disabled!");
 			return;

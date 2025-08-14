@@ -113,6 +113,7 @@ public abstract class AbstractVariables extends StatSet
 		{
 			_hasChanges.compareAndSet(false, true);
 		}
+		
 		super.set(name, value);
 	}
 	

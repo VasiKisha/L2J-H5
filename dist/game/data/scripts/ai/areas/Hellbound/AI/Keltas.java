@@ -40,6 +40,7 @@ public class Keltas extends AbstractNpcAI
 	private static final int KELTAS = 22341;
 	private static final int ENFORCER = 22342;
 	private static final int EXECUTIONER = 22343;
+	
 	// Locations
 	private static final Location[] ENFORCER_SPAWN_POINTS =
 	{
@@ -98,6 +99,7 @@ public class Keltas extends AbstractNpcAI
 		new Location(-28580, 251071, -3527),
 		new Location(-28492, 250704, -3523)
 	};
+	
 	// Misc
 	private Monster _spawnedKeltas = null;
 	private final Set<Spawn> _spawnedMonsters = Collections.newSetFromMap(new ConcurrentHashMap<>());
@@ -147,6 +149,7 @@ public class Keltas extends AbstractNpcAI
 				minion.deleteMe();
 			}
 		}
+		
 		_spawnedMonsters.clear();
 	}
 	
@@ -164,6 +167,7 @@ public class Keltas extends AbstractNpcAI
 				despawnMinions();
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

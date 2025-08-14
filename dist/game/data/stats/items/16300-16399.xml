@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="16300" type="Armor" name="Moirai Gloves">
 		<!-- Masterwork Item that increases M. Atk., Resistance to Paralysis, and Resistance to wind. -->
@@ -14,13 +14,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8432-1" /> <!-- Moirai Gloves -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16301" type="Armor" name="Moirai Boots">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., Resistance to Shock, and Resistance to earth. -->
@@ -36,13 +36,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8422-1" /> <!-- Moirai Boots -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16302" type="Armor" name="Moirai Leather Boots">
 		<!-- Masterwork Item that increases P. Atk., MP Recovery Bonus, Resistance to Hold, and Resistance to earth. -->
@@ -58,10 +58,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8428-1" /> <!-- Moirai Leather Boots -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16303" type="Armor" name="Moirai Shoes">
 		<!-- Masterwork Item that increases M. Atk., Resistance to Paralysis, and Resistance to earth. -->
@@ -77,13 +77,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8433-1" /> <!-- Moirai Shoes -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16304" type="Armor" name="Moirai Shield">
 		<!-- Masterwork Item that increases Resistance to Magic Damage. -->
@@ -98,15 +98,15 @@
 		<set name="price" val="8839000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8423-1" /> <!-- Moirai Shield -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="355" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="16305" type="Armor" name="Moirai Sigil">
 		<!-- Masterwork Item that increases Resistance to Magic Damage. -->
@@ -122,14 +122,14 @@
 		<set name="price" val="8839000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8434-1" /> <!-- Moirai Sigil -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="16" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16306" type="Armor" name="Vesper Helmet">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, Resistance to sleep, and Resistance to Hold. -->
@@ -145,13 +145,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8435-1" /> <!-- Vesper Helmet -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16307" type="Armor" name="Vesper Leather Helmet">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
@@ -167,10 +167,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8441-1" /> <!-- Vesper Leather Helmet -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16308" type="Armor" name="Vesper Circlet">
 		<!-- Masterwork Item that increases M. Atk., MP Regeneration, and Resistance to Shock, and decreases Magic Cancel Rate. -->
@@ -186,13 +186,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8446-1" /> <!-- Vesper Circlet -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16309" type="Armor" name="Vesper Breastplate">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, and Resistance to Hold. -->
@@ -209,13 +209,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8436-1" /> <!-- Vesper Cuirass -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="250" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16310" type="Armor" name="Vesper Leather Breastplate">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
@@ -232,10 +232,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8442-1" /> <!-- Vesper Leather Hauberk -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="187" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16311" type="Armor" name="Vesper Tunic">
 		<!-- Masterwork Item that increases M. Atk., Casting Spd., MP Regeneration, and Resistance to Stun, and decreases Magic Cancel Rate. -->
@@ -252,14 +252,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8447-1" /> <!-- Vesper Jacket -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="125" />
 			<add stat="maxMp" val="637" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16312" type="Armor" name="Vesper Gaiter">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, Resistance to sleep, and Resistance to Hold. -->
@@ -276,13 +276,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8437-1" /> <!-- Vesper Gaiter -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="156" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16313" type="Armor" name="Vesper Leather Legging">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
@@ -299,10 +299,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8443-1" /> <!-- Vesper Leather Legging -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="117" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16314" type="Armor" name="Vesper Stockings">
 		<!-- Masterwork Item that increases M. Atk., MP Regeneration, and Resistance to Stun, and decreases Magic Cancel Rate. -->
@@ -319,14 +319,14 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8448-1" /> <!-- Vesper Hose -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="78" />
 			<add stat="maxMp" val="415" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16315" type="Armor" name="Vesper Gauntlet">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, Resistance to sleep, and Resistance to Hold. -->
@@ -342,13 +342,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8438-1" /> <!-- Vesper Gauntlet -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16316" type="Armor" name="Vesper Leather Gloves">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
@@ -364,10 +364,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8444-1" /> <!-- Vesper Leather Gloves -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16317" type="Armor" name="Vesper Gloves">
 		<!-- Masterwork Item that increases M. Atk., MP Regeneration, and Resistance to Stun, and decreases Magic Cancel Rate. -->
@@ -383,13 +383,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8449-1" /> <!-- Vesper Gloves -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16318" type="Armor" name="Vesper Boots">
 		<!-- Masterwork Item that increases P. Atk., P. Def., Max HP, Resistance to sleep, and Resistance to Hold. -->
@@ -405,13 +405,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8439-1" /> <!-- Vesper Boots -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16319" type="Armor" name="Vesper Leather Boots">
 		<!-- Masterwork Item that increases P. Atk., Atk. Spd., MP Regeneration, and Max MP. -->
@@ -427,10 +427,10 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8445-1" /> <!-- Vesper Leather Boots -->
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16320" type="Armor" name="Vesper Shoes">
 		<!-- Masterwork Item that increases M. Atk., MP Regeneration, and Resistance to Stun, and decreases Magic Cancel Rate. -->
@@ -446,13 +446,13 @@
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8450-1" /> <!-- Vesper Shoes -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16321" type="Armor" name="Vesper Shield">
 		<!-- Masterwork Item that increases Resistance to Magic Damage. -->
@@ -467,15 +467,15 @@
 		<set name="price" val="12250000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8440-1" /> <!-- Vesper Verteidiger -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="371" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="16322" type="Armor" name="Vesper Sigil">
 		<!-- Masterwork Item that increases Resistance to Magic Damage. -->
@@ -491,14 +491,14 @@
 		<set name="price" val="12250000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8451-1" /> <!-- Vesper Sigil -->
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="17" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16323" type="Armor" name="Sealed Moirai Helmet">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -513,13 +513,13 @@
 		<set name="price" val="12627000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16324" type="Armor" name="Sealed Moirai Leather Helmet">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -534,10 +534,10 @@
 		<set name="price" val="12627000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16325" type="Armor" name="Sealed Moirai Circlet">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -552,13 +552,13 @@
 		<set name="price" val="12627000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="96" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16326" type="Armor" name="Sealed Moirai Breastplate">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -574,13 +574,13 @@
 		<set name="price" val="33673000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="225" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16327" type="Armor" name="Sealed Moirai Leather Breastplate">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -596,10 +596,10 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="169" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16328" type="Armor" name="Sealed Moirai Tunic">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -615,14 +615,14 @@
 		<set name="price" val="25255000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="112" />
 			<add stat="maxMp" val="614" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16329" type="Armor" name="Sealed Moirai Gaiter">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -638,13 +638,13 @@
 		<set name="price" val="21046000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="141" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16330" type="Armor" name="Sealed Moirai Leather Legging">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -660,10 +660,10 @@
 		<set name="price" val="15784000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="105" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16331" type="Armor" name="Sealed Moirai Stockings">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -679,14 +679,14 @@
 		<set name="price" val="15784000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="70" />
 			<add stat="maxMp" val="392" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16332" type="Armor" name="Sealed Moirai Gauntlet">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -701,13 +701,13 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16333" type="Armor" name="Sealed Moirai Leather Gloves">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -722,10 +722,10 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16334" type="Armor" name="Sealed Moirai Gloves">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -740,13 +740,13 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16335" type="Armor" name="Sealed Moirai Boots">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -761,13 +761,13 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16336" type="Armor" name="Sealed Moirai Leather Boots">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -782,10 +782,10 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16337" type="Armor" name="Sealed Moirai Shoes">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -800,13 +800,13 @@
 		<set name="price" val="8418000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="64" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16338" type="Armor" name="Sealed Moirai Shield">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -820,15 +820,15 @@
 		<set name="weight" val="1190" />
 		<set name="price" val="8839000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="337" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="16339" type="Armor" name="Sealed Moirai Sigil">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -843,14 +843,14 @@
 		<set name="weight" val="920" />
 		<set name="price" val="8839000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="16" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16340" type="Armor" name="Sealed Vesper Helmet">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -865,13 +865,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16341" type="Armor" name="Sealed Vesper Leather Helmet">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -886,10 +886,10 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16342" type="Armor" name="Sealed Vesper Circlet">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -904,13 +904,13 @@
 		<set name="price" val="17500000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="101" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16343" type="Armor" name="Sealed Vesper Breastplate">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -926,13 +926,13 @@
 		<set name="price" val="46668000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="250" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16344" type="Armor" name="Sealed Vesper Leather Leather Breastplate">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -948,10 +948,10 @@
 		<set name="price" val="35000000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="187" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16345" type="Armor" name="Sealed Vesper Tunic">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -967,14 +967,14 @@
 		<set name="price" val="35000000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="125" />
 			<add stat="maxMp" val="637" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16346" type="Armor" name="Sealed Vesper Gaiter">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -990,13 +990,13 @@
 		<set name="price" val="29168000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="148" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16347" type="Armor" name="Sealed Vesper Leather Legging">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1012,10 +1012,10 @@
 		<set name="price" val="21876000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="111" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16348" type="Armor" name="Sealed Vesper Stockings">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1031,14 +1031,14 @@
 		<set name="price" val="21876000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="74" />
 			<add stat="maxMp" val="415" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16349" type="Armor" name="Sealed Vesper Gauntlet">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1053,13 +1053,13 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16350" type="Armor" name="Sealed Vesper Leather Gloves">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1074,10 +1074,10 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16351" type="Armor" name="Sealed Vesper Gloves">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1092,13 +1092,13 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16352" type="Armor" name="Sealed Vesper Boots">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1113,13 +1113,13 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16353" type="Armor" name="Sealed Vesper Leather Boots">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1134,10 +1134,10 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16354" type="Armor" name="Sealed Vesper Shoes">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1152,13 +1152,13 @@
 		<set name="price" val="11667000" />
 		<set name="element_enabled" val="true" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16355" type="Armor" name="Sealed Vesper Shield">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1172,15 +1172,15 @@
 		<set name="weight" val="1130" />
 		<set name="price" val="12250000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="352" />
 			<enchant val="0" stat="sDef" />
-		</for>
+		</stats>
 	</item>
 	<item id="16356" type="Armor" name="Sealed Vesper Sigil">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. -->
@@ -1195,14 +1195,14 @@
 		<set name="weight" val="920" />
 		<set name="price" val="12250000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<add order="0" stat="pDef" val="17" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16357" type="EtcItem" name="Sealed Vesper Ring of Chaos">
 		<!-- A rare Sealed Vesper Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1212,9 +1212,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="5142000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="55" />
-		</for>
+		</stats>
 	</item>
 	<item id="16358" type="EtcItem" name="Sealed Vesper Earring of Chaos">
 		<!-- A rare Sealed Vesper Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1224,9 +1224,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="7713000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="83" />
-		</for>
+		</stats>
 	</item>
 	<item id="16359" type="EtcItem" name="Sealed Vesper Necklace of Chaos">
 		<!-- A rare Sealed Vesper Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1236,9 +1236,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="10284000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="110" />
-		</for>
+		</stats>
 	</item>
 	<item id="16360" type="EtcItem" name="Sealed Moirai Ring of Chaos">
 		<!-- A rare Sealed Moirai Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1248,9 +1248,9 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="3710000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="53" />
-		</for>
+		</stats>
 	</item>
 	<item id="16361" type="EtcItem" name="Sealed Moirai Earring of Chaos">
 		<!-- A rare Sealed Moirai Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1260,9 +1260,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="5565000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="76" />
-		</for>
+		</stats>
 	</item>
 	<item id="16362" type="EtcItem" name="Sealed Moirai Necklace of Chaos">
 		<!-- A rare Sealed Moirai Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1272,9 +1272,9 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="7420000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="101" />
-		</for>
+		</stats>
 	</item>
 	<item id="16363" type="EtcItem" name="Vesper Ring of Chaos">
 		<!-- A rare Sealed Vesper Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1285,10 +1285,10 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="7596000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="62" />
 			<add stat="maxMp" val="25" />
-		</for>
+		</stats>
 	</item>
 	<item id="16364" type="EtcItem" name="Vesper Earring of Chaos">
 		<!-- A rare Sealed Vesper Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1299,10 +1299,10 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="11394000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="94" />
 			<add stat="maxMp" val="37" />
-		</for>
+		</stats>
 	</item>
 	<item id="16365" type="EtcItem" name="Vesper Necklace of Chaos">
 		<!-- A rare Sealed Vesper Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1313,10 +1313,10 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="15192000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="125" />
 			<add stat="maxMp" val="50" />
-		</for>
+		</stats>
 	</item>
 	<item id="16366" type="EtcItem" name="Moirai Ring of Chaos">
 		<!-- A rare Sealed Moirai Ring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1327,10 +1327,10 @@
 		<set name="material" val="GOLD" />
 		<set name="weight" val="150" />
 		<set name="price" val="5480000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="53" />
 			<add stat="maxMp" val="24" />
-		</for>
+		</stats>
 	</item>
 	<item id="16367" type="EtcItem" name="Moirai Earring of Chaos">
 		<!-- A rare Sealed Moirai Earring that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1341,10 +1341,10 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="8221000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="86" />
 			<add stat="maxMp" val="36" />
-		</for>
+		</stats>
 	</item>
 	<item id="16368" type="EtcItem" name="Moirai Necklace of Chaos">
 		<!-- A rare Sealed Moirai Necklace that requires a thorough varnishing. It can be varnished by the Blacksmith of Mammon. -->
@@ -1355,10 +1355,10 @@
 		<set name="material" val="SILVER" />
 		<set name="weight" val="150" />
 		<set name="price" val="10961000" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="115" />
 			<add stat="maxMp" val="48" />
-		</for>
+		</stats>
 	</item>
 	<item id="16369" type="Armor" name="Sealed Vesper Ring">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is broken, Resistance to Shock is increased. -->
@@ -1372,10 +1372,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="5142000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="55" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16370" type="Armor" name="Sealed Vesper Earring">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is broken, MP +37, and Resistance to sleep and hold are increased. -->
@@ -1389,10 +1389,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="7713000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="83" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16371" type="Armor" name="Sealed Vesper Necklace">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is broken, MP +50 and Max MP +33. -->
@@ -1406,10 +1406,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="10284000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="110" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16372" type="Armor" name="Sealed Moirai Ring">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is broken, MP increases 24 and Max MP +16. -->
@@ -1423,10 +1423,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="3710000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="53" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16373" type="Armor" name="Sealed Moirai Earring">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is broken, MP +36 and Resistance to bleed is increased. -->
@@ -1440,10 +1440,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="5565000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="76" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16374" type="Armor" name="Sealed Moirai Necklace">
 		<!-- Sealed Masterwork Item. Seal can be removed by the Blacksmith of Mammon or Maestro Ishuma. When the seal is broken, MP +48 and Resistance to poison is increased. -->
@@ -1457,10 +1457,10 @@
 		<set name="weight" val="150" />
 		<set name="price" val="7420000" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="101" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16375" type="Armor" name="Vesper Ring">
 		<!-- Masterwork Item that increases MP +25 and Resistance to Shock. -->
@@ -1475,11 +1475,11 @@
 		<set name="price" val="7596000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8457-1" /> <!-- Vesper Ring -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="62" />
 			<add stat="maxMp" val="25" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16376" type="Armor" name="Vesper Earring">
 		<!-- Masterwork Item that increases MP +37, Resistance to sleep, and Resistance to Hold. -->
@@ -1494,11 +1494,11 @@
 		<set name="price" val="11394000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8455-1" /> <!-- Vesper Earring -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="94" />
 			<add stat="maxMp" val="37" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16377" type="Armor" name="Vesper Necklace">
 		<!-- Masterwork Item that increases MP +50 and Max MP. -->
@@ -1513,11 +1513,11 @@
 		<set name="price" val="15192000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8456-1" /> <!-- Vesper Necklace -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="125" />
 			<add stat="maxMp" val="50" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16378" type="Armor" name="Moirai Ring">
 		<!-- Masterwork Item that increases MP +24 and Max MP. -->
@@ -1532,11 +1532,11 @@
 		<set name="price" val="5480000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8454-1" /> <!-- Moirai Ring -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="61" />
 			<add stat="maxMp" val="24" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16379" type="Armor" name="Moirai Earring">
 		<!-- Masterwork Item that increases MP +36 and Resistance to bleed. -->
@@ -1551,11 +1551,11 @@
 		<set name="price" val="8221000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8452-1" /> <!-- Moirai Earring -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="86" />
 			<add stat="maxMp" val="36" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16380" type="Armor" name="Moirai Necklace">
 		<!-- Masterwork Item that increases MP +48 and Resistance to poison. -->
@@ -1570,11 +1570,11 @@
 		<set name="price" val="10961000" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="8453-1" /> <!-- Moirai Necklace -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="115" />
 			<add stat="maxMp" val="48" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="16381" type="EtcItem" name="Training Order Paper">
 		<!-- The Sel Mahum Training Officer's Training Order Papers. Take it back to Guard Stan of Oren Village. -->

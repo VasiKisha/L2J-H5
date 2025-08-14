@@ -38,10 +38,12 @@ public class Q00661_MakingTheHarvestGroundsSafe extends Quest
 {
 	// NPC
 	private static final int NORMAN = 30210;
+	
 	// Items
 	private static final int BIG_HORNET_STING = 8283;
 	private static final int CLOUD_GEM = 8284;
 	private static final int YOUNG_ARANEID_CLAW = 8285;
+	
 	// Monsters
 	private static final Map<Integer, ItemChanceHolder> MONSTER_CHANCES = new HashMap<>();
 	static
@@ -50,6 +52,7 @@ public class Q00661_MakingTheHarvestGroundsSafe extends Quest
 		MONSTER_CHANCES.put(21096, new ItemChanceHolder(CLOUD_GEM, 0.5)); // Cloudy Beast
 		MONSTER_CHANCES.put(21097, new ItemChanceHolder(YOUNG_ARANEID_CLAW, 0.516)); // Young Araneid
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 21;
 	
@@ -101,6 +104,7 @@ public class Q00661_MakingTheHarvestGroundsSafe extends Quest
 				{
 					reward += 5773;
 				}
+				
 				takeItems(player, BIG_HORNET_STING, -1);
 				takeItems(player, CLOUD_GEM, -1);
 				takeItems(player, YOUNG_ARANEID_CLAW, -1);
@@ -115,6 +119,7 @@ public class Q00661_MakingTheHarvestGroundsSafe extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -143,6 +148,7 @@ public class Q00661_MakingTheHarvestGroundsSafe extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	

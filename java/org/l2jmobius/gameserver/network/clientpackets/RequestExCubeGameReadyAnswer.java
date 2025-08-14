@@ -34,6 +34,7 @@ public class RequestExCubeGameReadyAnswer extends ClientPacket
 	{
 		// client sends -1,0,1,2 for arena parameter
 		_arena = readInt() + 1;
+		
 		// client sends 1 if clicked confirm on not clicked, 0 if clicked cancel
 		_answer = readInt();
 	}

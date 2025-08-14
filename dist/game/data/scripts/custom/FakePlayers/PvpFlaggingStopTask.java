@@ -44,6 +44,7 @@ public class PvpFlaggingStopTask extends AbstractNpcAI
 		{
 			return null;
 		}
+		
 		if (npc.isDead())
 		{
 			cancelQuestTimer("FLAG_CHECK", npc, null);
@@ -81,6 +82,7 @@ public class PvpFlaggingStopTask extends AbstractNpcAI
 				npc.broadcastInfo(); // update flag status
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

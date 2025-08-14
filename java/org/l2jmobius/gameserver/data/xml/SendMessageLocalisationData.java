@@ -128,6 +128,7 @@ public class SendMessageLocalisationData implements IXmlReader
 								break;
 							}
 						}
+						
 						if (found)
 						{
 							for (int i = 0; i < searchMessage.length; i++)
@@ -138,9 +139,11 @@ public class SendMessageLocalisationData implements IXmlReader
 						}
 					}
 				}
+				
 				return localisation;
 			}
 		}
+		
 		return message;
 	}
 	

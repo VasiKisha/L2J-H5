@@ -46,6 +46,7 @@ public class ConditionCategoryType extends Condition
 				return true;
 			}
 		}
+		
 		return false;
 	}
 }

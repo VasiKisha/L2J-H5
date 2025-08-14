@@ -39,10 +39,12 @@ public class ConditionLogicAnd extends Condition
 		{
 			return;
 		}
+		
 		if (getListener() != null)
 		{
 			condition.setListener(this);
 		}
+		
 		final int len = conditions.length;
 		final Condition[] tmp = new Condition[len + 1];
 		System.arraycopy(conditions, 0, tmp, 0, len);
@@ -67,6 +69,7 @@ public class ConditionLogicAnd extends Condition
 				c.setListener(null);
 			}
 		}
+		
 		super.setListener(listener);
 	}
 	
@@ -80,6 +83,7 @@ public class ConditionLogicAnd extends Condition
 				return false;
 			}
 		}
+		
 		return true;
 	}
 }

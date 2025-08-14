@@ -33,17 +33,21 @@ import ai.AbstractNpcAI;
 public class EmeraldHorn extends AbstractNpcAI
 {
 	private static final int EMERALD_HORN = 25718;
+	
 	// Skills
 	private static final SkillHolder REFLECT_ATTACK = new SkillHolder(6823, 1);
 	private static final SkillHolder PIERCING_STORM = new SkillHolder(6824, 1);
 	private static final SkillHolder BLEED_LEVEL_1 = new SkillHolder(6825, 1);
 	private static final SkillHolder BLEED_LEVEL_2 = new SkillHolder(6825, 2);
+	
 	// Variables
 	private static final String HIGH_DAMAGE_FLAG = "HIGH_DAMAGE_FLAG";
 	private static final String TOTAL_DAMAGE_COUNT = "TOTAL_DAMAGE_COUNT";
 	private static final String CAST_FLAG = "CAST_FLAG";
+	
 	// Timers
 	private static final String DAMAGE_TIMER_15S = "DAMAGE_TIMER_15S";
+	
 	// Misc
 	private static final int MAX_CHASE_DIST = 2500;
 	
@@ -115,8 +119,10 @@ public class EmeraldHorn extends AbstractNpcAI
 					}
 				}
 			}
+			
 			npc.getVariables().set(CAST_FLAG, false);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

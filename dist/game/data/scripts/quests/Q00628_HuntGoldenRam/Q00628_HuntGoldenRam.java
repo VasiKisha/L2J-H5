@@ -34,14 +34,17 @@ public class Q00628_HuntGoldenRam extends Quest
 {
 	// NPCs
 	private static final int KAHMAN = 31554;
+	
 	// Items
 	private static final int GOLDEN_RAM_BADGE_RECRUIT = 7246;
 	private static final int GOLDEN_RAM_BADGE_SOLDIER = 7247;
 	private static final int SPLINTER_STAKATO_CHITIN = 7248;
 	private static final int NEEDLE_STAKATO_CHITIN = 7249;
+	
 	// Misc
 	private static final int REQUIRED_ITEM_COUNT = 100;
 	private static final int MIN_LEVEL = 66;
+	
 	// Mobs
 	private static final Map<Integer, ItemChanceHolder> MOBS_DROP_CHANCES = new HashMap<>();
 	static
@@ -131,6 +134,7 @@ public class Q00628_HuntGoldenRam extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -213,6 +217,7 @@ public class Q00628_HuntGoldenRam extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

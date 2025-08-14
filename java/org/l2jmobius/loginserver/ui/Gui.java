@@ -153,6 +153,7 @@ public class Gui
 			{
 				gsi.setStatus(ServerStatus.STATUS_NORMAL);
 			}
+			
 			LoginServer.LOGGER.info("Status changed to enabled.");
 		});
 		_chckbxmntmEnabled.setSelected(true);
@@ -170,6 +171,7 @@ public class Gui
 			{
 				gsi.setStatus(ServerStatus.STATUS_DOWN);
 			}
+			
 			LoginServer.LOGGER.info("Status changed to disabled.");
 		});
 		mnStatus.add(_chckbxmntmDisabled);
@@ -186,6 +188,7 @@ public class Gui
 			{
 				gsi.setStatus(ServerStatus.STATUS_GM_ONLY);
 			}
+			
 			LoginServer.LOGGER.info("Status changed to GM only.");
 		});
 		mnStatus.add(_chckbxmntmGmOnly);

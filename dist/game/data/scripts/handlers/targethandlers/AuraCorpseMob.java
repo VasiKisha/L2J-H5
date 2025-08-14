@@ -36,6 +36,7 @@ public class AuraCorpseMob implements ITargetTypeHandler
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
 		final List<WorldObject> targetList = new LinkedList<>();
+		
 		// Go through the Creature _knownList
 		final int maxTargets = skill.getAffectLimit();
 		for (Attackable obj : World.getInstance().getVisibleObjectsInRange(creature, Attackable.class, skill.getAffectRange()))
@@ -55,6 +56,7 @@ public class AuraCorpseMob implements ITargetTypeHandler
 				}
 			}
 		}
+		
 		return targetList;
 	}
 	

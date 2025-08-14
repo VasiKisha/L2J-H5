@@ -54,6 +54,7 @@ public class RequestServerLogin extends LoginClientPacket
 			_serverId = readByte();
 			return true;
 		}
+		
 		return false;
 	}
 	

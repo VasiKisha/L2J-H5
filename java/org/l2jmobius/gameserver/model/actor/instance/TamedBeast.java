@@ -80,8 +80,7 @@ public class TamedBeast extends FeedableBeast
 		super(NpcData.getInstance().getTemplate(npcTemplateId));
 		_isFreyaBeast = false;
 		setInstanceType(InstanceType.TamedBeast);
-		setCurrentHp(getMaxHp());
-		setCurrentMp(getMaxMp());
+		fullRestore();
 		setOwner(owner);
 		setFoodType(foodSkillId);
 		setHome(x, y, z);
@@ -93,8 +92,7 @@ public class TamedBeast extends FeedableBeast
 		super(NpcData.getInstance().getTemplate(npcTemplateId));
 		_isFreyaBeast = isFreyaBeast;
 		setInstanceType(InstanceType.TamedBeast);
-		setCurrentHp(getMaxHp());
-		setCurrentMp(getMaxMp());
+		fullRestore();
 		setFoodType(food);
 		setHome(x, y, z);
 		spawnMe(x, y, z);
@@ -159,6 +157,7 @@ public class TamedBeast extends FeedableBeast
 			{
 				_durationCheckTask.cancel(true);
 			}
+			
 			_durationCheckTask = ThreadPool.scheduleAtFixedRate(new CheckDuration(this), DURATION_CHECK_INTERVAL, DURATION_CHECK_INTERVAL);
 		}
 	}
@@ -176,6 +175,7 @@ public class TamedBeast extends FeedableBeast
 		{
 			_buffTask.cancel(true);
 		}
+		
 		if (_durationCheckTask != null)
 		{
 			_durationCheckTask.cancel(true);
@@ -186,6 +186,7 @@ public class TamedBeast extends FeedableBeast
 		{
 			_owner.getTrainedBeasts().remove(this);
 		}
+		
 		_buffTask = null;
 		_durationCheckTask = null;
 		_owner = null;
@@ -211,6 +212,7 @@ public class TamedBeast extends FeedableBeast
 		{
 			_beastSkills = ConcurrentHashMap.newKeySet();
 		}
+		
 		_beastSkills.add(skill);
 	}
 	
@@ -220,12 +222,14 @@ public class TamedBeast extends FeedableBeast
 		{
 			return;
 		}
+		
 		int delay = 100;
 		for (Skill skill : _beastSkills)
 		{
 			ThreadPool.schedule(new buffCast(skill), delay);
 			delay += (100 + skill.getHitTime());
 		}
+		
 		ThreadPool.schedule(new buffCast(null), delay);
 	}
 	
@@ -263,6 +267,7 @@ public class TamedBeast extends FeedableBeast
 		{
 			_owner = owner;
 			setTitle(owner.getName());
+			
 			// broadcast the new title
 			setShowSummonAnimation(true);
 			broadcastPacket(new AbstractNpcInfo.NpcInfo(this, owner));
@@ -288,6 +293,7 @@ public class TamedBeast extends FeedableBeast
 				{
 					_buffTask.cancel(true);
 				}
+				
 				_buffTask = ThreadPool.scheduleAtFixedRate(new CheckOwnerBuffs(this, totalBuffsAvailable), BUFF_INTERVAL, BUFF_INTERVAL);
 			}
 		}
@@ -309,6 +315,7 @@ public class TamedBeast extends FeedableBeast
 		{
 			_buffTask.cancel(true);
 		}
+		
 		_durationCheckTask.cancel(true);
 		stopHpMpRegeneration();
 		
@@ -317,6 +324,7 @@ public class TamedBeast extends FeedableBeast
 		{
 			_owner.getTrainedBeasts().remove(this);
 		}
+		
 		setTarget(null);
 		_buffTask = null;
 		_durationCheckTask = null;
@@ -338,12 +346,14 @@ public class TamedBeast extends FeedableBeast
 			deleteMe();
 			return;
 		}
+		
 		// if the owner is too far away, stop anything else and immediately run towards the owner.
 		if (!_owner.isInsideRadius3D(this, MAX_DISTANCE_FROM_OWNER))
 		{
 			getAI().startFollow(_owner);
 			return;
 		}
+		
 		// if the owner is dead, do nothing...
 		if (_owner.isDead() || _isFreyaBeast)
 		{
@@ -371,6 +381,7 @@ public class TamedBeast extends FeedableBeast
 				}
 			}
 		}
+		
 		// for HP levels between 80% and 50%, do not react to attack events (so that MP can regenerate a bit)
 		// for lower HP ranges, heal or recharge the owner with 1 skill use per attack.
 		else if (HPRatio < 0.5)
@@ -443,6 +454,7 @@ public class TamedBeast extends FeedableBeast
 			else
 			{
 				_tamedBeast.setRemainingTime(_tamedBeast.getRemainingTime() - DURATION_CHECK_INTERVAL);
+				
 				// I tried to avoid this as much as possible...but it seems I can't avoid hardcoding
 				// ids further, except by carrying an additional variable just for these two lines...
 				// Find which food item needs to be consumed.
@@ -475,6 +487,7 @@ public class TamedBeast extends FeedableBeast
 						_tamedBeast.setRemainingTime(-1);
 					}
 				}
+				
 				// There are too many conflicting reports about whether distance from home should be taken into consideration. Disabled for now.
 				// if (_tamedBeast.isTooFarFromHome())
 				// _tamedBeast.setRemainingTime(-1);
@@ -508,17 +521,20 @@ public class TamedBeast extends FeedableBeast
 				deleteMe();
 				return;
 			}
+			
 			// if the owner is too far away, stop anything else and immediately run towards the owner.
 			if (!isInsideRadius3D(owner, MAX_DISTANCE_FROM_OWNER))
 			{
 				getAI().startFollow(owner);
 				return;
 			}
+			
 			// if the owner is dead, do nothing...
 			if (owner.isDead())
 			{
 				return;
 			}
+			
 			// if the tamed beast is currently casting a spell, do not interfere (do not attempt to cast anything new yet).
 			if (isCastingNow())
 			{
@@ -540,17 +556,20 @@ public class TamedBeast extends FeedableBeast
 					{
 						buffToGive = skill;
 					}
+					
 					if (owner.isAffectedBySkill(skill.getId()))
 					{
 						totalBuffsOnOwner++;
 					}
 				}
 			}
+			
 			// if the owner has less than 60% of this beast's available buff, cast a random buff
 			if (((_numBuffs * 2) / 3) > totalBuffsOnOwner)
 			{
 				_tamedBeast.sitCastAndFollow(buffToGive, owner);
 			}
+			
 			getAI().setIntention(Intention.FOLLOW, _tamedBeast.getOwner());
 		}
 	}

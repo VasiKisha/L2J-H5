@@ -20,6 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import java.util.Collection;
+
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -32,7 +34,7 @@ public class PledgeShowMemberListAll extends ServerPacket
 {
 	private final Clan _clan;
 	private final Player _player;
-	private final ClanMember[] _members;
+	private final Collection<ClanMember> _members;
 	private int _pledgeType;
 	
 	public PledgeShowMemberListAll(Clan clan, Player player)
@@ -46,20 +48,24 @@ public class PledgeShowMemberListAll extends ServerPacket
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		_pledgeType = 0;
+		
 		// FIXME: That's wrong on retail sends this whole packet few times (depending how much sub pledges it has)
 		writePledge(0, buffer);
 		for (SubPledge subPledge : _clan.getAllSubPledges())
 		{
 			_player.sendPacket(new PledgeReceiveSubPledgeCreated(subPledge, _clan));
 		}
+		
 		for (ClanMember m : _members)
 		{
 			if (m.getPledgeType() == 0)
 			{
 				continue;
 			}
+			
 			_player.sendPacket(new PledgeShowMemberListAdd(m));
 		}
+		
 		// unless this is sent sometimes, the client doesn't recognise the player as the leader
 		_player.updateUserInfo();
 	}
@@ -93,6 +99,7 @@ public class PledgeShowMemberListAll extends ServerPacket
 			{
 				continue;
 			}
+			
 			buffer.writeString(m.getName());
 			buffer.writeInt(m.getLevel());
 			buffer.writeInt(m.getClassId());
@@ -107,6 +114,7 @@ public class PledgeShowMemberListAll extends ServerPacket
 				buffer.writeInt(1); // no visible effect
 				buffer.writeInt(1); // buffer.writeInt(1);
 			}
+			
 			buffer.writeInt(m.isOnline() ? m.getObjectId() : 0); // objectId = online 0 = offline
 			buffer.writeInt(m.getSponsor() != 0);
 		}

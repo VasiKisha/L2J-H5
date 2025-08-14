@@ -50,7 +50,7 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 	@Override
 	public void registerHandler(IAdminCommandHandler handler)
 	{
-		for (String id : handler.getAdminCommandList())
+		for (String id : handler.getCommandList())
 		{
 			_datatable.put(id, handler);
 		}
@@ -59,14 +59,14 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 	@Override
 	public synchronized void removeHandler(IAdminCommandHandler handler)
 	{
-		for (String id : handler.getAdminCommandList())
+		for (String id : handler.getCommandList())
 		{
 			_datatable.remove(id);
 		}
 	}
 	
 	/**
-	 * WARNING: Please use {@link #useAdminCommand(Player, String, boolean)} instead.
+	 * WARNING: Please use {@link #onCommand(Player, String, boolean)} instead.
 	 */
 	@Override
 	public IAdminCommandHandler getHandler(String adminCommand)
@@ -76,10 +76,11 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 		{
 			command = adminCommand.substring(0, adminCommand.indexOf(' '));
 		}
+		
 		return _datatable.get(command);
 	}
 	
-	public void useAdminCommand(Player player, String fullCommand, boolean useConfirm)
+	public void onCommand(Player player, String fullCommand, boolean useConfirm)
 	{
 		if (!player.isGM())
 		{
@@ -125,7 +126,7 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 						GMAudit.logAction(player.getName() + " [" + player.getObjectId() + "]", fullCommand, (target != null ? target.getName() : "no-target"));
 					}
 					
-					handler.useAdminCommand(fullCommand, player);
+					handler.onCommand(fullCommand, player);
 				}
 				catch (RuntimeException e)
 				{

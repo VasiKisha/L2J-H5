@@ -54,6 +54,7 @@ public class Unsummon extends AbstractEffect
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	

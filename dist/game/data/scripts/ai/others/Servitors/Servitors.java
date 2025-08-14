@@ -50,6 +50,7 @@ public class Servitors extends AbstractNpcAI
 	private static final int MIMI_THE_CAT = 27105;
 	private static final int UNICORN_PHANTASM = 27106;
 	private static final int SILHOUETTE_TILFO = 27107;
+	
 	// Items
 	private static final int CRYSTAL_OF_STARTING_1ST = 3360;
 	private static final int CRYSTAL_OF_INPROGRESS_1ST = 3361;

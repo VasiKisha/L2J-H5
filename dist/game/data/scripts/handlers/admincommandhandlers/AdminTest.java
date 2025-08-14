@@ -41,7 +41,7 @@ public class AdminTest implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.startsWith("admin_skill_test"))
 		{
@@ -57,6 +57,7 @@ public class AdminTest implements IAdminCommandHandler
 				activeChar.sendSysMessage("Command format is //skill_test <ID>");
 			}
 		}
+		
 		return true;
 	}
 	
@@ -94,7 +95,7 @@ public class AdminTest implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

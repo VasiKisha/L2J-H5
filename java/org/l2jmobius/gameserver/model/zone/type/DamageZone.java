@@ -144,6 +144,7 @@ public class DamageZone extends ZoneType
 		{
 			_castle = CastleManager.getInstance().getCastleById(_castleId);
 		}
+		
 		return _castle;
 	}
 	
@@ -207,6 +208,7 @@ public class DamageZone extends ZoneType
 					{
 						character.reduceCurrentHp(getHPDamagePerSecond() * multiplier, character, null);
 					}
+					
 					if (getMPDamagePerSecond() != 0)
 					{
 						character.reduceCurrentMp(getMPDamagePerSecond() * multiplier);

@@ -25,6 +25,7 @@ import java.util.logging.Logger;
 import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
@@ -44,7 +45,6 @@ import org.l2jmobius.gameserver.network.serverpackets.ConfirmDlg;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.SetupGauge;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
  * Wedding voiced commands handler.
@@ -61,12 +61,13 @@ public class Wedding implements IVoicedCommandHandler
 	};
 	
 	@Override
-	public boolean useVoicedCommand(String command, Player activeChar, String params)
+	public boolean onCommand(String command, Player activeChar, String params)
 	{
 		if (activeChar == null)
 		{
 			return false;
 		}
+		
 		if (command.startsWith("engage"))
 		{
 			return engage(activeChar);
@@ -79,6 +80,7 @@ public class Wedding implements IVoicedCommandHandler
 		{
 			return goToLove(activeChar);
 		}
+		
 		return false;
 	}
 	
@@ -122,6 +124,7 @@ public class Wedding implements IVoicedCommandHandler
 				partner.addAdena(ItemProcessType.REFUND, adenaAmount, null, false);
 			}
 		}
+		
 		CoupleManager.getInstance().deleteCouple(coupleId);
 		return true;
 	}
@@ -144,6 +147,7 @@ public class Wedding implements IVoicedCommandHandler
 			if (Config.WEDDING_PUNISH_INFIDELITY)
 			{
 				activeChar.startAbnormalVisualEffect(true, AbnormalVisualEffect.BIG_HEAD); // give player a Big Head
+				
 				// lets recycle the sevensigns debuffs
 				int skillId;
 				int skillLevel = 1;
@@ -167,9 +171,12 @@ public class Wedding implements IVoicedCommandHandler
 					skill.applyEffects(activeChar, activeChar);
 				}
 			}
+			
 			return false;
 		}
+		
 		final Player ptarget = activeChar.getTarget().asPlayer();
+		
 		// check if player target himself
 		if (ptarget.getObjectId() == activeChar.getObjectId())
 		{
@@ -217,6 +224,7 @@ public class Wedding implements IVoicedCommandHandler
 					foundOnFriendList = true;
 				}
 			}
+			
 			statement.close();
 		}
 		catch (Exception e)
@@ -241,6 +249,14 @@ public class Wedding implements IVoicedCommandHandler
 	
 	public boolean goToLove(Player activeChar)
 	{
+		final int teleportTimer = Config.WEDDING_TELEPORT_DURATION * 1000;
+		
+		if (!Config.WEDDING_TELEPORT)
+		{
+			activeChar.sendMessage("The 'Go to Love' teleport feature has been disabled.");
+			return false;
+		}
+		
 		if (!activeChar.isMarried())
 		{
 			activeChar.sendMessage("You're not married.");
@@ -333,6 +349,7 @@ public class Wedding implements IVoicedCommandHandler
 		}
 		
 		final Player partner = World.getInstance().getPlayer(activeChar.getPartnerId());
+		
 		if ((partner == null) || !partner.isOnline())
 		{
 			activeChar.sendMessage("Your partner is not online.");
@@ -410,6 +427,7 @@ public class Wedding implements IVoicedCommandHandler
 			final int playerCabal = SevenSigns.getInstance().getPlayerCabal(activeChar.getObjectId());
 			final boolean isSealValidationPeriod = SevenSigns.getInstance().isSealValidationPeriod();
 			final int compWinner = SevenSigns.getInstance().getCabalHighestScore();
+			
 			if (isSealValidationPeriod)
 			{
 				if (playerCabal != compWinner)
@@ -434,22 +452,30 @@ public class Wedding implements IVoicedCommandHandler
 			return false;
 		}
 		
-		final int teleportTimer = Config.WEDDING_TELEPORT_DURATION * 1000;
-		activeChar.sendMessage("After " + (teleportTimer / 60000) + " min. you will be teleported to your partner.");
-		activeChar.getInventory().reduceAdena(ItemProcessType.FEE, Config.WEDDING_TELEPORT_PRICE, activeChar, null);
+		if (!activeChar.reduceAdena(ItemProcessType.FEE, Config.WEDDING_TELEPORT_PRICE, null, true))
+		{
+			return false; // Player already informed by system message inside reduceAdena.
+		}
+		
+		String formattedTime = TimeUtil.formatDuration(teleportTimer);
+		activeChar.sendMessage("You will be teleported to your partner in " + formattedTime + ".");
+		
 		activeChar.getAI().setIntention(Intention.IDLE);
-		// SoE Animation section
+		
+		// SoE Animation section.
 		activeChar.setTarget(activeChar);
 		activeChar.disableAllSkills();
 		
-		Broadcast.toSelfAndKnownPlayersInRadius(activeChar, new MagicSkillUse(activeChar, 1050, 1, teleportTimer, 0), 900);
+		activeChar.broadcastSkillPacket(new MagicSkillUse(activeChar, 1050, 1, teleportTimer, 0), activeChar);
 		activeChar.sendPacket(new SetupGauge(activeChar.getObjectId(), 0, teleportTimer));
-		// End SoE Animation section
+		// End SoE Animation section.
 		
 		final EscapeFinalizer ef = new EscapeFinalizer(activeChar, partner.getLocation(), partner.isIn7sDungeon());
+		
 		// continue execution later
 		activeChar.setSkillCast(ThreadPool.schedule(ef, teleportTimer));
 		activeChar.forceIsCasting(GameTimeTaskManager.getInstance().getGameTicks() + (teleportTimer / GameTimeTaskManager.MILLIS_IN_TICK));
+		
 		return true;
 	}
 	
@@ -496,7 +522,7 @@ public class Wedding implements IVoicedCommandHandler
 	}
 	
 	@Override
-	public String[] getVoicedCommandList()
+	public String[] getCommandList()
 	{
 		return _voicedCommands;
 	}

@@ -34,6 +34,7 @@ public class Q00124_MeetingTheElroki extends Quest
 	private static final int ASAMAH = 32115;
 	private static final int KARAKAWEI = 32117;
 	private static final int MANTARASA = 32118;
+	
 	// Item
 	private static final int MANTARASA_EGG = 8778;
 	
@@ -103,6 +104,7 @@ public class Q00124_MeetingTheElroki extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -283,6 +285,7 @@ public class Q00124_MeetingTheElroki extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -34,10 +34,12 @@ public class Q00331_ArrowOfVengeance extends Quest
 {
 	// NPCs
 	private static final int BELTON = 30125;
+	
 	// Items
 	private static final int HARPY_FEATHER = 1452;
 	private static final int MEDUSA_VENOM = 1453;
 	private static final int WYRMS_TOOTH = 1454;
+	
 	// Monster
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
 	static
@@ -46,6 +48,7 @@ public class Q00331_ArrowOfVengeance extends Quest
 		MONSTERS.put(20158, 61); // Medusa
 		MONSTERS.put(20176, 60); // Wyrm
 	}
+	
 	// Misc
 	private static final int MIN_LEVEL = 32;
 	private static final int HARPY_FEATHER_ADENA = 78;
@@ -91,6 +94,7 @@ public class Q00331_ArrowOfVengeance extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -124,6 +128,7 @@ public class Q00331_ArrowOfVengeance extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -151,6 +156,7 @@ public class Q00331_ArrowOfVengeance extends Quest
 					break;
 				}
 			}
+			
 			playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 		}
 	}

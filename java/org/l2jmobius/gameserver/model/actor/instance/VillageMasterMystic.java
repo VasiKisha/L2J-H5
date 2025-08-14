@@ -44,6 +44,7 @@ public class VillageMasterMystic extends VillageMaster
 		{
 			return false;
 		}
+		
 		return (pClass.getRace() == Race.HUMAN) || (pClass.getRace() == Race.ELF);
 	}
 	
@@ -54,6 +55,7 @@ public class VillageMasterMystic extends VillageMaster
 		{
 			return false;
 		}
+		
 		return CategoryData.getInstance().isInCategory(CategoryType.MAGE_GROUP, pClass.getId());
 	}
 }

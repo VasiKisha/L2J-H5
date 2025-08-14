@@ -32,12 +32,15 @@ public class Q00629_CleanUpTheSwampOfScreams extends Quest
 {
 	// NPC
 	private static final int PIERCE = 31553;
+	
 	// Items
 	private static final int TALON_OF_STAKATO = 7250;
 	private static final int GOLDEN_RAM_COIN = 7251;
+	
 	// Misc
 	private static final int REQUIRED_TALON_COUNT = 100;
 	private static final int MIN_LEVEL = 66;
+	
 	// Mobs
 	private static final Map<Integer, Double> MOBS_DROP_CHANCES = new HashMap<>();
 	static
@@ -117,6 +120,7 @@ public class Q00629_CleanUpTheSwampOfScreams extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -143,6 +147,7 @@ public class Q00629_CleanUpTheSwampOfScreams extends Quest
 		{
 			htmltext = ((getQuestItemsCount(player, TALON_OF_STAKATO) >= REQUIRED_TALON_COUNT) ? "31553-04.html" : "31553-05.html");
 		}
+		
 		return htmltext;
 	}
 }

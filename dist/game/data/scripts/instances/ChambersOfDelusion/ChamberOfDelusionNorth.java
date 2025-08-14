@@ -32,7 +32,7 @@ public class ChamberOfDelusionNorth extends Chamber
 	private static final int BOX = 18838;
 	
 	// Misc
-	private static final Location[] ENTER_POINTS = new Location[]
+	private static final Location[] ENTER_POINTS =
 	{
 		new Location(-108976, -207772, -6720),
 		new Location(-108976, -206972, -6720),

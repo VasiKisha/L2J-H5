@@ -38,6 +38,7 @@ public class Q00027_ChestCaughtWithABaitOfWind extends Quest
 	// NPCs
 	private static final int LANOSCO = 31570;
 	private static final int SHALING = 31434;
+	
 	// Items
 	private static final int BLUE_TREASURE_BOX = 6500;
 	private static final int STRANGE_BLUESPRINT = 7625;
@@ -90,6 +91,7 @@ public class Q00027_ChestCaughtWithABaitOfWind extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -152,6 +154,7 @@ public class Q00027_ChestCaughtWithABaitOfWind extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 }

@@ -32,6 +32,7 @@ public class Deltuva extends AbstractNpcAI
 {
 	// NPCs
 	private static final int DELTUVA = 32313;
+	
 	// Location
 	private static final Location TELEPORT = new Location(17934, 283189, -9701);
 	
@@ -51,8 +52,10 @@ public class Deltuva extends AbstractNpcAI
 			{
 				return "32313-02.htm";
 			}
+			
 			player.teleToLocation(TELEPORT);
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 }

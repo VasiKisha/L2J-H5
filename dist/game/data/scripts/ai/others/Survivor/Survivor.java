@@ -32,8 +32,10 @@ public class Survivor extends AbstractNpcAI
 {
 	// NPC
 	private static final int SURVIVOR = 32632;
+	
 	// Misc
 	private static final int MIN_LEVEL = 75;
+	
 	// Location
 	private static final Location TELEPORT = new Location(-149406, 255247, -80);
 	
@@ -63,6 +65,7 @@ public class Survivor extends AbstractNpcAI
 				return null;
 			}
 		}
+		
 		return event;
 	}
 	

@@ -265,6 +265,7 @@ public class AugmentationData
 										type = attrs.getNamedItem("val").getNodeValue();
 									}
 								}
+								
 								if (skillId == 0)
 								{
 									badAugmantData++;
@@ -275,6 +276,7 @@ public class AugmentationData
 									badAugmantData++;
 									continue;
 								}
+								
 								final int k = (augmentationId - BLUE_START) / SKILLS_BLOCKSIZE;
 								if (type.equalsIgnoreCase("blue"))
 								{
@@ -294,9 +296,10 @@ public class AugmentationData
 						}
 					}
 				}
+				
 				if (badAugmantData != 0)
 				{
-					LOGGER.info(getClass().getSimpleName() + ": " + badAugmantData + " bad skill(s) were skipped.");
+					LOGGER.info(getClass().getSimpleName() + ": " + badAugmantData + " negative effect skill(s) were skipped.");
 				}
 			}
 			catch (Exception e)
@@ -393,6 +396,7 @@ public class AugmentationData
 				return;
 			}
 		}
+		
 		if (Config.RETAIL_LIKE_AUGMENTATION_ACCESSORY)
 		{
 			final DocumentBuilderFactory factory3 = DocumentBuilderFactory.newInstance();
@@ -413,6 +417,7 @@ public class AugmentationData
 					LOGGER.warning("Problem with AugmentationData: " + e.getMessage());
 					return;
 				}
+				
 				String aWeaponType = null;
 				int aStoneId = 0;
 				int aVariationId = 0;
@@ -526,6 +531,7 @@ public class AugmentationData
 						}
 					}
 				}
+				
 				int r = Rnd.get(10000);
 				float s = 10000;
 				for (AugmentationChance ac : selectedChances12)
@@ -536,6 +542,7 @@ public class AugmentationData
 						stat12 = ac.getAugmentId();
 					}
 				}
+				
 				int[] gradeChance = null;
 				switch (lifeStoneGrade)
 				{
@@ -582,6 +589,7 @@ public class AugmentationData
 				{
 					c = 3;
 				}
+				
 				final List<AugmentationChance> selectedChances34final = new ArrayList<>();
 				for (AugmentationChance ac : selectedChances34)
 				{
@@ -620,6 +628,7 @@ public class AugmentationData
 						}
 					}
 				}
+				
 				int r = Rnd.get(10000);
 				float s = 10000;
 				for (AugmentationChance ac : selectedChances12)
@@ -630,6 +639,7 @@ public class AugmentationData
 						stat12 = ac.getAugmentId();
 					}
 				}
+				
 				int[] gradeChance = null;
 				switch (lifeStoneGrade)
 				{
@@ -676,6 +686,7 @@ public class AugmentationData
 				{
 					c = 3;
 				}
+				
 				final List<AugmentationChance> selectedChances34final = new ArrayList<>();
 				for (AugmentationChance ac : selectedChances34)
 				{
@@ -684,6 +695,7 @@ public class AugmentationData
 						selectedChances34final.add(ac);
 					}
 				}
+				
 				r = Rnd.get(10000);
 				s = 10000;
 				for (AugmentationChance ac : selectedChances34final)
@@ -695,8 +707,10 @@ public class AugmentationData
 					}
 				}
 			}
+			
 			return new Augmentation(((stat34 << 16) + stat12));
 		}
+		
 		boolean generateSkill = false;
 		boolean generateGlow = false;
 		
@@ -711,6 +725,7 @@ public class AugmentationData
 				{
 					generateSkill = true;
 				}
+				
 				if (Rnd.get(1, 100) <= Config.AUGMENTATION_NG_GLOW_CHANCE)
 				{
 					generateGlow = true;
@@ -723,6 +738,7 @@ public class AugmentationData
 				{
 					generateSkill = true;
 				}
+				
 				if (Rnd.get(1, 100) <= Config.AUGMENTATION_MID_GLOW_CHANCE)
 				{
 					generateGlow = true;
@@ -735,6 +751,7 @@ public class AugmentationData
 				{
 					generateSkill = true;
 				}
+				
 				if (Rnd.get(1, 100) <= Config.AUGMENTATION_HIGH_GLOW_CHANCE)
 				{
 					generateGlow = true;
@@ -747,6 +764,7 @@ public class AugmentationData
 				{
 					generateSkill = true;
 				}
+				
 				if (Rnd.get(1, 100) <= Config.AUGMENTATION_TOP_GLOW_CHANCE)
 				{
 					generateGlow = true;
@@ -871,6 +889,7 @@ public class AugmentationData
 				offset = (lifeStoneLevel * STAT_SUBBLOCKSIZE) + (Rnd.get(0, 1) * STAT_BLOCKSIZE) + (((lifeStoneGrade + resultColor) / 2) * (10 * STAT_SUBBLOCKSIZE)) + 1;
 			}
 		}
+		
 		stat12 = Rnd.get(offset, (offset + STAT_SUBBLOCKSIZE) - 1);
 		return new Augmentation(((stat34 << 16) + stat12));
 	}
@@ -897,6 +916,7 @@ public class AugmentationData
 					}
 				}
 			}
+			
 			int r = Rnd.get(10000);
 			float s = 10000;
 			for (augmentationChanceAcc ac : selectedChances12)
@@ -907,6 +927,7 @@ public class AugmentationData
 					stat12 = ac.getAugmentId();
 				}
 			}
+			
 			int c = Rnd.get(100);
 			if (c < 55)
 			{
@@ -924,6 +945,7 @@ public class AugmentationData
 			{
 				c = 1;
 			}
+			
 			final List<augmentationChanceAcc> selectedChances34final = new ArrayList<>();
 			for (augmentationChanceAcc ac : selectedChances34)
 			{
@@ -932,6 +954,7 @@ public class AugmentationData
 					selectedChances34final.add(ac);
 				}
 			}
+			
 			r = Rnd.get(10000);
 			s = 10000;
 			for (augmentationChanceAcc ac : selectedChances34final)
@@ -942,8 +965,10 @@ public class AugmentationData
 					stat34 = ac.getAugmentId();
 				}
 			}
+			
 			return new Augmentation(((stat34 << 16) + stat12));
 		}
+		
 		int lifeStoneLevel = Math.min(level, 9);
 		int base = 0;
 		int skillsLength = 0;
@@ -992,6 +1017,7 @@ public class AugmentationData
 			// calculating any different from stat12 value inside sub-block
 			// starting from next and wrapping over using remainder
 			stat34 = (stat12 + 1 + Rnd.get(ACC_STAT_SUBBLOCKSIZE - 1)) % ACC_STAT_SUBBLOCKSIZE;
+			
 			// this is a stats - skipping skills
 			stat34 = base + skillsLength + (ACC_STAT_SUBBLOCKSIZE * resultColor) + stat34;
 		}

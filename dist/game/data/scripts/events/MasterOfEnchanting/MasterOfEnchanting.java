@@ -31,9 +31,11 @@ public class MasterOfEnchanting extends LongTimeEvent
 {
 	// NPC
 	private static final int MASTER_YOGI = 32599;
+	
 	// Items
 	private static final int MASTER_YOGI_STAFF = 13539;
 	private static final int MASTER_YOGI_SCROLL = 13540;
+	
 	// Misc
 	private static final int STAFF_PRICE = 1000000;
 	private static final int SCROLL_24_PRICE = 5000000;
@@ -89,7 +91,7 @@ public class MasterOfEnchanting extends LongTimeEvent
 			final long curTime = System.currentTimeMillis();
 			final String value = player.getVariables().getString("MasterOfEnchanting", "");
 			final long reuse = value.equals("") ? 0 : Long.parseLong(value);
-			if (player.getCreateDate().after(getEventPeriod().getStartDate()))
+			if (player.getCreateDate().after(getStartDate()))
 			{
 				return "32599-birth.htm";
 			}
@@ -128,6 +130,7 @@ public class MasterOfEnchanting extends LongTimeEvent
 					player.sendPacket(sm);
 					htmltext = "32599-scroll24.htm";
 				}
+				
 				// Little glitch. There is no SystemMessage with seconds only.
 				// If time is less than 1 minute player can buy scrolls
 				else if (getQuestItemsCount(player, Inventory.ADENA_ID) > SCROLL_24_PRICE)
@@ -289,6 +292,7 @@ public class MasterOfEnchanting extends LongTimeEvent
 						}
 					}
 				}
+				
 				takeItems(player, MASTER_YOGI_STAFF, 1);
 				htmltext = "32599-rewardok.htm";
 			}
@@ -297,6 +301,7 @@ public class MasterOfEnchanting extends LongTimeEvent
 				htmltext = "32599-rewardnostaff.htm";
 			}
 		}
+		
 		return htmltext;
 	}
 	

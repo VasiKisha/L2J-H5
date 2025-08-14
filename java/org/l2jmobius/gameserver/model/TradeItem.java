@@ -63,6 +63,7 @@ public class TradeItem
 		{
 			_elemDefAttr[i] = item.getElementDefAttr(i);
 		}
+		
 		_enchantOptions = item.getEnchantOptions();
 	}
 	
@@ -99,6 +100,7 @@ public class TradeItem
 		{
 			_elemDefAttr[i] = item.getElementDefAttr(i);
 		}
+		
 		_enchantOptions = item.getEnchantOptions();
 	}
 	

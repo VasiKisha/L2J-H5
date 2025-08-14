@@ -129,6 +129,7 @@ public class PetInfo extends ServerPacket
 		{
 			buffer.writeString(_summon.getTemplate().isUsingServerSideName() ? _summon.getName() : ""); // Summon name.
 		}
+		
 		buffer.writeInt(-1); // High Five NPCString ID
 		buffer.writeString(_summon.getTitle()); // owner name
 		buffer.writeInt(1);
@@ -151,6 +152,7 @@ public class PetInfo extends ServerPacket
 		{
 			buffer.writeLong(_summon.getExpForThisLevel()); // 0% absolute value
 		}
+		
 		buffer.writeLong(_summon.getExpForNextLevel()); // 100% absoulte value
 		buffer.writeInt(_summon.isPet() ? _summon.getInventory().getTotalWeight() : 0); // weight
 		buffer.writeInt(_summon.getMaxLoad()); // max weight it can carry
@@ -167,6 +169,7 @@ public class PetInfo extends ServerPacket
 		buffer.writeInt(_summon.getAbnormalVisualEffects()); // c2 abnormal visual effect... bleed=1; poison=2; poison & bleed=3; flame=4;
 		buffer.writeShort(_summon.isMountable()); // c2 ride button
 		buffer.writeByte(_summon.isInsideZone(ZoneId.WATER) ? 1 : _summon.isFlying() ? 2 : 0); // c2
+		
 		// Following all added in C4.
 		buffer.writeShort(0); // ??
 		buffer.writeByte(_summon.getTeam().getId());

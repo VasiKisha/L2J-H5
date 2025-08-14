@@ -200,6 +200,7 @@ public class DrChaos extends AbstractNpcAI
 						}
 					}
 				}
+				
 				if (npc.calculateDistance2D(CHAOS_X, CHAOS_Y, CHAOS_Z) > 2000)
 				{
 					npc.asAttackable().clearAggroList();
@@ -222,6 +223,7 @@ public class DrChaos extends AbstractNpcAI
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -249,6 +251,7 @@ public class DrChaos extends AbstractNpcAI
 				crazyMidgetBecomesAngry(npc);
 			}
 		}
+		
 		return htmltext;
 	}
 	

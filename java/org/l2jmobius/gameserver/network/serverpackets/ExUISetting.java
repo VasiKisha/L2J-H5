@@ -53,6 +53,7 @@ public class ExUISetting extends ServerPacket
 				final List<Integer> catElList1 = _uiSettings.getCategories().get(category);
 				size += catElList1.size();
 			}
+			
 			category++;
 			size++;
 			if (_uiSettings.getCategories().containsKey(category))
@@ -60,6 +61,7 @@ public class ExUISetting extends ServerPacket
 				final List<Integer> catElList2 = _uiSettings.getCategories().get(category);
 				size += catElList2.size();
 			}
+			
 			category++;
 			size += 4;
 			if (_uiSettings.getKeys().containsKey(i))
@@ -68,6 +70,7 @@ public class ExUISetting extends ServerPacket
 				size += (keyElList.size() * 20);
 			}
 		}
+		
 		buffsize = size;
 		categories = category;
 	}
@@ -96,6 +99,7 @@ public class ExUISetting extends ServerPacket
 			{
 				buffer.writeByte(0);
 			}
+			
 			category++;
 			if (_uiSettings.getCategories().containsKey(category))
 			{
@@ -110,6 +114,7 @@ public class ExUISetting extends ServerPacket
 			{
 				buffer.writeByte(0);
 			}
+			
 			category++;
 			if (_uiSettings.getKeys().containsKey(i))
 			{
@@ -129,6 +134,7 @@ public class ExUISetting extends ServerPacket
 				buffer.writeInt(0);
 			}
 		}
+		
 		buffer.writeInt(0x11);
 		buffer.writeInt(16);
 	}

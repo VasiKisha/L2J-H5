@@ -35,14 +35,17 @@ public class Q00239_WontYouJoinUs extends Quest
 {
 	// NPC
 	private static final int ATHENIA = 32643;
+	
 	// Mobs
 	private static final int WASTE_LANDFILL_MACHINE = 18805;
 	private static final int SUPPRESSOR = 22656;
 	private static final int EXTERMINATOR = 22657;
+	
 	// Items
 	private static final int SUPPORT_CERTIFICATE = 14866;
 	private static final int DESTROYED_MACHINE_PIECE = 14869;
 	private static final int ENCHANTED_GOLEM_FRAGMENT = 14870;
+	
 	// Misc
 	private static final int ENCHANTED_GOLEM_FRAGMENT_NEEDED = 20;
 	private static final int DESTROYED_MACHINE_PIECE_NEEDED = 10;
@@ -91,6 +94,7 @@ public class Q00239_WontYouJoinUs extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -107,6 +111,7 @@ public class Q00239_WontYouJoinUs extends Quest
 				{
 					giveItems(partyMember, DESTROYED_MACHINE_PIECE, 1);
 				}
+				
 				if (getQuestItemsCount(partyMember, DESTROYED_MACHINE_PIECE) == DESTROYED_MACHINE_PIECE_NEEDED)
 				{
 					qs.setCond(2, true);
@@ -127,6 +132,7 @@ public class Q00239_WontYouJoinUs extends Quest
 				{
 					giveItems(partyMember, ENCHANTED_GOLEM_FRAGMENT, 1);
 				}
+				
 				if (getQuestItemsCount(partyMember, ENCHANTED_GOLEM_FRAGMENT) == ENCHANTED_GOLEM_FRAGMENT_NEEDED)
 				{
 					qs.setCond(4, true);
@@ -208,6 +214,7 @@ public class Q00239_WontYouJoinUs extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

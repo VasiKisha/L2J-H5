@@ -34,6 +34,7 @@ public class SummonPc extends AbstractNpcAI
 	// NPCs
 	private static final int PORTA = 20213;
 	private static final int PERUM = 20221;
+	
 	// Skill
 	private static final SkillHolder SUMMON_PC = new SkillHolder(4161, 1);
 	

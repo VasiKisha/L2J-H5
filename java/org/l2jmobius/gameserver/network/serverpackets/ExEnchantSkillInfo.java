@@ -42,6 +42,7 @@ public class ExEnchantSkillInfo extends ServerPacket
 		_id = id;
 		_level = level;
 		final EnchantSkillLearn enchantLearn = EnchantSkillGroupsData.getInstance().getSkillEnchantmentBySkillId(_id);
+		
 		// do we have this skill?
 		if (enchantLearn != null)
 		{
@@ -49,13 +50,16 @@ public class ExEnchantSkillInfo extends ServerPacket
 			if (_level > 100)
 			{
 				_maxEnchanted = enchantLearn.isMaxEnchant(_level);
+				
 				// get detail for next level
 				final EnchantSkillHolder esd = enchantLearn.getEnchantSkillHolder(_level);
+				
 				// if it exists add it
 				if (esd != null)
 				{
 					_routes.add(_level); // current enchant add firts
 				}
+				
 				final int skillLevel = (_level % 100);
 				for (int route : enchantLearn.getAllRoutes())
 				{
@@ -63,6 +67,7 @@ public class ExEnchantSkillInfo extends ServerPacket
 					{
 						continue;
 					}
+					
 					// add other levels of all routes - same level as enchanted
 					// level
 					_routes.add((route * 100) + skillLevel);

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="1" type="Weapon" name="Short Sword">
 		<set name="icon" val="icon.weapon_small_sword_i00" />
@@ -14,12 +14,12 @@
 		<set name="price" val="590" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="8" />
 			<set stat="mAtk" val="6" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="2" type="Weapon" name="Long Sword">
 		<set name="icon" val="icon.weapon_long_sword_i00" />
@@ -35,12 +35,12 @@
 		<set name="price" val="105000" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="3" type="Weapon" name="Broadsword">
 		<set name="icon" val="icon.weapon_broad_sword_i00" />
@@ -56,12 +56,12 @@
 		<set name="price" val="9600" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="11" />
 			<set stat="mAtk" val="9" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="4" type="Weapon" name="Club">
 		<set name="icon" val="icon.weapon_club_i00" />
@@ -77,13 +77,13 @@
 		<set name="price" val="590" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="8" />
 			<set stat="mAtk" val="6" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="5" type="Weapon" name="Mace">
 		<set name="icon" val="icon.weapon_mace_i00" />
@@ -99,13 +99,13 @@
 		<set name="price" val="9600" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="11" />
 			<set stat="mAtk" val="9" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="6" type="Weapon" name="Apprentice's Wand">
 		<set name="icon" val="icon.weapon_apprentices_wand_i00" />
@@ -125,13 +125,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="5" />
 			<set stat="mAtk" val="7" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="7" type="Weapon" name="Apprentice's Rod">
 		<set name="icon" val="icon.weapon_apprentices_rod_i00" />
@@ -148,13 +148,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="6" />
 			<set stat="mAtk" val="8" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="8" type="Weapon" name="Willow Staff">
 		<set name="icon" val="icon.weapon_willow_staff_i00" />
@@ -171,13 +171,13 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="11" />
 			<set stat="mAtk" val="13" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="9" type="Weapon" name="Cedar Staff">
 		<set name="icon" val="icon.weapon_cedar_staff_i00" />
@@ -194,13 +194,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="16" />
 			<set stat="mAtk" val="18" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="10" type="Weapon" name="Dagger">
 		<set name="icon" val="icon.weapon_dagger_i00" />
@@ -219,13 +219,13 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="5" />
 			<set stat="mAtk" val="5" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="11" type="Weapon" name="Bone Dagger">
 		<set name="icon" val="icon.weapon_bone_dagger_i00" />
@@ -241,13 +241,13 @@
 		<set name="price" val="590" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="7" />
 			<set stat="mAtk" val="6" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="12" type="Weapon" name="Knife">
 		<set name="icon" val="icon.weapon_knife_i00" />
@@ -263,13 +263,13 @@
 		<set name="price" val="9600" />
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="10" />
 			<set stat="mAtk" val="9" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="433" />
-		</for>
+		</stats>
 	</item>
 	<item id="13" type="Weapon" name="Short Bow">
 		<set name="icon" val="icon.weapon_short_bow_i00" />
@@ -287,13 +287,13 @@
 		<set name="spiritshots" val="1" />
 		<set name="mp_consume" val="1" />
 		<set name="reuse_delay" val="1500" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="16" />
 			<set stat="mAtk" val="6" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="14" type="Weapon" name="Bow">
 		<set name="icon" val="icon.weapon_bow_i00" />
@@ -311,13 +311,13 @@
 		<set name="spiritshots" val="1" />
 		<set name="mp_consume" val="1" />
 		<set name="reuse_delay" val="1500" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="23" />
 			<set stat="mAtk" val="9" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="15" type="Weapon" name="Short Spear">
 		<set name="icon" val="icon.weapon_short_spear_i00" />
@@ -334,13 +334,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="16" type="Weapon" name="Great Spear">
 		<set name="icon" val="icon.weapon_long_spear_i00" />
@@ -357,13 +357,13 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="8" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="17" type="EtcItem" name="Wooden Arrow">
 		<!-- An arrow made of wood. It is an arrow used for a no grade bow. -->
@@ -385,14 +385,14 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1430" />
 		<set name="price" val="30" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="47" />
-		</for>
+		</stats>
 	</item>
 	<item id="19" type="Armor" name="Small Shield">
 		<set name="icon" val="icon.shield_small_shield_i00" />
@@ -402,14 +402,14 @@
 		<set name="material" val="STEEL" />
 		<set name="weight" val="1420" />
 		<set name="price" val="490" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="56" />
-		</for>
+		</stats>
 	</item>
 	<item id="20" type="Armor" name="Buckler">
 		<set name="icon" val="icon.shield_buckler_i00" />
@@ -419,14 +419,14 @@
 		<set name="material" val="WOOD" />
 		<set name="weight" val="1410" />
 		<set name="price" val="2140" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="67" />
-		</for>
+		</stats>
 	</item>
 	<item id="21" type="Armor" name="Shirt">
 		<set name="icon" val="icon.armor_t02_u_i00" />
@@ -437,9 +437,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="4830" />
 		<set name="price" val="113" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="36" />
-		</for>
+		</stats>
 	</item>
 	<item id="22" type="Armor" name="Leather Shirt">
 		<set name="icon" val="icon.armor_t04_u_i00" />
@@ -450,9 +450,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="4830" />
 		<set name="price" val="1870" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="43" />
-		</for>
+		</stats>
 	</item>
 	<item id="23" type="Armor" name="Wooden Breastplate">
 		<set name="icon" val="icon.armor_t06_u_i00" />
@@ -463,9 +463,9 @@
 		<set name="material" val="WOOD" />
 		<set name="weight" val="4820" />
 		<set name="price" val="6120" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="47" />
-		</for>
+		</stats>
 	</item>
 	<item id="24" type="Armor" name="Bone Breastplate">
 		<set name="icon" val="icon.armor_t32_u_i00" />
@@ -476,9 +476,9 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="4770" />
 		<set name="price" val="15600" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="50" />
-		</for>
+		</stats>
 	</item>
 	<item id="25" type="Armor" name="Piece Bone Breastplate">
 		<set name="icon" val="icon.armor_t33_u_i00" />
@@ -489,12 +489,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="8970" />
 		<set name="price" val="24480" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="62" />
-		</for>
+		</stats>
 	</item>
 	<item id="26" type="Armor" name="Bronze Breastplate">
 		<set name="icon" val="icon.armor_t34_u_i00" />
@@ -505,12 +505,12 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="8920" />
 		<set name="price" val="37820" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="68" />
-		</for>
+		</stats>
 	</item>
 	<item id="27" type="Armor" name="Hard Leather Shirt">
 		<set name="icon" val="icon.armor_t30_u_i00" />
@@ -521,9 +521,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="4720" />
 		<set name="price" val="28400" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="53" />
-		</for>
+		</stats>
 	</item>
 	<item id="28" type="Armor" name="Pants">
 		<set name="icon" val="icon.armor_t02_l_i00" />
@@ -534,9 +534,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="1740" />
 		<set name="price" val="71" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="22" />
-		</for>
+		</stats>
 	</item>
 	<item id="29" type="Armor" name="Leather Pants">
 		<set name="icon" val="icon.armor_t04_l_i00" />
@@ -547,9 +547,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1730" />
 		<set name="price" val="1170" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="27" />
-		</for>
+		</stats>
 	</item>
 	<item id="30" type="Armor" name="Hard Leather Pants">
 		<set name="icon" val="icon.armor_t06_l_i00" />
@@ -560,9 +560,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1700" />
 		<set name="price" val="3820" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="29" />
-		</for>
+		</stats>
 	</item>
 	<item id="31" type="Armor" name="Bone Gaiters">
 		<set name="icon" val="icon.armor_t32_l_i00" />
@@ -573,9 +573,9 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="1680" />
 		<set name="price" val="9770" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="32" />
-		</for>
+		</stats>
 	</item>
 	<item id="32" type="Armor" name="Piece Bone Gaiters">
 		<set name="icon" val="icon.armor_t33_l_i00" />
@@ -586,12 +586,12 @@
 		<set name="material" val="BONE" />
 		<set name="weight" val="4020" />
 		<set name="price" val="15300" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="39" />
-		</for>
+		</stats>
 	</item>
 	<item id="33" type="Armor" name="Hard Leather Gaiters">
 		<set name="icon" val="icon.armor_t30_l_i00" />
@@ -602,9 +602,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1610" />
 		<set name="price" val="17700" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="33" />
-		</for>
+		</stats>
 	</item>
 	<item id="34" type="Armor" name="Bronze Gaiters">
 		<set name="icon" val="icon.armor_t34_l_i00" />
@@ -615,12 +615,12 @@
 		<set name="material" val="BRONZE" />
 		<set name="weight" val="3960" />
 		<set name="price" val="23600" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="43" />
-		</for>
+		</stats>
 	</item>
 	<item id="35" type="Armor" name="Cloth Shoes">
 		<set name="icon" val="icon.armor_t02_b_i00" />
@@ -630,9 +630,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="1320" />
 		<set name="price" val="28" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="9" />
-		</for>
+		</stats>
 	</item>
 	<item id="36" type="Armor" name="Leather Sandals">
 		<set name="icon" val="icon.armor_t03_b_i00" />
@@ -642,9 +642,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1320" />
 		<set name="price" val="28" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="9" />
-		</for>
+		</stats>
 	</item>
 	<item id="37" type="Armor" name="Leather Shoes">
 		<set name="icon" val="icon.armor_t05_b_i00" />
@@ -654,9 +654,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1320" />
 		<set name="price" val="2040" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="13" />
-		</for>
+		</stats>
 	</item>
 	<item id="38" type="Armor" name="Low Boots">
 		<set name="icon" val="icon.armor_t32_b_i00" />
@@ -666,9 +666,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="1320" />
 		<set name="price" val="5210" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="15" />
-		</for>
+		</stats>
 	</item>
 	<item id="39" type="Armor" name="Boots">
 		<set name="icon" val="icon.armor_t30_b_i00" />
@@ -678,9 +678,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="1310" />
 		<set name="price" val="9500" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="17" />
-		</for>
+		</stats>
 	</item>
 	<item id="40" type="Armor" name="Leather Boots">
 		<set name="icon" val="icon.armor_t09_b_i00" />
@@ -693,10 +693,10 @@
 		<set name="weight" val="1300" />
 		<set name="price" val="16100" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="19" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="41" type="Armor" name="Cloth Cap">
 		<set name="icon" val="icon.armor_cloth_helmet_i00" />
@@ -706,9 +706,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="660" />
 		<set name="price" val="42" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="13" />
-		</for>
+		</stats>
 	</item>
 	<item id="42" type="Armor" name="Leather Cap">
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
@@ -718,9 +718,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="660" />
 		<set name="price" val="700" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="16" />
-		</for>
+		</stats>
 	</item>
 	<item id="43" type="Armor" name="Wooden Helmet">
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
@@ -730,9 +730,9 @@
 		<set name="material" val="WOOD" />
 		<set name="weight" val="660" />
 		<set name="price" val="3060" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="19" />
-		</for>
+		</stats>
 	</item>
 	<item id="44" type="Armor" name="Leather Helmet">
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
@@ -742,9 +742,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="650" />
 		<set name="price" val="7820" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="23" />
-		</for>
+		</stats>
 	</item>
 	<item id="45" type="Armor" name="Bone Helmet">
 		<set name="icon" val="icon.armor_leather_helmet_i00" />
@@ -757,10 +757,10 @@
 		<set name="weight" val="640" />
 		<set name="price" val="24100" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="29" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="46" type="Armor" name="Bronze Helmet">
 		<set name="icon" val="icon.armor_helmet_i00" />
@@ -773,10 +773,10 @@
 		<set name="weight" val="630" />
 		<set name="price" val="38400" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="33" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="47" type="Armor" name="Helmet">
 		<set name="icon" val="icon.armor_helmet_i00" />
@@ -789,10 +789,10 @@
 		<set name="weight" val="640" />
 		<set name="price" val="58600" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="37" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="48" type="Armor" name="Short Gloves">
 		<set name="icon" val="icon.armor_t02_g_i00" />
@@ -802,9 +802,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="660" />
 		<set name="price" val="28" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="9" />
-		</for>
+		</stats>
 	</item>
 	<item id="49" type="Armor" name="Gloves">
 		<set name="icon" val="icon.armor_t06_g_i00" />
@@ -814,9 +814,9 @@
 		<set name="material" val="CLOTH" />
 		<set name="weight" val="660" />
 		<set name="price" val="2040" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="13" />
-		</for>
+		</stats>
 	</item>
 	<item id="50" type="Armor" name="Leather Gloves">
 		<set name="icon" val="icon.armor_t32_g_i00" />
@@ -826,9 +826,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="650" />
 		<set name="price" val="5210" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="15" />
-		</for>
+		</stats>
 	</item>
 	<item id="51" type="Armor" name="Bracer">
 		<set name="icon" val="icon.armor_t30_g_i00" />
@@ -838,9 +838,9 @@
 		<set name="material" val="LEATHER" />
 		<set name="weight" val="650" />
 		<set name="price" val="9500" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="17" />
-		</for>
+		</stats>
 	</item>
 	<item id="52" type="Weapon" name="Vesper Dual Sword">
 		<!-- When enchanted with a two-handed sword, a two-handed blunt weapon or a fighting weapon, its P. Atk. increases more than that of a regular one-handed sword. When enchanted to 4 or more, increases Critical by 109 and Max HP by 10%. Increases the damage inflicted during PvP. -->
@@ -863,14 +863,14 @@
 		<set name="enchant_enabled" val="true" />
 		<set name="enchant4_skill" val="3411-1" />
 		<set name="item_skill" val="3552-1" /> <!-- Special Ability: PvP Damage -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="482" />
 			<set stat="mAtk" val="176" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="53" type="EtcItem" name="(Not In Use)">
 		<!-- Dimensional item pack. A wrapped pack containing a Sudden Agathion Bracelet (30 days). Cannot be exchanged or dropped. Can be stored in a private warehouse. -->
@@ -952,13 +952,13 @@
 		<set name="weight" val="8670" />
 		<set name="price" val="141100" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="95" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="59" type="Armor" name="Mithril Gaiters">
 		<set name="icon" val="icon.armor_t19_l_i00" />
@@ -972,13 +972,13 @@
 		<set name="weight" val="3830" />
 		<set name="price" val="97600" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="61" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="60" type="Armor" name="Composite Armor">
 		<!-- Full body armor. -->
@@ -993,13 +993,13 @@
 		<set name="weight" val="10980" />
 		<set name="price" val="1227000" />
 		<set name="enchant_enabled" val="true" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="224" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="61" type="Armor" name="Mithril Plate Gloves">
 		<set name="icon" val="icon.armor_t46_g_i00" />
@@ -1012,10 +1012,10 @@
 		<set name="weight" val="630" />
 		<set name="price" val="75200" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="29" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="62" type="Armor" name="Reinforced Mithril Boots">
 		<set name="icon" val="icon.armor_t47_b_i00" />
@@ -1028,10 +1028,10 @@
 		<set name="weight" val="1230" />
 		<set name="price" val="97100" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="32" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="63" type="Armor" name="Gauntlets">
 		<set name="icon" val="icon.armor_t10_g_i00" />
@@ -1044,10 +1044,10 @@
 		<set name="weight" val="640" />
 		<set name="price" val="39100" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="24" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="64" type="Armor" name="Composite Boots">
 		<set name="icon" val="icon.armor_t61_b_i00" />
@@ -1060,10 +1060,10 @@
 		<set name="weight" val="1220" />
 		<set name="price" val="188800" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="36" />
 			<enchant stat="pDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="65" type="EtcItem" name="Red Potion">
 		<set name="icon" val="icon.etc_potion_red_i00" />
@@ -1079,9 +1079,9 @@
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="2031-1" /> <!-- Lesser Healing Potion -->
 		<set name="for_npc" val="true" />
-		<cond msgId="113" addName="1">
+		<conditions msgId="113" addName="1">
 			<player flyMounted="false" />
-		</cond>
+		</conditions>
 	</item>
 	<item id="66" type="Weapon" name="Gladius">
 		<set name="icon" val="icon.weapon_gladius_i00" />
@@ -1097,12 +1097,12 @@
 		<set name="price" val="41600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="17" />
 			<set stat="mAtk" val="12" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="67" type="Weapon" name="Orcish Sword">
 		<set name="icon" val="icon.weapon_orcish_sword_i00" />
@@ -1118,12 +1118,12 @@
 		<set name="price" val="41600" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="17" />
 			<set stat="mAtk" val="12" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="68" type="Weapon" name="Falchion">
 		<set name="icon" val="icon.weapon_falchion_i00" />
@@ -1139,12 +1139,12 @@
 		<set name="price" val="188000" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="69" type="Weapon" name="Bastard Sword">
 		<set name="icon" val="icon.weapon_bastard_sword_i00" />
@@ -1164,14 +1164,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="51" />
 			<set stat="mAtk" val="32" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="70" type="Weapon" name="Claymore">
 		<set name="icon" val="icon.weapon_claymore_i00" />
@@ -1191,14 +1191,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="112" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="71" type="Weapon" name="Flamberge">
 		<!-- Bestows one of the following functions: Critical Damage, Focus or Light. -->
@@ -1219,14 +1219,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="130" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="72" type="Weapon" name="Stormbringer">
 		<!-- Bestows one of the following functions: Critical Anger, Focus or Light. -->
@@ -1247,14 +1247,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="73" type="Weapon" name="Shamshir">
 		<!-- Bestows one of the following functions: Guidance, Back Blow, Rsk. Or Evasion. -->
@@ -1275,14 +1275,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="74" type="Weapon" name="Katana">
 		<!-- Bestows one of the following functions: Focus, Critical Damage or Haste. -->
@@ -1303,14 +1303,14 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="75" type="Weapon" name="Caliburs">
 		<!-- Bestows one of the following functions: Focus or Critical Damage. -->
@@ -1331,14 +1331,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="76" type="Weapon" name="Sword of Delusion">
 		<!-- Bestows one of the following functions: Focus, Health, or Rsk. Haste. -->
@@ -1359,14 +1359,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="77" type="Weapon" name="Tsurugi">
 		<!-- Bestows one of the following functions: Focus, Critical Damage or Haste. -->
@@ -1387,14 +1387,14 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="78" type="Weapon" name="Great Sword">
 		<!-- Bestows one of the following functions: Health, Critical Damage or Focus. -->
@@ -1415,14 +1415,14 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="79" type="Weapon" name="Sword of Damascus">
 		<!-- Bestows one of the following functions: Focus, Critical Damage or Haste. -->
@@ -1443,14 +1443,14 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="80" type="Weapon" name="Tallum Blade">
 		<!-- Bestows one of the following functions: Critical Poison, Haste or Anger. -->
@@ -1471,14 +1471,14 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="81" type="Weapon" name="Dragon Slayer">
 		<!-- Bestows one of the following functions: Health, Critical Bleed or Critical Drain. -->
@@ -1499,14 +1499,14 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="282" />
 			<set stat="mAtk" val="114" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="82" type="Weapon" name="Gaz Blade">
 		<set name="icon" val="icon.weapon_forgotten_blade_i00" />
@@ -1528,14 +1528,14 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="257" />
 			<set stat="mAtk" val="124" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="83" type="Weapon" name="Sword of Magic">
 		<set name="icon" val="icon.weapon_sword_of_magic_i00" />
@@ -1555,14 +1555,14 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="43" />
 			<set stat="mAtk" val="45" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="84" type="Weapon" name="Homunkulus's Sword">
 		<!-- Bestows one of the following functions: Acumen, Conversion, or Magic Paralyze. -->
@@ -1583,14 +1583,14 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="111" />
 			<set stat="mAtk" val="101" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="85" type="Weapon" name="Phantom Sword">
 		<set name="icon" val="icon.weapon_phantom_sword_i00" />
@@ -1610,14 +1610,14 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="170" />
 			<set stat="mAtk" val="143" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="86" type="Weapon" name="Tomahawk">
 		<set name="icon" val="icon.weapon_tomahawk_i00" />
@@ -1636,7 +1636,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="51" />
 			<set stat="mAtk" val="32" />
 			<set stat="critRate" val="4" />
@@ -1644,7 +1644,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="87" type="Weapon" name="Iron Hammer">
 		<set name="icon" val="icon.weapon_iron_hammer_i00" />
@@ -1660,13 +1660,13 @@
 		<set name="price" val="188000" />
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="31" />
 			<set stat="mAtk" val="21" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="88" type="Weapon" name="Morning Star">
 		<set name="icon" val="icon.weapon_morning_star_i00" />
@@ -1685,7 +1685,7 @@
 		<set name="soulshots" val="3" />
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="4" />
@@ -1693,7 +1693,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="89" type="Weapon" name="Big Hammer">
 		<!-- Bestows one of the following functions: Health, Rsk. Focus or Haste. -->
@@ -1713,7 +1713,7 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="4" />
@@ -1721,7 +1721,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="90" type="Weapon" name="Goat Head Staff">
 		<set name="icon" val="icon.weapon_goathead_staff_i00" />
@@ -1741,7 +1741,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="77" />
 			<set stat="mAtk" val="69" />
 			<set stat="critRate" val="4" />
@@ -1749,7 +1749,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="91" type="Weapon" name="Heavy War Axe">
 		<!-- Bestows one of the following functions: Anger, Health, or Rsk. Focus. -->
@@ -1769,7 +1769,7 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="175" />
 			<set stat="mAtk" val="91" />
 			<set stat="critRate" val="4" />
@@ -1777,7 +1777,7 @@
 			<set stat="pAtkSpd" val="379" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="92" type="Weapon" name="Sprite's Staff">
 		<!-- Bestows one of the following functions: Regeneration, Mental Shield or Hold. -->
@@ -1798,7 +1798,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="170" />
 			<set stat="mAtk" val="134" />
 			<set stat="critRate" val="4" />
@@ -1806,7 +1806,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="93" type="Weapon" name="Winged Spear">
 		<set name="icon" val="icon.weapon_winged_spear_i00" />
@@ -1826,7 +1826,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="79" />
 			<set stat="mAtk" val="47" />
 			<set stat="critRate" val="8" />
@@ -1834,7 +1834,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="94" type="Weapon" name="Bec de Corbin">
 		<!-- Bestows one of the following functions: Critical Stun, Towering Blow or Light. -->
@@ -1855,7 +1855,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="122" />
 			<set stat="mAtk" val="68" />
 			<set stat="critRate" val="8" />
@@ -1863,7 +1863,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="95" type="Weapon" name="Poleaxe">
 		<!-- Bestows one of the following functions: Wide Blow, Towering Blow or Critical Stun. -->
@@ -1884,7 +1884,7 @@
 		<set name="spiritshots" val="3" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="139" />
 			<set stat="mAtk" val="76" />
 			<set stat="critRate" val="8" />
@@ -1892,7 +1892,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="96" type="Weapon" name="Scythe">
 		<!-- Bestows one of the following functions: Anger, Critical Stun or Light. -->
@@ -1913,7 +1913,7 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="61" />
 			<set stat="critRate" val="8" />
@@ -1921,7 +1921,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="97" type="Weapon" name="Lance">
 		<!-- Bestows one of the following functions: Anger, Critical Stun or Towering Blow. -->
@@ -1942,7 +1942,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="194" />
 			<set stat="mAtk" val="99" />
 			<set stat="critRate" val="8" />
@@ -1950,7 +1950,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="98" type="Weapon" name="Halberd">
 		<!-- Bestows one of the following functions: Haste, Critical Stun or Wide Blow. -->
@@ -1971,7 +1971,7 @@
 		<set name="spiritshots" val="1" />
 		<set name="enchant_enabled" val="true" />
 		<set name="item_skill" val="3599-1" /> <!-- Polearm Multi-attack -->
-		<for>
+		<stats>
 			<set stat="pAtk" val="213" />
 			<set stat="mAtk" val="107" />
 			<set stat="critRate" val="8" />
@@ -1979,7 +1979,7 @@
 			<set stat="pAtkSpd" val="325" />
 			<enchant val="0" stat="pAtk" />
 			<enchant val="0" stat="mAtk" />
-		</for>
+		</stats>
 	</item>
 	<item id="99" type="Weapon" name="Apprentice's Spellbook">
 		<set name="icon" val="icon.weapon_apprentices_spellbook_i00" />
@@ -1996,11 +1996,11 @@
 		<set name="soulshots" val="1" />
 		<set name="spiritshots" val="1" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="9" />
 			<set stat="mAtk" val="12" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 </list>

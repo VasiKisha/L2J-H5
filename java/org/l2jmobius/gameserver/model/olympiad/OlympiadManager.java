@@ -85,6 +85,7 @@ public class OlympiadManager
 				result.add(classList.getValue());
 			}
 		}
+		
 		return result;
 	}
 	
@@ -114,6 +115,7 @@ public class OlympiadManager
 	private final boolean isRegistered(Player noble, Player player, boolean showMessage)
 	{
 		final Integer objId = noble.getObjectId();
+		
 		// party may be already dispersed
 		for (List<Integer> team : _teamsBasedRegisters)
 		{
@@ -125,6 +127,7 @@ public class OlympiadManager
 					sm.addPcName(noble);
 					player.sendPacket(sm);
 				}
+				
 				return true;
 			}
 		}
@@ -137,6 +140,7 @@ public class OlympiadManager
 				sm.addPcName(noble);
 				player.sendPacket(sm);
 			}
+			
 			return true;
 		}
 		
@@ -149,6 +153,7 @@ public class OlympiadManager
 				sm.addPcName(noble);
 				player.sendPacket(sm);
 			}
+			
 			return true;
 		}
 		
@@ -207,9 +212,11 @@ public class OlympiadManager
 						break;
 					}
 				}
+				
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -289,6 +296,7 @@ public class OlympiadManager
 					player.sendPacket(SystemMessageId.THE_REQUEST_CANNOT_BE_MADE_BECAUSE_THE_REQUIREMENTS_HAVE_NOT_BEEN_MET_TO_PARTICIPATE_IN_A_TEAM_MATCH_YOU_MUST_FIRST_FORM_A_3_MEMBER_PARTY);
 					return false;
 				}
+				
 				if (!party.isLeader(player))
 				{
 					player.sendPacket(SystemMessageId.ONLY_A_PARTY_LEADER_CAN_REQUEST_A_TEAM_MATCH);
@@ -314,6 +322,7 @@ public class OlympiadManager
 								AntiFeedManager.getInstance().removePlayer(AntiFeedManager.OLYMPIAD_ID, unreg);
 							}
 						}
+						
 						return false;
 					}
 					
@@ -322,13 +331,16 @@ public class OlympiadManager
 						player.sendPacket(SystemMessageId.THE_TOTAL_NUMBER_OF_MATCHES_THAT_CAN_BE_ENTERED_IN_1_WEEK_IS_60_CLASS_IRRELEVANT_INDIVIDUAL_MATCHES_30_SPECIFIC_MATCHES_AND_10_TEAM_MATCHES);
 						return false;
 					}
+					
 					team.add(noble.getObjectId());
 					teamPoints += Olympiad.getInstance().getNoblePoints(noble.getObjectId());
 				}
+				
 				if (teamPoints < 10)
 				{
 					// TODO: replace with retail message
 					player.sendMessage("Your team must have at least 10 points in total.");
+					
 					// remove previously registered party members
 					if (Config.DUALBOX_CHECK_MAX_OLYMPIAD_PARTICIPANTS_PER_IP > 0)
 					{
@@ -337,6 +349,7 @@ public class OlympiadManager
 							AntiFeedManager.getInstance().removePlayer(AntiFeedManager.OLYMPIAD_ID, unreg);
 						}
 					}
+					
 					return false;
 				}
 				
@@ -345,6 +358,7 @@ public class OlympiadManager
 				break;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -410,6 +424,7 @@ public class OlympiadManager
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	

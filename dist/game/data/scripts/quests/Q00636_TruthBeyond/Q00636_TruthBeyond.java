@@ -65,6 +65,7 @@ public class Q00636_TruthBeyond extends Quest
 			giveItems(player, VISITOR_MARK, 1);
 			qs.exitQuest(true, true);
 		}
+		
 		return event;
 	}
 	
@@ -93,6 +94,7 @@ public class Q00636_TruthBeyond extends Quest
 				qs.exitQuest(true);
 				return "31329-mark.htm";
 			}
+			
 			if (qs.getState() == State.CREATED)
 			{
 				if (player.getLevel() > 72)
@@ -114,9 +116,11 @@ public class Q00636_TruthBeyond extends Quest
 			{
 				return "32010-01.htm";
 			}
+			
 			qs.exitQuest(true);
 			return "32010-03.htm";
 		}
+		
 		return getNoQuestMsg(player);
 	}
 }

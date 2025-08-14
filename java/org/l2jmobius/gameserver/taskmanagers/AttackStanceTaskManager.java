@@ -54,6 +54,7 @@ public class AttackStanceTaskManager implements Runnable
 		{
 			return;
 		}
+		
 		_working = true;
 		
 		if (!CREATURE_ATTACK_STANCES.isEmpty())
@@ -84,6 +85,7 @@ public class AttackStanceTaskManager implements Runnable
 								}
 							}
 						}
+						
 						iterator.remove();
 					}
 				}
@@ -119,6 +121,7 @@ public class AttackStanceTaskManager implements Runnable
 				}
 			}
 		}
+		
 		CREATURE_ATTACK_STANCES.put(creature, System.currentTimeMillis());
 	}
 	
@@ -135,6 +138,7 @@ public class AttackStanceTaskManager implements Runnable
 			{
 				actor = actor.asPlayer();
 			}
+			
 			CREATURE_ATTACK_STANCES.remove(actor);
 		}
 	}
@@ -153,6 +157,7 @@ public class AttackStanceTaskManager implements Runnable
 			{
 				actor = actor.asPlayer();
 			}
+			
 			return CREATURE_ATTACK_STANCES.containsKey(actor);
 		}
 		

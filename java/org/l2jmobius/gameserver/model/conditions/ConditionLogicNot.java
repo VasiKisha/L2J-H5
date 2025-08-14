@@ -52,6 +52,7 @@ public class ConditionLogicNot extends Condition
 		{
 			_condition.setListener(null);
 		}
+		
 		super.setListener(listener);
 	}
 	

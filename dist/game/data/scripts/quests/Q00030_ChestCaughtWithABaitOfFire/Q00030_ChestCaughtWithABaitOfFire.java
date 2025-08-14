@@ -38,6 +38,7 @@ public class Q00030_ChestCaughtWithABaitOfFire extends Quest
 	// NPCs
 	private static final int LINNAEUS = 31577;
 	private static final int RUKAL = 30629;
+	
 	// Items
 	private static final int RED_TREASURE_BOX = 6511;
 	private static final int RUKAL_MUSICAL = 7628;
@@ -90,6 +91,7 @@ public class Q00030_ChestCaughtWithABaitOfFire extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -158,6 +160,7 @@ public class Q00030_ChestCaughtWithABaitOfFire extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

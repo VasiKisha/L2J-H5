@@ -39,5 +39,5 @@ public interface IItemHandler
 	 * @param forceUse ctrl hold on item use
 	 * @return {@code true} if the item all conditions are met and the item is used, {@code false} otherwise.
 	 */
-	boolean useItem(Playable playable, Item item, boolean forceUse);
+	boolean onItemUse(Playable playable, Item item, boolean forceUse);
 }

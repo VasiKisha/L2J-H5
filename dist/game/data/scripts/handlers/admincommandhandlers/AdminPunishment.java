@@ -74,13 +74,14 @@ public class AdminPunishment implements IAdminCommandHandler
 	private static SimpleDateFormat DATE_FORMATTER = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final StringTokenizer st = new StringTokenizer(command, " ");
 		if (!st.hasMoreTokens())
 		{
 			return false;
 		}
+		
 		final String cmd = st.nextToken();
 		switch (cmd)
 		{
@@ -115,6 +116,7 @@ public class AdminPunishment implements IAdminCommandHandler
 								activeChar.sendSysMessage("Not enough data specified!");
 								break;
 							}
+							
 							final PunishmentAffect affect = PunishmentAffect.getByName(af);
 							if (affect == null)
 							{
@@ -154,6 +156,7 @@ public class AdminPunishment implements IAdminCommandHandler
 												expire = DATE_FORMATTER.format(new Date(expiration));
 											}
 										}
+										
 										sb.append("<tr><td><font color=\"LEVEL\">" + type + "</font></td><td>" + expire + "</td><td><a action=\"bypass -h admin_punishment_remove " + name + " " + affect + " " + type + "\">Remove</a></td></tr>");
 									}
 								}
@@ -178,19 +181,23 @@ public class AdminPunishment implements IAdminCommandHandler
 								final String playerName = st.nextToken();
 								if (playerName.isEmpty() && ((activeChar.getTarget() == null) || !activeChar.getTarget().isPlayer()))
 								{
-									return useAdminCommand("admin_punishment", activeChar);
+									return onCommand("admin_punishment", activeChar);
 								}
+								
 								target = World.getInstance().getPlayer(playerName);
 							}
+							
 							if ((target == null) && ((activeChar.getTarget() == null) || !activeChar.getTarget().isPlayer()))
 							{
 								activeChar.sendSysMessage("You must target player!");
 								break;
 							}
+							
 							if (target == null)
 							{
 								target = activeChar.getTarget().asPlayer();
 							}
+							
 							String content = HtmCache.getInstance().getHtm(activeChar, PUNISHMENT_PLAYER);
 							if (content != null)
 							{
@@ -228,6 +235,7 @@ public class AdminPunishment implements IAdminCommandHandler
 					{
 						reason += " " + st.nextToken();
 					}
+					
 					if (!reason.isEmpty())
 					{
 						reason = reason.replaceAll("\\$", "\\\\\\$");
@@ -243,6 +251,7 @@ public class AdminPunishment implements IAdminCommandHandler
 					activeChar.sendSysMessage("Please fill all the fields!");
 					break;
 				}
+				
 				if (!StringUtil.isNumeric(exp) && !exp.equals("-1"))
 				{
 					activeChar.sendSysMessage("Incorrect value specified for expiration time!");
@@ -309,7 +318,7 @@ public class AdminPunishment implements IAdminCommandHandler
 				PunishmentManager.getInstance().startPunishment(new PunishmentTask(key, affect, type, expirationTime, reason, activeChar.getName()));
 				activeChar.sendSysMessage("Punishment " + type.name() + " have been applied to: " + affect + " " + name + "!");
 				GMAudit.logAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", cmd, affect.name(), name);
-				return useAdminCommand("admin_punishment info " + name + " " + affect.name(), activeChar);
+				return onCommand("admin_punishment info " + name + " " + affect.name(), activeChar);
 			}
 			case "admin_punishment_remove":
 			{
@@ -355,13 +364,13 @@ public class AdminPunishment implements IAdminCommandHandler
 				PunishmentManager.getInstance().stopPunishment(key, affect, type);
 				activeChar.sendSysMessage("Punishment " + type.name() + " have been stopped to: " + affect + " " + name + "!");
 				GMAudit.logAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", cmd, affect.name(), name);
-				return useAdminCommand("admin_punishment info " + name + " " + affect.name(), activeChar);
+				return onCommand("admin_punishment info " + name + " " + affect.name(), activeChar);
 			}
 			case "admin_ban_char":
 			{
 				if (st.hasMoreTokens())
 				{
-					return useAdminCommand(String.format("admin_punishment_add %s %s %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.BAN, 0, "Banned by admin"), activeChar);
+					return onCommand(String.format("admin_punishment_add %s %s %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.BAN, 0, "Banned by admin"), activeChar);
 				}
 				break;
 			}
@@ -369,7 +378,7 @@ public class AdminPunishment implements IAdminCommandHandler
 			{
 				if (st.hasMoreTokens())
 				{
-					return useAdminCommand(String.format("admin_punishment_remove %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.BAN), activeChar);
+					return onCommand(String.format("admin_punishment_remove %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.BAN), activeChar);
 				}
 				break;
 			}
@@ -377,7 +386,7 @@ public class AdminPunishment implements IAdminCommandHandler
 			{
 				if (st.hasMoreTokens())
 				{
-					return useAdminCommand(String.format("admin_punishment_add %s %s %s %s %s", st.nextToken(), PunishmentAffect.ACCOUNT, PunishmentType.BAN, 0, "Banned by admin"), activeChar);
+					return onCommand(String.format("admin_punishment_add %s %s %s %s %s", st.nextToken(), PunishmentAffect.ACCOUNT, PunishmentType.BAN, 0, "Banned by admin"), activeChar);
 				}
 				break;
 			}
@@ -385,7 +394,7 @@ public class AdminPunishment implements IAdminCommandHandler
 			{
 				if (st.hasMoreTokens())
 				{
-					return useAdminCommand(String.format("admin_punishment_remove %s %s %s", st.nextToken(), PunishmentAffect.ACCOUNT, PunishmentType.BAN), activeChar);
+					return onCommand(String.format("admin_punishment_remove %s %s %s", st.nextToken(), PunishmentAffect.ACCOUNT, PunishmentType.BAN), activeChar);
 				}
 				break;
 			}
@@ -393,7 +402,7 @@ public class AdminPunishment implements IAdminCommandHandler
 			{
 				if (st.hasMoreTokens())
 				{
-					return useAdminCommand(String.format("admin_punishment_add %s %s %s %s %s", st.nextToken(), PunishmentAffect.HWID, PunishmentType.BAN, 0, "Banned by admin"), activeChar);
+					return onCommand(String.format("admin_punishment_add %s %s %s %s %s", st.nextToken(), PunishmentAffect.HWID, PunishmentType.BAN, 0, "Banned by admin"), activeChar);
 				}
 				break;
 			}
@@ -401,7 +410,7 @@ public class AdminPunishment implements IAdminCommandHandler
 			{
 				if (st.hasMoreTokens())
 				{
-					return useAdminCommand(String.format("admin_punishment_remove %s %s %s", st.nextToken(), PunishmentAffect.HWID, PunishmentType.BAN), activeChar);
+					return onCommand(String.format("admin_punishment_remove %s %s %s", st.nextToken(), PunishmentAffect.HWID, PunishmentType.BAN), activeChar);
 				}
 				break;
 			}
@@ -409,7 +418,7 @@ public class AdminPunishment implements IAdminCommandHandler
 			{
 				if (st.hasMoreTokens())
 				{
-					return useAdminCommand(String.format("admin_punishment_add %s %s %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.CHAT_BAN, 0, "Chat banned by admin"), activeChar);
+					return onCommand(String.format("admin_punishment_add %s %s %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.CHAT_BAN, 0, "Chat banned by admin"), activeChar);
 				}
 				break;
 			}
@@ -417,7 +426,7 @@ public class AdminPunishment implements IAdminCommandHandler
 			{
 				if (st.hasMoreTokens())
 				{
-					return useAdminCommand(String.format("admin_punishment_remove %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.CHAT_BAN), activeChar);
+					return onCommand(String.format("admin_punishment_remove %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.CHAT_BAN), activeChar);
 				}
 				break;
 			}
@@ -425,7 +434,7 @@ public class AdminPunishment implements IAdminCommandHandler
 			{
 				if (st.hasMoreTokens())
 				{
-					return useAdminCommand(String.format("admin_punishment_add %s %s %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.JAIL, 0, "Jailed by admin"), activeChar);
+					return onCommand(String.format("admin_punishment_add %s %s %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.JAIL, 0, "Jailed by admin"), activeChar);
 				}
 				break;
 			}
@@ -433,11 +442,12 @@ public class AdminPunishment implements IAdminCommandHandler
 			{
 				if (st.hasMoreTokens())
 				{
-					return useAdminCommand(String.format("admin_punishment_remove %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.JAIL), activeChar);
+					return onCommand(String.format("admin_punishment_remove %s %s %s", st.nextToken(), PunishmentAffect.CHARACTER, PunishmentType.JAIL), activeChar);
 				}
 				break;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -448,11 +458,12 @@ public class AdminPunishment implements IAdminCommandHandler
 		{
 			return Integer.toString(charId);
 		}
+		
 		return key;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

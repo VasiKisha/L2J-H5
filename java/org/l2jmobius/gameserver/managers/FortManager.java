@@ -59,6 +59,7 @@ public class FortManager
 				{
 					continue;
 				}
+				
 				distance = fort.getDistance(obj);
 				if (maxDistance > distance)
 				{
@@ -67,6 +68,7 @@ public class FortManager
 				}
 			}
 		}
+		
 		return index;
 	}
 	
@@ -79,6 +81,7 @@ public class FortManager
 				return fort;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -109,6 +112,7 @@ public class FortManager
 				return fort;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -121,6 +125,7 @@ public class FortManager
 				return fort;
 			}
 		}
+		
 		return null;
 	}
 	
@@ -140,6 +145,7 @@ public class FortManager
 				return i;
 			}
 		}
+		
 		return -1;
 	}
 	
@@ -159,6 +165,7 @@ public class FortManager
 				return i;
 			}
 		}
+		
 		return -1;
 	}
 	

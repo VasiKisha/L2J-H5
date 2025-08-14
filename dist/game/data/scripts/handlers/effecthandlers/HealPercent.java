@@ -64,12 +64,14 @@ public class HealPercent extends AbstractEffect
 		final double power = _power;
 		final boolean full = (power == 100.0);
 		amount = full ? effected.getMaxHp() : (effected.getMaxHp() * power) / 100.0;
+		
 		// Prevents overheal and negative amount
 		amount = Math.max(Math.min(amount, effected.getMaxRecoverableHp() - effected.getCurrentHp()), 0);
 		if (amount != 0)
 		{
 			effected.setCurrentHp(amount + effected.getCurrentHp());
 		}
+		
 		SystemMessage sm;
 		if (effector.getObjectId() != effected.getObjectId())
 		{
@@ -80,6 +82,7 @@ public class HealPercent extends AbstractEffect
 		{
 			sm = new SystemMessage(SystemMessageId.S1_HP_HAS_BEEN_RESTORED);
 		}
+		
 		sm.addInt((int) amount);
 		effected.sendPacket(sm);
 	}

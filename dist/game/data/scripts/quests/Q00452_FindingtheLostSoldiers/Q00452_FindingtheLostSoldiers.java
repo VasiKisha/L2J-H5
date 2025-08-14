@@ -76,6 +76,7 @@ public class Q00452_FindingtheLostSoldiers extends Quest
 			{
 				htmltext = "corpse-3.html";
 			}
+			
 			qs.setCond(2, true);
 			npc.deleteMe();
 		}
@@ -83,6 +84,7 @@ public class Q00452_FindingtheLostSoldiers extends Quest
 		{
 			htmltext = "corpse-3.html";
 		}
+		
 		return htmltext;
 	}
 	
@@ -135,6 +137,7 @@ public class Q00452_FindingtheLostSoldiers extends Quest
 		{
 			htmltext = "corpse-1.html";
 		}
+		
 		return htmltext;
 	}
 }

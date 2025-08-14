@@ -33,10 +33,12 @@ public class Q00006_StepIntoTheFuture extends Quest
 	private static final int ROXXY = 30006;
 	private static final int BAULRO = 30033;
 	private static final int SIR_COLLIN = 30311;
+	
 	// Items
 	private static final int BAULRO_LETTER = 7571;
 	private static final int SCROLL_OF_ESCAPE_GIRAN = 7559;
 	private static final int MARK_OF_TRAVELER = 7570;
+	
 	// Misc
 	private static final int MIN_LEVEL = 3;
 	
@@ -84,6 +86,7 @@ public class Q00006_StepIntoTheFuture extends Quest
 				{
 					return "30311-03.html";
 				}
+				
 				takeItems(player, BAULRO_LETTER, -1);
 				qs.setCond(3, true);
 				break;
@@ -94,6 +97,7 @@ public class Q00006_StepIntoTheFuture extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -164,6 +168,7 @@ public class Q00006_StepIntoTheFuture extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

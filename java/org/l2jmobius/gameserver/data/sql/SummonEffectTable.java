@@ -33,6 +33,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 public class SummonEffectTable
 {
 	/** Servitors **/
+	
 	// Map tree
 	// -> key: charObjectId, value: classIndex Map
 	// --> key: classIndex, value: servitors Map
@@ -46,6 +47,7 @@ public class SummonEffectTable
 		{
 			return null;
 		}
+		
 		return servitorMap.get(owner.getClassIndex());
 	}
 	
@@ -80,6 +82,7 @@ public class SummonEffectTable
 		{
 			return;
 		}
+		
 		for (SummonEffect se : summonEffects)
 		{
 			if (se != null)

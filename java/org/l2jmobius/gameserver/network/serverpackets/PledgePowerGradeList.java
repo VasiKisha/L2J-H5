@@ -20,6 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
+import java.util.Collection;
+
 import org.l2jmobius.commons.network.WritableBuffer;
 import org.l2jmobius.gameserver.model.clan.Clan.RankPrivs;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -27,9 +29,9 @@ import org.l2jmobius.gameserver.network.ServerPackets;
 
 public class PledgePowerGradeList extends ServerPacket
 {
-	private final RankPrivs[] _privs;
+	private final Collection<RankPrivs> _privs;
 	
-	public PledgePowerGradeList(RankPrivs[] privs)
+	public PledgePowerGradeList(Collection<RankPrivs> privs)
 	{
 		_privs = privs;
 	}
@@ -38,7 +40,7 @@ public class PledgePowerGradeList extends ServerPacket
 	public void writeImpl(GameClient client, WritableBuffer buffer)
 	{
 		ServerPackets.PLEDGE_POWER_GRADE_LIST.writeId(this, buffer);
-		buffer.writeInt(_privs.length);
+		buffer.writeInt(_privs.size());
 		for (RankPrivs temp : _privs)
 		{
 			buffer.writeInt(temp.getRank());

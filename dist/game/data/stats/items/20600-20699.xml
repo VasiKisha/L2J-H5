@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="20600" type="Weapon" name="Twilight Staff - Dance of Shadow - 7-day limited period">
 		<!-- Staff that calls souls. Cannot be exchanged, dropped, or sold. Item to be stored in a private warehouse. Special skill reuse delay is 1 hours. -->
@@ -19,12 +19,12 @@
 		<set name="is_oly_restricted" val="true" />
 		<set name="item_skill" val="21089-1" /> <!-- Dance of Shadows -->
 		<set name="time" val="10080" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="1" />
 			<set stat="mAtk" val="1" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="20601" type="Armor" name="Anniversary Hat - Soul of Phoenix - 7-day limited period">
 		<!-- Hat that comforts souls. Uses 2 hair accessory slots. Cannot be exchanged, dropped, or sold. Item to be stored in a private warehouse. Special skill reuse delay is 24 hours. -->
@@ -641,12 +641,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="92" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="20640" type="Weapon" name="Common Item - Light Crossbow">
 		<!-- Light Crossbow with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -669,13 +669,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="191" />
 			<set stat="mAtk" val="54" />
 			<set stat="critRate" val="12" />
 			<add stat="accCombat" val="-3.75" />
 			<set stat="pAtkSpd" val="293" />
-		</for>
+		</stats>
 	</item>
 	<item id="20641" type="Weapon" name="Common Item - Knight's Sword*Elven Sword">
 		<!-- Knight's Sword*Elven Sword with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -696,12 +696,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="107" />
 			<set stat="mAtk" val="51" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="20642" type="Armor" name="Common Item - Mithril Gloves">
 		<!-- Mithril Gloves with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -716,9 +716,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="29" />
-		</for>
+		</stats>
 	</item>
 	<item id="20643" type="Armor" name="Common Item - Plate Boots">
 		<!-- Plate Boots with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -733,9 +733,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="29" />
-		</for>
+		</stats>
 	</item>
 	<item id="20644" type="Armor" name="Common Item - Plate Shield">
 		<!-- Plate Shield with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -750,14 +750,14 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<sub stat="rEvas" val="8" />
 			<set stat="rShld" val="20" />
 			<set stat="sDef" val="154" />
-		</for>
+		</stats>
 	</item>
 	<item id="20645" type="Armor" name="Common Item - Plate Helmet">
 		<!-- Plate Helmet with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -772,9 +772,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="44" />
-		</for>
+		</stats>
 	</item>
 	<item id="20646" type="Armor" name="Common Item - Plate Gaiters">
 		<!-- Plate Gaiters with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -790,12 +790,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="70" />
-		</for>
+		</stats>
 	</item>
 	<item id="20647" type="Armor" name="Common Item - Half Plate Armor">
 		<!-- Half Plate Armor with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -811,12 +811,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="111" />
-		</for>
+		</stats>
 	</item>
 	<item id="20648" type="Armor" name="Common Item - Salamander Skin Mail">
 		<!-- Salamander Skin Mail with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -832,9 +832,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="136" />
-		</for>
+		</stats>
 	</item>
 	<item id="20649" type="Weapon" name="Common Item - Ghost Staff">
 		<!-- Ghost Staff of Mana with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -856,13 +856,13 @@
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
 		<set name="is_magic_weapon" val="true" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="90" />
 			<set stat="mAtk" val="79" />
 			<set stat="critRate" val="4" />
 			<add stat="accCombat" val="4.75" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="20650" type="Armor" name="Common Item - Mithril Tunic">
 		<!-- Mithril Tunic with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -878,13 +878,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="52" />
 			<add stat="maxMp" val="169" />
-		</for>
+		</stats>
 	</item>
 	<item id="20651" type="Armor" name="Common Item - Mithril Stockings">
 		<!-- Mithril Stockings with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -900,13 +900,13 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<cond msgId="1518">
+		<conditions msgId="1518">
 			<player races="HUMAN,ELF,DARK_ELF,ORC,DWARF" />
-		</cond>
-		<for>
+		</conditions>
+		<stats>
 			<add order="0" stat="pDef" val="32" />
 			<add stat="maxMp" val="105" />
-		</for>
+		</stats>
 	</item>
 	<item id="20652" type="Armor" name="Common Item - Salamander Skin Boots">
 		<!-- Salamander Skin Boots with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -921,9 +921,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="29" />
-		</for>
+		</stats>
 	</item>
 	<item id="20653" type="Armor" name="Common Item - Ogre Power Gauntlet">
 		<!-- Ogre Power Gauntlet with limited power enhancement. Enchantment, storing souls, and smelting are impossible. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->
@@ -938,9 +938,9 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="pDef" val="29" />
-		</for>
+		</stats>
 	</item>
 	<item id="20654" type="Armor" name="Agathion Seal Bracelet - Chon-chon">
 		<!-- Bracelet that summons the Chon-chon Agathion. Cannot be exchanged, dropped, or sold. Can be stored in a private warehouse. -->

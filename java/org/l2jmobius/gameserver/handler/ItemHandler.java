@@ -67,6 +67,7 @@ public class ItemHandler implements IHandler<IItemHandler, EtcItem>
 		{
 			return null;
 		}
+		
 		return _datatable.get(item.getHandlerName());
 	}
 	

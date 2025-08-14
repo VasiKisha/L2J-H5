@@ -37,19 +37,6 @@ public class Hide extends AbstractEffect
 	}
 	
 	@Override
-	public void onExit(Creature effector, Creature effected, Skill skill)
-	{
-		if (effected.isPlayer())
-		{
-			final Player player = effected.asPlayer();
-			if (!player.inObserverMode())
-			{
-				player.setInvisible(false);
-			}
-		}
-	}
-	
-	@Override
 	public void onStart(Creature effector, Creature effected, Skill skill)
 	{
 		if (effected.isPlayer())
@@ -66,12 +53,26 @@ public class Hide extends AbstractEffect
 			{
 				if ((target != null) && (target.getTarget() == player))
 				{
+					target.asAttackable().clearAggroList();
 					target.setTarget(null);
 					target.abortAttack();
 					target.abortCast();
 					target.getAI().setIntention(Intention.IDLE);
 				}
 			});
+		}
+	}
+	
+	@Override
+	public void onExit(Creature effector, Creature effected, Skill skill)
+	{
+		if (effected.isPlayer())
+		{
+			final Player player = effected.asPlayer();
+			if (!player.inObserverMode())
+			{
+				player.setInvisible(false);
+			}
 		}
 	}
 }

@@ -39,10 +39,13 @@ public class Q00450_GraveRobberRescue extends Quest
 	// NPCs
 	private static final int KANEMIKA = 32650;
 	private static final int WARRIOR = 32651;
+	
 	// Monster
 	private static final int WARRIOR_MON = 22741;
+	
 	// Item
 	private static final int EVIDENCE_OF_MIGRATION = 14876;
+	
 	// Misc
 	private static final int MIN_LEVEL = 80;
 	
@@ -90,6 +93,7 @@ public class Q00450_GraveRobberRescue extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -109,6 +113,7 @@ public class Q00450_GraveRobberRescue extends Quest
 						htmltext = "32650-03.html";
 						break;
 					}
+					
 					qs.setState(State.CREATED);
 					// fallthrou
 				}
@@ -152,6 +157,7 @@ public class Q00450_GraveRobberRescue extends Quest
 				{
 					qs.setCond(2, true);
 				}
+				
 				htmltext = "32651-01.html";
 			}
 			else
@@ -164,6 +170,7 @@ public class Q00450_GraveRobberRescue extends Quest
 				{
 					npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), NpcStringId.GRUNT_WHAT_S_WRONG_WITH_ME));
 				}
+				
 				npc.deleteMe();
 				htmltext = null;
 				

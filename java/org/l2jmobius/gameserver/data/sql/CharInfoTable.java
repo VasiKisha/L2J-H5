@@ -58,6 +58,7 @@ public class CharInfoTable
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't retrieve all char id/name/access: " + e.getMessage(), e);
 		}
+		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _names.size() + " char names.");
 	}
 	
@@ -192,6 +193,7 @@ public class CharInfoTable
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Could not check existing charname: " + e.getMessage(), e);
 		}
+		
 		return result;
 	}
 	
@@ -213,6 +215,7 @@ public class CharInfoTable
 		{
 			LOGGER.log(Level.WARNING, "Couldn't retrieve account for id: " + e.getMessage(), e);
 		}
+		
 		return 0;
 	}
 	

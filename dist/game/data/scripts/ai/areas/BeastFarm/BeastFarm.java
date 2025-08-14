@@ -235,6 +235,7 @@ public class BeastFarm extends AbstractNpcAI
 		{
 			FEED_INFO.remove(npc.getObjectId());
 		}
+		
 		// despawn the old mob
 		// TODO: same code? FIXED?
 		/*
@@ -273,6 +274,7 @@ public class BeastFarm extends AbstractNpcAI
 					break;
 				}
 			}
+			
 			nextNpc.setName(name);
 			nextNpc.broadcastPacket(new AbstractNpcInfo.NpcInfo(nextNpc, player));
 			nextNpc.setRunning();
@@ -314,6 +316,7 @@ public class BeastFarm extends AbstractNpcAI
 		// gather some values on local variables
 		final int npcId = npc.getId();
 		final int skillId = skill.getId();
+		
 		// check if the npc and skills used are valid for this script. Exit if invalid.
 		if (!ArrayUtil.contains(FEEDABLE_BEASTS, npcId) || ((skillId != SKILL_GOLDEN_SPICE) && (skillId != SKILL_CRYSTAL_SPICE) && (skillId != SKILL_BLESSED_GOLDEN_SPICE) && (skillId != SKILL_BLESSED_CRYSTAL_SPICE) && (skillId != SKILL_SGRADE_GOLDEN_SPICE) && (skillId != SKILL_SGRADE_CRYSTAL_SPICE)))
 		{
@@ -372,6 +375,7 @@ public class BeastFarm extends AbstractNpcAI
 				// if no, then do not allow a chance to raise the pet (food gets consumed but has no effect).
 				return;
 			}
+			
 			spawnNext(npc, caster, newNpcId, food);
 		}
 		else
@@ -439,6 +443,7 @@ public class BeastFarm extends AbstractNpcAI
 						return _skillSuccessNpcIdList.get(SKILL_CRYSTAL_SPICE);
 					}
 				}
+				
 				return -1;
 			}
 			else if ((_growthLevel == 2) && (getRandom(100) < TAME_CHANCE))

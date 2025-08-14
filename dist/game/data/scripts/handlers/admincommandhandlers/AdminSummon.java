@@ -31,17 +31,17 @@ public class AdminSummon implements IAdminCommandHandler
 	};
 	
 	@Override
-	public String[] getAdminCommandList()
-	{
-		return ADMIN_COMMANDS;
-	}
-	
-	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		int id;
 		long count = 1;
 		final String[] data = command.split(" ");
+		if (data.length < 2)
+		{
+			activeChar.sendSysMessage("Usage: //summon <id> [count]");
+			return false;
+		}
+		
 		try
 		{
 			id = Integer.parseInt(data[1]);
@@ -70,9 +70,15 @@ public class AdminSummon implements IAdminCommandHandler
 		
 		if ((id > 0) && (count > 0))
 		{
-			AdminCommandHandler.getInstance().useAdminCommand(activeChar, subCommand + " " + id + " " + count, true);
+			AdminCommandHandler.getInstance().onCommand(activeChar, subCommand + " " + id + " " + count, true);
 		}
 		
 		return true;
+	}
+	
+	@Override
+	public String[] getCommandList()
+	{
+		return ADMIN_COMMANDS;
 	}
 }

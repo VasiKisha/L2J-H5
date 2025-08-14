@@ -57,6 +57,7 @@ public class Q00371_ShrieksOfGhosts extends Quest
 	// NPCs
 	private static final int REVA = 30867;
 	private static final int PATRIN = 30929;
+	
 	// Items
 	private static final int ANCIENT_ASH_URN = 5903;
 	private static final int ANCIENT_PORCELAIN = 6002;
@@ -64,6 +65,7 @@ public class Q00371_ShrieksOfGhosts extends Quest
 	private static final int ANCIENT_PORCELAIN_HIGH_QUALITY = 6004;
 	private static final int ANCIENT_PORCELAIN_LOW_QUALITY = 6005;
 	private static final int ANCIENT_PORCELAIN_LOWEST_QUALITY = 6006;
+	
 	// Misc
 	private static final int MIN_LEVEL = 59;
 	
@@ -176,6 +178,7 @@ public class Q00371_ShrieksOfGhosts extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -220,6 +223,7 @@ public class Q00371_ShrieksOfGhosts extends Quest
 				htmltext = "30929-01.html";
 			}
 		}
+		
 		return htmltext;
 	}
 }

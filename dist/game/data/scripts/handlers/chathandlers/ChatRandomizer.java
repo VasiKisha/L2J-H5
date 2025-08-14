@@ -49,6 +49,7 @@ class ChatRandomizer
 				textOut.append(Character.toString((char) Rnd.get(47, 64)));
 			}
 		}
+		
 		return textOut.toString();
 	}
 }

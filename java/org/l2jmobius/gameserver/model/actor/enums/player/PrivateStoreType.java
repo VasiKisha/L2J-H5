@@ -51,6 +51,7 @@ public enum PrivateStoreType
 				return privateStoreType;
 			}
 		}
+		
 		return null;
 	}
 }

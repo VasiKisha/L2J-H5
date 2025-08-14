@@ -50,4 +50,12 @@ public class DropGroupHolder
 	{
 		return _chance;
 	}
+	
+	/**
+	 * Sorts the drop list by chance in ascending order (low to high).
+	 */
+	public void sortByChance()
+	{
+		_dropList.sort((d1, d2) -> Double.compare(d1.getChance(), d2.getChance()));
+	}
 }

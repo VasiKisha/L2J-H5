@@ -107,6 +107,7 @@ public class ItemAuctionManager
 					}
 				}
 			}
+			
 			LOGGER.log(Level.INFO, getClass().getSimpleName() + ": Loaded " + _managerInstances.size() + " instance(s).");
 		}
 		catch (Exception e)

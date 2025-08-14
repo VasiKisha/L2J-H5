@@ -20,9 +20,6 @@
  */
 package handlers.admincommandhandlers;
 
-import java.util.logging.Logger;
-
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -36,14 +33,13 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
  */
 public class AdminHeal implements IAdminCommandHandler
 {
-	private static final Logger LOGGER = Logger.getLogger(AdminRes.class.getName());
 	private static final String[] ADMIN_COMMANDS =
 	{
 		"admin_heal"
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_heal"))
 		{
@@ -58,18 +54,15 @@ public class AdminHeal implements IAdminCommandHandler
 			}
 			catch (StringIndexOutOfBoundsException e)
 			{
-				if (Config.DEVELOPER)
-				{
-					LOGGER.warning("Heal error: " + e);
-				}
 				activeChar.sendSysMessage("Incorrect target/radius specified.");
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
@@ -112,10 +105,12 @@ public class AdminHeal implements IAdminCommandHandler
 				}
 			}
 		}
+		
 		if (obj == null)
 		{
 			obj = activeChar;
 		}
+		
 		if (obj.isCreature())
 		{
 			final Creature target = obj.asCreature();

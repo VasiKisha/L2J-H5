@@ -40,6 +40,7 @@ public class LairOfAntharas extends AbstractNpcAI
 	
 	private static final int DRAGON_GUARD = 22852;
 	private static final int DRAGON_MAGE = 22853;
+	
 	// Misc
 	private static final int KNIGHT_CHANCE = 30;
 	private static final int KNORIKS_CHANCE = 60;
@@ -70,6 +71,7 @@ public class LairOfAntharas extends AbstractNpcAI
 					npc.broadcastPacket(new ValidateLocation(npc));
 				}
 			}
+			
 			getTimers().addTimer("CHECK_HOME_" + npc.getObjectId(), null, 10000, npc, null);
 		}
 	}
@@ -83,6 +85,7 @@ public class LairOfAntharas extends AbstractNpcAI
 			{
 				npc.setScriptValue(1);
 			}
+			
 			npc.broadcastSay(ChatType.NPC_SHOUT, NpcStringId.WHO_S_THERE_IF_YOU_DISTURB_THE_TEMPER_OF_THE_GREAT_LAND_DRAGON_ANTHARAS_I_WILL_NEVER_FORGIVE_YOU);
 		}
 	}

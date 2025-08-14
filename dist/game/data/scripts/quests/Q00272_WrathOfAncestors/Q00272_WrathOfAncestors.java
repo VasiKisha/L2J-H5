@@ -32,14 +32,17 @@ public class Q00272_WrathOfAncestors extends Quest
 {
 	// NPC
 	private static final int LIVINA = 30572;
+	
 	// Items
 	private static final int GRAVE_ROBBERS_HEAD = 1474;
+	
 	// Monsters
-	private static final int[] MONSTERS = new int[]
+	private static final int[] MONSTERS =
 	{
 		20319, // Goblin Grave Robber
 		20320, // Goblin Tomb Raider Leader
 	};
+	
 	// Misc
 	private static final int MIN_LEVEL = 5;
 	
@@ -61,6 +64,7 @@ public class Q00272_WrathOfAncestors extends Quest
 			qs.startQuest();
 			return event;
 		}
+		
 		return null;
 	}
 	
@@ -114,6 +118,7 @@ public class Q00272_WrathOfAncestors extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

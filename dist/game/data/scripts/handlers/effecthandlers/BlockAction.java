@@ -68,6 +68,7 @@ public class BlockAction extends AbstractEffect
 		{
 			PunishmentManager.getInstance().stopPunishment(effected.getObjectId(), PunishmentAffect.CHARACTER, PunishmentType.PARTY_BAN);
 		}
+		
 		if (_blockedActions.contains(BotReportTable.CHAT_BLOCK_ID))
 		{
 			PunishmentManager.getInstance().stopPunishment(effected.getObjectId(), PunishmentAffect.CHARACTER, PunishmentType.CHAT_BAN);

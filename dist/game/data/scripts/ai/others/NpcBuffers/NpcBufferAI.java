@@ -102,6 +102,7 @@ public class NpcBufferAI implements Runnable
 								{
 									player.updatePvPStatus(target);
 								}
+								
 								skill.applyEffects(target, target);
 							}
 							break;
@@ -111,6 +112,7 @@ public class NpcBufferAI implements Runnable
 				break;
 			}
 		}
+		
 		ThreadPool.schedule(this, _skillData.getDelay());
 	}
 	
@@ -155,6 +157,7 @@ public class NpcBufferAI implements Runnable
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -207,6 +210,7 @@ public class NpcBufferAI implements Runnable
 				}
 			}
 		}
+		
 		return false;
 	}
 }

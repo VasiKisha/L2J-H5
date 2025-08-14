@@ -58,6 +58,7 @@ public class TaskNevit extends PersistentTask
 			player.getVariables().set("hunting_time", 0);
 			player.sendPacket(new ExNevitAdventTimeChange(0, true));
 		}
+		
 		LOGGER.info("Nevit system reseted.");
 	}
 	

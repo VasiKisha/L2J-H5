@@ -55,6 +55,7 @@ public class PetInventory extends Inventory
 		{
 			return 0;
 		}
+		
 		return id;
 	}
 	
@@ -75,6 +76,7 @@ public class PetInventory extends Inventory
 		{
 			slots++;
 		}
+		
 		return validateCapacity(slots);
 	}
 	
@@ -92,6 +94,7 @@ public class PetInventory extends Inventory
 		{
 			return false;
 		}
+		
 		weight += count * template.getWeight();
 		return validateWeight(weight);
 	}
@@ -118,6 +121,7 @@ public class PetInventory extends Inventory
 	public void restore()
 	{
 		super.restore();
+		
 		// check for equipped items from other pets
 		for (Item item : _items)
 		{

@@ -141,6 +141,7 @@ public class SystemPanel extends JPanel
 						LOGGER.info("New maximum connected count of " + playerCount + "!");
 					}
 				}
+				
 				lblConnected.setText("Connected: " + playerCount);
 				lblMaxConnected.setText("Max connected: " + World.MAX_CONNECTED_COUNT);
 				lblOfflineShops.setText("Offline trade: " + World.OFFLINE_TRADE_COUNT);

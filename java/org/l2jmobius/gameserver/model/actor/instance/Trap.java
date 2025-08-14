@@ -61,6 +61,7 @@ public class Trap extends Npc
 	private final Set<Integer> _playersWhoDetectedMe = new HashSet<>();
 	private final SkillHolder _skill;
 	private int _remainingTime;
+	
 	// Tasks
 	private ScheduledFuture<?> _trapTask = null;
 	
@@ -114,18 +115,6 @@ public class Trap extends Npc
 		});
 	}
 	
-	@Override
-	public void broadcastPacket(ServerPacket packet, int radiusInKnownlist)
-	{
-		World.getInstance().forEachVisibleObjectInRange(this, Player.class, radiusInKnownlist, player ->
-		{
-			if (_isTriggered || canBeSeen(player))
-			{
-				player.sendPacket(packet);
-			}
-		});
-	}
-	
 	/**
 	 * Verify if the character can see the trap.
 	 * @param creature The creature to verify
@@ -142,6 +131,7 @@ public class Trap extends Npc
 		{
 			return false;
 		}
+		
 		if (creature == _owner)
 		{
 			return true;
@@ -171,6 +161,7 @@ public class Trap extends Npc
 		{
 			return true;
 		}
+		
 		return false;
 	}
 	
@@ -218,6 +209,7 @@ public class Trap extends Npc
 				return false;
 			}
 		}
+		
 		return true;
 	}
 	
@@ -229,6 +221,7 @@ public class Trap extends Npc
 			_owner.setTrap(null);
 			_owner = null;
 		}
+		
 		return super.deleteMe();
 	}
 	

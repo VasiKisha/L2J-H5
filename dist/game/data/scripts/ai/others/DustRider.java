@@ -31,10 +31,13 @@ import ai.AbstractNpcAI;
 public class DustRider extends AbstractNpcAI
 {
 	private static final int DUST_RIDER = 25719;
+	
 	// Skills
 	private static final SkillHolder NPC_HASTE_LEVEL_3 = new SkillHolder(6914, 3);
+	
 	// Variables
 	private static final String CAST_FLAG = "CAST_FLAG";
+	
 	// Misc
 	private static final int MAX_CHASE_DIST = 2500;
 	private static final double MIN_HP_PERCENTAGE = 0.30;

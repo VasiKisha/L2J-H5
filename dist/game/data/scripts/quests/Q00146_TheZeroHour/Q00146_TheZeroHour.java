@@ -33,6 +33,7 @@ public class Q00146_TheZeroHour extends Quest
 	// NPCs
 	private static final int KAHMAN = 31554;
 	private static final int QUEEN_SHYEED = 25671;
+	
 	// Item
 	private static final int KAHMANS_SUPPLY_BOX = 14849;
 	private static final int FANG = 14859;
@@ -65,6 +66,7 @@ public class Q00146_TheZeroHour extends Quest
 		{
 			qs.startQuest();
 		}
+		
 		return event;
 	}
 	
@@ -127,6 +129,7 @@ public class Q00146_TheZeroHour extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

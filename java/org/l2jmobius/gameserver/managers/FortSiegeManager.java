@@ -108,6 +108,7 @@ public class FortSiegeManager
 		{
 			LOGGER.log(Level.WARNING, "Exception: checkIsRegistered(): " + e.getMessage(), e);
 		}
+		
 		return register;
 	}
 	
@@ -153,6 +154,7 @@ public class FortSiegeManager
 				{
 					break;
 				}
+				
 				final StringTokenizer st = new StringTokenizer(_spawnParams.trim(), ",");
 				
 				try
@@ -179,6 +181,7 @@ public class FortSiegeManager
 				{
 					break;
 				}
+				
 				final StringTokenizer st = new StringTokenizer(_spawnParams.trim(), ",");
 				
 				try
@@ -194,6 +197,7 @@ public class FortSiegeManager
 					LOGGER.warning("Error while loading flag(s) for " + fort.getName() + " fort.");
 				}
 			}
+			
 			_flagList.put(fort.getResidenceId(), flagSpawns);
 		}
 	}
@@ -242,6 +246,7 @@ public class FortSiegeManager
 				return fort.getSiege();
 			}
 		}
+		
 		return null;
 	}
 	
@@ -291,6 +296,7 @@ public class FortSiegeManager
 				cf.activate(player, item);
 			}
 		}
+		
 		return true;
 	}
 	
@@ -300,6 +306,7 @@ public class FortSiegeManager
 		{
 			return false;
 		}
+		
 		if (!player.isClanLeader())
 		{
 			player.sendMessage("The flag can only be picked up by a clan leader.");
@@ -311,6 +318,7 @@ public class FortSiegeManager
 		{
 			return false;
 		}
+		
 		if (!fort.getSiege().isInProgress())
 		{
 			player.sendPacket(new SystemMessage(SystemMessageId.THE_FORTRESS_BATTLE_OF_S1_HAS_FINISHED).addItemName(9819));

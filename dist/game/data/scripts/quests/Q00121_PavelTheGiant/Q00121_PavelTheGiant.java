@@ -63,6 +63,7 @@ public class Q00121_PavelTheGiant extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -104,6 +105,7 @@ public class Q00121_PavelTheGiant extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

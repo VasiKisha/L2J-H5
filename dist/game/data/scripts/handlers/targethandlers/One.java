@@ -35,7 +35,7 @@ public class One implements ITargetTypeHandler
 	public List<WorldObject> getTargetList(Skill skill, Creature creature, boolean onlyFirst, Creature target)
 	{
 		// Check for null target or any other invalid target
-		if ((target == null) || target.isDead() || ((target == creature) && skill.isBad()))
+		if ((target == null) || target.isDead() || ((target == creature) && skill.hasNegativeEffect()))
 		{
 			creature.sendPacket(SystemMessageId.THAT_IS_AN_INCORRECT_TARGET);
 			return Collections.emptyList();

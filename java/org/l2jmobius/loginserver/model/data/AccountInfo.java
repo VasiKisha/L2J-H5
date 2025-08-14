@@ -36,6 +36,7 @@ public class AccountInfo
 		{
 			throw new IllegalArgumentException("login");
 		}
+		
 		if (passHash.isEmpty())
 		{
 			throw new IllegalArgumentException("passHash");

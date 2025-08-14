@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="15200" type="EtcItem" name="Orc Mage Class Equipment Set - 10-day limited period">
 		<!-- Friend recommend service exclusive item set for the Orc Mage occupation classes. Expires after 10 days if not used. No exchange/drop available -->
@@ -1209,12 +1209,12 @@
 		<set name="soulshots" val="2" />
 		<set name="spiritshots" val="2" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="24" />
 			<set stat="mAtk" val="17" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="379" />
-		</for>
+		</stats>
 	</item>
 	<item id="15281" type="Weapon" name="Transparent 2HS (for NPC)">
 		<set name="icon" val="icon.weapon_two_handed_sword_i00" />
@@ -1232,12 +1232,12 @@
 		<set name="spiritshots" val="2" />
 		<set name="enchant_enabled" val="true" />
 		<set name="is_depositable" val="false" />
-		<for>
+		<stats>
 			<set stat="pAtk" val="78" />
 			<set stat="mAtk" val="39" />
 			<set stat="critRate" val="8" />
 			<set stat="pAtkSpd" val="325" />
-		</for>
+		</stats>
 	</item>
 	<item id="15282" type="Armor" name="Gludio Water Royal Guard Necklace">
 		<!-- Necklace given to the royal guard of Gludio territory. Water power defense + 30. Cannot be exchanged or dropped. -->
@@ -1252,12 +1252,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
 			<add stat="maxMp" val="46" />
 			<add stat="waterRes" val="30" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15283" type="Armor" name="Dion Holy Royal Guard Necklace">
 		<!-- Necklace given to the royal guard of Dion territory. Resistance to Holy + 30. Cannot be exchanged or dropped. -->
@@ -1272,12 +1272,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
 			<add stat="maxMp" val="46" />
 			<add stat="holyRes" val="30" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15284" type="Armor" name="Giran Wind Royal Guard Necklace">
 		<!-- Necklace given to the royal guard of Giran territory. Wind power defense + 30. Cannot be exchanged or dropped. -->
@@ -1292,12 +1292,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
 			<add stat="maxMp" val="46" />
 			<add stat="windRes" val="30" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15285" type="Armor" name="Oren Dark Royal Guard Necklace">
 		<!-- Necklace given to the royal guard of Oren territory. Resistance to Dark +30. Cannot be exchanged or dropped. -->
@@ -1312,12 +1312,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
 			<add stat="maxMp" val="46" />
 			<add stat="darkRes" val="30" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15286" type="Armor" name="Aden Earth Royal Guard Necklace">
 		<!-- Necklace given to the royal guard of Aden territory. Earth power defense + 30. Cannot be exchanged or dropped. -->
@@ -1332,12 +1332,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
 			<add stat="maxMp" val="46" />
 			<add stat="earthRes" val="30" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15287" type="Armor" name="Innadril Water Royal Guard Necklace">
 		<!-- Necklace given to the royal guard of Innadril territory. Water power defense + 30. Cannot be exchanged or dropped. -->
@@ -1352,12 +1352,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
 			<add stat="maxMp" val="46" />
 			<add stat="waterRes" val="30" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15288" type="Armor" name="Goddard Fire Royal Guard Necklace">
 		<!-- Necklace given to the royal guard of Goddard territory. Fire power defense + 30. Cannot be exchanged or dropped. -->
@@ -1372,12 +1372,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
 			<add stat="maxMp" val="46" />
 			<add stat="fireRes" val="30" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15289" type="Armor" name="Rune Fire Royal Guard Necklace">
 		<!-- Necklace given to the royal guard of Rune territory. Fire power defense + 30. Cannot be exchanged or dropped. -->
@@ -1392,12 +1392,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
 			<add stat="maxMp" val="46" />
 			<add stat="fireRes" val="30" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15290" type="Armor" name="Schuttgart Wind Royal Guard Necklace">
 		<!-- Necklace given to the royal guard of Schuttgart territory. Wind power defense + 30. Cannot be exchanged or dropped. -->
@@ -1412,12 +1412,12 @@
 		<set name="is_tradable" val="false" />
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="106" />
 			<add stat="maxMp" val="46" />
 			<add stat="windRes" val="30" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15291" type="Armor" name="Gludio Earth Royal Guard Ring">
 		<!-- Ring given to the royal guard of Gludio territory. Resistance to Earth +15. Cannot be exchanged or dropped. Only one effect is applied even when wearing two earrings with the same effect. -->
@@ -1433,12 +1433,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8379-2" /> <!-- Royal Guard Ring - Gludio -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
 			<add stat="maxMp" val="23" />
 			<add stat="earthRes" val="15" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15292" type="Armor" name="Dion Water Royal Guard Ring">
 		<!-- Ring given to the royal guard of Dion territory. Water power defense +15. Cannot be exchanged or dropped. Only one effect is applied even when wearing two earrings with the same effect. -->
@@ -1454,12 +1454,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8380-2" /> <!-- Royal Guard Ring - Dion -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
 			<add stat="maxMp" val="23" />
 			<add stat="waterRes" val="15" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15293" type="Armor" name="Giran Fire Royal Guard Ring">
 		<!-- Ring given to the royal guard of Giran territory. Fire power defense +15. Cannot be exchanged or dropped. Only one effect is applied even when wearing two earrings with the same effect. -->
@@ -1475,12 +1475,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8381-2" /> <!-- Royal Guard Ring - Giran -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
 			<add stat="maxMp" val="23" />
 			<add stat="fireRes" val="15" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15294" type="Armor" name="Oren Earth Royal Guard Ring">
 		<!-- Ring given to the royal guard of Oren territory. Resistance to Earth +15. Cannot be exchanged or dropped. Only one effect is applied even when wearing two earrings with the same effect. -->
@@ -1496,12 +1496,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8382-2" /> <!-- Royal Guard Ring - Oren -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
 			<add stat="maxMp" val="23" />
 			<add stat="earthRes" val="15" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15295" type="Armor" name="Aden Holy Royal Guard Ring">
 		<!-- Ring given to the royal guard of Aden territory. Resistance to Holy +15. Cannot be exchanged or dropped. Only one effect is applied even when wearing two earrings with the same effect. -->
@@ -1517,12 +1517,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8383-2" /> <!-- Royal Guard Ring - Aden -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
 			<add stat="maxMp" val="23" />
 			<add stat="holyRes" val="15" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15296" type="Armor" name="Innadril Holy Royal Guard Ring">
 		<!-- Ring given to the royal guard of Innadril territory. Resistance to Holy +15. Cannot be exchanged or dropped. Only one effect is applied even when wearing two earrings with the same effect. -->
@@ -1538,12 +1538,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8384-2" /> <!-- Royal Guard Ring - Innadril -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
 			<add stat="maxMp" val="23" />
 			<add stat="holyRes" val="15" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15297" type="Armor" name="Goddard Dark Royal Guard Ring">
 		<!-- Ring given to the royal guard of Goddard territory. Resistance to Dark +15. Cannot be exchanged or dropped. Only one effect is applied even when wearing two earrings with the same effect. -->
@@ -1559,12 +1559,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8385-2" /> <!-- Royal Guard Ring - Goddard -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
 			<add stat="maxMp" val="23" />
 			<add stat="darkRes" val="15" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15298" type="Armor" name="Rune Wind Royal Guard Ring">
 		<!-- Ring given to the royal guard of Rune territory. Wind power defense +15. Cannot be exchanged or dropped. Only one effect is applied even when wearing two earrings with the same effect. -->
@@ -1580,12 +1580,12 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8386-2" /> <!-- Royal Guard Ring - Rune -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
 			<add stat="maxMp" val="23" />
 			<add stat="windRes" val="15" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 	<item id="15299" type="Armor" name="Schuttgart Dark Royal Guard Ring">
 		<!-- Ring given to the royal guard of Schuttgart territory. Resistance to Dark +15. Cannot be exchanged or dropped. Only one effect is applied even when wearing two earrings with the same effect. -->
@@ -1601,11 +1601,11 @@
 		<set name="is_dropable" val="false" />
 		<set name="is_sellable" val="false" />
 		<set name="item_skill" val="8387-2" /> <!-- Royal Guard Ring - Schuttgart -->
-		<for>
+		<stats>
 			<add order="0" stat="mDef" val="60" />
 			<add stat="maxMp" val="23" />
 			<add stat="darkRes" val="15" />
 			<enchant stat="mDef" val="0" />
-		</for>
+		</stats>
 	</item>
 </list>

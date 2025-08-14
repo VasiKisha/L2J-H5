@@ -34,12 +34,15 @@ public class Q00319_ScentOfDeath extends Quest
 {
 	// NPC
 	private static final int MINALESS = 30138;
+	
 	// Monsters
 	private static final int MARSH_ZOMBIE = 20015;
 	private static final int MARSH_ZOMBIE_LORD = 20020;
+	
 	// Item
 	private static final int ZOMBIES_SKIN = 1045;
 	private static final ItemHolder LESSER_HEALING_POTION = new ItemHolder(1060, 1);
+	
 	// Misc
 	private static final int MIN_LEVEL = 11;
 	private static final int MIN_CHANCE = 7;
@@ -76,6 +79,7 @@ public class Q00319_ScentOfDeath extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -131,6 +135,7 @@ public class Q00319_ScentOfDeath extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

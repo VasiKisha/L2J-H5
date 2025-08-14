@@ -32,14 +32,17 @@ public class Q00035_FindGlitteringJewelry extends Quest
 	// NPCs
 	private static final int ELLIE = 30091;
 	private static final int FELTON = 30879;
+	
 	// Monster
 	private static final int ALLIGATOR = 20135;
+	
 	// Items
 	private static final int SILVER_NUGGET = 1873;
 	private static final int ORIHARUKON = 1893;
 	private static final int THONS = 4044;
 	private static final int JEWEL_BOX = 7077;
 	private static final int ROUGH_JEWEL = 7162;
+	
 	// Misc
 	private static final int MIN_LEVEL = 60;
 	private static final int JEWEL_COUNT = 10;
@@ -84,6 +87,7 @@ public class Q00035_FindGlitteringJewelry extends Quest
 				{
 					return "30091-08.html";
 				}
+				
 				takeItems(player, ROUGH_JEWEL, -1);
 				qs.setCond(4, true);
 				break;
@@ -110,6 +114,7 @@ public class Q00035_FindGlitteringJewelry extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -193,6 +198,7 @@ public class Q00035_FindGlitteringJewelry extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

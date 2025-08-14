@@ -64,7 +64,7 @@ public class MercTicketManager
 		20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20, 20 // Schuttgart
 	};
 	
-	//TODO: not retail like: clan level 5 - 30 ticks max, level 7+ - 50 max
+	// TODO: not retail like: clan level 5 - 30 ticks max, level 7+ - 50 max
 	protected static final int[] MERCS_MAX_PER_CASTLE =
 	{
 		100, // Gludio
@@ -125,11 +125,13 @@ public class MercTicketManager
 					return i + 1;
 				}
 			}
+			
 			if ((itemId >= ITEM_IDS[50]) && (itemId <= ITEM_IDS[51]))
 			{
 				return i + 1;
 			}
 		}
+		
 		return -1;
 	}
 	
@@ -154,6 +156,7 @@ public class MercTicketManager
 			int y;
 			int z;
 			final int[] mercPlaced = new int[20];
+			
 			// start index to begin the search for the itemId corresponding to this NPC
 			// this will help with:
 			// a) skip unnecessary iterations in the search loop
@@ -173,6 +176,7 @@ public class MercTicketManager
 					{
 						continue;
 					}
+					
 					startindex = GUARDIAN_TYPES_COUNT * (castle.getResidenceId() - 1);
 					mercPlaced[castle.getResidenceId() - 1] += 1;
 				}
@@ -186,6 +190,7 @@ public class MercTicketManager
 						if ((castle != null) && !castle.getSiege().isInProgress())
 						{
 							itemId = ITEM_IDS[i];
+							
 							// create the ticket in the gameworld
 							final Item dropticket = new Item(IdManager.getInstance().getNextId(), itemId);
 							dropticket.setItemLocation(ItemLocation.VOID);
@@ -198,6 +203,7 @@ public class MercTicketManager
 					}
 				}
 			}
+			
 			rs.close();
 			s.close();
 			
@@ -217,6 +223,7 @@ public class MercTicketManager
 	public boolean isAtTypeLimit(int itemId)
 	{
 		int limit = -1;
+		
 		// find the max value for this item
 		for (int i = 0; i < ITEM_IDS.length; i++)
 		{
@@ -240,6 +247,7 @@ public class MercTicketManager
 				count++;
 			}
 		}
+		
 		return count >= limit;
 	}
 	
@@ -255,6 +263,7 @@ public class MercTicketManager
 		{
 			return true;
 		}
+		
 		final int limit = MERCS_MAX_PER_CASTLE[castleId - 1];
 		if (limit <= 0)
 		{
@@ -269,6 +278,7 @@ public class MercTicketManager
 				count++;
 			}
 		}
+		
 		return count >= limit;
 	}
 	
@@ -289,6 +299,7 @@ public class MercTicketManager
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -326,12 +337,14 @@ public class MercTicketManager
 				dropticket.dropMe(null, x, y, z);
 				dropticket.setDropTime(0); // avoids it from beeing removed by the auto item destroyer
 				World.getInstance().addObject(dropticket); // add to the world
+				
 				// and keep track of this ticket in the list
 				DROPPED_TICKETS.add(dropticket);
 				
 				return NPC_IDS[i];
 			}
 		}
+		
 		return -1;
 	}
 	
@@ -342,6 +355,7 @@ public class MercTicketManager
 		{
 			return;
 		}
+		
 		final Defender npc = new Defender(template);
 		npc.setCurrentHpMp(npc.getMaxHp(), npc.getMaxMp());
 		npc.setDecayed(false);
@@ -387,6 +401,7 @@ public class MercTicketManager
 				break;
 			}
 		}
+		
 		// find the castle where this item is
 		final Castle castle = CastleManager.getInstance().getCastleById(getTicketCastleId(itemId));
 		if ((npcId > 0) && (castle != null))

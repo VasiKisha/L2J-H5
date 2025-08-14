@@ -71,10 +71,17 @@ public class RequestChangePetName extends ClientPacket
 			return;
 		}
 		
-		if ((_name.length() < 3) || (_name.length() > 16))
+		// Pet name limit 1–8 characters.
+		if (_name.isEmpty() || (_name.length() > 8))
 		{
-			// player.sendPacket(SystemMessageId.NAMING_PETNAME_UP_TO_8CHARS);
-			player.sendMessage("Your pet's name can be up to 16 characters in length.");
+			player.sendPacket(SystemMessageId.YOUR_PET_S_NAME_CAN_BE_UP_TO_8_CHARACTERS_IN_LENGTH);
+			return;
+		}
+		
+		// No spaces.
+		if (_name.contains(" "))
+		{
+			player.sendPacket(SystemMessageId.THERE_IS_A_SPACE_IN_THE_NAME);
 			return;
 		}
 		
@@ -85,6 +92,7 @@ public class RequestChangePetName extends ClientPacket
 		}
 		
 		pet.setName(_name);
+		pet.storeMe(); // Save to DB immediately.
 		pet.updateAndBroadcastStatus(1);
 	}
 }

@@ -29,7 +29,7 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 public class DecoyAction implements IActionHandler
 {
 	@Override
-	public boolean action(Player player, WorldObject target, boolean interact)
+	public boolean onAction(Player player, WorldObject target, boolean interact)
 	{
 		// Aggression target lock effect
 		if (player.isLockedTarget() && (player.getLockedTarget() != target))

@@ -39,6 +39,7 @@ public class Q00101_SwordOfSolidarity extends Quest
 	// NPCs
 	private static final int ROIEN = 30008;
 	private static final int ALTRAN = 30283;
+	
 	// Items
 	private static final int BROKEN_SWORD_HANDLE = 739;
 	private static final int BROKEN_BLADE_BOTTOM = 740;
@@ -46,12 +47,14 @@ public class Q00101_SwordOfSolidarity extends Quest
 	private static final int ALTRANS_NOTE = 742;
 	private static final int ROIENS_LETTER = 796;
 	private static final int DIRECTIONS_TO_RUINS = 937;
+	
 	// Monsters
 	private static final int[] MONSTERS =
 	{
 		20361, // Tunath Orc Marksman
 		20362, // Tunath Orc Warrior
 	};
+	
 	// Rewards
 	private static final ItemHolder[] REWARDS =
 	{
@@ -64,6 +67,7 @@ public class Q00101_SwordOfSolidarity extends Quest
 		new ItemHolder(4416, 10), // Echo Crystal - Theme of Celebration
 	};
 	private static final ItemHolder SOULSHOTS_NO_GRADE_FOR_ROOKIES = new ItemHolder(5789, 7000);
+	
 	// Misc
 	private static final int MIN_LEVEL = 9;
 	private static final int GUIDE_MISSION = 41;
@@ -124,6 +128,7 @@ public class Q00101_SwordOfSolidarity extends Quest
 						{
 							giveItems(player, reward);
 						}
+						
 						addExpAndSp(player, 25747, 2171);
 						giveAdena(player, 10981, true);
 						qs.exitQuest(false, true);
@@ -155,6 +160,7 @@ public class Q00101_SwordOfSolidarity extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -324,6 +330,7 @@ public class Q00101_SwordOfSolidarity extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

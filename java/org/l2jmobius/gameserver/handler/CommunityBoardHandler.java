@@ -46,7 +46,7 @@ public class CommunityBoardHandler implements IHandler<IParseBoardHandler, Strin
 	@Override
 	public void registerHandler(IParseBoardHandler handler)
 	{
-		for (String cmd : handler.getCommunityBoardCommands())
+		for (String cmd : handler.getCommandList())
 		{
 			_datatable.put(cmd.toLowerCase(), handler);
 		}
@@ -55,7 +55,7 @@ public class CommunityBoardHandler implements IHandler<IParseBoardHandler, Strin
 	@Override
 	public synchronized void removeHandler(IParseBoardHandler handler)
 	{
-		for (String cmd : handler.getCommunityBoardCommands())
+		for (String cmd : handler.getCommandList())
 		{
 			_datatable.remove(cmd.toLowerCase());
 		}
@@ -66,7 +66,7 @@ public class CommunityBoardHandler implements IHandler<IParseBoardHandler, Strin
 	{
 		for (IParseBoardHandler cb : _datatable.values())
 		{
-			for (String command : cb.getCommunityBoardCommands())
+			for (String command : cb.getCommandList())
 			{
 				if (cmd.toLowerCase().startsWith(command.toLowerCase()))
 				{
@@ -74,6 +74,7 @@ public class CommunityBoardHandler implements IHandler<IParseBoardHandler, Strin
 				}
 			}
 		}
+		
 		return null;
 	}
 	
@@ -118,7 +119,7 @@ public class CommunityBoardHandler implements IHandler<IParseBoardHandler, Strin
 			return;
 		}
 		
-		cb.parseCommunityBoardCommand(command, player);
+		cb.onCommand(command, player);
 	}
 	
 	/**
@@ -186,6 +187,7 @@ public class CommunityBoardHandler implements IHandler<IParseBoardHandler, Strin
 			LOG.warning(CommunityBoardHandler.class.getSimpleName() + ": " + cb.getClass().getSimpleName() + " doesn't implement write!");
 			return;
 		}
+		
 		((IWriteBoardHandler) cb).writeCommunityBoardCommand(player, arg1, arg2, arg3, arg4, arg5);
 	}
 	

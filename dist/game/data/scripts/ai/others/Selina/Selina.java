@@ -34,10 +34,12 @@ public class Selina extends AbstractNpcAI
 {
 	// NPC
 	private static final int SELINA = 31556;
+	
 	// Items
 	private static final int GOLDEN_RAM_BADGE_RECRUIT = 7246;
 	private static final int GOLDEN_RAM_BADGE_SOLDIER = 7247;
 	private static final int GOLDEN_RAM_COIN = 7251;
+	
 	// Skills
 	private static final Map<String, BuffHolder> BUFFS = new HashMap<>();
 	static
@@ -76,6 +78,7 @@ public class Selina extends AbstractNpcAI
 		{
 			LOGGER.warning(Selina.class.getSimpleName() + " AI: player " + player + " sent invalid bypass: " + event);
 		}
+		
 		return "31556-02.html";
 	}
 	
@@ -95,6 +98,7 @@ public class Selina extends AbstractNpcAI
 		{
 			htmltext = "31556-09.html";
 		}
+		
 		return htmltext;
 	}
 	

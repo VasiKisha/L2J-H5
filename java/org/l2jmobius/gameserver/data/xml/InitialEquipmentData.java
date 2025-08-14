@@ -98,9 +98,11 @@ public class InitialEquipmentData implements IXmlReader
 					final Node attr = attrs.item(i);
 					set.set(attr.getNodeName(), attr.getNodeValue());
 				}
+				
 				equipList.add(new PlayerItemTemplate(set));
 			}
 		}
+		
 		_initialEquipmentList.put(classId, equipList);
 	}
 	

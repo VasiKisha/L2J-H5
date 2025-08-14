@@ -44,14 +44,17 @@ public class MithrilMine extends AbstractInstance
 	private static final int MITHRIL_MILLIPEDE = 22766;
 	private static final int KRUN = 32653;
 	private static final int TARUN = 32654;
+	
 	// Item
 	private static final int COLD_RESISTANCE_POTION = 15514;
+	
 	// Skill
 	private static final SkillHolder BLESS_OF_SWORD = new SkillHolder(6286, 1);
+	
 	// Location
 	private static final Location START_LOC = new Location(186852, -173492, -3763, 0, 0);
 	private static final Location EXIT_LOC = new Location(178823, -184303, -347, 0, 0);
-	private static final Location[] MOB_SPAWNS = new Location[]
+	private static final Location[] MOB_SPAWNS =
 	{
 		new Location(185216, -184112, -3308, -15396),
 		new Location(185456, -184240, -3308, -19668),
@@ -59,6 +62,7 @@ public class MithrilMine extends AbstractInstance
 		new Location(185920, -184544, -3308, -32544),
 		new Location(185664, -184720, -3308, 27892)
 	};
+	
 	// Misc
 	private static final int TEMPLATE_ID = 138;
 	
@@ -84,6 +88,7 @@ public class MithrilMine extends AbstractInstance
 					npc.setTarget(player);
 					npc.doCast(BLESS_OF_SWORD.getSkill());
 				}
+				
 				startQuestTimer("BUFF", 30000, npc, player);
 				break;
 			}
@@ -120,6 +125,7 @@ public class MithrilMine extends AbstractInstance
 				break;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
@@ -145,6 +151,7 @@ public class MithrilMine extends AbstractInstance
 				return "18846-03.html";
 			}
 		}
+		
 		return super.onFirstTalk(npc, player);
 	}
 	
@@ -194,6 +201,7 @@ public class MithrilMine extends AbstractInstance
 					{
 						giveItems(talker, COLD_RESISTANCE_POTION, 1);
 					}
+					
 					qs.setCond(4, true);
 					enterInstance(talker, TEMPLATE_ID);
 				}
@@ -214,6 +222,7 @@ public class MithrilMine extends AbstractInstance
 				break;
 			}
 		}
+		
 		return super.onTalk(npc, talker);
 	}
 	
@@ -224,6 +233,7 @@ public class MithrilMine extends AbstractInstance
 		{
 			world.addAllowed(player);
 		}
+		
 		teleportPlayer(player, START_LOC, world.getInstanceId(), false);
 	}
 	

@@ -144,9 +144,11 @@ public class BabyPet extends Pet
 				{
 					_buffs = new ArrayList<>();
 				}
+				
 				_buffs.add(new SkillHolder(skill));
 			}
 		}
+		
 		startCastTask();
 	}
 	
@@ -157,6 +159,7 @@ public class BabyPet extends Pet
 		{
 			return false;
 		}
+		
 		stopCastTask();
 		abortCast();
 		return true;
@@ -267,6 +270,7 @@ public class BabyPet extends Pet
 		public void run()
 		{
 			final Player owner = _baby.getOwner();
+			
 			// If the owner doesn't meet the conditions avoid casting.
 			if ((owner == null) || owner.isDead() || owner.isInvul())
 			{
@@ -339,6 +343,7 @@ public class BabyPet extends Pet
 						{
 							continue;
 						}
+						
 						_currentBuffs.add(skill);
 					}
 				}

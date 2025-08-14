@@ -38,7 +38,7 @@ public class Rift implements IBypassHandler
 	};
 	
 	@Override
-	public boolean useBypass(String command, Player player, Creature target)
+	public boolean onCommand(String command, Player player, Creature target)
 	{
 		if (!target.isNpc())
 		{
@@ -86,13 +86,15 @@ public class Rift implements IBypassHandler
 					DimensionalRiftManager.getInstance().handleCheat(player, target.asNpc());
 				}
 			}
+			
 			return true;
 		}
+		
 		return false;
 	}
 	
 	@Override
-	public String[] getBypassList()
+	public String[] getCommandList()
 	{
 		return COMMANDS;
 	}

@@ -30,7 +30,7 @@ public interface IActionHandler
 {
 	Logger LOGGER = Logger.getLogger(IActionHandler.class.getName());
 	
-	boolean action(Player player, WorldObject target, boolean interact);
+	boolean onAction(Player player, WorldObject target, boolean interact);
 	
 	InstanceType getInstanceType();
 }

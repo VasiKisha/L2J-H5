@@ -38,6 +38,7 @@ public class Amaskari extends AbstractNpcAI
 	// NPCs
 	private static final int AMASKARI = 22449;
 	private static final int AMASKARI_PRISONER = 22450;
+	
 	// Skills
 	// private static final SkillHolder INVINCIBILITY = new SkillHolder(5417, 1);
 	private static final int BUFF_ID = 4632;
@@ -47,6 +48,7 @@ public class Amaskari extends AbstractNpcAI
 		new SkillHolder(BUFF_ID, 2),
 		new SkillHolder(BUFF_ID, 3)
 	};
+	
 	// Misc
 	private static final NpcStringId[] AMASKARI_NPCSTRING_ID =
 	{
@@ -91,8 +93,10 @@ public class Amaskari extends AbstractNpcAI
 			{
 				npc.broadcastSay(ChatType.NPC_GENERAL, MINIONS_NPCSTRING_ID[3]);
 			}
+			
 			startQuestTimer("onspawn_msg", (getRandom(8) + 1) * 30000, npc, null);
 		}
+		
 		return null;
 	}
 	
@@ -159,6 +163,7 @@ public class Amaskari extends AbstractNpcAI
 					{
 						minion.broadcastSay(ChatType.NPC_GENERAL, MINIONS_NPCSTRING_ID[1]);
 					}
+					
 					HellboundEngine.getInstance().updateTrust(30, true);
 					minion.deleteMe();
 				}

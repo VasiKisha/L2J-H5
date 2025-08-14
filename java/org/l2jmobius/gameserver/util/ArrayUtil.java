@@ -41,6 +41,7 @@ public class ArrayUtil
 				return true;
 			}
 		}
+		
 		return false;
 	}
 	
@@ -72,6 +73,7 @@ public class ArrayUtil
 				}
 			}
 		}
+		
 		return false;
 	}
 	
@@ -104,6 +106,7 @@ public class ArrayUtil
 				}
 			}
 		}
+		
 		return false;
 	}
 }

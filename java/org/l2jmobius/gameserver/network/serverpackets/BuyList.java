@@ -75,6 +75,7 @@ public class BuyList extends ServerPacket
 				{
 					buffer.writeShort(0);
 				}
+				
 				// Enchant Effects
 				buffer.writeShort(0);
 				buffer.writeShort(0);

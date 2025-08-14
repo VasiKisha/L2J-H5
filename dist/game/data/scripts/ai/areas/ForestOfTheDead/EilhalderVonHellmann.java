@@ -59,6 +59,7 @@ public class EilhalderVonHellmann extends AbstractNpcAI
 				_npcInstance = null;
 			}
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	

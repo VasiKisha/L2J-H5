@@ -40,7 +40,7 @@ public class AdminGraciaSeeds implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		final StringTokenizer st = new StringTokenizer(command, " ");
 		final String actualCommand = st.nextToken(); // Get actual command
@@ -71,6 +71,7 @@ public class AdminGraciaSeeds implements IAdminCommandHandler
 	{
 		final NpcHtmlMessage html = new NpcHtmlMessage();
 		html.setFile(activeChar, "data/html/admin/graciaseeds.htm");
+		
 		// Seed of destruction
 		html.replace("%sodstage%", String.valueOf(SoDManager.getInstance().getSoDState()));
 		html.replace("%sodtiatkill%", String.valueOf(SoDManager.getInstance().getSoDTiatKilled()));
@@ -95,7 +96,7 @@ public class AdminGraciaSeeds implements IAdminCommandHandler
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}

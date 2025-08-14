@@ -40,10 +40,13 @@ public class Q00663_SeductiveWhispers extends Quest
 {
 	// NPCs
 	private static final int WILBERT = 30846;
+	
 	// Misc
 	private static final int MIN_LEVEL = 50;
+	
 	// Quest items
 	private static final int SPIRIT_BEAD = 8766;
+	
 	// Rewards
 	private static final ItemHolder SCROLL_ENCHANT_WEAPON_A_GRADE = new ItemHolder(729, 1);
 	private static final ItemHolder SCROLL_ENCHANT_ARMOR_A_GRADE = new ItemHolder(730, 2);
@@ -87,11 +90,11 @@ public class Q00663_SeductiveWhispers extends Quest
 	private static final ItemHolder ART_OF_BATTLE_AXE_BLADE = new ItemHolder(4117, 13);
 	private static final ItemHolder DEMONS_DAGGER_EDGE = new ItemHolder(4119, 13);
 	private static final ItemHolder BOW_OF_PERIL_SHAFT = new ItemHolder(4121, 13);
+	
 	// Monsters
 	private static final int SPITEFUL_SOUL_LEADER = 20974;
 	private static final int SPITEFUL_SOUL_LEADER_CHANCE = 100;
 	private static final Map<Integer, Integer> MONSTERS = new HashMap<>();
-	
 	static
 	{
 		MONSTERS.put(20674, 807);
@@ -211,6 +214,7 @@ public class Q00663_SeductiveWhispers extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -575,6 +579,7 @@ public class Q00663_SeductiveWhispers extends Quest
 						giveItems(player, SCROLL_ENCHANT_WEAPON_B_GRADE);
 						giveItems(player, SCROLL_ENCHANT_ARMOR_B_GRADE);
 					}
+					
 					qs.setMemoState(1);
 					qs.setMemoStateEx(1, 0);
 					htmltext = event;
@@ -615,6 +620,7 @@ public class Q00663_SeductiveWhispers extends Quest
 					{
 						card1pic = 0;
 					}
+					
 					final int card1 = card1pic % 10;
 					final int i2 = (card1pic - card1) / 10;
 					final int rnd1 = getRandom(2) + 1;
@@ -719,6 +725,7 @@ public class Q00663_SeductiveWhispers extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -781,10 +788,12 @@ public class Q00663_SeductiveWhispers extends Quest
 		{
 			html = html.replace("<?wincount?>", Integer.toString(winCount));
 		}
+		
 		if (card1 >= 0)
 		{
 			html = html.replace("<?card1?>", Integer.toString(card1));
 		}
+		
 		return html;
 	}
 }

@@ -31,7 +31,6 @@ import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
-import org.l2jmobius.gameserver.util.Broadcast;
 
 /**
  * @author -Nemesiss-
@@ -39,7 +38,7 @@ import org.l2jmobius.gameserver.util.Broadcast;
 public class FishShots implements IItemHandler
 {
 	@Override
-	public boolean useItem(Playable playable, Item item, boolean forceUse)
+	public boolean onItemUse(Playable playable, Item item, boolean forceUse)
 	{
 		if (!playable.isPlayer())
 		{
@@ -85,7 +84,7 @@ public class FishShots implements IItemHandler
 		final WorldObject oldTarget = player.getTarget();
 		player.setTarget(player);
 		
-		Broadcast.toSelfAndKnownPlayers(player, new MagicSkillUse(player, skills[0].getSkillId(), skills[0].getSkillLevel(), 0, 0));
+		player.broadcastSkillPacket(new MagicSkillUse(player, skills[0].getSkillId(), skills[0].getSkillLevel(), 0, 0), player);
 		player.setTarget(oldTarget);
 		return true;
 	}

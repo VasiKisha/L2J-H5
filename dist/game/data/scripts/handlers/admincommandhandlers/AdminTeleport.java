@@ -79,33 +79,38 @@ public class AdminTeleport implements IAdminCommandHandler
 	};
 	
 	@Override
-	public boolean useAdminCommand(String command, Player activeChar)
+	public boolean onCommand(String command, Player activeChar)
 	{
 		if (command.equals("admin_teleto"))
 		{
 			activeChar.setTeleMode(1);
 		}
+		
 		if (command.equals("admin_instant_move"))
 		{
 			activeChar.sendSysMessage("Instant move ready. Click where you want to go.");
 			activeChar.setTeleMode(1);
 		}
+		
 		if (command.equals("admin_teleto r"))
 		{
 			activeChar.sendSysMessage("Instant move ready. Click where you want to go.");
 			activeChar.setTeleMode(2);
 		}
+		
 		if (command.equals("admin_teleto end"))
 		{
 			activeChar.setTeleMode(0);
 		}
+		
 		if (command.equals("admin_show_moves"))
 		{
 			AdminHtml.showAdminHtml(activeChar, "teleports.htm");
 		}
+		
 		if (command.equals("admin_show_moves_other"))
 		{
-			AdminHtml.showAdminHtml(activeChar, "tele/other.html");
+			AdminHtml.showAdminHtml(activeChar, "teleports/OtherLocations.htm");
 		}
 		else if (command.equals("admin_show_teleport"))
 		{
@@ -190,6 +195,7 @@ public class AdminTeleport implements IAdminCommandHandler
 					activeChar.sendSysMessage("Usage: //recall <playername>");
 					return false;
 				}
+				
 				final String targetName = param[1];
 				final Player player = World.getInstance().getPlayer(targetName);
 				if (player != null)
@@ -225,6 +231,7 @@ public class AdminTeleport implements IAdminCommandHandler
 				{
 					intVal = Integer.parseInt(st.nextToken());
 				}
+				
 				if (dir.equals("east"))
 				{
 					x += intVal;
@@ -249,6 +256,7 @@ public class AdminTeleport implements IAdminCommandHandler
 				{
 					z -= intVal;
 				}
+				
 				activeChar.teleToLocation(new Location(x, y, z));
 				showTeleportWindow(activeChar);
 			}
@@ -274,6 +282,7 @@ public class AdminTeleport implements IAdminCommandHandler
 					activeChar.sendPacket(SystemMessageId.THAT_PLAYER_IS_NOT_ONLINE);
 					return false;
 				}
+				
 				teleportHome(player);
 			}
 			else
@@ -289,11 +298,12 @@ public class AdminTeleport implements IAdminCommandHandler
 				}
 			}
 		}
+		
 		return true;
 	}
 	
 	@Override
-	public String[] getAdminCommandList()
+	public String[] getCommandList()
 	{
 		return ADMIN_COMMANDS;
 	}
@@ -383,6 +393,7 @@ public class AdminTeleport implements IAdminCommandHandler
 			activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
 			return;
 		}
+		
 		final NpcHtmlMessage adminReply = new NpcHtmlMessage();
 		final String replyMSG = "<html><title>Teleport Character</title><body>The character you will teleport is " + player.getName() + ".<br>Co-ordinate x<edit var=\"char_cord_x\" width=110>Co-ordinate y<edit var=\"char_cord_y\" width=110>Co-ordinate z<edit var=\"char_cord_z\" width=110><button value=\"Teleport\" action=\"bypass -h admin_teleport_character $char_cord_x $char_cord_y $char_cord_z\" width=60 height=15 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"><button value=\"Teleport near you\" action=\"bypass -h admin_teleport_character " + activeChar.getX() + " " + activeChar.getY() + " " + activeChar.getZ() + "\" width=115 height=15 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"><center><button value=\"Back\" action=\"bypass -h admin_current_player\" width=40 height=15 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></center></body></html>";
 		adminReply.setHtml(replyMSG);
@@ -453,6 +464,7 @@ public class AdminTeleport implements IAdminCommandHandler
 				{
 					player.setInstanceId(0);
 				}
+				
 				player.sendMessage("Admin is teleporting you.");
 				player.getAI().setIntention(Intention.IDLE);
 				player.teleToLocation(loc, true);
@@ -540,6 +552,7 @@ public class AdminTeleport implements IAdminCommandHandler
 				LOGGER.warning("ERROR: NPC " + target.getObjectId() + " has a 'null' spawn.");
 				return;
 			}
+			
 			final int respawnTime = spawn.getRespawnDelay() / 1000;
 			target.deleteMe();
 			spawn.stopRespawn();
@@ -560,6 +573,7 @@ public class AdminTeleport implements IAdminCommandHandler
 				{
 					spawn.setInstanceId(0);
 				}
+				
 				SpawnData.getInstance().addNewSpawn(spawn);
 				spawn.init();
 				if (respawnTime <= 0)
@@ -586,6 +600,7 @@ public class AdminTeleport implements IAdminCommandHandler
 				LOGGER.warning("ERROR: NPC Id" + target.getId() + " has a 'null' spawn.");
 				return;
 			}
+			
 			RaidBossSpawnManager.getInstance().deleteSpawn(spawn, true);
 			try
 			{

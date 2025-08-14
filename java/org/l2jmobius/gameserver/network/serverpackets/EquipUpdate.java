@@ -127,6 +127,7 @@ public class EquipUpdate extends ServerPacket
 				break;
 			}
 		}
+		
 		buffer.writeInt(bodypart);
 	}
 }

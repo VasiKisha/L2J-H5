@@ -45,6 +45,7 @@ public class FuncShare extends AbstractFunction
 				return initVal + (getBaseValue(getStat(), player) * getValue());
 			}
 		}
+		
 		return initVal;
 	}
 	

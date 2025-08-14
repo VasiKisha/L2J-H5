@@ -289,6 +289,7 @@ public class SkillLearn
 		}
 		
 		int levelUpSp = _levelUpSp;
+		
 		// If the alternative skill learn system is enabled and the player is learning a skill from a different class apply a fee.
 		if (Config.ALT_GAME_SKILL_LEARN && (playerClass != learningClass))
 		{
@@ -302,6 +303,7 @@ public class SkillLearn
 				levelUpSp *= 2;
 			}
 		}
+		
 		return levelUpSp;
 	}
 }

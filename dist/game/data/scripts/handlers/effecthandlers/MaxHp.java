@@ -55,6 +55,7 @@ public class MaxHp extends AbstractEffect
 				_power = 1 + (params.getInt("power", 0) / 100.0);
 			}
 		}
+		
 		_heal = params.getBoolean("heal", false);
 		if (params.isEmpty())
 		{
@@ -95,6 +96,7 @@ public class MaxHp extends AbstractEffect
 				}
 			}
 		}
+		
 		if (_heal)
 		{
 			if ((effector != null) && (effector != effected))
@@ -120,6 +122,12 @@ public class MaxHp extends AbstractEffect
 		synchronized (charStat)
 		{
 			charStat.getActiveChar().removeStatsOwner(this);
+		}
+		
+		// Ensure current HP does not exceed the new maximum after removing the effect.
+		if (effected.getCurrentHp() > effected.getMaxHp())
+		{
+			effected.setCurrentHp(effected.getMaxHp());
 		}
 	}
 }

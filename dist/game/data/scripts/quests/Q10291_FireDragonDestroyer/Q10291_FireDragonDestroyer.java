@@ -34,8 +34,10 @@ public class Q10291_FireDragonDestroyer extends Quest
 {
 	// NPC
 	private static final int KLEIN = 31540;
+	
 	// Monster
 	private static final int VALAKAS = 29028;
+	
 	// Items
 	private static final int FLOATING_STONE = 7267;
 	private static final int POOR_NECKLACE = 15524;
@@ -90,6 +92,7 @@ public class Q10291_FireDragonDestroyer extends Quest
 					qs.setCond(2, true);
 				}
 			}
+			
 			return true;
 		};
 		
@@ -154,6 +157,7 @@ public class Q10291_FireDragonDestroyer extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

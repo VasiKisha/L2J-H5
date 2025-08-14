@@ -131,6 +131,7 @@ public class Q00508_AClansReputation extends Quest
 				break;
 			}
 		}
+		
 		return event;
 	}
 	
@@ -218,6 +219,7 @@ public class Q00508_AClansReputation extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 }

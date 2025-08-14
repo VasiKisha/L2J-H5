@@ -65,6 +65,7 @@ public abstract class Tower extends Npc
 			// Notify the Player AI with INTERACT
 			player.getAI().setIntention(Intention.ATTACK, this);
 		}
+		
 		// Send a Server->Client ActionFailed to the Player in order to avoid that the client wait another packet
 		player.sendPacket(ActionFailed.STATIC_PACKET);
 	}

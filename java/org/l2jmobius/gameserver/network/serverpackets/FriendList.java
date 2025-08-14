@@ -61,6 +61,7 @@ public class FriendList extends ServerPacket
 			{
 				online = true;
 			}
+			
 			_info.add(new FriendInfo(objId, name, online));
 		}
 	}

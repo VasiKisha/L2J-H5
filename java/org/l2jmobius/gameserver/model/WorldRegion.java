@@ -171,6 +171,7 @@ public class WorldRegion
 				}
 			}
 		}
+		
 		return true;
 	}
 	

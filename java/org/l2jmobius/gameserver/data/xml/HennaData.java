@@ -134,6 +134,7 @@ public class HennaData implements IXmlReader
 				}
 			}
 		}
+		
 		final Henna henna = new Henna(set);
 		henna.setWearClassIds(wearClassIds);
 		_hennaList.put(henna.getDyeId(), henna);
@@ -164,6 +165,7 @@ public class HennaData implements IXmlReader
 				list.add(henna);
 			}
 		}
+		
 		return list;
 	}
 	

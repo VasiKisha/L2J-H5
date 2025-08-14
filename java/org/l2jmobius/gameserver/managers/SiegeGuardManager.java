@@ -56,6 +56,7 @@ public class SiegeGuardManager
 		{
 			return;
 		}
+		
 		addSiegeGuard(player.getX(), player.getY(), player.getZ(), player.getHeading(), npcId);
 	}
 	
@@ -83,6 +84,7 @@ public class SiegeGuardManager
 		{
 			return;
 		}
+		
 		hireMerc(player.getX(), player.getY(), player.getZ(), player.getHeading(), npcId);
 	}
 	

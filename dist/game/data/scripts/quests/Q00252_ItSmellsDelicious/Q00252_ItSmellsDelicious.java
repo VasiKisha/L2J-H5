@@ -30,9 +30,11 @@ public class Q00252_ItSmellsDelicious extends Quest
 {
 	// NPC
 	public static final int STAN = 30200;
+	
 	// Items
 	public static final int DIARY = 15500;
 	public static final int COOKBOOK_PAGE = 15501;
+	
 	// Monsters
 	private static final int[] MOBS =
 	{
@@ -41,6 +43,7 @@ public class Q00252_ItSmellsDelicious extends Quest
 		22788
 	};
 	private static final int CHEF = 18908;
+	
 	// Misc
 	private static final double DIARY_CHANCE = 0.599;
 	private static final int DIARY_MAX_COUNT = 10;
@@ -95,6 +98,7 @@ public class Q00252_ItSmellsDelicious extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -158,6 +162,7 @@ public class Q00252_ItSmellsDelicious extends Quest
 		{
 			htmltext = "30200-03.html";
 		}
+		
 		return htmltext;
 	}
 	

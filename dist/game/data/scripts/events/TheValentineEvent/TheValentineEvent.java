@@ -29,8 +29,10 @@ public class TheValentineEvent extends LongTimeEvent
 {
 	// NPC
 	private static final int NPC = 4301;
+	
 	// Item
 	private static final int RECIPE = 20191;
+	
 	// Misc
 	private static final String COMPLETED = TheValentineEvent.class.getSimpleName() + "_completed";
 	
@@ -57,6 +59,7 @@ public class TheValentineEvent extends LongTimeEvent
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);
 			}
 		}
+		
 		return htmltext;
 	}
 	

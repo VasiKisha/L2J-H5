@@ -41,16 +41,19 @@ public class EndScenePlayer extends ClientPacket
 		{
 			return;
 		}
+		
 		final MovieHolder movieHolder = player.getMovieHolder();
 		if (movieHolder == null)
 		{
 			return;
 		}
+		
 		final Movie movie = movieHolder.getMovie();
 		if (movie.getClientId() != _movieId)
 		{
 			return;
 		}
+		
 		player.stopMovie();
 		player.setTeleporting(true, false); // avoid to get player removed from World
 		player.decayMe();

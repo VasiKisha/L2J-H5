@@ -39,12 +39,15 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 	// NPCs
 	private static final int DAIMONS_ALTAR = 31541;
 	private static final int EYE_OF_ARGOS = 31683;
+	
 	// Raid Boss
 	private static final int DAIMON_THE_WHITE_EYED = 25290;
+	
 	// Items
 	private static final int UNFINISHED_SUMMON_CRYSTAL = 7192;
 	private static final int SUMMON_CRYSTAL = 7193;
 	private static final int ESSENCE_OF_DAIMON = 7194;
+	
 	// Rewards
 	private static final int DYE_I2M2_C = 4595; // Greater Dye of INT <Int+2 Men-2>
 	private static final int DYE_I2W2_C = 4596; // Greater Dye of INT <Int+2 Wit-2>
@@ -52,8 +55,10 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 	private static final int DYE_M2W2_C = 4598; // Greater Dye of MEN <Men+2 Wit-2>
 	private static final int DYE_W2I2_C = 4599; // Greater Dye of WIT <Wit+2 Int-2>
 	private static final int DYE_W2M2_C = 4600; // Greater Dye of WIT <Wit+2 Men-2>
+	
 	// Location
 	private static final Location DAIMON_THE_WHITE_EYED_LOC = new Location(186320, -43904, -3175);
+	
 	// Misc
 	private static final String DAIMON_THE_WHITE_EYED_RESPAWN_TIME = "DAIMON_THE_WHITE_EYED_RESPAWN_TIME";
 	private static final int MIN_LEVEL = 73;
@@ -78,6 +83,7 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 				npc.broadcastPacket(new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getTemplate().getDisplayId(), NpcStringId.CAN_LIGHT_EXIST_WITHOUT_DARKNESS));
 				npc.deleteMe();
 			}
+			
 			return super.onEvent(event, npc, player);
 		}
 		
@@ -165,6 +171,7 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -248,6 +255,7 @@ public class Q00604_DaimonTheWhiteEyedPart2 extends Quest
 				}
 			}
 		}
+		
 		return htmltext;
 	}
 	

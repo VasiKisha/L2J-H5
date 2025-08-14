@@ -29,11 +29,14 @@ public class Q00317_CatchTheWind extends Quest
 {
 	// NPC
 	private static final int RIZRAELL = 30361;
+	
 	// Item
 	private static final int WIND_SHARD = 1078;
+	
 	// Misc
 	private static final int MIN_LEVEL = 18;
 	private static final double DROP_CHANCE = 0.5;
+	
 	// Monsters
 	private static final int[] MONSTERS =
 	{
@@ -90,6 +93,7 @@ public class Q00317_CatchTheWind extends Quest
 				break;
 			}
 		}
+		
 		return htmltext;
 	}
 	
@@ -116,6 +120,7 @@ public class Q00317_CatchTheWind extends Quest
 		{
 			htmltext = (hasQuestItems(player, WIND_SHARD) ? "30361-07.html" : "30361-05.html");
 		}
+		
 		return htmltext;
 	}
 }

@@ -35,6 +35,7 @@ public class DemonPrince extends AbstractNpcAI
 	// NPCs
 	private static final int DEMON_PRINCE = 25540;
 	private static final int FIEND = 25541;
+	
 	// Skills
 	private static final SkillHolder UD = new SkillHolder(5044, 2);
 	private static final SkillHolder[] AOE =
@@ -60,6 +61,7 @@ public class DemonPrince extends AbstractNpcAI
 		{
 			npc.doCast(getRandomEntry(AOE).getSkill());
 		}
+		
 		return super.onEvent(event, npc, player);
 	}
 	
