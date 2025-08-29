@@ -1203,35 +1203,33 @@ public class AttackableAI extends CreatureAI
 			}
 			
 			// Long/Short Range skill usage.
-			final WorldObject target = npc.getTarget();
-			if (target != null)
+			final List<Skill> shortRangeSkills = npc.getShortRangeSkills();
+			if (!shortRangeSkills.isEmpty() && npc.hasSkillChance() && (npc.calculateDistance2D(mostHate) <= 150))
 			{
-				final List<Skill> shortRangeSkills = npc.getShortRangeSkills();
-				if (!shortRangeSkills.isEmpty() && npc.hasSkillChance() && (npc.calculateDistance2D(target) <= 150))
+				final Skill shortRangeSkill = shortRangeSkills.get(Rnd.get(shortRangeSkills.size()));
+				final int castRange = shortRangeSkill.getCastRange();
+				if (((castRange < 1) || (npc.calculateDistance3D(mostHate) < castRange)) && checkSkillCastConditions(npc, shortRangeSkill))
 				{
-					final Skill shortRangeSkill = shortRangeSkills.get(Rnd.get(shortRangeSkills.size()));
-					final int castRange = shortRangeSkill.getCastRange();
-					if (((castRange < 1) || (npc.calculateDistance3D(target) < castRange)) && checkSkillCastConditions(npc, shortRangeSkill))
-					{
-						clientStopMoving(null);
-						npc.doCast(shortRangeSkill);
-						// LOGGER.debug(this + " used short range skill " + shortRangeSkill + " on " + npc.getTarget());
-						return;
-					}
+					clientStopMoving(null);
+					npc.setTarget(mostHate);
+					npc.doCast(shortRangeSkill);
+					// LOGGER.debug(this + " used short range skill " + shortRangeSkill + " on " + npc.getTarget());
+					return;
 				}
-				
-				final List<Skill> longRangeSkills = npc.getLongRangeSkills();
-				if (!longRangeSkills.isEmpty() && npc.hasSkillChance())
+			}
+			
+			final List<Skill> longRangeSkills = npc.getLongRangeSkills();
+			if (!longRangeSkills.isEmpty() && npc.hasSkillChance())
+			{
+				final Skill longRangeSkill = longRangeSkills.get(Rnd.get(longRangeSkills.size()));
+				final int castRange = longRangeSkill.getCastRange();
+				if (((castRange < 1) || (npc.calculateDistance3D(mostHate) < castRange)) && checkSkillCastConditions(npc, longRangeSkill))
 				{
-					final Skill longRangeSkill = longRangeSkills.get(Rnd.get(longRangeSkills.size()));
-					final int castRange = longRangeSkill.getCastRange();
-					if (((castRange < 1) || (npc.calculateDistance3D(target) < castRange)) && checkSkillCastConditions(npc, longRangeSkill))
-					{
-						clientStopMoving(null);
-						npc.doCast(longRangeSkill);
-						// LOGGER.debug(this + " used long range skill " + longRangeSkill + " on " + npc.getTarget());
-						return;
-					}
+					clientStopMoving(null);
+					npc.setTarget(mostHate);
+					npc.doCast(longRangeSkill);
+					// LOGGER.debug(this + " used long range skill " + longRangeSkill + " on " + npc.getTarget());
+					return;
 				}
 			}
 		}
