@@ -712,6 +712,18 @@ public abstract class AbstractSagaQuest extends Quest
 				deleteSpawn(npc);
 			}
 		}
+		else if (npcId == _mob[2])
+		{
+			st = findRightState(npc);
+			if (st != null)
+			{
+				st.setCond(18, true);
+				autoChat(npc, _text[13].replace("PLAYERNAME", player.getName()));
+				st.set("Quest0", "0");
+				cancelQuestTimer("Mob_2 has despawned", npc, player);
+				deleteSpawn(npc);
+			}
+		}
 	}
 	
 	@Override
