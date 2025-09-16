@@ -7,5 +7,6 @@
 		<npc id="31035" x="142921" y="-209292" z="-3632" heading="28184" respawnDelay="60" /> <!-- Defender -->
 		<npc id="31035" x="150281" y="-217843" z="-3424" heading="65028" respawnDelay="60" /> <!-- Defender -->
 		<npc id="31035" x="160293" y="-218195" z="-3544" heading="60956" respawnDelay="60" /> <!-- Defender -->
+		<npc id="30556" x="154173" y="-220088" z="-3428" heading="5473" respawnDelay="60" /> <!-- Toma - Master -->
 	</spawn>
 </list>
