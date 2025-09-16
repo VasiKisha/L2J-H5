@@ -36,6 +36,7 @@ public class Q10502_FreyaEmbroideredSoulCloak extends Quest
 	
 	// Monster
 	private static final int FREYA = 29179;
+	private static final int FREYA_HARD = 29180;
 	
 	// Items
 	private static final int FREYAS_SOUL_FRAGMENT = 21723;
@@ -50,7 +51,7 @@ public class Q10502_FreyaEmbroideredSoulCloak extends Quest
 		super(10502);
 		addStartNpc(OLF_ADAMS);
 		addTalkId(OLF_ADAMS);
-		addKillId(FREYA);
+		addKillId(FREYA, FREYA_HARD);
 		registerQuestItems(FREYAS_SOUL_FRAGMENT);
 	}
 	
