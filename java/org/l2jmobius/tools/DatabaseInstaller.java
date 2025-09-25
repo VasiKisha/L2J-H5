@@ -1138,6 +1138,6 @@ public class DatabaseInstaller extends JFrame
 	
 	public static void main(String[] args)
 	{
-		new SplashScreen(".." + File.separator + "images" + File.separator + "splash.png", 5000, new DatabaseInstaller());
+		new DatabaseInstaller();
 	}
 }
