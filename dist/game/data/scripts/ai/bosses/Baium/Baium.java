@@ -287,7 +287,7 @@ public class Baium extends AbstractNpcAI
 				
 				for (Player insidePlayer : zone.getPlayersInside())
 				{
-					if (insidePlayer.isHero())
+					if (insidePlayer.isHero() && Config.BAIUM_RECOGNIZE_HERO)
 					{
 						zone.broadcastPacket(new ExShowScreenMessage(NpcStringId.NOT_EVEN_THE_GODS_THEMSELVES_COULD_TOUCH_ME_BUT_YOU_S1_YOU_DARE_CHALLENGE_ME_IGNORANT_MORTAL, 2, 4000, insidePlayer.getName()));
 						break;

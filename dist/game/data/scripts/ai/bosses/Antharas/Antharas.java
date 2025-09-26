@@ -326,7 +326,7 @@ public class Antharas extends AbstractNpcAI
 				
 				for (Player players : World.getInstance().getVisibleObjectsInRange(npc, Player.class, 4000))
 				{
-					if (players.isHero())
+					if (players.isHero() && Config.ANTHARAS_RECOGNIZE_HERO)
 					{
 						zone.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_YOU_CANNOT_HOPE_TO_DEFEAT_ME_WITH_YOUR_MEAGER_STRENGTH, 2, 4000, players.getName()));
 						break;
