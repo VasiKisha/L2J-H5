@@ -21,36 +21,44 @@
 package events.WatermelonNinja;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
+import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
 /**
  * @URL https://eu.4gameforum.com/threads/653089/
- * @author Mobius, vGodFather
+ * @author Mobius, vGodFather, Galagard
  */
 public class WatermelonNinja extends LongTimeEvent
 {
 	// NPCs
 	private static final int MANAGER = 31860;
-	private static final int[] SQUASH_LIST =
+	private static final int[] INITIAL_WATERMELONS =
 	{
 		13271,
+		13275
+	};
+	private static final int[] WATERMELONS_LIST =
+	{
 		13272,
 		13273,
-		13274,
-		13275,
+		13274
+	};
+	private static final int[] HONEY_WATERMELONS_LIST =
+	{
 		13276,
 		13277,
 		13278
@@ -70,9 +78,33 @@ public class WatermelonNinja extends LongTimeEvent
 	private static final int NECTAR_SKILL = 2005;
 	
 	// Dialogs.
+	private static final String[] INITIAL_SPAWN_TEXT =
+	{
+		"What are you looking at?",
+		"Are you my mommy?",
+		"If you raise me well, you'll get prizes! Or not...",
+		"Impressive, aren't?",
+		"Obey me!!",
+		"Ta-da! Here i am",
+		"Please! Give me some nectar! I'm hungry!"
+	};
+	private static final String[] EVOLVE_SPAWN_TEXT =
+	{
+		"Look at you, you managed to evolve me!",
+		"Come, kill me if you can...",
+		"Are you feeling lucky today?",
+		"You wouldn't be able to hit a poor watermelon, would you?"
+	};
+	private static final String[] DIE_TEXT =
+	{
+		"Now look at that!!, you're done!",
+		"I'm not afraid of you.",
+		"Better luck next time",
+		"Argh, are you happy? Beating a poor watermelon..."
+	};
 	private static final String[] NOCHRONO_TEXT =
 	{
-		"You cannot kill me without Chrono",
+		"You cannot kill me without... Chrono",
 		"Hehe... keep trying...",
 		"Nice try...",
 		"Tired?",
@@ -86,9 +118,23 @@ public class WatermelonNinja extends LongTimeEvent
 		"Heeellpppp...",
 		"Somebody help me please..."
 	};
+	private static final String[] INITIAL_WATERMELONS_TEXT =
+	{
+		"Dont hit me! Gimme a nectar!!",
+		"There's no point in hitting me...\nyou know what to do...",
+		"Stop hitting me, i need nectar!!",
+		"God... ok, continue hitting me..."
+	};
+	private static final String[] WATERMELON_TEXT =
+	{
+		"Arghh you are killing me...",
+		"My end is coming...",
+		"Please leave me!",
+		"Heeellpppp...",
+		"Somebody help me please..."
+	};
 	private static final String[] NECTAR_TEXT =
 	{
-		"Yummie... Nectar...",
 		"Plase give me more...",
 		"Hmmm.. More.. I need more...",
 		"I would like you more, if you give me more...",
@@ -303,10 +349,15 @@ public class WatermelonNinja extends LongTimeEvent
 	
 	public WatermelonNinja()
 	{
-		addAttackId(SQUASH_LIST);
-		addKillId(SQUASH_LIST);
-		addSpawnId(SQUASH_LIST);
-		addSkillSeeId(SQUASH_LIST);
+		addAttackId(INITIAL_WATERMELONS);
+		addAttackId(WATERMELONS_LIST);
+		addAttackId(HONEY_WATERMELONS_LIST);
+		addKillId(WATERMELONS_LIST);
+		addKillId(HONEY_WATERMELONS_LIST);
+		addSpawnId(INITIAL_WATERMELONS);
+		addSpawnId(WATERMELONS_LIST);
+		addSpawnId(HONEY_WATERMELONS_LIST);
+		addSkillSeeId(INITIAL_WATERMELONS);
 		
 		addStartNpc(MANAGER);
 		addFirstTalkId(MANAGER);
@@ -335,43 +386,55 @@ public class WatermelonNinja extends LongTimeEvent
 	@Override
 	public void onAttack(Npc npc, Player attacker, int damage, boolean isPet)
 	{
-		if ((attacker.getActiveWeaponItem() != null) && ArrayUtil.contains(CHRONO_LIST, attacker.getActiveWeaponItem().getId()))
+		if (ArrayUtil.contains(INITIAL_WATERMELONS, npc.getId()))
 		{
-			if (getRandom(100) < 20)
-			{
-				npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(CHRONO_TEXT)));
-			}
-			
-			npc.setInvul(false);
-			npc.setCurrentHp(Math.max(0, npc.getCurrentHp() - 10));
-			if (npc.getCurrentHp() <= 1)
-			{
-				npc.doDie(attacker);
-			}
-			
-			npc.setInvul(true);
+			dontHitMeText(npc);
+			return;
 		}
-		else if (getRandom(100) < 20)
+		
+		if ((attacker.getActiveWeaponItem() != null) && ArrayUtil.contains(CHRONO_LIST, attacker.getActiveWeaponItem().getId()) && ArrayUtil.contains(HONEY_WATERMELONS_LIST, npc.getId()))
 		{
-			npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(NOCHRONO_TEXT)));
+			chronoText(npc);
+			npc.setInvul(false);
+			
+			// Rolls 10-30 per hit, but never less than 1 HP.
+			final double currentHp = npc.getCurrentHp();
+			final double newHp = Math.max(currentHp - 30, 1);
+			npc.getStatus().setCurrentHp(newHp);
+		}
+		else if ((attacker.getActiveWeaponItem() != null) && ArrayUtil.contains(WATERMELONS_LIST, npc.getId()))
+		{
+			watermelonText(npc);
+			npc.setInvul(false);
+			
+			// Rolls 10-30 per hit, but never less than 1 HP.
+			final double currentHp = npc.getCurrentHp();
+			final double newHp = Math.max(currentHp - 30, 1);
+			npc.getStatus().setCurrentHp(newHp);
+		}
+		else
+		{
+			noChronoText(npc);
+			npc.getStatus().setCurrentHp(Math.max(npc.getCurrentHp() - 30, 0));
 		}
 	}
 	
 	@Override
 	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
+		nectarText(npc);
 		if ((skill.getId() == NECTAR_SKILL) && (caster.getTarget() == npc))
 		{
 			switch (npc.getId())
 			{
 				case 13271: // Watermelon Seed
 				{
-					randomSpawn(13274, 13273, 13272, npc);
+					randomSpawn(13274, 13273, 13272, npc, caster);
 					break;
 				}
 				case 13275: // Honey Watermelon Seed
 				{
-					randomSpawn(13278, 13277, 13276, npc);
+					randomSpawn(13278, 13277, 13276, npc, caster);
 					break;
 				}
 			}
@@ -384,30 +447,49 @@ public class WatermelonNinja extends LongTimeEvent
 		npc.setImmobilized(true);
 		npc.disableCoreAI(true);
 		npc.setInvul(true);
+		
+		if (ArrayUtil.contains(INITIAL_WATERMELONS, npc.getId()))
+		{
+			initialSpawnText(npc);
+		}
+		else
+		{
+			evolveSpawnText(npc);
+		}
 	}
 	
 	@Override
 	public void onKill(Npc npc, Player killer, boolean isPet)
 	{
-		final int npcId = npc.getId();
-		if (DROPLIST.containsKey(npcId))
+		// Early exit if no drops for this NPC.
+		final List<ItemChanceHolder> drops = DROPLIST.get(npc.getId());
+		if ((drops == null) || drops.isEmpty())
 		{
-			final List<ItemChanceHolder> randomList = new ArrayList<>(DROPLIST.get(npcId));
-			Collections.shuffle(randomList);
-			
-			int dropCount = 0;
-			for (ItemChanceHolder drop : randomList)
+			return;
+		}
+		
+		final int size = drops.size();
+		final int startIndex = Rnd.get(size); // Random starting index.
+		int dropCount = 0;
+		final int maxDrops = Rnd.get(1, MAX_DROP_COUNT);
+		final Monster monster = npc.asMonster();
+		
+		// Iterate through the list starting at random index.
+		for (int i = 0; (i < size) && (dropCount < maxDrops); i++)
+		{
+			final int currentIndex = (startIndex + i) % size; // Wrap around using modulo.
+			final ItemChanceHolder drop = drops.get(currentIndex);
+			if (Rnd.get(100) < drop.getChance())
 			{
-				if ((dropCount < MAX_DROP_COUNT) && (getRandom(100) < drop.getChance()))
-				{
-					npc.asMonster().dropItem(killer, drop);
-					dropCount++;
-				}
+				monster.dropItem(killer, drop);
+				dropCount++;
 			}
 		}
+		
+		dieText(npc);
 	}
 	
-	private void randomSpawn(int low, int medium, int high, Npc npc)
+	private void randomSpawn(int low, int medium, int high, Npc npc, Player attacker)
 	{
 		final int npcId = npc.getId();
 		if ((npcId == 13274) || (npcId == 13278)) // Fully grown.
@@ -419,16 +501,70 @@ public class WatermelonNinja extends LongTimeEvent
 		if (random < 5)
 		{
 			spawnNext(low, npc);
+			attacker.sendPacket(new PlaySound("ItemSound3.sys_sow_success"));
 		}
 		else if (random < 10)
 		{
 			spawnNext(medium, npc);
+			attacker.sendPacket(new PlaySound("ItemSound3.sys_sow_success"));
 		}
 		else if (random < 30)
 		{
 			spawnNext(high, npc);
+			attacker.sendPacket(new PlaySound("ItemSound3.sys_sow_success"));
 		}
-		else if (getRandom(100) < 30)
+	}
+	
+	private void dontHitMeText(Npc npc)
+	{
+		if (getRandom(100) < 80)
+		{
+			npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(INITIAL_WATERMELONS_TEXT)));
+		}
+	}
+	
+	private void initialSpawnText(Npc npc)
+	{
+		npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(INITIAL_SPAWN_TEXT)));
+	}
+	
+	private void evolveSpawnText(Npc npc)
+	{
+		npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(EVOLVE_SPAWN_TEXT)));
+	}
+	
+	private void dieText(Npc npc)
+	{
+		npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(DIE_TEXT)));
+	}
+	
+	private void watermelonText(Npc npc)
+	{
+		if (getRandom(100) < 80)
+		{
+			npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(WATERMELON_TEXT)));
+		}
+	}
+	
+	private void chronoText(Npc npc)
+	{
+		if (getRandom(100) < 80)
+		{
+			npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(CHRONO_TEXT)));
+		}
+	}
+	
+	private void noChronoText(Npc npc)
+	{
+		if (getRandom(100) < 80)
+		{
+			npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(NOCHRONO_TEXT)));
+		}
+	}
+	
+	private void nectarText(Npc npc)
+	{
+		if (getRandom(100) < 80)
 		{
 			npc.broadcastPacket(new CreatureSay(npc, ChatType.NPC_GENERAL, npc.getName(), getRandomEntry(NECTAR_TEXT)));
 		}
