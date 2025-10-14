@@ -554,6 +554,12 @@ public class NpcViewMod implements IBypassHandler
 				rateChance *= dropRateEffectBonus;
 			}
 			
+			// Do not display zero chance drops.
+			if (rateChance == 0d)
+			{
+				continue;
+			}
+			
 			sb.append("<table width=332 cellpadding=2 cellspacing=0 background=\"L2UI_CT1.Windows.Windows_DF_TooltipBG\">");
 			sb.append("<tr><td width=32 valign=top>");
 			sb.append("<img src=\"" + (item.getIcon() == null ? "icon.etc_question_mark_i00" : item.getIcon()) + "\" width=32 height=32>");
