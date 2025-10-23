@@ -80,8 +80,8 @@ public class Shutdown extends Thread
 	private static Shutdown _counterInstance;
 	private static boolean _countdownFinished;
 	
-	private int _secondsShut;
-	private int _shutdownMode;
+	private static volatile int _secondsShut;
+	private static volatile int _shutdownMode;
 	
 	/**
 	 * This function starts a shutdown count down (Copied from Function startShutdown())
