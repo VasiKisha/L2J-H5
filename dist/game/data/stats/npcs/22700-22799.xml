@@ -8557,6 +8557,7 @@
 					<item id="14167" min="1" max="1" chance="0.3707" /> <!-- Mid-Grade Life Stone - Level 84 -->
 					<item id="14168" min="1" max="1" chance="0.0371" /> <!-- High-Grade Life Stone - Level 84 -->
 					<item id="960" min="1" max="1" chance="0.1229" /> <!-- Scroll: Enchant Armor (S-Grade) -->
+					<item id="14208" min="1" max="1" chance="0.4104" /> <!-- Forgotten Scroll: Final Secret -->
 				</group>
 				<group chance="7">
 					<item id="15690" min="1" max="1" chance="15" /> <!-- Secret Key -->
