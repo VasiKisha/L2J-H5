@@ -114,7 +114,8 @@ public class QuestLink implements IBypassHandler
 			}
 			
 			// Skip tutorial links.
-			if (quest.getId() == 255)
+			questId = quest.getId();
+			if (questId == 255)
 			{
 				continue;
 			}
@@ -195,8 +196,7 @@ public class QuestLink implements IBypassHandler
 					
 					sb.append(localisation);
 				}
-				
-				if (questId == THE_LEADER_AND_THE_FOLLOWER)
+				else if (questId == THE_LEADER_AND_THE_FOLLOWER)
 				{
 					String localisation = "<a action=\"bypass Quest Q00123_TheLeaderAndTheFollower sponsor\">[<fstring>" + questId + state + "</fstring> (Sponsor)]</a><br>";
 					if (Config.MULTILANG_ENABLE)
