@@ -2828,8 +2828,18 @@
 		</ai>
 		<dropLists>
 			<drop>
-				<item id="8620" min="5" max="25" chance="60" /> <!-- Ancient Book: Divine Inspiration (Manuscript) -->
-				<item id="13893" min="1" max="1" chance="40" /> <!-- Sealed Holy Spirit's Cloak -->
+				<group chance="30">
+					<item id="8191" min="1" max="1" chance="100" /> <!-- Necklace of Frintezza -->
+				</group>
+				<group chance="10">
+					<item id="21893" min="1" max="1" chance="100" /> <!-- Halisha's Helmet -->
+				</group>
+				<group chance="10">
+					<item id="21715" min="1" max="1" chance="100" /> <!-- Sealed Cloak of Frintezza -->
+				</group>
+				<group chance="40">
+					<item id="13893" min="1" max="1" chance="100" /> <!-- Sealed Holy Spirit's Cloak -->
+				</group>
 				<group chance="70">
 					<item id="15743" min="1" max="1" chance="9.1" /> <!-- Sealed Vorpal Helmet -->
 					<item id="15744" min="1" max="1" chance="9.09" /> <!-- Sealed Vorpal Leather Helmet -->
@@ -2880,13 +2890,13 @@
 					<item id="16162" min="2" max="4" chance="60" /> <!-- High-Grade Life Stone - Level 85 -->
 					<item id="16166" min="2" max="4" chance="40" /> <!-- High-Grade Life Stone - Level 86 -->
 				</group>
-				<group chance="30">
-					<item id="8191" min="1" max="1" chance="100" /> <!-- Necklace of Frintezza -->
-				</group>
 				<group chance="100.0">
 					<item id="10549" min="1" max="1" chance="33" /> <!-- Forgotten Scroll - Protection of Rune -->
 					<item id="10550" min="1" max="1" chance="33" /> <!-- Forgotten Scroll - Protection of Elemental -->
 					<item id="10551" min="1" max="1" chance="34" /> <!-- Forgotten Scroll - Protection of Alignment -->
+				</group>
+				<group chance="60">
+					<item id="8620" min="5" max="25" chance="100" /> <!-- Ancient Book: Divine Inspiration (Manuscript) -->
 				</group>
 			</drop>
 		</dropLists>
