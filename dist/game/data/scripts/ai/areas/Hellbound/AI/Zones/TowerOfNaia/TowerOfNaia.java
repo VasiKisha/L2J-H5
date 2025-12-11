@@ -632,7 +632,7 @@ public class TowerOfNaia extends Script
 			
 			for (int i = 0; i < 10; i++)
 			{
-				addSpawn(SPORE_BASIC, -45474, 247450, -13994, 49152, false, 0, false);
+				addSpawn(SPORE_BASIC, -45464, 246768, -14210, 49152, false, 0, false);
 			}
 		}
 		else if ((npcId == SPORE_BASIC) && (_challengeState == STATE_SPORE_CHALLENGE_IN_PROGRESS))
