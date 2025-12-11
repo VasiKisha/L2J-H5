@@ -212,7 +212,11 @@ public class AutoSpawnHandler
 			_registeredSpawns.remove(spawnInst.getId());
 			
 			// Cancel the currently associated running scheduled task.
-			_runningSpawns.remove(spawnInst._objectId).cancel(false);
+			final ScheduledFuture<?> task = _runningSpawns.remove(spawnInst._objectId);
+			if (task != null)
+			{
+				task.cancel(false);
+			}
 		}
 		catch (Exception e)
 		{
