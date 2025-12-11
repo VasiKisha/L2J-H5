@@ -28,15 +28,14 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Anais AI.
  * @author nonom
  */
-public class Anais extends AbstractNpcAI
+public class Anais extends Script
 {
 	// NPCs
 	private static final int ANAIS = 25701;

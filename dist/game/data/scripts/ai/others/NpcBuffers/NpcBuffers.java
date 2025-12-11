@@ -19,13 +19,12 @@ package ai.others.NpcBuffers;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * @author UnAfraid
  */
-public class NpcBuffers extends AbstractNpcAI
+public class NpcBuffers extends Script
 {
 	private final NpcBuffersData _npcBuffers = new NpcBuffersData();
 	

@@ -30,15 +30,14 @@ import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.util.LocationUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * @author Micr0, Zerox, Mobius
  */
-public class ScarletVanHalisha extends AbstractNpcAI
+public class ScarletVanHalisha extends Script
 {
 	// NPCs
 	private static final int HALISHA2 = 29046;
@@ -62,7 +61,9 @@ public class ScarletVanHalisha extends AbstractNpcAI
 		addAttackId(HALISHA2, HALISHA3);
 		addKillId(HALISHA2, HALISHA3);
 		addSpellFinishedId(HALISHA2, HALISHA3);
-		registerMobs(HALISHA2, HALISHA3);
+		addAttackId(HALISHA2, HALISHA3);
+		addKillId(HALISHA2, HALISHA3);
+		addSpellFinishedId(HALISHA2, HALISHA3);
 	}
 	
 	@Override

@@ -26,10 +26,10 @@ import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.Action;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.managers.DuelManager;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -535,7 +535,7 @@ public class Cubic
 			
 			if (target.isAlikeDead())
 			{
-				if (target.isPlayer() && Config.FAKE_DEATH_DAMAGE_STAND)
+				if (target.isPlayer() && PlayerConfig.FAKE_DEATH_DAMAGE_STAND)
 				{
 					target.stopFakeDeath(true);
 				}

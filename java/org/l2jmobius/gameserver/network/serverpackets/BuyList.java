@@ -22,8 +22,8 @@ package org.l2jmobius.gameserver.network.serverpackets;
 
 import java.util.Collection;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
 import org.l2jmobius.gameserver.model.buylist.Product;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -63,7 +63,7 @@ public class BuyList extends ServerPacket
 				buffer.writeShort(product.getItem().getType2());
 				buffer.writeShort(product.getItem().getType1()); // Custom Type 1
 				buffer.writeShort(0); // isEquipped
-				buffer.writeInt(product.getItem().getBodyPart()); // Body Part
+				buffer.writeInt(product.getItem().getBodyPart().getMask()); // Body Part
 				buffer.writeShort(product.getItem().getDefaultEnchantLevel()); // Enchant
 				buffer.writeShort(0); // Custom Type
 				buffer.writeInt(0); // Augment
@@ -82,7 +82,7 @@ public class BuyList extends ServerPacket
 				buffer.writeShort(0);
 				if ((product.getItemId() >= 3960) && (product.getItemId() <= 4026))
 				{
-					buffer.writeLong((long) (product.getPrice() * Config.RATE_SIEGE_GUARDS_PRICE * (1 + _taxRate)));
+					buffer.writeLong((long) (product.getPrice() * RatesConfig.RATE_SIEGE_GUARDS_PRICE * (1 + _taxRate)));
 				}
 				else
 				{

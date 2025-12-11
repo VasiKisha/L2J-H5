@@ -21,8 +21,8 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.managers.SoDManager;
-import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.SeedOfDestructionManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -55,12 +55,12 @@ public class ExShowSeedMapInfo extends ServerPacket
 			{
 				case 1: // Seed of Destruction
 				{
-					buffer.writeInt(2770 + SoDManager.getInstance().getSoDState());
+					buffer.writeInt(2770 + SeedOfDestructionManager.getInstance().getSoDState());
 					break;
 				}
 				case 2: // Seed of Immortality
 				{
-					buffer.writeInt(SoIManager.getCurrentStage() + 2765);
+					buffer.writeInt(SeedOfInfinityManager.getCurrentStage() + 2765);
 					break;
 				}
 			}

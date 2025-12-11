@@ -18,7 +18,8 @@ package handlers.chathandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
 import org.l2jmobius.gameserver.handler.IChatHandler;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.handler.VoicedCommandHandler;
@@ -74,15 +75,15 @@ public class ChatGeneral implements IChatHandler
 		
 		if (!vcdUsed)
 		{
-			if (activeChar.isChatBanned() && Config.BAN_CHAT_CHANNELS.contains(type))
+			if (activeChar.isChatBanned() && GeneralConfig.BAN_CHAT_CHANNELS.contains(type))
 			{
 				activeChar.sendPacket(SystemMessageId.CHATTING_IS_CURRENTLY_PROHIBITED_IF_YOU_TRY_TO_CHAT_BEFORE_THE_PROHIBITION_IS_REMOVED_THE_PROHIBITION_TIME_WILL_INCREASE_EVEN_FURTHER);
 				return;
 			}
 			
-			if ((activeChar.getLevel() < Config.MINIMUM_CHAT_LEVEL) && !activeChar.isGM())
+			if ((activeChar.getLevel() < GeneralConfig.MINIMUM_CHAT_LEVEL) && !activeChar.isGM())
 			{
-				activeChar.sendMessage("Players can use general chat after Lv. " + Config.MINIMUM_CHAT_LEVEL + ".");
+				activeChar.sendMessage("Players can use general chat after Lv. " + GeneralConfig.MINIMUM_CHAT_LEVEL + ".");
 				return;
 			}
 			
@@ -92,9 +93,9 @@ public class ChatGeneral implements IChatHandler
 			{
 				if ((player != null) && !BlockList.isBlocked(player, activeChar))
 				{
-					if (Config.FACTION_SYSTEM_ENABLED)
+					if (FactionSystemConfig.FACTION_SYSTEM_ENABLED)
 					{
-						if (Config.FACTION_SPECIFIC_CHAT)
+						if (FactionSystemConfig.FACTION_SPECIFIC_CHAT)
 						{
 							if ((activeChar.isGood() && player.isEvil()) || (activeChar.isEvil() && player.isGood()))
 							{

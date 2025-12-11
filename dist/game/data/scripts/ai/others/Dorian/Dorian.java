@@ -19,18 +19,18 @@ package ai.others.Dorian;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
-import ai.AbstractNpcAI;
 import quests.Q00024_InhabitantsOfTheForestOfTheDead.Q00024_InhabitantsOfTheForestOfTheDead;
 
 /**
  * Dorian (Raid Fighter) - Quest AI
  * @author malyelfik
  */
-public class Dorian extends AbstractNpcAI
+public class Dorian extends Script
 {
 	// NPC
 	private static final int DORIAN = 25332;

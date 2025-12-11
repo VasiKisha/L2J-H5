@@ -20,14 +20,13 @@ import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Elf Human class transfer AI.
  * @author Adry_85
  */
-public class ElfHumanFighterChange2 extends AbstractNpcAI
+public class ElfHumanFighterChange2 extends Script
 {
 	// NPCs
 	private static int[] NPCS =
@@ -449,24 +448,24 @@ public class ElfHumanFighterChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.FIGHTER_GROUP) && (player.isInCategory(CategoryType.HUMAN_FALL_CLASS) || player.isInCategory(CategoryType.ELF_FALL_CLASS)))
 		{
-			final PlayerClass classId = player.getPlayerClass();
-			if ((classId == PlayerClass.WARRIOR) || (classId == PlayerClass.GLADIATOR) || (classId == PlayerClass.WARLORD))
+			final PlayerClass playerClass = player.getPlayerClass();
+			if ((playerClass == PlayerClass.WARRIOR) || (playerClass == PlayerClass.GLADIATOR) || (playerClass == PlayerClass.WARLORD))
 			{
 				htmltext = "30109-02.htm"; // fnClassList1
 			}
-			else if ((classId == PlayerClass.KNIGHT) || (classId == PlayerClass.PALADIN) || (classId == PlayerClass.DARK_AVENGER))
+			else if ((playerClass == PlayerClass.KNIGHT) || (playerClass == PlayerClass.PALADIN) || (playerClass == PlayerClass.DARK_AVENGER))
 			{
 				htmltext = "30109-09.htm"; // fnClassList2
 			}
-			else if ((classId == PlayerClass.ROGUE) || (classId == PlayerClass.TREASURE_HUNTER) || (classId == PlayerClass.HAWKEYE))
+			else if ((playerClass == PlayerClass.ROGUE) || (playerClass == PlayerClass.TREASURE_HUNTER) || (playerClass == PlayerClass.HAWKEYE))
 			{
 				htmltext = "30109-16.htm"; // fnClassList3
 			}
-			else if ((classId == PlayerClass.ELVEN_KNIGHT) || (classId == PlayerClass.TEMPLE_KNIGHT) || (classId == PlayerClass.SWORDSINGER))
+			else if ((playerClass == PlayerClass.ELVEN_KNIGHT) || (playerClass == PlayerClass.TEMPLE_KNIGHT) || (playerClass == PlayerClass.SWORDSINGER))
 			{
 				htmltext = "30109-23.htm"; // fnClassList4
 			}
-			else if ((classId == PlayerClass.ELVEN_SCOUT) || (classId == PlayerClass.PLAINS_WALKER) || (classId == PlayerClass.SILVER_RANGER))
+			else if ((playerClass == PlayerClass.ELVEN_SCOUT) || (playerClass == PlayerClass.PLAINS_WALKER) || (playerClass == PlayerClass.SILVER_RANGER))
 			{
 				htmltext = "30109-30.htm"; // fnClassList5
 			}

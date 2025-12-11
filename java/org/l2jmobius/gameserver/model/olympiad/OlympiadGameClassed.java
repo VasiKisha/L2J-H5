@@ -18,8 +18,8 @@ package org.l2jmobius.gameserver.model.olympiad;
 
 import java.util.List;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.OlympiadConfig;
 
 /**
  * @author DS
@@ -40,13 +40,13 @@ public class OlympiadGameClassed extends OlympiadGameNormal
 	@Override
 	protected final int getDivider()
 	{
-		return Config.OLYMPIAD_DIVIDER_CLASSED;
+		return OlympiadConfig.OLYMPIAD_DIVIDER_CLASSED;
 	}
 	
 	@Override
 	protected final int[][] getReward()
 	{
-		return Config.OLYMPIAD_CLASSED_REWARD;
+		return OlympiadConfig.OLYMPIAD_CLASSED_REWARD;
 	}
 	
 	@Override

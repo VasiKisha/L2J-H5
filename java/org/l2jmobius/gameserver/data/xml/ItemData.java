@@ -31,8 +31,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.ThreadConfig;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.model.item.Armor;
 import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -55,7 +57,7 @@ public class ItemData
 	protected ItemData()
 	{
 		processDirectory("data/stats/items", _itemFiles);
-		if (Config.CUSTOM_ITEMS_LOAD)
+		if (GeneralConfig.CUSTOM_ITEMS_LOAD)
 		{
 			processDirectory("data/stats/items/custom", _itemFiles);
 		}
@@ -65,7 +67,7 @@ public class ItemData
 	
 	private void processDirectory(String dirName, List<File> list)
 	{
-		final File dir = new File(Config.DATAPACK_ROOT, dirName);
+		final File dir = new File(ServerConfig.DATAPACK_ROOT, dirName);
 		if (!dir.exists())
 		{
 			LOGGER.warning("Directory " + dir.getAbsolutePath() + " does not exist.");
@@ -94,7 +96,7 @@ public class ItemData
 		_weapons.clear();
 		
 		// If multithreading is enabled, use a thread pool to parse files.
-		if (Config.THREADS_FOR_LOADING)
+		if (ThreadConfig.THREADS_FOR_LOADING)
 		{
 			final Collection<ScheduledFuture<?>> tasks = ConcurrentHashMap.newKeySet();
 			for (File file : _itemFiles)

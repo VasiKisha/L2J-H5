@@ -20,17 +20,30 @@
  */
 package org.l2jmobius.gameserver.managers;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.Calendar;
 import java.util.logging.Logger;
 
+import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.TimeUtil;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.data.sql.ClanTable;
+import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.clan.ClanMember;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.holders.OnDailyReset;
 import org.l2jmobius.gameserver.model.olympiad.Olympiad;
+import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
+import org.l2jmobius.gameserver.model.sevensigns.SevenSignsFestival;
+import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.network.serverpackets.ExNevitAdventTimeChange;
+import org.l2jmobius.gameserver.network.serverpackets.ExVoteSystemInfo;
 
 /**
  * @author Mobius
@@ -38,6 +51,12 @@ import org.l2jmobius.gameserver.model.olympiad.Olympiad;
 public class DailyResetManager
 {
 	private static final Logger LOGGER = Logger.getLogger(DailyResetManager.class.getName());
+	
+	private static final int[] RESET_SKILLS =
+	{
+		2510, // Wondrous Cubic
+		22180, // Wondrous Cubic - 1 time use
+	};
 	
 	protected DailyResetManager()
 	{
@@ -76,6 +95,21 @@ public class DailyResetManager
 	{
 		LOGGER.info("Starting reset of daily tasks...");
 		
+		// Store last reset time.
+		GlobalVariablesManager.getInstance().set(GlobalVariablesManager.DAILY_TASK_RESET, System.currentTimeMillis());
+		
+		// Wednesday weekly tasks.
+		final Calendar calendar = Calendar.getInstance();
+		if (calendar.get(Calendar.DAY_OF_WEEK) == Calendar.WEDNESDAY)
+		{
+			clanLeaderApply();
+		}
+		
+		// Daily tasks.
+		resetDailySkills();
+		resetNevit();
+		resetRecommends();
+		
 		// Trigger daily reset event.
 		if (EventDispatcher.getInstance().hasListener(EventType.ON_DAILY_RESET))
 		{
@@ -100,6 +134,133 @@ public class DailyResetManager
 		{
 			Olympiad.getInstance().saveOlympiadStatus();
 			LOGGER.info("Olympiad System: Data updated.");
+		}
+		
+		SevenSigns.getInstance().saveSevenSignsStatus();
+		if (!SevenSigns.getInstance().isSealValidationPeriod())
+		{
+			SevenSignsFestival.getInstance().saveFestivalData(false);
+		}
+		LOGGER.info("SevenSigns: Data updated.");
+	}
+	
+	private void clanLeaderApply()
+	{
+		for (Clan clan : ClanTable.getInstance().getClans())
+		{
+			if (clan.getNewLeaderId() != 0)
+			{
+				final ClanMember member = clan.getClanMember(clan.getNewLeaderId());
+				if (member == null)
+				{
+					continue;
+				}
+				
+				clan.setNewLeader(member);
+			}
+		}
+		
+		LOGGER.info("Clan leaders have been updated.");
+	}
+	
+	private void resetDailySkills()
+	{
+		try (Connection con = DatabaseFactory.getConnection())
+		{
+			for (int skillId : RESET_SKILLS)
+			{
+				try (PreparedStatement ps = con.prepareStatement("DELETE FROM character_skills_save WHERE skill_id=? AND charId IN (SELECT charId FROM characters WHERE online = 0)"))
+				{
+					ps.setInt(1, skillId);
+					ps.execute();
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			LOGGER.severe(getClass().getSimpleName() + ": Could not reset daily skill reuse: " + e);
+		}
+		
+		// Update data for online players.
+		for (int skillId : RESET_SKILLS)
+		{
+			final Skill skill = SkillData.getInstance().getSkill(skillId, 1 /* No known need for more levels */);
+			if (skill != null)
+			{
+				for (Player player : World.getInstance().getPlayers())
+				{
+					if (player.hasSkillReuse(skill.getReuseHashCode()))
+					{
+						player.removeTimeStamp(skill);
+					}
+				}
+			}
+		}
+		
+		LOGGER.info("Daily skill reuse cleaned.");
+	}
+	
+	private void resetNevit()
+	{
+		if (!PlayerConfig.NEVIT_ENABLED)
+		{
+			return;
+		}
+		
+		for (Player player : World.getInstance().getPlayers())
+		{
+			if ((player == null) || !player.isOnline())
+			{
+				continue;
+			}
+			
+			player.getVariables().set("hunting_time", 0);
+			player.sendPacket(new ExNevitAdventTimeChange(0, true));
+		}
+	}
+	
+	private void resetRecommends()
+	{
+		try (Connection con = DatabaseFactory.getConnection())
+		{
+			try (PreparedStatement ps = con.prepareStatement("UPDATE character_reco_bonus SET rec_left=?, time_left=?, rec_have=0 WHERE rec_have <=  20"))
+			{
+				ps.setInt(1, 20); // Rec left = 20
+				ps.setInt(2, 3600000); // Timer = 1 hour
+				ps.execute();
+			}
+			
+			try (PreparedStatement ps = con.prepareStatement("UPDATE character_reco_bonus SET rec_left=?, time_left=?, rec_have=GREATEST(rec_have-20,0) WHERE rec_have > 20"))
+			{
+				ps.setInt(1, 20); // Rec left = 20
+				ps.setInt(2, 3600000); // Timer = 1 hour
+				ps.execute();
+			}
+		}
+		catch (Exception e)
+		{
+			LOGGER.severe(getClass().getSimpleName() + ": Could not reset Recommendations System: " + e);
+		}
+		
+		for (Player player : World.getInstance().getPlayers())
+		{
+			player.setRecomLeft(0);
+			player.setRecomHave(player.getRecomHave() - 20);
+			player.sendPacket(new ExVoteSystemInfo(player));
+			player.broadcastUserInfo();
+		}
+		
+		// Refresh reco bonus for online players.
+		if (PlayerConfig.NEVIT_ENABLED)
+		{
+			for (Player player : World.getInstance().getPlayers())
+			{
+				if (player != null)
+				{
+					player.stopNevitHourglassTask();
+					player.startNevitHourglassTask();
+				}
+			}
 		}
 	}
 	

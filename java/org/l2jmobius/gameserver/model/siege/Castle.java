@@ -33,9 +33,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.FeatureConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
@@ -513,7 +514,7 @@ public class Castle extends AbstractResidence
 				if (_formerOwner == null)
 				{
 					_formerOwner = oldOwner;
-					if (Config.REMOVE_CASTLE_CIRCLETS)
+					if (PlayerConfig.REMOVE_CASTLE_CIRCLETS)
 					{
 						CastleManager.getInstance().removeCirclet(_formerOwner, getResidenceId());
 					}
@@ -572,7 +573,7 @@ public class Castle extends AbstractResidence
 		if (clan != null)
 		{
 			_formerOwner = clan;
-			if (Config.REMOVE_CASTLE_CIRCLETS)
+			if (PlayerConfig.REMOVE_CASTLE_CIRCLETS)
 			{
 				CastleManager.getInstance().removeCirclet(_formerOwner, getResidenceId());
 			}
@@ -1004,25 +1005,25 @@ public class Castle extends AbstractResidence
 			if (_formerOwner != owner)
 			{
 				final int maxreward = Math.max(0, _formerOwner.getReputationScore());
-				_formerOwner.takeReputationScore(Config.LOOSE_CASTLE_POINTS);
+				_formerOwner.takeReputationScore(FeatureConfig.LOOSE_CASTLE_POINTS);
 				if (owner != null)
 				{
-					owner.addReputationScore(Math.min(Config.TAKE_CASTLE_POINTS, maxreward));
-					owner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_EMERGED_VICTORIOUS_FROM_THE_SIEGE_S1_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE).addInt(Math.min(Config.TAKE_CASTLE_POINTS, maxreward)));
+					owner.addReputationScore(Math.min(FeatureConfig.TAKE_CASTLE_POINTS, maxreward));
+					owner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_EMERGED_VICTORIOUS_FROM_THE_SIEGE_S1_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE).addInt(Math.min(FeatureConfig.TAKE_CASTLE_POINTS, maxreward)));
 				}
 				
-				_formerOwner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_WAS_DEFEATED_IN_A_SIEGE_S1_POINTS_HAVE_BEEN_DEDUCTED_FROM_YOUR_CLAN_S_REPUTATION_SCORE_AND_GIVEN_TO_THE_OPPOSING_CLAN).addInt(Config.LOOSE_CASTLE_POINTS));
+				_formerOwner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_WAS_DEFEATED_IN_A_SIEGE_S1_POINTS_HAVE_BEEN_DEDUCTED_FROM_YOUR_CLAN_S_REPUTATION_SCORE_AND_GIVEN_TO_THE_OPPOSING_CLAN).addInt(FeatureConfig.LOOSE_CASTLE_POINTS));
 			}
 			else
 			{
-				_formerOwner.addReputationScore(Config.CASTLE_DEFENDED_POINTS);
-				_formerOwner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_EMERGED_VICTORIOUS_FROM_THE_SIEGE_S1_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE).addInt(Config.CASTLE_DEFENDED_POINTS));
+				_formerOwner.addReputationScore(FeatureConfig.CASTLE_DEFENDED_POINTS);
+				_formerOwner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_EMERGED_VICTORIOUS_FROM_THE_SIEGE_S1_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE).addInt(FeatureConfig.CASTLE_DEFENDED_POINTS));
 			}
 		}
 		else if (owner != null)
 		{
-			owner.addReputationScore(Config.TAKE_CASTLE_POINTS);
-			owner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_EMERGED_VICTORIOUS_FROM_THE_SIEGE_S1_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE).addInt(Config.TAKE_CASTLE_POINTS));
+			owner.addReputationScore(FeatureConfig.TAKE_CASTLE_POINTS);
+			owner.broadcastToOnlineMembers(new SystemMessage(SystemMessageId.SINCE_YOUR_CLAN_EMERGED_VICTORIOUS_FROM_THE_SIEGE_S1_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE).addInt(FeatureConfig.TAKE_CASTLE_POINTS));
 		}
 	}
 	

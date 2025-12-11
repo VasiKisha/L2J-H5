@@ -24,7 +24,7 @@ import java.util.List;
 
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.EtcItem;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -35,7 +35,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
  */
 public class RequestUnEquipItem extends ClientPacket
 {
-	private int _slot;
+	private BodyPart _slot;
 	
 	/**
 	 * Packet type id 0x16 format: cd
@@ -43,7 +43,7 @@ public class RequestUnEquipItem extends ClientPacket
 	@Override
 	protected void readImpl()
 	{
-		_slot = readInt();
+		_slot = BodyPart.fromPaperdollSlot(readInt());
 	}
 	
 	@Override
@@ -55,7 +55,7 @@ public class RequestUnEquipItem extends ClientPacket
 			return;
 		}
 		
-		final Item item = player.getInventory().getPaperdollItemBySlotId(_slot);
+		final Item item = player.getInventory().getPaperdollItemByBodyPart(_slot);
 		
 		// Wear-items are not to be unequipped.
 		if (item == null)
@@ -71,13 +71,13 @@ public class RequestUnEquipItem extends ClientPacket
 		}
 		
 		// Arrows and bolts.
-		if ((_slot == ItemTemplate.SLOT_L_HAND) && (item.getTemplate() instanceof EtcItem))
+		if ((_slot == BodyPart.L_HAND) && (item.getTemplate() instanceof EtcItem))
 		{
 			return;
 		}
 		
 		// Prevent of unequipping a cursed weapon.
-		if ((_slot == ItemTemplate.SLOT_LR_HAND) && (player.isCursedWeaponEquipped() || player.isCombatFlagEquipped()))
+		if ((_slot == BodyPart.LR_HAND) && (player.isCursedWeaponEquipped() || player.isCombatFlagEquipped()))
 		{
 			return;
 		}

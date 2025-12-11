@@ -18,18 +18,18 @@ package ai.others.Katenar;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
-import ai.AbstractNpcAI;
 import quests.Q00065_CertifiedSoulBreaker.Q00065_CertifiedSoulBreaker;
 
 /**
  * Katenar AI for quests Certified Soul Breaker (65)
  * @author ivantotov
  */
-public class Katenar extends AbstractNpcAI
+public class Katenar extends Script
 {
 	// NPC
 	private static final int KATENAR = 32242;

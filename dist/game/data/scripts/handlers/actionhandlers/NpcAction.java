@@ -20,9 +20,9 @@
  */
 package handlers.actionhandlers;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.handler.IActionHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -128,7 +128,7 @@ public class NpcAction implements IActionHandler
 						npc.showChatWindow(player);
 					}
 					
-					if (Config.PLAYER_MOVEMENT_BLOCK_TIME > 0)
+					if (PlayerConfig.PLAYER_MOVEMENT_BLOCK_TIME > 0)
 					{
 						player.updateNotMoveUntil();
 					}

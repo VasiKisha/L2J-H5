@@ -20,12 +20,12 @@
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
 
 public class VillageMasterKamael extends VillageMaster
 {
@@ -41,7 +41,7 @@ public class VillageMasterKamael extends VillageMaster
 	@Override
 	protected final String getSubClassMenu(Race race)
 	{
-		if (Config.ALT_GAME_SUBCLASS_EVERYWHERE || (race == Race.KAMAEL))
+		if (PlayerConfig.ALT_GAME_SUBCLASS_EVERYWHERE || (race == Race.KAMAEL))
 		{
 			return "data/html/villagemaster/SubClass.htm";
 		}

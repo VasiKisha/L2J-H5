@@ -27,9 +27,9 @@ import java.util.StringTokenizer;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.DevelopmentConfig;
 import org.l2jmobius.gameserver.geoengine.pathfinding.GeoLocation;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
@@ -84,7 +84,7 @@ public class AdminDebug implements IAdminCommandHandler
 				// debug packets
 				if (!st.hasMoreTokens())
 				{
-					setPacketDebugging(activeChar, !Config.DEBUG_CLIENT_PACKETS);
+					setPacketDebugging(activeChar, !DevelopmentConfig.DEBUG_CLIENT_PACKETS);
 					return true;
 				}
 				
@@ -167,7 +167,7 @@ public class AdminDebug implements IAdminCommandHandler
 		final NpcHtmlMessage html = new NpcHtmlMessage();
 		String content = HtmCache.getInstance().getHtm(player, "data/html/admin/debug.htm");
 		
-		if (Config.DEBUG_CLIENT_PACKETS)
+		if (DevelopmentConfig.DEBUG_CLIENT_PACKETS)
 		{
 			content = content.replace("%packets_status%", "Disable");
 			content = content.replace("%packets%", "packets off");
@@ -217,10 +217,10 @@ public class AdminDebug implements IAdminCommandHandler
 	
 	private static synchronized void setPacketDebugging(Player player, boolean enabled)
 	{
-		Config.DEBUG_CLIENT_PACKETS = enabled;
-		Config.DEBUG_EX_CLIENT_PACKETS = enabled;
-		Config.DEBUG_SERVER_PACKETS = enabled;
-		Config.DEBUG_UNKNOWN_PACKETS = enabled;
+		DevelopmentConfig.DEBUG_CLIENT_PACKETS = enabled;
+		DevelopmentConfig.DEBUG_EX_CLIENT_PACKETS = enabled;
+		DevelopmentConfig.DEBUG_SERVER_PACKETS = enabled;
+		DevelopmentConfig.DEBUG_UNKNOWN_PACKETS = enabled;
 		player.sendSysMessage("Packet debugging on console is " + (enabled ? "enabled." : "disabled."));
 	}
 	

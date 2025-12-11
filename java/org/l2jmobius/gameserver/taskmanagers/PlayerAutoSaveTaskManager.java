@@ -25,8 +25,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 
 /**
@@ -71,7 +71,7 @@ public class PlayerAutoSaveTaskManager implements Runnable
 					if ((player != null) && player.isOnline())
 					{
 						player.autoSave();
-						PLAYER_TIMES.put(player, currentTime + Config.CHAR_DATA_STORE_INTERVAL);
+						PLAYER_TIMES.put(player, currentTime + GeneralConfig.CHAR_DATA_STORE_INTERVAL);
 						break; // Prevent SQL flood.
 					}
 					
@@ -85,7 +85,7 @@ public class PlayerAutoSaveTaskManager implements Runnable
 	
 	public void add(Player player)
 	{
-		PLAYER_TIMES.put(player, System.currentTimeMillis() + Config.CHAR_DATA_STORE_INTERVAL);
+		PLAYER_TIMES.put(player, System.currentTimeMillis() + GeneralConfig.CHAR_DATA_STORE_INTERVAL);
 	}
 	
 	public void remove(Player player)

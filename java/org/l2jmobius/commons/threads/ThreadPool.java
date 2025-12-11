@@ -22,7 +22,6 @@ package org.l2jmobius.commons.threads;
 
 import java.lang.Thread.UncaughtExceptionHandler;
 import java.util.concurrent.LinkedBlockingQueue;
-import java.util.concurrent.RejectedExecutionException;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.ScheduledThreadPoolExecutor;
@@ -30,120 +29,153 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.ThreadConfig;
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.commons.util.TraceUtil;
 
 /**
- * This class provides methods to schedule tasks with a delay or at a fixed rate, as well as immediate execution.
+ * Provides methods to schedule tasks with delays, fixed rates and immediate execution.<br>
+ * Manages multiple thread pools including scheduled tasks, instant execution and high priority scheduling.
+ * <ul>
+ * <li>Scheduled thread pool for delayed and recurring tasks.</li>
+ * <li>Instant thread pool for immediate task execution.</li>
+ * <li>High priority scheduled thread pool for critical tasks.</li>
+ * <li>Automatic task purging and cleanup mechanisms.</li>
+ * </ul>
  * @author Mobius
  */
 public class ThreadPool
 {
 	private static final Logger LOGGER = Logger.getLogger(ThreadPool.class.getName());
 	
-	private static final ScheduledThreadPoolExecutor SCHEDULED_POOL = new ScheduledThreadPoolExecutor(Config.SCHEDULED_THREAD_POOL_SIZE, new ThreadProvider("L2jMobius ScheduledThread"), new ThreadPoolExecutor.CallerRunsPolicy());
-	private static final ThreadPoolExecutor INSTANT_POOL = new ThreadPoolExecutor(Config.INSTANT_THREAD_POOL_SIZE, Integer.MAX_VALUE, 1, TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new ThreadProvider("L2jMobius Thread"));
-	private static final long MAX_DELAY = 3155695200000L; // One hundred years.
-	private static final long MIN_DELAY = 0L;
+	// Constants.
+	private static final long ONE_HUNDRED_YEARS_MS = 3155695200000L;
+	private static final long MIN_DELAY_MS = 0L;
+	private static final long PURGE_INTERVAL_MS = 60000L;
+	private static final int INSTANT_POOL_KEEP_ALIVE_MINUTES = 1;
 	
+	// Thread Pool Executors.
 	private static ScheduledThreadPoolExecutor HIGH_PRIORITY_SCHEDULED_POOL;
+	private static ScheduledThreadPoolExecutor SCHEDULED_POOL;
+	private static ThreadPoolExecutor INSTANT_POOL;
 	
+	/**
+	 * Initializes thread pool executors and starts maintenance tasks.
+	 */
 	public static void init()
 	{
-		LOGGER.info("ThreadPool: Initialized");
+		LOGGER.info("ThreadPool: Initializing.");
+		
+		// Load configurations.
+		ThreadConfig.load();
 		
 		// Configure High Priority ScheduledThreadPoolExecutor.
-		if (Config.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE > 0)
+		if (ThreadConfig.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE > 0)
 		{
-			HIGH_PRIORITY_SCHEDULED_POOL = new ScheduledThreadPoolExecutor(Config.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE, new ThreadProvider("L2jMobius High Priority ScheduledThread", ThreadPriority.PRIORITY_8), new ThreadPoolExecutor.CallerRunsPolicy());
-			LOGGER.info("...scheduled pool executor with " + Config.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE + " high priority threads.");
+			HIGH_PRIORITY_SCHEDULED_POOL = new ScheduledThreadPoolExecutor(ThreadConfig.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE, new ThreadProvider("L2jMobius High Priority ScheduledThread", ThreadPriority.PRIORITY_8), new ThreadPoolExecutor.CallerRunsPolicy());
+			LOGGER.info(StringUtil.concat("...scheduled pool executor with ", String.valueOf(ThreadConfig.HIGH_PRIORITY_SCHEDULED_THREAD_POOL_SIZE), " high priority threads."));
 		}
 		
 		// Configure ScheduledThreadPoolExecutor.
+		SCHEDULED_POOL = new ScheduledThreadPoolExecutor(ThreadConfig.SCHEDULED_THREAD_POOL_SIZE, new ThreadProvider("L2jMobius ScheduledThread"), new ThreadPoolExecutor.CallerRunsPolicy());
 		SCHEDULED_POOL.setRejectedExecutionHandler(new RejectedExecutionHandlerImpl());
 		SCHEDULED_POOL.setRemoveOnCancelPolicy(true);
 		SCHEDULED_POOL.prestartAllCoreThreads();
 		
 		// Configure ThreadPoolExecutor.
+		INSTANT_POOL = new ThreadPoolExecutor(ThreadConfig.INSTANT_THREAD_POOL_SIZE, Integer.MAX_VALUE, INSTANT_POOL_KEEP_ALIVE_MINUTES, TimeUnit.MINUTES, new LinkedBlockingQueue<>(), new ThreadProvider("L2jMobius Thread"));
 		INSTANT_POOL.setRejectedExecutionHandler(new RejectedExecutionHandlerImpl());
 		INSTANT_POOL.prestartAllCoreThreads();
 		
 		// Schedule the purge task.
-		scheduleAtFixedRate(ThreadPool::purge, 60000, 60000);
+		scheduleAtFixedRate(ThreadPool::purge, PURGE_INTERVAL_MS, PURGE_INTERVAL_MS);
 		
-		// Log information.
-		LOGGER.info("...scheduled pool executor with " + Config.SCHEDULED_THREAD_POOL_SIZE + " total threads.");
-		LOGGER.info("...instant pool executor with " + Config.INSTANT_THREAD_POOL_SIZE + " total threads.");
+		// Log thread pool configuration.
+		LOGGER.info(StringUtil.concat("...scheduled pool executor with ", String.valueOf(ThreadConfig.SCHEDULED_THREAD_POOL_SIZE), " total threads."));
+		LOGGER.info(StringUtil.concat("...instant pool executor with ", String.valueOf(ThreadConfig.INSTANT_THREAD_POOL_SIZE), " total threads."));
 	}
 	
+	/**
+	 * Purges cancelled tasks from all thread pools to free memory.
+	 */
 	public static void purge()
 	{
 		SCHEDULED_POOL.purge();
 		INSTANT_POOL.purge();
+		if (HIGH_PRIORITY_SCHEDULED_POOL != null)
+		{
+			HIGH_PRIORITY_SCHEDULED_POOL.purge();
+		}
 	}
 	
 	/**
 	 * Creates and executes a one-shot action that becomes enabled after the given delay.
-	 * @param runnable : the task to execute.
-	 * @param delay : the time from now to delay execution.
-	 * @return a ScheduledFuture representing pending completion of the task and whose get() method will return null upon completion.
+	 * @param runnable the task to execute
+	 * @param delay the time from now to delay execution
+	 * @return a ScheduledFuture representing pending completion of the task and whose get() method will return null upon completion
 	 */
 	public static ScheduledFuture<?> schedule(Runnable runnable, long delay)
 	{
 		try
 		{
-			return SCHEDULED_POOL.schedule(new RunnableWrapper(runnable), validate(delay), TimeUnit.MILLISECONDS);
+			return SCHEDULED_POOL.schedule(new RunnableWrapper(runnable), validateDelay(delay), TimeUnit.MILLISECONDS);
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
+			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to schedule task ", runnable.getClass().getSimpleName(), " with delay ", String.valueOf(delay), "ms: ", e.getMessage(), System.lineSeparator(), String.valueOf(e.getStackTrace())));
 			return null;
 		}
 	}
 	
 	/**
 	 * Creates and executes a periodic action that becomes enabled first after the given initial delay.
-	 * @param runnable : the task to execute.
-	 * @param initialDelay : the time to delay first execution.
-	 * @param period : the period between successive executions.
-	 * @return a ScheduledFuture representing pending completion of the task and whose get() method will throw an exception upon cancellation.
+	 * @param runnable the task to execute
+	 * @param initialDelay the time to delay first execution
+	 * @param period the period between successive executions
+	 * @return a ScheduledFuture representing pending completion of the task and whose get() method will throw an exception upon cancellation
 	 */
 	public static ScheduledFuture<?> scheduleAtFixedRate(Runnable runnable, long initialDelay, long period)
 	{
 		try
 		{
-			return SCHEDULED_POOL.scheduleAtFixedRate(new RunnableWrapper(runnable), validate(initialDelay), validate(period), TimeUnit.MILLISECONDS);
+			return SCHEDULED_POOL.scheduleAtFixedRate(new RunnableWrapper(runnable), validateDelay(initialDelay), validateDelay(period), TimeUnit.MILLISECONDS);
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
+			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to schedule recurring task ", runnable.getClass().getSimpleName(), " with initial delay ", String.valueOf(initialDelay), "ms and period ", String.valueOf(period), "ms: ", e.getMessage(), System.lineSeparator(), String.valueOf(e.getStackTrace())));
 			return null;
 		}
 	}
 	
 	/**
-	 * Creates and executes a periodic action that becomes enabled first after the given initial delay, using a high priority scheduled thread pool. This method is similar to scheduleAtFixedRate but is designed for tasks requiring more immediate or high-priority execution.
-	 * @param runnable : the task to execute.
-	 * @param initialDelay : the time to delay first execution.
-	 * @param period : the period between successive executions.
-	 * @return a ScheduledFuture representing pending completion of the task and whose get() method will throw an exception upon cancellation.
+	 * Creates and executes a periodic action using high priority thread pool.<br>
+	 * Designed for tasks requiring immediate or high-priority execution.
+	 * @param runnable the task to execute
+	 * @param initialDelay the time to delay first execution
+	 * @param period the period between successive executions
+	 * @return a ScheduledFuture representing pending completion of the task and whose get() method will throw an exception upon cancellation
 	 */
 	public static ScheduledFuture<?> schedulePriorityTaskAtFixedRate(Runnable runnable, long initialDelay, long period)
 	{
+		if (HIGH_PRIORITY_SCHEDULED_POOL == null)
+		{
+			return scheduleAtFixedRate(runnable, initialDelay, period);
+		}
+		
 		try
 		{
-			return HIGH_PRIORITY_SCHEDULED_POOL.scheduleAtFixedRate(new RunnableWrapper(runnable), validate(initialDelay), validate(period), TimeUnit.MILLISECONDS);
+			return HIGH_PRIORITY_SCHEDULED_POOL.scheduleAtFixedRate(new RunnableWrapper(runnable), validateDelay(initialDelay), validateDelay(period), TimeUnit.MILLISECONDS);
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
+			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to schedule high priority task ", runnable.getClass().getSimpleName(), " with initial delay ", String.valueOf(initialDelay), "ms and period ", String.valueOf(period), "ms: ", e.getMessage(), System.lineSeparator(), String.valueOf(e.getStackTrace())));
 			return null;
 		}
 	}
 	
 	/**
-	 * Executes the given task sometime in the future.
-	 * @param runnable : the task to execute.
+	 * Executes the given task sometime in the future using the instant thread pool.
+	 * @param runnable the task to execute
 	 */
 	public static void execute(Runnable runnable)
 	{
@@ -153,28 +185,29 @@ public class ThreadPool
 		}
 		catch (Exception e)
 		{
-			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + e.getMessage() + System.lineSeparator() + e.getStackTrace());
+			LOGGER.warning(StringUtil.concat("ThreadPool: Failed to execute task ", runnable.getClass().getSimpleName(), ": ", e.getMessage(), System.lineSeparator(), String.valueOf(e.getStackTrace())));
 		}
 	}
 	
 	/**
-	 * @param delay : the delay to validate.
-	 * @return a valid value, from MIN_DELAY to MAX_DELAY.
+	 * Validates delay value to ensure it falls within acceptable bounds.
+	 * @param delay the delay to validate
+	 * @return a valid delay value between MIN_DELAY_MS and ONE_HUNDRED_YEARS_MS
 	 */
-	private static long validate(long delay)
+	private static long validateDelay(long delay)
 	{
-		if (delay < MIN_DELAY)
+		if (delay < MIN_DELAY_MS)
 		{
-			LOGGER.warning("ThreadPool found delay " + delay + "!");
+			LOGGER.warning(StringUtil.concat("ThreadPool: Invalid delay ", String.valueOf(delay), "ms is below minimum, using ", String.valueOf(MIN_DELAY_MS), "ms instead."));
 			LOGGER.warning(TraceUtil.getStackTrace(new Exception()));
-			return MIN_DELAY;
+			return MIN_DELAY_MS;
 		}
 		
-		if (delay > MAX_DELAY)
+		if (delay > ONE_HUNDRED_YEARS_MS)
 		{
-			LOGGER.warning("ThreadPool found delay " + delay + "!");
+			LOGGER.warning(StringUtil.concat("ThreadPool: Invalid delay ", String.valueOf(delay), "ms exceeds maximum, using ", String.valueOf(ONE_HUNDRED_YEARS_MS), "ms instead."));
 			LOGGER.warning(TraceUtil.getStackTrace(new Exception()));
-			return MAX_DELAY;
+			return ONE_HUNDRED_YEARS_MS;
 		}
 		
 		return delay;
@@ -187,19 +220,23 @@ public class ThreadPool
 	{
 		try
 		{
-			LOGGER.info("ThreadPool: Shutting down.");
+			LOGGER.info("ThreadPool: Shutting down all thread pools.");
 			SCHEDULED_POOL.shutdownNow();
 			INSTANT_POOL.shutdownNow();
+			if (HIGH_PRIORITY_SCHEDULED_POOL != null)
+			{
+				HIGH_PRIORITY_SCHEDULED_POOL.shutdownNow();
+			}
 		}
 		catch (Throwable t)
 		{
-			LOGGER.info("ThreadPool: Problem while shutting down. " + t.getMessage());
+			LOGGER.warning(StringUtil.concat("ThreadPool: Exception occurred during shutdown: ", t.getMessage()));
 		}
 	}
 	
 	/**
-	 * Handles tasks rejected by ThreadPoolExecutor, either running them in a new thread<br>
-	 * or in the current thread depending on the thread's priority.
+	 * Handles tasks rejected by ThreadPoolExecutor by running them in new thread or current thread.<br>
+	 * Decision based on current thread priority to prevent blocking high priority operations.
 	 */
 	private static class RejectedExecutionHandlerImpl implements RejectedExecutionHandler
 	{
@@ -213,8 +250,9 @@ public class ThreadPool
 				return;
 			}
 			
-			LOGGER.warning(runnable.getClass().getSimpleName() + System.lineSeparator() + runnable + " from " + executor + " " + new RejectedExecutionException());
+			LOGGER.warning(StringUtil.concat("ThreadPool: Task ", runnable.getClass().getSimpleName(), " rejected by executor ", String.valueOf(executor), ", attempting recovery execution."));
 			
+			// Run in new thread for high priority contexts, current thread otherwise.
 			if (Thread.currentThread().getPriority() > Thread.NORM_PRIORITY)
 			{
 				new Thread(runnable).start();
@@ -227,16 +265,20 @@ public class ThreadPool
 	}
 	
 	/**
-	 * Wraps a Runnable to handle any uncaught exceptions during its execution<br>
-	 * by passing them to the thread's uncaught exception handler.
+	 * Wraps a Runnable to handle uncaught exceptions during execution.<br>
+	 * Passes exceptions to the thread's uncaught exception handler for proper error management.
 	 */
 	private static class RunnableWrapper implements Runnable
 	{
-		private final Runnable _runnable;
+		private final Runnable _wrappedRunnable;
 		
+		/**
+		 * Creates a new RunnableWrapper for the specified runnable.
+		 * @param runnable the runnable to wrap
+		 */
 		public RunnableWrapper(Runnable runnable)
 		{
-			_runnable = runnable;
+			_wrappedRunnable = runnable;
 		}
 		
 		@Override
@@ -244,15 +286,15 @@ public class ThreadPool
 		{
 			try
 			{
-				_runnable.run();
+				_wrappedRunnable.run();
 			}
-			catch (Throwable e)
+			catch (Throwable t)
 			{
-				final Thread t = Thread.currentThread();
-				final UncaughtExceptionHandler h = t.getUncaughtExceptionHandler();
-				if (h != null)
+				final Thread currentThread = Thread.currentThread();
+				final UncaughtExceptionHandler exceptionHandler = currentThread.getUncaughtExceptionHandler();
+				if (exceptionHandler != null)
 				{
-					h.uncaughtException(t, e);
+					exceptionHandler.uncaughtException(currentThread, t);
 				}
 			}
 		}

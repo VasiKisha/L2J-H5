@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.UIData;
 import org.l2jmobius.gameserver.model.ActionKey;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -79,7 +79,7 @@ public class RequestSaveKeyMapping extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if (!Config.STORE_UI_SETTINGS || (player == null) || (getClient().getConnectionState() != ConnectionState.IN_GAME))
+		if (!PlayerConfig.STORE_UI_SETTINGS || (player == null) || (getClient().getConnectionState() != ConnectionState.IN_GAME))
 		{
 			return;
 		}

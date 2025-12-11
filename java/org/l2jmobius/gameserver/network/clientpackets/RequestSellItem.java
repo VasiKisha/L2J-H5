@@ -26,7 +26,9 @@ import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.MerchantZeroSellPriceConfig;
 import org.l2jmobius.gameserver.data.xml.BuyListData;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -58,7 +60,7 @@ public class RequestSellItem extends ClientPacket
 	{
 		_listId = readInt();
 		final int size = readInt();
-		if ((size <= 0) || (size > Config.MAX_ITEM_IN_PACKET) || ((size * BATCH_LENGTH) != remaining()))
+		if ((size <= 0) || (size > PlayerConfig.MAX_ITEM_IN_PACKET) || ((size * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -101,7 +103,7 @@ public class RequestSellItem extends ClientPacket
 		}
 		
 		// Alt game - Karma punishment
-		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getKarma() > 0))
+		if (!PlayerConfig.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getKarma() > 0))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
@@ -137,7 +139,7 @@ public class RequestSellItem extends ClientPacket
 		final BuyListHolder buyList = BuyListData.getInstance().getBuyList(_listId);
 		if (buyList == null)
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id " + _listId, Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id " + _listId, GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -166,7 +168,7 @@ public class RequestSellItem extends ClientPacket
 				return;
 			}
 			
-			if (Config.ALLOW_REFUND)
+			if (GeneralConfig.ALLOW_REFUND)
 			{
 				player.getInventory().transferItem(ItemProcessType.TRANSFER, i.getObjectId(), i.getCount(), player.getRefund(), player, merchant);
 			}
@@ -176,7 +178,7 @@ public class RequestSellItem extends ClientPacket
 			}
 		}
 		
-		if (!Config.MERCHANT_ZERO_SELL_PRICE)
+		if (!MerchantZeroSellPriceConfig.MERCHANT_ZERO_SELL_PRICE)
 		{
 			player.addAdena(ItemProcessType.SELL, totalPrice, merchant, false);
 		}

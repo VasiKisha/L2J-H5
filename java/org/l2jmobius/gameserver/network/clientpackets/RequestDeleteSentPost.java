@@ -16,7 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.Message;
@@ -38,7 +39,7 @@ public class RequestDeleteSentPost extends ClientPacket
 	protected void readImpl()
 	{
 		final int count = readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
+		if ((count <= 0) || (count > PlayerConfig.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -54,7 +55,7 @@ public class RequestDeleteSentPost extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if ((player == null) || (_msgIds == null) || !Config.ALLOW_MAIL)
+		if ((player == null) || (_msgIds == null) || !GeneralConfig.ALLOW_MAIL)
 		{
 			return;
 		}
@@ -75,7 +76,7 @@ public class RequestDeleteSentPost extends ClientPacket
 			
 			if (msg.getSenderId() != player.getObjectId())
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to delete not own post!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to delete not own post!", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			

@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.config.DevelopmentConfig;
 import org.l2jmobius.gameserver.network.serverpackets.ServerPacket;
 
 /**
@@ -532,10 +532,10 @@ public enum ServerPackets
 	
 	public void writeId(ServerPacket packet, WritableBuffer buffer)
 	{
-		if (Config.DEBUG_SERVER_PACKETS)
+		if (DevelopmentConfig.DEBUG_SERVER_PACKETS)
 		{
 			final String name = packet.getClass().getSimpleName();
-			if (!Config.EXCLUDED_DEBUG_PACKETS.contains(name))
+			if (!DevelopmentConfig.EXCLUDED_DEBUG_PACKETS.contains(name))
 			{
 				PacketLogger.info((_id2 > 0 ? "[S EX] " : "[S] ") + name);
 			}

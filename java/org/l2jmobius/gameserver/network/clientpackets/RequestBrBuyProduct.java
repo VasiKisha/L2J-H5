@@ -23,8 +23,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.holders.PrimeShopProductHolder;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.data.xml.PrimeShopData;
@@ -79,7 +79,7 @@ public class RequestBrBuyProduct extends ClientPacket
 			return;
 		}
 		
-		final long gamePointSize = Config.PRIME_SHOP_ITEM_ID == -1 ? player.getGamePoints() : player.getInventory().getInventoryItemCount(Config.PRIME_SHOP_ITEM_ID, -1);
+		final long gamePointSize = GeneralConfig.PRIME_SHOP_ITEM_ID == -1 ? player.getGamePoints() : player.getInventory().getInventoryItemCount(GeneralConfig.PRIME_SHOP_ITEM_ID, -1);
 		if (totalPoints > gamePointSize)
 		{
 			player.sendPacket(new ExBrBuyProduct(ExBrBuyProduct.RESULT_NOT_ENOUGH_POINTS));
@@ -103,13 +103,13 @@ public class RequestBrBuyProduct extends ClientPacket
 		}
 		
 		// Pay for Item
-		if (Config.PRIME_SHOP_ITEM_ID == -1)
+		if (GeneralConfig.PRIME_SHOP_ITEM_ID == -1)
 		{
 			player.setGamePoints(player.getGamePoints() - totalPoints);
 		}
 		else
 		{
-			player.getInventory().destroyItemByItemId(ItemProcessType.FEE, Config.PRIME_SHOP_ITEM_ID, totalPoints, player, null);
+			player.getInventory().destroyItemByItemId(ItemProcessType.FEE, GeneralConfig.PRIME_SHOP_ITEM_ID, totalPoints, player, null);
 		}
 		
 		// Buy Item

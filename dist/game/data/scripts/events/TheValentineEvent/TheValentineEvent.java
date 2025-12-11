@@ -18,8 +18,8 @@ package events.TheValentineEvent;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
+import org.l2jmobius.gameserver.model.script.LongTimeEvent;
+import org.l2jmobius.gameserver.model.script.QuestSound;
 
 /**
  * The Valentine Event event AI.

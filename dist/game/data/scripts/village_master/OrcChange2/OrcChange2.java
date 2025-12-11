@@ -20,14 +20,13 @@ import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Orc class transfer AI.
  * @author Adry_85
  */
-public class OrcChange2 extends AbstractNpcAI
+public class OrcChange2 extends Script
 {
 	// NPCs
 	private static int[] NPCS =
@@ -238,16 +237,16 @@ public class OrcChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.ORC_MALL_CLASS) || player.isInCategory(CategoryType.ORC_FALL_CLASS))
 		{
-			final PlayerClass classId = player.getPlayerClass();
-			if ((classId == PlayerClass.ORC_RAIDER) || (classId == PlayerClass.DESTROYER))
+			final PlayerClass playerClass = player.getPlayerClass();
+			if ((playerClass == PlayerClass.ORC_RAIDER) || (playerClass == PlayerClass.DESTROYER))
 			{
 				htmltext = "30513-02.htm"; // fnClassList1
 			}
-			else if ((classId == PlayerClass.ORC_MONK) || (classId == PlayerClass.TYRANT))
+			else if ((playerClass == PlayerClass.ORC_MONK) || (playerClass == PlayerClass.TYRANT))
 			{
 				htmltext = "30513-06.htm"; // fnClassList2
 			}
-			else if ((classId == PlayerClass.ORC_SHAMAN) || (classId == PlayerClass.OVERLORD) || (classId == PlayerClass.WARCRYER))
+			else if ((playerClass == PlayerClass.ORC_SHAMAN) || (playerClass == PlayerClass.OVERLORD) || (playerClass == PlayerClass.WARCRYER))
 			{
 				htmltext = "30513-10.htm"; // fnClassList3
 			}

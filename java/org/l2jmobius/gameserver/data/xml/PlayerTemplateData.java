@@ -57,9 +57,11 @@ public class PlayerTemplateData implements IXmlReader
 	public void load()
 	{
 		_playerTemplates.clear();
-		parseDatapackDirectory("data/stats/chars/baseStats", false);
-		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _playerTemplates.size() + " character templates.");
-		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _levelUpGainCount + " level up gain records.");
+		_levelUpGainCount.set(0);
+		parseDatapackDirectory("data/stats/players/templates", true);
+		
+		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _playerTemplates.size() + " player templates.");
+		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _levelUpGainCount.get() + " level up gain records.");
 	}
 	
 	@Override
@@ -149,13 +151,14 @@ public class PlayerTemplateData implements IXmlReader
 					}
 					else if ("lvlUpgainData".equalsIgnoreCase(d.getNodeName()))
 					{
+						int level = 0;
 						final PlayerTemplate template = _playerTemplates.get(PlayerClass.getPlayerClass(classId));
 						for (Node lvlNode = d.getFirstChild(); lvlNode != null; lvlNode = lvlNode.getNextSibling())
 						{
 							if ("level".equalsIgnoreCase(lvlNode.getNodeName()))
 							{
 								attributes = lvlNode.getAttributes();
-								final int level = parseInteger(attributes, "val");
+								level = parseInteger(attributes, "val");
 								if (level > (maxLevel - 1))
 								{
 									return;
@@ -180,12 +183,12 @@ public class PlayerTemplateData implements IXmlReader
 	
 	/**
 	 * Retrieves the {@link PlayerTemplate} associated with the specified {@link PlayerClass}.
-	 * @param classId the {@link PlayerClass} for which to retrieve the template.
+	 * @param playerClass the {@link PlayerClass} for which to retrieve the template.
 	 * @return the {@link PlayerTemplate} associated with the given {@link PlayerClass}, or {@code null} if no template is found.
 	 */
-	public PlayerTemplate getTemplate(PlayerClass classId)
+	public PlayerTemplate getTemplate(PlayerClass playerClass)
 	{
-		return _playerTemplates.get(classId);
+		return _playerTemplates.get(playerClass);
 	}
 	
 	/**

@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.OlympiadConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
@@ -62,7 +62,7 @@ public class RequestAutoSoulShot extends ClientPacket
 			}
 			
 			// Disable Blessed SpiritShots in Olympiad.
-			if (player.isInOlympiadMode() && Config.OLYMPIAD_DISABLE_BLESSED_SPIRITSHOTS && (item.getEtcItem().getDefaultAction() == ActionType.SPIRITSHOT) && item.getEtcItem().isBlessed())
+			if (player.isInOlympiadMode() && OlympiadConfig.OLYMPIAD_DISABLE_BLESSED_SPIRITSHOTS && (item.getEtcItem().getDefaultAction() == ActionType.SPIRITSHOT) && item.getEtcItem().isBlessed())
 			{
 				player.sendPacket(SystemMessageId.YOU_CANNOT_USE_THAT_ITEM_IN_A_GRAND_OLYMPIAD_MATCH);
 				return;

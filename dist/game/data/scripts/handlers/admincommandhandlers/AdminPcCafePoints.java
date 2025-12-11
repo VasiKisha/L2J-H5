@@ -23,8 +23,8 @@ package handlers.admincommandhandlers;
 import java.util.Collection;
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.custom.PremiumSystemConfig;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -75,10 +75,10 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 				{
 					case "set":
 					{
-						if (value > Config.PC_CAFE_MAX_POINTS)
+						if (value > PremiumSystemConfig.PC_CAFE_MAX_POINTS)
 						{
 							showMenuHtml(activeChar);
-							activeChar.sendSysMessage("You cannot set more than " + Config.PC_CAFE_MAX_POINTS + " PC points!");
+							activeChar.sendSysMessage("You cannot set more than " + PremiumSystemConfig.PC_CAFE_MAX_POINTS + " PC points!");
 							return false;
 						}
 						
@@ -95,17 +95,17 @@ public class AdminPcCafePoints implements IAdminCommandHandler
 					}
 					case "increase":
 					{
-						if (target.getPcCafePoints() == Config.PC_CAFE_MAX_POINTS)
+						if (target.getPcCafePoints() == PremiumSystemConfig.PC_CAFE_MAX_POINTS)
 						{
 							showMenuHtml(activeChar);
 							activeChar.sendMessage(target.getName() + " already have max count of PC points!");
 							return false;
 						}
 						
-						int pcCafeCount = Math.min(target.getPcCafePoints() + value, Config.PC_CAFE_MAX_POINTS);
+						int pcCafeCount = Math.min(target.getPcCafePoints() + value, PremiumSystemConfig.PC_CAFE_MAX_POINTS);
 						if (pcCafeCount < 0)
 						{
-							pcCafeCount = Config.PC_CAFE_MAX_POINTS;
+							pcCafeCount = PremiumSystemConfig.PC_CAFE_MAX_POINTS;
 						}
 						
 						target.setPcCafePoints(pcCafeCount);

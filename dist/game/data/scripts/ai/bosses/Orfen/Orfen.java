@@ -20,9 +20,9 @@ import java.util.Collection;
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.GrandBossConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.model.Location;
@@ -34,6 +34,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.type.BossZone;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -41,13 +42,11 @@ import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 
-import ai.AbstractNpcAI;
-
 /**
  * Orfen's AI
  * @author Emperorc
  */
-public class Orfen extends AbstractNpcAI
+public class Orfen extends Script
 {
 	private static final Location[] POS =
 	{
@@ -80,13 +79,11 @@ public class Orfen extends AbstractNpcAI
 	
 	private Orfen()
 	{
-		final int[] mobs =
-		{
-			ORFEN,
-			RAIKEL_LEOS,
-			RIBA_IREN
-		};
-		registerMobs(mobs);
+		addSkillSeeId(ORFEN, RAIKEL_LEOS, RIBA_IREN);
+		addFactionCallId(ORFEN, RAIKEL_LEOS, RIBA_IREN);
+		addAttackId(ORFEN, RAIKEL_LEOS, RIBA_IREN);
+		addKillId(ORFEN);
+		
 		_hasTeleported = false;
 		ZONE = GrandBossManager.getInstance().getZone(POS[0]);
 		final StatSet info = GrandBossManager.getInstance().getStatSet(ORFEN);
@@ -245,18 +242,15 @@ public class Orfen extends AbstractNpcAI
 	@Override
 	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
 	{
-		if (npc.getId() == ORFEN)
+		final Creature originalCaster = isSummon ? caster.getSummon() : caster;
+		if ((skill.getEffectPoint() > 0) && (getRandom(5) == 0) && npc.isInsideRadius2D(originalCaster, 1000))
 		{
-			final Creature originalCaster = isSummon ? caster.getSummon() : caster;
-			if ((skill.getEffectPoint() > 0) && (getRandom(5) == 0) && npc.isInsideRadius2D(originalCaster, 1000))
-			{
-				final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), TEXT[getRandom(4)]);
-				packet.addStringParameter(caster.getName());
-				npc.broadcastPacket(packet);
-				originalCaster.teleToLocation(npc.getLocation());
-				npc.setTarget(originalCaster);
-				npc.doCast(SkillData.getInstance().getSkill(4064, 1));
-			}
+			final NpcSay packet = new NpcSay(npc.getObjectId(), ChatType.NPC_GENERAL, npc.getId(), TEXT[getRandom(4)]);
+			packet.addStringParameter(caster.getName());
+			npc.broadcastPacket(packet);
+			originalCaster.teleToLocation(npc.getLocation());
+			npc.setTarget(originalCaster);
+			npc.doCast(SkillData.getInstance().getSkill(4064, 1));
 		}
 	}
 	
@@ -328,8 +322,8 @@ public class Orfen extends AbstractNpcAI
 			npc.broadcastPacket(new PlaySound(1, "BS02_D", 1, npc.getObjectId(), npc.getX(), npc.getY(), npc.getZ()));
 			GrandBossManager.getInstance().setStatus(ORFEN, DEAD);
 			
-			final long baseIntervalMillis = Config.ORFEN_SPAWN_INTERVAL * 3600000;
-			final long randomRangeMillis = Config.ORFEN_SPAWN_RANDOM * 3600000;
+			final long baseIntervalMillis = GrandBossConfig.ORFEN_SPAWN_INTERVAL * 3600000;
+			final long randomRangeMillis = GrandBossConfig.ORFEN_SPAWN_RANDOM * 3600000;
 			final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
 			
 			// Next respawn time.

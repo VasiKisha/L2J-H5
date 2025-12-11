@@ -18,8 +18,8 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -53,7 +53,7 @@ public class AdminGmSpeed implements IAdminCommandHandler
 			final String token = st.nextToken();
 			
 			// Rollback feature for old custom way, in order to make everyone happy.
-			if (Config.USE_SUPER_HASTE_AS_GM_SPEED)
+			if (GeneralConfig.USE_SUPER_HASTE_AS_GM_SPEED)
 			{
 				AdminCommandHandler.getInstance().onCommand(player, AdminSuperHaste.ADMIN_COMMANDS[0] + " " + token, false);
 				return true;

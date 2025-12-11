@@ -22,13 +22,16 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.custom.DualboxCheckConfig;
+import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
+import org.l2jmobius.gameserver.config.custom.OfflinePlayConfig;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
+import org.l2jmobius.gameserver.data.sql.OfflinePlayTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.data.xml.SecondaryAuthData;
 import org.l2jmobius.gameserver.managers.AntiFeedManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.model.CharSelectInfoPackage;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.Containers;
@@ -42,6 +45,7 @@ import org.l2jmobius.gameserver.model.variables.PlayerVariables;
 import org.l2jmobius.gameserver.network.ConnectionState;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
+import org.l2jmobius.gameserver.network.holders.CharacterInfoHolder;
 import org.l2jmobius.gameserver.network.serverpackets.CharSelected;
 import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
@@ -102,7 +106,7 @@ public class CharacterSelect extends ClientPacket
 				// but if not then this is repeated packet and nothing should be done here
 				if (client.getPlayer() == null)
 				{
-					final CharSelectInfoPackage info = client.getCharSelection(_charSlot);
+					final CharacterInfoHolder info = client.getCharSelection(_charSlot);
 					if (info == null)
 					{
 						return;
@@ -112,6 +116,11 @@ public class CharacterSelect extends ClientPacket
 					final Player player = World.getInstance().getPlayer(info.getObjectId());
 					if (player != null)
 					{
+						if (OfflinePlayConfig.RESTORE_AUTO_PLAY_OFFLINERS && player.isAutoPlaying())
+						{
+							OfflinePlayTable.getInstance().removeOfflinePlay(player);
+						}
+						
 						Disconnection.of(player).storeAndDelete();
 					}
 					
@@ -133,42 +142,42 @@ public class CharacterSelect extends ClientPacket
 					
 					if (client.getCharSelection(_charSlot).getAccessLevel() < 100)
 					{
-						if ((player != null) && player.hasPremiumStatus() && (Config.DUALBOX_CHECK_MAX_OFFLINEPLAY_PREMIUM_PER_IP > 0) && !AntiFeedManager.getInstance().tryAddPlayer(AntiFeedManager.OFFLINE_PLAY, player, Config.DUALBOX_CHECK_MAX_OFFLINEPLAY_PREMIUM_PER_IP))
+						if ((player != null) && player.hasPremiumStatus() && (DualboxCheckConfig.DUALBOX_CHECK_MAX_OFFLINEPLAY_PREMIUM_PER_IP > 0) && !AntiFeedManager.getInstance().tryAddPlayer(AntiFeedManager.OFFLINE_PLAY, player, DualboxCheckConfig.DUALBOX_CHECK_MAX_OFFLINEPLAY_PREMIUM_PER_IP))
 						{
 							final NpcHtmlMessage msg = new NpcHtmlMessage();
 							msg.setFile(null, "data/html/mods/IPRestriction.htm");
-							msg.replace("%max%", String.valueOf(AntiFeedManager.getInstance().getLimit(client, Config.DUALBOX_CHECK_MAX_OFFLINEPLAY_PREMIUM_PER_IP)));
+							msg.replace("%max%", String.valueOf(AntiFeedManager.getInstance().getLimit(client, DualboxCheckConfig.DUALBOX_CHECK_MAX_OFFLINEPLAY_PREMIUM_PER_IP)));
 							client.sendPacket(msg);
 							return;
 						}
-						else if ((Config.DUALBOX_CHECK_MAX_PLAYERS_PER_IP > 0) && !AntiFeedManager.getInstance().tryAddClient(AntiFeedManager.GAME_ID, client, Config.DUALBOX_CHECK_MAX_PLAYERS_PER_IP))
+						else if ((DualboxCheckConfig.DUALBOX_CHECK_MAX_PLAYERS_PER_IP > 0) && !AntiFeedManager.getInstance().tryAddClient(AntiFeedManager.GAME_ID, client, DualboxCheckConfig.DUALBOX_CHECK_MAX_PLAYERS_PER_IP))
 						{
 							final NpcHtmlMessage msg = new NpcHtmlMessage();
 							msg.setFile(null, "data/html/mods/IPRestriction.htm");
-							msg.replace("%max%", String.valueOf(AntiFeedManager.getInstance().getLimit(client, Config.DUALBOX_CHECK_MAX_PLAYERS_PER_IP)));
+							msg.replace("%max%", String.valueOf(AntiFeedManager.getInstance().getLimit(client, DualboxCheckConfig.DUALBOX_CHECK_MAX_PLAYERS_PER_IP)));
 							client.sendPacket(msg);
 							return;
 						}
 					}
 					
-					if (Config.FACTION_SYSTEM_ENABLED && Config.FACTION_BALANCE_ONLINE_PLAYERS)
+					if (FactionSystemConfig.FACTION_SYSTEM_ENABLED && FactionSystemConfig.FACTION_BALANCE_ONLINE_PLAYERS)
 					{
-						if (info.isGood() && (World.getInstance().getAllGoodPlayers().size() >= (World.getInstance().getAllEvilPlayers().size() + Config.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
+						if (info.isGood() && (World.getInstance().getAllGoodPlayers().size() >= (World.getInstance().getAllEvilPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
 						{
 							final NpcHtmlMessage msg = new NpcHtmlMessage();
 							msg.setFile(null, "data/html/mods/Faction/ExceededOnlineLimit.htm");
-							msg.replace("%more%", Config.FACTION_GOOD_TEAM_NAME);
-							msg.replace("%less%", Config.FACTION_EVIL_TEAM_NAME);
+							msg.replace("%more%", FactionSystemConfig.FACTION_GOOD_TEAM_NAME);
+							msg.replace("%less%", FactionSystemConfig.FACTION_EVIL_TEAM_NAME);
 							client.sendPacket(msg);
 							return;
 						}
 						
-						if (info.isEvil() && (World.getInstance().getAllEvilPlayers().size() >= (World.getInstance().getAllGoodPlayers().size() + Config.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
+						if (info.isEvil() && (World.getInstance().getAllEvilPlayers().size() >= (World.getInstance().getAllGoodPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
 						{
 							final NpcHtmlMessage msg = new NpcHtmlMessage();
 							msg.setFile(null, "data/html/mods/Faction/ExceededOnlineLimit.htm");
-							msg.replace("%more%", Config.FACTION_EVIL_TEAM_NAME);
-							msg.replace("%less%", Config.FACTION_GOOD_TEAM_NAME);
+							msg.replace("%more%", FactionSystemConfig.FACTION_EVIL_TEAM_NAME);
+							msg.replace("%less%", FactionSystemConfig.FACTION_GOOD_TEAM_NAME);
 							client.sendPacket(msg);
 							return;
 						}
@@ -184,7 +193,7 @@ public class CharacterSelect extends ClientPacket
 					CharInfoTable.getInstance().addName(cha);
 					
 					// Prevent instant disappear of invisible GMs on login.
-					if (cha.isGM() && Config.GM_STARTUP_INVISIBLE && AdminData.getInstance().hasAccess("admin_invisible", cha.getAccessLevel()))
+					if (cha.isGM() && GeneralConfig.GM_STARTUP_INVISIBLE && AdminData.getInstance().hasAccess("admin_invisible", cha.getAccessLevel()))
 					{
 						cha.setInvisible(true);
 					}

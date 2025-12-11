@@ -19,16 +19,15 @@ package ai.others.BlackJudge;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.EtcStatusUpdate;
-
-import ai.AbstractNpcAI;
 
 /**
  * Black Judge AI.
  * @author St3eT
  */
-public class BlackJudge extends AbstractNpcAI
+public class BlackJudge extends Script
 {
 	// NPC
 	private static final int BLACK_JUDGE = 30981;
@@ -86,6 +85,12 @@ public class BlackJudge extends AbstractNpcAI
 		}
 		
 		return htmltext;
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

@@ -20,15 +20,14 @@ import org.l2jmobius.gameserver.managers.AirShipManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-
-import ai.AbstractNpcAI;
 
 /**
  * Lekon AI.
  * @author St3eT
  */
-public class Lekon extends AbstractNpcAI
+public class Lekon extends Script
 {
 	// NPCs
 	private static final int LEKON = 32557;
@@ -89,4 +88,9 @@ public class Lekon extends AbstractNpcAI
 		
 		return htmltext;
 	}
-}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
+	}}

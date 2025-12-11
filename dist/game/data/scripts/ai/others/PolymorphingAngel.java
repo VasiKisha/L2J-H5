@@ -26,13 +26,12 @@ import java.util.Map;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Angel spawns...when one of the angels in the keys dies, the other angel will spawn.
  */
-public class PolymorphingAngel extends AbstractNpcAI
+public class PolymorphingAngel extends Script
 {
 	private static final Map<Integer, Integer> ANGELSPAWNS = new HashMap<>();
 	static

@@ -36,9 +36,9 @@ import javax.xml.parsers.SAXParserFactory;
 import org.xml.sax.Attributes;
 import org.xml.sax.helpers.DefaultHandler;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -78,7 +78,7 @@ public class BotReportTable
 	
 	protected BotReportTable()
 	{
-		if (Config.BOTREPORT_ENABLE)
+		if (GeneralConfig.BOTREPORT_ENABLE)
 		{
 			_ipRegistry = new HashMap<>();
 			_charRegistry = new ConcurrentHashMap<>();
@@ -119,8 +119,8 @@ public class BotReportTable
 			long lastResetTime = 0;
 			try
 			{
-				final int hour = Integer.parseInt(Config.BOTREPORT_RESETPOINT_HOUR[0]);
-				final int minute = Integer.parseInt(Config.BOTREPORT_RESETPOINT_HOUR[1]);
+				final int hour = Integer.parseInt(GeneralConfig.BOTREPORT_RESETPOINT_HOUR[0]);
+				final int minute = Integer.parseInt(GeneralConfig.BOTREPORT_RESETPOINT_HOUR[1]);
 				final long currentTime = System.currentTimeMillis();
 				final Calendar calendar = Calendar.getInstance();
 				calendar.set(Calendar.HOUR_OF_DAY, hour);
@@ -276,7 +276,7 @@ public class BotReportTable
 					return false;
 				}
 				
-				if (!Config.BOTREPORT_ALLOW_REPORTS_FROM_SAME_CLAN_MEMBERS && rcd.reportedBySameClan(reporter.getClan()))
+				if (!GeneralConfig.BOTREPORT_ALLOW_REPORTS_FROM_SAME_CLAN_MEMBERS && rcd.reportedBySameClan(reporter.getClan()))
 				{
 					reporter.sendPacket(SystemMessageId.THIS_CHARACTER_CANNOT_MAKE_A_REPORT_THE_TARGET_HAS_ALREADY_BEEN_REPORTED_BY_EITHER_YOUR_CLAN_OR_ALLIANCE_OR_HAS_ALREADY_BEEN_REPORTED_FROM_YOUR_CURRENT_IP);
 					return false;
@@ -292,7 +292,7 @@ public class BotReportTable
 				}
 				
 				final long reuse = (System.currentTimeMillis() - rcdRep.getLastReporTime());
-				if (reuse < Config.BOTREPORT_REPORT_DELAY)
+				if (reuse < GeneralConfig.BOTREPORT_REPORT_DELAY)
 				{
 					final SystemMessage sm = new SystemMessage(SystemMessageId.FIVE_YEARS_HAVE_PASSED_SINCE_THIS_CHARACTER_S_CREATION);
 					sm.addInt((int) (reuse / 60000));
@@ -417,8 +417,8 @@ public class BotReportTable
 	{
 		try
 		{
-			final int hour = Integer.parseInt(Config.BOTREPORT_RESETPOINT_HOUR[0]);
-			final int minute = Integer.parseInt(Config.BOTREPORT_RESETPOINT_HOUR[1]);
+			final int hour = Integer.parseInt(GeneralConfig.BOTREPORT_RESETPOINT_HOUR[0]);
+			final int minute = Integer.parseInt(GeneralConfig.BOTREPORT_RESETPOINT_HOUR[1]);
 			final long currentTime = System.currentTimeMillis();
 			final Calendar calendar = Calendar.getInstance();
 			calendar.set(Calendar.HOUR_OF_DAY, hour);
@@ -470,7 +470,7 @@ public class BotReportTable
 	{
 		if (map.containsKey(objectId))
 		{
-			return (System.currentTimeMillis() - map.get(objectId)) > Config.BOTREPORT_REPORT_DELAY;
+			return (System.currentTimeMillis() - map.get(objectId)) > GeneralConfig.BOTREPORT_REPORT_DELAY;
 		}
 		
 		return true;

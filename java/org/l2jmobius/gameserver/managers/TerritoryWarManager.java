@@ -37,10 +37,10 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.ConfigReader;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
@@ -54,7 +54,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.SiegeFlag;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.script.Quest;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.siege.Siegable;
@@ -69,6 +69,8 @@ import org.l2jmobius.gameserver.util.LocationUtil;
 public class TerritoryWarManager implements Siegable
 {
 	private static final Logger LOGGER = Logger.getLogger(TerritoryWarManager.class.getName());
+	
+	private static final String TW_CONFIG_FILE = "./config/TerritoryWar.ini";
 	
 	// SQL
 	private static final String DELETE = "DELETE FROM territory_registrations WHERE castleId = ? and registeredId = ?";
@@ -815,7 +817,7 @@ public class TerritoryWarManager implements Siegable
 	
 	private void load()
 	{
-		final ConfigReader territoryWarConfig = new ConfigReader(Config.TW_CONFIG_FILE);
+		final ConfigReader territoryWarConfig = new ConfigReader(TW_CONFIG_FILE);
 		
 		// Siege configurations.
 		DEFENDERMAXCLANS = territoryWarConfig.getInt("DefenderMaxClans", 500);
@@ -1194,7 +1196,7 @@ public class TerritoryWarManager implements Siegable
 	
 	protected void updatePlayerTWStateFlags(boolean clear)
 	{
-		final Quest twQuest = QuestManager.getInstance().getQuest(qn);
+		final Quest twQuest = ScriptManager.getInstance().getScript(qn);
 		if (twQuest != null)
 		{
 			twQuest.setOnEnterWorld(_isTWInProgress);
@@ -1864,13 +1866,13 @@ public class TerritoryWarManager implements Siegable
 	@Override
 	public int getFameFrequency()
 	{
-		return Config.CASTLE_ZONE_FAME_TASK_FREQUENCY;
+		return PlayerConfig.CASTLE_ZONE_FAME_TASK_FREQUENCY;
 	}
 	
 	@Override
 	public int getFameAmount()
 	{
-		return Config.CASTLE_ZONE_FAME_AQUIRE_POINTS;
+		return PlayerConfig.CASTLE_ZONE_FAME_AQUIRE_POINTS;
 	}
 	
 	@Override

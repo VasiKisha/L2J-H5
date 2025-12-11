@@ -22,6 +22,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -32,7 +33,12 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.commons.time.TimeUtil;
+import org.l2jmobius.gameserver.config.FeatureConfig;
+import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.clan.Clan;
 
 /**
  * @author Kerberos, JIV
@@ -47,6 +53,9 @@ public class RaidBossPointsManager
 	public RaidBossPointsManager()
 	{
 		init();
+		
+		// Start reset task at 00:10 and repeat every 24 hours.
+		ThreadPool.scheduleAtFixedRate(this::resetRaidPoints, TimeUtil.getNextTime(0, 10).getTimeInMillis() - System.currentTimeMillis(), 86400000);
 	}
 	
 	private void init()
@@ -76,6 +85,98 @@ public class RaidBossPointsManager
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Could not load raid points ", e);
 		}
+	}
+	
+	private void resetRaidPoints()
+	{
+		final Calendar calendar = Calendar.getInstance();
+		if (calendar.get(Calendar.DAY_OF_WEEK) != Calendar.MONDAY)
+		{
+			return;
+		}
+		
+		// Reward clan reputation points.
+		final Map<Integer, Integer> rankList = RaidBossPointsManager.getInstance().getRankList();
+		for (Clan clan : ClanTable.getInstance().getClans())
+		{
+			for (Entry<Integer, Integer> entry : rankList.entrySet())
+			{
+				if ((entry.getValue() <= 100) && clan.isMember(entry.getKey()))
+				{
+					int reputation = 0;
+					switch (entry.getValue())
+					{
+						case 1:
+						{
+							reputation = FeatureConfig.RAID_RANKING_1ST;
+							break;
+						}
+						case 2:
+						{
+							reputation = FeatureConfig.RAID_RANKING_2ND;
+							break;
+						}
+						case 3:
+						{
+							reputation = FeatureConfig.RAID_RANKING_3RD;
+							break;
+						}
+						case 4:
+						{
+							reputation = FeatureConfig.RAID_RANKING_4TH;
+							break;
+						}
+						case 5:
+						{
+							reputation = FeatureConfig.RAID_RANKING_5TH;
+							break;
+						}
+						case 6:
+						{
+							reputation = FeatureConfig.RAID_RANKING_6TH;
+							break;
+						}
+						case 7:
+						{
+							reputation = FeatureConfig.RAID_RANKING_7TH;
+							break;
+						}
+						case 8:
+						{
+							reputation = FeatureConfig.RAID_RANKING_8TH;
+							break;
+						}
+						case 9:
+						{
+							reputation = FeatureConfig.RAID_RANKING_9TH;
+							break;
+						}
+						case 10:
+						{
+							reputation = FeatureConfig.RAID_RANKING_10TH;
+							break;
+						}
+						default:
+						{
+							if (entry.getValue() <= 50)
+							{
+								reputation = FeatureConfig.RAID_RANKING_UP_TO_50TH;
+							}
+							else
+							{
+								reputation = FeatureConfig.RAID_RANKING_UP_TO_100TH;
+							}
+							break;
+						}
+					}
+					
+					clan.addReputationScore(reputation);
+				}
+			}
+		}
+		
+		cleanUp();
+		LOGGER.info(getClass().getSimpleName() + ": Reset task launched.");
 	}
 	
 	public void updatePointsInDB(Player player, int raidId, int points)

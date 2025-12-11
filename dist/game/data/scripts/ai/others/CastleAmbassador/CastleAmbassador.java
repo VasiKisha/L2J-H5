@@ -19,17 +19,16 @@ package ai.others.CastleAmbassador;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-
-import ai.AbstractNpcAI;
 
 /**
  * Castle Ambassador AI.
  * @author St3eT
  */
-public class CastleAmbassador extends AbstractNpcAI
+public class CastleAmbassador extends Script
 {
 	// NPCs
 	// @formatter:off

@@ -45,7 +45,7 @@ public abstract class AbstractItemPacket extends ServerPacket
 		buffer.writeLong(item.getCount()); // Quantity
 		buffer.writeByte(item.getItem().getType2()); // Item Type 2 : 00-weapon, 01-shield/armor, 02-ring/earring/necklace, 03-questitem, 04-adena, 05-item
 		buffer.writeByte(item.getCustomType1()); // Filler (always 0)
-		buffer.writeLong(item.getItem().getBodyPart()); // Slot : 0006-lr.ear, 0008-neck, 0030-lr.finger, 0040-head, 0100-l.hand, 0200-gloves, 0400-chest, 0800-pants, 1000-feet, 4000-r.hand, 8000-r.hand
+		buffer.writeLong(item.getItem().getBodyPart().getMask()); // Slot : 0006-lr.ear, 0008-neck, 0030-lr.finger, 0040-head, 0100-l.hand, 0200-gloves, 0400-chest, 0800-pants, 1000-feet, 4000-r.hand, 8000-r.hand
 		buffer.writeShort(item.getEnchant()); // Enchant level (pet level shown in control item)
 		buffer.writeShort(0); // Equipped : 00-No, 01-yes
 		buffer.writeShort(item.getCustomType2());
@@ -61,7 +61,7 @@ public abstract class AbstractItemPacket extends ServerPacket
 		buffer.writeShort(item.getItem().getType2()); // Item Type 2 : 00-weapon, 01-shield/armor, 02-ring/earring/necklace, 03-questitem, 04-adena, 05-item
 		buffer.writeShort(item.getCustomType1()); // Filler (always 0)
 		buffer.writeShort(item.getEquipped()); // Equipped : 00-No, 01-yes
-		buffer.writeInt(item.getItem().getBodyPart()); // Slot : 0006-lr.ear, 0008-neck, 0030-lr.finger, 0040-head, 0100-l.hand, 0200-gloves, 0400-chest, 0800-pants, 1000-feet, 4000-r.hand, 8000-r.hand
+		buffer.writeInt(item.getItem().getBodyPart().getMask()); // Slot : 0006-lr.ear, 0008-neck, 0030-lr.finger, 0040-head, 0100-l.hand, 0200-gloves, 0400-chest, 0800-pants, 1000-feet, 4000-r.hand, 8000-r.hand
 		buffer.writeShort(item.getEnchant()); // Enchant level (pet level shown in control item)
 		buffer.writeShort(item.getCustomType2()); // Pet name exists or not shown in control item
 		buffer.writeInt(item.getAugmentationBonus());

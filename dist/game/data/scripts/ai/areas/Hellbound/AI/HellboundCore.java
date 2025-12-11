@@ -20,16 +20,16 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Manages Naia's cast on the Hellbound Core
  * @author GKR
  */
-public class HellboundCore extends AbstractNpcAI
+public class HellboundCore extends Script
 {
 	// NPCs
 	private static final int NAIA = 18484;

@@ -19,8 +19,9 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.EnchantSkillGroup.EnchantSkillHolder;
@@ -124,7 +125,7 @@ public class RequestExEnchantSkillRouteChange extends ClientPacket
 			final Item spb = player.getInventory().getItemByItemId(reqItemId);
 			
 			// does not have spellbook
-			if (Config.ES_SP_BOOK_NEEDED && (spb == null))
+			if (PlayerConfig.ES_SP_BOOK_NEEDED && (spb == null))
 			{
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ALL_OF_THE_ITEMS_NEEDED_TO_ENCHANT_SKILL_ROUTE_CHANGE);
 				return;
@@ -138,7 +139,7 @@ public class RequestExEnchantSkillRouteChange extends ClientPacket
 			
 			boolean check;
 			check = player.getStat().removeExpAndSp(0, requiredSp, false);
-			if (Config.ES_SP_BOOK_NEEDED)
+			if (PlayerConfig.ES_SP_BOOK_NEEDED)
 			{
 				check &= player.destroyItem(ItemProcessType.NONE, spb.getObjectId(), 1, player, true);
 			}
@@ -160,7 +161,7 @@ public class RequestExEnchantSkillRouteChange extends ClientPacket
 			skill = SkillData.getInstance().getSkill(_skillId, _skillLevel);
 			if (skill != null)
 			{
-				if (Config.LOG_SKILL_ENCHANTS)
+				if (GeneralConfig.LOG_SKILL_ENCHANTS)
 				{
 					LOGGER_ENCHANT.log(Level.INFO, "Route Change:" + player.getName() + " [" + player.getObjectId() + "] Account:" + player.getAccountName() + " IP:" + player.getIPAddress() + ", Skill:" + skill + ", SPB:" + spb);
 				}

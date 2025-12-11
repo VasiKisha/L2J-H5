@@ -25,15 +25,14 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Dark Elven Change Part 1.
  * @author nonom
  */
-public class DarkElfChange1 extends AbstractNpcAI
+public class DarkElfChange1 extends Script
 {
 	// NPCs
 	private static int[] NPCS =

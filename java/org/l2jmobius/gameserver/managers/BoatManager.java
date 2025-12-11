@@ -23,7 +23,7 @@ package org.l2jmobius.gameserver.managers;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.VehiclePathPoint;
 import org.l2jmobius.gameserver.model.World;
@@ -56,7 +56,7 @@ public class BoatManager
 	
 	public Boat getNewBoat(int boatId, int x, int y, int z, int heading)
 	{
-		if (!Config.ALLOW_BOAT)
+		if (!GeneralConfig.ALLOW_BOAT)
 		{
 			return null;
 		}
@@ -175,8 +175,8 @@ public class BoatManager
 	{
 		for (Player player : World.getInstance().getPlayers())
 		{
-			if ((Math.hypot(player.getX() - point1.getX(), player.getY() - point1.getY()) < Config.BOAT_BROADCAST_RADIUS) || //
-				(Math.hypot(player.getX() - point2.getX(), player.getY() - point2.getY()) < Config.BOAT_BROADCAST_RADIUS))
+			if ((Math.hypot(player.getX() - point1.getX(), player.getY() - point1.getY()) < GeneralConfig.BOAT_BROADCAST_RADIUS) || //
+				(Math.hypot(player.getX() - point2.getX(), player.getY() - point2.getY()) < GeneralConfig.BOAT_BROADCAST_RADIUS))
 			{
 				for (ServerPacket p : packets)
 				{

@@ -50,7 +50,7 @@ public class ScriptExecutor
 	private static final Logger LOGGER = Logger.getLogger(ScriptExecutor.class.getName());
 	
 	private static final JavaCompiler COMPILER = ToolProvider.getSystemJavaCompiler();
-	private static final ClassLoader CLASS_LOADER = ClassLoader.getSystemClassLoader();
+	private static final ScriptClassLoader SCRIPT_CLASS_LOADER = new ScriptClassLoader(ClassLoader.getSystemClassLoader());
 	private static final List<String> OPTIONS = new ArrayList<>();
 	
 	private static Path _currentExecutingScript;
@@ -111,6 +111,10 @@ public class ScriptExecutor
 			
 			final Map<Path, Throwable> executionFailures = new HashMap<>();
 			final Iterable<ScriptClassData> compiledClasses = fileManager.getCompiledClasses();
+			
+			// Add all newly compiled classes to the script class loader.
+			SCRIPT_CLASS_LOADER.addCompiledClasses(compiledClasses);
+			
 			for (Path sourcePath : sourcePaths)
 			{
 				boolean found = false;
@@ -131,8 +135,7 @@ public class ScriptExecutor
 						_currentExecutingScript = compiledSourcePath;
 						try
 						{
-							final ScriptClassLoader loader = new ScriptClassLoader(CLASS_LOADER, compiledClasses);
-							final Class<?> javaClass = loader.loadClass(javaName);
+							final Class<?> javaClass = SCRIPT_CLASS_LOADER.loadClass(javaName);
 							executeMainMethod(javaClass, compiledSourcePath);
 						}
 						catch (Exception e)

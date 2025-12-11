@@ -22,7 +22,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.RecipeData;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.ManufactureItem;
@@ -49,7 +50,7 @@ public class RequestRecipeShopListSet extends ClientPacket
 	protected void readImpl()
 	{
 		final int count = readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
+		if ((count <= 0) || (count > PlayerConfig.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -111,13 +112,13 @@ public class RequestRecipeShopListSet extends ClientPacket
 			final RecipeList list = RecipeData.getInstance().getRecipeList(i.getRecipeId());
 			if (!player.getDwarvenRecipeBook().contains(list) && !player.getCommonRecipeBook().contains(list))
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! " + player + " of account " + player.getAccountName() + " tried to set recipe which he does not have.", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! " + player + " of account " + player.getAccountName() + " tried to set recipe which he does not have.", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			
 			if (i.getCost() > MAX_ADENA)
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! " + player + " of account " + player.getAccountName() + " tried to set price more than " + MAX_ADENA + " adena in Private Manufacture.", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! " + player + " of account " + player.getAccountName() + " tried to set price more than " + MAX_ADENA + " adena in Private Manufacture.", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			

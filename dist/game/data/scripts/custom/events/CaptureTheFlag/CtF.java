@@ -36,11 +36,11 @@ import java.util.concurrent.locks.ReentrantLock;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.SchedulingPattern;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.custom.DualboxCheckConfig;
 import org.l2jmobius.gameserver.managers.AntiFeedManager;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.managers.ItemManager;
@@ -68,8 +68,8 @@ import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
-import org.l2jmobius.gameserver.model.quest.Event;
-import org.l2jmobius.gameserver.model.quest.QuestTimer;
+import org.l2jmobius.gameserver.model.script.Event;
+import org.l2jmobius.gameserver.model.script.QuestTimer;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
@@ -282,7 +282,7 @@ public class CtF extends Event
 			{
 				if (canRegister(player))
 				{
-					if ((Config.DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP == 0) || AntiFeedManager.getInstance().tryAddPlayer(AntiFeedManager.L2EVENT_ID, player, Config.DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP))
+					if ((DualboxCheckConfig.DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP == 0) || AntiFeedManager.getInstance().tryAddPlayer(AntiFeedManager.L2EVENT_ID, player, DualboxCheckConfig.DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP))
 					{
 						PLAYER_LIST.add(player);
 						PLAYER_SCORES.put(player, 0);
@@ -309,7 +309,7 @@ public class CtF extends Event
 				}
 				
 				// Remove the player from the IP count
-				if (Config.DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP > 0)
+				if (DualboxCheckConfig.DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP > 0)
 				{
 					AntiFeedManager.getInstance().removePlayer(AntiFeedManager.L2EVENT_ID, player);
 				}
@@ -717,9 +717,9 @@ public class CtF extends Event
 					final Summon summon = participant.getSummon();
 					if (summon != null)
 					{
-						summon.setInvul(true);
-						summon.setImmobilized(true);
-						summon.disableAllSkills();
+						summon.setInvul(false);
+						summon.setImmobilized(false);
+						summon.enableAllSkills();
 					}
 				}
 				
@@ -823,6 +823,12 @@ public class CtF extends Event
 				player.sendPacket(new ExSendUIEvent(player, false, false, 0, 0, NpcStringId.TIME_REMAINING));
 				player.sendPacket(new ExPVPMatchCCRecord(ExPVPMatchCCRecord.FINISH, MapUtil.sortByValue(PLAYER_SCORES, true)));
 			}
+		}
+		
+		if (event.startsWith("RegistrationWarn:"))
+		{
+			int minutesLeft = Integer.parseInt(event.split(":")[1]);
+			Broadcast.toAllOnlinePlayers("CtF Event: Registration opened for " + minutesLeft + " minutes.");
 		}
 		
 		return htmltext;
@@ -1442,7 +1448,7 @@ public class CtF extends Event
 		}
 		
 		// Register the event at AntiFeedManager and clean it for just in case if the event is already registered
-		if (Config.DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP > 0)
+		if (DualboxCheckConfig.DUALBOX_CHECK_MAX_L2EVENT_PARTICIPANTS_PER_IP > 0)
 		{
 			AntiFeedManager.getInstance().registerEvent(AntiFeedManager.L2EVENT_ID);
 			AntiFeedManager.getInstance().clear(AntiFeedManager.L2EVENT_ID);
@@ -1461,6 +1467,19 @@ public class CtF extends Event
 		// Send message to players.
 		Broadcast.toAllOnlinePlayers("CtF Event: Registration opened for " + REGISTRATION_TIME + " minutes.");
 		Broadcast.toAllOnlinePlayers("CtF Event: You can register at Giran CtF Event Manager.");
+		
+		// @formatter:off
+		final int[] warnings = {10, 5, 4, 3, 2, 1};
+		// @formatter:on
+		for (int warn : warnings)
+		{
+			if (REGISTRATION_TIME > warn)
+			{
+				final long delay = (REGISTRATION_TIME - warn) * 60000L;
+				startQuestTimer("RegistrationWarn:" + warn, delay, null, null);
+			}
+		}
+		
 		return true;
 	}
 	

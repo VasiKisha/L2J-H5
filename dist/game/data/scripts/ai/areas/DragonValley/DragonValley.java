@@ -23,17 +23,16 @@ import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.util.ArrayUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Dragon Valley AI.
  * @author St3eT
  */
-public class DragonValley extends AbstractNpcAI
+public class DragonValley extends Script
 {
 	// NPC
 	private static final int NECROMANCER_OF_THE_VALLEY = 22858;

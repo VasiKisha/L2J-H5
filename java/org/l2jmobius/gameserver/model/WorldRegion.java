@@ -20,19 +20,17 @@
  */
 package org.l2jmobius.gameserver.model;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.List;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.model.actor.Attackable;
-import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Fence;
 import org.l2jmobius.gameserver.taskmanagers.RandomAnimationTaskManager;
@@ -41,15 +39,16 @@ public class WorldRegion
 {
 	/** Set containing visible objects in this world region. */
 	private final Set<WorldObject> _visibleObjects = ConcurrentHashMap.newKeySet();
-	/** List containing doors in this world region. */
-	private final List<Door> _doors = new ArrayList<>(1);
-	/** List containing fences in this world region. */
-	private final List<Fence> _fences = new ArrayList<>(1);
+	/** Set containing doors in this world region. */
+	private final Set<Door> _doors = ConcurrentHashMap.newKeySet();
+	/** Set containing fences in this world region. */
+	private final Set<Fence> _fences = ConcurrentHashMap.newKeySet();
 	/** Array containing nearby regions forming this world region's effective area. */
 	private WorldRegion[] _surroundingRegions;
+	private final ConcurrentHashMap<WorldRegion, Boolean> _surroundingRegionCache = new ConcurrentHashMap<>();
 	private final int _regionX;
 	private final int _regionY;
-	private boolean _active = Config.GRIDS_ALWAYS_ON;
+	private boolean _active = GeneralConfig.GRIDS_ALWAYS_ON;
 	private ScheduledFuture<?> _neighborsTask = null;
 	private final AtomicInteger _activeNeighbors = new AtomicInteger();
 	
@@ -88,7 +87,7 @@ public class WorldRegion
 					
 					// Teleport to spawn when too far away.
 					final Spawn spawn = mob.getSpawn();
-					if ((spawn != null) && (mob.calculateDistance2D(spawn) > Config.MAX_DRIFT_RANGE))
+					if ((spawn != null) && (mob.calculateDistance2D(spawn) > NpcConfig.MAX_DRIFT_RANGE))
 					{
 						mob.teleToLocation(spawn);
 					}
@@ -105,7 +104,7 @@ public class WorldRegion
 					
 					RandomAnimationTaskManager.getInstance().remove(mob);
 				}
-				else if (wo instanceof Npc)
+				else if (wo.isNpc())
 				{
 					RandomAnimationTaskManager.getInstance().remove(wo.asNpc());
 				}
@@ -146,7 +145,7 @@ public class WorldRegion
 	
 	public boolean areNeighborsActive()
 	{
-		return Config.GRIDS_ALWAYS_ON || (_activeNeighbors.get() > 0);
+		return GeneralConfig.GRIDS_ALWAYS_ON || (_activeNeighbors.get() > 0);
 	}
 	
 	public boolean areNeighborsEmpty()
@@ -176,10 +175,10 @@ public class WorldRegion
 	}
 	
 	/**
-	 * this function turns this region's AI and geodata on or off
+	 * This function turns this region's AI ON or OFF.
 	 * @param value
 	 */
-	public void setActive(boolean value)
+	public synchronized void setActive(boolean value)
 	{
 		if (_active == value)
 		{
@@ -231,7 +230,7 @@ public class WorldRegion
 				{
 					_surroundingRegions[i].setActive(true);
 				}
-			}, 1000 * Config.GRID_NEIGHBOR_TURNON_TIME);
+			}, 1000 * GeneralConfig.GRID_NEIGHBOR_TURNON_TIME);
 		}
 	}
 	
@@ -261,7 +260,7 @@ public class WorldRegion
 						worldRegion.setActive(false);
 					}
 				}
-			}, 1000 * Config.GRID_NEIGHBOR_TURNOFF_TIME);
+			}, 1000 * GeneralConfig.GRID_NEIGHBOR_TURNOFF_TIME);
 		}
 	}
 	
@@ -270,7 +269,7 @@ public class WorldRegion
 	 * If WorldObject is a Player, Add the Player in the HashSet(Player) _allPlayable containing Player of all player in game in this WorldRegion
 	 * @param object
 	 */
-	public void addVisibleObject(WorldObject object)
+	public synchronized void addVisibleObject(WorldObject object)
 	{
 		if (object == null)
 		{
@@ -295,7 +294,7 @@ public class WorldRegion
 		}
 		
 		// If this is the first player to enter the region, activate self and neighbors.
-		if (object.isPlayable() && !_active && !Config.GRIDS_ALWAYS_ON)
+		if (object.isPlayable() && !_active && !GeneralConfig.GRIDS_ALWAYS_ON)
 		{
 			startActivation();
 		}
@@ -305,7 +304,7 @@ public class WorldRegion
 	 * Remove the WorldObject from the WorldObjectHashSet(WorldObject) _visibleObjects in this WorldRegion. If WorldObject is a Player, remove it from the HashSet(Player) _allPlayable of this WorldRegion
 	 * @param object
 	 */
-	public void removeVisibleObject(WorldObject object)
+	public synchronized void removeVisibleObject(WorldObject object)
 	{
 		if (object == null)
 		{
@@ -334,7 +333,7 @@ public class WorldRegion
 			}
 		}
 		
-		if (object.isPlayable() && areNeighborsEmpty() && !Config.GRIDS_ALWAYS_ON)
+		if (object.isPlayable() && areNeighborsEmpty() && !GeneralConfig.GRIDS_ALWAYS_ON)
 		{
 			startDeactivation();
 		}
@@ -345,38 +344,32 @@ public class WorldRegion
 		return _visibleObjects;
 	}
 	
-	public synchronized void addDoor(Door door)
+	public void addDoor(Door door)
 	{
-		if (!_doors.contains(door))
-		{
-			_doors.add(door);
-		}
+		_doors.add(door);
 	}
 	
-	private synchronized void removeDoor(Door door)
+	private void removeDoor(Door door)
 	{
 		_doors.remove(door);
 	}
 	
-	public List<Door> getDoors()
+	public Collection<Door> getDoors()
 	{
 		return _doors;
 	}
 	
-	public synchronized void addFence(Fence fence)
+	public void addFence(Fence fence)
 	{
-		if (!_fences.contains(fence))
-		{
-			_fences.add(fence);
-		}
+		_fences.add(fence);
 	}
 	
-	private synchronized void removeFence(Fence fence)
+	private void removeFence(Fence fence)
 	{
 		_fences.remove(fence);
 	}
 	
-	public List<Fence> getFences()
+	public Collection<Fence> getFences()
 	{
 		return _fences;
 	}
@@ -402,9 +395,19 @@ public class WorldRegion
 		return _surroundingRegions;
 	}
 	
+	/**
+	 * Checks if the given region is a surrounding region of this region.
+	 * @param region region to check
+	 * @return true if the region is surrounding this region
+	 */
 	public boolean isSurroundingRegion(WorldRegion region)
 	{
-		return (region != null) && (_regionX >= (region.getRegionX() - 1)) && (_regionX <= (region.getRegionX() + 1)) && (_regionY >= (region.getRegionY() - 1)) && (_regionY <= (region.getRegionY() + 1));
+		if (region == null)
+		{
+			return false;
+		}
+		
+		return _surroundingRegionCache.computeIfAbsent(region, r -> (_regionX >= (r.getRegionX() - 1)) && (_regionX <= (r.getRegionX() + 1)) && (_regionY >= (r.getRegionY() - 1)) && (_regionY <= (r.getRegionY() + 1)));
 	}
 	
 	public int getRegionX()

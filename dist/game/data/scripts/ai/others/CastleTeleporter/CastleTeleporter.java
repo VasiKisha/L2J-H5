@@ -20,18 +20,17 @@ import org.l2jmobius.gameserver.managers.MapRegionManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.siege.Siege;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
-import ai.AbstractNpcAI;
-
 /**
  * Castle Teleporter AI.
  * @author malyelfik
  */
-public class CastleTeleporter extends AbstractNpcAI
+public class CastleTeleporter extends Script
 {
 	// Teleporter IDs
 	private static final int[] NPCS =

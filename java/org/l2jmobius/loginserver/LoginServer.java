@@ -16,7 +16,6 @@
  */
 package org.l2jmobius.loginserver;
 
-import java.awt.GraphicsEnvironment;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -29,16 +28,16 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.DatabaseConfig;
+import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.commons.database.DatabaseBackup;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.enums.ServerMode;
 import org.l2jmobius.commons.network.ConnectionManager;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.ConfigReader;
-import org.l2jmobius.gameserver.network.loginserverpackets.game.ServerStatus;
+import org.l2jmobius.loginserver.config.LoginConfig;
 import org.l2jmobius.loginserver.network.LoginClient;
 import org.l2jmobius.loginserver.network.LoginPacketHandler;
+import org.l2jmobius.loginserver.network.gameserverpackets.ServerStatus;
 import org.l2jmobius.loginserver.ui.Gui;
 
 /**
@@ -57,11 +56,9 @@ public class LoginServer
 	private LoginServer() throws Exception
 	{
 		// GUI.
-		final ConfigReader interfaceConfig = new ConfigReader(Config.INTERFACE_CONFIG_FILE);
-		Config.ENABLE_GUI = interfaceConfig.getBoolean("EnableGUI", true);
-		if (Config.ENABLE_GUI && !GraphicsEnvironment.isHeadless())
+		InterfaceConfig.load();
+		if (InterfaceConfig.ENABLE_GUI)
 		{
-			Config.DARK_THEME = interfaceConfig.getBoolean("DarkTheme", true);
 			System.out.println("LoginServer: Running in GUI mode.");
 			new Gui();
 		}
@@ -80,8 +77,8 @@ public class LoginServer
 			LOGGER.warning(getClass().getSimpleName() + ": " + e.getMessage());
 		}
 		
-		// Load Config.
-		Config.load(ServerMode.LOGIN);
+		// Load LoginConfig.
+		LoginConfig.load();
 		
 		// Prepare the database.
 		DatabaseFactory.init();
@@ -103,17 +100,17 @@ public class LoginServer
 		
 		loadBanFile();
 		
-		if (Config.LOGIN_SERVER_SCHEDULE_RESTART)
+		if (LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART)
 		{
-			LOGGER.info("Scheduled LS restart after " + Config.LOGIN_SERVER_SCHEDULE_RESTART_TIME + " hours.");
-			ThreadPool.schedule(() -> shutdown(true), Config.LOGIN_SERVER_SCHEDULE_RESTART_TIME * 3600000);
+			LOGGER.info("Scheduled LS restart after " + LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART_TIME + " hours.");
+			ThreadPool.schedule(() -> shutdown(true), LoginConfig.LOGIN_SERVER_SCHEDULE_RESTART_TIME * 3600000);
 		}
 		
 		try
 		{
 			_gameServerListener = new GameServerListener();
 			_gameServerListener.start();
-			LOGGER.info("Listening for GameServers on " + Config.GAME_SERVER_LOGIN_HOST + ":" + Config.GAME_SERVER_LOGIN_PORT);
+			LOGGER.info("Listening for GameServers on " + LoginConfig.GAME_SERVER_LOGIN_HOST + ":" + LoginConfig.GAME_SERVER_LOGIN_PORT);
 		}
 		catch (IOException e)
 		{
@@ -121,8 +118,8 @@ public class LoginServer
 			System.exit(1);
 		}
 		
-		new ConnectionManager<>(new InetSocketAddress(Config.LOGIN_BIND_ADDRESS, Config.PORT_LOGIN), LoginClient::new, new LoginPacketHandler());
-		LOGGER.info(getClass().getSimpleName() + ": is now listening on: " + Config.LOGIN_BIND_ADDRESS + ":" + Config.PORT_LOGIN);
+		new ConnectionManager<>(new InetSocketAddress(LoginConfig.LOGIN_BIND_ADDRESS, LoginConfig.PORT_LOGIN), LoginClient::new, new LoginPacketHandler());
+		LOGGER.info(getClass().getSimpleName() + ": is now listening on: " + LoginConfig.LOGIN_BIND_ADDRESS + ":" + LoginConfig.PORT_LOGIN);
 	}
 	
 	public GameServerListener getGameServerListener()
@@ -185,9 +182,9 @@ public class LoginServer
 	
 	public void shutdown(boolean restart)
 	{
-		if (Config.BACKUP_DATABASE)
+		if (DatabaseConfig.BACKUP_DATABASE)
 		{
-			DatabaseBackup.performBackup();
+			DatabaseBackup.performBackup("login");
 		}
 		
 		Runtime.getRuntime().exit(restart ? 2 : 0);

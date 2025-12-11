@@ -1,52 +1,49 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
-import org.w3c.dom.NamedNodeMap;
-import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.item.PlayerItemTemplate;
+import org.l2jmobius.gameserver.model.item.holders.InitialEquipment;
 
 /**
- * This class holds the Initial Equipment information.<br>
- * What items get each newly created character and if this item is equipped upon creation (<b>Requires the item to be equippable</b>).
- * @author Zoey76
+ * @author Mobius
  */
 public class InitialEquipmentData implements IXmlReader
 {
-	private final Map<PlayerClass, List<PlayerItemTemplate>> _initialEquipmentList = new EnumMap<>(PlayerClass.class);
+	private static final Logger LOGGER = Logger.getLogger(InitialEquipmentData.class.getName());
 	
-	private static final String NORMAL = "data/stats/initialEquipment.xml";
-	private static final String EVENT = "data/stats/initialEquipmentEvent.xml";
+	private final Map<PlayerClass, List<InitialEquipment>> _classEquipment = new EnumMap<>(PlayerClass.class);
 	
-	/**
-	 * Instantiates a new initial equipment data.
-	 */
 	protected InitialEquipmentData()
 	{
 		load();
@@ -55,81 +52,40 @@ public class InitialEquipmentData implements IXmlReader
 	@Override
 	public void load()
 	{
-		_initialEquipmentList.clear();
-		parseDatapackFile(Config.INITIAL_EQUIPMENT_EVENT ? EVENT : NORMAL);
-		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _initialEquipmentList.size() + " initial equipment data.");
+		_classEquipment.clear();
+		parseDatapackFile("data/stats/players/initialEquipment.xml");
+		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _classEquipment.size() + " initial equipment data.");
 	}
 	
 	@Override
 	public void parseDocument(Document document, File file)
 	{
-		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
+		forEach(document, "list", listNode -> forEach(listNode, "equipment", equipmentNode ->
 		{
-			if ("list".equalsIgnoreCase(n.getNodeName()))
-			{
-				for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling())
-				{
-					if ("equipment".equalsIgnoreCase(d.getNodeName()))
-					{
-						parseEquipment(d);
-					}
-				}
-			}
-		}
-	}
-	
-	/**
-	 * Parses the equipment.
-	 * @param d parse an initial equipment and add it to {@link #_initialEquipmentList}
-	 */
-	private void parseEquipment(Node d)
-	{
-		NamedNodeMap attrs = d.getAttributes();
-		final PlayerClass classId = PlayerClass.getPlayerClass(Integer.parseInt(attrs.getNamedItem("classId").getNodeValue()));
-		final List<PlayerItemTemplate> equipList = new ArrayList<>();
-		for (Node c = d.getFirstChild(); c != null; c = c.getNextSibling())
-		{
-			if ("item".equalsIgnoreCase(c.getNodeName()))
+			final Map<String, Object> attributes = parseAttributes(equipmentNode);
+			final List<InitialEquipment> equipment = new ArrayList<>();
+			forEach(equipmentNode, "item", itemNode ->
 			{
 				final StatSet set = new StatSet();
-				attrs = c.getAttributes();
-				for (int i = 0; i < attrs.getLength(); i++)
-				{
-					final Node attr = attrs.item(i);
-					set.set(attr.getNodeName(), attr.getNodeValue());
-				}
-				
-				equipList.add(new PlayerItemTemplate(set));
-			}
-		}
-		
-		_initialEquipmentList.put(classId, equipList);
+				parseAttributes(itemNode).forEach(set::set);
+				equipment.add(new InitialEquipment(set));
+			});
+			
+			final PlayerClass playerClass = PlayerClass.getPlayerClass(Integer.parseInt((String) attributes.get("classId")));
+			_classEquipment.put(playerClass, equipment);
+		}));
 	}
 	
 	/**
-	 * Gets the equipment list.
-	 * @param cId the class Id for the required initial equipment.
-	 * @return the initial equipment for the given class Id.
+	 * Retrieves the initial equipment items associated with a specified class.
+	 * @param playerClass the {@link PlayerClass} representing the class for which the initial equipment is required
+	 * @return a {@link Collection} of {@link InitialEquipment} objects representing the initial equipment for the specified class, or {@code null} if no equipment is found for the given class
 	 */
-	public List<PlayerItemTemplate> getEquipmentList(PlayerClass cId)
+	public Collection<InitialEquipment> getClassEquipment(PlayerClass playerClass)
 	{
-		return _initialEquipmentList.get(cId);
+		return _classEquipment.get(playerClass);
 	}
 	
-	/**
-	 * Gets the equipment list.
-	 * @param cId the class Id for the required initial equipment.
-	 * @return the initial equipment for the given class Id.
-	 */
-	public List<PlayerItemTemplate> getEquipmentList(int cId)
-	{
-		return _initialEquipmentList.get(PlayerClass.getPlayerClass(cId));
-	}
-	
-	/**
-	 * Gets the single instance of InitialEquipmentData.
-	 * @return single instance of InitialEquipmentData
-	 */
 	public static InitialEquipmentData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

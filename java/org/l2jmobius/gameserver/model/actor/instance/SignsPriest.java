@@ -19,8 +19,8 @@ package org.l2jmobius.gameserver.model.actor.instance;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
@@ -158,7 +158,7 @@ public class SignsPriest extends Npc
 						}
 						return;
 					}
-					else if ((cabal == SevenSigns.CABAL_DUSK) && Config.ALT_GAME_CASTLE_DUSK) // dusk
+					else if ((cabal == SevenSigns.CABAL_DUSK) && FeatureConfig.ALT_GAME_CASTLE_DUSK) // dusk
 					{
 						// castle owners cannot participate with dusk side
 						final Clan clan = player.getClan();
@@ -168,7 +168,7 @@ public class SignsPriest extends Npc
 							break;
 						}
 					}
-					else if ((cabal == SevenSigns.CABAL_DAWN) && Config.ALT_GAME_CASTLE_DAWN) // dawn
+					else if ((cabal == SevenSigns.CABAL_DAWN) && FeatureConfig.ALT_GAME_CASTLE_DAWN) // dawn
 					{
 						// clans without castle need to pay participation fee
 						final Clan clan = player.getClan();
@@ -191,7 +191,7 @@ public class SignsPriest extends Npc
 				}
 				case 34: // Pay the participation fee request
 				{
-					if ((player.getPlayerClass().level() > 0) && ((player.getAdena() >= Config.SSQ_JOIN_DAWN_ADENA_FEE) || (player.getInventory().getInventoryItemCount(Config.SSQ_MANORS_AGREEMENT_ID, -1) > 0)))
+					if ((player.getPlayerClass().level() > 0) && ((player.getAdena() >= FeatureConfig.SSQ_JOIN_DAWN_ADENA_FEE) || (player.getInventory().getInventoryItemCount(FeatureConfig.SSQ_MANORS_AGREEMENT_ID, -1) > 0)))
 					{
 						showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "signs_33_dawn.htm");
 					}
@@ -214,25 +214,25 @@ public class SignsPriest extends Npc
 					{
 						// even if in htmls is said that ally can have castle too, but it is not
 						final Clan clan = player.getClan();
-						if ((cabal == SevenSigns.CABAL_DUSK) && Config.ALT_GAME_CASTLE_DUSK && (clan != null) && (clan.getCastleId() > 0))
+						if ((cabal == SevenSigns.CABAL_DUSK) && FeatureConfig.ALT_GAME_CASTLE_DUSK && (clan != null) && (clan.getCastleId() > 0))
 						{
 							showChatWindow(player, SevenSigns.SEVEN_SIGNS_HTML_PATH + "signs_33_dusk_no.htm");
 							return;
 						}
 						
 						// If the player is trying to join the Lords of Dawn, check if they are carrying a Lord's certificate. If not then try to take the required amount of adena instead.
-						if (Config.ALT_GAME_CASTLE_DAWN && (cabal == SevenSigns.CABAL_DAWN))
+						if (FeatureConfig.ALT_GAME_CASTLE_DAWN && (cabal == SevenSigns.CABAL_DAWN))
 						{
 							boolean allowJoinDawn = false;
 							if ((clan != null) && (clan.getCastleId() > 0))
 							{
 								allowJoinDawn = true;
 							}
-							else if (player.destroyItemByItemId(ItemProcessType.FEE, Config.SSQ_MANORS_AGREEMENT_ID, 1, this, true))
+							else if (player.destroyItemByItemId(ItemProcessType.FEE, FeatureConfig.SSQ_MANORS_AGREEMENT_ID, 1, this, true))
 							{
 								allowJoinDawn = true;
 							}
-							else if (player.reduceAdena(ItemProcessType.FEE, Config.SSQ_JOIN_DAWN_ADENA_FEE, this, true))
+							else if (player.reduceAdena(ItemProcessType.FEE, FeatureConfig.SSQ_JOIN_DAWN_ADENA_FEE, this, true))
 							{
 								allowJoinDawn = true;
 							}
@@ -341,7 +341,7 @@ public class SignsPriest extends Npc
 					{
 						case SevenSigns.SEAL_STONE_BLUE_ID:
 						{
-							blueContrib = (Config.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.BLUE_CONTRIB_POINTS;
+							blueContrib = (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.BLUE_CONTRIB_POINTS;
 							if (blueContrib > contribBlueStoneCount)
 							{
 								blueContrib = contributionCount;
@@ -350,7 +350,7 @@ public class SignsPriest extends Npc
 						}
 						case SevenSigns.SEAL_STONE_GREEN_ID:
 						{
-							greenContrib = (Config.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.GREEN_CONTRIB_POINTS;
+							greenContrib = (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.GREEN_CONTRIB_POINTS;
 							if (greenContrib > contribGreenStoneCount)
 							{
 								greenContrib = contributionCount;
@@ -359,7 +359,7 @@ public class SignsPriest extends Npc
 						}
 						case SevenSigns.SEAL_STONE_RED_ID:
 						{
-							redContrib = (Config.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.RED_CONTRIB_POINTS;
+							redContrib = (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - score) / SevenSigns.RED_CONTRIB_POINTS;
 							if (redContrib > contribRedStoneCount)
 							{
 								redContrib = contributionCount;
@@ -436,7 +436,7 @@ public class SignsPriest extends Npc
 					final long redStoneCount = redStones == null ? 0 : redStones.getCount();
 					long contribScore = SevenSigns.getInstance().getPlayerContribScore(player.getObjectId());
 					boolean stonesFound = false;
-					if (contribScore == Config.ALT_MAXIMUM_PLAYER_CONTRIB)
+					if (contribScore == FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB)
 					{
 						player.sendPacket(SystemMessageId.CONTRIBUTION_LEVEL_HAS_EXCEEDED_THE_LIMIT_YOU_MAY_NOT_CONTINUE);
 					}
@@ -479,21 +479,21 @@ public class SignsPriest extends Npc
 							case 4:
 							{
 								long tempContribScore = contribScore;
-								redContribCount = (Config.ALT_MAXIMUM_PLAYER_CONTRIB - tempContribScore) / SevenSigns.RED_CONTRIB_POINTS;
+								redContribCount = (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - tempContribScore) / SevenSigns.RED_CONTRIB_POINTS;
 								if (redContribCount > redStoneCount)
 								{
 									redContribCount = redStoneCount;
 								}
 								
 								tempContribScore += redContribCount * SevenSigns.RED_CONTRIB_POINTS;
-								greenContribCount = (Config.ALT_MAXIMUM_PLAYER_CONTRIB - tempContribScore) / SevenSigns.GREEN_CONTRIB_POINTS;
+								greenContribCount = (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - tempContribScore) / SevenSigns.GREEN_CONTRIB_POINTS;
 								if (greenContribCount > greenStoneCount)
 								{
 									greenContribCount = greenStoneCount;
 								}
 								
 								tempContribScore += greenContribCount * SevenSigns.GREEN_CONTRIB_POINTS;
-								blueContribCount = (Config.ALT_MAXIMUM_PLAYER_CONTRIB - tempContribScore) / SevenSigns.BLUE_CONTRIB_POINTS;
+								blueContribCount = (FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB - tempContribScore) / SevenSigns.BLUE_CONTRIB_POINTS;
 								if (blueContribCount > blueStoneCount)
 								{
 									blueContribCount = blueStoneCount;

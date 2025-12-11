@@ -18,16 +18,16 @@ package ai.areas.BeastFarm.Tunatun;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import quests.Q00020_BringUpWithLove.Q00020_BringUpWithLove;
 
 /**
  * Beast Herder Tunatun AI.
  * @author Adry_85
  */
-public class Tunatun extends AbstractNpcAI
+public class Tunatun extends Script
 {
 	// NPC
 	private static final int TUNATUN = 31537;
@@ -68,6 +68,12 @@ public class Tunatun extends AbstractNpcAI
 		}
 		
 		return event;
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

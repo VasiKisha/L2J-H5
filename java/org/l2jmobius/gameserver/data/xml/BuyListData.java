@@ -29,9 +29,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.buylist.BuyListHolder;
 import org.l2jmobius.gameserver.model.buylist.Product;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
@@ -56,7 +56,7 @@ public class BuyListData implements IXmlReader
 	{
 		_buyLists.clear();
 		parseDatapackDirectory("data/buylists", false);
-		if (Config.CUSTOM_BUYLIST_LOAD)
+		if (GeneralConfig.CUSTOM_BUYLIST_LOAD)
 		{
 			parseDatapackDirectory("data/buylists/custom", false);
 		}
@@ -144,7 +144,7 @@ public class BuyListData implements IXmlReader
 							if (item != null)
 							{
 								final int sellPrice = item.getReferencePrice() / 2;
-								if (Config.CORRECT_PRICES && (price > -1) && (sellPrice > price) && (buyList.getNpcsAllowed() != null))
+								if (GeneralConfig.CORRECT_PRICES && (price > -1) && (sellPrice > price) && (buyList.getNpcsAllowed() != null))
 								{
 									LOGGER.warning("Buy price " + price + " is less than sell price " + sellPrice + " for ItemID:" + itemId + " of buylist " + buyList.getListId() + ".");
 									buyList.addProduct(new Product(buyList.getListId(), item, sellPrice, restockDelay, count));

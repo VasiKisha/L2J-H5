@@ -25,9 +25,13 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.Future;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.NpcConfig;
+import org.l2jmobius.gameserver.config.custom.ChampionMonstersConfig;
+import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
+import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.DimensionalRiftManager;
 import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
@@ -60,6 +64,7 @@ import org.l2jmobius.gameserver.model.events.holders.actor.npc.attackable.OnAtta
 import org.l2jmobius.gameserver.model.events.returns.TerminateReturn;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.AbnormalVisualEffect;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
@@ -226,7 +231,7 @@ public class AttackableAI extends CreatureAI
 				return false;
 			}
 			
-			if (Config.FACTION_SYSTEM_ENABLED && Config.FACTION_GUARDS_ENABLED && ((player.isGood() && _actor.asNpc().getTemplate().isClan(Config.FACTION_EVIL_TEAM_NAME)) || (player.isEvil() && _actor.asNpc().getTemplate().isClan(Config.FACTION_GOOD_TEAM_NAME))))
+			if (FactionSystemConfig.FACTION_SYSTEM_ENABLED && FactionSystemConfig.FACTION_GUARDS_ENABLED && ((player.isGood() && _actor.asNpc().getTemplate().isClan(FactionSystemConfig.FACTION_EVIL_TEAM_NAME)) || (player.isEvil() && _actor.asNpc().getTemplate().isClan(FactionSystemConfig.FACTION_GOOD_TEAM_NAME))))
 			{
 				return true;
 			}
@@ -257,7 +262,7 @@ public class AttackableAI extends CreatureAI
 			}
 			
 			// Check if the Monster target is aggressive
-			if (target.isMonster() && Config.GUARD_ATTACK_AGGRO_MOB)
+			if (target.isMonster() && NpcConfig.GUARD_ATTACK_AGGRO_MOB)
 			{
 				return (target.asMonster().isAggressive() && GeoEngine.getInstance().canSeeTarget(me, target));
 			}
@@ -308,12 +313,12 @@ public class AttackableAI extends CreatureAI
 			
 			// depending on config, do not allow mobs to attack _new_ players in peacezones,
 			// unless they are already following those players from outside the peacezone.
-			if (!Config.ALT_MOB_AGRO_IN_PEACEZONE && target.isInsideZone(ZoneId.PEACE) && target.isInsideZone(ZoneId.NO_PVP))
+			if (!NpcConfig.ALT_MOB_AGRO_IN_PEACEZONE && target.isInsideZone(ZoneId.PEACE) && target.isInsideZone(ZoneId.NO_PVP))
 			{
 				return false;
 			}
 			
-			if (me.isChampion() && Config.CHAMPION_PASSIVE)
+			if (me.isChampion() && ChampionMonstersConfig.CHAMPION_PASSIVE)
 			{
 				return false;
 			}
@@ -357,7 +362,7 @@ public class AttackableAI extends CreatureAI
 				{
 					intention = Intention.ACTIVE;
 				}
-				else if ((npc.getSpawn() != null) && !npc.isInsideRadius3D(npc.getSpawn().getLocation(), Config.MAX_DRIFT_RANGE + Config.MAX_DRIFT_RANGE))
+				else if ((npc.getSpawn() != null) && !npc.isInsideRadius3D(npc.getSpawn().getLocation(), NpcConfig.MAX_DRIFT_RANGE + NpcConfig.MAX_DRIFT_RANGE))
 				{
 					intention = Intention.ACTIVE;
 				}
@@ -496,9 +501,9 @@ public class AttackableAI extends CreatureAI
 								continue;
 							}
 							
-							if ((Config.FAKE_PLAYER_AGGRO_FPC && t.isFakePlayer()) //
-								|| (Config.FAKE_PLAYER_AGGRO_MONSTERS && t.isMonster() && !t.isFakePlayer()) //
-								|| (Config.FAKE_PLAYER_AGGRO_PLAYERS && t.isPlayer()))
+							if ((FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC && t.isFakePlayer()) //
+								|| (FakePlayersConfig.FAKE_PLAYER_AGGRO_MONSTERS && t.isMonster() && !t.isFakePlayer()) //
+								|| (FakePlayersConfig.FAKE_PLAYER_AGGRO_PLAYERS && t.isPlayer()))
 							{
 								final long hating = npc.getHating(t);
 								final double distance = npc.calculateDistance2D(t);
@@ -529,7 +534,7 @@ public class AttackableAI extends CreatureAI
 							{
 								npc.getFakePlayerDrops().remove(itemIndex);
 								droppedItem.pickupMe(npc);
-								if (Config.SAVE_DROPPED_ITEM)
+								if (GeneralConfig.SAVE_DROPPED_ITEM)
 								{
 									ItemsOnGroundManager.getInstance().removeObject(droppedItem);
 								}
@@ -572,7 +577,7 @@ public class AttackableAI extends CreatureAI
 				{
 					if (target.isFakePlayer())
 					{
-						if (!npc.isFakePlayer() || (npc.isFakePlayer() && Config.FAKE_PLAYER_AGGRO_FPC))
+						if (!npc.isFakePlayer() || (npc.isFakePlayer() && FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC))
 						{
 							final long hating = npc.getHating(target);
 							if (hating == 0)
@@ -644,7 +649,7 @@ public class AttackableAI extends CreatureAI
 		}
 		
 		// Order this attackable to return to its spawn because there's no target to attack
-		if (!npc.isWalker() && (npc.getSpawn() != null) && (npc.calculateDistance2D(npc.getSpawn()) > Config.MAX_DRIFT_RANGE) && ((getTarget() == null) || getTarget().isInvisible() || (getTarget().isPlayer() && !Config.ATTACKABLES_CAMP_PLAYER_CORPSES && getTarget().asPlayer().isAlikeDead())))
+		if (!npc.isWalker() && (npc.getSpawn() != null) && (npc.calculateDistance2D(npc.getSpawn()) > NpcConfig.MAX_DRIFT_RANGE) && ((getTarget() == null) || getTarget().isInvisible() || (getTarget().isPlayer() && !NpcConfig.ATTACKABLES_CAMP_PLAYER_CORPSES && getTarget().asPlayer().isAlikeDead())))
 		{
 			npc.setWalking();
 			npc.returnHome();
@@ -698,10 +703,24 @@ public class AttackableAI extends CreatureAI
 			{
 				for (Skill sk : npc.getTemplate().getAISkills(AISkillScope.BUFF))
 				{
-					if (cast(sk))
+					// Only consider skills if we have enough MP.
+					if (npc.getCurrentMp() <= sk.getMpConsume())
 					{
-						return;
+						continue;
 					}
+					
+					// Healing skills: only cast if HP is not full.
+					if (sk.getAbnormalType() == AbnormalType.LIFE_FORCE_OTHERS)
+					{
+						if (npc.getCurrentHp() >= npc.getMaxHp())
+						{
+							continue; // Skip healing if at full HP.
+						}
+					}
+					
+					npc.setTarget(npc);
+					npc.doCast(sk);
+					return;
 				}
 			}
 		}
@@ -710,28 +729,42 @@ public class AttackableAI extends CreatureAI
 		{
 			for (Skill sk : npc.getTemplate().getAISkills(AISkillScope.BUFF))
 			{
-				if (cast(sk))
+				// Only consider skills if we have enough MP.
+				if (npc.getCurrentMp() <= sk.getMpConsume())
 				{
-					return;
+					continue;
 				}
+				
+				// Healing skills: only cast if HP is not full.
+				if (sk.getAbnormalType() == AbnormalType.LIFE_FORCE_OTHERS)
+				{
+					if (npc.getCurrentHp() >= npc.getMaxHp())
+					{
+						continue; // Skip healing if at full HP.
+					}
+				}
+				
+				npc.setTarget(npc);
+				npc.doCast(sk);
+				return;
 			}
 			
 			int x1 = npc.getSpawn().getX();
 			int y1 = npc.getSpawn().getY();
 			int z1 = npc.getSpawn().getZ();
-			if (npc.isInsideRadius2D(x1, y1, 0, Config.MAX_DRIFT_RANGE))
+			if (npc.isInsideRadius2D(x1, y1, 0, NpcConfig.MAX_DRIFT_RANGE))
 			{
-				final int deltaX = Rnd.get(Config.MAX_DRIFT_RANGE * 2); // x
-				int deltaY = Rnd.get(deltaX, Config.MAX_DRIFT_RANGE * 2); // distance
+				final int deltaX = Rnd.get(NpcConfig.MAX_DRIFT_RANGE * 2); // x
+				int deltaY = Rnd.get(deltaX, NpcConfig.MAX_DRIFT_RANGE * 2); // distance
 				deltaY = (int) Math.sqrt((deltaY * deltaY) - (deltaX * deltaX)); // y
-				x1 = (deltaX + x1) - Config.MAX_DRIFT_RANGE;
-				y1 = (deltaY + y1) - Config.MAX_DRIFT_RANGE;
+				x1 = (deltaX + x1) - NpcConfig.MAX_DRIFT_RANGE;
+				y1 = (deltaY + y1) - NpcConfig.MAX_DRIFT_RANGE;
 				z1 = npc.getZ();
 			}
 			
 			// Move the actor to Location (x,y,z) server side AND client side by sending Server->Client packet MoveToLocation (broadcast)
 			final Location moveLoc = _actor.isFlying() ? new Location(x1, y1, z1) : GeoEngine.getInstance().getValidLocation(npc.getX(), npc.getY(), npc.getZ(), x1, y1, z1, npc.getInstanceId());
-			if (LocationUtil.calculateDistance(npc.getSpawn(), moveLoc, false, false) <= Config.MAX_DRIFT_RANGE)
+			if (LocationUtil.calculateDistance(npc.getSpawn(), moveLoc, false, false) <= NpcConfig.MAX_DRIFT_RANGE)
 			{
 				moveTo(moveLoc.getX(), moveLoc.getY(), moveLoc.getZ());
 			}
@@ -757,14 +790,14 @@ public class AttackableAI extends CreatureAI
 			return;
 		}
 		
-		if (Config.AGGRO_DISTANCE_CHECK_ENABLED && npc.isMonster() && !npc.isWalker() && !(npc instanceof GrandBoss))
+		if (NpcConfig.AGGRO_DISTANCE_CHECK_ENABLED && npc.isMonster() && !npc.isWalker() && !(npc instanceof GrandBoss))
 		{
 			final Spawn spawn = npc.getSpawn();
-			if ((spawn != null) && (npc.calculateDistance2D(spawn.getLocation()) > (spawn.getChaseRange() > 0 ? Math.max(Config.MAX_DRIFT_RANGE, spawn.getChaseRange()) : npc.isRaid() ? Config.AGGRO_DISTANCE_CHECK_RAID_RANGE : Config.AGGRO_DISTANCE_CHECK_RANGE)))
+			if ((spawn != null) && (npc.calculateDistance2D(spawn.getLocation()) > (spawn.getChaseRange() > 0 ? Math.max(NpcConfig.MAX_DRIFT_RANGE, spawn.getChaseRange()) : npc.isRaid() ? NpcConfig.AGGRO_DISTANCE_CHECK_RAID_RANGE : NpcConfig.AGGRO_DISTANCE_CHECK_RANGE)))
 			{
-				if ((Config.AGGRO_DISTANCE_CHECK_RAIDS || !npc.isRaid()) && (Config.AGGRO_DISTANCE_CHECK_INSTANCES || (npc.getInstanceId() == 0)))
+				if ((NpcConfig.AGGRO_DISTANCE_CHECK_RAIDS || !npc.isRaid()) && (NpcConfig.AGGRO_DISTANCE_CHECK_INSTANCES || (npc.getInstanceId() == 0)))
 				{
-					if (Config.AGGRO_DISTANCE_CHECK_RESTORE_LIFE)
+					if (NpcConfig.AGGRO_DISTANCE_CHECK_RESTORE_LIFE)
 					{
 						npc.setCurrentHp(npc.getMaxHp());
 						npc.setCurrentMp(npc.getMaxMp());
@@ -787,7 +820,7 @@ public class AttackableAI extends CreatureAI
 					{
 						for (Monster minion : _actor.asMonster().getMinionList().getSpawnedMinions())
 						{
-							if (Config.AGGRO_DISTANCE_CHECK_RESTORE_LIFE)
+							if (NpcConfig.AGGRO_DISTANCE_CHECK_RESTORE_LIFE)
 							{
 								minion.setCurrentHp(minion.getMaxHp());
 								minion.setCurrentMp(minion.getMaxMp());
@@ -956,17 +989,17 @@ public class AttackableAI extends CreatureAI
 		{
 			_chaosTime++;
 			boolean changeTarget = false;
-			if ((npc instanceof RaidBoss) && (_chaosTime > Config.RAID_CHAOS_TIME))
+			if ((npc instanceof RaidBoss) && (_chaosTime > NpcConfig.RAID_CHAOS_TIME))
 			{
 				final double multiplier = npc.asMonster().hasMinions() ? 200 : 100;
 				changeTarget = Rnd.get(100) <= (100 - ((npc.getCurrentHp() * multiplier) / npc.getMaxHp()));
 			}
-			else if ((npc instanceof GrandBoss) && (_chaosTime > Config.GRAND_CHAOS_TIME))
+			else if ((npc instanceof GrandBoss) && (_chaosTime > NpcConfig.GRAND_CHAOS_TIME))
 			{
 				final double chaosRate = 100 - ((npc.getCurrentHp() * 300) / npc.getMaxHp());
 				changeTarget = ((chaosRate <= 10) && (Rnd.get(100) <= 10)) || ((chaosRate > 10) && (Rnd.get(100) <= chaosRate));
 			}
-			else if (_chaosTime > Config.MINION_CHAOS_TIME)
+			else if (_chaosTime > NpcConfig.MINION_CHAOS_TIME)
 			{
 				changeTarget = Rnd.get(100) <= (100 - ((npc.getCurrentHp() * 200) / npc.getMaxHp()));
 			}

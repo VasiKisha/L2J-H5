@@ -24,7 +24,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
@@ -65,11 +64,9 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.enums.ServerMode;
 import org.l2jmobius.commons.ui.DarkTheme;
-import org.l2jmobius.commons.util.ConfigReader;
 import org.l2jmobius.commons.util.HexUtil;
 import org.l2jmobius.loginserver.GameServerTable;
 
@@ -91,10 +88,14 @@ public class GameServerRegister extends JFrame
 	private GameServerRegister()
 	{
 		// GUI
-		final ConfigReader interfaceConfig = new ConfigReader(Config.INTERFACE_CONFIG_FILE);
-		if (interfaceConfig.getBoolean("EnableGUI", true) && !GraphicsEnvironment.isHeadless())
+		if (InterfaceConfig.ENABLE_GUI)
 		{
-			if (interfaceConfig.getBoolean("DarkTheme", true))
+			// Disable hardware acceleration.
+			System.setProperty("sun.java2d.opengl", "false");
+			System.setProperty("sun.java2d.d3d", "false");
+			System.setProperty("sun.java2d.noddraw", "true");
+			
+			if (InterfaceConfig.DARK_THEME)
 			{
 				DarkTheme.activate();
 			}
@@ -115,8 +116,7 @@ public class GameServerRegister extends JFrame
 		setLocationRelativeTo(null);
 		
 		// GUI
-		final ConfigReader interfaceConfig = new ConfigReader(Config.INTERFACE_CONFIG_FILE);
-		if (interfaceConfig.getBoolean("EnableGUI", true) && !GraphicsEnvironment.isHeadless() && interfaceConfig.getBoolean("DarkTheme", true))
+		if (InterfaceConfig.ENABLE_GUI && InterfaceConfig.DARK_THEME)
 		{
 			DarkTheme.activate();
 		}
@@ -809,7 +809,7 @@ public class GameServerRegister extends JFrame
 	{
 		SwingUtilities.invokeLater(() ->
 		{
-			Config.load(ServerMode.LOGIN); // Load the login server configuration.
+			InterfaceConfig.load();
 			DatabaseFactory.init(); // Initialize the database connection.
 			GameServerTable.getInstance(); // Initialize the GameServerTable.
 			new GameServerRegister();

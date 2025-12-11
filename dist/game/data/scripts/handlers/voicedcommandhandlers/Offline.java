@@ -20,7 +20,7 @@
  */
 package handlers.voicedcommandhandlers;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.OfflineTradeConfig;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -40,7 +40,7 @@ public class Offline implements IVoicedCommandHandler
 	@Override
 	public boolean onCommand(String command, Player player, String target)
 	{
-		if (command.equals("offline") && Config.ENABLE_OFFLINE_COMMAND && (Config.OFFLINE_TRADE_ENABLE || Config.OFFLINE_CRAFT_ENABLE))
+		if (command.equals("offline") && OfflineTradeConfig.ENABLE_OFFLINE_COMMAND && (OfflineTradeConfig.OFFLINE_TRADE_ENABLE || OfflineTradeConfig.OFFLINE_CRAFT_ENABLE))
 		{
 			if (!player.isInStoreMode())
 			{

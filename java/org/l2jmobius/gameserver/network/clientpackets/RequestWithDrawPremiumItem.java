@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.PremiumItem;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -55,12 +55,12 @@ public class RequestWithDrawPremiumItem extends ClientPacket
 		}
 		else if (player.getObjectId() != _charId)
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, "[RequestWithDrawPremiumItem] Incorrect owner, Player: " + player.getName(), Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "[RequestWithDrawPremiumItem] Incorrect owner, Player: " + player.getName(), GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		else if (player.getPremiumItemList().isEmpty())
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, "[RequestWithDrawPremiumItem] Player: " + player.getName() + " try to get item with empty list!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "[RequestWithDrawPremiumItem] Player: " + player.getName() + " try to get item with empty list!", GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		else if ((player.getWeightPenalty() >= 3) || !player.isInventoryUnder90(false))

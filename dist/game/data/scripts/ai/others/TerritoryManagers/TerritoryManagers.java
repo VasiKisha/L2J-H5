@@ -18,27 +18,26 @@ package ai.others.TerritoryManagers;
 
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.managers.CastleManager;
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-
-import ai.AbstractNpcAI;
 
 /**
  * Retail AI for Territory Managers.
  * @author Zoey76
  * @version 1.1
  */
-public class TerritoryManagers extends AbstractNpcAI
+public class TerritoryManagers extends Script
 {
 	private static final int[] preciousSoul1ItemIds =
 	{
@@ -161,7 +160,7 @@ public class TerritoryManagers extends AbstractNpcAI
 					// Complete the sub-class related quest.
 					// Complete quest Seeds of Chaos (236) for Kamael characters.
 					// Complete quest Mimir's Elixir (235) for other races characters.
-					final Quest q = QuestManager.getInstance().getQuest((player.getRace() == Race.KAMAEL) ? 236 : 235);
+					final Quest q = ScriptManager.getInstance().getQuest((player.getRace() == Race.KAMAEL) ? 236 : 235);
 					if (q != null)
 					{
 						QuestState qs = player.getQuestState(q.getName());
@@ -278,7 +277,7 @@ public class TerritoryManagers extends AbstractNpcAI
 	 */
 	private void processNoblesseQuest(Player player, int questId, int[] itemIds)
 	{
-		final Quest q = QuestManager.getInstance().getQuest(questId);
+		final Quest q = ScriptManager.getInstance().getQuest(questId);
 		if (q == null)
 		{
 			return;

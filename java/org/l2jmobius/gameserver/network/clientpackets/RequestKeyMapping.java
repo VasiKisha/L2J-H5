@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExUISetting;
 
@@ -39,7 +39,7 @@ public class RequestKeyMapping extends ClientPacket
 			return;
 		}
 		
-		if (Config.STORE_UI_SETTINGS)
+		if (PlayerConfig.STORE_UI_SETTINGS)
 		{
 			player.sendPacket(new ExUISetting(player));
 		}

@@ -19,7 +19,7 @@ package handlers.targethandlers;
 import java.util.Collections;
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -53,7 +53,7 @@ public class CorpseMob implements ITargetTypeHandler
 			}
 		}
 		
-		if (skill.hasEffectType(EffectType.HP_DRAIN) && target.asAttackable().isOldCorpse(creature.asPlayer(), Config.CORPSE_CONSUME_SKILL_ALLOWED_TIME_BEFORE_DECAY, true))
+		if (skill.hasEffectType(EffectType.HP_DRAIN) && target.asAttackable().isOldCorpse(creature.asPlayer(), NpcConfig.CORPSE_CONSUME_SKILL_ALLOWED_TIME_BEFORE_DECAY, true))
 		{
 			return Collections.emptyList();
 		}

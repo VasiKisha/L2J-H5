@@ -18,15 +18,14 @@ package ai.others;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Sandstorms AI.
  * @author Ectis
  */
-public class Sandstorms extends AbstractNpcAI
+public class Sandstorms extends Script
 {
 	// NPCs
 	private static final int SANDSTORM = 32350;

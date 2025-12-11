@@ -25,6 +25,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
 import org.l2jmobius.gameserver.model.effects.EffectFlag;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -70,8 +71,8 @@ public class Disarm extends AbstractEffect
 			return;
 		}
 		
-		final int slot = player.getInventory().getSlotFromItem(itemToDisarm);
-		player.getInventory().unEquipItemInBodySlot(slot);
+		final BodyPart bodyPart = BodyPart.fromItem(itemToDisarm);
+		player.getInventory().unEquipItemInBodySlot(bodyPart);
 		
 		final InventoryUpdate iu = new InventoryUpdate();
 		iu.addModifiedItem(itemToDisarm);

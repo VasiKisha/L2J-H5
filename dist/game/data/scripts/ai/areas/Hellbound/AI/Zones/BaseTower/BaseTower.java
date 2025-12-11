@@ -23,16 +23,15 @@ import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Base Tower.
  * @author GKR
  */
-public class BaseTower extends AbstractNpcAI
+public class BaseTower extends Script
 {
 	// NPCs
 	private static final int GUZEN = 22362;
@@ -56,8 +55,8 @@ public class BaseTower extends AbstractNpcAI
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		final PlayerClass classId = player.getPlayerClass();
-		if (classId.equalsOrChildOf(PlayerClass.HELL_KNIGHT) || classId.equalsOrChildOf(PlayerClass.SOULTAKER))
+		final PlayerClass playerClass = player.getPlayerClass();
+		if (playerClass.equalsOrChildOf(PlayerClass.HELL_KNIGHT) || playerClass.equalsOrChildOf(PlayerClass.SOULTAKER))
 		{
 			return "32301-02.htm";
 		}

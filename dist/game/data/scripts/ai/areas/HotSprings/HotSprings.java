@@ -24,16 +24,15 @@ import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
-
-import ai.AbstractNpcAI;
 
 /**
  * Hot Springs AI.
  * @author Mobius
  */
-public class HotSprings extends AbstractNpcAI
+public class HotSprings extends Script
 {
 	// NPCs
 	private static final int BANDERSNATCHLING = 21314;

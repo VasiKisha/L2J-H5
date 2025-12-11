@@ -23,16 +23,16 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Tower Of Infinitum.
  * @author GKR
  */
-public class TowerOfInfinitum extends AbstractNpcAI
+public class TowerOfInfinitum extends Script
 {
 	// NPCs
 	private static final int JERIAN = 32302;

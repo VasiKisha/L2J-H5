@@ -20,9 +20,11 @@
  */
 package org.l2jmobius.gameserver.model.actor.status;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
+import org.l2jmobius.gameserver.config.custom.OfflineTradeConfig;
 import org.l2jmobius.gameserver.data.xml.NpcNameLocalisationData;
 import org.l2jmobius.gameserver.managers.DuelManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -31,7 +33,7 @@ import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
 import org.l2jmobius.gameserver.model.actor.holders.player.Duel;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.model.stats.Stat;
@@ -76,7 +78,7 @@ public class PlayerStatus extends PlayableStatus
 		}
 		
 		// If OFFLINE_MODE_NO_DAMAGE is enabled and player is offline and he is in store/craft mode, no damage is taken.
-		if (Config.OFFLINE_MODE_NO_DAMAGE && (player.getClient() != null) && player.getClient().isDetached() && ((Config.OFFLINE_TRADE_ENABLE && ((player.getPrivateStoreType() == PrivateStoreType.SELL) || (player.getPrivateStoreType() == PrivateStoreType.BUY))) || (Config.OFFLINE_CRAFT_ENABLE && (player.isCrafting() || (player.getPrivateStoreType() == PrivateStoreType.MANUFACTURE)))))
+		if (OfflineTradeConfig.OFFLINE_MODE_NO_DAMAGE && (player.getClient() != null) && player.getClient().isDetached() && ((OfflineTradeConfig.OFFLINE_TRADE_ENABLE && ((player.getPrivateStoreType() == PrivateStoreType.SELL) || (player.getPrivateStoreType() == PrivateStoreType.BUY))) || (OfflineTradeConfig.OFFLINE_CRAFT_ENABLE && (player.isCrafting() || (player.getPrivateStoreType() == PrivateStoreType.MANUFACTURE)))))
 		{
 			return;
 		}
@@ -238,7 +240,7 @@ public class PlayerStatus extends PlayableStatus
 				
 				// Localisation related.
 				String targetName = attacker.getName();
-				if (Config.MULTILANG_ENABLE && attacker.isNpc())
+				if (MultilingualSupportConfig.MULTILANG_ENABLE && attacker.isNpc())
 				{
 					final String[] localisation = NpcNameLocalisationData.getInstance().getLocalisation(player.getLang(), attacker.getId());
 					if (localisation != null)
@@ -309,7 +311,7 @@ public class PlayerStatus extends PlayableStatus
 			}
 			
 			player.doDie(attacker);
-			if (!Config.DISABLE_TUTORIAL)
+			if (!PlayerConfig.DISABLE_TUTORIAL)
 			{
 				final QuestState qs = player.getQuestState("Q00255_Tutorial");
 				if (qs != null)
@@ -325,7 +327,7 @@ public class PlayerStatus extends PlayableStatus
 	{
 		final boolean result = super.setCurrentHp(newHp, broadcastPacket);
 		final Player player = getActiveChar();
-		if (!Config.DISABLE_TUTORIAL && (getCurrentHp() <= (player.getStat().getMaxHp() * .3)))
+		if (!PlayerConfig.DISABLE_TUTORIAL && (getCurrentHp() <= (player.getStat().getMaxHp() * .3)))
 		{
 			final QuestState qs = player.getQuestState("Q00255_Tutorial");
 			if (qs != null)

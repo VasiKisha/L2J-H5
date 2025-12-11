@@ -19,25 +19,25 @@ package ai.areas.Gracia.AI;
 import java.util.List;
 
 import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 
-import ai.AbstractNpcAI;
 import ai.areas.Gracia.AI.NPC.Nemo.Nemo;
 
 /**
  * Maguen AI.
  * @author St3eT
  */
-public class Maguen extends AbstractNpcAI
+public class Maguen extends Script
 {
 	// NPC
 	private static final int MAGUEN = 18839; // Wild Maguen
@@ -393,6 +393,6 @@ public class Maguen extends AbstractNpcAI
 	
 	private Quest nemoAi()
 	{
-		return QuestManager.getInstance().getQuest(Nemo.class.getSimpleName());
+		return ScriptManager.getInstance().getScript(Nemo.class.getSimpleName());
 	}
 }

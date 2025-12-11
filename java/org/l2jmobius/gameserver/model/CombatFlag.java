@@ -22,6 +22,7 @@ package org.l2jmobius.gameserver.model;
 
 import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -103,8 +104,8 @@ public class CombatFlag
 	{
 		// Reset player stats
 		_player.setCombatFlagEquipped(false);
-		final int slot = _player.getInventory().getSlotFromItem(_item);
-		_player.getInventory().unEquipItemInBodySlot(slot);
+		final BodyPart bodyPart = BodyPart.fromItem(_item);
+		_player.getInventory().unEquipItemInBodySlot(bodyPart);
 		_player.destroyItem(ItemProcessType.DESTROY, _item, null, true);
 		_item = null;
 		_player.broadcastUserInfo();

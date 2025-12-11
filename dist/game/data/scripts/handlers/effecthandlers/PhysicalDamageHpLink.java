@@ -83,7 +83,7 @@ public class PhysicalDamageHpLink extends AbstractEffect
 		
 		int damage = 0;
 		final boolean ss = skill.isPhysical() && effector.isChargedShot(ShotType.SOULSHOTS);
-		damage = (int) Formulas.calcPhysDam(effector, effected, skill, shld, false, ss);
+		damage = (int) Formulas.calcPhysDam(effector, effected, skill, shld, crit, ss);
 		if (damage > 0)
 		{
 			effector.sendDamageMessage(effected, damage, false, crit, false);

@@ -16,7 +16,8 @@
  */
 package org.l2jmobius.gameserver.model.actor.tasks.player;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.OfflineTradeConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -39,12 +40,12 @@ public class FameTask implements Runnable
 	@Override
 	public void run()
 	{
-		if ((_player == null) || (_player.isDead() && !Config.FAME_FOR_DEAD_PLAYERS))
+		if ((_player == null) || (_player.isDead() && !PlayerConfig.FAME_FOR_DEAD_PLAYERS))
 		{
 			return;
 		}
 		
-		if (((_player.getClient() == null) || _player.getClient().isDetached()) && !Config.OFFLINE_FAME)
+		if (((_player.getClient() == null) || _player.getClient().isDetached()) && !OfflineTradeConfig.OFFLINE_FAME)
 		{
 			return;
 		}

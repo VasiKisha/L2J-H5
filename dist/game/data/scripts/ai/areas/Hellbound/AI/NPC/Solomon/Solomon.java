@@ -18,15 +18,15 @@ package ai.areas.Hellbound.AI.NPC.Solomon;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Solomon AI.
  * @author DS
  */
-public class Solomon extends AbstractNpcAI
+public class Solomon extends Script
 {
 	// NPCs
 	private static final int SOLOMON = 32355;

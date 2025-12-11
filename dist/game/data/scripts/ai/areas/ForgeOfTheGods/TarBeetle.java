@@ -22,17 +22,16 @@ package ai.areas.ForgeOfTheGods;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.BuffInfo;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Tar Beetle AI
  * @author nonom, malyelfik
  */
-public class TarBeetle extends AbstractNpcAI
+public class TarBeetle extends Script
 {
 	// NPC
 	private static final int TAR_BEETLE = 18804;

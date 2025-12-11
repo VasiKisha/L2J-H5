@@ -19,15 +19,14 @@ package ai.others.TeleportWithCharm;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Charm teleport AI.<br>
  * Original Jython script by DraX.
  * @author Plim
  */
-public class TeleportWithCharm extends AbstractNpcAI
+public class TeleportWithCharm extends Script
 {
 	// NPCs
 	private static final int WHIRPY = 30540;

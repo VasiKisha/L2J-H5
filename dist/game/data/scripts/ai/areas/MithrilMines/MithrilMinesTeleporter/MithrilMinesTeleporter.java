@@ -19,14 +19,13 @@ package ai.areas.MithrilMines.MithrilMinesTeleporter;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Mithril Mines teleport AI.
  * @author Charus
  */
-public class MithrilMinesTeleporter extends AbstractNpcAI
+public class MithrilMinesTeleporter extends Script
 {
 	// NPC
 	private static final int TELEPORT_CRYSTAL = 32652;

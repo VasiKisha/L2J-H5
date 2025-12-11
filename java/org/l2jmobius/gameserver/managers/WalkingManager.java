@@ -36,7 +36,6 @@ import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.holders.NpcRoutesHolder;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.managers.tasks.StartMovingTask;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.NpcWalkerNode;
 import org.l2jmobius.gameserver.model.WalkInfo;
@@ -316,7 +315,7 @@ public class WalkingManager implements IXmlReader
 					final ScheduledFuture<?> task = _repeatMoveTasks.get(npc);
 					if ((task == null) || task.isCancelled() || task.isDone())
 					{
-						final ScheduledFuture<?> newTask = ThreadPool.scheduleAtFixedRate(new StartMovingTask(npc, routeName), 10000, 10000);
+						final ScheduledFuture<?> newTask = ThreadPool.scheduleAtFixedRate(() -> startMoving(npc, routeName), 10000, 10000);
 						_repeatMoveTasks.put(npc, newTask);
 						walk.setWalkCheckTask(newTask); // start walk check task, for resuming walk after fight
 					}
@@ -329,7 +328,7 @@ public class WalkingManager implements IXmlReader
 					final ScheduledFuture<?> task = _startMoveTasks.get(npc);
 					if ((task == null) || task.isCancelled() || task.isDone())
 					{
-						_startMoveTasks.put(npc, ThreadPool.schedule(new StartMovingTask(npc, routeName), 10000));
+						_startMoveTasks.put(npc, ThreadPool.schedule(() -> startMoving(npc, routeName), 10000));
 					}
 				}
 			}

@@ -19,14 +19,13 @@ package ai.others;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Simple AI that manages special conditions for Divine Beast summon.
  * @author UnAfraid
  */
-public class DivineBeast extends AbstractNpcAI
+public class DivineBeast extends Script
 {
 	private static final int DIVINE_BEAST = 14870;
 	private static final int TRANSFORMATION_ID = 258;

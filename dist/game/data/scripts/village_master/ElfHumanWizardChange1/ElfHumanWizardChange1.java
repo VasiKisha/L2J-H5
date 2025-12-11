@@ -21,14 +21,13 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Elf Human class transfer AI
  * @author Adry_85
  */
-public class ElfHumanWizardChange1 extends AbstractNpcAI
+public class ElfHumanWizardChange1 extends Script
 {
 	// NPCs
 	private static int[] NPCS =

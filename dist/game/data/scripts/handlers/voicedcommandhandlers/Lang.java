@@ -22,8 +22,8 @@ package handlers.voicedcommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
 import org.l2jmobius.gameserver.data.xml.NpcNameLocalisationData;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.model.World;
@@ -43,7 +43,7 @@ public class Lang implements IVoicedCommandHandler
 	@Override
 	public boolean onCommand(String command, Player activeChar, String params)
 	{
-		if (!Config.MULTILANG_ENABLE || !Config.MULTILANG_VOICED_ALLOW)
+		if (!MultilingualSupportConfig.MULTILANG_ENABLE || !MultilingualSupportConfig.MULTILANG_VOICED_ALLOW)
 		{
 			return false;
 		}
@@ -52,7 +52,7 @@ public class Lang implements IVoicedCommandHandler
 		if (params == null)
 		{
 			final StringBuilder html = new StringBuilder(100);
-			for (String lang : Config.MULTILANG_ALLOWED)
+			for (String lang : MultilingualSupportConfig.MULTILANG_ALLOWED)
 			{
 				html.append("<button value=\"" + lang.toUpperCase() + "\" action=\"bypass -h voice .lang " + lang + "\" width=60 height=21 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"><br>");
 			}

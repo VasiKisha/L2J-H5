@@ -22,8 +22,8 @@ package handlers.actionshifthandlers;
 
 import java.util.Set;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.data.xml.SpawnData;
 import org.l2jmobius.gameserver.handler.IActionShiftHandler;
 import org.l2jmobius.gameserver.managers.WalkingManager;
@@ -187,7 +187,7 @@ public class NpcActionShift implements IActionShiftHandler
 			
 			player.sendPacket(html);
 		}
-		else if (Config.ALT_GAME_VIEWNPC)
+		else if (NpcConfig.ALT_GAME_VIEWNPC)
 		{
 			if (!target.isNpc() || target.isFakePlayer())
 			{

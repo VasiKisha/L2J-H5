@@ -24,7 +24,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Territory;
@@ -35,20 +35,20 @@ import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import instances.AbstractInstance;
 import quests.Q00693_DefeatingDragonkinRemnants.Q00693_DefeatingDragonkinRemnants;
 
 /**
  * Gracia SoD Warriors Mounted Troop Instance
  * @author Lomka, Mobius
  */
-public final class WarriorsMountedTroop extends AbstractInstance
+public final class WarriorsMountedTroop extends InstanceScript
 {
 	private static final int TEMPLATE_ID = 125;
 	private static final int MAX_PLAYERS = 9;
@@ -336,7 +336,7 @@ public final class WarriorsMountedTroop extends AbstractInstance
 			final Instance instance = InstanceManager.getInstance().getInstance(npc.getInstanceId());
 			if (instance != null)
 			{
-				instance.setDuration(Config.INSTANCE_FINISH_TIME);
+				instance.setDuration(GeneralConfig.INSTANCE_FINISH_TIME);
 				instance.setEmptyDestroyTime(0);
 			}
 		}

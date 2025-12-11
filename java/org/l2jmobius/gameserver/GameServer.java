@@ -20,7 +20,6 @@
  */
 package org.l2jmobius.gameserver;
 
-import java.awt.GraphicsEnvironment;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.FileInputStream;
@@ -31,14 +30,22 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.enums.ServerMode;
 import org.l2jmobius.commons.network.ConnectionManager;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.commons.util.ConfigReader;
 import org.l2jmobius.commons.util.DeadlockWatcher;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.ConfigLoader;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
+import org.l2jmobius.gameserver.config.custom.CustomMailManagerConfig;
+import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
+import org.l2jmobius.gameserver.config.custom.OfflinePlayConfig;
+import org.l2jmobius.gameserver.config.custom.OfflineTradeConfig;
+import org.l2jmobius.gameserver.config.custom.PremiumSystemConfig;
+import org.l2jmobius.gameserver.config.custom.SellBuffsConfig;
+import org.l2jmobius.gameserver.config.custom.WeddingConfig;
 import org.l2jmobius.gameserver.data.AugmentationData;
 import org.l2jmobius.gameserver.data.BotReportTable;
 import org.l2jmobius.gameserver.data.MerchantPriceConfigTable;
@@ -49,6 +56,7 @@ import org.l2jmobius.gameserver.data.sql.CharSummonTable;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.sql.CrestTable;
+import org.l2jmobius.gameserver.data.sql.OfflinePlayTable;
 import org.l2jmobius.gameserver.data.sql.OfflineTraderTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.data.xml.ArmorSetData;
@@ -64,6 +72,7 @@ import org.l2jmobius.gameserver.data.xml.EnchantItemHPBonusData;
 import org.l2jmobius.gameserver.data.xml.EnchantItemOptionsData;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
+import org.l2jmobius.gameserver.data.xml.ExperienceLossData;
 import org.l2jmobius.gameserver.data.xml.FenceData;
 import org.l2jmobius.gameserver.data.xml.FishData;
 import org.l2jmobius.gameserver.data.xml.FishingMonstersData;
@@ -73,7 +82,7 @@ import org.l2jmobius.gameserver.data.xml.HitConditionBonusData;
 import org.l2jmobius.gameserver.data.xml.InitialEquipmentData;
 import org.l2jmobius.gameserver.data.xml.InitialShortcutData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
-import org.l2jmobius.gameserver.data.xml.KarmaData;
+import org.l2jmobius.gameserver.data.xml.KarmaLossData;
 import org.l2jmobius.gameserver.data.xml.LevelUpCrystalData;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
@@ -82,7 +91,6 @@ import org.l2jmobius.gameserver.data.xml.OptionData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.PetSkillData;
 import org.l2jmobius.gameserver.data.xml.PlayerTemplateData;
-import org.l2jmobius.gameserver.data.xml.PlayerXpPercentLostData;
 import org.l2jmobius.gameserver.data.xml.PrimeShopData;
 import org.l2jmobius.gameserver.data.xml.RecipeData;
 import org.l2jmobius.gameserver.data.xml.SecondaryAuthData;
@@ -131,14 +139,14 @@ import org.l2jmobius.gameserver.managers.PetitionManager;
 import org.l2jmobius.gameserver.managers.PrecautionaryRestartManager;
 import org.l2jmobius.gameserver.managers.PremiumManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
-import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.managers.RaidBossPointsManager;
 import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
+import org.l2jmobius.gameserver.managers.SeedOfDestructionManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.managers.SellBuffsManager;
 import org.l2jmobius.gameserver.managers.ServerRestartManager;
 import org.l2jmobius.gameserver.managers.SiegeManager;
-import org.l2jmobius.gameserver.managers.SoDManager;
-import org.l2jmobius.gameserver.managers.SoIManager;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.managers.WalkingManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
@@ -161,11 +169,10 @@ import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.GamePacketHandler;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-import org.l2jmobius.gameserver.scripting.ScriptManager;
+import org.l2jmobius.gameserver.scripting.ScriptEngine;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 import org.l2jmobius.gameserver.taskmanagers.ItemLifeTimeTaskManager;
 import org.l2jmobius.gameserver.taskmanagers.ItemsAutoDestroyTaskManager;
-import org.l2jmobius.gameserver.taskmanagers.PersistentTaskManager;
 import org.l2jmobius.gameserver.ui.Gui;
 import org.l2jmobius.gameserver.util.Broadcast;
 
@@ -178,11 +185,9 @@ public class GameServer
 	public GameServer() throws Exception
 	{
 		// GUI
-		final ConfigReader interfaceConfig = new ConfigReader(Config.INTERFACE_CONFIG_FILE);
-		Config.ENABLE_GUI = interfaceConfig.getBoolean("EnableGUI", true);
-		if (Config.ENABLE_GUI && !GraphicsEnvironment.isHeadless())
+		InterfaceConfig.load();
+		if (InterfaceConfig.ENABLE_GUI)
 		{
-			Config.DARK_THEME = interfaceConfig.getBoolean("DarkTheme", true);
 			System.out.println("GameServer: Running in GUI mode.");
 			new Gui();
 		}
@@ -198,7 +203,7 @@ public class GameServer
 		}
 		
 		// Initialize config
-		Config.load(ServerMode.GAME);
+		ConfigLoader.init();
 		
 		printSection("Database");
 		DatabaseFactory.init();
@@ -214,7 +219,7 @@ public class GameServer
 		
 		printSection("Scripting Engine");
 		EventDispatcher.getInstance();
-		ScriptManager.getInstance();
+		ScriptEngine.getInstance();
 		
 		printSection("World");
 		InstanceManager.getInstance();
@@ -261,8 +266,8 @@ public class GameServer
 		InitialEquipmentData.getInstance();
 		InitialShortcutData.getInstance();
 		ExperienceData.getInstance();
-		PlayerXpPercentLostData.getInstance();
-		KarmaData.getInstance();
+		ExperienceLossData.getInstance();
+		KarmaLossData.getInstance();
 		HitConditionBonusData.getInstance();
 		PlayerTemplateData.getInstance();
 		CharInfoTable.getInstance();
@@ -272,7 +277,7 @@ public class GameServer
 		CharSummonTable.getInstance().init();
 		CaptchaManager.getInstance();
 		
-		if (Config.PREMIUM_SYSTEM_ENABLED)
+		if (PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED)
 		{
 			LOGGER.info("PremiumManager: Premium system is enabled.");
 			PremiumManager.getInstance();
@@ -323,12 +328,13 @@ public class GameServer
 		CursedWeaponsManager.getInstance();
 		TransformData.getInstance();
 		BotReportTable.getInstance();
-		if (Config.SELLBUFF_ENABLED)
+		
+		if (SellBuffsConfig.SELLBUFF_ENABLED)
 		{
 			SellBuffsManager.getInstance();
 		}
 		
-		if (Config.MULTILANG_ENABLE)
+		if (MultilingualSupportConfig.MULTILANG_ENABLE)
 		{
 			SystemMessageId.loadLocalisations();
 			NpcStringId.loadLocalisations();
@@ -337,17 +343,17 @@ public class GameServer
 		}
 		
 		printSection("Scripts");
-		QuestManager.getInstance();
+		ScriptManager.getInstance();
 		BoatManager.getInstance();
 		AirShipManager.getInstance();
-		SoDManager.getInstance();
-		SoIManager.getInstance();
+		SeedOfDestructionManager.getInstance();
+		SeedOfInfinityManager.getInstance();
 		
 		try
 		{
 			LOGGER.info("Loading server scripts...");
-			ScriptManager.getInstance().executeScript(ScriptManager.MASTER_HANDLER_FILE);
-			ScriptManager.getInstance().executeScriptList();
+			ScriptEngine.getInstance().executeScript(ScriptEngine.MASTER_HANDLER_FILE);
+			ScriptEngine.getInstance().executeScriptList();
 		}
 		catch (Exception e)
 		{
@@ -370,13 +376,14 @@ public class GameServer
 		TerritoryWarManager.getInstance();
 		CastleManorManager.getInstance();
 		MercTicketManager.getInstance();
-		QuestManager.getInstance().report();
-		if (Config.SAVE_DROPPED_ITEM)
+		ScriptManager.getInstance().report();
+		
+		if (GeneralConfig.SAVE_DROPPED_ITEM)
 		{
 			ItemsOnGroundManager.getInstance();
 		}
 		
-		if ((Config.AUTODESTROY_ITEM_AFTER > 0) || (Config.HERB_AUTO_DESTROY_TIME > 0))
+		if ((GeneralConfig.AUTODESTROY_ITEM_AFTER > 0) || (GeneralConfig.HERB_AUTO_DESTROY_TIME > 0))
 		{
 			ItemsAutoDestroyTaskManager.getInstance();
 		}
@@ -387,32 +394,33 @@ public class GameServer
 		SevenSignsFestival.getInstance();
 		AutoSpawnHandler.getInstance();
 		LOGGER.info("AutoSpawnHandler: Loaded " + AutoSpawnHandler.getInstance().size() + " handlers in total.");
-		if (Config.ALLOW_WEDDING)
+		
+		if (WeddingConfig.ALLOW_WEDDING)
 		{
 			CoupleManager.getInstance();
 		}
 		
-		if (Config.ALT_FISH_CHAMPIONSHIP_ENABLED)
+		if (GeneralConfig.ALT_FISH_CHAMPIONSHIP_ENABLED)
 		{
 			FishingChampionshipManager.getInstance();
 		}
 		
 		KrateisCubeManager.getInstance();
 		UndergroundColiseumManager.getInstance();
-		PersistentTaskManager.getInstance();
 		DailyResetManager.getInstance();
 		AntiFeedManager.getInstance().registerEvent(AntiFeedManager.GAME_ID);
-		if (Config.ENABLE_OFFLINE_PLAY_COMMAND)
+		
+		if (OfflinePlayConfig.ENABLE_OFFLINE_PLAY_COMMAND)
 		{
 			AntiFeedManager.getInstance().registerEvent(AntiFeedManager.OFFLINE_PLAY);
 		}
 		
-		if (Config.ALLOW_MAIL)
+		if (GeneralConfig.ALLOW_MAIL)
 		{
 			MailManager.getInstance();
 		}
 		
-		if (Config.CUSTOM_MAIL_MANAGER_ENABLED)
+		if (CustomMailManagerConfig.CUSTOM_MAIL_MANAGER_ENABLED)
 		{
 			CustomMailManager.getInstance();
 		}
@@ -427,26 +435,31 @@ public class GameServer
 		Runtime.getRuntime().addShutdownHook(Shutdown.getInstance());
 		LOGGER.info("IdManager: Free ObjectID's remaining: " + IdManager.getInstance().getAvailableIdCount());
 		
-		if ((Config.OFFLINE_TRADE_ENABLE || Config.OFFLINE_CRAFT_ENABLE) && Config.RESTORE_OFFLINERS)
+		if ((OfflineTradeConfig.OFFLINE_TRADE_ENABLE || OfflineTradeConfig.OFFLINE_CRAFT_ENABLE) && OfflineTradeConfig.RESTORE_OFFLINERS)
 		{
 			OfflineTraderTable.getInstance().restoreOfflineTraders();
 		}
 		
-		if (Config.SERVER_RESTART_SCHEDULE_ENABLED)
+		if (OfflinePlayConfig.ENABLE_OFFLINE_PLAY_COMMAND && OfflinePlayConfig.RESTORE_AUTO_PLAY_OFFLINERS)
+		{
+			OfflinePlayTable.getInstance().restoreOfflinePlayers();
+		}
+		
+		if (ServerConfig.SERVER_RESTART_SCHEDULE_ENABLED)
 		{
 			ServerRestartManager.getInstance();
 		}
 		
-		if (Config.PRECAUTIONARY_RESTART_ENABLED)
+		if (ServerConfig.PRECAUTIONARY_RESTART_ENABLED)
 		{
 			PrecautionaryRestartManager.getInstance();
 		}
 		
-		if (Config.DEADLOCK_WATCHER)
+		if (ServerConfig.DEADLOCK_WATCHER)
 		{
-			final DeadlockWatcher deadlockWatcher = new DeadlockWatcher(Duration.ofSeconds(Config.DEADLOCK_CHECK_INTERVAL), () ->
+			final DeadlockWatcher deadlockWatcher = new DeadlockWatcher(Duration.ofSeconds(ServerConfig.DEADLOCK_CHECK_INTERVAL), () ->
 			{
-				if (Config.RESTART_ON_DEADLOCK)
+				if (ServerConfig.RESTART_ON_DEADLOCK)
 				{
 					Broadcast.toAllOnlinePlayers("Server has stability issues - restarting now.");
 					Shutdown.getInstance().startShutdown(null, 60, true);
@@ -459,10 +472,10 @@ public class GameServer
 		System.gc();
 		final long totalMem = Runtime.getRuntime().maxMemory() / 1048576;
 		LOGGER.info(getClass().getSimpleName() + ": Started, using " + getUsedMemoryMB() + " of " + totalMem + " MB total memory.");
-		LOGGER.info(getClass().getSimpleName() + ": Maximum number of connected players is " + Config.MAXIMUM_ONLINE_USERS + ".");
+		LOGGER.info(getClass().getSimpleName() + ": Maximum number of connected players is " + ServerConfig.MAXIMUM_ONLINE_USERS + ".");
 		LOGGER.info(getClass().getSimpleName() + ": Server loaded in " + ((System.currentTimeMillis() - START_TIME) / 1000) + " seconds.");
 		
-		new ConnectionManager<>(new InetSocketAddress(Config.PORT_GAME), GameClient::new, new GamePacketHandler());
+		new ConnectionManager<>(new InetSocketAddress(ServerConfig.PORT_GAME), GameClient::new, new GamePacketHandler());
 		
 		LoginServerThread.getInstance().start();
 		

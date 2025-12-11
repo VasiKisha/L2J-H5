@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
@@ -70,7 +70,7 @@ public class RequestDispel extends ClientPacket
 			return;
 		}
 		
-		if (skill.isDance() && !Config.DANCE_CANCEL_BUFF)
+		if (skill.isDance() && !PlayerConfig.DANCE_CANCEL_BUFF)
 		{
 			return;
 		}

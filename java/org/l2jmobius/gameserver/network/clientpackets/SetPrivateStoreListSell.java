@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.TradeList;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PrivateStoreType;
@@ -49,7 +49,7 @@ public class SetPrivateStoreListSell extends ClientPacket
 	{
 		_packageSale = (readInt() == 1);
 		final int count = readInt();
-		if ((count < 1) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
+		if ((count < 1) || (count > PlayerConfig.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}

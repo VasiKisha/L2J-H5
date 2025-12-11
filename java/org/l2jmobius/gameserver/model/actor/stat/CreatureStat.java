@@ -22,7 +22,10 @@ package org.l2jmobius.gameserver.model.actor.stat;
 
 import java.util.Arrays;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.NpcConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.ChampionMonstersConfig;
+import org.l2jmobius.gameserver.config.custom.ClassBalanceConfig;
 import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.transform.Transform;
@@ -49,7 +52,7 @@ public class CreatureStat
 	private final int[] _defenceTraitsCount = new int[TraitType.values().length];
 	private final int[] _traitsInvul = new int[TraitType.values().length];
 	/** Creature's maximum buff count. */
-	private int _maxBuffCount = Config.BUFFS_MAX_AMOUNT;
+	private int _maxBuffCount = PlayerConfig.BUFFS_MAX_AMOUNT;
 	/** Speed multiplier set by admin gmspeed command */
 	private double _gmSpeedMultiplier = 1;
 	
@@ -184,7 +187,7 @@ public class CreatureStat
 		
 		// if (!_creature.isGM())
 		// {
-		val = Math.min(val, Config.MAX_PCRIT_RATE);
+		val = Math.min(val, PlayerConfig.MAX_PCRIT_RATE);
 		// }
 		
 		return (int) (val + .5);
@@ -209,7 +212,7 @@ public class CreatureStat
 		
 		// if (!_creature.isGM())
 		// {
-		val = Math.min(val, Config.MAX_EVASION);
+		val = Math.min(val, PlayerConfig.MAX_EVASION);
 		// }
 		
 		return val;
@@ -290,18 +293,18 @@ public class CreatureStat
 	public double getMAtk(Creature target, Skill skill)
 	{
 		float bonusAtk = 1;
-		if (Config.CHAMPION_ENABLE && _creature.isChampion())
+		if (ChampionMonstersConfig.CHAMPION_ENABLE && _creature.isChampion())
 		{
-			bonusAtk = Config.CHAMPION_ATK;
+			bonusAtk = ChampionMonstersConfig.CHAMPION_ATK;
 		}
 		
 		if (_creature.isRaid())
 		{
-			bonusAtk *= Config.RAID_MATTACK_MULTIPLIER;
+			bonusAtk *= NpcConfig.RAID_MATTACK_MULTIPLIER;
 		}
 		
 		// Calculate modifiers Magic Attack
-		return Math.min(calcStat(Stat.MAGIC_ATTACK, _creature.getTemplate().getBaseMAtk() * bonusAtk, target, skill), Config.MAX_MATK);
+		return Math.min(calcStat(Stat.MAGIC_ATTACK, _creature.getTemplate().getBaseMAtk() * bonusAtk, target, skill), PlayerConfig.MAX_MATK);
 	}
 	
 	/**
@@ -310,16 +313,16 @@ public class CreatureStat
 	public int getMAtkSpd()
 	{
 		float bonusSpdAtk = 1;
-		if (Config.CHAMPION_ENABLE && _creature.isChampion())
+		if (ChampionMonstersConfig.CHAMPION_ENABLE && _creature.isChampion())
 		{
-			bonusSpdAtk = Config.CHAMPION_SPD_ATK;
+			bonusSpdAtk = ChampionMonstersConfig.CHAMPION_SPD_ATK;
 		}
 		
 		double val = calcStat(Stat.MAGIC_ATTACK_SPEED, _creature.getTemplate().getBaseMAtkSpd() * bonusSpdAtk);
 		
 		// if (!_creature.isGM())
 		// {
-		val = Math.min(val, Config.MAX_MATK_SPEED);
+		val = Math.min(val, PlayerConfig.MAX_MATK_SPEED);
 		// }
 		
 		return (int) val;
@@ -334,9 +337,21 @@ public class CreatureStat
 	{
 		int val = (int) calcStat(Stat.MCRITICAL_RATE, 1, target, skill) * 10;
 		
+		if ((skill != null) && (target != null) && _creature.isPlayable())
+		{
+			if (target.isPlayable())
+			{
+				val *= ClassBalanceConfig.PVP_MAGICAL_SKILL_CRITICAL_CHANCE_MULTIPLIERS[_creature.asPlayer().getPlayerClass().getId()];
+			}
+			else
+			{
+				val *= ClassBalanceConfig.PVE_MAGICAL_SKILL_CRITICAL_CHANCE_MULTIPLIERS[_creature.asPlayer().getPlayerClass().getId()];
+			}
+		}
+		
 		// if (!_creature.isGM())
 		// {
-		val = Math.min(val, Config.MAX_MCRIT_RATE);
+		val = Math.min(val, PlayerConfig.MAX_MCRIT_RATE);
 		// }
 		
 		return val;
@@ -356,7 +371,19 @@ public class CreatureStat
 		// Calculate modifier for Raid Bosses
 		if (_creature.isRaid())
 		{
-			defence *= Config.RAID_MDEFENCE_MULTIPLIER;
+			defence *= NpcConfig.RAID_MDEFENCE_MULTIPLIER;
+		}
+		
+		if ((skill != null) && (target != null) && target.isPlayable())
+		{
+			if (skill.isMagic())
+			{
+				defence *= ClassBalanceConfig.PVE_MAGICAL_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+			}
+			else
+			{
+				defence *= ClassBalanceConfig.PVE_PHYSICAL_SKILL_DEFENCE_MULTIPLIERS[target.asPlayer().getPlayerClass().getId()];
+			}
 		}
 		
 		// Calculate modifiers Magic Attack
@@ -525,17 +552,17 @@ public class CreatureStat
 	public double getPAtk(Creature target)
 	{
 		float bonusAtk = 1;
-		if (Config.CHAMPION_ENABLE && _creature.isChampion())
+		if (ChampionMonstersConfig.CHAMPION_ENABLE && _creature.isChampion())
 		{
-			bonusAtk = Config.CHAMPION_ATK;
+			bonusAtk = ChampionMonstersConfig.CHAMPION_ATK;
 		}
 		
 		if (_creature.isRaid())
 		{
-			bonusAtk *= Config.RAID_PATTACK_MULTIPLIER;
+			bonusAtk *= NpcConfig.RAID_PATTACK_MULTIPLIER;
 		}
 		
-		return Math.min(calcStat(Stat.POWER_ATTACK, _creature.getTemplate().getBasePAtk() * bonusAtk, target, null), Config.MAX_PATK);
+		return Math.min(calcStat(Stat.POWER_ATTACK, _creature.getTemplate().getBasePAtk() * bonusAtk, target, null), PlayerConfig.MAX_PATK);
 	}
 	
 	/**
@@ -544,9 +571,9 @@ public class CreatureStat
 	public double getPAtkSpd()
 	{
 		float bonusAtk = 1;
-		if (Config.CHAMPION_ENABLE && _creature.isChampion())
+		if (ChampionMonstersConfig.CHAMPION_ENABLE && _creature.isChampion())
 		{
-			bonusAtk = Config.CHAMPION_SPD_ATK;
+			bonusAtk = ChampionMonstersConfig.CHAMPION_SPD_ATK;
 		}
 		
 		return Math.round(calcStat(Stat.POWER_ATTACK_SPEED, _creature.getTemplate().getBasePAtkSpd() * bonusAtk, null, null));
@@ -558,7 +585,17 @@ public class CreatureStat
 	 */
 	public double getPDef(Creature target)
 	{
-		return calcStat(Stat.POWER_DEFENCE, _creature.isRaid() ? _creature.getTemplate().getBasePDef() * Config.RAID_PDEFENCE_MULTIPLIER : _creature.getTemplate().getBasePDef(), target, null);
+		if (_creature.isPlayable() && (target != null))
+		{
+			if (target.isPlayable())
+			{
+				return ClassBalanceConfig.PVP_PHYSICAL_ATTACK_DEFENCE_MULTIPLIERS[_creature.asPlayer().getPlayerClass().getId()] * calcStat(Stat.POWER_DEFENCE, _creature.isRaid() ? _creature.getTemplate().getBasePDef() * NpcConfig.RAID_PDEFENCE_MULTIPLIER : _creature.getTemplate().getBasePDef(), target, null);
+			}
+			
+			return ClassBalanceConfig.PVE_PHYSICAL_ATTACK_DEFENCE_MULTIPLIERS[_creature.asPlayer().getPlayerClass().getId()] * calcStat(Stat.POWER_DEFENCE, _creature.isRaid() ? _creature.getTemplate().getBasePDef() * NpcConfig.RAID_PDEFENCE_MULTIPLIER : _creature.getTemplate().getBasePDef(), target, null);
+		}
+		
+		return calcStat(Stat.POWER_DEFENCE, _creature.isRaid() ? _creature.getTemplate().getBasePDef() * NpcConfig.RAID_PDEFENCE_MULTIPLIER : _creature.getTemplate().getBasePDef(), target, null);
 	}
 	
 	/**
@@ -630,7 +667,7 @@ public class CreatureStat
 		
 		double mpConsume = skill.getMpConsume();
 		final double nextDanceMpCost = Math.ceil(skill.getMpConsume() / 2.);
-		if (skill.isDance() && Config.DANCE_CONSUME_ADDITIONAL_MP && (_creature != null) && (_creature.getDanceCount() > 0))
+		if (skill.isDance() && PlayerConfig.DANCE_CONSUME_ADDITIONAL_MP && (_creature != null) && (_creature.getDanceCount() > 0))
 		{
 			mpConsume += _creature.getDanceCount() * nextDanceMpCost;
 		}

@@ -25,8 +25,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.NpcConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.OfflinePlayConfig;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
@@ -93,22 +95,22 @@ public class DecayTaskManager implements Runnable
 		}
 		else
 		{
-			delay = Config.DEFAULT_CORPSE_TIME;
+			delay = NpcConfig.DEFAULT_CORPSE_TIME;
 		}
 		
 		if (creature.isAttackable() && (creature.asAttackable().isSpoiled() || creature.asAttackable().isSeeded()))
 		{
-			delay += Config.SPOILED_CORPSE_EXTEND_TIME;
+			delay += NpcConfig.SPOILED_CORPSE_EXTEND_TIME;
 		}
 		
 		if (creature.isPlayer())
 		{
 			final Player player = creature.asPlayer();
-			if (player.isOfflinePlay() && Config.OFFLINE_PLAY_LOGOUT_ON_DEATH)
+			if (player.isOfflinePlay() && OfflinePlayConfig.OFFLINE_PLAY_LOGOUT_ON_DEATH)
 			{
 				delay = 10; // 10 seconds
 			}
-			else if (Config.DISCONNECT_AFTER_DEATH)
+			else if (PlayerConfig.DISCONNECT_AFTER_DEATH)
 			{
 				delay = 3600; // 1 hour
 			}

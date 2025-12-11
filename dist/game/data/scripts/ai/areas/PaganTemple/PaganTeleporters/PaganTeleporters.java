@@ -23,15 +23,14 @@ import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Pagan Temple teleport AI.<br>
  * Original Jython script by BiTi.
  * @author Plim
  */
-public class PaganTeleporters extends AbstractNpcAI
+public class PaganTeleporters extends Script
 {
 	// NPCs
 	private static final int TRIOLS_MIRROR_1 = 32039;

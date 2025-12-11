@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.FishingChampionshipManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 
@@ -40,7 +40,7 @@ public class RequestExFishRanking extends ClientPacket
 			return;
 		}
 		
-		if (Config.ALT_FISH_CHAMPIONSHIP_ENABLED)
+		if (GeneralConfig.ALT_FISH_CHAMPIONSHIP_ENABLED)
 		{
 			FishingChampionshipManager.getInstance().showMidResult(player);
 		}

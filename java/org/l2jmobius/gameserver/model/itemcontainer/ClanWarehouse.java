@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.model.itemcontainer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
@@ -82,7 +82,7 @@ public class ClanWarehouse extends Warehouse
 	@Override
 	public boolean validateCapacity(long slots)
 	{
-		return (_items.size() + slots) <= Config.WAREHOUSE_SLOTS_CLAN;
+		return (_items.size() + slots) <= PlayerConfig.WAREHOUSE_SLOTS_CLAN;
 	}
 	
 	@Override

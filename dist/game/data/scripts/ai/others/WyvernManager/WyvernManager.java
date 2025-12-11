@@ -19,23 +19,24 @@ package ai.others.WyvernManager;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
+import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.siege.clanhalls.SiegableHall;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
-import ai.AbstractNpcAI;
-
 /**
  * Wyvern Manager
  * @author xban1x
  */
-public class WyvernManager extends AbstractNpcAI
+public class WyvernManager extends Script
 {
 	private enum ManagerType
 	{
@@ -247,7 +248,7 @@ public class WyvernManager extends AbstractNpcAI
 				{
 					htmltext = "wyvernmanager-02.html";
 				}
-				else if (Config.ALLOW_WYVERN_ALWAYS)
+				else if (FeatureConfig.ALLOW_WYVERN_ALWAYS)
 				{
 					htmltext = replaceAll(npc, player);
 				}
@@ -273,14 +274,22 @@ public class WyvernManager extends AbstractNpcAI
 			}
 			case "RideWyvern":
 			{
-				if (!Config.ALLOW_WYVERN_ALWAYS)
+				if (!FeatureConfig.ALLOW_WYVERN_ALWAYS)
 				{
-					if (!Config.ALLOW_WYVERN_DURING_SIEGE && (isInSiege(npc) || player.isInSiege()))
+					// If in siege and config blocks wyvern riding, allow only castle lord.
+					if (!FeatureConfig.ALLOW_WYVERN_DURING_SIEGE && player.isClanLeader() && (player.isInSiege() || isInSiege(npc)))
 					{
-						player.sendMessage("You cannot summon wyvern while in siege.");
-						return null;
+						// Determine if the player is the castle lord: must be clan leader and own the castle.
+						final Castle castle = CastleManager.getInstance().getCastle(npc);
+						final boolean isCastleLord = (castle != null) && (player.getClanId() == castle.getOwnerId());
+						if (!isCastleLord)
+						{
+							player.sendMessage("You cannot summon a wyvern during a siege.");
+							return null;
+						}
 					}
 					
+					// Check Seven Signs restriction.
 					final ManagerType type = MANAGERS.get(npc.getId());
 					if ((type == ManagerType.CASTLE) && SevenSigns.getInstance().isSealValidationPeriod() && ((SevenSigns.getInstance()).getSealOwner(SevenSigns.SEAL_STRIFE) == SevenSigns.CABAL_DUSK))
 					{
@@ -312,7 +321,7 @@ public class WyvernManager extends AbstractNpcAI
 		}
 		else
 		{
-			if (Config.ALLOW_WYVERN_ALWAYS)
+			if (FeatureConfig.ALLOW_WYVERN_ALWAYS)
 			{
 				htmltext = replaceAll(npc, player);
 			}

@@ -23,8 +23,8 @@ package org.l2jmobius.gameserver.model.actor.instance;
 import java.util.List;
 import java.util.Locale;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.managers.games.MonsterRaceManager;
 import org.l2jmobius.gameserver.managers.games.MonsterRaceManager.HistoryInfo;
@@ -63,7 +63,7 @@ public class RaceManager extends Npc
 	{
 		if (command.startsWith("BuyTicket"))
 		{
-			if (!Config.ALLOW_RACE || (MonsterRaceManager.getInstance().getCurrentRaceState() != RaceState.ACCEPTING_BETS))
+			if (!GeneralConfig.ALLOW_RACE || (MonsterRaceManager.getInstance().getCurrentRaceState() != RaceState.ACCEPTING_BETS))
 			{
 				player.sendPacket(SystemMessageId.MONSTER_RACE_TICKETS_ARE_NO_LONGER_AVAILABLE);
 				super.onBypassFeedback(player, "Chat 0");
@@ -192,7 +192,7 @@ public class RaceManager extends Npc
 		}
 		else if (command.equals("ShowOdds"))
 		{
-			if (!Config.ALLOW_RACE || (MonsterRaceManager.getInstance().getCurrentRaceState() == RaceState.ACCEPTING_BETS))
+			if (!GeneralConfig.ALLOW_RACE || (MonsterRaceManager.getInstance().getCurrentRaceState() == RaceState.ACCEPTING_BETS))
 			{
 				player.sendPacket(SystemMessageId.MONSTER_RACE_PAYOUT_INFORMATION_IS_NOT_AVAILABLE_WHILE_TICKETS_ARE_BEING_SOLD);
 				super.onBypassFeedback(player, "Chat 0");
@@ -218,7 +218,7 @@ public class RaceManager extends Npc
 		}
 		else if (command.equals("ShowInfo"))
 		{
-			if (!Config.ALLOW_RACE)
+			if (!GeneralConfig.ALLOW_RACE)
 			{
 				return;
 			}
@@ -238,7 +238,7 @@ public class RaceManager extends Npc
 		}
 		else if (command.equals("ShowTickets"))
 		{
-			if (!Config.ALLOW_RACE)
+			if (!GeneralConfig.ALLOW_RACE)
 			{
 				super.onBypassFeedback(player, "Chat 0");
 				return;
@@ -270,7 +270,7 @@ public class RaceManager extends Npc
 		{
 			// Retrieve ticket objectId.
 			final int val = Integer.parseInt(command.substring(11));
-			if (!Config.ALLOW_RACE || (val == 0))
+			if (!GeneralConfig.ALLOW_RACE || (val == 0))
 			{
 				super.onBypassFeedback(player, "Chat 0");
 				return;
@@ -312,7 +312,7 @@ public class RaceManager extends Npc
 		{
 			// Retrieve ticket objectId.
 			final int val = Integer.parseInt(command.substring(13));
-			if (!Config.ALLOW_RACE || (val == 0))
+			if (!GeneralConfig.ALLOW_RACE || (val == 0))
 			{
 				super.onBypassFeedback(player, "Chat 0");
 				return;
@@ -349,7 +349,7 @@ public class RaceManager extends Npc
 		}
 		else if (command.equals("ViewHistory"))
 		{
-			if (!Config.ALLOW_RACE)
+			if (!GeneralConfig.ALLOW_RACE)
 			{
 				super.onBypassFeedback(player, "Chat 0");
 				return;

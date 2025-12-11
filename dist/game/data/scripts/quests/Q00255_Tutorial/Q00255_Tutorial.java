@@ -20,8 +20,8 @@
  */
 package quests.Q00255_Tutorial;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -34,10 +34,10 @@ import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelC
 import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerSit;
 import org.l2jmobius.gameserver.model.events.holders.actor.player.inventory.OnPlayerItemPickup;
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialCloseHtml;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialEnableClientEvent;
@@ -136,7 +136,7 @@ public class Q00255_Tutorial extends Quest
 	public Q00255_Tutorial()
 	{
 		super(255);
-		if (!Config.DISABLE_TUTORIAL)
+		if (!PlayerConfig.DISABLE_TUTORIAL)
 		{
 			setOnEnterWorld(true);
 			addStartNpc(ROIEN, NEWBIE_HELPER_HUMAN_FIGHTER, GALLINT, NEWBIE_HELPER_HUMAN_MAGE, MITRAELL, NEWBIE_HELPER_DARK_ELF, NERUPA, NEWBIE_HELPER_ELF, LAFERON, NEWBIE_HELPER_DWARF, VULKUS, NEWBIE_HELPER_ORC, PERWAN, NEWBIE_HELPER_KAMAEL);
@@ -304,7 +304,7 @@ public class Q00255_Tutorial extends Quest
 	{
 		if (!StringUtil.isNumeric(event))
 		{
-			if (Config.DISABLE_TUTORIAL)
+			if (PlayerConfig.DISABLE_TUTORIAL)
 			{
 				return null;
 			}

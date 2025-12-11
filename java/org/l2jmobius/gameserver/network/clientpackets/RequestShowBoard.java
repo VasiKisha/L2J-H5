@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.handler.CommunityBoardHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 
@@ -41,6 +41,6 @@ public class RequestShowBoard extends ClientPacket
 			return;
 		}
 		
-		CommunityBoardHandler.getInstance().handleParseCommand(Config.BBS_DEFAULT, player);
+		CommunityBoardHandler.getInstance().handleParseCommand(GeneralConfig.BBS_DEFAULT, player);
 	}
 }

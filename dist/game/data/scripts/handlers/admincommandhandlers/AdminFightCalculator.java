@@ -25,6 +25,7 @@ import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
+import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
@@ -70,12 +71,6 @@ public class AdminFightCalculator implements IAdminCommandHandler
 		}
 		
 		return true;
-	}
-	
-	@Override
-	public String[] getCommandList()
-	{
-		return ADMIN_COMMANDS;
 	}
 	
 	private void handleStart(String params, Player activeChar)
@@ -171,10 +166,19 @@ public class AdminFightCalculator implements IAdminCommandHandler
 		String trimmedParams = params.trim();
 		Creature npc1 = null;
 		Creature npc2 = null;
+		
 		if (trimmedParams.isEmpty())
 		{
 			npc1 = activeChar;
-			npc2 = activeChar.getTarget().asCreature();
+			
+			final WorldObject target = activeChar.getTarget();
+			if (target == null)
+			{
+				activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
+				return;
+			}
+			
+			npc2 = target.asCreature();
 			if (npc2 == null)
 			{
 				activeChar.sendPacket(SystemMessageId.INVALID_TARGET);
@@ -353,5 +357,11 @@ public class AdminFightCalculator implements IAdminCommandHandler
 			npc1.asMonster().deleteMe();
 			npc2.asMonster().deleteMe();
 		}
+	}
+	
+	@Override
+	public String[] getCommandList()
+	{
+		return ADMIN_COMMANDS;
 	}
 }

@@ -18,15 +18,14 @@ package ai.areas.FrozenLabyrinth;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
-
-import ai.AbstractNpcAI;
 
 /**
  * Frozen Labyrinth AI.
  * @author malyelfik
  */
-public class FrozenLabyrinth extends AbstractNpcAI
+public class FrozenLabyrinth extends Script
 {
 	// Monsters
 	private static final int PRONGHORN_SPIRIT = 22087;

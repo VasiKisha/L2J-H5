@@ -23,7 +23,7 @@ package handlers.usercommandhandlers;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.ServerTimeConfig;
 import org.l2jmobius.gameserver.handler.IUserCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -77,7 +77,7 @@ public class Time implements IUserCommandHandler
 		}
 		
 		player.sendPacket(sm);
-		if (Config.DISPLAY_SERVER_TIME)
+		if (ServerTimeConfig.DISPLAY_SERVER_TIME)
 		{
 			player.sendMessage("Server time is " + SDF.format(new Date(System.currentTimeMillis())));
 		}

@@ -16,22 +16,21 @@
  */
 package ai.areas.Hellbound;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.util.Broadcast;
-
-import ai.AbstractNpcAI;
 
 /**
  * Hellbound Engine.
  * @author Zoey76
  */
-public class HellboundEngine extends AbstractNpcAI
+public class HellboundEngine extends Script
 {
 	// @formatter:off
 	private static final int[][] DOOR_LIST =
@@ -350,7 +349,7 @@ public class HellboundEngine extends AbstractNpcAI
 		int reward = trust;
 		if (useRates)
 		{
-			reward = (int) (trust * (trust > 0 ? Config.RATE_HB_TRUST_INCREASE : Config.RATE_HB_TRUST_DECREASE));
+			reward = (int) (trust * (trust > 0 ? RatesConfig.RATE_HB_TRUST_INCREASE : RatesConfig.RATE_HB_TRUST_DECREASE));
 		}
 		
 		final int finalTrust = Math.max(getTrust() + reward, _minTrust);

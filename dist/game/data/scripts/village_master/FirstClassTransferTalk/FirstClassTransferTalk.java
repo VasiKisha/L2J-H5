@@ -24,15 +24,14 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.instance.VillageMasterFighter;
 import org.l2jmobius.gameserver.model.actor.instance.VillageMasterPriest;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * This script manages the dialogs of the headmasters of all newbie villages.<br>
  * None of them provide actual class transfers, they only talk about it.
  * @author jurchiks, xban1x
  */
-public class FirstClassTransferTalk extends AbstractNpcAI
+public class FirstClassTransferTalk extends Script
 {
 	private static final Map<Integer, Race> MASTERS = new HashMap<>();
 	static

@@ -20,9 +20,12 @@
  */
 package org.l2jmobius.gameserver.geoengine.pathfinding;
 
+import java.util.HashSet;
+import java.util.PriorityQueue;
+import java.util.Set;
 import java.util.concurrent.locks.ReentrantLock;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeoEngineConfig;
 
 /**
  * @author Mobius
@@ -34,6 +37,10 @@ public class NodeBuffer
 	private final ReentrantLock _lock = new ReentrantLock();
 	private final int _mapSize;
 	private final GeoNode[][] _buffer;
+	
+	// A* specific data structures.
+	private final PriorityQueue<GeoNode> _openList;
+	private final Set<GeoNode> _closedList;
 	
 	private int _baseX = 0;
 	private int _baseY = 0;
@@ -48,6 +55,16 @@ public class NodeBuffer
 	{
 		_mapSize = size;
 		_buffer = new GeoNode[_mapSize][_mapSize];
+		_openList = new PriorityQueue<>((a, b) ->
+		{
+			if (a.getFCost() != b.getFCost())
+			{
+				return Double.compare(a.getFCost(), b.getFCost());
+			}
+			
+			return Double.compare(a.getHCost(), b.getHCost());
+		});
+		_closedList = new HashSet<>();
 	}
 	
 	public final boolean lock()
@@ -55,6 +72,16 @@ public class NodeBuffer
 		return _lock.tryLock();
 	}
 	
+	/**
+	 * Enhanced A* pathfinding algorithm.
+	 * @param x starting X coordinate
+	 * @param y starting Y coordinate
+	 * @param z starting Z coordinate
+	 * @param tx target X coordinate
+	 * @param ty target Y coordinate
+	 * @param tz target Z coordinate
+	 * @return the final node if path found, null otherwise
+	 */
 	public GeoNode findPath(int x, int y, int z, int tx, int ty, int tz)
 	{
 		_baseX = x + ((tx - x - _mapSize) / 2); // Middle of the line (x,y) - (tx,ty).
@@ -62,33 +89,49 @@ public class NodeBuffer
 		_targetX = tx;
 		_targetY = ty;
 		_targetZ = tz;
+		
 		_current = getNode(x, y, z);
-		_current.setCost(getCost(x, y, z, Config.HIGH_WEIGHT));
+		if (_current == null)
+		{
+			return null;
+		}
+		
+		// Initialize start node.
+		_current.setGCost(0);
+		_current.setHCost(getCost(x, y, z));
+		_current.calculateFCost();
+		
+		_openList.add(_current);
 		
 		for (int count = 0; count < MAX_ITERATIONS; count++)
 		{
+			if (_openList.isEmpty())
+			{
+				return null; // No path found.
+			}
+			
+			_current = _openList.poll();
+			
+			// Check if we reached the target.
 			if ((_current.getLocation().getNodeX() == _targetX) && (_current.getLocation().getNodeY() == _targetY) && (Math.abs(_current.getLocation().getZ() - _targetZ) < 64))
 			{
-				return _current; // Found.
+				return _current; // Found target.
 			}
 			
+			_closedList.add(_current);
+			
+			// Get and process neighbors.
 			getNeighbors();
-			
-			final GeoNode nextCellNode = _current.getNext();
-			if (nextCellNode == null)
-			{
-				return null; // No more ways.
-			}
-			
-			_current = nextCellNode;
 		}
 		
-		return null;
+		return null; // Path not found within iteration limit.
 	}
 	
 	public void free()
 	{
 		_current = null;
+		_openList.clear();
+		_closedList.clear();
 		
 		GeoNode node;
 		for (int i = 0; i < _mapSize; i++)
@@ -106,6 +149,9 @@ public class NodeBuffer
 		_lock.unlock();
 	}
 	
+	/**
+	 * Enhanced neighbor discovery using A* principles.
+	 */
 	private void getNeighbors()
 	{
 		if (_current.getLocation().canGoNone())
@@ -122,31 +168,32 @@ public class NodeBuffer
 		GeoNode nodeW = null;
 		GeoNode nodeN = null;
 		
-		// East
+		// East.
 		if (_current.getLocation().canGoEast())
 		{
 			nodeE = addNode(x + 1, y, z, false);
 		}
 		
-		// South
+		// South.
 		if (_current.getLocation().canGoSouth())
 		{
 			nodeS = addNode(x, y + 1, z, false);
 		}
 		
-		// West
+		// West.
 		if (_current.getLocation().canGoWest())
 		{
 			nodeW = addNode(x - 1, y, z, false);
 		}
 		
-		// North
+		// North.
 		if (_current.getLocation().canGoNorth())
 		{
 			nodeN = addNode(x, y - 1, z, false);
 		}
 		
-		if (!Config.ADVANCED_DIAGONAL_STRATEGY)
+		// Diagonal movements (if enabled).
+		if (!GeoEngineConfig.ADVANCED_DIAGONAL_STRATEGY)
 		{
 			return;
 		}
@@ -209,11 +256,23 @@ public class NodeBuffer
 			{
 				result.setLoc(new GeoLocation(x, y, z));
 			}
+			
+			// Reset A* costs and clear parent reference.
+			result.resetCosts();
+			result.setParent(null);
 		}
 		
 		return result;
 	}
 	
+	/**
+	 * Enhanced node addition using A* algorithm.
+	 * @param x the X coordinate
+	 * @param y the Y coordinate
+	 * @param z the Z coordinate
+	 * @param diagonal whether this is a diagonal move
+	 * @return the added node or null if not valid
+	 */
 	private GeoNode addNode(int x, int y, int z, boolean diagonal)
 	{
 		final GeoNode newNode = getNode(x, y, z);
@@ -222,61 +281,52 @@ public class NodeBuffer
 			return null;
 		}
 		
-		if (newNode.getCost() >= 0)
+		// Skip if already in closed list.
+		if (_closedList.contains(newNode))
 		{
 			return newNode;
 		}
 		
 		final int geoZ = newNode.getLocation().getZ();
-		
 		final int stepZ = Math.abs(geoZ - _current.getLocation().getZ());
-		float weight = diagonal ? Config.DIAGONAL_WEIGHT : Config.LOW_WEIGHT;
 		
+		// Calculate movement cost based on terrain and movement type.
+		float weight = diagonal ? GeoEngineConfig.DIAGONAL_WEIGHT : GeoEngineConfig.LOW_WEIGHT;
 		if (!newNode.getLocation().canGoAll() || (stepZ > 16))
 		{
-			weight = Config.HIGH_WEIGHT;
+			weight = GeoEngineConfig.HIGH_WEIGHT;
 		}
-		else if (isHighWeight(x + 1, y, geoZ))
+		else if (isHighWeight(x + 1, y, geoZ) || isHighWeight(x - 1, y, geoZ) || isHighWeight(x, y + 1, geoZ) || isHighWeight(x, y - 1, geoZ))
 		{
-			weight = Config.MEDIUM_WEIGHT;
-		}
-		else if (isHighWeight(x - 1, y, geoZ))
-		{
-			weight = Config.MEDIUM_WEIGHT;
-		}
-		else if (isHighWeight(x, y + 1, geoZ))
-		{
-			weight = Config.MEDIUM_WEIGHT;
-		}
-		else if (isHighWeight(x, y - 1, geoZ))
-		{
-			weight = Config.MEDIUM_WEIGHT;
+			weight = GeoEngineConfig.MEDIUM_WEIGHT;
 		}
 		
-		newNode.setParent(_current);
-		newNode.setCost(getCost(x, y, geoZ, weight));
+		// Calculate new G cost (actual cost from start).
+		final double newGCost = _current.getGCost() + weight;
 		
-		GeoNode node = _current;
-		int count = 0;
-		while ((node.getNext() != null) && (count < (MAX_ITERATIONS * 4)))
+		// Check if this node is already in open list.
+		final boolean inOpenList = _openList.contains(newNode);
+		
+		// If not in open list or we found a better path.
+		if (!inOpenList || (newGCost < newNode.getGCost()))
 		{
-			count++;
-			if (node.getNext().getCost() > newNode.getCost())
-			{
-				// Insert node into a chain.
-				newNode.setNext(node.getNext());
-				break;
-			}
+			// Set parent and costs.
+			newNode.setParent(_current);
+			newNode.setGCost(newGCost);
+			newNode.setHCost(getCost(x, y, geoZ));
+			newNode.calculateFCost();
 			
-			node = node.getNext();
+			if (!inOpenList)
+			{
+				_openList.add(newNode);
+			}
+			else
+			{
+				// Update position in priority queue.
+				_openList.remove(newNode);
+				_openList.add(newNode);
+			}
 		}
-		
-		if (count == (MAX_ITERATIONS * 4))
-		{
-			System.err.println("Pathfinding: too long loop detected, cost:" + newNode.getCost());
-		}
-		
-		node.setNext(newNode); // Add last.
 		
 		return newNode;
 	}
@@ -287,24 +337,20 @@ public class NodeBuffer
 		return (result == null) || !result.getLocation().canGoAll() || (Math.abs(result.getLocation().getZ() - z) > 16);
 	}
 	
-	private double getCost(int x, int y, int z, float weight)
+	/**
+	 * Calculate heuristic cost using 3D distance with proper scaling.
+	 * @param x the X coordinate
+	 * @param y the Y coordinate
+	 * @param z the Z coordinate
+	 * @return the heuristic cost
+	 */
+	private double getCost(int x, int y, int z)
 	{
 		final int dX = x - _targetX;
 		final int dY = y - _targetY;
 		final int dZ = z - _targetZ;
 		
-		// Math.abs(dx) + Math.abs(dy) + Math.abs(dz) / 16
-		double result = Math.sqrt((dX * dX) + (dY * dY) + ((dZ * dZ) / 256.0));
-		if (result > weight)
-		{
-			result += weight;
-		}
-		
-		if (result > Float.MAX_VALUE)
-		{
-			result = Float.MAX_VALUE;
-		}
-		
-		return result;
+		// Use 3D Euclidean distance for more accurate heuristic.
+		return Math.sqrt((dX * dX) + (dY * dY) + ((dZ * dZ) / 256.0));
 	}
 }

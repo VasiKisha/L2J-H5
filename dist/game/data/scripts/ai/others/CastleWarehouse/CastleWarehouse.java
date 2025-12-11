@@ -19,14 +19,13 @@ package ai.others.CastleWarehouse;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Castle Warehouse Keeper AI.
  * @author malyelfik
  */
-public class CastleWarehouse extends AbstractNpcAI
+public class CastleWarehouse extends Script
 {
 	// NPCs
 	private static final int[] NPCS =

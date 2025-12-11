@@ -22,11 +22,11 @@ import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.custom.WeddingConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.managers.CoupleManager;
@@ -97,7 +97,7 @@ public class Wedding implements IVoicedCommandHandler
 		if (activeChar.isMarried())
 		{
 			activeChar.sendMessage("You are now divorced.");
-			adenaAmount = (activeChar.getAdena() / 100) * Config.WEDDING_DIVORCE_COSTS;
+			adenaAmount = (activeChar.getAdena() / 100) * WeddingConfig.WEDDING_DIVORCE_COSTS;
 			activeChar.getInventory().reduceAdena(ItemProcessType.FEE, adenaAmount, activeChar, null);
 		}
 		else
@@ -144,7 +144,7 @@ public class Wedding implements IVoicedCommandHandler
 		else if (activeChar.getPartnerId() != 0)
 		{
 			activeChar.sendMessage("You are already engaged.");
-			if (Config.WEDDING_PUNISH_INFIDELITY)
+			if (WeddingConfig.WEDDING_PUNISH_INFIDELITY)
 			{
 				activeChar.startAbnormalVisualEffect(true, AbnormalVisualEffect.BIG_HEAD); // give player a Big Head
 				
@@ -202,7 +202,7 @@ public class Wedding implements IVoicedCommandHandler
 			return false;
 		}
 		
-		if ((ptarget.getAppearance().isFemale() == activeChar.getAppearance().isFemale()) && !Config.WEDDING_SAMESEX)
+		if ((ptarget.getAppearance().isFemale() == activeChar.getAppearance().isFemale()) && !WeddingConfig.WEDDING_SAMESEX)
 		{
 			activeChar.sendMessage("Gay marriage is not allowed on this server!");
 			return false;
@@ -249,9 +249,9 @@ public class Wedding implements IVoicedCommandHandler
 	
 	public boolean goToLove(Player activeChar)
 	{
-		final int teleportTimer = Config.WEDDING_TELEPORT_DURATION * 1000;
+		final int teleportTimer = WeddingConfig.WEDDING_TELEPORT_DURATION * 1000;
 		
-		if (!Config.WEDDING_TELEPORT)
+		if (!WeddingConfig.WEDDING_TELEPORT)
 		{
 			activeChar.sendMessage("The 'Go to Love' teleport feature has been disabled.");
 			return false;
@@ -452,7 +452,7 @@ public class Wedding implements IVoicedCommandHandler
 			return false;
 		}
 		
-		if (!activeChar.reduceAdena(ItemProcessType.FEE, Config.WEDDING_TELEPORT_PRICE, null, true))
+		if (!activeChar.reduceAdena(ItemProcessType.FEE, WeddingConfig.WEDDING_TELEPORT_PRICE, null, true))
 		{
 			return false; // Player already informed by system message inside reduceAdena.
 		}

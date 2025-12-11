@@ -28,9 +28,9 @@ import javax.management.AttributeList;
 import javax.management.MBeanServer;
 import javax.management.ObjectName;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.Shutdown;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -61,31 +61,31 @@ public class PrecautionaryRestartManager
 				return;
 			}
 			
-			if (Config.PRECAUTIONARY_RESTART_CPU && (getCpuLoad(SYSTEM_CPU_LOAD_VAR) > Config.PRECAUTIONARY_RESTART_PERCENTAGE))
+			if (ServerConfig.PRECAUTIONARY_RESTART_CPU && (getCpuLoad(SYSTEM_CPU_LOAD_VAR) > ServerConfig.PRECAUTIONARY_RESTART_PERCENTAGE))
 			{
 				if (serverBizzy())
 				{
 					return;
 				}
 				
-				LOGGER.info("PrecautionaryRestartManager: CPU usage over " + Config.PRECAUTIONARY_RESTART_PERCENTAGE + "%.");
+				LOGGER.info("PrecautionaryRestartManager: CPU usage over " + ServerConfig.PRECAUTIONARY_RESTART_PERCENTAGE + "%.");
 				LOGGER.info("PrecautionaryRestartManager: Server is using " + getCpuLoad(PROCESS_CPU_LOAD_VAR) + "%.");
 				Broadcast.toAllOnlinePlayers("Server will restart in 10 minutes.", false);
 				Shutdown.getInstance().startShutdown(null, 600, true);
 			}
 			
-			if (Config.PRECAUTIONARY_RESTART_MEMORY && (getProcessRamLoad() > Config.PRECAUTIONARY_RESTART_PERCENTAGE))
+			if (ServerConfig.PRECAUTIONARY_RESTART_MEMORY && (getProcessRamLoad() > ServerConfig.PRECAUTIONARY_RESTART_PERCENTAGE))
 			{
 				if (serverBizzy())
 				{
 					return;
 				}
 				
-				LOGGER.info("PrecautionaryRestartManager: Memory usage over " + Config.PRECAUTIONARY_RESTART_PERCENTAGE + "%.");
+				LOGGER.info("PrecautionaryRestartManager: Memory usage over " + ServerConfig.PRECAUTIONARY_RESTART_PERCENTAGE + "%.");
 				Broadcast.toAllOnlinePlayers("Server will restart in 10 minutes.", false);
 				Shutdown.getInstance().startShutdown(null, 600, true);
 			}
-		}, Config.PRECAUTIONARY_RESTART_DELAY, Config.PRECAUTIONARY_RESTART_DELAY);
+		}, ServerConfig.PRECAUTIONARY_RESTART_DELAY, ServerConfig.PRECAUTIONARY_RESTART_DELAY);
 	}
 	
 	private static double getCpuLoad(String var)

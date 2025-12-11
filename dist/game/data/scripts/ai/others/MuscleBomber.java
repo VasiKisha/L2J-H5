@@ -18,17 +18,16 @@ package ai.others;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.util.LocationUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Muscle Bomber AI.
  * @author Zoey76
  * @since 2.6.0.0
  */
-public class MuscleBomber extends AbstractNpcAI
+public class MuscleBomber extends Script
 {
 	// NPC
 	private static final int MUSCLE_BOMBER = 25724;

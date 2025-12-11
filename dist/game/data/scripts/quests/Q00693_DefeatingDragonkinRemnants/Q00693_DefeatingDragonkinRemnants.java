@@ -17,15 +17,15 @@
 package quests.Q00693_DefeatingDragonkinRemnants;
 
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.managers.SoDManager;
+import org.l2jmobius.gameserver.managers.SeedOfDestructionManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
@@ -49,7 +49,7 @@ public class Q00693_DefeatingDragonkinRemnants extends Quest
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		if (SoDManager.getInstance().getSoDState() == 2)
+		if (SeedOfDestructionManager.getInstance().getSoDState() == 2)
 		{
 			return "32527-00.html";
 		}

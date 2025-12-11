@@ -21,16 +21,16 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
+import org.l2jmobius.gameserver.model.script.QuestState;
 
-import instances.AbstractInstance;
 import quests.Q00236_SeedsOfChaos.Q00236_SeedsOfChaos;
 
 /**
  * Nornil's Garden Quest instant zone.
  * @author Zoey76
  */
-public class NornilsGardenQuest extends AbstractInstance
+public class NornilsGardenQuest extends InstanceScript
 {
 	// NPCs
 	private static final int RODENPICULA = 32237;

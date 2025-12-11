@@ -25,7 +25,7 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.IdManagerConfig;
 import org.l2jmobius.gameserver.util.PrimeCapacityAllocator;
 
 /**
@@ -36,7 +36,7 @@ public class IdManager
 {
 	private static final Logger LOGGER = Logger.getLogger(IdManager.class.getName());
 	
-	private static final int TOTAL_ID_COUNT = Config.LAST_OBJECT_ID - Config.FIRST_OBJECT_ID;
+	private static final int TOTAL_ID_COUNT = IdManagerConfig.LAST_OBJECT_ID - IdManagerConfig.FIRST_OBJECT_ID;
 	
 	private BitSet _freeIds;
 	private int _freeIdCount;
@@ -53,14 +53,14 @@ public class IdManager
 		// Initialize BitSet with initial capacity or next prime.
 		try
 		{
-			_freeIds = new BitSet(PrimeCapacityAllocator.nextCapacity(Config.INITIAL_CAPACITY));
+			_freeIds = new BitSet(PrimeCapacityAllocator.nextCapacity(IdManagerConfig.INITIAL_CAPACITY));
 			_freeIds.clear();
 			_freeIdCount = TOTAL_ID_COUNT;
 			
 			// Register used ids.
 			for (int usedObjectId : DatabaseIdManager.getUsedIds())
 			{
-				final int objectId = usedObjectId - Config.FIRST_OBJECT_ID;
+				final int objectId = usedObjectId - IdManagerConfig.FIRST_OBJECT_ID;
 				if (objectId < 0)
 				{
 					continue;
@@ -87,7 +87,7 @@ public class IdManager
 	private void increaseBitSetCapacity()
 	{
 		final int currentSize = _freeIds.size();
-		final int newSize = Math.min(PrimeCapacityAllocator.nextCapacity((int) (currentSize * Config.RESIZE_MULTIPLIER)), TOTAL_ID_COUNT);
+		final int newSize = Math.min(PrimeCapacityAllocator.nextCapacity((int) (currentSize * IdManagerConfig.RESIZE_MULTIPLIER)), TOTAL_ID_COUNT);
 		
 		// Only resize if the new size is larger than the current size.
 		if (newSize > currentSize)
@@ -116,7 +116,7 @@ public class IdManager
 			
 			// Check utilization and increase capacity if needed.
 			final double utilization = (double) (TOTAL_ID_COUNT - _freeIdCount) / _freeIds.size();
-			if (utilization >= Config.RESIZE_THRESHOLD)
+			if (utilization >= IdManagerConfig.RESIZE_THRESHOLD)
 			{
 				increaseBitSetCapacity();
 				_nextFreeId = _freeIds.nextClearBit(0); // Reset to the first available ID in the resized BitSet.
@@ -143,7 +143,7 @@ public class IdManager
 			
 			_nextFreeId = nextFree;
 			
-			return newId + Config.FIRST_OBJECT_ID;
+			return newId + IdManagerConfig.FIRST_OBJECT_ID;
 		}
 		finally
 		{
@@ -160,14 +160,14 @@ public class IdManager
 		_lock.lock();
 		try
 		{
-			if ((objectId - Config.FIRST_OBJECT_ID) > -1)
+			if ((objectId - IdManagerConfig.FIRST_OBJECT_ID) > -1)
 			{
-				_freeIds.clear(objectId - Config.FIRST_OBJECT_ID);
+				_freeIds.clear(objectId - IdManagerConfig.FIRST_OBJECT_ID);
 				_freeIdCount++;
 			}
 			else
 			{
-				LOGGER.warning("IdManager: Release objectID " + objectId + " failed (< " + Config.FIRST_OBJECT_ID + ")");
+				LOGGER.warning("IdManager: Release objectID " + objectId + " failed (< " + IdManagerConfig.FIRST_OBJECT_ID + ")");
 			}
 		}
 		finally

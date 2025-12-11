@@ -25,18 +25,18 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.SchedulingPattern;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.quest.Event;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Event;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
@@ -198,7 +198,7 @@ public class Race extends Event
 		}
 		
 		// Check Custom Table - we use custom NPCs
-		if (!Config.CUSTOM_NPC_DATA)
+		if (!GeneralConfig.CUSTOM_NPC_DATA)
 		{
 			LOGGER.info(getName() + ": Event can't be started, because custom npc table is disabled!");
 			eventMaker.sendMessage("Event " + getName() + " can't be started because custom NPC table is disabled!");
@@ -209,7 +209,7 @@ public class Race extends Event
 		_isactive = true;
 		
 		// Spawn Manager
-		_npc = recordSpawn(START_NPC, 18429, 145861, -3090, 0, false, 0);
+		_npc = recordSpawn(START_NPC, 18429, 145861, -3090, 35000, false, 0);
 		
 		// Announce event start
 		Broadcast.toAllOnlinePlayers("* Race Event started! *");

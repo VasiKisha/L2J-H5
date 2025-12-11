@@ -30,9 +30,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.ConquerableHallSiegeConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.managers.CHSiegeManager;
 import org.l2jmobius.gameserver.managers.MapRegionManager;
@@ -43,7 +43,7 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.siege.Siegable;
 import org.l2jmobius.gameserver.model.siege.SiegeClan;
 import org.l2jmobius.gameserver.model.siege.SiegeClanType;
@@ -57,7 +57,7 @@ import org.l2jmobius.gameserver.util.Broadcast;
 /**
  * @author BiggBoss
  */
-public abstract class ClanHallSiegeEngine extends Quest implements Siegable
+public abstract class ClanHallSiegeEngine extends Script implements Siegable
 {
 	private static final String SQL_LOAD_ATTACKERS = "SELECT attacker_id FROM clanhall_siege_attackers WHERE clanhall_id = ?";
 	private static final String SQL_SAVE_ATTACKERS = "INSERT INTO clanhall_siege_attackers VALUES (?,?)";
@@ -81,7 +81,6 @@ public abstract class ClanHallSiegeEngine extends Quest implements Siegable
 	
 	public ClanHallSiegeEngine(int hallId)
 	{
-		super(-1);
 		LOGGER = Logger.getLogger(getClass().getName());
 		_hall = CHSiegeManager.getInstance().getSiegableHall(hallId);
 		_hall.setSiege(this);
@@ -437,19 +436,19 @@ public abstract class ClanHallSiegeEngine extends Quest implements Siegable
 	@Override
 	public boolean giveFame()
 	{
-		return Config.CHS_ENABLE_FAME;
+		return ConquerableHallSiegeConfig.CHS_ENABLE_FAME;
 	}
 	
 	@Override
 	public int getFameAmount()
 	{
-		return Config.CHS_FAME_AMOUNT;
+		return ConquerableHallSiegeConfig.CHS_FAME_AMOUNT;
 	}
 	
 	@Override
 	public int getFameFrequency()
 	{
-		return Config.CHS_FAME_FREQUENCY;
+		return ConquerableHallSiegeConfig.CHS_FAME_FREQUENCY;
 	}
 	
 	public void broadcastNpcSay(Npc npc, ChatType type, NpcStringId messageId)

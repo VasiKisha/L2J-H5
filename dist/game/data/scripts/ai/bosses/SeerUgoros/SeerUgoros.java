@@ -31,20 +31,20 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
-import ai.AbstractNpcAI;
 import quests.Q00288_HandleWithCare.Q00288_HandleWithCare;
 import quests.Q00423_TakeYourBestShot.Q00423_TakeYourBestShot;
 
 /**
  * @author RobikBobik
  */
-public class SeerUgoros extends AbstractNpcAI
+public class SeerUgoros extends Script
 {
 	// NPCs
 	private static final int SEER_UGOROS = 18863;

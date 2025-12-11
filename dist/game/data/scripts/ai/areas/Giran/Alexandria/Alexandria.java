@@ -25,14 +25,13 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
 import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Alexandria (Armor Merchant) AI.
  * @author xban1x
  */
-public class Alexandria extends AbstractNpcAI
+public class Alexandria extends Script
 {
 	// NPC
 	private static final int ALEXANDRIA = 30098;
@@ -138,6 +137,12 @@ public class Alexandria extends AbstractNpcAI
 		{
 			return _additionalId;
 		}
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

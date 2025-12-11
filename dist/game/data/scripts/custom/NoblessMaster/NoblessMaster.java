@@ -20,34 +20,33 @@
  */
 package custom.NoblessMaster;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.NoblessMasterConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-
-import ai.AbstractNpcAI;
 
 /**
  * @author Mobius
  */
-public class NoblessMaster extends AbstractNpcAI
+public class NoblessMaster extends Script
 {
 	// Item
 	private static final int NOBLESS_TIARA = 7694;
 	
 	private NoblessMaster()
 	{
-		addStartNpc(Config.NOBLESS_MASTER_NPCID);
-		addTalkId(Config.NOBLESS_MASTER_NPCID);
-		addFirstTalkId(Config.NOBLESS_MASTER_NPCID);
+		addStartNpc(NoblessMasterConfig.NOBLESS_MASTER_NPCID);
+		addTalkId(NoblessMasterConfig.NOBLESS_MASTER_NPCID);
+		addFirstTalkId(NoblessMasterConfig.NOBLESS_MASTER_NPCID);
 	}
 	
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
-		if (!Config.NOBLESS_MASTER_ENABLED)
+		if (!NoblessMasterConfig.NOBLESS_MASTER_ENABLED)
 		{
 			return null;
 		}
@@ -61,23 +60,23 @@ public class NoblessMaster extends AbstractNpcAI
 					return "1003000-3.htm";
 				}
 				
-				if (Config.NOBLESS_MASTER_ITEM_COUNT > 0)
+				if (NoblessMasterConfig.NOBLESS_MASTER_ITEM_COUNT > 0)
 				{
-					if (getQuestItemsCount(player, Config.NOBLESS_MASTER_ITEM_ID) < Config.NOBLESS_MASTER_ITEM_COUNT)
+					if (getQuestItemsCount(player, NoblessMasterConfig.NOBLESS_MASTER_ITEM_ID) < NoblessMasterConfig.NOBLESS_MASTER_ITEM_COUNT)
 					{
 						final SystemMessage msg = new SystemMessage(SystemMessageId.S2_UNIT_S_OF_THE_ITEM_S1_IS_ARE_REQUIRED);
-						msg.addItemName(Config.NOBLESS_MASTER_ITEM_ID);
-						msg.addLong(Config.NOBLESS_MASTER_ITEM_COUNT);
+						msg.addItemName(NoblessMasterConfig.NOBLESS_MASTER_ITEM_ID);
+						msg.addLong(NoblessMasterConfig.NOBLESS_MASTER_ITEM_COUNT);
 						player.sendPacket(msg);
 						return "1003000-4.htm";
 					}
 					
-					takeItems(player, Config.NOBLESS_MASTER_ITEM_ID, Config.NOBLESS_MASTER_ITEM_COUNT);
+					takeItems(player, NoblessMasterConfig.NOBLESS_MASTER_ITEM_ID, NoblessMasterConfig.NOBLESS_MASTER_ITEM_COUNT);
 				}
 				
-				if (player.getLevel() >= Config.NOBLESS_MASTER_LEVEL_REQUIREMENT)
+				if (player.getLevel() >= NoblessMasterConfig.NOBLESS_MASTER_LEVEL_REQUIREMENT)
 				{
-					if (Config.NOBLESS_MASTER_REWARD_TIARA)
+					if (NoblessMasterConfig.NOBLESS_MASTER_REWARD_TIARA)
 					{
 						giveItems(player, NOBLESS_TIARA, 1);
 					}

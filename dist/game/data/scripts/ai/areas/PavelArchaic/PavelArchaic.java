@@ -18,14 +18,13 @@ package ai.areas.PavelArchaic;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Pavel Archaic AI.
  * @author Gnacik, St3eT
  */
-public class PavelArchaic extends AbstractNpcAI
+public class PavelArchaic extends Script
 {
 	private static final int SAFETY_DEVICE = 18917; // Pavel Safety Device
 	private static final int PINCER_GOLEM = 22801; // Cruel Pincer Golem

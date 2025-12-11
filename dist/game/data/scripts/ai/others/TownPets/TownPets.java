@@ -26,14 +26,13 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Town Pet AI
  * @author Mobius
  */
-public class TownPets extends AbstractNpcAI
+public class TownPets extends Script
 {
 	// NPCs
 	private static final int[] PETS =

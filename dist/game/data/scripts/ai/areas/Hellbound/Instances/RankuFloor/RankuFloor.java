@@ -24,17 +24,16 @@ import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.LocationUtil;
-
-import instances.AbstractInstance;
 
 /**
  * Tower of Infinitum (10th Floor) instance zone.
  * @author GKR
  */
-public class RankuFloor extends AbstractInstance
+public class RankuFloor extends InstanceScript
 {
 	// NPCs
 	private static final int GK_9 = 32752;

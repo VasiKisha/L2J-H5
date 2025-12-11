@@ -223,6 +223,7 @@
 																	<xs:attribute name="canEscape" type="xs:boolean" use="optional" />
 																	<xs:attribute name="cp" type="xs:unsignedByte" use="optional" />
 																	<xs:attribute name="SiegeZone" type="xs:unsignedByte" use="optional" />
+																	<xs:attribute name="IsRidingStrider" type="xs:boolean" use="optional" />
 																	<xs:attribute name="callPc" type="xs:boolean" use="optional" />
 																	<xs:attribute name="clanHall" type="xs:byte" use="optional" />
 																	<xs:attribute name="insideZoneId" type="xs:unsignedInt" use="optional" />

@@ -19,7 +19,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.Calendar;
 import java.util.Date;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.siege.Castle;
@@ -97,7 +97,7 @@ public class RequestSetCastleSiegeTime extends ClientPacket
 		final Calendar cal2 = Calendar.getInstance();
 		cal2.setTimeInMillis(choosenDate);
 		
-		for (int hour : Config.SIEGE_HOUR_LIST)
+		for (int hour : FeatureConfig.SIEGE_HOUR_LIST)
 		{
 			cal1.set(Calendar.HOUR_OF_DAY, hour);
 			if (isEqual(cal1, cal2, Calendar.YEAR, Calendar.MONTH, Calendar.DAY_OF_MONTH, Calendar.HOUR, Calendar.MINUTE, Calendar.SECOND))

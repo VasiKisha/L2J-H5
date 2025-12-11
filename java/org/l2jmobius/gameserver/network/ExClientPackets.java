@@ -25,7 +25,7 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Supplier;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.DevelopmentConfig;
 import org.l2jmobius.gameserver.network.clientpackets.*;
 
 /**
@@ -213,17 +213,17 @@ public enum ExClientPackets
 	public ClientPacket newPacket()
 	{
 		final ClientPacket packet = _packetSupplier.get();
-		if (Config.DEBUG_EX_CLIENT_PACKETS)
+		if (DevelopmentConfig.DEBUG_EX_CLIENT_PACKETS)
 		{
 			if (packet != null)
 			{
 				final String name = packet.getClass().getSimpleName();
-				if (!Config.EXCLUDED_DEBUG_PACKETS.contains(name))
+				if (!DevelopmentConfig.EXCLUDED_DEBUG_PACKETS.contains(name))
 				{
 					PacketLogger.info("[C EX] " + name);
 				}
 			}
-			else if (Config.DEBUG_UNKNOWN_PACKETS)
+			else if (DevelopmentConfig.DEBUG_UNKNOWN_PACKETS)
 			{
 				PacketLogger.info("[C EX] 0x" + Integer.toHexString(_packetId).toUpperCase());
 			}

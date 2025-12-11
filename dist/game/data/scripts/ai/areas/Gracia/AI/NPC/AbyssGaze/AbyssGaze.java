@@ -20,14 +20,13 @@
  */
 package ai.areas.Gracia.AI.NPC.AbyssGaze;
 
-import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
-
-public class AbyssGaze extends AbstractNpcAI
+public class AbyssGaze extends Script
 {
 	// NPC
 	private static final int ABYSS_GATEKEEPER = 32539;
@@ -51,11 +50,11 @@ public class AbyssGaze extends AbstractNpcAI
 		
 		if (event.equals("request_permission"))
 		{
-			if ((SoIManager.getCurrentStage() == 2) || (SoIManager.getCurrentStage() == 5))
+			if ((SeedOfInfinityManager.getCurrentStage() == 2) || (SeedOfInfinityManager.getCurrentStage() == 5))
 			{
 				htmltext = "32539-2.htm";
 			}
-			else if ((SoIManager.getCurrentStage() == 3) && SoIManager.isSeedOpen())
+			else if ((SeedOfInfinityManager.getCurrentStage() == 3) && SeedOfInfinityManager.isSeedOpen())
 			{
 				htmltext = "32539-3.htm";
 			}
@@ -64,7 +63,7 @@ public class AbyssGaze extends AbstractNpcAI
 				htmltext = "32539-1.htm";
 			}
 		}
-		else if (event.equals("enter_seed") && (SoIManager.getCurrentStage() == 3))
+		else if (event.equals("enter_seed") && (SeedOfInfinityManager.getCurrentStage() == 3))
 		{
 			return null;
 		}

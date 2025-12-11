@@ -22,13 +22,14 @@ package org.l2jmobius.gameserver.model.actor.stat;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.model.PetLevelData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.holders.player.SubClassHolder;
-import org.l2jmobius.gameserver.model.actor.instance.ClassMaster;
 import org.l2jmobius.gameserver.model.actor.instance.Pet;
 import org.l2jmobius.gameserver.model.actor.status.PlayerStatus;
 import org.l2jmobius.gameserver.model.actor.transform.TransformTemplate;
@@ -37,7 +38,7 @@ import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerLevelChanged;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.model.stats.Formulas;
 import org.l2jmobius.gameserver.model.stats.MoveType;
 import org.l2jmobius.gameserver.model.stats.Stat;
@@ -135,7 +136,7 @@ public class PlayerStat extends PlayableStat
 		double bonusSp = 1;
 		
 		// Start Nevit's Hourglass
-		if (Config.NEVIT_ENABLED && (addToExp > 0) && !player.isInsideZone(ZoneId.PEACE))
+		if (PlayerConfig.NEVIT_ENABLED && (addToExp > 0) && !player.isInsideZone(ZoneId.PEACE))
 		{
 			player.startNevitHourglassTask();
 			
@@ -151,7 +152,7 @@ public class PlayerStat extends PlayableStat
 			bonusSp = getSpBonusMultiplier();
 		}
 		
-		if (Config.NEVIT_ENABLED && (addToExp > 0) && !player.isInsideZone(ZoneId.PEACE))
+		if (PlayerConfig.NEVIT_ENABLED && (addToExp > 0) && !player.isInsideZone(ZoneId.PEACE))
 		{
 			player.getNevitSystem().startAdventTask();
 		}
@@ -161,7 +162,7 @@ public class PlayerStat extends PlayableStat
 		double ratioTakenByPlayer = 0;
 		
 		// if this player has a pet and it is in his range he takes from the owner's Exp, give the pet Exp now
-		if (player.hasPet() && (player.calculateDistance3D(player.getSummon()) < Config.ALT_PARTY_RANGE))
+		if (player.hasPet() && (player.calculateDistance3D(player.getSummon()) < PlayerConfig.ALT_PARTY_RANGE))
 		{
 			final Pet pet = player.getSummon().asPet();
 			ratioTakenByPlayer = pet.getPetLevelData().getOwnerExpTaken() / 100f;
@@ -274,7 +275,7 @@ public class PlayerStat extends PlayableStat
 		final boolean levelIncreased = super.addLevel(value);
 		if (levelIncreased)
 		{
-			if (!Config.DISABLE_TUTORIAL)
+			if (!PlayerConfig.DISABLE_TUTORIAL)
 			{
 				final QuestState qs = player.getQuestState("Q00255_Tutorial");
 				if (qs != null)
@@ -286,8 +287,6 @@ public class PlayerStat extends PlayableStat
 			player.setCurrentCp(getMaxCp());
 			player.broadcastPacket(new SocialAction(player.getObjectId(), SocialAction.LEVEL_UP));
 			player.sendPacket(SystemMessageId.YOUR_LEVEL_HAS_INCREASED);
-			
-			ClassMaster.showQuestionMark(player);
 		}
 		
 		// Give AutoGet skills and all normal skills if Auto-Learn is activated.
@@ -343,7 +342,7 @@ public class PlayerStat extends PlayableStat
 		player.updateUserInfo();
 		
 		// Nevit System
-		if (Config.NEVIT_ENABLED)
+		if (PlayerConfig.NEVIT_ENABLED)
 		{
 			player.sendPacket(new ExVoteSystemInfo(player));
 			player.getNevitSystem().addPoints(2000);
@@ -413,7 +412,7 @@ public class PlayerStat extends PlayableStat
 	
 	public void setStartingExp(long value)
 	{
-		if (Config.BOTREPORT_ENABLE)
+		if (GeneralConfig.BOTREPORT_ENABLE)
 		{
 			_startingXp = value;
 		}
@@ -652,13 +651,13 @@ public class PlayerStat extends PlayableStat
 	@Override
 	public double getRunSpeed()
 	{
-		double val = super.getRunSpeed() + Config.RUN_SPD_BOOST;
+		double val = super.getRunSpeed() + PlayerConfig.RUN_SPD_BOOST;
 		
 		// Apply max run speed cap.
 		final Player player = getActiveChar();
-		if ((val > Config.MAX_RUN_SPEED) && !player.isGM())
+		if ((val > PlayerConfig.MAX_RUN_SPEED) && !player.isGM())
 		{
-			return Config.MAX_RUN_SPEED;
+			return PlayerConfig.MAX_RUN_SPEED;
 		}
 		
 		// Check for mount penalties
@@ -683,13 +682,13 @@ public class PlayerStat extends PlayableStat
 	@Override
 	public double getWalkSpeed()
 	{
-		double val = super.getWalkSpeed() + Config.RUN_SPD_BOOST;
+		double val = super.getWalkSpeed() + PlayerConfig.RUN_SPD_BOOST;
 		
 		// Apply max run speed cap.
 		final Player player = getActiveChar();
-		if ((val > Config.MAX_RUN_SPEED) && !player.isGM())
+		if ((val > PlayerConfig.MAX_RUN_SPEED) && !player.isGM())
 		{
-			return Config.MAX_RUN_SPEED;
+			return PlayerConfig.MAX_RUN_SPEED;
 		}
 		
 		if (player.isMounted())
@@ -714,9 +713,9 @@ public class PlayerStat extends PlayableStat
 	public double getPAtkSpd()
 	{
 		final double val = super.getPAtkSpd();
-		if ((val > Config.MAX_PATK_SPEED) && !getActiveChar().isGM())
+		if ((val > PlayerConfig.MAX_PATK_SPEED) && !getActiveChar().isGM())
 		{
-			return Config.MAX_PATK_SPEED;
+			return PlayerConfig.MAX_PATK_SPEED;
 		}
 		
 		return val;
@@ -797,7 +796,7 @@ public class PlayerStat extends PlayableStat
 	
 	public synchronized void updateVitalityPoints(float value, boolean useRates, boolean quiet)
 	{
-		if ((value == 0) || !Config.ENABLE_VITALITY)
+		if ((value == 0) || !PlayerConfig.ENABLE_VITALITY)
 		{
 			return;
 		}
@@ -833,12 +832,12 @@ public class PlayerStat extends PlayableStat
 			if (points > 0)
 			{
 				// vitality increased
-				points *= Config.RATE_VITALITY_GAIN;
+				points *= RatesConfig.RATE_VITALITY_GAIN;
 			}
 			else
 			{
 				// vitality decreased
-				points *= Config.RATE_VITALITY_LOST;
+				points *= RatesConfig.RATE_VITALITY_LOST;
 			}
 		}
 		
@@ -863,28 +862,28 @@ public class PlayerStat extends PlayableStat
 	public double getVitalityMultiplier()
 	{
 		double vitality = 1.0;
-		if (Config.ENABLE_VITALITY)
+		if (PlayerConfig.ENABLE_VITALITY)
 		{
 			switch (getVitalityLevel())
 			{
 				case 1:
 				{
-					vitality = Config.RATE_VITALITY_LEVEL_1;
+					vitality = RatesConfig.RATE_VITALITY_LEVEL_1;
 					break;
 				}
 				case 2:
 				{
-					vitality = Config.RATE_VITALITY_LEVEL_2;
+					vitality = RatesConfig.RATE_VITALITY_LEVEL_2;
 					break;
 				}
 				case 3:
 				{
-					vitality = Config.RATE_VITALITY_LEVEL_3;
+					vitality = RatesConfig.RATE_VITALITY_LEVEL_3;
 					break;
 				}
 				case 4:
 				{
-					vitality = Config.RATE_VITALITY_LEVEL_4;
+					vitality = RatesConfig.RATE_VITALITY_LEVEL_4;
 					break;
 				}
 			}
@@ -947,9 +946,9 @@ public class PlayerStat extends PlayableStat
 		
 		// Check for abnormal bonuses
 		bonus = Math.max(bonus, 1);
-		if (Config.MAX_BONUS_EXP > 0)
+		if (PlayerConfig.MAX_BONUS_EXP > 0)
 		{
-			bonus = Math.min(bonus, Config.MAX_BONUS_EXP);
+			bonus = Math.min(bonus, PlayerConfig.MAX_BONUS_EXP);
 		}
 		
 		return bonus;
@@ -996,9 +995,9 @@ public class PlayerStat extends PlayableStat
 		
 		// Check for abnormal bonuses
 		bonus = Math.max(bonus, 1);
-		if (Config.MAX_BONUS_SP > 0)
+		if (PlayerConfig.MAX_BONUS_SP > 0)
 		{
-			bonus = Math.min(bonus, Config.MAX_BONUS_SP);
+			bonus = Math.min(bonus, PlayerConfig.MAX_BONUS_SP);
 		}
 		
 		return bonus;

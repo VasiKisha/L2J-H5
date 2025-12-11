@@ -26,17 +26,16 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
-
-import ai.AbstractNpcAI;
 
 /**
  * Polymorphing on attack monsters AI.
  * @author Slyce
  */
-public class PolymorphingOnAttack extends AbstractNpcAI
+public class PolymorphingOnAttack extends Script
 {
 	private static final Map<Integer, List<Integer>> MOBSPAWNS = new HashMap<>();
 	static

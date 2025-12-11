@@ -28,13 +28,12 @@ import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
 import org.l2jmobius.gameserver.model.events.holders.OnDayNightChange;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * @author Mobius
  */
-public class EilhalderVonHellmann extends AbstractNpcAI
+public class EilhalderVonHellmann extends Script
 {
 	private static final int EILHALDER_VON_HELLMANN = 25328;
 	private static final Location SPAWN_LOCATION = new Location(59090, -42188, -3003);

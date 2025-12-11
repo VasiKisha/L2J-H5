@@ -41,16 +41,15 @@ import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
 import org.l2jmobius.gameserver.model.events.holders.sieges.castle.OnCastleSiegeFinish;
 import org.l2jmobius.gameserver.model.events.holders.sieges.fort.OnFortSiegeFinish;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
-import ai.AbstractNpcAI;
-
 /**
  * @author Mobius
  */
-public class SiegeGuards extends AbstractNpcAI
+public class SiegeGuards extends Script
 {
 	// @formatter:off
 	// NPCs

@@ -19,8 +19,8 @@ package org.l2jmobius.gameserver.model.zone;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.Location;
 
 /**
@@ -119,7 +119,7 @@ public abstract class ZoneRespawn extends ZoneType
 	
 	public Location getSpawnLoc()
 	{
-		if (Config.RANDOM_RESPAWN_IN_TOWN_ENABLED)
+		if (PlayerConfig.RANDOM_RESPAWN_IN_TOWN_ENABLED)
 		{
 			return _spawnLocs.get(Rnd.get(_spawnLocs.size()));
 		}
@@ -131,7 +131,7 @@ public abstract class ZoneRespawn extends ZoneType
 	{
 		if (_otherSpawnLocs != null)
 		{
-			if (Config.RANDOM_RESPAWN_IN_TOWN_ENABLED)
+			if (PlayerConfig.RANDOM_RESPAWN_IN_TOWN_ENABLED)
 			{
 				return _otherSpawnLocs.get(Rnd.get(_otherSpawnLocs.size()));
 			}
@@ -146,7 +146,7 @@ public abstract class ZoneRespawn extends ZoneType
 	{
 		if (_chaoticSpawnLocs != null)
 		{
-			if (Config.RANDOM_RESPAWN_IN_TOWN_ENABLED)
+			if (PlayerConfig.RANDOM_RESPAWN_IN_TOWN_ENABLED)
 			{
 				return _chaoticSpawnLocs.get(Rnd.get(_chaoticSpawnLocs.size()));
 			}
@@ -161,7 +161,7 @@ public abstract class ZoneRespawn extends ZoneType
 	{
 		if (_banishSpawnLocs != null)
 		{
-			if (Config.RANDOM_RESPAWN_IN_TOWN_ENABLED)
+			if (PlayerConfig.RANDOM_RESPAWN_IN_TOWN_ENABLED)
 			{
 				return _banishSpawnLocs.get(Rnd.get(_banishSpawnLocs.size()));
 			}

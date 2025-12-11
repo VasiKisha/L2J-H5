@@ -29,10 +29,10 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
@@ -61,11 +61,11 @@ public class LotteryManager
 	protected LotteryManager()
 	{
 		_number = 1;
-		_prize = Config.ALT_LOTTERY_PRIZE;
+		_prize = GeneralConfig.ALT_LOTTERY_PRIZE;
 		_isSellingTickets = false;
 		_isStarted = false;
 		_enddate = System.currentTimeMillis();
-		if (Config.ALLOW_LOTTERY)
+		if (GeneralConfig.ALLOW_LOTTERY)
 		{
 			(new startLottery()).run();
 		}
@@ -329,23 +329,23 @@ public class LotteryManager
 				LOGGER.log(Level.WARNING, "Lottery: Could restore lottery data: " + e.getMessage(), e);
 			}
 			
-			final long prize4 = count4 * Config.ALT_LOTTERY_2_AND_1_NUMBER_PRIZE;
+			final long prize4 = count4 * GeneralConfig.ALT_LOTTERY_2_AND_1_NUMBER_PRIZE;
 			long prize1 = 0;
 			long prize2 = 0;
 			long prize3 = 0;
 			if (count1 > 0)
 			{
-				prize1 = (long) (((_prize - prize4) * Config.ALT_LOTTERY_5_NUMBER_RATE) / count1);
+				prize1 = (long) (((_prize - prize4) * GeneralConfig.ALT_LOTTERY_5_NUMBER_RATE) / count1);
 			}
 			
 			if (count2 > 0)
 			{
-				prize2 = (long) (((_prize - prize4) * Config.ALT_LOTTERY_4_NUMBER_RATE) / count2);
+				prize2 = (long) (((_prize - prize4) * GeneralConfig.ALT_LOTTERY_4_NUMBER_RATE) / count2);
 			}
 			
 			if (count3 > 0)
 			{
-				prize3 = (long) (((_prize - prize4) * Config.ALT_LOTTERY_3_NUMBER_RATE) / count3);
+				prize3 = (long) (((_prize - prize4) * GeneralConfig.ALT_LOTTERY_3_NUMBER_RATE) / count3);
 			}
 			
 			final long newprize = _prize - (prize1 + prize2 + prize3 + prize4);
@@ -505,7 +505,7 @@ public class LotteryManager
 						default:
 						{
 							res[0] = 4;
-							res[1] = Config.ALT_LOTTERY_2_AND_1_NUMBER_PRIZE;
+							res[1] = GeneralConfig.ALT_LOTTERY_2_AND_1_NUMBER_PRIZE;
 						}
 					}
 				}

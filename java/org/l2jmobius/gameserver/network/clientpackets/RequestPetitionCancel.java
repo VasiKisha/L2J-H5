@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.managers.PetitionManager;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -67,7 +67,7 @@ public class RequestPetitionCancel extends ClientPacket
 			{
 				if (PetitionManager.getInstance().cancelActivePetition(player))
 				{
-					final int numRemaining = Config.MAX_PETITIONS_PER_PLAYER - PetitionManager.getInstance().getPlayerTotalPetitionCount(player);
+					final int numRemaining = PlayerConfig.MAX_PETITIONS_PER_PLAYER - PetitionManager.getInstance().getPlayerTotalPetitionCount(player);
 					final SystemMessage sm = new SystemMessage(SystemMessageId.THE_PETITION_WAS_CANCELED_YOU_MAY_SUBMIT_S1_MORE_PETITION_S_TODAY);
 					sm.addString(String.valueOf(numRemaining));
 					player.sendPacket(sm);

@@ -188,7 +188,7 @@
 	<admin command="play_sound" description="Play a single sound by name." accessLevel="100" />
 	<admin command="atmosphere" description="Change the sky to day, night, or red, along with drugation effects." accessLevel="100" />
 	<admin command="atmosphere_menu" description="Opens the atmosphere menu." accessLevel="100" />
-	<admin command="event_trigger" description="Doest not exist." accessLevel="100" />
+	<admin command="event_trigger" description="Triggers a client visual event." accessLevel="100" />
 
 	<!-- ADMIN SPEED -->
 	<admin command="gmspeed" description="Set the player speed from 1 to 10." accessLevel="30" />

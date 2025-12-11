@@ -19,7 +19,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.ADENA_ID;
 import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.managers.MailManager;
@@ -71,7 +72,7 @@ public class RequestSendPost extends ClientPacket
 		_text = readString();
 		
 		final int attachCount = readInt();
-		if ((attachCount < 0) || (attachCount > Config.MAX_ITEM_IN_PACKET) || (((attachCount * BATCH_LENGTH) + 8) != remaining()))
+		if ((attachCount < 0) || (attachCount > PlayerConfig.MAX_ITEM_IN_PACKET) || (((attachCount * BATCH_LENGTH) + 8) != remaining()))
 		{
 			return;
 		}
@@ -103,7 +104,7 @@ public class RequestSendPost extends ClientPacket
 	@Override
 	protected void runImpl()
 	{
-		if (!Config.ALLOW_MAIL)
+		if (!GeneralConfig.ALLOW_MAIL)
 		{
 			return;
 		}
@@ -114,7 +115,7 @@ public class RequestSendPost extends ClientPacket
 			return;
 		}
 		
-		if (!Config.ALLOW_ATTACHMENTS)
+		if (!GeneralConfig.ALLOW_ATTACHMENTS)
 		{
 			_items = null;
 			_isCod = false;
@@ -225,7 +226,7 @@ public class RequestSendPost extends ClientPacket
 			return;
 		}
 		
-		if (player.isJailed() && ((Config.JAIL_DISABLE_TRANSACTION && (_items != null)) || Config.JAIL_DISABLE_CHAT))
+		if (player.isJailed() && ((GeneralConfig.JAIL_DISABLE_TRANSACTION && (_items != null)) || GeneralConfig.JAIL_DISABLE_CHAT))
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_FORWARD_IN_A_NON_PEACE_ZONE_LOCATION);
 			return;

@@ -18,12 +18,12 @@ package ai.areas.CrumaTower.Alarm;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
-import ai.AbstractNpcAI;
 import quests.Q00184_ArtOfPersuasion.Q00184_ArtOfPersuasion;
 import quests.Q00185_NikolasCooperation.Q00185_NikolasCooperation;
 
@@ -31,7 +31,7 @@ import quests.Q00185_NikolasCooperation.Q00185_NikolasCooperation;
  * Alarm AI for quests Art of Persuasion (184) and Nikola's Cooperation (185).
  * @author Zoey76
  */
-public class Alarm extends AbstractNpcAI
+public class Alarm extends Script
 {
 	// NPC
 	private static final int ALARM = 32367;

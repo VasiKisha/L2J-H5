@@ -20,7 +20,7 @@
  */
 package handlers.voicedcommandhandlers;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.AutoPotionsConfig;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.taskmanagers.AutoPotionTaskManager;
@@ -41,14 +41,14 @@ public class AutoPotion implements IVoicedCommandHandler
 	@Override
 	public boolean onCommand(String command, Player activeChar, String target)
 	{
-		if (!Config.AUTO_POTIONS_ENABLED || (activeChar == null))
+		if (!AutoPotionsConfig.AUTO_POTIONS_ENABLED || (activeChar == null))
 		{
 			return false;
 		}
 		
-		if (activeChar.getLevel() < Config.AUTO_POTION_MIN_LEVEL)
+		if (activeChar.getLevel() < AutoPotionsConfig.AUTO_POTION_MIN_LEVEL)
 		{
-			activeChar.sendMessage("You need to be at least " + Config.AUTO_POTION_MIN_LEVEL + " to use auto potions.");
+			activeChar.sendMessage("You need to be at least " + AutoPotionsConfig.AUTO_POTION_MIN_LEVEL + " to use auto potions.");
 			return false;
 		}
 		

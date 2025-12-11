@@ -47,7 +47,7 @@ import javax.swing.JTextArea;
 import javax.swing.SwingUtilities;
 import javax.swing.WindowConstants;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.commons.ui.DarkTheme;
 import org.l2jmobius.commons.ui.LineLimitListener;
 import org.l2jmobius.commons.ui.SplashScreen;
@@ -80,7 +80,12 @@ public class Gui
 	
 	public Gui()
 	{
-		if (Config.DARK_THEME)
+		// Disable hardware acceleration.
+		System.setProperty("sun.java2d.opengl", "false");
+		System.setProperty("sun.java2d.d3d", "false");
+		System.setProperty("sun.java2d.noddraw", "true");
+		
+		if (InterfaceConfig.DARK_THEME)
 		{
 			DarkTheme.activate();
 		}
@@ -256,7 +261,7 @@ public class Gui
 		frame.setJMenuBar(menuBar);
 		frame.setIconImages(icons);
 		frame.add(scrollPanel, BorderLayout.CENTER);
-		frame.getContentPane().setPreferredSize(new Dimension(Config.DARK_THEME ? 815 : 800, 550));
+		frame.getContentPane().setPreferredSize(new Dimension(InterfaceConfig.DARK_THEME ? 815 : 800, 550));
 		frame.pack();
 		frame.setLocationRelativeTo(null);
 		

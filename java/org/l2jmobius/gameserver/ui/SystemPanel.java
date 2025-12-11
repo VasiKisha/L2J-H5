@@ -34,8 +34,9 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.border.LineBorder;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.gameserver.GameServer;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.util.Locator;
 
@@ -50,7 +51,7 @@ public class SystemPanel extends JPanel
 	
 	public SystemPanel()
 	{
-		if (!Config.DARK_THEME)
+		if (!InterfaceConfig.DARK_THEME)
 		{
 			setBackground(Color.WHITE);
 		}
@@ -122,7 +123,7 @@ public class SystemPanel extends JPanel
 			@Override
 			public void run()
 			{
-				lblProtocol.setText((Config.PROTOCOL_LIST.size() > 1 ? "Protocols: " : "Protocol: ") + Config.PROTOCOL_LIST.toString());
+				lblProtocol.setText((ServerConfig.PROTOCOL_LIST.size() > 1 ? "Protocols: " : "Protocol: ") + ServerConfig.PROTOCOL_LIST.toString());
 			}
 		}, 4500);
 		

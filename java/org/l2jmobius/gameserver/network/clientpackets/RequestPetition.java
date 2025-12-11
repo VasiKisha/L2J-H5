@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.managers.PetitionManager;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -77,14 +77,14 @@ public class RequestPetition extends ClientPacket
 			return;
 		}
 		
-		if (PetitionManager.getInstance().getPendingPetitionCount() == Config.MAX_PETITIONS_PENDING)
+		if (PetitionManager.getInstance().getPendingPetitionCount() == PlayerConfig.MAX_PETITIONS_PENDING)
 		{
 			player.sendPacket(SystemMessageId.THE_PETITION_SYSTEM_IS_CURRENTLY_UNAVAILABLE_PLEASE_TRY_AGAIN_LATER);
 			return;
 		}
 		
 		final int totalPetitions = PetitionManager.getInstance().getPlayerTotalPetitionCount(player) + 1;
-		if (totalPetitions > Config.MAX_PETITIONS_PER_PLAYER)
+		if (totalPetitions > PlayerConfig.MAX_PETITIONS_PER_PLAYER)
 		{
 			final SystemMessage sm = new SystemMessage(SystemMessageId.WE_HAVE_RECEIVED_S1_PETITIONS_FROM_YOU_TODAY_AND_THAT_IS_THE_MAXIMUM_THAT_YOU_CAN_SUBMIT_IN_ONE_DAY_YOU_CANNOT_SUBMIT_ANY_MORE_PETITIONS);
 			sm.addInt(totalPetitions);
@@ -105,7 +105,7 @@ public class RequestPetition extends ClientPacket
 		
 		sm = new SystemMessage(SystemMessageId.YOU_HAVE_SUBMITTED_S1_PETITION_S_N_YOU_MAY_SUBMIT_S2_MORE_PETITION_S_TODAY);
 		sm.addInt(totalPetitions);
-		sm.addInt(Config.MAX_PETITIONS_PER_PLAYER - totalPetitions);
+		sm.addInt(PlayerConfig.MAX_PETITIONS_PER_PLAYER - totalPetitions);
 		player.sendPacket(sm);
 		
 		sm = new SystemMessage(SystemMessageId.THERE_ARE_S1_PETITIONS_CURRENTLY_ON_THE_WAITING_LIST);

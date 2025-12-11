@@ -20,7 +20,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
@@ -77,7 +77,7 @@ public class PhysicalDamage extends AbstractEffect
 			return;
 		}
 		
-		if (effected.isPlayer() && effected.asPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND)
+		if (effected.isPlayer() && effected.asPlayer().isFakeDeath() && PlayerConfig.FAKE_DEATH_DAMAGE_STAND)
 		{
 			effected.stopFakeDeath(true);
 		}
@@ -93,11 +93,7 @@ public class PhysicalDamage extends AbstractEffect
 			crit = Formulas.calcCrit(effector, effected, skill);
 		}
 		
-		damage = (int) Formulas.calcPhysDam(effector, effected, skill, shld, false, ss);
-		if (crit)
-		{
-			damage *= 2;
-		}
+		damage = (int) Formulas.calcPhysDam(effector, effected, skill, shld, crit, ss);
 		
 		if (damage > 0)
 		{

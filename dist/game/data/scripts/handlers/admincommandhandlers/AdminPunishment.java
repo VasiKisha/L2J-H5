@@ -27,9 +27,9 @@ import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
@@ -294,7 +294,7 @@ public class AdminPunishment implements IAdminCommandHandler
 						{
 							throw new UnknownHostException("You cannot ban any local address!");
 						}
-						else if (Config.GAME_SERVER_HOSTS.contains(addr.getHostAddress()))
+						else if (ServerConfig.GAME_SERVER_HOSTS.contains(addr.getHostAddress()))
 						{
 							throw new UnknownHostException("You cannot ban your gameserver's address!");
 						}

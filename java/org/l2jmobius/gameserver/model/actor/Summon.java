@@ -22,12 +22,14 @@ package org.l2jmobius.gameserver.model.actor;
 
 import java.util.concurrent.ScheduledFuture;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.CreatureAI;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.SummonAI;
+import org.l2jmobius.gameserver.config.GeoEngineConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
@@ -125,7 +127,7 @@ public abstract class Summon extends Playable
 	{
 		super.onSpawn();
 		
-		if (Config.SUMMON_STORE_SKILL_COOLTIME && !isTeleporting())
+		if (PlayerConfig.SUMMON_STORE_SKILL_COOLTIME && !isTeleporting())
 		{
 			restoreEffects();
 		}
@@ -681,7 +683,7 @@ public abstract class Summon extends Playable
 			return false;
 		}
 		
-		if ((this != target) && skill.isPhysical() && (Config.PATHFINDING > 0) && (PathFinding.getInstance().findPath(getX(), getY(), getZ(), target.getX(), target.getY(), target.getZ(), getInstanceId(), false) == null))
+		if ((this != target) && skill.isPhysical() && (GeoEngineConfig.PATHFINDING > 0) && (PathFinding.getInstance().findPath(getX(), getY(), getZ(), target.getX(), target.getY(), target.getZ(), getInstanceId(), false) == null))
 		{
 			sendPacket(SystemMessageId.CANNOT_SEE_TARGET);
 			return false;
@@ -983,7 +985,7 @@ public abstract class Summon extends Playable
 		{
 			setTarget(target);
 			getAI().setIntention(Intention.ATTACK, target);
-			if (target.isFakePlayer() && !Config.FAKE_PLAYER_AUTO_ATTACKABLE)
+			if (target.isFakePlayer() && !FakePlayersConfig.FAKE_PLAYER_AUTO_ATTACKABLE)
 			{
 				_owner.updatePvPStatus();
 			}

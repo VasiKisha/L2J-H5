@@ -18,8 +18,9 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.EnchantSkillGroup.EnchantSkillHolder;
@@ -122,7 +123,7 @@ public class RequestExEnchantSkill extends ClientPacket
 			final boolean usesBook = (_skillLevel % 100) == 1; // 101, 201, 301 ...
 			final int reqItemId = EnchantSkillGroupsData.NORMAL_ENCHANT_BOOK;
 			final Item spb = player.getInventory().getItemByItemId(reqItemId);
-			if (Config.ES_SP_BOOK_NEEDED && usesBook && (spb == null)) // Haven't spellbook
+			if (PlayerConfig.ES_SP_BOOK_NEEDED && usesBook && (spb == null)) // Haven't spellbook
 			{
 				player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ALL_OF_THE_ITEMS_NEEDED_TO_ENCHANT_THAT_SKILL);
 				return;
@@ -136,7 +137,7 @@ public class RequestExEnchantSkill extends ClientPacket
 			}
 			
 			boolean check = player.getStat().removeExpAndSp(0, requiredSp, false);
-			if (Config.ES_SP_BOOK_NEEDED && usesBook)
+			if (PlayerConfig.ES_SP_BOOK_NEEDED && usesBook)
 			{
 				check &= player.destroyItem(ItemProcessType.NONE, spb.getObjectId(), 1, player, true);
 			}
@@ -152,7 +153,7 @@ public class RequestExEnchantSkill extends ClientPacket
 			final int rate = esd.getRate(player);
 			if (Rnd.get(100) <= rate)
 			{
-				if (Config.LOG_SKILL_ENCHANTS)
+				if (GeneralConfig.LOG_SKILL_ENCHANTS)
 				{
 					final StringBuilder sb = new StringBuilder();
 					LOGGER_ENCHANT.info(sb.append("Success, Character:").append(player.getName()).append(" [").append(player.getObjectId()).append("] Account:").append(player.getAccountName()).append(" IP:").append(player.getIPAddress()).append(", Skill:").append(skill).append(", SPB:").append(spb).append(", Rate:").append(rate).toString());
@@ -171,7 +172,7 @@ public class RequestExEnchantSkill extends ClientPacket
 				player.sendPacket(SystemMessageId.SKILL_ENCHANT_FAILED_THE_SKILL_WILL_BE_INITIALIZED);
 				player.sendPacket(ExEnchantSkillResult.valueOf(false));
 				
-				if (Config.LOG_SKILL_ENCHANTS)
+				if (GeneralConfig.LOG_SKILL_ENCHANTS)
 				{
 					final StringBuilder sb = new StringBuilder();
 					LOGGER_ENCHANT.info(sb.append("Failed, Character:").append(player.getName()).append(" [").append(player.getObjectId()).append("] Account:").append(player.getAccountName()).append(" IP:").append(player.getIPAddress()).append(", Skill:").append(skill).append(", SPB:").append(spb).append(", Rate:").append(rate).toString());

@@ -20,12 +20,12 @@
  */
 package quests.Q00697_DefendTheHallOfErosion;
 
-import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 
 public class Q00697_DefendTheHallOfErosion extends Quest
 {
@@ -73,7 +73,7 @@ public class Q00697_DefendTheHallOfErosion extends Quest
 					break;
 				}
 				
-				if (SoIManager.getCurrentStage() != 4)
+				if (SeedOfInfinityManager.getCurrentStage() != 4)
 				{
 					htmltext = "32603-00a.html";
 					qs.exitQuest(true);

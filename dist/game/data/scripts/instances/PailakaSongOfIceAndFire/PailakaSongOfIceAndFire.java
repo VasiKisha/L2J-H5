@@ -22,17 +22,16 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
-
-import instances.AbstractInstance;
 
 /**
  * Pailaka Song of Ice and Fire Instance zone.
  * @author Gnacik, St3eT
  */
-public class PailakaSongOfIceAndFire extends AbstractInstance
+public class PailakaSongOfIceAndFire extends InstanceScript
 {
 	// NPCs
 	private static final int ADLER1 = 32497;

@@ -30,13 +30,12 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Dark Water Dragon's AI.
  */
-public class DarkWaterDragon extends AbstractNpcAI
+public class DarkWaterDragon extends Script
 {
 	private static final int DRAGON = 22267;
 	private static final int SHADE1 = 22268;

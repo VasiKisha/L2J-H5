@@ -18,16 +18,16 @@ package ai.areas.FrozenLabyrinth.Jinia;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import quests.Q10286_ReunionWithSirra.Q10286_ReunionWithSirra;
 
 /**
  * Jinia AI.
  * @author Adry_85
  */
-public class Jinia extends AbstractNpcAI
+public class Jinia extends Script
 {
 	// NPC
 	private static final int JINIA = 32781;

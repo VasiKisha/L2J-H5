@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.stats.functions.formulas;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -45,11 +45,11 @@ public class FuncGatesMDefMod extends AbstractFunction
 	{
 		if (SevenSigns.getInstance().getSealOwner(SevenSigns.SEAL_STRIFE) == SevenSigns.CABAL_DAWN)
 		{
-			return initVal * Config.ALT_SIEGE_DAWN_GATES_MDEF_MULT;
+			return initVal * FeatureConfig.ALT_SIEGE_DAWN_GATES_MDEF_MULT;
 		}
 		else if (SevenSigns.getInstance().getSealOwner(SevenSigns.SEAL_STRIFE) == SevenSigns.CABAL_DUSK)
 		{
-			return initVal * Config.ALT_SIEGE_DUSK_GATES_MDEF_MULT;
+			return initVal * FeatureConfig.ALT_SIEGE_DUSK_GATES_MDEF_MULT;
 		}
 		
 		return initVal;

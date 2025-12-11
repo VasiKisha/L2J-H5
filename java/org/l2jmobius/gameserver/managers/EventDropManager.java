@@ -24,13 +24,14 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.holders.npc.EventDropHolder;
-import org.l2jmobius.gameserver.model.quest.LongTimeEvent;
+import org.l2jmobius.gameserver.model.script.LongTimeEvent;
 
 /**
  * @author Mobius
@@ -64,7 +65,7 @@ public class EventDropManager
 		
 		// Event items drop only within a default 9 level difference.
 		final Player player = attacker.asPlayer();
-		if ((player.getLevel() - attackable.getLevel()) > Config.EVENT_ITEM_MAX_LEVEL_DIFFERENCE)
+		if ((player.getLevel() - attackable.getLevel()) > RatesConfig.EVENT_ITEM_MAX_LEVEL_DIFFERENCE)
 		{
 			return;
 		}
@@ -83,7 +84,7 @@ public class EventDropManager
 				{
 					final int itemId = drop.getItemId();
 					final long itemCount = Rnd.get(drop.getMin(), drop.getMax());
-					if (Config.AUTO_LOOT_ITEM_IDS.contains(itemId) || Config.AUTO_LOOT || attackable.isFlying())
+					if (PlayerConfig.AUTO_LOOT_ITEM_IDS.contains(itemId) || PlayerConfig.AUTO_LOOT || attackable.isFlying())
 					{
 						player.doAutoLoot(attackable, itemId, itemCount); // Give the item to the player that has killed the attackable.
 					}

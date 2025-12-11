@@ -21,18 +21,18 @@ import java.net.Socket;
 import java.util.Collection;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.loginserver.config.LoginConfig;
 
 /**
  * @author KenM
  */
-public class GameServerListener extends FloodProtectedListener
+public class GameServerListener extends FloodProtectorListener
 {
 	private static Collection<GameServerThread> _gameServers = ConcurrentHashMap.newKeySet();
 	
 	public GameServerListener() throws IOException
 	{
-		super(Config.GAME_SERVER_LOGIN_HOST, Config.GAME_SERVER_LOGIN_PORT);
+		super(LoginConfig.GAME_SERVER_LOGIN_HOST, LoginConfig.GAME_SERVER_LOGIN_PORT);
 		setName(getClass().getSimpleName());
 	}
 	

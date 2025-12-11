@@ -26,11 +26,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.GraciaSeedsConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.managers.SoDManager;
+import org.l2jmobius.gameserver.managers.SeedOfDestructionManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -42,7 +42,8 @@ import org.l2jmobius.gameserver.model.groups.CommandChannel;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -53,9 +54,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import ai.AbstractNpcAI;
-
-public class SeedOfDestruction extends AbstractNpcAI
+public class SeedOfDestruction extends Script
 {
 	private class SODWorld extends InstanceWorld
 	{
@@ -79,8 +78,8 @@ public class SeedOfDestruction extends AbstractNpcAI
 	// @formatter:off
 	private static final boolean DEBUG = false;
 	private static final int INSTANCE_ID = 110; // this is the client number
-	private static final int MIN_PLAYERS = Config.MIN_TIAT_PLAYERS;
-	private static final int MAX_PLAYERS = Config.MAX_TIAT_PLAYERS;
+	private static final int MIN_PLAYERS = GraciaSeedsConfig.MIN_TIAT_PLAYERS;
+	private static final int MAX_PLAYERS = GraciaSeedsConfig.MAX_TIAT_PLAYERS;
 	private static final int MAX_DEVICE_SPAWNED_MOB_COUNT = 100;
 	private static final int EXIT_TIME = 5; // exit time
 	private int _numAtk = 0;
@@ -846,7 +845,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 		
 		for (Player channelMember : channel.getMembers())
 		{
-			if (channelMember.getLevel() < Config.MIN_TIAT_LEVEL)
+			if (channelMember.getLevel() < GraciaSeedsConfig.MIN_TIAT_LEVEL)
 			{
 				final SystemMessage sm = (new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY));
 				sm.addPcName(channelMember);
@@ -1353,7 +1352,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				if (npc.getId() == TIAT)
 				{
 					world.incStatus();
-					SoDManager.getInstance().increaseSoDTiatKilled();
+					SeedOfDestructionManager.getInstance().increaseSoDTiatKilled();
 					for (Npc mob : InstanceManager.getInstance().getInstance(world.getInstanceId()).getNpcs())
 					{
 						mob.deleteMe();
@@ -1398,7 +1397,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 		
 		if (npcId == ALENOS)
 		{
-			if (SoDManager.getInstance().getSoDState() == 1)
+			if (SeedOfDestructionManager.getInstance().getSoDState() == 1)
 			{
 				final teleCoord tele = new teleCoord();
 				tele.x = -242759;
@@ -1406,7 +1405,7 @@ public class SeedOfDestruction extends AbstractNpcAI
 				tele.z = -9986;
 				enterInstance(player, tele);
 			}
-			else if (SoDManager.getInstance().getSoDState() == 2)
+			else if (SeedOfDestructionManager.getInstance().getSoDState() == 2)
 			{
 				final teleCoord tele = new teleCoord();
 				tele.x = -245800;

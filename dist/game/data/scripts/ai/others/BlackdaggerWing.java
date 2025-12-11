@@ -20,18 +20,17 @@ import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.util.LocationUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Blackdagger Wing AI.
  * @author Zoey76
  * @since 2.6.0.0
  */
-public class BlackdaggerWing extends AbstractNpcAI
+public class BlackdaggerWing extends Script
 {
 	// NPCs
 	private static final int BLACKDAGGER_WING = 25721;

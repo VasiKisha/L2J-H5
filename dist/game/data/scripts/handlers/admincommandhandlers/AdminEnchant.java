@@ -20,7 +20,7 @@
  */
 package handlers.admincommandhandlers;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -186,7 +186,7 @@ public class AdminEnchant implements IAdminCommandHandler
 			
 			// Set enchant value.
 			int enchant = ench;
-			if (Config.OVER_ENCHANT_PROTECTION && !player.isGM())
+			if (PlayerConfig.OVER_ENCHANT_PROTECTION && !player.isGM())
 			{
 				if (itemInstance.isWeapon())
 				{

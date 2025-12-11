@@ -73,13 +73,13 @@ public class PacketExecutor<T extends Client<Connection<T>>>
 			{
 				_packet.run();
 			}
-			catch (Throwable e)
+			catch (Throwable t)
 			{
-				final Thread t = Thread.currentThread();
-				final UncaughtExceptionHandler h = t.getUncaughtExceptionHandler();
-				if (h != null)
+				final Thread currentThread = Thread.currentThread();
+				final UncaughtExceptionHandler exceptionHandler = currentThread.getUncaughtExceptionHandler();
+				if (exceptionHandler != null)
 				{
-					h.uncaughtException(t, e);
+					exceptionHandler.uncaughtException(currentThread, t);
 				}
 			}
 		}

@@ -24,18 +24,18 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.QuestGuard;
 import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Quarry AI.
  * @author DS, GKR
  */
-public class Quarry extends AbstractNpcAI
+public class Quarry extends Script
 {
 	// NPCs
 	private static final int SLAVE = 32299;

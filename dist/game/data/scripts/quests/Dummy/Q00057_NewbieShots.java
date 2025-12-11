@@ -16,7 +16,7 @@
  */
 package quests.Dummy;
 
-import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.script.Quest;
 
 /**
  * Dammy quest to handle newbie shots (57)

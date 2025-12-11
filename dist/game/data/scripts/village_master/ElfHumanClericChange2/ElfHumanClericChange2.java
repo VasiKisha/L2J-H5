@@ -20,14 +20,13 @@ import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Elf Human class transfer AI.
  * @author Adry_85
  */
-public class ElfHumanClericChange2 extends AbstractNpcAI
+public class ElfHumanClericChange2 extends Script
 {
 	// NPCs
 	private static int[] NPCS =
@@ -200,12 +199,12 @@ public class ElfHumanClericChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.CLERIC_GROUP) && (player.isInCategory(CategoryType.HUMAN_CALL_CLASS) || player.isInCategory(CategoryType.ELF_CALL_CLASS)))
 		{
-			final PlayerClass classId = player.getPlayerClass();
-			if ((classId == PlayerClass.CLERIC) || (classId == PlayerClass.BISHOP) || (classId == PlayerClass.PROPHET))
+			final PlayerClass playerClass = player.getPlayerClass();
+			if ((playerClass == PlayerClass.CLERIC) || (playerClass == PlayerClass.BISHOP) || (playerClass == PlayerClass.PROPHET))
 			{
 				htmltext = "30120-02.htm"; // fnClassList1
 			}
-			else if ((classId == PlayerClass.ORACLE) || (classId == PlayerClass.ELDER))
+			else if ((playerClass == PlayerClass.ORACLE) || (playerClass == PlayerClass.ELDER))
 			{
 				htmltext = "30120-09.htm"; // fnClassList2
 			}

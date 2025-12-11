@@ -43,7 +43,7 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXParseException;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.ThreadConfig;
 
 /**
  * Interface for XML parsers.
@@ -67,7 +67,7 @@ public interface IXmlReader
 	 */
 	default void parseDatapackFile(String path)
 	{
-		parseFile(new File(Config.DATAPACK_ROOT, path));
+		parseFile(new File(".", path));
 	}
 	
 	/**
@@ -120,7 +120,7 @@ public interface IXmlReader
 	 */
 	default boolean parseDatapackDirectory(String path, boolean recursive)
 	{
-		return parseDirectory(new File(Config.DATAPACK_ROOT, path), recursive);
+		return parseDirectory(new File(".", path), recursive);
 	}
 	
 	/**
@@ -138,7 +138,7 @@ public interface IXmlReader
 		}
 		
 		// If multithreading is enabled, use a thread pool to parse files.
-		if (Config.THREADS_FOR_LOADING)
+		if (ThreadConfig.THREADS_FOR_LOADING)
 		{
 			final ScheduledExecutorService executorService = Executors.newScheduledThreadPool(Runtime.getRuntime().availableProcessors());
 			final List<Future<?>> tasks = new ArrayList<>();

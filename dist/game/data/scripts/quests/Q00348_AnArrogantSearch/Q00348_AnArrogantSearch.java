@@ -16,13 +16,13 @@
  */
 package quests.Q00348_AnArrogantSearch;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -393,7 +393,7 @@ public class Q00348_AnArrogantSearch extends Quest
 			case PLATINUM_TRIBE_SHAMAN:
 			{
 				final QuestState qs = getRandomPartyMemberState(attacker, -1, 3, npc);
-				if ((qs != null) && npc.isInsideRadius3D(attacker, Config.ALT_PARTY_RANGE) && ((qs.getMemoStateEx(0) == 12) || (qs.getMemoStateEx(0) == 13)) && hasQuestItems(qs.getPlayer(), WHITE_FABRIC_1))
+				if ((qs != null) && npc.isInsideRadius3D(attacker, PlayerConfig.ALT_PARTY_RANGE) && ((qs.getMemoStateEx(0) == 12) || (qs.getMemoStateEx(0) == 13)) && hasQuestItems(qs.getPlayer(), WHITE_FABRIC_1))
 				{
 					if (qs.getMemoStateEx(0) == 12)
 					{
@@ -424,7 +424,7 @@ public class Q00348_AnArrogantSearch extends Quest
 			case PLATINUM_TRIBE_OVERLORD:
 			{
 				final QuestState qs = getRandomPartyMemberState(attacker, -1, 3, npc);
-				if ((qs != null) && npc.isInsideRadius3D(attacker, Config.ALT_PARTY_RANGE) && ((qs.getMemoStateEx(0) == 12) || (qs.getMemoStateEx(0) == 13)) && hasQuestItems(qs.getPlayer(), WHITE_FABRIC_1))
+				if ((qs != null) && npc.isInsideRadius3D(attacker, PlayerConfig.ALT_PARTY_RANGE) && ((qs.getMemoStateEx(0) == 12) || (qs.getMemoStateEx(0) == 13)) && hasQuestItems(qs.getPlayer(), WHITE_FABRIC_1))
 				{
 					if (qs.getMemoStateEx(0) == 12)
 					{
@@ -459,13 +459,13 @@ public class Q00348_AnArrogantSearch extends Quest
 	public void onKill(Npc npc, Player player, boolean isSummon)
 	{
 		final QuestState qs = getRandomPartyMemberState(player, -1, 3, npc);
-		if ((qs != null) && npc.isInsideRadius3D(player, Config.ALT_PARTY_RANGE))
+		if ((qs != null) && npc.isInsideRadius3D(player, PlayerConfig.ALT_PARTY_RANGE))
 		{
 			switch (npc.getId())
 			{
 				case ARK_GUARDIAN_ELBEROTH:
 				{
-					if (npc.isInsideRadius3D(player, Config.ALT_PARTY_RANGE) && (qs.getMemoStateEx(0) < 8) && (((qs.getMemoStateEx(1) % 1000) / 100) == 1) && !hasQuestItems(qs.getPlayer(), SECOND_KEY_OF_ARK) && !hasQuestItems(qs.getPlayer(), BOOK_OF_SAINT))
+					if (npc.isInsideRadius3D(player, PlayerConfig.ALT_PARTY_RANGE) && (qs.getMemoStateEx(0) < 8) && (((qs.getMemoStateEx(1) % 1000) / 100) == 1) && !hasQuestItems(qs.getPlayer(), SECOND_KEY_OF_ARK) && !hasQuestItems(qs.getPlayer(), BOOK_OF_SAINT))
 					{
 						qs.setMemoStateEx(1, qs.getMemoStateEx(1) + 100);
 						if ((qs.getMemoStateEx(1) % 10) != 0)
@@ -481,7 +481,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				}
 				case ARK_GUARDIAN_SHADOWFANG:
 				{
-					if (npc.isInsideRadius3D(player, Config.ALT_PARTY_RANGE) && (qs.getMemoStateEx(0) < 8) && (((qs.getMemoStateEx(1) % 10000) / 1000) == 1) && !hasQuestItems(qs.getPlayer(), THIRD_KEY_OF_ARK) && !hasQuestItems(qs.getPlayer(), BOUGH_OF_SAINT))
+					if (npc.isInsideRadius3D(player, PlayerConfig.ALT_PARTY_RANGE) && (qs.getMemoStateEx(0) < 8) && (((qs.getMemoStateEx(1) % 10000) / 1000) == 1) && !hasQuestItems(qs.getPlayer(), THIRD_KEY_OF_ARK) && !hasQuestItems(qs.getPlayer(), BOUGH_OF_SAINT))
 					{
 						qs.setMemoStateEx(1, qs.getMemoStateEx(1) + 1000);
 						if ((qs.getMemoStateEx(1) % 10) != 0)
@@ -498,7 +498,7 @@ public class Q00348_AnArrogantSearch extends Quest
 				case YINTZU:
 				case PALIOTE:
 				{
-					if (npc.isInsideRadius3D(player, Config.ALT_PARTY_RANGE) && qs.isMemoState(1) && !hasQuestItems(qs.getPlayer(), SHELL_OF_MONSTERS))
+					if (npc.isInsideRadius3D(player, PlayerConfig.ALT_PARTY_RANGE) && qs.isMemoState(1) && !hasQuestItems(qs.getPlayer(), SHELL_OF_MONSTERS))
 					{
 						giveItems(qs.getPlayer(), SHELL_OF_MONSTERS, 1);
 						playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);

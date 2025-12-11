@@ -20,18 +20,18 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.clientpackets.RequestAcquireSkill;
 
-import ai.AbstractNpcAI;
 import handlers.effecthandlers.CallPc;
 
 /**
  * Castle Court Magician AI.
  * @author St3eT
  */
-public class CastleCourtMagician extends AbstractNpcAI
+public class CastleCourtMagician extends Script
 {
 	// NPCs
 	private static final int[] COURT_MAGICIAN =

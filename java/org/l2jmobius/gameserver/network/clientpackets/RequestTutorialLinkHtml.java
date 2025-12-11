@@ -23,8 +23,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.handler.BypassHandler;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.ClassMaster;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.TutorialCloseHtml;
 
 public class RequestTutorialLinkHtml extends ClientPacket
@@ -58,8 +57,6 @@ public class RequestTutorialLinkHtml extends ClientPacket
 		}
 		else
 		{
-			ClassMaster.onTutorialLink(player, _bypass);
-			
 			final QuestState qs = player.getQuestState("Q00255_Tutorial");
 			if (qs != null)
 			{

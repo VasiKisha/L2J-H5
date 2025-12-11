@@ -33,9 +33,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.model.DimensionalRift;
 import org.l2jmobius.gameserver.model.DimensionalRiftRoom;
@@ -129,7 +130,7 @@ public class DimensionalRiftManager
 			factory.setValidating(false);
 			factory.setIgnoringComments(true);
 			
-			final File file = new File(Config.DATAPACK_ROOT, "data/DimensionalRift.xml");
+			final File file = new File(ServerConfig.DATAPACK_ROOT, "data/DimensionalRift.xml");
 			if (!file.exists())
 			{
 				LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't find data/" + file.getName());
@@ -277,12 +278,12 @@ public class DimensionalRiftManager
 			return;
 		}
 		
-		if (party.getMemberCount() < Config.RIFT_MIN_PARTY_SIZE)
+		if (party.getMemberCount() < GeneralConfig.RIFT_MIN_PARTY_SIZE)
 		{
 			final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
 			html.setFile(player, "data/html/seven_signs/rift/SmallParty.htm");
 			html.replace("%npc_name%", npc.getName());
-			html.replace("%count%", Integer.toString(Config.RIFT_MIN_PARTY_SIZE));
+			html.replace("%count%", Integer.toString(GeneralConfig.RIFT_MIN_PARTY_SIZE));
 			player.sendPacket(html);
 			return;
 		}
@@ -409,27 +410,27 @@ public class DimensionalRiftManager
 		{
 			case 1:
 			{
-				return Config.RIFT_ENTER_COST_RECRUIT;
+				return GeneralConfig.RIFT_ENTER_COST_RECRUIT;
 			}
 			case 2:
 			{
-				return Config.RIFT_ENTER_COST_SOLDIER;
+				return GeneralConfig.RIFT_ENTER_COST_SOLDIER;
 			}
 			case 3:
 			{
-				return Config.RIFT_ENTER_COST_OFFICER;
+				return GeneralConfig.RIFT_ENTER_COST_OFFICER;
 			}
 			case 4:
 			{
-				return Config.RIFT_ENTER_COST_CAPTAIN;
+				return GeneralConfig.RIFT_ENTER_COST_CAPTAIN;
 			}
 			case 5:
 			{
-				return Config.RIFT_ENTER_COST_COMMANDER;
+				return GeneralConfig.RIFT_ENTER_COST_COMMANDER;
 			}
 			case 6:
 			{
-				return Config.RIFT_ENTER_COST_HERO;
+				return GeneralConfig.RIFT_ENTER_COST_HERO;
 			}
 			default:
 			{
@@ -452,7 +453,7 @@ public class DimensionalRiftManager
 		if (!player.isGM())
 		{
 			LOGGER.warning(player + " was cheating in dimension rift area!");
-			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " tried to cheat in dimensional rift.", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " tried to cheat in dimensional rift.", GeneralConfig.DEFAULT_PUNISH);
 		}
 	}
 	

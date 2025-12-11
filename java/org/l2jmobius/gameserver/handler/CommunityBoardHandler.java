@@ -21,7 +21,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.util.HtmlUtil;
@@ -106,7 +106,7 @@ public class CommunityBoardHandler implements IHandler<IParseBoardHandler, Strin
 			return;
 		}
 		
-		if (!Config.ENABLE_COMMUNITY_BOARD)
+		if (!GeneralConfig.ENABLE_COMMUNITY_BOARD)
 		{
 			player.sendPacket(SystemMessageId.THE_COMMUNITY_SERVER_IS_CURRENTLY_OFFLINE);
 			return;
@@ -139,7 +139,7 @@ public class CommunityBoardHandler implements IHandler<IParseBoardHandler, Strin
 			return;
 		}
 		
-		if (!Config.ENABLE_COMMUNITY_BOARD)
+		if (!GeneralConfig.ENABLE_COMMUNITY_BOARD)
 		{
 			player.sendPacket(SystemMessageId.THE_COMMUNITY_SERVER_IS_CURRENTLY_OFFLINE);
 			return;

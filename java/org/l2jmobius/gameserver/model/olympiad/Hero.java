@@ -32,9 +32,10 @@ import java.util.Map.Entry;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.FeatureConfig;
+import org.l2jmobius.gameserver.config.OlympiadConfig;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
@@ -92,7 +93,7 @@ public class Hero
 	
 	protected Hero()
 	{
-		if (Config.OLYMPIAD_ENABLED)
+		if (OlympiadConfig.OLYMPIAD_ENABLED)
 		{
 			init();
 		}
@@ -916,10 +917,10 @@ public class Hero
 		final Clan clan = player.getClan();
 		if ((clan != null) && (clan.getLevel() >= 5))
 		{
-			clan.addReputationScore(Config.HERO_POINTS);
+			clan.addReputationScore(FeatureConfig.HERO_POINTS);
 			final SystemMessage sm = new SystemMessage(SystemMessageId.CLAN_MEMBER_C1_WAS_NAMED_A_HERO_S2_POINTS_HAVE_BEEN_ADDED_TO_YOUR_CLAN_S_REPUTATION_SCORE);
 			sm.addString(CharInfoTable.getInstance().getNameById(player.getObjectId()));
-			sm.addInt(Config.HERO_POINTS);
+			sm.addInt(FeatureConfig.HERO_POINTS);
 			clan.broadcastToOnlineMembers(sm);
 		}
 		

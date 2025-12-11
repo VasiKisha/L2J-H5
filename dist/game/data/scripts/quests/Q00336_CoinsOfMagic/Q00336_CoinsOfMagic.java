@@ -19,12 +19,12 @@ package quests.Q00336_CoinsOfMagic;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -1841,7 +1841,7 @@ public class Q00336_CoinsOfMagic extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = getQuestState(pm, false);
-				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
+				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, pm, true))
 				{
 					candidates.add(qss);
 				}
@@ -1866,7 +1866,7 @@ public class Q00336_CoinsOfMagic extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = getQuestState(pm, false);
-				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && !hasQuestItems(player, Q_KALDIS_GOLD_DRAGON) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
+				if ((qss != null) && qss.isStarted() && (qss.getMemoState() == memoState) && !hasQuestItems(player, Q_KALDIS_GOLD_DRAGON) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, pm, true))
 				{
 					candidates.add(qss);
 				}

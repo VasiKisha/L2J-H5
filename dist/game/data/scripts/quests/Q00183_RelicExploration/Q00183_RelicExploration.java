@@ -16,11 +16,11 @@
  */
 package quests.Q00183_RelicExploration;
 
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
 
 import quests.Q00184_ArtOfPersuasion.Q00184_ArtOfPersuasion;
 import quests.Q00185_NikolasCooperation.Q00185_NikolasCooperation;
@@ -109,7 +109,7 @@ public class Q00183_RelicExploration extends Quest
 			{
 				final QuestState qs184 = player.getQuestState(Q00184_ArtOfPersuasion.class.getSimpleName());
 				final QuestState qs185 = player.getQuestState(Q00185_NikolasCooperation.class.getSimpleName());
-				final Quest quest = QuestManager.getInstance().getQuest(Q00184_ArtOfPersuasion.class.getSimpleName());
+				final Quest quest = ScriptManager.getInstance().getScript(Q00184_ArtOfPersuasion.class.getSimpleName());
 				if ((quest != null) && (qs184 == null) && (qs185 == null))
 				{
 					if (player.getLevel() >= MIN_LEVEL)
@@ -127,7 +127,7 @@ public class Q00183_RelicExploration extends Quest
 			{
 				final QuestState qs184 = player.getQuestState(Q00184_ArtOfPersuasion.class.getSimpleName());
 				final QuestState qs185 = player.getQuestState(Q00185_NikolasCooperation.class.getSimpleName());
-				final Quest quest = QuestManager.getInstance().getQuest(Q00185_NikolasCooperation.class.getSimpleName());
+				final Quest quest = ScriptManager.getInstance().getScript(Q00185_NikolasCooperation.class.getSimpleName());
 				if ((quest != null) && (qs184 == null) && (qs185 == null))
 				{
 					if (player.getLevel() >= MIN_LEVEL)

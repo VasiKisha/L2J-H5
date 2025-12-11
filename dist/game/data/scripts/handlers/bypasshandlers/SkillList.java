@@ -23,7 +23,7 @@ package handlers.bypasshandlers;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -48,7 +48,7 @@ public class SkillList implements IBypassHandler
 			return false;
 		}
 		
-		if (Config.ALT_GAME_SKILL_LEARN)
+		if (PlayerConfig.ALT_GAME_SKILL_LEARN)
 		{
 			try
 			{

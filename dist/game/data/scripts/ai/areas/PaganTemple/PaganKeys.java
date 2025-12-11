@@ -20,18 +20,17 @@
  */
 package ai.areas.PaganTemple;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Custom script to remove custom key drop from NPC XMLs.<br>
  * Used to access more conveniently Pagan Temple.
  * @author Mobius
  */
-public class PaganKeys extends AbstractNpcAI
+public class PaganKeys extends Script
 {
 	// Items
 	private static final int ANTEROOM_KEY = 8273;
@@ -62,7 +61,7 @@ public class PaganKeys extends AbstractNpcAI
 			{
 				if (getRandom(100) < ANTEROOM_KEY_CHANCE)
 				{
-					if (Config.AUTO_LOOT)
+					if (PlayerConfig.AUTO_LOOT)
 					{
 						giveItems(killer, ANTEROOM_KEY, 1);
 					}
@@ -77,7 +76,7 @@ public class PaganKeys extends AbstractNpcAI
 			{
 				if (getRandom(100) < CHAPEL_KEY_CHANCE)
 				{
-					if (Config.AUTO_LOOT)
+					if (PlayerConfig.AUTO_LOOT)
 					{
 						giveItems(killer, CHAPEL_KEY, 1);
 					}
@@ -92,7 +91,7 @@ public class PaganKeys extends AbstractNpcAI
 			{
 				if (getRandom(100) < KEY_OF_DARKNESS_CHANCE)
 				{
-					if (Config.AUTO_LOOT)
+					if (PlayerConfig.AUTO_LOOT)
 					{
 						giveItems(killer, KEY_OF_DARKNESS, 1);
 					}

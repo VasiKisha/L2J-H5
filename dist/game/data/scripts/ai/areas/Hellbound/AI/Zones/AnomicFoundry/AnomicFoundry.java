@@ -26,18 +26,18 @@ import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Anomic Foundry.
  * @author GKR
  */
-public class AnomicFoundry extends AbstractNpcAI
+public class AnomicFoundry extends Script
 {
 	// NPCs
 	private static int LABORER = 22396;

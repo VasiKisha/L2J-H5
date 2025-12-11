@@ -28,8 +28,9 @@ import java.util.NoSuchElementException;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
@@ -37,8 +38,8 @@ import org.l2jmobius.gameserver.data.xml.SpawnData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.DayNightSpawnManager;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.managers.QuestManager;
 import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.AutoSpawnHandler;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.Spawn;
@@ -235,7 +236,7 @@ public class AdminSpawn implements IAdminCommandHandler
 			Broadcast.toAllOnlinePlayers(new SystemMessage(SystemMessageId.THE_NPC_SERVER_IS_NOT_OPERATING_AT_THIS_TIME));
 			
 			// Unload all scripts.
-			QuestManager.getInstance().unloadAllScripts();
+			ScriptManager.getInstance().unloadAllScripts();
 			
 			// Delete all spawns.
 			AutoSpawnHandler.getInstance().unload();
@@ -257,7 +258,7 @@ public class AdminSpawn implements IAdminCommandHandler
 			}
 			
 			// Reload.
-			QuestManager.getInstance().reloadAllScripts();
+			ScriptManager.getInstance().reloadAllScripts();
 			AdminData.getInstance().broadcastMessageToGMs("NPC unspawn completed!");
 		}
 		else if (command.startsWith("admin_spawnday"))
@@ -271,7 +272,7 @@ public class AdminSpawn implements IAdminCommandHandler
 		else if (command.startsWith("admin_respawnall") || command.startsWith("admin_spawn_reload"))
 		{
 			// Unload all scripts.
-			QuestManager.getInstance().unloadAllScripts();
+			ScriptManager.getInstance().unloadAllScripts();
 			
 			// Delete all spawns.
 			AutoSpawnHandler.getInstance().unload();
@@ -297,7 +298,7 @@ public class AdminSpawn implements IAdminCommandHandler
 			RaidBossSpawnManager.getInstance().load();
 			AutoSpawnHandler.getInstance().reload();
 			SevenSigns.getInstance().spawnSevenSignsNPC();
-			QuestManager.getInstance().reloadAllScripts();
+			ScriptManager.getInstance().reloadAllScripts();
 			AdminData.getInstance().broadcastMessageToGMs("NPC respawn completed!");
 		}
 		else if (command.equals("admin_spawn_misc") || command.equals("admin_spawnmisc"))
@@ -627,7 +628,7 @@ public class AdminSpawn implements IAdminCommandHandler
 			final Npc npc = World.getInstance().getNpc(npcId);
 			if (npc != null)
 			{
-				activeChar.teleToLocation(npc.getLocation(), npc.getInstanceId(), Config.MAX_OFFSET_ON_TELEPORT);
+				activeChar.teleToLocation(npc.getLocation(), npc.getInstanceId(), PlayerConfig.MAX_OFFSET_ON_TELEPORT);
 				activeChar.sendMessage("The current spawn is not stored.");
 			}
 			else
@@ -686,7 +687,7 @@ public class AdminSpawn implements IAdminCommandHandler
 			template = NpcData.getInstance().getTemplateByName(monsterId.replace('_', ' '));
 		}
 		
-		if (!Config.FAKE_PLAYERS_ENABLED && template.isFakePlayer())
+		if (!FakePlayersConfig.FAKE_PLAYERS_ENABLED && template.isFakePlayer())
 		{
 			activeChar.sendPacket(SystemMessageId.YOUR_TARGET_CANNOT_BE_FOUND);
 			return;
@@ -761,7 +762,7 @@ public class AdminSpawn implements IAdminCommandHandler
 		}
 		
 		final NpcTemplate template1 = NpcData.getInstance().getTemplate(id);
-		if (!Config.FAKE_PLAYERS_ENABLED && template1.isFakePlayer())
+		if (!FakePlayersConfig.FAKE_PLAYERS_ENABLED && template1.isFakePlayer())
 		{
 			activeChar.sendPacket(SystemMessageId.YOUR_TARGET_CANNOT_BE_FOUND);
 			return;

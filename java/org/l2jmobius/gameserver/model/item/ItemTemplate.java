@@ -23,19 +23,20 @@ package org.l2jmobius.gameserver.model.item;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.OlympiadConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.Elementals;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.events.ListenersContainer;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.enums.ItemGrade;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ActionType;
@@ -74,82 +75,6 @@ public abstract class ItemTemplate extends ListenersContainer
 	public static final int TYPE2_MONEY = 4;
 	public static final int TYPE2_OTHER = 5;
 	
-	public static final int SLOT_NONE = 0x0000;
-	public static final int SLOT_UNDERWEAR = 0x0001;
-	public static final int SLOT_R_EAR = 0x0002;
-	public static final int SLOT_L_EAR = 0x0004;
-	public static final int SLOT_LR_EAR = 0x00006;
-	public static final int SLOT_NECK = 0x0008;
-	public static final int SLOT_R_FINGER = 0x0010;
-	public static final int SLOT_L_FINGER = 0x0020;
-	public static final int SLOT_LR_FINGER = 0x0030;
-	public static final int SLOT_HEAD = 0x0040;
-	public static final int SLOT_R_HAND = 0x0080;
-	public static final int SLOT_L_HAND = 0x0100;
-	public static final int SLOT_GLOVES = 0x0200;
-	public static final int SLOT_CHEST = 0x0400;
-	public static final int SLOT_LEGS = 0x0800;
-	public static final int SLOT_FEET = 0x1000;
-	public static final int SLOT_BACK = 0x2000;
-	public static final int SLOT_LR_HAND = 0x4000;
-	public static final int SLOT_FULL_ARMOR = 0x8000;
-	public static final int SLOT_HAIR = 0x010000;
-	public static final int SLOT_ALLDRESS = 0x020000;
-	public static final int SLOT_HAIR2 = 0x040000;
-	public static final int SLOT_HAIRALL = 0x080000;
-	public static final int SLOT_R_BRACELET = 0x100000;
-	public static final int SLOT_L_BRACELET = 0x200000;
-	public static final int SLOT_DECO = 0x400000;
-	public static final int SLOT_BELT = 0x10000000;
-	public static final int SLOT_WOLF = -100;
-	public static final int SLOT_HATCHLING = -101;
-	public static final int SLOT_STRIDER = -102;
-	public static final int SLOT_BABYPET = -103;
-	public static final int SLOT_GREATWOLF = -104;
-	
-	public static final int SLOT_MULTI_ALLWEAPON = SLOT_LR_HAND | SLOT_R_HAND;
-	
-	public static final Map<String, Integer> SLOTS = new HashMap<>();
-	static
-	{
-		SLOTS.put("shirt", SLOT_UNDERWEAR);
-		SLOTS.put("lbracelet", SLOT_L_BRACELET);
-		SLOTS.put("rbracelet", SLOT_R_BRACELET);
-		SLOTS.put("talisman", SLOT_DECO);
-		SLOTS.put("chest", SLOT_CHEST);
-		SLOTS.put("fullarmor", SLOT_FULL_ARMOR);
-		SLOTS.put("head", SLOT_HEAD);
-		SLOTS.put("hair", SLOT_HAIR);
-		SLOTS.put("hairall", SLOT_HAIRALL);
-		SLOTS.put("underwear", SLOT_UNDERWEAR);
-		SLOTS.put("back", SLOT_BACK);
-		SLOTS.put("neck", SLOT_NECK);
-		SLOTS.put("legs", SLOT_LEGS);
-		SLOTS.put("feet", SLOT_FEET);
-		SLOTS.put("gloves", SLOT_GLOVES);
-		SLOTS.put("chest,legs", SLOT_CHEST | SLOT_LEGS);
-		SLOTS.put("belt", SLOT_BELT);
-		SLOTS.put("rhand", SLOT_R_HAND);
-		SLOTS.put("lhand", SLOT_L_HAND);
-		SLOTS.put("lrhand", SLOT_LR_HAND);
-		SLOTS.put("rear;lear", SLOT_R_EAR | SLOT_L_EAR);
-		SLOTS.put("rfinger;lfinger", SLOT_R_FINGER | SLOT_L_FINGER);
-		SLOTS.put("wolf", SLOT_WOLF);
-		SLOTS.put("greatwolf", SLOT_GREATWOLF);
-		SLOTS.put("hatchling", SLOT_HATCHLING);
-		SLOTS.put("strider", SLOT_STRIDER);
-		SLOTS.put("babypet", SLOT_BABYPET);
-		SLOTS.put("none", SLOT_NONE);
-		
-		// Retail compatibility.
-		SLOTS.put("onepiece", SLOT_FULL_ARMOR);
-		SLOTS.put("hair2", SLOT_HAIR2);
-		SLOTS.put("dhair", SLOT_HAIRALL);
-		SLOTS.put("alldress", SLOT_ALLDRESS);
-		SLOTS.put("deco1", SLOT_DECO);
-		SLOTS.put("waist", SLOT_BELT);
-	}
-	
 	private int _itemId;
 	private int _displayId;
 	private String _name;
@@ -162,7 +87,7 @@ public abstract class ItemTemplate extends ListenersContainer
 	private int _duration;
 	private long _time;
 	private int _autoDestroyTime;
-	private int _bodyPart;
+	private BodyPart _bodyPart;
 	private int _referencePrice;
 	private int _crystalCount;
 	private boolean _sellable;
@@ -218,7 +143,7 @@ public abstract class ItemTemplate extends ListenersContainer
 		_duration = set.getInt("duration", -1);
 		_time = set.getInt("time", -1);
 		_autoDestroyTime = set.getInt("auto_destroy_time", -1) * 1000;
-		_bodyPart = SLOTS.get(set.getString("bodypart", "none"));
+		_bodyPart = BodyPart.fromName(set.getString("bodypart", "none"));
 		_referencePrice = set.getInt("price", 0);
 		_crystalType = set.getEnum("crystal_type", CrystalType.class, CrystalType.NONE);
 		_crystalCount = set.getInt("crystal_count", 0);
@@ -612,7 +537,7 @@ public abstract class ItemTemplate extends ListenersContainer
 	/**
 	 * @return the part of the body used with the item.
 	 */
-	public int getBodyPart()
+	public BodyPart getBodyPart()
 	{
 		return _bodyPart;
 	}
@@ -638,7 +563,7 @@ public abstract class ItemTemplate extends ListenersContainer
 	 */
 	public boolean isEquipable()
 	{
-		return (_bodyPart != 0) && !(getItemType() instanceof EtcItemType);
+		return (_bodyPart != BodyPart.NONE) && !(getItemType() instanceof EtcItemType);
 	}
 	
 	/**
@@ -695,7 +620,7 @@ public abstract class ItemTemplate extends ListenersContainer
 	 */
 	public boolean isEnchantable()
 	{
-		return (Arrays.binarySearch(Config.ENCHANT_BLACKLIST, _itemId) < 0) && _enchantable;
+		return (Arrays.binarySearch(PlayerConfig.ENCHANT_BLACKLIST, _itemId) < 0) && _enchantable;
 	}
 	
 	/**
@@ -865,7 +790,7 @@ public abstract class ItemTemplate extends ListenersContainer
 	
 	public boolean checkCondition(Creature creature, WorldObject object, boolean sendMessage)
 	{
-		if (creature.isGM() && !Config.GM_ITEM_RESTRICTION)
+		if (creature.isGM() && !GeneralConfig.GM_ITEM_RESTRICTION)
 		{
 			return true;
 		}
@@ -955,7 +880,7 @@ public abstract class ItemTemplate extends ListenersContainer
 	
 	public boolean isOlyRestrictedItem()
 	{
-		return _isOlyRestricted || Config.LIST_OLY_RESTRICTED_ITEMS.contains(_itemId);
+		return _isOlyRestricted || OlympiadConfig.LIST_OLY_RESTRICTED_ITEMS.contains(_itemId);
 	}
 	
 	public boolean isForNpc()

@@ -63,7 +63,7 @@ public class ConditionPlayerState extends Condition
 			}
 			case RUNNING:
 			{
-				return effector.isRunning() == _required;
+				return (effector.isMoving() == _required) && (effector.isRunning() == _required);
 			}
 			case STANDING:
 			{

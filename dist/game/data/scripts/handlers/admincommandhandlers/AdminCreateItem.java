@@ -22,7 +22,7 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantItemGroupsData;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
@@ -358,7 +358,7 @@ public class AdminCreateItem implements IAdminCommandHandler
 		final Item item = target.getInventory().addItem(ItemProcessType.REWARD, id, num, target, activeChar);
 		if ((item != null) && item.isEnchantable() && (enchant > 0))
 		{
-			item.setEnchantLevel(Config.OVER_ENCHANT_PROTECTION ? Math.min(enchant, getMaxEnchant(item)) : enchant);
+			item.setEnchantLevel(PlayerConfig.OVER_ENCHANT_PROTECTION ? Math.min(enchant, getMaxEnchant(item)) : enchant);
 		}
 		else
 		{

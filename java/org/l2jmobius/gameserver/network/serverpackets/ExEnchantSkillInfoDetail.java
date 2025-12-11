@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.model.EnchantSkillGroup.EnchantSkillHolder;
 import org.l2jmobius.gameserver.model.EnchantSkillLearn;
@@ -125,7 +125,7 @@ public class ExEnchantSkillInfoDetail extends ServerPacket
 			}
 		}
 		
-		if ((type != TYPE_SAFE_ENCHANT) && !Config.ES_SP_BOOK_NEEDED)
+		if ((type != TYPE_SAFE_ENCHANT) && !PlayerConfig.ES_SP_BOOK_NEEDED)
 		{
 			reqCount = false;
 		}

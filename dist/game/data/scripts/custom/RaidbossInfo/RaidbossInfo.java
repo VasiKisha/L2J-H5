@@ -27,15 +27,14 @@ import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Raidboss Info AI.<br>
  * Original Jython script Kerberos.
  * @author Nyaran
  */
-public class RaidbossInfo extends AbstractNpcAI
+public class RaidbossInfo extends Script
 {
 	// @formatter:off
 	private static final int[] NPC =

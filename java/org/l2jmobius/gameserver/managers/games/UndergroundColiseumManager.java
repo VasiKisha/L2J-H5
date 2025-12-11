@@ -37,12 +37,12 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.SchedulingPattern;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.UndergroundColiseumConfig;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.managers.GlobalVariablesManager;
 import org.l2jmobius.gameserver.model.Location;
@@ -274,9 +274,9 @@ public class UndergroundColiseumManager implements IXmlReader
 	
 	private void generateNewDate()
 	{
-		final SchedulingPattern timePattern = new SchedulingPattern(Config.UC_START_TIME);
+		final SchedulingPattern timePattern = new SchedulingPattern(UndergroundColiseumConfig.UC_START_TIME);
 		_periodStartTime = timePattern.next(System.currentTimeMillis());
-		_periodEndTime = _periodStartTime + (Config.UC_TIME_PERIOD * 3600000);
+		_periodEndTime = _periodStartTime + (UndergroundColiseumConfig.UC_TIME_PERIOD * 3600000);
 		GlobalVariablesManager.getInstance().set("UC_START_TIME", _periodStartTime);
 		GlobalVariablesManager.getInstance().set("UC_STOP_TIME", _periodEndTime);
 	}
@@ -294,7 +294,7 @@ public class UndergroundColiseumManager implements IXmlReader
 			arena.switchStatus(started);
 		}
 		
-		if (Config.UC_ALLOW_ANNOUNCE)
+		if (UndergroundColiseumConfig.UC_ALLOW_ANNOUNCE)
 		{
 			if (_isStarted)
 			{

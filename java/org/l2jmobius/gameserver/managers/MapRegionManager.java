@@ -26,8 +26,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.MapRegion;
@@ -398,16 +398,16 @@ public class MapRegionManager implements IXmlReader
 				}
 			}
 			
-			if (Config.FACTION_SYSTEM_ENABLED && Config.FACTION_RESPAWN_AT_BASE)
+			if (FactionSystemConfig.FACTION_SYSTEM_ENABLED && FactionSystemConfig.FACTION_RESPAWN_AT_BASE)
 			{
 				if (player.isGood())
 				{
-					return Config.FACTION_GOOD_BASE_LOCATION;
+					return FactionSystemConfig.FACTION_GOOD_BASE_LOCATION;
 				}
 				
 				if (player.isEvil())
 				{
-					return Config.FACTION_EVIL_BASE_LOCATION;
+					return FactionSystemConfig.FACTION_EVIL_BASE_LOCATION;
 				}
 			}
 		}

@@ -17,20 +17,20 @@
 package ai.areas.Gracia.AI.NPC.Nemo;
 
 import org.l2jmobius.gameserver.ai.Intention;
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 
-import ai.AbstractNpcAI;
 import ai.areas.Gracia.AI.Maguen;
 
 /**
  * Nemo AI.
  * @author St3eT
  */
-public class Nemo extends AbstractNpcAI
+public class Nemo extends Script
 {
 	// NPC
 	private static final int NEMO = 32735; // Nemo
@@ -117,6 +117,11 @@ public class Nemo extends AbstractNpcAI
 	
 	private Quest maguenAi()
 	{
-		return QuestManager.getInstance().getQuest(Maguen.class.getSimpleName());
+		return ScriptManager.getInstance().getScript(Maguen.class.getSimpleName());
 	}
-}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
+	}}

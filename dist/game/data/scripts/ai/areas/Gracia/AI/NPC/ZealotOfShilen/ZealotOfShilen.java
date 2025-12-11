@@ -25,14 +25,13 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Zealot of Shilen AI.
  * @author nonom, Mobius
  */
-public class ZealotOfShilen extends AbstractNpcAI
+public class ZealotOfShilen extends Script
 {
 	// NPCs
 	private static final int ZEALOT = 18782;

@@ -16,7 +16,7 @@
  */
 package ai.others.ManorManager;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -27,6 +27,7 @@ import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
 import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcManorBypass;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.BuyListSeed;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowCropInfo;
@@ -36,13 +37,11 @@ import org.l2jmobius.gameserver.network.serverpackets.ExShowSeedInfo;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowSellCropList;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
-import ai.AbstractNpcAI;
-
 /**
  * Manor manager AI.
  * @author malyelfik
  */
-public class ManorManager extends AbstractNpcAI
+public class ManorManager extends Script
 {
 	private static final int[] NPC =
 	{
@@ -90,7 +89,7 @@ public class ManorManager extends AbstractNpcAI
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		if (Config.ALLOW_MANOR)
+		if (GeneralConfig.ALLOW_MANOR)
 		{
 			final int castleId = npc.getTemplate().getParameters().getInt("manor_id", -1);
 			if (!player.isGM() && player.isClanLeader() && (castleId == player.getClan().getCastleId()))

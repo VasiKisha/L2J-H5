@@ -25,13 +25,12 @@ import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * @author HorridoJoho, Janiko, FinalDestination, lion
  */
-public class AltarsOfSacrifice extends AbstractNpcAI
+public class AltarsOfSacrifice extends Script
 {
 	private class Altar
 	{

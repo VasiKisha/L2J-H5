@@ -18,15 +18,14 @@ package custom.ShadowWeapons;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Shadow Weapons AI.<br>
  * Original Jython script by DrLecter.
  * @author Nyaran, jurchiks
  */
-public class ShadowWeapons extends AbstractNpcAI
+public class ShadowWeapons extends Script
 {
 	// @formatter:off
 	private static final int[] NPCS =

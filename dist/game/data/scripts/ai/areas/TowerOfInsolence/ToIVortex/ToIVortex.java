@@ -23,8 +23,7 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Tower of Insolence Vortex teleport AI.<br>
@@ -32,7 +31,7 @@ import ai.AbstractNpcAI;
  * Reworked by xban1x.
  * @author Plim
  */
-public class ToIVortex extends AbstractNpcAI
+public class ToIVortex extends Script
 {
 	// NPCs
 	private static final int KEPLON = 30949;

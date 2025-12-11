@@ -22,17 +22,16 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-
-import ai.AbstractNpcAI;
 
 /**
  * Manages Sin Wardens disappearing and chat.
  * @author GKR
  */
-public class SinWardens extends AbstractNpcAI
+public class SinWardens extends Script
 {
 	private static final int[] SIN_WARDEN_MINIONS =
 	{

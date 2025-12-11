@@ -30,7 +30,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.SAXException;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.actor.instance.Merchant;
@@ -77,7 +77,7 @@ public class MerchantPriceConfigTable
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setValidating(false);
 		factory.setIgnoringComments(true);
-		final File file = new File(Config.DATAPACK_ROOT + "/data/" + MPCS_FILE);
+		final File file = new File(ServerConfig.DATAPACK_ROOT + "/data/" + MPCS_FILE);
 		if (file.exists())
 		{
 			int defaultPriceConfigId;

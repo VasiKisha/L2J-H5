@@ -18,15 +18,15 @@ package ai.areas.Hellbound.AI.NPC.Kief;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Kief AI.
  * @author DS
  */
-public class Kief extends AbstractNpcAI
+public class Kief extends Script
 {
 	// NPCs
 	private static final int KIEF = 32354;

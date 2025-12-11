@@ -21,13 +21,13 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q00117_TheOceanOfDistantStars.Q00117_TheOceanOfDistantStars;
@@ -165,7 +165,7 @@ public class Q00650_ABrokenDream extends Quest
 		if (!randomList.isEmpty())
 		{
 			final Player player = randomList.get(getRandom(randomList.size()));
-			if ((getRandom(1000) < monsterChance) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, true))
+			if ((getRandom(1000) < monsterChance) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, player, true))
 			{
 				giveItems(player, REMNANTS_OF_OLD_DWARVES_DREAMS, 1);
 				playSound(player, QuestSound.ITEMSOUND_QUEST_ITEMGET);

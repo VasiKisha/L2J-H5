@@ -27,10 +27,12 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.ServerConfig;
+import org.l2jmobius.gameserver.config.custom.AutoPlayConfig;
+import org.l2jmobius.gameserver.config.custom.CaptchaConfig;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -41,7 +43,7 @@ import org.l2jmobius.gameserver.model.captcha.ImageData;
 import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
 import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
 import org.l2jmobius.gameserver.model.punishment.PunishmentType;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestSound;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.PacketLogger;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -86,7 +88,7 @@ public class CaptchaManager
 	
 	protected CaptchaManager()
 	{
-		if (Config.ENABLE_CAPTCHA)
+		if (CaptchaConfig.ENABLE_CAPTCHA)
 		{
 			IMAGES = Captcha.getInstance().createImageList();
 			LOGGER.info(getClass().getSimpleName() + ": Enabled.");
@@ -95,7 +97,7 @@ public class CaptchaManager
 	
 	public void updateCounter(Creature player, Creature monster)
 	{
-		if (!Config.ENABLE_CAPTCHA)
+		if (!CaptchaConfig.ENABLE_CAPTCHA)
 		{
 			return;
 		}
@@ -107,7 +109,7 @@ public class CaptchaManager
 		
 		// Check if auto-play is enabled and player is auto-playing.
 		final Player killer = player.asPlayer();
-		if (Config.ENABLE_AUTO_PLAY && killer.isAutoPlaying())
+		if (AutoPlayConfig.ENABLE_AUTO_PLAY && killer.isAutoPlaying())
 		{
 			return; // Don't count kills when auto-play is enabled.
 		}
@@ -117,11 +119,11 @@ public class CaptchaManager
 			return;
 		}
 		
-		if (Config.KILL_COUNTER_RESET)
+		if (CaptchaConfig.KILL_COUNTER_RESET)
 		{
 			final long currentTime = System.currentTimeMillis();
 			final long previousKillTime = LAST_KILL_TIME.getOrDefault(killer.getObjectId(), currentTime);
-			if ((currentTime - previousKillTime) > Config.KILL_COUNTER_RESET_TIME)
+			if ((currentTime - previousKillTime) > CaptchaConfig.KILL_COUNTER_RESET_TIME)
 			{
 				MONSTER_COUNTER.put(killer.getObjectId(), 0);
 			}
@@ -135,8 +137,8 @@ public class CaptchaManager
 			count = MONSTER_COUNTER.get(killer.getObjectId()) + 1;
 		}
 		
-		final int next = Rnd.get(Config.KILL_COUNTER_RANDOMIZATION);
-		if ((Config.KILL_COUNTER + next) < count)
+		final int next = Rnd.get(CaptchaConfig.KILL_COUNTER_RANDOMIZATION);
+		if ((CaptchaConfig.KILL_COUNTER + next) < count)
 		{
 			validationTasks(killer);
 			MONSTER_COUNTER.remove(killer.getObjectId());
@@ -175,7 +177,7 @@ public class CaptchaManager
 		StringUtil.append(sb, "<br><br><font color=\"a2a0a2\">in order to prove you are a human being<br1>you've to</font> <font color=\"b09979\">enter the code from picture:</font>");
 		
 		// Generated main pattern.
-		StringUtil.append(sb, "<br><br><img src=\"Crest.crest_" + Config.SERVER_ID + "_" + data.captchaId + "\" width=256 height=64></td></tr>");
+		StringUtil.append(sb, "<br><br><img src=\"Crest.crest_" + ServerConfig.SERVER_ID + "_" + data.captchaId + "\" width=256 height=64></td></tr>");
 		StringUtil.append(sb, "<br>");
 		StringUtil.append(sb, "<br><br><edit var=\"answer\" width=110>");
 		StringUtil.append(sb, "<br><button value=\"Confirm\" action=\"bypass -h report_ $answer\" width=\"100\" height=\"27\" back=\"L2UI_CT1.Button_DF_Down\" fore=\"L2UI_CT1.Button_DF\"><br/>");
@@ -222,8 +224,8 @@ public class CaptchaManager
 		
 		VALIDATION.put(player.getObjectId(), data);
 		
-		final Future<?> newTask = ThreadPool.schedule(new ReportCheckTask(player), Config.VALIDATION_TIME * 1000);
-		ThreadPool.schedule(new countdown(player, Config.VALIDATION_TIME), 0);
+		final Future<?> newTask = ThreadPool.schedule(new ReportCheckTask(player), CaptchaConfig.VALIDATION_TIME * 1000);
+		ThreadPool.schedule(new countdown(player, CaptchaConfig.VALIDATION_TIME), 0);
 		BEGIN_VALIDATION.put(player.getObjectId(), newTask);
 	}
 	
@@ -237,7 +239,7 @@ public class CaptchaManager
 		// 1 = kick characters from the server.
 		// 2 = put character to jail.
 		// 3 = ban character from the server.
-		switch (Config.PUNISHMENT)
+		switch (CaptchaConfig.PUNISHMENT)
 		{
 			case 0:
 			{
@@ -299,7 +301,7 @@ public class CaptchaManager
 			final long currentTime = System.currentTimeMillis();
 			int jailTime;
 			
-			if (Config.DOUBLE_JAIL_TIME)
+			if (CaptchaConfig.DOUBLE_JAIL_TIME)
 			{
 				final long lastJailTime = LAST_JAIL_TIME.getOrDefault(player.getObjectId(), 0L);
 				final int previousJailCount = getPlayerJailCount(player);
@@ -307,12 +309,12 @@ public class CaptchaManager
 				// Use multiplier if enabled.
 				if ((currentTime - lastJailTime) >= TimeUnit.HOURS.toMillis(24))
 				{
-					jailTime = Config.JAIL_TIME; // Initial jail time from Config.
+					jailTime = CaptchaConfig.JAIL_TIME; // Initial jail time from CaptchaConfig.
 				}
 				else
 				{
 					// Double the previous jail time, capped at maximum jail time.
-					jailTime = Math.min((int) Math.pow(2, previousJailCount) * Config.JAIL_TIME, MAX_JAIL_TIME);
+					jailTime = Math.min((int) Math.pow(2, previousJailCount) * CaptchaConfig.JAIL_TIME, MAX_JAIL_TIME);
 				}
 				
 				// Increment the jail count for the player.
@@ -323,8 +325,8 @@ public class CaptchaManager
 			}
 			else
 			{
-				// If multiplier is disabled, use the initial jail time from Config.
-				jailTime = Config.JAIL_TIME;
+				// If multiplier is disabled, use the initial jail time from CaptchaConfig.
+				jailTime = CaptchaConfig.JAIL_TIME;
 			}
 			
 			// Calculate punishment time.
@@ -346,7 +348,7 @@ public class CaptchaManager
 			if (jailTime != 0)
 			{
 				LAST_JAIL_TIME.put(player.getObjectId(), currentTime);
-				if (Config.DOUBLE_JAIL_TIME)
+				if (CaptchaConfig.DOUBLE_JAIL_TIME)
 				{
 					LAST_JAIL_TIME.put(player.getObjectId(), currentTime);
 				}
@@ -387,13 +389,13 @@ public class CaptchaManager
 			int retries = RETRIES.getOrDefault(player.getObjectId(), 0) + 1;
 			RETRIES.put(player.getObjectId(), retries);
 			
-			if (retries >= Config.CAPTCHA_ATTEMPTS)
+			if (retries >= CaptchaConfig.CAPTCHA_ATTEMPTS)
 			{
 				banPunishment(player);
 			}
 			else
 			{
-				player.sendMessage("Incorrect code. You have " + (Config.CAPTCHA_ATTEMPTS - retries) + " more attempt(s) left.");
+				player.sendMessage("Incorrect code. You have " + (CaptchaConfig.CAPTCHA_ATTEMPTS - retries) + " more attempt(s) left.");
 				validationWindow(player); // Provide another chance.
 				
 				// Play sound when doesn't match.

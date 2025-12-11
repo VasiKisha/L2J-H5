@@ -30,10 +30,10 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.custom.CustomMailManagerConfig;
 import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -126,7 +126,7 @@ public class CustomMailManager
 			{
 				LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Error reading from database: ", e);
 			}
-		}, Config.CUSTOM_MAIL_MANAGER_DELAY, Config.CUSTOM_MAIL_MANAGER_DELAY);
+		}, CustomMailManagerConfig.CUSTOM_MAIL_MANAGER_DELAY, CustomMailManagerConfig.CUSTOM_MAIL_MANAGER_DELAY);
 		
 		LOGGER.info(getClass().getSimpleName() + ": Enabled.");
 	}

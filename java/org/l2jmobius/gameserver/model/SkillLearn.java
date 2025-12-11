@@ -22,7 +22,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 import org.l2jmobius.gameserver.model.actor.enums.player.SocialClass;
@@ -291,7 +291,7 @@ public class SkillLearn
 		int levelUpSp = _levelUpSp;
 		
 		// If the alternative skill learn system is enabled and the player is learning a skill from a different class apply a fee.
-		if (Config.ALT_GAME_SKILL_LEARN && (playerClass != learningClass))
+		if (PlayerConfig.ALT_GAME_SKILL_LEARN && (playerClass != learningClass))
 		{
 			// If the player is learning a skill from other class type (mage learning warrior skills or vice versa) the fee is higher.
 			if (playerClass.isMage() != learningClass.isMage())

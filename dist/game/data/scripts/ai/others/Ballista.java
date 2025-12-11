@@ -18,21 +18,20 @@ package ai.others;
 
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-
-import ai.AbstractNpcAI;
 
 /**
  * Ballista AI.
  * @author St3eT
  */
-public class Ballista extends AbstractNpcAI
+public class Ballista extends Script
 {
 	// NPCs
 	private static final int[] BALLISTA =
@@ -78,7 +77,7 @@ public class Ballista extends AbstractNpcAI
 		{
 			if (npc.getFort().getSiege().isInProgress() && (caster.getClan() != null) && (caster.getClan().getLevel() >= MIN_CLAN_LV))
 			{
-				caster.getClan().addReputationScore(Config.BALLISTA_POINTS);
+				caster.getClan().addReputationScore(FeatureConfig.BALLISTA_POINTS);
 				caster.sendPacket(SystemMessageId.THE_BALLISTA_HAS_BEEN_SUCCESSFULLY_DESTROYED_THE_CLAN_S_REPUTATION_WILL_BE_INCREASED);
 			}
 			

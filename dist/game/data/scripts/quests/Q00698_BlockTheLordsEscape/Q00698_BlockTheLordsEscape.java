@@ -20,12 +20,12 @@
  */
 package quests.Q00698_BlockTheLordsEscape;
 
-import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 
 public class Q00698_BlockTheLordsEscape extends Quest
 {
@@ -73,7 +73,7 @@ public class Q00698_BlockTheLordsEscape extends Quest
 					break;
 				}
 				
-				if (SoIManager.getCurrentStage() != 5)
+				if (SeedOfInfinityManager.getCurrentStage() != 5)
 				{
 					htmltext = "32603-00a.html";
 					qs.exitQuest(true);

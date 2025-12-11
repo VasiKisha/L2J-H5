@@ -19,15 +19,15 @@ package ai.areas.Hellbound.AI.NPC.Bernarde;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Bernarde AI.
  * @author DS
  */
-public class Bernarde extends AbstractNpcAI
+public class Bernarde extends Script
 {
 	// NPCs
 	private static final int BERNARDE = 32300;

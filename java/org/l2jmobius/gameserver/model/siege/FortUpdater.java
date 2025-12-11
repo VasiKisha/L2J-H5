@@ -19,7 +19,7 @@ package org.l2jmobius.gameserver.model.siege;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
@@ -64,10 +64,10 @@ public class FortUpdater implements Runnable
 					
 					if (_fort.getFortState() == 2)
 					{
-						if (_clan.getWarehouse().getAdena() >= Config.FS_FEE_FOR_CASTLE)
+						if (_clan.getWarehouse().getAdena() >= FeatureConfig.FS_FEE_FOR_CASTLE)
 						{
-							_clan.getWarehouse().destroyItemByItemId(ItemProcessType.FEE, Inventory.ADENA_ID, Config.FS_FEE_FOR_CASTLE, null, null);
-							_fort.getContractedCastle().addToTreasuryNoTax(Config.FS_FEE_FOR_CASTLE);
+							_clan.getWarehouse().destroyItemByItemId(ItemProcessType.FEE, Inventory.ADENA_ID, FeatureConfig.FS_FEE_FOR_CASTLE, null, null);
+							_fort.getContractedCastle().addToTreasuryNoTax(FeatureConfig.FS_FEE_FOR_CASTLE);
 							_fort.raiseSupplyLeveL();
 						}
 						else
@@ -86,7 +86,7 @@ public class FortUpdater implements Runnable
 						return;
 					}
 					
-					if (_fort.getOwnedTime() > (Config.FS_MAX_OWN_TIME * 3600))
+					if (_fort.getOwnedTime() > (FeatureConfig.FS_MAX_OWN_TIME * 3600))
 					{
 						_fort.removeOwner(true);
 						_fort.setFortState(0, 0);

@@ -16,20 +16,19 @@
  */
 package ai.others.ClanTrader;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
-
-import ai.AbstractNpcAI;
 
 /**
  * Clan Trader AI.
  * @author St3eT
  */
-public class ClanTrader extends AbstractNpcAI
+public class ClanTrader extends Script
 {
 	// Npc
 	private static final int[] CLAN_TRADER =
@@ -90,17 +89,17 @@ public class ClanTrader extends AbstractNpcAI
 			}
 			case "exchange-ba":
 			{
-				htmltext = giveReputation(npc, player, Config.BLOODALLIANCE_POINTS, BLOOD_ALLIANCE, BLOOD_ALLIANCE_COUNT);
+				htmltext = giveReputation(npc, player, FeatureConfig.BLOODALLIANCE_POINTS, BLOOD_ALLIANCE, BLOOD_ALLIANCE_COUNT);
 				break;
 			}
 			case "exchange-bo":
 			{
-				htmltext = giveReputation(npc, player, Config.BLOODOATH_POINTS, BLOOD_OATH, BLOOD_OATH_COUNT);
+				htmltext = giveReputation(npc, player, FeatureConfig.BLOODOATH_POINTS, BLOOD_OATH, BLOOD_OATH_COUNT);
 				break;
 			}
 			case "exchange-ke":
 			{
-				htmltext = giveReputation(npc, player, Config.KNIGHTSEPAULETTE_POINTS, KNIGHTS_EPAULETTE, KNIGHTS_EPAULETTE_COUNT);
+				htmltext = giveReputation(npc, player, FeatureConfig.KNIGHTSEPAULETTE_POINTS, KNIGHTS_EPAULETTE, KNIGHTS_EPAULETTE_COUNT);
 				break;
 			}
 		}

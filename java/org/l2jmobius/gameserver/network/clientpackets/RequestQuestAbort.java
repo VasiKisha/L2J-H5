@@ -20,10 +20,10 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.QuestList;
 
 /**
@@ -48,7 +48,7 @@ public class RequestQuestAbort extends ClientPacket
 			return;
 		}
 		
-		final Quest qe = QuestManager.getInstance().getQuest(_questId);
+		final Quest qe = ScriptManager.getInstance().getQuest(_questId);
 		if (qe != null)
 		{
 			final QuestState qs = player.getQuestState(qe.getName());

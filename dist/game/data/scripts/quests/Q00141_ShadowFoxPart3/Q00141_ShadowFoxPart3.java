@@ -19,13 +19,13 @@ package quests.Q00141_ShadowFoxPart3;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 
 import quests.Q00140_ShadowFoxPart2.Q00140_ShadowFoxPart2;
 import quests.Q00998_FallenAngelSelect.Q00998_FallenAngelSelect;
@@ -121,7 +121,7 @@ public class Q00141_ShadowFoxPart3 extends Quest
 				
 				qs.exitQuest(false, true);
 				
-				final Quest q = QuestManager.getInstance().getQuest(Q00998_FallenAngelSelect.class.getSimpleName());
+				final Quest q = ScriptManager.getInstance().getScript(Q00998_FallenAngelSelect.class.getSimpleName());
 				if (q != null)
 				{
 					q.newQuestState(player).setState(State.STARTED);

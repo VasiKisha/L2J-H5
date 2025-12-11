@@ -21,16 +21,15 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
-
-import instances.AbstractInstance;
 
 /**
  * Library of Sages instance zone.
  * @author Adry_85
  */
-public class SSQLibraryOfSages extends AbstractInstance
+public class SSQLibraryOfSages extends InstanceScript
 {
 	// NPCs
 	private static final int SOPHIA1 = 32596;

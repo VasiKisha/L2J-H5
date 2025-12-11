@@ -18,8 +18,8 @@ package quests.Q00185_NikolasCooperation;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
 
 import quests.Q00183_RelicExploration.Q00183_RelicExploration;
 import quests.Q00184_ArtOfPersuasion.Q00184_ArtOfPersuasion;

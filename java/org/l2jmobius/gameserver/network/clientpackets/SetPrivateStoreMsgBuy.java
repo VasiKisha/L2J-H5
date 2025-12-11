@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.PrivateStoreMsgBuy;
@@ -51,7 +51,7 @@ public class SetPrivateStoreMsgBuy extends ClientPacket
 		
 		if ((_storeMsg != null) && (_storeMsg.length() > MAX_MSG_LENGTH))
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to overflow private store buy message", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to overflow private store buy message", GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		

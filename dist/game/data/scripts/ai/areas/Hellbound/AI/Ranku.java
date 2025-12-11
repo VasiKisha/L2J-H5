@@ -22,19 +22,18 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionList;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
-import org.l2jmobius.gameserver.util.MinionList;
-
-import ai.AbstractNpcAI;
 
 /**
  * Ranku's AI.
  * @author GKR
  */
-public class Ranku extends AbstractNpcAI
+public class Ranku extends Script
 {
 	// NPCs
 	private static final int RANKU = 25542;

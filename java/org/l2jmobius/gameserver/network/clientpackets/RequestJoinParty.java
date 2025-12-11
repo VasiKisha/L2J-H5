@@ -20,6 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.BlockList;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -87,6 +88,29 @@ public class RequestJoinParty extends ClientPacket
 		{
 			requestor.sendPacket(SystemMessageId.THAT_IS_AN_INCORRECT_TARGET);
 			return;
+		}
+		
+		if (requestor.isRegisteredOnEvent() || target.isRegisteredOnEvent())
+		{
+			if (GeneralConfig.ALLOW_PARTY_IN_SAME_EVENT)
+			{
+				if (!((requestor.getInstanceId() == target.getInstanceId()) && requestor.isRegisteredOnEvent() && target.isRegisteredOnEvent()))
+				{
+					requestor.sendMessage("Event paticipants cannot be invited to parties.");
+					return;
+				}
+				
+				if (!requestor.getTeam().equals(target.getTeam()))
+				{
+					requestor.sendMessage("You cannot be invited to a party of another team.");
+					return;
+				}
+			}
+			else
+			{
+				requestor.sendMessage("Event paticipants cannot be invited to parties.");
+				return;
+			}
 		}
 		
 		SystemMessage sm;

@@ -29,16 +29,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.SchedulingPattern;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.EventMonster;
-import org.l2jmobius.gameserver.model.quest.Event;
+import org.l2jmobius.gameserver.model.script.Event;
 import org.l2jmobius.gameserver.util.Broadcast;
 
 public class Elpies extends Event
@@ -159,7 +159,7 @@ public class Elpies extends Event
 		}
 		
 		// Check Custom Table - we use custom NPCs
-		if (!Config.CUSTOM_NPC_DATA)
+		if (!GeneralConfig.CUSTOM_NPC_DATA)
 		{
 			LOGGER.info(getName() + ": Event can't be started because custom NPC table is disabled!");
 			eventMaker.sendMessage("Event " + getName() + " can't be started because custom NPC table is disabled!");

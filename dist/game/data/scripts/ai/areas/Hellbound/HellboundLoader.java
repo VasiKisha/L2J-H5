@@ -18,7 +18,7 @@ package ai.areas.Hellbound;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.HellboundStatusConfig;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
@@ -139,7 +139,7 @@ public class HellboundLoader
 				{
 					AdminCommandHandler.getInstance().registerHandler((IAdminCommandHandler) instance);
 				}
-				else if (Config.HELLBOUND_STATUS && (instance instanceof IVoicedCommandHandler))
+				else if (HellboundStatusConfig.HELLBOUND_STATUS && (instance instanceof IVoicedCommandHandler))
 				{
 					VoicedCommandHandler.getInstance().registerHandler((IVoicedCommandHandler) instance);
 				}

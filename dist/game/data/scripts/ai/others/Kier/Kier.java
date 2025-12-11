@@ -18,9 +18,9 @@ package ai.others.Kier;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import quests.Q00115_TheOtherSideOfTruth.Q00115_TheOtherSideOfTruth;
 import quests.Q10283_RequestOfIceMerchant.Q10283_RequestOfIceMerchant;
 
@@ -29,7 +29,7 @@ import quests.Q10283_RequestOfIceMerchant.Q10283_RequestOfIceMerchant;
  * @author Adry_85
  * @since 2.6.0.0
  */
-public class Kier extends AbstractNpcAI
+public class Kier extends Script
 {
 	// NPC
 	private static final int KIER = 32022;

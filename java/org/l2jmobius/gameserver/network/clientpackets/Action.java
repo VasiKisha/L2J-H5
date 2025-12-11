@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -149,7 +149,7 @@ public class Action extends ClientPacket
 			}
 			case 1:
 			{
-				if (!player.isGM() && (!(obj.isNpc() && Config.ALT_GAME_VIEWNPC) || obj.isFakePlayer()))
+				if (!player.isGM() && (!(obj.isNpc() && NpcConfig.ALT_GAME_VIEWNPC) || obj.isFakePlayer()))
 				{
 					obj.onAction(player, false);
 				}

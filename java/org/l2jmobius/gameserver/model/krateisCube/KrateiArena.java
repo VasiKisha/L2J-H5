@@ -33,9 +33,9 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.stream.Collectors;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.custom.PremiumSystemConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.managers.games.KrateisCubeManager;
 import org.l2jmobius.gameserver.model.Location;
@@ -46,7 +46,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.KrateisMatchManager;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.script.Quest;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPCCafePointInfo;
@@ -692,9 +692,9 @@ public class KrateiArena
 									long amount = reward.isAllowMidifier() ? count : reward.getAmount();
 									if (reward.getId() == -100)
 									{
-										if ((pl.getPlayer().getPcCafePoints() + amount) > Config.PC_CAFE_MAX_POINTS)
+										if ((pl.getPlayer().getPcCafePoints() + amount) > PremiumSystemConfig.PC_CAFE_MAX_POINTS)
 										{
-											amount = Config.PC_CAFE_MAX_POINTS - pl.getPlayer().getPcCafePoints();
+											amount = PremiumSystemConfig.PC_CAFE_MAX_POINTS - pl.getPlayer().getPcCafePoints();
 										}
 										
 										final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_ACQUIRED_S1_PC_CAFE_POINTS);

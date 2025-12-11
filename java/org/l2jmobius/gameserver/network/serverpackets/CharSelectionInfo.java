@@ -28,12 +28,14 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.config.ServerConfig;
+import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
+import org.l2jmobius.gameserver.config.custom.OfflinePlayConfig;
+import org.l2jmobius.gameserver.config.custom.OfflineTradeConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
-import org.l2jmobius.gameserver.model.CharSelectInfoPackage;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
@@ -41,6 +43,7 @@ import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
+import org.l2jmobius.gameserver.network.holders.CharacterInfoHolder;
 
 public class CharSelectionInfo extends ServerPacket
 {
@@ -49,7 +52,7 @@ public class CharSelectionInfo extends ServerPacket
 	private final String _loginName;
 	private final int _sessionId;
 	private int _activeId;
-	private final List<CharSelectInfoPackage> _characterPackages;
+	private final List<CharacterInfoHolder> _characterPackages;
 	
 	/**
 	 * Constructor for CharSelectionInfo.
@@ -72,7 +75,7 @@ public class CharSelectionInfo extends ServerPacket
 		_activeId = activeId;
 	}
 	
-	public List<CharSelectInfoPackage> getCharInfo()
+	public List<CharacterInfoHolder> getCharInfo()
 	{
 		return _characterPackages;
 	}
@@ -83,7 +86,7 @@ public class CharSelectionInfo extends ServerPacket
 		ServerPackets.CHARACTER_SELECTION_INFO.writeId(this, buffer);
 		final int size = _characterPackages.size();
 		buffer.writeInt(size); // Created character count
-		buffer.writeInt(Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT); // Can prevent players from creating new characters (if 0); (if 1, the client will ask if chars may be created (0x13) Response: (0x0D) )
+		buffer.writeInt(ServerConfig.MAX_CHARACTERS_NUMBER_PER_ACCOUNT); // Can prevent players from creating new characters (if 0); (if 1, the client will ask if chars may be created (0x13) Response: (0x0D) )
 		buffer.writeByte(0);
 		long lastAccess = 0;
 		if (_activeId == -1)
@@ -100,7 +103,7 @@ public class CharSelectionInfo extends ServerPacket
 		
 		for (int i = 0; i < size; i++)
 		{
-			final CharSelectInfoPackage charInfoPackage = _characterPackages.get(i);
+			final CharacterInfoHolder charInfoPackage = _characterPackages.get(i);
 			buffer.writeString(charInfoPackage.getName()); // Character name
 			buffer.writeInt(charInfoPackage.getObjectId()); // Character ID
 			buffer.writeString(_loginName); // Account name
@@ -176,10 +179,10 @@ public class CharSelectionInfo extends ServerPacket
 		}
 	}
 	
-	private static List<CharSelectInfoPackage> loadCharacterSelectInfo(String loginName)
+	private static List<CharacterInfoHolder> loadCharacterSelectInfo(String loginName)
 	{
-		CharSelectInfoPackage charInfopackage;
-		final List<CharSelectInfoPackage> characterList = new LinkedList<>();
+		CharacterInfoHolder charInfopackage;
+		final List<CharacterInfoHolder> characterList = new LinkedList<>();
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement statement = con.prepareStatement("SELECT * FROM characters WHERE account_name=? ORDER BY createDate"))
 		{
@@ -194,7 +197,7 @@ public class CharSelectionInfo extends ServerPacket
 						characterList.add(charInfopackage);
 						
 						// Disconnect offline trader.
-						if (Config.OFFLINE_DISCONNECT_SAME_ACCOUNT)
+						if (OfflineTradeConfig.OFFLINE_DISCONNECT_SAME_ACCOUNT)
 						{
 							final Player player = World.getInstance().getPlayer(charInfopackage.getObjectId());
 							if ((player != null) && player.isInStoreMode())
@@ -205,7 +208,7 @@ public class CharSelectionInfo extends ServerPacket
 						}
 						
 						// Disconnect offline play.
-						if (Config.OFFLINE_PLAY_DISCONNECT_SAME_ACCOUNT)
+						if (OfflinePlayConfig.OFFLINE_PLAY_DISCONNECT_SAME_ACCOUNT)
 						{
 							final Player player = World.getInstance().getPlayer(charInfopackage.getObjectId());
 							if ((player != null) && player.isOfflinePlay())
@@ -225,7 +228,7 @@ public class CharSelectionInfo extends ServerPacket
 		return characterList;
 	}
 	
-	private static void loadCharacterSubclassInfo(CharSelectInfoPackage charInfopackage, int objectId, int activeClassId)
+	private static void loadCharacterSubclassInfo(CharacterInfoHolder charInfopackage, int objectId, int activeClassId)
 	{
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement statement = con.prepareStatement("SELECT exp, sp, level FROM character_subclasses WHERE charId=? AND class_id=? ORDER BY charId"))
@@ -248,7 +251,7 @@ public class CharSelectionInfo extends ServerPacket
 		}
 	}
 	
-	private static CharSelectInfoPackage restoreChar(ResultSet chardata) throws Exception
+	private static CharacterInfoHolder restoreChar(ResultSet chardata) throws Exception
 	{
 		final int objectId = chardata.getInt("charId");
 		final String name = chardata.getString("char_name");
@@ -267,7 +270,7 @@ public class CharSelectionInfo extends ServerPacket
 			return null;
 		}
 		
-		final CharSelectInfoPackage charInfopackage = new CharSelectInfoPackage(objectId, name);
+		final CharacterInfoHolder charInfopackage = new CharacterInfoHolder(objectId, name);
 		charInfopackage.setAccessLevel(chardata.getInt("accesslevel"));
 		charInfopackage.setLevel(chardata.getInt("level"));
 		charInfopackage.setMaxHp(chardata.getInt("maxhp"));
@@ -302,12 +305,12 @@ public class CharSelectionInfo extends ServerPacket
 			charInfopackage.setEvil();
 		}
 		
-		if (Config.MULTILANG_ENABLE)
+		if (MultilingualSupportConfig.MULTILANG_ENABLE)
 		{
 			String lang = chardata.getString("language");
-			if (!Config.MULTILANG_ALLOWED.contains(lang))
+			if (!MultilingualSupportConfig.MULTILANG_ALLOWED.contains(lang))
 			{
-				lang = Config.MULTILANG_DEFAULT;
+				lang = MultilingualSupportConfig.MULTILANG_DEFAULT;
 			}
 			
 			charInfopackage.setHtmlPrefix("data/lang/" + lang + "/");

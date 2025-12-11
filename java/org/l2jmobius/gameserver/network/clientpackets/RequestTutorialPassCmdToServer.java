@@ -23,7 +23,10 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import org.l2jmobius.gameserver.handler.BypassHandler;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.events.EventDispatcher;
+import org.l2jmobius.gameserver.model.events.EventType;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerBypass;
+import org.l2jmobius.gameserver.model.script.QuestState;
 
 public class RequestTutorialPassCmdToServer extends ClientPacket
 {
@@ -56,6 +59,12 @@ public class RequestTutorialPassCmdToServer extends ClientPacket
 			{
 				qs.getQuest().notifyEvent("TC:" + _bypass, null, player);
 			}
+		}
+		
+		// Notify scripts.
+		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_BYPASS, player))
+		{
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerBypass(player, _bypass), player);
 		}
 	}
 }

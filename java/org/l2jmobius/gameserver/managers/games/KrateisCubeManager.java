@@ -33,9 +33,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
@@ -287,7 +287,7 @@ public class KrateisCubeManager implements IXmlReader
 				{
 					if ((pl != null) && pl.isRegister())
 					{
-						if (pl.getPlayer().isInsideRadius3D(_manager, Config.ALT_PARTY_RANGE))
+						if (pl.getPlayer().isInsideRadius3D(_manager, PlayerConfig.ALT_PARTY_RANGE))
 						{
 							pl.setIsInside(true);
 							pl.setIsRegister(false);

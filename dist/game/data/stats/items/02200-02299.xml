@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <list xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../xsd/items.xsd">
 	<item id="2200" type="EtcItem" name="Recipe: Chain Helmet">
 		<!-- For Dwarves only. The recipe for a Chain Helmet. Requires Create Item - Skill Level 4. The success rate is 100%. -->

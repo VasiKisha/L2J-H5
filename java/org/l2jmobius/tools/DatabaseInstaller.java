@@ -66,7 +66,6 @@ import javax.swing.text.Style;
 import javax.swing.text.StyleConstants;
 import javax.swing.text.StyledDocument;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.ui.DarkTheme;
 import org.l2jmobius.commons.ui.SplashScreen;
@@ -77,6 +76,8 @@ import org.l2jmobius.commons.util.ConfigReader;
  */
 public class DatabaseInstaller extends JFrame
 {
+	public static final String INTERFACE_CONFIG_FILE = "./config/Interface.ini";
+	
 	private JTextField _hostField;
 	private JTextField _portField;
 	private JTextField _userField;
@@ -92,9 +93,14 @@ public class DatabaseInstaller extends JFrame
 	private DatabaseInstaller()
 	{
 		// GUI
-		final ConfigReader interfaceConfig = new ConfigReader(Config.INTERFACE_CONFIG_FILE);
+		final ConfigReader interfaceConfig = new ConfigReader(INTERFACE_CONFIG_FILE);
 		if (interfaceConfig.getBoolean("EnableGUI", false) && !GraphicsEnvironment.isHeadless())
 		{
+			// Disable hardware acceleration.
+			System.setProperty("sun.java2d.opengl", "false");
+			System.setProperty("sun.java2d.d3d", "false");
+			System.setProperty("sun.java2d.noddraw", "true");
+			
 			if (interfaceConfig.getBoolean("DarkTheme", true))
 			{
 				DarkTheme.activate();
@@ -119,7 +125,7 @@ public class DatabaseInstaller extends JFrame
 		setLocationRelativeTo(null);
 		
 		// GUI
-		final ConfigReader interfaceConfig = new ConfigReader(Config.INTERFACE_CONFIG_FILE);
+		final ConfigReader interfaceConfig = new ConfigReader(INTERFACE_CONFIG_FILE);
 		if (interfaceConfig.getBoolean("EnableGUI", true) && !GraphicsEnvironment.isHeadless() && interfaceConfig.getBoolean("DarkTheme", true))
 		{
 			DarkTheme.activate();

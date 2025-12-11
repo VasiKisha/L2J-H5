@@ -16,12 +16,12 @@
  */
 package quests.Q00283_TheFewTheProudTheBrave;
 
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
 
 import ai.others.NewbieGuide.NewbieGuide;
@@ -88,7 +88,7 @@ public class Q00283_TheFewTheProudTheBrave extends Quest
 					takeItems(player, CRIMSON_SPIDER_CLAW, -1);
 					
 					// Newbie Guide.
-					final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+					final Quest newbieGuide = ScriptManager.getInstance().getScript(NewbieGuide.class.getSimpleName());
 					if (newbieGuide != null)
 					{
 						final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);

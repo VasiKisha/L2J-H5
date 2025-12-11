@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.model;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 
@@ -96,12 +96,12 @@ public class Seed
 	
 	public int getSeedLimit()
 	{
-		return _limitSeeds * Config.RATE_DROP_MANOR;
+		return _limitSeeds * RatesConfig.RATE_DROP_MANOR;
 	}
 	
 	public int getCropLimit()
 	{
-		return _limitCrops * Config.RATE_DROP_MANOR;
+		return _limitCrops * RatesConfig.RATE_DROP_MANOR;
 	}
 	
 	public int getSeedReferencePrice()

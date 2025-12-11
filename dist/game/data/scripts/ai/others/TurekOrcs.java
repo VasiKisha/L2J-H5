@@ -22,17 +22,16 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
-
-import ai.AbstractNpcAI;
 
 /**
  * Turek Orcs AI - flee and return with assistance
  * @author GKR
  */
 
-public class TurekOrcs extends AbstractNpcAI
+public class TurekOrcs extends Script
 {
 	// NPCs
 	private static final int[] MOBS =

@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -205,7 +205,7 @@ public class CommandChannel extends AbstractPlayerGroup
 			return false;
 		}
 		
-		return (getMemberCount() >= Config.LOOT_RAIDS_PRIVILEGE_CC_SIZE);
+		return (getMemberCount() >= PlayerConfig.LOOT_RAIDS_PRIVILEGE_CC_SIZE);
 	}
 	
 	/**

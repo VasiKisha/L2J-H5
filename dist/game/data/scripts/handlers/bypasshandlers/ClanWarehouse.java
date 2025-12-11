@@ -22,7 +22,7 @@ package handlers.bypasshandlers;
 
 import java.util.logging.Level;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.WarehouseSortingConfig;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -79,7 +79,7 @@ public class ClanWarehouse implements IBypassHandler
 		{
 			if (command.toLowerCase().startsWith(COMMANDS[0])) // WithdrawC
 			{
-				if (Config.ENABLE_WAREHOUSESORTING_CLAN)
+				if (WarehouseSortingConfig.ENABLE_WAREHOUSESORTING_CLAN)
 				{
 					final NpcHtmlMessage msg = new NpcHtmlMessage(target.asNpc().getObjectId());
 					msg.setFile(player, "data/html/mods/WhSortedC.htm");

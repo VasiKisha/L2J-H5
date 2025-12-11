@@ -28,18 +28,17 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.util.ArrayUtil;
-
-import instances.AbstractInstance;
 
 /**
  * Castle Dungeon instance zone.
  * @author Adry_85
  * @since 2.6.0.0
  */
-public class CastleDungeon extends AbstractInstance
+public class CastleDungeon extends InstanceScript
 {
 	// Locations
 	private static final Location[] ENTER_LOC =

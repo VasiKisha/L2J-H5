@@ -29,18 +29,18 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 
-import instances.AbstractInstance;
 import quests.Q00129_PailakaDevilsLegacy.Q00129_PailakaDevilsLegacy;
 
 /**
  * Pailaka Devil's Legacy Instance zone.
  * @author St3eT
  */
-public class PailakaDevilsLegacy extends AbstractInstance
+public class PailakaDevilsLegacy extends InstanceScript
 {
 	// NPCs
 	private static final int LEMATAN = 18633; // Lematan

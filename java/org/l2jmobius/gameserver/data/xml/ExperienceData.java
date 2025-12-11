@@ -21,15 +21,13 @@
 package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 
 /**
  * This class holds the Experience points for each level for players and pets.
@@ -46,7 +44,7 @@ public class ExperienceData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(ExperienceData.class.getName());
 	
-	private final Map<Integer, Long> _expTable = new HashMap<>();
+	private long[] _expTable;
 	
 	private byte _maxLevel;
 	private byte _maxPetLevel;
@@ -59,9 +57,8 @@ public class ExperienceData implements IXmlReader
 	@Override
 	public void load()
 	{
-		_expTable.clear();
-		parseDatapackFile("data/stats/experience.xml");
-		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _expTable.size() + " levels.");
+		parseDatapackFile("data/stats/players/experience.xml");
+		LOGGER.info(getClass().getSimpleName() + ": Loaded " + (_expTable.length - 1) + " levels.");
 		LOGGER.info(getClass().getSimpleName() + ": Max Player Level is " + (_maxLevel - 1) + ".");
 		LOGGER.info(getClass().getSimpleName() + ": Max Pet Level is " + (_maxPetLevel - 1) + ".");
 	}
@@ -74,9 +71,9 @@ public class ExperienceData implements IXmlReader
 			final NamedNodeMap tableAttr = tableNode.getAttributes();
 			_maxLevel = (byte) (Byte.parseByte(tableAttr.getNamedItem("maxLevel").getNodeValue()) + 1);
 			_maxPetLevel = (byte) (Byte.parseByte(tableAttr.getNamedItem("maxPetLevel").getNodeValue()) + 1);
-			if (_maxLevel > Config.PLAYER_MAXIMUM_LEVEL)
+			if (_maxLevel > PlayerConfig.PLAYER_MAXIMUM_LEVEL)
 			{
-				_maxLevel = Config.PLAYER_MAXIMUM_LEVEL;
+				_maxLevel = PlayerConfig.PLAYER_MAXIMUM_LEVEL;
 			}
 			
 			if (_maxPetLevel > (_maxLevel + 1))
@@ -84,16 +81,19 @@ public class ExperienceData implements IXmlReader
 				_maxPetLevel = (byte) (_maxLevel + 1); // Pet level should not exceed owner level.
 			}
 			
+			// Initialize the array with size _maxLevel + 1 (level 0 is unused).
+			_expTable = new long[_maxLevel + 1];
+			
 			forEach(tableNode, "experience", experienceNode ->
 			{
 				final NamedNodeMap attrs = experienceNode.getAttributes();
 				final int level = parseInteger(attrs, "level");
-				if ((level > Config.PLAYER_MAXIMUM_LEVEL) || (level > _maxLevel))
+				if ((level > PlayerConfig.PLAYER_MAXIMUM_LEVEL) || (level > _maxLevel))
 				{
 					return;
 				}
 				
-				_expTable.put(level, parseLong(attrs, "tolevel"));
+				_expTable[level] = parseLong(attrs, "tolevel");
 			});
 		});
 	}
@@ -105,12 +105,12 @@ public class ExperienceData implements IXmlReader
 	 */
 	public long getExpForLevel(int level)
 	{
-		if (level > Config.PLAYER_MAXIMUM_LEVEL)
+		if (level > PlayerConfig.PLAYER_MAXIMUM_LEVEL)
 		{
-			return _expTable.get((int) Config.PLAYER_MAXIMUM_LEVEL);
+			return _expTable[PlayerConfig.PLAYER_MAXIMUM_LEVEL];
 		}
 		
-		return _expTable.get(level);
+		return _expTable[level];
 	}
 	
 	/**

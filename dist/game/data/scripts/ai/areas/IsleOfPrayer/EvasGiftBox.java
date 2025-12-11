@@ -19,14 +19,13 @@ package ai.areas.IsleOfPrayer;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Eva's Gift Box AI.
  * @author St3eT
  */
-public class EvasGiftBox extends AbstractNpcAI
+public class EvasGiftBox extends Script
 {
 	// NPC
 	private static final int BOX = 32342; // Eva's Gift Box

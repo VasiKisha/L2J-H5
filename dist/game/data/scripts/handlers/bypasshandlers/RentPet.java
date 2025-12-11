@@ -22,7 +22,8 @@ package handlers.bypasshandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -46,12 +47,12 @@ public class RentPet implements IBypassHandler
 			return false;
 		}
 		
-		if (!Config.ALLOW_RENTPET)
+		if (!GeneralConfig.ALLOW_RENTPET)
 		{
 			return false;
 		}
 		
-		if (!Config.LIST_PET_RENT_NPC.contains(target.getId()))
+		if (!NpcConfig.LIST_PET_RENT_NPC.contains(target.getId()))
 		{
 			return false;
 		}

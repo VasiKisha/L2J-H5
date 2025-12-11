@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -97,7 +97,7 @@ public class RequestVoteNew extends ClientPacket
 		
 		target.broadcastUserInfo();
 		
-		if (Config.NEVIT_ENABLED)
+		if (PlayerConfig.NEVIT_ENABLED)
 		{
 			player.sendPacket(new ExVoteSystemInfo(player));
 			target.sendPacket(new ExVoteSystemInfo(target));

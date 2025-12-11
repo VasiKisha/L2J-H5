@@ -34,8 +34,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.model.CursedWeapon;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -69,7 +70,7 @@ public class CursedWeaponsManager
 	private void init()
 	{
 		_cursedWeapons = new HashMap<>();
-		if (!Config.ALLOW_CURSED_WEAPONS)
+		if (!GeneralConfig.ALLOW_CURSED_WEAPONS)
 		{
 			return;
 		}
@@ -93,7 +94,7 @@ public class CursedWeaponsManager
 			factory.setValidating(false);
 			factory.setIgnoringComments(true);
 			
-			final File file = new File(Config.DATAPACK_ROOT + "/data/CursedWeapons.xml");
+			final File file = new File(ServerConfig.DATAPACK_ROOT + "/data/CursedWeapons.xml");
 			if (!file.exists())
 			{
 				LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't find data/" + file.getName());

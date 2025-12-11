@@ -24,18 +24,17 @@ import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
-import ai.AbstractNpcAI;
-
 /**
  * Talent Show AI.
  * @author Kerberos
  */
-public class TalentShow extends AbstractNpcAI
+public class TalentShow extends Script
 {
 	private static int MC = 32433;
 	// @formatter:off

@@ -19,15 +19,14 @@ package ai.others.FameManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-
-import ai.AbstractNpcAI;
 
 /**
  * Fame Manager AI.
  * @author St3eT
  */
-public class FameManager extends AbstractNpcAI
+public class FameManager extends Script
 {
 	// Npc
 	private static final int[] FAME_MANAGER =

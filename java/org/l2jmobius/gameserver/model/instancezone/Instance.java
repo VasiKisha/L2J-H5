@@ -34,8 +34,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.holders.InstanceReenterTimeHolder;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.managers.InstanceManager;
@@ -65,7 +65,7 @@ public class Instance
 	
 	private final int _id;
 	private int _templateId = -1;
-	private int _ejectTime = Config.EJECT_DEAD_PLAYER_TIME;
+	private int _ejectTime = GeneralConfig.EJECT_DEAD_PLAYER_TIME;
 	/** Allow random walk for NPCs, global parameter. */
 	private boolean _allowRandomWalk = true;
 	private final Collection<Integer> _players = ConcurrentHashMap.newKeySet();

@@ -24,9 +24,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.logging.Level;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
@@ -85,7 +86,7 @@ public class PetManager extends Merchant
 		
 		final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 		html.setFile(player, filename);
-		if (Config.ALLOW_RENTPET && Config.LIST_PET_RENT_NPC.contains(getId()))
+		if (GeneralConfig.ALLOW_RENTPET && NpcConfig.LIST_PET_RENT_NPC.contains(getId()))
 		{
 			html.replace("_Quest", "_RentPet\">Rent Pet</a><br><a action=\"bypass -h npc_%objectId%_Quest");
 		}
@@ -243,7 +244,7 @@ public class PetManager extends Merchant
 		final Pet currentPet = player.getSummon().asPet();
 		if (currentPet.isAlikeDead())
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to use death pet exploit!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to use death pet exploit!", GeneralConfig.DEFAULT_PUNISH);
 			return false;
 		}
 		

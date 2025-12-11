@@ -29,9 +29,11 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.commons.time.TimeUtil;
+import org.l2jmobius.gameserver.config.FeatureConfig;
+import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.AutoSpawnHandler;
 import org.l2jmobius.gameserver.model.AutoSpawnHandler.AutoSpawnInstance;
@@ -54,7 +56,7 @@ public class SevenSigns
 {
 	protected static final Logger LOGGER = Logger.getLogger(SevenSigns.class.getName());
 	
-	// Basic Seven Signs Constants \\
+	// Basic Seven Signs Constants
 	public static final String SEVEN_SIGNS_HTML_PATH = "data/html/seven_signs/";
 	
 	public static final int CABAL_NULL = 0;
@@ -83,7 +85,7 @@ public class SevenSigns
 	public static final int RECORD_SEVEN_SIGNS_ID = 5707;
 	public static final int RECORD_SEVEN_SIGNS_COST = 500;
 	
-	// NPC Related Constants \\
+	// NPC Related Constants
 	public static final int ORATOR_NPC_ID = 31094;
 	public static final int PREACHER_NPC_ID = 31093;
 	public static final int MAMMON_MERCHANT_ID = 31113;
@@ -187,18 +189,8 @@ public class SevenSigns
 		}
 		
 		// Schedule a time for the next period change.
-		final SevenSignsPeriodChange sspc = new SevenSignsPeriodChange();
-		ThreadPool.schedule(sspc, milliToChange);
-		
-		// Thanks to http://rainbow.arch.scriptmania.com/scripts/timezone_countdown.html for help with this.
-		final double numSecs = (milliToChange / 1000) % 60;
-		double countDown = ((milliToChange / 1000.0) - numSecs) / 60;
-		final int numMins = (int) Math.floor(countDown % 60);
-		countDown = (countDown - numMins) / 60;
-		final int numHours = (int) Math.floor(countDown % 24);
-		final int numDays = (int) Math.floor((countDown - numHours) / 24);
-		
-		LOGGER.info("SevenSigns: Next period begins in " + numDays + " days, " + numHours + " hours and " + numMins + " mins.");
+		ThreadPool.schedule(new SevenSignsPeriodChange(), milliToChange);
+		LOGGER.info("SevenSigns: Next period begins in " + TimeUtil.formatDuration(milliToChange));
 	}
 	
 	private boolean isNextPeriodChangeInPast()
@@ -257,7 +249,7 @@ public class SevenSigns
 			
 			if ((getSealOwner(SEAL_GNOSIS) == getCabalHighestScore()) && (getSealOwner(SEAL_GNOSIS) != CABAL_NULL))
 			{
-				if (!Config.ANNOUNCE_MAMMON_SPAWN)
+				if (!NpcConfig.ANNOUNCE_MAMMON_SPAWN)
 				{
 					blacksmithSpawn.setBroadcast(false);
 				}
@@ -299,7 +291,7 @@ public class SevenSigns
 			
 			if ((getSealOwner(SEAL_AVARICE) == getCabalHighestScore()) && (getSealOwner(SEAL_AVARICE) != CABAL_NULL))
 			{
-				if (!Config.ANNOUNCE_MAMMON_SPAWN)
+				if (!NpcConfig.ANNOUNCE_MAMMON_SPAWN)
 				{
 					merchantSpawn.setBroadcast(false);
 				}
@@ -1079,7 +1071,7 @@ public class SevenSigns
 			_signsDuskSealTotals.put(chosenSeal, _signsDuskSealTotals.get(chosenSeal) + 1);
 		}
 		
-		if (!Config.ALT_SEVENSIGNS_LAZY_UPDATE)
+		if (!FeatureConfig.ALT_SEVENSIGNS_LAZY_UPDATE)
 		{
 			saveSevenSignsStatus();
 		}
@@ -1105,7 +1097,7 @@ public class SevenSigns
 		if (removeReward)
 		{
 			_signsPlayerData.put(objectId, currPlayer);
-			if (!Config.ALT_SEVENSIGNS_LAZY_UPDATE)
+			if (!FeatureConfig.ALT_SEVENSIGNS_LAZY_UPDATE)
 			{
 				saveSevenSignsData(objectId);
 				saveSevenSignsStatus();
@@ -1131,7 +1123,7 @@ public class SevenSigns
 		final long contribScore = calcContributionScore(blueCount, greenCount, redCount);
 		final long totalAncientAdena = currPlayer.getLong("ancient_adena_amount") + calcAncientAdenaReward(blueCount, greenCount, redCount);
 		final long totalContribScore = currPlayer.getLong("contribution_score") + contribScore;
-		if (totalContribScore > Config.ALT_MAXIMUM_PLAYER_CONTRIB)
+		if (totalContribScore > FeatureConfig.ALT_MAXIMUM_PLAYER_CONTRIB)
 		{
 			return -1;
 		}
@@ -1157,7 +1149,7 @@ public class SevenSigns
 			}
 		}
 		
-		if (!Config.ALT_SEVENSIGNS_LAZY_UPDATE)
+		if (!FeatureConfig.ALT_SEVENSIGNS_LAZY_UPDATE)
 		{
 			saveSevenSignsData(objectId);
 			saveSevenSignsStatus();

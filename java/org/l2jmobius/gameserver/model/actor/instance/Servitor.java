@@ -25,9 +25,9 @@ import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.sql.CharSummonTable;
 import org.l2jmobius.gameserver.data.sql.SummonEffectTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
@@ -204,7 +204,7 @@ public class Servitor extends Summon implements Runnable
 			return;
 		}
 		
-		if (Config.RESTORE_SERVITOR_ON_RECONNECT)
+		if (PlayerConfig.RESTORE_SERVITOR_ON_RECONNECT)
 		{
 			CharSummonTable.getInstance().saveSummon(this);
 		}
@@ -213,7 +213,7 @@ public class Servitor extends Summon implements Runnable
 	@Override
 	public void storeEffect(boolean storeEffects)
 	{
-		if (!Config.SUMMON_STORE_SKILL_COOLTIME || (getOwner() == null) || getOwner().isInOlympiadMode())
+		if (!PlayerConfig.SUMMON_STORE_SKILL_COOLTIME || (getOwner() == null) || getOwner().isInOlympiadMode())
 		{
 			return;
 		}
@@ -260,7 +260,7 @@ public class Servitor extends Summon implements Runnable
 						}
 						
 						// Dances and songs are not kept in retail.
-						if (skill.isDance() && !Config.ALT_STORE_DANCES)
+						if (skill.isDance() && !PlayerConfig.ALT_STORE_DANCES)
 						{
 							continue;
 						}

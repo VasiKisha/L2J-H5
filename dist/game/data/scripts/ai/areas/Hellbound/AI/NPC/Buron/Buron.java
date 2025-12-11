@@ -19,15 +19,15 @@ package ai.areas.Hellbound.AI.NPC.Buron;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Buron AI.
  * @author DS
  */
-public class Buron extends AbstractNpcAI
+public class Buron extends Script
 {
 	private static final int BURON = 32345;
 	private static final int HELMET = 9669;

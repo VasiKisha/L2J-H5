@@ -22,7 +22,7 @@ package handlers.admincommandhandlers;
 
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeoEngineConfig;
 import org.l2jmobius.gameserver.geoengine.pathfinding.GeoLocation;
 import org.l2jmobius.gameserver.geoengine.pathfinding.PathFinding;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
@@ -40,7 +40,7 @@ public class AdminPathNode implements IAdminCommandHandler
 	{
 		if (command.equals("admin_path_find"))
 		{
-			if (Config.PATHFINDING < 1)
+			if (GeoEngineConfig.PATHFINDING < 1)
 			{
 				activeChar.sendSysMessage("PathFinding is disabled.");
 				return true;

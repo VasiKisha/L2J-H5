@@ -55,7 +55,7 @@
 			<height normal="80" />
 		</collision>
 	</npc>
-	<npc id="82018" displayId="32027" name="CtF Manager" usingServerSideName="true" title="" usingServerSideTitle="false" type="Folk">
+	<npc id="82018" displayId="32027" name="Manager" usingServerSideName="true" title="CtF Manager" usingServerSideTitle="false" type="Folk">
 		<race>ETC</race>
 		<sex>ETC</sex>
 		<stats>

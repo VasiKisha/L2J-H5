@@ -21,17 +21,16 @@ import java.util.Calendar;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.QuestType;
-import org.l2jmobius.gameserver.model.quest.State;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestType;
+import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.model.script.State;
 
 /**
  * Black Marketeer of Mammon - Exchange Adena for AA.
  * @author Adry_85
  */
-public class BlackMarketeerOfMammon extends AbstractNpcAI
+public class BlackMarketeerOfMammon extends Script
 {
 	// NPC
 	private static final int BLACK_MARKETEER = 31092;

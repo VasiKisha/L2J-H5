@@ -24,10 +24,10 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.GraciaSeedsConfig;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -36,7 +36,8 @@ import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -48,10 +49,9 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import ai.AbstractNpcAI;
 import quests.Q00696_ConquerTheHallOfErosion.Q00696_ConquerTheHallOfErosion;
 
-public class HallOfErosionAttack extends AbstractNpcAI
+public class HallOfErosionAttack extends Script
 {
 	protected class HEAWorld extends InstanceWorld
 	{
@@ -264,7 +264,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 			return false;
 		}
 		
-		if ((party.getCommandChannel().getMembers().size() < Config.EROSION_ATTACK_MIN_PLAYERS) || (party.getCommandChannel().getMembers().size() > Config.EROSION_ATTACK_MAX_PLAYERS))// 18 27
+		if ((party.getCommandChannel().getMembers().size() < GraciaSeedsConfig.EROSION_ATTACK_MIN_PLAYERS) || (party.getCommandChannel().getMembers().size() > GraciaSeedsConfig.EROSION_ATTACK_MAX_PLAYERS))// 18 27
 		{
 			party.getCommandChannel().broadcastPacket(new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY));
 			return false;
@@ -589,7 +589,7 @@ public class HallOfErosionAttack extends AbstractNpcAI
 				conquestEnded = true;
 				finishInstance(world);
 				stopTumors(world);
-				SoIManager.notifyCohemenesKill();
+				SeedOfInfinityManager.notifyCohemenesKill();
 			}
 			
 			if (npc.getId() == 18711)

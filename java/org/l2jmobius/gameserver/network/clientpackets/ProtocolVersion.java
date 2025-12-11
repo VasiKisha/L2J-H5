@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.serverpackets.KeyPacket;
 
@@ -58,7 +58,7 @@ public class ProtocolVersion extends ClientPacket
 			// This is just a ping attempt from the new C2 client.
 			client.disconnect();
 		}
-		else if (!Config.PROTOCOL_LIST.contains(_version))
+		else if (!ServerConfig.PROTOCOL_LIST.contains(_version))
 		{
 			LOGGER_ACCOUNTING.warning("Wrong protocol version " + _version + ", " + client);
 			client.setProtocolOk(false);

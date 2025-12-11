@@ -29,8 +29,8 @@ import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Player;
 
@@ -55,9 +55,9 @@ public class SendMessageLocalisationData implements IXmlReader
 	{
 		SEND_MESSAGE_LOCALISATIONS.clear();
 		
-		if (Config.MULTILANG_ENABLE)
+		if (MultilingualSupportConfig.MULTILANG_ENABLE)
 		{
-			for (String lang : Config.MULTILANG_ALLOWED)
+			for (String lang : MultilingualSupportConfig.MULTILANG_ALLOWED)
 			{
 				final File file = new File("data/lang/" + lang + "/SendMessageLocalisation.xml");
 				if (!file.isFile())
@@ -93,7 +93,7 @@ public class SendMessageLocalisationData implements IXmlReader
 	
 	public static String getLocalisation(Player player, String message)
 	{
-		if (Config.MULTILANG_ENABLE && (player != null))
+		if (MultilingualSupportConfig.MULTILANG_ENABLE && (player != null))
 		{
 			final Map<String[], String[]> localisations = SEND_MESSAGE_LOCALISATIONS.get(player.getLang());
 			if (localisations != null)

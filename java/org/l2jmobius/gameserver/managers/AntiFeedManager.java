@@ -26,7 +26,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PvpConfig;
+import org.l2jmobius.gameserver.config.custom.DualboxCheckConfig;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
@@ -66,7 +67,7 @@ public class AntiFeedManager
 	 */
 	public boolean check(Creature attacker, Creature target)
 	{
-		if (!Config.ANTIFEED_ENABLE)
+		if (!PvpConfig.ANTIFEED_ENABLE)
 		{
 			return true;
 		}
@@ -88,12 +89,12 @@ public class AntiFeedManager
 			return false;
 		}
 		
-		if ((Config.ANTIFEED_INTERVAL > 0) && _lastDeathTimes.containsKey(targetPlayer.getObjectId()) && ((System.currentTimeMillis() - _lastDeathTimes.get(targetPlayer.getObjectId())) < Config.ANTIFEED_INTERVAL))
+		if ((PvpConfig.ANTIFEED_INTERVAL > 0) && _lastDeathTimes.containsKey(targetPlayer.getObjectId()) && ((System.currentTimeMillis() - _lastDeathTimes.get(targetPlayer.getObjectId())) < PvpConfig.ANTIFEED_INTERVAL))
 		{
 			return false;
 		}
 		
-		if (Config.ANTIFEED_DUALBOX && (attacker != null))
+		if (PvpConfig.ANTIFEED_DUALBOX && (attacker != null))
 		{
 			final Player attackerPlayer = attacker.asPlayer();
 			if (attackerPlayer == null)
@@ -106,7 +107,7 @@ public class AntiFeedManager
 			if ((targetClient == null) || (attackerClient == null) || targetClient.isDetached() || attackerClient.isDetached())
 			{
 				// unable to check ip address
-				return !Config.ANTIFEED_DISCONNECTED_AS_DUALBOX;
+				return !PvpConfig.ANTIFEED_DISCONNECTED_AS_DUALBOX;
 			}
 			
 			return !targetClient.getIp().equals(attackerClient.getIp());
@@ -166,7 +167,7 @@ public class AntiFeedManager
 		
 		final Integer addrHash = client.getIp().hashCode();
 		final AtomicInteger connectionCount = event.computeIfAbsent(addrHash, _ -> new AtomicInteger());
-		if ((connectionCount.get() + 1) <= (max + Config.DUALBOX_CHECK_WHITELIST.getOrDefault(addrHash, 0)))
+		if ((connectionCount.get() + 1) <= (max + DualboxCheckConfig.DUALBOX_CHECK_WHITELIST.getOrDefault(addrHash, 0)))
 		{
 			connectionCount.incrementAndGet();
 			return true;
@@ -300,9 +301,9 @@ public class AntiFeedManager
 		
 		final Integer addrHash = client.getIp().hashCode();
 		int limit = max;
-		if (Config.DUALBOX_CHECK_WHITELIST.containsKey(addrHash))
+		if (DualboxCheckConfig.DUALBOX_CHECK_WHITELIST.containsKey(addrHash))
 		{
-			int whiteListLimit = Config.DUALBOX_CHECK_WHITELIST.get(addrHash);
+			int whiteListLimit = DualboxCheckConfig.DUALBOX_CHECK_WHITELIST.get(addrHash);
 			if (whiteListLimit < 1) // DualboxCheckWhitelist takes 0 or negative value for unlimited number of connections.
 			{
 				return Integer.MAX_VALUE;

@@ -18,14 +18,13 @@ package ai.areas.Hellbound.AI.NPC.Falk;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Falk AI.
  * @author DS
  */
-public class Falk extends AbstractNpcAI
+public class Falk extends Script
 {
 	// NPCs
 	private static final int FALK = 32297;

@@ -26,8 +26,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.InstanceManager;
@@ -47,7 +47,8 @@ import org.l2jmobius.gameserver.model.instancezone.InstanceReenterType;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.enums.FlyType;
 import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
@@ -66,7 +67,6 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import instances.AbstractInstance;
 import quests.Q00131_BirdInACage.Q00131_BirdInACage;
 
 /**
@@ -77,7 +77,7 @@ import quests.Q00131_BirdInACage.Q00131_BirdInACage;
  * 4. Baylor Raid is missing a lot of things This script takes the best elements of different versions and combines them into one script to get the most optimal and retail-like experience.<br>
  * Original sources: theone, L2JEmu, L2JOfficial, L2JFree Contributing authors: TGS, Lantoc, Janiii, Gigiikun, RosT Please maintain consistency between the Crystal Caverns scripts.
  */
-public class CrystalCaverns extends AbstractInstance
+public class CrystalCaverns extends InstanceScript
 {
 	protected static class CrystalGolem
 	{
@@ -1501,7 +1501,7 @@ public class CrystalCaverns extends AbstractInstance
 	
 	private void giveRewards(Player player, int instanceId, int bossCry, boolean isBaylor)
 	{
-		final int num = Math.max((int) Config.RATE_DEATH_DROP_CHANCE_MULTIPLIER, 1);
+		final int num = Math.max((int) RatesConfig.RATE_DEATH_DROP_CHANCE_MULTIPLIER, 1);
 		final Party party = player.getParty();
 		if (party != null)
 		{

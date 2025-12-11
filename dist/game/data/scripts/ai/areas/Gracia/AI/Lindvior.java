@@ -28,17 +28,16 @@ import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.enums.Movie;
-
-import ai.AbstractNpcAI;
 
 /**
  * Lindvior Scene AI.
  * @author nonom
  */
-public class Lindvior extends AbstractNpcAI
+public class Lindvior extends Script
 {
 	private static final int LINDVIOR_CAMERA = 18669;
 	private static final int TOMARIS = 32552;

@@ -19,14 +19,13 @@ package ai.others.CastleBlacksmith;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.ClanAccess;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Castle Blacksmith AI.
  * @author malyelfik
  */
-public class CastleBlacksmith extends AbstractNpcAI
+public class CastleBlacksmith extends Script
 {
 	// Blacksmith IDs
 	private static final int[] NPCS =

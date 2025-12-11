@@ -47,6 +47,6 @@ public class ConditionUsingSlotType extends Condition
 			return false;
 		}
 		
-		return (activeWeapon.getBodyPart() & _mask) != 0;
+		return (activeWeapon.getBodyPart().getMask() & _mask) != 0;
 	}
 }

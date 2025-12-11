@@ -27,8 +27,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.model.World;
@@ -38,6 +38,7 @@ import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.variables.ItemVariables;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
 
 /**
@@ -296,7 +297,7 @@ public abstract class ItemContainer
 				}
 				
 				// If stackable, end loop as entire count is included in 1 instance of item
-				if (template.isStackable() || !Config.MULTIPLE_ITEM_DROP)
+				if (template.isStackable() || !GeneralConfig.MULTIPLE_ITEM_DROP)
 				{
 					break;
 				}
@@ -554,6 +555,12 @@ public abstract class ItemContainer
 			{
 				item.updateDatabase(true);
 				item.stopAllTasks();
+				
+				final ItemVariables vars = item.getScript(ItemVariables.class);
+				if (vars != null)
+				{
+					vars.saveNow();
+				}
 			}
 		}
 		

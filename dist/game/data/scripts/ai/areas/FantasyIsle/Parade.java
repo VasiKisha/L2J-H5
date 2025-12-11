@@ -29,15 +29,14 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
-
-import ai.AbstractNpcAI;
 
 /**
  * Fantasy Isle Parade
  * @author JOJO, Mobius
  */
-public class Parade extends AbstractNpcAI
+public class Parade extends Script
 {
 	// @formatter:off
 	final int[] ACTORS =

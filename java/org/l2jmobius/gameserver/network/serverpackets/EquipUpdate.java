@@ -21,7 +21,7 @@
 package org.l2jmobius.gameserver.network.serverpackets;
 
 import org.l2jmobius.commons.network.WritableBuffer;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -43,91 +43,94 @@ public class EquipUpdate extends ServerPacket
 		ServerPackets.EQUIP_UPDATE.writeId(this, buffer);
 		buffer.writeInt(_change);
 		buffer.writeInt(_item.getObjectId());
-		int bodypart = 0;
+		
 		switch (_item.getTemplate().getBodyPart())
 		{
-			case ItemTemplate.SLOT_L_EAR:
+			case BodyPart.L_EAR:
 			{
-				bodypart = 0x01;
+				buffer.writeInt(0x01);
 				break;
 			}
-			case ItemTemplate.SLOT_R_EAR:
+			case BodyPart.R_EAR:
 			{
-				bodypart = 0x02;
+				buffer.writeInt(0x02);
 				break;
 			}
-			case ItemTemplate.SLOT_NECK:
+			case BodyPart.NECK:
 			{
-				bodypart = 0x03;
+				buffer.writeInt(0x03);
 				break;
 			}
-			case ItemTemplate.SLOT_R_FINGER:
+			case BodyPart.R_FINGER:
 			{
-				bodypart = 0x04;
+				buffer.writeInt(0x04);
 				break;
 			}
-			case ItemTemplate.SLOT_L_FINGER:
+			case BodyPart.L_FINGER:
 			{
-				bodypart = 0x05;
+				buffer.writeInt(0x05);
 				break;
 			}
-			case ItemTemplate.SLOT_HEAD:
+			case BodyPart.HEAD:
 			{
-				bodypart = 0x06;
+				buffer.writeInt(0x06);
 				break;
 			}
-			case ItemTemplate.SLOT_R_HAND:
+			case BodyPart.R_HAND:
 			{
-				bodypart = 0x07;
+				buffer.writeInt(0x07);
 				break;
 			}
-			case ItemTemplate.SLOT_L_HAND:
+			case BodyPart.L_HAND:
 			{
-				bodypart = 0x08;
+				buffer.writeInt(0x08);
 				break;
 			}
-			case ItemTemplate.SLOT_GLOVES:
+			case BodyPart.GLOVES:
 			{
-				bodypart = 0x09;
+				buffer.writeInt(0x09);
 				break;
 			}
-			case ItemTemplate.SLOT_CHEST:
+			case BodyPart.CHEST:
 			{
-				bodypart = 0x0a;
+				buffer.writeInt(0x0a);
 				break;
 			}
-			case ItemTemplate.SLOT_LEGS:
+			case BodyPart.LEGS:
 			{
-				bodypart = 0x0b;
+				buffer.writeInt(0x0b);
 				break;
 			}
-			case ItemTemplate.SLOT_FEET:
+			case BodyPart.FEET:
 			{
-				bodypart = 0x0c;
+				buffer.writeInt(0x0c);
 				break;
 			}
-			case ItemTemplate.SLOT_BACK:
+			case BodyPart.BACK:
 			{
-				bodypart = 0x0d;
+				buffer.writeInt(0x0d);
 				break;
 			}
-			case ItemTemplate.SLOT_LR_HAND:
+			case BodyPart.LR_HAND:
 			{
-				bodypart = 0x0e;
+				buffer.writeInt(0x0e);
 				break;
 			}
-			case ItemTemplate.SLOT_HAIR:
+			case BodyPart.HAIR:
 			{
-				bodypart = 0x0f;
+				buffer.writeInt(0x0f);
 				break;
 			}
-			case ItemTemplate.SLOT_BELT:
+			case BodyPart.BELT:
 			{
-				bodypart = 0x10;
+				buffer.writeInt(0x10);
+				break;
+			}
+			default:
+			{
+				buffer.writeInt(0);
 				break;
 			}
 		}
-		
-		buffer.writeInt(bodypart);
 	}
 }

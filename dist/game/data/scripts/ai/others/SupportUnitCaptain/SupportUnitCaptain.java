@@ -19,15 +19,14 @@ package ai.others.SupportUnitCaptain;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.ClanAccess;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.clientpackets.RequestAcquireSkill;
-
-import ai.AbstractNpcAI;
 
 /**
  * Support Unit Captain AI.
  * @author St3eT
  */
-public class SupportUnitCaptain extends AbstractNpcAI
+public class SupportUnitCaptain extends Script
 {
 	// NPCs
 	private static final int[] UNIT_CAPTAIN =

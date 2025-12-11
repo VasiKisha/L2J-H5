@@ -22,9 +22,9 @@ package org.l2jmobius.gameserver.ai;
 
 import java.util.concurrent.Future;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeoEngineConfig;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.geoengine.pathfinding.PathFinding;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -51,7 +51,7 @@ public class SummonAI extends PlayableAI implements Runnable
 	@Override
 	protected void onIntentionAttack(Creature target)
 	{
-		if ((Config.PATHFINDING > 0) && (PathFinding.getInstance().findPath(_actor.getX(), _actor.getY(), _actor.getZ(), target.getX(), target.getY(), target.getZ(), _actor.getInstanceId(), false) == null))
+		if ((GeoEngineConfig.PATHFINDING > 0) && (PathFinding.getInstance().findPath(_actor.getX(), _actor.getY(), _actor.getZ(), target.getX(), target.getY(), target.getZ(), _actor.getInstanceId(), false) == null))
 		{
 			return;
 		}
@@ -89,7 +89,7 @@ public class SummonAI extends PlayableAI implements Runnable
 			return;
 		}
 		
-		if ((Config.PATHFINDING > 0) && (PathFinding.getInstance().findPath(_actor.getX(), _actor.getY(), _actor.getZ(), target.getX(), target.getY(), target.getZ(), _actor.getInstanceId(), false) == null))
+		if ((GeoEngineConfig.PATHFINDING > 0) && (PathFinding.getInstance().findPath(_actor.getX(), _actor.getY(), _actor.getZ(), target.getX(), target.getY(), target.getZ(), _actor.getInstanceId(), false) == null))
 		{
 			clientActionFailed();
 			return;

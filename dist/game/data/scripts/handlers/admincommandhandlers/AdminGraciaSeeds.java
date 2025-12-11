@@ -24,8 +24,8 @@ import java.util.Calendar;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.managers.SoDManager;
-import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.SeedOfDestructionManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
@@ -52,15 +52,15 @@ public class AdminGraciaSeeds implements IAdminCommandHandler
 		
 		if (actualCommand.equalsIgnoreCase("admin_kill_tiat"))
 		{
-			SoDManager.getInstance().increaseSoDTiatKilled();
+			SeedOfDestructionManager.getInstance().increaseSoDTiatKilled();
 		}
 		else if (actualCommand.equalsIgnoreCase("admin_set_sodstate"))
 		{
-			SoDManager.getInstance().setSoDState(Integer.parseInt(val), true);
+			SeedOfDestructionManager.getInstance().setSoDState(Integer.parseInt(val), true);
 		}
 		else if (actualCommand.equalsIgnoreCase("admin_set_soistage"))
 		{
-			SoIManager.setCurrentStage(Integer.parseInt(val));
+			SeedOfInfinityManager.setCurrentStage(Integer.parseInt(val));
 		}
 		
 		showMenu(activeChar);
@@ -73,12 +73,12 @@ public class AdminGraciaSeeds implements IAdminCommandHandler
 		html.setFile(activeChar, "data/html/admin/graciaseeds.htm");
 		
 		// Seed of destruction
-		html.replace("%sodstage%", String.valueOf(SoDManager.getInstance().getSoDState()));
-		html.replace("%sodtiatkill%", String.valueOf(SoDManager.getInstance().getSoDTiatKilled()));
-		if (SoDManager.getInstance().getSoDTimeForNextStateChange() > 0)
+		html.replace("%sodstage%", String.valueOf(SeedOfDestructionManager.getInstance().getSoDState()));
+		html.replace("%sodtiatkill%", String.valueOf(SeedOfDestructionManager.getInstance().getSoDTiatKilled()));
+		if (SeedOfDestructionManager.getInstance().getSoDTimeForNextStateChange() > 0)
 		{
 			final Calendar nextChangeDate = Calendar.getInstance();
-			nextChangeDate.setTimeInMillis(System.currentTimeMillis() + SoDManager.getInstance().getSoDTimeForNextStateChange());
+			nextChangeDate.setTimeInMillis(System.currentTimeMillis() + SeedOfDestructionManager.getInstance().getSoDTimeForNextStateChange());
 			html.replace("%sodtime%", nextChangeDate.getTime().toString());
 		}
 		else
@@ -87,10 +87,10 @@ public class AdminGraciaSeeds implements IAdminCommandHandler
 		}
 		
 		// Seed of infinity
-		html.replace("%soistage%", SoIManager.getCurrentStage());
+		html.replace("%soistage%", SeedOfInfinityManager.getCurrentStage());
 		html.replace("%twinkills%", "N/A");
-		html.replace("%cohemeneskills%", SoIManager.getCohemenesCount());
-		html.replace("%ekimuskills%", SoIManager.getEkimusCount());
+		html.replace("%cohemeneskills%", SeedOfInfinityManager.getCohemenesCount());
+		html.replace("%ekimuskills%", SeedOfInfinityManager.getEkimusCount());
 		html.replace("%soitime%", "N/A");
 		activeChar.sendPacket(html);
 	}

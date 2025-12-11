@@ -18,15 +18,14 @@ package ai.areas.Hellbound.AI;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Naia Lock AI.<br>
  * Removes minions after master's death.
  * @author GKR
  */
-public class NaiaLock extends AbstractNpcAI
+public class NaiaLock extends Script
 {
 	// NPCs
 	private static final int LOCK = 18491;

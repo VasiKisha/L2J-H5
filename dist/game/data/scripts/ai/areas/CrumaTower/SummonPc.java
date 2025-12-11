@@ -19,17 +19,16 @@ package ai.areas.CrumaTower;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Summon Pc AI.<br>
  * Summon the player to the NPC on attack.
  * @author Zoey76
  */
-public class SummonPc extends AbstractNpcAI
+public class SummonPc extends Script
 {
 	// NPCs
 	private static final int PORTA = 20213;

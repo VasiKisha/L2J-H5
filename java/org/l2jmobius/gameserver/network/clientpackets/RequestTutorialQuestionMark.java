@@ -21,8 +21,10 @@
 package org.l2jmobius.gameserver.network.clientpackets;
 
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.actor.instance.ClassMaster;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.events.EventDispatcher;
+import org.l2jmobius.gameserver.model.events.EventType;
+import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerPressTutorialMark;
+import org.l2jmobius.gameserver.model.script.QuestState;
 
 public class RequestTutorialQuestionMark extends ClientPacket
 {
@@ -43,12 +45,16 @@ public class RequestTutorialQuestionMark extends ClientPacket
 			return;
 		}
 		
-		ClassMaster.onTutorialQuestionMark(player, _number);
-		
 		final QuestState qs = player.getQuestState("Q00255_Tutorial");
 		if (qs != null)
 		{
 			qs.getQuest().notifyEvent("QM:" + _number, null, player);
+		}
+		
+		// Notify scripts.
+		if (EventDispatcher.getInstance().hasListener(EventType.ON_PLAYER_PRESS_TUTORIAL_MARK, player))
+		{
+			EventDispatcher.getInstance().notifyEventAsync(new OnPlayerPressTutorialMark(player, _number), player);
 		}
 	}
 }

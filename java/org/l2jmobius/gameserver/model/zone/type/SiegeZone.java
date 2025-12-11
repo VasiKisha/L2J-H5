@@ -1,24 +1,29 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.zone.type;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.managers.CHSiegeManager;
+import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.managers.FortSiegeManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
@@ -27,7 +32,10 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
 import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
+import org.l2jmobius.gameserver.model.actor.transform.Transform;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.siege.FortSiege;
 import org.l2jmobius.gameserver.model.siege.Siegable;
@@ -41,7 +49,7 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 
 /**
  * A siege zone
- * @author durgus
+ * @author durgus, Skache
  */
 public class SiegeZone extends ZoneType
 {
@@ -187,18 +195,48 @@ public class SiegeZone extends ZoneType
 		}
 		
 		creature.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_A_COMBAT_ZONE);
-		if (!Config.ALLOW_WYVERN_DURING_SIEGE && (player.getMountType() == MountType.WYVERN))
+		
+		if (FeatureConfig.ALLOW_MOUNTS_DURING_SIEGE)
 		{
-			player.sendPacket(SystemMessageId.THIS_AREA_CANNOT_BE_ENTERED_WHILE_MOUNTED_ATOP_OF_A_WYVERN_YOU_WILL_BE_DISMOUNTED_FROM_YOUR_WYVERN_IF_YOU_DO_NOT_LEAVE);
-			player.enteredNoLanding(DISMOUNT_DELAY);
+			return;
 		}
 		
-		if (!Config.ALLOW_MOUNTS_DURING_SIEGE && player.isMounted() && (player.getMountType() != MountType.WYVERN))
+		if (player.isGM())
 		{
-			player.dismount();
+			player.sendMessage("You have entered a siege zone. GM dismount restrictions are ignored.");
+			return;
 		}
 		
-		if (!Config.ALLOW_MOUNTS_DURING_SIEGE && player.isTransformed() && player.getTransformation().isRiding())
+		// Check if wyvern riding is disallowed during siege and player is currently mounted on a wyvern.
+		final Castle castle = CastleManager.getInstance().getCastleById(getSettings().getSiegeableId());
+		final boolean isCastleLord = (castle != null) && player.isClanLeader() && (player.getClanId() == castle.getOwnerId());
+		if (player.getMountType() == MountType.WYVERN)
+		{
+			// Only allow castle lord to ride wyvern inside siege zone.
+			if (!isCastleLord)
+			{
+				player.sendPacket(SystemMessageId.THIS_AREA_CANNOT_BE_ENTERED_WHILE_MOUNTED_ATOP_OF_A_WYVERN_YOU_WILL_BE_DISMOUNTED_FROM_YOUR_WYVERN_IF_YOU_DO_NOT_LEAVE);
+				player.enteredNoLanding(DISMOUNT_DELAY);
+			}
+		}
+		// If normal mounts (excluding wyvern) are disallowed during siege and player is mounted on such a mount.
+		else if (player.isMounted() && (player.getMountType() != MountType.WYVERN))
+		{
+			// Allow castle lord to be mounted on a strider during siege, disallow others.
+			// This is because, on retail servers, the inside of a castle is a no-fly zone during a siege.
+			// However, to be able to **summon and ride a wyvern**, the castle lord must first be mounted on a strider.
+			// So, the castle lord is permitted to mount a strider during the siege, even when mounts are generally disallowed.
+			// This enables the castle lord to meet the precondition to summon their wyvern inside the siege zone.
+			final boolean isCastleLordOnStrider = (player.getMountType() == MountType.STRIDER) && isCastleLord;
+			if (!isCastleLordOnStrider)
+			{
+				// Dismount the player if they are not allowed to be mounted in siege zone.
+				player.dismount();
+			}
+		}
+		
+		final Transform transform = player.getTransformation();
+		if ((transform != null) && transform.isRiding())
 		{
 			player.untransform();
 		}
@@ -219,7 +257,7 @@ public class SiegeZone extends ZoneType
 				player.exitedNoLanding();
 			}
 			
-			// Set pvp flag
+			// Set pvp flag.
 			if (player.getPvpFlag() == 0)
 			{
 				player.startPvPFlag();
@@ -240,6 +278,7 @@ public class SiegeZone extends ZoneType
 			return;
 		}
 		
+		// Drop combat flag.
 		final Fort fort = FortManager.getInstance().getFortById(getSettings().getSiegeableId());
 		if (fort != null)
 		{
@@ -247,8 +286,8 @@ public class SiegeZone extends ZoneType
 		}
 		else
 		{
-			final int slot = player.getInventory().getSlotFromItem(player.getInventory().getItemByItemId(9819));
-			player.getInventory().unEquipItemInBodySlot(slot);
+			final BodyPart bodyPart = BodyPart.fromItem(player.getInventory().getItemByItemId(9819));
+			player.getInventory().unEquipItemInBodySlot(bodyPart);
 			player.destroyItem(ItemProcessType.DESTROY, player.getInventory().getItemByItemId(9819), null, true);
 		}
 		

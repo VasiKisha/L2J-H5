@@ -332,6 +332,7 @@
 		<npc id="21038" x="22089" y="113572" z="-9044" heading="0" respawnDelay="38" /> <!-- Liangma -->
 		<npc id="21038" x="22121" y="117812" z="-9044" heading="0" respawnDelay="38" /> <!-- Liangma -->
 		<npc id="21038" x="23262" y="113442" z="-9043" heading="64987" respawnDelay="38" /> <!-- Liangma -->
+		<npc id="27104" x="23031" y="118953" z="-3704" heading="8192" respawnDelay="180" /> <!-- Shadow Turen -->
 		<npc id="27139" x="9209" y="127105" z="-3640" heading="0" respawnDelay="180" /> <!-- Secret Keeper Tree -->
 		<npc id="29009" x="16647" y="112937" z="-6580" heading="40331" respawnDelay="10800" /> <!-- Dicor -->
 		<npc id="29009" x="17148" y="112858" z="-6580" heading="57835" respawnDelay="10800" /> <!-- Dicor -->

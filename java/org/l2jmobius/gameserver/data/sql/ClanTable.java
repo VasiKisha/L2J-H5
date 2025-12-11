@@ -32,11 +32,11 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.communitybbs.Manager.ForumsBBSManager;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.CHSiegeManager;
 import org.l2jmobius.gameserver.managers.ClanHallAuctionManager;
 import org.l2jmobius.gameserver.managers.FortManager;
@@ -76,7 +76,7 @@ public class ClanTable
 	protected ClanTable()
 	{
 		// forums has to be loaded before clan data, because of last forum id used should have also memo included
-		if (Config.ENABLE_COMMUNITY_BOARD)
+		if (GeneralConfig.ENABLE_COMMUNITY_BOARD)
 		{
 			ForumsBBSManager.getInstance().initRoot();
 		}
@@ -456,10 +456,12 @@ public class ClanTable
 		clan2.broadcastClanStatus();
 		
 		try (Connection con = DatabaseFactory.getConnection();
-			PreparedStatement ps = con.prepareStatement("DELETE FROM clan_wars WHERE clan1=? AND clan2=?"))
+			PreparedStatement ps = con.prepareStatement("DELETE FROM clan_wars WHERE (clan1=? AND clan2=?) OR (clan2=? AND clan1=?)"))
 		{
 			ps.setInt(1, clanId1);
 			ps.setInt(2, clanId2);
+			ps.setInt(3, clanId1);
+			ps.setInt(4, clanId2);
 			ps.execute();
 		}
 		catch (Exception e)

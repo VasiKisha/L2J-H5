@@ -22,7 +22,9 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
+import org.l2jmobius.gameserver.config.custom.WalkerBotProtectionConfig;
 import org.l2jmobius.gameserver.handler.ChatHandler;
 import org.l2jmobius.gameserver.handler.IChatHandler;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
@@ -135,9 +137,9 @@ public class Say2 extends ClientPacket
 			return;
 		}
 		
-		if (Config.L2WALKER_PROTECTION && (chatType == ChatType.WHISPER) && checkBot(_text))
+		if (WalkerBotProtectionConfig.L2WALKER_PROTECTION && (chatType == ChatType.WHISPER) && checkBot(_text))
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, "Client Emulator Detect: " + player + " using L2Walker.", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "Client Emulator Detect: " + player + " using L2Walker.", GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -153,14 +155,14 @@ public class Say2 extends ClientPacket
 			{
 				player.sendPacket(SystemMessageId.YOU_HAVE_BEEN_REPORTED_AS_AN_ILLEGAL_PROGRAM_USER_SO_CHATTING_IS_NOT_ALLOWED);
 			}
-			else if (Config.BAN_CHAT_CHANNELS.contains(chatType))
+			else if (GeneralConfig.BAN_CHAT_CHANNELS.contains(chatType))
 			{
 				player.sendPacket(SystemMessageId.CHATTING_IS_CURRENTLY_PROHIBITED);
 			}
 			return;
 		}
 		
-		if (player.isJailed() && Config.JAIL_DISABLE_CHAT && ((chatType == ChatType.WHISPER) || (chatType == ChatType.SHOUT) || (chatType == ChatType.TRADE) || (chatType == ChatType.HERO_VOICE)))
+		if (player.isJailed() && GeneralConfig.JAIL_DISABLE_CHAT && ((chatType == ChatType.WHISPER) || (chatType == ChatType.SHOUT) || (chatType == ChatType.TRADE) || (chatType == ChatType.HERO_VOICE)))
 		{
 			player.sendMessage("You can not chat with players outside of the jail.");
 			return;
@@ -171,7 +173,7 @@ public class Say2 extends ClientPacket
 			chatType = ChatType.PETITION_GM;
 		}
 		
-		if (Config.LOG_CHAT)
+		if (GeneralConfig.LOG_CHAT)
 		{
 			final StringBuilder sb = new StringBuilder();
 			sb.append(chatType.name());
@@ -208,7 +210,7 @@ public class Say2 extends ClientPacket
 		}
 		
 		// Say Filter implementation
-		if (Config.USE_SAY_FILTER)
+		if (GeneralConfig.USE_SAY_FILTER)
 		{
 			checkText();
 		}
@@ -240,9 +242,9 @@ public class Say2 extends ClientPacket
 	private void checkText()
 	{
 		String filteredText = _text;
-		for (String pattern : Config.FILTER_LIST)
+		for (String pattern : ServerConfig.FILTER_LIST)
 		{
-			filteredText = filteredText.replaceAll("(?i)" + pattern, Config.CHAT_FILTER_CHARS);
+			filteredText = filteredText.replaceAll("(?i)" + pattern, GeneralConfig.CHAT_FILTER_CHARS);
 		}
 		
 		_text = filteredText;

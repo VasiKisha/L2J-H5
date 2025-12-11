@@ -16,7 +16,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -49,7 +50,7 @@ public class RequestPackageSend extends ClientPacket
 		_objectId = readInt();
 		
 		final int count = readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
+		if ((count <= 0) || (count > PlayerConfig.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -92,7 +93,7 @@ public class RequestPackageSend extends ClientPacket
 		
 		if (player.getActiveEnchantItemId() != Player.ID_NONE)
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to use enchant Exploit!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to use enchant Exploit!", GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -103,13 +104,13 @@ public class RequestPackageSend extends ClientPacket
 		}
 		
 		// Alt game - Karma punishment
-		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_USE_WAREHOUSE && (player.getKarma() > 0))
+		if (!PlayerConfig.ALT_GAME_KARMA_PLAYER_CAN_USE_WAREHOUSE && (player.getKarma() > 0))
 		{
 			return;
 		}
 		
 		// Freight price from config per item slot.
-		final int fee = _items.length * Config.ALT_FREIGHT_PRICE;
+		final int fee = _items.length * PlayerConfig.ALT_FREIGHT_PRICE;
 		long currentAdena = player.getAdena();
 		int slots = 0;
 		

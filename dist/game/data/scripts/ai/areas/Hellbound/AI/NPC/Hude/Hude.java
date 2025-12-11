@@ -19,15 +19,15 @@ package ai.areas.Hellbound.AI.NPC.Hude;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Hude AI.
  * @author DS
  */
-public class Hude extends AbstractNpcAI
+public class Hude extends Script
 {
 	// NPCs
 	private static final int HUDE = 32298;

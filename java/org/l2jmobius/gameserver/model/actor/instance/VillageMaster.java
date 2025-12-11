@@ -30,8 +30,9 @@ import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 import java.util.stream.Collectors;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
@@ -52,7 +53,7 @@ import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.clan.Clan.SubPledge;
 import org.l2jmobius.gameserver.model.clan.ClanMember;
 import org.l2jmobius.gameserver.model.olympiad.OlympiadManager;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Fort;
 import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
@@ -272,7 +273,7 @@ public class VillageMaster extends Folk
 				return;
 			}
 			
-			if (Config.ALT_CLAN_LEADER_INSTANT_ACTIVATION)
+			if (PlayerConfig.ALT_CLAN_LEADER_INSTANT_ACTIVATION)
 			{
 				clan.setNewLeader(member);
 			}
@@ -413,7 +414,7 @@ public class VillageMaster extends Folk
 				case 1: // Add Subclass - Initial
 				{
 					// Avoid giving player an option to add a new sub class, if they have max sub-classes already.
-					if (player.getTotalSubClasses() >= Config.MAX_SUBCLASS)
+					if (player.getTotalSubClasses() >= PlayerConfig.MAX_SUBCLASS)
 					{
 						html.setFile(player, getSubClassFail());
 						break;
@@ -553,7 +554,7 @@ public class VillageMaster extends Folk
 					}
 					
 					boolean allowAddition = true;
-					if (player.getTotalSubClasses() >= Config.MAX_SUBCLASS)
+					if (player.getTotalSubClasses() >= PlayerConfig.MAX_SUBCLASS)
 					{
 						allowAddition = false;
 					}
@@ -580,7 +581,7 @@ public class VillageMaster extends Folk
 					 * If quest checking is enabled, verify if the character has completed the Mimir's Elixir (Path to Subclass) and Fate's Whisper (A Grade Weapon) quests by checking for instances of their unique reward items. If they both exist, remove both unique items and continue with adding
 					 * the sub-class.
 					 */
-					if (allowAddition && !Config.ALT_GAME_SUBCLASS_WITHOUT_QUESTS)
+					if (allowAddition && !PlayerConfig.ALT_GAME_SUBCLASS_WITHOUT_QUESTS)
 					{
 						allowAddition = checkQuests(player);
 					}
@@ -648,7 +649,7 @@ public class VillageMaster extends Folk
 				case 6: // Change/Cancel Subclass - Choice
 				{
 					// validity check
-					if ((paramOne < 1) || (paramOne > Config.MAX_SUBCLASS))
+					if ((paramOne < 1) || (paramOne > PlayerConfig.MAX_SUBCLASS))
 					{
 						return;
 					}
@@ -746,7 +747,7 @@ public class VillageMaster extends Folk
 	
 	protected String getSubClassMenu(Race race)
 	{
-		if (Config.ALT_GAME_SUBCLASS_EVERYWHERE || (race != Race.KAMAEL))
+		if (PlayerConfig.ALT_GAME_SUBCLASS_EVERYWHERE || (race != Race.KAMAEL))
 		{
 			return "data/html/villagemaster/SubClass.htm";
 		}
@@ -1019,7 +1020,7 @@ public class VillageMaster extends Folk
 	 */
 	public boolean checkVillageMaster(PlayerClass pclass)
 	{
-		if (Config.ALT_GAME_SUBCLASS_EVERYWHERE)
+		if (PlayerConfig.ALT_GAME_SUBCLASS_EVERYWHERE)
 		{
 			return true;
 		}
@@ -1089,7 +1090,7 @@ public class VillageMaster extends Folk
 			return;
 		}
 		
-		clan.setDissolvingExpiryTime(System.currentTimeMillis() + (Config.ALT_CLAN_DISSOLVE_DAYS * 86400000)); // 24*60*60*1000 = 86400000
+		clan.setDissolvingExpiryTime(System.currentTimeMillis() + (PlayerConfig.ALT_CLAN_DISSOLVE_DAYS * 86400000)); // 24*60*60*1000 = 86400000
 		clan.updateClanInDB();
 		
 		// The clan leader should take the XP penalty of a full death.
@@ -1378,7 +1379,7 @@ public class VillageMaster extends Folk
 		Pattern pattern;
 		try
 		{
-			pattern = Pattern.compile(Config.CLAN_NAME_TEMPLATE);
+			pattern = Pattern.compile(ServerConfig.CLAN_NAME_TEMPLATE);
 		}
 		catch (PatternSyntaxException e)
 		{

@@ -24,12 +24,11 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 import org.l2jmobius.gameserver.network.serverpackets.SocialAction;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
-
-import ai.AbstractNpcAI;
 
 /**
  * Dr. Chaos is a boss @ Pavel's Ruins. Some things to know :
@@ -42,7 +41,7 @@ import ai.AbstractNpcAI;
  * </ul>
  * @author Kerberos, Tryskell
  */
-public class DrChaos extends AbstractNpcAI
+public class DrChaos extends Script
 {
 	private static final int DOCTOR_CHAOS = 32033;
 	private static final int CHAOS_GOLEM = 25512;
@@ -203,7 +202,10 @@ public class DrChaos extends AbstractNpcAI
 				
 				if (npc.calculateDistance2D(CHAOS_X, CHAOS_Y, CHAOS_Z) > 2000)
 				{
-					npc.asAttackable().clearAggroList();
+					if (npc.isAttackable())
+					{
+						npc.asAttackable().clearAggroList();
+					}
 					npc.getAI().setIntention(Intention.MOVE_TO, new Location(CHAOS_X, CHAOS_Y, CHAOS_Z, 0));
 				}
 				break;
@@ -216,7 +218,10 @@ public class DrChaos extends AbstractNpcAI
 				}
 				else if (npc.calculateDistance2D(npc.getSpawn()) > 10000)
 				{
-					npc.asAttackable().clearAggroList();
+					if (npc.isAttackable())
+					{
+						npc.asAttackable().clearAggroList();
+					}
 					// npc.getAI().setIntention(Intention.MOVE_TO, new Location(CHAOS_X, CHAOS_Y, CHAOS_Z, 0));
 					npc.teleToLocation(npc.getSpawn(), false);
 				}

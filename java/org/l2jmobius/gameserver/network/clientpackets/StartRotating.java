@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.StartRotation;
 
@@ -42,7 +42,7 @@ public class StartRotating extends ClientPacket
 	@Override
 	protected void runImpl()
 	{
-		if (!Config.ENABLE_KEYBOARD_MOVEMENT)
+		if (!PlayerConfig.ENABLE_KEYBOARD_MOVEMENT)
 		{
 			return;
 		}

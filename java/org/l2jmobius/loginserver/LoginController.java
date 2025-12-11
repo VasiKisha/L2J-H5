@@ -43,11 +43,11 @@ import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
+import org.l2jmobius.loginserver.config.LoginConfig;
 import org.l2jmobius.loginserver.enums.LoginFailReason;
 import org.l2jmobius.loginserver.enums.LoginResult;
 import org.l2jmobius.loginserver.model.data.AccountInfo;
@@ -191,9 +191,9 @@ public class LoginController
 			_failedLoginAttemps.put(addr, failedLoginAttemps);
 		}
 		
-		if (failedLoginAttemps >= Config.LOGIN_TRY_BEFORE_BAN)
+		if (failedLoginAttemps >= LoginConfig.LOGIN_TRY_BEFORE_BAN)
 		{
-			addBanForAddress(addr, Config.LOGIN_BLOCK_AFTER_BAN * 1000);
+			addBanForAddress(addr, LoginConfig.LOGIN_BLOCK_AFTER_BAN * 1000);
 			
 			// We need to clear the failed login attempts here, so after the IP ban is over the client has another 5 attempts.
 			clearFailedLoginAttemps(addr);
@@ -240,7 +240,7 @@ public class LoginController
 				}
 			}
 			
-			if (!autoCreateIfEnabled || !Config.AUTO_CREATE_ACCOUNTS)
+			if (!autoCreateIfEnabled || !LoginConfig.AUTO_CREATE_ACCOUNTS)
 			{
 				// Account does not exist and auto create account is not desired.
 				recordFailedLoginAttemp(clientAddr);

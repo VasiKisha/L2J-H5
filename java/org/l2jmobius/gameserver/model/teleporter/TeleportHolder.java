@@ -21,7 +21,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -64,15 +64,6 @@ public class TeleportHolder
 	public String getName()
 	{
 		return _name;
-	}
-	
-	/**
-	 * Check if teleport list is for noblesse or not.
-	 * @return {@code true} if is for noblesse otherwise {@code false}
-	 */
-	public boolean isNoblesse()
-	{
-		return (_type == TeleportType.NOBLES_ADENA) || (_type == TeleportType.NOBLES_TOKEN);
 	}
 	
 	/**
@@ -171,6 +162,12 @@ public class TeleportHolder
 	 */
 	public void doTeleport(Player player, Npc npc, int locId)
 	{
+		// Check if player is dead before other checks.
+		if (player.isAlikeDead())
+		{
+			return;
+		}
+		
 		if (isNoblesse() && !player.isNoble())
 		{
 			LOGGER.warning(player + " requested noblesse teleport without being noble!");
@@ -185,7 +182,7 @@ public class TeleportHolder
 		}
 		
 		// Check if castle is in siege
-		if (!Config.TELEPORT_WHILE_SIEGE_IN_PROGRESS)
+		if (!PlayerConfig.TELEPORT_WHILE_SIEGE_IN_PROGRESS)
 		{
 			for (int castleId : loc.getCastleId())
 			{
@@ -200,7 +197,7 @@ public class TeleportHolder
 		// Validate conditions for NORMAL teleport
 		if (isNormalTeleport())
 		{
-			if (!Config.TELEPORT_WHILE_SIEGE_IN_PROGRESS && npc.getCastle().getSiege().isInProgress())
+			if (!PlayerConfig.TELEPORT_WHILE_SIEGE_IN_PROGRESS && npc.getCastle().getSiege().isInProgress())
 			{
 				final NpcHtmlMessage msg = new NpcHtmlMessage(npc.getObjectId());
 				msg.setFile(player, "data/html/teleporter/castleteleporter-busy.htm");
@@ -208,7 +205,7 @@ public class TeleportHolder
 				player.sendPacket(msg);
 				return;
 			}
-			else if (!Config.ALT_GAME_KARMA_PLAYER_CAN_USE_GK && (player.getKarma() > 0))
+			else if (!PlayerConfig.ALT_GAME_KARMA_PLAYER_CAN_USE_GK && (player.getKarma() > 0))
 			{
 				player.sendMessage("Go away, you're not welcome here.");
 				return;
@@ -220,12 +217,7 @@ public class TeleportHolder
 			}
 		}
 		
-		if (player.isAlikeDead())
-		{
-			return;
-		}
-		
-		// Check rest of conditions
+		// Check if player should pay fee.
 		if (shouldPayFee(player, loc) && !player.destroyItemByItemId(ItemProcessType.FEE, loc.getFeeId(), calculateFee(player, loc), npc, true))
 		{
 			if (loc.getFeeId() == Inventory.ADENA_ID)
@@ -236,11 +228,10 @@ public class TeleportHolder
 			{
 				player.sendMessage("You do not have enough " + getItemName(loc.getFeeId()) + ".");
 			}
+			return;
 		}
-		else if (!player.isAlikeDead())
-		{
-			player.teleToLocation(loc);
-		}
+		
+		player.teleToLocation(loc);
 	}
 	
 	/**
@@ -251,7 +242,7 @@ public class TeleportHolder
 	 */
 	private boolean shouldPayFee(Player player, TeleportLocation loc)
 	{
-		return !isNormalTeleport() || (((player.getLevel() > Config.MAX_FREE_TELEPORT_LEVEL) || player.isSubClassActive()) && ((loc.getFeeId() != 0) && (loc.getFeeCount() > 0)));
+		return !isNormalTeleport() || (((player.getLevel() > PlayerConfig.MAX_FREE_TELEPORT_LEVEL) || player.isSubClassActive()) && ((loc.getFeeId() != 0) && (loc.getFeeCount() > 0)));
 	}
 	
 	/**
@@ -266,7 +257,7 @@ public class TeleportHolder
 	{
 		if (isNormalTeleport())
 		{
-			if (!player.isSubClassActive() && (player.getLevel() <= Config.MAX_FREE_TELEPORT_LEVEL))
+			if (!player.isSubClassActive() && (player.getLevel() <= PlayerConfig.MAX_FREE_TELEPORT_LEVEL))
 			{
 				return 0;
 			}
@@ -286,6 +277,15 @@ public class TeleportHolder
 	private boolean isNormalTeleport()
 	{
 		return _type == TeleportType.NORMAL;
+	}
+	
+	/**
+	 * Check if teleport list is for noblesse or not.
+	 * @return {@code true} if is for noblesse otherwise {@code false}
+	 */
+	public boolean isNoblesse()
+	{
+		return (_type == TeleportType.NOBLES_ADENA) || (_type == TeleportType.NOBLES_TOKEN);
 	}
 	
 	/**

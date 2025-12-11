@@ -26,18 +26,17 @@ import org.l2jmobius.gameserver.managers.TerritoryWarManager.Territory;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager.TerritoryNPCSpawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowDominionRegistry;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
-import ai.AbstractNpcAI;
-
 /**
  * Mercenary Captain AI.
  * @author malyelfik
  */
-public class MercenaryCaptain extends AbstractNpcAI
+public class MercenaryCaptain extends Script
 {
 	// NPCs
 	private static final Map<Integer, Integer> NPCS = new HashMap<>();

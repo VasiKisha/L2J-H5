@@ -27,7 +27,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.model.actor.Creature;
 
 /**
@@ -158,7 +158,7 @@ public enum BaseStat
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setValidating(false);
 		factory.setIgnoringComments(true);
-		final File file = new File(Config.DATAPACK_ROOT, "data/stats/statBonus.xml");
+		final File file = new File(ServerConfig.DATAPACK_ROOT, "data/stats/statBonus.xml");
 		Document document = null;
 		
 		if (file.exists())

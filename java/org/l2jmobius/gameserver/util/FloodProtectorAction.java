@@ -1,27 +1,32 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.util;
 
-import java.util.Arrays;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
+import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.punishment.PunishmentAffect;
 import org.l2jmobius.gameserver.model.punishment.PunishmentTask;
 import org.l2jmobius.gameserver.model.punishment.PunishmentType;
@@ -32,212 +37,246 @@ import org.l2jmobius.gameserver.network.serverpackets.LeaveWorld;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
 
 /**
- * Flood protector implementation.
- * @author fordfrog
+ * Flood protector implementation for preventing client request spam and abuse.<br>
+ * Provides configurable protection intervals and punishment systems for violating clients.
+ * <ul>
+ * <li>Configurable protection intervals and punishment limits.</li>
+ * <li>Multiple punishment types: kick, ban, and jail.</li>
+ * <li>Automatic logging and monitoring of flood attempts.</li>
+ * <li>GM immunity and per-client tracking.</li>
+ * </ul>
+ * @author fordfrog, Mobius
  */
 public class FloodProtectorAction
 {
-	/**
-	 * Logger
-	 */
 	private static final Logger LOGGER = Logger.getLogger(FloodProtectorAction.class.getName());
-	/**
-	 * Client for this instance of flood protector.
-	 */
+	
+	// Constants.
+	private static final boolean LOG_WARNING_ENABLED = LOGGER.isLoggable(Level.WARNING);
+	private static final int LOG_BUILDER_INITIAL_CAPACITY = 128;
+	private static final int MINUTES_TO_MILLISECONDS = 60000;
+	private static final String PUNISHMENT_KICK = "kick";
+	private static final String PUNISHMENT_BAN = "ban";
+	private static final String PUNISHMENT_JAIL = "jail";
+	private static final String DURATION_FOREVER = "forever";
+	
+	// Client Connection.
 	private final GameClient _client;
-	/**
-	 * Configuration of this instance of flood protector.
-	 */
-	private final FloodProtectorConfig _config;
-	/**
-	 * Next game tick when new request is allowed.
-	 */
+	private final FloodProtectorSettings _settings;
+	
+	// Protection State.
+	private final AtomicInteger _requestCount = new AtomicInteger(0);
 	private volatile int _nextGameTick = GameTimeTaskManager.getInstance().getGameTicks();
-	/**
-	 * Request counter.
-	 */
-	private final AtomicInteger _count = new AtomicInteger(0);
-	/**
-	 * Flag determining whether exceeding request has been logged.
-	 */
-	private boolean _logged;
-	/**
-	 * Flag determining whether punishment application is in progress so that we do not apply punisment multiple times (flooding).
-	 */
 	private volatile boolean _punishmentInProgress;
+	private volatile boolean _logged;
 	
 	/**
-	 * Creates new instance of FloodProtectorAction.
-	 * @param client the game client for which flood protection is being created
-	 * @param config flood protector configuration
+	 * Creates a new flood protector action for the specified client and settings.
+	 * @param client
+	 * @param settings
 	 */
-	public FloodProtectorAction(GameClient client, FloodProtectorConfig config)
+	public FloodProtectorAction(GameClient client, FloodProtectorSettings settings)
 	{
-		super();
 		_client = client;
-		_config = config;
+		_settings = settings;
 	}
 	
 	/**
-	 * Checks whether the request is flood protected or not.
-	 * @return true if action is allowed, otherwise false
+	 * Checks whether the request is flood protected or not.<br>
+	 * Applies punishment if violation limits are exceeded.
+	 * @return true if action is allowed, otherwise false.
 	 */
 	public boolean canPerformAction()
 	{
-		if ((_client.getPlayer() != null) && _client.getPlayer().isGM())
+		final Player player = _client.getPlayer();
+		if ((player != null) && player.isGM())
 		{
 			return true;
 		}
 		
-		final int curTick = GameTimeTaskManager.getInstance().getGameTicks();
-		if ((curTick < _nextGameTick) || _punishmentInProgress)
+		final int currentTick = GameTimeTaskManager.getInstance().getGameTicks();
+		if ((currentTick < _nextGameTick) || _punishmentInProgress)
 		{
-			if (_config.LOG_FLOODING && !_logged && LOGGER.isLoggable(Level.WARNING))
+			// Log flooding if enabled and not already logged.
+			if (LOG_WARNING_ENABLED && _settings.isLogFlooding() && !_logged)
 			{
-				log(" called command ", _config.FLOOD_PROTECTOR_TYPE, " ~", String.valueOf((_config.FLOOD_PROTECTION_INTERVAL - (_nextGameTick - curTick)) * GameTimeTaskManager.MILLIS_IN_TICK), " ms after previous command");
+				final int timeUntilNext = (_settings.getProtectionInterval() - (_nextGameTick - currentTick)) * GameTimeTaskManager.MILLIS_IN_TICK;
+				logFlooding(timeUntilNext);
 				_logged = true;
 			}
 			
-			_count.incrementAndGet();
-			
-			if (!_punishmentInProgress && (_config.PUNISHMENT_LIMIT > 0) && (_count.get() >= _config.PUNISHMENT_LIMIT) && (_config.PUNISHMENT_TYPE != null))
+			// Check if punishment should be applied.
+			final int currentCount = _requestCount.incrementAndGet();
+			if (!_punishmentInProgress)
 			{
-				_punishmentInProgress = true;
-				if ("kick".equals(_config.PUNISHMENT_TYPE))
+				final int punishmentLimit = _settings.getPunishmentLimit();
+				if ((punishmentLimit > 0) && (currentCount >= punishmentLimit))
 				{
-					kickPlayer();
+					final String punishmentType = _settings.getPunishmentType();
+					if (punishmentType != null)
+					{
+						_punishmentInProgress = true;
+						
+						try
+						{
+							switch (punishmentType)
+							{
+								case PUNISHMENT_KICK:
+								{
+									Disconnection.of(_client).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
+									
+									if (LOG_WARNING_ENABLED)
+									{
+										logPunishment("kicked for flooding");
+									}
+									break;
+								}
+								case PUNISHMENT_BAN:
+								{
+									final long punishmentTime = _settings.getPunishmentTime();
+									
+									PunishmentManager.getInstance().startPunishment(new PunishmentTask(_client.getAccountName(), PunishmentAffect.ACCOUNT, PunishmentType.BAN, System.currentTimeMillis() + punishmentTime, "", getClass().getSimpleName()));
+									
+									if (LOG_WARNING_ENABLED)
+									{
+										final String duration = (punishmentTime <= 0) ? DURATION_FOREVER : StringUtil.concat("for ", String.valueOf(punishmentTime / MINUTES_TO_MILLISECONDS), " mins.");
+										logPunishment(StringUtil.concat("banned for flooding ", duration));
+									}
+									break;
+								}
+								case PUNISHMENT_JAIL:
+								{
+									final long punishmentTime = _settings.getPunishmentTime();
+									
+									if (player != null)
+									{
+										final int characterId = player.getObjectId();
+										if (characterId > 0)
+										{
+											PunishmentManager.getInstance().startPunishment(new PunishmentTask(characterId, PunishmentAffect.CHARACTER, PunishmentType.JAIL, System.currentTimeMillis() + punishmentTime, "", getClass().getSimpleName()));
+										}
+									}
+									
+									if (LOG_WARNING_ENABLED)
+									{
+										final String duration = (punishmentTime <= 0) ? DURATION_FOREVER : StringUtil.concat("for ", String.valueOf(punishmentTime / MINUTES_TO_MILLISECONDS), " mins.");
+										logPunishment(StringUtil.concat("jailed for flooding ", duration));
+									}
+									break;
+								}
+								default:
+								{
+									if (LOG_WARNING_ENABLED)
+									{
+										LOGGER.warning(StringUtil.concat("FloodProtector: Unknown punishment type configured: ", punishmentType));
+									}
+									break;
+								}
+							}
+						}
+						finally
+						{
+							_punishmentInProgress = false;
+						}
+					}
 				}
-				else if ("ban".equals(_config.PUNISHMENT_TYPE))
-				{
-					banAccount();
-				}
-				else if ("jail".equals(_config.PUNISHMENT_TYPE))
-				{
-					jailChar();
-				}
-				
-				_punishmentInProgress = false;
 			}
 			
 			return false;
 		}
 		
-		if ((_count.get() > 0) && _config.LOG_FLOODING && LOGGER.isLoggable(Level.WARNING))
+		// Reset state for next interval.
+		if (LOG_WARNING_ENABLED && _settings.isLogFlooding() && (_requestCount.get() > 0))
 		{
-			log(" issued ", String.valueOf(_count), " extra requests within ~", String.valueOf(_config.FLOOD_PROTECTION_INTERVAL * GameTimeTaskManager.MILLIS_IN_TICK), " ms");
+			final StringBuilder sb = buildLogPrefix();
+			StringUtil.append(sb, " issued ", String.valueOf(_requestCount.get()), " extra requests within ~", String.valueOf(_settings.getProtectionInterval() * GameTimeTaskManager.MILLIS_IN_TICK), " ms.");
+			LOGGER.warning(sb.toString());
 		}
 		
-		_nextGameTick = curTick + _config.FLOOD_PROTECTION_INTERVAL;
+		_nextGameTick = currentTick + _settings.getProtectionInterval();
 		_logged = false;
-		_count.set(0);
+		_requestCount.set(0);
 		return true;
 	}
 	
 	/**
-	 * Kick player from game (close network connection).
+	 * Logs flood protection violation with timing information.
+	 * @param timeUntilNext
 	 */
-	private void kickPlayer()
+	private void logFlooding(int timeUntilNext)
 	{
-		Disconnection.of(_client).storeAndDeleteWith(LeaveWorld.STATIC_PACKET);
-		
-		if (LOGGER.isLoggable(Level.WARNING))
-		{
-			log("kicked for flooding");
-		}
+		final StringBuilder sb = buildLogPrefix();
+		StringUtil.append(sb, " called command ", _settings.getFloodProtectorType(), " ~", String.valueOf(timeUntilNext), " ms after previous command.");
+		LOGGER.warning(sb.toString());
 	}
 	
 	/**
-	 * Bans char account and logs out the char.
+	 * Logs punishment action applied to violating client.
+	 * @param message
 	 */
-	private void banAccount()
+	private void logPunishment(String message)
 	{
-		PunishmentManager.getInstance().startPunishment(new PunishmentTask(_client.getAccountName(), PunishmentAffect.ACCOUNT, PunishmentType.BAN, System.currentTimeMillis() + _config.PUNISHMENT_TIME, "", getClass().getSimpleName()));
-		if (LOGGER.isLoggable(Level.WARNING))
-		{
-			log(" banned for flooding ", _config.PUNISHMENT_TIME <= 0 ? "forever" : "for " + (_config.PUNISHMENT_TIME / 60000) + " mins");
-		}
+		final StringBuilder sb = buildLogPrefix();
+		StringUtil.append(sb, " ", message);
+		LOGGER.warning(sb.toString());
 	}
 	
 	/**
-	 * Jails char.
+	 * Builds log message prefix with client identification information.
+	 * @return StringBuilder containing client identification details
 	 */
-	private void jailChar()
+	private StringBuilder buildLogPrefix()
 	{
-		if (_client.getPlayer() == null)
-		{
-			return;
-		}
+		final StringBuilder sb = new StringBuilder(LOG_BUILDER_INITIAL_CAPACITY);
+		StringUtil.append(sb, _settings.getFloodProtectorType(), ": ");
 		
-		final int charId = _client.getPlayer().getObjectId();
-		if (charId > 0)
-		{
-			PunishmentManager.getInstance().startPunishment(new PunishmentTask(charId, PunishmentAffect.CHARACTER, PunishmentType.JAIL, System.currentTimeMillis() + _config.PUNISHMENT_TIME, "", getClass().getSimpleName()));
-		}
-		
-		if (LOGGER.isLoggable(Level.WARNING))
-		{
-			log(" jailed for flooding ", _config.PUNISHMENT_TIME <= 0 ? "forever" : "for " + (_config.PUNISHMENT_TIME / 60000) + " mins");
-		}
-	}
-	
-	private void log(String... lines)
-	{
-		final StringBuilder output = new StringBuilder(100);
-		output.append(_config.FLOOD_PROTECTOR_TYPE);
-		output.append(": ");
-		String address = null;
-		try
-		{
-			if (!_client.isDetached())
-			{
-				address = _client.getIp();
-			}
-		}
-		catch (Exception e)
-		{
-			// Ignore.
-		}
-		
-		final ConnectionState state = _client.getConnectionState();
-		switch (state)
+		final ConnectionState connectionState = _client.getConnectionState();
+		switch (connectionState)
 		{
 			case ENTERING:
 			case IN_GAME:
 			{
-				if (_client.getPlayer() != null)
+				final Player player = _client.getPlayer();
+				if (player != null)
 				{
-					output.append(_client.getPlayer().getName());
-					output.append("(");
-					output.append(_client.getPlayer().getObjectId());
-					output.append(") ");
+					StringUtil.append(sb, player.getName(), "(", String.valueOf(player.getObjectId()), ") ");
 				}
 				break;
 			}
 			case AUTHENTICATED:
 			{
-				if (_client.getAccountName() != null)
+				final String accountName = _client.getAccountName();
+				if (accountName != null)
 				{
-					output.append(_client.getAccountName());
-					output.append(" ");
+					StringUtil.append(sb, accountName, " ");
 				}
 				break;
 			}
 			case CONNECTED:
 			{
-				if (address != null)
+				try
 				{
-					output.append(address);
+					if (!_client.isDetached())
+					{
+						final String clientAddress = _client.getIp();
+						if (clientAddress != null)
+						{
+							StringUtil.append(sb, clientAddress);
+						}
+					}
+				}
+				catch (Exception e)
+				{
+					// Ignore - no IP information available.
 				}
 				break;
 			}
 			default:
 			{
-				throw new IllegalStateException("Missing state on switch.");
+				throw new IllegalStateException(StringUtil.concat("FloodProtector: Missing connection state in switch: ", connectionState.toString()));
 			}
 		}
 		
-		Arrays.stream(lines).forEach(output::append);
-		
-		LOGGER.warning(output.toString());
+		return sb;
 	}
 }

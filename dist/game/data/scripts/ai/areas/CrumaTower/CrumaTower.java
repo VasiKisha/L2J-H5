@@ -23,14 +23,13 @@ package ai.areas.CrumaTower;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Cruma Tower teleport AI.
  * @author Plim, Skache
  */
-public class CrumaTower extends AbstractNpcAI
+public class CrumaTower extends Script
 {
 	// NPC
 	private static final int MOZELLA = 30483;
@@ -64,6 +63,12 @@ public class CrumaTower extends AbstractNpcAI
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

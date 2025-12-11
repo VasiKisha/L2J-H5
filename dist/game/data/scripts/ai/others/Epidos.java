@@ -23,15 +23,14 @@ import java.util.concurrent.ConcurrentHashMap;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.util.MinionList;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionList;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Manages minion's spawn, idle despawn and Teleportation Cube spawn.
  * @author GKR
  */
-public class Epidos extends AbstractNpcAI
+public class Epidos extends Script
 {
 	private static final int[] EPIDOSES =
 	{
@@ -73,7 +72,7 @@ public class Epidos extends AbstractNpcAI
 			{
 				final int hpDecreasePercent = (int) (((_lastHp.get(npc.getObjectId()) - npc.getCurrentHp()) * 100) / npc.getMaxHp());
 				int minionsCount = 0;
-				final int spawnedMinions = npc.asMonster().getMinionList().countSpawnedMinions();
+				final int spawnedMinions = npc.asMonster().getMinionList().getSpawnedMinionCount();
 				
 				if ((hpDecreasePercent > 5) && (hpDecreasePercent <= 15) && (spawnedMinions <= 9))
 				{

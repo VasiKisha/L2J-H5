@@ -28,8 +28,9 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.SchemeBufferConfig;
 import org.l2jmobius.gameserver.data.SchemeBufferTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -123,7 +124,7 @@ public class SchemeBuffer extends Npc
 			{
 				player.sendMessage("You don't have a pet.");
 			}
-			else if ((cost == 0) || ((Config.BUFFER_ITEM_ID == 57) && player.reduceAdena(ItemProcessType.FEE, cost, this, true)) || ((Config.BUFFER_ITEM_ID != 57) && player.destroyItemByItemId(ItemProcessType.FEE, Config.BUFFER_ITEM_ID, cost, player, true)))
+			else if ((cost == 0) || ((SchemeBufferConfig.BUFFER_ITEM_ID == 57) && player.reduceAdena(ItemProcessType.FEE, cost, this, true)) || ((SchemeBufferConfig.BUFFER_ITEM_ID != 57) && player.destroyItemByItemId(ItemProcessType.FEE, SchemeBufferConfig.BUFFER_ITEM_ID, cost, player, true)))
 			{
 				for (int skillId : SchemeBufferTable.getInstance().getScheme(player.getObjectId(), schemeName))
 				{
@@ -147,7 +148,7 @@ public class SchemeBuffer extends Npc
 				final Skill skill = SkillData.getInstance().getSkill(skillId, SkillData.getInstance().getMaxLevel(skillId));
 				if (skill.isDance())
 				{
-					if (getCountOf(skills, true) < Config.DANCES_MAX_AMOUNT)
+					if (getCountOf(skills, true) < PlayerConfig.DANCES_MAX_AMOUNT)
 					{
 						skills.add(skillId);
 					}
@@ -196,7 +197,7 @@ public class SchemeBuffer extends Npc
 				final Map<String, List<Integer>> schemes = SchemeBufferTable.getInstance().getPlayerSchemes(player.getObjectId());
 				if (schemes != null)
 				{
-					if (schemes.size() == Config.BUFFER_MAX_SCHEMES)
+					if (schemes.size() == SchemeBufferConfig.BUFFER_MAX_SCHEMES)
 					{
 						player.sendMessage("Maximum schemes amount is already reached.");
 						return;
@@ -281,7 +282,7 @@ public class SchemeBuffer extends Npc
 		final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 		html.setFile(player, getHtmlPath(getId(), 1));
 		html.replace("%schemes%", sb.toString());
-		html.replace("%max_schemes%", Config.BUFFER_MAX_SCHEMES);
+		html.replace("%max_schemes%", SchemeBufferConfig.BUFFER_MAX_SCHEMES);
 		html.replace("%objectId%", getObjectId());
 		player.sendPacket(html);
 	}
@@ -299,7 +300,7 @@ public class SchemeBuffer extends Npc
 		final List<Integer> schemeSkills = SchemeBufferTable.getInstance().getScheme(player.getObjectId(), schemeName);
 		html.setFile(player, getHtmlPath(getId(), 2));
 		html.replace("%schemename%", schemeName);
-		html.replace("%count%", getCountOf(schemeSkills, false) + " / " + player.getStat().getMaxBuffCount() + " buffs, " + getCountOf(schemeSkills, true) + " / " + Config.DANCES_MAX_AMOUNT + " dances/songs");
+		html.replace("%count%", getCountOf(schemeSkills, false) + " / " + player.getStat().getMaxBuffCount() + " buffs, " + getCountOf(schemeSkills, true) + " / " + PlayerConfig.DANCES_MAX_AMOUNT + " dances/songs");
 		html.replace("%typesframe%", getTypesFrame(groupType, schemeName));
 		html.replace("%skilllistframe%", getGroupSkillList(player, groupType, schemeName, page));
 		html.replace("%objectId%", getObjectId());
@@ -430,9 +431,9 @@ public class SchemeBuffer extends Npc
 	 */
 	private static int getFee(List<Integer> list)
 	{
-		if (Config.BUFFER_STATIC_BUFF_COST > 0)
+		if (SchemeBufferConfig.BUFFER_STATIC_BUFF_COST > 0)
 		{
-			return list.size() * Config.BUFFER_STATIC_BUFF_COST;
+			return list.size() * SchemeBufferConfig.BUFFER_STATIC_BUFF_COST;
 		}
 		
 		int fee = 0;

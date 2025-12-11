@@ -30,7 +30,7 @@ import java.util.logging.Logger;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.DatabaseConfig;
 
 /**
  * DatabaseFactory class using HikariCP for connection pooling.<br>
@@ -62,17 +62,20 @@ public class DatabaseFactory
 			return;
 		}
 		
+		// Load configurations.
+		DatabaseConfig.load();
+		
 		try
 		{
 			final HikariConfig config = new HikariConfig();
-			config.setDriverClassName(Config.DATABASE_DRIVER);
-			config.setJdbcUrl(Config.DATABASE_URL);
-			config.setUsername(Config.DATABASE_LOGIN);
-			config.setPassword(Config.DATABASE_PASSWORD);
+			config.setDriverClassName(DatabaseConfig.DATABASE_DRIVER);
+			config.setJdbcUrl(DatabaseConfig.DATABASE_URL);
+			config.setUsername(DatabaseConfig.DATABASE_LOGIN);
+			config.setPassword(DatabaseConfig.DATABASE_PASSWORD);
 			
 			// Pool Size Configuration.
-			config.setMaximumPoolSize(determineMaxPoolSize(Config.DATABASE_MAX_CONNECTIONS)); // 100
-			config.setMinimumIdle(determineMinimumIdle(Config.DATABASE_MAX_CONNECTIONS)); // e.g., 20
+			config.setMaximumPoolSize(determineMaxPoolSize(DatabaseConfig.DATABASE_MAX_CONNECTIONS)); // 100
+			config.setMinimumIdle(determineMinimumIdle(DatabaseConfig.DATABASE_MAX_CONNECTIONS)); // e.g., 20
 			
 			// Timeout Settings.
 			config.setConnectionTimeout(60000); // 1 minute.
@@ -97,7 +100,7 @@ public class DatabaseFactory
 			
 			LOGGER.info("Database: HikariCP pool initialized successfully.");
 			
-			if (Config.DATABASE_TEST_CONNECTIONS)
+			if (DatabaseConfig.DATABASE_TEST_CONNECTIONS)
 			{
 				testDatabaseConnections();
 			}

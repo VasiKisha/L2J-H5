@@ -20,7 +20,7 @@
  */
 package handlers.voicedcommandhandlers;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.OnlineInfoConfig;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -38,7 +38,7 @@ public class Online implements IVoicedCommandHandler
 	@Override
 	public boolean onCommand(String command, Player player, String target)
 	{
-		if (command.equals("online") && Config.ENABLE_ONLINE_COMMAND)
+		if (command.equals("online") && OnlineInfoConfig.ENABLE_ONLINE_COMMAND)
 		{
 			final int count = World.getInstance().getPlayers().size();
 			if (count > 1)

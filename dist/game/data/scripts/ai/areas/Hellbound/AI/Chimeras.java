@@ -18,22 +18,22 @@ package ai.areas.Hellbound.AI;
 
 import java.util.List;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Chimeras AI.
  * @author DS
  */
-public class Chimeras extends AbstractNpcAI
+public class Chimeras extends Script
 {
 	// NPCs
 	private static final int[] NPCS =
@@ -63,7 +63,7 @@ public class Chimeras extends AbstractNpcAI
 	private static final int CONTAINED_LIFE_FORCE = 9682;
 	
 	// Misc
-	private static final int CONTAINED_LIFE_FORCE_AMOUNT = Config.RATE_DEATH_DROP_AMOUNT_MULTIPLIER > 1 ? (int) Config.RATE_DEATH_DROP_AMOUNT_MULTIPLIER : 1; // Retail value is 1
+	private static final int CONTAINED_LIFE_FORCE_AMOUNT = RatesConfig.RATE_DEATH_DROP_AMOUNT_MULTIPLIER > 1 ? (int) RatesConfig.RATE_DEATH_DROP_AMOUNT_MULTIPLIER : 1; // Retail value is 1
 	
 	public Chimeras()
 	{

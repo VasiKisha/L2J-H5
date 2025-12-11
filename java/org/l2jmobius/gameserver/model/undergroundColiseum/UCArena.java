@@ -25,8 +25,9 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ScheduledFuture;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.UndergroundColiseumConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.model.Spawn;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -350,7 +351,7 @@ public class UCArena
 				continue;
 			}
 			
-			if (team.getParty().getMemberCount() < Config.UC_PARTY_SIZE)
+			if (team.getParty().getMemberCount() < UndergroundColiseumConfig.UC_PARTY_SIZE)
 			{
 				isValid = false;
 				continue;
@@ -358,7 +359,7 @@ public class UCArena
 			
 			for (Player pl : team.getParty().getMembers())
 			{
-				if ((pl != null) && (pl.calculateDistance3D(_manager) > Config.ALT_PARTY_RANGE))
+				if ((pl != null) && (pl.calculateDistance3D(_manager) > PlayerConfig.ALT_PARTY_RANGE))
 				{
 					isValid = false;
 					break;

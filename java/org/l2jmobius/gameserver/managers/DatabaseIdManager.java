@@ -34,8 +34,9 @@ import java.util.concurrent.Future;
 import java.util.concurrent.TimeUnit;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.config.IdManagerConfig;
+import org.l2jmobius.gameserver.config.custom.WeddingConfig;
 
 /**
  * Manages database cleanup operations and retrieval of used IDs for ID allocation.
@@ -85,6 +86,9 @@ public class DatabaseIdManager
 		"DELETE FROM heroes_diary WHERE heroes_diary.charId NOT IN (SELECT charId FROM characters)",
 		"DELETE FROM character_offline_trade WHERE character_offline_trade.charId NOT IN (SELECT charId FROM characters)",
 		"DELETE FROM character_offline_trade_items WHERE character_offline_trade_items.charId NOT IN (SELECT charId FROM characters)",
+		"DELETE FROM character_offline_play WHERE character_offline_play.charId NOT IN (SELECT charId FROM characters)",
+		"DELETE FROM character_offline_play_group WHERE character_offline_play_group.charId NOT IN (SELECT charId FROM characters)",
+		"DELETE FROM character_offline_play_group WHERE character_offline_play_group.leaderId NOT IN (SELECT charId FROM characters)",
 		"DELETE FROM character_tpbookmark WHERE character_tpbookmark.charId NOT IN (SELECT charId FROM characters)",
 		"DELETE FROM character_variables WHERE character_variables.charId NOT IN (SELECT charId FROM characters)",
 		"DELETE FROM clan_privs WHERE clan_privs.clan_id NOT IN (SELECT clan_id FROM clan_data)",
@@ -135,14 +139,14 @@ public class DatabaseIdManager
 	 */
 	public static void cleanDatabase()
 	{
-		if (!Config.DATABASE_CLEAN_UP)
+		if (!IdManagerConfig.DATABASE_CLEAN_UP)
 		{
 			return;
 		}
 		
 		int cleanCount = 0;
 		final long cleanupStart = System.currentTimeMillis();
-		if (Config.ALLOW_WEDDING)
+		if (WeddingConfig.ALLOW_WEDDING)
 		{
 			try (Connection con = DatabaseFactory.getConnection();
 				Statement statement = con.createStatement())
@@ -248,13 +252,13 @@ public class DatabaseIdManager
 					while (result.next())
 					{
 						final int id = result.getInt(1);
-						if ((id >= Config.FIRST_OBJECT_ID) && (id <= Config.LAST_OBJECT_ID))
+						if ((id >= IdManagerConfig.FIRST_OBJECT_ID) && (id <= IdManagerConfig.LAST_OBJECT_ID))
 						{
 							usedIds.add(id);
 						}
 						else
 						{
-							LOGGER.warning("DatabaseIdManager: ID " + id + " in database is out of valid range (" + Config.FIRST_OBJECT_ID + " - " + Config.LAST_OBJECT_ID + ")");
+							LOGGER.warning("DatabaseIdManager: ID " + id + " in database is out of valid range (" + IdManagerConfig.FIRST_OBJECT_ID + " - " + IdManagerConfig.LAST_OBJECT_ID + ")");
 						}
 					}
 				}

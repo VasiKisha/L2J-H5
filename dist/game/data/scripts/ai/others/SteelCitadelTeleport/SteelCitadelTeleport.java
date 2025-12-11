@@ -16,7 +16,7 @@
  */
 package ai.others.SteelCitadelTeleport;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GrandBossConfig;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
@@ -24,15 +24,14 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.groups.CommandChannel;
 import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.zone.type.BossZone;
-
-import ai.AbstractNpcAI;
 
 /**
  * Steel Citadel teleport AI.
  * @author GKR
  */
-public class SteelCitadelTeleport extends AbstractNpcAI
+public class SteelCitadelTeleport extends Script
 {
 	// NPCs
 	private static final int BELETH = 29118;
@@ -62,7 +61,7 @@ public class SteelCitadelTeleport extends AbstractNpcAI
 		}
 		
 		final CommandChannel channel = player.getParty() == null ? null : player.getParty().getCommandChannel();
-		if ((channel == null) || (channel.getLeader().getObjectId() != player.getObjectId()) || (channel.getMemberCount() < Config.BELETH_MIN_PLAYERS))
+		if ((channel == null) || (channel.getLeader().getObjectId() != player.getObjectId()) || (channel.getMemberCount() < GrandBossConfig.BELETH_MIN_PLAYERS))
 		{
 			return "32376-02a.htm";
 		}

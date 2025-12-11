@@ -30,8 +30,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.holders.PrimeShopProductHolder;
 import org.l2jmobius.gameserver.model.StatSet;
 
@@ -53,7 +53,7 @@ public class PrimeShopData implements IXmlReader
 	{
 		_products.clear();
 		
-		if (!Config.ENABLE_PRIME_SHOP)
+		if (!GeneralConfig.ENABLE_PRIME_SHOP)
 		{
 			return;
 		}

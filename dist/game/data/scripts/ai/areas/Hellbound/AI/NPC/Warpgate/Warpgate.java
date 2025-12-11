@@ -16,15 +16,15 @@
  */
 package ai.areas.Hellbound.AI.NPC.Warpgate;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 import quests.Q00130_PathToHellbound.Q00130_PathToHellbound;
 import quests.Q00133_ThatsBloodyHot.Q00133_ThatsBloodyHot;
@@ -33,7 +33,7 @@ import quests.Q00133_ThatsBloodyHot.Q00133_ThatsBloodyHot;
  * Warpgate teleport AI.
  * @author DS
  */
-public class Warpgate extends AbstractNpcAI
+public class Warpgate extends Script
 {
 	// NPCs
 	private static final int[] WARPGATES =
@@ -116,7 +116,7 @@ public class Warpgate extends AbstractNpcAI
 			return false;
 		}
 		
-		if (Config.HELLBOUND_WITHOUT_QUEST)
+		if (GeneralConfig.HELLBOUND_WITHOUT_QUEST)
 		{
 			return true;
 		}

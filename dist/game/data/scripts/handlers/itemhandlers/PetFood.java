@@ -18,7 +18,7 @@ package handlers.itemhandlers;
 
 import java.util.Set;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.handler.IItemHandler;
@@ -70,7 +70,7 @@ public class PetFood implements IItemHandler
 				if (pet.destroyItem(ItemProcessType.NONE, item.getObjectId(), 1, null, false))
 				{
 					pet.broadcastSkillPacket(new MagicSkillUse(pet, pet, skillId, skillLevel, 0, 0), pet);
-					pet.setCurrentFed(pet.getCurrentFed() + (skill.getFeed() * Config.PET_FOOD_RATE));
+					pet.setCurrentFed(pet.getCurrentFed() + (skill.getFeed() * RatesConfig.PET_FOOD_RATE));
 					pet.broadcastStatusUpdate();
 					if (pet.isHungry())
 					{

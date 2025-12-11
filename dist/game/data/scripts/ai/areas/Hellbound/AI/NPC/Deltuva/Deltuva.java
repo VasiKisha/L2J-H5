@@ -19,16 +19,16 @@ package ai.areas.Hellbound.AI.NPC.Deltuva;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import quests.Q00132_MatrasCuriosity.Q00132_MatrasCuriosity;
 
 /**
  * Deltuva AI.
  * @author GKR
  */
-public class Deltuva extends AbstractNpcAI
+public class Deltuva extends Script
 {
 	// NPCs
 	private static final int DELTUVA = 32313;

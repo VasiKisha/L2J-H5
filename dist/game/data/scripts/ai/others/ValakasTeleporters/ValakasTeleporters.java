@@ -20,25 +20,25 @@
  */
 package ai.others.ValakasTeleporters;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GrandBossConfig;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.zone.type.BossZone;
 
-import ai.AbstractNpcAI;
 import ai.bosses.Valakas.Valakas;
 
 /**
  * @author Plim, Skache
  */
-public class ValakasTeleporters extends AbstractNpcAI
+public class ValakasTeleporters extends Script
 {
 	// NPCs
 	private static final int[] NPCs =
@@ -113,7 +113,7 @@ public class ValakasTeleporters extends AbstractNpcAI
 							if (status == 0)
 							{
 								final GrandBoss valakas = GrandBossManager.getInstance().getBoss(29028);
-								valakasAI().startQuestTimer("beginning", Config.VALAKAS_WAIT_TIME * 60000, valakas, null);
+								valakasAI().startQuestTimer("beginning", GrandBossConfig.VALAKAS_WAIT_TIME * 60000, valakas, null);
 								GrandBossManager.getInstance().setStatus(29028, 1);
 							}
 						}
@@ -195,7 +195,7 @@ public class ValakasTeleporters extends AbstractNpcAI
 	
 	private Quest valakasAI()
 	{
-		return QuestManager.getInstance().getQuest(Valakas.class.getSimpleName());
+		return ScriptManager.getInstance().getScript(Valakas.class.getSimpleName());
 	}
 	
 	public static void main(String[] args)

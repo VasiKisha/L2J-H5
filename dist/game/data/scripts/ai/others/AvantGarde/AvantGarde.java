@@ -18,18 +18,19 @@ package ai.others.AvantGarde;
 
 import java.util.List;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.MultisellData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -37,7 +38,6 @@ import org.l2jmobius.gameserver.network.clientpackets.RequestAcquireSkill;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
-import ai.AbstractNpcAI;
 import custom.Validators.SubClassSkills;
 
 /**
@@ -46,7 +46,7 @@ import custom.Validators.SubClassSkills;
  * Transformation skill learning and transformation scroll sell.
  * @author Zoey76
  */
-public class AvantGarde extends AbstractNpcAI
+public class AvantGarde extends Script
 {
 	// NPC
 	private static final int AVANT_GARDE = 32323;
@@ -181,7 +181,7 @@ public class AvantGarde extends AbstractNpcAI
 				{
 					htmltext = "32323-08.html";
 				}
-				else if (player.getAdena() < Config.FEE_DELETE_SUBCLASS_SKILLS)
+				else if (player.getAdena() < PlayerConfig.FEE_DELETE_SUBCLASS_SKILLS)
 				{
 					htmltext = "32323-08no.html";
 				}
@@ -190,13 +190,13 @@ public class AvantGarde extends AbstractNpcAI
 					QuestState qs = player.getQuestState(SubClassSkills.class.getSimpleName());
 					if (qs == null)
 					{
-						qs = QuestManager.getInstance().getQuest(SubClassSkills.class.getSimpleName()).newQuestState(player);
+						qs = ScriptManager.getInstance().getScript(SubClassSkills.class.getSimpleName()).newQuestState(player);
 					}
 					
 					int activeCertifications = 0;
 					for (String varName : QUEST_VAR_NAMES)
 					{
-						for (int i = 1; i <= Config.MAX_SUBCLASS; i++)
+						for (int i = 1; i <= PlayerConfig.MAX_SUBCLASS; i++)
 						{
 							final String qvar = player.getVariables().getString(varName + i, "0");
 							if (!qvar.isEmpty() && (qvar.endsWith(";") || !qvar.equals("0")))
@@ -214,7 +214,7 @@ public class AvantGarde extends AbstractNpcAI
 					{
 						for (String varName : QUEST_VAR_NAMES)
 						{
-							for (int i = 1; i <= Config.MAX_SUBCLASS; i++)
+							for (int i = 1; i <= PlayerConfig.MAX_SUBCLASS; i++)
 							{
 								final String qvarName = varName + i;
 								final String qvar = player.getVariables().getString(qvarName, "0");
@@ -270,7 +270,7 @@ public class AvantGarde extends AbstractNpcAI
 							}
 						}
 						
-						player.reduceAdena(ItemProcessType.FEE, Config.FEE_DELETE_SUBCLASS_SKILLS, npc, true);
+						player.reduceAdena(ItemProcessType.FEE, PlayerConfig.FEE_DELETE_SUBCLASS_SKILLS, npc, true);
 						htmltext = "32323-09no.html";
 						player.sendSkillList();
 					}

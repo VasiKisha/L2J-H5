@@ -22,7 +22,7 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -73,9 +73,9 @@ public class AdminLevel implements IAdminCommandHandler
 			
 			final Player targetPlayer = targetChar.asPlayer();
 			int maxLevel = ExperienceData.getInstance().getMaxLevel();
-			if (targetPlayer.isSubClassActive() && (Config.MAX_SUBCLASS_LEVEL < maxLevel))
+			if (targetPlayer.isSubClassActive() && (PlayerConfig.MAX_SUBCLASS_LEVEL < maxLevel))
 			{
-				maxLevel = Config.MAX_SUBCLASS_LEVEL;
+				maxLevel = PlayerConfig.MAX_SUBCLASS_LEVEL;
 			}
 			
 			try

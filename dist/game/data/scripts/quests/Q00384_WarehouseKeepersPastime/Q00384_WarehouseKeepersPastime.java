@@ -21,12 +21,12 @@ import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -929,7 +929,7 @@ public class Q00384_WarehouseKeepersPastime extends Quest
 			player.getParty().getMembers().forEach(pm ->
 			{
 				final QuestState qss = getQuestState(pm, false);
-				if ((qss != null) && qss.isStarted() && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, pm, true))
+				if ((qss != null) && qss.isStarted() && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, pm, true))
 				{
 					candidates.add(qss);
 				}

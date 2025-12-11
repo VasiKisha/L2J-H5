@@ -20,10 +20,10 @@
  */
 package org.l2jmobius.loginserver.network.clientpackets;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.loginserver.LoginController;
 import org.l2jmobius.loginserver.LoginServer;
 import org.l2jmobius.loginserver.SessionKey;
+import org.l2jmobius.loginserver.config.LoginConfig;
 import org.l2jmobius.loginserver.enums.LoginFailReason;
 import org.l2jmobius.loginserver.enums.PlayFailReason;
 import org.l2jmobius.loginserver.network.LoginClient;
@@ -65,7 +65,7 @@ public class RequestServerLogin extends LoginClientPacket
 		final SessionKey sk = client.getSessionKey();
 		
 		// If we didn't showed the license we can't check these values.
-		if (!Config.SHOW_LICENCE || sk.checkLoginPair(_skey1, _skey2))
+		if (!LoginConfig.SHOW_LICENCE || sk.checkLoginPair(_skey1, _skey2))
 		{
 			if ((LoginServer.getInstance().getStatus() == ServerStatus.STATUS_DOWN) || ((LoginServer.getInstance().getStatus() == ServerStatus.STATUS_GM_ONLY) && (client.getAccessLevel() < 1)))
 			{

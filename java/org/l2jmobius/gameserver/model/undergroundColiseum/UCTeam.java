@@ -22,9 +22,10 @@ package org.l2jmobius.gameserver.model.undergroundColiseum;
 
 import java.util.List;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.UndergroundColiseumConfig;
+import org.l2jmobius.gameserver.config.custom.PremiumSystemConfig;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.managers.games.UndergroundColiseumManager;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -200,7 +201,7 @@ public class UCTeam
 					}
 				}
 			}
-		}, Config.UC_RESS_TIME * 1000);
+		}, UndergroundColiseumConfig.UC_RESS_TIME * 1000);
 	}
 	
 	public void increaseKillCount()
@@ -328,9 +329,9 @@ public class UCTeam
 						if (reward.getId() == -100)
 						{
 							long amount = reward.isAllowMidifier() ? (long) (reward.getAmount() * modifier) : reward.getAmount();
-							if ((member.getPcCafePoints() + amount) > Config.PC_CAFE_MAX_POINTS)
+							if ((member.getPcCafePoints() + amount) > PremiumSystemConfig.PC_CAFE_MAX_POINTS)
 							{
-								amount = Config.PC_CAFE_MAX_POINTS - member.getPcCafePoints();
+								amount = PremiumSystemConfig.PC_CAFE_MAX_POINTS - member.getPcCafePoints();
 							}
 							
 							final SystemMessage sm = new SystemMessage(SystemMessageId.YOU_HAVE_ACQUIRED_S1_PC_CAFE_POINTS);

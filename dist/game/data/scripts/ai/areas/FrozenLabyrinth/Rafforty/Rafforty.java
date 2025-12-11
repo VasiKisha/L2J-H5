@@ -18,14 +18,13 @@ package ai.areas.FrozenLabyrinth.Rafforty;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Rafforty AI.
  * @author malyelfik, Gladicek
  */
-public class Rafforty extends AbstractNpcAI
+public class Rafforty extends Script
 {
 	// NPC
 	private static final int RAFFORTY = 32020;
@@ -79,6 +78,12 @@ public class Rafforty extends AbstractNpcAI
 		addStartNpc(RAFFORTY);
 		addFirstTalkId(RAFFORTY);
 		addTalkId(RAFFORTY);
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

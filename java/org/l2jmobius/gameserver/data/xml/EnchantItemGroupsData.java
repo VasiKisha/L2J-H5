@@ -25,14 +25,15 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.holders.RangeChanceHolder;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantItemGroup;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantRateItem;
 import org.l2jmobius.gameserver.model.item.enchant.EnchantScrollGroup;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 
 /**
  * @author UnAfraid
@@ -59,7 +60,7 @@ public class EnchantItemGroupsData implements IXmlReader
 		LOGGER.log(Level.INFO, getClass().getSimpleName() + ": Loaded " + _itemGroups.size() + " item group templates.");
 		LOGGER.log(Level.INFO, getClass().getSimpleName() + ": Loaded " + _scrollGroups.size() + " scroll group templates.");
 		
-		if (Config.OVER_ENCHANT_PROTECTION)
+		if (PlayerConfig.OVER_ENCHANT_PROTECTION)
 		{
 			LOGGER.info(getClass().getSimpleName() + ": Max weapon enchant is set to " + _maxWeaponEnchant + ".");
 			LOGGER.info(getClass().getSimpleName() + ": Max armor enchant is set to " + _maxArmorEnchant + ".");
@@ -151,7 +152,7 @@ public class EnchantItemGroupsData implements IXmlReader
 										final NamedNodeMap attrs = z.getAttributes();
 										if (attrs.getNamedItem("slot") != null)
 										{
-											rateGroup.addSlot(ItemTemplate.SLOTS.get(parseString(attrs, "slot")));
+											rateGroup.addSlot(BodyPart.fromName(parseString(attrs, "slot")).getMask());
 										}
 										
 										if (attrs.getNamedItem("magicWeapon") != null)

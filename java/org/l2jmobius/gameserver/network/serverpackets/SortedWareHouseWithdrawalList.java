@@ -368,8 +368,8 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 				return (order == A2Z ? A2Z : Z2A);
 			}
 			
-			final Integer i1 = o1.getBodyPart();
-			final Integer i2 = o2.getBodyPart();
+			final Integer i1 = o1.getBodyPart().getMask();
+			final Integer i2 = o2.getBodyPart().getMask();
 			return (order == A2Z ? i1.compareTo(i2) : i2.compareTo(i1));
 		}
 	}
@@ -735,7 +735,7 @@ public class SortedWareHouseWithdrawalList extends ServerPacket
 			buffer.writeShort(item.getItem().getType2());
 			buffer.writeShort(item.getCustomType1());
 			buffer.writeShort(0); // Can't be equipped in WH
-			buffer.writeInt(item.getItem().getBodyPart());
+			buffer.writeInt(item.getItem().getBodyPart().getMask());
 			buffer.writeShort(item.getEnchantLevel());
 			buffer.writeShort(item.getCustomType2());
 			if (item.isAugmented())

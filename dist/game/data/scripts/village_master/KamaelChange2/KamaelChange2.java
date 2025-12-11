@@ -22,10 +22,10 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
-import ai.AbstractNpcAI;
 import quests.Q00064_CertifiedBerserker.Q00064_CertifiedBerserker;
 import quests.Q00065_CertifiedSoulBreaker.Q00065_CertifiedSoulBreaker;
 import quests.Q00066_CertifiedArbalester.Q00066_CertifiedArbalester;
@@ -34,7 +34,7 @@ import quests.Q00066_CertifiedArbalester.Q00066_CertifiedArbalester;
  * Kamael class transfer AI.
  * @author Adry_85
  */
-public class KamaelChange2 extends AbstractNpcAI
+public class KamaelChange2 extends Script
 {
 	// NPCs
 	private static int[] NPCS_MALE =

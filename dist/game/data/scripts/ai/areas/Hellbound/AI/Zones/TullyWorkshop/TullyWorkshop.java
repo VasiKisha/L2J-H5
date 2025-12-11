@@ -39,25 +39,24 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.npc.RaidBossStatus;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionList;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.util.LocationUtil;
-import org.l2jmobius.gameserver.util.MinionList;
-
-import ai.AbstractNpcAI;
 
 /**
  * Tully's Workshop.
  * @author GKR
  */
-public class TullyWorkshop extends AbstractNpcAI
+public class TullyWorkshop extends Script
 {
 	// NPCs
 	private static final int AGENT = 32372;
@@ -540,11 +539,11 @@ public class TullyWorkshop extends AbstractNpcAI
 	@Override
 	public String onFirstTalk(Npc npc, Player player)
 	{
-		final PlayerClass classId = player.getPlayerClass();
+		final PlayerClass playerClass = player.getPlayerClass();
 		final int npcId = npc.getId();
 		if (TULLY_DOORLIST.containsKey(npcId))
 		{
-			if (classId.equalsOrChildOf(PlayerClass.MAESTRO))
+			if (playerClass.equalsOrChildOf(PlayerClass.MAESTRO))
 			{
 				return "doorman-01c.htm";
 			}
@@ -559,7 +558,7 @@ public class TullyWorkshop extends AbstractNpcAI
 			}
 			else if (!brokenContraptions.contains(npc.getObjectId()))
 			{
-				if (classId.equalsOrChildOf(PlayerClass.MAESTRO))
+				if (playerClass.equalsOrChildOf(PlayerClass.MAESTRO))
 				{
 					return "32371-01a.htm";
 				}

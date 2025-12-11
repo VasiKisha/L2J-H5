@@ -20,14 +20,13 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-
-import instances.AbstractInstance;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
 
 /**
  * Hideout of the Dawn instance zone.
  * @author Adry_85
  */
-public class SSQHideoutOfTheDawn extends AbstractInstance
+public class SSQHideoutOfTheDawn extends InstanceScript
 {
 	// NPCs
 	private static final int WOOD = 32593;

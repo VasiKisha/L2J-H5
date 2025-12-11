@@ -24,17 +24,16 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.TeleportWhereType;
 import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
 import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
-
-import ai.AbstractNpcAI;
 
 /**
  * Sailren AI.
  * @author St3eT
  */
-public class Sailren extends AbstractNpcAI
+public class Sailren extends Script
 {
 	// NPCs
 	private static final int STATUE = 32109; // Shilen's Stone Statue
@@ -326,6 +325,12 @@ public class Sailren extends AbstractNpcAI
 		}
 		
 		super.unload(removeFromList);
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

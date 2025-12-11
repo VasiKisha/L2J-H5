@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.enums.AbsorbCrystalType;
 import org.l2jmobius.gameserver.data.holders.LevelingSoulCrystalInfo;
 import org.l2jmobius.gameserver.data.holders.SoulCrystal;
@@ -38,10 +38,10 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.InventoryUpdate;
@@ -321,7 +321,7 @@ public class Q00350_EnhanceYourWeapon extends Quest
 		{
 			for (Player member : killer.getParty().getMembers())
 			{
-				if ((member == null) || (member.calculateDistance3D(killer) > Config.ALT_PARTY_RANGE))
+				if ((member == null) || (member.calculateDistance3D(killer) > PlayerConfig.ALT_PARTY_RANGE))
 				{
 					continue; // Skip invalid or out-of-range members.
 				}

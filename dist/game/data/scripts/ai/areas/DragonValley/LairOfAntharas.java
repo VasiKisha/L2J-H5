@@ -20,17 +20,16 @@ import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ValidateLocation;
-
-import ai.AbstractNpcAI;
 
 /**
  * Lair of Antharas AI.
  * @author St3eT, UnAfraid
  */
-public class LairOfAntharas extends AbstractNpcAI
+public class LairOfAntharas extends Script
 {
 	// NPC
 	private static final int KNORIKS = 22857;

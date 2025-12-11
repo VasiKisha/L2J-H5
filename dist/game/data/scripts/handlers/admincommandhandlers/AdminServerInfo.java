@@ -28,9 +28,10 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.GameServer;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.GeoEngineConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.World;
@@ -69,10 +70,10 @@ public class AdminServerInfo implements IAdminCommandHandler
 			html.setHtml(HtmCache.getInstance().getHtm(activeChar, "data/html/admin/serverinfo.htm"));
 			html.replace("%os_name%", System.getProperty("os.name"));
 			html.replace("%os_ver%", System.getProperty("os.version"));
-			html.replace("%slots%", getPlayersCount("ALL") + "/" + Config.MAXIMUM_ONLINE_USERS);
+			html.replace("%slots%", getPlayersCount("ALL") + "/" + ServerConfig.MAXIMUM_ONLINE_USERS);
 			html.replace("%gameTime%", GameTimeTaskManager.getInstance().getGameHour() + ":" + GameTimeTaskManager.getInstance().getGameMinute());
 			html.replace("%dayNight%", GameTimeTaskManager.getInstance().isNight() ? "Night" : "Day");
-			html.replace("%geodata%", Config.PATHFINDING > 0 ? "Enabled" : "Disabled");
+			html.replace("%geodata%", GeoEngineConfig.PATHFINDING > 0 ? "Enabled" : "Disabled");
 			html.replace("%serverTime%", SDF.format(new Date(System.currentTimeMillis())));
 			html.replace("%serverUpTime%", getServerUpTime());
 			html.replace("%onlineAll%", getPlayersCount("ALL"));

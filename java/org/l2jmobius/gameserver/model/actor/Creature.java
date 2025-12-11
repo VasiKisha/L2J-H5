@@ -35,7 +35,6 @@ import java.util.concurrent.locks.StampedLock;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.Action;
@@ -44,6 +43,14 @@ import org.l2jmobius.gameserver.ai.CreatureAI;
 import org.l2jmobius.gameserver.ai.CreatureAI.IntentionCommand;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.cache.RelationCache;
+import org.l2jmobius.gameserver.config.GeoEngineConfig;
+import org.l2jmobius.gameserver.config.NpcConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.BossAnnouncementsConfig;
+import org.l2jmobius.gameserver.config.custom.CaptchaConfig;
+import org.l2jmobius.gameserver.config.custom.ChampionMonstersConfig;
+import org.l2jmobius.gameserver.config.custom.ClassBalanceConfig;
+import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.data.xml.CategoryData;
 import org.l2jmobius.gameserver.data.xml.DoorData;
@@ -58,7 +65,7 @@ import org.l2jmobius.gameserver.managers.CaptchaManager;
 import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.managers.MapRegionManager;
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.AccessLevel;
@@ -111,6 +118,7 @@ import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.enums.ShotType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -291,7 +299,7 @@ public abstract class Creature extends WorldObject
 	private final Map<Integer, RelationCache> _knownRelations = new ConcurrentHashMap<>();
 	
 	private Set<Creature> _seenCreatures = null;
-	private int _seenCreatureRange = Config.ALT_PARTY_RANGE;
+	private int _seenCreatureRange = PlayerConfig.ALT_PARTY_RANGE;
 	
 	/** A list containing the dropped items of this fake player. */
 	private final List<Item> _fakePlayerDrops = new CopyOnWriteArrayList<>();
@@ -519,7 +527,7 @@ public abstract class Creature extends WorldObject
 	 */
 	public void onDecay()
 	{
-		if (Config.DISCONNECT_AFTER_DEATH && isPlayer())
+		if (PlayerConfig.DISCONNECT_AFTER_DEATH && isPlayer())
 		{
 			final Player player = asPlayer();
 			if (player.isOnline())
@@ -550,20 +558,20 @@ public abstract class Creature extends WorldObject
 		// Custom boss announcements configuration.
 		if (this instanceof GrandBoss)
 		{
-			if (Config.GRANDBOSS_SPAWN_ANNOUNCEMENTS && ((getInstanceId() == 0) || Config.GRANDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
+			if (BossAnnouncementsConfig.GRANDBOSS_SPAWN_ANNOUNCEMENTS && ((getInstanceId() == 0) || BossAnnouncementsConfig.GRANDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
 			{
 				final String name = NpcData.getInstance().getTemplate(getId()).getName();
-				if ((name != null) && !Config.RAIDBOSSES_EXCLUDED_FROM_SPAWN_ANNOUNCEMENTS.contains(getId()))
+				if ((name != null) && !BossAnnouncementsConfig.RAIDBOSSES_EXCLUDED_FROM_SPAWN_ANNOUNCEMENTS.contains(getId()))
 				{
 					Broadcast.toAllOnlinePlayers(name + " has spawned!");
 					Broadcast.toAllOnlinePlayersOnScreen(name + " has spawned!");
 				}
 			}
 		}
-		else if (isRaid() && Config.RAIDBOSS_SPAWN_ANNOUNCEMENTS && ((getInstanceId() == 0) || Config.RAIDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
+		else if (isRaid() && BossAnnouncementsConfig.RAIDBOSS_SPAWN_ANNOUNCEMENTS && ((getInstanceId() == 0) || BossAnnouncementsConfig.RAIDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
 		{
 			final String name = NpcData.getInstance().getTemplate(getId()).getName();
-			if ((name != null) && !Config.RAIDBOSSES_EXCLUDED_FROM_SPAWN_ANNOUNCEMENTS.contains(getId()))
+			if ((name != null) && !BossAnnouncementsConfig.RAIDBOSSES_EXCLUDED_FROM_SPAWN_ANNOUNCEMENTS.contains(getId()))
 			{
 				Broadcast.toAllOnlinePlayers(name + " has spawned!");
 				Broadcast.toAllOnlinePlayersOnScreen(name + " has spawned!");
@@ -823,7 +831,7 @@ public abstract class Creature extends WorldObject
 		decayMe();
 		
 		// Adjust position a bit.
-		if (Config.OFFSET_ON_TELEPORT_ENABLED || (randomOffset > 0))
+		if (PlayerConfig.OFFSET_ON_TELEPORT_ENABLED || (randomOffset > 0))
 		{
 			x = xValue + Rnd.get(-randomOffset, randomOffset);
 			y = yValue + Rnd.get(-randomOffset, randomOffset);
@@ -882,7 +890,7 @@ public abstract class Creature extends WorldObject
 	
 	public void teleToLocation(int x, int y, int z, int heading, int instanceId, boolean randomOffset)
 	{
-		teleToLocation(x, y, z, heading, instanceId, (randomOffset) ? Config.MAX_OFFSET_ON_TELEPORT : 0);
+		teleToLocation(x, y, z, heading, instanceId, (randomOffset) ? PlayerConfig.MAX_OFFSET_ON_TELEPORT : 0);
 	}
 	
 	public void teleToLocation(int x, int y, int z, int heading, int instanceId)
@@ -892,7 +900,7 @@ public abstract class Creature extends WorldObject
 	
 	public void teleToLocation(int x, int y, int z, int heading, boolean randomOffset)
 	{
-		teleToLocation(x, y, z, heading, -1, (randomOffset) ? Config.MAX_OFFSET_ON_TELEPORT : 0);
+		teleToLocation(x, y, z, heading, -1, (randomOffset) ? PlayerConfig.MAX_OFFSET_ON_TELEPORT : 0);
 	}
 	
 	public void teleToLocation(int x, int y, int z, int heading)
@@ -902,7 +910,7 @@ public abstract class Creature extends WorldObject
 	
 	public void teleToLocation(int x, int y, int z, boolean randomOffset)
 	{
-		teleToLocation(x, y, z, 0, -1, (randomOffset) ? Config.MAX_OFFSET_ON_TELEPORT : 0);
+		teleToLocation(x, y, z, 0, -1, (randomOffset) ? PlayerConfig.MAX_OFFSET_ON_TELEPORT : 0);
 	}
 	
 	public void teleToLocation(int x, int y, int z)
@@ -922,7 +930,7 @@ public abstract class Creature extends WorldObject
 	
 	public void teleToLocation(ILocational loc, boolean randomOffset)
 	{
-		teleToLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getHeading(), loc.getInstanceId(), (randomOffset) ? Config.MAX_OFFSET_ON_TELEPORT : 0);
+		teleToLocation(loc.getX(), loc.getY(), loc.getZ(), loc.getHeading(), loc.getInstanceId(), (randomOffset) ? PlayerConfig.MAX_OFFSET_ON_TELEPORT : 0);
 	}
 	
 	public void teleToLocation(ILocational loc)
@@ -1246,14 +1254,14 @@ public abstract class Creature extends WorldObject
 				_attackEndTime = currentTime + TimeUnit.MILLISECONDS.toNanos(Integer.MAX_VALUE);
 			}
 			
-			if (isFakePlayer() && !Config.FAKE_PLAYER_AUTO_ATTACKABLE && (target.isPlayable() || target.isFakePlayer()))
+			if (isFakePlayer() && !FakePlayersConfig.FAKE_PLAYER_AUTO_ATTACKABLE && (target.isPlayable() || target.isFakePlayer()))
 			{
 				final Npc npc = asNpc();
 				if (!npc.isScriptValue(1))
 				{
 					npc.setScriptValue(1); // in combat
 					broadcastInfo(); // update flag status
-					QuestManager.getInstance().getQuest("PvpFlaggingStopTask").notifyEvent("FLAG_CHECK", npc, null);
+					ScriptManager.getInstance().getScript("PvpFlaggingStopTask").notifyEvent("FLAG_CHECK", npc, null);
 				}
 			}
 			
@@ -1359,7 +1367,7 @@ public abstract class Creature extends WorldObject
 			
 			// Bows Ranged Damage Formula (Damage gradually decreases when 60% or lower than full hit range, and increases when 60% or higher).
 			// Full hit range is 500 which is the base bow range, and the 60% of this is 800.
-			if (Config.CALCULATE_DISTANCE_BOW_DAMAGE)
+			if (PlayerConfig.CALCULATE_DISTANCE_BOW_DAMAGE)
 			{
 				damage1 *= (calculateDistance3D(target) / 4000) + 0.8;
 			}
@@ -2008,6 +2016,11 @@ public abstract class Creature extends WorldObject
 			reuseDelay = (int) (skill.getReuseDelay() * calcStat(Stat.DANCE_REUSE, 1, null, null));
 		}
 		
+		if (isPlayable())
+		{
+			reuseDelay = (int) (reuseDelay * ClassBalanceConfig.SKILL_REUSE_MULTIPLIERS[asPlayer().getPlayerClass().getId()]);
+		}
+		
 		// Check if this skill consume mp on start casting
 		final int initmpcons = _stat.getMpInitialConsume(skill);
 		if (initmpcons > 0)
@@ -2024,7 +2037,7 @@ public abstract class Creature extends WorldObject
 			if (Formulas.calcSkillMastery(this, skill))
 			{
 				reuseDelay = 100;
-				if (asPlayer() != null)
+				if (isPlayable())
 				{
 					sendPacket(SystemMessageId.A_SKILL_IS_READY_TO_BE_USED_AGAIN);
 				}
@@ -2056,8 +2069,8 @@ public abstract class Creature extends WorldObject
 				return;
 			}
 			
-			// reduce talisman mana on skill use
-			if ((skill.getReferenceItemId() > 0) && (ItemData.getInstance().getTemplate(skill.getReferenceItemId()).getBodyPart() == ItemTemplate.SLOT_DECO))
+			// Reduce talisman mana on skill use.
+			if ((skill.getReferenceItemId() > 0) && (ItemData.getInstance().getTemplate(skill.getReferenceItemId()).getBodyPart() == BodyPart.DECO))
 			{
 				for (Item item : getInventory().getAllItemsByItemId(skill.getReferenceItemId()))
 				{
@@ -2593,7 +2606,7 @@ public abstract class Creature extends WorldObject
 	 */
 	public boolean doDie(Creature killer)
 	{
-		if (Config.ENABLE_CAPTCHA)
+		if (CaptchaConfig.ENABLE_CAPTCHA)
 		{
 			CaptchaManager.getInstance().updateCounter(killer, this);
 		}
@@ -2714,20 +2727,20 @@ public abstract class Creature extends WorldObject
 		// Custom boss announcements configuration.
 		if (this instanceof GrandBoss)
 		{
-			if (Config.GRANDBOSS_DEFEAT_ANNOUNCEMENTS && ((getInstanceId() == 0) || Config.GRANDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
+			if (BossAnnouncementsConfig.GRANDBOSS_DEFEAT_ANNOUNCEMENTS && ((getInstanceId() == 0) || BossAnnouncementsConfig.GRANDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
 			{
 				final String name = NpcData.getInstance().getTemplate(getId()).getName();
-				if ((name != null) && !Config.RAIDBOSSES_EXCLUDED_FROM_DEFEAT_ANNOUNCEMENTS.contains(getId()))
+				if ((name != null) && !BossAnnouncementsConfig.RAIDBOSSES_EXCLUDED_FROM_DEFEAT_ANNOUNCEMENTS.contains(getId()))
 				{
 					Broadcast.toAllOnlinePlayers(name + " has been defeated!");
 					Broadcast.toAllOnlinePlayersOnScreen(name + " has been defeated!");
 				}
 			}
 		}
-		else if (isRaid() && Config.RAIDBOSS_DEFEAT_ANNOUNCEMENTS && ((getInstanceId() == 0) || Config.RAIDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
+		else if (isRaid() && BossAnnouncementsConfig.RAIDBOSS_DEFEAT_ANNOUNCEMENTS && ((getInstanceId() == 0) || BossAnnouncementsConfig.RAIDBOSS_INSTANCE_ANNOUNCEMENTS) && !isMinion() && !isRaidMinion())
 		{
 			final String name = NpcData.getInstance().getTemplate(getId()).getName();
-			if ((name != null) && !Config.RAIDBOSSES_EXCLUDED_FROM_DEFEAT_ANNOUNCEMENTS.contains(getId()))
+			if ((name != null) && !BossAnnouncementsConfig.RAIDBOSSES_EXCLUDED_FROM_DEFEAT_ANNOUNCEMENTS.contains(getId()))
 			{
 				Broadcast.toAllOnlinePlayers(name + " has been defeated!");
 				Broadcast.toAllOnlinePlayersOnScreen(name + " has been defeated!");
@@ -2818,19 +2831,19 @@ public abstract class Creature extends WorldObject
 			setIsPendingRevive(false);
 			setDead(false);
 			
-			if ((Config.RESPAWN_RESTORE_CP > 0) && (_status.getCurrentCp() < (_stat.getMaxCp() * Config.RESPAWN_RESTORE_CP)))
+			if ((PlayerConfig.RESPAWN_RESTORE_CP > 0) && (_status.getCurrentCp() < (_stat.getMaxCp() * PlayerConfig.RESPAWN_RESTORE_CP)))
 			{
-				_status.setCurrentCp(_stat.getMaxCp() * Config.RESPAWN_RESTORE_CP);
+				_status.setCurrentCp(_stat.getMaxCp() * PlayerConfig.RESPAWN_RESTORE_CP);
 			}
 			
-			if ((Config.RESPAWN_RESTORE_HP > 0) && (_status.getCurrentHp() < (_stat.getMaxHp() * Config.RESPAWN_RESTORE_HP)))
+			if ((PlayerConfig.RESPAWN_RESTORE_HP > 0) && (_status.getCurrentHp() < (_stat.getMaxHp() * PlayerConfig.RESPAWN_RESTORE_HP)))
 			{
-				_status.setCurrentHp(_stat.getMaxHp() * Config.RESPAWN_RESTORE_HP);
+				_status.setCurrentHp(_stat.getMaxHp() * PlayerConfig.RESPAWN_RESTORE_HP);
 			}
 			
-			if ((Config.RESPAWN_RESTORE_MP > 0) && (_status.getCurrentMp() < (_stat.getMaxMp() * Config.RESPAWN_RESTORE_MP)))
+			if ((PlayerConfig.RESPAWN_RESTORE_MP > 0) && (_status.getCurrentMp() < (_stat.getMaxMp() * PlayerConfig.RESPAWN_RESTORE_MP)))
 			{
-				_status.setCurrentMp(_stat.getMaxMp() * Config.RESPAWN_RESTORE_MP);
+				_status.setCurrentMp(_stat.getMaxMp() * PlayerConfig.RESPAWN_RESTORE_MP);
 			}
 			
 			// Start broadcast status
@@ -3443,7 +3456,7 @@ public abstract class Creature extends WorldObject
 		broadcastPacket(new ChangeWaitType(this, ChangeWaitType.WT_START_FAKEDEATH));
 		
 		// Remove target from those that have the untargetable creature on target.
-		if (Config.FAKE_DEATH_UNTARGET)
+		if (PlayerConfig.FAKE_DEATH_UNTARGET)
 		{
 			World.getInstance().forEachVisibleObject(this, Creature.class, c ->
 			{
@@ -4515,7 +4528,7 @@ public abstract class Creature extends WorldObject
 	public void revalidateZone(boolean force)
 	{
 		// This function is called too often from movement code.
-		if (!force && (calculateDistance3D(_lastZoneValidateLocation) < (isNpc() && !isInCombat() ? Config.MAX_DRIFT_RANGE : 100)))
+		if (!force && (calculateDistance3D(_lastZoneValidateLocation) < (isNpc() && !isInCombat() ? NpcConfig.MAX_DRIFT_RANGE : 100)))
 		{
 			return;
 		}
@@ -4771,7 +4784,7 @@ public abstract class Creature extends WorldObject
 			}
 			
 			// Movement checks.
-			if ((Config.PATHFINDING > 0) && !(this instanceof QuestGuard))
+			if ((GeoEngineConfig.PATHFINDING > 0) && !(this instanceof QuestGuard))
 			{
 				int originalX = x;
 				int originalY = y;
@@ -4924,7 +4937,7 @@ public abstract class Creature extends WorldObject
 			}
 			
 			// If no distance to go through, the movement is canceled
-			if ((distance < 1.79) && ((Config.PATHFINDING > 0) || isPlayable()))
+			if ((distance < 1.79) && ((GeoEngineConfig.PATHFINDING > 0) || isPlayable()))
 			{
 				if (isSummon())
 				{
@@ -5233,7 +5246,7 @@ public abstract class Creature extends WorldObject
 		}
 		
 		// Check if fake players should aggro each other.
-		if (isFakePlayer() && !Config.FAKE_PLAYER_AGGRO_FPC && target.isFakePlayer())
+		if (isFakePlayer() && !FakePlayersConfig.FAKE_PLAYER_AGGRO_FPC && target.isFakePlayer())
 		{
 			return;
 		}
@@ -5274,7 +5287,7 @@ public abstract class Creature extends WorldObject
 		sendDamageMessage(target, damage, false, crit, miss);
 		
 		// Check Raidboss attack Creature will be petrified if attacking a raid that's more than 8 levels lower
-		if (target.isRaid() && target.giveRaidCurse() && !Config.RAID_DISABLE_CURSE && (getLevel() > (target.getLevel() + 8)))
+		if (target.isRaid() && target.giveRaidCurse() && !NpcConfig.RAID_DISABLE_CURSE && (getLevel() > (target.getLevel() + 8)))
 		{
 			final Skill skill = CommonSkill.RAID_CURSE2.getSkill();
 			if (skill != null)
@@ -5567,7 +5580,7 @@ public abstract class Creature extends WorldObject
 			return false;
 		}
 		
-		if (Config.ALT_GAME_KARMA_PLAYER_CAN_BE_KILLED_IN_PEACEZONE)
+		if (PlayerConfig.ALT_GAME_KARMA_PLAYER_CAN_BE_KILLED_IN_PEACEZONE)
 		{
 			// Allows red to be attacked and red to attack flagged players.
 			final Player player = asPlayer();
@@ -6208,7 +6221,7 @@ public abstract class Creature extends WorldObject
 					targetsCastTarget = target.getAI().getCastTarget();
 				}
 				
-				if (!Config.RAID_DISABLE_CURSE && ((target.isRaid() && target.giveRaidCurse() && (getLevel() > (target.getLevel() + 8))) || (!skill.hasNegativeEffect() && (targetsAttackTarget != null) && targetsAttackTarget.isRaid() && targetsAttackTarget.giveRaidCurse() && targetsAttackTarget.getAttackByList().contains(target) && (getLevel() > (targetsAttackTarget.getLevel() + 8))) || (!skill.hasNegativeEffect() && (targetsCastTarget != null) && targetsCastTarget.isRaid() && targetsCastTarget.giveRaidCurse() && targetsCastTarget.getAttackByList().contains(target) && (getLevel() > (targetsCastTarget.getLevel() + 8)))))
+				if (!NpcConfig.RAID_DISABLE_CURSE && ((target.isRaid() && target.giveRaidCurse() && (getLevel() > (target.getLevel() + 8))) || (!skill.hasNegativeEffect() && (targetsAttackTarget != null) && targetsAttackTarget.isRaid() && targetsAttackTarget.giveRaidCurse() && targetsAttackTarget.getAttackByList().contains(target) && (getLevel() > (targetsAttackTarget.getLevel() + 8))) || (!skill.hasNegativeEffect() && (targetsCastTarget != null) && targetsCastTarget.isRaid() && targetsCastTarget.giveRaidCurse() && targetsCastTarget.getAttackByList().contains(target) && (getLevel() > (targetsCastTarget.getLevel() + 8)))))
 				{
 					final CommonSkill curse = skill.isMagic() ? CommonSkill.RAID_CURSE : CommonSkill.RAID_CURSE2;
 					final Skill curseSkill = curse.getSkill();
@@ -6335,7 +6348,7 @@ public abstract class Creature extends WorldObject
 						}
 					}
 					
-					if (target.isFakePlayer() && !Config.FAKE_PLAYER_AUTO_ATTACKABLE)
+					if (target.isFakePlayer() && !FakePlayersConfig.FAKE_PLAYER_AUTO_ATTACKABLE)
 					{
 						player.updatePvPStatus();
 					}
@@ -6399,7 +6412,7 @@ public abstract class Creature extends WorldObject
 							{
 								npc.setScriptValue(1); // in combat
 								npc.broadcastInfo(); // update flag status
-								QuestManager.getInstance().getQuest("PvpFlaggingStopTask").notifyEvent("FLAG_CHECK", npc, null);
+								ScriptManager.getInstance().getScript("PvpFlaggingStopTask").notifyEvent("FLAG_CHECK", npc, null);
 							}
 						}
 					}
@@ -6678,9 +6691,9 @@ public abstract class Creature extends WorldObject
 	
 	public void reduceCurrentHp(double amount, Creature attacker, boolean awake, boolean isDOT, Skill skill)
 	{
-		if (Config.CHAMPION_ENABLE && isChampion() && (Config.CHAMPION_HP != 0))
+		if (ChampionMonstersConfig.CHAMPION_ENABLE && isChampion() && (ChampionMonstersConfig.CHAMPION_HP != 0))
 		{
-			_status.reduceHp(amount / Config.CHAMPION_HP, attacker, awake, isDOT, false);
+			_status.reduceHp(amount / ChampionMonstersConfig.CHAMPION_HP, attacker, awake, isDOT, false);
 		}
 		else
 		{
@@ -6777,7 +6790,7 @@ public abstract class Creature extends WorldObject
 		{
 			// Weight Limit = (CON Modifier*69000) * Skills
 			// Source http://l2p.bravehost.com/weightlimit.html (May 2007)
-			final double baseLoad = Math.floor(BaseStat.CON.calcBonus(this) * 69000 * Config.ALT_WEIGHT_LIMIT);
+			final double baseLoad = Math.floor(BaseStat.CON.calcBonus(this) * 69000 * PlayerConfig.ALT_WEIGHT_LIMIT);
 			return (int) calcStat(Stat.WEIGHT_LIMIT, baseLoad, this, null);
 		}
 		
@@ -6957,7 +6970,7 @@ public abstract class Creature extends WorldObject
 					}
 				}
 				
-				if (Config.ALT_VALIDATE_TRIGGER_SKILLS && isPlayable() && (skillTarget != null) && skillTarget.isPlayable())
+				if (PlayerConfig.ALT_VALIDATE_TRIGGER_SKILLS && isPlayable() && (skillTarget != null) && skillTarget.isPlayable())
 				{
 					final Player player = asPlayer();
 					if (!player.checkPvpSkill(skillTarget, skill))
@@ -7066,7 +7079,7 @@ public abstract class Creature extends WorldObject
 	public void notifyDamageReceived(double damage, Creature attacker, Skill skill, boolean critical, boolean damageOverTime)
 	{
 		// Auto attacks make you stand up.
-		if (isPlayer() && asPlayer().isFakeDeath() && Config.FAKE_DEATH_DAMAGE_STAND && (damage > 0))
+		if (isPlayer() && asPlayer().isFakeDeath() && PlayerConfig.FAKE_DEATH_DAMAGE_STAND && (damage > 0))
 		{
 			stopFakeDeath(true);
 		}

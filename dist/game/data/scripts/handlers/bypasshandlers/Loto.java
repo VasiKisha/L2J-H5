@@ -22,7 +22,7 @@ package handlers.bypasshandlers;
 
 import java.text.DateFormat;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.managers.IdManager;
 import org.l2jmobius.gameserver.managers.games.LotteryManager;
@@ -198,7 +198,7 @@ public class Loto implements IBypassHandler
 				return;
 			}
 			
-			final long price = Config.ALT_LOTTERY_TICKET_PRICE;
+			final long price = GeneralConfig.ALT_LOTTERY_TICKET_PRICE;
 			final int lotonumber = LotteryManager.getInstance().getId();
 			int enchant = 0;
 			int type2 = 0;
@@ -360,11 +360,11 @@ public class Loto implements IBypassHandler
 		html.replace("%objectId%", String.valueOf(npc.getObjectId()));
 		html.replace("%race%", Integer.toString(LotteryManager.getInstance().getId()));
 		html.replace("%adena%", Long.toString(LotteryManager.getInstance().getPrize()));
-		html.replace("%ticket_price%", Long.toString(Config.ALT_LOTTERY_TICKET_PRICE));
-		html.replace("%prize5%", Float.toString(Config.ALT_LOTTERY_5_NUMBER_RATE * 100));
-		html.replace("%prize4%", Float.toString(Config.ALT_LOTTERY_4_NUMBER_RATE * 100));
-		html.replace("%prize3%", Float.toString(Config.ALT_LOTTERY_3_NUMBER_RATE * 100));
-		html.replace("%prize2%", Long.toString(Config.ALT_LOTTERY_2_AND_1_NUMBER_PRIZE));
+		html.replace("%ticket_price%", Long.toString(GeneralConfig.ALT_LOTTERY_TICKET_PRICE));
+		html.replace("%prize5%", Float.toString(GeneralConfig.ALT_LOTTERY_5_NUMBER_RATE * 100));
+		html.replace("%prize4%", Float.toString(GeneralConfig.ALT_LOTTERY_4_NUMBER_RATE * 100));
+		html.replace("%prize3%", Float.toString(GeneralConfig.ALT_LOTTERY_3_NUMBER_RATE * 100));
+		html.replace("%prize2%", Long.toString(GeneralConfig.ALT_LOTTERY_2_AND_1_NUMBER_PRIZE));
 		html.replace("%enddate%", "" + DateFormat.getDateInstance().format(LotteryManager.getInstance().getEndDate()));
 		player.sendPacket(html);
 		

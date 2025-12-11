@@ -22,7 +22,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.petition.Petition;
@@ -261,7 +261,7 @@ public class PetitionManager
 	
 	public boolean isPetitioningAllowed()
 	{
-		return Config.PETITIONING_ALLOWED;
+		return PlayerConfig.PETITIONING_ALLOWED;
 	}
 	
 	public boolean isPlayerPetitionPending(Player petitioner)

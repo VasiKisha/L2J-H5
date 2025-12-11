@@ -25,11 +25,11 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.GraciaSeedsConfig;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
@@ -38,7 +38,8 @@ import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -52,9 +53,7 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import ai.AbstractNpcAI;
-
-public class HeartInfinityAttack extends AbstractNpcAI
+public class HeartInfinityAttack extends Script
 {
 	private class HIAWorld extends InstanceWorld
 	{
@@ -271,7 +270,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			return false;
 		}
 		
-		if ((party.getCommandChannel().getMembers().size() < Config.HEART_ATTACK_MIN_PLAYERS) || (party.getCommandChannel().getMembers().size() > Config.HEART_ATTACK_MAX_PLAYERS))
+		if ((party.getCommandChannel().getMembers().size() < GraciaSeedsConfig.HEART_ATTACK_MIN_PLAYERS) || (party.getCommandChannel().getMembers().size() > GraciaSeedsConfig.HEART_ATTACK_MAX_PLAYERS))
 		{
 			party.getCommandChannel().broadcastPacket(new SystemMessage(SystemMessageId.C1_S_LEVEL_DOES_NOT_CORRESPOND_TO_THE_REQUIREMENTS_FOR_ENTRY));
 			return false;
@@ -635,7 +634,7 @@ public class HeartInfinityAttack extends AbstractNpcAI
 			if (npc.getId() == EKIMUS)
 			{
 				conquestConclusion(world);
-				SoIManager.notifyEkimusKill();
+				SeedOfInfinityManager.notifyEkimusKill();
 				playMovie(world, Movie.SC_ECHMUS_SUCCESS);
 			}
 			

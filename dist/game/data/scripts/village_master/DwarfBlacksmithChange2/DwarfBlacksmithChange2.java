@@ -20,14 +20,13 @@ import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Dwarf class transfer AI.
  * @author Adry_85
  */
-public class DwarfBlacksmithChange2 extends AbstractNpcAI
+public class DwarfBlacksmithChange2 extends Script
 {
 	// NPCs
 	private static int[] NPCS =
@@ -130,8 +129,8 @@ public class DwarfBlacksmithChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.WARSMITH_GROUP))
 		{
-			final PlayerClass classId = player.getPlayerClass();
-			if ((classId == PlayerClass.ARTISAN) || (classId == PlayerClass.WARSMITH))
+			final PlayerClass playerClass = player.getPlayerClass();
+			if ((playerClass == PlayerClass.ARTISAN) || (playerClass == PlayerClass.WARSMITH))
 			{
 				htmltext = "30512-02.htm"; // fnClassList1
 			}

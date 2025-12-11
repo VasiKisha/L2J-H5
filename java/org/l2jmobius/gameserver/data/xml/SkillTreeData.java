@@ -30,15 +30,17 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.NavigableMap;
 import java.util.Set;
+import java.util.TreeMap;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.SkillLearn;
 import org.l2jmobius.gameserver.model.SkillLearn.SubClassData;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -80,6 +82,7 @@ public class SkillTreeData implements IXmlReader
 	// ClassId, Map of Skill Hash Code, SkillLearn
 	private final Map<PlayerClass, Map<Integer, SkillLearn>> _classSkillTrees = new ConcurrentHashMap<>();
 	private final Map<PlayerClass, Map<Integer, SkillLearn>> _completeClassSkillTree = new HashMap<>();
+	private final Map<PlayerClass, NavigableMap<Integer, Integer>> _maxClassSkillLevels = new HashMap<>();
 	private final Map<PlayerClass, Map<Integer, SkillLearn>> _transferSkillTrees = new ConcurrentHashMap<>();
 	
 	// Skill Hash Code, SkillLearn
@@ -134,7 +137,7 @@ public class SkillTreeData implements IXmlReader
 		_gameMasterAuraSkillTree.clear();
 		
 		// Load files.
-		parseDatapackDirectory("data/skillTrees/", true);
+		parseDatapackDirectory("data/stats/players/skillTrees/", true);
 		
 		// Cache the complete class skill trees.
 		_completeClassSkillTree.clear();
@@ -145,14 +148,14 @@ public class SkillTreeData implements IXmlReader
 			// Add all skills that belong to all classes.
 			skillTree.putAll(_commonSkillTree);
 			
-			final PlayerClass entryClassId = entry.getKey();
-			PlayerClass currentClassId = entryClassId;
+			final PlayerClass entryPlayerClass = entry.getKey();
+			PlayerClass currentPlayerClass = entryPlayerClass;
 			
 			final LinkedList<PlayerClass> classSequence = new LinkedList<>();
-			while (currentClassId != null)
+			while (currentPlayerClass != null)
 			{
-				classSequence.addFirst(currentClassId);
-				currentClassId = _parentClassMap.get(currentClassId);
+				classSequence.addFirst(currentPlayerClass);
+				currentPlayerClass = _parentClassMap.get(currentPlayerClass);
 			}
 			
 			for (PlayerClass cid : classSequence)
@@ -164,7 +167,35 @@ public class SkillTreeData implements IXmlReader
 				}
 			}
 			
-			_completeClassSkillTree.put(entryClassId, skillTree);
+			_completeClassSkillTree.put(entryPlayerClass, skillTree);
+		}
+		
+		// Cache the maximum skill levels each class can learn at every player level.
+		_maxClassSkillLevels.clear();
+		for (Entry<PlayerClass, Map<Integer, SkillLearn>> entry : _completeClassSkillTree.entrySet())
+		{
+			final PlayerClass playerClass = entry.getKey();
+			if (!_maxClassSkillLevels.containsKey(playerClass))
+			{
+				_maxClassSkillLevels.put(playerClass, new TreeMap<>());
+			}
+			
+			final Map<Integer, Integer> playerClassSkillLevels = _maxClassSkillLevels.get(playerClass);
+			for (SkillLearn skillLearn : entry.getValue().values())
+			{
+				final Integer playerLevel = skillLearn.getGetLevel();
+				if (!playerClassSkillLevels.containsKey(playerLevel))
+				{
+					playerClassSkillLevels.put(playerLevel, 0);
+				}
+				
+				final Integer currentMaxLevel = playerClassSkillLevels.get(playerLevel);
+				final Integer skillLevel = skillLearn.getSkillLevel();
+				if (skillLevel > currentMaxLevel)
+				{
+					playerClassSkillLevels.put(playerLevel, skillLevel);
+				}
+			}
 		}
 		
 		// Generate check arrays.
@@ -183,7 +214,7 @@ public class SkillTreeData implements IXmlReader
 	public void parseDocument(Document document, File file)
 	{
 		int cId = -1;
-		PlayerClass classId = null;
+		PlayerClass playerClass = null;
 		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
 		{
 			if ("list".equalsIgnoreCase(n.getNodeName()))
@@ -199,7 +230,7 @@ public class SkillTreeData implements IXmlReader
 						if (attr != null)
 						{
 							cId = Integer.parseInt(attr.getNodeValue());
-							classId = PlayerClass.getPlayerClass(cId);
+							playerClass = PlayerClass.getPlayerClass(cId);
 						}
 						else
 						{
@@ -210,9 +241,9 @@ public class SkillTreeData implements IXmlReader
 						if (attr != null)
 						{
 							final int parentClassId = Integer.parseInt(attr.getNodeValue());
-							if ((cId > -1) && (cId != parentClassId) && (parentClassId > -1) && !_parentClassMap.containsKey(classId))
+							if ((cId > -1) && (cId != parentClassId) && (parentClassId > -1) && !_parentClassMap.containsKey(playerClass))
 							{
-								_parentClassMap.put(classId, PlayerClass.getPlayerClass(parentClassId));
+								_parentClassMap.put(playerClass, PlayerClass.getPlayerClass(parentClassId));
 							}
 						}
 						
@@ -347,17 +378,17 @@ public class SkillTreeData implements IXmlReader
 						
 						if (type.equals("transferSkillTree"))
 						{
-							_transferSkillTrees.put(classId, trasferSkillTree);
+							_transferSkillTrees.put(playerClass, trasferSkillTree);
 						}
 						else if (type.equals("classSkillTree") && (cId > -1))
 						{
-							if (!_classSkillTrees.containsKey(classId))
+							if (!_classSkillTrees.containsKey(playerClass))
 							{
-								_classSkillTrees.put(classId, classSkillTree);
+								_classSkillTrees.put(playerClass, classSkillTree);
 							}
 							else
 							{
-								_classSkillTrees.get(classId).putAll(classSkillTree);
+								_classSkillTrees.get(playerClass).putAll(classSkillTree);
 							}
 						}
 					}
@@ -370,28 +401,28 @@ public class SkillTreeData implements IXmlReader
 	 * Method to get the complete skill tree for a given class id.<br>
 	 * Include all skills common to all classes.<br>
 	 * Includes all parent skill trees.
-	 * @param classId the class skill tree Id
-	 * @return the complete Class Skill Tree including skill trees from parent class for a given {@code classId}
+	 * @param playerClass the class skill tree Id
+	 * @return the complete Class Skill Tree including skill trees from parent class for a given {@code playerClass}
 	 */
-	public Map<Integer, SkillLearn> getCompleteClassSkillTree(PlayerClass classId)
+	public Map<Integer, SkillLearn> getCompleteClassSkillTree(PlayerClass playerClass)
 	{
-		return _completeClassSkillTree.getOrDefault(classId, Collections.emptyMap());
+		return _completeClassSkillTree.getOrDefault(playerClass, Collections.emptyMap());
 	}
 	
 	/**
 	 * Gets the transfer skill tree.<br>
 	 * If new classes are implemented over 3rd class, we use a recursive call.
-	 * @param classId the transfer skill tree Id
-	 * @return the complete Transfer Skill Tree for a given {@code classId}
+	 * @param playerClass the transfer skill tree Id
+	 * @return the complete Transfer Skill Tree for a given {@code playerClass}
 	 */
-	public Map<Integer, SkillLearn> getTransferSkillTree(PlayerClass classId)
+	public Map<Integer, SkillLearn> getTransferSkillTree(PlayerClass playerClass)
 	{
-		if (classId.level() >= 3)
+		if (playerClass.level() >= 3)
 		{
-			return getTransferSkillTree(classId.getParent());
+			return getTransferSkillTree(playerClass.getParent());
 		}
 		
-		return _transferSkillTrees.get(classId);
+		return _transferSkillTrees.get(playerClass);
 	}
 	
 	/**
@@ -524,40 +555,40 @@ public class SkillTreeData implements IXmlReader
 	/**
 	 * Gets the available skills.
 	 * @param player the learning skill player
-	 * @param classId the learning skill class Id
+	 * @param playerClass the learning skill class Id
 	 * @param includeByFs if {@code true} skills from Forgotten Scroll will be included
 	 * @param includeAutoGet if {@code true} Auto-Get skills will be included
-	 * @return all available skills for a given {@code player}, {@code classId}, {@code includeByFs} and {@code includeAutoGet}
+	 * @return all available skills for a given {@code player}, {@code playerClass}, {@code includeByFs} and {@code includeAutoGet}
 	 */
-	public List<SkillLearn> getAvailableSkills(Player player, PlayerClass classId, boolean includeByFs, boolean includeAutoGet)
+	public List<SkillLearn> getAvailableSkills(Player player, PlayerClass playerClass, boolean includeByFs, boolean includeAutoGet)
 	{
-		return getAvailableSkills(player, classId, includeByFs, includeAutoGet, true, player.getSkills());
+		return getAvailableSkills(player, playerClass, includeByFs, includeAutoGet, true, player.getSkills());
 	}
 	
 	/**
 	 * Gets the available skills.
 	 * @param player the learning skill player
-	 * @param classId the learning skill class Id
+	 * @param playerClass the learning skill class Id
 	 * @param includeByFs if {@code true} skills from Forgotten Scroll will be included
 	 * @param includeAutoGet if {@code true} Auto-Get skills will be included
 	 * @param includeRequiredItems if {@code true} skills that have required items will be added
 	 * @param existingSkills the complete Map of currently known skills.
-	 * @return all available skills for a given {@code player}, {@code classId}, {@code includeByFs} and {@code includeAutoGet}
+	 * @return all available skills for a given {@code player}, {@code playerClass}, {@code includeByFs} and {@code includeAutoGet}
 	 */
-	private List<SkillLearn> getAvailableSkills(Player player, PlayerClass classId, boolean includeByFs, boolean includeAutoGet, boolean includeRequiredItems, Map<Integer, Skill> existingSkills)
+	private List<SkillLearn> getAvailableSkills(Player player, PlayerClass playerClass, boolean includeByFs, boolean includeAutoGet, boolean includeRequiredItems, Map<Integer, Skill> existingSkills)
 	{
 		final List<SkillLearn> result = new LinkedList<>();
-		final Map<Integer, SkillLearn> skills = getCompleteClassSkillTree(classId);
+		final Map<Integer, SkillLearn> skills = getCompleteClassSkillTree(playerClass);
 		if (skills.isEmpty())
 		{
 			// The Skill Tree for this class is undefined.
-			LOGGER.warning(getClass().getSimpleName() + ": Skilltree for class " + classId + " is not defined!");
+			LOGGER.warning(getClass().getSimpleName() + ": Skilltree for class " + playerClass + " is not defined!");
 			return result;
 		}
 		
 		for (SkillLearn skill : skills.values())
 		{
-			if (((skill.getSkillId() == CommonSkill.DIVINE_INSPIRATION.getId()) && (!Config.AUTO_LEARN_DIVINE_INSPIRATION && includeAutoGet) && !player.isGM()))
+			if (((skill.getSkillId() == CommonSkill.DIVINE_INSPIRATION.getId()) && (!PlayerConfig.AUTO_LEARN_DIVINE_INSPIRATION && includeAutoGet) && !player.isGM()))
 			{
 				continue;
 			}
@@ -593,13 +624,13 @@ public class SkillTreeData implements IXmlReader
 	/**
 	 * Used by auto learn configuration.
 	 * @param player
-	 * @param classId
+	 * @param playerClass
 	 * @param includeByFs if {@code true} forgotten scroll skills present in the skill tree will be added
 	 * @param includeAutoGet if {@code true} auto-get skills present in the skill tree will be added
 	 * @param includeRequiredItems if {@code true} skills that have required items will be added
 	 * @return a list of auto learnable skills for the player.
 	 */
-	public Collection<Skill> getAllAvailableSkills(Player player, PlayerClass classId, boolean includeByFs, boolean includeAutoGet, boolean includeRequiredItems)
+	public Collection<Skill> getAllAvailableSkills(Player player, PlayerClass playerClass, boolean includeByFs, boolean includeAutoGet, boolean includeRequiredItems)
 	{
 		final Map<Integer, Skill> result = new HashMap<>();
 		for (Skill skill : player.getSkills().values())
@@ -611,10 +642,22 @@ public class SkillTreeData implements IXmlReader
 			}
 		}
 		
-		Collection<SkillLearn> learnable;
-		for (int i = 0; i < 10; i++)
+		final NavigableMap<Integer, Integer> classSkillLevels = _maxClassSkillLevels.get(playerClass);
+		if (classSkillLevels == null)
 		{
-			learnable = getAvailableSkills(player, classId, includeByFs, includeAutoGet, includeRequiredItems, result);
+			return result.values();
+		}
+		
+		final Entry<Integer, Integer> maxPlayerSkillLevel = classSkillLevels.floorEntry(player.getLevel());
+		if (maxPlayerSkillLevel == null)
+		{
+			return result.values();
+		}
+		
+		Collection<SkillLearn> learnable;
+		for (int i = 0; i < maxPlayerSkillLevel.getValue(); i++)
+		{
+			learnable = getAvailableSkills(player, playerClass, includeByFs, includeAutoGet, includeRequiredItems, result);
 			if (learnable.isEmpty())
 			{
 				break;
@@ -746,20 +789,20 @@ public class SkillTreeData implements IXmlReader
 	public List<SkillLearn> getAvailableTransferSkills(Player player)
 	{
 		final List<SkillLearn> result = new LinkedList<>();
-		PlayerClass classId = player.getPlayerClass();
+		PlayerClass playerClass = player.getPlayerClass();
 		
 		// If new classes are implemented over 3rd class, a different way should be implemented.
-		if (classId.level() == 3)
+		if (playerClass.level() == 3)
 		{
-			classId = classId.getParent();
+			playerClass = playerClass.getParent();
 		}
 		
-		if (!_transferSkillTrees.containsKey(classId))
+		if (!_transferSkillTrees.containsKey(playerClass))
 		{
 			return result;
 		}
 		
-		for (SkillLearn skill : _transferSkillTrees.get(classId).values())
+		for (SkillLearn skill : _transferSkillTrees.get(playerClass).values())
 		{
 			// If player doesn't know this transfer skill:
 			if (player.getKnownSkill(skill.getSkillId()) == null)
@@ -1020,12 +1063,12 @@ public class SkillTreeData implements IXmlReader
 	 * Gets the class skill.
 	 * @param id the class skill Id
 	 * @param lvl the class skill level.
-	 * @param classId the class skill tree Id
-	 * @return the class skill from the Class Skill Trees for a given {@code classId}, {@code id} and {@code lvl}
+	 * @param playerClass the class skill tree Id
+	 * @return the class skill from the Class Skill Trees for a given {@code playerClass}, {@code id} and {@code lvl}
 	 */
-	public SkillLearn getClassSkill(int id, int lvl, PlayerClass classId)
+	public SkillLearn getClassSkill(int id, int lvl, PlayerClass playerClass)
 	{
-		return getCompleteClassSkillTree(classId).get(SkillData.getSkillHashCode(id, lvl));
+		return getCompleteClassSkillTree(playerClass).get(SkillData.getSkillHashCode(id, lvl));
 	}
 	
 	/**
@@ -1065,14 +1108,14 @@ public class SkillTreeData implements IXmlReader
 	 * Gets the transfer skill.
 	 * @param id the transfer skill Id
 	 * @param lvl the transfer skill level.
-	 * @param classId the transfer skill tree Id
-	 * @return the transfer skill from the Transfer Skill Trees for a given {@code classId}, {@code id} and {@code lvl}
+	 * @param playerClass the transfer skill tree Id
+	 * @return the transfer skill from the Transfer Skill Trees for a given {@code playerClass}, {@code id} and {@code lvl}
 	 */
-	public SkillLearn getTransferSkill(int id, int lvl, PlayerClass classId)
+	public SkillLearn getTransferSkill(int id, int lvl, PlayerClass playerClass)
 	{
-		if (classId.getParent() != null)
+		if (playerClass.getParent() != null)
 		{
-			final PlayerClass parentId = classId.getParent();
+			final PlayerClass parentId = playerClass.getParent();
 			if (_transferSkillTrees.get(parentId) != null)
 			{
 				return _transferSkillTrees.get(parentId).get(SkillData.getSkillHashCode(id, lvl));
@@ -1221,12 +1264,12 @@ public class SkillTreeData implements IXmlReader
 		
 		// Class-specific skills.
 		Map<Integer, SkillLearn> skillLearnMap;
-		final Set<PlayerClass> classIdSet = _classSkillTrees.keySet();
-		_skillsByClassIdHashCodes = new HashMap<>(classIdSet.size());
-		for (PlayerClass classId : classIdSet)
+		final Set<PlayerClass> playerClassSet = _classSkillTrees.keySet();
+		_skillsByClassIdHashCodes = new HashMap<>(playerClassSet.size());
+		for (PlayerClass playerClass : playerClassSet)
 		{
 			index = 0;
-			skillLearnMap = new HashMap<>(getCompleteClassSkillTree(classId));
+			skillLearnMap = new HashMap<>(getCompleteClassSkillTree(playerClass));
 			skillHashes = new int[skillLearnMap.size()];
 			for (int skillHash : skillLearnMap.keySet())
 			{
@@ -1235,7 +1278,7 @@ public class SkillTreeData implements IXmlReader
 			
 			skillLearnMap.clear();
 			Arrays.sort(skillHashes);
-			_skillsByClassIdHashCodes.put(classId.getId(), skillHashes);
+			_skillsByClassIdHashCodes.put(playerClass.getId(), skillHashes);
 		}
 		
 		// Race-specific skills from Fishing and Transformation skill trees.

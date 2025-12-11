@@ -16,7 +16,7 @@
  */
 package custom.SellBuff;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.SellBuffsConfig;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.handler.VoicedCommandHandler;
 import org.l2jmobius.gameserver.managers.SellBuffsManager;
@@ -36,7 +36,7 @@ public class SellBuffCommandHandler implements IVoicedCommandHandler
 	
 	private SellBuffCommandHandler()
 	{
-		if (Config.SELLBUFF_ENABLED)
+		if (SellBuffsConfig.SELLBUFF_ENABLED)
 		{
 			VoicedCommandHandler.getInstance().registerHandler(this);
 		}

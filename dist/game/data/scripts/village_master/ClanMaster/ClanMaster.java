@@ -21,13 +21,12 @@ import java.util.Map;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * @author UnAfraid
  */
-public class ClanMaster extends AbstractNpcAI
+public class ClanMaster extends Script
 {
 	// @formatter:off
 	private static final int[] NPCS =

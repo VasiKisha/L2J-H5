@@ -26,15 +26,14 @@ import java.util.Map;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.enums.ChatType;
-
-import ai.AbstractNpcAI;
 
 /**
  * Fantasy Island teleport AI.
  * @author Mobius
  */
-public class TeleportToFantasy extends AbstractNpcAI
+public class TeleportToFantasy extends Script
 {
 	// NPC
 	private static final int PADDIES = 32378;

@@ -36,6 +36,7 @@ import org.l2jmobius.gameserver.model.groups.CommandChannel;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -51,13 +52,11 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import instances.AbstractInstance;
-
 /**
  * Last Imperial Tomb AI (reworked from L2J version)
  * @author Mobius, Trevor The Third
  */
-public class LastImperialTomb extends AbstractInstance
+public class LastImperialTomb extends InstanceScript
 {
 	// NPCs
 	private static final int GUIDE = 32011;

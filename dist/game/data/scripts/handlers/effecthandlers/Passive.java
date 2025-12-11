@@ -20,7 +20,9 @@
  */
 package handlers.effecthandlers;
 
+import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.StatSet;
+import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
 import org.l2jmobius.gameserver.model.effects.AbstractEffect;
@@ -29,7 +31,7 @@ import org.l2jmobius.gameserver.model.skill.Skill;
 
 /**
  * Passive effect implementation.
- * @author Mobius
+ * @author Mobius, Naker
  */
 public class Passive extends AbstractEffect
 {
@@ -48,5 +50,19 @@ public class Passive extends AbstractEffect
 	public boolean canStart(Creature effector, Creature effected, Skill skill)
 	{
 		return effected.isAttackable();
+	}
+	
+	@Override
+	public void onStart(Creature effector, Creature effected, Skill skill)
+	{
+		if (!effected.isAttackable() || effected.isPlayer() || effected.isRaid())
+		{
+			return;
+		}
+		
+		final Attackable target = effected.asAttackable();
+		target.setTarget(null);
+		target.setWalking();
+		target.getAI().setIntention(Intention.ACTIVE);
 	}
 }

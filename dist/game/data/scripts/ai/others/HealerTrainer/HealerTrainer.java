@@ -18,7 +18,7 @@ package ai.others.HealerTrainer;
 
 import java.util.Collection;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.model.SkillLearn;
@@ -26,18 +26,17 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.enums.AcquireSkillType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.AcquireSkillList;
 
-import ai.AbstractNpcAI;
-
 /**
  * Trainer healers AI.
  * @author Zoey76
  */
-public class HealerTrainer extends AbstractNpcAI
+public class HealerTrainer extends Script
 {
 	// NPC
 	// @formatter:off
@@ -128,7 +127,7 @@ public class HealerTrainer extends AbstractNpcAI
 					break;
 				}
 				
-				if (player.getAdena() < Config.FEE_DELETE_TRANSFER_SKILLS)
+				if (player.getAdena() < PlayerConfig.FEE_DELETE_TRANSFER_SKILLS)
 				{
 					player.sendPacket(SystemMessageId.YOU_CANNOT_RESET_THE_SKILL_LINK_BECAUSE_THERE_IS_NOT_ENOUGH_ADENA);
 					break;
@@ -161,7 +160,7 @@ public class HealerTrainer extends AbstractNpcAI
 					// Adena gets reduced once.
 					if (hasSkills)
 					{
-						player.reduceAdena(ItemProcessType.FEE, Config.FEE_DELETE_TRANSFER_SKILLS, npc, true);
+						player.reduceAdena(ItemProcessType.FEE, PlayerConfig.FEE_DELETE_TRANSFER_SKILLS, npc, true);
 					}
 				}
 				break;
@@ -203,6 +202,12 @@ public class HealerTrainer extends AbstractNpcAI
 		}
 		
 		return (player.getInventory().getInventoryItemCount(itemId, -1) > 0);
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

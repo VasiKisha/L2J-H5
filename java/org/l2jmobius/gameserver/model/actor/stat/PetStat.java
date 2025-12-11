@@ -20,6 +20,7 @@
  */
 package org.l2jmobius.gameserver.model.actor.stat;
 
+import org.l2jmobius.gameserver.config.custom.ClassBalanceConfig;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -199,6 +200,16 @@ public class PetStat extends SummonStat
 	@Override
 	public double getPDef(Creature target)
 	{
+		if (target != null)
+		{
+			if (target.isPlayable())
+			{
+				return ClassBalanceConfig.PVP_PHYSICAL_ATTACK_DEFENCE_MULTIPLIERS[getActiveChar().asPlayer().getPlayerClass().getId()] * calcStat(Stat.POWER_DEFENCE, getActiveChar().getPetLevelData().getPetPDef(), target, null);
+			}
+			
+			return ClassBalanceConfig.PVE_PHYSICAL_ATTACK_DEFENCE_MULTIPLIERS[getActiveChar().asPlayer().getPlayerClass().getId()] * calcStat(Stat.POWER_DEFENCE, getActiveChar().getPetLevelData().getPetPDef(), target, null);
+		}
+		
 		return calcStat(Stat.POWER_DEFENCE, getActiveChar().getPetLevelData().getPetPDef(), target, null);
 	}
 	

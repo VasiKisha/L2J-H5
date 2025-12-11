@@ -16,25 +16,25 @@
  */
 package ai.areas.Hellbound.AI;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.taskmanagers.DecayTaskManager;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Hellbound Slaves AI.
  * @author DS
  */
-public class Slaves extends AbstractNpcAI
+public class Slaves extends Script
 {
 	// NPCs
 	private static final int[] MASTERS =
@@ -67,7 +67,7 @@ public class Slaves extends AbstractNpcAI
 	{
 		if (npc.asMonster().getMinionList() != null)
 		{
-			final List<Monster> slaves = npc.asMonster().getMinionList().getSpawnedMinions();
+			final Collection<Monster> slaves = npc.asMonster().getMinionList().getSpawnedMinions();
 			if ((slaves != null) && !slaves.isEmpty())
 			{
 				for (Monster slave : slaves)

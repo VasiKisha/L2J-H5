@@ -19,13 +19,13 @@ package quests.Q00372_LegacyOfInsolence;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -469,7 +469,7 @@ public class Q00372_LegacyOfInsolence extends Quest
 			return;
 		}
 		
-		if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true) && (getRandom(1000) < item.getChance()))
+		if (LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, killer, true) && (getRandom(1000) < item.getChance()))
 		{
 			Player rewardedPlayer = null;
 			if (!killer.isInParty())
@@ -498,7 +498,7 @@ public class Q00372_LegacyOfInsolence extends Quest
 				}
 			}
 			
-			if ((rewardedPlayer != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, rewardedPlayer, true))
+			if ((rewardedPlayer != null) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, rewardedPlayer, true))
 			{
 				giveItems(rewardedPlayer, item.getId(), item.getCount());
 				playSound(rewardedPlayer, QuestSound.ITEMSOUND_QUEST_ITEMGET);

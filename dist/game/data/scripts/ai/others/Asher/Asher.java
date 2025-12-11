@@ -20,15 +20,14 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Asher AI.
  * @author Adry_85
  * @since 2.6.0.0
  */
-public class Asher extends AbstractNpcAI
+public class Asher extends Script
 {
 	// NPC
 	private static final int ASHER = 32714;
@@ -66,6 +65,12 @@ public class Asher extends AbstractNpcAI
 		}
 		
 		return super.onEvent(event, npc, player);
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

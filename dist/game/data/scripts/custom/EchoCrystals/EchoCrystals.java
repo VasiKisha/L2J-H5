@@ -22,15 +22,14 @@ import java.util.Map;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Echo Crystals AI.
  * @author Plim
  */
-public class EchoCrystals extends AbstractNpcAI
+public class EchoCrystals extends Script
 {
 	private static final int[] NPCs =
 	{

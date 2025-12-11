@@ -20,15 +20,14 @@ import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.RaidBoss;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Typhoon's AI.
  * @author GKR
  */
-public class Typhoon extends AbstractNpcAI
+public class Typhoon extends Script
 {
 	// NPCs
 	private static final int TYPHOON = 25539;

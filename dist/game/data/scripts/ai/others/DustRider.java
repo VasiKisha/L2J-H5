@@ -18,17 +18,16 @@ package ai.others;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.util.LocationUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Dust Rider AI.
  * @author Zoey76
  * @since 2.6.0.0
  */
-public class DustRider extends AbstractNpcAI
+public class DustRider extends Script
 {
 	private static final int DUST_RIDER = 25719;
 	

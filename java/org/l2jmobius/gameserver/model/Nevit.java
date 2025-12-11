@@ -24,8 +24,8 @@ import java.util.Calendar;
 import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
@@ -52,7 +52,7 @@ public class Nevit
 	public Nevit(Player player)
 	{
 		_player = player;
-		if (Config.NEVIT_ENABLED)
+		if (PlayerConfig.NEVIT_ENABLED)
 		{
 			player.addListener(new ConsumerEventListener(player, EventType.ON_PLAYER_LOGIN, (OnPlayerLogin event) -> onPlayerLogin(event), this));
 			player.addListener(new ConsumerEventListener(player, EventType.ON_PLAYER_LOGOUT, (OnPlayerLogout event) -> onPlayerLogout(event), this));
@@ -113,10 +113,10 @@ public class Nevit
 			setAdventPoints(getAdventPoints() + value);
 		}
 		
-		if (getAdventPoints() > Config.NEVIT_MAX_POINTS)
+		if (getAdventPoints() > PlayerConfig.NEVIT_MAX_POINTS)
 		{
 			setAdventPoints(0);
-			startNevitEffect(Config.NEVIT_BONUS_EFFECT_TIME);
+			startNevitEffect(PlayerConfig.NEVIT_BONUS_EFFECT_TIME);
 		}
 		
 		final int percent = calcPercent(getAdventPoints());
@@ -148,7 +148,7 @@ public class Nevit
 		{
 			synchronized (this)
 			{
-				if ((_adventTask == null) && (getAdventTime() < Config.NEVIT_ADVENT_TIME))
+				if ((_adventTask == null) && (getAdventTime() < PlayerConfig.NEVIT_ADVENT_TIME))
 				{
 					_adventTask = ThreadPool.schedule(new AdventTask(), 30000);
 					_player.sendPacket(new ExNevitAdventTimeChange(getAdventTime(), false));
@@ -163,9 +163,9 @@ public class Nevit
 		public void run()
 		{
 			setAdventTime(getAdventTime() + 30);
-			if (getAdventTime() >= Config.NEVIT_ADVENT_TIME)
+			if (getAdventTime() >= PlayerConfig.NEVIT_ADVENT_TIME)
 			{
-				setAdventTime(Config.NEVIT_ADVENT_TIME);
+				setAdventTime(PlayerConfig.NEVIT_ADVENT_TIME);
 				stopAdventTask(true);
 			}
 			else
@@ -204,7 +204,7 @@ public class Nevit
 			time += getEffectTime();
 		}
 		
-		if ((Config.NEVIT_IGNORE_ADVENT_TIME || (getAdventTime() < Config.NEVIT_ADVENT_TIME)) && (time > 0))
+		if ((PlayerConfig.NEVIT_IGNORE_ADVENT_TIME || (getAdventTime() < PlayerConfig.NEVIT_ADVENT_TIME)) && (time > 0))
 		{
 			_player.getVariables().set("nevit_b", time);
 			_player.sendPacket(new ExNevitAdventEffect(time));
@@ -219,7 +219,7 @@ public class Nevit
 		@Override
 		public void run()
 		{
-			if (Config.NEVIT_IGNORE_ADVENT_TIME)
+			if (PlayerConfig.NEVIT_IGNORE_ADVENT_TIME)
 			{
 				setAdventTime(0);
 			}
@@ -282,7 +282,7 @@ public class Nevit
 	
 	public static int calcPercent(int points)
 	{
-		return (int) ((100.0D / Config.NEVIT_MAX_POINTS) * points);
+		return (int) ((100.0D / PlayerConfig.NEVIT_MAX_POINTS) * points);
 	}
 	
 	public void setAdventPoints(int points)
@@ -297,11 +297,11 @@ public class Nevit
 	
 	public int getAdventPoints()
 	{
-		return Config.NEVIT_ENABLED ? _player.getVariables().getInt("hunting_points", 0) : 0;
+		return PlayerConfig.NEVIT_ENABLED ? _player.getVariables().getInt("hunting_points", 0) : 0;
 	}
 	
 	public int getAdventTime()
 	{
-		return Config.NEVIT_ENABLED ? _player.getVariables().getInt("hunting_time", 0) : 0;
+		return PlayerConfig.NEVIT_ENABLED ? _player.getVariables().getInt("hunting_time", 0) : 0;
 	}
 }

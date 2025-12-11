@@ -18,7 +18,7 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
@@ -45,7 +45,7 @@ public class AdminVitality implements IAdminCommandHandler
 			return false;
 		}
 		
-		if (!Config.ENABLE_VITALITY)
+		if (!PlayerConfig.ENABLE_VITALITY)
 		{
 			activeChar.sendSysMessage("Vitality is not enabled on the server!");
 			return false;

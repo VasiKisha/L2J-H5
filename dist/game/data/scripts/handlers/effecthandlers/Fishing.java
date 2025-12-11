@@ -16,8 +16,8 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
@@ -76,7 +76,7 @@ public class Fishing extends AbstractEffect
 		}
 		
 		final Player player = effector.asPlayer();
-		if (!Config.ALLOW_FISHING && !player.isGM())
+		if (!GeneralConfig.ALLOW_FISHING && !player.isGM())
 		{
 			player.sendMessage("Fishing is disabled!");
 			return;

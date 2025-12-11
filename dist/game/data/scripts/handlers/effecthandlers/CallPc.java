@@ -16,7 +16,7 @@
  */
 package handlers.effecthandlers;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -167,7 +167,7 @@ public class CallPc extends AbstractEffect
 		if (activeChar.getInstanceId() > 0)
 		{
 			final Instance summonerInstance = InstanceManager.getInstance().getInstance(activeChar.getInstanceId());
-			if (!Config.ALLOW_SUMMON_IN_INSTANCE || !summonerInstance.isSummonAllowed())
+			if (!GeneralConfig.ALLOW_SUMMON_IN_INSTANCE || !summonerInstance.isSummonAllowed())
 			{
 				activeChar.sendPacket(SystemMessageId.YOU_MAY_NOT_SUMMON_FROM_YOUR_CURRENT_LOCATION);
 				return false;

@@ -18,14 +18,13 @@ package ai.areas.Hellbound.AI.NPC.Kanaf;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Kanaf AI.
  * @author GKR
  */
-public class Kanaf extends AbstractNpcAI
+public class Kanaf extends Script
 {
 	// NPCs
 	private static final int KANAF = 32346;
@@ -47,4 +46,9 @@ public class Kanaf extends AbstractNpcAI
 		
 		return super.onEvent(event, npc, player);
 	}
-}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
+	}}

@@ -20,13 +20,13 @@
  */
 package quests.Q10502_FreyaEmbroideredSoulCloak;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -38,7 +38,7 @@ public class Q10502_FreyaEmbroideredSoulCloak extends Quest
 	// NPC
 	private static final int OLF_ADAMS = 32612;
 	
-	// Monster
+	// Monsters
 	private static final int FREYA = 29179;
 	private static final int FREYA_HARD = 29180;
 	
@@ -63,7 +63,7 @@ public class Q10502_FreyaEmbroideredSoulCloak extends Quest
 	public void actionForEachPlayer(Player player, Npc npc, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(player, false);
-		if ((qs != null) && qs.isCond(1) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if ((qs != null) && qs.isCond(1) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, player, false))
 		{
 			final long currentCount = getQuestItemsCount(player, FREYAS_SOUL_FRAGMENT);
 			final long count = getRandom(1, 3);

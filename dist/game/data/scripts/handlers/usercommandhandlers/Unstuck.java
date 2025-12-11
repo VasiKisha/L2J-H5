@@ -20,9 +20,10 @@
  */
 package handlers.usercommandhandlers;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.handler.IUserCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -58,13 +59,13 @@ public class Unstuck implements IUserCommandHandler
 			return false;
 		}
 		
-		if (Config.FACTION_SYSTEM_ENABLED && !player.isGood() && !player.isEvil())
+		if (FactionSystemConfig.FACTION_SYSTEM_ENABLED && !player.isGood() && !player.isEvil())
 		{
 			player.sendMessage("You cannot use this function while you are neutral.");
 			return false;
 		}
 		
-		final int unstuckTimer = (player.getAccessLevel().isGm() ? 1000 : Config.UNSTUCK_INTERVAL * 1000);
+		final int unstuckTimer = (player.getAccessLevel().isGm() ? 1000 : PlayerConfig.UNSTUCK_INTERVAL * 1000);
 		if (player.isInOlympiadMode())
 		{
 			player.sendPacket(SystemMessageId.YOU_CANNOT_USE_THAT_SKILL_IN_A_GRAND_OLYMPIAD_MATCH);
@@ -90,7 +91,7 @@ public class Unstuck implements IUserCommandHandler
 			
 			player.sendMessage("You use Escape: 1 second.");
 		}
-		else if ((Config.UNSTUCK_INTERVAL == 300) && (escape != null))
+		else if ((PlayerConfig.UNSTUCK_INTERVAL == 300) && (escape != null))
 		{
 			// If unstuck is default (5min), send retail system message.
 			player.sendPacket(SystemMessageId.YOU_ARE_STUCK_YOU_WILL_BE_TRANSPORTED_TO_THE_NEAREST_VILLAGE_IN_FIVE_MINUTES);
@@ -101,7 +102,7 @@ public class Unstuck implements IUserCommandHandler
 		}
 		else
 		{
-			if (Config.UNSTUCK_INTERVAL > 100)
+			if (PlayerConfig.UNSTUCK_INTERVAL > 100)
 			{
 				player.sendMessage("You use Escape: " + (unstuckTimer / 60000) + " minutes.");
 			}

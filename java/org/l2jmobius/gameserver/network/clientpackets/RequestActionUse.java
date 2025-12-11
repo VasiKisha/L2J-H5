@@ -22,12 +22,12 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.Arrays;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.ai.NextAction;
 import org.l2jmobius.gameserver.ai.SummonAI;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.BotReportTable;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 import org.l2jmobius.gameserver.data.xml.PetSkillData;
@@ -432,7 +432,7 @@ public class RequestActionUse extends ClientPacket
 			}
 			case 65: // Bot Report Button
 			{
-				if (Config.BOTREPORT_ENABLE)
+				if (GeneralConfig.BOTREPORT_ENABLE)
 				{
 					BotReportTable.getInstance().reportBot(player);
 				}

@@ -26,7 +26,9 @@ import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.MAX_ADENA;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.xml.BuyListData;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -56,7 +58,7 @@ public class RequestBuyItem extends ClientPacket
 	{
 		_listId = readInt();
 		final int size = readInt();
-		if ((size <= 0) || (size > Config.MAX_ITEM_IN_PACKET) || ((size * BATCH_LENGTH) != remaining()))
+		if ((size <= 0) || (size > PlayerConfig.MAX_ITEM_IN_PACKET) || ((size * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -98,7 +100,7 @@ public class RequestBuyItem extends ClientPacket
 		}
 		
 		// Alt game - Karma punishment
-		if (!Config.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getKarma() > 0))
+		if (!PlayerConfig.ALT_GAME_KARMA_PLAYER_CAN_SHOP && (player.getKarma() > 0))
 		{
 			player.sendPacket(ActionFailed.STATIC_PACKET);
 			return;
@@ -128,7 +130,7 @@ public class RequestBuyItem extends ClientPacket
 		final BuyListHolder buyList = BuyListData.getInstance().getBuyList(_listId);
 		if (buyList == null)
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id " + _listId, Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id " + _listId, GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -163,13 +165,13 @@ public class RequestBuyItem extends ClientPacket
 			final Product product = buyList.getProductByItemId(i.getId());
 			if (product == null)
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id " + _listId + " and item_id " + i.getId(), Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id " + _listId + " and item_id " + i.getId(), GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			
 			if (!product.getItem().isStackable() && (i.getCount() > 1))
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase invalid quantity of items at the same time.", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase invalid quantity of items at the same time.", GeneralConfig.DEFAULT_PUNISH);
 				player.sendPacket(SystemMessageId.YOU_HAVE_EXCEEDED_THE_QUANTITY_THAT_CAN_BE_INPUTTED);
 				return;
 			}
@@ -177,7 +179,7 @@ public class RequestBuyItem extends ClientPacket
 			price = product.getPrice();
 			if ((product.getItemId() >= 3960) && (product.getItemId() <= 4026))
 			{
-				price *= Config.RATE_SIEGE_GUARDS_PRICE;
+				price *= RatesConfig.RATE_SIEGE_GUARDS_PRICE;
 			}
 			
 			if (price < 0)
@@ -187,10 +189,10 @@ public class RequestBuyItem extends ClientPacket
 				return;
 			}
 			
-			if ((price == 0) && !player.isGM() && Config.ONLY_GM_ITEMS_FREE)
+			if ((price == 0) && !player.isGM() && GeneralConfig.ONLY_GM_ITEMS_FREE)
 			{
 				player.sendMessage("Ohh Cheat does not work? You have a problem now!");
-				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried buy item for 0 adena.", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried buy item for 0 adena.", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			
@@ -203,7 +205,7 @@ public class RequestBuyItem extends ClientPacket
 			
 			if ((MAX_ADENA / i.getCount()) < price)
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase over " + MAX_ADENA + " adena worth of goods.", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase over " + MAX_ADENA + " adena worth of goods.", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			
@@ -212,7 +214,7 @@ public class RequestBuyItem extends ClientPacket
 			subTotal += i.getCount() * price;
 			if (subTotal > MAX_ADENA)
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase over " + MAX_ADENA + " adena worth of goods.", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase over " + MAX_ADENA + " adena worth of goods.", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			
@@ -251,7 +253,7 @@ public class RequestBuyItem extends ClientPacket
 			final Product product = buyList.getProductByItemId(i.getId());
 			if (product == null)
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id " + _listId + " and item_id " + i.getId(), Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " sent a false BuyList list_id " + _listId + " and item_id " + i.getId(), GeneralConfig.DEFAULT_PUNISH);
 				continue;
 			}
 			

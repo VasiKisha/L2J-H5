@@ -25,8 +25,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.GeoEngineConfig;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.geoengine.geodata.Cell;
 import org.l2jmobius.gameserver.geoengine.geodata.IRegion;
@@ -225,7 +225,7 @@ public class AdminGeodata implements IAdminCommandHandler
 			case "admin_geosave":
 			{
 				// Create the saves directory if it does not exist.
-				final Path savesDir = Config.GEOEDIT_PATH;
+				final Path savesDir = GeoEngineConfig.GEOEDIT_PATH;
 				try
 				{
 					Files.createDirectories(savesDir);
@@ -257,7 +257,7 @@ public class AdminGeodata implements IAdminCommandHandler
 			case "admin_geosaveall":
 			{
 				// Create the saves directory if it does not exist.
-				final Path savesDir = Config.GEOEDIT_PATH;
+				final Path savesDir = GeoEngineConfig.GEOEDIT_PATH;
 				try
 				{
 					Files.createDirectories(savesDir);

@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.Gracia.AI;
 
@@ -27,8 +31,8 @@ import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.data.xml.NpcData;
-import org.l2jmobius.gameserver.managers.SoDManager;
-import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.SeedOfDestructionManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.WorldObject;
@@ -39,21 +43,21 @@ import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 
-import ai.AbstractNpcAI;
 import quests.Q00692_HowtoOpposeEvil.Q00692_HowtoOpposeEvil;
 
 /**
  * Energy Seeds AI.
- * @author Gigiikun
+ * @author Gigiikun, Mobius
  */
-public class EnergySeeds extends AbstractNpcAI
+public class EnergySeeds extends Script
 {
 	private static final int HOW_TO_OPPOSE_EVIL_CHANCE = 60;
 	private static final int RATE = 1;
@@ -277,7 +281,8 @@ public class EnergySeeds extends AbstractNpcAI
 	
 	public EnergySeeds()
 	{
-		registerMobs(SEED_IDS);
+		addKillId(SEED_IDS);
+		addSkillSeeId(SEED_IDS);
 		addFirstTalkId(SEED_IDS);
 		addFirstTalkId(TEMPORARY_TELEPORTER);
 		addEnterZoneId(SOD_ZONE);
@@ -286,27 +291,68 @@ public class EnergySeeds extends AbstractNpcAI
 		startAI();
 	}
 	
-	protected boolean isSeedActive(GraciaSeeds seed)
+	@Override
+	public String onEvent(String event, Npc npc, Player player)
 	{
-		switch (seed)
+		if (event.equalsIgnoreCase("StartSoDAi"))
 		{
-			case INFINITY:
+			for (int doorId : SEED_OF_DESTRUCTION_DOORS)
 			{
-				return false;
+				final Door doorInstance = DoorData.getInstance().getDoor(doorId);
+				if (doorInstance != null)
+				{
+					doorInstance.openMe();
+				}
 			}
-			case DESTRUCTION:
+			
+			startAI(GraciaSeeds.DESTRUCTION);
+		}
+		else if (event.equalsIgnoreCase("StopSoDAi"))
+		{
+			for (int doorId : SEED_OF_DESTRUCTION_DOORS)
 			{
-				return SoDManager.getInstance().getSoDState() == 2;
+				final Door doorInstance = DoorData.getInstance().getDoor(doorId);
+				if (doorInstance != null)
+				{
+					doorInstance.closeMe();
+				}
 			}
-			case ANNIHILATION_BISTAKON:
-			case ANNIHILATION_REPTILIKON:
-			case ANNIHILATION_COKRAKON:
+			
+			for (Player ch : ZoneManager.getInstance().getZoneById(SOD_ZONE).getPlayersInside())
 			{
-				return true;
+				if (ch != null)
+				{
+					ch.teleToLocation(SOD_EXIT_POINT);
+				}
+			}
+			
+			stopAI(GraciaSeeds.DESTRUCTION);
+		}
+		else if (event.equalsIgnoreCase("DeSpawnTask"))
+		{
+			if (npc.isInCombat())
+			{
+				startQuestTimer("DeSpawnTask", 30000, npc, null);
+			}
+			else
+			{
+				npc.deleteMe();
 			}
 		}
 		
-		return true;
+		return null;
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		if (npc.getId() == TEMPORARY_TELEPORTER)
+		{
+			player.teleToLocation(SOD_EXIT_POINT);
+		}
+		
+		player.sendPacket(ActionFailed.STATIC_PACKET);
+		return null;
 	}
 	
 	@Override
@@ -383,80 +429,6 @@ public class EnergySeeds extends AbstractNpcAI
 	}
 	
 	@Override
-	public String onEvent(String event, Npc npc, Player player)
-	{
-		if (event.equalsIgnoreCase("StartSoDAi"))
-		{
-			for (int doorId : SEED_OF_DESTRUCTION_DOORS)
-			{
-				final Door doorInstance = DoorData.getInstance().getDoor(doorId);
-				if (doorInstance != null)
-				{
-					doorInstance.openMe();
-				}
-			}
-			
-			startAI(GraciaSeeds.DESTRUCTION);
-		}
-		else if (event.equalsIgnoreCase("StopSoDAi"))
-		{
-			for (int doorId : SEED_OF_DESTRUCTION_DOORS)
-			{
-				final Door doorInstance = DoorData.getInstance().getDoor(doorId);
-				if (doorInstance != null)
-				{
-					doorInstance.closeMe();
-				}
-			}
-			
-			for (Player ch : ZoneManager.getInstance().getZoneById(SOD_ZONE).getPlayersInside())
-			{
-				if (ch != null)
-				{
-					ch.teleToLocation(SOD_EXIT_POINT);
-				}
-			}
-			
-			stopAI(GraciaSeeds.DESTRUCTION);
-		}
-		else if (event.equalsIgnoreCase("DeSpawnTask"))
-		{
-			if (npc.isInCombat())
-			{
-				startQuestTimer("DeSpawnTask", 30000, npc, null);
-			}
-			else
-			{
-				npc.deleteMe();
-			}
-		}
-		
-		return null;
-	}
-	
-	@Override
-	public String onFirstTalk(Npc npc, Player player)
-	{
-		if (npc.getId() == TEMPORARY_TELEPORTER)
-		{
-			player.teleToLocation(SOD_EXIT_POINT);
-		}
-		
-		player.sendPacket(ActionFailed.STATIC_PACKET);
-		return null;
-	}
-	
-	@Override
-	public void onKill(Npc npc, Player player, boolean isSummon)
-	{
-		if (_spawnedNpcs.containsKey(npc) && SPAWNS.containsKey(_spawnedNpcs.get(npc)))
-		{
-			SPAWNS.get(_spawnedNpcs.get(npc)).scheduleRespawn(RESPAWN + getRandom(RANDOM_RESPAWN_OFFSET));
-			_spawnedNpcs.remove(npc);
-		}
-	}
-	
-	@Override
 	public void onEnterZone(Creature creature, ZoneType zone)
 	{
 		if (creature.getInstanceId() != 0)
@@ -478,13 +450,23 @@ public class EnergySeeds extends AbstractNpcAI
 				}
 				case SOI_ZONE:
 				{
-					if ((SoIManager.getCurrentStage() != 3) && !SoIManager.isSeedOpen())
+					if ((SeedOfInfinityManager.getCurrentStage() != 3) && !SeedOfInfinityManager.isSeedOpen())
 					{
 						creature.teleToLocation(SOI_EXIT_POINT);
 					}
 					break;
 				}
 			}
+		}
+	}
+	
+	@Override
+	public void onKill(Npc npc, Player player, boolean isSummon)
+	{
+		if (_spawnedNpcs.containsKey(npc) && SPAWNS.containsKey(_spawnedNpcs.get(npc)))
+		{
+			SPAWNS.get(_spawnedNpcs.get(npc)).scheduleRespawn(RESPAWN + getRandom(RANDOM_RESPAWN_OFFSET));
+			_spawnedNpcs.remove(npc);
 		}
 	}
 	
@@ -999,7 +981,30 @@ public class EnergySeeds extends AbstractNpcAI
 		}
 	}
 	
-	public static void SoiSeedSpawn()
+	protected boolean isSeedActive(GraciaSeeds seed)
+	{
+		switch (seed)
+		{
+			case INFINITY:
+			{
+				return false;
+			}
+			case DESTRUCTION:
+			{
+				return SeedOfDestructionManager.getInstance().getSoDState() == 2;
+			}
+			case ANNIHILATION_BISTAKON:
+			case ANNIHILATION_REPTILIKON:
+			case ANNIHILATION_COKRAKON:
+			{
+				return true;
+			}
+		}
+		
+		return true;
+	}
+	
+	public static void soiSeedSpawn()
 	{
 		for (int[] spawn : SOI_MIDDLE_SEEDS)
 		{
@@ -1022,7 +1027,7 @@ public class EnergySeeds extends AbstractNpcAI
 		}
 	}
 	
-	public static void SoiSeedStop()
+	public static void soiSeedStop()
 	{
 		if (!soiList.isEmpty())
 		{
@@ -1038,7 +1043,7 @@ public class EnergySeeds extends AbstractNpcAI
 		soiList.clear();
 	}
 	
-	public static void SoiCloseMouthSpawn()
+	public static void soiCloseMouthSpawn()
 	{
 		for (int[] spawn : SOI_WORLD_CLOSEMOUTHS)
 		{
@@ -1050,7 +1055,7 @@ public class EnergySeeds extends AbstractNpcAI
 		}
 	}
 	
-	public static void SoiCloseMouthStop()
+	public static void soiCloseMouthStop()
 	{
 		if (!soiclosemouthList.isEmpty())
 		{
@@ -1066,7 +1071,7 @@ public class EnergySeeds extends AbstractNpcAI
 		soiclosemouthList.clear();
 	}
 	
-	public static void SoiMouthSpawn()
+	public static void soiMouthSpawn()
 	{
 		for (int[] spawn : SOI_WORLD_MOUTHS)
 		{
@@ -1078,7 +1083,7 @@ public class EnergySeeds extends AbstractNpcAI
 		}
 	}
 	
-	public static void SoiMouthStop()
+	public static void soiMouthStop()
 	{
 		if (!soimouthList.isEmpty())
 		{
@@ -1094,7 +1099,7 @@ public class EnergySeeds extends AbstractNpcAI
 		soimouthList.clear();
 	}
 	
-	public static void SoiAbyssGaze2Spawn()
+	public static void soiAbyssGaze2Spawn()
 	{
 		for (int[] spawn : SOI_WORLD_ABYSSGAZE2)
 		{
@@ -1106,7 +1111,7 @@ public class EnergySeeds extends AbstractNpcAI
 		}
 	}
 	
-	public static void SoiAbyssGaze2Stop()
+	public static void soiAbyssGaze2Stop()
 	{
 		if (!soiabyssgaze2List.isEmpty())
 		{
@@ -1122,7 +1127,7 @@ public class EnergySeeds extends AbstractNpcAI
 		soiabyssgaze2List.clear();
 	}
 	
-	public static void SoiAbyssGaze1Spawn()
+	public static void soiAbyssGaze1Spawn()
 	{
 		for (int[] spawn : SOI_WORLD_ABYSSGAZE1)
 		{
@@ -1134,7 +1139,7 @@ public class EnergySeeds extends AbstractNpcAI
 		}
 	}
 	
-	public static void SoiAbyssGaze1Stop()
+	public static void soiAbyssGaze1Stop()
 	{
 		if (!soiabyssgaze1List.isEmpty())
 		{

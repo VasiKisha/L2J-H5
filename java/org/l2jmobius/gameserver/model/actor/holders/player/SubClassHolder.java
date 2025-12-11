@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.actor.holders.player;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
 
@@ -27,12 +27,12 @@ import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
  */
 public class SubClassHolder
 {
-	private static final byte MAX_LEVEL = Config.MAX_SUBCLASS_LEVEL < ExperienceData.getInstance().getMaxLevel() ? Config.MAX_SUBCLASS_LEVEL : (byte) (ExperienceData.getInstance().getMaxLevel() - 1);
+	private static final byte MAX_LEVEL = PlayerConfig.MAX_SUBCLASS_LEVEL < ExperienceData.getInstance().getMaxLevel() ? PlayerConfig.MAX_SUBCLASS_LEVEL : (byte) (ExperienceData.getInstance().getMaxLevel() - 1);
 	
 	private PlayerClass _playerClass;
-	private long _exp = ExperienceData.getInstance().getExpForLevel(Config.BASE_SUBCLASS_LEVEL);
+	private long _exp = ExperienceData.getInstance().getExpForLevel(PlayerConfig.BASE_SUBCLASS_LEVEL);
 	private long _sp = 0;
-	private byte _level = Config.BASE_SUBCLASS_LEVEL;
+	private byte _level = PlayerConfig.BASE_SUBCLASS_LEVEL;
 	private int _classIndex = 1;
 	
 	public SubClassHolder(int classId, long exp, int sp, byte level, int classIndex)
@@ -124,9 +124,9 @@ public class SubClassHolder
 			_level = MAX_LEVEL;
 			return;
 		}
-		else if (levelValue < Config.BASE_SUBCLASS_LEVEL)
+		else if (levelValue < PlayerConfig.BASE_SUBCLASS_LEVEL)
 		{
-			_level = Config.BASE_SUBCLASS_LEVEL;
+			_level = PlayerConfig.BASE_SUBCLASS_LEVEL;
 			return;
 		}
 		
@@ -146,7 +146,7 @@ public class SubClassHolder
 	
 	public void decLevel()
 	{
-		if (_level == Config.BASE_SUBCLASS_LEVEL)
+		if (_level == PlayerConfig.BASE_SUBCLASS_LEVEL)
 		{
 			return;
 		}

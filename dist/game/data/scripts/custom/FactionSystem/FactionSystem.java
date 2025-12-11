@@ -20,20 +20,19 @@
  */
 package custom.FactionSystem;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.appearance.PlayerAppearance;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
-
-import ai.AbstractNpcAI;
 
 /**
  * @author Mobius
  */
-public class FactionSystem extends AbstractNpcAI
+public class FactionSystem extends Script
 {
 	// NPCs
 	private static final int MANAGER = 500;
@@ -41,7 +40,7 @@ public class FactionSystem extends AbstractNpcAI
 	// Other
 	private static final String[] TEXTS =
 	{
-		Config.FACTION_GOOD_TEAM_NAME + " or " + Config.FACTION_EVIL_TEAM_NAME + "?",
+		FactionSystemConfig.FACTION_GOOD_TEAM_NAME + " or " + FactionSystemConfig.FACTION_EVIL_TEAM_NAME + "?",
 		"Select your faction!",
 		"The choice is yours!"
 	};
@@ -53,9 +52,9 @@ public class FactionSystem extends AbstractNpcAI
 		addTalkId(MANAGER);
 		addFirstTalkId(MANAGER);
 		
-		if (Config.FACTION_SYSTEM_ENABLED)
+		if (FactionSystemConfig.FACTION_SYSTEM_ENABLED)
 		{
-			addSpawn(MANAGER, Config.FACTION_MANAGER_LOCATION, false, 0);
+			addSpawn(MANAGER, FactionSystemConfig.FACTION_MANAGER_LOCATION, false, 0);
 		}
 	}
 	
@@ -66,61 +65,61 @@ public class FactionSystem extends AbstractNpcAI
 		{
 			case "selectGoodFaction":
 			{
-				if (Config.FACTION_BALANCE_ONLINE_PLAYERS && (World.getInstance().getAllGoodPlayers().size() >= (World.getInstance().getAllEvilPlayers().size() + Config.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
+				if (FactionSystemConfig.FACTION_BALANCE_ONLINE_PLAYERS && (World.getInstance().getAllGoodPlayers().size() >= (World.getInstance().getAllEvilPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
 				{
 					final String htmltext = null;
 					final NpcHtmlMessage packet = new NpcHtmlMessage(npc.getObjectId());
 					packet.setHtml(getHtm(player, "onlinelimit.html"));
 					packet.replace("%name%", player.getName());
-					packet.replace("%more%", Config.FACTION_GOOD_TEAM_NAME);
-					packet.replace("%less%", Config.FACTION_EVIL_TEAM_NAME);
+					packet.replace("%more%", FactionSystemConfig.FACTION_GOOD_TEAM_NAME);
+					packet.replace("%less%", FactionSystemConfig.FACTION_EVIL_TEAM_NAME);
 					player.sendPacket(packet);
 					return htmltext;
 				}
 				
-				if (Config.FACTION_AUTO_NOBLESS)
+				if (FactionSystemConfig.FACTION_AUTO_NOBLESS)
 				{
 					player.setNoble(true);
 				}
 				
 				player.setGood();
 				final PlayerAppearance appearance = player.getAppearance();
-				appearance.setNameColor(Config.FACTION_GOOD_NAME_COLOR);
-				appearance.setTitleColor(Config.FACTION_GOOD_NAME_COLOR);
-				player.setTitle(Config.FACTION_GOOD_TEAM_NAME);
-				player.sendMessage("You are now fighting for the " + Config.FACTION_GOOD_TEAM_NAME + " faction.");
-				player.teleToLocation(Config.FACTION_GOOD_BASE_LOCATION);
-				broadcastMessageToFaction(Config.FACTION_GOOD_TEAM_NAME, Config.FACTION_GOOD_TEAM_NAME + " faction grows stronger with the arrival of " + player.getName() + ".");
+				appearance.setNameColor(FactionSystemConfig.FACTION_GOOD_NAME_COLOR);
+				appearance.setTitleColor(FactionSystemConfig.FACTION_GOOD_NAME_COLOR);
+				player.setTitle(FactionSystemConfig.FACTION_GOOD_TEAM_NAME);
+				player.sendMessage("You are now fighting for the " + FactionSystemConfig.FACTION_GOOD_TEAM_NAME + " faction.");
+				player.teleToLocation(FactionSystemConfig.FACTION_GOOD_BASE_LOCATION);
+				broadcastMessageToFaction(FactionSystemConfig.FACTION_GOOD_TEAM_NAME, FactionSystemConfig.FACTION_GOOD_TEAM_NAME + " faction grows stronger with the arrival of " + player.getName() + ".");
 				World.addFactionPlayerToWorld(player);
 				break;
 			}
 			case "selectEvilFaction":
 			{
-				if (Config.FACTION_BALANCE_ONLINE_PLAYERS && (World.getInstance().getAllEvilPlayers().size() >= (World.getInstance().getAllGoodPlayers().size() + Config.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
+				if (FactionSystemConfig.FACTION_BALANCE_ONLINE_PLAYERS && (World.getInstance().getAllEvilPlayers().size() >= (World.getInstance().getAllGoodPlayers().size() + FactionSystemConfig.FACTION_BALANCE_PLAYER_EXCEED_LIMIT)))
 				{
 					final String htmltext = null;
 					final NpcHtmlMessage packet = new NpcHtmlMessage(npc.getObjectId());
 					packet.setHtml(getHtm(player, "onlinelimit.html"));
 					packet.replace("%name%", player.getName());
-					packet.replace("%more%", Config.FACTION_EVIL_TEAM_NAME);
-					packet.replace("%less%", Config.FACTION_GOOD_TEAM_NAME);
+					packet.replace("%more%", FactionSystemConfig.FACTION_EVIL_TEAM_NAME);
+					packet.replace("%less%", FactionSystemConfig.FACTION_GOOD_TEAM_NAME);
 					player.sendPacket(packet);
 					return htmltext;
 				}
 				
-				if (Config.FACTION_AUTO_NOBLESS)
+				if (FactionSystemConfig.FACTION_AUTO_NOBLESS)
 				{
 					player.setNoble(true);
 				}
 				
 				player.setEvil();
 				final PlayerAppearance appearance = player.getAppearance();
-				appearance.setNameColor(Config.FACTION_EVIL_NAME_COLOR);
-				appearance.setTitleColor(Config.FACTION_EVIL_NAME_COLOR);
-				player.setTitle(Config.FACTION_EVIL_TEAM_NAME);
-				player.sendMessage("You are now fighting for the " + Config.FACTION_EVIL_TEAM_NAME + " faction.");
-				player.teleToLocation(Config.FACTION_EVIL_BASE_LOCATION);
-				broadcastMessageToFaction(Config.FACTION_EVIL_TEAM_NAME, Config.FACTION_EVIL_TEAM_NAME + " faction grows stronger with the arrival of " + player.getName() + ".");
+				appearance.setNameColor(FactionSystemConfig.FACTION_EVIL_NAME_COLOR);
+				appearance.setTitleColor(FactionSystemConfig.FACTION_EVIL_NAME_COLOR);
+				player.setTitle(FactionSystemConfig.FACTION_EVIL_TEAM_NAME);
+				player.sendMessage("You are now fighting for the " + FactionSystemConfig.FACTION_EVIL_TEAM_NAME + " faction.");
+				player.teleToLocation(FactionSystemConfig.FACTION_EVIL_BASE_LOCATION);
+				broadcastMessageToFaction(FactionSystemConfig.FACTION_EVIL_TEAM_NAME, FactionSystemConfig.FACTION_EVIL_TEAM_NAME + " faction grows stronger with the arrival of " + player.getName() + ".");
 				World.addFactionPlayerToWorld(player);
 				break;
 			}
@@ -144,8 +143,8 @@ public class FactionSystem extends AbstractNpcAI
 		final NpcHtmlMessage packet = new NpcHtmlMessage(npc.getObjectId());
 		packet.setHtml(getHtm(player, "manager.html"));
 		packet.replace("%name%", player.getName());
-		packet.replace("%good%", Config.FACTION_GOOD_TEAM_NAME);
-		packet.replace("%evil%", Config.FACTION_EVIL_TEAM_NAME);
+		packet.replace("%good%", FactionSystemConfig.FACTION_GOOD_TEAM_NAME);
+		packet.replace("%evil%", FactionSystemConfig.FACTION_EVIL_TEAM_NAME);
 		player.sendPacket(packet);
 		return htmltext;
 	}
@@ -161,7 +160,7 @@ public class FactionSystem extends AbstractNpcAI
 	
 	private void broadcastMessageToFaction(String factionName, String message)
 	{
-		if (factionName.equals(Config.FACTION_GOOD_TEAM_NAME))
+		if (factionName.equals(FactionSystemConfig.FACTION_GOOD_TEAM_NAME))
 		{
 			for (Player player : World.getInstance().getAllGoodPlayers())
 			{

@@ -17,8 +17,8 @@
 package ai.areas.MithrilMines;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionHolder;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Grove Robber's AI.<br>
@@ -26,9 +26,9 @@ import ai.AbstractNpcAI;
  * <li>Grove Robber Summoner</li>
  * <li>Grove Robber Megician</li>
  * </ul>
- * @author Zealar
+ * @author Zealar, Mobius
  */
-public class GraveRobbers extends AbstractNpcAI
+public class GraveRobbers extends Script
 {
 	private static final int GRAVE_ROBBER_SUMMONER = 22678;
 	private static final int GRAVE_ROBBER_MEGICIAN = 22679;
@@ -41,7 +41,10 @@ public class GraveRobbers extends AbstractNpcAI
 	@Override
 	public void onSpawn(Npc npc)
 	{
-		spawnMinions(npc, "Privates" + getRandom(1, 2));
+		for (MinionHolder minionHolder : npc.getTemplate().getParameters().getMinionList("Privates" + getRandom(1, 2)))
+		{
+			addMinion(npc.asMonster(), minionHolder.getId());
+		}
 	}
 	
 	public static void main(String[] args)

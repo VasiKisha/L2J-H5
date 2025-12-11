@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowReceivedPostList;
 
@@ -34,7 +34,7 @@ public class RequestReceivedPostList extends ClientPacket
 	protected void runImpl()
 	{
 		final Player player = getPlayer();
-		if ((player == null) || !Config.ALLOW_MAIL)
+		if ((player == null) || !GeneralConfig.ALLOW_MAIL)
 		{
 			return;
 		}

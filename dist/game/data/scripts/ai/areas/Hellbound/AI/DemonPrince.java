@@ -21,16 +21,15 @@ import java.util.concurrent.ConcurrentHashMap;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Demon Prince's AI.
  * @author GKR
  */
-public class DemonPrince extends AbstractNpcAI
+public class DemonPrince extends Script
 {
 	// NPCs
 	private static final int DEMON_PRINCE = 25540;

@@ -18,14 +18,13 @@ package ai.others.Abercrombie;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Mercenary Supplier Abercrombie AI.
  * @author Zoey76
  */
-public class Abercrombie extends AbstractNpcAI
+public class Abercrombie extends Script
 {
 	// NPC
 	private static final int ABERCROMBIE = 31555;

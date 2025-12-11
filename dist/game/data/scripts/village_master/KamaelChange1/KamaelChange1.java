@@ -22,9 +22,9 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import quests.Q00062_PathOfTheTrooper.Q00062_PathOfTheTrooper;
 import quests.Q00063_PathOfTheWarder.Q00063_PathOfTheWarder;
 
@@ -32,7 +32,7 @@ import quests.Q00063_PathOfTheWarder.Q00063_PathOfTheWarder;
  * Kamael class transfer AI.
  * @author Adry_85
  */
-public class KamaelChange1 extends AbstractNpcAI
+public class KamaelChange1 extends Script
 {
 	// NPCs
 	private static int[] NPCS =

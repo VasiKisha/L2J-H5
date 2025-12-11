@@ -16,7 +16,7 @@
  */
 package handlers.usercommandhandlers;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.OlympiadConfig;
 import org.l2jmobius.gameserver.handler.IUserCommandHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -38,7 +38,7 @@ public class OlympiadStat implements IUserCommandHandler
 	@Override
 	public boolean onCommand(int id, Player player)
 	{
-		if (!Config.OLYMPIAD_ENABLED)
+		if (!OlympiadConfig.OLYMPIAD_ENABLED)
 		{
 			player.sendPacket(SystemMessageId.THE_GRAND_OLYMPIAD_GAMES_ARE_NOT_CURRENTLY_IN_PROGRESS);
 			return false;

@@ -17,7 +17,7 @@
 package org.l2jmobius.gameserver.data.xml;
 
 import java.io.File;
-import java.util.List;
+import java.util.Collection;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
@@ -120,7 +120,7 @@ public class FenceData implements IXmlReader
 	public boolean checkIfFenceBetween(int x, int y, int z, int tx, int ty, int tz, int instanceId)
 	{
 		final WorldRegion region = World.getInstance().getRegion(x, y);
-		final List<Fence> fences = region != null ? region.getFences() : null;
+		final Collection<Fence> fences = region != null ? region.getFences() : null;
 		if ((fences == null) || fences.isEmpty())
 		{
 			return false;

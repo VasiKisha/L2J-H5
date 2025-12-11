@@ -28,6 +28,7 @@ import org.w3c.dom.Node;
 
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
 import org.l2jmobius.gameserver.model.stats.Stat;
@@ -91,16 +92,16 @@ public class EnchantItemHPBonusData implements IXmlReader
 				{
 					switch (item.getBodyPart())
 					{
-						case ItemTemplate.SLOT_CHEST:
-						case ItemTemplate.SLOT_FEET:
-						case ItemTemplate.SLOT_GLOVES:
-						case ItemTemplate.SLOT_HEAD:
-						case ItemTemplate.SLOT_LEGS:
-						case ItemTemplate.SLOT_BACK:
-						case ItemTemplate.SLOT_FULL_ARMOR:
-						case ItemTemplate.SLOT_UNDERWEAR:
-						case ItemTemplate.SLOT_L_HAND:
-						case ItemTemplate.SLOT_BELT:
+						case BodyPart.CHEST:
+						case BodyPart.FEET:
+						case BodyPart.GLOVES:
+						case BodyPart.HEAD:
+						case BodyPart.LEGS:
+						case BodyPart.BACK:
+						case BodyPart.FULL_ARMOR:
+						case BodyPart.UNDERWEAR:
+						case BodyPart.L_HAND:
+						case BodyPart.BELT:
 						{
 							item.attach(new FuncTemplate(null, null, StatFunction.ENCHANTHP.getName(), -1, Stat.MAX_HP, 0));
 							break;
@@ -137,7 +138,7 @@ public class EnchantItemHPBonusData implements IXmlReader
 		}
 		
 		final int bonus = values.get(Math.min(item.getOlyEnchantLevel(), values.size()) - 1);
-		if (item.getTemplate().getBodyPart() == ItemTemplate.SLOT_FULL_ARMOR)
+		if (item.getTemplate().getBodyPart() == BodyPart.FULL_ARMOR)
 		{
 			return (int) (bonus * FULL_ARMOR_MODIFIER);
 		}

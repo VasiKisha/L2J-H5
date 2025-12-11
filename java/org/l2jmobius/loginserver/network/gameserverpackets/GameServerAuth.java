@@ -19,10 +19,10 @@ package org.l2jmobius.loginserver.network.gameserverpackets;
 import java.util.Arrays;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.base.BaseReadablePacket;
 import org.l2jmobius.loginserver.GameServerTable;
 import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
+import org.l2jmobius.loginserver.config.LoginConfig;
 import org.l2jmobius.loginserver.GameServerThread;
 import org.l2jmobius.loginserver.network.GameServerPacketHandler.GameServerState;
 import org.l2jmobius.loginserver.network.loginserverpackets.AuthResponse;
@@ -112,7 +112,7 @@ public class GameServerAuth extends BaseReadablePacket
 			{
 				// There is already a server registered with the desired id and different hex id.
 				// Try to register this one with an alternative id.
-				if (Config.ACCEPT_NEW_GAMESERVER && _acceptAlternativeId)
+				if (LoginConfig.ACCEPT_NEW_GAMESERVER && _acceptAlternativeId)
 				{
 					gsi = new GameServerInfo(id, hexId, _server);
 					if (gameServerTable.registerWithFirstAvailableId(gsi))
@@ -137,7 +137,7 @@ public class GameServerAuth extends BaseReadablePacket
 		else
 		{
 			// Can we register on this id?
-			if (Config.ACCEPT_NEW_GAMESERVER)
+			if (LoginConfig.ACCEPT_NEW_GAMESERVER)
 			{
 				gsi = new GameServerInfo(id, hexId, _server);
 				if (gameServerTable.register(id, gsi))

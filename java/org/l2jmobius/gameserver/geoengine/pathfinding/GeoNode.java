@@ -31,6 +31,11 @@ public class GeoNode
 	private boolean _isInUse = true;
 	private float _cost = -1000;
 	
+	// A* specific costs.
+	private double _gCost = -1; // Actual cost from start.
+	private double _hCost = 0; // Heuristic cost to target.
+	private double _fCost = 0; // Total cost (G + H).
+	
 	public GeoNode(GeoLocation location)
 	{
 		_location = location;
@@ -86,12 +91,78 @@ public class GeoNode
 		_cost = (float) cost;
 	}
 	
+	/**
+	 * Gets the G cost (actual cost from start to this node).
+	 * @return the G cost
+	 */
+	public double getGCost()
+	{
+		return _gCost;
+	}
+	
+	/**
+	 * Sets the G cost (actual cost from start to this node).
+	 * @param gCost the G cost to set
+	 */
+	public void setGCost(double gCost)
+	{
+		_gCost = gCost;
+	}
+	
+	/**
+	 * Gets the H cost (heuristic cost from this node to target).
+	 * @return the H cost
+	 */
+	public double getHCost()
+	{
+		return _hCost;
+	}
+	
+	/**
+	 * Sets the H cost (heuristic cost from this node to target).
+	 * @param hCost the H cost to set
+	 */
+	public void setHCost(double hCost)
+	{
+		_hCost = hCost;
+	}
+	
+	/**
+	 * Gets the F cost (total cost = G cost + H cost).
+	 * @return the F cost
+	 */
+	public double getFCost()
+	{
+		return _fCost;
+	}
+	
+	/**
+	 * Calculates and updates the F cost based on current G and H costs.
+	 */
+	public void calculateFCost()
+	{
+		_fCost = _gCost + _hCost;
+	}
+	
+	/**
+	 * Resets all A* costs to initial values.
+	 */
+	public void resetCosts()
+	{
+		_gCost = -1;
+		_hCost = 0;
+		_fCost = 0;
+	}
+	
 	public void free()
 	{
 		setParent(null);
 		_cost = -1000;
 		_isInUse = false;
 		_next = null;
+		
+		// Reset A* costs when freeing the node.
+		resetCosts();
 	}
 	
 	@Override

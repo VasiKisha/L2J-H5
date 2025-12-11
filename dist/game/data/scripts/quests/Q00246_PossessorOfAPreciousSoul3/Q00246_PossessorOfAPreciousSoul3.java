@@ -20,14 +20,14 @@
  */
 package quests.Q00246_PossessorOfAPreciousSoul3;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
 import quests.Q00242_PossessorOfAPreciousSoul2.Q00242_PossessorOfAPreciousSoul2;
@@ -216,7 +216,7 @@ public class Q00246_PossessorOfAPreciousSoul3 extends Quest
 				{
 					for (Player member : party.getMembers())
 					{
-						if (member.calculateDistance3D(npc) > Config.ALT_PARTY_RANGE)
+						if (member.calculateDistance3D(npc) > PlayerConfig.ALT_PARTY_RANGE)
 						{
 							continue;
 						}

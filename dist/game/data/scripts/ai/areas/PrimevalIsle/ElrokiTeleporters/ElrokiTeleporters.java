@@ -23,14 +23,13 @@ package ai.areas.PrimevalIsle.ElrokiTeleporters;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Elroki teleport AI.
  * @author Plim, Skache
  */
-public class ElrokiTeleporters extends AbstractNpcAI
+public class ElrokiTeleporters extends Script
 {
 	// NPCs
 	private static final int ORAHOCHIN = 32111;
@@ -62,6 +61,12 @@ public class ElrokiTeleporters extends AbstractNpcAI
 		}
 		
 		return null;
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

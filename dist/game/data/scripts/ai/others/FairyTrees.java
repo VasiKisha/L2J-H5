@@ -19,15 +19,14 @@ package ai.others;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Fairy Trees AI.
  * @author Charus
  */
-public class FairyTrees extends AbstractNpcAI
+public class FairyTrees extends Script
 {
 	// NPC
 	private static final int SOUL_GUARDIAN = 27189; // Soul of Tree Guardian

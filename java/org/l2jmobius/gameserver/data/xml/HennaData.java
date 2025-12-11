@@ -152,15 +152,15 @@ public class HennaData implements IXmlReader
 	
 	/**
 	 * Gets the henna list.
-	 * @param classId the player's class Id.
+	 * @param playerClass the player's class Id.
 	 * @return the list with all the allowed dyes.
 	 */
-	public List<Henna> getHennaList(PlayerClass classId)
+	public List<Henna> getHennaList(PlayerClass playerClass)
 	{
 		final List<Henna> list = new ArrayList<>();
 		for (Henna henna : _hennaList.values())
 		{
-			if (henna.isAllowedClass(classId))
+			if (henna.isAllowedClass(playerClass))
 			{
 				list.add(henna);
 			}

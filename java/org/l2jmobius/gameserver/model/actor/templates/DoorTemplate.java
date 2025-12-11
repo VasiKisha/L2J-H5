@@ -64,7 +64,7 @@ public class DoorTemplate extends CreatureTemplate
 		_name = set.getString("name");
 		
 		// position
-		final String[] pos = set.getString("pos").split(";");
+		final String[] pos = set.getString("pos").split(",");
 		_height = set.getInt("height");
 		_nodeZ = set.getInt("nodeZ");
 		_nodeX = new int[4]; // 4 * x

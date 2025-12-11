@@ -28,18 +28,17 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.ExShowScreenMessage;
 
-import ai.AbstractNpcAI;
-
 /**
  * Nevit's Herald AI.
  * @author Sacrifice, Mobius
  */
-public class NevitsHerald extends AbstractNpcAI
+public class NevitsHerald extends Script
 {
 	private static final int NEVITS_HERALD = 4326;
 	private static final List<Npc> SPAWNS = new ArrayList<>();

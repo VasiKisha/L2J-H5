@@ -20,15 +20,15 @@ import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Door;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import ai.areas.Hellbound.HellboundEngine;
 
 /**
  * Outpost Captain's AI.
  * @author DS
  */
-public class OutpostCaptain extends AbstractNpcAI
+public class OutpostCaptain extends Script
 {
 	// NPCs
 	private static final int CAPTAIN = 18466;

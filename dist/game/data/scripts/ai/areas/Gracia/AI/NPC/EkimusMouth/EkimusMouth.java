@@ -20,14 +20,13 @@
  */
 package ai.areas.Gracia.AI.NPC.EkimusMouth;
 
-import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
-
-public class EkimusMouth extends AbstractNpcAI
+public class EkimusMouth extends Script
 {
 	// NPC
 	private static final int EKIMUS_MOUTH = 32537;
@@ -51,22 +50,22 @@ public class EkimusMouth extends AbstractNpcAI
 		
 		if (event.equalsIgnoreCase("hos_enter"))
 		{
-			if (SoIManager.getCurrentStage() == 1)
+			if (SeedOfInfinityManager.getCurrentStage() == 1)
 			{
 				htmltext = "32537-1.htm";
 			}
-			else if (SoIManager.getCurrentStage() == 4)
+			else if (SeedOfInfinityManager.getCurrentStage() == 4)
 			{
 				htmltext = "32537-2.htm";
 			}
 		}
 		else if (event.equalsIgnoreCase("hoe_enter"))
 		{
-			if (SoIManager.getCurrentStage() == 1)
+			if (SeedOfInfinityManager.getCurrentStage() == 1)
 			{
 				htmltext = "32537-3.htm";
 			}
-			else if (SoIManager.getCurrentStage() == 4)
+			else if (SeedOfInfinityManager.getCurrentStage() == 4)
 			{
 				htmltext = "32537-4.htm";
 			}

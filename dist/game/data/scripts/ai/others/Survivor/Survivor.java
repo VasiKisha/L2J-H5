@@ -20,15 +20,14 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Gracia Survivor teleport AI.<br>
  * Original Jython script by Kerberos.
  * @author Plim
  */
-public class Survivor extends AbstractNpcAI
+public class Survivor extends Script
 {
 	// NPC
 	private static final int SURVIVOR = 32632;

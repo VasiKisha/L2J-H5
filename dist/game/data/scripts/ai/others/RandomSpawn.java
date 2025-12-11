@@ -22,14 +22,13 @@ import java.util.Map;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Manages spawn of NPCs having several random spawn points.
  * @author GKR
  */
-public class RandomSpawn extends AbstractNpcAI
+public class RandomSpawn extends Script
 {
 	private static final Map<Integer, Location[]> SPAWN_POINTS = new HashMap<>();
 	static
@@ -45,11 +44,11 @@ public class RandomSpawn extends AbstractNpcAI
 		// Keymaster
 		SPAWN_POINTS.put(22361, new Location[]
 		{
-			new Location(14091, 250533, -1940, 2),
-			new Location(15762, 252440, -2015, 2),
-			new Location(19836, 256212, -2090, 2),
-			new Location(21940, 254107, -2010, 2),
-			new Location(17299, 252943, -2015, 2),
+			new Location(14091, 250533, -1940, 0, 2),
+			new Location(15762, 252440, -2015, 0, 2),
+			new Location(19836, 256212, -2090, 0, 2),
+			new Location(21940, 254107, -2010, 0, 2),
+			new Location(17299, 252943, -2015, 0, 2),
 		});
 		// Typhoon
 		SPAWN_POINTS.put(25539, new Location[]

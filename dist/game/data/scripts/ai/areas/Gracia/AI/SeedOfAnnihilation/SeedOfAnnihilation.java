@@ -28,17 +28,16 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.model.zone.type.EffectZone;
 import org.l2jmobius.gameserver.util.ArrayUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Seed Of Annihilation AI.
  * @author Gigiikun
  */
-public class SeedOfAnnihilation extends AbstractNpcAI
+public class SeedOfAnnihilation extends Script
 {
 	private static final Map<Integer, Location> TELEPORT_ZONES = new HashMap<>();
 	static

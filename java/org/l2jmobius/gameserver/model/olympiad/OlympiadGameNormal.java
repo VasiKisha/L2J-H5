@@ -23,9 +23,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.OlympiadConfig;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -332,9 +332,9 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 		{
 			pointDiff = 1;
 		}
-		else if (pointDiff > Config.OLYMPIAD_MAX_POINTS)
+		else if (pointDiff > OlympiadConfig.OLYMPIAD_MAX_POINTS)
 		{
-			pointDiff = Config.OLYMPIAD_MAX_POINTS;
+			pointDiff = OlympiadConfig.OLYMPIAD_MAX_POINTS;
 		}
 		
 		int points;
@@ -349,13 +349,13 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 				{
 					try
 					{
-						points = Math.min(playerOnePoints / 3, Config.OLYMPIAD_MAX_POINTS);
+						points = Math.min(playerOnePoints / 3, OlympiadConfig.OLYMPIAD_MAX_POINTS);
 						removePointsFromParticipant(_playerOne, points);
 						list1.add(new OlympiadInfo(_playerOne.getName(), _playerOne.getClanName(), _playerOne.getClanId(), _playerOne.getBaseClass(), _damageP1, playerOnePoints - points, -points));
 						
 						winside = 2;
 						
-						if (Config.OLYMPIAD_LOG_FIGHTS)
+						if (OlympiadConfig.OLYMPIAD_LOG_FIGHTS)
 						{
 							LOGGER_OLYMPIAD.info(_playerOne.getName() + " default," + _playerOne + "," + _playerTwo + ",0,0,0,0," + points + "," + getType());
 						}
@@ -370,7 +370,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 				{
 					try
 					{
-						points = Math.min(playerTwoPoints / 3, Config.OLYMPIAD_MAX_POINTS);
+						points = Math.min(playerTwoPoints / 3, OlympiadConfig.OLYMPIAD_MAX_POINTS);
 						removePointsFromParticipant(_playerTwo, points);
 						list2.add(new OlympiadInfo(_playerTwo.getName(), _playerTwo.getClanName(), _playerTwo.getClanId(), _playerTwo.getBaseClass(), _damageP2, playerTwoPoints - points, -points));
 						
@@ -383,7 +383,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 							winside = 1;
 						}
 						
-						if (Config.OLYMPIAD_LOG_FIGHTS)
+						if (OlympiadConfig.OLYMPIAD_LOG_FIGHTS)
 						{
 							LOGGER_OLYMPIAD.info(_playerTwo.getName() + " default," + _playerOne + "," + _playerTwo + ",0,0,0,0," + points + "," + getType());
 						}
@@ -436,7 +436,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 					
 					rewardParticipant(_playerOne.getPlayer(), getReward());
 					
-					if (Config.OLYMPIAD_LOG_FIGHTS)
+					if (OlympiadConfig.OLYMPIAD_LOG_FIGHTS)
 					{
 						LOGGER_OLYMPIAD.info(_playerTwo.getName() + " crash," + _playerOne + "," + _playerTwo + ",0,0,0,0," + pointDiff + "," + getType());
 					}
@@ -465,7 +465,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 					
 					rewardParticipant(_playerTwo.getPlayer(), getReward());
 					
-					if (Config.OLYMPIAD_LOG_FIGHTS)
+					if (OlympiadConfig.OLYMPIAD_LOG_FIGHTS)
 					{
 						LOGGER_OLYMPIAD.info(_playerOne.getName() + " crash," + _playerOne + "," + _playerTwo + ",0,0,0,0," + pointDiff + "," + getType());
 					}
@@ -490,7 +490,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 					
 					tie = true;
 					
-					if (Config.OLYMPIAD_LOG_FIGHTS)
+					if (OlympiadConfig.OLYMPIAD_LOG_FIGHTS)
 					{
 						LOGGER_OLYMPIAD.info("both crash," + _playerOne.getName() + "," + _playerOne + ",0,0,0,0," + _playerTwo + "," + pointDiff + "," + getType());
 					}
@@ -631,12 +631,12 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 				sm = new SystemMessage(SystemMessageId.THERE_IS_NO_VICTOR_THE_MATCH_ENDS_IN_A_TIE);
 				stadium.broadcastPacket(sm);
 				
-				int value = Math.min(playerOnePoints / getDivider(), Config.OLYMPIAD_MAX_POINTS);
+				int value = Math.min(playerOnePoints / getDivider(), OlympiadConfig.OLYMPIAD_MAX_POINTS);
 				
 				removePointsFromParticipant(_playerOne, value);
 				list1.add(new OlympiadInfo(_playerOne.getName(), _playerOne.getClanName(), _playerOne.getClanId(), _playerOne.getBaseClass(), _damageP1, playerOnePoints - value, -value));
 				
-				value = Math.min(playerTwoPoints / getDivider(), Config.OLYMPIAD_MAX_POINTS);
+				value = Math.min(playerTwoPoints / getDivider(), OlympiadConfig.OLYMPIAD_MAX_POINTS);
 				removePointsFromParticipant(_playerTwo, value);
 				list2.add(new OlympiadInfo(_playerTwo.getName(), _playerTwo.getClanName(), _playerTwo.getClanId(), _playerTwo.getBaseClass(), _damageP2, playerTwoPoints - value, -value));
 				
@@ -661,7 +661,7 @@ public abstract class OlympiadGameNormal extends AbstractOlympiadGame
 			
 			stadium.broadcastPacket(result);
 			
-			if (Config.OLYMPIAD_LOG_FIGHTS)
+			if (OlympiadConfig.OLYMPIAD_LOG_FIGHTS)
 			{
 				LOGGER_OLYMPIAD.info(winner + "," + _playerOne.getName() + "," + _playerOne + "," + _playerTwo + "," + playerOneHp + "," + playerTwoHp + "," + _damageP1 + "," + _damageP2 + "," + pointDiff + "," + getType());
 			}

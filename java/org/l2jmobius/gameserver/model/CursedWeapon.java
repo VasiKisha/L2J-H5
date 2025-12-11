@@ -37,7 +37,7 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.groups.PartyMessageType;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
@@ -107,7 +107,7 @@ public class CursedWeapon
 				removeSkill();
 				
 				// Remove
-				_player.getInventory().unEquipItemInBodySlot(ItemTemplate.SLOT_LR_HAND);
+				_player.getInventory().unEquipItemInBodySlot(BodyPart.LR_HAND);
 				_player.storeMe();
 				
 				// Destroy

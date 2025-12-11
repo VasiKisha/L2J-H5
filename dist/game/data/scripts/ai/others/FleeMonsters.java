@@ -27,15 +27,14 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.interfaces.ILocational;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.util.LocationUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Flee Monsters AI.
  * @author Mobius, NosBit
  */
-public class FleeMonsters extends AbstractNpcAI
+public class FleeMonsters extends Script
 {
 	// NPCs
 	private static final int[] MOBS =

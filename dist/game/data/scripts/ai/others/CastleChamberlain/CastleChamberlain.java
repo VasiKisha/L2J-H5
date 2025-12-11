@@ -23,7 +23,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.TeleporterData;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
@@ -43,6 +44,7 @@ import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
 import org.l2jmobius.gameserver.model.events.holders.actor.npc.OnNpcManorBypass;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.model.siege.Castle;
 import org.l2jmobius.gameserver.model.siege.Castle.CastleFunction;
@@ -59,13 +61,11 @@ import org.l2jmobius.gameserver.network.serverpackets.ExShowSeedSetting;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.FormatUtil;
 
-import ai.AbstractNpcAI;
-
 /**
  * Castle Chamberlain AI.
  * @author malyelfik
  */
-public class CastleChamberlain extends AbstractNpcAI
+public class CastleChamberlain extends Script
 {
 	// NPCs
 	private static final int[] NPC =
@@ -206,27 +206,27 @@ public class CastleChamberlain extends AbstractNpcAI
 		{
 			case Castle.FUNC_RESTORE_EXP:
 			{
-				fee = (level == 45) ? Config.CS_EXPREG1_FEE : Config.CS_EXPREG2_FEE;
+				fee = (level == 45) ? FeatureConfig.CS_EXPREG1_FEE : FeatureConfig.CS_EXPREG2_FEE;
 				break;
 			}
 			case Castle.FUNC_RESTORE_HP:
 			{
-				fee = (level == 300) ? Config.CS_HPREG1_FEE : Config.CS_HPREG2_FEE;
+				fee = (level == 300) ? FeatureConfig.CS_HPREG1_FEE : FeatureConfig.CS_HPREG2_FEE;
 				break;
 			}
 			case Castle.FUNC_RESTORE_MP:
 			{
-				fee = (level == 40) ? Config.CS_MPREG1_FEE : Config.CS_MPREG2_FEE;
+				fee = (level == 40) ? FeatureConfig.CS_MPREG1_FEE : FeatureConfig.CS_MPREG2_FEE;
 				break;
 			}
 			case Castle.FUNC_SUPPORT:
 			{
-				fee = (level == 5) ? Config.CS_SUPPORT1_FEE : Config.CS_SUPPORT2_FEE;
+				fee = (level == 5) ? FeatureConfig.CS_SUPPORT1_FEE : FeatureConfig.CS_SUPPORT2_FEE;
 				break;
 			}
 			case Castle.FUNC_TELEPORT:
 			{
-				fee = (level == 1) ? Config.CS_TELE1_FEE : Config.CS_TELE2_FEE;
+				fee = (level == 1) ? FeatureConfig.CS_TELE1_FEE : FeatureConfig.CS_TELE2_FEE;
 				break;
 			}
 		}
@@ -241,27 +241,27 @@ public class CastleChamberlain extends AbstractNpcAI
 		{
 			case Castle.FUNC_RESTORE_EXP:
 			{
-				ratio = Config.CS_EXPREG_FEE_RATIO;
+				ratio = FeatureConfig.CS_EXPREG_FEE_RATIO;
 				break;
 			}
 			case Castle.FUNC_RESTORE_HP:
 			{
-				ratio = Config.CS_HPREG_FEE_RATIO;
+				ratio = FeatureConfig.CS_HPREG_FEE_RATIO;
 				break;
 			}
 			case Castle.FUNC_RESTORE_MP:
 			{
-				ratio = Config.CS_MPREG_FEE_RATIO;
+				ratio = FeatureConfig.CS_MPREG_FEE_RATIO;
 				break;
 			}
 			case Castle.FUNC_SUPPORT:
 			{
-				ratio = Config.CS_SUPPORT_FEE_RATIO;
+				ratio = FeatureConfig.CS_SUPPORT_FEE_RATIO;
 				break;
 			}
 			case Castle.FUNC_TELEPORT:
 			{
-				ratio = Config.CS_TELE_FEE_RATIO;
+				ratio = FeatureConfig.CS_TELE_FEE_RATIO;
 				break;
 			}
 		}
@@ -280,17 +280,17 @@ public class CastleChamberlain extends AbstractNpcAI
 				{
 					case 2:
 					{
-						price = Config.OUTER_DOOR_UPGRADE_PRICE2;
+						price = FeatureConfig.OUTER_DOOR_UPGRADE_PRICE2;
 						break;
 					}
 					case 3:
 					{
-						price = Config.OUTER_DOOR_UPGRADE_PRICE3;
+						price = FeatureConfig.OUTER_DOOR_UPGRADE_PRICE3;
 						break;
 					}
 					case 5:
 					{
-						price = Config.OUTER_DOOR_UPGRADE_PRICE5;
+						price = FeatureConfig.OUTER_DOOR_UPGRADE_PRICE5;
 						break;
 					}
 				}
@@ -302,17 +302,17 @@ public class CastleChamberlain extends AbstractNpcAI
 				{
 					case 2:
 					{
-						price = Config.INNER_DOOR_UPGRADE_PRICE2;
+						price = FeatureConfig.INNER_DOOR_UPGRADE_PRICE2;
 						break;
 					}
 					case 3:
 					{
-						price = Config.INNER_DOOR_UPGRADE_PRICE3;
+						price = FeatureConfig.INNER_DOOR_UPGRADE_PRICE3;
 						break;
 					}
 					case 5:
 					{
-						price = Config.INNER_DOOR_UPGRADE_PRICE5;
+						price = FeatureConfig.INNER_DOOR_UPGRADE_PRICE5;
 						break;
 					}
 				}
@@ -324,17 +324,17 @@ public class CastleChamberlain extends AbstractNpcAI
 				{
 					case 2:
 					{
-						price = Config.WALL_UPGRADE_PRICE2;
+						price = FeatureConfig.WALL_UPGRADE_PRICE2;
 						break;
 					}
 					case 3:
 					{
-						price = Config.WALL_UPGRADE_PRICE3;
+						price = FeatureConfig.WALL_UPGRADE_PRICE3;
 						break;
 					}
 					case 5:
 					{
-						price = Config.WALL_UPGRADE_PRICE5;
+						price = FeatureConfig.WALL_UPGRADE_PRICE5;
 						break;
 					}
 				}
@@ -416,22 +416,22 @@ public class CastleChamberlain extends AbstractNpcAI
 		{
 			case 1:
 			{
-				price = Config.TRAP_UPGRADE_PRICE1;
+				price = FeatureConfig.TRAP_UPGRADE_PRICE1;
 				break;
 			}
 			case 2:
 			{
-				price = Config.TRAP_UPGRADE_PRICE2;
+				price = FeatureConfig.TRAP_UPGRADE_PRICE2;
 				break;
 			}
 			case 3:
 			{
-				price = Config.TRAP_UPGRADE_PRICE3;
+				price = FeatureConfig.TRAP_UPGRADE_PRICE3;
 				break;
 			}
 			case 4:
 			{
-				price = Config.TRAP_UPGRADE_PRICE4;
+				price = FeatureConfig.TRAP_UPGRADE_PRICE4;
 				break;
 			}
 		}
@@ -863,7 +863,7 @@ public class CastleChamberlain extends AbstractNpcAI
 				if (isOwner(player, npc) && player.hasAccess(ClanAccess.CASTLE_VAULT))
 				{
 					long seedIncome = 0;
-					if (Config.ALLOW_MANOR)
+					if (GeneralConfig.ALLOW_MANOR)
 					{
 						for (SeedProduction sp : CastleManorManager.getInstance().getSeedProduction(castle.getResidenceId(), false))
 						{
@@ -1261,7 +1261,7 @@ public class CastleChamberlain extends AbstractNpcAI
 			}
 			case "manor":
 			{
-				if (Config.ALLOW_MANOR)
+				if (GeneralConfig.ALLOW_MANOR)
 				{
 					htmltext = (isOwner(player, npc) && player.hasAccess(ClanAccess.CASTLE_MANOR)) ? "manor.html" : "chamberlain-21.html";
 				}
@@ -1337,12 +1337,12 @@ public class CastleChamberlain extends AbstractNpcAI
 						if ((SevenSigns.getInstance().getPlayerCabal(player.getObjectId()) == SevenSigns.CABAL_DAWN) && SevenSigns.getInstance().isCompetitionPeriod())
 						{
 							final int ticketCount = castle.getTicketBuyCount();
-							if (ticketCount < (Config.SSQ_DAWN_TICKET_QUANTITY / Config.SSQ_DAWN_TICKET_BUNDLE))
+							if (ticketCount < (FeatureConfig.SSQ_DAWN_TICKET_QUANTITY / FeatureConfig.SSQ_DAWN_TICKET_BUNDLE))
 							{
 								final NpcHtmlMessage html = getHtmlPacket(player, npc, "ssq_selldawnticket.html");
-								html.replace("%DawnTicketLeft%", String.valueOf(Config.SSQ_DAWN_TICKET_QUANTITY - (ticketCount * Config.SSQ_DAWN_TICKET_BUNDLE)));
-								html.replace("%DawnTicketBundle%", String.valueOf(Config.SSQ_DAWN_TICKET_BUNDLE));
-								html.replace("%DawnTicketPrice%", String.valueOf(Config.SSQ_DAWN_TICKET_PRICE * Config.SSQ_DAWN_TICKET_BUNDLE));
+								html.replace("%DawnTicketLeft%", String.valueOf(FeatureConfig.SSQ_DAWN_TICKET_QUANTITY - (ticketCount * FeatureConfig.SSQ_DAWN_TICKET_BUNDLE)));
+								html.replace("%DawnTicketBundle%", String.valueOf(FeatureConfig.SSQ_DAWN_TICKET_BUNDLE));
+								html.replace("%DawnTicketPrice%", String.valueOf(FeatureConfig.SSQ_DAWN_TICKET_PRICE * FeatureConfig.SSQ_DAWN_TICKET_BUNDLE));
 								player.sendPacket(html);
 							}
 							else
@@ -1375,13 +1375,13 @@ public class CastleChamberlain extends AbstractNpcAI
 						if ((SevenSigns.getInstance().getPlayerCabal(player.getObjectId()) == SevenSigns.CABAL_DAWN) && SevenSigns.getInstance().isCompetitionPeriod())
 						{
 							final int ticketCount = castle.getTicketBuyCount();
-							if (ticketCount < (Config.SSQ_DAWN_TICKET_QUANTITY / Config.SSQ_DAWN_TICKET_BUNDLE))
+							if (ticketCount < (FeatureConfig.SSQ_DAWN_TICKET_QUANTITY / FeatureConfig.SSQ_DAWN_TICKET_BUNDLE))
 							{
-								final long totalCost = Config.SSQ_DAWN_TICKET_PRICE * Config.SSQ_DAWN_TICKET_BUNDLE;
+								final long totalCost = FeatureConfig.SSQ_DAWN_TICKET_PRICE * FeatureConfig.SSQ_DAWN_TICKET_BUNDLE;
 								if (player.getAdena() >= totalCost)
 								{
 									takeItems(player, Inventory.ADENA_ID, totalCost);
-									giveItems(player, Config.SSQ_MANORS_AGREEMENT_ID, Config.SSQ_DAWN_TICKET_BUNDLE);
+									giveItems(player, FeatureConfig.SSQ_MANORS_AGREEMENT_ID, FeatureConfig.SSQ_DAWN_TICKET_BUNDLE);
 									castle.setTicketBuyCount(ticketCount + 1);
 								}
 								else

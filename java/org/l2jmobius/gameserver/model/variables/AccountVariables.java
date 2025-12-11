@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.model.variables;
 
@@ -20,14 +24,15 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Map.Entry;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.commons.threads.ThreadPool;
 
 /**
- * @author UnAfraid
+ * @author UnAfraid, Mobius
  */
 public class AccountVariables extends AbstractVariables
 {
@@ -35,13 +40,22 @@ public class AccountVariables extends AbstractVariables
 	
 	// SQL Queries.
 	private static final String SELECT_QUERY = "SELECT * FROM account_gsdata WHERE account_name = ?";
-	private static final String DELETE_QUERY = "DELETE FROM account_gsdata WHERE account_name = ?";
-	private static final String INSERT_QUERY = "REPLACE INTO account_gsdata (account_name, var, value) VALUES (?, ?, ?)";
+	private static final String DELETE_QUERY = "DELETE FROM account_gsdata WHERE account_name = ? AND var = ?";
+	private static final String DELETE_ALL_QUERY = "DELETE FROM account_gsdata WHERE account_name = ?";
+	private static final String INSERT_QUERY = "INSERT INTO account_gsdata (account_name, var, value) VALUES (?, ?, ?)";
+	private static final String UPDATE_QUERY = "UPDATE account_gsdata SET value = ? WHERE account_name = ? AND var = ?";
+	private static final String DELETE_QUERY_VAR = "DELETE FROM account_gsdata WHERE var = ?";
 	
-	// Public variable names
+	// Asynchronous persistence.
+	private static final long SAVE_INTERVAL = 60000; // 1 minute.
+	private static final boolean ASYNC_SAVE_ENABLED = true;
+	
+	// Public variables.
 	public static final String HWID = "HWID";
 	public static final String HWIDSLIT_VAR = "	";
 	
+	// Private variables.
+	private final AtomicBoolean _scheduledSave = new AtomicBoolean(false);
 	private final String _accountName;
 	
 	public AccountVariables(String accountName)
@@ -52,6 +66,8 @@ public class AccountVariables extends AbstractVariables
 	
 	public boolean restoreMe()
 	{
+		clearChangeTracking();
+		
 		// Restore previous variables.
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement st = con.prepareStatement(SELECT_QUERY))
@@ -61,13 +77,13 @@ public class AccountVariables extends AbstractVariables
 			{
 				while (rset.next())
 				{
-					set(rset.getString("var"), rset.getString("value"));
+					set(rset.getString("var"), rset.getString("value"), false);
 				}
 			}
 		}
 		catch (SQLException e)
 		{
-			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't restore variables for: " + _accountName, e);
+			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Could not restore variables for: " + _accountName, e);
 			return false;
 		}
 		finally
@@ -86,37 +102,122 @@ public class AccountVariables extends AbstractVariables
 			return false;
 		}
 		
+		// If async saving is enabled and not already scheduled, schedule a save.
+		if (ASYNC_SAVE_ENABLED && !_scheduledSave.get())
+		{
+			_scheduledSave.set(true);
+			ThreadPool.schedule(() ->
+			{
+				_scheduledSave.set(false);
+				saveNow();
+			}, SAVE_INTERVAL);
+			return true;
+		}
+		
+		return saveNow();
+	}
+	
+	/**
+	 * Force an immediate save of the variables.
+	 * @return true if successful, false otherwise.
+	 */
+	public boolean saveNow()
+	{
+		if (!hasChanges())
+		{
+			return false;
+		}
+		
+		// FIXME: May store after server shutdown.
+		// If async is enabled, offload to ThreadPool.
+		// if (ASYNC_SAVE_ENABLED)
+		// {
+		// ThreadPool.execute(this::saveNowSync);
+		// return true;
+		// }
+		
+		return saveNowSync();
+	}
+	
+	/**
+	 * Synchronous implementation of variable saving with optimized database operations.
+	 * @return true if successful, false otherwise.
+	 */
+	private boolean saveNowSync()
+	{
+		_saveLock.lock();
+		
 		try (Connection con = DatabaseFactory.getConnection())
 		{
-			// Clear previous entries.
-			try (PreparedStatement st = con.prepareStatement(DELETE_QUERY))
+			// Process deletions.
+			if (!_deleted.isEmpty())
 			{
-				st.setString(1, _accountName);
-				st.execute();
+				try (PreparedStatement st = con.prepareStatement(DELETE_QUERY))
+				{
+					for (String name : _deleted)
+					{
+						st.setString(1, _accountName);
+						st.setString(2, name);
+						st.addBatch();
+					}
+					
+					st.executeBatch();
+				}
 			}
 			
-			// Insert all variables.
-			try (PreparedStatement st = con.prepareStatement(INSERT_QUERY))
+			// Process additions.
+			if (!_added.isEmpty())
 			{
-				st.setString(1, _accountName);
-				for (Entry<String, Object> entry : getSet().entrySet())
+				try (PreparedStatement st = con.prepareStatement(INSERT_QUERY))
 				{
-					st.setString(2, entry.getKey());
-					st.setString(3, String.valueOf(entry.getValue()));
-					st.addBatch();
+					for (String name : _added)
+					{
+						final Object value = getSet().get(name);
+						if (value != null)
+						{
+							st.setString(1, _accountName);
+							st.setString(2, name);
+							st.setString(3, String.valueOf(value));
+							st.addBatch();
+						}
+					}
+					
+					st.executeBatch();
 				}
-				
-				st.executeBatch();
+			}
+			
+			// Process modifications.
+			if (!_modified.isEmpty())
+			{
+				try (PreparedStatement st = con.prepareStatement(UPDATE_QUERY))
+				{
+					for (String name : _modified)
+					{
+						final Object value = getSet().get(name);
+						if (value != null)
+						{
+							st.setString(1, String.valueOf(value));
+							st.setString(2, _accountName);
+							st.setString(3, name);
+							st.addBatch();
+						}
+					}
+					
+					st.executeBatch();
+				}
 			}
 		}
 		catch (SQLException e)
 		{
-			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't update variables for: " + _accountName, e);
+			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Could not update variables for: " + _accountName, e);
+			_saveLock.unlock();
 			return false;
 		}
 		finally
 		{
+			clearChangeTracking();
 			compareAndSetChanges(true, false);
+			_saveLock.unlock();
 		}
 		
 		return true;
@@ -124,21 +225,45 @@ public class AccountVariables extends AbstractVariables
 	
 	public boolean deleteMe()
 	{
-		try (Connection con = DatabaseFactory.getConnection())
+		_saveLock.lock();
+		
+		try (Connection con = DatabaseFactory.getConnection();
+			PreparedStatement st = con.prepareStatement(DELETE_ALL_QUERY))
 		{
-			// Clear previous entries.
-			try (PreparedStatement st = con.prepareStatement(DELETE_QUERY))
-			{
-				st.setString(1, _accountName);
-				st.execute();
-			}
-			
-			// Clear all entries
-			getSet().clear();
+			st.setString(1, _accountName);
+			st.execute();
 		}
 		catch (Exception e)
 		{
-			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Couldn't delete variables for: " + _accountName, e);
+			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Could not delete variables for: " + _accountName, e);
+			_saveLock.unlock();
+			return false;
+		}
+		
+		// Clear all variables.
+		getSet().clear();
+		clearChangeTracking();
+		
+		_saveLock.unlock();
+		return true;
+	}
+	
+	/**
+	 * Delete all entries for an requested var
+	 * @param var
+	 * @return success
+	 */
+	public static boolean deleteVipPurchases(String var)
+	{
+		try (Connection con = DatabaseFactory.getConnection();
+			PreparedStatement st = con.prepareStatement(DELETE_QUERY_VAR))
+		{
+			st.setString(1, var);
+			st.execute();
+		}
+		catch (Exception e)
+		{
+			LOGGER.log(Level.WARNING, "AccountVariables: Could not delete vip variables!", e);
 			return false;
 		}
 		

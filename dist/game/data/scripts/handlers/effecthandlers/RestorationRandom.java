@@ -23,8 +23,8 @@ package handlers.effecthandlers;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.ExtractableProductItem;
 import org.l2jmobius.gameserver.model.ExtractableSkill;
@@ -124,7 +124,7 @@ public class RestorationRandom extends AbstractEffect
 				continue;
 			}
 			
-			final long itemCount = (long) (item.getCount() * Config.RATE_EXTRACTABLE);
+			final long itemCount = (long) (item.getCount() * RatesConfig.RATE_EXTRACTABLE);
 			if (template.isStackable())
 			{
 				player.addItem(ItemProcessType.REWARD, item.getId(), itemCount, effector, true);

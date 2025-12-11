@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.ServerPackets;
@@ -37,13 +37,13 @@ public class ExBrGamePoint extends ServerPacket
 	public ExBrGamePoint(Player player)
 	{
 		_playerObj = player.getObjectId();
-		if (Config.PRIME_SHOP_ITEM_ID == -1)
+		if (GeneralConfig.PRIME_SHOP_ITEM_ID == -1)
 		{
 			_points = player.getGamePoints();
 		}
 		else
 		{
-			_points = player.getInventory().getInventoryItemCount(Config.PRIME_SHOP_ITEM_ID, -1);
+			_points = player.getInventory().getInventoryItemCount(GeneralConfig.PRIME_SHOP_ITEM_ID, -1);
 		}
 	}
 	

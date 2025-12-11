@@ -19,14 +19,14 @@ package quests.Q00281_HeadForTheHills;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.network.NpcStringId;
 
 import ai.others.NewbieGuide.NewbieGuide;
@@ -128,7 +128,7 @@ public class Q00281_HeadForTheHills extends Quest
 					}
 					
 					// Newbie Guide.
-					final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+					final Quest newbieGuide = ScriptManager.getInstance().getScript(NewbieGuide.class.getSimpleName());
 					if (newbieGuide != null)
 					{
 						final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);
@@ -197,7 +197,7 @@ public class Q00281_HeadForTheHills extends Quest
 					}
 					
 					// Newbie Guide.
-					final Quest newbieGuide = QuestManager.getInstance().getQuest(NewbieGuide.class.getSimpleName());
+					final Quest newbieGuide = ScriptManager.getInstance().getScript(NewbieGuide.class.getSimpleName());
 					if (newbieGuide != null)
 					{
 						final QuestState newbieGuideQs = newbieGuide.getQuestState(player, true);

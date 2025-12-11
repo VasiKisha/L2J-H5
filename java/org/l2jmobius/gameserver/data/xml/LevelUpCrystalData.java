@@ -32,8 +32,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.enums.AbsorbCrystalType;
 import org.l2jmobius.gameserver.data.holders.LevelingSoulCrystalInfo;
 import org.l2jmobius.gameserver.data.holders.SoulCrystal;
@@ -218,7 +218,7 @@ public class LevelUpCrystalData implements IXmlReader
 										continue;
 									}
 									
-									chance = (int) (chance * Config.SOUL_CRYSTAL_CHANCE_MULTIPLIER);
+									chance = (int) (chance * PlayerConfig.SOUL_CRYSTAL_CHANCE_MULTIPLIER);
 									chance = (chance > 100) ? 100 : chance;
 									LevelingSoulCrystalInfo info = new LevelingSoulCrystalInfo(absorbType, isSkillNeeded, chance);
 									if (att1 != null)

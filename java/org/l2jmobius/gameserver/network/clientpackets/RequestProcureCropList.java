@@ -19,7 +19,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
 import org.l2jmobius.gameserver.model.CropProcure;
@@ -47,7 +48,7 @@ public class RequestProcureCropList extends ClientPacket
 	protected void readImpl()
 	{
 		final int count = readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
+		if ((count <= 0) || (count > PlayerConfig.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -146,7 +147,7 @@ public class RequestProcureCropList extends ClientPacket
 		}
 		
 		// Used when Config.ALT_MANOR_SAVE_ALL_ACTIONS == true
-		final int updateListSize = Config.ALT_MANOR_SAVE_ALL_ACTIONS ? _items.size() : 0;
+		final int updateListSize = GeneralConfig.ALT_MANOR_SAVE_ALL_ACTIONS ? _items.size() : 0;
 		final List<CropProcure> updateList = new ArrayList<>(updateListSize);
 		
 		// Proceed the purchase
@@ -189,13 +190,13 @@ public class RequestProcureCropList extends ClientPacket
 			}
 			
 			player.addItem(ItemProcessType.REWARD, i.getRewardId(), rewardItemCount, manager, true);
-			if (Config.ALT_MANOR_SAVE_ALL_ACTIONS)
+			if (GeneralConfig.ALT_MANOR_SAVE_ALL_ACTIONS)
 			{
 				updateList.add(cp);
 			}
 		}
 		
-		if (Config.ALT_MANOR_SAVE_ALL_ACTIONS)
+		if (GeneralConfig.ALT_MANOR_SAVE_ALL_ACTIONS)
 		{
 			manor.updateCurrentProcure(castleId, updateList);
 		}

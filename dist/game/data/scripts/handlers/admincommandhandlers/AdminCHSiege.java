@@ -19,7 +19,7 @@ package handlers.admincommandhandlers;
 import java.util.Calendar;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.DevelopmentConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.CHSiegeManager;
@@ -62,7 +62,7 @@ public class AdminCHSiege implements IAdminCommandHandler
 	{
 		final String[] split = command.split(" ");
 		SiegableHall hall = null;
-		if (Config.NO_QUESTS)
+		if (DevelopmentConfig.NO_QUESTS)
 		{
 			activeChar.sendSysMessage("AltDevNoQuests = true; Clan Hall Sieges are disabled!");
 			return false;

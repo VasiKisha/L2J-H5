@@ -23,6 +23,7 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.type.EffectZone;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -30,14 +31,12 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.scripting.annotations.Disabled;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
-import ai.AbstractNpcAI;
-
 /**
  * Dummy AI for spawns/respawns only for testing.
  * @author Gnacik
  */
 @Disabled // Mobius: this needs to be rewritten.
-public class DenOfEvil extends AbstractNpcAI
+public class DenOfEvil extends Script
 {
 	// private static final int _buffer_id = 32656;
 	protected static final int[] EYE_IDS =

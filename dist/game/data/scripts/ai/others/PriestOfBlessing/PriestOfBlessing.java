@@ -20,17 +20,16 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.FormatUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Priest Of Blessing AI.
  * @author Gnacik
  */
-public class PriestOfBlessing extends AbstractNpcAI
+public class PriestOfBlessing extends Script
 {
 	// NPC
 	private static final int PRIEST = 32783;

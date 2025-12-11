@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.data.xml;
 
@@ -22,6 +26,7 @@ import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
@@ -39,20 +44,27 @@ import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.serverpackets.ShortcutRegister;
 
 /**
- * This class holds the Initial Shortcuts information.<br>
- * What shortcuts get each newly created character.
- * @author Zoey76
+ * Manages initial shortcut and macro configurations for new player characters.<br>
+ * Loads configuration data from XML files and provides shortcuts based on player class.
+ * <ul>
+ * <li>Class-specific shortcut configurations for different player classes.</li>
+ * <li>Global shortcut settings available to all players.</li>
+ * <li>Macro preset definitions with commands and parameters.</li>
+ * <li>Automatic shortcut registration for skills, items, and macros.</li>
+ * </ul>
+ * @author Zoey76, Mobius
  */
 public class InitialShortcutData implements IXmlReader
 {
-	private final Map<PlayerClass, List<Shortcut>> _initialShortcutData = new EnumMap<>(PlayerClass.class);
+	private static final Logger LOGGER = Logger.getLogger(InitialShortcutData.class.getName());
 	
+	// Shortcut Data Storage.
+	private final Map<PlayerClass, List<Shortcut>> _initialShortcutData = new EnumMap<>(PlayerClass.class);
 	private final List<Shortcut> _initialGlobalShortcutList = new ArrayList<>();
+	
+	// Macro Configuration.
 	private final Map<Integer, Macro> _macroPresets = new HashMap<>();
 	
-	/**
-	 * Instantiates a new initial shortcuts data.
-	 */
 	protected InitialShortcutData()
 	{
 		load();
@@ -64,7 +76,7 @@ public class InitialShortcutData implements IXmlReader
 		_initialShortcutData.clear();
 		_initialGlobalShortcutList.clear();
 		
-		parseDatapackFile("data/stats/initialShortcuts.xml");
+		parseDatapackFile("data/stats/players/initialShortcuts.xml");
 		
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _initialGlobalShortcutList.size() + " initial global shortcut data.");
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _initialShortcutData.size() + " initial shortcut data.");
@@ -74,22 +86,124 @@ public class InitialShortcutData implements IXmlReader
 	@Override
 	public void parseDocument(Document document, File file)
 	{
-		for (Node n = document.getFirstChild(); n != null; n = n.getNextSibling())
+		for (Node node = document.getFirstChild(); node != null; node = node.getNextSibling())
 		{
-			if ("list".equals(n.getNodeName()))
+			if ("list".equals(node.getNodeName()))
 			{
-				for (Node d = n.getFirstChild(); d != null; d = d.getNextSibling())
+				for (Node dataNode = node.getFirstChild(); dataNode != null; dataNode = dataNode.getNextSibling())
 				{
-					switch (d.getNodeName())
+					switch (dataNode.getNodeName())
 					{
 						case "shortcuts":
 						{
-							parseShortcuts(d);
+							NamedNodeMap attributes = dataNode.getAttributes();
+							final Node classIdNode = attributes.getNamedItem("classId");
+							final List<Shortcut> shortcutList = new ArrayList<>();
+							
+							for (Node childNode = dataNode.getFirstChild(); childNode != null; childNode = childNode.getNextSibling())
+							{
+								if ("page".equals(childNode.getNodeName()))
+								{
+									attributes = childNode.getAttributes();
+									final int pageId = parseInteger(attributes, "pageId");
+									for (Node slotNode = childNode.getFirstChild(); slotNode != null; slotNode = slotNode.getNextSibling())
+									{
+										if ("slot".equals(slotNode.getNodeName()))
+										{
+											final NamedNodeMap slotAttributes = slotNode.getAttributes();
+											final int slotId = parseInteger(slotAttributes, "slotId");
+											final ShortcutType shortcutType = parseEnum(slotAttributes, ShortcutType.class, "shortcutType");
+											final int shortcutId = parseInteger(slotAttributes, "shortcutId");
+											final int shortcutLevel = parseInteger(slotAttributes, "shortcutLevel", 0);
+											shortcutList.add(new Shortcut(slotId, pageId, shortcutType, shortcutId, shortcutLevel, 0));
+										}
+									}
+								}
+							}
+							
+							if (classIdNode != null)
+							{
+								_initialShortcutData.put(PlayerClass.getPlayerClass(Integer.parseInt(classIdNode.getNodeValue())), shortcutList);
+							}
+							else
+							{
+								_initialGlobalShortcutList.addAll(shortcutList);
+							}
 							break;
 						}
 						case "macros":
 						{
-							parseMacros(d);
+							for (Node childNode = dataNode.getFirstChild(); childNode != null; childNode = childNode.getNextSibling())
+							{
+								if ("macro".equals(childNode.getNodeName()))
+								{
+									NamedNodeMap attributes = childNode.getAttributes();
+									if (!parseBoolean(attributes, "enabled", true))
+									{
+										continue;
+									}
+									
+									final int macroId = parseInteger(attributes, "macroId");
+									final int icon = parseInteger(attributes, "icon");
+									final String name = parseString(attributes, "name");
+									final String description = parseString(attributes, "description");
+									final String acronym = parseString(attributes, "acronym");
+									final List<MacroCmd> commands = new ArrayList<>(1);
+									int entryIndex = 0;
+									
+									for (Node commandNode = childNode.getFirstChild(); commandNode != null; commandNode = commandNode.getNextSibling())
+									{
+										if ("command".equals(commandNode.getNodeName()))
+										{
+											attributes = commandNode.getAttributes();
+											final MacroType type = parseEnum(attributes, MacroType.class, "type");
+											int parameterOne = 0;
+											int parameterTwo = 0;
+											final String commandText = commandNode.getTextContent();
+											
+											switch (type)
+											{
+												case SKILL:
+												{
+													parameterOne = parseInteger(attributes, "skillId"); // Skill ID.
+													parameterTwo = parseInteger(attributes, "skillLevel", 0); // Skill level.
+													break;
+												}
+												case ACTION:
+												{
+													parameterOne = parseInteger(attributes, "actionId"); // Not handled by client.
+													break;
+												}
+												case TEXT:
+												{
+													// Text commands have no numeric parameters.
+													break;
+												}
+												case SHORTCUT:
+												{
+													parameterOne = parseInteger(attributes, "page"); // Page.
+													parameterTwo = parseInteger(attributes, "slot", 0); // Slot.
+													break;
+												}
+												case ITEM:
+												{
+													parameterOne = parseInteger(attributes, "itemId"); // Not handled by client.
+													break;
+												}
+												case DELAY:
+												{
+													parameterOne = parseInteger(attributes, "delay"); // Delay in seconds.
+													break;
+												}
+											}
+											
+											commands.add(new MacroCmd(entryIndex++, type, parameterOne, parameterTwo, commandText));
+										}
+									}
+									
+									_macroPresets.put(macroId, new Macro(macroId, icon, name, description, acronym, commands));
+								}
+							}
 							break;
 						}
 					}
@@ -99,168 +213,9 @@ public class InitialShortcutData implements IXmlReader
 	}
 	
 	/**
-	 * Parses a shortcut.
-	 * @param d the node
-	 */
-	private void parseShortcuts(Node d)
-	{
-		NamedNodeMap attrs = d.getAttributes();
-		final Node classIdNode = attrs.getNamedItem("classId");
-		final List<Shortcut> list = new ArrayList<>();
-		for (Node c = d.getFirstChild(); c != null; c = c.getNextSibling())
-		{
-			if ("page".equals(c.getNodeName()))
-			{
-				attrs = c.getAttributes();
-				final int pageId = parseInteger(attrs, "pageId");
-				for (Node b = c.getFirstChild(); b != null; b = b.getNextSibling())
-				{
-					if ("slot".equals(b.getNodeName()))
-					{
-						list.add(createShortcut(pageId, b));
-					}
-				}
-			}
-		}
-		
-		if (classIdNode != null)
-		{
-			_initialShortcutData.put(PlayerClass.getPlayerClass(Integer.parseInt(classIdNode.getNodeValue())), list);
-		}
-		else
-		{
-			_initialGlobalShortcutList.addAll(list);
-		}
-	}
-	
-	/**
-	 * Parses a macro.
-	 * @param d the node
-	 */
-	private void parseMacros(Node d)
-	{
-		for (Node c = d.getFirstChild(); c != null; c = c.getNextSibling())
-		{
-			if ("macro".equals(c.getNodeName()))
-			{
-				NamedNodeMap attrs = c.getAttributes();
-				if (!parseBoolean(attrs, "enabled", true))
-				{
-					continue;
-				}
-				
-				final int macroId = parseInteger(attrs, "macroId");
-				final int icon = parseInteger(attrs, "icon");
-				final String name = parseString(attrs, "name");
-				final String description = parseString(attrs, "description");
-				final String acronym = parseString(attrs, "acronym");
-				final List<MacroCmd> commands = new ArrayList<>(1);
-				int entry = 0;
-				for (Node b = c.getFirstChild(); b != null; b = b.getNextSibling())
-				{
-					if ("command".equals(b.getNodeName()))
-					{
-						attrs = b.getAttributes();
-						final MacroType type = parseEnum(attrs, MacroType.class, "type");
-						int d1 = 0;
-						int d2 = 0;
-						final String cmd = b.getTextContent();
-						switch (type)
-						{
-							case SKILL:
-							{
-								d1 = parseInteger(attrs, "skillId"); // Skill ID
-								d2 = parseInteger(attrs, "skillLevel", 0); // Skill level
-								break;
-							}
-							case ACTION:
-							{
-								// Not handled by client.
-								d1 = parseInteger(attrs, "actionId");
-								break;
-							}
-							case TEXT:
-							{
-								// Doesn't have numeric parameters.
-								break;
-							}
-							case SHORTCUT:
-							{
-								d1 = parseInteger(attrs, "page"); // Page
-								d2 = parseInteger(attrs, "slot", 0); // Slot
-								break;
-							}
-							case ITEM:
-							{
-								// Not handled by client.
-								d1 = parseInteger(attrs, "itemId");
-								break;
-							}
-							case DELAY:
-							{
-								d1 = parseInteger(attrs, "delay"); // Delay in seconds
-								break;
-							}
-						}
-						
-						commands.add(new MacroCmd(entry++, type, d1, d2, cmd));
-					}
-				}
-				
-				_macroPresets.put(macroId, new Macro(macroId, icon, name, description, acronym, commands));
-			}
-		}
-	}
-	
-	/**
-	 * Parses a node an create a shortcut from it.
-	 * @param pageId the page ID
-	 * @param b the node to parse
-	 * @return the new shortcut
-	 */
-	private Shortcut createShortcut(int pageId, Node b)
-	{
-		final NamedNodeMap attrs = b.getAttributes();
-		final int slotId = parseInteger(attrs, "slotId");
-		final ShortcutType shortcutType = parseEnum(attrs, ShortcutType.class, "shortcutType");
-		final int shortcutId = parseInteger(attrs, "shortcutId");
-		final int shortcutLevel = parseInteger(attrs, "shortcutLevel", 0);
-		final int characterType = parseInteger(attrs, "characterType", 0);
-		return new Shortcut(slotId, pageId, shortcutType, shortcutId, shortcutLevel, characterType);
-	}
-	
-	/**
-	 * Gets the shortcut list.
-	 * @param cId the class ID for the shortcut list
-	 * @return the shortcut list for the give class ID
-	 */
-	public List<Shortcut> getShortcutList(PlayerClass cId)
-	{
-		return _initialShortcutData.get(cId);
-	}
-	
-	/**
-	 * Gets the shortcut list.
-	 * @param cId the class ID for the shortcut list
-	 * @return the shortcut list for the give class ID
-	 */
-	public List<Shortcut> getShortcutList(int cId)
-	{
-		return _initialShortcutData.get(PlayerClass.getPlayerClass(cId));
-	}
-	
-	/**
-	 * Gets the global shortcut list.
-	 * @return the global shortcut list
-	 */
-	public List<Shortcut> getGlobalMacroList()
-	{
-		return _initialGlobalShortcutList;
-	}
-	
-	/**
-	 * Register all the available shortcuts for the given player.
-	 * @param player the player
+	 * Registers all available shortcuts for the specified player including global and class-specific shortcuts.<br>
+	 * Validates item availability, skill knowledge, and macro definitions before registration.
+	 * @param player the {@link Player} for whom to register the shortcuts.
 	 */
 	public void registerAllShortcuts(Player player)
 	{
@@ -307,7 +262,7 @@ public class InitialShortcutData implements IXmlReader
 				}
 			}
 			
-			// Register shortcut
+			// Register shortcut.
 			final Shortcut newShortcut = new Shortcut(shortcut.getSlot(), shortcut.getPage(), shortcut.getType(), shortcutId, shortcut.getLevel(), shortcut.getCharacterType());
 			player.sendPacket(new ShortcutRegister(newShortcut));
 			player.registerShortcut(newShortcut);
@@ -353,7 +308,7 @@ public class InitialShortcutData implements IXmlReader
 					}
 				}
 				
-				// Register shortcut
+				// Register shortcut.
 				final Shortcut newShortcut = new Shortcut(shortcut.getSlot(), shortcut.getPage(), shortcut.getType(), shortcutId, shortcut.getLevel(), shortcut.getCharacterType());
 				player.sendPacket(new ShortcutRegister(newShortcut));
 				player.registerShortcut(newShortcut);
@@ -361,10 +316,6 @@ public class InitialShortcutData implements IXmlReader
 		}
 	}
 	
-	/**
-	 * Gets the single instance of InitialEquipmentData.
-	 * @return single instance of InitialEquipmentData
-	 */
 	public static InitialShortcutData getInstance()
 	{
 		return SingletonHolder.INSTANCE;

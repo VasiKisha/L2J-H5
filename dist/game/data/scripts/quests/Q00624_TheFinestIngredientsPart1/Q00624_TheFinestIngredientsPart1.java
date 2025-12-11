@@ -19,13 +19,13 @@ package quests.Q00624_TheFinestIngredientsPart1;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 
 /**
  * The Finest Ingredients - Part 1.
@@ -105,7 +105,7 @@ public class Q00624_TheFinestIngredientsPart1 extends Quest
 	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player partyMember = getRandomPartyMember(killer, 1);
-		if ((partyMember != null) && partyMember.isInsideRadius3D(npc, Config.ALT_PARTY_RANGE))
+		if ((partyMember != null) && partyMember.isInsideRadius3D(npc, PlayerConfig.ALT_PARTY_RANGE))
 		{
 			final int item = MONSTER_DROPS.get(npc.getId());
 			final long count = getQuestItemsCount(partyMember, item);

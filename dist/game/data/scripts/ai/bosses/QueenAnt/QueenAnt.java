@@ -19,9 +19,10 @@ package ai.bosses.QueenAnt;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.GrandBossConfig;
+import org.l2jmobius.gameserver.config.NpcConfig;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.StatSet;
@@ -30,6 +31,7 @@ import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
@@ -37,13 +39,11 @@ import org.l2jmobius.gameserver.model.zone.type.BossZone;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.PlaySound;
 
-import ai.AbstractNpcAI;
-
 /**
  * Queen Ant's AI
  * @author Emperorc
  */
-public class QueenAnt extends AbstractNpcAI
+public class QueenAnt extends Script
 {
 	private static final int QUEEN = 29001;
 	private static final int LARVA = 29002;
@@ -314,7 +314,7 @@ public class QueenAnt extends AbstractNpcAI
 			return;
 		}
 		
-		if (!Config.RAID_DISABLE_CURSE && ((character.getLevel() - npc.getLevel()) > 8))
+		if (!NpcConfig.RAID_DISABLE_CURSE && ((character.getLevel() - npc.getLevel()) > 8))
 		{
 			Skill curse = null;
 			if (isMage)
@@ -348,8 +348,8 @@ public class QueenAnt extends AbstractNpcAI
 			npc.broadcastPacket(new PlaySound(1, "BS02_D", 1, npc.getObjectId(), npc.getX(), npc.getY(), npc.getZ()));
 			GrandBossManager.getInstance().setStatus(QUEEN, DEAD);
 			
-			final long baseIntervalMillis = Config.QUEEN_ANT_SPAWN_INTERVAL * 3600000;
-			final long randomRangeMillis = Config.QUEEN_ANT_SPAWN_RANDOM * 3600000;
+			final long baseIntervalMillis = GrandBossConfig.QUEEN_ANT_SPAWN_INTERVAL * 3600000;
+			final long randomRangeMillis = GrandBossConfig.QUEEN_ANT_SPAWN_RANDOM * 3600000;
 			final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
 			
 			// Next respawn time.

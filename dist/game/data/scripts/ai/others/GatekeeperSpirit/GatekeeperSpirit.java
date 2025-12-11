@@ -19,15 +19,14 @@ package ai.others.GatekeeperSpirit;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
-
-import ai.AbstractNpcAI;
 
 /**
  * Gatekeeper Spirit AI.
  * @author Zoey76
  */
-public class GatekeeperSpirit extends AbstractNpcAI
+public class GatekeeperSpirit extends Script
 {
 	// NPCs
 	private static final int GATEKEEPER_SPIRIT_ENTER = 31111;
@@ -118,6 +117,12 @@ public class GatekeeperSpirit extends AbstractNpcAI
 				break;
 			}
 		}
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

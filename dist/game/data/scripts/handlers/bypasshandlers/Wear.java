@@ -23,7 +23,7 @@ package handlers.bypasshandlers;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.BuyListData;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -47,7 +47,7 @@ public class Wear implements IBypassHandler
 			return false;
 		}
 		
-		if (!Config.ALLOW_WEAR)
+		if (!GeneralConfig.ALLOW_WEAR)
 		{
 			return false;
 		}

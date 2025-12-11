@@ -16,7 +16,10 @@
  */
 package handlers.chathandlers;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
+import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 import org.l2jmobius.gameserver.data.xml.FakePlayerData;
 import org.l2jmobius.gameserver.handler.IChatHandler;
 import org.l2jmobius.gameserver.managers.FakePlayerChatManager;
@@ -41,13 +44,13 @@ public class ChatWhisper implements IChatHandler
 	@Override
 	public void onChat(ChatType type, Player activeChar, String target, String text)
 	{
-		if (activeChar.isChatBanned() && Config.BAN_CHAT_CHANNELS.contains(type))
+		if (activeChar.isChatBanned() && GeneralConfig.BAN_CHAT_CHANNELS.contains(type))
 		{
 			activeChar.sendPacket(SystemMessageId.CHATTING_IS_CURRENTLY_PROHIBITED_IF_YOU_TRY_TO_CHAT_BEFORE_THE_PROHIBITION_IS_REMOVED_THE_PROHIBITION_TIME_WILL_INCREASE_EVEN_FURTHER);
 			return;
 		}
 		
-		if (Config.JAIL_DISABLE_CHAT && activeChar.isJailed() && !activeChar.isGM())
+		if (GeneralConfig.JAIL_DISABLE_CHAT && activeChar.isJailed() && !activeChar.isGM())
 		{
 			activeChar.sendPacket(SystemMessageId.CHATTING_IS_CURRENTLY_PROHIBITED);
 			return;
@@ -59,11 +62,11 @@ public class ChatWhisper implements IChatHandler
 			return;
 		}
 		
-		if (Config.FAKE_PLAYERS_ENABLED && (FakePlayerData.getInstance().getProperName(target) != null))
+		if (FakePlayersConfig.FAKE_PLAYERS_ENABLED && (FakePlayerData.getInstance().getProperName(target) != null))
 		{
 			if (FakePlayerData.getInstance().isTalkable(target))
 			{
-				if (Config.FAKE_PLAYER_CHAT)
+				if (FakePlayersConfig.FAKE_PLAYER_CHAT)
 				{
 					final String name = FakePlayerData.getInstance().getProperName(target);
 					activeChar.sendPacket(new CreatureSay(activeChar, type, "->" + name, text));
@@ -84,7 +87,7 @@ public class ChatWhisper implements IChatHandler
 		final Player receiver = World.getInstance().getPlayer(target);
 		if ((receiver != null) && !receiver.isSilenceMode(activeChar.getObjectId()))
 		{
-			if (Config.JAIL_DISABLE_CHAT && receiver.isJailed() && !activeChar.isGM())
+			if (GeneralConfig.JAIL_DISABLE_CHAT && receiver.isJailed() && !activeChar.isGM())
 			{
 				activeChar.sendMessage("Player is in jail.");
 				return;
@@ -102,7 +105,7 @@ public class ChatWhisper implements IChatHandler
 				return;
 			}
 			
-			if (Config.FACTION_SYSTEM_ENABLED && Config.FACTION_SPECIFIC_CHAT && ((activeChar.isGood() && receiver.isEvil()) || (activeChar.isEvil() && receiver.isGood())))
+			if (FactionSystemConfig.FACTION_SYSTEM_ENABLED && FactionSystemConfig.FACTION_SPECIFIC_CHAT && ((activeChar.isGood() && receiver.isEvil()) || (activeChar.isEvil() && receiver.isGood())))
 			{
 				activeChar.sendMessage("Player belongs to the opposing faction.");
 				return;
@@ -111,7 +114,7 @@ public class ChatWhisper implements IChatHandler
 			if (!BlockList.isBlocked(receiver, activeChar))
 			{
 				// Allow reciever to send PMs to this char, which is in silence mode.
-				if (Config.SILENCE_MODE_EXCLUDE && activeChar.isSilenceMode())
+				if (PlayerConfig.SILENCE_MODE_EXCLUDE && activeChar.isSilenceMode())
 				{
 					activeChar.addSilenceModeExcluded(receiver.getObjectId());
 				}

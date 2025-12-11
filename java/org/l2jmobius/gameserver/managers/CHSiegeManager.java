@@ -24,8 +24,8 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.config.ConquerableHallSiegeConfig;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -123,9 +123,9 @@ public class CHSiegeManager
 	
 	public void registerClan(Clan clan, SiegableHall hall, Player player)
 	{
-		if (clan.getLevel() < Config.CHS_CLAN_MINLEVEL)
+		if (clan.getLevel() < ConquerableHallSiegeConfig.CHS_CLAN_MINLEVEL)
 		{
-			player.sendMessage("Only clans of level " + Config.CHS_CLAN_MINLEVEL + " or higher may register for a castle siege");
+			player.sendMessage("Only clans of level " + ConquerableHallSiegeConfig.CHS_CLAN_MINLEVEL + " or higher may register for a castle siege");
 		}
 		else if (hall.isWaitingBattle())
 		{
@@ -153,7 +153,7 @@ public class CHSiegeManager
 		{
 			player.sendPacket(SystemMessageId.YOUR_APPLICATION_HAS_BEEN_DENIED_BECAUSE_YOU_HAVE_ALREADY_SUBMITTED_A_REQUEST_FOR_ANOTHER_CASTLE_SIEGE);
 		}
-		else if (hall.getSiege().getAttackers().size() >= Config.CHS_MAX_ATTACKERS)
+		else if (hall.getSiege().getAttackers().size() >= ConquerableHallSiegeConfig.CHS_MAX_ATTACKERS)
 		{
 			player.sendPacket(SystemMessageId.NO_MORE_REGISTRATIONS_MAY_BE_ACCEPTED_FOR_THE_ATTACKER_SIDE);
 		}

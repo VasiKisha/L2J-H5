@@ -85,7 +85,7 @@ public class MultiSellList extends ServerPacket
 				if (ing.getTemplate() != null)
 				{
 					buffer.writeInt(ing.getTemplate().getDisplayId());
-					buffer.writeInt(ing.getTemplate().getBodyPart());
+					buffer.writeInt(ing.getTemplate().getBodyPart().getMask());
 					buffer.writeShort(ing.getTemplate().getType2());
 				}
 				else

@@ -19,15 +19,14 @@ package ai.areas.Hellbound.AI.NPC.Shadai;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.taskmanagers.GameTimeTaskManager;
-
-import ai.AbstractNpcAI;
 
 /**
  * Shadai AI.
  * @author GKR
  */
-public class Shadai extends AbstractNpcAI
+public class Shadai extends Script
 {
 	// NPCs
 	private static final int SHADAI = 32347;

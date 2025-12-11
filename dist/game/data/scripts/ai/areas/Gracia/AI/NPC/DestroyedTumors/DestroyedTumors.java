@@ -24,14 +24,13 @@ import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * @author LordWinter, Mobius
  */
-public class DestroyedTumors extends AbstractNpcAI
+public class DestroyedTumors extends Script
 {
 	private final long warpTimer = System.currentTimeMillis();
 	

@@ -16,6 +16,7 @@
  */
 package handlers.effecthandlers;
 
+import org.l2jmobius.gameserver.config.custom.ClassBalanceConfig;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
@@ -99,6 +100,11 @@ public class Heal extends AbstractEffect
 		{
 			amount += staticShotBonus + Math.sqrt(mAtkMul * effector.getMAtk(effector, null));
 			amount = effected.calcStat(Stat.HEAL_EFFECT, amount, null, null);
+			
+			if (effector.isPlayable() && (skill.getItemConsumeCount() <= 0))
+			{
+				amount *= ClassBalanceConfig.PLAYER_HEALING_SKILL_MULTIPLIERS[effector.asPlayer().getPlayerClass().getId()];
+			}
 			
 			// Heal critic, since CT2.3 Gracia Final
 			if (skill.isMagic() && Formulas.calcMCrit(effector.getMCriticalHit(effected, skill)))

@@ -34,8 +34,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.model.itemauction.ItemAuctionInstance;
 
 /**
@@ -52,7 +53,7 @@ public class ItemAuctionManager
 	{
 		_auctionIds = new AtomicInteger(1);
 		
-		if (!Config.ALT_ITEM_AUCTION_ENABLED)
+		if (!GeneralConfig.ALT_ITEM_AUCTION_ENABLED)
 		{
 			LOGGER.info(getClass().getSimpleName() + ": Disabled.");
 			return;
@@ -72,7 +73,7 @@ public class ItemAuctionManager
 			LOGGER.log(Level.SEVERE, getClass().getSimpleName() + ": Failed loading auctions.", e);
 		}
 		
-		final File file = new File(Config.DATAPACK_ROOT, "data/ItemAuctions.xml");
+		final File file = new File(ServerConfig.DATAPACK_ROOT, "data/ItemAuctions.xml");
 		if (!file.exists())
 		{
 			LOGGER.log(Level.WARNING, getClass().getSimpleName() + ": Missing ItemAuctions.xml!");

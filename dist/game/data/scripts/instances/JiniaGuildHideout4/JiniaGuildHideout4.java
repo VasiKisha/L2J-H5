@@ -20,16 +20,16 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
+import org.l2jmobius.gameserver.model.script.QuestState;
 
-import instances.AbstractInstance;
 import quests.Q10287_StoryOfThoseLeft.Q10287_StoryOfThoseLeft;
 
 /**
  * Jinia Guild Hideout instance zone.
  * @author Adry_85
  */
-public class JiniaGuildHideout4 extends AbstractInstance
+public class JiniaGuildHideout4 extends InstanceScript
 {
 	// NPC
 	private static final int RAFFORTY = 32020;

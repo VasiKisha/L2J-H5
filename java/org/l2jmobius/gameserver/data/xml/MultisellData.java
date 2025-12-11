@@ -31,8 +31,9 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.ConfigLoader;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -68,7 +69,7 @@ public class MultisellData implements IXmlReader
 	{
 		_entries.clear();
 		parseDatapackDirectory("data/multisell", false);
-		if (Config.CUSTOM_MULTISELL_LOAD)
+		if (GeneralConfig.CUSTOM_MULTISELL_LOAD)
 		{
 			parseDatapackDirectory("data/multisell/custom", false);
 		}
@@ -107,7 +108,7 @@ public class MultisellData implements IXmlReader
 						{
 							try
 							{
-								list.setUseRate(Config.class.getField(att.getNodeValue()).getDouble(Config.class));
+								list.setUseRate(ConfigLoader.class.getField(att.getNodeValue()).getDouble(ConfigLoader.class));
 							}
 							catch (Exception e1)
 							{
@@ -196,7 +197,7 @@ public class MultisellData implements IXmlReader
 		
 		// Check if buy price is lower than sell price.
 		// Only applies when there is only one ingredient and it is adena.
-		if (Config.CORRECT_PRICES && (entry.getIngredients().size() == 1) && (entry.getProducts().size() == 1))
+		if (GeneralConfig.CORRECT_PRICES && (entry.getIngredients().size() == 1) && (entry.getProducts().size() == 1))
 		{
 			final Ingredient ingredient = entry.getIngredients().get(0);
 			if (ingredient.getItemId() == 57)
@@ -205,6 +206,11 @@ public class MultisellData implements IXmlReader
 				for (Ingredient product : entry.getProducts())
 				{
 					final ItemTemplate template = ItemData.getInstance().getTemplate(product.getItemId());
+					if (template == null)
+					{
+						continue;
+					}
+					
 					totalPrice += (product.getItemCount() * (template.getReferencePrice() / 2));
 				}
 				

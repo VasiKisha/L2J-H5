@@ -16,7 +16,7 @@
  */
 package features.SkillTransfer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
@@ -30,15 +30,14 @@ import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.itemcontainer.PlayerInventory;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
-
-import ai.AbstractNpcAI;
 
 /**
  * Skill Transfer feature.
  * @author Zoey76
  */
-public class SkillTransfer extends AbstractNpcAI
+public class SkillTransfer extends Script
 {
 	private static final String HOLY_POMANDER = "HOLY_POMANDER_";
 	private static final ItemHolder[] PORMANDERS =
@@ -55,7 +54,7 @@ public class SkillTransfer extends AbstractNpcAI
 	{
 		setPlayerProfessionChangeId(this::onProfessionChange);
 		setPlayerProfessionCancelId(this::onProfessionCancel);
-		setOnEnterWorld(Config.SKILL_CHECK_ENABLE);
+		setOnEnterWorld(GeneralConfig.SKILL_CHECK_ENABLE);
 	}
 	
 	public void onProfessionChange(OnPlayerProfessionChange event)
@@ -78,8 +77,8 @@ public class SkillTransfer extends AbstractNpcAI
 	public void onProfessionCancel(OnPlayerProfessionCancel event)
 	{
 		final Player player = event.getPlayer();
-		final PlayerClass classId = PlayerClass.getPlayerClass(event.getClassId());
-		final int index = getTransferClassIndex(classId);
+		final PlayerClass playerClass = PlayerClass.getPlayerClass(event.getClassId());
+		final int index = getTransferClassIndex(playerClass);
 		
 		// is a transfer class
 		if (index < 0)
@@ -104,7 +103,7 @@ public class SkillTransfer extends AbstractNpcAI
 	@Override
 	public void onEnterWorld(Player player)
 	{
-		if (!player.isGM() || Config.SKILL_CHECK_GM)
+		if (!player.isGM() || GeneralConfig.SKILL_CHECK_GM)
 		{
 			final int index = getTransferClassIndex(player);
 			if (index < 0)
@@ -130,7 +129,7 @@ public class SkillTransfer extends AbstractNpcAI
 						{
 							final String className = ClassListData.getInstance().getClass(player.getPlayerClass()).getClassName();
 							PunishmentManager.handleIllegalPlayerAction(player, player + " has too many transfered skills or items, skill:" + s.getName() + " (" + sk.getId() + "/" + sk.getLevel() + "), class:" + className, IllegalActionPunishmentType.BROADCAST);
-							if (Config.SKILL_CHECK_REMOVE)
+							if (GeneralConfig.SKILL_CHECK_REMOVE)
 							{
 								player.removeSkill(sk);
 							}
@@ -152,9 +151,9 @@ public class SkillTransfer extends AbstractNpcAI
 		return getTransferClassIndex(player.getPlayerClass());
 	}
 	
-	private static int getTransferClassIndex(PlayerClass classId)
+	private static int getTransferClassIndex(PlayerClass playerClass)
 	{
-		switch (classId)
+		switch (playerClass)
 		{
 			case CARDINAL:
 			{

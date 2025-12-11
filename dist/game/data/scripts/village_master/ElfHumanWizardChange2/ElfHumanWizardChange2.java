@@ -20,14 +20,13 @@ import org.l2jmobius.gameserver.data.enums.CategoryType;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Elf Human class transfer AI.
  * @author Adry_85
  */
-public class ElfHumanWizardChange2 extends AbstractNpcAI
+public class ElfHumanWizardChange2 extends Script
 {
 	// NPCs
 	private static int[] NPCS =
@@ -270,12 +269,12 @@ public class ElfHumanWizardChange2 extends AbstractNpcAI
 		}
 		else if (player.isInCategory(CategoryType.WIZARD_GROUP) && (player.isInCategory(CategoryType.HUMAN_MALL_CLASS) || player.isInCategory(CategoryType.ELF_MALL_CLASS)))
 		{
-			final PlayerClass classId = player.getPlayerClass();
-			if ((classId == PlayerClass.WIZARD) || (classId == PlayerClass.SORCERER) || (classId == PlayerClass.NECROMANCER) || (classId == PlayerClass.WARLOCK))
+			final PlayerClass playerClass = player.getPlayerClass();
+			if ((playerClass == PlayerClass.WIZARD) || (playerClass == PlayerClass.SORCERER) || (playerClass == PlayerClass.NECROMANCER) || (playerClass == PlayerClass.WARLOCK))
 			{
 				htmltext = "30115-02.htm"; // fnClassList1
 			}
-			else if ((classId == PlayerClass.ELVEN_WIZARD) || (classId == PlayerClass.SPELLSINGER) || (classId == PlayerClass.ELEMENTAL_SUMMONER))
+			else if ((playerClass == PlayerClass.ELVEN_WIZARD) || (playerClass == PlayerClass.SPELLSINGER) || (playerClass == PlayerClass.ELEMENTAL_SUMMONER))
 			{
 				htmltext = "30115-12.htm"; // fnClassList2
 			}

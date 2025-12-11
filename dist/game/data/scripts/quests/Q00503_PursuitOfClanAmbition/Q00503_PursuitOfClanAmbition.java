@@ -16,12 +16,12 @@
  */
 package quests.Q00503_PursuitOfClanAmbition;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
@@ -334,7 +334,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs == null) || !qs.isStarted() || !LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, true))
+		if ((qs == null) || !qs.isStarted() || !LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, killer, true))
 		{
 			return;
 		}
@@ -346,7 +346,7 @@ public class Q00503_PursuitOfClanAmbition extends Quest
 		}
 		
 		final Player leader = clan.getLeader().getPlayer();
-		if ((leader == null) || !LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, leader, true))
+		if ((leader == null) || !LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, leader, true))
 		{
 			return;
 		}

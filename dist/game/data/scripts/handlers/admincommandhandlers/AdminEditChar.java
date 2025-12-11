@@ -32,9 +32,10 @@ import java.util.StringJoiner;
 import java.util.StringTokenizer;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.custom.AutoPlayConfig;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.data.xml.TransformData;
@@ -278,7 +279,7 @@ public class AdminEditChar implements IAdminCommandHandler
 		}
 		else if (command.startsWith("admin_setfame"))
 		{
-			if (!Config.FAME_SYSTEM_ENABLED)
+			if (!PlayerConfig.FAME_SYSTEM_ENABLED)
 			{
 				activeChar.sendMessage("Fame system is not enabled on the server!");
 				return false;
@@ -319,7 +320,7 @@ public class AdminEditChar implements IAdminCommandHandler
 					final Player player = target.asPlayer();
 					player.setRecomHave(recVal);
 					player.broadcastUserInfo();
-					if (Config.NEVIT_ENABLED)
+					if (PlayerConfig.NEVIT_ENABLED)
 					{
 						player.sendPacket(new ExVoteSystemInfo(player));
 					}
@@ -1105,7 +1106,7 @@ public class AdminEditChar implements IAdminCommandHandler
 		adminReply.replace("%protocol%", String.valueOf(player.getClient() != null ? player.getClient().getProtocolVersion() : "NULL"));
 		adminReply.replace("%hwid%", hwid);
 		adminReply.replace("%ai%", player.getAI().getIntention().name());
-		adminReply.replace("%autoplay%", Config.ENABLE_AUTO_PLAY ? "<br1>AutoPlay: " + (player.isAutoPlaying() ? "Enabled" : "Disabled") : "");
+		adminReply.replace("%autoplay%", AutoPlayConfig.ENABLE_AUTO_PLAY ? "<br1>AutoPlay: " + (player.isAutoPlaying() ? "Enabled" : "Disabled") : "");
 		adminReply.replace("%inst%", player.getInstanceId() > 0 ? "<tr><td>InstanceId:</td><td><a action=\"bypass -h admin_instance_spawns " + player.getInstanceId() + "\">" + player.getInstanceId() + "</a></td></tr>" : "");
 		adminReply.replace("%noblesse%", player.isNoble() ? "Yes" : "No");
 		activeChar.sendPacket(adminReply);

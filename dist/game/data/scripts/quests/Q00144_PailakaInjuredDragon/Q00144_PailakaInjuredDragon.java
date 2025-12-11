@@ -20,16 +20,17 @@
  */
 package quests.Q00144_PailakaInjuredDragon;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
@@ -205,7 +206,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 							final Instance instance = InstanceManager.getInstance().getInstance(npc.getInstanceId());
 							if (instance != null)
 							{
-								instance.setDuration(Config.INSTANCE_FINISH_TIME);
+								instance.setDuration(GeneralConfig.INSTANCE_FINISH_TIME);
 								instance.setEmptyDestroyTime(0);
 							}
 							
@@ -287,7 +288,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 			{
 				if (qs.isStarted())
 				{
-					final Quest instance = QuestManager.getInstance().getQuest(PailakaInjuredDragon.class.getSimpleName());
+					final Quest instance = ScriptManager.getInstance().getScript(PailakaInjuredDragon.class.getSimpleName());
 					instance.onEvent("enter", npc, player);
 					
 					if (qs.isCond(1))
@@ -440,7 +441,7 @@ public class Q00144_PailakaInjuredDragon extends Quest
 	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isCond(3) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, false))
+		if ((qs != null) && qs.isCond(3) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, killer, false))
 		{
 			qs.setCond(4, true);
 		}

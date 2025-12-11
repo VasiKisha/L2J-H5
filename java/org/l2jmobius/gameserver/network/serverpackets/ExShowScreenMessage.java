@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.GameClient;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -236,7 +236,7 @@ public class ExShowScreenMessage extends ServerPacket
 		ServerPackets.EX_SHOW_SCREEN_MESSAGE.writeId(this, buffer);
 		
 		// Localisation related.
-		if (Config.MULTILANG_ENABLE)
+		if (MultilingualSupportConfig.MULTILANG_ENABLE)
 		{
 			final Player player = client.getPlayer();
 			if (player != null)

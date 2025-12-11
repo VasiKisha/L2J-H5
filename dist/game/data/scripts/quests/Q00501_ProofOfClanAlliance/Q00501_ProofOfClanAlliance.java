@@ -20,16 +20,16 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.clan.Clan;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.model.skill.AbnormalType;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
@@ -548,7 +548,7 @@ public class Q00501_ProofOfClanAlliance extends Quest
 		QuestState qs = getQuestState(player, false);
 		if (!player.isInParty())
 		{
-			if (!LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, player, target, true))
+			if (!LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, player, target, true))
 			{
 				return null;
 			}
@@ -585,7 +585,7 @@ public class Q00501_ProofOfClanAlliance extends Quest
 		}
 		
 		qs = candidates.get(getRandom(candidates.size()));
-		if (!LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, qs.getPlayer(), target, true))
+		if (!LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, qs.getPlayer(), target, true))
 		{
 			return null;
 		}

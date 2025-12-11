@@ -36,7 +36,7 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
 import org.l2jmobius.gameserver.model.clientstrings.Builder;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -9839,13 +9839,13 @@ public class SystemMessageId
 			}
 		}
 		
-		if (!Config.MULTILANG_ENABLE)
+		if (!MultilingualSupportConfig.MULTILANG_ENABLE)
 		{
 			LOGGER.log(Level.INFO, "SystemMessageId: MultiLanguage disabled.");
 			return;
 		}
 		
-		final List<String> languages = Config.MULTILANG_ALLOWED;
+		final List<String> languages = MultilingualSupportConfig.MULTILANG_ALLOWED;
 		final DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		factory.setValidating(false);
 		factory.setIgnoringComments(true);

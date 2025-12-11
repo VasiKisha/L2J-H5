@@ -26,10 +26,10 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.custom.PremiumSystemConfig;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.model.Location;
@@ -43,17 +43,16 @@ import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExPCCafePointInfo;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
-import ai.AbstractNpcAI;
-
 /**
  * @author Mobius
  */
-public class RimKamaloka extends AbstractNpcAI
+public class RimKamaloka extends Script
 {
 	// NPCs.
 	private static final int START_NPC = 32484;
@@ -402,7 +401,7 @@ public class RimKamaloka extends AbstractNpcAI
 			{
 				final NpcHtmlMessage htmlPacket = new NpcHtmlMessage(npc.getObjectId());
 				String htmltext = getHtm(player, "npc_rim_maker002_" + npc.getCastle().getResidenceId() + ".htm");
-				if (!Config.PC_CAFE_ENABLED)
+				if (!PremiumSystemConfig.PC_CAFE_ENABLED)
 				{
 					htmltext = htmltext.replace("; <font color=\"LEVEL\">1000 PC Cafe points</font> are required", "");
 				}
@@ -732,7 +731,7 @@ public class RimKamaloka extends AbstractNpcAI
 			}
 		}
 		
-		if (Config.PC_CAFE_ENABLED)
+		if (PremiumSystemConfig.PC_CAFE_ENABLED)
 		{
 			final int points = player.getPcCafePoints();
 			if (points < 1000)

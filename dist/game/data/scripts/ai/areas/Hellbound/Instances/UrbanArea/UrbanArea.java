@@ -28,6 +28,7 @@ import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
@@ -39,13 +40,12 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 import ai.areas.Hellbound.HellboundEngine;
-import instances.AbstractInstance;
 
 /**
  * Urban Area instance zone.
  * @author GKR
  */
-public class UrbanArea extends AbstractInstance
+public class UrbanArea extends InstanceScript
 {
 	// NPCs
 	private static final int TOMBSTONE = 32343;

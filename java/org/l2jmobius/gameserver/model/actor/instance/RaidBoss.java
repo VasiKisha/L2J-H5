@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.model.actor.instance;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.managers.RaidBossPointsManager;
 import org.l2jmobius.gameserver.managers.RaidBossSpawnManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -70,14 +70,14 @@ public class RaidBoss extends Monster
 			return false;
 		}
 		
-		final Player player = killer.asPlayer();
-		if (player != null)
+		if ((killer != null) && killer.isPlayable())
 		{
-			broadcastPacket(new SystemMessage(SystemMessageId.CONGRATULATIONS_YOUR_RAID_WAS_SUCCESSFUL));
-			
+			final SystemMessage msg = new SystemMessage(SystemMessageId.CONGRATULATIONS_YOUR_RAID_WAS_SUCCESSFUL);
+			final Player player = killer.asPlayer();
 			final Party party = player.getParty();
 			if (party != null)
 			{
+				party.broadcastPacket(msg);
 				for (Player member : party.getMembers())
 				{
 					RaidBossPointsManager.getInstance().addPoints(member, getId(), (getLevel() / 2) + Rnd.get(-5, 5));
@@ -89,6 +89,7 @@ public class RaidBoss extends Monster
 			}
 			else
 			{
+				player.sendPacket(msg);
 				RaidBossPointsManager.getInstance().addPoints(player, getId(), (getLevel() / 2) + Rnd.get(-5, 5));
 				if (player.isNoble())
 				{
@@ -120,7 +121,7 @@ public class RaidBoss extends Monster
 	@Override
 	public boolean useVitalityRate()
 	{
-		return Config.RAIDBOSS_USE_VITALITY;
+		return PlayerConfig.RAIDBOSS_USE_VITALITY;
 	}
 	
 	public void setUseRaidCurse(boolean value)

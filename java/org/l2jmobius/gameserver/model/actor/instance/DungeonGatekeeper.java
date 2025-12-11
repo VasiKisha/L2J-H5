@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.model.actor.instance;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.data.xml.TeleporterData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -63,7 +63,7 @@ public class DungeonGatekeeper extends Npc
 		if (actualCommand.startsWith("necro"))
 		{
 			boolean canPort = true;
-			if (!Config.ALT_SEVENSIGNS_OPEN_NECROPOLIS)
+			if (!FeatureConfig.ALT_SEVENSIGNS_OPEN_NECROPOLIS)
 			{
 				if (isSealValidationPeriod)
 				{
@@ -111,7 +111,7 @@ public class DungeonGatekeeper extends Npc
 		else if (actualCommand.startsWith("cata"))
 		{
 			boolean canPort = true;
-			if (!Config.ALT_SEVENSIGNS_OPEN_CATACUMBS)
+			if (!FeatureConfig.ALT_SEVENSIGNS_OPEN_CATACUMBS)
 			{
 				if (isSealValidationPeriod)
 				{

@@ -51,7 +51,7 @@ public class ClassListData implements IXmlReader
 	public void load()
 	{
 		_classData.clear();
-		parseDatapackFile("data/stats/chars/classList.xml");
+		parseDatapackFile("data/stats/players/classList.xml");
 		LOGGER.info(getClass().getSimpleName() + ": Loaded " + _classData.size() + " class data.");
 	}
 	
@@ -61,10 +61,10 @@ public class ClassListData implements IXmlReader
 		forEach(document, "list", listNode -> forEach(listNode, "class", classNode ->
 		{
 			final NamedNodeMap attrs = classNode.getAttributes();
-			final PlayerClass classId = PlayerClass.getPlayerClass(parseInteger(attrs, "classId"));
-			final PlayerClass parentClassId = parseInteger(attrs, "parentClassId", -1) > 0 ? PlayerClass.getPlayerClass(parseInteger(attrs, "parentClassId")) : null;
+			final PlayerClass playerClass = PlayerClass.getPlayerClass(parseInteger(attrs, "classId"));
+			final PlayerClass parentPlayerClass = parseInteger(attrs, "parentClassId", -1) > 0 ? PlayerClass.getPlayerClass(parseInteger(attrs, "parentClassId")) : null;
 			final String className = parseString(attrs, "name");
-			_classData.put(classId, new ClassInfoHolder(classId, parentClassId, className));
+			_classData.put(playerClass, new ClassInfoHolder(playerClass, parentPlayerClass, className));
 		}));
 	}
 	
@@ -79,12 +79,12 @@ public class ClassListData implements IXmlReader
 	
 	/**
 	 * Gets the class information for a specific {@link PlayerClass}.
-	 * @param classId the class identifier as a {@link PlayerClass} enum value
+	 * @param playerClass the class identifier as a {@link PlayerClass} enum value
 	 * @return the {@link ClassInfoHolder} containing information about the specified class, or {@code null} if the class is not found
 	 */
-	public ClassInfoHolder getClass(PlayerClass classId)
+	public ClassInfoHolder getClass(PlayerClass playerClass)
 	{
-		return _classData.get(classId);
+		return _classData.get(playerClass);
 	}
 	
 	/**

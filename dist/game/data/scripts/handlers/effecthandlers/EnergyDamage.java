@@ -17,6 +17,7 @@
 package handlers.effecthandlers;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.custom.ClassBalanceConfig;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -132,6 +133,11 @@ public class EnergyDamage extends AbstractEffect
 				defence *= effected.getStat().calcStat(Stat.PVP_PHYS_SKILL_DEF, 1.0);
 			}
 			
+			if (effected.isPlayable())
+			{
+				defence *= attacker.isPlayable() ? ClassBalanceConfig.PVP_ENERGY_SKILL_DEFENCE_MULTIPLIERS[effected.asPlayer().getPlayerClass().getId()] : ClassBalanceConfig.PVE_ENERGY_SKILL_DEFENCE_MULTIPLIERS[effected.asPlayer().getPlayerClass().getId()];
+			}
+			
 			damage = attack / defence;
 			damage *= damageMultiplier;
 			if (effected.isPlayer())
@@ -144,6 +150,16 @@ public class EnergyDamage extends AbstractEffect
 			if (critical)
 			{
 				damage *= 2;
+				// Critical Boost: “True Damage” from your Passive 193 (Critical Power).
+				final double critAdd = attacker.calcStat(Stat.CRITICAL_DAMAGE_ADD, 0, effected, skill);
+				damage += critAdd; // Absolute (applies to both mobs and players).
+				// (optional retail) Additive resistance of the target.
+				damage += effected.calcStat(Stat.DEFENCE_CRITICAL_DAMAGE_ADD, 0, effected, skill);
+			}
+			
+			if (attacker.isPlayable())
+			{
+				damage *= effected.isPlayable() ? ClassBalanceConfig.PVP_ENERGY_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()] : ClassBalanceConfig.PVE_ENERGY_SKILL_DAMAGE_MULTIPLIERS[attacker.asPlayer().getPlayerClass().getId()];
 			}
 		}
 		

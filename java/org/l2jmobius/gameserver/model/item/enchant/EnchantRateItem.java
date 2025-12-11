@@ -85,7 +85,7 @@ public class EnchantRateItem
 		{
 			return false;
 		}
-		else if ((_slot != 0) && ((item.getBodyPart() & _slot) == 0))
+		else if ((_slot != 0) && ((item.getBodyPart().getMask() & _slot) == 0))
 		{
 			return false;
 		}

@@ -20,16 +20,15 @@ import org.l2jmobius.gameserver.ai.Action;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
-
-import ai.AbstractNpcAI;
 
 /**
  * Warrior Fishing Block AI.
  * @author Zoey76
  */
-public class WarriorFishingBlock extends AbstractNpcAI
+public class WarriorFishingBlock extends Script
 {
 	// Monsters
 	private static final int[] MONSTERS =

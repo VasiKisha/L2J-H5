@@ -24,7 +24,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.logging.Level;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -104,7 +104,7 @@ public class Festival implements IBypassHandler
 					}
 					
 					// Check to see if the party has at least 5 members.
-					if (party.getMemberCount() < Config.ALT_FESTIVAL_MIN_PLAYER)
+					if (party.getMemberCount() < FeatureConfig.ALT_FESTIVAL_MIN_PLAYER)
 					{
 						npc.showChatWindow(player, 2, "b", false);
 						return true;
@@ -318,7 +318,7 @@ public class Festival implements IBypassHandler
 					}
 					else
 					{
-						if (party.getMemberCount() > Config.ALT_FESTIVAL_MIN_PLAYER)
+						if (party.getMemberCount() > FeatureConfig.ALT_FESTIVAL_MIN_PLAYER)
 						{
 							party.removePartyMember(player, PartyMessageType.EXPELLED);
 						}

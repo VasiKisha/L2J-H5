@@ -29,9 +29,9 @@ import java.util.logging.Logger;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
 
 public class PetNameTable
@@ -75,12 +75,12 @@ public class PetNameTable
 		
 		try
 		{
-			Pattern pattern = Pattern.compile(Config.PET_NAME_TEMPLATE);
+			Pattern pattern = Pattern.compile(ServerConfig.PET_NAME_TEMPLATE);
 			return pattern.matcher(name).matches();
 		}
 		catch (PatternSyntaxException e)
 		{
-			LOGGER.warning(getClass().getSimpleName() + ": Invalid PetNameTemplate regex in config: " + Config.PET_NAME_TEMPLATE);
+			LOGGER.warning(getClass().getSimpleName() + ": Invalid PetNameTemplate regex in config: " + ServerConfig.PET_NAME_TEMPLATE);
 			return true; // If regex is broken, fallback to allowing all names.
 		}
 	}

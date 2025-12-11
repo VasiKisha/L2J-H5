@@ -24,17 +24,16 @@ import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.TeleporterData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.teleporter.TeleportHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Ketra Orc Support AI.<br>
  * Original Jython script by Emperorc and Kerberos.
  * @authors Nyaran
  */
-public class KetraOrcSupport extends AbstractNpcAI
+public class KetraOrcSupport extends Script
 {
 	private static class BuffsData
 	{

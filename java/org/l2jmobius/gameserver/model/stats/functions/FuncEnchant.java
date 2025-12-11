@@ -20,10 +20,10 @@
  */
 package org.l2jmobius.gameserver.model.stats.functions;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.OlympiadConfig;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.conditions.Condition;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.WeaponType;
 import org.l2jmobius.gameserver.model.skill.Skill;
@@ -59,16 +59,16 @@ public class FuncEnchant extends AbstractFunction
 			enchant = 3;
 		}
 		
-		if (effector.isPlayer() && effector.asPlayer().isInOlympiadMode() && (Config.OLYMPIAD_ENCHANT_LIMIT >= 0) && ((enchant + overenchant) > Config.OLYMPIAD_ENCHANT_LIMIT))
+		if (effector.isPlayer() && effector.asPlayer().isInOlympiadMode() && (OlympiadConfig.OLYMPIAD_ENCHANT_LIMIT >= 0) && ((enchant + overenchant) > OlympiadConfig.OLYMPIAD_ENCHANT_LIMIT))
 		{
-			if (Config.OLYMPIAD_ENCHANT_LIMIT > 3)
+			if (OlympiadConfig.OLYMPIAD_ENCHANT_LIMIT > 3)
 			{
-				overenchant = Config.OLYMPIAD_ENCHANT_LIMIT - 3;
+				overenchant = OlympiadConfig.OLYMPIAD_ENCHANT_LIMIT - 3;
 			}
 			else
 			{
 				overenchant = 0;
-				enchant = Config.OLYMPIAD_ENCHANT_LIMIT;
+				enchant = OlympiadConfig.OLYMPIAD_ENCHANT_LIMIT;
 			}
 		}
 		
@@ -117,7 +117,7 @@ public class FuncEnchant extends AbstractFunction
 			{
 				case S:
 				{
-					if (item.getWeaponItem().getBodyPart() == ItemTemplate.SLOT_LR_HAND)
+					if (item.getWeaponItem().getBodyPart() == BodyPart.LR_HAND)
 					{
 						if (type == WeaponType.BOW)
 						{
@@ -148,7 +148,7 @@ public class FuncEnchant extends AbstractFunction
 				}
 				case A:
 				{
-					if (item.getWeaponItem().getBodyPart() == ItemTemplate.SLOT_LR_HAND)
+					if (item.getWeaponItem().getBodyPart() == BodyPart.LR_HAND)
 					{
 						if (type == WeaponType.BOW)
 						{
@@ -180,7 +180,7 @@ public class FuncEnchant extends AbstractFunction
 				case B:
 				case C:
 				{
-					if (item.getWeaponItem().getBodyPart() == ItemTemplate.SLOT_LR_HAND)
+					if (item.getWeaponItem().getBodyPart() == BodyPart.LR_HAND)
 					{
 						if (type == WeaponType.BOW)
 						{

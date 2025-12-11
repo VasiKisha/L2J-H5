@@ -20,8 +20,9 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.holders.ElementalItemHolder;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.Elementals;
@@ -114,7 +115,7 @@ public class RequestExEnchantItemAttribute extends ClientPacket
 			default:
 			{
 				player.setActiveEnchantAttrItemId(Player.ID_NONE);
-				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to use enchant Exploit!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to use enchant Exploit!", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 		}
@@ -148,7 +149,7 @@ public class RequestExEnchantItemAttribute extends ClientPacket
 				if (elm.getElement() == opositeElement)
 				{
 					player.setActiveEnchantAttrItemId(Player.ID_NONE);
-					PunishmentManager.handleIllegalPlayerAction(player, player + " tried to add oposite attribute to item!", Config.DEFAULT_PUNISH);
+					PunishmentManager.handleIllegalPlayerAction(player, player + " tried to add oposite attribute to item!", GeneralConfig.DEFAULT_PUNISH);
 					return;
 				}
 			}
@@ -171,7 +172,7 @@ public class RequestExEnchantItemAttribute extends ClientPacket
 		if (!player.destroyItem(ItemProcessType.FEE, stone, 1, player, true))
 		{
 			player.sendPacket(SystemMessageId.INCORRECT_ITEM_COUNT_2);
-			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to attribute enchant with a stone he doesn't have", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to attribute enchant with a stone he doesn't have", GeneralConfig.DEFAULT_PUNISH);
 			player.setActiveEnchantAttrItemId(Player.ID_NONE);
 			return;
 		}
@@ -182,22 +183,22 @@ public class RequestExEnchantItemAttribute extends ClientPacket
 			case STONE:
 			case ROUGH_ORE:
 			{
-				success = Rnd.get(100) < Config.ENCHANT_CHANCE_ELEMENT_STONE;
+				success = Rnd.get(100) < PlayerConfig.ENCHANT_CHANCE_ELEMENT_STONE;
 				break;
 			}
 			case CRYSTAL:
 			{
-				success = Rnd.get(100) < Config.ENCHANT_CHANCE_ELEMENT_CRYSTAL;
+				success = Rnd.get(100) < PlayerConfig.ENCHANT_CHANCE_ELEMENT_CRYSTAL;
 				break;
 			}
 			case JEWEL:
 			{
-				success = Rnd.get(100) < Config.ENCHANT_CHANCE_ELEMENT_JEWEL;
+				success = Rnd.get(100) < PlayerConfig.ENCHANT_CHANCE_ELEMENT_JEWEL;
 				break;
 			}
 			case ENERGY:
 			{
-				success = Rnd.get(100) < Config.ENCHANT_CHANCE_ELEMENT_ENERGY;
+				success = Rnd.get(100) < PlayerConfig.ENCHANT_CHANCE_ELEMENT_ENERGY;
 				break;
 			}
 		}

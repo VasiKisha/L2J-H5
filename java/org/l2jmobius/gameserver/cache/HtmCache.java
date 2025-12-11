@@ -30,7 +30,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
@@ -42,7 +43,7 @@ public class HtmCache
 {
 	private static final Logger LOGGER = Logger.getLogger(HtmCache.class.getName());
 	
-	private static final Map<String, String> HTML_CACHE = Config.HTM_CACHE ? new HashMap<>() : new ConcurrentHashMap<>();
+	private static final Map<String, String> HTML_CACHE = GeneralConfig.HTM_CACHE ? new HashMap<>() : new ConcurrentHashMap<>();
 	
 	private int _loadedFiles;
 	private long _bytesBuffLen;
@@ -54,12 +55,12 @@ public class HtmCache
 	
 	public void reload()
 	{
-		reload(Config.DATAPACK_ROOT);
+		reload(ServerConfig.DATAPACK_ROOT);
 	}
 	
 	public void reload(File file)
 	{
-		if (Config.HTM_CACHE)
+		if (GeneralConfig.HTM_CACHE)
 		{
 			LOGGER.info("Html cache start...");
 			parseDir(file);
@@ -135,8 +136,8 @@ public class HtmCache
 			content = content.replaceAll("(?s)<!--.*?-->", ""); // Remove html comments.
 			content = content.replaceAll("[\\t\\n]", ""); // Remove tabs and new lines.
 			
-			filePath = file.toURI().getPath().substring(Config.DATAPACK_ROOT.toURI().getPath().length());
-			if (Config.CHECK_HTML_ENCODING && !filePath.startsWith("data/lang") && !StandardCharsets.US_ASCII.newEncoder().canEncode(content))
+			filePath = file.toURI().getPath().substring(ServerConfig.DATAPACK_ROOT.toURI().getPath().length());
+			if (GeneralConfig.CHECK_HTML_ENCODING && !filePath.startsWith("data/lang") && !StandardCharsets.US_ASCII.newEncoder().canEncode(content))
 			{
 				LOGGER.warning("HTML encoding check: File " + filePath + " contains non ASCII content.");
 			}
@@ -165,12 +166,12 @@ public class HtmCache
 		final String prefix = player != null ? player.getHtmlPrefix() : "";
 		String newPath = prefix + path;
 		String content = HTML_CACHE.get(newPath);
-		if (!Config.HTM_CACHE && (content == null))
+		if (!GeneralConfig.HTM_CACHE && (content == null))
 		{
-			content = loadFile(new File(Config.DATAPACK_ROOT, newPath));
+			content = loadFile(new File(ServerConfig.DATAPACK_ROOT, newPath));
 			if (content == null)
 			{
-				content = loadFile(new File(Config.SCRIPT_ROOT, newPath));
+				content = loadFile(new File(ServerConfig.SCRIPT_ROOT, newPath));
 			}
 		}
 		
@@ -181,7 +182,7 @@ public class HtmCache
 			newPath = path;
 		}
 		
-		if ((player != null) && player.isGM() && Config.GM_DEBUG_HTML_PATHS)
+		if ((player != null) && player.isGM() && GeneralConfig.GM_DEBUG_HTML_PATHS)
 		{
 			player.sendPacket(new CreatureSay(null, ChatType.GENERAL, "HTML", newPath.substring(5)));
 		}

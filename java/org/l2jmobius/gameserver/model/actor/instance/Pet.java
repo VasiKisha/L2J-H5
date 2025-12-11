@@ -30,11 +30,14 @@ import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.NpcConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.data.sql.CharSummonTable;
 import org.l2jmobius.gameserver.data.sql.SummonEffectTable;
 import org.l2jmobius.gameserver.data.xml.PetDataTable;
@@ -56,8 +59,8 @@ import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
 import org.l2jmobius.gameserver.model.actor.stat.PetStat;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
 import org.l2jmobius.gameserver.model.groups.PartyDistributionType;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -342,7 +345,7 @@ public class Pet extends Summon
 	{
 		for (Item item : _inventory.getItems())
 		{
-			if ((item.getItemLocation() == ItemLocation.PET_EQUIP) && (item.getTemplate().getBodyPart() == ItemTemplate.SLOT_R_HAND))
+			if ((item.getItemLocation() == ItemLocation.PET_EQUIP) && (item.getTemplate().getBodyPart() == BodyPart.R_HAND))
 			{
 				return item;
 			}
@@ -571,7 +574,7 @@ public class Pet extends Summon
 			// Remove from the ground!
 			target.pickupMe(this);
 			
-			if (Config.SAVE_DROPPED_ITEM)
+			if (GeneralConfig.SAVE_DROPPED_ITEM)
 			{
 				ItemsOnGroundManager.getInstance().removeObject(target);
 			}
@@ -962,7 +965,7 @@ public class Pet extends Summon
 			return;
 		}
 		
-		if (!Config.RESTORE_PET_ON_RECONNECT)
+		if (!PlayerConfig.RESTORE_PET_ON_RECONNECT)
 		{
 			_restoreSummon = false;
 		}
@@ -1009,7 +1012,7 @@ public class Pet extends Summon
 	@Override
 	public void storeEffect(boolean storeEffects)
 	{
-		if (!Config.SUMMON_STORE_SKILL_COOLTIME)
+		if (!PlayerConfig.SUMMON_STORE_SKILL_COOLTIME)
 		{
 			return;
 		}
@@ -1053,7 +1056,7 @@ public class Pet extends Summon
 					}
 					
 					// Dances and songs are not kept in retail.
-					if (skill.isDance() && !Config.ALT_STORE_DANCES)
+					if (skill.isDance() && !PlayerConfig.ALT_STORE_DANCES)
 					{
 						continue;
 					}
@@ -1200,11 +1203,11 @@ public class Pet extends Summon
 	{
 		if (getId() == 12564)
 		{
-			getStat().addExpAndSp(Math.round(addToExp * Config.SINEATER_XP_RATE), addToSp);
+			getStat().addExpAndSp(Math.round(addToExp * RatesConfig.SINEATER_XP_RATE), addToSp);
 		}
 		else
 		{
-			getStat().addExpAndSp(Math.round(addToExp * Config.PET_XP_RATE), addToSp);
+			getStat().addExpAndSp(Math.round(addToExp * RatesConfig.PET_XP_RATE), addToSp);
 		}
 	}
 	
@@ -1259,7 +1262,7 @@ public class Pet extends Summon
 	
 	public int getInventoryLimit()
 	{
-		return Config.INVENTORY_MAXIMUM_PET;
+		return NpcConfig.INVENTORY_MAXIMUM_PET;
 	}
 	
 	public void refreshOverloaded()

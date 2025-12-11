@@ -20,29 +20,28 @@
  */
 package custom.DelevelManager;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.DelevelManagerConfig;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * @author Mobius
  */
-public class DelevelManager extends AbstractNpcAI
+public class DelevelManager extends Script
 {
 	private DelevelManager()
 	{
-		addStartNpc(Config.DELEVEL_MANAGER_NPCID);
-		addTalkId(Config.DELEVEL_MANAGER_NPCID);
-		addFirstTalkId(Config.DELEVEL_MANAGER_NPCID);
+		addStartNpc(DelevelManagerConfig.DELEVEL_MANAGER_NPCID);
+		addTalkId(DelevelManagerConfig.DELEVEL_MANAGER_NPCID);
+		addFirstTalkId(DelevelManagerConfig.DELEVEL_MANAGER_NPCID);
 	}
 	
 	@Override
 	public String onEvent(String event, Npc npc, Player player)
 	{
-		if (!Config.DELEVEL_MANAGER_ENABLED)
+		if (!DelevelManagerConfig.DELEVEL_MANAGER_ENABLED)
 		{
 			return null;
 		}
@@ -51,14 +50,14 @@ public class DelevelManager extends AbstractNpcAI
 		{
 			case "delevel":
 			{
-				if (player.getLevel() <= Config.DELEVEL_MANAGER_MINIMUM_DELEVEL)
+				if (player.getLevel() <= DelevelManagerConfig.DELEVEL_MANAGER_MINIMUM_DELEVEL)
 				{
 					return "1002000-2.htm";
 				}
 				
-				if (getQuestItemsCount(player, Config.DELEVEL_MANAGER_ITEMID) >= Config.DELEVEL_MANAGER_ITEMCOUNT)
+				if (getQuestItemsCount(player, DelevelManagerConfig.DELEVEL_MANAGER_ITEMID) >= DelevelManagerConfig.DELEVEL_MANAGER_ITEMCOUNT)
 				{
-					takeItems(player, Config.DELEVEL_MANAGER_ITEMID, Config.DELEVEL_MANAGER_ITEMCOUNT);
+					takeItems(player, DelevelManagerConfig.DELEVEL_MANAGER_ITEMID, DelevelManagerConfig.DELEVEL_MANAGER_ITEMCOUNT);
 					player.getStat().removeExpAndSp((player.getExp() - ExperienceData.getInstance().getExpForLevel(player.getLevel() - 1)), 0);
 					player.broadcastUserInfo();
 					return "1002000.htm";

@@ -21,15 +21,14 @@ import java.util.List;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
-
-import ai.AbstractNpcAI;
 
 /**
  * Remnants AI.
  * @author DS
  */
-public class Remnants extends AbstractNpcAI
+public class Remnants extends Script
 {
 	private static final int[] NPCS =
 	{

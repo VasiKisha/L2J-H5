@@ -63,7 +63,7 @@ import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.commons.ui.DarkTheme;
 
 /**
@@ -89,7 +89,7 @@ public class LogPanel extends JFrame
 	
 	protected LogPanel(boolean deleteMode)
 	{
-		if (Config.DARK_THEME)
+		if (InterfaceConfig.DARK_THEME)
 		{
 			DarkTheme.activate();
 		}

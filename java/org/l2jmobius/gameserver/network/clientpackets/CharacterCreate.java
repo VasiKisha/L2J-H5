@@ -20,11 +20,16 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import java.util.List;
+import java.util.Collection;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
+import org.l2jmobius.gameserver.config.custom.AllowedPlayerRacesConfig;
+import org.l2jmobius.gameserver.config.custom.FactionSystemConfig;
+import org.l2jmobius.gameserver.config.custom.StartingLocationConfig;
+import org.l2jmobius.gameserver.config.custom.StartingTitleConfig;
 import org.l2jmobius.gameserver.data.sql.CharInfoTable;
 import org.l2jmobius.gameserver.data.xml.FakePlayerData;
 import org.l2jmobius.gameserver.data.xml.InitialEquipmentData;
@@ -44,8 +49,8 @@ import org.l2jmobius.gameserver.model.events.Containers;
 import org.l2jmobius.gameserver.model.events.EventDispatcher;
 import org.l2jmobius.gameserver.model.events.EventType;
 import org.l2jmobius.gameserver.model.events.holders.actor.player.OnPlayerCreate;
-import org.l2jmobius.gameserver.model.item.PlayerItemTemplate;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.item.holders.InitialEquipment;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.network.Disconnection;
 import org.l2jmobius.gameserver.network.GameClient;
@@ -99,9 +104,9 @@ public class CharacterCreate extends ClientPacket
 			return;
 		}
 		
-		if (Config.FORBIDDEN_NAMES.length > 0)
+		if (PlayerConfig.FORBIDDEN_NAMES.length > 0)
 		{
-			for (String st : Config.FORBIDDEN_NAMES)
+			for (String st : PlayerConfig.FORBIDDEN_NAMES)
 			{
 				if (_name.toLowerCase().contains(st.toLowerCase()))
 				{
@@ -153,7 +158,7 @@ public class CharacterCreate extends ClientPacket
 		 */
 		synchronized (CharInfoTable.getInstance())
 		{
-			if ((CharInfoTable.getInstance().getAccountCharacterCount(client.getAccountName()) >= Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT) && (Config.MAX_CHARACTERS_NUMBER_PER_ACCOUNT != 0))
+			if ((CharInfoTable.getInstance().getAccountCharacterCount(client.getAccountName()) >= ServerConfig.MAX_CHARACTERS_NUMBER_PER_ACCOUNT) && (ServerConfig.MAX_CHARACTERS_NUMBER_PER_ACCOUNT != 0))
 			{
 				client.sendPacket(new CharCreateFail(CharCreateFail.REASON_TOO_MANY_CHARACTERS));
 				return;
@@ -177,7 +182,7 @@ public class CharacterCreate extends ClientPacket
 			{
 				case HUMAN:
 				{
-					if (!Config.ALLOW_HUMAN)
+					if (!AllowedPlayerRacesConfig.ALLOW_HUMAN)
 					{
 						client.sendPacket(new CharCreateFail(CharCreateFail.REASON_CREATION_FAILED));
 						return;
@@ -186,7 +191,7 @@ public class CharacterCreate extends ClientPacket
 				}
 				case ELF:
 				{
-					if (!Config.ALLOW_ELF)
+					if (!AllowedPlayerRacesConfig.ALLOW_ELF)
 					{
 						client.sendPacket(new CharCreateFail(CharCreateFail.REASON_CREATION_FAILED));
 						return;
@@ -195,7 +200,7 @@ public class CharacterCreate extends ClientPacket
 				}
 				case DARK_ELF:
 				{
-					if (!Config.ALLOW_DARKELF)
+					if (!AllowedPlayerRacesConfig.ALLOW_DARKELF)
 					{
 						client.sendPacket(new CharCreateFail(CharCreateFail.REASON_CREATION_FAILED));
 						return;
@@ -204,7 +209,7 @@ public class CharacterCreate extends ClientPacket
 				}
 				case ORC:
 				{
-					if (!Config.ALLOW_ORC)
+					if (!AllowedPlayerRacesConfig.ALLOW_ORC)
 					{
 						client.sendPacket(new CharCreateFail(CharCreateFail.REASON_CREATION_FAILED));
 						return;
@@ -213,7 +218,7 @@ public class CharacterCreate extends ClientPacket
 				}
 				case DWARF:
 				{
-					if (!Config.ALLOW_DWARF)
+					if (!AllowedPlayerRacesConfig.ALLOW_DWARF)
 					{
 						client.sendPacket(new CharCreateFail(CharCreateFail.REASON_CREATION_FAILED));
 						return;
@@ -222,7 +227,7 @@ public class CharacterCreate extends ClientPacket
 				}
 				case KAMAEL:
 				{
-					if (!Config.ALLOW_KAMAEL)
+					if (!AllowedPlayerRacesConfig.ALLOW_KAMAEL)
 					{
 						client.sendPacket(new CharCreateFail(CharCreateFail.REASON_CREATION_FAILED));
 						return;
@@ -247,27 +252,27 @@ public class CharacterCreate extends ClientPacket
 	
 	private boolean isValidName(String text)
 	{
-		return Config.CHARNAME_TEMPLATE_PATTERN.matcher(text).matches();
+		return ServerConfig.CHARNAME_TEMPLATE_PATTERN.matcher(text).matches();
 	}
 	
 	private void initNewChar(GameClient client, Player newChar)
 	{
 		World.getInstance().addObject(newChar);
 		
-		if (Config.STARTING_ADENA > 0)
+		if (PlayerConfig.STARTING_ADENA > 0)
 		{
-			newChar.addAdena(ItemProcessType.REWARD, Config.STARTING_ADENA, null, false);
+			newChar.addAdena(ItemProcessType.REWARD, PlayerConfig.STARTING_ADENA, null, false);
 		}
 		
 		final PlayerTemplate template = newChar.getTemplate();
-		if (Config.CUSTOM_STARTING_LOC)
+		if (StartingLocationConfig.CUSTOM_STARTING_LOC)
 		{
-			final Location createLoc = new Location(Config.CUSTOM_STARTING_LOC_X, Config.CUSTOM_STARTING_LOC_Y, Config.CUSTOM_STARTING_LOC_Z);
+			final Location createLoc = new Location(StartingLocationConfig.CUSTOM_STARTING_LOC_X, StartingLocationConfig.CUSTOM_STARTING_LOC_Y, StartingLocationConfig.CUSTOM_STARTING_LOC_Z);
 			newChar.setXYZInvisible(createLoc.getX(), createLoc.getY(), createLoc.getZ());
 		}
-		else if (Config.FACTION_SYSTEM_ENABLED)
+		else if (FactionSystemConfig.FACTION_SYSTEM_ENABLED)
 		{
-			newChar.setXYZInvisible(Config.FACTION_STARTING_LOCATION.getX(), Config.FACTION_STARTING_LOCATION.getY(), Config.FACTION_STARTING_LOCATION.getZ());
+			newChar.setXYZInvisible(FactionSystemConfig.FACTION_STARTING_LOCATION.getX(), FactionSystemConfig.FACTION_STARTING_LOCATION.getY(), FactionSystemConfig.FACTION_STARTING_LOCATION.getZ());
 		}
 		else
 		{
@@ -275,36 +280,36 @@ public class CharacterCreate extends ClientPacket
 			newChar.setXYZInvisible(createLoc.getX(), createLoc.getY(), createLoc.getZ());
 		}
 		
-		newChar.setTitle(Config.ENABLE_CUSTOM_STARTING_TITLE ? Config.CUSTOM_STARTING_TITLE : "");
+		newChar.setTitle(StartingTitleConfig.ENABLE_CUSTOM_STARTING_TITLE ? StartingTitleConfig.CUSTOM_STARTING_TITLE : "");
 		
-		if (Config.ENABLE_VITALITY)
+		if (PlayerConfig.ENABLE_VITALITY)
 		{
-			newChar.setVitalityPoints(Math.min(Config.STARTING_VITALITY_POINTS, PlayerStat.MAX_VITALITY_POINTS), true);
+			newChar.setVitalityPoints(Math.min(PlayerConfig.STARTING_VITALITY_POINTS, PlayerStat.MAX_VITALITY_POINTS), true);
 		}
 		
-		if (Config.STARTING_LEVEL > 1)
+		if (PlayerConfig.STARTING_LEVEL > 1)
 		{
-			newChar.getStat().addLevel((byte) (Config.STARTING_LEVEL - 1));
+			newChar.getStat().addLevel((byte) (PlayerConfig.STARTING_LEVEL - 1));
 		}
 		
-		if (Config.STARTING_SP > 0)
+		if (PlayerConfig.STARTING_SP > 0)
 		{
-			newChar.getStat().addSp(Config.STARTING_SP);
+			newChar.getStat().addSp(PlayerConfig.STARTING_SP);
 		}
 		
-		final List<PlayerItemTemplate> initialItems = InitialEquipmentData.getInstance().getEquipmentList(newChar.getPlayerClass());
-		if (initialItems != null)
+		final Collection<InitialEquipment> classEquipment = InitialEquipmentData.getInstance().getClassEquipment(newChar.getPlayerClass());
+		if (classEquipment != null)
 		{
-			for (PlayerItemTemplate ie : initialItems)
+			for (InitialEquipment equipment : classEquipment)
 			{
-				final Item item = newChar.getInventory().addItem(ItemProcessType.REWARD, ie.getId(), ie.getCount(), newChar, null);
+				final Item item = newChar.getInventory().addItem(ItemProcessType.REWARD, equipment.getId(), equipment.getCount(), newChar, null);
 				if (item == null)
 				{
-					PacketLogger.warning("Could not create item during char creation: itemId " + ie.getId() + ", amount " + ie.getCount() + ".");
+					PacketLogger.warning("Could not create item during player creation: itemId " + equipment.getId() + ", amount " + equipment.getCount() + ".");
 					continue;
 				}
 				
-				if (item.isEquipable() && ie.isEquipped())
+				if (item.isEquipable() && equipment.isEquipped())
 				{
 					newChar.getInventory().equipItem(item);
 				}

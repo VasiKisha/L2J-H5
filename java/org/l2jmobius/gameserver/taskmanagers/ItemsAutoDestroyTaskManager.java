@@ -24,8 +24,8 @@ import java.util.Iterator;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.ItemsOnGroundManager;
 import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.item.instance.Item;
@@ -67,17 +67,17 @@ public class ItemsAutoDestroyTaskManager implements Runnable
 				}
 				else if (itemInstance.getTemplate().hasExImmediateEffect())
 				{
-					autoDestroyTime = Config.HERB_AUTO_DESTROY_TIME;
+					autoDestroyTime = GeneralConfig.HERB_AUTO_DESTROY_TIME;
 				}
 				else
 				{
-					autoDestroyTime = ((Config.AUTODESTROY_ITEM_AFTER == 0) ? 3600000 : Config.AUTODESTROY_ITEM_AFTER * 1000);
+					autoDestroyTime = ((GeneralConfig.AUTODESTROY_ITEM_AFTER == 0) ? 3600000 : GeneralConfig.AUTODESTROY_ITEM_AFTER * 1000);
 				}
 				
 				if ((currentTime - itemInstance.getDropTime()) > autoDestroyTime)
 				{
 					itemInstance.decayMe();
-					if (Config.SAVE_DROPPED_ITEM)
+					if (GeneralConfig.SAVE_DROPPED_ITEM)
 					{
 						ItemsOnGroundManager.getInstance().removeObject(itemInstance);
 					}

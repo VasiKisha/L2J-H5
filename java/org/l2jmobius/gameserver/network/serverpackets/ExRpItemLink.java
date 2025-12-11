@@ -44,7 +44,7 @@ public class ExRpItemLink extends ServerPacket
 		buffer.writeShort(_item.getTemplate().getType2());
 		buffer.writeShort(_item.getCustomType1());
 		buffer.writeShort(_item.isEquipped());
-		buffer.writeInt(_item.getTemplate().getBodyPart());
+		buffer.writeInt(_item.getTemplate().getBodyPart().getMask());
 		buffer.writeShort(_item.getEnchantLevel());
 		buffer.writeShort(_item.getCustomType2());
 		if (_item.isAugmented())

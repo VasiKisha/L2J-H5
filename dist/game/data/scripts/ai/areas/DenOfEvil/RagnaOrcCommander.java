@@ -17,14 +17,14 @@
 package ai.areas.DenOfEvil;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionHolder;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Ragna Orc Commander AI.
- * @author Zealar
+ * @author Zealar, Mobius
  */
-public class RagnaOrcCommander extends AbstractNpcAI
+public class RagnaOrcCommander extends Script
 {
 	private static final int RAGNA_ORC_COMMANDER = 22694;
 	
@@ -36,8 +36,15 @@ public class RagnaOrcCommander extends AbstractNpcAI
 	@Override
 	public void onSpawn(Npc npc)
 	{
-		spawnMinions(npc, "Privates1");
-		spawnMinions(npc, getRandomBoolean() ? "Privates2" : "Privates3");
+		for (MinionHolder minionHolder : npc.getTemplate().getParameters().getMinionList("Privates1"))
+		{
+			addMinion(npc.asMonster(), minionHolder.getId());
+		}
+		
+		for (MinionHolder minionHolder : npc.getTemplate().getParameters().getMinionList(getRandomBoolean() ? "Privates2" : "Privates3"))
+		{
+			addMinion(npc.asMonster(), minionHolder.getId());
+		}
 	}
 	
 	public static void main(String[] args)

@@ -20,24 +20,24 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.ClassListData;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.IllegalActionPunishmentType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.util.ArrayUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Sub-class skills validator.<br>
  * TODO: Rewrite.
  * @author DS
  */
-public class SubClassSkills extends AbstractNpcAI
+public class SubClassSkills extends Script
 {
 	// arrays must be sorted
 	// @formatter:off
@@ -95,12 +95,12 @@ public class SubClassSkills extends AbstractNpcAI
 	@Override
 	public void onEnterWorld(Player player)
 	{
-		if (!Config.SKILL_CHECK_ENABLE)
+		if (!GeneralConfig.SKILL_CHECK_ENABLE)
 		{
 			return;
 		}
 		
-		if (player.isGM() && !Config.SKILL_CHECK_GM)
+		if (player.isGM() && !GeneralConfig.SKILL_CHECK_GM)
 		{
 			return;
 		}
@@ -111,7 +111,7 @@ public class SubClassSkills extends AbstractNpcAI
 			for (Skill s : certSkills)
 			{
 				PunishmentManager.handleIllegalPlayerAction(player, player + " has cert skill on subclass :" + s.getName() + "(" + s.getId() + "/" + s.getLevel() + "), class:" + ClassListData.getInstance().getClass(player.getPlayerClass()).getClassName(), IllegalActionPunishmentType.NONE);
-				if (Config.SKILL_CHECK_REMOVE)
+				if (GeneralConfig.SKILL_CHECK_REMOVE)
 				{
 					player.removeSkill(s);
 				}
@@ -148,7 +148,7 @@ public class SubClassSkills extends AbstractNpcAI
 		int index;
 		for (int i = VARS.length; --i >= 0;)
 		{
-			for (int j = Config.MAX_SUBCLASS; j > 0; j--)
+			for (int j = PlayerConfig.MAX_SUBCLASS; j > 0; j--)
 			{
 				qName = VARS[i] + j;
 				qValue = player.getVariables().getString(qName, "");
@@ -276,7 +276,7 @@ public class SubClassSkills extends AbstractNpcAI
 						PunishmentManager.handleIllegalPlayerAction(player, player + " has invalid cert skill :" + skill.getName() + "(" + skill.getId() + "/" + skill.getLevel() + "), level too high", IllegalActionPunishmentType.NONE);
 					}
 					
-					if (Config.SKILL_CHECK_REMOVE)
+					if (GeneralConfig.SKILL_CHECK_REMOVE)
 					{
 						player.removeSkill(skill);
 					}

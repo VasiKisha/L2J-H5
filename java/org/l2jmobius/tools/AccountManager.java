@@ -28,7 +28,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.FontMetrics;
 import java.awt.Graphics;
-import java.awt.GraphicsEnvironment;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
@@ -89,12 +88,10 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumnModel;
 import javax.swing.table.TableRowSorter;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.InterfaceConfig;
 import org.l2jmobius.commons.database.DatabaseFactory;
-import org.l2jmobius.commons.enums.ServerMode;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.commons.ui.DarkTheme;
-import org.l2jmobius.commons.util.ConfigReader;
 
 /**
  * @author Skache
@@ -137,10 +134,14 @@ public class AccountManager extends JFrame
 	public AccountManager()
 	{
 		// GUI
-		final ConfigReader interfaceConfig = new ConfigReader(Config.INTERFACE_CONFIG_FILE);
-		if (interfaceConfig.getBoolean("EnableGUI", true) && !GraphicsEnvironment.isHeadless())
+		if (InterfaceConfig.ENABLE_GUI)
 		{
-			if (interfaceConfig.getBoolean("DarkTheme", true))
+			// Disable hardware acceleration.
+			System.setProperty("sun.java2d.opengl", "false");
+			System.setProperty("sun.java2d.d3d", "false");
+			System.setProperty("sun.java2d.noddraw", "true");
+			
+			if (InterfaceConfig.DARK_THEME)
 			{
 				DarkTheme.activate();
 			}
@@ -1667,7 +1668,7 @@ public class AccountManager extends JFrame
 	
 	public static void main(String[] args)
 	{
-		Config.load(ServerMode.LOGIN);
+		InterfaceConfig.load();
 		DatabaseFactory.init();
 		SwingUtilities.invokeLater(AccountManager::new);
 	}

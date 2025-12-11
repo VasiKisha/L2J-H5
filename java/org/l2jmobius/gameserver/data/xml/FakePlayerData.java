@@ -25,7 +25,7 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.FakePlayersConfig;
 
 /**
  * @author Mobius
@@ -44,7 +44,7 @@ public class FakePlayerData
 	
 	public void report()
 	{
-		if (Config.FAKE_PLAYERS_ENABLED)
+		if (FakePlayersConfig.FAKE_PLAYERS_ENABLED)
 		{
 			LOGGER.info(getClass().getSimpleName() + ": Loaded " + _fakePlayerIds.size() + " templates.");
 		}

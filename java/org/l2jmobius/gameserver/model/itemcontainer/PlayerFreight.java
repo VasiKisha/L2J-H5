@@ -20,7 +20,7 @@
  */
 package org.l2jmobius.gameserver.model.itemcontainer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.stats.Stat;
@@ -70,7 +70,7 @@ public class PlayerFreight extends ItemContainer
 	@Override
 	public boolean validateCapacity(long slots)
 	{
-		return (getSize() + slots) <= (_owner == null ? Config.ALT_FREIGHT_SLOTS : Config.ALT_FREIGHT_SLOTS + (int) _owner.getStat().calcStat(Stat.FREIGHT_LIM, 0, null, null));
+		return (getSize() + slots) <= (_owner == null ? PlayerConfig.ALT_FREIGHT_SLOTS : PlayerConfig.ALT_FREIGHT_SLOTS + (int) _owner.getStat().calcStat(Stat.FREIGHT_LIM, 0, null, null));
 	}
 	
 	@Override

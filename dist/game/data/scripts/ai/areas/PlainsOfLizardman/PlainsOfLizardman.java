@@ -23,15 +23,14 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Playable;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Plains of Lizardmen AI.
  * @author Gnacik, malyelfik
  */
-public class PlainsOfLizardman extends AbstractNpcAI
+public class PlainsOfLizardman extends Script
 {
 	// NPCs
 	private static final int INVISIBLE_NPC = 18919;

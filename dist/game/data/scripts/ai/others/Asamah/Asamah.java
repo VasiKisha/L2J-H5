@@ -18,9 +18,9 @@ package ai.others.Asamah;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 
-import ai.AbstractNpcAI;
 import quests.Q00111_ElrokianHuntersProof.Q00111_ElrokianHuntersProof;
 
 /**
@@ -28,7 +28,7 @@ import quests.Q00111_ElrokianHuntersProof.Q00111_ElrokianHuntersProof;
  * @author Adry_85
  * @since 2.6.0.0
  */
-public class Asamah extends AbstractNpcAI
+public class Asamah extends Script
 {
 	// NPC
 	private static final int ASAMAH = 32115;

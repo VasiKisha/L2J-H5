@@ -16,15 +16,15 @@
  */
 package quests.Q00198_SevenSignsEmbryo;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
@@ -179,7 +179,7 @@ public class Q00198_SevenSignsEmbryo extends Quest
 		}
 		
 		final QuestState qs = getQuestState(partyMember, false);
-		if (npc.isInsideRadius3D(partyMember, Config.ALT_PARTY_RANGE))
+		if (npc.isInsideRadius3D(partyMember, PlayerConfig.ALT_PARTY_RANGE))
 		{
 			giveItems(partyMember, SCULPTURE_OF_DOUBT, 1);
 			qs.setCond(2, true);

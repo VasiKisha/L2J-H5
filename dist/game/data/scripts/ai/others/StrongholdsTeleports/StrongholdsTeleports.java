@@ -18,15 +18,14 @@ package ai.others.StrongholdsTeleports;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Strongholds teleport AI.<br>
  * Original Jython script by Kerberos.
  * @author Plim
  */
-public class StrongholdsTeleports extends AbstractNpcAI
+public class StrongholdsTeleports extends Script
 {
 	// NPCs
 	private static final int[] NPCs =

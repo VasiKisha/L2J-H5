@@ -33,10 +33,10 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.NpcData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.templates.NpcTemplate;
@@ -97,7 +97,7 @@ public class MonsterRaceManager
 	
 	protected MonsterRaceManager()
 	{
-		if (!Config.ALLOW_RACE)
+		if (!GeneralConfig.ALLOW_RACE)
 		{
 			return;
 		}

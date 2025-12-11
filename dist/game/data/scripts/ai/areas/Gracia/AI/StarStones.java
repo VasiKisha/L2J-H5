@@ -22,16 +22,15 @@ import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.SystemMessageId;
-
-import ai.AbstractNpcAI;
 
 /**
  * Star Stones AI.
  * @author Gigiikun
  */
-public class StarStones extends AbstractNpcAI
+public class StarStones extends Script
 {
 	// @formatter:off
 	private static final int[] MOBS =

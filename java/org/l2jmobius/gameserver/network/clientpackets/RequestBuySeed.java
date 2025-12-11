@@ -23,7 +23,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.CastleManorManager;
@@ -54,7 +55,7 @@ public class RequestBuySeed extends ClientPacket
 	{
 		_manorId = readInt();
 		final int count = readInt();
-		if ((count <= 0) || (count > Config.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
+		if ((count <= 0) || (count > PlayerConfig.MAX_ITEM_IN_PACKET) || ((count * BATCH_LENGTH) != remaining()))
 		{
 			return;
 		}
@@ -134,7 +135,7 @@ public class RequestBuySeed extends ClientPacket
 			totalPrice += (sp.getPrice() * ih.getCount());
 			if (totalPrice > MAX_ADENA)
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase over " + MAX_ADENA + " adena worth of goods.", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, "Warning!! Character " + player.getName() + " of account " + player.getAccountName() + " tried to purchase over " + MAX_ADENA + " adena worth of goods.", GeneralConfig.DEFAULT_PUNISH);
 				player.sendPacket(ActionFailed.STATIC_PACKET);
 				return;
 			}
@@ -199,7 +200,7 @@ public class RequestBuySeed extends ClientPacket
 			sm.addLong(totalPrice);
 			player.sendPacket(sm);
 			
-			if (Config.ALT_MANOR_SAVE_ALL_ACTIONS)
+			if (GeneralConfig.ALT_MANOR_SAVE_ALL_ACTIONS)
 			{
 				manor.updateCurrentProduction(_manorId, productInfo.values());
 			}

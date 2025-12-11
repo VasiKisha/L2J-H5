@@ -1,58 +1,58 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package ai.areas.StakatoNest;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.actor.holders.npc.MinionList;
 import org.l2jmobius.gameserver.model.actor.instance.Monster;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
-import org.l2jmobius.gameserver.model.skill.AbnormalType;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
+import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
-import org.l2jmobius.gameserver.util.ArrayUtil;
 import org.l2jmobius.gameserver.util.LocationUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Stakato Nest AI.
- * @author Gnacik
+ * @author Gnacik, Mobius
  */
-public class StakatoNest extends AbstractNpcAI
+public class StakatoNest extends Script
 {
-	// @formatter:off
-	// List of all mobs just for register
-	private static final int[] STAKATO_MOBS =
+	// Cocoons
+	private static final Set<Integer> COCOONS = new HashSet<>();
+	static
 	{
-		18793, 18794, 18795, 18796, 18797, 18798, 22617, 22618, 22619, 22620,
-		22621, 22622, 22623, 22624, 22625, 22626, 22627, 22628, 22629, 22630,
-		22631, 22632, 22633, 25667
-	};
-	
-	// Coocons
-	private static final int[] COCOONS =
-	{
-		18793, 18794, 18795, 18796, 18797, 18798
-	};
-	// @formatter:on
+		COCOONS.add(18793);
+		COCOONS.add(18794);
+		COCOONS.add(18795);
+		COCOONS.add(18796);
+		COCOONS.add(18797);
+		COCOONS.add(18798);
+	}
 	
 	// Cannibalistic Stakato Leader
 	private static final int STAKATO_LEADER = 22625;
@@ -93,114 +93,14 @@ public class StakatoNest extends AbstractNpcAI
 	// Large Stakato Cocoon
 	private static final int LARGE_COCOON = 14834;
 	
+	// Subordinate skill
+	private static final SkillHolder DEVOUR_SUBORDINATE = new SkillHolder(4484, 1);
+	
 	private StakatoNest()
 	{
-		registerMobs(STAKATO_MOBS);
-	}
-	
-	@Override
-	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
-	{
-		if ((npc.getId() == STAKATO_LEADER) && (npc.getEffectList().getBuffInfoByAbnormalType(AbnormalType.SILENCE) == null) && (getRandom(1000) < 100) && (npc.getCurrentHp() < (npc.getMaxHp() * 0.3)))
-		{
-			final Monster follower = checkMinion(npc);
-			if (follower != null)
-			{
-				final double hp = follower.getCurrentHp();
-				if (hp > (follower.getMaxHp() * 0.3))
-				{
-					npc.abortAttack();
-					npc.abortCast();
-					npc.setHeading(LocationUtil.calculateHeadingFrom(npc, follower));
-					npc.doCast(SkillData.getInstance().getSkill(4484, 1));
-					npc.setCurrentHp(npc.getCurrentHp() + hp);
-					follower.doDie(follower);
-					follower.deleteMe();
-				}
-			}
-		}
-	}
-	
-	@Override
-	public void onKill(Npc npc, Player killer, boolean isSummon)
-	{
-		final Monster monster;
-		switch (npc.getId())
-		{
-			case STAKATO_NURSE:
-			{
-				monster = checkMinion(npc);
-				if (monster != null)
-				{
-					npc.broadcastPacket(new MagicSkillUse(npc, 2046, 1, 1000, 0));
-					for (int i = 0; i < 3; i++)
-					{
-						final Npc spawned = addSpawn(STAKATO_CAPTAIN, monster, true);
-						addAttackDesire(spawned, killer);
-					}
-				}
-				break;
-			}
-			case STAKATO_BABY:
-			{
-				monster = npc.asMonster().getLeader();
-				if ((monster != null) && !monster.isDead())
-				{
-					startQuestTimer("nurse_change", 5000, monster, killer);
-				}
-				break;
-			}
-			case STAKATO_MALE:
-			{
-				monster = checkMinion(npc);
-				if (monster != null)
-				{
-					npc.broadcastPacket(new MagicSkillUse(npc, 2046, 1, 1000, 0));
-					for (int i = 0; i < 3; i++)
-					{
-						final Npc spawned = addSpawn(STAKATO_GUARD, monster, true);
-						addAttackDesire(spawned, killer);
-					}
-				}
-				break;
-			}
-			case STAKATO_FEMALE:
-			{
-				monster = npc.asMonster().getLeader();
-				if ((monster != null) && !monster.isDead())
-				{
-					startQuestTimer("male_change", 5000, monster, killer);
-				}
-				break;
-			}
-			case STAKATO_CHIEF:
-			{
-				if (killer.isInParty())
-				{
-					final List<Player> party = killer.getParty().getMembers();
-					for (Player member : party)
-					{
-						giveCocoon(member, npc);
-					}
-				}
-				else
-				{
-					giveCocoon(killer, npc);
-				}
-				break;
-			}
-		}
-	}
-	
-	@Override
-	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
-	{
-		if (ArrayUtil.contains(COCOONS, npc.getId()) && targets.contains(npc) && (skill.getId() == GROWTH_ACCELERATOR))
-		{
-			npc.doDie(caster);
-			final Npc spawned = addSpawn(STAKATO_CHIEF, npc.getX(), npc.getY(), npc.getZ(), LocationUtil.calculateHeadingFrom(npc, caster), false, 0, true);
-			addAttackDesire(spawned, caster);
-		}
+		addAttackId(STAKATO_LEADER);
+		addSkillSeeId(COCOONS);
+		addKillId(STAKATO_NURSE, STAKATO_BABY, STAKATO_MALE, STAKATO_FEMALE, STAKATO_CHIEF);
 	}
 	
 	@Override
@@ -237,15 +137,125 @@ public class StakatoNest extends AbstractNpcAI
 		return super.onEvent(event, npc, player);
 	}
 	
+	@Override
+	public void onAttack(Npc npc, Player attacker, int damage, boolean isSummon)
+	{
+		if ((getRandom(100) < 10) && (npc.getCurrentHp() < (npc.getMaxHp() * 0.3)))
+		{
+			final Monster follower = checkMinion(npc);
+			if (follower != null)
+			{
+				final double hp = follower.getCurrentHp();
+				if (hp > (follower.getMaxHp() * 0.3))
+				{
+					npc.abortAttack();
+					npc.abortCast();
+					npc.setHeading(LocationUtil.calculateHeadingFrom(npc, follower));
+					npc.doCast(DEVOUR_SUBORDINATE.getSkill());
+					npc.setCurrentHp(npc.getCurrentHp() + hp);
+					follower.doDie(follower);
+					follower.deleteMe();
+				}
+			}
+		}
+	}
+	
+	@Override
+	public void onKill(Npc npc, Player killer, boolean isSummon)
+	{
+		switch (npc.getId())
+		{
+			case STAKATO_NURSE:
+			{
+				final Monster monster = checkMinion(npc);
+				if (monster != null)
+				{
+					npc.broadcastPacket(new MagicSkillUse(npc, 2046, 1, 1000, 0));
+					for (int i = 0; i < 3; i++)
+					{
+						final Npc spawned = addSpawn(STAKATO_CAPTAIN, monster, true);
+						addAttackDesire(spawned, killer);
+					}
+				}
+				break;
+			}
+			case STAKATO_BABY:
+			{
+				final Monster monster = npc.asMonster().getLeader();
+				if ((monster != null) && !monster.isDead())
+				{
+					startQuestTimer("nurse_change", 5000, monster, killer);
+				}
+				break;
+			}
+			case STAKATO_MALE:
+			{
+				final Monster monster = checkMinion(npc);
+				if (monster != null)
+				{
+					npc.broadcastPacket(new MagicSkillUse(npc, 2046, 1, 1000, 0));
+					for (int i = 0; i < 3; i++)
+					{
+						final Npc spawned = addSpawn(STAKATO_GUARD, monster, true);
+						addAttackDesire(spawned, killer);
+					}
+				}
+				break;
+			}
+			case STAKATO_FEMALE:
+			{
+				final Monster monster = npc.asMonster().getLeader();
+				if ((monster != null) && !monster.isDead())
+				{
+					startQuestTimer("male_change", 5000, monster, killer);
+				}
+				break;
+			}
+			case STAKATO_CHIEF:
+			{
+				if (killer.isInParty())
+				{
+					final List<Player> party = killer.getParty().getMembers();
+					for (Player member : party)
+					{
+						giveCocoon(member, npc);
+					}
+				}
+				else
+				{
+					giveCocoon(killer, npc);
+				}
+				break;
+			}
+		}
+	}
+	
+	@Override
+	public void onSkillSee(Npc npc, Player caster, Skill skill, List<WorldObject> targets, boolean isSummon)
+	{
+		if (targets.contains(npc) && (skill.getId() == GROWTH_ACCELERATOR))
+		{
+			npc.doDie(caster);
+			final Npc spawned = addSpawn(STAKATO_CHIEF, npc.getX(), npc.getY(), npc.getZ(), LocationUtil.calculateHeadingFrom(npc, caster), false, 0, true);
+			addAttackDesire(spawned, caster);
+		}
+	}
+	
 	private static Monster checkMinion(Npc npc)
 	{
-		final Monster mob = npc.asMonster();
-		if (mob.hasMinions())
+		final Monster monster = npc.asMonster();
+		if (monster.hasMinions())
 		{
-			final List<Monster> minion = mob.getMinionList().getSpawnedMinions();
-			if ((minion != null) && !minion.isEmpty() && (minion.get(0) != null) && !minion.get(0).isDead())
+			final MinionList minionList = monster.getMinionList();
+			if (minionList.getSpawnedMinionCount() > 0)
 			{
-				return minion.get(0);
+				for (Monster minion : minionList.getSpawnedMinions())
+				{
+					if ((minion != null) && !minion.isDead())
+					{
+						return minion;
+					}
+				}
 			}
 		}
 		

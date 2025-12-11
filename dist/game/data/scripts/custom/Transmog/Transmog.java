@@ -31,9 +31,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.custom.TransmogConfig;
 import org.l2jmobius.gameserver.data.xml.ItemData;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -45,19 +45,19 @@ import org.l2jmobius.gameserver.model.events.holders.actor.player.inventory.OnPl
 import org.l2jmobius.gameserver.model.events.listeners.ConsumerEventListener;
 import org.l2jmobius.gameserver.model.item.EtcItem;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.CreatureSay;
 import org.l2jmobius.gameserver.util.HtmlUtil;
 
-import ai.AbstractNpcAI;
-
 /**
  * @author Mobius
  */
-public class Transmog extends AbstractNpcAI
+public class Transmog extends Script
 {
 	private static final int NPC = 900009;
 	private static final Map<Integer, Map<Integer, Set<Integer>>> PLAYER_TRANSMOGS = new ConcurrentHashMap<>();
@@ -70,7 +70,7 @@ public class Transmog extends AbstractNpcAI
 		addTalkId(NPC);
 		addFirstTalkId(NPC);
 		
-		if (Config.ENABLE_TRANSMOG)
+		if (TransmogConfig.ENABLE_TRANSMOG)
 		{
 			Containers.Players().addListener(new ConsumerEventListener(Containers.Players(), EventType.ON_PLAYER_ITEM_ADD, (OnPlayerItemAdd event) -> onPlayerItemAdd(event), this));
 			Containers.Players().addListener(new ConsumerEventListener(Containers.Players(), EventType.ON_PLAYER_LOGIN, (OnPlayerLogin event) -> onPlayerLogin(event), this));
@@ -98,9 +98,9 @@ public class Transmog extends AbstractNpcAI
 					final int transmogId = item.getTransmogId();
 					if (transmogId > 0)
 					{
-						if (Config.TRANSMOG_REMOVE_COST > 0)
+						if (TransmogConfig.TRANSMOG_REMOVE_COST > 0)
 						{
-							if (player.getAdena() < Config.TRANSMOG_REMOVE_COST)
+							if (player.getAdena() < TransmogConfig.TRANSMOG_REMOVE_COST)
 							{
 								player.getInventory().equipItem(item);
 								player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
@@ -108,7 +108,7 @@ public class Transmog extends AbstractNpcAI
 								return null;
 							}
 							
-							player.reduceAdena(ItemProcessType.FEE, Config.TRANSMOG_REMOVE_COST, player, true);
+							player.reduceAdena(ItemProcessType.FEE, TransmogConfig.TRANSMOG_REMOVE_COST, player, true);
 						}
 						
 						item.removeTransmog();
@@ -134,7 +134,7 @@ public class Transmog extends AbstractNpcAI
 			final int transmogId = Integer.parseInt(split[3]);
 			if (isValidSlot(slot))
 			{
-				final Integer bodypart = getBodypart(slot);
+				final BodyPart bodypart = getBodypart(slot);
 				final Item item = player.getInventory().unEquipItemInBodySlot(bodypart);
 				if (item != null)
 				{
@@ -142,12 +142,12 @@ public class Transmog extends AbstractNpcAI
 					if (itemTemplate != null)
 					{
 						final Map<Integer, Set<Integer>> playerTransmogs = PLAYER_TRANSMOGS.getOrDefault(player.getObjectId(), Collections.emptyMap());
-						final Set<Integer> itemIds = playerTransmogs.getOrDefault(bodypart, Collections.emptySet());
+						final Set<Integer> itemIds = playerTransmogs.getOrDefault(bodypart.getMask(), Collections.emptySet());
 						if (itemIds.contains(transmogId))
 						{
-							if (Config.TRANSMOG_APPLY_COST > 0)
+							if (TransmogConfig.TRANSMOG_APPLY_COST > 0)
 							{
-								if (player.getAdena() < Config.TRANSMOG_APPLY_COST)
+								if (player.getAdena() < TransmogConfig.TRANSMOG_APPLY_COST)
 								{
 									player.getInventory().equipItem(item);
 									player.sendPacket(SystemMessageId.YOU_DO_NOT_HAVE_ENOUGH_ADENA);
@@ -155,7 +155,7 @@ public class Transmog extends AbstractNpcAI
 									return null;
 								}
 								
-								player.reduceAdena(ItemProcessType.FEE, Config.TRANSMOG_APPLY_COST, player, true);
+								player.reduceAdena(ItemProcessType.FEE, TransmogConfig.TRANSMOG_APPLY_COST, player, true);
 							}
 							
 							item.setTransmogId(transmogId);
@@ -181,7 +181,7 @@ public class Transmog extends AbstractNpcAI
 			final int page = split.length > 1 ? Integer.parseInt(split[1]) : 1;
 			
 			final Map<Integer, Set<Integer>> playerTransmogs = PLAYER_TRANSMOGS.getOrDefault(player.getObjectId(), Collections.emptyMap());
-			final Set<Integer> itemIds = playerTransmogs.getOrDefault(getBodypart(slot), Collections.emptySet());
+			final Set<Integer> itemIds = playerTransmogs.getOrDefault(getBodypart(slot).getMask(), Collections.emptySet());
 			if (itemIds.isEmpty())
 			{
 				return "900009-02.html";
@@ -234,13 +234,13 @@ public class Transmog extends AbstractNpcAI
 			return;
 		}
 		
-		final Integer bodypart = itemTemplate.getBodyPart();
-		if ((bodypart < ItemTemplate.SLOT_R_HAND) || (bodypart > ItemTemplate.SLOT_HAIRALL))
+		final Integer bodypart = itemTemplate.getBodyPart().getMask();
+		if ((bodypart < BodyPart.R_HAND.getMask()) || (bodypart > BodyPart.HAIRALL.getMask()))
 		{
 			return;
 		}
 		
-		if (Config.TRANSMOG_BANNED_ITEM_IDS.contains(itemTemplate.getId()))
+		if (TransmogConfig.TRANSMOG_BANNED_ITEM_IDS.contains(itemTemplate.getId()))
 		{
 			return;
 		}
@@ -260,7 +260,7 @@ public class Transmog extends AbstractNpcAI
 	private void onPlayerLogin(OnPlayerLogin event)
 	{
 		final Player player = event.getPlayer();
-		final String owner = Config.TRANSMOG_SHARE_ACCOUNT ? player.getAccountName() : String.valueOf(player.getObjectId());
+		final String owner = TransmogConfig.TRANSMOG_SHARE_ACCOUNT ? player.getAccountName() : String.valueOf(player.getObjectId());
 		final Map<Integer, Set<Integer>> playerTransmogs = new HashMap<>();
 		
 		try (Connection con = DatabaseFactory.getConnection();
@@ -275,7 +275,7 @@ public class Transmog extends AbstractNpcAI
 					final ItemTemplate itemTemplate = ItemData.getInstance().getTemplate(itemId);
 					if (itemTemplate != null)
 					{
-						final Integer bodypart = itemTemplate.getBodyPart();
+						final Integer bodypart = itemTemplate.getBodyPart().getMask();
 						final Set<Integer> itemIds = playerTransmogs.getOrDefault(bodypart, new HashSet<>());
 						itemIds.add(itemId);
 						playerTransmogs.putIfAbsent(bodypart, itemIds);
@@ -298,7 +298,7 @@ public class Transmog extends AbstractNpcAI
 	{
 		final Player player = event.getPlayer();
 		final Integer playerObjectId = player.getObjectId();
-		final String owner = Config.TRANSMOG_SHARE_ACCOUNT ? player.getAccountName() : String.valueOf(player.getObjectId());
+		final String owner = TransmogConfig.TRANSMOG_SHARE_ACCOUNT ? player.getAccountName() : String.valueOf(player.getObjectId());
 		
 		try (Connection con = DatabaseFactory.getConnection();
 			PreparedStatement statement = con.prepareStatement(SAVE_SQL))
@@ -323,61 +323,61 @@ public class Transmog extends AbstractNpcAI
 		PLAYER_TRANSMOGS.remove(playerObjectId);
 	}
 	
-	private Integer getBodypart(String event)
+	private BodyPart getBodypart(String event)
 	{
 		switch (event)
 		{
 			case "R_HAND":
 			{
-				return ItemTemplate.SLOT_R_HAND;
+				return BodyPart.R_HAND;
 			}
 			case "L_HAND":
 			{
-				return ItemTemplate.SLOT_L_HAND;
+				return BodyPart.L_HAND;
 			}
 			case "GLOVES":
 			{
-				return ItemTemplate.SLOT_GLOVES;
+				return BodyPart.GLOVES;
 			}
 			case "CHEST":
 			{
-				return ItemTemplate.SLOT_CHEST;
+				return BodyPart.CHEST;
 			}
 			case "LEGS":
 			{
-				return ItemTemplate.SLOT_LEGS;
+				return BodyPart.LEGS;
 			}
 			case "FEET":
 			{
-				return ItemTemplate.SLOT_FEET;
+				return BodyPart.FEET;
 			}
 			case "BACK":
 			{
-				return ItemTemplate.SLOT_BACK;
+				return BodyPart.BACK;
 			}
 			case "LR_HAND":
 			{
-				return ItemTemplate.SLOT_LR_HAND;
+				return BodyPart.LR_HAND;
 			}
 			case "FULL_ARMOR":
 			{
-				return ItemTemplate.SLOT_FULL_ARMOR;
+				return BodyPart.FULL_ARMOR;
 			}
 			case "HAIRALL":
 			{
-				return ItemTemplate.SLOT_HAIRALL;
+				return BodyPart.HAIRALL;
 			}
 			case "HAIR2":
 			{
-				return ItemTemplate.SLOT_HAIR2;
+				return BodyPart.HAIR2;
 			}
 			case "HAIR":
 			{
-				return ItemTemplate.SLOT_HAIR;
+				return BodyPart.HAIR;
 			}
 			default:
 			{
-				return -1;
+				return BodyPart.NONE;
 			}
 		}
 	}
@@ -406,6 +406,12 @@ public class Transmog extends AbstractNpcAI
 				return false;
 			}
 		}
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

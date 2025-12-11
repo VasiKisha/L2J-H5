@@ -24,11 +24,11 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.Armor;
-import org.l2jmobius.gameserver.model.item.ItemTemplate;
 import org.l2jmobius.gameserver.model.item.Weapon;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.enums.ItemLocation;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.CrystalType;
@@ -349,7 +349,7 @@ public abstract class AbstractRefinePacket extends ClientPacket
 			return false;
 		}
 		
-		if (item.isPvp() && !Config.ALT_ALLOW_AUGMENT_PVP_ITEMS)
+		if (item.isPvp() && !PlayerConfig.ALT_ALLOW_AUGMENT_PVP_ITEMS)
 		{
 			return false;
 		}
@@ -390,12 +390,12 @@ public abstract class AbstractRefinePacket extends ClientPacket
 		}
 		else if (item.getTemplate() instanceof Armor)
 		{
-			// only accessories can be augmented
+			// Only accessories can be augmented.
 			switch (item.getTemplate().getBodyPart())
 			{
-				case ItemTemplate.SLOT_LR_FINGER:
-				case ItemTemplate.SLOT_LR_EAR:
-				case ItemTemplate.SLOT_NECK:
+				case BodyPart.LR_FINGER:
+				case BodyPart.LR_EAR:
+				case BodyPart.NECK:
 				{
 					break;
 				}
@@ -411,7 +411,7 @@ public abstract class AbstractRefinePacket extends ClientPacket
 		}
 		
 		// blacklist check
-		if (Arrays.binarySearch(Config.AUGMENTATION_BLACKLIST, item.getId()) >= 0)
+		if (Arrays.binarySearch(PlayerConfig.AUGMENTATION_BLACKLIST, item.getId()) >= 0)
 		{
 			return false;
 		}

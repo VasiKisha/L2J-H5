@@ -18,17 +18,16 @@ package ai.others;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
-
-import ai.AbstractNpcAI;
 
 /**
  * AI for Kamaloka (33) - Crimson Hatu Otis
  * @author Gladicek
  */
-public class CrimsonHatuOtis extends AbstractNpcAI
+public class CrimsonHatuOtis extends Script
 {
 	// Npc
 	private static final int CRIMSON_HATU_OTIS = 18558;

@@ -19,12 +19,12 @@ package quests.Q00186_ContractExecution;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 import quests.Q00184_ArtOfPersuasion.Q00184_ArtOfPersuasion;
@@ -153,7 +153,7 @@ public class Q00186_ContractExecution extends Quest
 	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final QuestState qs = getQuestState(killer, false);
-		if ((qs != null) && qs.isMemoState(2) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, killer, false) && (getRandom(100) < MONSTERS.get(npc.getId())) && !hasQuestItems(killer, LETO_LIZARDMAN_ACCESSORY))
+		if ((qs != null) && qs.isMemoState(2) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, killer, false) && (getRandom(100) < MONSTERS.get(npc.getId())) && !hasQuestItems(killer, LETO_LIZARDMAN_ACCESSORY))
 		{
 			giveItems(killer, LETO_LIZARDMAN_ACCESSORY, 1);
 			playSound(killer, QuestSound.ITEMSOUND_QUEST_ITEMGET);

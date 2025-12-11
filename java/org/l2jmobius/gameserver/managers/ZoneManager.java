@@ -1,18 +1,22 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.gameserver.managers;
 
@@ -20,6 +24,7 @@ import java.io.File;
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -80,8 +85,8 @@ import org.l2jmobius.gameserver.model.zone.type.TownZone;
 import org.l2jmobius.gameserver.model.zone.type.WaterZone;
 
 /**
- * This class manages the zones
- * @author durgus
+ * This class manages the zones.
+ * @author durgus, Mobius
  */
 public class ZoneManager implements IXmlReader
 {
@@ -637,16 +642,22 @@ public class ZoneManager implements IXmlReader
 	 */
 	public List<ZoneType> getZones(int x, int y)
 	{
-		final List<ZoneType> temp = new ArrayList<>();
-		for (ZoneType zone : getRegion(x, y).getZones().values())
+		final ZoneRegion region = getRegion(x, y);
+		if (region == null)
+		{
+			return Collections.emptyList();
+		}
+		
+		final List<ZoneType> result = new ArrayList<>();
+		for (ZoneType zone : region.getZones().values())
 		{
 			if (zone.isInsideZone(x, y))
 			{
-				temp.add(zone);
+				result.add(zone);
 			}
 		}
 		
-		return temp;
+		return result;
 	}
 	
 	/**
@@ -658,16 +669,22 @@ public class ZoneManager implements IXmlReader
 	 */
 	public List<ZoneType> getZones(int x, int y, int z)
 	{
-		final List<ZoneType> temp = new ArrayList<>();
-		for (ZoneType zone : getRegion(x, y).getZones().values())
+		final ZoneRegion region = getRegion(x, y);
+		if (region == null)
+		{
+			return Collections.emptyList();
+		}
+		
+		final List<ZoneType> result = new ArrayList<>();
+		for (ZoneType zone : region.getZones().values())
 		{
 			if (zone.isInsideZone(x, y, z))
 			{
-				temp.add(zone);
+				result.add(zone);
 			}
 		}
 		
-		return temp;
+		return result;
 	}
 	
 	/**
@@ -682,7 +699,13 @@ public class ZoneManager implements IXmlReader
 	@SuppressWarnings("unchecked")
 	public <T extends ZoneType> T getZone(int x, int y, int z, Class<T> type)
 	{
-		for (ZoneType zone : getRegion(x, y).getZones().values())
+		final ZoneRegion region = getRegion(x, y);
+		if (region == null)
+		{
+			return null;
+		}
+		
+		for (ZoneType zone : region.getZones().values())
 		{
 			if (zone.isInsideZone(x, y, z) && type.isInstance(zone))
 			{
@@ -777,11 +800,11 @@ public class ZoneManager implements IXmlReader
 			return null;
 		}
 		
-		for (ZoneType temp : getInstance().getZones(creature.getX(), creature.getY(), creature.getZ()))
+		for (ZoneType zone : getInstance().getZones(creature.getX(), creature.getY(), creature.getZ()))
 		{
-			if ((temp instanceof OlympiadStadiumZone) && temp.isCharacterInZone(creature))
+			if ((zone instanceof OlympiadStadiumZone) && zone.isCharacterInZone(creature))
 			{
-				return (OlympiadStadiumZone) temp;
+				return (OlympiadStadiumZone) zone;
 			}
 		}
 		

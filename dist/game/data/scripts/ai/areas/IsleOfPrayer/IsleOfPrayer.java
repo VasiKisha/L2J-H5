@@ -22,14 +22,13 @@ import java.util.Map;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.holders.ItemChanceHolder;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Isle of Prayer AI.
  * @author Zoey76
  */
-public class IsleOfPrayer extends AbstractNpcAI
+public class IsleOfPrayer extends Script
 {
 	// Items
 	private static final int YELLOW_SEED_OF_EVIL_SHARD = 9593;

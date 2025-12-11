@@ -19,13 +19,13 @@ package quests.Q00306_CrystalOfFireAndIce;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -160,7 +160,7 @@ public class Q00306_CrystalOfFireAndIce extends Quest
 	
 	private void giveKillReward(Player player, Npc npc)
 	{
-		if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false))
+		if (LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, player, false))
 		{
 			final ItemHolder item = MONSTER_DROPS.get(npc.getId());
 			giveItemRandomly(player, npc, item.getId(), 1, 0, 1000.0 / item.getCount(), true);

@@ -24,7 +24,7 @@ import java.util.StringTokenizer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.ChampionMonstersConfig;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.Location;
@@ -271,9 +271,9 @@ public class AdminMenu implements IAdminCommandHandler
 				target.reduceCurrentHp(target.getMaxHp() + target.getMaxCp() + 1, activeChar, null);
 				filename = "charmanage.htm";
 			}
-			else if (Config.CHAMPION_ENABLE && target.isChampion())
+			else if (ChampionMonstersConfig.CHAMPION_ENABLE && target.isChampion())
 			{
-				target.reduceCurrentHp((target.getMaxHp() * Config.CHAMPION_HP) + 1, activeChar, null);
+				target.reduceCurrentHp((target.getMaxHp() * ChampionMonstersConfig.CHAMPION_HP) + 1, activeChar, null);
 			}
 			else
 			{

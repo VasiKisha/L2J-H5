@@ -21,16 +21,15 @@ import java.util.Map;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
-
-import ai.AbstractNpcAI;
 
 /**
  * Mercenary Medic Selina AI.
  * @author Zoey76
  */
-public class Selina extends AbstractNpcAI
+public class Selina extends Script
 {
 	// NPC
 	private static final int SELINA = 31556;

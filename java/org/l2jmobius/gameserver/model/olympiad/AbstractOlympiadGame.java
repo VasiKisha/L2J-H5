@@ -20,8 +20,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.OlympiadConfig;
+import org.l2jmobius.gameserver.config.custom.DualboxCheckConfig;
 import org.l2jmobius.gameserver.managers.AntiFeedManager;
 import org.l2jmobius.gameserver.managers.CastleManager;
 import org.l2jmobius.gameserver.managers.FortManager;
@@ -188,7 +189,7 @@ public abstract class AbstractOlympiadGame
 			player.setInOlympiadMode(true);
 			player.setOlympiadStart(false);
 			player.setOlympiadSide(par.getSide());
-			player.setOlympiadBuffCount(Config.OLYMPIAD_MAX_BUFFS);
+			player.setOlympiadBuffCount(OlympiadConfig.OLYMPIAD_MAX_BUFFS);
 			loc.setInstanceId(OlympiadGameManager.getInstance().getOlympiadTask(id).getZone().getInstanceId());
 			player.teleToLocation(loc, false);
 			player.sendPacket(new ExOlympiadMode(2));
@@ -413,7 +414,7 @@ public abstract class AbstractOlympiadGame
 			player.setCurrentMp(player.getMaxMp());
 			player.getStatus().startHpMpRegeneration();
 			
-			if (Config.DUALBOX_CHECK_MAX_OLYMPIAD_PARTICIPANTS_PER_IP > 0)
+			if (DualboxCheckConfig.DUALBOX_CHECK_MAX_OLYMPIAD_PARTICIPANTS_PER_IP > 0)
 			{
 				AntiFeedManager.getInstance().removePlayer(AntiFeedManager.OLYMPIAD_ID, player);
 			}

@@ -28,8 +28,8 @@ import java.util.logging.Logger;
 
 import org.w3c.dom.Document;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
 import org.l2jmobius.gameserver.model.StatSet;
 
 /**
@@ -52,9 +52,9 @@ public class NpcNameLocalisationData implements IXmlReader
 	{
 		NPC_NAME_LOCALISATIONS.clear();
 		
-		if (Config.MULTILANG_ENABLE)
+		if (MultilingualSupportConfig.MULTILANG_ENABLE)
 		{
-			for (String lang : Config.MULTILANG_ALLOWED)
+			for (String lang : MultilingualSupportConfig.MULTILANG_ALLOWED)
 			{
 				final File file = new File("data/lang/" + lang + "/NpcNameLocalisation.xml");
 				if (!file.isFile())

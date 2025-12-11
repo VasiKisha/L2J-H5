@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.model.actor.instance;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.UndergroundColiseumConfig;
 import org.l2jmobius.gameserver.managers.games.UndergroundColiseumManager;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.InstanceType;
@@ -141,7 +141,7 @@ public class UCManager extends Folk
 					realCount++;
 				}
 				
-				if (realCount < Config.UC_PARTY_SIZE)
+				if (realCount < UndergroundColiseumConfig.UC_PARTY_SIZE)
 				{
 					final NpcHtmlMessage packet = new NpcHtmlMessage(getObjectId());
 					packet.setFile(player, "data/html/undergroundColiseum/notEnoughMembers.htm");

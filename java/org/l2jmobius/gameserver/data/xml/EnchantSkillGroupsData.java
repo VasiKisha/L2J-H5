@@ -25,8 +25,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.EnchantSkillGroup;
 import org.l2jmobius.gameserver.model.EnchantSkillGroup.EnchantSkillHolder;
 import org.l2jmobius.gameserver.model.EnchantSkillLearn;
@@ -40,8 +40,8 @@ import org.l2jmobius.gameserver.model.skill.Skill;
  */
 public class EnchantSkillGroupsData implements IXmlReader
 {
-	public static final int NORMAL_ENCHANT_COST_MULTIPLIER = Config.NORMAL_ENCHANT_COST_MULTIPLIER;
-	public static final int SAFE_ENCHANT_COST_MULTIPLIER = Config.SAFE_ENCHANT_COST_MULTIPLIER;
+	public static final int NORMAL_ENCHANT_COST_MULTIPLIER = GeneralConfig.NORMAL_ENCHANT_COST_MULTIPLIER;
+	public static final int SAFE_ENCHANT_COST_MULTIPLIER = GeneralConfig.SAFE_ENCHANT_COST_MULTIPLIER;
 	
 	public static final int NORMAL_ENCHANT_BOOK = 6622;
 	public static final int SAFE_ENCHANT_BOOK = 9627;

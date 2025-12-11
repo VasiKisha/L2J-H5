@@ -25,7 +25,7 @@ import java.util.Date;
 import java.util.StringTokenizer;
 import java.util.logging.Level;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.managers.ItemAuctionManager;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -52,7 +52,7 @@ public class ItemAuctionLink implements IBypassHandler
 			return false;
 		}
 		
-		if (!Config.ALT_ITEM_AUCTION_ENABLED)
+		if (!GeneralConfig.ALT_ITEM_AUCTION_ENABLED)
 		{
 			player.sendPacket(SystemMessageId.IT_IS_NOT_AN_AUCTION_PERIOD);
 			return true;

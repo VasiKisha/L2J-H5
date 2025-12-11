@@ -27,15 +27,15 @@ import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.groups.Party;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 import org.l2jmobius.gameserver.util.ArrayUtil;
 
-import instances.AbstractInstance;
 import quests.Q00179_IntoTheLargeCavern.Q00179_IntoTheLargeCavern;
 
 /**
@@ -43,7 +43,7 @@ import quests.Q00179_IntoTheLargeCavern.Q00179_IntoTheLargeCavern;
  * @author Gnacik
  * @version 2010-10-15 Based on official server Naia
  */
-public class NornilsGarden extends AbstractInstance
+public class NornilsGarden extends InstanceScript
 {
 	protected class NornilsWorld extends InstanceWorld
 	{

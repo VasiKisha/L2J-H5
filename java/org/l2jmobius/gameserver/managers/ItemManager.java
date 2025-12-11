@@ -26,10 +26,11 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.StringUtil;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Attackable;
@@ -86,21 +87,21 @@ public class ItemManager
 	{
 		// Create and Init the Item corresponding to the Item Identifier.
 		final Item item = new Item(IdManager.getInstance().getNextId(), itemId);
-		if ((process == ItemProcessType.LOOT) && !Config.AUTO_LOOT_ITEM_IDS.contains(itemId))
+		if ((process == ItemProcessType.LOOT) && !PlayerConfig.AUTO_LOOT_ITEM_IDS.contains(itemId))
 		{
 			ScheduledFuture<?> itemLootShedule;
 			if ((reference instanceof Attackable) && ((Attackable) reference).isRaid()) // Loot privilege for raids.
 			{
 				// if in CommandChannel and was killing a World/RaidBoss.
 				final Attackable raid = (Attackable) reference;
-				if ((raid.getFirstCommandChannelAttacked() != null) && !Config.AUTO_LOOT_RAIDS)
+				if ((raid.getFirstCommandChannelAttacked() != null) && !PlayerConfig.AUTO_LOOT_RAIDS)
 				{
 					item.setOwnerId(raid.getFirstCommandChannelAttacked().getLeaderObjectId());
-					itemLootShedule = ThreadPool.schedule(new ResetOwner(item), Config.LOOT_RAIDS_PRIVILEGE_INTERVAL);
+					itemLootShedule = ThreadPool.schedule(new ResetOwner(item), PlayerConfig.LOOT_RAIDS_PRIVILEGE_INTERVAL);
 					item.setItemLootShedule(itemLootShedule);
 				}
 			}
-			else if (!Config.AUTO_LOOT || ((reference instanceof EventMonster) && ((EventMonster) reference).eventDropOnGround()))
+			else if (!PlayerConfig.AUTO_LOOT || ((reference instanceof EventMonster) && ((EventMonster) reference).eventDropOnGround()))
 			{
 				item.setOwnerId(actor.getObjectId());
 				itemLootShedule = ThreadPool.schedule(new ResetOwner(item), 15000);
@@ -117,7 +118,7 @@ public class ItemManager
 			item.setCount(count);
 		}
 		
-		if ((Config.LOG_ITEMS && ((!Config.LOG_ITEMS_SMALL_LOG) && (!Config.LOG_ITEMS_IDS_ONLY))) || (Config.LOG_ITEMS_SMALL_LOG && (item.isEquipable() || (item.getId() == Inventory.ADENA_ID))) || (Config.LOG_ITEMS_IDS_ONLY && Config.LOG_ITEMS_IDS_LIST.contains(item.getId())))
+		if ((GeneralConfig.LOG_ITEMS && ((!GeneralConfig.LOG_ITEMS_SMALL_LOG) && (!GeneralConfig.LOG_ITEMS_IDS_ONLY))) || (GeneralConfig.LOG_ITEMS_SMALL_LOG && (item.isEquipable() || (item.getId() == Inventory.ADENA_ID))) || (GeneralConfig.LOG_ITEMS_IDS_ONLY && GeneralConfig.LOG_ITEMS_IDS_LIST.contains(item.getId())))
 		{
 			if (item.getEnchantLevel() > 0)
 			{
@@ -129,7 +130,7 @@ public class ItemManager
 			}
 		}
 		
-		if ((actor != null) && actor.isGM() && Config.GMAUDIT)
+		if ((actor != null) && actor.isGM() && GeneralConfig.GMAUDIT)
 		{
 			String referenceName = "no-reference";
 			if (reference instanceof WorldObject)
@@ -177,7 +178,7 @@ public class ItemManager
 			
 			if ((process != null) && (process != ItemProcessType.NONE))
 			{
-				if ((Config.LOG_ITEMS && ((!Config.LOG_ITEMS_SMALL_LOG) && (!Config.LOG_ITEMS_IDS_ONLY))) || (Config.LOG_ITEMS_SMALL_LOG && (item.isEquipable() || (item.getId() == Inventory.ADENA_ID))) || (Config.LOG_ITEMS_IDS_ONLY && Config.LOG_ITEMS_IDS_LIST.contains(item.getId())))
+				if ((GeneralConfig.LOG_ITEMS && ((!GeneralConfig.LOG_ITEMS_SMALL_LOG) && (!GeneralConfig.LOG_ITEMS_IDS_ONLY))) || (GeneralConfig.LOG_ITEMS_SMALL_LOG && (item.isEquipable() || (item.getId() == Inventory.ADENA_ID))) || (GeneralConfig.LOG_ITEMS_IDS_ONLY && GeneralConfig.LOG_ITEMS_IDS_LIST.contains(item.getId())))
 				{
 					if (item.getEnchantLevel() > 0)
 					{
@@ -189,7 +190,7 @@ public class ItemManager
 					}
 				}
 				
-				if ((actor != null) && actor.isGM() && Config.GMAUDIT)
+				if ((actor != null) && actor.isGM() && GeneralConfig.GMAUDIT)
 				{
 					String referenceName = "no-reference";
 					if (reference instanceof WorldObject)

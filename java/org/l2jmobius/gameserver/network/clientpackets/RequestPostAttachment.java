@@ -18,7 +18,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import static org.l2jmobius.gameserver.model.itemcontainer.Inventory.ADENA_ID;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.managers.MailManager;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
@@ -53,7 +53,7 @@ public class RequestPostAttachment extends ClientPacket
 	@Override
 	protected void runImpl()
 	{
-		if (!Config.ALLOW_MAIL || !Config.ALLOW_ATTACHMENTS)
+		if (!GeneralConfig.ALLOW_MAIL || !GeneralConfig.ALLOW_ATTACHMENTS)
 		{
 			return;
 		}
@@ -107,7 +107,7 @@ public class RequestPostAttachment extends ClientPacket
 		
 		if (msg.getReceiverId() != player.getObjectId())
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get not own attachment!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get not own attachment!", GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		
@@ -134,19 +134,19 @@ public class RequestPostAttachment extends ClientPacket
 			// Calculate needed slots
 			if (item.getOwnerId() != msg.getSenderId())
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get wrong item (ownerId != senderId) from attachment!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get wrong item (ownerId != senderId) from attachment!", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			
 			if (item.getItemLocation() != ItemLocation.MAIL)
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get wrong item (Location != MAIL) from attachment!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get wrong item (Location != MAIL) from attachment!", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			
 			if (item.getLocationSlot() != msg.getId())
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get items from different attachment!", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get items from different attachment!", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			
@@ -193,7 +193,7 @@ public class RequestPostAttachment extends ClientPacket
 			
 			if (item.getOwnerId() != msg.getSenderId())
 			{
-				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get items with owner != sender !", Config.DEFAULT_PUNISH);
+				PunishmentManager.handleIllegalPlayerAction(player, player + " tried to get items with owner != sender !", GeneralConfig.DEFAULT_PUNISH);
 				return;
 			}
 			

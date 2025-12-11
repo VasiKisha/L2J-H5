@@ -18,14 +18,13 @@ package ai.others;
 
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Gordon AI
  * @author TOFIZ, malyelfik
  */
-public class Gordon extends AbstractNpcAI
+public class Gordon extends Script
 {
 	private static final int GORDON = 29095;
 	

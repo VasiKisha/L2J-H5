@@ -21,17 +21,16 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
-
-import ai.AbstractNpcAI;
 
 /**
  * Frightened Ragna Orc AI.
  * @author Gladicek, malyelfik
  */
-public class FrightenedRagnaOrc extends AbstractNpcAI
+public class FrightenedRagnaOrc extends Script
 {
 	// NPC ID
 	private static final int MOB_ID = 18807;

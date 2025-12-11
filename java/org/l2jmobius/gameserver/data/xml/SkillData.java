@@ -30,10 +30,12 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.commons.config.ThreadConfig;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.commons.util.TraceUtil;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.util.DocumentSkill;
 
@@ -53,7 +55,7 @@ public class SkillData
 	protected SkillData()
 	{
 		processDirectory("data/stats/skills", _skillFiles);
-		if (Config.CUSTOM_SKILLS_LOAD)
+		if (GeneralConfig.CUSTOM_SKILLS_LOAD)
 		{
 			processDirectory("data/stats/skills/custom", _skillFiles);
 		}
@@ -63,7 +65,7 @@ public class SkillData
 	
 	private void processDirectory(String dirName, List<File> list)
 	{
-		final File dir = new File(Config.DATAPACK_ROOT, dirName);
+		final File dir = new File(ServerConfig.DATAPACK_ROOT, dirName);
 		if (!dir.exists())
 		{
 			LOGGER.warning("Directory " + dir.getAbsolutePath() + " does not exist.");
@@ -130,7 +132,7 @@ public class SkillData
 	
 	public void loadAllSkills(Map<Integer, Skill> allSkills)
 	{
-		if (Config.THREADS_FOR_LOADING)
+		if (ThreadConfig.THREADS_FOR_LOADING)
 		{
 			final Collection<ScheduledFuture<?>> jobs = ConcurrentHashMap.newKeySet();
 			for (File file : _skillFiles)

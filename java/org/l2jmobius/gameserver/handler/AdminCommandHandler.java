@@ -25,9 +25,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.time.TimeUtil;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -120,7 +120,7 @@ public class AdminCommandHandler implements IHandler<IAdminCommandHandler, Strin
 				final long begin = System.currentTimeMillis();
 				try
 				{
-					if (Config.GMAUDIT)
+					if (GeneralConfig.GMAUDIT)
 					{
 						final WorldObject target = player.getTarget();
 						GMAudit.logAction(player.getName() + " [" + player.getObjectId() + "]", fullCommand, (target != null ? target.getName() : "no-target"));

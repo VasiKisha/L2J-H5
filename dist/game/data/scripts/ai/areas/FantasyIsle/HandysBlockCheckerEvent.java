@@ -16,23 +16,22 @@
  */
 package ai.areas.FantasyIsle;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.HandysBlockCheckerManager;
 import org.l2jmobius.gameserver.model.ArenaParticipantsHolder;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ExCubeGameChangeTimeToStart;
 import org.l2jmobius.gameserver.network.serverpackets.ExCubeGameRequestReady;
 import org.l2jmobius.gameserver.network.serverpackets.ExCubeGameTeamList;
 
-import ai.AbstractNpcAI;
-
 /**
  * Handys Block Checker Event AI.
  * @authors BiggBoss, Gigiikun
  */
-public class HandysBlockCheckerEvent extends AbstractNpcAI
+public class HandysBlockCheckerEvent extends Script
 {
 	// Arena Managers
 	private static final int A_MANAGER_1 = 32521;
@@ -71,7 +70,7 @@ public class HandysBlockCheckerEvent extends AbstractNpcAI
 		{
 			final ArenaParticipantsHolder holder = HandysBlockCheckerManager.getInstance().getHolder(arena);
 			player.sendPacket(new ExCubeGameTeamList(holder.getRedPlayers(), holder.getBluePlayers(), arena));
-			if ((holder.getBlueTeamSize() >= Config.MIN_BLOCK_CHECKER_TEAM_MEMBERS) && (holder.getRedTeamSize() >= Config.MIN_BLOCK_CHECKER_TEAM_MEMBERS))
+			if ((holder.getBlueTeamSize() >= GeneralConfig.MIN_BLOCK_CHECKER_TEAM_MEMBERS) && (holder.getRedTeamSize() >= GeneralConfig.MIN_BLOCK_CHECKER_TEAM_MEMBERS))
 			{
 				holder.updateEvent();
 				holder.broadCastPacketToTeam(new ExCubeGameRequestReady());
@@ -89,7 +88,7 @@ public class HandysBlockCheckerEvent extends AbstractNpcAI
 	
 	public static void main(String[] args)
 	{
-		if (Config.ENABLE_BLOCK_CHECKER_EVENT)
+		if (GeneralConfig.ENABLE_BLOCK_CHECKER_EVENT)
 		{
 			new HandysBlockCheckerEvent();
 			LOGGER.info("Handy's Block Checker Event is enabled");

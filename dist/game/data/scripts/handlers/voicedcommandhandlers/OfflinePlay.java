@@ -22,7 +22,7 @@ package handlers.voicedcommandhandlers;
 
 import java.util.function.Consumer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.OfflinePlayConfig;
 import org.l2jmobius.gameserver.handler.IVoicedCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerAction;
@@ -50,9 +50,9 @@ public class OfflinePlay implements IVoicedCommandHandler
 	
 	private static final Consumer<OnPlayerLogin> ON_PLAYER_LOGIN = event ->
 	{
-		if (Config.ENABLE_OFFLINE_PLAY_COMMAND && !Config.OFFLINE_PLAY_LOGIN_MESSAGE.isEmpty())
+		if (OfflinePlayConfig.ENABLE_OFFLINE_PLAY_COMMAND && !OfflinePlayConfig.OFFLINE_PLAY_LOGIN_MESSAGE.isEmpty())
 		{
-			event.getPlayer().sendPacket(new CreatureSay(null, ChatType.ANNOUNCEMENT, "OfflinePlay", Config.OFFLINE_PLAY_LOGIN_MESSAGE));
+			event.getPlayer().sendPacket(new CreatureSay(null, ChatType.ANNOUNCEMENT, "OfflinePlay", OfflinePlayConfig.OFFLINE_PLAY_LOGIN_MESSAGE));
 		}
 	};
 	
@@ -64,9 +64,9 @@ public class OfflinePlay implements IVoicedCommandHandler
 	@Override
 	public boolean onCommand(String command, Player player, String target)
 	{
-		if (command.equals("offlineplay") && Config.ENABLE_OFFLINE_PLAY_COMMAND)
+		if (command.equals("offlineplay") && OfflinePlayConfig.ENABLE_OFFLINE_PLAY_COMMAND)
 		{
-			if (Config.OFFLINE_PLAY_PREMIUM && !player.hasPremiumStatus())
+			if (OfflinePlayConfig.OFFLINE_PLAY_PREMIUM && !player.hasPremiumStatus())
 			{
 				player.sendPacket(new ExShowScreenMessage("This command is only available to premium players.", 5000));
 				player.sendMessage("This command is only available to premium players.");

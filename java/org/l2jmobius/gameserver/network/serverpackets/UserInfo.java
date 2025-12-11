@@ -20,8 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.ExperienceData;
 import org.l2jmobius.gameserver.managers.CursedWeaponsManager;
 import org.l2jmobius.gameserver.managers.TerritoryWarManager;
@@ -208,7 +208,7 @@ public class UserInfo extends ServerPacket
 		buffer.writeByte(_player.getTeam().getId());
 		buffer.writeInt(_player.getClanCrestLargeId());
 		buffer.writeByte(_player.isNoble()); // 1: symbol on char menu ctrl+I
-		buffer.writeByte(_player.isHero() || (_player.isGM() && Config.GM_HERO_AURA)); // 1: Hero Aura
+		buffer.writeByte(_player.isHero() || (_player.isGM() && GeneralConfig.GM_HERO_AURA)); // 1: Hero Aura
 		
 		buffer.writeByte(_player.isFishing()); // Fishing Mode
 		buffer.writeInt(_player.getFishX()); // fishing x

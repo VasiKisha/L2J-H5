@@ -19,17 +19,16 @@ package ai.others.WeaverOlf;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
-
-import ai.AbstractNpcAI;
 
 /**
  * Weaver Olf - Pins And Pouch Unseal AI.
  * @author Gigiikun, Bloodshed, Adry_85
  */
-public class WeaverOlf extends AbstractNpcAI
+public class WeaverOlf extends Script
 {
 	// NPCs
 	private static final int[] NPCs =

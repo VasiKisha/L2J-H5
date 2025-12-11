@@ -25,15 +25,14 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Dark Elven Change Part 2.
  * @author nonom
  */
-public class DarkElfChange2 extends AbstractNpcAI
+public class DarkElfChange2 extends Script
 {
 	// NPCs
 	private static int[] NPCS =
@@ -115,8 +114,8 @@ public class DarkElfChange2 extends AbstractNpcAI
 						playSound(player, QuestSound.ITEMSOUND_QUEST_FANFARE_2);
 						player.setPlayerClass(CLASSES[i][0]);
 						player.setBaseClass(CLASSES[i][0]);
-						player.broadcastUserInfo();
 						giveItems(player, SHADOW_ITEM_EXCHANGE_COUPON_C_GRADE, 15);
+						player.broadcastUserInfo();
 					}
 				}
 				

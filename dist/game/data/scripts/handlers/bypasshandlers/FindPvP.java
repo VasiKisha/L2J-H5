@@ -24,8 +24,9 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.PvpConfig;
+import org.l2jmobius.gameserver.config.custom.FindPvpConfig;
 import org.l2jmobius.gameserver.handler.IBypassHandler;
 import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -48,7 +49,7 @@ public class FindPvP implements IBypassHandler
 	@Override
 	public boolean onCommand(String command, Player player, Creature target)
 	{
-		if (!Config.ENABLE_FIND_PVP || !target.isNpc())
+		if (!FindPvpConfig.ENABLE_FIND_PVP || !target.isNpc())
 		{
 			return false;
 		}
@@ -140,7 +141,7 @@ public class FindPvP implements IBypassHandler
 			player.setSpawnProtection(true);
 			if (!player.isGM())
 			{
-				player.setPvpFlagLasts(System.currentTimeMillis() + Config.PVP_PVP_TIME);
+				player.setPvpFlagLasts(System.currentTimeMillis() + PvpConfig.PVP_PVP_TIME);
 				player.startPvPFlag();
 			}
 		}

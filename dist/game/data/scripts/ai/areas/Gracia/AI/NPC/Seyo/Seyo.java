@@ -18,16 +18,15 @@ package ai.areas.Gracia.AI.NPC.Seyo;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
-
-import ai.AbstractNpcAI;
 
 /**
  * Seyo AI.
  * @author St3eT
  */
-public class Seyo extends AbstractNpcAI
+public class Seyo extends Script
 {
 	// NPC
 	private static final int SEYO = 32737;
@@ -174,4 +173,9 @@ public class Seyo extends AbstractNpcAI
 		
 		return htmltext;
 	}
-}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
+	}}

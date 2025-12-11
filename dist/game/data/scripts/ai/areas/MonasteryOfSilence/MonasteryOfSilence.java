@@ -25,18 +25,17 @@ import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.effects.EffectType;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 
-import ai.AbstractNpcAI;
-
 /**
  * Monastery of Silence AI.
  * @author Kerberos, nonom
  */
-public class MonasteryOfSilence extends AbstractNpcAI
+public class MonasteryOfSilence extends Script
 {
 	// NPCs
 	private static final int CAPTAIN = 18910; // Solina Knight Captain

@@ -17,14 +17,13 @@
 package ai.others;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * See Through Silent Move AI.
  * @author Gigiikun
  */
-public class SeeThroughSilentMove extends AbstractNpcAI
+public class SeeThroughSilentMove extends Script
 {
 	// @formatter:off
 	private static final int[] MONSTERS =

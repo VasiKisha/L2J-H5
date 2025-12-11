@@ -22,6 +22,7 @@ package org.l2jmobius.gameserver.model.conditions;
 
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.item.ItemTemplate;
+import org.l2jmobius.gameserver.model.item.enums.BodyPart;
 import org.l2jmobius.gameserver.model.item.instance.Item;
 import org.l2jmobius.gameserver.model.item.type.ArmorType;
 import org.l2jmobius.gameserver.model.itemcontainer.Inventory;
@@ -73,8 +74,8 @@ public class ConditionUsingItemType extends Condition
 			{
 				if (legs == null)
 				{
-					final int chestBodyPart = chest.getTemplate().getBodyPart();
-					if (chestBodyPart == ItemTemplate.SLOT_FULL_ARMOR)
+					final BodyPart chestBodyPart = chest.getTemplate().getBodyPart();
+					if (chestBodyPart == BodyPart.FULL_ARMOR)
 					{
 						final int chestMask = chest.getTemplate().getItemMask();
 						return (_mask & chestMask) != 0;

@@ -20,15 +20,14 @@ import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.util.ArrayUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Underground Coliseum teleport AI
  * @author malyelfik
  */
-public class TeleportToUndergroundColiseum extends AbstractNpcAI
+public class TeleportToUndergroundColiseum extends Script
 {
 	// NPCs
 	private static final int COLISEUM_HELPER = 32491;

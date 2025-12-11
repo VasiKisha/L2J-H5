@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.network.clientpackets;
 
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.sql.OfflineTraderTable;
 import org.l2jmobius.gameserver.managers.InstanceManager;
 import org.l2jmobius.gameserver.managers.MapRegionManager;
@@ -75,7 +75,7 @@ public class Logout extends ClientPacket
 			OlympiadManager.getInstance().unRegisterNoble(player);
 		}
 		
-		if (!Config.RESTORE_PLAYER_INSTANCE)
+		if (!GeneralConfig.RESTORE_PLAYER_INSTANCE)
 		{
 			final int instanceId = player.getInstanceId();
 			if (instanceId > 0)

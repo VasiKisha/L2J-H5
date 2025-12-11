@@ -28,7 +28,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
@@ -304,7 +304,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		}
 		else if (command.startsWith("admin_switch_gm_buffs"))
 		{
-			if (Config.GM_GIVE_SPECIAL_SKILLS != Config.GM_GIVE_SPECIAL_AURA_SKILLS)
+			if (GeneralConfig.GM_GIVE_SPECIAL_SKILLS != GeneralConfig.GM_GIVE_SPECIAL_AURA_SKILLS)
 			{
 				final boolean toAuraSkills = activeChar.getKnownSkill(7041) != null;
 				switchSkills(activeChar, toAuraSkills);
@@ -420,7 +420,7 @@ public class AdminBuffs implements IAdminCommandHandler
 		html.replace("%skillSize%", skills.size());
 		activeChar.sendPacket(html);
 		
-		if (Config.GMAUDIT)
+		if (GeneralConfig.GMAUDIT)
 		{
 			GMAudit.logAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "getbuffs", target.getName() + " (" + target.getObjectId() + ")", "");
 		}
@@ -536,7 +536,7 @@ public class AdminBuffs implements IAdminCommandHandler
 			}
 			
 			showBuffs(activeChar, target, 0, false);
-			if (Config.GMAUDIT)
+			if (GeneralConfig.GMAUDIT)
 			{
 				GMAudit.logAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "stopbuff", target.getName() + " (" + objId + ")", Integer.toString(skillId));
 			}
@@ -560,7 +560,7 @@ public class AdminBuffs implements IAdminCommandHandler
 			target.stopAllEffects();
 			activeChar.sendSysMessage("Removed all effects from " + target.getName() + " (" + objId + ")");
 			showBuffs(activeChar, target, 0, false);
-			if (Config.GMAUDIT)
+			if (GeneralConfig.GMAUDIT)
 			{
 				GMAudit.logAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "stopallbuffs", target.getName() + " (" + objId + ")", "");
 			}
@@ -601,7 +601,7 @@ public class AdminBuffs implements IAdminCommandHandler
 			
 			// Send the packet
 			activeChar.sendPacket(new NpcHtmlMessage(html.toString()));
-			if (Config.GMAUDIT)
+			if (GeneralConfig.GMAUDIT)
 			{
 				GMAudit.logAction(activeChar.getName() + " [" + activeChar.getObjectId() + "]", "viewblockedeffects", target.getName() + " (" + Integer.toString(target.getObjectId()) + ")", "");
 			}

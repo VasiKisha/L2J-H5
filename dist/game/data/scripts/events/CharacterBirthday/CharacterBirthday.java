@@ -1,38 +1,53 @@
 /*
- * This file is part of the L2J Mobius project.
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 3 of the License, or
- * (at your option) any later version.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
  * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
- * General Public License for more details.
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
  * 
- * You should have received a copy of the GNU General Public License
- * along with this program. If not, see <http://www.gnu.org/licenses/>.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package events.CharacterBirthday;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+
+import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.managers.MailManager;
+import org.l2jmobius.gameserver.model.Message;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.events.EventType;
+import org.l2jmobius.gameserver.model.events.ListenerRegisterType;
+import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
+import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
+import org.l2jmobius.gameserver.model.events.holders.OnDailyReset;
+import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
+import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.network.enums.MessageSenderType;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import ai.AbstractNpcAI;
-
 /**
- * Character Birthday event AI.<br>
- * Updated to H5 by Nyaran.
- * @author Gnacik
+ * @author Nyaran, Mobius
  */
-public class CharacterBirthday extends AbstractNpcAI
+public class CharacterBirthday extends Script
 {
+	// NPCs
 	private static final int ALEGRIA = 32600;
-	private static int SPAWNS = 0;
-	
-	private static final int[] GK =
+	private static final int[] GATEKEEPERS =
 	{
 		30006,
 		30059,
@@ -55,12 +70,18 @@ public class CharacterBirthday extends AbstractNpcAI
 		32163
 	};
 	
+	// Query: Get all players that have had a birthday the last 24 hours.
+	private static final String SELECT_PENDING_BIRTHDAY_GIFTS = "SELECT charId, char_name, createDate, (YEAR(NOW()) - YEAR(createDate)) AS age FROM characters WHERE (YEAR(NOW()) - YEAR(createDate) > 0) AND ((DATE_ADD(createDate, INTERVAL (YEAR(NOW()) - YEAR(createDate)) YEAR)) BETWEEN FROM_UNIXTIME(?) AND NOW())";
+	
+	// Misc
+	private static int SPAWNS = 0;
+	
 	private CharacterBirthday()
 	{
 		addStartNpc(ALEGRIA);
-		addStartNpc(GK);
+		addStartNpc(GATEKEEPERS);
 		addTalkId(ALEGRIA);
-		addTalkId(GK);
+		addTalkId(GATEKEEPERS);
 	}
 	
 	@Override
@@ -116,6 +137,35 @@ public class CharacterBirthday extends AbstractNpcAI
 		}
 		
 		return null;
+	}
+	
+	@RegisterEvent(EventType.ON_DAILY_RESET)
+	@RegisterType(ListenerRegisterType.GLOBAL)
+	public void onDailyReset(OnDailyReset event)
+	{
+		int birthdayGiftCount = 0;
+		try (Connection con = DatabaseFactory.getConnection();
+			PreparedStatement statement = con.prepareStatement(SELECT_PENDING_BIRTHDAY_GIFTS))
+		{
+			statement.setLong(1, System.currentTimeMillis() - (24 * 60 * 60 * 1000)); // Last 24 hours.
+			try (ResultSet rs = statement.executeQuery())
+			{
+				while (rs.next())
+				{
+					final String text = GeneralConfig.ALT_BIRTHDAY_MAIL_TEXT.replaceAll("$c1", rs.getString("char_name")).replaceAll("$s1", Integer.toString(rs.getInt("age")));
+					final Message message = new Message(rs.getInt("charId"), GeneralConfig.ALT_BIRTHDAY_MAIL_SUBJECT, text, MessageSenderType.ALEGRIA);
+					message.createAttachments().addItem(ItemProcessType.REWARD, GeneralConfig.ALT_BIRTHDAY_GIFT, 1, null, null);
+					MailManager.getInstance().sendMessage(message);
+					birthdayGiftCount++;
+				}
+			}
+		}
+		catch (Exception e)
+		{
+			LOGGER.warning(getClass().getSimpleName() + ": Error checking birthdays. " + e.getMessage());
+		}
+		
+		LOGGER.info(getClass().getSimpleName() + " " + birthdayGiftCount + " gifts sent.");
 	}
 	
 	public static void main(String[] args)

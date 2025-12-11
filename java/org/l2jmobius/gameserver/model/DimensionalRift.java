@@ -28,16 +28,16 @@ import java.util.TimerTask;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Future;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.managers.DimensionalRiftManager;
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.network.serverpackets.Earthquake;
 
 /**
@@ -74,7 +74,7 @@ public class DimensionalRift
 		party.setDimensionalRift(this);
 		for (Player p : party.getMembers())
 		{
-			final Quest riftQuest = QuestManager.getInstance().getQuest(635);
+			final Quest riftQuest = ScriptManager.getInstance().getQuest(635);
 			if (riftQuest != null)
 			{
 				QuestState qs = p.getQuestState(riftQuest.getName());
@@ -222,7 +222,7 @@ public class DimensionalRift
 			}
 		};
 		
-		spawnTimer.schedule(spawnTimerTask, Config.RIFT_SPAWN_DELAY);
+		spawnTimer.schedule(spawnTimerTask, GeneralConfig.RIFT_SPAWN_DELAY);
 	}
 	
 	public void partyMemberInvited()
@@ -242,7 +242,7 @@ public class DimensionalRift
 			_revivedInWaitingRoom.remove(player);
 		}
 		
-		if ((_party.getMemberCount() < Config.RIFT_MIN_PARTY_SIZE) || (_party.getMemberCount() == 1))
+		if ((_party.getMemberCount() < GeneralConfig.RIFT_MIN_PARTY_SIZE) || (_party.getMemberCount() == 1))
 		{
 			for (Player p : _party.getMembers())
 			{
@@ -342,7 +342,7 @@ public class DimensionalRift
 	protected void teleportToWaitingRoom(Player player)
 	{
 		DimensionalRiftManager.getInstance().teleportToWaitingRoom(player);
-		final Quest riftQuest = QuestManager.getInstance().getQuest(635);
+		final Quest riftQuest = ScriptManager.getInstance().getQuest(635);
 		if (riftQuest != null)
 		{
 			final QuestState qs = player.getQuestState(riftQuest.getName());
@@ -418,11 +418,11 @@ public class DimensionalRift
 	
 	private long calcTimeToNextJump()
 	{
-		final int time = Rnd.get(Config.RIFT_AUTO_JUMPS_TIME_MIN, Config.RIFT_AUTO_JUMPS_TIME_MAX) * 1000;
+		final int time = Rnd.get(GeneralConfig.RIFT_AUTO_JUMPS_TIME_MIN, GeneralConfig.RIFT_AUTO_JUMPS_TIME_MAX) * 1000;
 		
 		if (isBossRoom)
 		{
-			return (long) (time * Config.RIFT_BOSS_ROOM_TIME_MUTIPLY);
+			return (long) (time * GeneralConfig.RIFT_BOSS_ROOM_TIME_MUTIPLY);
 		}
 		
 		return time;
@@ -456,7 +456,7 @@ public class DimensionalRift
 			_deadPlayers.add(player);
 		}
 		
-		if ((_party.getMemberCount() - _revivedInWaitingRoom.size()) < Config.RIFT_MIN_PARTY_SIZE)
+		if ((_party.getMemberCount() - _revivedInWaitingRoom.size()) < GeneralConfig.RIFT_MIN_PARTY_SIZE)
 		{
 			// int pcm = _party.getMemberCount();
 			// int rev = revivedInWaitingRoom.size();
@@ -496,9 +496,9 @@ public class DimensionalRift
 	
 	public byte getMaxJumps()
 	{
-		if ((Config.RIFT_MAX_JUMPS <= 8) && (Config.RIFT_MAX_JUMPS >= 1))
+		if ((GeneralConfig.RIFT_MAX_JUMPS <= 8) && (GeneralConfig.RIFT_MAX_JUMPS >= 1))
 		{
-			return (byte) Config.RIFT_MAX_JUMPS;
+			return (byte) GeneralConfig.RIFT_MAX_JUMPS;
 		}
 		
 		return 4;

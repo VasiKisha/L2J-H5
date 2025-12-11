@@ -20,7 +20,8 @@
  */
 package org.l2jmobius.gameserver.network.clientpackets;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.xml.AdminData;
 import org.l2jmobius.gameserver.managers.PunishmentManager;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -74,7 +75,7 @@ public class RequestDropItem extends ClientPacket
 		}
 		
 		final Item item = player.getInventory().getItemByObjectId(_objectId);
-		if ((item == null) || (_count == 0) || !player.validateItemManipulation(_objectId, ItemProcessType.DROP) || (!Config.ALLOW_DISCARDITEM && !player.isGM()) || (!item.isDropable() && !(player.isGM() && Config.GM_TRADE_RESTRICTED_ITEMS)) || ((item.getItemType() == EtcItemType.PET_COLLAR) && player.havePetInvItems()) || player.isInsideZone(ZoneId.NO_ITEM_DROP))
+		if ((item == null) || (_count == 0) || !player.validateItemManipulation(_objectId, ItemProcessType.DROP) || (!GeneralConfig.ALLOW_DISCARDITEM && !player.isGM()) || (!item.isDropable() && !(player.isGM() && GeneralConfig.GM_TRADE_RESTRICTED_ITEMS)) || ((item.getItemType() == EtcItemType.PET_COLLAR) && player.havePetInvItems()) || player.isInsideZone(ZoneId.NO_ITEM_DROP))
 		{
 			if ((item != null) && item.isAugmented())
 			{
@@ -87,7 +88,7 @@ public class RequestDropItem extends ClientPacket
 			return;
 		}
 		
-		if (item.isQuestItem() && !(player.isGM() && Config.GM_TRADE_RESTRICTED_ITEMS))
+		if (item.isQuestItem() && !(player.isGM() && GeneralConfig.GM_TRADE_RESTRICTED_ITEMS))
 		{
 			return;
 		}
@@ -98,7 +99,7 @@ public class RequestDropItem extends ClientPacket
 			return;
 		}
 		
-		if ((Config.PLAYER_SPAWN_PROTECTION > 0) && player.isInvul() && !player.isGM())
+		if ((PlayerConfig.PLAYER_SPAWN_PROTECTION > 0) && player.isInvul() && !player.isGM())
 		{
 			player.sendPacket(SystemMessageId.THIS_ITEM_CANNOT_BE_DISCARDED);
 			return;
@@ -106,17 +107,17 @@ public class RequestDropItem extends ClientPacket
 		
 		if (_count < 0)
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, "[RequestDropItem] Character " + player.getName() + " of account " + player.getAccountName() + " tried to drop item with oid " + _objectId + " but has count < 0!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "[RequestDropItem] Character " + player.getName() + " of account " + player.getAccountName() + " tried to drop item with oid " + _objectId + " but has count < 0!", GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		
 		if (!item.isStackable() && (_count > 1))
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, "[RequestDropItem] Character " + player.getName() + " of account " + player.getAccountName() + " tried to drop non-stackable item with oid " + _objectId + " but has count > 1!", Config.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, "[RequestDropItem] Character " + player.getName() + " of account " + player.getAccountName() + " tried to drop non-stackable item with oid " + _objectId + " but has count > 1!", GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		
-		if (Config.JAIL_DISABLE_TRANSACTION && player.isJailed())
+		if (GeneralConfig.JAIL_DISABLE_TRANSACTION && player.isJailed())
 		{
 			player.sendMessage("You cannot drop items in Jail.");
 			return;

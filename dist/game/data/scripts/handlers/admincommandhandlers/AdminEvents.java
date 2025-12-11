@@ -23,10 +23,10 @@ package handlers.admincommandhandlers;
 import java.util.StringTokenizer;
 
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
-import org.l2jmobius.gameserver.managers.QuestManager;
+import org.l2jmobius.gameserver.managers.ScriptManager;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Event;
-import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.script.Event;
+import org.l2jmobius.gameserver.model.script.Quest;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
 public class AdminEvents implements IAdminCommandHandler
@@ -80,7 +80,7 @@ public class AdminEvents implements IAdminCommandHandler
 			{
 				if (eventName != null)
 				{
-					final Event event = (Event) QuestManager.getInstance().getQuest(eventName);
+					final Event event = (Event) ScriptManager.getInstance().getScript(eventName);
 					if (event != null)
 					{
 						if (event.eventStart(activeChar))
@@ -106,7 +106,7 @@ public class AdminEvents implements IAdminCommandHandler
 			{
 				if (eventName != null)
 				{
-					final Event event = (Event) QuestManager.getInstance().getQuest(eventName);
+					final Event event = (Event) ScriptManager.getInstance().getScript(eventName);
 					if (event != null)
 					{
 						if (event.eventStop())
@@ -132,7 +132,7 @@ public class AdminEvents implements IAdminCommandHandler
 			{
 				if (eventName != null)
 				{
-					final Event event = (Event) QuestManager.getInstance().getQuest(eventName);
+					final Event event = (Event) ScriptManager.getInstance().getScript(eventName);
 					if (event != null)
 					{
 						event.eventBypass(activeChar, eventBypass);
@@ -154,7 +154,7 @@ public class AdminEvents implements IAdminCommandHandler
 		final NpcHtmlMessage html = new NpcHtmlMessage();
 		html.setFile(activeChar, "data/html/admin/gm_events.htm");
 		final StringBuilder cList = new StringBuilder(500);
-		for (Quest event : QuestManager.getInstance().getScripts().values())
+		for (Quest event : ScriptManager.getInstance().getScripts().values())
 		{
 			if (event instanceof Event)
 			{

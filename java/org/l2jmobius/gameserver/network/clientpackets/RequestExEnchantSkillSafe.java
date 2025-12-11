@@ -19,8 +19,8 @@ package org.l2jmobius.gameserver.network.clientpackets;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.EnchantSkillGroupsData;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.model.EnchantSkillGroup.EnchantSkillHolder;
@@ -138,7 +138,7 @@ public class RequestExEnchantSkillSafe extends ClientPacket
 			// ok. Destroy ONE copy of the book
 			if (Rnd.get(100) <= rate)
 			{
-				if (Config.LOG_SKILL_ENCHANTS)
+				if (GeneralConfig.LOG_SKILL_ENCHANTS)
 				{
 					LOGGER_ENCHANT.log(Level.INFO, "Safe Success, Character:" + player.getName() + " [" + player.getObjectId() + "] Account:" + player.getAccountName() + " IP:" + player.getIPAddress() + ", Skill:" + skill + ", SPB:" + spb + ", Rate:" + rate);
 				}
@@ -152,7 +152,7 @@ public class RequestExEnchantSkillSafe extends ClientPacket
 			}
 			else
 			{
-				if (Config.LOG_SKILL_ENCHANTS)
+				if (GeneralConfig.LOG_SKILL_ENCHANTS)
 				{
 					LOGGER_ENCHANT.log(Level.INFO, "Safe Failed, Character:" + player.getName() + " [" + player.getObjectId() + "] Account:" + player.getAccountName() + " IP:" + player.getIPAddress() + ", Skill:" + skill + ", SPB:" + spb + ", Rate:" + rate);
 				}

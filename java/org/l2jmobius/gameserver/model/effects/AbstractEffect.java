@@ -27,7 +27,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.handler.EffectHandler;
 import org.l2jmobius.gameserver.model.StatSet;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -150,7 +150,7 @@ public abstract class AbstractEffect
 	
 	public double getTicksMultiplier()
 	{
-		return (getTicks() * Config.EFFECT_TICK_RATIO) / 1000f;
+		return (getTicks() * PlayerConfig.EFFECT_TICK_RATIO) / 1000f;
 	}
 	
 	public List<FuncTemplate> getFuncTemplates()

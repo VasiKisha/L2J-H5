@@ -18,13 +18,12 @@ package village_master.AllianceMaster;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * @author UnAfraid
  */
-public class AllianceMaster extends AbstractNpcAI
+public class AllianceMaster extends Script
 {
 	// @formatter:off
 	private static final int[] NPCS =

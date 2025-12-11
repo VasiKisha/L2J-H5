@@ -22,7 +22,7 @@ package org.l2jmobius.gameserver.model.actor.instance;
 
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.SkillTreeData;
 import org.l2jmobius.gameserver.managers.FishingChampionshipManager;
@@ -75,7 +75,7 @@ public class Fisherman extends Merchant
 		}
 		else if (command.startsWith("FishingChampionship"))
 		{
-			if (Config.ALT_FISH_CHAMPIONSHIP_ENABLED)
+			if (GeneralConfig.ALT_FISH_CHAMPIONSHIP_ENABLED)
 			{
 				FishingChampionshipManager.getInstance().showChampScreen(player, this);
 			}
@@ -86,7 +86,7 @@ public class Fisherman extends Merchant
 		}
 		else if (command.startsWith("FishingReward"))
 		{
-			if (Config.ALT_FISH_CHAMPIONSHIP_ENABLED)
+			if (GeneralConfig.ALT_FISH_CHAMPIONSHIP_ENABLED)
 			{
 				if (FishingChampionshipManager.getInstance().isWinner(player.getName()))
 				{

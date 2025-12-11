@@ -21,7 +21,8 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
@@ -29,14 +30,13 @@ import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.enums.Movie;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 
-import instances.AbstractInstance;
 import quests.Q00195_SevenSignsSecretRitualOfThePriests.Q00195_SevenSignsSecretRitualOfThePriests;
 
 /**
  * Sanctum of the Lords of Dawn instance zone.
  * @author Adry_85
  */
-public class SSQSanctumOfTheLordsOfDawn extends AbstractInstance
+public class SSQSanctumOfTheLordsOfDawn extends InstanceScript
 {
 	// NPCs
 	private static final int GUARDS_OF_THE_DAWN = 18834;

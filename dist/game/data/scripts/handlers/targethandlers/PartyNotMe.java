@@ -19,7 +19,7 @@ package handlers.targethandlers;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.handler.ITargetTypeHandler;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Creature;
@@ -42,7 +42,7 @@ public class PartyNotMe implements ITargetTypeHandler
 			final List<Player> partyList = creature.getParty().getMembers();
 			for (Player partyMember : partyList)
 			{
-				if ((partyMember != null) && !partyMember.isDead() && (partyMember != creature) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, creature, partyMember, true) && ((skill.getAffectRange() <= 0) || LocationUtil.checkIfInRange(skill.getAffectRange(), creature, partyMember, true)))
+				if ((partyMember != null) && !partyMember.isDead() && (partyMember != creature) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, creature, partyMember, true) && ((skill.getAffectRange() <= 0) || LocationUtil.checkIfInRange(skill.getAffectRange(), creature, partyMember, true)))
 				{
 					targetList.add(partyMember);
 					if ((partyMember.getSummon() != null) && !partyMember.getSummon().isDead())

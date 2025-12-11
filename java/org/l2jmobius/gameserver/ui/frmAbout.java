@@ -35,7 +35,7 @@ import javax.swing.JLabel;
 import javax.swing.SwingConstants;
 import javax.swing.WindowConstants;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.ServerConfig;
 
 /**
  * @author Mobius
@@ -112,9 +112,9 @@ public class frmAbout
 		
 		// Generate protocols text.
 		String protocols = "";
-		if (Config.PROTOCOL_LIST.size() > 1)
+		if (ServerConfig.PROTOCOL_LIST.size() > 1)
 		{
-			for (Integer number : Config.PROTOCOL_LIST)
+			for (Integer number : ServerConfig.PROTOCOL_LIST)
 			{
 				if (!protocols.isEmpty())
 				{
@@ -128,7 +128,7 @@ public class frmAbout
 		}
 		else
 		{
-			protocols += Config.PROTOCOL_LIST.get(0);
+			protocols += ServerConfig.PROTOCOL_LIST.get(0);
 		}
 		
 		lblProtocols.setText(protocols);

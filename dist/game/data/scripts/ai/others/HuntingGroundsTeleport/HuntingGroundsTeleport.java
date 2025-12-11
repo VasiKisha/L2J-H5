@@ -18,16 +18,15 @@ package ai.others.HuntingGroundsTeleport;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.sevensigns.SevenSigns;
 import org.l2jmobius.gameserver.util.ArrayUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Hunting Grounds teleport AI.
  * @author Charus
  */
-public class HuntingGroundsTeleport extends AbstractNpcAI
+public class HuntingGroundsTeleport extends Script
 {
 	// NPCs
 	// @formatter:off

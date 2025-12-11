@@ -28,7 +28,7 @@ import java.nio.ByteBuffer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeoEngineConfig;
 import org.l2jmobius.gameserver.geoengine.geodata.Cell;
 import org.l2jmobius.gameserver.geoengine.geodata.IBlock;
 import org.l2jmobius.gameserver.geoengine.geodata.IRegion;
@@ -165,7 +165,7 @@ public class Region implements IRegion
 	@Override
 	public boolean saveToFile(String fileName)
 	{
-		final Path filePath = new File(Config.GEOEDIT_PATH + File.separator + fileName).toPath();
+		final Path filePath = new File(GeoEngineConfig.GEOEDIT_PATH + File.separator + fileName).toPath();
 		if (Files.exists(filePath))
 		{
 			try

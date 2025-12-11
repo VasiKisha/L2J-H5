@@ -19,18 +19,17 @@ package ai.others;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.util.LocationUtil;
-
-import ai.AbstractNpcAI;
 
 /**
  * Emerald Horn AI.
  * @author Zoey76
  * @since 2.6.0.0
  */
-public class EmeraldHorn extends AbstractNpcAI
+public class EmeraldHorn extends Script
 {
 	private static final int EMERALD_HORN = 25718;
 	

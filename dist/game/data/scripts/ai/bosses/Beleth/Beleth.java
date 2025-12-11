@@ -19,9 +19,9 @@ package ai.bosses.Beleth;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.GrandBossConfig;
 import org.l2jmobius.gameserver.data.xml.DoorData;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.managers.MapRegionManager;
@@ -38,6 +38,7 @@ import org.l2jmobius.gameserver.model.actor.instance.Door;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.effects.EffectType;
 import org.l2jmobius.gameserver.model.item.holders.ItemHolder;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
@@ -49,13 +50,11 @@ import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
 import org.l2jmobius.gameserver.network.serverpackets.StaticObjectInfo;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import ai.AbstractNpcAI;
-
 /**
  * Beleth's AI.
  * @author Treat, Sahar
  */
-public class Beleth extends AbstractNpcAI
+public class Beleth extends Script
 {
 	// Status
 	private static final int ALIVE = 0;
@@ -106,10 +105,16 @@ public class Beleth extends AbstractNpcAI
 	private Beleth()
 	{
 		addEnterZoneId(ZONE.getId());
-		registerMobs(REAL_BELETH, FAKE_BELETH);
+		addAttackId(REAL_BELETH, FAKE_BELETH);
+		addKillId(REAL_BELETH, FAKE_BELETH);
+		addSpawnId(REAL_BELETH, FAKE_BELETH);
+		addSpellFinishedId(REAL_BELETH, FAKE_BELETH);
+		addSkillSeeId(REAL_BELETH, FAKE_BELETH);
+		addAggroRangeEnterId(REAL_BELETH, FAKE_BELETH);
 		addStartNpc(STONE_COFFIN);
 		addTalkId(STONE_COFFIN);
 		addFirstTalkId(ELF);
+		
 		final StatSet info = GrandBossManager.getInstance().getStatSet(REAL_BELETH);
 		final int status = GrandBossManager.getInstance().getStatus(REAL_BELETH);
 		if (status == DEAD)
@@ -720,8 +725,8 @@ public class Beleth extends AbstractNpcAI
 			setBelethKiller(killer);
 			GrandBossManager.getInstance().setStatus(REAL_BELETH, DEAD);
 			
-			final long baseIntervalMillis = Config.BELETH_SPAWN_INTERVAL * 3600000;
-			final long randomRangeMillis = Config.BELETH_SPAWN_RANDOM * 3600000;
+			final long baseIntervalMillis = GrandBossConfig.BELETH_SPAWN_INTERVAL * 3600000;
+			final long randomRangeMillis = GrandBossConfig.BELETH_SPAWN_RANDOM * 3600000;
 			final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
 			final StatSet info = GrandBossManager.getInstance().getStatSet(REAL_BELETH);
 			info.set("respawn_time", System.currentTimeMillis() + respawnTime);

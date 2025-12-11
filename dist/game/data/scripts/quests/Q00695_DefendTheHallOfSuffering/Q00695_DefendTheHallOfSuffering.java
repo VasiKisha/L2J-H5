@@ -23,14 +23,14 @@ package quests.Q00695_DefendTheHallOfSuffering;
 import java.util.Calendar;
 
 import org.l2jmobius.gameserver.managers.InstanceManager;
-import org.l2jmobius.gameserver.managers.SoIManager;
+import org.l2jmobius.gameserver.managers.SeedOfInfinityManager;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.Instance;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 
@@ -78,7 +78,7 @@ public class Q00695_DefendTheHallOfSuffering extends Quest
 			{
 				if ((player.getLevel() >= 75) && (player.getLevel() <= 82))
 				{
-					if (SoIManager.getCurrentStage() == 4)
+					if (SeedOfInfinityManager.getCurrentStage() == 4)
 					{
 						htmltext = "32603-01.html";
 					}

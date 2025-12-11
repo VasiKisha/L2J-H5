@@ -18,18 +18,24 @@ package org.l2jmobius.gameserver.model.groups;
 
 import java.time.Duration;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.Future;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.gameserver.config.PlayerConfig;
+import org.l2jmobius.gameserver.config.RatesConfig;
+import org.l2jmobius.gameserver.config.custom.ClassBalanceConfig;
+import org.l2jmobius.gameserver.config.custom.PremiumSystemConfig;
 import org.l2jmobius.gameserver.managers.DuelManager;
 import org.l2jmobius.gameserver.managers.ItemManager;
 import org.l2jmobius.gameserver.managers.PcCafePointsManager;
@@ -149,7 +155,7 @@ public class Party extends AbstractPlayerGroup
 		final List<Player> availableMembers = new ArrayList<>();
 		for (Player member : _members)
 		{
-			if (member.getInventory().validateCapacityByItemId(itemId) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, target, member, true))
+			if (member.getInventory().validateCapacityByItemId(itemId) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, target, member, true))
 			{
 				availableMembers.add(member);
 			}
@@ -177,7 +183,7 @@ public class Party extends AbstractPlayerGroup
 			try
 			{
 				member = _members.get(_itemLastLoot);
-				if (member.getInventory().validateCapacityByItemId(itemId) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, target, member, true))
+				if (member.getInventory().validateCapacityByItemId(itemId) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, target, member, true))
 				{
 					return member;
 				}
@@ -398,7 +404,7 @@ public class Party extends AbstractPlayerGroup
 		if (_members.contains(player))
 		{
 			final boolean isLeader = isLeader(player);
-			if (!_disbanding && ((_members.size() == 2) || (isLeader && !Config.ALT_LEAVE_PARTY_LEADER && (type != PartyMessageType.DISCONNECTED))))
+			if (!_disbanding && ((_members.size() == 2) || (isLeader && !PlayerConfig.ALT_LEAVE_PARTY_LEADER && (type != PartyMessageType.DISCONNECTED))))
 			{
 				disbandParty();
 				return;
@@ -470,7 +476,7 @@ public class Party extends AbstractPlayerGroup
 				player.sendPacket(new ExCloseMPCC());
 			}
 			
-			if (isLeader && (_members.size() > 1) && (Config.ALT_LEAVE_PARTY_LEADER || (type == PartyMessageType.DISCONNECTED)))
+			if (isLeader && (_members.size() > 1) && (PlayerConfig.ALT_LEAVE_PARTY_LEADER || (type == PartyMessageType.DISCONNECTED)))
 			{
 				msg = new SystemMessage(SystemMessageId.C1_HAS_BECOME_THE_PARTY_LEADER);
 				msg.addString(getLeader().getName());
@@ -690,32 +696,60 @@ public class Party extends AbstractPlayerGroup
 	}
 	
 	/**
-	 * distribute adena to party members
-	 * @param player
-	 * @param adena
-	 * @param target
+	 * Distribute adena to party members who are in range of the target.
+	 * @param player The player responsible for the kill or loot (used as reference).
+	 * @param adena Total amount of adena to distribute.
+	 * @param target The target creature (used for range checking).
 	 */
 	public void distributeAdena(Player player, long adena, Creature target)
 	{
-		// Check the number of party members that must be rewarded
-		// (The party member must be in range to receive its reward)
+		// List to collect party members eligible to receive adena.
 		final List<Player> toReward = new LinkedList<>();
+		
+		// Iterate over all party members to find those within the allowed party range of the target.
 		for (Player member : _members)
 		{
-			if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, target, member, true))
+			if (LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, target, member, true))
 			{
-				toReward.add(member);
+				toReward.add(member); // Add eligible member to the reward list.
 			}
 		}
 		
-		if (!toReward.isEmpty())
+		// If no members are eligible or there is no adena to distribute, exit early.
+		if (toReward.isEmpty() || (adena <= 0))
 		{
-			// Now we can actually distribute the adena reward
-			// (Total adena splitted by the number of party members that are in range and must be rewarded)
-			final long count = adena / toReward.size();
-			for (Player member : toReward)
+			return;
+		}
+		
+		final long baseShare = adena / toReward.size(); // Calculate the base share of adena each eligible member will receive.
+		final long remainder = adena % toReward.size(); // Calculate the leftover adena that can't be evenly split (remainder).
+		final Map<Player, Long> adenaDistribution = new HashMap<>(); // Map to track how much adena each member will receive.
+		
+		// Assign the base share to every eligible member initially.
+		for (Player member : toReward)
+		{
+			adenaDistribution.put(member, baseShare);
+		}
+		
+		// Distribute the leftover adena (1 adena each) to some members starting from a random index.
+		if (remainder > 0)
+		{
+			final int randomIndex = Rnd.get(toReward.size());
+			for (int i = 0; i < remainder; i++)
 			{
-				member.addAdena(ItemProcessType.LOOT, count, player, true);
+				final Player member = toReward.get((randomIndex + i) % toReward.size());
+				adenaDistribution.put(member, adenaDistribution.get(member) + 1); // Increase the member's share by 1 to include remainder.
+			}
+		}
+		
+		// Finally, give each member their total calculated adena amount.
+		for (Entry<Player, Long> entry : adenaDistribution.entrySet())
+		{
+			final long amount = entry.getValue();
+			if (amount > 0)
+			{
+				// Add adena to the player's inventory and send message.
+				entry.getKey().addAdena(ItemProcessType.LOOT, amount, player, true);
 			}
 		}
 	}
@@ -749,7 +783,7 @@ public class Party extends AbstractPlayerGroup
 		
 		averagePartyMemberLevel /= Math.max(1, validMembers.size());
 		
-		final float vitalityPoints = (target.getVitalityPoints(averagePartyMemberLevel, partyDmg) * Config.RATE_PARTY_XP) / validMembers.size();
+		final float vitalityPoints = (target.getVitalityPoints(averagePartyMemberLevel, partyDmg) * RatesConfig.RATE_PARTY_XP) / validMembers.size();
 		final boolean useVitalityRate = target.useVitalityRate();
 		for (Player member : rewardedMembers)
 		{
@@ -785,28 +819,28 @@ public class Party extends AbstractPlayerGroup
 	
 	private double calculateExpSpPartyCutoff(Player player, int topLvl, double addExpValue, double addSpValue, boolean vit)
 	{
-		double addExp = addExpValue;
-		double addSp = addSpValue;
+		double addExp = addExpValue * ClassBalanceConfig.EXP_AMOUNT_MULTIPLIERS[player.getPlayerClass().getId()];
+		double addSp = addSpValue * ClassBalanceConfig.SP_AMOUNT_MULTIPLIERS[player.getPlayerClass().getId()];
 		
 		// Premium rates
 		if (player.hasPremiumStatus())
 		{
-			addExp *= Config.PREMIUM_RATE_XP;
-			addSp *= Config.PREMIUM_RATE_SP;
+			addExp *= PremiumSystemConfig.PREMIUM_RATE_XP;
+			addSp *= PremiumSystemConfig.PREMIUM_RATE_SP;
 		}
 		
 		double xp = addExp;
 		double sp = addSp;
-		if (Config.PARTY_XP_CUTOFF_METHOD == PartyExpType.HIGHFIVE)
+		if (PlayerConfig.PARTY_XP_CUTOFF_METHOD == PartyExpType.HIGHFIVE)
 		{
 			int i = 0;
 			final int levelDiff = topLvl - player.getLevel();
-			for (int[] gap : Config.PARTY_XP_CUTOFF_GAPS)
+			for (int[] gap : PlayerConfig.PARTY_XP_CUTOFF_GAPS)
 			{
 				if ((levelDiff >= gap[0]) && (levelDiff <= gap[1]))
 				{
-					xp = (addExp * Config.PARTY_XP_CUTOFF_GAP_PERCENTS[i]) / 100;
-					sp = (addSp * Config.PARTY_XP_CUTOFF_GAP_PERCENTS[i]) / 100;
+					xp = (addExp * PlayerConfig.PARTY_XP_CUTOFF_GAP_PERCENTS[i]) / 100;
+					sp = (addSp * PlayerConfig.PARTY_XP_CUTOFF_GAP_PERCENTS[i]) / 100;
 					player.addExpAndSp(xp, sp, vit);
 					break;
 				}
@@ -848,13 +882,13 @@ public class Party extends AbstractPlayerGroup
 	private List<Player> getValidMembers(List<Player> members, int topLvl, Attackable target)
 	{
 		final List<Player> validMembers = new ArrayList<>();
-		switch (Config.PARTY_XP_CUTOFF_METHOD)
+		switch (PlayerConfig.PARTY_XP_CUTOFF_METHOD)
 		{
 			case LEVEL:
 			{
 				for (Player member : members)
 				{
-					if ((target.getInstanceId() == member.getInstanceId()) && ((topLvl - member.getLevel()) <= Config.PARTY_XP_CUTOFF_LEVEL))
+					if ((target.getInstanceId() == member.getInstanceId()) && ((topLvl - member.getLevel()) <= PlayerConfig.PARTY_XP_CUTOFF_LEVEL))
 					{
 						validMembers.add(member);
 					}
@@ -875,7 +909,7 @@ public class Party extends AbstractPlayerGroup
 				for (Player member : members)
 				{
 					final int sqLevel = member.getLevel() * member.getLevel();
-					if ((target.getInstanceId() == member.getInstanceId()) && ((sqLevel * 100) >= (sqLevelSum * Config.PARTY_XP_CUTOFF_PERCENT)))
+					if ((target.getInstanceId() == member.getInstanceId()) && ((sqLevel * 100) >= (sqLevelSum * PlayerConfig.PARTY_XP_CUTOFF_PERCENT)))
 					{
 						validMembers.add(member);
 					}
@@ -956,12 +990,12 @@ public class Party extends AbstractPlayerGroup
 	
 	private double getExpBonus(int membersCount)
 	{
-		return (membersCount < 2) ? getBaseExpSpBonus(membersCount) : (getBaseExpSpBonus(membersCount) * Config.RATE_PARTY_XP);
+		return (membersCount < 2) ? getBaseExpSpBonus(membersCount) : (getBaseExpSpBonus(membersCount) * RatesConfig.RATE_PARTY_XP);
 	}
 	
 	private double getSpBonus(int membersCount)
 	{
-		return (membersCount < 2) ? getBaseExpSpBonus(membersCount) : (getBaseExpSpBonus(membersCount) * Config.RATE_PARTY_SP);
+		return (membersCount < 2) ? getBaseExpSpBonus(membersCount) : (getBaseExpSpBonus(membersCount) * RatesConfig.RATE_PARTY_SP);
 	}
 	
 	@Override

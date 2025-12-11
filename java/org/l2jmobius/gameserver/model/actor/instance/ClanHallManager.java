@@ -24,7 +24,8 @@ import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.FeatureConfig;
+import org.l2jmobius.gameserver.config.ServerConfig;
 import org.l2jmobius.gameserver.data.sql.ClanHallTable;
 import org.l2jmobius.gameserver.data.xml.SkillData;
 import org.l2jmobius.gameserver.data.xml.TeleporterData;
@@ -309,72 +310,72 @@ public class ClanHallManager extends Merchant
 								{
 									case 20:
 									{
-										cost = Config.CH_HPREG1_FEE;
+										cost = FeatureConfig.CH_HPREG1_FEE;
 										break;
 									}
 									case 40:
 									{
-										cost = Config.CH_HPREG2_FEE;
+										cost = FeatureConfig.CH_HPREG2_FEE;
 										break;
 									}
 									case 80:
 									{
-										cost = Config.CH_HPREG3_FEE;
+										cost = FeatureConfig.CH_HPREG3_FEE;
 										break;
 									}
 									case 100:
 									{
-										cost = Config.CH_HPREG4_FEE;
+										cost = FeatureConfig.CH_HPREG4_FEE;
 										break;
 									}
 									case 120:
 									{
-										cost = Config.CH_HPREG5_FEE;
+										cost = FeatureConfig.CH_HPREG5_FEE;
 										break;
 									}
 									case 140:
 									{
-										cost = Config.CH_HPREG6_FEE;
+										cost = FeatureConfig.CH_HPREG6_FEE;
 										break;
 									}
 									case 160:
 									{
-										cost = Config.CH_HPREG7_FEE;
+										cost = FeatureConfig.CH_HPREG7_FEE;
 										break;
 									}
 									case 180:
 									{
-										cost = Config.CH_HPREG8_FEE;
+										cost = FeatureConfig.CH_HPREG8_FEE;
 										break;
 									}
 									case 200:
 									{
-										cost = Config.CH_HPREG9_FEE;
+										cost = FeatureConfig.CH_HPREG9_FEE;
 										break;
 									}
 									case 220:
 									{
-										cost = Config.CH_HPREG10_FEE;
+										cost = FeatureConfig.CH_HPREG10_FEE;
 										break;
 									}
 									case 240:
 									{
-										cost = Config.CH_HPREG11_FEE;
+										cost = FeatureConfig.CH_HPREG11_FEE;
 										break;
 									}
 									case 260:
 									{
-										cost = Config.CH_HPREG12_FEE;
+										cost = FeatureConfig.CH_HPREG12_FEE;
 										break;
 									}
 									default:
 									{
-										cost = Config.CH_HPREG13_FEE;
+										cost = FeatureConfig.CH_HPREG13_FEE;
 										break;
 									}
 								}
 								
-								html.replace("%cost%", cost + "</font>Adena /" + (Config.CH_HPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
+								html.replace("%cost%", cost + "</font>Adena /" + (FeatureConfig.CH_HPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Provides additional HP recovery for clan members in the clan hall.<font color=\"00FFFF\">" + percent + "%</font>");
 								html.replace("%apply%", "recovery hp " + percent);
 								sendHtmlMessage(player, html);
@@ -392,32 +393,32 @@ public class ClanHallManager extends Merchant
 								{
 									case 5:
 									{
-										cost = Config.CH_MPREG1_FEE;
+										cost = FeatureConfig.CH_MPREG1_FEE;
 										break;
 									}
 									case 10:
 									{
-										cost = Config.CH_MPREG2_FEE;
+										cost = FeatureConfig.CH_MPREG2_FEE;
 										break;
 									}
 									case 15:
 									{
-										cost = Config.CH_MPREG3_FEE;
+										cost = FeatureConfig.CH_MPREG3_FEE;
 										break;
 									}
 									case 30:
 									{
-										cost = Config.CH_MPREG4_FEE;
+										cost = FeatureConfig.CH_MPREG4_FEE;
 										break;
 									}
 									default:
 									{
-										cost = Config.CH_MPREG5_FEE;
+										cost = FeatureConfig.CH_MPREG5_FEE;
 										break;
 									}
 								}
 								
-								html.replace("%cost%", cost + "</font>Adena /" + (Config.CH_MPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
+								html.replace("%cost%", cost + "</font>Adena /" + (FeatureConfig.CH_MPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Provides additional MP recovery for clan members in the clan hall.<font color=\"00FFFF\">" + percent + "%</font>");
 								html.replace("%apply%", "recovery mp " + percent);
 								sendHtmlMessage(player, html);
@@ -435,42 +436,42 @@ public class ClanHallManager extends Merchant
 								{
 									case 5:
 									{
-										cost = Config.CH_EXPREG1_FEE;
+										cost = FeatureConfig.CH_EXPREG1_FEE;
 										break;
 									}
 									case 10:
 									{
-										cost = Config.CH_EXPREG2_FEE;
+										cost = FeatureConfig.CH_EXPREG2_FEE;
 										break;
 									}
 									case 15:
 									{
-										cost = Config.CH_EXPREG3_FEE;
+										cost = FeatureConfig.CH_EXPREG3_FEE;
 										break;
 									}
 									case 25:
 									{
-										cost = Config.CH_EXPREG4_FEE;
+										cost = FeatureConfig.CH_EXPREG4_FEE;
 										break;
 									}
 									case 35:
 									{
-										cost = Config.CH_EXPREG5_FEE;
+										cost = FeatureConfig.CH_EXPREG5_FEE;
 										break;
 									}
 									case 40:
 									{
-										cost = Config.CH_EXPREG6_FEE;
+										cost = FeatureConfig.CH_EXPREG6_FEE;
 										break;
 									}
 									default:
 									{
-										cost = Config.CH_EXPREG7_FEE;
+										cost = FeatureConfig.CH_EXPREG7_FEE;
 										break;
 									}
 								}
 								
-								html.replace("%cost%", cost + "</font>Adena /" + (Config.CH_EXPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
+								html.replace("%cost%", cost + "</font>Adena /" + (FeatureConfig.CH_EXPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Restores the Exp of any clan member who is resurrected in the clan hall.<font color=\"00FFFF\">" + percent + "%</font>");
 								html.replace("%apply%", "recovery exp " + percent);
 								sendHtmlMessage(player, html);
@@ -503,72 +504,72 @@ public class ClanHallManager extends Merchant
 										}
 										case 20:
 										{
-											fee = Config.CH_HPREG1_FEE;
+											fee = FeatureConfig.CH_HPREG1_FEE;
 											break;
 										}
 										case 40:
 										{
-											fee = Config.CH_HPREG2_FEE;
+											fee = FeatureConfig.CH_HPREG2_FEE;
 											break;
 										}
 										case 80:
 										{
-											fee = Config.CH_HPREG3_FEE;
+											fee = FeatureConfig.CH_HPREG3_FEE;
 											break;
 										}
 										case 100:
 										{
-											fee = Config.CH_HPREG4_FEE;
+											fee = FeatureConfig.CH_HPREG4_FEE;
 											break;
 										}
 										case 120:
 										{
-											fee = Config.CH_HPREG5_FEE;
+											fee = FeatureConfig.CH_HPREG5_FEE;
 											break;
 										}
 										case 140:
 										{
-											fee = Config.CH_HPREG6_FEE;
+											fee = FeatureConfig.CH_HPREG6_FEE;
 											break;
 										}
 										case 160:
 										{
-											fee = Config.CH_HPREG7_FEE;
+											fee = FeatureConfig.CH_HPREG7_FEE;
 											break;
 										}
 										case 180:
 										{
-											fee = Config.CH_HPREG8_FEE;
+											fee = FeatureConfig.CH_HPREG8_FEE;
 											break;
 										}
 										case 200:
 										{
-											fee = Config.CH_HPREG9_FEE;
+											fee = FeatureConfig.CH_HPREG9_FEE;
 											break;
 										}
 										case 220:
 										{
-											fee = Config.CH_HPREG10_FEE;
+											fee = FeatureConfig.CH_HPREG10_FEE;
 											break;
 										}
 										case 240:
 										{
-											fee = Config.CH_HPREG11_FEE;
+											fee = FeatureConfig.CH_HPREG11_FEE;
 											break;
 										}
 										case 260:
 										{
-											fee = Config.CH_HPREG12_FEE;
+											fee = FeatureConfig.CH_HPREG12_FEE;
 											break;
 										}
 										default:
 										{
-											fee = Config.CH_HPREG13_FEE;
+											fee = FeatureConfig.CH_HPREG13_FEE;
 											break;
 										}
 									}
 									
-									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_RESTORE_HP, percent, fee, Config.CH_HPREG_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_RESTORE_HP) == null)))
+									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_RESTORE_HP, percent, fee, FeatureConfig.CH_HPREG_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_RESTORE_HP) == null)))
 									{
 										html.setFile(player, "data/html/clanHallManager/low_adena.htm");
 										sendHtmlMessage(player, html);
@@ -609,32 +610,32 @@ public class ClanHallManager extends Merchant
 										}
 										case 5:
 										{
-											fee = Config.CH_MPREG1_FEE;
+											fee = FeatureConfig.CH_MPREG1_FEE;
 											break;
 										}
 										case 10:
 										{
-											fee = Config.CH_MPREG2_FEE;
+											fee = FeatureConfig.CH_MPREG2_FEE;
 											break;
 										}
 										case 15:
 										{
-											fee = Config.CH_MPREG3_FEE;
+											fee = FeatureConfig.CH_MPREG3_FEE;
 											break;
 										}
 										case 30:
 										{
-											fee = Config.CH_MPREG4_FEE;
+											fee = FeatureConfig.CH_MPREG4_FEE;
 											break;
 										}
 										default:
 										{
-											fee = Config.CH_MPREG5_FEE;
+											fee = FeatureConfig.CH_MPREG5_FEE;
 											break;
 										}
 									}
 									
-									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_RESTORE_MP, percent, fee, Config.CH_MPREG_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_RESTORE_MP) == null)))
+									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_RESTORE_MP, percent, fee, FeatureConfig.CH_MPREG_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_RESTORE_MP) == null)))
 									{
 										html.setFile(player, "data/html/clanHallManager/low_adena.htm");
 										sendHtmlMessage(player, html);
@@ -675,42 +676,42 @@ public class ClanHallManager extends Merchant
 										}
 										case 5:
 										{
-											fee = Config.CH_EXPREG1_FEE;
+											fee = FeatureConfig.CH_EXPREG1_FEE;
 											break;
 										}
 										case 10:
 										{
-											fee = Config.CH_EXPREG2_FEE;
+											fee = FeatureConfig.CH_EXPREG2_FEE;
 											break;
 										}
 										case 15:
 										{
-											fee = Config.CH_EXPREG3_FEE;
+											fee = FeatureConfig.CH_EXPREG3_FEE;
 											break;
 										}
 										case 25:
 										{
-											fee = Config.CH_EXPREG4_FEE;
+											fee = FeatureConfig.CH_EXPREG4_FEE;
 											break;
 										}
 										case 35:
 										{
-											fee = Config.CH_EXPREG5_FEE;
+											fee = FeatureConfig.CH_EXPREG5_FEE;
 											break;
 										}
 										case 40:
 										{
-											fee = Config.CH_EXPREG6_FEE;
+											fee = FeatureConfig.CH_EXPREG6_FEE;
 											break;
 										}
 										default:
 										{
-											fee = Config.CH_EXPREG7_FEE;
+											fee = FeatureConfig.CH_EXPREG7_FEE;
 											break;
 										}
 									}
 									
-									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_RESTORE_EXP, percent, fee, Config.CH_EXPREG_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_RESTORE_EXP) == null)))
+									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_RESTORE_EXP, percent, fee, FeatureConfig.CH_EXPREG_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_RESTORE_EXP) == null)))
 									{
 										html.setFile(player, "data/html/clanHallManager/low_adena.htm");
 										sendHtmlMessage(player, html);
@@ -742,7 +743,7 @@ public class ClanHallManager extends Merchant
 						final String mp_grade3 = "[<a action=\"bypass -h npc_%objectId%_manage recovery edit_mp 5\">5%</a>][<a action=\"bypass -h npc_%objectId%_manage recovery edit_mp 15\">15%</a>][<a action=\"bypass -h npc_%objectId%_manage recovery edit_mp 30\">30%</a>][<a action=\"bypass -h npc_%objectId%_manage recovery edit_mp 40\">40%</a>]";
 						if (getClanHall().getFunction(ClanHall.FUNC_RESTORE_HP) != null)
 						{
-							html.replace("%hp_recovery%", getClanHall().getFunction(ClanHall.FUNC_RESTORE_HP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_RESTORE_HP).getLease() + "</font>Adena /" + (Config.CH_HPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%hp_recovery%", getClanHall().getFunction(ClanHall.FUNC_RESTORE_HP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_RESTORE_HP).getLease() + "</font>Adena /" + (FeatureConfig.CH_HPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%hp_period%", "Withdraw the fee for the next time at " + format.format(getClanHall().getFunction(ClanHall.FUNC_RESTORE_HP).getEndTime()));
 							final int grade = getClanHall().getGrade();
 							switch (grade)
@@ -801,7 +802,7 @@ public class ClanHallManager extends Merchant
 						
 						if (getClanHall().getFunction(ClanHall.FUNC_RESTORE_EXP) != null)
 						{
-							html.replace("%exp_recovery%", getClanHall().getFunction(ClanHall.FUNC_RESTORE_EXP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_RESTORE_EXP).getLease() + "</font>Adena /" + (Config.CH_EXPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%exp_recovery%", getClanHall().getFunction(ClanHall.FUNC_RESTORE_EXP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_RESTORE_EXP).getLease() + "</font>Adena /" + (FeatureConfig.CH_EXPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%exp_period%", "Withdraw the fee for the next time at " + format.format(getClanHall().getFunction(ClanHall.FUNC_RESTORE_EXP).getEndTime()));
 							final int grade = getClanHall().getGrade();
 							switch (grade)
@@ -860,7 +861,7 @@ public class ClanHallManager extends Merchant
 						
 						if (getClanHall().getFunction(ClanHall.FUNC_RESTORE_MP) != null)
 						{
-							html.replace("%mp_recovery%", getClanHall().getFunction(ClanHall.FUNC_RESTORE_MP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_RESTORE_MP).getLease() + "</font>Adena /" + (Config.CH_MPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%mp_recovery%", getClanHall().getFunction(ClanHall.FUNC_RESTORE_MP).getLevel() + "%</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_RESTORE_MP).getLease() + "</font>Adena /" + (FeatureConfig.CH_MPREG_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%mp_period%", "Withdraw the fee for the next time at " + format.format(getClanHall().getFunction(ClanHall.FUNC_RESTORE_MP).getEndTime()));
 							final int grade = getClanHall().getGrade();
 							switch (grade)
@@ -966,22 +967,22 @@ public class ClanHallManager extends Merchant
 								{
 									case 1:
 									{
-										cost = Config.CH_ITEM1_FEE;
+										cost = FeatureConfig.CH_ITEM1_FEE;
 										break;
 									}
 									case 2:
 									{
-										cost = Config.CH_ITEM2_FEE;
+										cost = FeatureConfig.CH_ITEM2_FEE;
 										break;
 									}
 									default:
 									{
-										cost = Config.CH_ITEM3_FEE;
+										cost = FeatureConfig.CH_ITEM3_FEE;
 										break;
 									}
 								}
 								
-								html.replace("%cost%", cost + "</font>Adena /" + (Config.CH_ITEM_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
+								html.replace("%cost%", cost + "</font>Adena /" + (FeatureConfig.CH_ITEM_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Allow the purchase of special items at fixed intervals.");
 								html.replace("%apply%", "other item " + stage);
 								sendHtmlMessage(player, html);
@@ -999,47 +1000,47 @@ public class ClanHallManager extends Merchant
 								{
 									case 1:
 									{
-										cost = Config.CH_SUPPORT1_FEE;
+										cost = FeatureConfig.CH_SUPPORT1_FEE;
 										break;
 									}
 									case 2:
 									{
-										cost = Config.CH_SUPPORT2_FEE;
+										cost = FeatureConfig.CH_SUPPORT2_FEE;
 										break;
 									}
 									case 3:
 									{
-										cost = Config.CH_SUPPORT3_FEE;
+										cost = FeatureConfig.CH_SUPPORT3_FEE;
 										break;
 									}
 									case 4:
 									{
-										cost = Config.CH_SUPPORT4_FEE;
+										cost = FeatureConfig.CH_SUPPORT4_FEE;
 										break;
 									}
 									case 5:
 									{
-										cost = Config.CH_SUPPORT5_FEE;
+										cost = FeatureConfig.CH_SUPPORT5_FEE;
 										break;
 									}
 									case 6:
 									{
-										cost = Config.CH_SUPPORT6_FEE;
+										cost = FeatureConfig.CH_SUPPORT6_FEE;
 										break;
 									}
 									case 7:
 									{
-										cost = Config.CH_SUPPORT7_FEE;
+										cost = FeatureConfig.CH_SUPPORT7_FEE;
 										break;
 									}
 									default:
 									{
-										cost = Config.CH_SUPPORT8_FEE;
+										cost = FeatureConfig.CH_SUPPORT8_FEE;
 										break;
 									}
 								}
 								
-								html.replace("%cost%", cost + "</font>Adena /" + (Config.CH_SUPPORT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
+								html.replace("%cost%", cost + "</font>Adena /" + (FeatureConfig.CH_SUPPORT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Enables the use of supplementary magic.");
 								html.replace("%apply%", "other support " + stage);
 								sendHtmlMessage(player, html);
@@ -1057,17 +1058,17 @@ public class ClanHallManager extends Merchant
 								{
 									case 1:
 									{
-										cost = Config.CH_TELE1_FEE;
+										cost = FeatureConfig.CH_TELE1_FEE;
 										break;
 									}
 									default:
 									{
-										cost = Config.CH_TELE2_FEE;
+										cost = FeatureConfig.CH_TELE2_FEE;
 										break;
 									}
 								}
 								
-								html.replace("%cost%", cost + "</font>Adena /" + (Config.CH_TELE_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
+								html.replace("%cost%", cost + "</font>Adena /" + (FeatureConfig.CH_TELE_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Teleports clan members in a clan hall to the target <font color=\"00FFFF\">Stage " + stage + "</font> staging area");
 								html.replace("%apply%", "other tele " + stage);
 								sendHtmlMessage(player, html);
@@ -1106,22 +1107,22 @@ public class ClanHallManager extends Merchant
 										}
 										case 1:
 										{
-											fee = Config.CH_ITEM1_FEE;
+											fee = FeatureConfig.CH_ITEM1_FEE;
 											break;
 										}
 										case 2:
 										{
-											fee = Config.CH_ITEM2_FEE;
+											fee = FeatureConfig.CH_ITEM2_FEE;
 											break;
 										}
 										default:
 										{
-											fee = Config.CH_ITEM3_FEE;
+											fee = FeatureConfig.CH_ITEM3_FEE;
 											break;
 										}
 									}
 									
-									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_ITEM_CREATE, level, fee, Config.CH_ITEM_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_ITEM_CREATE) == null)))
+									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_ITEM_CREATE, level, fee, FeatureConfig.CH_ITEM_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_ITEM_CREATE) == null)))
 									{
 										html.setFile(player, "data/html/clanHallManager/low_adena.htm");
 										sendHtmlMessage(player, html);
@@ -1162,17 +1163,17 @@ public class ClanHallManager extends Merchant
 										}
 										case 1:
 										{
-											fee = Config.CH_TELE1_FEE;
+											fee = FeatureConfig.CH_TELE1_FEE;
 											break;
 										}
 										default:
 										{
-											fee = Config.CH_TELE2_FEE;
+											fee = FeatureConfig.CH_TELE2_FEE;
 											break;
 										}
 									}
 									
-									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_TELEPORT, level, fee, Config.CH_TELE_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_TELEPORT) == null)))
+									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_TELEPORT, level, fee, FeatureConfig.CH_TELE_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_TELEPORT) == null)))
 									{
 										html.setFile(player, "data/html/clanHallManager/low_adena.htm");
 										sendHtmlMessage(player, html);
@@ -1213,47 +1214,47 @@ public class ClanHallManager extends Merchant
 										}
 										case 1:
 										{
-											fee = Config.CH_SUPPORT1_FEE;
+											fee = FeatureConfig.CH_SUPPORT1_FEE;
 											break;
 										}
 										case 2:
 										{
-											fee = Config.CH_SUPPORT2_FEE;
+											fee = FeatureConfig.CH_SUPPORT2_FEE;
 											break;
 										}
 										case 3:
 										{
-											fee = Config.CH_SUPPORT3_FEE;
+											fee = FeatureConfig.CH_SUPPORT3_FEE;
 											break;
 										}
 										case 4:
 										{
-											fee = Config.CH_SUPPORT4_FEE;
+											fee = FeatureConfig.CH_SUPPORT4_FEE;
 											break;
 										}
 										case 5:
 										{
-											fee = Config.CH_SUPPORT5_FEE;
+											fee = FeatureConfig.CH_SUPPORT5_FEE;
 											break;
 										}
 										case 6:
 										{
-											fee = Config.CH_SUPPORT6_FEE;
+											fee = FeatureConfig.CH_SUPPORT6_FEE;
 											break;
 										}
 										case 7:
 										{
-											fee = Config.CH_SUPPORT7_FEE;
+											fee = FeatureConfig.CH_SUPPORT7_FEE;
 											break;
 										}
 										default:
 										{
-											fee = Config.CH_SUPPORT8_FEE;
+											fee = FeatureConfig.CH_SUPPORT8_FEE;
 											break;
 										}
 									}
 									
-									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_SUPPORT, level, fee, Config.CH_SUPPORT_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_SUPPORT) == null)))
+									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_SUPPORT, level, fee, FeatureConfig.CH_SUPPORT_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_SUPPORT) == null)))
 									{
 										html.setFile(player, "data/html/clanHallManager/low_adena.htm");
 										sendHtmlMessage(player, html);
@@ -1279,7 +1280,7 @@ public class ClanHallManager extends Merchant
 						final String item = "[<a action=\"bypass -h npc_%objectId%_manage other edit_item 1\">Level 1</a>][<a action=\"bypass -h npc_%objectId%_manage other edit_item 2\">Level 2</a>][<a action=\"bypass -h npc_%objectId%_manage other edit_item 3\">Level 3</a>]";
 						if (getClanHall().getFunction(ClanHall.FUNC_TELEPORT) != null)
 						{
-							html.replace("%tele%", "Stage " + getClanHall().getFunction(ClanHall.FUNC_TELEPORT).getLevel() + "</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_TELEPORT).getLease() + "</font>Adena /" + (Config.CH_TELE_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%tele%", "Stage " + getClanHall().getFunction(ClanHall.FUNC_TELEPORT).getLevel() + "</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_TELEPORT).getLease() + "</font>Adena /" + (FeatureConfig.CH_TELE_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%tele_period%", "Withdraw the fee for the next time at " + format.format(getClanHall().getFunction(ClanHall.FUNC_TELEPORT).getEndTime()));
 							html.replace("%change_tele%", "[<a action=\"bypass -h npc_%objectId%_manage other tele_cancel\">Deactivate</a>]" + tele);
 						}
@@ -1292,7 +1293,7 @@ public class ClanHallManager extends Merchant
 						
 						if (getClanHall().getFunction(ClanHall.FUNC_SUPPORT) != null)
 						{
-							html.replace("%support%", "Stage " + getClanHall().getFunction(ClanHall.FUNC_SUPPORT).getLevel() + "</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_SUPPORT).getLease() + "</font>Adena /" + (Config.CH_SUPPORT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%support%", "Stage " + getClanHall().getFunction(ClanHall.FUNC_SUPPORT).getLevel() + "</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_SUPPORT).getLease() + "</font>Adena /" + (FeatureConfig.CH_SUPPORT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%support_period%", "Withdraw the fee for the next time at " + format.format(getClanHall().getFunction(ClanHall.FUNC_SUPPORT).getEndTime()));
 							final int grade = getClanHall().getGrade();
 							switch (grade)
@@ -1351,7 +1352,7 @@ public class ClanHallManager extends Merchant
 						
 						if (getClanHall().getFunction(ClanHall.FUNC_ITEM_CREATE) != null)
 						{
-							html.replace("%item%", "Stage " + getClanHall().getFunction(ClanHall.FUNC_ITEM_CREATE).getLevel() + "</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_ITEM_CREATE).getLease() + "</font>Adena /" + (Config.CH_ITEM_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%item%", "Stage " + getClanHall().getFunction(ClanHall.FUNC_ITEM_CREATE).getLevel() + "</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_ITEM_CREATE).getLease() + "</font>Adena /" + (FeatureConfig.CH_ITEM_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%item_period%", "Withdraw the fee for the next time at " + format.format(getClanHall().getFunction(ClanHall.FUNC_ITEM_CREATE).getEndTime()));
 							html.replace("%change_item%", "[<a action=\"bypass -h npc_%objectId%_manage other item_cancel\">Deactivate</a>]" + item);
 						}
@@ -1403,17 +1404,17 @@ public class ClanHallManager extends Merchant
 								{
 									case 1:
 									{
-										cost = Config.CH_CURTAIN1_FEE;
+										cost = FeatureConfig.CH_CURTAIN1_FEE;
 										break;
 									}
 									default:
 									{
-										cost = Config.CH_CURTAIN2_FEE;
+										cost = FeatureConfig.CH_CURTAIN2_FEE;
 										break;
 									}
 								}
 								
-								html.replace("%cost%", cost + "</font>Adena /" + (Config.CH_CURTAIN_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
+								html.replace("%cost%", cost + "</font>Adena /" + (FeatureConfig.CH_CURTAIN_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "These curtains can be used to decorate the clan hall.");
 								html.replace("%apply%", "deco curtains " + stage);
 								sendHtmlMessage(player, html);
@@ -1431,17 +1432,17 @@ public class ClanHallManager extends Merchant
 								{
 									case 1:
 									{
-										cost = Config.CH_FRONT1_FEE;
+										cost = FeatureConfig.CH_FRONT1_FEE;
 										break;
 									}
 									default:
 									{
-										cost = Config.CH_FRONT2_FEE;
+										cost = FeatureConfig.CH_FRONT2_FEE;
 										break;
 									}
 								}
 								
-								html.replace("%cost%", cost + "</font>Adena /" + (Config.CH_FRONT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
+								html.replace("%cost%", cost + "</font>Adena /" + (FeatureConfig.CH_FRONT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day</font>)");
 								html.replace("%use%", "Used to decorate the clan hall.");
 								html.replace("%apply%", "deco fixtures " + stage);
 								sendHtmlMessage(player, html);
@@ -1474,17 +1475,17 @@ public class ClanHallManager extends Merchant
 										}
 										case 1:
 										{
-											fee = Config.CH_CURTAIN1_FEE;
+											fee = FeatureConfig.CH_CURTAIN1_FEE;
 											break;
 										}
 										default:
 										{
-											fee = Config.CH_CURTAIN2_FEE;
+											fee = FeatureConfig.CH_CURTAIN2_FEE;
 											break;
 										}
 									}
 									
-									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_DECO_CURTAINS, level, fee, Config.CH_CURTAIN_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_DECO_CURTAINS) == null)))
+									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_DECO_CURTAINS, level, fee, FeatureConfig.CH_CURTAIN_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_DECO_CURTAINS) == null)))
 									{
 										html.setFile(player, "data/html/clanHallManager/low_adena.htm");
 										sendHtmlMessage(player, html);
@@ -1525,17 +1526,17 @@ public class ClanHallManager extends Merchant
 										}
 										case 1:
 										{
-											fee = Config.CH_FRONT1_FEE;
+											fee = FeatureConfig.CH_FRONT1_FEE;
 											break;
 										}
 										default:
 										{
-											fee = Config.CH_FRONT2_FEE;
+											fee = FeatureConfig.CH_FRONT2_FEE;
 											break;
 										}
 									}
 									
-									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_DECO_FRONTPLATEFORM, level, fee, Config.CH_FRONT_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_DECO_FRONTPLATEFORM) == null)))
+									if (!getClanHall().updateFunctions(player, ClanHall.FUNC_DECO_FRONTPLATEFORM, level, fee, FeatureConfig.CH_FRONT_FEE_RATIO, (getClanHall().getFunction(ClanHall.FUNC_DECO_FRONTPLATEFORM) == null)))
 									{
 										html.setFile(player, "data/html/clanHallManager/low_adena.htm");
 										sendHtmlMessage(player, html);
@@ -1557,7 +1558,7 @@ public class ClanHallManager extends Merchant
 						final String fixtures = "[<a action=\"bypass -h npc_%objectId%_manage deco edit_fixtures 1\">Level 1</a>][<a action=\"bypass -h npc_%objectId%_manage deco edit_fixtures 2\">Level 2</a>]";
 						if (getClanHall().getFunction(ClanHall.FUNC_DECO_CURTAINS) != null)
 						{
-							html.replace("%curtain%", "Stage " + getClanHall().getFunction(ClanHall.FUNC_DECO_CURTAINS).getLevel() + "</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_DECO_CURTAINS).getLease() + "</font>Adena /" + (Config.CH_CURTAIN_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%curtain%", "Stage " + getClanHall().getFunction(ClanHall.FUNC_DECO_CURTAINS).getLevel() + "</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_DECO_CURTAINS).getLease() + "</font>Adena /" + (FeatureConfig.CH_CURTAIN_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%curtain_period%", "Withdraw the fee for the next time at " + format.format(getClanHall().getFunction(ClanHall.FUNC_DECO_CURTAINS).getEndTime()));
 							html.replace("%change_curtain%", "[<a action=\"bypass -h npc_%objectId%_manage deco curtains_cancel\">Deactivate</a>]" + curtains);
 						}
@@ -1570,7 +1571,7 @@ public class ClanHallManager extends Merchant
 						
 						if (getClanHall().getFunction(ClanHall.FUNC_DECO_FRONTPLATEFORM) != null)
 						{
-							html.replace("%fixture%", "Stage " + getClanHall().getFunction(ClanHall.FUNC_DECO_FRONTPLATEFORM).getLevel() + "</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_DECO_FRONTPLATEFORM).getLease() + "</font>Adena /" + (Config.CH_FRONT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
+							html.replace("%fixture%", "Stage " + getClanHall().getFunction(ClanHall.FUNC_DECO_FRONTPLATEFORM).getLevel() + "</font> (<font color=\"FFAABB\">" + getClanHall().getFunction(ClanHall.FUNC_DECO_FRONTPLATEFORM).getLease() + "</font>Adena /" + (FeatureConfig.CH_FRONT_FEE_RATIO / 1000 / 60 / 60 / 24) + " Day)");
 							html.replace("%fixture_period%", "Withdraw the fee for the next time at " + format.format(getClanHall().getFunction(ClanHall.FUNC_DECO_FRONTPLATEFORM).getEndTime()));
 							html.replace("%change_fixture%", "[<a action=\"bypass -h npc_%objectId%_manage deco fixtures_cancel\">Deactivate</a>]" + fixtures);
 						}
@@ -1639,7 +1640,7 @@ public class ClanHallManager extends Merchant
 							final int mpCost = skill.getMpConsume() + skill.getMpInitialConsume();
 							
 							// If Clan Hall Buff are free or current MP is greater than MP cost, the skill should be casted.
-							if ((getCurrentMp() >= mpCost) || Config.CH_BUFF_FREE)
+							if ((getCurrentMp() >= mpCost) || FeatureConfig.CH_BUFF_FREE)
 							{
 								doCast(skill);
 							}
@@ -1683,7 +1684,7 @@ public class ClanHallManager extends Merchant
 			{
 				final NpcHtmlMessage html = new NpcHtmlMessage(getObjectId());
 				String fileName = "data/html/clanHallManager/chamberlain-" + getId() + ".htm";
-				final File file = new File(Config.DATAPACK_ROOT, fileName);
+				final File file = new File(ServerConfig.DATAPACK_ROOT, fileName);
 				if (!file.isFile())
 				{
 					fileName = "data/html/clanHallManager/chamberlain.htm";
@@ -1748,7 +1749,7 @@ public class ClanHallManager extends Merchant
 		if (condition == COND_OWNER)
 		{
 			fileName = "data/html/clanHallManager/chamberlain-" + getId() + ".htm";
-			final File file = new File(Config.DATAPACK_ROOT, fileName);
+			final File file = new File(ServerConfig.DATAPACK_ROOT, fileName);
 			if (!file.isFile())
 			{
 				fileName = "data/html/clanHallManager/chamberlain.htm";

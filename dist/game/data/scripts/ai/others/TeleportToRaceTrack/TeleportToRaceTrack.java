@@ -26,14 +26,13 @@ import java.util.Map;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Monster Derby Track teleport AI.
  * @author Mobius
  */
-public class TeleportToRaceTrack extends AbstractNpcAI
+public class TeleportToRaceTrack extends Script
 {
 	// NPC
 	private static final int RACE_MANAGER = 30995;

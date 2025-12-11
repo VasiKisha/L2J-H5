@@ -26,8 +26,8 @@ import java.util.logging.Logger;
 
 import javax.crypto.Cipher;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.loginserver.GameServerTable.GameServerInfo;
+import org.l2jmobius.loginserver.config.LoginConfig;
 import org.l2jmobius.loginserver.LoginController;
 import org.l2jmobius.loginserver.enums.AccountKickedReason;
 import org.l2jmobius.loginserver.enums.LoginFailReason;
@@ -128,7 +128,7 @@ public class RequestAuthLogin extends LoginClientPacket
 				client.setConnectionState(ConnectionState.AUTHED_LOGIN);
 				client.setSessionKey(lc.assignSessionKeyToClient(info.getLogin(), client));
 				lc.getCharactersOnAccount(info.getLogin());
-				if (Config.SHOW_LICENCE)
+				if (LoginConfig.SHOW_LICENCE)
 				{
 					client.sendPacket(new LoginOk(client.getSessionKey()));
 				}

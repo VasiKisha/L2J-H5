@@ -30,18 +30,18 @@ import org.l2jmobius.gameserver.model.events.annotations.Id;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterEvent;
 import org.l2jmobius.gameserver.model.events.annotations.RegisterType;
 import org.l2jmobius.gameserver.model.events.holders.actor.creature.OnCreatureDeath;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import ai.AbstractNpcAI;
 import quests.Q00230_TestOfTheSummoner.Q00230_TestOfTheSummoner;
 
 /**
  * Servitor AI for quest Test Of The Summoner (230).
  * @author Zoey76
  */
-public class Servitors extends AbstractNpcAI
+public class Servitors extends Script
 {
 	// Quest Monster
 	private static final int PAKO_THE_CAT = 27102;

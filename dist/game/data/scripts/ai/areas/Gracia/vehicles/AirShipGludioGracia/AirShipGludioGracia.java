@@ -24,17 +24,16 @@ import org.l2jmobius.gameserver.model.World;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.instance.AirShip;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.network.NpcStringId;
 import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcSay;
 
-import ai.AbstractNpcAI;
-
 /**
  * @author DS
  */
-public class AirShipGludioGracia extends AbstractNpcAI implements Runnable
+public class AirShipGludioGracia extends Script implements Runnable
 {
 	private static final int[] CONTROLLERS =
 	{

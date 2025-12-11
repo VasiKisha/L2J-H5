@@ -66,32 +66,30 @@ public class GrandBoss extends Monster
 			return false;
 		}
 		
-		if (killer != null)
+		if ((killer != null) && killer.isPlayable())
 		{
+			final SystemMessage msg = new SystemMessage(SystemMessageId.CONGRATULATIONS_YOUR_RAID_WAS_SUCCESSFUL);
 			final Player player = killer.asPlayer();
-			if (player != null)
+			final Party party = player.getParty();
+			if (party != null)
 			{
-				broadcastPacket(new SystemMessage(SystemMessageId.CONGRATULATIONS_YOUR_RAID_WAS_SUCCESSFUL));
-				
-				final Party party = player.getParty();
-				if (party != null)
+				party.broadcastPacket(msg);
+				for (Player member : party.getMembers())
 				{
-					for (Player member : party.getMembers())
+					RaidBossPointsManager.getInstance().addPoints(member, getId(), (getLevel() / 2) + Rnd.get(-5, 5));
+					if (member.isNoble())
 					{
-						RaidBossPointsManager.getInstance().addPoints(member, getId(), (getLevel() / 2) + Rnd.get(-5, 5));
-						if (member.isNoble())
-						{
-							Hero.getInstance().setRBkilled(member.getObjectId(), getId());
-						}
+						Hero.getInstance().setRBkilled(member.getObjectId(), getId());
 					}
 				}
-				else
+			}
+			else
+			{
+				player.sendPacket(msg);
+				RaidBossPointsManager.getInstance().addPoints(player, getId(), (getLevel() / 2) + Rnd.get(-5, 5));
+				if (player.isNoble())
 				{
-					RaidBossPointsManager.getInstance().addPoints(player, getId(), (getLevel() / 2) + Rnd.get(-5, 5));
-					if (player.isNoble())
-					{
-						Hero.getInstance().setRBkilled(player.getObjectId(), getId());
-					}
+					Hero.getInstance().setRBkilled(player.getObjectId(), getId());
 				}
 			}
 		}

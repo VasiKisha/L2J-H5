@@ -73,9 +73,9 @@ public class Folk extends Npc
 	 * Displays Skill Tree for a given player, npc and class Id.
 	 * @param player the active character.
 	 * @param npc the last folk.
-	 * @param classId player's active class id.
+	 * @param playerClass the player's active class identifier as a {@link PlayerClass} enum value
 	 */
-	public static void showSkillList(Player player, Npc npc, PlayerClass classId)
+	public static void showSkillList(Player player, Npc npc, PlayerClass playerClass)
 	{
 		final int npcId = npc.getTemplate().getId();
 		if (npcId == 32611) // Tolonis (Officer)
@@ -114,7 +114,7 @@ public class Folk extends Npc
 			return;
 		}
 		
-		if (!npc.getTemplate().canTeach(classId))
+		if (!npc.getTemplate().canTeach(playerClass))
 		{
 			npc.showNoTeachHtml(player);
 			return;
@@ -123,29 +123,29 @@ public class Folk extends Npc
 		if (((Folk) npc).getClassesToTeach().isEmpty())
 		{
 			final NpcHtmlMessage html = new NpcHtmlMessage(npc.getObjectId());
-			final String sb = "<html><body>I cannot teach you. My class list is empty.<br>Ask admin to fix it. Need add my npcid and classes to skill_learn.sql.<br>NpcId:" + npcId + ", Your classId:" + player.getPlayerClass().getId() + "</body></html>";
+			final String sb = "<html><body>I cannot teach you. My class list is empty.<br>Ask admin to fix it. Need add my npcid and classes to skill_learn.sql.<br>NpcId:" + npcId + ", Your playerClass:" + player.getPlayerClass().getId() + "</body></html>";
 			html.setHtml(sb);
 			player.sendPacket(html);
 			return;
 		}
 		
 		// Normal skills, No LearnedByFS, no AutoGet skills.
-		final List<SkillLearn> skills = SkillTreeData.getInstance().getAvailableSkills(player, classId, false, false);
+		final List<SkillLearn> skills = SkillTreeData.getInstance().getAvailableSkills(player, playerClass, false, false);
 		final AcquireSkillList asl = new AcquireSkillList(AcquireSkillType.CLASS);
 		int count = 0;
-		player.setLearningClass(classId);
+		player.setLearningClass(playerClass);
 		for (SkillLearn s : skills)
 		{
 			if (SkillData.getInstance().getSkill(s.getSkillId(), s.getSkillLevel()) != null)
 			{
-				asl.addSkill(s.getSkillId(), s.getSkillLevel(), s.getSkillLevel(), s.getCalculatedLevelUpSp(player.getPlayerClass(), classId), 0);
+				asl.addSkill(s.getSkillId(), s.getSkillLevel(), s.getSkillLevel(), s.getCalculatedLevelUpSp(player.getPlayerClass(), playerClass), 0);
 				count++;
 			}
 		}
 		
 		if (count == 0)
 		{
-			final Map<Integer, SkillLearn> skillTree = SkillTreeData.getInstance().getCompleteClassSkillTree(classId);
+			final Map<Integer, SkillLearn> skillTree = SkillTreeData.getInstance().getCompleteClassSkillTree(playerClass);
 			final int minLevel = SkillTreeData.getInstance().getMinLevelForNewSkill(player, skillTree);
 			if (minLevel > 0)
 			{

@@ -37,9 +37,9 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.FeatureConfig;
 import org.l2jmobius.gameserver.data.SpawnTable;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.DoorData;
@@ -484,15 +484,15 @@ public class Fort extends AbstractResidence
 	public void raiseSupplyLeveL()
 	{
 		_supplyLeveL++;
-		if (_supplyLeveL > Config.FS_MAX_SUPPLY_LEVEL)
+		if (_supplyLeveL > FeatureConfig.FS_MAX_SUPPLY_LEVEL)
 		{
-			_supplyLeveL = Config.FS_MAX_SUPPLY_LEVEL;
+			_supplyLeveL = FeatureConfig.FS_MAX_SUPPLY_LEVEL;
 		}
 	}
 	
 	public void setSupplyLeveL(int value)
 	{
-		if (value <= Config.FS_MAX_SUPPLY_LEVEL)
+		if (value <= FeatureConfig.FS_MAX_SUPPLY_LEVEL)
 		{
 			_supplyLeveL = value;
 		}
@@ -600,18 +600,18 @@ public class Fort extends AbstractResidence
 				final Clan clan = ClanTable.getInstance().getClan(ownerId); // Try to find clan instance
 				clan.setFortId(getResidenceId());
 				setOwnerClan(clan);
-				final int runCount = getOwnedTime() / (Config.FS_UPDATE_FRQ * 60);
+				final int runCount = getOwnedTime() / (FeatureConfig.FS_UPDATE_FRQ * 60);
 				long initial = System.currentTimeMillis() - _lastOwnedTime.getTimeInMillis();
-				while (initial > (Config.FS_UPDATE_FRQ * 60000))
+				while (initial > (FeatureConfig.FS_UPDATE_FRQ * 60000))
 				{
-					initial -= Config.FS_UPDATE_FRQ * 60000;
+					initial -= FeatureConfig.FS_UPDATE_FRQ * 60000;
 				}
 				
-				initial = (Config.FS_UPDATE_FRQ * 60000) - initial;
-				if ((Config.FS_MAX_OWN_TIME <= 0) || (getOwnedTime() < (Config.FS_MAX_OWN_TIME * 3600)))
+				initial = (FeatureConfig.FS_UPDATE_FRQ * 60000) - initial;
+				if ((FeatureConfig.FS_MAX_OWN_TIME <= 0) || (getOwnedTime() < (FeatureConfig.FS_MAX_OWN_TIME * 3600)))
 				{
-					_fortUpdater[0] = ThreadPool.scheduleAtFixedRate(new FortUpdater(this, clan, runCount, FortUpdaterType.PERIODIC_UPDATE), initial, Config.FS_UPDATE_FRQ * 60000); // Schedule owner tasks to start running
-					if (Config.FS_MAX_OWN_TIME > 0)
+					_fortUpdater[0] = ThreadPool.scheduleAtFixedRate(new FortUpdater(this, clan, runCount, FortUpdaterType.PERIODIC_UPDATE), initial, FeatureConfig.FS_UPDATE_FRQ * 60000); // Schedule owner tasks to start running
+					if (FeatureConfig.FS_MAX_OWN_TIME > 0)
 					{
 						_fortUpdater[1] = ThreadPool.scheduleAtFixedRate(new FortUpdater(this, clan, runCount, FortUpdaterType.MAX_OWN_TIME), 3600000, 3600000); // Schedule owner tasks to remove owener
 					}
@@ -849,8 +849,8 @@ public class Fort extends AbstractResidence
 					_fortUpdater[1].cancel(false);
 				}
 				
-				_fortUpdater[0] = ThreadPool.scheduleAtFixedRate(new FortUpdater(this, clan, 0, FortUpdaterType.PERIODIC_UPDATE), Config.FS_UPDATE_FRQ * 60000, Config.FS_UPDATE_FRQ * 60000); // Schedule owner tasks to start running
-				if (Config.FS_MAX_OWN_TIME > 0)
+				_fortUpdater[0] = ThreadPool.scheduleAtFixedRate(new FortUpdater(this, clan, 0, FortUpdaterType.PERIODIC_UPDATE), FeatureConfig.FS_UPDATE_FRQ * 60000, FeatureConfig.FS_UPDATE_FRQ * 60000); // Schedule owner tasks to start running
+				if (FeatureConfig.FS_MAX_OWN_TIME > 0)
 				{
 					_fortUpdater[1] = ThreadPool.scheduleAtFixedRate(new FortUpdater(this, clan, 0, FortUpdaterType.MAX_OWN_TIME), 3600000, 3600000); // Schedule owner tasks to remove owener
 				}
@@ -949,7 +949,7 @@ public class Fort extends AbstractResidence
 	
 	public int getTimeTillRebelArmy()
 	{
-		return _lastOwnedTime.getTimeInMillis() == 0 ? 0 : (int) (((_lastOwnedTime.getTimeInMillis() + (Config.FS_MAX_OWN_TIME * 3600000)) - System.currentTimeMillis()) / 1000);
+		return _lastOwnedTime.getTimeInMillis() == 0 ? 0 : (int) (((_lastOwnedTime.getTimeInMillis() + (FeatureConfig.FS_MAX_OWN_TIME * 3600000)) - System.currentTimeMillis()) / 1000);
 	}
 	
 	public long getTimeTillNextFortUpdate()
@@ -963,11 +963,11 @@ public class Fort extends AbstractResidence
 		{
 			if (removePoints)
 			{
-				owner.takeReputationScore(Config.LOOSE_FORT_POINTS);
+				owner.takeReputationScore(FeatureConfig.LOOSE_FORT_POINTS);
 			}
 			else
 			{
-				owner.addReputationScore(Config.TAKE_FORT_POINTS);
+				owner.addReputationScore(FeatureConfig.TAKE_FORT_POINTS);
 			}
 		}
 	}

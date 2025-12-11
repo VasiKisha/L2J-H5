@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.GeoEngineConfig;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.model.World;
 
@@ -43,7 +43,7 @@ public class PathFinding
 	{
 		try
 		{
-			final String[] array = Config.PATHFIND_BUFFERS.split(";");
+			final String[] array = GeoEngineConfig.PATHFIND_BUFFERS.split(";");
 			
 			_allBuffers = new BufferInfo[array.length];
 			
@@ -75,7 +75,7 @@ public class PathFinding
 	 */
 	public short getNodePos(int geoPos)
 	{
-		return (short) (geoPos >> 3); // OK?
+		return (short) (geoPos >> 3);
 	}
 	
 	/**
@@ -197,44 +197,73 @@ public class PathFinding
 			buffer.free();
 		}
 		
-		if ((path.size() < 3) || (Config.MAX_POSTFILTER_PASSES <= 0))
+		if ((path.size() < 3) || (GeoEngineConfig.MAX_POSTFILTER_PASSES <= 0))
 		{
 			return path;
 		}
 		
+		// Enhanced post-filtering with configurable passes.
+		path = applyPostFiltering(path, x, y, z, instanceId, playable);
+		
+		return path;
+	}
+	
+	/**
+	 * Apply post-filtering to remove unnecessary waypoints. Enhanced version with better logic and configurable iterations.
+	 * @param initialPath the initial path to optimize
+	 * @param startX starting world X coordinate
+	 * @param startY starting world Y coordinate
+	 * @param startZ starting world Z coordinate
+	 * @param instanceId the instance ID to consider for pathfinding
+	 * @param playable whether the pathfinding is for a playable character
+	 * @return optimized path
+	 */
+	private List<GeoLocation> applyPostFiltering(List<GeoLocation> initialPath, int startX, int startY, int startZ, int instanceId, boolean playable)
+	{
+		final GeoEngine geoEngine = GeoEngine.getInstance();
+		List<GeoLocation> path = initialPath;
+		
 		int pass = 0;
-		boolean remove;
+		boolean changed;
 		do
 		{
 			pass++;
-			remove = false;
-			int currentX = x;
-			int currentY = y;
-			int currentZ = z;
-			final int size = path.size();
-			final List<GeoLocation> newPath = new ArrayList<>(size);
-			for (int i = 0; i < (size - 1); i++)
+			changed = false;
+			int currentX = startX;
+			int currentY = startY;
+			int currentZ = startZ;
+			
+			final List<GeoLocation> optimizedPath = new ArrayList<>();
+			for (int i = 0; i < (path.size() - 1); i++)
 			{
-				final GeoLocation locMiddle = path.get(i);
-				final GeoLocation locEnd = path.get(i + 1);
-				if (geoEngine.canMoveToTarget(currentX, currentY, currentZ, locEnd.getX(), locEnd.getY(), locEnd.getZ(), instanceId))
+				final GeoLocation current = path.get(i);
+				final GeoLocation next = path.get(i + 1);
+				
+				// Check if we can move directly to the next waypoint.
+				if (geoEngine.canMoveToTarget(currentX, currentY, currentZ, next.getX(), next.getY(), next.getZ(), instanceId))
 				{
-					remove = true;
+					// Skip current waypoint.
+					changed = true;
 				}
 				else
 				{
-					newPath.add(locMiddle);
-					currentX = locMiddle.getX();
-					currentY = locMiddle.getY();
-					currentZ = locMiddle.getZ();
+					// Keep current waypoint.
+					optimizedPath.add(current);
+					currentX = current.getX();
+					currentY = current.getY();
+					currentZ = current.getZ();
 				}
 			}
 			
-			// Add the last node
-			newPath.add(path.get(size - 1));
-			path = newPath;
+			// Always add the final destination.
+			if (!path.isEmpty())
+			{
+				optimizedPath.add(path.get(path.size() - 1));
+			}
+			
+			path = optimizedPath;
 		}
-		while (playable && remove && (path.size() > 2) && (pass < Config.MAX_POSTFILTER_PASSES));
+		while (playable && changed && (path.size() > 2) && (pass < GeoEngineConfig.MAX_POSTFILTER_PASSES));
 		
 		return path;
 	}
@@ -255,7 +284,7 @@ public class PathFinding
 		GeoNode tempNode = node;
 		while (tempNode.getParent() != null)
 		{
-			if (!Config.ADVANCED_DIAGONAL_STRATEGY && (tempNode.getParent().getParent() != null))
+			if (!GeoEngineConfig.ADVANCED_DIAGONAL_STRATEGY && (tempNode.getParent().getParent() != null))
 			{
 				final int tmpX = tempNode.getLocation().getNodeX() - tempNode.getParent().getParent().getLocation().getNodeX();
 				final int tmpY = tempNode.getLocation().getNodeY() - tempNode.getParent().getParent().getLocation().getNodeY();

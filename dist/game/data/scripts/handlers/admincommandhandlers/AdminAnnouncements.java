@@ -18,9 +18,9 @@ package handlers.admincommandhandlers;
 
 import java.util.StringTokenizer;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.StringUtil;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.data.sql.AnnouncementsTable;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -78,7 +78,7 @@ public class AdminAnnouncements implements IAdminCommandHandler
 				}
 				else
 				{
-					if (Config.GM_ANNOUNCER_NAME)
+					if (GeneralConfig.GM_ANNOUNCER_NAME)
 					{
 						announce = announce + " [" + activeChar.getName() + "]";
 					}

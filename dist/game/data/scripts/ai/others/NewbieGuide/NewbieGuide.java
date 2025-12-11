@@ -32,19 +32,19 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.Summon;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Race;
 import org.l2jmobius.gameserver.model.actor.enums.player.PlayerClass;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.network.NpcStringId;
 
-import ai.AbstractNpcAI;
 import quests.Q00255_Tutorial.Q00255_Tutorial;
 
 /**
  * Class handle all newbie guide tasks
  * @author Zealar, Mobius
  */
-public final class NewbieGuide extends AbstractNpcAI
+public final class NewbieGuide extends Script
 {
 	// Suffix
 	private static final String SUFFIX_FIGHTER_5_LEVEL = "-f05.htm";

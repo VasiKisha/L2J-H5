@@ -150,6 +150,11 @@ public class Search extends JFrame
 		
 		if (interfaceConfig.getBoolean("EnableGUI", true) && !GraphicsEnvironment.isHeadless())
 		{
+			// Disable hardware acceleration.
+			System.setProperty("sun.java2d.opengl", "false");
+			System.setProperty("sun.java2d.d3d", "false");
+			System.setProperty("sun.java2d.noddraw", "true");
+			
 			if (interfaceConfig.getBoolean("DarkTheme", true))
 			{
 				DarkTheme.activate();

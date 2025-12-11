@@ -41,8 +41,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
+import org.l2jmobius.gameserver.config.custom.SchemeBufferConfig;
 import org.l2jmobius.gameserver.model.actor.holders.npc.BuffSkillHolder;
 
 /**
@@ -183,7 +183,7 @@ public class SchemeBufferTable
 		{
 			_schemesTable.put(playerId, new TreeMap<>(String.CASE_INSENSITIVE_ORDER));
 		}
-		else if (_schemesTable.get(playerId).size() >= Config.BUFFER_MAX_SCHEMES)
+		else if (_schemesTable.get(playerId).size() >= SchemeBufferConfig.BUFFER_MAX_SCHEMES)
 		{
 			return;
 		}

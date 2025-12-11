@@ -33,9 +33,9 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.managers.FortManager;
 import org.l2jmobius.gameserver.managers.FortSiegeGuardManager;
@@ -416,7 +416,7 @@ public class FortSiege implements Siegable
 					if (checkIfInZone(member))
 					{
 						member.setInSiege(true);
-						member.startFameTask(Config.FORTRESS_ZONE_FAME_TASK_FREQUENCY * 1000, Config.FORTRESS_ZONE_FAME_AQUIRE_POINTS);
+						member.startFameTask(PlayerConfig.FORTRESS_ZONE_FAME_TASK_FREQUENCY * 1000, PlayerConfig.FORTRESS_ZONE_FAME_AQUIRE_POINTS);
 					}
 				}
 				
@@ -451,7 +451,7 @@ public class FortSiege implements Siegable
 				if (checkIfInZone(member))
 				{
 					member.setInSiege(true);
-					member.startFameTask(Config.FORTRESS_ZONE_FAME_TASK_FREQUENCY * 1000, Config.FORTRESS_ZONE_FAME_AQUIRE_POINTS);
+					member.startFameTask(PlayerConfig.FORTRESS_ZONE_FAME_TASK_FREQUENCY * 1000, PlayerConfig.FORTRESS_ZONE_FAME_AQUIRE_POINTS);
 				}
 			}
 			
@@ -1280,13 +1280,13 @@ public class FortSiege implements Siegable
 	@Override
 	public int getFameFrequency()
 	{
-		return Config.FORTRESS_ZONE_FAME_TASK_FREQUENCY;
+		return PlayerConfig.FORTRESS_ZONE_FAME_TASK_FREQUENCY;
 	}
 	
 	@Override
 	public int getFameAmount()
 	{
-		return Config.FORTRESS_ZONE_FAME_AQUIRE_POINTS;
+		return PlayerConfig.FORTRESS_ZONE_FAME_AQUIRE_POINTS;
 	}
 	
 	@Override

@@ -28,8 +28,8 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.util.IXmlReader;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 
 /**
  * @author MrNiceGuy
@@ -38,8 +38,8 @@ public class DynamicExpRateData implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(DynamicExpRateData.class.getName());
 	
-	private static float[] _expRates = new float[Config.PLAYER_MAXIMUM_LEVEL + 1];
-	private static float[] _spRates = new float[Config.PLAYER_MAXIMUM_LEVEL + 1];
+	private static float[] _expRates = new float[PlayerConfig.PLAYER_MAXIMUM_LEVEL + 1];
+	private static float[] _spRates = new float[PlayerConfig.PLAYER_MAXIMUM_LEVEL + 1];
 	private static boolean _enabled = false;
 	
 	protected DynamicExpRateData()

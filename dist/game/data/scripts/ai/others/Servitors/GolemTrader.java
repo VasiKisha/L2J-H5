@@ -17,14 +17,13 @@
 package ai.others.Servitors;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Golem Trader AI.
  * @author Zoey76
  */
-public class GolemTrader extends AbstractNpcAI
+public class GolemTrader extends Script
 {
 	// NPC
 	private static final int GOLEM_TRADER = 13128;

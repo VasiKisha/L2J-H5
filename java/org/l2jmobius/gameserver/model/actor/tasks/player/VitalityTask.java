@@ -16,7 +16,7 @@
  */
 package org.l2jmobius.gameserver.model.actor.tasks.player;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.RatesConfig;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.stat.PlayerStat;
 import org.l2jmobius.gameserver.model.zone.ZoneId;
@@ -48,7 +48,7 @@ public class VitalityTask implements Runnable
 			return;
 		}
 		
-		_player.updateVitalityPoints(Config.RATE_RECOVERY_VITALITY_PEACE_ZONE, false, false);
+		_player.updateVitalityPoints(RatesConfig.RATE_RECOVERY_VITALITY_PEACE_ZONE, false, false);
 		_player.sendPacket(new ExVitalityPointInfo(_player.getVitalityPoints()));
 	}
 }

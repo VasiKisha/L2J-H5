@@ -23,7 +23,17 @@ import java.util.Map.Entry;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.AutoPlayConfig;
+import org.l2jmobius.gameserver.config.custom.AutoPotionsConfig;
+import org.l2jmobius.gameserver.config.custom.BankingConfig;
+import org.l2jmobius.gameserver.config.custom.ChatModerationConfig;
+import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
+import org.l2jmobius.gameserver.config.custom.OfflinePlayConfig;
+import org.l2jmobius.gameserver.config.custom.OfflineTradeConfig;
+import org.l2jmobius.gameserver.config.custom.OnlineInfoConfig;
+import org.l2jmobius.gameserver.config.custom.PasswordChangeConfig;
+import org.l2jmobius.gameserver.config.custom.PremiumSystemConfig;
+import org.l2jmobius.gameserver.config.custom.WeddingConfig;
 import org.l2jmobius.gameserver.handler.ActionHandler;
 import org.l2jmobius.gameserver.handler.ActionShiftHandler;
 import org.l2jmobius.gameserver.handler.AdminCommandHandler;
@@ -537,17 +547,17 @@ public class MasterHandler
 			// TODO: Add configuration options for this voiced commands.
 			// CastleHandler.class,
 			// ClanHandler.class,
-			Config.ALLOW_WEDDING ? Wedding.class : null,
-			Config.ENABLE_AUTO_PLAY ? AutoPlay.class : null,
-			Config.BANKING_SYSTEM_ENABLED ? Banking.class : null,
-			Config.CHAT_ADMIN ? ChatAdmin.class : null,
-			Config.MULTILANG_ENABLE && Config.MULTILANG_VOICED_ALLOW ? Lang.class : null,
-			Config.ALLOW_CHANGE_PASSWORD ? ChangePassword.class : null,
-			Config.ENABLE_OFFLINE_PLAY_COMMAND ? OfflinePlay.class : null,
-			Config.ENABLE_OFFLINE_COMMAND && (Config.OFFLINE_TRADE_ENABLE || Config.OFFLINE_CRAFT_ENABLE) ? Offline.class : null,
-			Config.ENABLE_ONLINE_COMMAND ? Online.class : null,
-			Config.PREMIUM_SYSTEM_ENABLED ? Premium.class : null,
-			Config.AUTO_POTIONS_ENABLED ? AutoPotion.class : null,
+			WeddingConfig.ALLOW_WEDDING ? Wedding.class : null,
+			AutoPlayConfig.ENABLE_AUTO_PLAY ? AutoPlay.class : null,
+			BankingConfig.BANKING_SYSTEM_ENABLED ? Banking.class : null,
+			ChatModerationConfig.CHAT_ADMIN ? ChatAdmin.class : null,
+			MultilingualSupportConfig.MULTILANG_ENABLE && MultilingualSupportConfig.MULTILANG_VOICED_ALLOW ? Lang.class : null,
+			PasswordChangeConfig.ALLOW_CHANGE_PASSWORD ? ChangePassword.class : null,
+			OfflinePlayConfig.ENABLE_OFFLINE_PLAY_COMMAND ? OfflinePlay.class : null,
+			OfflineTradeConfig.ENABLE_OFFLINE_COMMAND && (OfflineTradeConfig.OFFLINE_TRADE_ENABLE || OfflineTradeConfig.OFFLINE_CRAFT_ENABLE) ? Offline.class : null,
+			OnlineInfoConfig.ENABLE_ONLINE_COMMAND ? Online.class : null,
+			PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED ? Premium.class : null,
+			AutoPotionsConfig.AUTO_POTIONS_ENABLED ? AutoPotion.class : null,
 		},
 		{
 			// Target Handlers

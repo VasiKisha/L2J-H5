@@ -20,18 +20,17 @@
  */
 package custom.FakePlayers;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PvpConfig;
 import org.l2jmobius.gameserver.model.WorldObject;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * TODO: Move it to Creature.
  * @author Mobius
  */
-public class PvpFlaggingStopTask extends AbstractNpcAI
+public class PvpFlaggingStopTask extends Script
 {
 	private PvpFlaggingStopTask()
 	{
@@ -61,7 +60,7 @@ public class PvpFlaggingStopTask extends AbstractNpcAI
 				npc.setScriptValue(1); // in combat
 				cancelQuestTimer("FINISH_FLAG", npc, null);
 				cancelQuestTimer("REMOVE_FLAG", npc, null);
-				startQuestTimer("FINISH_FLAG", Config.PVP_NORMAL_TIME - 20000, npc, null);
+				startQuestTimer("FINISH_FLAG", PvpConfig.PVP_NORMAL_TIME - 20000, npc, null);
 				startQuestTimer("FLAG_CHECK", 5000, npc, null);
 			}
 		}

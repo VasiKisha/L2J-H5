@@ -16,7 +16,7 @@
  */
 package custom.events.Wedding;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.custom.WeddingConfig;
 import org.l2jmobius.gameserver.managers.CoupleManager;
 import org.l2jmobius.gameserver.model.Couple;
 import org.l2jmobius.gameserver.model.World;
@@ -24,19 +24,18 @@ import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.item.enums.ItemProcessType;
 import org.l2jmobius.gameserver.model.item.instance.Item;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.CommonSkill;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.network.serverpackets.MagicSkillUse;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.Broadcast;
 
-import ai.AbstractNpcAI;
-
 /**
  * Wedding AI.
  * @author Zoey76
  */
-public class Wedding extends AbstractNpcAI
+public class Wedding extends Script
 {
 	// NPC
 	private static final int MANAGER_ID = 50007;
@@ -118,14 +117,14 @@ public class Wedding extends AbstractNpcAI
 				{
 					htmltext = sendHtml(partner, "NoFormal.html", null, null);
 				}
-				else if ((player.getAdena() < Config.WEDDING_PRICE) || (partner.getAdena() < Config.WEDDING_PRICE))
+				else if ((player.getAdena() < WeddingConfig.WEDDING_PRICE) || (partner.getAdena() < WeddingConfig.WEDDING_PRICE))
 				{
-					htmltext = sendHtml(partner, "Adena.html", "%fee%", String.valueOf(Config.WEDDING_PRICE));
+					htmltext = sendHtml(partner, "Adena.html", "%fee%", String.valueOf(WeddingConfig.WEDDING_PRICE));
 				}
 				else
 				{
-					player.reduceAdena(ItemProcessType.FEE, Config.WEDDING_PRICE, player.getLastFolkNPC(), true);
-					partner.reduceAdena(ItemProcessType.FEE, Config.WEDDING_PRICE, player.getLastFolkNPC(), true);
+					player.reduceAdena(ItemProcessType.FEE, WeddingConfig.WEDDING_PRICE, player.getLastFolkNPC(), true);
+					partner.reduceAdena(ItemProcessType.FEE, WeddingConfig.WEDDING_PRICE, player.getLastFolkNPC(), true);
 					
 					// Accept the wedding request
 					player.setMarryAccepted(true);
@@ -178,7 +177,7 @@ public class Wedding extends AbstractNpcAI
 	public String onFirstTalk(Npc npc, Player player)
 	{
 		final String htmltext = getHtm(player, "Start.html");
-		return htmltext.replaceAll("%fee%", String.valueOf(Config.WEDDING_PRICE));
+		return htmltext.replaceAll("%fee%", String.valueOf(WeddingConfig.WEDDING_PRICE));
 	}
 	
 	private String sendHtml(Player player, String fileName, String regex, String replacement)
@@ -195,7 +194,7 @@ public class Wedding extends AbstractNpcAI
 	
 	private static boolean isWearingFormalWear(Player player)
 	{
-		if (Config.WEDDING_FORMALWEAR)
+		if (WeddingConfig.WEDDING_FORMALWEAR)
 		{
 			final Item formalWear = player.getChestArmorInstance();
 			return (formalWear != null) && (formalWear.getId() == FORMAL_WEAR);

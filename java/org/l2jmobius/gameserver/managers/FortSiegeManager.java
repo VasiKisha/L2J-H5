@@ -35,7 +35,6 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.database.DatabaseFactory;
 import org.l2jmobius.gameserver.model.CombatFlag;
 import org.l2jmobius.gameserver.model.FortSiegeSpawn;
@@ -52,6 +51,8 @@ import org.l2jmobius.gameserver.network.serverpackets.SystemMessage;
 public class FortSiegeManager
 {
 	private static final Logger LOGGER = Logger.getLogger(FortSiegeManager.class.getName());
+	
+	private static final String FORTSIEGE_CONFIG_FILE = "./config/FortSiege.ini";
 	
 	private int _attackerMaxClans = 500; // Max number of clans
 	
@@ -121,7 +122,7 @@ public class FortSiegeManager
 	private void load()
 	{
 		final Properties siegeSettings = new Properties();
-		final File file = new File(Config.FORTSIEGE_CONFIG_FILE);
+		final File file = new File(FORTSIEGE_CONFIG_FILE);
 		try (InputStream is = new FileInputStream(file))
 		{
 			siegeSettings.load(is);

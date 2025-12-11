@@ -177,7 +177,7 @@ public class Location implements IPositionable
 	@Override
 	public void setHeading(int heading)
 	{
-		_heading = heading;
+		_heading = Math.clamp(heading, 0, 65535);
 	}
 	
 	/**

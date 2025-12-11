@@ -23,8 +23,8 @@ package handlers.admincommandhandlers;
 import java.text.SimpleDateFormat;
 import java.util.concurrent.TimeUnit;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.gameserver.cache.HtmCache;
+import org.l2jmobius.gameserver.config.custom.PremiumSystemConfig;
 import org.l2jmobius.gameserver.handler.IAdminCommandHandler;
 import org.l2jmobius.gameserver.managers.PcCafePointsManager;
 import org.l2jmobius.gameserver.managers.PremiumManager;
@@ -118,7 +118,7 @@ public class AdminPremium implements IAdminCommandHandler
 	
 	private void addPremiumStatus(Player admin, int months, String accountName)
 	{
-		if (!Config.PREMIUM_SYSTEM_ENABLED)
+		if (!PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED)
 		{
 			admin.sendMessage("Premium system is disabled.");
 			return;
@@ -127,7 +127,7 @@ public class AdminPremium implements IAdminCommandHandler
 		// TODO: Add check if account exists XD
 		PremiumManager.getInstance().addPremiumTime(accountName, months * 30, TimeUnit.DAYS);
 		admin.sendMessage("Account " + accountName + " will now have premium status until " + new SimpleDateFormat("dd.MM.yyyy HH:mm").format(PremiumManager.getInstance().getPremiumExpiration(accountName)) + ".");
-		if (Config.PC_CAFE_RETAIL_LIKE)
+		if (PremiumSystemConfig.PC_CAFE_RETAIL_LIKE)
 		{
 			for (Player player : World.getInstance().getPlayers())
 			{
@@ -142,7 +142,7 @@ public class AdminPremium implements IAdminCommandHandler
 	
 	private void viewPremiumInfo(Player admin, String accountName)
 	{
-		if (!Config.PREMIUM_SYSTEM_ENABLED)
+		if (!PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED)
 		{
 			admin.sendMessage("Premium system is disabled.");
 			return;
@@ -160,7 +160,7 @@ public class AdminPremium implements IAdminCommandHandler
 	
 	private void removePremium(Player admin, String accountName)
 	{
-		if (!Config.PREMIUM_SYSTEM_ENABLED)
+		if (!PremiumSystemConfig.PREMIUM_SYSTEM_ENABLED)
 		{
 			admin.sendMessage("Premium system is disabled.");
 			return;

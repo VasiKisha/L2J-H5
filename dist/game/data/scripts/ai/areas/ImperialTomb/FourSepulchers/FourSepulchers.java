@@ -33,10 +33,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
 import org.l2jmobius.commons.util.IXmlReader;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.geoengine.GeoEngine;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
@@ -45,8 +45,9 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.groups.Party;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.enums.SkillFinishType;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
@@ -57,14 +58,13 @@ import org.l2jmobius.gameserver.network.enums.ChatType;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import ai.AbstractNpcAI;
 import quests.Q00620_FourGoblets.Q00620_FourGoblets;
 
 /**
  * Four Selpuchers AI
  * @author Mobius
  */
-public class FourSepulchers extends AbstractNpcAI implements IXmlReader
+public class FourSepulchers extends Script implements IXmlReader
 {
 	private static final Logger LOGGER = Logger.getLogger(FourSepulchers.class.getName());
 	
@@ -523,7 +523,7 @@ public class FourSepulchers extends AbstractNpcAI implements IXmlReader
 				{
 					for (Player mem : killer.getParty().getMembers())
 					{
-						if (LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, killer, mem, true))
+						if (LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, killer, mem, true))
 						{
 							final QuestState qs = mem.getQuestState(Q00620_FourGoblets.class.getSimpleName());
 							if ((qs != null) && qs.isStarted() && !hasAtLeastOneQuestItem(mem, ANTIQUE_BROOCH) && !hasAtLeastOneQuestItem(mem, 7255 + sepulcherId))

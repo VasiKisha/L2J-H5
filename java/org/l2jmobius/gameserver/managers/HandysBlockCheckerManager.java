@@ -22,9 +22,8 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
-import org.l2jmobius.gameserver.managers.tasks.PenaltyRemoveTask;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.ArenaParticipantsHolder;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.creature.Team;
@@ -84,7 +83,7 @@ public class HandysBlockCheckerManager
 				return;
 			}
 			
-			if (Config.HBCE_FAIR_PLAY)
+			if (GeneralConfig.HBCE_FAIR_PLAY)
 			{
 				holder.checkAndShuffle();
 			}
@@ -371,9 +370,9 @@ public class HandysBlockCheckerManager
 		_registrationPenalty.remove(objectId);
 	}
 	
-	private void schedulePenaltyRemoval(int objId)
+	private void schedulePenaltyRemoval(int objectId)
 	{
-		ThreadPool.schedule(new PenaltyRemoveTask(objId), 10000);
+		ThreadPool.schedule(() -> removePenalty(objectId), 10000);
 	}
 	
 	/**

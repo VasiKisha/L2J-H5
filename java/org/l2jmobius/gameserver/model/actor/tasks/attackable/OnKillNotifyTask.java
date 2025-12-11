@@ -18,7 +18,7 @@ package org.l2jmobius.gameserver.model.actor.tasks.attackable;
 
 import org.l2jmobius.gameserver.model.actor.Attackable;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
+import org.l2jmobius.gameserver.model.script.Quest;
 
 /**
  * @author xban1x

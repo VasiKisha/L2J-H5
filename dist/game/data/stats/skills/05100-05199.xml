@@ -2021,7 +2021,6 @@
 		<set name="mpInitialConsume" val="#mpInitialConsume" />
 		<set name="power" val="#amount" /> <!-- TODO: remove after BabyPet rework -->
 		<set name="reuseDelay" val="10000" />
-		<set name="reuseDelay" val="6000" />
 		<effects>
 			<effect name="Heal">
 				<param power="#amount" />

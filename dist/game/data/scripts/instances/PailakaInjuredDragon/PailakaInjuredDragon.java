@@ -34,21 +34,21 @@ import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.ZoneType;
 import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
-import instances.AbstractInstance;
 import quests.Q00144_PailakaInjuredDragon.Q00144_PailakaInjuredDragon;
 
 /**
  * Pailaka Injured Dragon instance zone.
  * @author Zoey76, Mobius
  */
-public class PailakaInjuredDragon extends AbstractInstance
+public class PailakaInjuredDragon extends InstanceScript
 {
 	// NPCs
 	private static final int KETRA_ORC_SUPPORTER_2 = 32512;

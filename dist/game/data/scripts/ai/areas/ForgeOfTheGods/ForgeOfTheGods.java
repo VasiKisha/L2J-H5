@@ -23,14 +23,13 @@ package ai.areas.ForgeOfTheGods;
 import org.l2jmobius.gameserver.ai.Intention;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Forge of the Gods AI
  * @author nonom, malyelfik
  */
-public class ForgeOfTheGods extends AbstractNpcAI
+public class ForgeOfTheGods extends Script
 {
 	// NPCs
 	private static final int[] FOG_MOBS =

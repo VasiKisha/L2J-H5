@@ -16,8 +16,8 @@
  */
 package org.l2jmobius.gameserver.model.zone.type;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.threads.ThreadPool;
+import org.l2jmobius.gameserver.config.GeneralConfig;
 import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Creature;
 import org.l2jmobius.gameserver.model.actor.Player;
@@ -47,13 +47,13 @@ public class JailZone extends ZoneType
 		{
 			creature.setInsideZone(ZoneId.JAIL, true);
 			creature.setInsideZone(ZoneId.NO_SUMMON_FRIEND, true);
-			if (Config.JAIL_IS_PVP)
+			if (GeneralConfig.JAIL_IS_PVP)
 			{
 				creature.setInsideZone(ZoneId.PVP, true);
 				creature.sendPacket(SystemMessageId.YOU_HAVE_ENTERED_A_COMBAT_ZONE);
 			}
 			
-			if (Config.JAIL_DISABLE_TRANSACTION)
+			if (GeneralConfig.JAIL_DISABLE_TRANSACTION)
 			{
 				creature.setInsideZone(ZoneId.NO_STORE, true);
 			}
@@ -69,7 +69,7 @@ public class JailZone extends ZoneType
 			player.setInsideZone(ZoneId.JAIL, false);
 			player.setInsideZone(ZoneId.NO_SUMMON_FRIEND, false);
 			
-			if (Config.JAIL_IS_PVP)
+			if (GeneralConfig.JAIL_IS_PVP)
 			{
 				creature.setInsideZone(ZoneId.PVP, false);
 				creature.sendPacket(SystemMessageId.YOU_HAVE_LEFT_A_COMBAT_ZONE);
@@ -82,7 +82,7 @@ public class JailZone extends ZoneType
 				creature.sendMessage("You cannot cheat your way out of here. You must wait until your jail time is over.");
 			}
 			
-			if (Config.JAIL_DISABLE_TRANSACTION)
+			if (GeneralConfig.JAIL_DISABLE_TRANSACTION)
 			{
 				creature.setInsideZone(ZoneId.NO_STORE, false);
 			}

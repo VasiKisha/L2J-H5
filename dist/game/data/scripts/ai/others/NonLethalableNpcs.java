@@ -17,13 +17,12 @@
 package ai.others;
 
 import org.l2jmobius.gameserver.model.actor.Npc;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * @author UnAfraid
  */
-public class NonLethalableNpcs extends AbstractNpcAI
+public class NonLethalableNpcs extends Script
 {
 	private static final int[] NPCS =
 	{

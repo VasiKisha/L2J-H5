@@ -20,38 +20,41 @@
  */
 package org.l2jmobius.gameserver.scripting.engine;
 
-import java.util.logging.Logger;
+import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author HorridoJoho, Mobius
+ * A script class loader that accumulates all compiled classes.
+ * @author Mobius
  */
 public class ScriptClassLoader extends ClassLoader
 {
-	public static final Logger LOGGER = Logger.getLogger(ScriptClassLoader.class.getName());
+	private final ConcurrentHashMap<String, ScriptClassData> _compiledClasses = new ConcurrentHashMap<>();
 	
-	private Iterable<ScriptClassData> _compiledClasses;
-	
-	ScriptClassLoader(ClassLoader parent, Iterable<ScriptClassData> compiledClasses)
+	public ScriptClassLoader(ClassLoader parent)
 	{
 		super(parent);
-		_compiledClasses = compiledClasses;
 	}
 	
-	void removeCompiledClasses()
+	/**
+	 * Adds compiled classes to this class loader.
+	 * @param compiledClasses the compiled classes to add
+	 */
+	public void addCompiledClasses(Iterable<ScriptClassData> compiledClasses)
 	{
-		_compiledClasses = null;
+		for (ScriptClassData compiledClass : compiledClasses)
+		{
+			_compiledClasses.put(compiledClass.getJavaName(), compiledClass);
+		}
 	}
 	
 	@Override
 	protected Class<?> findClass(String name) throws ClassNotFoundException
 	{
-		for (ScriptClassData compiledClass : _compiledClasses)
+		final ScriptClassData compiledClass = _compiledClasses.get(name);
+		if (compiledClass != null)
 		{
-			if (compiledClass.getJavaName().equals(name))
-			{
-				final byte[] classBytes = compiledClass.getJavaData();
-				return defineClass(name, classBytes, 0, classBytes.length);
-			}
+			final byte[] classBytes = compiledClass.getJavaData();
+			return defineClass(name, classBytes, 0, classBytes.length);
 		}
 		
 		return super.findClass(name);

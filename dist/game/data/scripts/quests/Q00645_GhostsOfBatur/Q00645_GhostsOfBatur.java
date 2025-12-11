@@ -16,13 +16,13 @@
  */
 package quests.Q00645_GhostsOfBatur;
 
-import org.l2jmobius.Config;
+import org.l2jmobius.gameserver.config.PlayerConfig;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
-import org.l2jmobius.gameserver.model.quest.Quest;
-import org.l2jmobius.gameserver.model.quest.QuestSound;
-import org.l2jmobius.gameserver.model.quest.QuestState;
-import org.l2jmobius.gameserver.model.quest.State;
+import org.l2jmobius.gameserver.model.script.Quest;
+import org.l2jmobius.gameserver.model.script.QuestSound;
+import org.l2jmobius.gameserver.model.script.QuestState;
+import org.l2jmobius.gameserver.model.script.State;
 import org.l2jmobius.gameserver.util.LocationUtil;
 
 /**
@@ -103,7 +103,7 @@ public class Q00645_GhostsOfBatur extends Quest
 	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
 		final Player player = getRandomPartyMember(killer, 1);
-		if ((player != null) && LocationUtil.checkIfInRange(Config.ALT_PARTY_RANGE, npc, player, false) && (getRandom(1000) < CHANCES[npc.getId() - CONTAMINATED_MOREK_WARRIOR]))
+		if ((player != null) && LocationUtil.checkIfInRange(PlayerConfig.ALT_PARTY_RANGE, npc, player, false) && (getRandom(1000) < CHANCES[npc.getId() - CONTAMINATED_MOREK_WARRIOR]))
 		{
 			final QuestState qs = getQuestState(player, false);
 			giveItems(killer, CURSED_BURIAL_ITEMS, 1);

@@ -20,8 +20,10 @@
  */
 package org.l2jmobius.gameserver.network.serverpackets;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.network.WritableBuffer;
+import org.l2jmobius.gameserver.config.NpcConfig;
+import org.l2jmobius.gameserver.config.custom.ChampionMonstersConfig;
+import org.l2jmobius.gameserver.config.custom.MultilingualSupportConfig;
 import org.l2jmobius.gameserver.data.sql.ClanTable;
 import org.l2jmobius.gameserver.data.xml.NpcNameLocalisationData;
 import org.l2jmobius.gameserver.managers.TownManager;
@@ -110,7 +112,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 			_isAttackable = cha.isAutoAttackable(attacker);
 			
 			// npc crest of owning clan/ally of castle
-			if (cha.isNpc() && cha.isInsideZone(ZoneId.TOWN) && (Config.SHOW_CREST_WITHOUT_QUEST || cha.getCastle().getShowNpcCrest()) && (cha.getCastle().getOwnerId() != 0))
+			if (cha.isNpc() && !cha.isMonster() && cha.isInsideZone(ZoneId.TOWN) && (NpcConfig.SHOW_CREST_WITHOUT_QUEST || cha.getCastle().getShowNpcCrest()) && (cha.getCastle().getOwnerId() != 0))
 			{
 				final TownZone town = TownManager.getTown(_x, _y, _z);
 				if (town != null)
@@ -140,7 +142,7 @@ public abstract class AbstractNpcInfo extends ServerPacket
 			
 			// Localisation related.
 			String[] localisation = null;
-			if (Config.MULTILANG_ENABLE)
+			if (MultilingualSupportConfig.MULTILANG_ENABLE)
 			{
 				final Player player = client.getPlayer();
 				if (player != null)
@@ -214,16 +216,16 @@ public abstract class AbstractNpcInfo extends ServerPacket
 			}
 			
 			// Custom level titles
-			if (_npc.isMonster() && (Config.SHOW_NPC_LEVEL || Config.SHOW_NPC_AGGRESSION))
+			if (_npc.isMonster() && (NpcConfig.SHOW_NPC_LEVEL || NpcConfig.SHOW_NPC_AGGRESSION))
 			{
 				String t1 = "";
-				if (Config.SHOW_NPC_LEVEL)
+				if (NpcConfig.SHOW_NPC_LEVEL)
 				{
 					t1 += "Lv " + _npc.getLevel();
 				}
 				
 				String t2 = "";
-				if (Config.SHOW_NPC_AGGRESSION)
+				if (NpcConfig.SHOW_NPC_AGGRESSION)
 				{
 					if (!t1.isEmpty())
 					{
@@ -248,11 +250,11 @@ public abstract class AbstractNpcInfo extends ServerPacket
 					t1 += " " + _title;
 				}
 				
-				_title = _npc.isChampion() ? Config.CHAMP_TITLE + " " + t1 : t1;
+				_title = _npc.isChampion() ? ChampionMonstersConfig.CHAMP_TITLE + " " + t1 : t1;
 			}
-			else if (Config.CHAMPION_ENABLE && _npc.isChampion())
+			else if (ChampionMonstersConfig.CHAMPION_ENABLE && _npc.isChampion())
 			{
-				_title = (Config.CHAMP_TITLE); // On every subclass
+				_title = (ChampionMonstersConfig.CHAMP_TITLE); // On every subclass
 			}
 			
 			buffer.writeString(_title);

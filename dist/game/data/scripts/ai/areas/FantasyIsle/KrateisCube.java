@@ -23,14 +23,13 @@ package ai.areas.FantasyIsle;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.krateisCube.KrateiArena;
-
-import ai.AbstractNpcAI;
+import org.l2jmobius.gameserver.model.script.Script;
 
 /**
  * Kratei's Cube AI
  * @author Mobius
  */
-public class KrateisCube extends AbstractNpcAI
+public class KrateisCube extends Script
 {
 	// NPCs
 	private static final int[] MONSTERS =

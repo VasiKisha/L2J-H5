@@ -20,9 +20,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.l2jmobius.Config;
 import org.l2jmobius.commons.time.TimeUtil;
 import org.l2jmobius.gameserver.ai.Intention;
+import org.l2jmobius.gameserver.config.GrandBossConfig;
 import org.l2jmobius.gameserver.managers.GrandBossManager;
 import org.l2jmobius.gameserver.managers.ZoneManager;
 import org.l2jmobius.gameserver.model.Location;
@@ -35,6 +35,7 @@ import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.actor.enums.player.MountType;
 import org.l2jmobius.gameserver.model.actor.instance.GrandBoss;
 import org.l2jmobius.gameserver.model.groups.Party;
+import org.l2jmobius.gameserver.model.script.Script;
 import org.l2jmobius.gameserver.model.skill.Skill;
 import org.l2jmobius.gameserver.model.skill.holders.SkillHolder;
 import org.l2jmobius.gameserver.model.zone.type.NoRestartZone;
@@ -47,13 +48,11 @@ import org.l2jmobius.gameserver.network.serverpackets.SpecialCamera;
 import org.l2jmobius.gameserver.util.Broadcast;
 import org.l2jmobius.gameserver.util.MathUtil;
 
-import ai.AbstractNpcAI;
-
 /**
  * Antharas AI.
  * @author St3eT
  */
-public class Antharas extends AbstractNpcAI
+public class Antharas extends Script
 {
 	// NPCs
 	private static final int ANTHARAS = 29068; // Antharas
@@ -106,7 +105,7 @@ public class Antharas extends AbstractNpcAI
 	private static final SkillHolder ANTH_FEAR_SHORT = new SkillHolder(5092, 1); // Antharas Terror
 	private static final SkillHolder ANTH_METEOR = new SkillHolder(5093, 1); // Antharas Meteor
 	// Zone
-	private static final NoRestartZone zone = ZoneManager.getInstance().getZoneById(70050, NoRestartZone.class); // Antharas Nest zone
+	private static final NoRestartZone ZONE = ZoneManager.getInstance().getZoneById(70050, NoRestartZone.class); // Antharas Nest zone
 	// Status
 	private static final int ALIVE = 0;
 	private static final int WAITING = 1;
@@ -164,7 +163,7 @@ public class Antharas extends AbstractNpcAI
 				_antharas = (GrandBoss) addSpawn(ANTHARAS, 185708, 114298, -8221, 0, false, 0);
 				_antharas.setCurrentHpMp(curr_hp, curr_mp);
 				addBoss(_antharas);
-				startQuestTimer("SPAWN_ANTHARAS", Config.ANTHARAS_WAIT_TIME * 60000, null, null);
+				startQuestTimer("SPAWN_ANTHARAS", GrandBossConfig.ANTHARAS_WAIT_TIME * 60000, null, null);
 				break;
 			}
 			case IN_FIGHT:
@@ -211,7 +210,7 @@ public class Antharas extends AbstractNpcAI
 				{
 					htmltext = "13001-02.html";
 				}
-				else if (zone.getPlayersInside().size() >= MAX_PEOPLE)
+				else if (ZONE.getPlayersInside().size() >= MAX_PEOPLE)
 				{
 					htmltext = "13001-04.html";
 				}
@@ -229,7 +228,7 @@ public class Antharas extends AbstractNpcAI
 					{
 						htmltext = "13001-03.html";
 					}
-					else if (members.size() > (MAX_PEOPLE - zone.getPlayersInside().size()))
+					else if (members.size() > (MAX_PEOPLE - ZONE.getPlayersInside().size()))
 					{
 						htmltext = "13001-04.html";
 					}
@@ -246,7 +245,7 @@ public class Antharas extends AbstractNpcAI
 						if (getStatus() != WAITING)
 						{
 							setStatus(WAITING);
-							startQuestTimer("SPAWN_ANTHARAS", Config.ANTHARAS_WAIT_TIME * 60000, null, null);
+							startQuestTimer("SPAWN_ANTHARAS", GrandBossConfig.ANTHARAS_WAIT_TIME * 60000, null, null);
 						}
 					}
 				}
@@ -260,7 +259,7 @@ public class Antharas extends AbstractNpcAI
 					if (getStatus() != WAITING)
 					{
 						setStatus(WAITING);
-						startQuestTimer("SPAWN_ANTHARAS", Config.ANTHARAS_WAIT_TIME * 60000, null, null);
+						startQuestTimer("SPAWN_ANTHARAS", GrandBossConfig.ANTHARAS_WAIT_TIME * 60000, null, null);
 					}
 				}
 				
@@ -278,45 +277,45 @@ public class Antharas extends AbstractNpcAI
 				_antharas.teleToLocation(181323, 114850, -7623, 32542);
 				setStatus(IN_FIGHT);
 				_lastAttack = System.currentTimeMillis();
-				zone.broadcastPacket(new PlaySound("BS02_A"));
+				ZONE.broadcastPacket(new PlaySound("BS02_A"));
 				startQuestTimer("CAMERA_1", 23, _antharas, null);
 				break;
 			}
 			case "CAMERA_1":
 			{
-				zone.broadcastPacket(new SpecialCamera(npc, 700, 13, -19, 0, 10000, 20000, 0, 0, 0, 0, 0));
+				ZONE.broadcastPacket(new SpecialCamera(npc, 700, 13, -19, 0, 10000, 20000, 0, 0, 0, 0, 0));
 				startQuestTimer("CAMERA_2", 3000, npc, null);
 				break;
 			}
 			case "CAMERA_2":
 			{
-				zone.broadcastPacket(new SpecialCamera(npc, 700, 13, 0, 6000, 10000, 20000, 0, 0, 0, 0, 0));
+				ZONE.broadcastPacket(new SpecialCamera(npc, 700, 13, 0, 6000, 10000, 20000, 0, 0, 0, 0, 0));
 				startQuestTimer("CAMERA_3", 10000, npc, null);
 				break;
 			}
 			case "CAMERA_3":
 			{
-				zone.broadcastPacket(new SpecialCamera(npc, 3700, 0, -3, 0, 10000, 10000, 0, 0, 0, 0, 0));
-				zone.broadcastPacket(new SocialAction(npc.getObjectId(), 1));
+				ZONE.broadcastPacket(new SpecialCamera(npc, 3700, 0, -3, 0, 10000, 10000, 0, 0, 0, 0, 0));
+				ZONE.broadcastPacket(new SocialAction(npc.getObjectId(), 1));
 				startQuestTimer("CAMERA_4", 200, npc, null);
 				startQuestTimer("SOCIAL", 5200, npc, null);
 				break;
 			}
 			case "CAMERA_4":
 			{
-				zone.broadcastPacket(new SpecialCamera(npc, 1100, 0, -3, 22000, 10000, 30000, 0, 0, 0, 0, 0));
+				ZONE.broadcastPacket(new SpecialCamera(npc, 1100, 0, -3, 22000, 10000, 30000, 0, 0, 0, 0, 0));
 				startQuestTimer("CAMERA_5", 10800, npc, null);
 				break;
 			}
 			case "CAMERA_5":
 			{
-				zone.broadcastPacket(new SpecialCamera(npc, 1100, 0, -3, 300, 10000, 7000, 0, 0, 0, 0, 0));
+				ZONE.broadcastPacket(new SpecialCamera(npc, 1100, 0, -3, 300, 10000, 7000, 0, 0, 0, 0, 0));
 				startQuestTimer("START_MOVE", 1900, npc, null);
 				break;
 			}
 			case "SOCIAL":
 			{
-				zone.broadcastPacket(new SocialAction(npc.getObjectId(), 2));
+				ZONE.broadcastPacket(new SocialAction(npc.getObjectId(), 2));
 				break;
 			}
 			case "START_MOVE":
@@ -326,9 +325,9 @@ public class Antharas extends AbstractNpcAI
 				
 				for (Player players : World.getInstance().getVisibleObjectsInRange(npc, Player.class, 4000))
 				{
-					if (players.isHero() && Config.ANTHARAS_RECOGNIZE_HERO)
+					if (players.isHero() && GrandBossConfig.ANTHARAS_RECOGNIZE_HERO)
 					{
-						zone.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_YOU_CANNOT_HOPE_TO_DEFEAT_ME_WITH_YOUR_MEAGER_STRENGTH, 2, 4000, players.getName()));
+						ZONE.broadcastPacket(new ExShowScreenMessage(NpcStringId.S1_YOU_CANNOT_HOPE_TO_DEFEAT_ME_WITH_YOUR_MEAGER_STRENGTH, 2, 4000, players.getName()));
 						break;
 					}
 				}
@@ -377,7 +376,7 @@ public class Antharas extends AbstractNpcAI
 				if ((npc != null) && ((_lastAttack + 900000) < System.currentTimeMillis()))
 				{
 					setStatus(ALIVE);
-					for (Creature creature : zone.getCharactersInside())
+					for (Creature creature : ZONE.getCharactersInside())
 					{
 						if (creature != null)
 						{
@@ -458,7 +457,7 @@ public class Antharas extends AbstractNpcAI
 			}
 			case "CLEAR_ZONE":
 			{
-				for (Creature creature : zone.getCharactersInside())
+				for (Creature creature : ZONE.getCharactersInside())
 				{
 					if (creature != null)
 					{
@@ -558,7 +557,7 @@ public class Antharas extends AbstractNpcAI
 				if (getStatus() == IN_FIGHT)
 				{
 					_minionCount = 0;
-					for (Creature creature : zone.getCharactersInside())
+					for (Creature creature : ZONE.getCharactersInside())
 					{
 						if ((creature != null) && creature.isNpc() && ((creature.getId() == BEHEMOTH) || (creature.getId() == TERASQUE)))
 						{
@@ -584,7 +583,7 @@ public class Antharas extends AbstractNpcAI
 					setStatus(ALIVE);
 					cancelQuestTimer("CHECK_ATTACK", _antharas, null);
 					cancelQuestTimer("SPAWN_MINION", _antharas, null);
-					for (Creature creature : zone.getCharactersInside())
+					for (Creature creature : ZONE.getCharactersInside())
 					{
 						if (creature != null)
 						{
@@ -645,7 +644,7 @@ public class Antharas extends AbstractNpcAI
 		}
 		else if (npc.getId() == ANTHARAS)
 		{
-			if (!zone.isCharacterInZone(attacker) || (getStatus() != IN_FIGHT))
+			if (!ZONE.isCharacterInZone(attacker) || (getStatus() != IN_FIGHT))
 			{
 				LOGGER.warning(getClass().getSimpleName() + ": Player " + attacker.getName() + " attacked Antharas in invalid conditions!");
 				attacker.teleToLocation(80464, 152294, -3534);
@@ -684,18 +683,18 @@ public class Antharas extends AbstractNpcAI
 	@Override
 	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		if (zone.isCharacterInZone(killer))
+		if (ZONE.isCharacterInZone(killer))
 		{
 			if (npc.getId() == ANTHARAS)
 			{
 				_antharas = null;
 				notifyEvent("DESPAWN_MINIONS", null, null);
-				zone.broadcastPacket(new SpecialCamera(npc, 1200, 20, -10, 0, 10000, 13000, 0, 0, 0, 0, 0));
-				zone.broadcastPacket(new PlaySound("BS01_D"));
+				ZONE.broadcastPacket(new SpecialCamera(npc, 1200, 20, -10, 0, 10000, 13000, 0, 0, 0, 0, 0));
+				ZONE.broadcastPacket(new PlaySound("BS01_D"));
 				addSpawn(TELEPORT_CUBE, 177615, 114941, -7709, 0, false, 900000);
 				
-				final long baseIntervalMillis = Config.ANTHARAS_SPAWN_INTERVAL * 3600000;
-				final long randomRangeMillis = Config.ANTHARAS_SPAWN_RANDOM * 3600000;
+				final long baseIntervalMillis = GrandBossConfig.ANTHARAS_SPAWN_INTERVAL * 3600000;
+				final long randomRangeMillis = GrandBossConfig.ANTHARAS_SPAWN_RANDOM * 3600000;
 				final long respawnTime = baseIntervalMillis + getRandom(-randomRangeMillis, randomRangeMillis);
 				setRespawn(respawnTime);
 				startQuestTimer("CLEAR_STATUS", respawnTime, null, null);
@@ -1072,6 +1071,12 @@ public class Antharas extends AbstractNpcAI
 				}
 			}
 		}
+	}
+	
+	@Override
+	public String onFirstTalk(Npc npc, Player player)
+	{
+		return npc.getId() + ".html";
 	}
 	
 	public static void main(String[] args)

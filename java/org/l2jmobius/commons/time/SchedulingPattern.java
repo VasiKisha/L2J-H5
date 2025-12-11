@@ -1,625 +1,213 @@
 /*
- * Copyright (C) 2007-2010 Carlo Pelliccia (www.sauronsoftware.it)
+ * Copyright (c) 2013 L2jMobius
  * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU Lesser General Public License version
- * 2.1, as published by the Free Software Foundation.
- *
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU Lesser General Public License 2.1 for more details.
- *
- * You should have received a copy of the GNU Lesser General Public
- * License version 2.1 along with this program.
- * If not, see <http://www.gnu.org/licenses/>.
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be
+ * included in all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY,
+ * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
+ * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
 package org.l2jmobius.commons.time;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.GregorianCalendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.Objects;
+import java.util.Set;
 import java.util.TimeZone;
-import java.util.TreeMap;
 import java.util.concurrent.TimeUnit;
 
 import org.l2jmobius.commons.util.Rnd;
+import org.l2jmobius.commons.util.StringUtil;
 
 /**
- * <p>
- * A UNIX crontab-like pattern is a string split in five space separated parts. Each part is intented as:
- * </p>
- * <ol>
- * <li><strong>Minutes sub-pattern</strong>. During which minutes of the hour should the task been launched? The values range is from 0 to 59.</li>
- * <li><strong>Hours sub-pattern</strong>. During which hours of the day should the task been launched? The values range is from 0 to 23.</li>
- * <li><strong>Days of month sub-pattern</strong>. During which days of the month should the task been launched? The values range is from 1 to 31. The special value L can be used to recognize the last day of month.</li>
- * <li><strong>Months sub-pattern</strong>. During which months of the year should the task been launched? The values range is from 1 (January) to 12 (December), otherwise this sub-pattern allows the aliases &quot;jan&quot;, &quot;feb&quot;, &quot;mar&quot;, &quot;apr&quot;, &quot;may&quot;,
- * &quot;jun&quot;, &quot;jul&quot;, &quot;aug&quot;, &quot;sep&quot;, &quot;oct&quot;, &quot;nov&quot; and &quot;dec&quot;.</li>
- * <li><strong>Days of week sub-pattern</strong>. During which days of the week should the task been launched? The values range is from 0 (Sunday) to 6 (Saturday), otherwise this sub-pattern allows the aliases &quot;sun&quot;, &quot;mon&quot;, &quot;tue&quot;, &quot;wed&quot;, &quot;thu&quot;,
- * &quot;fri&quot; and &quot;sat&quot;.</li>
- * </ol>
- * <p>
- * The star wildcard character is also admitted, indicating &quot;every minute of the hour&quot;, &quot;every hour of the day&quot;, &quot;every day of the month&quot;, &quot;every month of the year&quot; and &quot;every day of the week&quot;, according to the sub-pattern in which it is used.
- * </p>
- * <p>
- * Once the scheduler is started, a task will be launched when the five parts in its scheduling pattern will be true at the same time.
- * </p>
- * <p>
- * Some examples:
- * </p>
- * <p>
- * <strong>5 * * * *</strong><br />
- * This pattern causes a task to be launched once every hour, at the begin of the fifth minute (00:05, 01:05, 02:05 etc.).
- * </p>
- * <p>
- * <strong>* * * * *</strong><br />
- * This pattern causes a task to be launched every minute.
- * </p>
- * <p>
- * <strong>* 12 * * Mon</strong><br />
- * This pattern causes a task to be launched every minute during the 12th hour of Monday.
- * </p>
- * <p>
- * <strong>* 12 16 * Mon</strong><br />
- * This pattern causes a task to be launched every minute during the 12th hour of Monday, 16th, but only if the day is the 16th of the month.
- * </p>
- * <p>
- * Every sub-pattern can contain two or more comma separated values.
- * </p>
- * <p>
- * <strong>59 11 * * 1,2,3,4,5</strong><br />
- * This pattern causes a task to be launched at 11:59AM on Monday, Tuesday, Wednesday, Thursday and Friday.
- * </p>
- * <p>
- * Values intervals are admitted and defined using the minus character.
- * </p>
- * <p>
- * <strong>59 11 * * 1-5</strong><br />
- * This pattern is equivalent to the previous one.
- * </p>
- * <p>
- * The slash character can be used to identify step values within a range. It can be used both in the form <em>*&#47;c</em> and <em>a-b/c</em>. The subpattern is matched every <em>c</em> values of the range <em>0,maxvalue</em> or <em>a-b</em>.
- * </p>
- * <p>
- * <strong>*&#47;5 * * * *</strong><br />
- * This pattern causes a task to be launched every 5 minutes (0:00, 0:05, 0:10, 0:15 and so on).
- * </p>
- * <p>
- * <strong>3-18&#47;5 * * * *</strong><br />
- * This pattern causes a task to be launched every 5 minutes starting from the third minute of the hour, up to the 18th (0:03, 0:08, 0:13, 0:18, 1:03, 1:08 and so on).
- * </p>
- * <p>
- * <strong>*&#47;15 9-17 * * *</strong><br />
- * This pattern causes a task to be launched every 15 minutes between the 9th and 17th hour of the day (9:00, 9:15, 9:30, 9:45 and so on... note that the last execution will be at 17:45).
- * </p>
- * <p>
- * All the fresh described syntax rules can be used together.
- * </p>
- * <p>
- * <strong>* 12 10-16&#47;2 * *</strong><br />
- * This pattern causes a task to be launched every minute during the 12th hour of the day, but only if the day is the 10th, the 12th, the 14th or the 16th of the month.
- * </p>
- * <p>
- * <strong>* 12 1-15,17,20-25 * *</strong><br />
- * This pattern causes a task to be launched every minute during the 12th hour of the day, but the day of the month must be between the 1st and the 15th, the 20th and the 25, or at least it must be the 17th.
- * </p>
- * <p>
- * Finally lets you combine more scheduling patterns into one, with the pipe character:
- * </p>
- * <p>
- * <strong>0 5 * * *|8 10 * * *|22 17 * * *</strong><br />
- * This pattern causes a task to be launched every day at 05:00, 10:08 and 17:22.
- * </p>
- * @author Carlo Pelliccia
+ * A UNIX cron-like pattern parser for scheduling tasks.<br>
+ * Supports extended syntax with randomization and time offset modifiers for flexible task scheduling.
+ * <ul>
+ * <li>Standard cron format with 5 or 6 space-separated fields (minute, hour, day, month, weekday, optional week offset).</li>
+ * <li>Extended modifiers: ~N for random delays, +N for time offsets, L for last day of month.</li>
+ * <li>Multiple pattern support using pipe (|) separator for OR conditions.</li>
+ * <li>Month and weekday name aliases (jan-dec, sun-sat) for improved readability.</li>
+ * </ul>
+ * @author Mobius
  */
 public class SchedulingPattern
 {
-	private static final int MINUTE_MIN_VALUE = 0;
-	private static final int MINUTE_MAX_VALUE = 59;
-	private static final int HOUR_MIN_VALUE = 0;
-	private static final int HOUR_MAX_VALUE = 23;
-	private static final int DAY_OF_MONTH_MIN_VALUE = 1;
-	private static final int DAY_OF_MONTH_MAX_VALUE = 31;
-	private static final int MONTH_MIN_VALUE = 1;
-	private static final int MONTH_MAX_VALUE = 12;
-	private static final int DAY_OF_WEEK_MIN_VALUE = 0;
-	private static final int DAY_OF_WEEK_MAX_VALUE = 7;
+	// Constants.
+	private static final int MINUTE_MIN = 0;
+	private static final int MINUTE_MAX = 59;
+	private static final int HOUR_MIN = 0;
+	private static final int HOUR_MAX = 23;
+	private static final int DAY_MIN = 1;
+	private static final int DAY_MAX = 31;
+	private static final int MONTH_MIN = 1;
+	private static final int MONTH_MAX = 12;
+	private static final int DAY_OF_WEEK_MIN = 0; // 0 = Sunday
+	private static final int DAY_OF_WEEK_MAX = 6;
+	private static final int LAST_DAY_MARKER = 32; // Special marker for last day of month.
+	private static final int CALENDAR_MONTH_OFFSET = 1; // Calendar months are 0-based.
+	private static final int CALENDAR_DAY_OF_WEEK_OFFSET = 1; // Convert to 0 = Sunday.
+	private static final int SEARCH_LIMIT_YEARS = 4; // Maximum years to search for next match.
+	private static final int MINIMUM_CRON_FIELDS = 5;
+	private static final int MAXIMUM_CRON_FIELDS = 6;
+	private static final int CRON_PARTS_EXPECTED = 2;
+	private static final String PIPE_SEPARATOR = "\\|";
+	private static final String WHITESPACE_PATTERN = "\\s+";
+	private static final String FIELD_VALIDATION_REGEX = "^[0-9a-zA-Z*,\\-/:~+L]+$";
+	private static final String NO_FUTURE_MATCH_MESSAGE = "No future match.";
+	
+	// Month aliases for improved readability.
+	private static final Map<String, Integer> MONTH_ALIASES = new HashMap<>();
+	static
+	{
+		MONTH_ALIASES.put("jan", 1);
+		MONTH_ALIASES.put("feb", 2);
+		MONTH_ALIASES.put("mar", 3);
+		MONTH_ALIASES.put("apr", 4);
+		MONTH_ALIASES.put("may", 5);
+		MONTH_ALIASES.put("jun", 6);
+		MONTH_ALIASES.put("jul", 7);
+		MONTH_ALIASES.put("aug", 8);
+		MONTH_ALIASES.put("sep", 9);
+		MONTH_ALIASES.put("oct", 10);
+		MONTH_ALIASES.put("nov", 11);
+		MONTH_ALIASES.put("dec", 12);
+	}
+	
+	// Day of week aliases for improved readability.
+	private static final Map<String, Integer> DAY_ALIASES = new HashMap<>();
+	static
+	{
+		DAY_ALIASES.put("sun", 0);
+		DAY_ALIASES.put("mon", 1);
+		DAY_ALIASES.put("tue", 2);
+		DAY_ALIASES.put("wed", 3);
+		DAY_ALIASES.put("thu", 4);
+		DAY_ALIASES.put("fri", 5);
+		DAY_ALIASES.put("sat", 6);
+	}
+	
+	// Pattern data.
+	private final String _originalPattern;
+	private final List<CronExpression> _cronExpressions;
 	
 	/**
-	 * The parser for the minute values.
+	 * Creates a new scheduling pattern from a cron-like string.
+	 * @param pattern The cron pattern string
+	 * @throws RuntimeException if the pattern is invalid.
 	 */
-	private static final ValueParser MINUTE_VALUE_PARSER = new MinuteValueParser();
+	public SchedulingPattern(String pattern) throws RuntimeException
+	{
+		_originalPattern = Objects.requireNonNull(pattern, "Pattern cannot be null.");
+		try
+		{
+			_cronExpressions = parsePattern(pattern);
+		}
+		catch (Exception e)
+		{
+			throw new RuntimeException("Invalid scheduling pattern: " + pattern, e);
+		}
+	}
 	
 	/**
-	 * The parser for the hour values.
-	 */
-	private static final ValueParser HOUR_VALUE_PARSER = new HourValueParser();
-	
-	/**
-	 * The parser for the day of month values.
-	 */
-	private static final ValueParser DAY_OF_MONTH_VALUE_PARSER = new DayOfMonthValueParser();
-	
-	/**
-	 * The parser for the month values.
-	 */
-	private static final ValueParser MONTH_VALUE_PARSER = new MonthValueParser();
-	
-	/**
-	 * The parser for the day of week values.
-	 */
-	private static final ValueParser DAY_OF_WEEK_VALUE_PARSER = new DayOfWeekValueParser();
-	
-	/**
-	 * The pattern as a string.
-	 */
-	private final String _asString;
-	
-	/**
-	 * The ValueMatcher list for the "minute" field.
-	 */
-	protected List<ValueMatcher> _minuteMatchers = new ArrayList<>();
-	
-	/**
-	 * The ValueMatcher list for the "hour" field.
-	 */
-	protected List<ValueMatcher> _hourMatchers = new ArrayList<>();
-	
-	/**
-	 * The ValueMatcher list for the "day of month" field.
-	 */
-	protected List<ValueMatcher> _dayOfMonthMatchers = new ArrayList<>();
-	
-	/**
-	 * The ValueMatcher list for the "month" field.
-	 */
-	protected List<ValueMatcher> _monthMatchers = new ArrayList<>();
-	
-	/**
-	 * The ValueMatcher list for the "day of week" field.
-	 */
-	protected List<ValueMatcher> _dayOfWeekMatchers = new ArrayList<>();
-	
-	/**
-	 * How many matcher groups in this pattern?
-	 */
-	protected int _matcherSize = 0;
-	
-	protected Map<Integer, Integer> _hourAdder = new TreeMap<>();
-	protected Map<Integer, Integer> _hourAdderRnd = new TreeMap<>();
-	protected Map<Integer, Integer> _dayOfYearAdder = new TreeMap<>();
-	protected Map<Integer, Integer> _minuteAdderRnd = new TreeMap<>();
-	protected Map<Integer, Integer> _weekOfYearAdder = new TreeMap<>();
-	
-	/**
-	 * Validates a string as a scheduling pattern.
-	 * @param schedulingPattern The pattern to validate.
-	 * @return true if the given string represents a valid scheduling pattern; false otherwise.
+	 * Validates whether a string is a valid scheduling pattern.
+	 * @param schedulingPattern The pattern to validate
+	 * @return true if valid, false otherwise
 	 */
 	public static boolean validate(String schedulingPattern)
 	{
-		try
-		{
-			new SchedulingPattern(schedulingPattern);
-		}
-		catch (RuntimeException e)
+		if (schedulingPattern == null)
 		{
 			return false;
 		}
 		
-		return true;
-	}
-	
-	/**
-	 * Builds a SchedulingPattern parsing it from a string.
-	 * @param pattern The pattern as a crontab-like string.
-	 * @throws RuntimeException If the supplied string is not a valid pattern.
-	 */
-	public SchedulingPattern(String pattern) throws RuntimeException
-	{
-		_asString = pattern;
-		final StringTokenizer st1 = new StringTokenizer(pattern, "|");
-		if (st1.countTokens() < 1)
-		{
-			throw new RuntimeException("invalid pattern: \"" + pattern + "\"");
-		}
-		
-		while (st1.hasMoreTokens())
-		{
-			final String localPattern = st1.nextToken();
-			final StringTokenizer st2 = new StringTokenizer(localPattern, " \t");
-			if (st2.countTokens() != 5)
-			{
-				throw new RuntimeException("invalid pattern: \"" + localPattern + "\"");
-			}
-			
-			try
-			{
-				String minutePattern = st2.nextToken();
-				final String[] minutePatternParts = minutePattern.split(":");
-				if (minutePatternParts.length > 1)
-				{
-					for (int i = 0; i < (minutePatternParts.length - 1); ++i)
-					{
-						if (minutePatternParts[i].length() <= 1)
-						{
-							continue;
-						}
-						
-						if (minutePatternParts[i].startsWith("~"))
-						{
-							_minuteAdderRnd.put(_matcherSize, Integer.parseInt(minutePatternParts[i].substring(1)));
-							continue;
-						}
-						
-						throw new RuntimeException("Unknown hour modifier \"" + minutePatternParts[i] + "\"");
-					}
-					
-					minutePattern = minutePatternParts[minutePatternParts.length - 1];
-				}
-				
-				_minuteMatchers.add(buildValueMatcher(minutePattern, MINUTE_VALUE_PARSER));
-			}
-			catch (Exception e)
-			{
-				throw new RuntimeException("invalid pattern \"" + localPattern + "\". Error parsing minutes field: " + e.getMessage() + ".");
-			}
-			
-			try
-			{
-				String hourPattern = st2.nextToken();
-				final String[] hourPatternParts = hourPattern.split(":");
-				if (hourPatternParts.length > 1)
-				{
-					for (int i = 0; i < (hourPatternParts.length - 1); ++i)
-					{
-						if (hourPatternParts[i].length() <= 1)
-						{
-							continue;
-						}
-						
-						if (hourPatternParts[i].startsWith("+"))
-						{
-							_hourAdder.put(_matcherSize, Integer.parseInt(hourPatternParts[i].substring(1)));
-							continue;
-						}
-						
-						if (hourPatternParts[i].startsWith("~"))
-						{
-							_hourAdderRnd.put(_matcherSize, Integer.parseInt(hourPatternParts[i].substring(1)));
-							continue;
-						}
-						
-						throw new RuntimeException("Unknown hour modifier \"" + hourPatternParts[i] + "\"");
-					}
-					
-					hourPattern = hourPatternParts[hourPatternParts.length - 1];
-				}
-				
-				_hourMatchers.add(buildValueMatcher(hourPattern, HOUR_VALUE_PARSER));
-			}
-			
-			catch (Exception e)
-			{
-				throw new RuntimeException("invalid pattern \"" + localPattern + "\". Error parsing hours field: " + e.getMessage() + ".");
-			}
-			
-			try
-			{
-				String dayOfMonthPattern = st2.nextToken();
-				final String[] dayOfMonthPatternParts = dayOfMonthPattern.split(":");
-				if (dayOfMonthPatternParts.length > 1)
-				{
-					for (int i = 0; i < (dayOfMonthPatternParts.length - 1); ++i)
-					{
-						if (dayOfMonthPatternParts[i].length() <= 1)
-						{
-							continue;
-						}
-						
-						if (dayOfMonthPatternParts[i].startsWith("+"))
-						{
-							_dayOfYearAdder.put(_matcherSize, Integer.parseInt(dayOfMonthPatternParts[i].substring(1)));
-							continue;
-						}
-						
-						throw new RuntimeException("Unknown day modifier \"" + dayOfMonthPatternParts[i] + "\"");
-					}
-					
-					dayOfMonthPattern = dayOfMonthPatternParts[dayOfMonthPatternParts.length - 1];
-				}
-				
-				_dayOfMonthMatchers.add(buildValueMatcher(dayOfMonthPattern, DAY_OF_MONTH_VALUE_PARSER));
-			}
-			catch (Exception e)
-			{
-				throw new RuntimeException("invalid pattern \"" + localPattern + "\". Error parsing days of month field: " + e.getMessage() + ".");
-			}
-			
-			try
-			{
-				_monthMatchers.add(buildValueMatcher(st2.nextToken(), MONTH_VALUE_PARSER));
-			}
-			catch (Exception e)
-			{
-				throw new RuntimeException("invalid pattern \"" + localPattern + "\". Error parsing months field: " + e.getMessage() + ".");
-			}
-			
-			try
-			{
-				_dayOfWeekMatchers.add(buildValueMatcher(st2.nextToken(), DAY_OF_WEEK_VALUE_PARSER));
-			}
-			catch (Exception e)
-			{
-				throw new RuntimeException("invalid pattern \"" + localPattern + "\". Error parsing days of week field: " + e.getMessage() + ".");
-			}
-			
-			if (st2.hasMoreTokens())
-			{
-				try
-				{
-					String weekOfYearAdderText = st2.nextToken();
-					if (weekOfYearAdderText.charAt(0) != '+')
-					{
-						throw new RuntimeException("Unknown week of year addition in pattern \"" + localPattern + "\".");
-					}
-					
-					weekOfYearAdderText = weekOfYearAdderText.substring(1);
-					_weekOfYearAdder.put(_matcherSize, Integer.parseInt(weekOfYearAdderText));
-				}
-				catch (Exception e)
-				{
-					throw new RuntimeException("invalid pattern \"" + localPattern + "\". Error parsing days of week field: " + e.getMessage() + ".");
-				}
-			}
-			
-			_matcherSize++;
-		}
-	}
-	
-	/**
-	 * A ValueMatcher utility builder.
-	 * @param str The pattern part for the ValueMatcher creation.
-	 * @param parser The parser used to parse the values.
-	 * @return The requested ValueMatcher.
-	 * @throws Exception If the supplied pattern part is not valid.
-	 */
-	private ValueMatcher buildValueMatcher(String str, ValueParser parser) throws Exception
-	{
-		if ((str.length() == 1) && str.equals("*"))
-		{
-			return new AlwaysTrueValueMatcher();
-		}
-		
-		final List<Integer> values = new ArrayList<>();
-		final StringTokenizer st = new StringTokenizer(str, ",");
-		while (st.hasMoreTokens())
-		{
-			final String element = st.nextToken();
-			List<Integer> local;
-			try
-			{
-				local = parseListElement(element, parser);
-			}
-			catch (Exception e)
-			{
-				throw new Exception("invalid field \"" + str + "\", invalid element \"" + element + "\", " + e.getMessage());
-			}
-			
-			for (Integer value : local)
-			{
-				if (values.contains(value))
-				{
-					continue;
-				}
-				
-				values.add(value);
-			}
-		}
-		
-		if (values.size() == 0)
-		{
-			throw new Exception("invalid field \"" + str + "\"");
-		}
-		
-		if (parser == DAY_OF_MONTH_VALUE_PARSER)
-		{
-			return new DayOfMonthValueMatcher(values);
-		}
-		
-		return new IntArrayValueMatcher(values);
-	}
-	
-	/**
-	 * Parses an element of a list of values of the pattern.
-	 * @param str The element string.
-	 * @param parser The parser used to parse the values.
-	 * @return A list of integers representing the allowed values.
-	 * @throws Exception If the supplied pattern part is not valid.
-	 */
-	private List<Integer> parseListElement(String str, ValueParser parser) throws Exception
-	{
-		final StringTokenizer st = new StringTokenizer(str, "/");
-		final int size = st.countTokens();
-		if ((size < 1) || (size > 2))
-		{
-			throw new Exception("syntax error");
-		}
-		
-		List<Integer> values;
 		try
 		{
-			values = parseRange(st.nextToken(), parser);
+			// Lightweight validation without full parsing.
+			final String[] orPatterns = schedulingPattern.split(PIPE_SEPARATOR);
+			for (String orPattern : orPatterns)
+			{
+				final String[] fields = orPattern.trim().split(WHITESPACE_PATTERN);
+				if ((fields.length < MINIMUM_CRON_FIELDS) || (fields.length > MAXIMUM_CRON_FIELDS))
+				{
+					return false;
+				}
+				
+				// Basic syntax validation for each field.
+				if (!isValidField(fields[0]) || !isValidField(fields[1]) || !isValidField(fields[2]) || !isValidField(fields[3]) || !isValidField(fields[4]))
+				{
+					return false;
+				}
+				
+				// Validate optional week offset field.
+				if (fields.length == MAXIMUM_CRON_FIELDS)
+				{
+					final String weekField = fields[5].trim();
+					if (!weekField.startsWith("+") || !StringUtil.isNumeric(weekField.substring(1)))
+					{
+						return false;
+					}
+				}
+			}
+			
+			return true;
 		}
 		catch (Exception e)
 		{
-			throw new Exception("invalid range, " + e.getMessage());
+			return false;
 		}
-		
-		if (size == 2)
-		{
-			final String dStr = st.nextToken();
-			int div;
-			try
-			{
-				div = Integer.parseInt(dStr);
-			}
-			catch (NumberFormatException e)
-			{
-				throw new Exception("invalid divisor \"" + dStr + "\"");
-			}
-			
-			if (div < 1)
-			{
-				throw new Exception("non positive divisor \"" + div + "\"");
-			}
-			
-			final List<Integer> values2 = new ArrayList<>();
-			for (int i = 0; i < values.size(); i += div)
-			{
-				values2.add(values.get(i));
-			}
-			
-			return values2;
-		}
-		
-		return values;
 	}
 	
 	/**
-	 * Parses a range of values.
-	 * @param str The range string.
-	 * @param parser The parser used to parse the values.
-	 * @return A list of integers representing the allowed values.
-	 * @throws Exception If the supplied pattern part is not valid.
+	 * Lightweight field validation for pattern syntax checking.
+	 * @param field the field to validate
+	 * @return true if field has valid basic syntax
 	 */
-	private List<Integer> parseRange(String str, ValueParser parser) throws Exception
+	private static boolean isValidField(String field)
 	{
-		if (str.equals("*"))
+		if ((field == null) || field.trim().isEmpty())
 		{
-			final int min = parser.getMinValue();
-			final int max = parser.getMaxValue();
-			final List<Integer> values = new ArrayList<>();
-			for (int i = min; i <= max; i++)
-			{
-				values.add(i);
-			}
-			
-			return values;
+			return false;
 		}
 		
-		final StringTokenizer st = new StringTokenizer(str, "-");
-		final int size = st.countTokens();
-		if ((size < 1) || (size > 2))
-		{
-			throw new Exception("syntax error");
-		}
-		
-		final String v1Str = st.nextToken();
-		int v1;
-		try
-		{
-			v1 = parser.parse(v1Str);
-		}
-		catch (Exception e)
-		{
-			throw new Exception("invalid value \"" + v1Str + "\", " + e.getMessage());
-		}
-		
-		if (size == 1)
-		{
-			final List<Integer> values = new ArrayList<>();
-			values.add(v1);
-			return values;
-		}
-		
-		final String v2Str = st.nextToken();
-		int v2;
-		try
-		{
-			v2 = parser.parse(v2Str);
-		}
-		catch (Exception e)
-		{
-			throw new Exception("invalid value \"" + v2Str + "\", " + e.getMessage());
-		}
-		
-		final List<Integer> values = new ArrayList<>();
-		if (v1 < v2)
-		{
-			for (int i = v1; i <= v2; i++)
-			{
-				values.add(i);
-			}
-		}
-		else if (v1 > v2)
-		{
-			final int min = parser.getMinValue();
-			final int max = parser.getMaxValue();
-			for (int i = v1; i <= max; i++)
-			{
-				values.add(i);
-			}
-			
-			for (int i = min; i <= v2; i++)
-			{
-				values.add(i);
-			}
-		}
-		else
-		{
-			// v1 == v2
-			values.add(v1);
-		}
-		
-		return values;
+		// Check for valid characters and basic syntax.
+		return field.matches(FIELD_VALIDATION_REGEX);
 	}
 	
 	/**
-	 * This methods returns true if the given timestamp (expressed as a UNIX-era millis value) matches the pattern, according to the given time zone.
-	 * @param timezone A time zone.
-	 * @param millis The timestamp, as a UNIX-era millis value.
-	 * @return true if the given timestamp matches the pattern.
+	 * Checks if the given timestamp matches this pattern.
+	 * @param timezone The timezone to use
+	 * @param millis The timestamp in milliseconds
+	 * @return true if the timestamp matches
 	 */
 	public boolean match(TimeZone timezone, long millis)
 	{
-		final GregorianCalendar gc = new GregorianCalendar();
-		gc.setTimeInMillis(millis);
-		gc.setTimeZone(timezone);
-		gc.set(Calendar.SECOND, 0);
-		gc.set(Calendar.MILLISECOND, 0);
-		for (int i = 0; i < _matcherSize; ++i)
+		final Calendar calendar = Calendar.getInstance(timezone);
+		calendar.setTimeInMillis(millis);
+		
+		// Normalize to minute precision.
+		calendar.set(Calendar.SECOND, 0);
+		calendar.set(Calendar.MILLISECOND, 0);
+		
+		// Use traditional loop for better performance in hot paths.
+		for (CronExpression cronExpression : _cronExpressions)
 		{
-			if (_weekOfYearAdder.containsKey(i))
-			{
-				gc.add(Calendar.WEEK_OF_YEAR, -_weekOfYearAdder.get(i).intValue());
-			}
-			
-			if (_dayOfYearAdder.containsKey(i))
-			{
-				gc.add(Calendar.DAY_OF_YEAR, -_dayOfYearAdder.get(i).intValue());
-			}
-			
-			if (_hourAdder.containsKey(i))
-			{
-				gc.add(Calendar.HOUR, -_hourAdder.get(i).intValue());
-			}
-			
-			final int minute = gc.get(Calendar.MINUTE);
-			final int hour = gc.get(Calendar.HOUR_OF_DAY);
-			final int dayOfMonth = gc.get(Calendar.DAY_OF_MONTH);
-			final int month = gc.get(Calendar.MONTH) + 1;
-			final int dayOfWeek = gc.get(Calendar.DAY_OF_WEEK) - 1;
-			final int year = gc.get(Calendar.YEAR);
-			final ValueMatcher minuteMatcher = _minuteMatchers.get(i);
-			final ValueMatcher hourMatcher = _hourMatchers.get(i);
-			final ValueMatcher dayOfMonthMatcher = _dayOfMonthMatchers.get(i);
-			final ValueMatcher monthMatcher = _monthMatchers.get(i);
-			final ValueMatcher dayOfWeekMatcher = _dayOfWeekMatchers.get(i);
-			if (minuteMatcher.match(minute) && hourMatcher.match(hour) && ((dayOfMonthMatcher instanceof DayOfMonthValueMatcher) ? ((DayOfMonthValueMatcher) dayOfMonthMatcher).match(dayOfMonth, month, gc.isLeapYear(year)) : dayOfMonthMatcher.match(dayOfMonth)) && monthMatcher.match(month) && dayOfWeekMatcher.match(dayOfWeek))
+			if (cronExpression.matches(calendar))
 			{
 				return true;
 			}
@@ -629,9 +217,9 @@ public class SchedulingPattern
 	}
 	
 	/**
-	 * This methods returns true if the given timestamp (expressed as a UNIX-era millis value) matches the pattern, according to the system default time zone.
-	 * @param millis The timestamp, as a UNIX-era millis value.
-	 * @return true if the given timestamp matches the pattern.
+	 * Checks if the given timestamp matches this pattern using system timezone.
+	 * @param millis The timestamp in milliseconds
+	 * @return true if the timestamp matches
 	 */
 	public boolean match(long millis)
 	{
@@ -639,137 +227,32 @@ public class SchedulingPattern
 	}
 	
 	/**
-	 * It returns the next matching moment as a millis value.
-	 * @param timezone
-	 * @param millis
-	 * @return The next matching moment as a millis value.
+	 * Finds the next matching time after the given timestamp.
+	 * @param timezone The timezone to use
+	 * @param millis The timestamp to search after
+	 * @return The next matching timestamp in milliseconds
 	 */
 	public long next(TimeZone timezone, long millis)
 	{
-		long result = -1;
-		final GregorianCalendar gc = new GregorianCalendar(timezone);
-		for (int i = 0; i < _matcherSize; ++i)
+		long earliestMatch = -1L;
+		
+		// Use traditional loop for better performance in hot paths.
+		for (CronExpression cronExpression : _cronExpressions)
 		{
-			long next = -1;
-			gc.setTimeInMillis(millis);
-			gc.set(13, 0);
-			gc.set(14, 0);
-			if (_weekOfYearAdder.containsKey(i))
+			final long nextMatch = cronExpression.getNextMatch(millis, timezone);
+			if ((nextMatch > millis) && ((earliestMatch == -1L) || (nextMatch < earliestMatch)))
 			{
-				gc.add(3, _weekOfYearAdder.get(i));
+				earliestMatch = nextMatch;
 			}
-			
-			if (_dayOfYearAdder.containsKey(i))
-			{
-				gc.add(6, _dayOfYearAdder.get(i));
-			}
-			
-			if (_hourAdder.containsKey(i))
-			{
-				gc.add(10, _hourAdder.get(i));
-			}
-			
-			final ValueMatcher minuteMatcher = _minuteMatchers.get(i);
-			final ValueMatcher hourMatcher = _hourMatchers.get(i);
-			final ValueMatcher dayOfMonthMatcher = _dayOfMonthMatchers.get(i);
-			final ValueMatcher monthMatcher = _monthMatchers.get(i);
-			final ValueMatcher dayOfWeekMatcher = _dayOfWeekMatchers.get(i);
-			
-			SEARCH: do
-			{
-				final int year = gc.get(1);
-				final boolean isLeapYear = gc.isLeapYear(year);
-				for (int month = gc.get(2) + 1; month <= MONTH_MAX_VALUE; ++month)
-				{
-					if (monthMatcher.match(month))
-					{
-						gc.set(2, month - 1);
-						final int maxDayOfMonth = DayOfMonthValueMatcher.getLastDayOfMonth(month, isLeapYear);
-						for (int dayOfMonth = gc.get(5); dayOfMonth <= maxDayOfMonth; ++dayOfMonth)
-						{
-							if (dayOfMonthMatcher instanceof DayOfMonthValueMatcher ? ((DayOfMonthValueMatcher) dayOfMonthMatcher).match(dayOfMonth, month, isLeapYear) : dayOfMonthMatcher.match(dayOfMonth))
-							{
-								gc.set(5, dayOfMonth);
-								final int dayOfWeek = gc.get(DAY_OF_WEEK_MAX_VALUE) - 1;
-								if (dayOfWeekMatcher.match(dayOfWeek))
-								{
-									for (int hour = gc.get(11); hour <= HOUR_MAX_VALUE; ++hour)
-									{
-										if (hourMatcher.match(hour))
-										{
-											gc.set(11, hour);
-											for (int minute = gc.get(MONTH_MAX_VALUE); minute <= MINUTE_MAX_VALUE; ++minute)
-											{
-												if (!minuteMatcher.match(minute))
-												{
-													continue;
-												}
-												
-												gc.set(MONTH_MAX_VALUE, minute);
-												final long next0 = gc.getTimeInMillis();
-												if (next0 <= millis)
-												{
-													continue;
-												}
-												
-												if ((next != -1) && (next0 >= next))
-												{
-													break SEARCH;
-												}
-												
-												next = next0;
-												if (_hourAdderRnd.containsKey(i))
-												{
-													next += Rnd.get(_hourAdderRnd.get(i)) * 60 * 60 * 1000;
-												}
-												
-												if (!_minuteAdderRnd.containsKey(i))
-												{
-													break SEARCH;
-												}
-												
-												next += Rnd.get(_minuteAdderRnd.get(i)) * 60 * 1000;
-												break SEARCH;
-											}
-										}
-										
-										gc.set(MONTH_MAX_VALUE, 0);
-									}
-								}
-							}
-							
-							gc.set(11, 0);
-							gc.set(MONTH_MAX_VALUE, 0);
-						}
-					}
-					
-					gc.set(5, 1);
-					gc.set(11, 0);
-					gc.set(MONTH_MAX_VALUE, 0);
-				}
-				
-				gc.set(2, 0);
-				gc.set(11, 0);
-				gc.set(MONTH_MAX_VALUE, 0);
-				gc.roll(1, true);
-			}
-			
-			while (true);
-			if ((next <= millis) || ((result != -1) && (next >= result)))
-			{
-				continue;
-			}
-			
-			result = next;
 		}
 		
-		return result;
+		return earliestMatch;
 	}
 	
 	/**
-	 * It returns the next matching moment as a long.
-	 * @param millis
-	 * @return The next matching moment as a long.
+	 * Finds the next matching time after the given timestamp using system timezone.
+	 * @param millis The timestamp to search after
+	 * @return The next matching timestamp in milliseconds
 	 */
 	public long next(long millis)
 	{
@@ -777,18 +260,19 @@ public class SchedulingPattern
 	}
 	
 	/**
-	 * Retures next matching moment as a long
-	 * @param millis
-	 * @return The next matching moment as a long.
+	 * Gets delay from a specific time until next match.
+	 * @param millis The base timestamp
+	 * @return Delay in milliseconds until next match after millis
 	 */
 	public long nextFrom(long millis)
 	{
-		return next(millis) - millis;
+		final long nextMatch = next(millis);
+		return nextMatch > millis ? nextMatch - millis : -1;
 	}
 	
 	/**
-	 * Retures next matching moment as a long
-	 * @return The next matching moment as a long.
+	 * Gets delay from current time until next match.
+	 * @return Delay in milliseconds until next match from now
 	 */
 	public long nextFromNow()
 	{
@@ -796,425 +280,465 @@ public class SchedulingPattern
 	}
 	
 	/**
-	 * Returns the pattern as a string.
-	 * @return The pattern as a string.
-	 */
-	@Override
-	public String toString()
-	{
-		return _asString;
-	}
-	
-	/**
-	 * This utility method changes an alias to an int value.
-	 * @param value The value.
-	 * @param aliases The aliases list.
-	 * @param offset The offset appplied to the aliases list indices.
-	 * @return The parsed value.
-	 * @throws Exception If the expressed values doesn't match any alias.
-	 */
-	protected static int parseAlias(String value, String[] aliases, int offset) throws Exception
-	{
-		for (int i = 0; i < aliases.length; i++)
-		{
-			if (aliases[i].equalsIgnoreCase(value))
-			{
-				return offset + i;
-			}
-		}
-		
-		throw new Exception("invalid alias \"" + value + "\"");
-	}
-	
-	/**
-	 * <p>
-	 * A ValueMatcher whose rules are in a plain array of integer values. When asked to validate a value, this ValueMatcher checks if it is in the array and, if not, checks whether the last-day-of-month setting applies.
-	 * </p>
-	 * @author Paul Fernley
-	 */
-	private static class DayOfMonthValueMatcher extends IntArrayValueMatcher
-	{
-		private static final int[] LAST_DAYS =
-		{
-			31,
-			28,
-			31,
-			30,
-			31,
-			30,
-			31,
-			31,
-			30,
-			31,
-			30,
-			31
-		};
-		
-		/**
-		 * Builds the ValueMatcher.
-		 * @param integers An ArrayList of Integer elements, one for every value accepted by the matcher. The match() method will return true only if its parameter will be one of this list or the last-day-of-month setting applies.
-		 */
-		public DayOfMonthValueMatcher(List<Integer> integers)
-		{
-			super(integers);
-		}
-		
-		/**
-		 * Returns true if the given value is included in the matcher list or the last-day-of-month setting applies.
-		 * @param value
-		 * @param month
-		 * @param isLeapYear
-		 * @return
-		 */
-		public boolean match(int value, int month, boolean isLeapYear)
-		{
-			return (super.match(value) || ((value > 27) && match(32) && isLastDayOfMonth(value, month, isLeapYear)));
-		}
-		
-		public static int getLastDayOfMonth(int month, boolean isLeapYear)
-		{
-			if (isLeapYear && (month == 2))
-			{
-				return 29;
-			}
-			
-			return LAST_DAYS[month - 1];
-		}
-		
-		public static boolean isLastDayOfMonth(int value, int month, boolean isLeapYear)
-		{
-			return value == getLastDayOfMonth(month, isLeapYear);
-		}
-	}
-	
-	/**
-	 * It returns the next matching moment as a long.
-	 * @return The next matching moment as a long.
+	 * Gets the delay in milliseconds until the next match from now.
+	 * @return Delay in milliseconds until next match
 	 */
 	public long getDelayToNextFromNow()
 	{
-		return next(System.currentTimeMillis()) - System.currentTimeMillis();
+		return nextFromNow();
 	}
 	
+	/**
+	 * Gets delay with offset subtraction.
+	 * @param offsetInMinutes Offset to subtract from delay
+	 * @return Adjusted delay in milliseconds
+	 */
 	public long getOffsettedDelayToNextFromNow(int offsetInMinutes)
 	{
-		return Math.max(0, getDelayToNextFromNow() - TimeUnit.MINUTES.toMillis(offsetInMinutes));
+		final long delay = getDelayToNextFromNow();
+		final long offsetMillis = TimeUnit.MINUTES.toMillis(offsetInMinutes);
+		return Math.max(0, delay - offsetMillis);
 	}
 	
+	/**
+	 * Gets the next matching time from now as a formatted date string.
+	 * @return Formatted date string of next match
+	 */
 	public String getNextAsFormattedDateString()
 	{
-		return TimeUtil.getDateTimeString(next(System.currentTimeMillis()));
+		final long nextMatch = next(System.currentTimeMillis());
+		return nextMatch > 0 ? new Date(nextMatch).toString() : NO_FUTURE_MATCH_MESSAGE;
+	}
+	
+	@Override
+	public String toString()
+	{
+		return _originalPattern;
 	}
 	
 	/**
-	 * <p>
-	 * A ValueMatcher whose rules are in a plain array of integer values. When asked to validate a value, this ValueMatcher checks if it is in the array.
-	 * </p>
-	 * @author Carlo Pelliccia
+	 * Parses the pattern string into cron expressions.
+	 * @param pattern the pattern string to parse
+	 * @return list of cron expressions
 	 */
-	private static class IntArrayValueMatcher implements ValueMatcher
+	private List<CronExpression> parsePattern(String pattern)
 	{
-		/**
-		 * The accepted values.
-		 */
-		private final int[] _values;
+		final List<CronExpression> result = new ArrayList<>();
 		
-		/**
-		 * Builds the ValueMatcher.
-		 * @param integers a List of Integer elements, one for every value accepted by the matcher. The match() method will return true only if its parameter will be one of this list.
-		 */
-		public IntArrayValueMatcher(List<Integer> integers)
-		{
-			final int size = integers.size();
-			_values = new int[size];
-			for (int i = 0; i < size; i++)
-			{
-				try
-				{
-					_values[i] = integers.get(i).intValue();
-				}
-				catch (Exception e)
-				{
-					throw new IllegalArgumentException(e.getMessage());
-				}
-			}
-		}
+		// Split on pipe for OR expressions.
+		final String[] orPatterns = pattern.split(PIPE_SEPARATOR);
 		
-		/**
-		 * Returns true if the given value is included in the matcher list.
-		 */
-		@Override
-		public boolean match(int value)
+		for (String orPattern : orPatterns)
 		{
-			for (int i = 0; i < _values.length; i++)
+			final String[] fields = orPattern.trim().split(WHITESPACE_PATTERN);
+			if ((fields.length < MINIMUM_CRON_FIELDS) || (fields.length > MAXIMUM_CRON_FIELDS))
 			{
-				if (_values[i] == value)
-				{
-					return true;
-				}
+				throw new IllegalArgumentException("Pattern must have 5 or 6 fields: " + orPattern);
 			}
 			
-			return false;
+			try
+			{
+				// Parse fields with extended syntax support.
+				final ExtendedFieldResult minuteResult = parseExtendedField(fields[0]);
+				final ExtendedFieldResult hourResult = parseExtendedField(fields[1]);
+				final ExtendedFieldResult dayResult = parseExtendedField(fields[2]);
+				
+				final FieldMatcher minuteMatcher = parseField(minuteResult.pattern, MINUTE_MIN, MINUTE_MAX, null);
+				final FieldMatcher hourMatcher = parseField(hourResult.pattern, HOUR_MIN, HOUR_MAX, null);
+				final FieldMatcher dayMatcher = parseField(dayResult.pattern, DAY_MIN, DAY_MAX, null);
+				final FieldMatcher monthMatcher = parseField(fields[3], MONTH_MIN, MONTH_MAX, MONTH_ALIASES);
+				final FieldMatcher dayOfWeekMatcher = parseField(fields[4], DAY_OF_WEEK_MIN, DAY_OF_WEEK_MAX, DAY_ALIASES);
+				
+				// Parse optional week offset (6th field).
+				int weekOffset = 0;
+				if (fields.length == MAXIMUM_CRON_FIELDS)
+				{
+					final String weekField = fields[5].trim();
+					if (weekField.startsWith("+"))
+					{
+						weekOffset = Integer.parseInt(weekField.substring(1));
+					}
+					else
+					{
+						throw new IllegalArgumentException("Week offset must start with '+': " + weekField);
+					}
+				}
+				
+				result.add(new CronExpression(minuteMatcher, hourMatcher, dayMatcher, monthMatcher, dayOfWeekMatcher, minuteResult.randomModifier, hourResult.randomModifier, hourResult.addModifier, dayResult.addModifier, weekOffset));
+			}
+			catch (Exception e)
+			{
+				throw new IllegalArgumentException("Invalid pattern format: " + orPattern, e);
+			}
+		}
+		
+		return result;
+	}
+	
+	/**
+	 * Result of parsing an extended field with modifiers.
+	 */
+	private static class ExtendedFieldResult
+	{
+		final String pattern;
+		final int randomModifier;
+		final int addModifier;
+		
+		ExtendedFieldResult(String pattern, int randomModifier, int addModifier)
+		{
+			this.pattern = pattern;
+			this.randomModifier = randomModifier;
+			this.addModifier = addModifier;
 		}
 	}
 	
 	/**
-	 * This ValueMatcher always returns true!
-	 * @author Carlo Pelliccia
+	 * Parses a field that may contain extended syntax modifiers.<br>
+	 * Format: [modifier:]pattern where modifier can be ~N or +N.
+	 * @param field the field to parse
+	 * @return extended field result with pattern and modifiers
 	 */
-	protected static class AlwaysTrueValueMatcher implements ValueMatcher
+	private ExtendedFieldResult parseExtendedField(String field)
 	{
-		/**
-		 * Always true!
-		 */
+		if (!field.contains(":"))
+		{
+			return new ExtendedFieldResult(field, 0, 0);
+		}
+		
+		final String[] parts = field.split(":");
+		if (parts.length != CRON_PARTS_EXPECTED)
+		{
+			throw new IllegalArgumentException("Invalid extended field format: " + field);
+		}
+		
+		final String modifier = parts[0];
+		final String pattern = parts[1];
+		
+		int randomModifier = 0;
+		int addModifier = 0;
+		
+		if (modifier.startsWith("~"))
+		{
+			randomModifier = Integer.parseInt(modifier.substring(1));
+		}
+		else if (modifier.startsWith("+"))
+		{
+			addModifier = Integer.parseInt(modifier.substring(1));
+		}
+		else if (!modifier.isEmpty())
+		{
+			throw new IllegalArgumentException("Unknown modifier: " + modifier);
+		}
+		
+		return new ExtendedFieldResult(pattern, randomModifier, addModifier);
+	}
+	
+	/**
+	 * Parses a field value with support for wildcards, ranges, lists and step values.
+	 * @param field the field string to parse
+	 * @param min minimum allowed value
+	 * @param max maximum allowed value
+	 * @param aliases optional aliases map for named values
+	 * @return field matcher for the parsed field
+	 */
+	private FieldMatcher parseField(String field, int min, int max, Map<String, Integer> aliases)
+	{
+		if ("*".equals(field))
+		{
+			return new WildcardMatcher();
+		}
+		
+		final Set<Integer> values = new HashSet<>();
+		final String[] parts = field.split(",");
+		for (String part : parts)
+		{
+			values.addAll(parseFieldPart(part.trim(), min, max, aliases));
+		}
+		
+		return new ValueSetMatcher(values);
+	}
+	
+	/**
+	 * Parses a single field part with support for ranges and step values.
+	 * @param part the field part to parse
+	 * @param min minimum allowed value
+	 * @param max maximum allowed value
+	 * @param aliases optional aliases map for named values
+	 * @return set of integer values matching the part
+	 */
+	private Set<Integer> parseFieldPart(String part, int min, int max, Map<String, Integer> aliases)
+	{
+		final Set<Integer> values = new HashSet<>();
+		
+		// Handle step values (e.g., */5 or 1-10/2).
+		final String[] stepParts = part.split("/");
+		final int step = stepParts.length > 1 ? Integer.parseInt(stepParts[1]) : 1;
+		final String rangePart = stepParts[0];
+		
+		if ("*".equals(rangePart))
+		{
+			// */step pattern.
+			for (int i = min; i <= max; i += step)
+			{
+				values.add(i);
+			}
+		}
+		else if (rangePart.contains("-"))
+		{
+			// Range pattern (e.g., 1-5 or mon-fri).
+			final String[] range = rangePart.split("-", 2);
+			final int start = parseValue(range[0], aliases);
+			final int end = parseValue(range[1], aliases);
+			if (start <= end)
+			{
+				for (int i = start; i <= end; i += step)
+				{
+					values.add(i);
+				}
+			}
+			else
+			{
+				// Wrap-around range (e.g., fri-mon for days).
+				for (int i = start; i <= max; i += step)
+				{
+					values.add(i);
+				}
+				
+				for (int i = min; i <= end; i += step)
+				{
+					values.add(i);
+				}
+			}
+		}
+		else // Single value.
+		{
+			values.add(parseValue(rangePart, aliases));
+		}
+		
+		return values;
+	}
+	
+	/**
+	 * Parses a single value with support for aliases and special markers.
+	 * @param value the value string to parse
+	 * @param aliases optional aliases map for named values
+	 * @return parsed integer value
+	 */
+	private int parseValue(String value, Map<String, Integer> aliases)
+	{
+		if ("L".equalsIgnoreCase(value))
+		{
+			return LAST_DAY_MARKER; // Special marker for last day of month.
+		}
+		
+		if ((aliases != null) && aliases.containsKey(value.toLowerCase()))
+		{
+			return aliases.get(value.toLowerCase());
+		}
+		
+		try
+		{
+			return Integer.parseInt(value);
+		}
+		catch (NumberFormatException e)
+		{
+			throw new IllegalArgumentException("Invalid value: " + value, e);
+		}
+	}
+	
+	/**
+	 * Interface for matching field values against calendar dates.
+	 */
+	private interface FieldMatcher
+	{
+		boolean matches(int value, Calendar calendar);
+	}
+	
+	/**
+	 * Matcher that accepts any value (wildcard).
+	 */
+	private static class WildcardMatcher implements FieldMatcher
+	{
 		@Override
-		public boolean match(int value)
+		public boolean matches(int value, Calendar calendar)
 		{
 			return true;
 		}
 	}
 	
 	/**
-	 * <p>
-	 * This interface describes the ValueMatcher behavior. A ValueMatcher is an object that validate an integer value against a set of rules.
-	 * </p>
-	 * @author Carlo Pelliccia
+	 * Matcher that checks against a predefined set of values.
 	 */
-	private static interface ValueMatcher
+	private static class ValueSetMatcher implements FieldMatcher
 	{
-		/**
-		 * Validate the given integer value against a set of rules.
-		 * @param value The value.
-		 * @return true if the given value matches the rules of the ValueMatcher, false otherwise.
-		 */
-		public boolean match(int value);
-	}
-	
-	/**
-	 * The value parser for the day of week field.
-	 */
-	private static class DayOfWeekValueParser extends SimpleValueParser
-	{
-		/**
-		 * Days of week aliases.
-		 */
-		private static String[] ALIASES =
-		{
-			"sun",
-			"mon",
-			"tue",
-			"wed",
-			"thu",
-			"fri",
-			"sat"
-		};
+		private final Set<Integer> _values;
 		
-		/**
-		 * Builds the day value parser.
-		 */
-		public DayOfWeekValueParser()
+		ValueSetMatcher(Set<Integer> values)
 		{
-			super(DAY_OF_WEEK_MIN_VALUE, DAY_OF_WEEK_MAX_VALUE);
+			_values = new HashSet<>(values);
 		}
 		
 		@Override
-		public int parse(String value) throws Exception
+		public boolean matches(int value, Calendar calendar)
 		{
-			try
+			if (_values.contains(value))
 			{
-				// try as a simple value
-				return super.parse(value) % 7;
-			}
-			catch (Exception e)
-			{
-				// try as an alias
-				return parseAlias(value, ALIASES, 0);
-			}
-		}
-	}
-	
-	/**
-	 * The value parser for the months field.
-	 */
-	private static class MonthValueParser extends SimpleValueParser
-	{
-		/**
-		 * Months of year aliases.
-		 */
-		private static String[] ALIASES =
-		{
-			"jan",
-			"feb",
-			"mar",
-			"apr",
-			"may",
-			"jun",
-			"jul",
-			"aug",
-			"sep",
-			"oct",
-			"nov",
-			"dec"
-		};
-		
-		/**
-		 * Builds the months value parser.
-		 */
-		public MonthValueParser()
-		{
-			super(MONTH_MIN_VALUE, MONTH_MAX_VALUE);
-		}
-		
-		@Override
-		public int parse(String value) throws Exception
-		{
-			try
-			{
-				return super.parse(value);
-			}
-			catch (Exception e)
-			{
-				return parseAlias(value, ALIASES, 1);
-			}
-		}
-	}
-	
-	/**
-	 * The value parser for the day of month field.
-	 */
-	private static class DayOfMonthValueParser extends SimpleValueParser
-	{
-		/**
-		 * Builds the value parser.
-		 */
-		public DayOfMonthValueParser()
-		{
-			super(DAY_OF_MONTH_MIN_VALUE, DAY_OF_MONTH_MAX_VALUE);
-		}
-		
-		@Override
-		public int parse(String value) throws Exception
-		{
-			if (value.equalsIgnoreCase("L"))
-			{
-				return 32;
+				return true;
 			}
 			
-			return super.parse(value);
-		}
-	}
-	
-	/**
-	 * The value parser for the hour field.
-	 */
-	private static class HourValueParser extends SimpleValueParser
-	{
-		/**
-		 * Builds the value parser.
-		 */
-		public HourValueParser()
-		{
-			super(HOUR_MIN_VALUE, HOUR_MAX_VALUE);
-		}
-	}
-	
-	/**
-	 * The minutes value parser.
-	 */
-	private static class MinuteValueParser extends SimpleValueParser
-	{
-		/**
-		 * Builds the value parser.
-		 */
-		public MinuteValueParser()
-		{
-			super(MINUTE_MIN_VALUE, MINUTE_MAX_VALUE);
-		}
-	}
-	
-	/**
-	 * A simple value parser.
-	 */
-	private static class SimpleValueParser implements ValueParser
-	{
-		/**
-		 * The minimum allowed value.
-		 */
-		protected int _minValue;
-		
-		/**
-		 * The maximum allowed value.
-		 */
-		protected int _maxValue;
-		
-		/**
-		 * Builds the value parser.
-		 * @param minValue The minimum allowed value.
-		 * @param maxValue The maximum allowed value.
-		 */
-		public SimpleValueParser(int minValue, int maxValue)
-		{
-			_minValue = minValue;
-			_maxValue = maxValue;
-		}
-		
-		@Override
-		public int parse(String value) throws Exception
-		{
-			int i;
-			try
+			// Handle last day of month (L).
+			if (_values.contains(LAST_DAY_MARKER) && isLastDayOfMonth(calendar))
 			{
-				i = Integer.parseInt(value);
-			}
-			catch (NumberFormatException e)
-			{
-				throw new Exception("invalid integer value");
+				return true;
 			}
 			
-			if ((i < _minValue) || (i > _maxValue))
-			{
-				throw new Exception("value out of range");
-			}
-			
-			return i;
+			return false;
 		}
 		
-		@Override
-		public int getMinValue()
+		/**
+		 * Checks if the calendar date is the last day of the month.
+		 * @param calendar the calendar to check
+		 * @return true if it's the last day of the month
+		 */
+		private boolean isLastDayOfMonth(Calendar calendar)
 		{
-			return _minValue;
-		}
-		
-		@Override
-		public int getMaxValue()
-		{
-			return _maxValue;
+			final int currentDay = calendar.get(Calendar.DAY_OF_MONTH);
+			final int lastDay = calendar.getActualMaximum(Calendar.DAY_OF_MONTH);
+			return currentDay == lastDay;
 		}
 	}
 	
 	/**
-	 * Definition for a value parser.
+	 * Represents a single cron expression with extended modifiers.
 	 */
-	private static interface ValueParser
+	private static class CronExpression
 	{
-		/**
-		 * Attempts to parse a value.
-		 * @param value The value.
-		 * @return The parsed value.
-		 * @throws Exception If the value can't be parsed.
-		 */
-		public int parse(String value) throws Exception;
+		// Field matchers.
+		private final FieldMatcher _minuteMatcher;
+		private final FieldMatcher _hourMatcher;
+		private final FieldMatcher _dayMatcher;
+		private final FieldMatcher _monthMatcher;
+		private final FieldMatcher _dayOfWeekMatcher;
+		
+		// Extended syntax modifiers.
+		private final int _minuteRandomModifier;
+		private final int _hourRandomModifier;
+		private final int _hourAddModifier;
+		private final int _dayAddModifier;
+		private final int _weekOffset;
+		
+		CronExpression(FieldMatcher minuteMatcher, FieldMatcher hourMatcher, FieldMatcher dayMatcher, FieldMatcher monthMatcher, FieldMatcher dayOfWeekMatcher, int minuteRandomModifier, int hourRandomModifier, int hourAddModifier, int dayAddModifier, int weekOffset)
+		{
+			_minuteMatcher = minuteMatcher;
+			_hourMatcher = hourMatcher;
+			_dayMatcher = dayMatcher;
+			_monthMatcher = monthMatcher;
+			_dayOfWeekMatcher = dayOfWeekMatcher;
+			_minuteRandomModifier = minuteRandomModifier;
+			_hourRandomModifier = hourRandomModifier;
+			_hourAddModifier = hourAddModifier;
+			_dayAddModifier = dayAddModifier;
+			_weekOffset = weekOffset;
+		}
 		
 		/**
-		 * Returns the minimum value accepted by the parser.
-		 * @return The minimum value accepted by the parser.
+		 * Checks if the calendar date matches this cron expression.
+		 * @param calendar the calendar to test
+		 * @return true if the date matches
 		 */
-		public int getMinValue();
+		boolean matches(Calendar calendar)
+		{
+			// Create a copy for testing with offsets applied.
+			final Calendar testCalendar = Calendar.getInstance(calendar.getTimeZone());
+			testCalendar.setTimeInMillis(calendar.getTimeInMillis());
+			
+			// Apply reverse offsets for matching (subtract what would be added).
+			if (_weekOffset != 0)
+			{
+				testCalendar.add(Calendar.WEEK_OF_YEAR, -_weekOffset);
+			}
+			
+			if (_dayAddModifier != 0)
+			{
+				testCalendar.add(Calendar.DAY_OF_YEAR, -_dayAddModifier);
+			}
+			
+			if (_hourAddModifier != 0)
+			{
+				testCalendar.add(Calendar.HOUR_OF_DAY, -_hourAddModifier);
+			}
+			
+			final int minute = testCalendar.get(Calendar.MINUTE);
+			final int hour = testCalendar.get(Calendar.HOUR_OF_DAY);
+			final int day = testCalendar.get(Calendar.DAY_OF_MONTH);
+			final int month = testCalendar.get(Calendar.MONTH) + CALENDAR_MONTH_OFFSET; // Calendar months are 0-based.
+			final int dayOfWeek = testCalendar.get(Calendar.DAY_OF_WEEK) - CALENDAR_DAY_OF_WEEK_OFFSET; // Convert to 0 = Sunday.
+			return _minuteMatcher.matches(minute, testCalendar) && _hourMatcher.matches(hour, testCalendar) && _dayMatcher.matches(day, testCalendar) && _monthMatcher.matches(month, testCalendar) && _dayOfWeekMatcher.matches(dayOfWeek, testCalendar);
+		}
 		
 		/**
-		 * Returns the maximum value accepted by the parser.
-		 * @return The maximum value accepted by the parser.
+		 * Finds the next matching time after the specified timestamp.
+		 * @param afterMillis timestamp to search after
+		 * @param timeZone timezone for calculation
+		 * @return next matching timestamp in milliseconds
 		 */
-		public int getMaxValue();
+		long getNextMatch(long afterMillis, TimeZone timeZone)
+		{
+			final Calendar calendar = Calendar.getInstance(timeZone);
+			calendar.setTimeInMillis(afterMillis);
+			calendar.add(Calendar.MINUTE, 1); // Start from next minute.
+			calendar.set(Calendar.SECOND, 0);
+			calendar.set(Calendar.MILLISECOND, 0);
+			
+			// Search up to 4 years in the future to avoid infinite loops.
+			final Calendar endCalendar = Calendar.getInstance(timeZone);
+			endCalendar.setTimeInMillis(afterMillis);
+			endCalendar.add(Calendar.YEAR, SEARCH_LIMIT_YEARS);
+			
+			// Reuse single calendar instance for result calculations.
+			final Calendar resultCalendar = Calendar.getInstance(timeZone);
+			
+			while (calendar.before(endCalendar))
+			{
+				if (matches(calendar))
+				{
+					// Apply forward offsets and randomization.
+					resultCalendar.setTimeInMillis(calendar.getTimeInMillis());
+					
+					// Apply fixed offsets.
+					if (_weekOffset != 0)
+					{
+						resultCalendar.add(Calendar.WEEK_OF_YEAR, _weekOffset);
+					}
+					
+					if (_dayAddModifier != 0)
+					{
+						resultCalendar.add(Calendar.DAY_OF_YEAR, _dayAddModifier);
+					}
+					
+					if (_hourAddModifier != 0)
+					{
+						resultCalendar.add(Calendar.HOUR_OF_DAY, _hourAddModifier);
+					}
+					
+					// Apply random offsets.
+					if (_hourRandomModifier > 0)
+					{
+						resultCalendar.add(Calendar.HOUR_OF_DAY, Rnd.get(_hourRandomModifier + 1));
+					}
+					
+					if (_minuteRandomModifier > 0)
+					{
+						resultCalendar.add(Calendar.MINUTE, Rnd.get(_minuteRandomModifier + 1));
+					}
+					
+					return resultCalendar.getTimeInMillis();
+				}
+				
+				calendar.add(Calendar.MINUTE, 1);
+			}
+			
+			return -1; // No match found.
+		}
 	}
 }

@@ -20,14 +20,13 @@ import org.l2jmobius.gameserver.model.Location;
 import org.l2jmobius.gameserver.model.actor.Npc;
 import org.l2jmobius.gameserver.model.actor.Player;
 import org.l2jmobius.gameserver.model.instancezone.InstanceWorld;
-
-import instances.AbstractInstance;
+import org.l2jmobius.gameserver.model.script.InstanceScript;
 
 /**
  * Secret Area in the Keucereus Fortress instance zone.
  * @author Gladicek
  */
-public class SecretArea extends AbstractInstance
+public class SecretArea extends InstanceScript
 {
 	// NPCs
 	private static final int GINBY = 32566;
