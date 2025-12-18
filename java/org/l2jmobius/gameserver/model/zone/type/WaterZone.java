@@ -39,11 +39,7 @@ public class WaterZone extends ZoneType
 	@Override
 	protected void onEnter(Creature creature)
 	{
-		// Tempfix for remaining in water zones on exit.
-		if (!creature.isInsideZone(ZoneId.WATER))
-		{
-			creature.setInsideZone(ZoneId.WATER, true);
-		}
+		creature.setInsideZone(ZoneId.WATER, true);
 		
 		// TODO: update to only send speed status when that packet is known
 		if (creature.isPlayer())
@@ -81,11 +77,7 @@ public class WaterZone extends ZoneType
 	@Override
 	protected void onExit(Creature creature)
 	{
-		// Tempfix for remaining in water zones on exit.
-		if (creature.isInsideZone(ZoneId.WATER))
-		{
-			creature.setInsideZone(ZoneId.WATER, false);
-		}
+		creature.setInsideZone(ZoneId.WATER, false);
 		
 		// TODO: update to only send speed status when that packet is known
 		if (creature.isPlayer())
