@@ -23,10 +23,10 @@
 										<xs:complexType>
 											<xs:simpleContent>
 												<xs:extension base="xs:string">
-													<xs:attribute type="xs:int" name="id" use="required"/>
-													<xs:attribute type="xs:long" name="min" use="required"/>
-													<xs:attribute type="xs:long" name="max" use="required"/>
-													<xs:attribute type="xs:double" name="chance" use="required"/>
+													<xs:attribute type="xs:int" name="id" use="required" />
+													<xs:attribute type="xs:long" name="min" use="required" />
+													<xs:attribute type="xs:long" name="max" use="required" />
+													<xs:attribute type="xs:double" name="chance" use="required" />
 												</xs:extension>
 											</xs:simpleContent>
 										</xs:complexType>
@@ -38,16 +38,16 @@
 													<xs:complexType>
 														<xs:simpleContent>
 															<xs:extension base="xs:string">
-																<xs:attribute type="xs:int" name="id" use="required"/>
-																<xs:attribute type="xs:long" name="min" use="required"/>
-																<xs:attribute type="xs:long" name="max" use="required"/>
-																<xs:attribute type="xs:double" name="chance" use="required"/>
+																<xs:attribute type="xs:int" name="id" use="required" />
+																<xs:attribute type="xs:long" name="min" use="required" />
+																<xs:attribute type="xs:long" name="max" use="required" />
+																<xs:attribute type="xs:double" name="chance" use="required" />
 															</xs:extension>
 														</xs:simpleContent>
 													</xs:complexType>
 												</xs:element>
 											</xs:sequence>
-											<xs:attribute type="xs:double" name="chance" use="optional"/>
+											<xs:attribute type="xs:double" name="chance" use="optional" />
 										</xs:complexType>
 									</xs:element>
 								</xs:sequence>
@@ -60,10 +60,10 @@
 										<xs:complexType>
 											<xs:simpleContent>
 												<xs:extension base="xs:string">
-													<xs:attribute type="xs:int" name="id" use="optional"/>
-													<xs:attribute type="xs:long" name="min" use="optional"/>
-													<xs:attribute type="xs:long" name="max" use="optional"/>
-													<xs:attribute type="xs:double" name="chance" use="optional"/>
+													<xs:attribute type="xs:int" name="id" use="optional" />
+													<xs:attribute type="xs:long" name="min" use="optional" />
+													<xs:attribute type="xs:long" name="max" use="optional" />
+													<xs:attribute type="xs:double" name="chance" use="optional" />
 												</xs:extension>
 											</xs:simpleContent>
 										</xs:complexType>
@@ -143,7 +143,7 @@
 		<xs:attribute name="grown" type="xs:decimal" />
 	</xs:complexType>
 	
-		<xs:complexType name="dropListsType">
+	<xs:complexType name="dropListsType">
 		<xs:all>
 			<xs:element name="drop" type="dropList" minOccurs="0" maxOccurs="1" />
 			<xs:element name="spoil" type="dropList" minOccurs="0" maxOccurs="1" />

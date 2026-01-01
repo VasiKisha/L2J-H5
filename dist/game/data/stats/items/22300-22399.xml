@@ -373,10 +373,10 @@
 		<!-- The chest contains 1 S84 top-grade weapon. Which one could it be? -->
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
- 		<set name="material" val="COTTON" />
+		<set name="material" val="COTTON" />
 		<set name="weight" val="1" />
 		<set name="is_depositable" val="false" />
- 		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22405-1" />
@@ -385,10 +385,10 @@
 		<!-- The chest contains 1 Elegia armor. Which one could it be? -->
 		<set name="default_action" val="CAPSULE" />
 		<set name="immediate_effect" val="true" />
- 		<set name="material" val="COTTON" />
+		<set name="material" val="COTTON" />
 		<set name="weight" val="1" />
 		<set name="is_depositable" val="false" />
- 		<set name="is_stackable" val="true" />
+		<set name="is_stackable" val="true" />
 		<set name="is_oly_restricted" val="true" />
 		<set name="handler" val="ItemSkills" />
 		<set name="item_skill" val="22406-1" />

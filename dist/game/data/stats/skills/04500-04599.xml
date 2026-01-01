@@ -890,8 +890,8 @@
 		<set name="effectRange" val="1100" />
 		<set name="magicLevel" val="75" />
 		<effects>
- 			<effect name="Buff" />
- 		</effects>
+			<effect name="Buff" />
+		</effects>
 	</skill>
 	<skill id="4560" levels="12" name="NPC Fire Burn">
 		<table name="#magicLevel">10 20 30 40 50 60 70 75 80 85 90 95</table>

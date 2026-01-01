@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <list enabled="true" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../xsd/zones.xsd">
-	<!-- PVP Zones -->	
+	<!-- PVP Zones -->
 	<!-- CTF (Capture The Flag event zone -->
 	<!-- zone 2 (rectangle) team Blue zone -->
 	<zone name="blue_team_spawn" type="ArenaZone" shape="Cuboid" minZ="-3468" maxZ="-3268">

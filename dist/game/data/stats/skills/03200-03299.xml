@@ -93,8 +93,8 @@
 		<set name="reuseDelay" val="1800000" />
 		<set name="trait" val="ETC" />
 		<effects>
- 			<effect name="Buff" />
- 		</effects>
+			<effect name="Buff" />
+		</effects>
 	</skill>
 	<skill id="3204" levels="3" name="Item Skill: Reflect Damage">
 		<!-- Active: Allows you to reflect some of the damage you incurred back to the enemy for a certain amount of time. Excludes damage from skill or remote attacks. -->

@@ -6,7 +6,7 @@
 				<xs:element name="activityTime" minOccurs="0" maxOccurs="1">
 					<xs:complexType>
 						<xs:attribute name="val" type="xs:positiveInteger"
-							use="required" />
+						              use="required" />
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="allowSummon" minOccurs="0" maxOccurs="1">
@@ -15,10 +15,10 @@
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="emptyDestroyTime" minOccurs="0"
-					maxOccurs="1">
+				            maxOccurs="1">
 					<xs:complexType>
 						<xs:attribute name="val" type="xs:positiveInteger"
-							use="required" />
+						              use="required" />
 					</xs:complexType>
 				</xs:element>
 				<xs:element name="PvPInstance" minOccurs="0" maxOccurs="1">
@@ -122,7 +122,7 @@
 							<xs:element name="door" minOccurs="1" maxOccurs="unbounded">
 								<xs:complexType>
 									<xs:attribute name="id" type="xs:positiveInteger"
-										use="required" />
+									              use="required" />
 									<xs:attribute name="default_status">
 										<xs:simpleType>
 											<xs:restriction base="xs:token">
@@ -166,7 +166,7 @@
 										</xs:element>
 									</xs:sequence>
 									<xs:attribute name="name" type="xs:normalizedString"
-										use="required" />
+									              use="required" />
 								</xs:complexType>
 							</xs:element>
 						</xs:sequence>
@@ -174,7 +174,7 @@
 				</xs:element>
 			</xs:sequence>
 			<xs:attribute name="id" type="xs:positiveInteger"
-				use="required" />
+			              use="required" />
 			<xs:attribute name="ejectTime" type="xs:positiveInteger" />
 			<xs:attribute name="allowRandomWalk" type="xs:boolean" />
 		</xs:complexType>

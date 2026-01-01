@@ -13,7 +13,7 @@
 			<npc id="82018" x="148487" y="46703" z="-3414" heading="297" /> <!-- Blue Team Spot -->
 		</group>
 		<group name="red_team_spawn">
-			<npc id="82018" x="150452" y="46714" z="-3414" heading="34490" /> <!-- Red Team Spot --> 
+			<npc id="82018" x="150452" y="46714" z="-3414" heading="34490" /> <!-- Red Team Spot -->
 		</group>
 	</spawnlist>
 </instance>
