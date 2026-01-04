@@ -1133,7 +1133,7 @@ public class Npc extends Creature
 		{
 			if (NpcConfig.LIST_PET_RENT_NPC.contains(npcId))
 			{
-				html.replace("_Quest", "_RentPet\">Rent Pet</a><br><a action=\"bypass npc_%objectId%_Quest");
+				html.replace("_Quest", "_RentPet\">Rent Pet</a><br><a action=\"bypass Script");
 			}
 		}
 		

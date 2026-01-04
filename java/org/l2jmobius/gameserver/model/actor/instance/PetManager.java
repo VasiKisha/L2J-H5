@@ -88,7 +88,7 @@ public class PetManager extends Merchant
 		html.setFile(player, filename);
 		if (GeneralConfig.ALLOW_RENTPET && NpcConfig.LIST_PET_RENT_NPC.contains(getId()))
 		{
-			html.replace("_Quest", "_RentPet\">Rent Pet</a><br><a action=\"bypass -h npc_%objectId%_Quest");
+			html.replace("_Quest", "_RentPet\">Rent Pet</a><br><a action=\"bypass -h Script");
 		}
 		
 		html.replace("%objectId%", String.valueOf(getObjectId()));

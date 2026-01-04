@@ -47,13 +47,13 @@ import org.l2jmobius.gameserver.network.SystemMessageId;
 import org.l2jmobius.gameserver.network.serverpackets.ActionFailed;
 import org.l2jmobius.gameserver.network.serverpackets.NpcHtmlMessage;
 
-public class QuestLink implements IBypassHandler
+public class ScriptLink implements IBypassHandler
 {
 	private static final int TO_LEAD_AND_BE_LED = 118;
 	private static final int THE_LEADER_AND_THE_FOLLOWER = 123;
 	private static final String[] COMMANDS =
 	{
-		"Quest"
+		"Script"
 	};
 	
 	@Override
@@ -62,7 +62,7 @@ public class QuestLink implements IBypassHandler
 		String quest = "";
 		try
 		{
-			quest = command.substring(5).trim();
+			quest = command.substring(6).trim();
 		}
 		catch (IndexOutOfBoundsException ioobe)
 		{
@@ -289,7 +289,7 @@ public class QuestLink implements IBypassHandler
 		final NpcTemplate template = NpcData.getInstance().getTemplate(npcId);
 		if (template == null)
 		{
-			LOGGER.log(Level.WARNING, QuestLink.class.getSimpleName() + ": " + player.getName() + " requested quests for talk on non existing npc " + npcId);
+			LOGGER.log(Level.WARNING, ScriptLink.class.getSimpleName() + ": " + player.getName() + " requested quests for talk on non existing npc " + npcId);
 			return states;
 		}
 		

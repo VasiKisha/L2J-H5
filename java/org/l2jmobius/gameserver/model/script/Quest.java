@@ -891,7 +891,7 @@ public class Quest implements IEventTimerEvent<String>, IEventTimerCancel<String
 	}
 	
 	/**
-	 * This function is called whenever a player clicks to the "Quest" link of an NPC that is registered for the quest.
+	 * This function is called whenever a player clicks to the "Script" link of an NPC that is registered for the quest.
 	 * @param npc this parameter contains a reference to the exact instance of the NPC that the player is talking with.
 	 * @param talker this parameter contains a reference to the exact instance of the player who is talking to the NPC.
 	 * @return the text returned by the event (may be {@code null}, a filename or just text)
