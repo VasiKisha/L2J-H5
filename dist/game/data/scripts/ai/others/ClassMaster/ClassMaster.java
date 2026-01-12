@@ -947,7 +947,7 @@ public class ClassMaster extends Script implements IXmlReader
 	@RegisterType(ListenerRegisterType.GLOBAL_PLAYERS)
 	public void onPlayerBypass(OnPlayerBypass event)
 	{
-		if (event.getCommand().startsWith("Quest ClassMaster "))
+		if (event.getCommand().startsWith("Script ClassMaster "))
 		{
 			final String html = onEvent(event.getCommand().substring(18), null, event.getPlayer());
 			event.getPlayer().sendPacket(TutorialCloseHtml.STATIC_PACKET);
@@ -989,7 +989,7 @@ public class ClassMaster extends Script implements IXmlReader
 			
 			sb.append("<tr><td><img src=L2UI_CT1.ChatBalloon_DF_TopCenter width=276 height=1 /></td></tr>");
 			sb.append("<tr><td><table bgcolor=3f3f3f width=100%>");
-			sb.append("<tr><td align=center><a action=\"bypass -h Quest ClassMaster setclass " + selectedClassId + " " + i + "\">" + option.getName() + ":</a></td></tr>");
+			sb.append("<tr><td align=center><a action=\"bypass -h Script ClassMaster setclass " + selectedClassId + " " + i + "\">" + option.getName() + ":</a></td></tr>");
 			sb.append("<tr><td><table width=276>");
 			sb.append("<tr><td>Requirements:</td></tr>");
 			if (option.getItemsRequired().isEmpty())

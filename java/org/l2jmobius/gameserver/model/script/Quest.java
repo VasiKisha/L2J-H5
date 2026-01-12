@@ -862,7 +862,7 @@ public class Quest implements IEventTimerEvent<String>, IEventTimerCancel<String
 	 *            Generally, this string is passed directly via the link.<br>
 	 *            For example:<br>
 	 *            <code>
-	 *            &lt;a action="bypass -h Quest 626_ADarkTwilight 31517-01.htm"&gt;hello&lt;/a&gt;
+	 *            &lt;a action="bypass -h Script 626_ADarkTwilight 31517-01.htm"&gt;hello&lt;/a&gt;
 	 *            </code><br>
 	 *            The above link sets the event variable to "31517-01.htm" for the quest 626_ADarkTwilight.<br>
 	 *            In the case of timers, this will be the name of the timer.<br>

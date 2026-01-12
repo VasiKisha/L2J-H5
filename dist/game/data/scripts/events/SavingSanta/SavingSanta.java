@@ -560,7 +560,7 @@ public class SavingSanta extends LongTimeEvent
 				if (itemsOk == 4)
 				{
 					htmltext = htmltext + "<tr><td><br></td><td width=40></td><td width=40></td></tr></table><table width=260>";
-					htmltext = htmltext + "<tr><td><center><button value=\"Get the tree\" action=\"bypass -h Quest SavingSanta buyTree\" width=110 height=20 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></center></td></tr></table></body></html>";
+					htmltext = htmltext + "<tr><td><center><button value=\"Get the tree\" action=\"bypass -h Script SavingSanta buyTree\" width=110 height=20 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></center></td></tr></table></body></html>";
 				}
 				else if (itemsOk < 4)
 				{
@@ -608,7 +608,7 @@ public class SavingSanta extends LongTimeEvent
 				{
 					htmltext = htmltext + "<tr><td><br></td><td width=40></td><td width=40></td></tr></table><table width=260>";
 					htmltext = htmltext + "<tr><td><br></td><td width=40></td><td width=40></td></tr></table><table width=260>";
-					htmltext = htmltext + "<tr><td><center><button value=\"Get the tree\" action=\"bypass -h Quest SavingSanta buySpecialTree\" width=110 height=20 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></center></td></tr></table></body></html>";
+					htmltext = htmltext + "<tr><td><center><button value=\"Get the tree\" action=\"bypass -h Script SavingSanta buySpecialTree\" width=110 height=20 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></center></td></tr></table></body></html>";
 				}
 				else if (itemsOk == 0)
 				{
@@ -648,7 +648,7 @@ public class SavingSanta extends LongTimeEvent
 				if (itemsOk == 1)
 				{
 					htmltext = htmltext + "<tr><td><br></td><td width=40></td><td width=40></td></tr></table><table width=260>";
-					htmltext = htmltext + "<tr><td><center><button value=\"Get the hat\" action=\"bypass -h Quest SavingSanta buyHat\" width=110 height=20 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></center></td></tr></table></body></html>";
+					htmltext = htmltext + "<tr><td><center><button value=\"Get the hat\" action=\"bypass -h Script SavingSanta buyHat\" width=110 height=20 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></center></td></tr></table></body></html>";
 				}
 				else if (itemsOk == 0)
 				{
@@ -689,7 +689,7 @@ public class SavingSanta extends LongTimeEvent
 				if (itemsOk == 1)
 				{
 					htmltext = htmltext + "<tr><td><br></td><td width=40></td><td width=40></td></tr></table><table width=260>";
-					htmltext = htmltext + "<tr><td><center><button value=\"Get the hat\" action=\"bypass -h Quest SavingSanta buySavingHat\" width=110 height=20 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></center></td></tr></table></body></html>";
+					htmltext = htmltext + "<tr><td><center><button value=\"Get the hat\" action=\"bypass -h Script SavingSanta buySavingHat\" width=110 height=20 back=\"L2UI_ct1.button_df\" fore=\"L2UI_ct1.button_df\"></center></td></tr></table></body></html>";
 				}
 				
 				else if (itemsOk == 0)

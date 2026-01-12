@@ -206,7 +206,7 @@ public class Transmog extends Script
 					
 					counter++;
 					final String itemName = itemTemplate.getName();
-					content = content.replace("%" + counter + "%", "<center><img src=\"" + itemTemplate.getIcon() + "\" width=32 height=32><br><a action=\"bypass Quest Transmog set!" + slot + "!" + page + "!" + itemTemplate.getDisplayId() + "\">" + itemName + "</a></center>");
+					content = content.replace("%" + counter + "%", "<center><img src=\"" + itemTemplate.getIcon() + "\" width=32 height=32><br><a action=\"bypass Script Transmog set!" + slot + "!" + page + "!" + itemTemplate.getDisplayId() + "\">" + itemName + "</a></center>");
 				}
 			}
 			
@@ -216,9 +216,9 @@ public class Transmog extends Script
 			}
 			
 			content = content.replace("%title%", "Transmog (" + page + " of " + pages + ")");
-			content = content.replace("%previous%", "<a action=\"bypass Quest Transmog " + slot + "!" + Math.max(1, (page - 1)) + "\">Previous</a>");
-			content = content.replace("%next%", "<a action=\"bypass Quest Transmog " + slot + "!" + Math.min(pages, (page + 1)) + "\">Next</a>");
-			content = content.replace("%remove%", "<a action=\"bypass Quest Transmog rem!" + slot + "!" + page + "\">Remove Transmog</a>");
+			content = content.replace("%previous%", "<a action=\"bypass Script Transmog " + slot + "!" + Math.max(1, (page - 1)) + "\">Previous</a>");
+			content = content.replace("%next%", "<a action=\"bypass Script Transmog " + slot + "!" + Math.min(pages, (page + 1)) + "\">Next</a>");
+			content = content.replace("%remove%", "<a action=\"bypass Script Transmog rem!" + slot + "!" + page + "\">Remove Transmog</a>");
 			
 			HtmlUtil.sendCBHtml(player, content);
 		}
