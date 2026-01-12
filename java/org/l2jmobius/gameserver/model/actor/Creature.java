@@ -671,7 +671,7 @@ public abstract class Creature extends WorldObject
 			final WorldObject target = ((intention == Intention.ATTACK) || (intention == Intention.FOLLOW)) ? _target : null;
 			if (target != null)
 			{
-				if (target != this)
+				if ((target != this) && !isOnGeodataPath(move))
 				{
 					broadcastPacket(new MoveToPawn(this, target, getAI().getClientMovingToPawnOffset()));
 				}
