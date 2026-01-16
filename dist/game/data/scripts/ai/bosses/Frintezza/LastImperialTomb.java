@@ -18,7 +18,7 @@
  * WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
  * IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-package instances.LastImperialTomb;
+package ai.bosses.Frintezza;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -62,9 +62,38 @@ public class LastImperialTomb extends InstanceScript
 	private static final int GUIDE = 32011;
 	private static final int CUBE = 29061;
 	private static final int HALL_ALARM = 18328;
+	private static final int HALL_KEEPER_CAPTAIN = 18329;
+	private static final int HALL_KEEPER_WIZARD = 18330;
+	private static final int HALL_KEEPER_GUARD = 18331;
+	private static final int HALL_KEEPER_PATROL = 18332;
 	private static final int HALL_KEEPER_SUICIDAL_SOLDIER = 18333;
+	private static final int DARK_CHOIR_CAPTAIN = 18334;
+	private static final int DARK_CHOIR_PRIMA_DONNA = 18335;
+	private static final int DARK_CHOIR_LANCER = 18336;
+	private static final int DARK_CHOIR_ARCHER = 18337;
+	private static final int DARK_CHOIR_WITCH_DOCTOR = 18338;
+	private static final int DARK_CHOIR_PLAYER = 18339;
 	private static final int DUMMY = 29052;
 	private static final int DUMMY2 = 29053;
+	private static final int FRINTEZZA = 29045;
+	private static final int SCARLET1 = 29046;
+	private static final int SCARLET2 = 29047;
+	private static final int[] MONSTERS_FIRST_ROOM =
+	{
+		HALL_KEEPER_CAPTAIN,
+		HALL_KEEPER_WIZARD,
+		HALL_KEEPER_GUARD,
+		HALL_KEEPER_PATROL,
+		HALL_KEEPER_SUICIDAL_SOLDIER
+	};
+	private static final int[] MONSTERS_SECOND_ROOM =
+	{
+		DARK_CHOIR_CAPTAIN,
+		DARK_CHOIR_PRIMA_DONNA,
+		DARK_CHOIR_LANCER,
+		DARK_CHOIR_ARCHER,
+		DARK_CHOIR_WITCH_DOCTOR
+	};
 	private static final int[] PORTRAITS =
 	{
 		29048,
@@ -74,23 +103,6 @@ public class LastImperialTomb extends InstanceScript
 	{
 		29050,
 		29051
-	};
-	private static final int FRINTEZZA = 29045;
-	private static final int SCARLET1 = 29046;
-	private static final int SCARLET2 = 29047;
-	private static final int[] ON_KILL_MONSTERS =
-	{
-		HALL_ALARM,
-		HALL_KEEPER_SUICIDAL_SOLDIER,
-		18329,
-		18330,
-		18331,
-		18334,
-		18335,
-		18336,
-		18337,
-		18338,
-		18339
 	};
 	
 	// Items
@@ -151,8 +163,9 @@ public class LastImperialTomb extends InstanceScript
 	
 	// Locations
 	private static final Location ENTER_TELEPORT = new Location(-88015, -141153, -9168);
-	protected static final Location FIRST_ROOM_CENTER = new Location(-87904, -141296, -9168, 0);
-	protected static final Location SECOND_ROOM_CENTER = new Location(-87919, -147013, -9214, 0);
+	private static final Location ENTER_TELEPORT_FRINTEZZA_ROOM = new Location(-87773, -151624, -9168);
+	private static final Location FIRST_ROOM_CENTER = new Location(-87904, -141296, -9168, 0);
+	private static final Location SECOND_ROOM_CENTER = new Location(-87919, -147013, -9214, 0);
 	
 	// Spawns
 	// @formatter:off
@@ -173,14 +186,19 @@ public class LastImperialTomb extends InstanceScript
 	private static final int RANDOM_SONG_INTERVAL = 90; // seconds
 	private static final int TIME_BETWEEN_DEMON_SPAWNS = 20; // seconds
 	private static final int MAX_DEMONS = 24;
+	private int KILL_COUNT = 0;
 	
 	public LastImperialTomb()
 	{
+		addStartNpc(GUIDE);
 		addTalkId(GUIDE, CUBE);
 		addAttackId(SCARLET1);
 		addSkillSeeId(PORTRAITS);
-		addKillId(ON_KILL_MONSTERS);
-		addKillId(HALL_ALARM, SCARLET2);
+		addKillId(HALL_ALARM);
+		addKillId(DARK_CHOIR_PLAYER);
+		addKillId(MONSTERS_FIRST_ROOM);
+		addKillId(MONSTERS_SECOND_ROOM);
+		addKillId(SCARLET2);
 		addKillId(PORTRAITS);
 		addKillId(DEMONS);
 		addSpawnId(HALL_ALARM, DUMMY, DUMMY2);
@@ -509,7 +527,8 @@ public class LastImperialTomb extends InstanceScript
 			case "SCARLET_FIRST_MORPH":
 			{
 				final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
-				npc.doCast(FIRST_MORPH_SKILL.getSkill());
+				final Npc activeScarlet = world.getParameters().getObject("activeScarlet", Npc.class);
+				activeScarlet.doCast(FIRST_MORPH_SKILL.getSkill());
 				playRandomSong(world);
 				break;
 			}
@@ -606,7 +625,7 @@ public class LastImperialTomb extends InstanceScript
 				final Location scarletLocation = world.getParameters().getLocation("scarletLocation");
 				final Npc activeScarlet = addSpawn(SCARLET2, scarletLocation, false, 0, false, world.getInstanceId());
 				world.setParameter("activeScarlet", activeScarlet);
-				activeScarlet.setRHandId(SECOND_SCARLET_WEAPON);
+				activeScarlet.setLHandId(SECOND_SCARLET_WEAPON);
 				activeScarlet.setInvul(true);
 				activeScarlet.setImmobilized(true);
 				activeScarlet.disableAllSkills();
@@ -696,7 +715,7 @@ public class LastImperialTomb extends InstanceScript
 			}
 		}
 		
-		return null;
+		return super.onEvent(event, npc, player);
 	}
 	
 	@Override
@@ -708,11 +727,6 @@ public class LastImperialTomb extends InstanceScript
 		}
 		else // Teleport Cube
 		{
-			final InstanceWorld world = InstanceManager.getInstance().getWorld(player);
-			if (world != null)
-			{
-				world.destroy();
-			}
 			player.teleToLocation(181380 + getRandom(50), -80903 + getRandom(50), -2731);
 		}
 		
@@ -812,10 +826,20 @@ public class LastImperialTomb extends InstanceScript
 					teleportPlayer(channelMember, ENTER_TELEPORT, world.getInstanceId(), false);
 				}
 			}
+			
+			world.setStatus(0);
+			world.spawnGroup("alarm");
 		}
 		else
 		{
-			teleportPlayer(player, ENTER_TELEPORT, world.getInstanceId(), false);
+			if (world.getStatus() > 3)
+			{
+				teleportPlayer(player, ENTER_TELEPORT_FRINTEZZA_ROOM, world.getInstanceId(), false);
+			}
+			else
+			{
+				teleportPlayer(player, ENTER_TELEPORT, world.getInstanceId(), false);
+			}
 		}
 	}
 	
@@ -878,13 +902,13 @@ public class LastImperialTomb extends InstanceScript
 	@Override
 	public void onKill(Npc npc, Player killer, boolean isSummon)
 	{
-		final InstanceWorld world = InstanceManager.getInstance().getWorld(killer);
+		final InstanceWorld world = InstanceManager.getInstance().getWorld(npc);
 		if ((npc.getId() == HALL_ALARM) && (world.getStatus() == 0))
 		{
 			world.setStatus(1);
 			world.spawnGroup("room1");
-			final List<Monster> monsters = world.getAliveNpcs(Monster.class);
-			world.setParameter("monstersCount", monsters.size() - 1);
+			final List<Npc> monsters = world.getAliveNpcs(MONSTERS_FIRST_ROOM);
+			world.setParameter("monstersCount", monsters.size());
 			for (int doorId : FIRST_ROOM_DOORS)
 			{
 				world.openDoor(doorId);
@@ -906,11 +930,12 @@ public class LastImperialTomb extends InstanceScript
 		}
 		else if (ArrayUtil.contains(DEMONS, npc.getId()))
 		{
-			final List<Npc> demons = world.getParameters().getList("demons", Npc.class);
+			final List<Monster> demons = world.getParameters().getList("demons", Monster.class);
 			if (demons != null)
 			{
-				demons.remove(npc);
-				world.setParameter("demons", demons);
+				final List<Monster> newDemons = new ArrayList<>(demons);
+				newDemons.remove(npc);
+				world.setParameter("demons", newDemons);
 			}
 		}
 		else if (ArrayUtil.contains(PORTRAITS, npc.getId()))
@@ -918,15 +943,21 @@ public class LastImperialTomb extends InstanceScript
 			final Map<Npc, Integer> portraits = world.getParameters().getMap("portraits", Npc.class, Integer.class);
 			if (portraits != null)
 			{
-				portraits.remove(npc);
-				world.setParameter("portraits", portraits);
+				final Map<Npc, Integer> newPortraits = new HashMap<>(portraits);
+				newPortraits.remove(npc);
+				world.setParameter("portraits", newPortraits);
 			}
 		}
 		else
 		{
-			final int killCount = world.getParameters().getInt("monstersCount");
-			world.setParameter("monstersCount", killCount - 1);
-			if (killCount <= 0)
+			synchronized (world)
+			{
+				KILL_COUNT = world.getParameters().getInt("monstersCount");
+				KILL_COUNT--;
+				world.setParameter("monstersCount", KILL_COUNT);
+			}
+			
+			if (KILL_COUNT <= 0)
 			{
 				switch (world.getStatus())
 				{
@@ -934,8 +965,8 @@ public class LastImperialTomb extends InstanceScript
 					{
 						world.setStatus(2);
 						world.spawnGroup("room2_part1");
-						final List<Monster> monsters = world.getAliveNpcs(Monster.class);
-						world.setParameter("monstersCount", monsters.size() - 1);
+						final List<Npc> monsters = world.getAliveNpcs(DARK_CHOIR_PLAYER);
+						world.setParameter("monstersCount", monsters.size());
 						for (int doorId : FIRST_ROUTE_DOORS)
 						{
 							world.openDoor(doorId);
@@ -946,8 +977,8 @@ public class LastImperialTomb extends InstanceScript
 					{
 						world.setStatus(3);
 						world.spawnGroup("room2_part2");
-						final List<Monster> monsters = world.getAliveNpcs(Monster.class);
-						world.setParameter("monstersCount", monsters.size() - 1);
+						final List<Npc> monsters = world.getAliveNpcs(MONSTERS_SECOND_ROOM);
+						world.setParameter("monstersCount", monsters.size());
 						for (int doorId : SECOND_ROOM_DOORS)
 						{
 							world.openDoor(doorId);
