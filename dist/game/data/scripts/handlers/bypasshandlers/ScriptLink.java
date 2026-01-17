@@ -145,7 +145,7 @@ public class ScriptLink implements IBypassHandler
 				// color = "787878";
 			}
 			
-			sb.append("<a action=\"bypass npc_" + npc.getObjectId() + "_Quest " + quest.getName() + "\">");
+			sb.append("<a action=\"bypass npc_" + npc.getObjectId() + "_Script " + quest.getName() + "\">");
 			
 			// StringUtil.append(sb, "<font color=\"" + color + "\">[");
 			sb.append("[");
