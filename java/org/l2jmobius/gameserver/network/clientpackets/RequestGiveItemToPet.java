@@ -77,7 +77,7 @@ public class RequestGiveItemToPet extends ClientPacket
 		
 		if (player.isInStoreMode())
 		{
-			player.sendMessage("You cannot exchange items while trading.");
+			player.sendMessage("You cannot give items while trading.");
 			return;
 		}
 		
@@ -89,7 +89,7 @@ public class RequestGiveItemToPet extends ClientPacket
 		
 		if (_amount > item.getCount())
 		{
-			PunishmentManager.handleIllegalPlayerAction(player, getClass().getSimpleName() + ": Character " + player.getName() + " of account " + player.getAccountName() + " tried to get item with oid " + _objectId + " from pet but has invalid count " + _amount + " item count: " + item.getCount(), GeneralConfig.DEFAULT_PUNISH);
+			PunishmentManager.handleIllegalPlayerAction(player, getClass().getSimpleName() + ": Character " + player.getName() + " of account " + player.getAccountName() + " tried to give item with oid " + _objectId + " to pet but has invalid count " + _amount + " item count: " + item.getCount(), GeneralConfig.DEFAULT_PUNISH);
 			return;
 		}
 		
