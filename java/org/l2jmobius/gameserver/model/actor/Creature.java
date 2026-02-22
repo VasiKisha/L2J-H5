@@ -4833,8 +4833,11 @@ public abstract class Creature extends WorldObject
 					distance = verticalMovementOnly ? Math.pow(dz, 2) : Math.hypot(dx, dy);
 				}
 				
+				final int pathfindingThreshold = isPlayer() ? 30 : 15;
+				final boolean dangerousFall = isMonster() && (Math.abs(dz) > 100) && (distance < 500);
+				
 				// Pathfinding checks.
-				if (!directMove && (!isPlayer() || ((originalDistance - distance) > 30)) && !isAfraid() && !isInVehicle)
+				if (!directMove && (((originalDistance - distance) > pathfindingThreshold) || dangerousFall) && !isAfraid() && !isInVehicle)
 				{
 					// Path calculation -- overrides previous movement check
 					move.geoPath = PathFinding.getInstance().findPath(curX, curY, curZ, originalX, originalY, originalZ, getInstanceId(), isPlayer());
