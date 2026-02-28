@@ -1101,14 +1101,7 @@
 				<add stat="pDef" val="70">
 					<using kind="HEAVY" />
 				</add>
-				<add stat="regMp" val="32">
-					<and>
-						<player resting="true" />
-						<or>
-							<player standing="true" />
-						</or>
-					</and>
-				</add>
+				<add stat="regMp" val="32" />
 			</effect>
 		</effects>
 	</skill>

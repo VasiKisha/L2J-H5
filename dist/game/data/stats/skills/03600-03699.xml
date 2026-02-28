@@ -301,14 +301,7 @@
 				<add stat="pDef" val="25">
 					<using kind="HEAVY" />
 				</add>
-				<add stat="regMp" val="1.518">
-					<and>
-						<player resting="true" />
-						<or>
-							<player standing="true" />
-						</or>
-					</and>
-				</add>
+				<add stat="regMp" val="1.518" />
 			</effect>
 		</effects>
 	</skill>
@@ -355,14 +348,7 @@
 				<add stat="pDef" val="38">
 					<using kind="HEAVY" />
 				</add>
-				<add stat="regMp" val="2.019">
-					<and>
-						<player resting="true" />
-						<or>
-							<player standing="true" />
-						</or>
-					</and>
-				</add>
+				<add stat="regMp" val="2.019" />
 			</effect>
 		</effects>
 	</skill>
@@ -409,14 +395,7 @@
 				<add stat="pDef" val="44">
 					<using kind="HEAVY" />
 				</add>
-				<add stat="regMp" val="2.25">
-					<and>
-						<player resting="true" />
-						<or>
-							<player standing="true" />
-						</or>
-					</and>
-				</add>
+				<add stat="regMp" val="2.25" />
 			</effect>
 		</effects>
 	</skill>
@@ -463,14 +442,7 @@
 				<add stat="pDef" val="50">
 					<using kind="HEAVY" />
 				</add>
-				<add stat="regMp" val="2.43">
-					<and>
-						<player resting="true" />
-						<or>
-							<player standing="true" />
-						</or>
-					</and>
-				</add>
+				<add stat="regMp" val="2.43" />
 			</effect>
 		</effects>
 	</skill>
@@ -517,14 +489,7 @@
 				<add stat="pDef" val="59">
 					<using kind="HEAVY" />
 				</add>
-				<add stat="regMp" val="2.823">
-					<and>
-						<player resting="true" />
-						<or>
-							<player standing="true" />
-						</or>
-					</and>
-				</add>
+				<add stat="regMp" val="2.823" />
 			</effect>
 		</effects>
 	</skill>
