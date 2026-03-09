@@ -2505,7 +2505,7 @@
 			<skill id="4778" level="2" /> <!-- BOSS Spear Attack -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai clanHelpRange="300" isAggressive="false" />
+		<ai type="ARCHER" clanHelpRange="300" isAggressive="false" />
 		<collision>
 			<radius normal="10" grown="12" />
 			<height normal="22" grown="27" />
@@ -4823,7 +4823,7 @@
 			<skill id="4416" level="6" /> <!-- Humanoids -->
 		</skillList>
 		<exCrtEffect>true</exCrtEffect>
-		<ai clanHelpRange="300" isAggressive="false" />
+		<ai type="ARCHER" clanHelpRange="300" isAggressive="false" />
 		<collision>
 			<radius normal="20" />
 			<height normal="28" />
